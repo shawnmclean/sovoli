@@ -425,8 +425,6 @@ export default function Index() {
           </h1>
           <p className="text-center text-lg text-primary/60">
             Remix SaaS is a fully Open Source project.
-            <br />
-            The code is available on GitHub.
           </p>
           <a
             href="https://github.com/dev-xo/remix-saas"
