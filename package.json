@@ -1,9 +1,9 @@
 {
   "name": "sovoli",
   "private": true,
-  "description": "A Lightweight, Feature-Rich, and Production-Ready Remix Stack for your next SaaS application.",
+  "description": "Personal project for Shawn Mclean for learning web-based AI",
   "repository": "dev-xo/remix-saas",
-  "author": "Daniel Kanem <devxo@mail.com> (https://twitter.com/DanielKanem)",
+  "author": "Shawn Mclean",
   "sideEffects": false,
   "type": "module",
   "imports": {
