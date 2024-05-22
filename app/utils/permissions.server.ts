@@ -1,26 +1,60 @@
-/**
- * Permissions and Roles.
- * Implementation based on github.com/epicweb-dev/epic-stack
- */
 import { json } from '@remix-run/node'
-import { requireUser } from '#app/modules/auth/auth.server'
-import { userHasRole } from '#app/utils/misc'
-import { ROUTE_PATH as LOGIN_PATH } from '#app/routes/auth+/login'
+import { requireUserId } from './auth.server.ts'
+import { prisma } from './db.server.ts'
+import { type PermissionString, parsePermissionString } from './user.ts'
 
-export type RoleName = 'user' | 'admin'
+export async function requireUserWithPermission(
+	request: Request,
+	permission: PermissionString,
+) {
+	const userId = await requireUserId(request)
+	const permissionData = parsePermissionString(permission)
+	const user = await prisma.user.findFirst({
+		select: { id: true },
+		where: {
+			id: userId,
+			roles: {
+				some: {
+					permissions: {
+						some: {
+							...permissionData,
+							access: permissionData.access
+								? { in: permissionData.access }
+								: undefined,
+						},
+					},
+				},
+			},
+		},
+	})
+	if (!user) {
+		throw json(
+			{
+				error: 'Unauthorized',
+				requiredPermission: permissionData,
+				message: `Unauthorized: required permissions: ${permission}`,
+			},
+			{ status: 403 },
+		)
+	}
+	return user.id
+}
 
-export async function requireUserWithRole(request: Request, name: RoleName) {
-  const user = await requireUser(request, { redirectTo: LOGIN_PATH })
-  const hasRole = userHasRole(user, name)
-  if (!hasRole) {
-    throw json(
-      {
-        error: 'Unauthorized',
-        requiredRole: name,
-        message: `Unauthorized: required role: ${name}`,
-      },
-      { status: 403 },
-    )
-  }
-  return user
+export async function requireUserWithRole(request: Request, name: string) {
+	const userId = await requireUserId(request)
+	const user = await prisma.user.findFirst({
+		select: { id: true },
+		where: { id: userId, roles: { some: { name } } },
+	})
+	if (!user) {
+		throw json(
+			{
+				error: 'Unauthorized',
+				requiredRole: name,
+				message: `Unauthorized: required role: ${name}`,
+			},
+			{ status: 403 },
+		)
+	}
+	return user.id
 }
