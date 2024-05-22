@@ -57,6 +57,7 @@ export default function Index() {
 					<p
 						data-paragraph
 						className="animate-slide-top xl:animate-slide-left mt-6 text-xl/7 text-muted-foreground [animation-delay:0.8s] [animation-fill-mode:backwards] xl:mt-8 xl:text-xl/6 xl:leading-10 xl:[animation-delay:1s] xl:[animation-fill-mode:backwards]"
+
 					>
 						Check the{' '}
 						<a
