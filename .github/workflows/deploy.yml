@@ -140,6 +140,8 @@ jobs:
     name: 🚀 Deploy
     runs-on: ubuntu-22.04
     needs: [lint, typecheck, vitest, playwright]
+    environment: production
+    concurrency: production
     # only build/deploy branches on pushes
     if: ${{ github.event_name == 'push' }}
 
