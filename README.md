@@ -1,44 +1,54 @@
-<h1 align="center">
-  🛍️ Remix SaaS
-</h1>
-
 <div align="center">
+  <h1 align="center"><a href="https://www.epicweb.dev/epic-stack">The Epic Stack 🚀</a></h1>
+  <strong align="center">
+    Ditch analysis paralysis and start shipping Epic Web apps.
+  </strong>
   <p>
-  A Lightweight, Feature-Rich, and Production-Ready Remix Stack for your next SaaS application.
-  </p>
-</div>
-
-<div align="center">
-  <p>
-    <a href="https://remix-saas.fly.dev">Live Demo</a>
-    ·
-    <a href="https://github.com/dev-xo/remix-saas/tree/main/docs">Documentation</a>
-    ·
-    <a href="https://twitter.com/DanielKanem">Twitter</a>
+    This is an opinionated project starter and reference that allows teams to
+    ship their ideas to production faster and on a more stable foundation based
+    on the experience of <a href="https://kentcdodds.com">Kent C. Dodds</a> and
+    <a href="https://github.com/epicweb-dev/epic-stack/graphs/contributors">contributors</a>.
   </p>
 </div>
 
 ```sh
-npx create-remix-saas@latest
+npx create-epic-app@latest
 ```
 
-## [Live Demo](https://remix-saas.fly.dev)
+[![The Epic Stack](https://github-production-user-asset-6210df.s3.amazonaws.com/1500684/246885449-1b00286c-aa3d-44b2-9ef2-04f694eb3592.png)](https://www.epicweb.dev/epic-stack)
 
-[![Remix SaaS](https://raw.githubusercontent.com/dev-xo/dev-xo/main/remix-saas/intro.png)](https://remix-saas.fly.dev)
+[The Epic Stack](https://www.epicweb.dev/epic-stack)
 
-We've created a simple demo that displays all template-provided features. Psst! Give the site a few seconds to load! _(It's running on a free tier!)_
+<hr />
 
-> [!NOTE]
-> Remix SaaS is an Open Source Template that shares common bits of code with: [Indie Stack](https://github.com/remix-run/indie-stack), [Epic Stack](https://github.com/epicweb-dev/epic-stack), [Supa Stripe Stack](https://github.com/rphlmr/supa-stripe-stack), and some other amazing Open Source Remix resources. Check them out, please!
+## Watch Kent's Introduction to The Epic Stack
 
-## Getting Started
+[![Epic Stack Talk slide showing Flynn Rider with knives, the text "I've been around and I've got opinions" and Kent speaking in the corner](https://github-production-user-asset-6210df.s3.amazonaws.com/1500684/277818553-47158e68-4efc-43ae-a477-9d1670d4217d.png)](https://www.epicweb.dev/talks/the-epic-stack)
 
-Please, read the [Getting Started Documentation](https://github.com/dev-xo/remix-saas/tree/main/docs#remix-saas-documentation) to successfully initialize your **Remix SaaS** Template.
+["The Epic Stack" by Kent C. Dodds](https://www.epicweb.dev/talks/the-epic-stack)
+
+## Docs
+
+[Read the docs](https://github.com/epicweb-dev/epic-stack/blob/main/docs)
+(please 🙏).
 
 ## Support
 
-If you found **Remix SaaS** helpful, consider supporting it with a ⭐ [Star](https://github.com/dev-xo/remix-saas). It helps the repository grow and provides the required motivation to continue maintaining the project. Thank you!
+- 🆘 Join the
+  [discussion on GitHub](https://github.com/epicweb-dev/epic-stack/discussions)
+  and the [KCD Community on Discord](https://kcd.im/discord).
+- 💡 Create an
+  [idea discussion](https://github.com/epicweb-dev/epic-stack/discussions/new?category=ideas)
+  for suggestions.
+- 🐛 Open a [GitHub issue](https://github.com/epicweb-dev/epic-stack/issues) to
+  report a bug.
 
-## Acknowledgments
+## Branding
 
-Special thanks to [@mw10013](https://github.com/mw10013) who has been part of the Remix SaaS development.
+Want to talk about the Epic Stack in a blog post or talk? Great! Here are some
+assets you can use in your material:
+[EpicWeb.dev/brand](https://epicweb.dev/brand)
+
+## Thanks
+
+You rock 🪨

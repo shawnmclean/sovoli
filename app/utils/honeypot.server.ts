@@ -1,20 +1,17 @@
-/**
- * Learn more about Honeypot protection:
- * @see https://github.com/sergiodxa/remix-utils?tab=readme-ov-file#form-honeypot
- */
 import { Honeypot, SpamError } from 'remix-utils/honeypot/server'
 
 export const honeypot = new Honeypot({
-  encryptionSeed: process.env.HONEYPOT_ENCRYPTION_SEED,
+	validFromFieldName: process.env.NODE_ENV === 'test' ? null : undefined,
+	encryptionSeed: process.env.HONEYPOT_SECRET,
 })
 
 export function checkHoneypot(formData: FormData) {
-  try {
-    honeypot.check(formData)
-  } catch (err: unknown) {
-    if (err instanceof SpamError) {
-      throw new Response('Form not submitted properly', { status: 400 })
-    }
-    throw err
-  }
+	try {
+		honeypot.check(formData)
+	} catch (error) {
+		if (error instanceof SpamError) {
+			throw new Response('Form not submitted properly', { status: 400 })
+		}
+		throw error
+	}
 }

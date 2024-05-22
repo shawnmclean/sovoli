@@ -1,52 +1,65 @@
 import { z } from 'zod'
 
 const schema = z.object({
-  NODE_ENV: z.enum(['production', 'development', 'test'] as const),
-  SESSION_SECRET: z.string().optional(),
-  ENCRYPTION_SECRET: z.string().optional(),
-  DATABASE_URL: z.string().optional(),
-  DEV_HOST_URL: z.string().optional(),
-  PROD_HOST_URL: z.string().optional(),
-  RESEND_API_KEY: z.string(),
-  GITHUB_CLIENT_ID: z.string().optional(),
-  GITHUB_CLIENT_SECRET: z.string().optional(),
-  STRIPE_PUBLIC_KEY: z.string(),
-  STRIPE_SECRET_KEY: z.string(),
-  STRIPE_WEBHOOK_ENDPOINT: z.string().optional(),
-  HONEYPOT_ENCRYPTION_SEED: z.string().optional(),
+	NODE_ENV: z.enum(['production', 'development', 'test'] as const),
+	DATABASE_PATH: z.string(),
+	DATABASE_URL: z.string(),
+	SESSION_SECRET: z.string(),
+	INTERNAL_COMMAND_TOKEN: z.string(),
+	HONEYPOT_SECRET: z.string(),
+	CACHE_DATABASE_PATH: z.string(),
+	// If you plan on using Sentry, uncomment this line
+	// SENTRY_DSN: z.string(),
+	// If you plan to use Resend, uncomment this line
+	// RESEND_API_KEY: z.string(),
+	// If you plan to use GitHub auth, remove the default:
+	GITHUB_CLIENT_ID: z.string().default('MOCK_GITHUB_CLIENT_ID'),
+	GITHUB_CLIENT_SECRET: z.string().default('MOCK_GITHUB_CLIENT_SECRET'),
+	GITHUB_TOKEN: z.string().default('MOCK_GITHUB_TOKEN'),
+	ALLOW_INDEXING: z.enum(['true', 'false']).optional(),
 })
 
 declare global {
-  namespace NodeJS {
-    interface ProcessEnv extends z.infer<typeof schema> {}
-  }
+	namespace NodeJS {
+		interface ProcessEnv extends z.infer<typeof schema> {}
+	}
 }
 
-export function initEnvs() {
-  const parsed = schema.safeParse(process.env)
+export function init() {
+	const parsed = schema.safeParse(process.env)
 
-  if (parsed.success === false) {
-    console.error('Invalid environment variables:', parsed.error.flatten().fieldErrors)
-    throw new Error('Invalid environment variables.')
-  }
+	if (parsed.success === false) {
+		console.error(
+			'❌ Invalid environment variables:',
+			parsed.error.flatten().fieldErrors,
+		)
+
+		throw new Error('Invalid environment variables')
+	}
 }
 
 /**
- * Exports shared environment variables.
- * Do *NOT* add any environment variables that do not wish to be included in the client.
+ * This is used in both `entry.server.ts` and `root.tsx` to ensure that
+ * the environment variables are set and globally available before the app is
+ * started.
+ *
+ * NOTE: Do *not* add any environment variables in here that you do not wish to
+ * be included in the client.
+ * @returns all public ENV variables
  */
-export function getSharedEnvs() {
-  return {
-    DEV_HOST_URL: process.env.DEV_HOST_URL,
-    PROD_HOST_URL: process.env.PROD_HOST_URL,
-  }
+export function getEnv() {
+	return {
+		MODE: process.env.NODE_ENV,
+		SENTRY_DSN: process.env.SENTRY_DSN,
+		ALLOW_INDEXING: process.env.ALLOW_INDEXING,
+	}
 }
 
-type ENV = ReturnType<typeof getSharedEnvs>
+type ENV = ReturnType<typeof getEnv>
 
 declare global {
-  let ENV: ENV
-  interface Window {
-    ENV: ENV
-  }
+	var ENV: ENV
+	interface Window {
+		ENV: ENV
+	}
 }

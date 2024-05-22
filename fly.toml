@@ -1,22 +1,57 @@
-# fly.toml app configuration file generated for sovoli on 2024-05-20T11:35:37-05:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
+app = "sovoli"
+primary_region = "atl"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = [ ]
+swap_size_mb = 512
 
-app = 'sovoli'
-primary_region = 'ewr'
+[experimental]
+allowed_public_ports = [ ]
+auto_rollback = true
 
-[build]
+[mounts]
+source = "data"
+destination = "/data"
 
-[http_service]
-  internal_port = 3000
+[[services]]
+internal_port = 8_080
+processes = [ "app" ]
+protocol = "tcp"
+script_checks = [ ]
+
+  [services.concurrency]
+  hard_limit = 100
+  soft_limit = 80
+  type = "requests"
+
+  [[services.ports]]
+  handlers = [ "http" ]
+  port = 80
   force_https = true
-  auto_stop_machines = true
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
 
-[[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
+  [[services.ports]]
+  handlers = [ "tls", "http" ]
+  port = 443
+
+  [[services.tcp_checks]]
+  grace_period = "1s"
+  interval = "15s"
+  restart_limit = 0
+  timeout = "2s"
+
+  [[services.http_checks]]
+  interval = "10s"
+  grace_period = "5s"
+  method = "get"
+  path = "/resources/healthcheck"
+  protocol = "http"
+  timeout = "2s"
+  tls_skip_verify = false
+  headers = { }
+
+  [[services.http_checks]]
+  grace_period = "10s"
+  interval = "30s"
+  method = "GET"
+  timeout = "5s"
+  path = "/litefs/health"
