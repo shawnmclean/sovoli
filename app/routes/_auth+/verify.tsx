@@ -1,139 +1,158 @@
-import { getFormProps, getInputProps, useForm } from '@conform-to/react'
-import { getZodConstraint, parseWithZod } from '@conform-to/zod'
-import { type ActionFunctionArgs } from '@remix-run/node'
-import { Form, useActionData, useSearchParams } from '@remix-run/react'
+import type {
+	MetaFunction,
+	LoaderFunctionArgs,
+	ActionFunctionArgs,
+} from '@remix-run/node'
+import { useRef, useEffect } from 'react'
+import { Form, useLoaderData } from '@remix-run/react'
+import { json, redirect } from '@remix-run/node'
+import { useHydrated } from 'remix-utils/use-hydrated'
+import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { HoneypotInputs } from 'remix-utils/honeypot/react'
 import { z } from 'zod'
-import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
-import { ErrorList, OTPField } from '#app/components/forms.tsx'
-import { Spacer } from '#app/components/spacer.tsx'
-import { StatusButton } from '#app/components/ui/status-button.tsx'
-import { checkHoneypot } from '#app/utils/honeypot.server.ts'
-import { useIsPending } from '#app/utils/misc.tsx'
-import { validateRequest } from './verify.server.ts'
+import { getZodConstraint, parseWithZod } from '@conform-to/zod'
+import { getFormProps, getInputProps, useForm } from '@conform-to/react'
+import { authenticator } from '#app/modules/auth/auth.server'
+import {
+	getSession,
+	commitSession,
+} from '#app/modules/auth/auth-session.server'
+import { validateCSRF } from '#app/utils/csrf.server'
+import { checkHoneypot } from '#app/utils/honeypot.server'
+import { siteConfig } from '#app/utils/constants/brand'
+// import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/dashboard+/_layout'
+import { Input } from '#app/components/ui/input'
+import { Button } from '#app/components/ui/button'
 
-export const codeQueryParam = 'code'
-export const targetQueryParam = 'target'
-export const typeQueryParam = 'type'
-export const redirectToQueryParam = 'redirectTo'
-const types = ['onboarding', 'reset-password', 'change-email', '2fa'] as const
-const VerificationTypeSchema = z.enum(types)
-export type VerificationTypes = z.infer<typeof VerificationTypeSchema>
+export const ROUTE_PATH = '/auth/verify' as const
 
-export const VerifySchema = z.object({
-	[codeQueryParam]: z.string().min(6).max(6),
-	[typeQueryParam]: VerificationTypeSchema,
-	[targetQueryParam]: z.string(),
-	[redirectToQueryParam]: z.string().optional(),
+export const VerifyLoginSchema = z.object({
+	code: z.string().min(6, 'Code must be at least 6 characters.'),
 })
 
-export async function action({ request }: ActionFunctionArgs) {
-	const formData = await request.formData()
-	checkHoneypot(formData)
-	return validateRequest(request, formData)
+export const meta: MetaFunction = () => {
+	return [{ title: `${siteConfig.siteTitle} - Verify` }]
 }
 
-export default function VerifyRoute() {
-	const [searchParams] = useSearchParams()
-	const isPending = useIsPending()
-	const actionData = useActionData<typeof action>()
-	const parseWithZoddType = VerificationTypeSchema.safeParse(
-		searchParams.get(typeQueryParam),
-	)
-	const type = parseWithZoddType.success ? parseWithZoddType.data : null
+export async function loader({ request }: LoaderFunctionArgs) {
+	await authenticator.isAuthenticated(request, {
+		successRedirect: '/',
+	})
 
-	const checkEmail = (
-		<>
-			<h1 className="text-h1">Check your email</h1>
-			<p className="mt-3 text-body-md text-muted-foreground">
-				We've sent you a code to verify your email address.
-			</p>
-		</>
-	)
+	const cookie = await getSession(request.headers.get('Cookie'))
+	const authEmail = cookie.get('auth:email')
+	const authError = cookie.get(authenticator.sessionErrorKey)
 
-	const headings: Record<VerificationTypes, React.ReactNode> = {
-		onboarding: checkEmail,
-		'reset-password': checkEmail,
-		'change-email': checkEmail,
-		'2fa': (
-			<>
-				<h1 className="text-h1">Check your 2FA app</h1>
-				<p className="mt-3 text-body-md text-muted-foreground">
-					Please enter your 2FA code to verify your identity.
-				</p>
-			</>
-		),
-	}
+	if (!authEmail) return redirect('/auth/login')
 
-	const [form, fields] = useForm({
-		id: 'verify-form',
-		constraint: getZodConstraint(VerifySchema),
-		lastResult: actionData?.result,
-		onValidate({ formData }) {
-			return parseWithZod(formData, { schema: VerifySchema })
+	return json({ authEmail, authError } as const, {
+		headers: {
+			'Set-Cookie': await commitSession(cookie),
 		},
-		defaultValue: {
-			code: searchParams.get(codeQueryParam),
-			type: type,
-			target: searchParams.get(targetQueryParam),
-			redirectTo: searchParams.get(redirectToQueryParam),
+	})
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+	const url = new URL(request.url)
+	const pathname = url.pathname
+
+	const clonedRequest = request.clone()
+	const formData = await clonedRequest.formData()
+	await validateCSRF(formData, clonedRequest.headers)
+	checkHoneypot(formData)
+
+	await authenticator.authenticate('TOTP', request, {
+		successRedirect: pathname,
+		failureRedirect: pathname,
+	})
+}
+
+export default function Verify() {
+	const { authEmail, authError } = useLoaderData<typeof loader>()
+	const inputRef = useRef<HTMLInputElement>(null)
+	const isHydrated = useHydrated()
+
+	const [codeForm, { code }] = useForm({
+		constraint: getZodConstraint(VerifyLoginSchema),
+		onValidate({ formData }) {
+			return parseWithZod(formData, { schema: VerifyLoginSchema })
 		},
 	})
 
+	useEffect(() => {
+		isHydrated && inputRef.current?.focus()
+	}, [isHydrated])
+
 	return (
-		<main className="container flex flex-col justify-center pb-32 pt-20">
-			<div className="text-center">
-				{type ? headings[type] : 'Invalid Verification Type'}
+		<div className="mx-auto flex h-full w-full max-w-96 flex-col items-center justify-center gap-6">
+			<div className="mb-2 flex flex-col gap-2">
+				<p className="text-center text-2xl text-primary">Check your inbox!</p>
+				<p className="text-center text-base font-normal text-primary/60">
+					We've just emailed you a temporary password.
+					<br />
+					Please enter it below.
+				</p>
 			</div>
 
-			<Spacer size="xs" />
+			<Form
+				method="POST"
+				autoComplete="off"
+				className="flex w-full flex-col items-start gap-1"
+				{...getFormProps(codeForm)}
+			>
+				<AuthenticityTokenInput />
+				<HoneypotInputs />
 
-			<div className="mx-auto flex w-72 max-w-full flex-col justify-center gap-1">
-				<div>
-					<ErrorList errors={form.errors} id={form.errorId} />
+				<div className="flex w-full flex-col gap-1.5">
+					<label htmlFor="code" className="sr-only">
+						Code
+					</label>
+					<Input
+						placeholder="Code"
+						ref={inputRef}
+						required
+						className={`bg-transparent ${
+							code.errors && 'border-destructive focus-visible:ring-destructive'
+						}`}
+						{...getInputProps(code, { type: 'text' })}
+					/>
 				</div>
-				<div className="flex w-full gap-2">
-					<Form method="POST" {...getFormProps(form)} className="flex-1">
-						<HoneypotInputs />
-						<div className="flex items-center justify-center">
-							<OTPField
-								labelProps={{
-									htmlFor: fields[codeQueryParam].id,
-									children: 'Code',
-								}}
-								inputProps={{
-									...getInputProps(fields[codeQueryParam], { type: 'text' }),
-									autoComplete: 'one-time-code',
-								}}
-								errors={fields[codeQueryParam].errors}
-							/>
-						</div>
-						<input
-							{...getInputProps(fields[typeQueryParam], { type: 'hidden' })}
-						/>
-						<input
-							{...getInputProps(fields[targetQueryParam], { type: 'hidden' })}
-						/>
-						<input
-							{...getInputProps(fields[redirectToQueryParam], {
-								type: 'hidden',
-							})}
-						/>
-						<StatusButton
-							className="w-full"
-							status={isPending ? 'pending' : form.status ?? 'idle'}
-							type="submit"
-							disabled={isPending}
-						>
-							Submit
-						</StatusButton>
-					</Form>
+
+				<div className="flex flex-col">
+					{!authError && code.errors && (
+						<span className="mb-2 text-sm text-destructive dark:text-destructive-foreground">
+							{code.errors.join(' ')}
+						</span>
+					)}
+					{authEmail && authError && (
+						<span className="mb-2 text-sm text-destructive dark:text-destructive-foreground">
+							{authError.message}
+						</span>
+					)}
 				</div>
-			</div>
-		</main>
+
+				<Button type="submit" className="w-full">
+					Continue
+				</Button>
+			</Form>
+
+			{/* Request New Code. */}
+			{/* Email is already in session, input it's not required. */}
+			<Form method="POST" className="flex w-full flex-col">
+				<AuthenticityTokenInput />
+				<HoneypotInputs />
+
+				<p className="text-center text-sm font-normal text-primary/60">
+					Did not receive the code?
+				</p>
+				<Button
+					type="submit"
+					variant="ghost"
+					className="w-full hover:bg-transparent"
+				>
+					Request New Code
+				</Button>
+			</Form>
+		</div>
 	)
-}
-
-export function ErrorBoundary() {
-	return <GeneralErrorBoundary />
 }
