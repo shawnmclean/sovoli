@@ -6,7 +6,7 @@ import { authSessionStorage } from '#app/utils/session.server.ts'
 import {
 	type ToastInput,
 	toastSessionStorage,
-	toastKey,
+	TOAST_SESSION_KEY,
 } from '#app/utils/toast.server.ts'
 import { convertSetCookieToCookie } from '#tests/utils.ts'
 
@@ -131,7 +131,7 @@ expect.extend({
 		const toastSession = await toastSessionStorage.getSession(
 			convertSetCookieToCookie(toastSetCookie),
 		)
-		const toastValue = toastSession.get(toastKey)
+		const toastValue = toastSession.get(TOAST_SESSION_KEY)
 
 		if (!toastValue) {
 			return {

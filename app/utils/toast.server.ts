@@ -1,13 +1,28 @@
-import { createId as cuid } from '@paralleldrive/cuid2'
-import { createCookieSessionStorage, redirect } from '@remix-run/node'
+/**
+ * Server-Side Toasts.
+ * Implementation based on github.com/epicweb-dev/epic-stack
+ */
+import { redirect, createCookieSessionStorage } from '@remix-run/node'
 import { z } from 'zod'
-import { combineHeaders } from './misc.tsx'
+import { combineHeaders } from '#app/utils/misc.server'
 
-export const toastKey = 'toast'
+export const TOAST_SESSION_KEY = '_toast'
+export const TOAST_SESSION_FLASH_KEY = '_toast_flash'
+
+export const toastSessionStorage = createCookieSessionStorage({
+	cookie: {
+		name: TOAST_SESSION_KEY,
+		path: '/',
+		sameSite: 'lax',
+		httpOnly: true,
+		secrets: [process.env.SESSION_SECRET || 'NOT_A_STRONG_SECRET'],
+		secure: process.env.NODE_ENV === 'production',
+	},
+})
 
 const ToastSchema = z.object({
 	description: z.string(),
-	id: z.string().default(() => cuid()),
+	id: z.string().default(() => Math.random().toString(36).substring(2, 9)),
 	title: z.string().optional(),
 	type: z.enum(['message', 'success', 'error']).default('message'),
 })
@@ -15,16 +30,30 @@ const ToastSchema = z.object({
 export type Toast = z.infer<typeof ToastSchema>
 export type ToastInput = z.input<typeof ToastSchema>
 
-export const toastSessionStorage = createCookieSessionStorage({
-	cookie: {
-		name: 'en_toast',
-		sameSite: 'lax',
-		path: '/',
-		httpOnly: true,
-		secrets: process.env.SESSION_SECRET.split(','),
-		secure: process.env.NODE_ENV === 'production',
-	},
-})
+export async function getToastSession(request: Request) {
+	const sessionUser = await toastSessionStorage.getSession(
+		request.headers.get('Cookie'),
+	)
+	const result = ToastSchema.safeParse(sessionUser.get(TOAST_SESSION_FLASH_KEY))
+	const toast = result.success ? result.data : null
+
+	return {
+		toast,
+		headers: toast
+			? new Headers({
+					'Set-Cookie': await toastSessionStorage.commitSession(sessionUser),
+				})
+			: null,
+	}
+}
+
+export async function createToastHeaders(toastInput: ToastInput) {
+	const sessionUser = await toastSessionStorage.getSession()
+	const toast = ToastSchema.parse(toastInput)
+	sessionUser.flash(TOAST_SESSION_FLASH_KEY, toast)
+	const cookie = await toastSessionStorage.commitSession(sessionUser)
+	return new Headers({ 'Set-Cookie': cookie })
+}
 
 export async function redirectWithToast(
 	url: string,
@@ -35,28 +64,4 @@ export async function redirectWithToast(
 		...init,
 		headers: combineHeaders(init?.headers, await createToastHeaders(toast)),
 	})
-}
-
-export async function createToastHeaders(toastInput: ToastInput) {
-	const session = await toastSessionStorage.getSession()
-	const toast = ToastSchema.parse(toastInput)
-	session.flash(toastKey, toast)
-	const cookie = await toastSessionStorage.commitSession(session)
-	return new Headers({ 'set-cookie': cookie })
-}
-
-export async function getToast(request: Request) {
-	const session = await toastSessionStorage.getSession(
-		request.headers.get('cookie'),
-	)
-	const result = ToastSchema.safeParse(session.get(toastKey))
-	const toast = result.success ? result.data : null
-	return {
-		toast,
-		headers: toast
-			? new Headers({
-					'set-cookie': await toastSessionStorage.destroySession(session),
-				})
-			: null,
-	}
 }
