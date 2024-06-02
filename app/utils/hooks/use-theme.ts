@@ -1,9 +1,9 @@
 /**
  * Implementation based on github.com/epicweb-dev/epic-stack
  */
+import { useFetcher } from '@remix-run/react'
 import * as cookie from 'cookie'
 import { z } from 'zod'
-import { useFetcher } from '@remix-run/react'
 import { useHints } from '#app/utils/hooks/use-hints'
 import { useRequestInfo } from '#app/utils/hooks/use-request-info'
 
