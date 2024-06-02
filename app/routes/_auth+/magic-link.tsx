@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs } from '@remix-run/node'
+import { type LoaderFunctionArgs } from '@remix-run/node'
 import { authenticator } from '#app/modules/auth/auth.server'
 
 import { ROUTE_PATH as LOGIN_PATH } from '#app/routes/_auth+/login.js'

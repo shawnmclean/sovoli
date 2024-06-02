@@ -1,11 +1,10 @@
 import { test as base } from '@playwright/test'
 import { type User as UserModel } from '@prisma/client'
 import * as setCookieParser from 'set-cookie-parser'
-import {
-	getPasswordHash,
-	getSessionExpirationDate,
-	sessionKey,
-} from '#app/utils/auth.server.ts'
+// import {
+// 	getSessionExpirationDate,
+// 	sessionKey,
+// } from '#app/modules/auth/auth.server.ts'
 import { prisma } from '#app/utils/db.server.ts'
 import { authSessionStorage } from '#app/utils/session.server.ts'
 import { createUser } from './db-utils.ts'
@@ -50,7 +49,7 @@ async function getOrInsertUser({
 				email,
 				username,
 				roles: { connect: { name: 'user' } },
-				password: { create: { hash: await getPasswordHash(password) } },
+				// password: { create: { hash: await getPasswordHash(password) } },
 			},
 		})
 	}
@@ -76,14 +75,14 @@ export const test = base.extend<{
 			userId = user.id
 			const session = await prisma.session.create({
 				data: {
-					expirationDate: getSessionExpirationDate(),
+					expirationDate: '', //getSessionExpirationDate(),
 					userId: user.id,
 				},
 				select: { id: true },
 			})
 
 			const authSession = await authSessionStorage.getSession()
-			authSession.set(sessionKey, session.id)
+			authSession.set('sessionKey', session.id)
 			const cookieConfig = setCookieParser.parseString(
 				await authSessionStorage.commitSession(authSession),
 			) as any

@@ -1,6 +1,6 @@
 import * as setCookieParser from 'set-cookie-parser'
 import { expect } from 'vitest'
-import { sessionKey } from '#app/utils/auth.server.ts'
+// import { sessionKey } from '#app/utils/auth.server.ts'
 import { prisma } from '#app/utils/db.server.ts'
 import { authSessionStorage } from '#app/utils/session.server.ts'
 import {
@@ -92,7 +92,7 @@ expect.extend({
 		const authSession = await authSessionStorage.getSession(
 			convertSetCookieToCookie(sessionSetCookie),
 		)
-		const sessionValue = authSession.get(sessionKey)
+		const sessionValue = authSession.get('sessionKey')
 
 		if (!sessionValue) {
 			return {

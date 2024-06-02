@@ -1,28 +1,30 @@
-import type {
-	MetaFunction,
-	LoaderFunctionArgs,
-	ActionFunctionArgs,
+import { getFormProps, getInputProps, useForm } from '@conform-to/react'
+import { getZodConstraint, parseWithZod } from '@conform-to/zod'
+import {
+	type MetaFunction,
+	type LoaderFunctionArgs,
+	type ActionFunctionArgs,
+	json,
+	redirect,
 } from '@remix-run/node'
-import { useRef, useEffect } from 'react'
 import { Form, useLoaderData } from '@remix-run/react'
-import { json, redirect } from '@remix-run/node'
-import { useHydrated } from 'remix-utils/use-hydrated'
+import { useRef, useEffect } from 'react'
+
 import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { HoneypotInputs } from 'remix-utils/honeypot/react'
+import { useHydrated } from 'remix-utils/use-hydrated'
 import { z } from 'zod'
-import { getZodConstraint, parseWithZod } from '@conform-to/zod'
-import { getFormProps, getInputProps, useForm } from '@conform-to/react'
-import { authenticator } from '#app/modules/auth/auth.server'
+import { Button } from '#app/components/ui/button'
+import { Input } from '#app/components/ui/input'
 import {
 	getSession,
 	commitSession,
 } from '#app/modules/auth/auth-session.server'
+import { authenticator } from '#app/modules/auth/auth.server'
+import { siteConfig } from '#app/utils/constants/brand'
 import { validateCSRF } from '#app/utils/csrf.server'
 import { checkHoneypot } from '#app/utils/honeypot.server'
-import { siteConfig } from '#app/utils/constants/brand'
 // import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/dashboard+/_layout'
-import { Input } from '#app/components/ui/input'
-import { Button } from '#app/components/ui/button'
 
 export const ROUTE_PATH = '/auth/verify' as const
 

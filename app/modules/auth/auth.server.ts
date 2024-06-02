@@ -88,20 +88,20 @@ authenticator.use(
 			})
 
 			if (!user) {
-				user = await prisma.user.create({
-					data: {
-						roles: { connect: [{ name: 'user' }] },
-						email,
-					},
-					include: {
-						image: { select: { id: true } },
-						roles: {
-							select: {
-								name: true,
-							},
-						},
-					},
-				})
+				// user = await prisma.user.create({
+				// 	data: {
+				// 		roles: { connect: [{ name: 'user' }] },
+				// 		email,
+				// 	},
+				// 	include: {
+				// 		image: { select: { id: true } },
+				// 		roles: {
+				// 			select: {
+				// 				name: true,
+				// 			},
+				// 		},
+				// 	},
+				// })
 				if (!user) throw new Error(ERRORS.AUTH_USER_NOT_CREATED)
 			}
 

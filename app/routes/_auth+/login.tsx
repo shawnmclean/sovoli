@@ -6,7 +6,7 @@ import {
 	type ActionFunctionArgs,
 	json,
 } from '@remix-run/node'
-import { Form, useLoaderData } from '@remix-run/react'
+import { Form, Link, useLoaderData } from '@remix-run/react'
 import { Loader2 } from 'lucide-react'
 import { useRef, useEffect } from 'react'
 
@@ -171,13 +171,13 @@ export default function Login() {
 
 			<p className="px-12 text-center text-sm font-normal leading-normal text-primary/60">
 				By clicking continue, you agree to our{' '}
-				<a href="/" className="underline hover:text-primary">
+				<Link to="/" className="underline hover:text-primary">
 					Terms of Service
-				</a>{' '}
+				</Link>{' '}
 				and{' '}
-				<a href="/" className="underline hover:text-primary">
+				<Link to="/" className="underline hover:text-primary">
 					Privacy Policy.
-				</a>
+				</Link>
 			</p>
 		</div>
 	)
