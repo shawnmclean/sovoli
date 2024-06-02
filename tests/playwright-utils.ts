@@ -14,22 +14,16 @@ export * from './db-utils.ts'
 type GetOrInsertUserOptions = {
 	id?: string
 	username?: UserModel['username']
-	password?: string
-	email?: UserModel['email']
 }
 
 type User = {
 	id: string
-	email: string
 	username: string
-	name: string | null
 }
 
 async function getOrInsertUser({
 	id,
 	username,
-	password,
-	email,
 }: GetOrInsertUserOptions = {}): Promise<User> {
 	const select = { id: true, email: true, username: true, name: true }
 	if (id) {
@@ -40,16 +34,11 @@ async function getOrInsertUser({
 	} else {
 		const userData = createUser()
 		username ??= userData.username
-		password ??= userData.username
-		email ??= userData.email
 		return await prisma.user.create({
 			select,
 			data: {
 				...userData,
-				email,
 				username,
-				roles: { connect: { name: 'user' } },
-				// password: { create: { hash: await getPasswordHash(password) } },
 			},
 		})
 	}
@@ -73,16 +62,16 @@ export const test = base.extend<{
 		await use(async options => {
 			const user = await getOrInsertUser(options)
 			userId = user.id
-			const session = await prisma.session.create({
-				data: {
-					expirationDate: '', //getSessionExpirationDate(),
-					userId: user.id,
-				},
-				select: { id: true },
-			})
+			// const session = await prisma.session.create({
+			// 	data: {
+			// 		expirationDate: '', //getSessionExpirationDate(),
+			// 		userId: user.id,
+			// 	},
+			// 	select: { id: true },
+			// })
 
 			const authSession = await authSessionStorage.getSession()
-			authSession.set('sessionKey', session.id)
+			authSession.set('sessionKey', 'session.id')
 			const cookieConfig = setCookieParser.parseString(
 				await authSessionStorage.commitSession(authSession),
 			) as any

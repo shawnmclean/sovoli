@@ -1,7 +1,6 @@
 import { type User } from '@prisma/client'
 import { redirect } from '@remix-run/node'
 import { Authenticator } from 'remix-auth'
-import { GitHubStrategy } from 'remix-auth-github'
 import { TOTPStrategy } from 'remix-auth-totp'
 import { authSessionStorage } from '#app/modules/auth/auth-session.server'
 import { sendAuthMessage } from '#app/modules/whatsapp/templates/auth-message'
@@ -9,7 +8,6 @@ import { ROUTE_PATH as LOGOUT_PATH } from '#app/routes/_auth+/logout.js'
 import { ROUTE_PATH as MAGIC_LINK_PATH } from '#app/routes/_auth+/magic-link.js'
 import { ERRORS } from '#app/utils/constants/errors'
 import { prisma } from '#app/utils/db.server'
-import { HOST_URL } from '#app/utils/misc.server'
 
 export const authenticator = new Authenticator<User>(authSessionStorage)
 
@@ -36,60 +34,17 @@ authenticator.use(
 			},
 		},
 		async ({ email }) => {
-			let user = await prisma.user.findUnique({
-				where: { email },
-				include: {
-					image: { select: { id: true } },
-					roles: { select: { name: true } },
-				},
-			})
-
+			// let user = await prisma.user.findUnique({
+			// 	where: { email },
+			// 	include: {
+			// 		image: { select: { id: true } },
+			// 		roles: { select: { name: true } },
+			// 	},
+			// })
+			let user = null
 			if (!user) {
 				// user = await prisma.user.create({
 				// 	data: {
-				// 		email,
-				// 	},
-				// 	include: {
-				// 		image: { select: { id: true } },
-				// 		roles: {
-				// 			select: {
-				// 				name: true,
-				// 			},
-				// 		},
-				// 	},
-				// })
-				if (!user) throw new Error(ERRORS.AUTH_USER_NOT_CREATED)
-			}
-
-			return user
-		},
-	),
-)
-
-/**
- * Github - Strategy.
- */
-authenticator.use(
-	new GitHubStrategy(
-		{
-			clientID: process.env.GITHUB_CLIENT_ID || '',
-			clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
-			callbackURL: `${HOST_URL}/auth/github/callback`,
-		},
-		async ({ profile }) => {
-			const email = profile._json.email || profile.emails[0].value
-			let user = await prisma.user.findUnique({
-				where: { email },
-				include: {
-					image: { select: { id: true } },
-					roles: { select: { name: true } },
-				},
-			})
-
-			if (!user) {
-				// user = await prisma.user.create({
-				// 	data: {
-				// 		roles: { connect: [{ name: 'user' }] },
 				// 		email,
 				// 	},
 				// 	include: {
@@ -132,10 +87,6 @@ export async function requireUser(
 	const user = sessionUser?.id
 		? await prisma.user.findUnique({
 				where: { id: sessionUser?.id },
-				include: {
-					image: { select: { id: true } },
-					roles: { select: { name: true } },
-				},
 			})
 		: null
 	if (!user) {

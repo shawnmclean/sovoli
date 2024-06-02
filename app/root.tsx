@@ -56,10 +56,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	const user = sessionUser?.id
 		? await prisma.user.findUnique({
 				where: { id: sessionUser?.id },
-				include: {
-					image: { select: { id: true } },
-					roles: { select: { name: true } },
-				},
 			})
 		: null
 

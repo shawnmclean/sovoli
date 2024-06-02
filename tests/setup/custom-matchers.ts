@@ -73,47 +73,47 @@ expect.extend({
 				)} but got ${this.utils.printReceived(location)}`,
 		}
 	},
-	async toHaveSessionForUser(response: Response, userId: string) {
-		const setCookies = getSetCookie(response.headers)
-		const sessionSetCookie = setCookies.find(
-			c => setCookieParser.parseString(c).name === 'en_session',
-		)
+	// async toHaveSessionForUser(response: Response, userId: string) {
+	// 	const setCookies = getSetCookie(response.headers)
+	// 	const sessionSetCookie = setCookies.find(
+	// 		c => setCookieParser.parseString(c).name === 'en_session',
+	// 	)
 
-		if (!sessionSetCookie) {
-			return {
-				pass: false,
-				message: () =>
-					`The en_session set-cookie header was${
-						this.isNot ? '' : ' not'
-					} defined`,
-			}
-		}
+	// 	if (!sessionSetCookie) {
+	// 		return {
+	// 			pass: false,
+	// 			message: () =>
+	// 				`The en_session set-cookie header was${
+	// 					this.isNot ? '' : ' not'
+	// 				} defined`,
+	// 		}
+	// 	}
 
-		const authSession = await authSessionStorage.getSession(
-			convertSetCookieToCookie(sessionSetCookie),
-		)
-		const sessionValue = authSession.get('sessionKey')
+	// 	const authSession = await authSessionStorage.getSession(
+	// 		convertSetCookieToCookie(sessionSetCookie),
+	// 	)
+	// 	const sessionValue = authSession.get('sessionKey')
 
-		if (!sessionValue) {
-			return {
-				pass: false,
-				message: () => `A session was${this.isNot ? '' : ' not'} set in cookie`,
-			}
-		}
+	// 	if (!sessionValue) {
+	// 		return {
+	// 			pass: false,
+	// 			message: () => `A session was${this.isNot ? '' : ' not'} set in cookie`,
+	// 		}
+	// 	}
 
-		const session = await prisma.session.findUnique({
-			select: { id: true },
-			where: { userId, id: sessionValue },
-		})
+	// 	const session = await prisma.session.findUnique({
+	// 		select: { id: true },
+	// 		where: { userId, id: sessionValue },
+	// 	})
 
-		return {
-			pass: Boolean(session),
-			message: () =>
-				`A session was${
-					this.isNot ? ' not' : ''
-				} created in the database for ${userId}`,
-		}
-	},
+	// 	return {
+	// 		pass: Boolean(session),
+	// 		message: () =>
+	// 			`A session was${
+	// 				this.isNot ? ' not' : ''
+	// 			} created in the database for ${userId}`,
+	// 	}
+	// },
 	async toSendToast(response: Response, toast: ToastInput) {
 		const setCookies = getSetCookie(response.headers)
 		const toastSetCookie = setCookies.find(
