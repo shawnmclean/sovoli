@@ -42,8 +42,8 @@ script_checks = [ ]
   [[services.http_checks]]
   interval = "10s"
   grace_period = "5s"
-  method = "get"
-  path = "/resources/healthcheck"
+  method = "GET"
+  path = "/health"
   protocol = "http"
   timeout = "2s"
   tls_skip_verify = false
