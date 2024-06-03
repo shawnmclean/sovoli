@@ -1,5 +1,12 @@
-name: shared-ci.yml
+name: Shared CI
 
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
+        default: '20'
 jobs:
   lint:
     name: lint
