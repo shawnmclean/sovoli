@@ -44,8 +44,8 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
 
-      - name: 🖼 Build icons
-        run: npm run build:icons
+      - name: 🖼 Build
+        run: npm run build
 
       - name: 🔎 Type check
         run: npm run typecheck --if-present
@@ -68,8 +68,8 @@ jobs:
       - name: 🏄 Copy test env vars
         run: cp .env.example .env
 
-      - name: 🖼 Build icons
-        run: npm run build:icons
+      - name: 🖼 Build
+        run: npm run build
 
       - name: ⚡ Run test
         run: npm run test -- --coverage
