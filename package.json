@@ -1,0 +1,54 @@
+{
+  "name": "@sovoli/root",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "prisma": {
+    "schema": "packages/database/prisma/schema.prisma",
+    "seed": "tsx packages/database/src/seed.ts"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "db:migrate:deploy": "turbo run db:migrate:deploy",
+    "db:migrate:dev": "pnpm run --filter @remix-gospel-stack/database db:migrate:dev",
+    "db:push": "turbo run db:push",
+    "db:seed": "turbo run db:seed --no-cache",
+    "db:migrate:force": "turbo run db:migrate:force --no-cache",
+    "dev": "turbo run dev --parallel",
+    "storybook": "turbo run storybook",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "generate": "turbo run generate",
+    "lint": "turbo run lint",
+    "docker:db": "docker compose -f docker-compose.yml up -d",
+    "docker:build": "turbo run docker:build",
+    "docker:build:remix-app": "docker build -t remix-gospel-stack-remix-app -f ./apps/remix-app/Dockerfile .",
+    "docker:run:remix-app": "docker run -it --init --rm -p 3000:3000 --env-file .env.docker --env DATABASE_URL='postgresql://postgres:postgres@db:5432/postgres' --network=app_network remix-gospel-stack-remix-app",
+    "test": "turbo run test",
+    "test:dev": "turbo run test:dev",
+    "start-remix-production": "pnpm run --filter @remix-gospel-stack/remix-app start",
+    "start": "turbo run start",
+    "clean": "turbo run clean",
+    "clean:node_modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "typecheck": "turbo run typecheck",
+    "test:e2e:dev": "turbo run test:e2e:dev",
+    "test:e2e:ci": "turbo run test:e2e:ci",
+    "setup": "pnpm run db:migrate:dev && turbo run db:migrate:force db:seed build",
+    "validate": "turbo run lint typecheck test"
+  },
+  "dependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
+    "@remix-run/dev": "2.9.2",
+    "@turbo/gen": "^1.13.2",
+    "@types/glob": "8.1.0",
+    "glob": "^10.3.12",
+    "json5": "^2.2.3",
+    "magicast": "^0.3.4",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "replace-in-file": "^7.1.0",
+    "turbo": "^1.13.2",
+    "typescript": "^5.4.5"
+  }
+}
