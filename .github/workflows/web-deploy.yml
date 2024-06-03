@@ -80,7 +80,7 @@ jobs:
   deploy:
     name: 🚀 Deploy
     runs-on: ubuntu-22.04
-    needs: [build-and-test]
+    needs: [build-and-test, playwright]
     environment: Production
     concurrency: Production
     # only build/deploy branches on pushes
