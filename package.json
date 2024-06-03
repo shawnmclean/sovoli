@@ -10,7 +10,7 @@
     "seed": "tsx apps/sovoli.com/prisma/seed.ts"
   },
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --cache-dir=.turbo",
     "db:migrate:deploy": "turbo run db:migrate:deploy",
     "db:migrate:dev": "pnpm run --filter @remix-gospel-stack/database db:migrate:dev",
     "db:push": "turbo run db:push",
