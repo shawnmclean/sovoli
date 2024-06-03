@@ -44,6 +44,9 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
 
+      - name: 🛠 Setup PrismaClient
+        run: npm run generate
+
       - name: 🖼 Build
         run: npm run build
 
@@ -68,6 +71,9 @@ jobs:
       - name: 🏄 Copy test env vars
         run: cp .env.example .env
 
+      - name: 🛠 Setup PrismaClient
+        run: npm run generate
+        
       - name: 🖼 Build
         run: npm run build
 
