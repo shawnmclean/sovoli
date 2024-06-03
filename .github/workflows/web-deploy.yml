@@ -17,7 +17,7 @@ permissions:
 jobs: 
   lint:
     name: ⬣ ESLint
-    uses: ./.github/workflows/shared-ci.yml#lint
+    uses: ./.github/workflows/shared-ci.yml
     with:
       node-version: '20'
 
