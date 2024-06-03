@@ -6,8 +6,8 @@
     "packages/*"
   ],
   "prisma": {
-    "schema": "packages/database/prisma/schema.prisma",
-    "seed": "tsx packages/database/src/seed.ts"
+    "schema": "apps/sovoli.com/prisma/schema.prisma",
+    "seed": "tsx apps/sovoli.com/prisma/seed.ts"
   },
   "scripts": {
     "build": "turbo run build",
