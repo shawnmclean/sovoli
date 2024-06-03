@@ -86,7 +86,7 @@ jobs:
           retention-days: 30
 
   deploy:
-    name: 🚀 Deploy
+    name: 🚀 Deploy Website
     runs-on: ubuntu-22.04
     needs: [build-and-test, playwright]
     environment: Production

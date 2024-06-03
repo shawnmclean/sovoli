@@ -101,9 +101,9 @@ jobs:
   #         retention-days: 30
 
   deploy:
-    name: 🚀 Deploy
+    name: 🚀 Deploy Mobile
     runs-on: ubuntu-22.04
-    # needs: [lint, typecheck, vitest, playwright]
+    needs: [build-and-test]
     environment: Production
     concurrency: Production
     # only build/deploy branches on pushes
