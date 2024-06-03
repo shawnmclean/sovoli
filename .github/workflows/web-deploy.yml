@@ -15,41 +15,13 @@ permissions:
   contents: read
 
 jobs: 
-  lint:
-    name: ⬣ ESLint
+  build-and-test:
+    name: Build and Test
     uses: ./.github/workflows/shared-ci.yml
     with:
       node-version: '20'
 
-  typecheck:
-    name: ʦ TypeScript
-    uses: ./.github/workflows/shared-ci.yml
-    with:
-      node-version: '20'
 
-  vitest:
-    name: ⚡ Vitest
-    runs-on: ubuntu-22.04
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
-
-      - name: 🏄 Copy test env vars
-        run: cp .env.example .env
-
-      - name: 🖼 Build icons
-        run: npm run build:icons
-
-      - name: ⚡ Run vitest
-        run: npm run test -- --coverage
 
   playwright:
     name: 🎭 Playwright

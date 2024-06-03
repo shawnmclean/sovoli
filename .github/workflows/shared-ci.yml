@@ -9,7 +9,7 @@ on:
         default: '20'
 jobs:
   lint:
-    name: lint
+    name: ⬣ ESLint
     runs-on: ubuntu-22.04
     steps:
       - name: ⬇️ Checkout repo
@@ -18,7 +18,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: ${{ inputs.node-version }}
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
@@ -30,7 +30,28 @@ jobs:
         run: npm run lint
 
   typecheck:
-    name: typecheck
+    name: ʦ TypeScript
+    runs-on: ubuntu-22.04
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+
+      - name: 🖼 Build icons
+        run: npm run build:icons
+
+      - name: 🔎 Type check
+        run: npm run typecheck --if-present
+  
+  test:
+    name: ⚡ Test
     runs-on: ubuntu-22.04
     steps:
       - name: ⬇️ Checkout repo
@@ -44,8 +65,11 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
 
+      - name: 🏄 Copy test env vars
+        run: cp .env.example .env
+
       - name: 🖼 Build icons
         run: npm run build:icons
 
-      - name: 🔎 Type check
-        run: npm run typecheck --if-present
+      - name: ⚡ Run test
+        run: npm run test -- --coverage

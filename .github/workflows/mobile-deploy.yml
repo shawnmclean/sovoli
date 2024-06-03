@@ -14,15 +14,9 @@ permissions:
   actions: write
   contents: read
 
-jobs:
-  lint:
-    name: ⬣ ESLint
-    uses: ./.github/workflows/shared-ci.yml
-    with:
-      node-version: '20'
-
-  typecheck:
-    name: ʦ TypeScript
+jobs: 
+  build-and-test:
+    name: Build and Test
     uses: ./.github/workflows/shared-ci.yml
     with:
       node-version: '20'
