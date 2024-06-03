@@ -21,8 +21,6 @@ jobs:
     with:
       node-version: '20'
 
-
-
   playwright:
     name: 🎭 Playwright
     runs-on: ubuntu-22.04
@@ -81,7 +79,7 @@ jobs:
   deploy:
     name: 🚀 Deploy
     runs-on: ubuntu-22.04
-    needs: [lint, typecheck, vitest, playwright]
+    needs: [build-and-test]
     environment: Production
     concurrency: Production
     # only build/deploy branches on pushes
