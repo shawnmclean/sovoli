@@ -73,9 +73,9 @@ jobs:
 
       - name: 🛠 Setup PrismaClient
         run: npm run generate
-        
+
       - name: 🖼 Build
         run: npm run build
 
       - name: ⚡ Run test
-        run: npm run test -- --coverage
+        run: npm run test '-- --coverage'
