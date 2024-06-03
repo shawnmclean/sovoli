@@ -32,6 +32,9 @@ jobs:
       - name: 🏄 Copy test env vars
         run: cp .env.example .env
 
+      - name: 🏄 Copy test env vars to App
+        run: cp .env.example apps/sovoli.com/.env
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
