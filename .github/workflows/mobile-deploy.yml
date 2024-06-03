@@ -1,4 +1,4 @@
-name: 🚀📱 Deploy
+name: 📱 Mobile
 on:
   push:
     branches:

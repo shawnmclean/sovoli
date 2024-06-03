@@ -1,4 +1,4 @@
-name: 🚀🌎 Deploy
+name: 🌎 Web
 on:
   push:
     branches:
