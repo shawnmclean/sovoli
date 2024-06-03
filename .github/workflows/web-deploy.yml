@@ -102,14 +102,8 @@ jobs:
         uses: SebRollen/toml-action@v1.2.0
         id: app_name
         with:
-          file: 'fly.toml'
+          file: 'apps/sovoli.com/fly.toml'
           field: 'app'
-
-      # move Dockerfile to root
-      - name: 🚚 Move Dockerfile
-        run: |
-          mv ./other/Dockerfile ./Dockerfile
-          mv ./other/.dockerignore ./.dockerignore
 
       - name: 🎈 Setup Fly
         uses: superfly/flyctl-actions/setup-flyctl@1.5
@@ -118,6 +112,10 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         run:
           flyctl deploy --remote-only --build-arg COMMIT_SHA=${{ github.sha }}
+          --app ${{ steps.app_name.outputs.value }}
+          --config ./apps/sovoli.com/fly.toml
+          --dockerfile ./apps/sovoli.com/Dockerfile
+          --ignorefile ./apps/sovoli.com/.dockerignore
           --build-secret SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
