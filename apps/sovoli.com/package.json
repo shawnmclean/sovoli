@@ -23,6 +23,7 @@
     "start:mocks": "cross-env NODE_ENV=production MOCKS=true tsx .",
     "test": "vitest",
     "coverage": "vitest run --coverage",
+    "test:e2e:ci": "npm run test:e2e:install && npm run test:e2e:run",
     "test:e2e": "npm run test:e2e:dev --silent",
     "test:e2e:dev": "playwright test --ui",
     "pretest:e2e:run": "npm run build",
