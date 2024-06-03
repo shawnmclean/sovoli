@@ -23,8 +23,8 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
 
-      - name: 🖼 Build icons
-        run: npm run build:icons
+      - name: 🖼 Build
+        run: npm run build
 
       - name: 🔬 Lint
         run: npm run lint
