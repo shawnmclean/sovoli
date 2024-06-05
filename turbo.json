@@ -12,7 +12,7 @@
         ".cache"
       ]
     },
-    "@remix-gospel-stack/remix-app#start": {
+    "@sovoli/sovoli.com#start": {
       "dependsOn": ["^build"],
       "outputs": ["public/build/**"]
     },

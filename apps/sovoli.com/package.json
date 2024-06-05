@@ -12,6 +12,7 @@
     "build:icons": "tsx ./other/build-icons.ts",
     "build:remix": "remix vite:build --sourcemapClient --sourcemapServer",
     "build:server": "tsx ./other/build-server.ts",
+    "docker:build": "cd ../.. & docker build -t sovoli.com -f ./apps/sovoli.com/Dockerfile .",
     "predev": "npm run build:icons --silent",
     "dev": "node ./server/dev-server.js",
     "prisma:studio": "prisma studio",

@@ -1,86 +1,66 @@
-# This file is moved to the root directory before building the image
+ARG APP_DIRNAME=sovoli.com
+ARG APP_PKG_NAME=@sovoli/sovoli.com
 
-# base node image
-FROM node:20-bookworm-slim as base
 
-# set for base and all layer that inherit from it
-ENV NODE_ENV production
+# RUN apt-get update && apt-get install -y fuse3 openssl sqlite3 ca-certificates
 
+# Prune monorepo
+FROM node:20-bookworm-slim as pruner
+ARG APP_PKG_NAME
+
+RUN apt-get update && apt-get install -y openssl
+WORKDIR /app
+RUN npm install turbo --global
+COPY . .
+RUN turbo prune --scope=${APP_PKG_NAME} --docker
+RUN find . -name "node_modules" -type d -prune -exec rm -rf '{}' +
+
+
+FROM  node:20-bookworm-slim AS base
 # Install openssl for Prisma
-RUN apt-get update && apt-get install -y fuse3 openssl sqlite3 ca-certificates
+RUN apt-get update && apt-get install -y openssl
+RUN corepack enable
+WORKDIR /app
+COPY .gitignore .gitignore
+COPY --from=pruner /app/out/json/ .
+COPY --from=pruner /app/out/package-lock.json ./package-lock.json
 
 # Install all node_modules, including dev dependencies
-FROM base as deps
-
-WORKDIR /myapp
-
-ADD package.json ./
+FROM base AS dev-deps
+WORKDIR /app
+# First install the dependencies (as they change less often)
 RUN npm install --include=dev
 
 # Setup production node_modules
 FROM base as production-deps
+WORKDIR /app
+ENV NODE_ENV production
+RUN npm install --omit=dev
+COPY --from=pruner /app/out/full/apps/sovoli.com/prisma/schema.prisma /app/apps/sovoli.com/prisma/schema.prisma
+RUN npx prisma generate --schema /app/apps/sovoli.com/prisma/schema.prisma
 
-WORKDIR /myapp
-
-COPY --from=deps /myapp/node_modules /myapp/node_modules
-ADD package.json ./
-RUN npm prune --omit=dev
-
-# Build the app
-FROM base as build
-
+FROM base AS builder
+ARG APP_PKG_NAME
 ARG COMMIT_SHA
 ENV COMMIT_SHA=$COMMIT_SHA
+WORKDIR /app
+RUN corepack enable
+ENV NODE_ENV production
+COPY --from=pruner /app/out/full/ .
+COPY --from=dev-deps /app/ .
+COPY turbo.json turbo.json
+RUN npm run generate
+RUN npm run build --filter=$APP_PKG_NAME...
 
-WORKDIR /myapp
 
-COPY --from=deps /myapp/node_modules /myapp/node_modules
+FROM base as runner
+ARG APP_DIRNAME
+ENV NODE_ENV production
 
-ADD prisma .
-RUN npx prisma generate
+COPY --from=pruner /app/out/full/ .
+COPY --from=production-deps /app .
+# COPY --from=builder /app/apps/$APP_DIRNAME/server.mjs ./apps/$APP_DIRNAME/server.mjs
+COPY --from=builder /app/apps/$APP_DIRNAME/build ./apps/$APP_DIRNAME/build
+COPY --from=builder /app/apps/$APP_DIRNAME/public ./apps/$APP_DIRNAME/public
 
-ADD . .
-
-# Mount the secret and set it as an environment variable and run the build
-RUN --mount=type=secret,id=SENTRY_AUTH_TOKEN \
-    export SENTRY_AUTH_TOKEN=$(cat /run/secrets/SENTRY_AUTH_TOKEN) && \
-    npm run build
-
-# Finally, build the production image with minimal footprint
-FROM base
-
-ENV FLY="true"
-ENV LITEFS_DIR="/litefs/data"
-ENV DATABASE_FILENAME="sqlite.db"
-ENV DATABASE_PATH="$LITEFS_DIR/$DATABASE_FILENAME"
-ENV DATABASE_URL="file:$DATABASE_PATH"
-ENV CACHE_DATABASE_FILENAME="cache.db"
-ENV CACHE_DATABASE_PATH="$LITEFS_DIR/$CACHE_DATABASE_FILENAME"
-ENV INTERNAL_PORT="8080"
-ENV PORT="8081"
-ENV NODE_ENV="production"
-# For WAL support: https://github.com/prisma/prisma-engines/issues/4675#issuecomment-1914383246
-ENV PRISMA_SCHEMA_DISABLE_ADVISORY_LOCK = "1"
-
-# add shortcut for connecting to database CLI
-RUN echo "#!/bin/sh\nset -x\nsqlite3 \$DATABASE_URL" > /usr/local/bin/database-cli && chmod +x /usr/local/bin/database-cli
-
-WORKDIR /myapp
-
-COPY --from=production-deps /myapp/node_modules /myapp/node_modules
-COPY --from=build /myapp/node_modules/.prisma /myapp/node_modules/.prisma
-
-COPY --from=build /myapp/server-build /myapp/server-build
-COPY --from=build /myapp/build /myapp/build
-COPY --from=build /myapp/package.json /myapp/package.json
-COPY --from=build /myapp/prisma /myapp/prisma
-COPY --from=build /myapp/app/components/ui/icons /myapp/app/components/ui/icons
-
-# prepare for litefs
-COPY --from=flyio/litefs:0.5.11 /usr/local/bin/litefs /usr/local/bin/litefs
-ADD other/litefs.yml /etc/litefs.yml
-RUN mkdir -p /data ${LITEFS_DIR}
-
-ADD . .
-
-CMD ["litefs", "mount"]
+CMD ["npm", "run", "start-sovoli.com-production"]

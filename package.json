@@ -23,11 +23,11 @@
     "lint": "turbo run lint",
     "docker:db": "docker compose -f docker-compose.yml up -d",
     "docker:build": "turbo run docker:build",
-    "docker:build:remix-app": "docker build -t remix-gospel-stack-remix-app -f ./apps/remix-app/Dockerfile .",
-    "docker:run:remix-app": "docker run -it --init --rm -p 3000:3000 --env-file .env.docker --env DATABASE_URL='postgresql://postgres:postgres@db:5432/postgres' --network=app_network remix-gospel-stack-remix-app",
+    "docker:build:sovoli.com": "docker build -t sovoli.com -f ./apps/sovoli.com/Dockerfile .",
+    "docker:run:sovoli.com": "docker run -it --init --rm -p 3000:3000 --env-file .env.docker --env DATABASE_URL='postgresql://postgres:postgres@db:5432/postgres' --network=app_network sovoli.com",
     "test": "turbo run test",
     "test:dev": "turbo run test:dev",
-    "start-remix-production": "pnpm run --filter @remix-gospel-stack/remix-app start",
+    "start-sovoli.com-production": "npm run --workspace @sovoli/sovoli.com start",
     "start": "turbo run start",
     "clean": "turbo run clean",
     "clean:node_modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
@@ -50,5 +50,6 @@
     "replace-in-file": "^7.1.0",
     "turbo": "^1.13.2",
     "typescript": "^5.4.5"
-  }
+  }, 
+  "packageManager": "npm@10.5.0"
 }
