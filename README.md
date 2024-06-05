@@ -1,3 +1,4 @@
+[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/1d7qv.svg)](https://uptime.betterstack.com/?utm_source=status_badge)
 <div align="center">
   <h1 align="center"><a href="https://www.epicweb.dev/epic-stack">The Epic Stack 🚀</a></h1>
   <strong align="center">
