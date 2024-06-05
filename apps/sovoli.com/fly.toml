@@ -13,8 +13,13 @@ auto_rollback = true
 source = "data"
 destination = "/data"
 
+[env]
+  PRIMARY_REGION = "atl"
+  REMIX_APP_PORT = "8080"
+  PORT = "8080"
+
 [[services]]
-internal_port = 8_080
+internal_port = 8080
 processes = [ "app" ]
 protocol = "tcp"
 script_checks = [ ]
