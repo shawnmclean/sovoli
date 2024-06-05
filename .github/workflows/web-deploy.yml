@@ -113,7 +113,7 @@ jobs:
         run:
           flyctl deploy --remote-only --build-arg COMMIT_SHA=${{ github.sha }}
           --app ${{ steps.app_name.outputs.value }}
-          --config .apps/sovoli.com/fly.toml
+          --config ./apps/sovoli.com/fly.toml
           --dockerfile ./apps/sovoli.com/Dockerfile
           --ignorefile ./apps/sovoli.com/.dockerignore
           --build-secret SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
