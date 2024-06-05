@@ -28,7 +28,7 @@ export async function setup() {
 			stdio: 'inherit',
 			env: {
 				...process.env,
-				DATABASE_URL: `file:${BASE_DATABASE_PATH}`,
+				DATABASE_URL: `${BASE_DATABASE_PATH}`,
 			},
 		},
 	)

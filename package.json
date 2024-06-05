@@ -24,7 +24,7 @@
     "docker:db": "docker compose -f docker-compose.yml up -d",
     "docker:build": "turbo run docker:build",
     "docker:build:sovoli.com": "docker build -t sovoli.com -f ./apps/sovoli.com/Dockerfile .",
-    "docker:run:sovoli.com": "docker run -it --init --rm -p 3000:3000 --env-file .env.docker --env DATABASE_URL='postgresql://postgres:postgres@db:5432/postgres' --network=app_network sovoli.com",
+    "docker:run:sovoli.com": "docker run -it --init --rm -p 3000:3000 --env-file .env.docker --env DATABASE_URL=\"postgresql://postgres:postgres@db:5432/postgres\" --network=app_network sovoli.com",
     "test": "turbo run test",
     "test:dev": "turbo run test:dev",
     "start-sovoli.com-production": "npm run --workspace @sovoli/sovoli.com start",
