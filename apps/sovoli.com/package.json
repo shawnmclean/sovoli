@@ -20,7 +20,7 @@
     "lint": "eslint .",
     "generate": "prisma generate",
     "setup": "npm run build && npm run generate && prisma migrate deploy && prisma db seed && playwright install",
-    "start": "cross-env NODE_ENV=production node .",
+    "start": "cross-env NODE_ENV=production node ./server.mjs",
     "start:mocks": "cross-env NODE_ENV=production MOCKS=true tsx .",
     "test": "vitest",
     "coverage": "vitest run --coverage",
