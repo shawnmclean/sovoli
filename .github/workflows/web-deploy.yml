@@ -89,7 +89,7 @@ jobs:
     name: 🚀 Deploy Website
     runs-on: ubuntu-22.04
     needs: [build-and-test]
-    environment: 🌎 Web - Production
+    environment: Web - Production
     concurrency: Web - Production
     # only build/deploy branches on pushes
     if: ${{ github.event_name == 'push' }}
