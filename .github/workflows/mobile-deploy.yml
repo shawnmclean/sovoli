@@ -104,8 +104,8 @@ jobs:
     name: 🚀 Deploy Mobile
     runs-on: ubuntu-22.04
     needs: [build-and-test]
-    environment: Production
-    concurrency: Production
+    environment: 📱 Mobile - Production
+    concurrency: Mobile - Production
     # only build/deploy branches on pushes
     if: ${{ github.event_name == 'push' }}
 
