@@ -104,7 +104,7 @@ jobs:
     name: 🚀 Deploy Mobile
     runs-on: ubuntu-22.04
     needs: [build-and-test]
-    environment: 📱 Mobile - Production
+    environment: Mobile - Production
     concurrency: Mobile - Production
     # only build/deploy branches on pushes
     if: ${{ github.event_name == 'push' }}
@@ -112,3 +112,28 @@ jobs:
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: 🏗 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+
+      - name: 🏗 Build
+        run: npm run build -- --filter=@sovoli/mobile
