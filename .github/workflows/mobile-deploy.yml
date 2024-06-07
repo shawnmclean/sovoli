@@ -135,5 +135,6 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
 
-      - name: 🏗 Build
-        run: npm run build -- --filter=@sovoli/mobile
+      - name: 🚀 Build & submit mobile
+        working-directory: apps/mobile
+        run: eas build --non-interactive --wait --auto-submit --platform=ios --profile=production
