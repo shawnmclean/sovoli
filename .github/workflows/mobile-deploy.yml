@@ -137,4 +137,4 @@ jobs:
 
       - name: 🚀 Build & submit mobile
         working-directory: apps/mobile
-        run: eas build --non-interactive --wait --auto-submit --platform=ios --profile=production
+        run: eas build --non-interactive --wait --auto-submit --platform=ios --profile=development
