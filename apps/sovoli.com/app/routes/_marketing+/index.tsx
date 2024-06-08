@@ -1,6 +1,18 @@
 import { type MetaFunction } from '@remix-run/node'
 
-export const meta: MetaFunction = () => [{ title: 'Epic Notes' }]
+export const meta: MetaFunction = () => {
+	return [
+	  { title: "Sovoli: Your Ultimate Book Organizer" },
+	  {
+		property: "og:title",
+		content: "Sovoli: Your Ultimate Book Organizer",
+	  },
+	  {
+		name: "description",
+		content: "Track your reading progress, write notes, and share your library with Sovoli. Start organizing your books today!",
+	  }
+	]
+}
 
 export default function Index() {
 	return (
