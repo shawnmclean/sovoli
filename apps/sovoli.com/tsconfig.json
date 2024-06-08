@@ -1,5 +1,12 @@
 {
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "types/env.d.ts",
+    "**/*.ts",
+    "**/*.tsx", "server.mjs",
+  ],
+  "ts-node": {
+		"swc": true
+	},
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "isolatedModules": true,

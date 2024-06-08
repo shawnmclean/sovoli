@@ -1,19 +1,17 @@
 /// <reference types="vitest" />
+/// <reference types="vite/client" />
 
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+
+import { react } from "./tests/setup/vitejs-plugin-react.cjs";
 
 export default defineConfig({
-	plugins: [react()],
-	css: { postcss: { plugins: [] } },
-	test: {
-		include: ['./app/**/*.test.{ts,tsx}'],
-		setupFiles: ['./tests/setup/setup-test-env.ts'],
-		globalSetup: ['./tests/setup/global-setup.ts'],
-		restoreMocks: true,
-		coverage: {
-			include: ['app/**/*.{ts,tsx}'],
-			all: true,
-		},
-	},
-})
+  plugins: [react(), tsconfigPaths()],
+  test: {
+    globals: true,
+    environment: "happy-dom",
+    include: ["./app/**/*.test.{ts,tsx}"],
+    setupFiles: ["./tests/setup/setup-test-env.ts"],
+  },
+});
