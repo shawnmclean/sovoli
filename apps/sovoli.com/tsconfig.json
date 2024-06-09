@@ -1,35 +1,32 @@
 {
   "include": [
-    "types/env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "server.mjs",
+    "**/*.tsx",
+    "**/.server/**/*.ts",
+    "**/.server/**/*.tsx",
+    "**/.client/**/*.ts",
+    "**/.client/**/*.tsx"
   ],
-  "ts-node": {
-		"swc": true
-	},
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "types": ["@remix-run/node", "vite/client"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "module": "ESNext",
-    "target": "ES2022",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
+    "target": "ES2022",
     "strict": true,
-    "noImplicitAny": true,
     "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "paths": {
-      "#app/*": ["./app/*"],
-      "#tests/*": ["./tests/*"],
-      "@/icon-name": [
-        "./app/components/ui/icons/name.d.ts",
-        "./types/icon-name.d.ts"
-      ]
-    },
     "skipLibCheck": true,
-    "allowImportingTsExtensions": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"]
+    },
+
+    // Vite takes care of building everything, not tsc.
     "noEmit": true
   }
 }

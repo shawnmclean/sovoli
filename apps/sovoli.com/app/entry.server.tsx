@@ -1,104 +1,140 @@
-import { PassThrough } from 'stream'
-import {
-	createReadableStreamFromReadable,
-	type LoaderFunctionArgs,
-	type ActionFunctionArgs,
-	type HandleDocumentRequestFunction,
-} from '@remix-run/node'
-import { RemixServer } from '@remix-run/react'
-import * as Sentry from '@sentry/remix'
-import chalk from 'chalk'
-import { isbot } from 'isbot'
-import { renderToPipeableStream } from 'react-dom/server'
-import { getEnv, init } from './utils/env.server.ts'
-import { NonceProvider } from './utils/nonce-provider.ts'
-import { makeTimings } from './utils/timing.server.ts'
+/**
+ * By default, Remix will handle generating the HTTP Response for you.
+ * You are free to delete this file if you'd like to, but if you ever want it revealed again, you can run `npx remix reveal` ✨
+ * For more information, see https://remix.run/file-conventions/entry.server
+ */
 
-const ABORT_DELAY = 5000
+import { PassThrough } from "node:stream";
 
-init()
-global.ENV = getEnv()
+import type { AppLoadContext, EntryContext } from "@remix-run/node";
+import { createReadableStreamFromReadable } from "@remix-run/node";
+import { RemixServer } from "@remix-run/react";
+import { isbot } from "isbot";
+import { renderToPipeableStream } from "react-dom/server";
 
-if (ENV.MODE === 'production' && ENV.SENTRY_DSN) {
-	import('./utils/monitoring.server.ts').then(({ init }) => init())
+const ABORT_DELAY = 5_000;
+
+export default function handleRequest(
+  request: Request,
+  responseStatusCode: number,
+  responseHeaders: Headers,
+  remixContext: EntryContext,
+  // This is ignored so we can keep it in the template for visibility.  Feel
+  // free to delete this parameter in your app if you're not using it!
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  loadContext: AppLoadContext
+) {
+  return isbot(request.headers.get("user-agent") || "")
+    ? handleBotRequest(
+        request,
+        responseStatusCode,
+        responseHeaders,
+        remixContext
+      )
+    : handleBrowserRequest(
+        request,
+        responseStatusCode,
+        responseHeaders,
+        remixContext
+      );
 }
 
-type DocRequestArgs = Parameters<HandleDocumentRequestFunction>
+function handleBotRequest(
+  request: Request,
+  responseStatusCode: number,
+  responseHeaders: Headers,
+  remixContext: EntryContext
+) {
+  return new Promise((resolve, reject) => {
+    let shellRendered = false;
+    const { pipe, abort } = renderToPipeableStream(
+      <RemixServer
+        context={remixContext}
+        url={request.url}
+        abortDelay={ABORT_DELAY}
+      />,
+      {
+        onAllReady() {
+          shellRendered = true;
+          const body = new PassThrough();
+          const stream = createReadableStreamFromReadable(body);
 
-export default async function handleRequest(...args: DocRequestArgs) {
-	const [
-		request,
-		responseStatusCode,
-		responseHeaders,
-		remixContext,
-		loadContext,
-	] = args
-	responseHeaders.set('fly-region', process.env.FLY_REGION ?? 'unknown')
-	responseHeaders.set('fly-app', process.env.FLY_APP_NAME ?? 'unknown')
+          responseHeaders.set("Content-Type", "text/html");
 
-	const callbackName = isbot(request.headers.get('user-agent'))
-		? 'onAllReady'
-		: 'onShellReady'
+          resolve(
+            new Response(stream, {
+              headers: responseHeaders,
+              status: responseStatusCode,
+            })
+          );
 
-	const nonce = String(loadContext.cspNonce) ?? undefined
-	return new Promise(async (resolve, reject) => {
-		let didError = false
-		// NOTE: this timing will only include things that are rendered in the shell
-		// and will not include suspended components and deferred loaders
-		const timings = makeTimings('render', 'renderToPipeableStream')
+          pipe(body);
+        },
+        onShellError(error: unknown) {
+          reject(error);
+        },
+        onError(error: unknown) {
+          responseStatusCode = 500;
+          // Log streaming rendering errors from inside the shell.  Don't log
+          // errors encountered during initial shell rendering since they'll
+          // reject and get logged in handleDocumentRequest.
+          if (shellRendered) {
+            console.error(error);
+          }
+        },
+      }
+    );
 
-		const { pipe, abort } = renderToPipeableStream(
-			<NonceProvider value={nonce}>
-				<RemixServer context={remixContext} url={request.url} />
-			</NonceProvider>,
-			{
-				[callbackName]: () => {
-					const body = new PassThrough()
-					responseHeaders.set('Content-Type', 'text/html')
-					responseHeaders.append('Server-Timing', timings.toString())
-					resolve(
-						new Response(createReadableStreamFromReadable(body), {
-							headers: responseHeaders,
-							status: didError ? 500 : responseStatusCode,
-						}),
-					)
-					pipe(body)
-				},
-				onShellError: (err: unknown) => {
-					reject(err)
-				},
-				onError: () => {
-					didError = true
-				},
-				nonce,
-			},
-		)
-
-		setTimeout(abort, ABORT_DELAY)
-	})
+    setTimeout(abort, ABORT_DELAY);
+  });
 }
 
-export async function handleDataRequest(response: Response) {
-	response.headers.set('fly-region', process.env.FLY_REGION ?? 'unknown')
-	response.headers.set('fly-app', process.env.FLY_APP_NAME ?? 'unknown')
+function handleBrowserRequest(
+  request: Request,
+  responseStatusCode: number,
+  responseHeaders: Headers,
+  remixContext: EntryContext
+) {
+  return new Promise((resolve, reject) => {
+    let shellRendered = false;
+    const { pipe, abort } = renderToPipeableStream(
+      <RemixServer
+        context={remixContext}
+        url={request.url}
+        abortDelay={ABORT_DELAY}
+      />,
+      {
+        onShellReady() {
+          shellRendered = true;
+          const body = new PassThrough();
+          const stream = createReadableStreamFromReadable(body);
 
-	return response
-}
+          responseHeaders.set("Content-Type", "text/html");
 
-export function handleError(
-	error: unknown,
-	{ request }: LoaderFunctionArgs | ActionFunctionArgs,
-): void {
-	// Skip capturing if the request is aborted as Remix docs suggest
-	// Ref: https://remix.run/docs/en/main/file-conventions/entry.server#handleerror
-	if (request.signal.aborted) {
-		return
-	}
-	if (error instanceof Error) {
-		console.error(chalk.red(error.stack))
-		Sentry.captureRemixServerException(error, 'remix.server', request)
-	} else {
-		console.error(chalk.red(error))
-		Sentry.captureException(error)
-	}
+          resolve(
+            new Response(stream, {
+              headers: responseHeaders,
+              status: responseStatusCode,
+            })
+          );
+
+          pipe(body);
+        },
+        onShellError(error: unknown) {
+          reject(error);
+        },
+        onError(error: unknown) {
+          responseStatusCode = 500;
+          // Log streaming rendering errors from inside the shell.  Don't log
+          // errors encountered during initial shell rendering since they'll
+          // reject and get logged in handleDocumentRequest.
+          if (shellRendered) {
+            console.error(error);
+          }
+        },
+      }
+    );
+
+    setTimeout(abort, ABORT_DELAY);
+  });
 }
