@@ -1,0 +1,1 @@
+export { remixConfig } from './remix.js';
