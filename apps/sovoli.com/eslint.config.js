@@ -1,5 +1,3 @@
-import {remixConfig} from '@sovoli/eslint-config'
+import { remixConfig } from '@sovoli/eslint-config'
 
-export default [
-	remixConfig
-];
+export default [...remixConfig]

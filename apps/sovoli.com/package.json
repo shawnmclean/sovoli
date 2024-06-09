@@ -11,7 +11,7 @@
     "dev": "remix vite:dev",
     "prisma:studio": "prisma studio",
     "format": "prettier --write .",
-    "lint": "eslint .",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "generate": "prisma generate",
     "setup": "npm run build && npm run generate && prisma migrate deploy && prisma db seed && playwright install",
     "typecheck": "tsc"

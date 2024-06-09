@@ -1,3 +1,9 @@
+import pluginReact from 'eslint-plugin-react'
+import pluginJsxA11y from 'eslint-plugin-jsx-a11y'
+import pluginReactHooks from 'eslint-plugin-react-hooks'
+import globals from 'globals'
+import { sharedConfig } from './shared.js'
+
 /**
  * This is intended to be a basic starting point for linting in your app.
  * It relies on recommended configs out of the box for simplicity, but you can
@@ -5,79 +11,33 @@
  */
 
 /** @type {import('eslint').Linter.Config} */
-export const remixConfig = {
-    parserOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
-      ecmaFeatures: {
-        jsx: true,
+export const remixConfig = [
+  ...sharedConfig,
+  // React
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      ...pluginReact.configs.recommended.languageOptions,
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
       },
     },
-    env: {
-      browser: true,
-      commonjs: true,
-      es6: true,
+    plugins: {
+      react: pluginReact,
+      'react-hooks': pluginReactHooks,
+      'jsx-a11y': pluginJsxA11y,
     },
-    ignorePatterns: ["!**/.server", "!**/.client"],
-  
-    // Base config
-    extends: ["eslint:recommended"],
-  
-    overrides: [
-      // React
-      {
-        files: ["**/*.{js,jsx,ts,tsx}"],
-        plugins: ["react", "jsx-a11y"],
-        extends: [
-          "plugin:react/recommended",
-          "plugin:react/jsx-runtime",
-          "plugin:react-hooks/recommended",
-          "plugin:jsx-a11y/recommended",
-        ],
-        settings: {
-          react: {
-            version: "detect",
-          },
-          formComponents: ["Form"],
-          linkComponents: [
-            { name: "Link", linkAttribute: "to" },
-            { name: "NavLink", linkAttribute: "to" },
-          ],
-          "import/resolver": {
-            typescript: {},
-          },
-        },
+    rules: {
+      ...pluginReact.configs.recommended.rules,
+      ...pluginReact.configs['jsx-runtime'].rules,
+      ...pluginReactHooks.configs.recommended.rules,
+      ...pluginJsxA11y.configs.recommended.rules,
+    },
+    settings: {
+      react: {
+        version: 'detect',
       },
-  
-      // Typescript
-      {
-        files: ["**/*.{ts,tsx}"],
-        plugins: ["@typescript-eslint", "import"],
-        parser: "@typescript-eslint/parser",
-        settings: {
-          "import/internal-regex": "^~/",
-          "import/resolver": {
-            node: {
-              extensions: [".ts", ".tsx"],
-            },
-            typescript: {
-              alwaysTryTypes: true,
-            },
-          },
-        },
-        extends: [
-          "plugin:@typescript-eslint/recommended",
-          "plugin:import/recommended",
-          "plugin:import/typescript",
-        ],
-      },
-  
-      // Node
-      {
-        files: [".eslintrc.cjs"],
-        env: {
-          node: true,
-        },
-      },
-    ],
-  };
+    },
+  },
+]
