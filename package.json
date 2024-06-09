@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
-    "@remix-run/dev": "2.9.2",
     "@turbo/gen": "^2.0.3",
     "@types/glob": "8.1.0",
     "glob": "^10.4.1",
@@ -51,5 +50,9 @@
     "turbo": "^2.0.3",
     "typescript": "^5.4.5"
   }, 
+  "devDependencies": {
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.33.2"
+  },
   "packageManager": "npm@10.5.0"
 }

@@ -75,7 +75,7 @@ module.exports = {
   
 	  // Node
 	  {
-		files: [".eslintrc.cjs"],
+		files: [".eslintrc.js"],
 		env: {
 		  node: true,
 		},
