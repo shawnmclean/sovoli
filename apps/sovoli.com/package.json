@@ -9,6 +9,7 @@
     "db:migrate:dev": "npx prisma migrate dev",
     "docker:build": "cd ../.. & docker build -t sovoli.com -f ./apps/sovoli.com/Dockerfile .",
     "dev": "remix vite:dev",
+    "start": "remix-serve ./build/server/index.js",
     "prisma:studio": "prisma studio",
     "format": "prettier --write .",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
