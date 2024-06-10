@@ -36,8 +36,8 @@ FROM base as production-deps
 WORKDIR /app
 ENV NODE_ENV production
 RUN npm install --omit=dev
-COPY --from=pruner /app/out/full/apps/sovoli.com/prisma/schema.prisma /app/apps/sovoli.com/prisma/schema.prisma
-RUN npx prisma generate --schema /app/apps/sovoli.com/prisma/schema.prisma
+# COPY --from=pruner /app/out/full/apps/sovoli.com/prisma/schema.prisma /app/apps/sovoli.com/prisma/schema.prisma
+# RUN npx prisma generate --schema /app/apps/sovoli.com/prisma/schema.prisma
 
 FROM base AS builder
 ARG APP_PKG_NAME

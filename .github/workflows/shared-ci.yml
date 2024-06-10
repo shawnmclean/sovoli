@@ -59,15 +59,15 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
 
-      - name: 🛠 Setup PrismaClient
-        run: npm run generate
+      # - name: 🛠 Setup PrismaClient
+      #   run: npm run generate
 
       - name: 🖼 Build
         run: npm run build
 
       - name: 🔎 Type check
         run: npm run typecheck --if-present
-  
+
   # test:
   #   name: ⚡ Test
   #   runs-on: ubuntu-22.04
