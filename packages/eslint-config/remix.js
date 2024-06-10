@@ -40,4 +40,7 @@ export const remixConfig = [
       },
     },
   },
+  {
+    ignores: ['**/.eslint.config.js', '**/build'],
+  },
 ]

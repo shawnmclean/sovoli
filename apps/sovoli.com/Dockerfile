@@ -49,7 +49,7 @@ ENV NODE_ENV production
 COPY --from=pruner /app/out/full/ .
 COPY --from=dev-deps /app/ .
 COPY turbo.json turbo.json
-RUN npm run generate
+# RUN npm run generate
 RUN npm run build -- --filter=$APP_PKG_NAME...
 
 
