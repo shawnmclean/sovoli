@@ -13,8 +13,8 @@ auto_rollback = true
 source = "data"
 destination = "/data"
 
-[deploy]
-  release_command = "bash ./apps/sovoli.com/scripts/migrate.sh"
+# [deploy]
+#   release_command = "bash ./apps/sovoli.com/scripts/migrate.sh"
 
 [env]
   PRIMARY_REGION = "atl"
