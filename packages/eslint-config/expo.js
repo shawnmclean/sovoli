@@ -1,4 +1,5 @@
 import pluginReact from 'eslint-plugin-react'
+import pluginReactNative from 'eslint-plugin-react-native'
 import pluginJsxA11y from 'eslint-plugin-jsx-a11y'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
 import globals from 'globals'
@@ -27,12 +28,17 @@ export const expoConfig = [
       react: pluginReact,
       'react-hooks': pluginReactHooks,
       'jsx-a11y': pluginJsxA11y,
+      'react-native': pluginReactNative,
     },
     rules: {
       ...pluginReact.configs.recommended.rules,
       ...pluginReact.configs['jsx-runtime'].rules,
       ...pluginReactHooks.configs.recommended.rules,
       ...pluginJsxA11y.configs.recommended.rules,
+      ...pluginReactNative.configs.all.rules,
+      'react-native/no-raw-text': 'off',
+      'react-native/no-inline-styles': 'off',
+      'react-native/no-color-literals': 'off',
     },
     settings: {
       react: {
@@ -41,6 +47,11 @@ export const expoConfig = [
     },
   },
   {
-    ignores: ['**/.eslint.config.js', '**/build'],
+    ignores: [
+      '**/.eslint.config.js',
+      '**/metro.config.js',
+      '**/babel.config.js',
+      '**/build',
+    ],
   },
 ]
