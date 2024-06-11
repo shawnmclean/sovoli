@@ -23,8 +23,18 @@ export default function Index() {
           data-heading
           className="mt-8 animate-slide-top text-4xl font-medium text-foreground [animation-delay:0.3s] [animation-fill-mode:backwards] md:text-5xl xl:mt-4 xl:animate-slide-left xl:text-6xl xl:[animation-delay:0.8s] xl:[animation-fill-mode:backwards]"
         >
-          Erroh four oh four
+          Not ready yet, pls leave, Kthxbai
         </h1>
+
+        <h2>TODOS</h2>
+        <ul>
+          <li>TailwindCSS</li>
+          <li>Prisma</li>
+          <li>AI Gateway</li>
+          <li>Generative UX - Upload photos of books</li>
+          <li>Populate profile</li>
+          <li>WhatsApp TOTP Auth</li>
+        </ul>
       </div>
     </main>
   )
