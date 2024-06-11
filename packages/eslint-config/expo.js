@@ -49,7 +49,7 @@ export const expoConfig = [
   {
     ignores: [
       '**/.eslint.config.js',
-      '**/metro.config.js',
+      '**/metro.config.cjs',
       '**/babel.config.js',
       '**/build',
     ],
