@@ -1,8 +1,8 @@
 /* eslint-env node */
 // Learn more https://docs.expo.dev/guides/monorepos
-import { getDefaultConfig } from 'expo/metro-config'
-import { FileStore } from 'metro-cache'
-import path from 'path'
+const { getDefaultConfig } = require('expo/metro-config')
+const { FileStore } = require('metro-cache')
+const path = require('path')
 
 const projectRoot = __dirname
 const workspaceRoot = path.resolve(projectRoot, '../..')
