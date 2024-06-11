@@ -14,7 +14,7 @@ permissions:
   actions: write
   contents: read
 
-jobs: 
+jobs:
   build-and-test:
     name: Build and Test
     uses: ./.github/workflows/shared-ci.yml
@@ -50,7 +50,6 @@ jobs:
 
   #     - name: 📥 Download deps
   #       uses: bahmutov/npm-install@v1
-
 
   #     - name: 🛠 Setup Database
   #       run: npx prisma migrate deploy
@@ -106,7 +105,7 @@ jobs:
           field: 'app'
 
       - name: 🎈 Setup Fly
-        uses: superfly/flyctl-actions/setup-flyctl@1.5
+        uses: superfly/flyctl-actions/setup-flyctl@master
 
       - name: 🚀 Deploy Production
         if: ${{ github.ref == 'refs/heads/main' }}
