@@ -3,11 +3,16 @@
     "version": ">= 9.2.0"
   },
   "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
+    "monorepo": {
+      "npm": "10.5.0",
+      "cache": {
+        "key": "turbo",
+        "paths": ["../../node_modules/.cache/turbo"]
+      }
     },
-    "preview": {
+    "development": {
+      "extends": "monorepo",
+      "developmentClient": true,
       "distribution": "internal"
     },
     "production": {}
