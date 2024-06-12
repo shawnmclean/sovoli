@@ -12,7 +12,7 @@
     "start": "remix-serve ./build/server/index.js",
     "prisma:studio": "prisma studio",
     "format": "prettier --write .",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "generate": "prisma generate",
     "setup": "npm run build && npm run generate && prisma migrate deploy && prisma db seed && playwright install",
     "typecheck": "tsc"
@@ -30,7 +30,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@sovoli/eslint-config": "*",
-    "eslint": "^9.4.0",
+    "eslint": "^8",
     "typescript": "^5.4.5",
     "vite": "^5.2.13",
     "vite-tsconfig-paths": "^4.3.2"
@@ -38,7 +38,6 @@
   "engines": {
     "node": "20"
   },
-  "epic-stack": true,
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   }

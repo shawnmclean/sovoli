@@ -2,7 +2,6 @@
   "name": "@sovoli/mobile",
   "main": "index.js",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "start": "expo start",
     "dev": "expo start",
@@ -10,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint ."
   },
   "jest": {
     "preset": "jest-expo"
@@ -39,10 +38,12 @@
     "expo-dev-client": "~4.0.16"
   },
   "devDependencies": {
+    "eslint": "^8",
     "@babel/core": "^7.24.7",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.3.3",
     "@types/react-test-renderer": "^18.3.0",
+    "@sovoli/eslint-config": "*",
     "jest": "^29.7.0",
     "jest-expo": "~51.0.2",
     "react-test-renderer": "18.3.1",
