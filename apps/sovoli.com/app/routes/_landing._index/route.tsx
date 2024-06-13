@@ -17,25 +17,17 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main className="font-poppins grid h-full place-items-center">
-      <div className="flex max-w-md flex-col items-center text-center xl:order-2 xl:items-start xl:text-left">
-        <h1
-          data-heading
-          className="mt-8 animate-slide-top text-4xl font-medium text-foreground [animation-delay:0.3s] [animation-fill-mode:backwards] md:text-5xl xl:mt-4 xl:animate-slide-left xl:text-6xl xl:[animation-delay:0.8s] xl:[animation-fill-mode:backwards]"
-        >
-          Not ready yet, pls leave, Kthxbai
-        </h1>
+    <div className="font-sans p-4">
+      <h1 className="text-3xl">Not ready yet, pls leave, Kthxbai</h1>
 
-        <h2>TODOS</h2>
-        <ul>
-          <li>TailwindCSS</li>
-          <li>Prisma</li>
-          <li>AI Gateway</li>
-          <li>Generative UX - Upload photos of books</li>
-          <li>Populate profile</li>
-          <li>WhatsApp TOTP Auth</li>
-        </ul>
-      </div>
-    </main>
+      <ul className="list-disc mt-4 pl-6 space-y-2">
+        <li>TailwindCSS</li>
+        <li>Prisma</li>
+        <li>AI Gateway</li>
+        <li>Generative UX - Upload photos of books</li>
+        <li>Populate profile</li>
+        <li>WhatsApp TOTP Auth</li>
+      </ul>
+    </div>
   )
 }
