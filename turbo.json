@@ -9,7 +9,8 @@
         "public/build/**",
         "build/**",
         "app/styles/tailwind.css",
-        ".cache"
+        ".cache",
+        "node_modules/.cache/metro/**"
       ]
     },
     "@sovoli/sovoli.com#start": {

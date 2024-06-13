@@ -1,14 +1,12 @@
 {
   "expo": {
-    "name": "Sovoli",
-    "slug": "sovoli",
+    "name": "expo-monorepo",
+    "slug": "expo-monorepo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "userInterfaceStyle": "automatic",
-    "scheme": "sovoli",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,36 +15,19 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "requireFullScreen": true,
-      "bundleIdentifier": "com.shawnmclean.sovoli"
+      "bundleIdentifier": "com.shawnmclean.expomonorepo",
+      "buildNumber": "1.0.0",
+      "supportsTablet": true
     },
     "android": {
+      "package": "com.shawnmclean.expomonorepo",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
-    "plugins": [
-      [
-        "expo-screen-orientation",
-        {
-          "initialOrientation": "DEFAULT"
-        }
-      ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    },
-    "extra": {
-      "eas": {
-        "projectId": "c82a6e08-f764-4f82-abd5-d5361a82df44"
-      }
+      "favicon": "./assets/favicon.png"
     }
   }
 }
