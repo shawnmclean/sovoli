@@ -32,7 +32,7 @@ export default function Index() {
         <li>
           Database
           <ul>
-            <li>Prisma</li>
+            <li>Db lib</li>
             <li>Session model</li>
             <li>Db Health Check</li>
           </ul>
@@ -48,33 +48,38 @@ export default function Index() {
           Sessions
           <ul>
             <li>Non authenticated sessions</li>
-            <li>Web: [show session ID here]</li>
-            <li>Mobile (sync with database)</li>
-            <li>
-              [Increment session count here (show mobile count vs web count)]
-            </li>
+            <li>Session Id: [sessionId]</li>
+            <li>Web users: [web sessions count here]</li>
+            <li>Mobile users: [mobile sessions count here]</li>
           </ul>
         </li>
-        <li>Image Upload / Storage</li>
         <li>
-          AI Gateway
+          Image Upload / Storage
+          <ul>
+            <li>File Input here</li>
+            <li>Persistent storage link here</li>
+          </ul>
+        </li>
+        <li>
+          AI Gateway (portkey + vercel AI SDK)
           <ul>
             <li>Failovers</li>
             <li>Retry/backoffs</li>
           </ul>
+          <li>Show button for a popup with image data here.</li>
         </li>
         <li>
           Explode image data
           <ul>
-            <li>Write to books</li>
-            <li>Write to session books</li>
-            <li>Share session Id</li>
+            <li>RAG [button here to prompt against db]</li>
+            <li>Write to books (link to all books here)</li>
+            <li>Write to session books (link to current session books here)</li>
           </ul>
         </li>
         <li>
           Take Notes
           <ul>
-            <li>Jot Notes</li>
+            <li>Input for notes on book</li>
             <li>Scan notes (image upload, read highlight and jottings)</li>
           </ul>
         </li>
@@ -89,10 +94,16 @@ export default function Index() {
           Onboard
           <ul>
             <li>Accept Username</li>
-            <li>View user library</li>
+            <li>View user profile</li>
           </ul>
         </li>
-        <li>Generative UX</li>
+        <li>
+          Generative UX
+          <ul>
+            <li>Reflow the above workflow into generative UX flows</li>
+            <li>Spike on generative UI for RN</li>
+          </ul>
+        </li>
       </ul>
     </div>
   )
