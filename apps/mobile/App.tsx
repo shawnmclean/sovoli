@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 
 export default function App() {
   return (
     <View style={styles.container}>
+      <Text>Hi!</Text>
       <StatusBar style="auto" />
     </View>
   )
