@@ -37,9 +37,6 @@ jobs:
       - name: 🔬 Lint
         run: npm run lint
 
-      - name: 🔎 Type check
-      run: npm run typecheck --if-present
-
   typecheck:
     name: ʦ TypeScript
     runs-on: ubuntu-22.04
