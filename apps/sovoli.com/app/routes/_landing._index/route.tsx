@@ -30,7 +30,7 @@ export default function Index() {
               Shared Lib
               <ul>
                 <li>✅ shared greeting: {greeting}</li>
-                <li>react-native-reusables component</li>
+                <li>react-native-reusables component:</li>
               </ul>
             </li>
             <li>Move this component to shared lib</li>
