@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "@sovoli/ui",
+  "version": "1.0.0",
+  "description": "Sovoli UI components for React Native",
+  "main": "./src/index.ts",
+  "types": "./build/index.d.ts",
+  "react-native": "./src/index.ts",
+  "files": [
+    "build",
+    "src"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint ."
+  },
+  "devDependencies": {
+    "@sovoli/eslint-config": "*",
+    "@tsconfig/recommended": "^1.0.6",
+    "@types/react": "~18.3.3",
+    "react": "18.3.1",
+    "react-native": "0.74.2",
+    "typescript": "^5.4.5"
+  }
+}

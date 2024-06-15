@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar'
+import { greeting } from '@sovoli/ui'
 import { StyleSheet, View, Text } from 'react-native'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hi!</Text>
+      <Text>{greeting}</Text>
       <StatusBar style="auto" />
     </View>
   )

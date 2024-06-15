@@ -1,4 +1,5 @@
 import { type MetaFunction } from '@remix-run/node'
+import { greeting } from '@sovoli/ui'
 
 export const meta: MetaFunction = () => {
   return [
@@ -25,7 +26,13 @@ export default function Index() {
           UI
           <ul>
             <li>✅ TailwindCSS</li>
-            <li>Shared Lib - react-native-reusables</li>
+            <li>
+              Shared Lib
+              <ul>
+                <li>✅ shared greeting: {greeting}</li>
+                <li>react-native-reusables component</li>
+              </ul>
+            </li>
             <li>Move this component to shared lib</li>
           </ul>
         </li>

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "^3.2.1",
+    "@sovoli/ui": "*",
     "expo": "^51.0.14",
     "expo-dev-client": "~4.0.18",
     "expo-status-bar": "~1.12.1",
@@ -31,7 +32,8 @@
     "@babel/core": "^7.24.7",
     "@types/react": "~18.3.3",
     "@types/react-dom": "~18.3.0",
-    "babel-preset-expo": "~11.0.10"
+    "babel-preset-expo": "~11.0.10",
+    "typescript": "^5.4.5"
   },
   "private": true
 }
