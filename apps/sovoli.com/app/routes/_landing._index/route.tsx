@@ -1,5 +1,5 @@
 import { type MetaFunction } from '@remix-run/node'
-import { greeting } from '@sovoli/ui'
+import { Text, View } from 'react-native'
 
 export const meta: MetaFunction = () => {
   return [
@@ -20,7 +20,9 @@ export default function Index() {
   return (
     <div className="font-sans p-4">
       <h1 className="text-3xl">Private software, pls leave, Kthxbai</h1>
-
+      <View>
+        <Text>Hello, world!</Text>
+      </View>
       <ul className="list-disc mt-4 pl-6 space-y-2">
         <li>
           UI
@@ -29,7 +31,7 @@ export default function Index() {
             <li>
               Shared Lib
               <ul>
-                <li>✅ shared greeting: {greeting}</li>
+                <li>✅ shared greeting: </li>
                 <li>react-native-reusables component:</li>
               </ul>
             </li>

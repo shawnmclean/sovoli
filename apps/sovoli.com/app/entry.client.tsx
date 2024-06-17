@@ -7,12 +7,20 @@
 import { RemixBrowser } from '@remix-run/react'
 import { startTransition, StrictMode } from 'react'
 import { hydrateRoot } from 'react-dom/client'
+import { AppRegistry } from 'react-native'
+import { ReactNativeStylesContext } from './rn-styles'
 
 startTransition(() => {
+  const App = () => <RemixBrowser />
+  AppRegistry.registerComponent('App', () => App)
+  // @ts-expect-ignore
+  const { getStyleElement } = AppRegistry.getApplication('App')
   hydrateRoot(
     document,
     <StrictMode>
-      <RemixBrowser />
+      <ReactNativeStylesContext.Provider value={getStyleElement()}>
+        <App />
+      </ReactNativeStylesContext.Provider>
     </StrictMode>,
   )
 })
