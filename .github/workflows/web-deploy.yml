@@ -20,6 +20,7 @@ jobs:
     uses: ./.github/workflows/shared-ci.yml
     with:
       node-version: '20'
+      pnpm-version: '9'
 
   # playwright:
   #   name: 🎭 Playwright

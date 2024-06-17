@@ -14,12 +14,13 @@ permissions:
   actions: write
   contents: read
 
-jobs: 
+jobs:
   build-and-test:
     name: Build and Test
     uses: ./.github/workflows/shared-ci.yml
     with:
       node-version: '20'
+      pnpm-version: '9'
 
   # vitest:
   #   name: ⚡ Vitest
