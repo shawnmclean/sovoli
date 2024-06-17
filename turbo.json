@@ -1,40 +1,17 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
+  "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".expo/**", "public/dist/**"]
-    },
-    "start": {
-      "dependsOn": ["^build"],
-      "outputs": ["public/build/**"]
-    },
-    "dev": {
-      "cache": false
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.*"],
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]
     },
-    "docker:build": {
-      "outputs": [],
-      "cache": false
-    },
-    "typecheck": {
-      "dependsOn": ["^build"],
-      "outputs": []
-    },
-    "clean": {
-      "cache": false
+    "dev": {
+      "cache": false,
+      "persistent": true
     }
-  },
-  "globalDependencies": [".env", "tsconfig.json"],
-  "globalEnv": [
-    "NODE_ENV",
-    "REMIX_APP_PORT",
-    "FLY_REGION",
-    "PRIMARY_REGION",
-    "CI",
-    "PORT",
-    "MOCKS"
-  ]
+  }
 }

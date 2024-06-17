@@ -1,26 +1,18 @@
 {
-  "name": "@sovoli/root",
+  "name": "sovoli",
   "private": true,
-  "packageManager": "pnpm@9.3.0",
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev --parallel",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev": "turbo dev",
     "lint": "turbo lint",
-    "docker:db": "docker compose -f docker-compose.yml up -d",
-    "docker:build": "turbo docker:build",
-    "docker:build:sovoli.com": "docker build -t sovoli.com -f ./apps/sovoli.com/Dockerfile .",
-    "docker:run:sovoli.com": "docker run -it --init --rm -p 3000:3000 --env-file .env.docker --env DATABASE_URL=\"postgresql://postgres:postgres@db:5432/postgres\" --network=app_network sovoli.com",
-    "start": "turbo start",
-    "clean": "turbo clean",
-    "typecheck": "turbo typecheck",
-    "validate": "turbo lint typecheck"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "dependencies": {},
   "devDependencies": {
     "prettier": "^3.2.5",
-    "turbo": "latest"
+    "turbo": "^2.0.4",
+    "typescript": "^5.4.5"
   },
+  "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18"
   }

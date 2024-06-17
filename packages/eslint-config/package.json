@@ -1,24 +1,19 @@
 {
-  "name": "@sovoli/eslint-config",
+  "name": "@repo/eslint-config",
+  "version": "0.0.0",
   "private": true,
-  "main": "index.js",
   "files": [
-    "remix.js",
-    "expo.js",
+    "library.js",
+    "next.js",
     "react-internal.js"
   ],
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.13.0",
-    "@typescript-eslint/parser": "^7.13.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-config-expo": "^7.1.2",
-    "eslint-config-turbo": "^2.0.3",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "@vercel/style-guide": "^5.2.0",
+    "eslint-config-turbo": "^2.0.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.34.2",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "typescript": "^5.4.5",
-    "prettier-plugin-tailwindcss": "^0.6.4"
+    "eslint-plugin-only-warn": "^1.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "typescript": "^5.3.3"
   }
 }
