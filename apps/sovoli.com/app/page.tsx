@@ -11,7 +11,7 @@ export default function Home() {
 
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2">Infra</h2>
-          <p>DNS</p>
+          <p>✅ DNS</p>
           <p>✅ Status</p>
         </section>
 
