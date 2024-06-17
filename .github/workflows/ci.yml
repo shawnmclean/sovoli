@@ -1,11 +1,11 @@
 name: CI
- 
+
 on:
   push:
     branches: ["main"]
   pull_request:
     types: [opened, synchronize]
- 
+
 jobs:
   build:
     name: Build and Test
@@ -16,25 +16,24 @@ jobs:
     #  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
     #  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
     #  TURBO_REMOTE_ONLY: true
- 
+
     steps:
       - name: Check out code
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
- 
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
- 
+          cache: "pnpm"
+
       - name: Install dependencies
-        run: npm install
- 
+        run: pnpm install
+
       - name: Build
-        run: npm run build
+        run: pnpm build
 
       - name: Lint
-        run: npm run lint
- 
+        run: pnpm lint

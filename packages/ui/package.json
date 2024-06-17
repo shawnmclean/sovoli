@@ -12,8 +12,8 @@
     "generate:component": "turbo gen react-component"
   },
   "devDependencies": {
-    "@sovoli/eslint-config": "*",
-    "@sovoli/typescript-config": "*",
+    "@sovoli/eslint-config": "workspace:*",
+    "@sovoli/typescript-config": "workspace:*",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",

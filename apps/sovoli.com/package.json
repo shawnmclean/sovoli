@@ -9,20 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sovoli/ui": "*",
-    "react": "19.0.0-rc-f994737d14-20240522",
-    "react-dom": "19.0.0-rc-f994737d14-20240522",
+    "@sovoli/ui": "workspace:*",
+    "@vercel/speed-insights": "^1.0.12",
     "next": "15.0.0-rc.0",
-    "@vercel/speed-insights": "^1.0.12"
+    "react": "19.0.0-rc-f994737d14-20240522",
+    "react-dom": "19.0.0-rc-f994737d14-20240522"
   },
   "devDependencies": {
-    "@sovoli/eslint-config": "*",
-    "@sovoli/typescript-config": "*",
-    "typescript": "^5",
+    "@sovoli/eslint-config": "workspace:*",
+    "@sovoli/typescript-config": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "15.0.0-rc.0"
+    "eslint-config-next": "15.0.0-rc.0",
+    "typescript": "^5"
   }
 }
