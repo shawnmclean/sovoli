@@ -27,7 +27,7 @@
       "cache": false
     }
   },
-  "globalDependencies": [".env"],
+  "globalDependencies": [".env", "tsconfig.json"],
   "globalEnv": [
     "NODE_ENV",
     "REMIX_APP_PORT",
