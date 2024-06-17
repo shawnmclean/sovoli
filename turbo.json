@@ -3,48 +3,14 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [
-        "dist/**",
-        ".next/**",
-        "public/build/**",
-        "build/**",
-        "app/styles/tailwind.css",
-        ".cache",
-        "node_modules/.cache/metro/**"
-      ]
-    },
-    "@sovoli/sovoli.com#start": {
-      "dependsOn": ["^build"],
-      "outputs": ["public/build/**"]
+      "outputs": ["dist/**", ".expo/**", "public/dist/**"]
     },
     "start": {
       "dependsOn": ["^build"],
       "outputs": ["public/build/**"]
     },
-    "db:migrate:deploy": {
-      "outputs": []
-    },
-    "db:migrate:dev": {
-      "outputs": []
-    },
-    "db:push": {
-      "outputs": []
-    },
-    "db:seed": {
-      "outputs": [],
-      "cache": false
-    },
-    "db:migrate:force": {
-      "outputs": []
-    },
     "dev": {
       "cache": false
-    },
-    "storybook": {
-      "outputs": []
-    },
-    "generate": {
-      "dependsOn": ["^generate"]
     },
     "lint": {
       "outputs": []
@@ -52,22 +18,6 @@
     "docker:build": {
       "outputs": [],
       "cache": false
-    },
-    "test": {
-      "outputs": []
-    },
-    "test:dev": {
-      "outputs": [],
-      "cache": false
-    },
-    "test:e2e:dev": {
-      "dependsOn": ["^build"],
-      "outputs": [],
-      "cache": false
-    },
-    "test:e2e:ci": {
-      "dependsOn": ["^build"],
-      "outputs": []
     },
     "typecheck": {
       "dependsOn": ["^build"],

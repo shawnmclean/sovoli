@@ -1,13 +1,16 @@
 {
   "name": "@sovoli/root",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "packageManager": "pnpm@9.1.4",
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "apps/*"
+    ]
+  },
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "turbo dev --parallel",
     "storybook": "turbo run storybook",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
@@ -17,7 +20,6 @@
     "docker:run:sovoli.com": "docker run -it --init --rm -p 3000:3000 --env-file .env.docker --env DATABASE_URL=\"postgresql://postgres:postgres@db:5432/postgres\" --network=app_network sovoli.com",
     "test": "turbo run test",
     "test:dev": "turbo run test:dev",
-    "start-sovoli.com-production": "npm run --workspace @sovoli/sovoli.com start",
     "start": "turbo run start",
     "clean": "turbo run clean",
     "typecheck": "turbo run typecheck",
@@ -25,11 +27,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@sovoli/eslint-config": "*",
     "prettier": "^3.2.5",
-    "turbo": "^2.0.3"
+    "turbo": "^2.0.4"
   },
-  "packageManager": "npm@10.5.0",
   "engines": {
     "node": ">=18"
   }
