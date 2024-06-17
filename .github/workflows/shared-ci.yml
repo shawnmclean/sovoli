@@ -7,10 +7,6 @@ on:
         required: true
         type: string
         default: '20'
-      pnpm-version:
-        required: true
-        type: string
-        default: '9'
 jobs:
   lint:
     name: ⬣ ESLint
@@ -29,8 +25,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ inputs.pnpm-version }}
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
@@ -38,14 +32,14 @@ jobs:
           node-version: ${{ inputs.node-version }}
           cache: 'pnpm'
 
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+      - name: Install Dependencies
+        run: pnpm i
 
       - name: 🖼 Build
-        run: npm run build
+        run: pnpm build
 
       - name: 🔬 Lint
-        run: npm run lint
+        run: pnpm lint
 
   typecheck:
     name: ʦ TypeScript
@@ -73,17 +67,17 @@ jobs:
           node-version: ${{ inputs.node-version }}
           cache: 'pnpm'
 
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+      - name: Install Dependencies
+        run: pnpm i
 
       # - name: 🛠 Setup PrismaClient
       #   run: npm run generate
 
       - name: 🖼 Build
-        run: npm run build
+        run: pnpm build
 
       - name: 🔎 Type check
-        run: npm run typecheck --if-present
+        run: pnpm typecheck --if-present
 
   # test:
   #   name: ⚡ Test
