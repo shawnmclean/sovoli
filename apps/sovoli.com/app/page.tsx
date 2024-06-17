@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Button } from "@sovoli/ui/button";
 import styles from "./page.module.css";
 
