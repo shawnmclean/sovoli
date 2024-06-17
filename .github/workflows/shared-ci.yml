@@ -7,6 +7,10 @@ on:
         required: true
         type: string
         default: '20'
+      pnpm-version:
+        required: true
+        type: string
+        default: '9'
 jobs:
   lint:
     name: ⬣ ESLint
@@ -23,10 +27,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ inputs.pnpm-version }}
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
+          cache: 'pnpm'
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
@@ -51,10 +61,17 @@ jobs:
           key: ${{ runner.os }}-turbo-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-turbo-
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ inputs.pnpm-version }}
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
+          cache: 'pnpm'
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
