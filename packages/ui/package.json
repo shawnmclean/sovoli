@@ -26,7 +26,7 @@
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
-    "@sovoli/eslint-config": "*",
+    "@sovoli/eslint-config": "workspace:*",
     "@tsconfig/recommended": "^1.0.6",
     "@types/react": "~18.3.3",
     "react": "18.3.1",
