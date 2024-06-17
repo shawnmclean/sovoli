@@ -19,7 +19,7 @@ export default function Home() {
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2">Shared Lib</h2>
           <p>
-            ✅ UI comp: <Button>Hello there!</Button>
+            ✅ UI comp: <Button appName="sovoli.com">Hello there!</Button>
           </p>
           <p>RN reusables</p>
         </section>
