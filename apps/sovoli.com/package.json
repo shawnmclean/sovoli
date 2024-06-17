@@ -1,22 +1,22 @@
 {
-  "name": "docs",
+  "name": "@sovoli/sovoli.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo --port 3001",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@repo/ui": "*",
+    "@sovoli/ui": "*",
     "react": "19.0.0-rc-f994737d14-20240522",
     "react-dom": "19.0.0-rc-f994737d14-20240522",
     "next": "15.0.0-rc.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@sovoli/eslint-config": "*",
+    "@sovoli/typescript-config": "*",
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",

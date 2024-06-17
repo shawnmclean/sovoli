@@ -1,5 +1,5 @@
 {
-  "name": "sovoli",
+  "name": "@sovoli/root",
   "private": true,
   "scripts": {
     "build": "turbo build",
