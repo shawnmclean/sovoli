@@ -5,10 +5,12 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "jsxImportSource": "nativewind"
   },
   "include": [
     "next-env.d.ts",
+    "nativewind.d.ts",
     "next.config.js",
     "**/*.ts",
     "**/*.tsx",
