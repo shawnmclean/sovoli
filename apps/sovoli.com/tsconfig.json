@@ -5,8 +5,7 @@
       {
         "name": "next"
       }
-    ],
-    "jsxImportSource": "nativewind"
+    ]
   },
   "include": [
     "next-env.d.ts",
