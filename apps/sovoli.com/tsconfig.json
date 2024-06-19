@@ -5,12 +5,15 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "react-native": ["./node_modules/react-native-web"]
+    }
   },
   "include": [
     "next-env.d.ts",
-    "nativewind.d.ts",
-    "next.config.js",
+    "nativewind-env.d.ts",
+    "next.config.mjs",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"

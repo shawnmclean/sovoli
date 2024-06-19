@@ -1,5 +1,5 @@
 // import { Button } from "@sovoli/ui/button";
-
+import { Button } from "@sovoli/ui/button";
 export default function Home() {
   return (
     <div className="relative flex min-h-screen flex-col bg-background">
@@ -17,7 +17,9 @@ export default function Home() {
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Shared Lib</h2>
-            <p>✅ UI comp:</p>
+            <p>
+              ✅ UI comp: <Button title="RN Button" />
+            </p>
             <p>RN reusables</p>
           </section>
 
@@ -107,13 +109,11 @@ export default function Home() {
         </div>
       </main>
       <footer className="py-6 md:px-8 md:py-0">
-        <a
-          href="https://status.sovoli.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Status
-        </a>
+        <iframe
+          src="https://status.sovoli.com/badge?theme=dark"
+          width="250"
+          height="30"
+        ></iframe>
       </footer>
     </div>
   );

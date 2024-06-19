@@ -7,8 +7,17 @@
     "./text": "./src/components/ui/text.tsx"
   },
   "scripts": {
-    "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component"
+    "lint": "eslint . --max-warnings 0"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "nativewind": "^4.0.36",
+    "react-native-web": "^0.19.12",
+    "tailwindcss": "^3.4.4",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",
@@ -19,30 +28,8 @@
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "eslint": "^8.57.0",
-    "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.23.1",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "nativewind": "^2.0.11",
+    "typescript": "^5.3.3",
     "react": "^18.2.0",
-    "react-native": "^0.74.2",
-    "react-native-web": "^0.19.12",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
-  },
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*",
-    "react-native-web": "*"
-  },
-  "peerDependenciesMeta": {
-    "react-native": {
-      "optional": true
-    },
-    "react-native-web": {
-      "optional": true
-    }
+    "react-native": "^0.74.2"
   }
 }
