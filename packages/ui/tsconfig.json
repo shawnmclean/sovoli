@@ -1,5 +1,5 @@
 {
-  "extends": "@sovoli/typescript-config/react-library.json",
+  "extends": "@sovoli/typescript-config/react-native-library.json",
   "compilerOptions": {
     "jsxImportSource": "nativewind"
   },
