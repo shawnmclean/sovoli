@@ -1,5 +1,5 @@
 // import { Button } from "@sovoli/ui/button";
-import { Button } from "@sovoli/ui/button";
+import Button from "./_components/button";
 export default function Home() {
   return (
     <div className="relative flex min-h-screen flex-col bg-background">
@@ -18,7 +18,7 @@ export default function Home() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Shared Lib</h2>
             <p>
-              ✅ UI comp: <Button title="RN Button" />
+              ✅ UI comp: <Button />
             </p>
             <p>RN reusables</p>
           </section>
