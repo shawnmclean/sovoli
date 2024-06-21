@@ -18,6 +18,15 @@ const nextConfig = {
     ];
     return config;
   },
+  transpilePackages: [
+    "@sovoli/ui",
+    "nativewind",
+    "react-native",
+    "react-native-web",
+  ],
+  experimental: {
+    forceSwcTransforms: true,
+  },
 };
 
 module.exports = withExpo(nextConfig);
