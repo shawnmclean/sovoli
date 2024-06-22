@@ -20,7 +20,7 @@ export default function Home() {
             <span>
               ✅ UI comp: <ButtonComponent />
             </span>
-            <p>RN reusables</p>
+            <span>RN reusables</span>
           </section>
 
           <section className="mb-8">
