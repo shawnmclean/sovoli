@@ -3,10 +3,5 @@
 import { Button } from "@sovoli/ui";
 
 export function ButtonComponent() {
-  return (
-    <div>
-      use client
-      <Button text="Boop" />
-    </div>
-  );
+  return <Button onClick={() => alert("clicked")} text="Boop" />;
 }

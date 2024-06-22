@@ -17,9 +17,9 @@ export default function Home() {
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Shared Lib</h2>
-            <p>
+            <span>
               ✅ UI comp: <ButtonComponent />
-            </p>
+            </span>
             <p>RN reusables</p>
           </section>
 
