@@ -1,7 +1,4 @@
-const { withExpo } = require("@expo/next-adapter");
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
   webpack: (config) => {
     config.resolve.alias = {
@@ -18,15 +15,4 @@ const nextConfig = {
     ];
     return config;
   },
-  transpilePackages: [
-    "@sovoli/ui",
-    "nativewind",
-    "react-native",
-    "react-native-web",
-  ],
-  experimental: {
-    forceSwcTransforms: true,
-  },
 };
-
-module.exports = withExpo(nextConfig);

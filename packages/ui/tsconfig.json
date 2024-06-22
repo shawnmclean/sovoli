@@ -1,8 +1,8 @@
 {
-  "extends": "@sovoli/typescript-config/react-native-library.json",
+  "extends": "@sovoli/typescript-config/react-native-library",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "jsxImportSource": "nativewind"
-  },
-  "include": ["src", "nativewind-env.d.ts", "rnw-overrides.d.ts"],
-  "exclude": ["node_modules", "dist"]
+    "strict": true
+  }
 }

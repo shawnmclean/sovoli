@@ -1,7 +1,12 @@
-/** @jsxImportSource react */
+"use client";
 
-import { Button } from "@sovoli/ui/button";
+import { Button } from "@sovoli/ui";
 
-export default function ButtonComponent() {
-  return <Button>Hello</Button>;
+export function ButtonComponent() {
+  return (
+    <div>
+      use client
+      <Button text="Boop" />
+    </div>
+  );
 }
