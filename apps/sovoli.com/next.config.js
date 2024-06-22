@@ -1,5 +1,6 @@
 module.exports = {
   reactStrictMode: true,
+  // transpilePackages: ["nativewind"],
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),

@@ -4,6 +4,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-  //presets: [require("nativewind/preset")],
+  presets: [require("nativewind/preset")],
   important: "html",
 };

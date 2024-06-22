@@ -1,4 +1,4 @@
-import { ButtonComponent } from "./_components/button";
+import { ButtonComponent } from "./_components/nativewind";
 
 export default function Home() {
   return (
