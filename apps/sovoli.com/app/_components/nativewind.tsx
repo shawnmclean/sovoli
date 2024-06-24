@@ -6,10 +6,10 @@ export function ButtonComponent() {
   return (
     <div>
       <span>
-        RN: <Button onClick={() => alert("clicked")} text="Boop" />
+        RN: <Button />
       </span>
       <span>
-        NW: <Text>NW Text</Text>
+        NW: <Text />
       </span>
     </div>
   );
