@@ -10,7 +10,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "devDependencies": {
-    "@sovoli/typescript-config": "*",
+    "@sovoli/typescript-config": "workspace:*",
     "@types/react": "^18.2.46",
     "@types/react-native": "^0.73.0",
     "tsup": "^8.0.1",

@@ -12,7 +12,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@sovoli/ui": "*",
+    "@sovoli/ui": "workspace:*",
     "expo": "^51.0.14",
     "expo-status-bar": "~1.7.0",
     "react": "^18.2.0",
