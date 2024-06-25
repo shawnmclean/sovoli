@@ -12,15 +12,18 @@
   "scripts": {
     "clean": "rm -rf dist"
   },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-native": "^0.74.2",
+    "class-variance-authority": "^0.7.0",
+    "nativewind": "~4.0.36",
+    "tailwind-merge": "^2.3.0"
+  },
   "devDependencies": {
     "@sovoli/typescript-config": "workspace:*",
     "@types/react": "^18.2.46",
     "@types/react-native": "^0.73.0",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-native": "^0.74.2"
+    "typescript": "^5.3.3",
+    "tailwindcss": "^3.4.3"
   }
 }

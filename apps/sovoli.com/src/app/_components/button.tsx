@@ -3,5 +3,9 @@
 import { Button } from "@sovoli/ui/components/button";
 
 export function ButtonComponent() {
-  return <Button onClick={() => alert("clicked")} text="Boop" />;
+  return (
+    <Button variant="destructive" onPress={() => alert("clicked")}>
+      Click me
+    </Button>
+  );
 }
