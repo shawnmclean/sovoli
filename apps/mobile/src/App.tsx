@@ -2,7 +2,7 @@ import { Text, View, Alert } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Button } from "@sovoli/ui/components/button";
 
-// import "./styles.css";
+import "./styles.css";
 
 export default function Native() {
   return (
