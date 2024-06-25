@@ -1,6 +1,21 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "@sovoli/typescript-config/base.json",
   "compilerOptions": {
-    "strict": true
-  }
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ]
+    },
+    "jsx": "react-native",
+    "checkJs": false
+  },
+  "include": [
+    "src",
+    "*.ts",
+    "*.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

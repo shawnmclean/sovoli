@@ -45,6 +45,9 @@ importers:
       '@expo/webpack-config':
         specifier: ^19.0.0
         version: 19.0.1(expo@51.0.14(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+      '@sovoli/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@types/react':
         specifier: ^18.2.46
         version: 18.3.3

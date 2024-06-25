@@ -1,18 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Button } from "@sovoli/ui";
+// import { Button } from "@sovoli/ui/components/button";
 
 export default function Native() {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Native</Text>
-      <Button
+      {/* <Button
         onClick={() => {
           console.log("Pressed!");
-          alert("Pressed!");
+          Alert.alert("Pressed!");
         }}
         text="Boop"
-      />
+      /> */}
       <StatusBar style="auto" />
     </View>
   );
