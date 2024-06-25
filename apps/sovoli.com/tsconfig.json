@@ -9,7 +9,8 @@
     },
     "plugins": [{ "name": "next" }],
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "module": "esnext"
+    "module": "esnext",
+    "types": ["nativewind/types"]
   },
   "include": [".", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
