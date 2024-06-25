@@ -10,8 +10,7 @@
     ]
   },
   "scripts": {
-    "clean": "rm -rf dist",
-    "lint": "eslint . --max-warnings 0"
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@sovoli/typescript-config": "workspace:*",
