@@ -1,3 +1,6 @@
+/** @jsxImportSource react */
+import { Card } from "@sovoli/ui/components/card";
+import Web from "@sovoli/ui/components/web";
 import { ButtonComponent } from "./_components/button";
 
 export default function Home() {
@@ -19,6 +22,14 @@ export default function Home() {
             <h2 className="text-xl font-semibold mb-2">Shared Lib</h2>
             <span>
               ✅ UI comp: <ButtonComponent />
+            </span>
+            <span>
+              Shared RN Component:
+              <Card />
+            </span>
+            <span>
+              Shared Web Component:
+              <Web />
             </span>
             <span>RN reusables</span>
           </section>
