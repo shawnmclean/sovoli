@@ -13,19 +13,23 @@
   },
   "dependencies": {
     "@sovoli/ui": "workspace:*",
+    "@expo/metro-config": "^0.18.3",
     "expo": "^51.0.14",
+    "expo-router": "~3.5.11",
     "expo-status-bar": "~1.7.0",
+    "nativewind": "~4.0.36",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-native": "0.73.1",
-    "react-native-web": "^0.19.10"
+    "react-native": "~0.74.1",
+    "react-native-web": "^0.19.10",
+    "react-native-reanimated": "~3.10.1"
   },
   "devDependencies": {
     "@sovoli/typescript-config": "workspace:*",
     "@babel/core": "^7.23.7",
-    "@expo/webpack-config": "^19.0.0",
     "@types/react": "^18.2.46",
     "@types/react-native": "^0.73.0",
+    "tailwindcss": "^3.4.3",
     "typescript": "^5.3.3"
   }
 }
