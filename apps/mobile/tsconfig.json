@@ -3,25 +3,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./src/*"
-      ],
-      "@sovoli/ui/*": [
-        "../../packages/ui/src/*"
-      ]
+      "~/*": ["./src/*"],
+      "@sovoli/ui/*": ["../../packages/ui/src/*"]
     },
     "jsx": "react-native",
-    "types": [
-      "nativewind/types"
-    ],
     "checkJs": false
   },
-  "include": [
-    "src",
-    "*.ts",
-    "*.js"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src", "*.ts", "*.js"],
+  "exclude": ["node_modules"]
 }
