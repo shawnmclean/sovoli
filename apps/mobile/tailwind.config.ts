@@ -1,9 +1,8 @@
-import type { Config } from "tailwindcss";
-// @ts-expect-error - no types
-import nativewind from "nativewind/preset";
-
-
-export default {
-  content: ["./src/**/*.{ts,tsx}"],
-  presets: [nativewind],
-} satisfies Config;
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["src/**/*.{ts,tsx}", "../../packages/ui/**/*.{ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  presets: [require("nativewind/preset")],
+};

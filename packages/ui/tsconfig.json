@@ -2,7 +2,8 @@
   "extends": "@sovoli/typescript-config/internal-package.json",
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "ES2022"],
-    "jsx": "preserve"
+    "jsx": "react-jsx",
+    "jsxImportSource": "nativewind"
   },
   "include": ["*.ts", "src", "nativewind-env.d.ts"],
   "exclude": ["dist", "build", "node_modules"]
