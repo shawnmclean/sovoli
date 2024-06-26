@@ -10,7 +10,8 @@
     ]
   },
   "scripts": {
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
     "@rn-primitives/slot": "~1.0.3",
