@@ -5,7 +5,7 @@ import { ButtonComponent } from "./_components/button";
 
 export default function Home() {
   return (
-    <div className="relative flex min-h-screen flex-col bg-background">
+    <div className="container mx-auto">
       <main className="flex-1">
         <div className="mx-auto">
           <h1 className="text-2xl font-bold mb-4">
@@ -14,48 +14,58 @@ export default function Home() {
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Infra</h2>
-            <p>✅ DNS</p>
-            <p>✅ Status</p>
+            <ul>
+              <li>✅ DNS</li>
+              <li>✅ Status</li>
+            </ul>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Shared Lib</h2>
-            <span>
-              ✅ UI comp: <ButtonComponent />
-            </span>
-            <span>
-              Shared RN Component:
-              <Card />
-            </span>
-            <span>
-              Shared Web Component:
-              <Web />
-            </span>
-            <span>RN reusables</span>
+            <ul>
+              <li>
+                ✅ Shared interactive RN UI: <ButtonComponent />
+              </li>
+              <li>
+                ✅ Shared Web Component: <Web />
+              </li>
+              <li>
+                Shared styled RN Component: <Card />
+              </li>
+              <li>RN reusables</li>
+            </ul>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Expo</h2>
-            <p>Move this to shared comp n show in expo</p>
+            <ul>
+              <li>Move this to shared comp n show in expo</li>
+            </ul>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Database</h2>
-            <p>Db lib</p>
-            <p>Session model</p>
-            <p>Db Health Check</p>
+            <ul>
+              <li>Db lib</li>
+              <li>Session model</li>
+              <li>Db Health Check</li>
+            </ul>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">API</h2>
-            <p>Expo does health check</p>
-            <p>Handle version skew</p>
+            <ul>
+              <li>Expo does health check</li>
+              <li>Handle version skew</li>
+            </ul>
             <div>
               <h3 className="text-lg font-medium mb-1">Sessions</h3>
-              <p>Non authenticated sessions</p>
-              <p>Session Id: [sessionId]</p>
-              <p>Web users: [web sessions count here]</p>
-              <p>Mobile users: [mobile sessions count here]</p>
+              <ul>
+                <li>Non authenticated sessions</li>
+                <li>Session Id: [sessionId]</li>
+                <li>Web users: [web sessions count here]</li>
+                <li>Mobile users: [mobile sessions count here]</li>
+              </ul>
             </div>
           </section>
 
@@ -64,23 +74,27 @@ export default function Home() {
               Image Upload / Storage
             </h2>
             <input type="file" className="block mb-2" />
-            <p>Persistent storage link here</p>
-            <div>
-              <button className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-                Show button for a popup with image data here
-              </button>
-              <p>Explode image data</p>
-              <button className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-                RAG
-              </button>
-              <p>
+            <ul>
+              <li>Persistent storage link here</li>
+              <li>
+                <button className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
+                  Show button for a popup with image data here
+                </button>
+              </li>
+              <li>Explode image data</li>
+              <li>
+                <button className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
+                  RAG
+                </button>
+              </li>
+              <li>
                 Write to books (<a href="#">link to all books here</a>)
-              </p>
-              <p>
+              </li>
+              <li>
                 Write to session books (
                 <a href="#">link to current session books here</a>)
-              </p>
-            </div>
+              </li>
+            </ul>
           </section>
 
           <section className="mb-8">
@@ -91,13 +105,17 @@ export default function Home() {
               className="block border border-gray-300 p-2 mb-2"
             />
             <input type="file" className="block mb-2" />
-            <p>Scan notes (image upload, read highlight and jottings)</p>
+            <ul>
+              <li>Scan notes (image upload, read highlight and jottings)</li>
+            </ul>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Auth</h2>
-            <p>WhatsApp TOTP</p>
-            <p>Migrate session data</p>
+            <ul>
+              <li>WhatsApp TOTP</li>
+              <li>Migrate session data</li>
+            </ul>
           </section>
 
           <section className="mb-8">
@@ -114,8 +132,10 @@ export default function Home() {
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Generative UX</h2>
-            <p>Reflow the above workflow into generative UX flows</p>
-            <p>Spike on generative UI for RN</p>
+            <ul>
+              <li>Reflow the above workflow into generative UX flows</li>
+              <li>Spike on generative UI for RN</li>
+            </ul>
           </section>
         </div>
       </main>
