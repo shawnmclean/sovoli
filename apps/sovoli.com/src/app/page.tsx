@@ -16,7 +16,16 @@ export default function Home() {
             <h2 className="text-xl font-semibold mb-2">Infra</h2>
             <ul>
               <li>✅ DNS</li>
-              <li>✅ Status</li>
+              <li>
+                ✅ Status:{" "}
+                <a href="https://status.sovoli.com" target="_blank">
+                  status.sovoli.com
+                </a>
+              </li>
+              <li>✅ Analytics</li>
+              <li>✅ Perf Monitor</li>
+              <li>🕛 Logging</li>
+              <li>🕛 Metrics</li>
             </ul>
           </section>
 
@@ -24,15 +33,16 @@ export default function Home() {
             <h2 className="text-xl font-semibold mb-2">Shared Lib</h2>
             <ul>
               <li>
-                ✅ Shared interactive RN UI: <ButtonComponent />
+                ✅ Shared interactive RN UI: 🚩 (layout shift)
+                <ButtonComponent />
               </li>
               <li>
                 ✅ Shared Web Component: <Web />
               </li>
               <li>
-                Shared styled RN Component: <Card />
+                🚩 Shared styled RN Component: <Card />
               </li>
-              <li>RN reusables</li>
+              <li>🚩 RN reusables</li>
             </ul>
           </section>
 
