@@ -37,12 +37,13 @@ export default function Home() {
                 <ButtonComponent />
               </li>
               <li>
-                ✅ Shared Web Component: <Web />
+                ✅ Shared styled Web Component: <Web />
               </li>
               <li>
-                🚩 Shared styled RN Component: <Card />
+                🚩 Shared styled client Text RN Component: <Card />
               </li>
-              <li>🚩 RN reusables</li>
+              <li>🚩 Shared styled server Text RN Component:</li>
+              <li>🚩 RN reusables: (replace button components above)</li>
             </ul>
           </section>
 
