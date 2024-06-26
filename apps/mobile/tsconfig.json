@@ -9,6 +9,6 @@
     "jsx": "react-native",
     "checkJs": false
   },
-  "include": ["src", "*.ts", "*.js"],
+  "include": ["src", "*.ts", "*.js", "app-env.d.ts"],
   "exclude": ["node_modules"]
 }
