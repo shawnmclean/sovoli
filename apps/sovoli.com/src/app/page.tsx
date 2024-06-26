@@ -1,8 +1,11 @@
+/** @jsxImportSource react */
+
 import { WebText } from "@sovoli/ui/components/text-web";
 import { ButtonComponent } from "./_components/button";
 // import { RNTextServer } from "./_components/rn-text-server";
 import { RNTextClient } from "./_components/rn-text-client";
 import { RNTextClientTW } from "./_components/rn-text-tw";
+import { WebTextTW } from "./_components/web-text-tw";
 
 export default function Home() {
   return (
@@ -31,11 +34,14 @@ export default function Home() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold mb-2">Shared Lib</h2>
+            <h2 className="text-xl font-semibold mb-2">Shared UI Lib</h2>
             <ul>
               <li>
                 ✅ Shared interactive RN UI: 🚩 (layout shift)
                 <ButtonComponent />
+              </li>
+              <li>
+                ✅ Next styled Web Component: <WebTextTW />
               </li>
               <li>
                 ✅ Shared styled Web Component: <WebText />
@@ -60,7 +66,7 @@ export default function Home() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Expo</h2>
             <ul>
-              <li>Move this to shared comp n show in expo</li>
+              <li>Move this to shared comp n show in expo + next</li>
             </ul>
           </section>
 

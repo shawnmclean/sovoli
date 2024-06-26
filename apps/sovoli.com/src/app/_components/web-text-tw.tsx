@@ -1,11 +1,11 @@
 import React from "react";
 
-function WebText() {
+function WebTextTW() {
   return (
     <span className="text-transparent bg-clip-text bg-gradient-to-r to-red-600 from-sky-400">
-      package span styled with default tailwind
+      nextjs span styled with default tailwind
     </span>
   );
 }
 
-export { WebText };
+export { WebTextTW };
