@@ -2,6 +2,7 @@ import { WebText } from "@sovoli/ui/components/text-web";
 import { ButtonComponent } from "./_components/button";
 // import { RNTextServer } from "./_components/rn-text-server";
 import { RNTextClient } from "./_components/rn-text-client";
+import { RNTextClientTW } from "./_components/rn-text-tw";
 
 export default function Home() {
   return (
@@ -47,7 +48,10 @@ export default function Home() {
                 🚩 Shared styled server Text RN Component: throws error
                 {/* <RNTextServer /> */}
               </li>
-              <li>🚩 Shared TW RN Component: </li>
+              <li>
+                🚩 Shared TW RN Component: (no style loaded, class is changed){" "}
+                <RNTextClientTW />
+              </li>
 
               <li>RN Reusables: </li>
             </ul>
