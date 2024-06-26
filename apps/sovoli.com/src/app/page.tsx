@@ -9,7 +9,7 @@ export default function Home() {
       <main className="flex-1">
         <div className="mx-auto">
           <h1 className="text-2xl font-bold mb-4">
-            Private Software, pls leave, kthxbai
+            👀 Spiking on Private Software, pls leave, kthxbai
           </h1>
 
           <section className="mb-8">
