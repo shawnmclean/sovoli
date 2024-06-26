@@ -1,7 +1,7 @@
-/** @jsxImportSource react */
-import { Card } from "@sovoli/ui/components/card";
-import Web from "@sovoli/ui/components/web";
+import { WebText } from "@sovoli/ui/components/text-web";
 import { ButtonComponent } from "./_components/button";
+// import { RNTextServer } from "./_components/rn-text-server";
+import { RNTextClient } from "./_components/rn-text-client";
 
 export default function Home() {
   return (
@@ -37,13 +37,19 @@ export default function Home() {
                 <ButtonComponent />
               </li>
               <li>
-                ✅ Shared styled Web Component: <Web />
+                ✅ Shared styled Web Component: <WebText />
               </li>
               <li>
-                🚩 Shared styled client Text RN Component: <Card />
+                🚩 Shared styled client Text RN Component: (delayed styles){" "}
+                <RNTextClient />
               </li>
-              <li>🚩 Shared styled server Text RN Component:</li>
-              <li>🚩 RN reusables: (replace button components above)</li>
+              <li>
+                🚩 Shared styled server Text RN Component: throws error
+                {/* <RNTextServer /> */}
+              </li>
+              <li>🚩 Shared TW RN Component: </li>
+
+              <li>RN Reusables: </li>
             </ul>
           </section>
 
