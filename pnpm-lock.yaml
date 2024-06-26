@@ -42,7 +42,7 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
       react-native:
-        specifier: ~0.74.1
+        specifier: ^0.74.2
         version: 0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(react@18.3.1)
       react-native-reanimated:
         specifier: ~3.10.1
@@ -64,7 +64,7 @@ importers:
         specifier: ^0.73.0
         version: 0.73.0(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(react@18.3.1)
       tailwindcss:
-        specifier: ^3.4.3
+        specifier: ^3.4.4
         version: 3.4.4
       typescript:
         specifier: ^5.3.3
@@ -100,7 +100,7 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
       react-native-web:
-        specifier: ^0.19.10
+        specifier: ^0.19.12
         version: 0.19.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tailwindcss:
         specifier: ^3.4.4
@@ -131,7 +131,7 @@ importers:
         specifier: 14.0.4
         version: 14.0.4(eslint@8.57.0)(typescript@5.5.2)
       typescript:
-        specifier: ^5
+        specifier: ^5.3.3
         version: 5.5.2
 
   packages/eslint-config:
@@ -197,7 +197,7 @@ importers:
         specifier: ^0.73.0
         version: 0.73.0(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(react@18.3.1)
       tailwindcss:
-        specifier: ^3.4.3
+        specifier: ^3.4.4
         version: 3.4.4
       typescript:
         specifier: ^5.3.3
