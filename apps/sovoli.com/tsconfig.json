@@ -8,10 +8,8 @@
       "~/*": ["./src/*"]
     },
     "plugins": [{ "name": "next" }],
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "module": "esnext",
-    "types": ["nativewind/types"]
+    "module": "esnext"
   },
-  "include": [".", ".next/types/**/*.ts"],
+  "include": [".", ".next/types/**/*.ts", "app-env.d.ts"],
   "exclude": ["node_modules"]
 }
