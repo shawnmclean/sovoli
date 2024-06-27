@@ -6,6 +6,7 @@ import { ButtonComponent } from "./_components/button";
 import { RNTextClient } from "./_components/rn-text-client";
 import { RNTextClientTW } from "./_components/rn-text-tw";
 import { WebTextTW } from "./_components/web-text-tw";
+import { RNTextTWLocal } from "./_components/rn-text-tw-local";
 
 export default function Home() {
   return (
@@ -42,6 +43,9 @@ export default function Home() {
               </li>
               <li>
                 ✅ Next styled Web Component: <WebTextTW />
+              </li>
+              <li>
+                ✅ Next Local TW RN: <RNTextTWLocal />
               </li>
               <li>
                 ✅ Shared styled Web Component: <WebText />

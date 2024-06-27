@@ -2,6 +2,7 @@ import { Alert, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 import { Button } from "@sovoli/ui/components/button";
+import { Button as LocalButton } from "../components/button";
 import { RNTextTW } from "@sovoli/ui/components/text-rn-tw";
 import { RNText } from "@sovoli/ui/components/text-rn";
 import { RNTextTWComponent } from "../components/text-rn-tw";
@@ -19,6 +20,9 @@ export default function Index() {
         <Button onPress={() => Alert.alert("Hello!")}>
           <Text>Click me now!</Text>
         </Button>
+        <LocalButton variant="ghost" onPress={() => Alert.alert("Hello!")}>
+          <Text>Click me now!</Text>
+        </LocalButton>
         <RNTextTW />
         <RNText />
         <RNTextTWComponent />
