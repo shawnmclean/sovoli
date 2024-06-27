@@ -1,10 +1,11 @@
-import React from "react";
-
+"use client";
 function WebTextTW() {
   return (
-    <span className="text-transparent bg-clip-text bg-gradient-to-r to-red-600 from-sky-400">
-      nextjs span styled with default tailwind
-    </span>
+    <div className="flex flex-row flex-wrap">
+      <div className="text-transparent bg-clip-text bg-gradient-to-r to-red-600 from-sky-400">
+        nextjs div styled with default tailwind
+      </div>
+    </div>
   );
 }
 

@@ -5,7 +5,7 @@ import { ButtonComponent } from "./_components/button";
 // import { RNTextServer } from "./_components/rn-text-server";
 // import { RNTextClient } from "./_components/rn-text-client";
 import { RNTextTW } from "@sovoli/ui/components/text-rn-tw";
-// import { WebTextTW } from "./_components/web-text-tw";
+import { WebTextTW } from "./_components/web-text-tw";
 import { RNTextTWLocal } from "./_components/rn-text-tw-local";
 
 export default function Home() {
@@ -46,11 +46,15 @@ export default function Home() {
                 ✅ Next styled Web Component: <WebTextTW />
               </li> */}
               <li>
-                ✅ Next Local TW RN: <RNTextTWLocal />
+                ✅ Local TW RN: <RNTextTWLocal />
               </li>
-              {/* <li>
-                ✅ Shared styled Web Component: <WebText />
+              <li>
+                Package RN TW: <RNTextTW />
               </li>
+              <li>
+                ✅ Local Web TW: <WebTextTW />
+              </li>{" "}
+              {/*
               <li>
                 🚩 Shared styled client Text RN Component: (delayed styles){" "}
                 <RNTextClient />
@@ -59,11 +63,6 @@ export default function Home() {
                 🚩 Shared styled server Text RN Component: throws error
                   <RNTextServer /> 
               </li>*/}
-              <li>
-                Shared TW RN Component:
-                <RNTextTW />
-              </li>
-
               <li>RN Reusables: </li>
             </ul>
           </section>

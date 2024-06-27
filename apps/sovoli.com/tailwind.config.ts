@@ -2,6 +2,7 @@
 module.exports = {
   content: ["src/**/*.{ts,tsx}", "../../packages/ui/**/*.{ts,tsx}"],
   presets: [require("nativewind/preset")],
+  important: "html",
   theme: {
     extend: {
       colors: {
