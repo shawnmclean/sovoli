@@ -3,7 +3,10 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "ES2022"],
     "jsx": "react-jsx",
-    "jsxImportSource": "nativewind"
+    "jsxImportSource": "nativewind",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "include": ["*.ts", "src", "nativewind-env.d.ts"],
   "exclude": ["dist", "build", "node_modules"]

@@ -2,7 +2,7 @@
 
 // import { WebText } from "@sovoli/ui/components/text-web";
 import { ButtonComponent } from "./_components/button";
-// import { RNTextServer } from "./_components/rn-text-server";
+import { RNTextServer } from "./_components/rn-text-server";
 // import { RNTextClient } from "./_components/rn-text-client";
 import { RNTextTW } from "@sovoli/ui/components/text-rn-tw";
 import { WebTextTW } from "./_components/web-text-tw";
@@ -14,8 +14,12 @@ export default function Home() {
       <main className="flex-1">
         <div className="mx-auto">
           <h1 className="text-2xl font-bold mb-4">
-            👀 Spiking on Private Software, pls leave, kthxbai
+            👀 Spiking on something, pls leave, kthxbai
           </h1>
+
+          <span className="mb-8">
+            Goal: Working on something to help me read and write better.
+          </span>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Infra</h2>
@@ -35,16 +39,12 @@ export default function Home() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold mb-2">Shared UI Lib</h2>
+            <h2 className="text-xl font-semibold mb-2">Design System</h2>
             <ul>
               <li>
-                ✅ Shared interactive RN UI:
+                ✅ RN Reusables:
                 <ButtonComponent />
               </li>
-              {/* 
-              <li>
-                ✅ Next styled Web Component: <WebTextTW />
-              </li> */}
               <li>
                 ✅ Local TW RN: <RNTextTWLocal />
               </li>
@@ -53,24 +53,32 @@ export default function Home() {
               </li>
               <li>
                 ✅ Local Web TW: <WebTextTW />
-              </li>{" "}
-              {/*
-              <li>
-                🚩 Shared styled client Text RN Component: (delayed styles){" "}
-                <RNTextClient />
               </li>
+
               <li>
-                🚩 Shared styled server Text RN Component: throws error
-                  <RNTextServer /> 
-              </li>*/}
-              <li>RN Reusables: </li>
+                🚩 SSR RN TW: (Wait on NativeWind fixup){" "}
+                {/* <RNTextServer /> */}
+              </li>
+              <li>🕛 Move screen to Expo n cleanup</li>
+              <li>🕛 Share TW Config</li>
+              <li>🕛 Dark Mode Toggle</li>
             </ul>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Expo</h2>
             <ul>
-              <li>Move this to shared comp n show in expo + next</li>
+              <li>Build / Publish</li>
+              <li>Show QR Code here</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold mb-2">Mocks</h2>
+            <ul>
+              <li>My Book Details</li>
+              <li>My Books Listing</li>
+              <li>Book Details</li>
             </ul>
           </section>
 
