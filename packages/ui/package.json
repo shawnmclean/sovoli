@@ -7,6 +7,10 @@
     "./components/*": [
       "./src/components/*.tsx",
       "./src/components/*.ts"
+    ],
+    "./providers/*": [
+      "./src/providers/*.tsx",
+      "./src/providers/*.ts"
     ]
   },
   "scripts": {
