@@ -4,7 +4,7 @@
 // import { ButtonComponent } from "./_components/button";
 // import { RNTextServer } from "./_components/rn-text-server";
 // import { RNTextClient } from "./_components/rn-text-client";
-// import { RNTextClientTW } from "./_components/rn-text-tw";
+import { RNTextTW } from "@sovoli/ui/components/text-rn-tw";
 // import { WebTextTW } from "./_components/web-text-tw";
 import { RNTextTWLocal } from "./_components/rn-text-tw-local";
 
@@ -57,11 +57,11 @@ export default function Home() {
               <li>
                 🚩 Shared styled server Text RN Component: throws error
                   <RNTextServer /> 
-              </li>
+              </li>*/}
               <li>
-                🚩 Shared TW RN Component: (no style loaded, class is changed){" "}
-                <RNTextClientTW />
-              </li> */}
+                Shared TW RN Component:
+                <RNTextTW />
+              </li>
 
               <li>RN Reusables: </li>
             </ul>
