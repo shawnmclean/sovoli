@@ -49,7 +49,7 @@ export default function Home() {
                 ✅ Local TW RN: <RNTextTWLocal />
               </li>
               <li>
-                Package RN TW: <RNTextTW />
+                ✅ Package RN TW: <RNTextTW />
               </li>
               <li>
                 ✅ Local Web TW: <WebTextTW />
@@ -86,26 +86,39 @@ export default function Home() {
             <h2 className="text-xl font-semibold mb-2">Database</h2>
             <ul>
               <li>Db lib</li>
-              <li>Session model</li>
               <li>Db Health Check</li>
+              <li>Book model</li>
+              <li>Seed Book table</li>
+              <li>Book Details backed by Book data</li>
             </ul>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">API</h2>
             <ul>
+              <li>Expo get book details</li>
               <li>Expo does health check</li>
               <li>Handle version skew</li>
             </ul>
-            <div>
-              <h3 className="text-lg font-medium mb-1">Sessions</h3>
-              <ul>
-                <li>Non authenticated sessions</li>
-                <li>Session Id: [sessionId]</li>
-                <li>Web users: [web sessions count here]</li>
-                <li>Mobile users: [mobile sessions count here]</li>
-              </ul>
-            </div>
+          </section>
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold mb-2">Auth</h2>
+            <ul>
+              <li>Db: Session model</li>
+              <li>Non authenticated sessions</li>
+              <li>Session Id: [sessionId]</li>
+              <li>Web users: [web sessions count here]</li>
+              <li>Mobile users: [mobile sessions count here]</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold mb-2">My Books</h2>
+            <ul>
+              <li>Db: Account, MyBook models. Connect Session to MyBooks</li>
+              <li>Seed Account and MyBook tables</li>
+              <li>Back MyBooks listing and details with by database</li>
+            </ul>
           </section>
 
           <section className="mb-8">
