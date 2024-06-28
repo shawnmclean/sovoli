@@ -17,5 +17,10 @@ module.exports = {
   },
 
   /** Enables hot reloading for local packages without a build step */
-  transpilePackages: ["@sovoli/ui", "nativewind", "react-native-css-interop"],
+  transpilePackages: [
+    "@sovoli/ui",
+    "nativewind",
+    "react-native-css-interop",
+    "react-native-reanimated",
+  ],
 };

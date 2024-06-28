@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  View,
-  TextInput,
-  ScrollView,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
-import { Button } from "../../components/button";
+import { View, TextInput, ScrollView, TouchableOpacity } from "react-native";
 import { Text } from "../../components/text";
+import RNButtons from "./rn-buttons";
 
 export function HomeScreen() {
   return (
@@ -34,22 +28,8 @@ export function HomeScreen() {
 
       <Section title="Design System">
         <List>
-          <ListItem text="✅ RN Reusables:">
-            <View className="flex-row">
-              <Button
-                onPress={() => Alert.alert("Normal Pressed")}
-                className="m-2"
-              >
-                <Text>Normal</Text>
-              </Button>
-              <Button
-                variant="destructive"
-                onPress={() => Alert.alert("Destructive Pressed")}
-                className="m-2"
-              >
-                <Text>Destructive</Text>
-              </Button>
-            </View>
+          <ListItem text="🚩 RN Reusables: (reanimated throwing errors)">
+            <RNButtons />
           </ListItem>
           <ListItem text="🚩 SSR RN TW: (Wait on NativeWind fixup)" />
           <ListItem text="✅ Share screen in Expo and Next" />

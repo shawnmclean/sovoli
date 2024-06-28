@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { StylesProvider } from "@sovoli/ui/providers";
+import { PortalHost } from "@rn-primitives/portal";
 import "@sovoli/ui/config/tailwind/globals.css";
 
 const geistSans = localFont({
@@ -33,6 +34,7 @@ export default function RootLayout({
         <StylesProvider>{children}</StylesProvider>
         <SpeedInsights />
         <Analytics />
+        <PortalHost />
       </body>
     </html>
   );

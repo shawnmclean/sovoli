@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "nativewind";
 import { StylesProvider } from "@sovoli/ui/providers";
+import { PortalHost } from "@rn-primitives/portal";
 
 import "@sovoli/ui/config/tailwind/globals.css";
 
@@ -26,6 +27,7 @@ export default function RootLayout() {
         }}
       />
       <StatusBar />
+      <PortalHost />
     </StylesProvider>
   );
 }
