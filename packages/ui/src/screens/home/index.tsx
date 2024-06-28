@@ -43,7 +43,7 @@ export function HomeScreen() {
             </View>
           </ListItem>
           <ListItem text="🚩 SSR RN TW: (Wait on NativeWind fixup)" />
-          <ListItem text="🕛 Share screen in Expo and Next" />
+          <ListItem text="✅ Share screen in Expo and Next" />
           <ListItem text="✅ Share TW Config" />
           <ListItem text="🕛 Dark Mode Toggle" />
         </List>
