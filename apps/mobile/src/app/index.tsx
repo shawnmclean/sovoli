@@ -16,6 +16,7 @@ export default function Index() {
         <Text className="pb-2 text-center text-5xl font-bold text-foreground">
           Create <Text className="text-primary">T3</Text> Turbo
         </Text>
+        <Text className="text-blue-500">This should be a blue text</Text>
 
         <Button onPress={() => Alert.alert("Hello!")}>
           <Text>Click me now!</Text>
