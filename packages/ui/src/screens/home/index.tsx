@@ -1,184 +1,187 @@
 "use client";
 
+import { View, TextInput, ScrollView, TouchableOpacity } from "react-native";
 import { Button } from "../../components/button";
 import { Text } from "../../components/text";
 
 export function HomeScreen() {
   return (
-    <div className="mx-auto">
-      <h1 className="text-2xl font-bold mb-4">
+    <ScrollView className="mx-auto">
+      <Text className="text-2xl font-bold mb-4">
         👀 Spiking on something, pls leave, kthxbai
-      </h1>
+      </Text>
 
-      <span className="mb-8">
+      <Text className="mb-8">
         Goal: Working on something to help me read and write better.
-      </span>
+      </Text>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Infra</h2>
-        <ul>
-          <li>✅ DNS</li>
-          <li>
-            ✅ Status:{" "}
-            <a href="https://status.sovoli.com" target="_blank">
-              status.sovoli.com
-            </a>
-          </li>
-          <li>✅ Analytics</li>
-          <li>✅ Perf Monitor</li>
-          <li>🕛 Logging</li>
-          <li>🕛 Metrics</li>
-        </ul>
-      </section>
+      <Section title="Infra">
+        <List>
+          <ListItem text="✅ DNS" />
+          <ListItem text="✅ Status Page" />
+          <ListItem text="✅ Analytics" />
+          <ListItem text="✅ Perf Monitor" />
+          <ListItem text="🕛 Logging" />
+          <ListItem text="🕛 Metrics" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Design System</h2>
-        <ul>
-          <li>
-            ✅ RN Reusables:
-            <Button onPress={() => alert("Normal Pressed")} className="m-2">
-              <Text>Normal</Text>
-            </Button>
-            <Button
-              variant="destructive"
-              onPress={() => alert("Destructive Pressed")}
-              className="m-2"
-            >
-              <Text>Descructive</Text>
-            </Button>
-          </li>
+      <Section title="Design System">
+        <List>
+          <ListItem text="✅ RN Reusables:">
+            <View className="flex-row">
+              <Button onPress={() => alert("Normal Pressed")} className="m-2">
+                <Text>Normal</Text>
+              </Button>
+              <Button
+                variant="destructive"
+                onPress={() => alert("Destructive Pressed")}
+                className="m-2"
+              >
+                <Text>Destructive</Text>
+              </Button>
+            </View>
+          </ListItem>
+          <ListItem text="🚩 SSR RN TW: (Wait on NativeWind fixup)" />
+          <ListItem text="🕛 Share screen in Expo and Next" />
+          <ListItem text="✅ Share TW Config" />
+          <ListItem text="🕛 Dark Mode Toggle" />
+        </List>
+      </Section>
 
-          <li>
-            🚩 SSR RN TW: (Wait on NativeWind fixup) {/* <RNTextServer /> */}
-          </li>
-          <li>🕛 Share screen in Expo and Next</li>
-          <li>✅ Share TW Config</li>
-          <li>🕛 Dark Mode Toggle</li>
-        </ul>
-      </section>
+      <Section title="Expo">
+        <List>
+          <ListItem text="Build / Publish" />
+          <ListItem text="Show QR Code here" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Expo</h2>
-        <ul>
-          <li>Build / Publish</li>
-          <li>Show QR Code here</li>
-        </ul>
-      </section>
+      <Section title="Mocks">
+        <List>
+          <ListItem text="My Book Details" />
+          <ListItem text="My Books Listing" />
+          <ListItem text="Book Details" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Mocks</h2>
-        <ul>
-          <li>My Book Details</li>
-          <li>My Books Listing</li>
-          <li>Book Details</li>
-        </ul>
-      </section>
+      <Section title="Database">
+        <List>
+          <ListItem text="Db lib" />
+          <ListItem text="Db Health Check" />
+          <ListItem text="Book model" />
+          <ListItem text="Seed Book table" />
+          <ListItem text="Book Details backed by Book data" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Database</h2>
-        <ul>
-          <li>Db lib</li>
-          <li>Db Health Check</li>
-          <li>Book model</li>
-          <li>Seed Book table</li>
-          <li>Book Details backed by Book data</li>
-        </ul>
-      </section>
+      <Section title="API">
+        <List>
+          <ListItem text="Expo get book details" />
+          <ListItem text="Expo does health check" />
+          <ListItem text="Handle version skew" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">API</h2>
-        <ul>
-          <li>Expo get book details</li>
-          <li>Expo does health check</li>
-          <li>Handle version skew</li>
-        </ul>
-      </section>
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Auth</h2>
-        <ul>
-          <li>Db: Session model</li>
-          <li>Non authenticated sessions</li>
-          <li>Session Id: [sessionId]</li>
-          <li>Web users: [web sessions count here]</li>
-          <li>Mobile users: [mobile sessions count here]</li>
-        </ul>
-      </section>
+      <Section title="Auth">
+        <List>
+          <ListItem text="Db: Session model" />
+          <ListItem text="Non authenticated sessions" />
+          <ListItem text="Session Id: [sessionId]" />
+          <ListItem text="Web users: [web sessions count here]" />
+          <ListItem text="Mobile users: [mobile sessions count here]" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">My Books</h2>
-        <ul>
-          <li>Db: Account, MyBook models. Connect Session to MyBooks</li>
-          <li>Seed Account and MyBook tables</li>
-          <li>Back MyBooks listing and details with by database</li>
-        </ul>
-      </section>
+      <Section title="My Books">
+        <List>
+          <ListItem text="Db: Account, MyBook models. Connect Session to MyBooks" />
+          <ListItem text="Seed Account and MyBook tables" />
+          <ListItem text="Back MyBooks listing and details with by database" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Image Upload / Storage</h2>
-        <input type="file" className="block mb-2" />
-        <ul>
-          <li>Persistent storage link here</li>
-          <li>
-            <button className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-              Show button for a popup with image data here
-            </button>
-          </li>
-          <li>Explode image data</li>
-          <li>
-            <button className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-              RAG
-            </button>
-          </li>
-          <li>
-            Write to books (<a href="#">link to all books here</a>)
-          </li>
-          <li>
-            Write to session books (
-            <a href="#">link to current session books here</a>)
-          </li>
-        </ul>
-      </section>
+      <Section title="Image Upload / Storage">
+        {/* <TextInput type="file" className="block mb-2" /> */}
+        <List>
+          <ListItem text="Persistent storage link here">
+            <TouchableOpacity className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
+              <Text>Show button for a popup with image data here</Text>
+            </TouchableOpacity>
+          </ListItem>
+          <ListItem text="Explode image data">
+            <TouchableOpacity className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
+              <Text>RAG</Text>
+            </TouchableOpacity>
+          </ListItem>
+          <ListItem text="Write to books (link to all books here)" />
+          <ListItem text="Write to session books (link to current session books here)" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Take Notes</h2>
-        <input
-          type="text"
+      <Section title="Take Notes">
+        <TextInput
           placeholder="Input for notes on book"
           className="block border border-gray-300 p-2 mb-2"
         />
-        <input type="file" className="block mb-2" />
-        <ul>
-          <li>Scan notes (image upload, read highlight and jottings)</li>
-        </ul>
-      </section>
+        {/* <TextInput type="file" className="block mb-2" /> */}
+        <List>
+          <ListItem text="Scan notes (image upload, read highlight and jottings)" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Auth</h2>
-        <ul>
-          <li>WhatsApp TOTP</li>
-          <li>Migrate session data</li>
-        </ul>
-      </section>
+      <Section title="Auth">
+        <List>
+          <ListItem text="WhatsApp TOTP" />
+          <ListItem text="Migrate session data" />
+        </List>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Onboard</h2>
-        <input
-          type="text"
+      <Section title="Onboard">
+        <TextInput
           placeholder="Accept Username"
           className="block border border-gray-300 p-2 mb-2"
         />
-        <button className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-          View user profile
-        </button>
-      </section>
+        <TouchableOpacity className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
+          <Text>View user profile</Text>
+        </TouchableOpacity>
+      </Section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Generative UX</h2>
-        <ul>
-          <li>Reflow the above workflow into generative UX flows</li>
-          <li>Spike on generative UI for RN</li>
-        </ul>
-      </section>
-    </div>
+      <Section title="Generative UX">
+        <List>
+          <ListItem text="Reflow the above workflow into generative UX flows" />
+          <ListItem text="Spike on generative UI for RN" />
+        </List>
+      </Section>
+    </ScrollView>
   );
 }
+
+const Section = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => (
+  <View className="mb-8">
+    <Text className="text-xl font-semibold mb-2">{title}</Text>
+    {children}
+  </View>
+);
+
+const List = ({ children }: { children: React.ReactNode }) => (
+  <View>{children}</View>
+);
+
+const ListItem = ({
+  text,
+  children,
+}: {
+  text: string;
+  children?: React.ReactNode;
+}) => (
+  <View className="mb-2">
+    <Text>{text}</Text>
+    {children}
+  </View>
+);
