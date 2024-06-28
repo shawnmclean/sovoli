@@ -2,17 +2,17 @@ import { View } from "react-native";
 import { Button } from "../../components/button";
 import { Text } from "../../components/text";
 import React from "react";
-// import {
-//   AlertDialog,
-//   AlertDialogAction,
-//   AlertDialogCancel,
-//   AlertDialogContent,
-//   AlertDialogDescription,
-//   AlertDialogFooter,
-//   AlertDialogHeader,
-//   AlertDialogTitle,
-//   AlertDialogTrigger,
-// } from "../../components/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../../components/alert-dialog";
 
 function RNButtons() {
   //add counter button press
@@ -22,17 +22,19 @@ function RNButtons() {
     setCounter(counter + 1);
   };
   return (
-    <>
-      {/* <View className="flex-1 justify-center items-center">
-        <AlertDialog>
-          <AlertDialogTrigger asChild>*/}
+    <View>
       <View className="flex-row">
         <Text>Counter is {counter}</Text>
         <Button className="m-2" onPress={handleCounter}>
           <Text>Increase</Text>
         </Button>
       </View>
-      {/* 
+      {/* <View className="flex-1 justify-center items-center">
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="outline">
+              <Text>Show Alert Dialog</Text>
+            </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -51,9 +53,9 @@ function RNButtons() {
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
-        </AlertDialog> 
-      </View>*/}
-    </>
+        </AlertDialog>
+      </View> */}
+    </View>
   );
 }
 
