@@ -1,6 +1,12 @@
 "use client";
 
-import { View, TextInput, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { Button } from "../../components/button";
 import { Text } from "../../components/text";
 
@@ -30,12 +36,15 @@ export function HomeScreen() {
         <List>
           <ListItem text="✅ RN Reusables:">
             <View className="flex-row">
-              <Button onPress={() => alert("Normal Pressed")} className="m-2">
+              <Button
+                onPress={() => Alert.alert("Normal Pressed")}
+                className="m-2"
+              >
                 <Text>Normal</Text>
               </Button>
               <Button
                 variant="destructive"
-                onPress={() => alert("Destructive Pressed")}
+                onPress={() => Alert.alert("Destructive Pressed")}
                 className="m-2"
               >
                 <Text>Destructive</Text>
