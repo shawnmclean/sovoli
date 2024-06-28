@@ -4,17 +4,10 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./components/*": [
-      "./src/components/*.tsx",
-      "./src/components/*.ts"
-    ],
-    "./providers/*": [
-      "./src/providers/*.tsx",
-      "./src/providers/*.ts"
-    ],
-    "./config/*": [
-      "./src/config/*.ts"
-    ]
+    "./components/*": "./src/components/*",
+    "./providers/*": "./src/providers/*",
+    "./config/*": "./src/config/*",
+    "./config/tailwind/globals.css": "./src/config/tailwind/globals.css"
   },
   "scripts": {
     "clean": "rm -rf dist",

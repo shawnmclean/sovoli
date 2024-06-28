@@ -5,7 +5,7 @@ import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { StylesProvider } from "@sovoli/ui/providers/index";
-import "./globals.css";
+import "@sovoli/ui/config/tailwind/globals.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
