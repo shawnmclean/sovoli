@@ -36,8 +36,15 @@ export function HomeScreen() {
         <ul>
           <li>
             ✅ RN Reusables:
-            <Button onPress={() => alert("Pressed")}>
-              <Text>Button</Text>
+            <Button onPress={() => alert("Normal Pressed")} className="m-2">
+              <Text>Normal</Text>
+            </Button>
+            <Button
+              variant="destructive"
+              onPress={() => alert("Destructive Pressed")}
+              className="m-2"
+            >
+              <Text>Descructive</Text>
             </Button>
           </li>
 
