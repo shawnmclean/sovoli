@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "native",
-    "slug": "native",
+    "name": "sovoli",
+    "slug": "sovoli",
+    "scheme": "sov",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

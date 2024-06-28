@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
-import { StylesProvider } from "@sovoli/ui/providers/index";
+import { StylesProvider } from "@sovoli/ui/providers";
 import "@sovoli/ui/config/tailwind/globals.css";
 
 const geistSans = localFont({
