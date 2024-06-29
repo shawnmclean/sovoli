@@ -4,8 +4,11 @@ import nativewind from "nativewind/preset";
 
 import baseConfig from "@sovoli/ui/config/tailwind/native";
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [...baseConfig.content, "../../packages/ui/**/*.{ts,tsx}"],
+export default {
+  content: [
+    ...baseConfig.content,
+    "../../packages/ui/**/*.{ts,tsx}",
+    "./node_modules/@sovoli/**/*.{ts,tsx}",
+  ],
   presets: [baseConfig, nativewind],
-};
+} satisfies Config;

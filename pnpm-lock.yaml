@@ -20,6 +20,9 @@ importers:
       '@expo/metro-config':
         specifier: ^0.18.3
         version: 0.18.7
+      '@react-navigation/native':
+        specifier: ^6.0.2
+        version: 6.1.17(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)
       '@rn-primitives/portal':
         specifier: ~1.0.3
         version: 1.0.3(@types/react@18.3.3)(react-native-web@0.19.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)
