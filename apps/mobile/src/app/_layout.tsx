@@ -1,4 +1,5 @@
-import { Stack } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import { Theme, ThemeProvider } from "@react-navigation/native";
 import { useColorScheme } from "@sovoli/ui/hooks/useColorScheme";
@@ -9,6 +10,7 @@ import { Text } from "@sovoli/ui/components/text";
 import { Button } from "@sovoli/ui/components/button";
 
 import "@sovoli/ui/config/tailwind/globals.css";
+import React from "react";
 
 const LIGHT_THEME: Theme = {
   dark: false,
@@ -19,11 +21,42 @@ const DARK_THEME: Theme = {
   colors: NAV_THEME.dark,
 };
 
+// Prevent the splash screen from auto-hiding before getting the color scheme.
+SplashScreen.preventAutoHideAsync();
+
 // This is the main layout of the app
 // It wraps your pages with the providers they need
 export default function RootLayout() {
   const { colorScheme, isDarkColorScheme, setColorScheme } = useColorScheme();
+  const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
 
+  React.useEffect(() => {
+    (async () => {
+      const theme = await AsyncStorage.getItem("theme");
+
+      if (!theme) {
+        // setAndroidNavigationBar(colorScheme);
+        AsyncStorage.setItem("theme", colorScheme);
+        setIsColorSchemeLoaded(true);
+        return;
+      }
+      const colorTheme = theme === "dark" ? "dark" : "light";
+      // setAndroidNavigationBar(colorTheme);
+      if (colorTheme !== colorScheme) {
+        setColorScheme(colorTheme);
+
+        setIsColorSchemeLoaded(true);
+        return;
+      }
+      setIsColorSchemeLoaded(true);
+    })().finally(() => {
+      SplashScreen.hideAsync();
+    });
+  }, []);
+
+  if (!isColorSchemeLoaded) {
+    return null;
+  }
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StylesProvider>
@@ -46,7 +79,7 @@ export default function RootLayout() {
                   setColorScheme(colorScheme == "dark" ? "light" : "dark");
                 }}
               >
-                <Text>{colorScheme == "dark" ? "Light" : "Dark"}</Text>
+                <Text>{colorScheme}</Text>
               </Button>
             ),
           }}
