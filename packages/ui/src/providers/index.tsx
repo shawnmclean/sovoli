@@ -1,12 +1,15 @@
 "use client";
 
 // react-native will select .web.tsx for web versions
-import { StylesProvider as RNStylesProvider } from "./styles-provider";
+import { StylesProvider } from "./styles-provider";
+import { ThemeProvider } from "./theme-provider";
 
-export function StylesProvider({ children }: { children: React.ReactNode }) {
+export function UiProviders({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <RNStylesProvider>{children}</RNStylesProvider>
+      <ThemeProvider>
+        <StylesProvider>{children}</StylesProvider>
+      </ThemeProvider>
     </>
   );
 }
