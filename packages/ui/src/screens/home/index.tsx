@@ -9,14 +9,14 @@ export function HomeScreen() {
   return (
     <ScrollView className="mx-auto">
       <Text className="text-2xl font-bold mb-4">
-        👀 Spiking on something, pls leave, kthxbai
+        👀 Personal use software, pls leave, kthxbai
       </Text>
 
       <Text className="mb-8">
-        Goal: Working on something to help me read and write better.
+        Goal: Working on something to help me read, write and think better.
       </Text>
 
-      <Section title="Infra">
+      <Section title="☁️ Infra">
         <List>
           <ListItem text="✅ DNS" />
           <ListItem text="✅ Status Page" />
@@ -27,7 +27,7 @@ export function HomeScreen() {
         </List>
       </Section>
 
-      <Section title="Design System">
+      <Section title="🎨 Design System">
         <List>
           <ListItem text="🚩 RN Reusables: (reanimated throwing errors)">
             <RNButtons />
@@ -41,14 +41,14 @@ export function HomeScreen() {
         </List>
       </Section>
 
-      <Section title="Expo">
+      <Section title="📱 Expo">
         <List>
           <ListItem text="Build / Publish" />
           <ListItem text="Show QR Code here" />
         </List>
       </Section>
 
-      <Section title="Mocks">
+      <Section title="🎨 Mocks">
         <List>
           <ListItem text="My Book Details" />
           <ListItem text="My Books Listing" />
