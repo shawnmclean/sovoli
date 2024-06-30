@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
@@ -21,6 +21,13 @@ export const metadata: Metadata = {
   title: "Sovoli: Your Ultimate Book Organizer",
   description:
     "Track your reading progress, write notes, and share your library with Sovoli. Start organizing your knowledge today!",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({

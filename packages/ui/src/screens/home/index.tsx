@@ -3,6 +3,7 @@
 import { View, TextInput, ScrollView, TouchableOpacity } from "react-native";
 import { Text } from "../../components/text";
 import RNButtons from "./rn-buttons";
+import { ThemeToggle } from "../../components/ThemeToggle/ThemeToggle";
 
 export function HomeScreen() {
   return (
@@ -34,7 +35,9 @@ export function HomeScreen() {
           <ListItem text="🚩 SSR RN TW: (Wait on NativeWind fixup)" />
           <ListItem text="✅ Share screen in Expo and Next" />
           <ListItem text="✅ Share TW Config" />
-          <ListItem text="🕛 Dark Mode Toggle" />
+          <ListItem text="🚩 Dark Mode Toggle: (RN components are not changing)">
+            <ThemeToggle />
+          </ListItem>
         </List>
       </Section>
 

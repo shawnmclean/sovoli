@@ -1,5 +1,5 @@
 import { NAV_THEME } from "../lib/constants";
-import { useColorScheme } from "../hooks/useColorScheme";
+import { useColorScheme } from "../hooks/useColorScheme/useColorScheme";
 import {
   Theme,
   ThemeProvider as RNThemeProvider,
