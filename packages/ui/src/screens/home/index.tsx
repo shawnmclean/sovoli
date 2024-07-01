@@ -1,9 +1,16 @@
 "use client";
 
-import { View, TextInput, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import { Text } from "../../components/text";
 import RNButtons from "./rn-buttons";
 import { ThemeToggle } from "../../components/ThemeToggle/ThemeToggle";
+import { Button } from "../../components/button";
 
 export function HomeScreen() {
   return (
@@ -43,8 +50,22 @@ export function HomeScreen() {
 
       <Section title="📱 Expo">
         <List>
-          <ListItem text="Build / Publish" />
-          <ListItem text="Show QR Code here" />
+          <ListItem text="✅ Build" />
+          <ListItem text="Publish Preview to Expo Go via Github Action" />
+          <ListItem text="🕛 Show QR Code here (temp)">
+            <View className="flex-row">
+              <Button
+                onPress={() =>
+                  Linking.openURL(
+                    "https://expo.dev/preview/update?message=init&updateRuntimeVersion=1.0.0&createdAt=2024-07-01T18%3A20%3A25.119Z&slug=exp&projectId=c82a6e08-f764-4f82-abd5-d5361a82df44&group=5496aae0-7639-485d-9842-587fd0dead6b"
+                  )
+                }
+              >
+                <Text>Open Expo Go</Text>
+              </Button>
+            </View>
+          </ListItem>
+          <ListItem text="🕛 Publish to TestFlight" />
         </List>
       </Section>
 
