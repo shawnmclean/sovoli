@@ -20,6 +20,7 @@
     "@react-navigation/native": "6.0.2",
     "@rn-primitives/portal": "1.0.3",
     "expo": "51.0.17",
+    "expo-updates": "0.25.18",
     "expo-router": "3.5.17",
     "expo-status-bar": "1.12.1",
     "expo-system-ui": "3.0.6",
