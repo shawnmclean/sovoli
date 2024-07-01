@@ -35,7 +35,7 @@ export function HomeScreen() {
           <ListItem text="🚩 SSR RN TW: (Wait on NativeWind fixup)" />
           <ListItem text="✅ Share screen in Expo and Next" />
           <ListItem text="✅ Share TW Config" />
-          <ListItem text="🚩 Dark Mode Toggle: (RN components are not changing)">
+          <ListItem text="✅ Dark Mode Toggle">
             <ThemeToggle />
           </ListItem>
         </List>
@@ -45,6 +45,19 @@ export function HomeScreen() {
         <List>
           <ListItem text="Build / Publish" />
           <ListItem text="Show QR Code here" />
+        </List>
+      </Section>
+
+      <Section title="📖 Notes">
+        <List>
+          <ListItem text="Proposal: Fleshing out use case">
+            <List>
+              <ListItem text="TipTap Output Render" />
+              <ListItem text="Mermaid Integration" />
+              <ListItem text="Media Render (Image, Video)" />
+            </List>
+          </ListItem>
+          <ListItem text="🕛 Pull from Db" />
         </List>
       </Section>
 
@@ -172,7 +185,7 @@ const ListItem = ({
   text: string;
   children?: React.ReactNode;
 }) => (
-  <View className="mb-2">
+  <View className="my-1 ml-5">
     <Text>{text}</Text>
     {children}
   </View>
