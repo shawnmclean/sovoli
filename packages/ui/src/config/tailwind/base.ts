@@ -1,9 +1,8 @@
 import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
-import { hairlineWidth } from "nativewind/theme";
 
 export default {
-  darkMode: ["class"],
+  darkMode: "class",
   content: ["src/**/*.{ts,tsx}"],
   plugins: [animate],
   theme: {
@@ -42,9 +41,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
-      borderWidth: {
-        hairline: hairlineWidth(),
       },
       keyframes: {
         "accordion-down": {
