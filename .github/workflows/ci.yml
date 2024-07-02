@@ -93,4 +93,13 @@ jobs:
         run: pnpm build --filter="@sovoli/mobile"
 
       - name: 🚀 Update Mobile
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: cd apps/mobile && eas update --auto --non-interactive
+
+      - name: 🚀 Preview Mobile
+        if: github.event_name == 'pull_request'
+        uses: expo/expo-github-action/preview@v8
+        id: preview
+        with:
+          command: cd apps/mobile && eas update --auto --non-interactive
+          comment: true
