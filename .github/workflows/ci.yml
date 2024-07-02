@@ -17,7 +17,7 @@ jobs:
       TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
     steps:
-      - name: Check out code
+      - name: 🏗 Check out code
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
@@ -26,7 +26,7 @@ jobs:
         with:
           version: 9
 
-      - name: Cache turbo build setup
+      - name: 🏗 Cache turbo build setup
         uses: actions/cache@v4
         with:
           path: .turbo
@@ -34,13 +34,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - name: Setup Node.js environment
+      - name: 🏗 Setup Node.js environment
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: pnpm install
 
       - name: Build
@@ -57,7 +57,7 @@ jobs:
     needs: build
     runs-on: macos-latest
     steps:
-      - name: Check out code
+      - name: 🏗 Check out code
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
@@ -66,7 +66,7 @@ jobs:
         with:
           version: 9
 
-      - name: Cache turbo build setup
+      - name: 🏗 Cache turbo build setup
         uses: actions/cache@v4
         with:
           path: .turbo
@@ -74,23 +74,23 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - name: Setup Node.js environment
+      - name: 🏗 Setup Node.js environment
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
 
-      - name: Setup EAS
+      - name: 🏗 Setup EAS
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: pnpm install
 
       - name: Build
         run: pnpm build --filter="@sovoli/mobile"
 
-      - name: Update Mobile
+      - name: 🚀 Update Mobile
         run: pnpm mobile:update
