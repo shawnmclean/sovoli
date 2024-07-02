@@ -7,7 +7,6 @@
     "dev": "expo start",
     "prebuild": "expo prebuild",
     "build": "expo export --output-dir ./build --platform ios",
-    "update": "eas update --auto --non-interactive",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
