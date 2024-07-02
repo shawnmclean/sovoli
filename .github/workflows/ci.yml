@@ -93,4 +93,4 @@ jobs:
         run: pnpm build --filter="@sovoli/mobile"
 
       - name: 🚀 Update Mobile
-        run: cd packages/mobile && eas update --auto --non-interactive
+        run: cd apps/mobile && eas update --auto --non-interactive
