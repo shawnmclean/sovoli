@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "dev": "turbo run dev",
-    "mobile:prebuild": "turbo run prebuild --filter=@sovoli/mobile",
+    "mobile:update": "turbo run update --filter=@sovoli/mobile",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "clean": "turbo run clean && rm -rf node_modules",
