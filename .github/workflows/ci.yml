@@ -90,7 +90,7 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm build
+        run: pnpm build --filter="@sovoli/mobile"
 
       - name: Update Mobile
         run: pnpm mobile:update
