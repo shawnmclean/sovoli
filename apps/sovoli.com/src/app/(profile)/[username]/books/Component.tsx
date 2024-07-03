@@ -111,7 +111,7 @@ export default function Component() {
   );
 }
 
-function BarcodeIcon(props) {
+function BarcodeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -134,7 +134,7 @@ function BarcodeIcon(props) {
   );
 }
 
-function BookIcon(props) {
+function BookIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
