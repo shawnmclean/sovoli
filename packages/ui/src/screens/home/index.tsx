@@ -95,7 +95,18 @@ export function HomeScreen() {
       <Section title="🎨 Mocks">
         <List>
           <ListItem text="My Book Details" />
-          <ListItem text="My Books Listing" />
+          <ListItem text="My Books Listing">
+            <List>
+              <ListItem text="✅ Web">
+                <View className="flex-row">
+                  <Button onPress={() => Linking.openURL("/shawn/books/")}>
+                    <Text>My books</Text>
+                  </Button>
+                </View>
+              </ListItem>
+              <ListItem text="🕛 Mobile" />
+            </List>
+          </ListItem>
           <ListItem text="Book Details" />
         </List>
       </Section>
