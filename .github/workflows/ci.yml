@@ -57,6 +57,7 @@ jobs:
     needs: build
     runs-on: macos-latest
     permissions:
+      contents: read
       pull-requests: write
     steps:
       - name: 🏗 Check out code
