@@ -8,10 +8,11 @@ const ImageWrapper = (
   return <SolitoImage {...props} />;
 };
 
-cssInterop(ImageWrapper, {
-  className: {
-    target: "style",
-  },
-});
+// TODO: this throws an error on nextjs, but works fine on expo
+// cssInterop(ImageWrapper, {
+//   className: {
+//     target: "style",
+//   },
+// });
 
 export const Image = ImageWrapper;
