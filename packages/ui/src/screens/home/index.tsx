@@ -11,6 +11,7 @@ import { Text } from "../../components/text";
 import RNButtons from "./rn-buttons";
 import { ThemeToggle } from "../../components/ThemeToggle/ThemeToggle";
 import { Button } from "../../components/button";
+import { Image } from "../../components/image";
 
 export function HomeScreen() {
   return (
@@ -51,9 +52,17 @@ export function HomeScreen() {
       <Section title="📱 Expo">
         <List>
           <ListItem text="✅ Build" />
-          <ListItem text="Publish Preview to Expo Go via Github Action" />
-          <ListItem text="🕛 Show QR Code here (temp)">
+          <ListItem text="✅ Publish Preview to Expo Go via Github Action" />
+          <ListItem text="✅ Show QR Code here">
             <View className="flex-row">
+              <Image
+                alt="Expo Go QR Code"
+                height={200}
+                width={200}
+                contentFit={"contain"}
+                className="rounded-lg aspect-square object-cover"
+                src="https://qr.expo.dev/eas-update?slug=exp&projectId=c82a6e08-f764-4f82-abd5-d5361a82df44&groupId=3e304481-e9c3-43f7-85ac-2d5ba4014793"
+              />
               <Button
                 onPress={() =>
                   Linking.openURL(
@@ -75,7 +84,8 @@ export function HomeScreen() {
             <List>
               <ListItem text="TipTap Output Render" />
               <ListItem text="Mermaid Integration" />
-              <ListItem text="Media Render (Image, Video)" />
+              <ListItem text="Video Render" />
+              <ListItem text="Image Render with TW styles" />
             </List>
           </ListItem>
           <ListItem text="🕛 Pull from Db" />

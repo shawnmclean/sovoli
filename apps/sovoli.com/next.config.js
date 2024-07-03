@@ -1,5 +1,15 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "qr.expo.dev",
+      },
+    ],
+  },
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
@@ -20,6 +30,7 @@ module.exports = {
   transpilePackages: [
     "@sovoli/ui",
     "nativewind",
+    "solito",
     "react-native-css-interop",
     "react-native-reanimated",
   ],

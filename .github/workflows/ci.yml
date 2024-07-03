@@ -56,6 +56,9 @@ jobs:
     name: Build for iOS
     needs: build
     runs-on: macos-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: 🏗 Check out code
         uses: actions/checkout@v4
@@ -101,5 +104,6 @@ jobs:
         uses: expo/expo-github-action/preview@v8
         id: preview
         with:
-          command: cd apps/mobile && eas update --auto --non-interactive
+          command: eas update --auto --non-interactive
+          working-directory: apps/mobile
           comment: true
