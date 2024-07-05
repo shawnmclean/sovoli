@@ -35,12 +35,16 @@ export default function Categories() {
           </TabsList>
           <View className="ml-auto flex items-center gap-2">
             <Button variant="outline" className="h-8 gap-1">
-              Sort
+              <Text> Sort</Text>
             </Button>
             {value === "lists" ? (
-              <Button className="h-8 gap-1">Create Lists</Button>
+              <Button className="h-8 gap-1">
+                <Text>Create Lists</Text>
+              </Button>
             ) : (
-              <Button className="h-8 gap-1">Create Shelves</Button>
+              <Button className="h-8 gap-1">
+                <Text>Create Shelves</Text>
+              </Button>
             )}
           </View>
         </View>
@@ -54,7 +58,9 @@ export default function Categories() {
               </CardDescription>
             </CardHeader>
             <CardContent className="gap-4 native:gap-2">
-              <View className="gap-1">Lists</View>
+              <View className="gap-1">
+                <Text>Lists</Text>
+              </View>
             </CardContent>
           </Card>
         </TabsContent>
@@ -65,7 +71,9 @@ export default function Categories() {
               <CardDescription>Physical bookshelves</CardDescription>
             </CardHeader>
             <CardContent className="gap-4 native:gap-2">
-              <View className="gap-1">Shelves</View>
+              <View className="gap-1">
+                <Text>Shelves</Text>
+              </View>
             </CardContent>
           </Card>
         </TabsContent>

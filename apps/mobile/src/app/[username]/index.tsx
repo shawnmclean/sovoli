@@ -8,6 +8,10 @@ import { ScrollView, Text } from "react-native";
 export default function Page() {
   const { username } = useLocalSearchParams();
 
+  if (!username) {
+    return null;
+  }
+
   return (
     <SafeAreaView className="bg-background">
       {/* Changes page title visible on the header */}

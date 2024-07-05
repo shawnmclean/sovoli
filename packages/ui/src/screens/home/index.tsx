@@ -101,12 +101,8 @@ export function HomeScreen() {
             <List>
               <ListItem text="✅ Web">
                 <View className="flex-row">
-                  <Link
-                    href={
-                      Platform.OS === "web" ? `/shawn/books/` : `/user/shawn`
-                    }
-                  >
-                    <Text>My Books</Text>
+                  <Link href="/shawn">
+                    <Text>My Profile</Text>
                   </Link>
                 </View>
               </ListItem>
