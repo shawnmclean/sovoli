@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { View } from "react-native";
-import { Button } from "@sovoli/ui/components/button";
+import { Button } from "../../../components/button";
 import {
   Card,
   CardContent,
@@ -10,14 +10,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@sovoli/ui/components/card";
+} from "../../../components/card";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@sovoli/ui/components/tabs";
-import { Text } from "@sovoli/ui/components/text";
+} from "../../../components/tabs";
+import { Text } from "../../../components/text";
 
 export default function Categories() {
   const [value, setValue] = React.useState("lists");

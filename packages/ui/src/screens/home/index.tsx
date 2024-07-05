@@ -6,12 +6,14 @@ import {
   ScrollView,
   TouchableOpacity,
   Linking,
+  Platform,
 } from "react-native";
 import { Text } from "../../components/text";
 import RNButtons from "./rn-buttons";
 import { ThemeToggle } from "../../components/ThemeToggle/ThemeToggle";
 import { Button } from "../../components/button";
 import { Image } from "../../components/image";
+import { Link } from "../../components/link";
 
 export function HomeScreen() {
   return (
@@ -99,9 +101,13 @@ export function HomeScreen() {
             <List>
               <ListItem text="✅ Web">
                 <View className="flex-row">
-                  <Button onPress={() => Linking.openURL("/shawn/books/")}>
-                    <Text>My books</Text>
-                  </Button>
+                  <Link
+                    href={
+                      Platform.OS === "web" ? `/shawn/books/` : `/user/shawn`
+                    }
+                  >
+                    <Text>My Books</Text>
+                  </Link>
                 </View>
               </ListItem>
               <ListItem text="🕛 Mobile" />
