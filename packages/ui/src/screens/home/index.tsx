@@ -26,6 +26,12 @@ export function HomeScreen() {
         Goal: Working on something to help me read, write and think better.
       </Text>
 
+      <View className="flex-row">
+        <Link href="/shawn">
+          <Text className="underline">My Profile</Text>
+        </Link>
+      </View>
+
       <Section title="☁️ Infra">
         <List>
           <ListItem text="✅ DNS" />
@@ -96,20 +102,16 @@ export function HomeScreen() {
 
       <Section title="🎨 Mocks">
         <List>
-          <ListItem text="My Book Details" />
-          <ListItem text="My Books Listing">
+          <ListItem text="My Books">
             <List>
-              <ListItem text="✅ Web">
-                <View className="flex-row">
-                  <Link href="/shawn">
-                    <Text>My Profile</Text>
-                  </Link>
-                </View>
-              </ListItem>
-              <ListItem text="🕛 Mobile" />
+              <ListItem text="✅ Routing"></ListItem>
+              <ListItem text="Lists" />
+              <ListItem text="Shelves" />
+              <ListItem text="Books" />
+              <ListItem text="Data backedn by JSON" />
+              <ListItem text="Data backedn by Db" />
             </List>
           </ListItem>
-          <ListItem text="Book Details" />
         </List>
       </Section>
 
