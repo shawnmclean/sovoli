@@ -8,7 +8,10 @@ import { ScrollView, Text } from "react-native";
 export default function Page() {
   const { username } = useLocalSearchParams();
 
-  if (!username) {
+  // Ensure username is a string
+  const usernameString = Array.isArray(username) ? username[0] : username;
+
+  if (!usernameString) {
     return null;
   }
 
@@ -16,7 +19,7 @@ export default function Page() {
     <SafeAreaView className="bg-background">
       {/* Changes page title visible on the header */}
       <Stack.Screen options={{ title: "User Page" }} />
-      <UserScreen username={username} />
+      <UserScreen username={usernameString} />
     </SafeAreaView>
   );
 }
