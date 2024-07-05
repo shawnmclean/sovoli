@@ -22,31 +22,38 @@ import { Text } from "@sovoli/ui/components/text";
 export default function Categories() {
   const [value, setValue] = React.useState("lists");
   return (
-    <View className="flex-1 justify-center p-6">
-      <Tabs
-        value={value}
-        onValueChange={setValue}
-        className="w-full max-w-[400px] mx-auto flex-col gap-1.5"
-      >
-        <TabsList className="flex-row w-full">
-          <TabsTrigger value="lists" className="flex-1">
-            <Text>Lists (3)</Text>
-          </TabsTrigger>
-          <TabsTrigger value="shelves" className="flex-1">
-            <Text>Shelves (2)</Text>
-          </TabsTrigger>
-        </TabsList>
+    <View className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+      <Tabs value={value} onValueChange={setValue}>
+        <View className="flex items-center">
+          <TabsList>
+            <TabsTrigger value="lists">
+              <Text>Lists (3)</Text>
+            </TabsTrigger>
+            <TabsTrigger value="shelves">
+              <Text>Shelves (2)</Text>
+            </TabsTrigger>
+          </TabsList>
+          <View className="ml-auto flex items-center gap-2">
+            <Button variant="outline" className="h-8 gap-1">
+              Sort
+            </Button>
+            {value === "lists" ? (
+              <Button className="h-8 gap-1">Create Lists</Button>
+            ) : (
+              <Button className="h-8 gap-1">Create Shelves</Button>
+            )}
+          </View>
+        </View>
         <TabsContent value="lists">
           <Card>
-            <CardHeader></CardHeader>
+            <CardHeader>
+              <CardTitle>Lists (2)</CardTitle>
+              <CardDescription>
+                Arbitrary list of books (e.g. favorites, to-read, categories,
+                etc)
+              </CardDescription>
+            </CardHeader>
             <CardContent className="gap-4 native:gap-2">
-              <View className="flex items-center justify-between">
-                <Text className="text-2xl font-bold">Lists (3)</Text>
-                <View className="flex space-x-2">
-                  <Button variant="outline">Sort</Button>
-                  <Button className="ml-auto">Create Lists</Button>
-                </View>
-              </View>
               <View className="gap-1">Lists</View>
             </CardContent>
           </Card>
@@ -55,10 +62,7 @@ export default function Categories() {
           <Card>
             <CardHeader>
               <CardTitle>Shelves (2)</CardTitle>
-              <View className="flex space-x-2">
-                <Button variant="outline">Sort</Button>
-                <Button className="ml-auto">Create Shelves</Button>
-              </View>
+              <CardDescription>Physical bookshelves</CardDescription>
             </CardHeader>
             <CardContent className="gap-4 native:gap-2">
               <View className="gap-1">Shelves</View>
