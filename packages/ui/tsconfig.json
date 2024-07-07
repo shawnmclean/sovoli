@@ -5,7 +5,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "nativewind",
     "paths": {
-      "~/*": ["./src/*"]
+      "@sovoli/ui/*": ["./src/*"]
     }
   },
   "include": ["*.ts", "src", "nativewind-env.d.ts"],

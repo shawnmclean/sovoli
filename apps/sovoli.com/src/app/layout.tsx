@@ -1,4 +1,5 @@
 /** @jsxImportSource react */
+import "@sovoli/ui/config/tailwind/globals.css";
 
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
@@ -6,7 +7,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { UiProviders } from "@sovoli/ui/providers";
 import { PortalHost } from "@rn-primitives/portal";
-import "@sovoli/ui/config/tailwind/globals.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

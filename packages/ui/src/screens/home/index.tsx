@@ -8,12 +8,12 @@ import {
   Linking,
   Platform,
 } from "react-native";
-import { Text } from "../../components/text";
+import { Text } from "@sovoli/ui/components/text";
 import RNButtons from "./rn-buttons";
-import { ThemeToggle } from "../../components/ThemeToggle/ThemeToggle";
-import { Button } from "../../components/button";
-import { Image } from "../../components/image";
-import { Link } from "../../components/link";
+import { ThemeToggle } from "@sovoli/ui/components/ThemeToggle/ThemeToggle";
+import { Button } from "@sovoli/ui/components/button";
+import { Image } from "@sovoli/ui/components/image";
+import { Link } from "@sovoli/ui/components/link";
 
 export function HomeScreen() {
   return (
@@ -26,11 +26,9 @@ export function HomeScreen() {
         Goal: Working on something to help me read, write and think better.
       </Text>
 
-      <View className="flex-row">
-        <Link href="/shawn">
-          <Text className="underline">My Profile</Text>
-        </Link>
-      </View>
+      <Link href="/shawn">
+        <Text className="underline">My Profile</Text>
+      </Link>
 
       <Section title="☁️ Infra">
         <List>

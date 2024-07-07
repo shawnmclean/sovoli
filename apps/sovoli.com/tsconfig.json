@@ -12,6 +12,6 @@
     "module": "esnext",
     "jsxImportSource": "nativewind"
   },
-  "include": ["**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app-env.d.ts"],
+  "include": [".", ".next/types/**/*.ts", "app-env.d.ts"],
   "exclude": ["node_modules"]
 }
