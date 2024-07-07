@@ -1,12 +1,12 @@
 "use client";
 
 import { ScrollView } from "react-native";
-import Categories from "../categories";
+import { Text } from "@sovoli/ui/components/text";
 
 export function ShelfScreen() {
   return (
     <ScrollView className="mx-auto">
-      <Categories />
+      <Text>List of books in shelf</Text>
     </ScrollView>
   );
 }

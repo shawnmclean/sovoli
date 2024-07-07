@@ -3,6 +3,6 @@ import { ComponentProps } from "react";
 
 type LinkProps = ComponentProps<typeof SolitoTextLink>;
 
-export const Link = ({ className, children, ...props }: LinkProps) => {
+export const Link = ({ children, ...props }: LinkProps) => {
   return <SolitoLink {...props}>{children}</SolitoLink>;
 };

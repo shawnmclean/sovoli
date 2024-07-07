@@ -84,6 +84,35 @@ export function HomeScreen() {
         </List>
       </Section>
 
+      <Section title="🎨 Mocks">
+        <List>
+          <ListItem text="My Books">
+            <List>
+              <ListItem text="Shelves">
+                <List>
+                  <ListItem text="✅ Routing">
+                    <Link href="/shawn/books/shelves/wardrobe-bottom-left-shelf">
+                      <Text className="ml-4 underline">View Shelf</Text>
+                    </Link>
+                  </ListItem>
+                  <ListItem text="IA" />
+                  <ListItem text="Models" />
+                  <ListItem text="LoFi" />
+                  <ListItem text="HiFi" />
+                  <ListItem text="Social Images" />
+                  <ListItem text="SEO" />
+                  <ListItem text="Feedback" />
+                </List>
+              </ListItem>
+              <ListItem text="Lists" />
+              <ListItem text="Books" />
+              <ListItem text="Data backedn by JSON" />
+              <ListItem text="Data backedn by Db" />
+            </List>
+          </ListItem>
+        </List>
+      </Section>
+
       <Section title="📖 Notes">
         <List>
           <ListItem text="Proposal: Fleshing out use case">
@@ -97,22 +126,6 @@ export function HomeScreen() {
           <ListItem text="🕛 Pull from Db" />
         </List>
       </Section>
-
-      <Section title="🎨 Mocks">
-        <List>
-          <ListItem text="My Books">
-            <List>
-              <ListItem text="✅ Routing"></ListItem>
-              <ListItem text="Lists" />
-              <ListItem text="Shelves" />
-              <ListItem text="Books" />
-              <ListItem text="Data backedn by JSON" />
-              <ListItem text="Data backedn by Db" />
-            </List>
-          </ListItem>
-        </List>
-      </Section>
-
       <Section title="Database">
         <List>
           <ListItem text="Db lib" />

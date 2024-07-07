@@ -1,5 +1,7 @@
 /** @jsxImportSource react */
 
+import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
+
 export default function Shelf({
   params,
 }: {
@@ -10,6 +12,8 @@ export default function Shelf({
       <h1>
         Shelf: {params.username} - {params.slug}
       </h1>
+
+      <ShelfScreen />
     </div>
   );
 }
