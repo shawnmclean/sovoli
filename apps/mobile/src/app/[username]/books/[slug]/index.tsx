@@ -1,22 +1,23 @@
 import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
-import { MyBooksScreen } from "@sovoli/ui/screens/mybooks";
-
-import { ScrollView, Text } from "react-native";
+import MyBookDetailsScreen from "@sovoli/ui/screens/mybooks/details";
+import { Text } from "@sovoli/ui/components/text";
 
 export default function Page() {
-  const { username } = useLocalSearchParams();
+  const { username, slug } = useLocalSearchParams();
 
-  if (!username) {
+  if (!username || !slug) {
     return null;
   }
 
   return (
     <SafeAreaView className="bg-background">
       {/* Changes page title visible on the header */}
-      <Stack.Screen options={{ title: "My Books" }} />
-      <Text>MyBook Details</Text>
+      <Stack.Screen options={{ title: "My Book" }} />
+
+      <Text>{slug}</Text>
+      <MyBookDetailsScreen />
     </SafeAreaView>
   );
 }

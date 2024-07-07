@@ -10,7 +10,7 @@ export function MyBooksScreen() {
     <ScrollView className="mx-auto">
       <Categories />
 
-      <Link href="/shawn/books/1">
+      <Link href="/shawn/books/going-somewhere-andrew-marino">
         <Text className="underline">My Book Details</Text>
       </Link>
     </ScrollView>
