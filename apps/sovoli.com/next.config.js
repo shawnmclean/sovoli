@@ -8,6 +8,14 @@ module.exports = {
         protocol: "https",
         hostname: "qr.expo.dev",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "books.google.com.jm",
+      },
     ],
   },
   webpack: (config) => {
