@@ -3,18 +3,19 @@
 import { ScrollView, View } from "react-native";
 import { Text } from "@sovoli/ui/components/text";
 import { Image } from "@sovoli/ui/components/image";
+import { Button } from "@sovoli/ui/components/button";
 
 export function ShelfScreen() {
   return (
     <ScrollView className="mx-auto">
       <View className="relative h-[300px] sm:h-[400px] lg:h-[500px]">
-        <Image
+        {/* <Image
           src="https://lh3.googleusercontent.com/pw/AP1GczMv1vU0JdhJfQRwj6c6apKAc_ZB19xCvVgspvuoWYRGQjkjR--rFI1driymF0Lm0hR-EvX9_ZRfGiydtWaFvSVzdv2HgXApdXvVTcYEe2L9_S4M_D8pMDgKhhKegONSv_IWgTTl7Yi4DYzSyncBwaRupg=w1670-h1253-s-no-gm?authuser=0"
           alt="Bookshelf banner"
           className="h-full w-full object-cover"
           width={1920}
           height={500}
-        />
+        /> */}
         <View className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 px-4 py-8 sm:px-6 lg:px-8">
           <View className="container mx-auto grid gap-4">
             <View className="grid gap-2">
@@ -28,29 +29,47 @@ export function ShelfScreen() {
           </View>
         </View>
       </View>
-      <View className="container mx-auto grid gap-8 border-t my-5">
-        <View className="grid gap-4">
+      <View className="grid gap-8 border-border border-t my-5 pt-5">
+        <View className="grid gap-2">
           {bookData.map((book) => (
-            <View key={book.isbn} className="flex items-start gap-4 border-b ">
-              <Image
-                src={book.image}
-                alt="Book cover"
-                width={100}
-                height={150}
-                className="aspect-[2/3] rounded-lg object-cover"
-              />
-              <View className="flex-1 grid gap-2">
-                <Text className="text-lg font-semibold">{book.title}</Text>
+            <View
+              key={book.isbn}
+              className="flex items-start border-border border-b py-3 gap-2"
+            >
+              <View className="flex-row justify-between gap-3">
+                <View className="flex-1 flex-row gap-3">
+                  <View>
+                    <Image
+                      src={book.image}
+                      alt="Book cover"
+                      width={100}
+                      height={150}
+                      className="aspect-[2/3] rounded-lg object-cover"
+                    />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-lg font-semibold">{book.title}</Text>
+                    <Text className="text-sm leading-relaxed text-muted-foreground">
+                      {book.description}
+                    </Text>
+                    <Text className="mt-5">{book.notes}</Text>
+                  </View>
+                </View>
+
+                <View>
+                  <Button variant="outline">
+                    <Text>Save</Text>
+                  </Button>
+                </View>
+              </View>
+
+              <View className="flex-row gap-4">
                 <Text className="text-muted-foreground">ISBN: {book.isbn}</Text>
-                <Text className="text-sm leading-relaxed text-muted-foreground">
-                  {book.description}
-                </Text>
+
                 <View className="flex items-center gap-2 text-sm">
                   <Text>Recommended by {book.recommendedBy}</Text>
                 </View>
-                <View className="flex items-center gap-2 text-sm">
-                  <Text>{book.notes}</Text>
-                </View>
+                <View className="flex items-center gap-2 text-sm"></View>
               </View>
             </View>
           ))}
