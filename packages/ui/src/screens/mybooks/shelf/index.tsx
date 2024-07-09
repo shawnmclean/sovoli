@@ -4,6 +4,7 @@ import { ScrollView, View } from "react-native";
 import { Text } from "@sovoli/ui/components/text";
 import { Image } from "@sovoli/ui/components/image";
 import { Button } from "@sovoli/ui/components/button";
+import { BookHoverCard } from "@sovoli/ui/components/BookHoverCard";
 
 export function ShelfScreen() {
   return (
@@ -36,8 +37,8 @@ export function ShelfScreen() {
               key={book.isbn}
               className="flex items-start border-border border-b py-3 gap-2"
             >
-              <View className="flex-row justify-between gap-3">
-                <View className="flex-1 flex-row gap-3">
+              <View className="flex-row w-full justify-between gap-2">
+                <View className="flex-1 flex-row gap-2">
                   <View>
                     <Image
                       src={book.image}
@@ -47,16 +48,19 @@ export function ShelfScreen() {
                       className="aspect-[2/3] rounded-lg object-cover"
                     />
                   </View>
-                  <View className="flex-1">
-                    <Text className="text-lg font-semibold">{book.title}</Text>
+                  <View className="flex shrink">
+                    <BookHoverCard book={book}>
+                      <Text className="text-lg font-semibold">
+                        {book.title}
+                      </Text>
+                    </BookHoverCard>
                     <Text className="text-sm leading-relaxed text-muted-foreground">
-                      {book.description}
+                      by {book.author}
                     </Text>
-                    <Text className="mt-5">{book.notes}</Text>
                   </View>
                 </View>
 
-                <View>
+                <View className="flex">
                   <Button variant="outline">
                     <Text>Save</Text>
                   </Button>
@@ -64,12 +68,16 @@ export function ShelfScreen() {
               </View>
 
               <View className="flex-row gap-4">
-                <Text className="text-muted-foreground">ISBN: {book.isbn}</Text>
-
-                <View className="flex items-center gap-2 text-sm">
-                  <Text>Recommended by {book.recommendedBy}</Text>
+                <View>
+                  <Text className="text-sm text-muted-foreground">
+                    Recommended by {book.recommendedBy}
+                  </Text>
                 </View>
-                <View className="flex items-center gap-2 text-sm"></View>
+                <View>
+                  <Text className="text-sm text-muted-foreground">
+                    Updated last week
+                  </Text>
+                </View>
               </View>
             </View>
           ))}
