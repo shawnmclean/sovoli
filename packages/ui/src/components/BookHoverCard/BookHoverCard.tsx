@@ -22,16 +22,13 @@ export function BookHoverCard({
   book: Book;
   children: React.ReactNode;
 }) {
-  const triggerRef =
-    React.useRef<React.ElementRef<typeof HoverCardTrigger>>(null);
-  const insets = useSafeAreaInsets();
   const contentInsets = {
     left: 12,
     right: 12,
   };
 
   return (
-    <HoverCard openDelay={0} closeDelay={0}>
+    <HoverCard openDelay={0} closeDelay={10}>
       <HoverCardTrigger className="group web:focus:outline-none">
         {children}
       </HoverCardTrigger>

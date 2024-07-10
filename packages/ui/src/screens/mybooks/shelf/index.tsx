@@ -40,13 +40,15 @@ export function ShelfScreen() {
               <View className="flex-row w-full justify-between gap-2">
                 <View className="flex-1 flex-row gap-2">
                   <View>
-                    <Image
-                      src={book.image}
-                      alt="Book cover"
-                      width={100}
-                      height={150}
-                      className="aspect-[2/3] rounded-lg object-cover"
-                    />
+                    <BookHoverCard book={book}>
+                      <Image
+                        src={book.image}
+                        alt="Book cover"
+                        width={100}
+                        height={150}
+                        className="aspect-[2/3] rounded-lg object-cover"
+                      />
+                    </BookHoverCard>
                   </View>
                   <View className="flex shrink">
                     <BookHoverCard book={book}>
