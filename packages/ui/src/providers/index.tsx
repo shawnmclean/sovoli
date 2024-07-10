@@ -8,11 +8,11 @@ import { SafeAreaProvider } from "./safe-area-provider";
 export function UiProviders({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <SafeAreaProvider>
-        <ThemeProvider>
-          <StylesProvider>{children}</StylesProvider>
-        </ThemeProvider>
-      </SafeAreaProvider>
+      {/* <SafeAreaProvider> */}
+      <ThemeProvider>
+        <StylesProvider>{children}</StylesProvider>
+      </ThemeProvider>
+      {/* </SafeAreaProvider> */}
     </>
   );
 }

@@ -1,5 +1,6 @@
 /** @jsxImportSource react */
 import "@sovoli/ui/config/tailwind/globals.css";
+import "raf/polyfill";
 
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
