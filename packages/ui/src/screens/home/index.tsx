@@ -43,7 +43,7 @@ export function HomeScreen() {
 
       <Section title="🎨 Design System">
         <List>
-          <ListItem text="🚩 RN Reusables: (reanimated throwing errors)">
+          <ListItem text="🚩 RN Reusables: (fix style errors [shared TW configs])">
             <RNButtons />
           </ListItem>
           <ListItem text="🚩 SSR RN TW: (Wait on NativeWind fixup)" />
@@ -95,9 +95,7 @@ export function HomeScreen() {
                       <Text className="ml-4 underline">View Shelf</Text>
                     </Link>
                   </ListItem>
-                  <ListItem text="IA" />
-                  <ListItem text="Models" />
-                  <ListItem text="LoFi" />
+                  <ListItem text="✅ LoFi" />
                   <ListItem text="HiFi" />
                   <ListItem text="Social Images" />
                   <ListItem text="SEO" />
