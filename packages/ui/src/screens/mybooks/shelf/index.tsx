@@ -5,18 +5,25 @@ import { Text } from "@sovoli/ui/components/text";
 import { Image } from "@sovoli/ui/components/image";
 import { Button } from "@sovoli/ui/components/button";
 import { BookHoverCard } from "@sovoli/ui/components/BookHoverCard";
+import { Gallery } from "@sovoli/ui/components/Gallery";
+
+const images = [
+  {
+    src: "https://lh3.googleusercontent.com/pw/AP1GczMv1vU0JdhJfQRwj6c6apKAc_ZB19xCvVgspvuoWYRGQjkjR--rFI1driymF0Lm0hR-EvX9_ZRfGiydtWaFvSVzdv2HgXApdXvVTcYEe2L9_S4M_D8pMDgKhhKegONSv_IWgTTl7Yi4DYzSyncBwaRupg=w1670-h1253-s-no-gm?authuser=0",
+    alt: "Bookshelf banner",
+  },
+  {
+    src: "https://lh3.googleusercontent.com/pw/AP1GczMv1vU0JdhJfQRwj6c6apKAc_ZB19xCvVgspvuoWYRGQjkjR--rFI1driymF0Lm0hR-EvX9_ZRfGiydtWaFvSVzdv2HgXApdXvVTcYEe2L9_S4M_D8pMDgKhhKegONSv_IWgTTl7Yi4DYzSyncBwaRupg=w1670-h1253-s-no-gm?authuser=0",
+    alt: "Bookshelf banner",
+  },
+];
 
 export function ShelfScreen() {
   return (
     <ScrollView className="mx-auto">
+      <Gallery images={images} />
+
       <View className="relative h-[300px] sm:h-[400px] lg:h-[500px]">
-        {/* <Image
-          src="https://lh3.googleusercontent.com/pw/AP1GczMv1vU0JdhJfQRwj6c6apKAc_ZB19xCvVgspvuoWYRGQjkjR--rFI1driymF0Lm0hR-EvX9_ZRfGiydtWaFvSVzdv2HgXApdXvVTcYEe2L9_S4M_D8pMDgKhhKegONSv_IWgTTl7Yi4DYzSyncBwaRupg=w1670-h1253-s-no-gm?authuser=0"
-          alt="Bookshelf banner"
-          className="h-full w-full object-cover"
-          width={1920}
-          height={500}
-        /> */}
         <View className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 px-4 py-8 sm:px-6 lg:px-8">
           <View className="container mx-auto grid gap-4">
             <View className="grid gap-2">
