@@ -43,7 +43,7 @@ export function HomeScreen() {
 
       <Section title="🎨 Design System">
         <List>
-          <ListItem text="🚩 RN Reusables: (fix style errors [shared TW configs])">
+          <ListItem text="🚩 RN Reusables: (fix style errors)">
             <RNButtons />
           </ListItem>
           <ListItem text="🚩 SSR RN TW: (Wait on NativeWind fixup)" />

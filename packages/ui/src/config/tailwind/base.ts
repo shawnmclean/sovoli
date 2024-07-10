@@ -1,10 +1,14 @@
 import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
+import { hairlineWidth } from "nativewind/theme";
+// @ts-expect-error - no types
+import nativewind from "nativewind/preset";
 
 export default {
   darkMode: "class",
   content: ["src/**/*.{ts,tsx}"],
   plugins: [animate],
+  presets: [nativewind],
   theme: {
     extend: {
       colors: {
@@ -41,6 +45,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      borderWidth: {
+        hairline: hairlineWidth(),
       },
       keyframes: {
         "accordion-down": {
