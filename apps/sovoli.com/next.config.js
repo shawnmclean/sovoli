@@ -1,5 +1,7 @@
+const { withExpo } = require("@expo/next-adapter");
+
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   reactStrictMode: false,
   images: {
     dangerouslyAllowSVG: true,
@@ -36,10 +38,16 @@ module.exports = {
 
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
+    "expo",
     "@sovoli/ui",
     "nativewind",
-    "solito",
+    "react-native",
     "react-native-css-interop",
     "react-native-reanimated",
+    "solito",
   ],
+  experimental: {
+    forceSwcTransforms: true,
+  },
 };
+module.exports = withExpo(nextConfig);
