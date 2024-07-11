@@ -9,10 +9,10 @@ const ImageWrapper = (
 };
 
 // TODO: this throws an error on nextjs, but works fine on expo
-// cssInterop(ImageWrapper, {
-//   className: {
-//     target: "style",
-//   },
-// });
+cssInterop(ImageWrapper, {
+  className: {
+    target: "style",
+  },
+});
 
 export const Image = ImageWrapper;
