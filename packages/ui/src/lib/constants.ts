@@ -1,3 +1,8 @@
+import type { ScaledSize } from "react-native";
+import { Dimensions } from "react-native";
+
+import { isWeb } from "./utils";
+
 export const NAV_THEME = {
   light: {
     background: "hsl(0 0% 100%)",
@@ -16,3 +21,12 @@ export const NAV_THEME = {
     text: "hsl(0 0% 98%)",
   },
 };
+
+export const window: ScaledSize = isWeb
+  ? {
+      ...Dimensions.get("window"),
+      width: 700,
+    }
+  : Dimensions.get("window");
+
+export const COVER_IMAGE_ASPECT_RATIO = 3 / 2;
