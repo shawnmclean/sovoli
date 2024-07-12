@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState, useRef } from "react";
 import { useWindowDimensions, View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import { window, COVER_IMAGE_ASPECT_RATIO } from "../../lib/constants";
@@ -9,6 +9,7 @@ import { Badge } from "../badge";
 import { Text } from "../text";
 
 const PAGE_WIDTH = window.width;
+const MAX_CAROSEL_HEIGHT = 500;
 
 export function Gallery({
   images,
@@ -16,15 +17,24 @@ export function Gallery({
   images: { src: string; alt: string }[];
 }) {
   const windowWidth = useWindowDimensions().width;
+  const [carouselHeight, setCarouselHeight] = useState<number>(
+    Math.min(PAGE_WIDTH / COVER_IMAGE_ASPECT_RATIO, MAX_CAROSEL_HEIGHT)
+  );
   const scrollOffsetValue = useSharedValue<number>(0);
-  const [index, setIndex] = React.useState(0);
-  const ref = React.useRef<ICarouselInstance>(null);
+  const [index, setIndex] = useState(0);
+  const ref = useRef<ICarouselInstance>(null);
+
+  useEffect(() => {
+    setCarouselHeight(
+      Math.min(windowWidth / COVER_IMAGE_ASPECT_RATIO, MAX_CAROSEL_HEIGHT)
+    );
+  }, [windowWidth]);
 
   return (
     <View className="relative">
       <Carousel
         width={windowWidth}
-        height={PAGE_WIDTH / COVER_IMAGE_ASPECT_RATIO}
+        height={carouselHeight}
         loop={false}
         defaultScrollOffsetValue={scrollOffsetValue}
         style={{ width: "100%" }}
