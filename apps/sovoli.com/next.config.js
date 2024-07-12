@@ -44,6 +44,7 @@ const nextConfig = {
     "react-native",
     "react-native-css-interop",
     "react-native-reanimated",
+    "react-native-gesture-handler",
     "solito",
   ],
   experimental: {
