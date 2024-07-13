@@ -1,5 +1,7 @@
 /** @jsxImportSource react */
 
+import Image from "next/image";
+
 /**
  * v0 by Vercel.
  * @see https://v0.dev/t/jYrzfYCANPI
@@ -10,7 +12,7 @@ export default function Component() {
     <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8">
         <div className="flex flex-col items-center">
-          <img
+          <Image
             src="/placeholder.svg"
             alt="Book Cover"
             width={300}
@@ -44,7 +46,7 @@ export default function Component() {
           <div>
             <h2 className="text-xl font-bold">About the Author</h2>
             <div className="flex items-center gap-4 mt-4">
-              <img
+              <Image
                 src="/placeholder.svg"
                 alt="Author Photo"
                 width={100}

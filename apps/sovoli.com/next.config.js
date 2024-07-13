@@ -1,4 +1,4 @@
-const { withExpo } = require("@expo/next-adapter");
+import { withExpo } from "@expo/next-adapter";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -53,4 +53,5 @@ const nextConfig = {
   } /** We already do linting and typechecking as separate tasks in CI */,
   eslint: { ignoreDuringBuilds: true },
 };
-module.exports = withExpo(nextConfig);
+
+export default withExpo(nextConfig);
