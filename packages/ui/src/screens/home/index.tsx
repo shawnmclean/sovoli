@@ -91,23 +91,39 @@ export function HomeScreen() {
               <ListItem text="Shelves">
                 <List>
                   <ListItem text="✅ Routing">
-                    <Link href="/shawn/books/shelves/wardrobe-bottom-left-shelf">
+                    <Link href="/shawn/shelves/wardrobe-bottom-left-shelf">
                       <Text className="ml-4 underline">View Shelf</Text>
                     </Link>
                   </ListItem>
-                  <ListItem text="✅ LoFi" />
-                  <ListItem text="HiFi" />
+                  <ListItem text="♻️HiFi" />
                   <ListItem text="Social Images" />
                   <ListItem text="SEO" />
                   <ListItem text="Feedback" />
                 </List>
               </ListItem>
+              <ListItem text="Furniture" />
               <ListItem text="Lists" />
               <ListItem text="Books" />
-              <ListItem text="Data backedn by JSON" />
-              <ListItem text="Data backedn by Db" />
             </List>
           </ListItem>
+        </List>
+      </Section>
+
+      <Section title="☁️ API">
+        <List>
+          <ListItem text="Get shelf " />
+          <ListItem text="Expo does health check" />
+          <ListItem text="Handle version skew" />
+        </List>
+      </Section>
+
+      <Section title="🛢️ Database">
+        <List>
+          <ListItem text="Db lib" />
+          <ListItem text="Db Health Check" />
+          <ListItem text="Book model" />
+          <ListItem text="Seed Book table" />
+          <ListItem text="Book Details backed by Book data" />
         </List>
       </Section>
 
@@ -122,23 +138,6 @@ export function HomeScreen() {
             </List>
           </ListItem>
           <ListItem text="🕛 Pull from Db" />
-        </List>
-      </Section>
-      <Section title="Database">
-        <List>
-          <ListItem text="Db lib" />
-          <ListItem text="Db Health Check" />
-          <ListItem text="Book model" />
-          <ListItem text="Seed Book table" />
-          <ListItem text="Book Details backed by Book data" />
-        </List>
-      </Section>
-
-      <Section title="API">
-        <List>
-          <ListItem text="Expo get book details" />
-          <ListItem text="Expo does health check" />
-          <ListItem text="Handle version skew" />
         </List>
       </Section>
 
