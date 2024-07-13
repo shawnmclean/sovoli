@@ -10,13 +10,10 @@
     },
     "plugins": [{ "name": "next" }],
     "module": "esnext",
-    "jsxImportSource": "nativewind"
+    "jsxImportSource": "nativewind",
+    // Turning this on cus of jsxImportSource, when fixed, we can remove this
+    "strictNullChecks": true
   },
-  "include": [
-    ".",
-    "./src/utils/**/*.ts",
-    ".next/types/**/*.ts",
-    "app-env.d.ts"
-  ],
+  "include": [".", ".next/types/**/*.ts", "app-env.d.ts"],
   "exclude": ["node_modules"]
 }
