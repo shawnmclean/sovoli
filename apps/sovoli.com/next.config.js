@@ -50,6 +50,7 @@ const nextConfig = {
   ],
   experimental: {
     forceSwcTransforms: true,
-  },
+  } /** We already do linting and typechecking as separate tasks in CI */,
+  eslint: { ignoreDuringBuilds: true },
 };
 module.exports = withExpo(nextConfig);
