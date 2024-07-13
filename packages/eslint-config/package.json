@@ -2,21 +2,30 @@
   "name": "@sovoli/eslint-config",
   "version": "0.0.0",
   "private": true,
-  "files": [
-    "library.js",
-    "next.js",
-    "react-native.js",
-    "react-internal.js"
-  ],
+  "type": "module",
+  "exports": {
+    "./base": "./base.js",
+    "./nextjs": "./nextjs.js",
+    "./react": "./react.js"
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@next/eslint-plugin-next": "14.2.4",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-jsx-a11y": "6.9.0",
+    "eslint-plugin-react": "7.34.3",
+    "eslint-plugin-react-hooks": "rc",
+    "eslint-plugin-turbo": "2.0.6",
+    "typescript-eslint": "rc-v8"
+  },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "7.1.0",
-    "@typescript-eslint/parser": "7.1.0",
-    "@vercel/style-guide": "5.2.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-config-turbo": "2.0.0",
-    "eslint-config-universe": "12.1.0",
-    "eslint-plugin-only-warn": "1.1.0",
+    "@sovoli/typescript-config": "workspace:*",
     "typescript": "5.5.2",
-    "eslint": "8.56.0"
+    "prettier": "3.1.1",
+    "eslint": "9.6.0"
   }
 }

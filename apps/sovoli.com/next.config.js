@@ -40,6 +40,7 @@ const nextConfig = {
   transpilePackages: [
     "expo",
     "@sovoli/ui",
+    "@sovoli/api",
     "nativewind",
     "react-native",
     "react-native-css-interop",
