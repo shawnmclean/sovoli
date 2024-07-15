@@ -7,21 +7,16 @@ import { Button } from "@sovoli/ui/components/button";
 import { BookHoverCard } from "@sovoli/ui/components/BookHoverCard";
 import { Gallery } from "@sovoli/ui/components/Gallery";
 
-const images = [
-  {
-    src: "https://lh3.googleusercontent.com/pw/AP1GczMv1vU0JdhJfQRwj6c6apKAc_ZB19xCvVgspvuoWYRGQjkjR--rFI1driymF0Lm0hR-EvX9_ZRfGiydtWaFvSVzdv2HgXApdXvVTcYEe2L9_S4M_D8pMDgKhhKegONSv_IWgTTl7Yi4DYzSyncBwaRupg=w1670-h1253-s-no-gm?authuser=0",
-    alt: "Bookshelf banner",
-  },
-  {
-    src: "https://lh3.googleusercontent.com/pw/AP1GczN5RzbazoVZLrUYWjiijQXi39tghuOtfVnuwlO4GbseOoS1EvklgJEVAxGAt6I5jEvGsunUqFe2lc-da4Kv8u5w_M2nzkKShigsaRBlM0BSyaXr_nlCQqvx9erpxKwUX3e7VBvIQErha8p6WDtyuOqJzA=w1670-h1253-s-no-gm?authuser=0",
-    alt: "Bookshelf banner",
-  },
-];
+import type { RouterOutputs } from "@sovoli/api";
 
-export function ShelfScreen() {
+export function ShelfScreen({
+  shelf,
+}: {
+  shelf: RouterOutputs["shelf"]["bySlug"];
+}) {
   return (
     <ScrollView className="mx-auto">
-      <Gallery images={images} />
+      <Gallery images={shelf.images} />
 
       <View className="container mx-auto grid gap-4">
         <View className="grid gap-2">

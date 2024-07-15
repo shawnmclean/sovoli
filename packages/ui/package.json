@@ -17,6 +17,7 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
+    "@sovoli/api": "workspace:*",
     "@rn-primitives/slot": "1.0.3",
     "@rn-primitives/types": "1.0.3",
     "@rn-primitives/hover-card": "1.0.3",

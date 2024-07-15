@@ -1,19 +1,24 @@
 /** @jsxImportSource react */
 
-import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
+import { Suspense } from "react";
+import { api, HydrateClient } from "~/trpc/server";
+import { Shelf } from "./_components/Shelf";
 
-export default function Shelf({
+export default function ShelfPage({
   params,
 }: {
   params: { username: string; slug: string };
 }) {
-  return (
-    <div className="">
-      <h1>
-        Shelf: {params.username} - {params.slug}
-      </h1>
+  void api.shelf.bySlug.prefetch({
+    username: params.username,
+    slug: params.slug,
+  });
 
-      <ShelfScreen />
-    </div>
+  return (
+    <HydrateClient>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Shelf {...params} />
+      </Suspense>
+    </HydrateClient>
   );
 }
