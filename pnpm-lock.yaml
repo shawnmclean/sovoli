@@ -29,6 +29,9 @@ importers:
       '@rn-primitives/portal':
         specifier: 1.0.3
         version: 1.0.3(@types/react@18.2.79)(react-native-web@0.19.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.24.8(@babel/core@7.24.0))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
+      '@sovoli/api':
+        specifier: workspace:*
+        version: link:../../packages/api
       '@sovoli/ui':
         specifier: workspace:*
         version: link:../../packages/ui

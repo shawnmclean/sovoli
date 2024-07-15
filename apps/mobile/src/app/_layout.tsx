@@ -9,6 +9,7 @@ import { Button } from "@sovoli/ui/components/button";
 
 import "@sovoli/ui/config/tailwind/globals.css";
 import React from "react";
+import { TRPCProvider } from "~/trpc/api";
 
 // Prevent the splash screen from auto-hiding before getting the color scheme.
 SplashScreen.preventAutoHideAsync();
@@ -47,34 +48,36 @@ export default function RootLayout() {
     return null;
   }
   return (
-    <UiProviders>
-      {/*
+    <TRPCProvider>
+      <UiProviders>
+        {/*
           The Stack component displays the current page.
           It also allows you to configure your screens 
         */}
-      <Stack
-        screenOptions={{
-          headerTitle(props) {
-            return (
-              <Text className="text-xl font-semibold">
-                {toOptions(props.children)}
-              </Text>
-            );
-          },
-          headerRight: () => (
-            <Button
-              onPress={() => {
-                setColorScheme(colorScheme == "dark" ? "light" : "dark");
-              }}
-            >
-              <Text>{colorScheme}</Text>
-            </Button>
-          ),
-        }}
-      />
-      <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-      <PortalHost />
-    </UiProviders>
+        <Stack
+          screenOptions={{
+            headerTitle(props) {
+              return (
+                <Text className="text-xl font-semibold">
+                  {toOptions(props.children)}
+                </Text>
+              );
+            },
+            headerRight: () => (
+              <Button
+                onPress={() => {
+                  setColorScheme(colorScheme == "dark" ? "light" : "dark");
+                }}
+              >
+                <Text>{colorScheme}</Text>
+              </Button>
+            ),
+          }}
+        />
+        <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+        <PortalHost />
+      </UiProviders>
+    </TRPCProvider>
   );
 }
 function toOptions(name: string) {
