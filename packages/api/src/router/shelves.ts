@@ -1,7 +1,17 @@
 export const shelves = [
   {
     username: "shawn",
+    slug: "wardrobe-top-left-shelf",
+    title: "Wardrobe Top Left Shelf",
+    description: "The communication and social skills shelf.",
+    images: [],
+    books: [],
+  },
+  {
+    username: "shawn",
     slug: "wardrobe-bottom-left-shelf",
+    title: "Wardrobe Bottom Left Shelf",
+    description: "The psychology and self help shelf.",
     images: [
       {
         src: "https://lh3.googleusercontent.com/pw/AP1GczMv1vU0JdhJfQRwj6c6apKAc_ZB19xCvVgspvuoWYRGQjkjR--rFI1driymF0Lm0hR-EvX9_ZRfGiydtWaFvSVzdv2HgXApdXvVTcYEe2L9_S4M_D8pMDgKhhKegONSv_IWgTTl7Yi4DYzSyncBwaRupg=w1670-h1253-s-no-gm?authuser=0",

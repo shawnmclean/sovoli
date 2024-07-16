@@ -111,7 +111,7 @@ export function HomeScreen() {
 
       <Section title="☁️ API">
         <List>
-          <ListItem text="Get shelf " />
+          <ListItem text="✅ Get user shelf by slug" />
           <ListItem text="Expo does health check" />
           <ListItem text="Handle version skew" />
         </List>
