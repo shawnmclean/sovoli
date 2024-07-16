@@ -110,26 +110,12 @@ jobs:
         with:
           working-directory: apps/mobile
 
-      - name: 👀 Debug fingerprint
-        id: fingerprint-debug
-        run: |
-          echo "previousGitCommit=${{ steps.fingerprint.outputs.previous-git-commit }} currentGitCommit=${{ steps.fingerprint.outputs.current-git-commit }}"
-          echo "isPreviousFingerprintEmpty=${{ steps.fingerprint.outputs.previous-fingerprint == '' }}"
-
-          fingerprintDiff='$(echo "${{ steps.fingerprint.outputs.fingerprint-diff }}")'
-
-          if [[ $fingerprintDiff =~ "bareRncliAutolinking" || $fingerprintDiff =~ "expoAutolinkingAndroid" || $fingerprintDiff =~ "expoAutolinkingIos" ]]; then
-            echo "fingerprint-is-different=true"
-          else
-            echo "fingerprint-is-different=false"
-          fi
-
       - name: 🚀 Update Mobile
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.fingerprint.outputs.fingerprint-diff == '[]'
         run: cd apps/mobile && eas update --auto --non-interactive
 
       - name: 🚀 Preview Mobile
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && steps.fingerprint.outputs.fingerprint-diff == '[]'
         uses: expo/expo-github-action/preview@v8
         id: preview
         with:
