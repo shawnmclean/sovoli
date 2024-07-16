@@ -56,13 +56,18 @@ jobs:
     name: Build for iOS
     needs: build
     runs-on: macos-latest
+    # REQUIRED: limit concurrency when pushing main(default) branch to prevent conflict for this action to update its fingerprint database
+    concurrency: fingerprint-${{ github.event_name != 'pull_request' && 'main' || github.run_id }}
     # To use Remote Caching, uncomment the next lines and follow the steps below.
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ vars.TURBO_TEAM }}
     permissions:
       contents: read
-      pull-requests: write
+      # REQUIRED: Allow comments of PRs
+      pull-requests: write # Allow comments on PRs
+      # REQUIRED: Allow updating fingerprint in action caches
+      actions: write
     steps:
       - name: 🏗 Check out code
         uses: actions/checkout@v4
@@ -99,29 +104,10 @@ jobs:
       - name: Build
         run: pnpm build --filter="@sovoli/mobile"
 
-      - name: Check for changes in build output
-        id: changes
-        run: |
-          CURRENT_HASH=$(pnpm turbo hash build --filter="@sovoli/mobile")
-          echo "Current build hash: $CURRENT_HASH"
-          echo "::set-output name=current_hash::$CURRENT_HASH"
-
-          if [ -f .turbo/previous_build_hash ]; then
-            PREVIOUS_HASH=$(cat .turbo/previous_build_hash)
-            echo "Previous build hash: $PREVIOUS_HASH"
-            if [ "$CURRENT_HASH" == "$PREVIOUS_HASH" ]; then
-              echo "No changes in build output"
-              echo "::set-output name=skip::true"
-            else
-              echo "Changes detected in build output"
-              echo "::set-output name=skip::false"
-            fi
-          else
-            echo "No previous build hash found, assuming changes"
-            echo "::set-output name=skip::false"
-          fi
-
-          echo $CURRENT_HASH > .turbo/previous_build_hash
+      - name: Check fingerprint
+        uses: expo/expo-github-action/fingerprint@main
+        with:
+          working-directory: apps/mobile
 
       - name: 🚀 Update Mobile
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
