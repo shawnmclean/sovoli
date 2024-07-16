@@ -105,9 +105,24 @@ jobs:
         run: pnpm build --filter="@sovoli/mobile"
 
       - name: Check fingerprint
+        id: fingerprint
         uses: expo/expo-github-action/fingerprint@main
         with:
           working-directory: apps/mobile
+
+      - name: 👀 Debug fingerprint
+        id: fingerprint-debug
+        run: |
+          echo "previousGitCommit=${{ steps.fingerprint.outputs.previous-git-commit }} currentGitCommit=${{ steps.fingerprint.outputs.current-git-commit }}"
+          echo "isPreviousFingerprintEmpty=${{ steps.fingerprint.outputs.previous-fingerprint == '' }}"
+
+          fingerprintDiff='$(echo "${{ steps.fingerprint.outputs.fingerprint-diff }}")'
+
+          if [[ $fingerprintDiff =~ "bareRncliAutolinking" || $fingerprintDiff =~ "expoAutolinkingAndroid" || $fingerprintDiff =~ "expoAutolinkingIos" ]]; then
+            echo fingerprint-is-different="true" >> "$GITHUB_OUTPUT"
+          else
+            echo fingerprint-is-different="false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: 🚀 Update Mobile
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
