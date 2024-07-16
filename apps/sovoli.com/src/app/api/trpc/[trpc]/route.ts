@@ -1,6 +1,7 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
 import { appRouter, createTRPCContext } from "@sovoli/api";
+import type { NextRequest } from "next/server";
 // import { auth } from "@acme/auth";
 
 export const runtime = "edge";
@@ -24,14 +25,14 @@ export const OPTIONS = () => {
   return response;
 };
 
-const handler = async (req) => {
+const handler = async (req: NextRequest) => {
   const response = await fetchRequestHandler({
     endpoint: "/api/trpc",
     router: appRouter,
     req,
     createContext: () =>
       createTRPCContext({
-        session: req.auth,
+        // session: req.auth,
         headers: req.headers,
       }),
     onError({ error, path }) {

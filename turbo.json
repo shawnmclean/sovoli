@@ -32,5 +32,14 @@
       "outputs": ["node_modules/.cache/tsbuildinfo.json"]
     }
   },
+  "globalEnv": ["POSTGRES_URL", "PORT"],
+  "globalPassThroughEnv": [
+    "NODE_ENV",
+    "CI",
+    "VERCEL",
+    "VERCEL_ENV",
+    "VERCEL_URL",
+    "npm_lifecycle_event"
+  ],
   "ui": "tui"
 }

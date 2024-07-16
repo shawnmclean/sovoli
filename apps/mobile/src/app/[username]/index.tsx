@@ -3,8 +3,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 import { UserScreen } from "@sovoli/ui/screens/user";
 
-import { ScrollView, Text } from "react-native";
-
 export default function Page() {
   const { username } = useLocalSearchParams();
 

@@ -10,5 +10,6 @@ export default [
   ...baseConfig,
   ...reactConfig,
   ...nextjsConfig,
-  ...restrictEnvAccess,
+  // TODO: turn this back on when we are ready to use env vars
+  // ...restrictEnvAccess,
 ];
