@@ -119,9 +119,9 @@ jobs:
           fingerprintDiff='$(echo "${{ steps.fingerprint.outputs.fingerprint-diff }}")'
 
           if [[ $fingerprintDiff =~ "bareRncliAutolinking" || $fingerprintDiff =~ "expoAutolinkingAndroid" || $fingerprintDiff =~ "expoAutolinkingIos" ]]; then
-            echo fingerprint-is-different="true" >> "$GITHUB_OUTPUT"
+            echo "fingerprint-is-different=true"
           else
-            echo fingerprint-is-different="false" >> "$GITHUB_OUTPUT"
+            echo "fingerprint-is-different=false"
           fi
 
       - name: 🚀 Update Mobile
