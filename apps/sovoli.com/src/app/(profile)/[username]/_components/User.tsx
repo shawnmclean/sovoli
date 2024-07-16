@@ -1,0 +1,21 @@
+"use client";
+
+import { api } from "~/trpc/react";
+import { UserScreen } from "@sovoli/ui/screens/user";
+
+export function User({ username }: { username: string }) {
+  const [user] = api.user.byUsername.useSuspenseQuery({ username });
+
+  if (!user) {
+    return null;
+  }
+
+  return (
+    <>
+      <h1>
+        {user.username} - {user.id}
+      </h1>
+      <UserScreen username={user.username} />
+    </>
+  );
+}

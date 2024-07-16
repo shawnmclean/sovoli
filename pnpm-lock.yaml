@@ -205,6 +205,9 @@ importers:
 
   packages/api:
     dependencies:
+      '@sovoli/db':
+        specifier: workspace:*
+        version: link:../db
       '@trpc/server':
         specifier: 11.0.0-rc.461
         version: 11.0.0-rc.461

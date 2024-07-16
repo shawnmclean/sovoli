@@ -3,4 +3,5 @@ import postgres from "postgres";
 
 import * as schema from "./schema";
 
-export const db = drizzle(postgres, { schema });
+const client = postgres(process.env.POSTGRES_URL!);
+export const db = drizzle(client, { schema });
