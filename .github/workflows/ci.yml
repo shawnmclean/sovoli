@@ -104,7 +104,7 @@ jobs:
       - name: Build
         run: pnpm build --filter="@sovoli/mobile"
 
-      - name: Check fingerprint
+      - name: 📷 Check fingerprint
         id: fingerprint
         uses: expo/expo-github-action/fingerprint@main
         with:
