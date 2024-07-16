@@ -102,17 +102,6 @@ export const shelves = [
         image:
           "https://books.google.com.jm/books/publisher/content?id=a2AUCgAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73oLk2ITnRWB8eA35f5SCXb45HcOg5ZTFnsKQgX3IkF9dYYlDf_-eq5UMOcT9TX9PHGiYx5LXNLWL_TDeT14H7OBD-O1irKYMCqVO6Q5AfBfUaiW2WztkxFlKT0FYUqgYPdfZmW",
       },
-      {
-        title: "Man's Search for Meaning",
-        author: "Viktor E. Frankl",
-        isbn: "978-0807014271",
-        recommendedBy: "Henry Moore",
-        notes: "Profound and inspiring.",
-        description:
-          "Man's Search for Meaning is a powerful testament to the human spirit, showing how we can find meaning even in the most challenging circumstances.",
-        image:
-          "https://books.google.com.jm/books/publisher/content?id=8rLAzgEACAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73rIkc4kISJDSCuGgf-c3XZpP7YFzIjk_AH2AD6ncf-Du8Ej8l_rHvRR1BuzGlkbApEolP-OVj2uTwQa_jrniD7UzIkP-1zhhRYirMxrVJwJJ4Xc6ccNqyx93PPtmUOqXYIm84q",
-      },
     ],
   },
 ];
