@@ -11,6 +11,8 @@
     "lint": "turbo run lint",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo run clean",
+    "db:push": "turbo -F @sovoli/db push",
+    "db:studio": "turbo -F @sovoli/db studio",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "typecheck": "turbo run typecheck"
   },

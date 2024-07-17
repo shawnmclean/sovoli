@@ -9,11 +9,9 @@ import { Gallery } from "@sovoli/ui/components/Gallery";
 
 import type { RouterOutputs } from "@sovoli/api";
 
-export function ShelfScreen({
-  shelf,
-}: {
-  shelf: RouterOutputs["shelf"]["bySlug"];
-}) {
+type Shelf = NonNullable<RouterOutputs["shelf"]["bySlug"]>;
+
+export function ShelfScreen({ shelf }: { shelf: Shelf }) {
   return (
     <ScrollView className="mx-auto">
       <Gallery images={shelf.images} />

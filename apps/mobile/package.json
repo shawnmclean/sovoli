@@ -32,6 +32,7 @@
     "react-native": "0.74.3",
     "react-native-web": "0.19.12",
     "react-native-reanimated": "3.10.1",
+    "superjson": "2.2.1",
     "tailwind-merge": "2.1.0",
     "tailwindcss-animate": "1.0.7",
     "class-variance-authority": "0.7.0",
