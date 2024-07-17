@@ -113,17 +113,15 @@ export function HomeScreen() {
         <List>
           <ListItem text="✅ Get user shelf by slug" />
           <ListItem text="Expo does health check" />
-          <ListItem text="Handle version skew" />
         </List>
       </Section>
 
       <Section title="🛢️ Database">
         <List>
-          <ListItem text="Db lib" />
-          <ListItem text="Db Health Check" />
-          <ListItem text="Book model" />
-          <ListItem text="Seed Book table" />
-          <ListItem text="Book Details backed by Book data" />
+          <ListItem text="✅ Db lib" />
+          <ListItem text="✅ Db Health Check" />
+          <ListItem text="Get /{username} (handle no user 404)" />
+          <ListItem text="Get /{username}/shelf/{slug} (handle 404)" />
         </List>
       </Section>
 
