@@ -21,6 +21,10 @@ const nextConfig = {
     ],
   },
   webpack: (config) => {
+    // Needed to get postgres db adapter: https://github.com/vercel/next.js/discussions/50177#discussioncomment-9409065
+    // config.externals.push("cloudflare:sockets");
+    // config.externalsType = "commonjs";
+
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       // Transform all direct `react-native` imports to `react-native-web`

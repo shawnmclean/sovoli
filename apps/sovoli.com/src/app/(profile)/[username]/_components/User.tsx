@@ -13,7 +13,7 @@ export function User({ username }: { username: string }) {
   return (
     <>
       <h1>
-        {user.username} - {user.id}
+        {user.username} - {user.id} - {user.name}
       </h1>
       <UserScreen username={user.username} />
     </>

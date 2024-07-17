@@ -9,11 +9,9 @@ export default function UserPage({ params }: { params: { username: string } }) {
 
   return (
     <HydrateClient>
-      <div className="min-h-screen sm:pl-60 dark:bg-black">
-        <Suspense fallback={<div>Loading...</div>}>
-          <User username={params.username} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <User username={params.username} />
+      </Suspense>
     </HydrateClient>
   );
 }
