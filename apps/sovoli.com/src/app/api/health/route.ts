@@ -22,6 +22,7 @@ export async function GET() {
     // check round trip time to db health check
     const startTime = Date.now();
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     const dbResponse = await db.execute(sql`SELECT NOW()`);
 
     const endTime = Date.now();
@@ -30,10 +31,14 @@ export async function GET() {
     dbHealth = {
       status: "ok",
       roundTripTime: `${roundTripTime}ms`,
-      dbTime: dbResponse.rows[0]["now"],
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      dbTime: dbResponse?.rows?.[0]?.now,
     };
   } catch (e) {
-    dbHealth = { status: "error", error: e };
+    dbHealth = {
+      status: "error",
+      error: e instanceof Error ? e.message : String(e),
+    };
   }
 
   const data = { status: "ok", trpc: trpcHealth, db: dbHealth };
