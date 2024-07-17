@@ -112,18 +112,18 @@ jobs:
       - name: Build
         run: pnpm build --filter="@sovoli/mobile"
 
-      - name: 📷 Check fingerprint
-        id: fingerprint
-        uses: expo/expo-github-action/fingerprint@main
-        with:
-          working-directory: apps/mobile
+      # - name: 📷 Check fingerprint
+      #   id: fingerprint
+      #   uses: expo/expo-github-action/fingerprint@main
+      #   with:
+      #     working-directory: apps/mobile
 
       - name: 🚀 Update Mobile
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.fingerprint.outputs.fingerprint-diff != '[]'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: cd apps/mobile && eas update --auto --non-interactive
 
       - name: 🚀 Preview Mobile
-        if: github.event_name == 'pull_request' && steps.fingerprint.outputs.fingerprint-diff != '[]'
+        if: github.event_name == 'pull_request'
         uses: expo/expo-github-action/preview@v8
         id: preview
         with:
