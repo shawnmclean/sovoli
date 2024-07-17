@@ -8,12 +8,9 @@ import { publicProcedure } from "../trpc";
 export const userRouter = {
   byUsername: publicProcedure
     .input(z.object({ username: z.string() }))
-    .query(async ({ ctx, input }) => {
-      console.log(">>> input", input);
-      const user = await ctx.db.query.User.findFirst({
+    .query(({ ctx, input }) => {
+      return ctx.db.query.User.findFirst({
         where: eq(User.username, input.username),
       });
-      console.log(">>> user", user);
-      return user;
     }),
 } satisfies TRPCRouterRecord;
