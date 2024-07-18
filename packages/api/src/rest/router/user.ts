@@ -1,9 +1,9 @@
 import { tsr } from "@ts-rest/serverless/next";
-import { contract } from "../contract";
 import { eq } from "@sovoli/db";
 import { User } from "@sovoli/db/schema";
-
 import { db } from "@sovoli/db/client";
+
+import { contract } from "../contract";
 import type { Context } from "../types";
 
 export const usersRouter = tsr.router<typeof contract.users, Context>(
