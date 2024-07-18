@@ -7,6 +7,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./src/index.ts"
+    },
+    "./trpc": {
+      "types": "./dist/trpcindex.d.ts",
+      "default": "./src/trpc/index.ts"
     }
   },
   "scripts": {
