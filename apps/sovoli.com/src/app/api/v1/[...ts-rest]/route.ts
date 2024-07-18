@@ -7,3 +7,5 @@ export const handler = createNextHandler(contract, router, {
   jsonQuery: true,
   responseValidation: true,
 });
+
+export { handler as GET, handler as POST };

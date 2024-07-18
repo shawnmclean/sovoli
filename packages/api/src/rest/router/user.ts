@@ -6,7 +6,6 @@ import { User } from "@sovoli/db/schema";
 import { db } from "@sovoli/db/client";
 import type { Context } from "../types";
 
-// `contract` is the AppRouter returned by `c.router`
 export const usersRouter = tsr.router<typeof contract.users, Context>(
   contract.users,
   {
