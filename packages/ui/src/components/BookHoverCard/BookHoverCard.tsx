@@ -27,7 +27,7 @@ export function BookHoverCard({
     right: 12,
   };
 
-  // 10 seconds close delay so we can have time to move the cursor into the card and interact with it.
+  // 10 ms close delay so we can have time to move the cursor into the card and interact with it.
   return (
     <HoverCard openDelay={100} closeDelay={10}>
       <HoverCardTrigger className="group web:focus:outline-none">
