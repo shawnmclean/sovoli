@@ -27,6 +27,9 @@
         "expo-modules-*",
         "typescript"
       ]
+    },
+    "patchedDependencies": {
+      "@ts-rest/serverless@3.45.2": "patches/@ts-rest__serverless@3.45.2.patch"
     }
   },
   "engines": {
