@@ -7,7 +7,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { BookHoverCard } from "@sovoli/ui/components/BookHoverCard";
 import { Gallery } from "@sovoli/ui/components/Gallery";
 
-import type { RouterOutputs } from "@sovoli/api";
+import type { RouterOutputs } from "@sovoli/api/trpc";
 
 type Shelf = NonNullable<RouterOutputs["shelf"]["bySlug"]>;
 
