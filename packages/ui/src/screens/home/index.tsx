@@ -95,7 +95,7 @@ export function HomeScreen() {
                       <Text className="ml-4 underline">View Shelf</Text>
                     </Link>
                   </ListItem>
-                  <ListItem text="♻️HiFi" />
+                  <ListItem text="♻️ HiFi" />
                   <ListItem text="Social Images" />
                   <ListItem text="SEO" />
                   <ListItem text="Feedback" />
@@ -104,6 +104,7 @@ export function HomeScreen() {
               <ListItem text="Furniture" />
               <ListItem text="Lists" />
               <ListItem text="Books" />
+              <ListItem text="Swap UI (expo/next) to use ts-rest for API" />
             </List>
           </ListItem>
         </List>
@@ -112,16 +113,26 @@ export function HomeScreen() {
       <Section title="☁️ API">
         <List>
           <ListItem text="✅ Get user shelf by slug" />
-          <ListItem text="Expo does health check" />
+          <ListItem text="✅ Get /api/v1/users/{username}" />
+          <ListItem text="Generate OpenAPI Spec" />
+          <ListItem text="Batch Upsert MyBooks" />
+          <ListItem text="Batch Upsert Shelves?" />
         </List>
       </Section>
 
       <Section title="🛢️ Database">
         <List>
           <ListItem text="✅ Db lib" />
-          <ListItem text="✅ Db Health Check" />
-          <ListItem text="Get /{username} (handle no user 404)" />
-          <ListItem text="Get /{username}/shelf/{slug} (handle 404)" />
+          <ListItem text="✅ Db Health Check /api/health" />
+          <ListItem text="Local Db Docker Dev" />
+        </List>
+      </Section>
+
+      <Section title="😈 ChatGPT">
+        <List>
+          <ListItem text="MyGPT - Upload OpenAPI Spec" />
+          <ListItem text="MyGPT - Call Batch Upsert MyBooks" />
+          <ListItem text="MyGPT - Call Batch Upsert Shelves?" />
         </List>
       </Section>
 
