@@ -10,6 +10,7 @@ import SuperJSON from "superjson";
 import type { AppRouter } from "@sovoli/api/trpc";
 
 import { env } from "~/env";
+import { getBaseUrl } from "~/utils/getBaseUrl";
 import { createQueryClient } from "./query-client";
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined;
@@ -57,9 +58,3 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
     </QueryClientProvider>
   );
 }
-
-const getBaseUrl = () => {
-  if (typeof window !== "undefined") return window.location.origin;
-  if (env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return `http://localhost:${process.env.PORT ?? 3000}`;
-};
