@@ -114,7 +114,7 @@ export function HomeScreen() {
         <List>
           <ListItem text="✅ Get user shelf by slug" />
           <ListItem text="✅ Get /api/v1/users/{username}" />
-          <ListItem text="Generate OpenAPI Spec" />
+          <ListItem text="⭕️Generate OpenAPI Spec (3.0.2 instead of 3.1.0)" />
           <ListItem text="Batch Upsert MyBooks" />
           <ListItem text="Batch Upsert Shelves?" />
         </List>
@@ -130,7 +130,7 @@ export function HomeScreen() {
 
       <Section title="😈 ChatGPT">
         <List>
-          <ListItem text="MyGPT - Upload OpenAPI Spec" />
+          <ListItem text="✅ MyGPT - Upload OpenAPI Spec" />
           <ListItem text="MyGPT - Call Batch Upsert MyBooks" />
           <ListItem text="MyGPT - Call Batch Upsert Shelves?" />
         </List>
