@@ -11,7 +11,7 @@ export const userRouter = tsr.router(userContract, {
       where: eq(schema.users.username, username),
     });
 
-    // if (!user) return { status: 404 };
+    if (!user) return { status: 404, body: { message: "User not found" } };
 
     return {
       status: 200,
