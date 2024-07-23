@@ -28,8 +28,8 @@
   "dependencies": {
     "@sovoli/db": "workspace:*",
     "@trpc/server": "11.0.0-rc.461",
-    "@ts-rest/core": "3.45.2",
-    "@ts-rest/serverless": "3.45.2",
+    "@ts-rest/core": "3.47.0",
+    "@ts-rest/serverless": "3.47.0",
     "superjson": "2.2.1",
     "zod": "3.23.8"
   },
