@@ -16,7 +16,7 @@ export const furnitures = pgTable(
       .references(() => users.id),
   },
   (table) => ({
-    uniqueName: unique().on(table.ownerId, table.slug),
+    uniqueSlug: unique().on(table.ownerId, table.slug),
   })
 );
 
@@ -42,7 +42,7 @@ export const shelves = pgTable(
       .references(() => furnitures.id),
   },
   (table) => ({
-    uniqueName: unique().on(table.furnitureId, table.slug),
+    uniqueSlug: unique().on(table.furnitureId, table.slug),
   })
 );
 
