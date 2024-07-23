@@ -1,7 +1,6 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
-import { eq } from "@sovoli/db";
-import { users } from "@sovoli/db/schema";
+import { eq, schema } from "@sovoli/db";
 
 import { publicProcedure } from "../trpc";
 
@@ -10,7 +9,7 @@ export const userRouter = {
     .input(z.object({ username: z.string() }))
     .query(({ ctx, input }) => {
       return ctx.db.query.users.findFirst({
-        where: eq(users.username, input.username),
+        where: eq(schema.users.username, input.username),
       });
     }),
 } satisfies TRPCRouterRecord;

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { initContract } from "@ts-rest/core";
-import { SelectUserSchema } from "@sovoli/db/schema";
+import { schema } from "@sovoli/db";
 
 const c = initContract();
 
@@ -12,7 +12,7 @@ export const userContract = c.router({
       username: z.coerce.string(),
     }),
     responses: {
-      200: SelectUserSchema.nullable(),
+      200: schema.SelectUserSchema.nullable(),
     },
     summary: "Get a user by username",
   },

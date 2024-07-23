@@ -1,19 +1,21 @@
 import { tsr } from "@ts-rest/serverless/next";
 import { eq } from "@sovoli/db";
-import { users } from "@sovoli/db/schema";
-import { db } from "@sovoli/db/client";
+
+import { db, schema } from "@sovoli/db";
 
 import { userContract } from "./userContract";
 
 export const userRouter = tsr.router(userContract, {
-  getUser: async (args) => {
+  getUser: async ({ params: { username } }) => {
     const user = await db.query.users.findFirst({
-      where: eq(users.username, args.params.username),
+      where: eq(schema.users.username, username),
     });
 
+    // if (!user) return { status: 404 };
+
     return {
-      status: 201,
-      body: user,
+      status: 200,
+      body: schema.SelectUserSchema.parse(user),
     };
   },
 });

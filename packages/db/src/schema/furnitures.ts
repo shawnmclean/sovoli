@@ -2,6 +2,7 @@ import { relations } from "drizzle-orm";
 import { pgTable, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./identity";
 import { myBooks } from "./myBooks";
+import { createSelectSchema } from "drizzle-zod";
 
 export const furnitures = pgTable("furniture", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -12,6 +13,8 @@ export const furnitures = pgTable("furniture", {
     .notNull()
     .references(() => users.id),
 });
+
+export const SelectFurnitureSchema = createSelectSchema(furnitures);
 
 export const furnituresRelations = relations(furnitures, ({ one, many }) => ({
   owner: one(users, {
