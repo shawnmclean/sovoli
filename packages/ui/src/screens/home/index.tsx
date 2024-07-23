@@ -114,7 +114,7 @@ export function HomeScreen() {
         <List>
           <ListItem text="✅ Get user shelf by slug" />
           <ListItem text="✅ Get /api/v1/users/{username}" />
-          <ListItem text="⭕️Generate OpenAPI Spec (3.0.2 instead of 3.1.0)" />
+          <ListItem text="⭕️ Generate OpenAPI Spec (3.0.2 instead of 3.1.0)" />
           <ListItem text="Batch Upsert MyBooks" />
           <ListItem text="Batch Upsert Shelves?" />
         </List>
