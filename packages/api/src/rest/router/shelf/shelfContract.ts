@@ -16,7 +16,7 @@ export const shelfContract = c.router({
       pageSize: z.coerce.number().optional().default(10),
     }),
     responses: {
-      200: schema.SelectShelfSchema.array().nullable(),
+      200: schema.SelectShelvesShema,
     },
     summary: "Get shelves by username",
   },
