@@ -46,6 +46,8 @@ export const shelves = pgTable(
   })
 );
 
+export const SelectShelfSchema = createSelectSchema(shelves);
+
 export const shelvesRelations = relations(shelves, ({ one, many }) => ({
   furniture: one(furnitures, {
     fields: [shelves.furnitureId],
