@@ -4,7 +4,7 @@ import { db, eq, and, schema, inArray } from "@sovoli/db";
 import { shelfContract } from "./shelfContract";
 
 export const shelfRouter = tsr.router(shelfContract, {
-  getShelves: async ({ params: { username }, query: { page, pageSize } }) => {
+  getShelves: async ({ params: { username } }) => {
     const shelves = await db.query.shelves.findMany({
       with: {
         books: true,
@@ -34,10 +34,7 @@ export const shelfRouter = tsr.router(shelfContract, {
     };
   },
 
-  getShelf: async ({
-    params: { username, slug },
-    query: { page, pageSize },
-  }) => {
+  getShelf: async ({}) => {
     throw new Error("Not implemented");
   },
 });
