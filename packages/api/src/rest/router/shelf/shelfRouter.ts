@@ -1,25 +1,11 @@
 import { tsr } from "@ts-rest/serverless/next";
-import { db, eq, and, schema, inArray, count } from "@sovoli/db";
+import { db, eq, schema, inArray, count, and } from "@sovoli/db";
 
 import { shelfContract } from "./shelfContract";
 
 export const shelfRouter = tsr.router(shelfContract, {
   getShelves: async ({ params: { username }, query: { page, pageSize } }) => {
-    const filter = inArray(
-      schema.shelves.furnitureId,
-      db
-        .select({ id: schema.furnitures.id })
-        .from(schema.furnitures)
-        .where(
-          inArray(
-            schema.furnitures.ownerId,
-            db
-              .select({ id: schema.users.id })
-              .from(schema.users)
-              .where(eq(schema.users.username, username))
-          )
-        )
-    );
+    const filter = getShelvesByUsernameFilter(username);
     const [data, total] = await Promise.all([
       db.query.shelves.findMany({
         where: filter,
@@ -38,7 +24,35 @@ export const shelfRouter = tsr.router(shelfContract, {
     };
   },
 
-  getShelf: () => {
-    throw new Error("Not implemented");
+  getShelf: async ({ params: { username, slug } }) => {
+    const filter = getShelvesByUsernameFilter(username);
+    const shelf = await db.query.shelves.findFirst({
+      where: and(filter, eq(schema.shelves.slug, slug)),
+    });
+
+    if (!shelf) return { status: 404, body: { message: "Shelf not found" } };
+
+    return {
+      status: 200,
+      body: schema.SelectShelfSchema.parse(shelf),
+    };
   },
 });
+
+function getShelvesByUsernameFilter(username: string) {
+  return inArray(
+    schema.shelves.furnitureId,
+    db
+      .select({ id: schema.furnitures.id })
+      .from(schema.furnitures)
+      .where(
+        inArray(
+          schema.furnitures.ownerId,
+          db
+            .select({ id: schema.users.id })
+            .from(schema.users)
+            .where(eq(schema.users.username, username))
+        )
+      )
+  );
+}
