@@ -34,7 +34,7 @@ export const shelfRouter = tsr.router(shelfContract, {
     };
   },
 
-  getShelf: ({}) => {
+  getShelf: () => {
     throw new Error("Not implemented");
   },
 });
