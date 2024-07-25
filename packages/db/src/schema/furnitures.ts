@@ -41,9 +41,12 @@ export const shelves = pgTable(
     furnitureId: uuid("furnitureId")
       .notNull()
       .references(() => furnitures.id),
+    ownerId: uuid("ownerId")
+      .notNull()
+      .references(() => users.id),
   },
   (table) => ({
-    uniqueSlug: unique().on(table.furnitureId, table.slug),
+    uniqueSlug: unique().on(table.ownerId, table.slug),
   })
 );
 
@@ -61,6 +64,10 @@ export const shelvesRelations = relations(shelves, ({ one, many }) => ({
   furniture: one(furnitures, {
     fields: [shelves.furnitureId],
     references: [furnitures.id],
+  }),
+  owner: one(users, {
+    fields: [shelves.ownerId],
+    references: [users.id],
   }),
   books: many(myBooks),
 }));
