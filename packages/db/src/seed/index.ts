@@ -129,7 +129,7 @@ const seedUsers = async () => {
             name,
             description,
             slug,
-            ownerId: user?.id,
+            ownerId: user.id,
           })
           .onConflictDoUpdate({
             target: [schema.furnitures.slug, schema.furnitures.ownerId],
@@ -153,7 +153,7 @@ const seedUsers = async () => {
                 description,
                 slug,
                 furnitureId: furniture.id,
-                ownerId: user?.id,
+                ownerId: user.id,
               })
               .onConflictDoUpdate({
                 target: [schema.shelves.slug, schema.shelves.ownerId],
@@ -181,10 +181,10 @@ const seedUsers = async () => {
                   name,
                   slug,
                   description,
-                  ownerId: user?.id,
+                  ownerId: user.id,
                   shelfId: shelf.id,
                   shelfOrder: order,
-                  bookId: book?.id,
+                  bookId: book.id,
                 })
                 .onConflictDoUpdate({
                   target: [schema.myBooks.slug, schema.myBooks.ownerId],
