@@ -1,6 +1,14 @@
 import { db, eq, schema, sql } from "../";
 import { shelves } from "../schema";
 
+const books: (typeof schema.books.$inferInsert)[] = [
+  {
+    title: "The Power of Habit",
+    description: "A book about habits",
+    isbn: "9780141036145",
+  },
+];
+
 const data = [
   {
     name: "John Doe",
@@ -16,7 +24,14 @@ const data = [
             name: "Wardrobe Top Left Shelf",
             description: "The Commmunication and Social Intelligence Shelf",
             slug: "wardrobe-top-left-shelf",
-            books: [],
+            books: [
+              {
+                name: "The Power of Habit",
+                slug: "the-power-of-habit",
+                description: "A book about habits",
+                order: 0,
+              },
+            ],
           },
           {
             name: "Wardrobe Bottom Left Shelf",
@@ -72,53 +87,82 @@ const seedUsers = async () => {
         })
         .returning();
 
-      if (user) {
-        for (const { name, description, slug, shelves } of furnitures) {
-          const [furniture] = await db
-            .insert(schema.furnitures)
-            .values({
-              name,
-              description,
-              slug,
-              ownerId: user?.id,
-            })
-            .onConflictDoUpdate({
-              target: [schema.furnitures.slug, schema.furnitures.ownerId],
-              set: {
-                name: sql.raw(`excluded.${schema.furnitures.name.name}`),
-                description: sql.raw(
-                  `excluded.${schema.furnitures.description.name}`
-                ),
-              },
-            })
-            .returning();
+      if (!user) break;
 
-          if (furniture) {
-            for (const { name, description, slug, books } of shelves) {
-              {
-                const [shelf] = await db
-                  .insert(schema.shelves)
-                  .values({
-                    name,
-                    description,
-                    slug,
-                    furnitureId: furniture.id,
-                    ownerId: user?.id,
-                  })
-                  .onConflictDoUpdate({
-                    target: [schema.shelves.slug, schema.shelves.ownerId],
-                    set: {
-                      name: sql.raw(`excluded.${schema.shelves.name.name}`),
-                      description: sql.raw(
-                        `excluded.${schema.shelves.description.name}`
-                      ),
-                    },
-                  })
-                  .returning();
+      for (const { name, description, slug, shelves } of furnitures) {
+        const [furniture] = await db
+          .insert(schema.furnitures)
+          .values({
+            name,
+            description,
+            slug,
+            ownerId: user?.id,
+          })
+          .onConflictDoUpdate({
+            target: [schema.furnitures.slug, schema.furnitures.ownerId],
+            set: {
+              name: sql.raw(`excluded.${schema.furnitures.name.name}`),
+              description: sql.raw(
+                `excluded.${schema.furnitures.description.name}`
+              ),
+            },
+          })
+          .returning();
 
-                if (shelf) {
-                }
-              }
+        if (!furniture) break;
+
+        for (const { name, description, slug, books } of shelves) {
+          {
+            const [shelf] = await db
+              .insert(schema.shelves)
+              .values({
+                name,
+                description,
+                slug,
+                furnitureId: furniture.id,
+                ownerId: user?.id,
+              })
+              .onConflictDoUpdate({
+                target: [schema.shelves.slug, schema.shelves.ownerId],
+                set: {
+                  name: sql.raw(`excluded.${schema.shelves.name.name}`),
+                  description: sql.raw(
+                    `excluded.${schema.shelves.description.name}`
+                  ),
+                },
+              })
+              .returning();
+
+            if (!shelf) break;
+
+            for (const { name, slug, description, order } of books) {
+              const book = await db.query.books.findFirst({
+                where: eq(schema.books.title, name),
+              });
+              if (!book) break;
+              console.log("creating myBooks for book", book);
+
+              const [myBooks] = await db
+                .insert(schema.myBooks)
+                .values({
+                  name,
+                  slug,
+                  description,
+                  ownerId: user?.id,
+                  shelfId: shelf.id,
+                  shelfOrder: order,
+                  bookId: book?.id,
+                })
+                .onConflictDoUpdate({
+                  target: [schema.myBooks.slug, schema.myBooks.ownerId],
+                  set: {
+                    name: sql.raw(`excluded.${schema.myBooks.name.name}`),
+                    description: sql.raw(
+                      `excluded.${schema.myBooks.description.name}`
+                    ),
+                  },
+                })
+                .returning();
             }
           }
         }
@@ -129,7 +173,11 @@ const seedUsers = async () => {
       with: {
         furnitures: {
           with: {
-            shelves: true,
+            shelves: {
+              with: {
+                books: true,
+              },
+            },
           },
         },
       },
@@ -142,8 +190,33 @@ const seedUsers = async () => {
   }
 };
 
+const seedBooks = async () => {
+  for (const { title, description, isbn } of books) {
+    const [book] = await db
+      .insert(schema.books)
+      .values({
+        title,
+        description,
+        isbn,
+      })
+      .onConflictDoUpdate({
+        target: schema.books.isbn,
+        set: {
+          title: sql.raw(`excluded.${schema.books.title.name}`),
+          description: sql.raw(`excluded.${schema.books.description.name}`),
+        },
+      })
+      .returning();
+  }
+
+  const createdBooks = await db.query.books.findMany();
+  console.log(JSON.stringify(createdBooks, null, 2));
+  console.log("🧨 Done seeding the books table successfully...\n");
+};
+
 const main = async () => {
   console.log("🧨 Started seeding the database...\n");
+  await seedBooks();
   await seedUsers();
   console.log("\n🧨 Done seeding the database successfully...\n");
 };
