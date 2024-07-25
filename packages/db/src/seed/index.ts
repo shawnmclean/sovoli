@@ -254,4 +254,4 @@ const main = async () => {
   console.log("\n🧨 Done seeding the database successfully...\n");
 };
 
-main();
+await main();
