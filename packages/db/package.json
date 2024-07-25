@@ -12,6 +12,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "push": "pnpm with-env drizzle-kit push",
+    "seed": "pnpm with-env tsx ./src/seed/index.ts",
     "studio": "pnpm with-env drizzle-kit studio",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "with-env": "dotenv -e ../../.env --"
@@ -29,6 +30,7 @@
     "drizzle-kit": "0.22.8",
     "eslint": "9.6.0",
     "prettier": "3.1.1",
-    "typescript": "5.5.2"
+    "typescript": "5.5.2",
+    "tsx": "4.16.2"
   }
 }

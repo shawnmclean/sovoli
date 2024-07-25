@@ -1,7 +1,16 @@
 import { relations } from "drizzle-orm";
-import { pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  unique,
+  uuid,
+  varchar,
+  pgEnum,
+} from "drizzle-orm/pg-core";
 import { users } from "./identity";
 import { shelves } from "./furnitures";
+
+export const bookTypes = pgEnum("bookType", ["audio", "physical", "ebook"]);
 
 export const myBooks = pgTable(
   "myBooks",
@@ -11,10 +20,12 @@ export const myBooks = pgTable(
     // usually follows the title of the book
     name: varchar("name", { length: 255 }).notNull(),
     description: varchar("description", { length: 255 }),
+    type: bookTypes("type"),
     ownerId: uuid("ownerId")
       .notNull()
       .references(() => users.id),
     shelfId: uuid("shelfId").references(() => shelves.id),
+    shelfOrder: integer("shelfOrder"),
     bookId: uuid("bookId").references(() => books.id),
   },
   (table) => ({
