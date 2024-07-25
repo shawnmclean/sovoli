@@ -1,12 +1,5 @@
 import { relations } from "drizzle-orm";
-import {
-  integer,
-  pgTable,
-  unique,
-  uuid,
-  varchar,
-  pgEnum,
-} from "drizzle-orm/pg-core";
+import { integer, pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./identity";
 import { shelves } from "./furnitures";
 

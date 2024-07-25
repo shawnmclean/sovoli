@@ -1,11 +1,25 @@
 import { db, eq, schema, sql } from "../";
-import { shelves } from "../schema";
 
 const books: (typeof schema.books.$inferInsert)[] = [
   {
     title: "The Power of Habit",
     description: "A book about habits",
     isbn: "9780141036145",
+  },
+  {
+    title: "The 7 Habits of Highly Effective People",
+    description: "A book about habits",
+    isbn: "9780307358839",
+  },
+  {
+    title: "The Art of War",
+    description: "A book about war",
+    isbn: "9780439136365",
+  },
+  {
+    title: "Titanic",
+    description: "A book about the Titanic",
+    isbn: "9780439136365",
   },
 ];
 
@@ -31,13 +45,32 @@ const data = [
                 description: "A book about habits",
                 order: 0,
               },
+              {
+                name: "The 7 Habits of Highly Effective People",
+                slug: "the-7-habits-of-highly-effective-people",
+                description: "A book about habits",
+                order: 1,
+              },
+              {
+                name: "The Art of War",
+                slug: "the-art-of-war",
+                description: "A book about war",
+                order: 2,
+              },
             ],
           },
           {
             name: "Wardrobe Bottom Left Shelf",
             description: "The Psychology and Self-Help Shelf",
             slug: "wardrobe-bottom-left-shelf",
-            books: [],
+            books: [
+              {
+                name: "Titanic",
+                slug: "titanic",
+                description: "A book about the Titanic",
+                order: 0,
+              },
+            ],
           },
         ],
       },
@@ -142,7 +175,7 @@ const seedUsers = async () => {
               if (!book) break;
               console.log("creating myBooks for book", book);
 
-              const [myBooks] = await db
+              await db
                 .insert(schema.myBooks)
                 .values({
                   name,
@@ -192,7 +225,7 @@ const seedUsers = async () => {
 
 const seedBooks = async () => {
   for (const { title, description, isbn } of books) {
-    const [book] = await db
+    await db
       .insert(schema.books)
       .values({
         title,
