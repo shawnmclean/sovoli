@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
 import { pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./identity";
-import { myBooks } from "./myBooks";
+import { books, myBooks, SelectMyBookSchema } from "./myBooks";
 import { z } from "zod";
 import { createSelectSchema } from "drizzle-zod";
 
@@ -50,7 +50,10 @@ export const shelves = pgTable(
   })
 );
 
-export const SelectShelfSchema = createSelectSchema(shelves);
+export const SelectShelfSchema = createSelectSchema(shelves).extend({
+  furniture: SelectFurnitureSchema.optional(),
+  books: SelectMyBookSchema.array().optional(),
+});
 export const SelectShelvesShema = z.object({
   data: SelectShelfSchema.array(),
   meta: z.object({

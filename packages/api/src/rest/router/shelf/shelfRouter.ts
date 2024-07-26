@@ -8,6 +8,12 @@ export const shelfRouter = tsr.router(shelfContract, {
     const filter = getShelvesByUsernameFilter(username);
     const [data, total] = await Promise.all([
       db.query.shelves.findMany({
+        with: {
+          furniture: true,
+          books: {
+            with: { book: true },
+          },
+        },
         where: filter,
         limit: pageSize,
         offset: (page - 1) * pageSize,

@@ -2,6 +2,22 @@ import { relations } from "drizzle-orm";
 import { integer, pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./identity";
 import { shelves } from "./furnitures";
+import { createSelectSchema } from "drizzle-zod";
+
+export const books = pgTable("books", {
+  id: uuid("id").notNull().primaryKey().defaultRandom(),
+  isbn: varchar("isbn", { length: 255 }).notNull().unique(),
+  // lets not add a slug for now until we have a better idea of how to handle it: https://chatgpt.com/share/7cea2ff0-4534-40b1-ba17-c0df16edfec7
+  // slug: varchar("slug", { length: 255 }).notNull().unique(),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: varchar("description", { length: 255 }),
+});
+
+export const SelectBookSchema = createSelectSchema(books);
+
+export const booksRelations = relations(books, ({ many }) => ({
+  myBooks: many(myBooks),
+}));
 
 export const myBooks = pgTable(
   "myBooks",
@@ -25,6 +41,10 @@ export const myBooks = pgTable(
   })
 );
 
+export const SelectMyBookSchema = createSelectSchema(myBooks).extend({
+  book: SelectBookSchema.optional(),
+});
+
 export const myBooksRelations = relations(myBooks, ({ one }) => ({
   owner: one(users, {
     fields: [myBooks.ownerId],
@@ -38,20 +58,4 @@ export const myBooksRelations = relations(myBooks, ({ one }) => ({
     fields: [myBooks.bookId],
     references: [books.id],
   }),
-}));
-
-// add a book table thats a one to one relationship with myBooks
-// allow for the behavior that a book needs to be approved that it matches the isbn
-
-export const books = pgTable("books", {
-  id: uuid("id").notNull().primaryKey().defaultRandom(),
-  isbn: varchar("isbn", { length: 255 }).notNull().unique(),
-  // lets not add a slug for now until we have a better idea of how to handle it: https://chatgpt.com/share/7cea2ff0-4534-40b1-ba17-c0df16edfec7
-  // slug: varchar("slug", { length: 255 }).notNull().unique(),
-  title: varchar("title", { length: 255 }).notNull(),
-  description: varchar("description", { length: 255 }),
-});
-
-export const booksRelations = relations(books, ({ many }) => ({
-  myBooks: many(myBooks),
 }));
