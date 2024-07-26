@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { initContract } from "@ts-rest/core";
-import { schema } from "@sovoli/db";
 import {
   ShelfResponseSchema,
   ShelvesResponseSchema,

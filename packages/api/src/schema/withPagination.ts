@@ -1,4 +1,5 @@
-import { z, ZodType, ZodTypeDef } from "zod";
+import { z } from "zod";
+import type { ZodType, ZodTypeDef } from "zod";
 
 const PaginationMetaSchema = z.object({
   page: z.number(),
