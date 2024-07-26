@@ -1,8 +1,10 @@
 import { relations } from "drizzle-orm";
 import { integer, pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./identity";
-import { shelves } from "./furnitures";
+import { SelectShelfSchema, shelves } from "./furnitures";
 import { createSelectSchema } from "drizzle-zod";
+import { withPagination } from "../utils/withPagination";
+import { z } from "zod";
 
 export const books = pgTable("books", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -41,16 +43,27 @@ export const myBooks = pgTable(
   })
 );
 
-export const SelectMyBookSchema = createSelectSchema(myBooks).extend({
-  book: SelectBookSchema.optional(),
-});
+export type SelectMyBookType = typeof myBooks.$inferSelect & {
+  shelf?: z.infer<typeof SelectShelfSchema>;
+  book?: z.infer<typeof SelectBookSchema>;
+};
+
+// Lazy evaluation to handle circular reference
+export const SelectMyBookSchema: z.ZodType<SelectMyBookType> = z.lazy(() =>
+  createSelectSchema(myBooks).extend({
+    shelf: SelectShelfSchema.optional(),
+    book: SelectBookSchema.optional(),
+  })
+);
+
+export const SelectMyBooksSchema = withPagination(SelectMyBookSchema);
 
 export const myBooksRelations = relations(myBooks, ({ one }) => ({
   owner: one(users, {
     fields: [myBooks.ownerId],
     references: [users.id],
   }),
-  shelve: one(shelves, {
+  shelf: one(shelves, {
     fields: [myBooks.shelfId],
     references: [shelves.id],
   }),

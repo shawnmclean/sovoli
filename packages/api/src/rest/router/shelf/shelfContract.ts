@@ -13,7 +13,7 @@ export const shelfContract = c.router({
     }),
     query: z.object({
       page: z.coerce.number().optional().default(1),
-      pageSize: z.coerce.number().optional().default(10),
+      pageSize: z.coerce.number().optional().default(30),
     }),
     responses: {
       200: schema.SelectShelvesShema,
@@ -26,10 +26,6 @@ export const shelfContract = c.router({
     pathParams: z.object({
       username: z.coerce.string(),
       slug: z.coerce.string(),
-    }),
-    query: z.object({
-      page: z.coerce.number().optional().default(1),
-      pageSize: z.coerce.number().optional().default(10),
     }),
     responses: {
       200: schema.SelectShelfSchema.nullable(),
