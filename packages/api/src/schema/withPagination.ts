@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { ZodType, ZodTypeDef } from "zod";
+import type { ZodObject, ZodRawShape } from "zod";
 
 const PaginationMetaSchema = z.object({
   page: z.number(),
@@ -7,7 +7,7 @@ const PaginationMetaSchema = z.object({
   total: z.number(),
 });
 
-export function withPagination<T extends ZodType<any, ZodTypeDef>>(schema: T) {
+export function withPagination<T extends ZodRawShape>(schema: ZodObject<T>) {
   return z.object({
     data: schema.array(),
     meta: PaginationMetaSchema,

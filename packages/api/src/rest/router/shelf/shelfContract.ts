@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { initContract } from "@ts-rest/core";
 import {
+  NotFoundSchema,
   ShelfResponseSchema,
   ShelvesResponseSchema,
 } from "../../../schema/schema";
@@ -31,6 +32,7 @@ export const shelfContract = c.router({
       slug: z.coerce.string(),
     }),
     responses: {
+      404: NotFoundSchema,
       200: ShelfResponseSchema,
     },
     summary: "Get a shelf and it's books by slug",

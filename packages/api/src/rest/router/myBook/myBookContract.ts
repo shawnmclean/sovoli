@@ -3,6 +3,7 @@ import { initContract } from "@ts-rest/core";
 import {
   MyBookResponseSchema,
   MyBooksResponseSchema,
+  NotFoundSchema,
 } from "../../../schema/schema";
 
 const c = initContract();
@@ -31,6 +32,7 @@ export const myBookContract = c.router({
       slug: z.coerce.string(),
     }),
     responses: {
+      404: NotFoundSchema,
       200: MyBookResponseSchema,
     },
     summary: "Get the user's book by slug",
