@@ -57,7 +57,7 @@ export const shelfRouter = tsr.router(shelfContract, {
   putShelf: async ({ params: { username, slug }, body }) => {
     // TODO: authorize the user > username
     // TODO: upsert operation
-
+    console.log({ username, slug, body });
     return {
       status: 200,
       body: ShelfResponseSchema.parse(body),
