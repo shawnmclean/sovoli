@@ -53,6 +53,16 @@ export const shelfRouter = tsr.router(shelfContract, {
       body: ShelfResponseSchema.parse(shelf),
     };
   },
+
+  putShelf: async ({ params: { username, slug }, body }) => {
+    // TODO: authorize the user > username
+    // TODO: upsert operation
+
+    return {
+      status: 200,
+      body: ShelfResponseSchema.parse(body),
+    };
+  },
 });
 
 function getShelvesByUsernameFilter(username: string) {

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { initContract } from "@ts-rest/core";
 import {
+  InsertShelfRequestSchema,
   NotFoundSchema,
   ShelfResponseSchema,
   ShelvesResponseSchema,
@@ -36,5 +37,17 @@ export const shelfContract = c.router({
       200: ShelfResponseSchema,
     },
     summary: "Get a shelf and it's books by slug",
+  },
+  putShelf: {
+    method: "PUT",
+    path: `/users/:username/shelves/:slug`,
+    pathParams: z.object({
+      username: z.coerce.string(),
+      slug: z.coerce.string(),
+    }),
+    body: InsertShelfRequestSchema,
+    responses: {
+      200: ShelfResponseSchema,
+    },
   },
 });

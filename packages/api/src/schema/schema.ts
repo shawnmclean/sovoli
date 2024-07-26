@@ -1,5 +1,9 @@
 import { schema } from "@sovoli/db";
-import { SelectMyBookSchema, SelectShelfSchema } from "@sovoli/db/src/schema";
+import {
+  InsertShelfSchema,
+  SelectMyBookSchema,
+  SelectShelfSchema,
+} from "@sovoli/db/src/schema";
 import { withPagination } from "./withPagination";
 import { z } from "zod";
 
@@ -20,3 +24,7 @@ export const ShelfResponseSchema = SelectShelfSchema.extend({
 });
 
 export const ShelvesResponseSchema = withPagination(ShelfResponseSchema);
+
+export const InsertShelfRequestSchema = InsertShelfSchema.extend({
+  // TODO: add array of books here
+});

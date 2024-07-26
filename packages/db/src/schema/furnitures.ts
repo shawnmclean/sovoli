@@ -2,7 +2,7 @@ import { relations } from "drizzle-orm";
 import { pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./identity";
 import { myBooks } from "./myBooks";
-import { createSelectSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const furnitures = pgTable(
   "furniture",
@@ -50,6 +50,7 @@ export const shelves = pgTable(
 );
 
 export const SelectShelfSchema = createSelectSchema(shelves);
+export const InsertShelfSchema = createInsertSchema(shelves);
 
 export const shelvesRelations = relations(shelves, ({ one, many }) => ({
   furniture: one(furnitures, {
