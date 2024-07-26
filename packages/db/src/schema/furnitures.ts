@@ -1,10 +1,8 @@
 import { relations } from "drizzle-orm";
 import { pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./identity";
-import { myBooks, SelectMyBookSchema, SelectMyBookType } from "./myBooks";
+import { myBooks } from "./myBooks";
 import { createSelectSchema } from "drizzle-zod";
-import { z } from "zod";
-import { withPagination } from "../utils/withPagination";
 
 export const furnitures = pgTable(
   "furniture",
@@ -51,19 +49,7 @@ export const shelves = pgTable(
   })
 );
 
-export type SelectShelfType = typeof shelves.$inferSelect & {
-  furniture?: z.infer<typeof SelectFurnitureSchema>;
-  books?: SelectMyBookType[];
-};
-
-// Lazy schema to avoid circular dependency
-export const SelectShelfSchema: z.ZodType<SelectShelfType> = z.lazy(() =>
-  createSelectSchema(shelves).extend({
-    furniture: SelectFurnitureSchema.optional(),
-    books: SelectMyBookSchema.array().optional(),
-  })
-);
-export const SelectShelvesShema = withPagination(SelectShelfSchema);
+export const SelectShelfSchema = createSelectSchema(shelves);
 
 export const shelvesRelations = relations(shelves, ({ one, many }) => ({
   furniture: one(furnitures, {

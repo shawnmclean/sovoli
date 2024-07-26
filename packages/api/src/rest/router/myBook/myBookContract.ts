@@ -1,6 +1,9 @@
 import { z } from "zod";
 import { initContract } from "@ts-rest/core";
-import { schema } from "@sovoli/db";
+import {
+  MyBookResponseSchema,
+  MyBooksResponseSchema,
+} from "../../../schema/schema";
 
 const c = initContract();
 
@@ -16,7 +19,7 @@ export const myBookContract = c.router({
       pageSize: z.coerce.number().optional().default(30),
     }),
     responses: {
-      200: schema.SelectMyBooksSchema,
+      200: MyBooksResponseSchema,
     },
     summary: "Get shelves by username",
   },
@@ -28,7 +31,7 @@ export const myBookContract = c.router({
       slug: z.coerce.string(),
     }),
     responses: {
-      200: schema.SelectMyBookSchema.nullable(),
+      200: MyBookResponseSchema,
     },
     summary: "Get the user's book by slug",
   },

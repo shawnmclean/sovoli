@@ -2,6 +2,10 @@ import { tsr } from "@ts-rest/serverless/next";
 import { db, eq, schema, inArray, count, and } from "@sovoli/db";
 
 import { shelfContract } from "./shelfContract";
+import {
+  ShelfResponseSchema,
+  ShelvesResponseSchema,
+} from "../../../schema/schema";
 
 export const shelfRouter = tsr.router(shelfContract, {
   getShelves: async ({ params: { username }, query: { page, pageSize } }) => {
@@ -23,7 +27,7 @@ export const shelfRouter = tsr.router(shelfContract, {
 
     return {
       status: 200,
-      body: schema.SelectShelvesShema.parse({
+      body: ShelvesResponseSchema.parse({
         data,
         meta: { page, pageSize, total: total[0]?.count },
       }),
@@ -33,6 +37,12 @@ export const shelfRouter = tsr.router(shelfContract, {
   getShelf: async ({ params: { username, slug } }) => {
     const filter = getShelvesByUsernameFilter(username);
     const shelf = await db.query.shelves.findFirst({
+      with: {
+        furniture: true,
+        books: {
+          with: { book: true },
+        },
+      },
       where: and(filter, eq(schema.shelves.slug, slug)),
     });
 
@@ -40,7 +50,7 @@ export const shelfRouter = tsr.router(shelfContract, {
 
     return {
       status: 200,
-      body: schema.SelectShelfSchema.parse(shelf),
+      body: ShelfResponseSchema.parse(shelf),
     };
   },
 });

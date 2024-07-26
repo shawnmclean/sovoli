@@ -2,6 +2,10 @@ import { tsr } from "@ts-rest/serverless/next";
 import { db, eq, and, schema, inArray, count } from "@sovoli/db";
 
 import { myBookContract } from "./myBookContract";
+import {
+  MyBookResponseSchema,
+  MyBooksResponseSchema,
+} from "../../../schema/schema";
 
 export const myBookRouter = tsr.router(myBookContract, {
   getMyBooks: async ({ params: { username }, query: { page, pageSize } }) => {
@@ -21,7 +25,7 @@ export const myBookRouter = tsr.router(myBookContract, {
 
     return {
       status: 200,
-      body: schema.SelectMyBooksSchema.parse({
+      body: MyBooksResponseSchema.parse({
         data,
         meta: { page, pageSize, total: total[0]?.count },
       }),
@@ -42,7 +46,7 @@ export const myBookRouter = tsr.router(myBookContract, {
 
     return {
       status: 200,
-      body: schema.SelectMyBookSchema.parse(myBook),
+      body: MyBookResponseSchema.parse(myBook),
     };
   },
 });
