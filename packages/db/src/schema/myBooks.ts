@@ -42,9 +42,8 @@ export const InferredBookSchema = z.object({
 export const InsertInferredBookSchema = InferredBookSchema.omit({
   error: true,
 });
-export interface InsertInferredBook
-  extends z.infer<typeof InsertInferredBookSchema> {}
-export interface InferredBook extends z.infer<typeof InferredBookSchema> {}
+export type InsertInferredBook = z.infer<typeof InsertInferredBookSchema>;
+export type InferredBook = z.infer<typeof InferredBookSchema>;
 
 export const myBooks = pgTable(
   "myBooks",
