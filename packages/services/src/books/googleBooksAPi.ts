@@ -1,3 +1,24 @@
+interface VolumeInfo {
+  title: string;
+  authors: string[];
+  publisher: string;
+  publishedDate: string;
+  description: string;
+  pageCount: number;
+  categories: string[];
+  averageRating: number;
+  imageLinks?: {
+    thumbnail: string;
+  };
+}
+
+interface BookItem {
+  volumeInfo: VolumeInfo;
+}
+
+interface GoogleBooksApiResponse {
+  items: BookItem[];
+}
 export interface GoogleBook {
   title: string;
   authors: string[];
@@ -10,7 +31,7 @@ export interface GoogleBook {
   thumbnail: string | null;
 }
 
-async function getBooks(query: string): Promise<GoogleBook[]> {
+export async function getBooks(query: string): Promise<GoogleBook[]> {
   const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
     query
   )}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
@@ -21,7 +42,7 @@ async function getBooks(query: string): Promise<GoogleBook[]> {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as GoogleBooksApiResponse;
 
     if (!data.items) {
       throw new Error("No books found");
