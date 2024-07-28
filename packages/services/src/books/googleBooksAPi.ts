@@ -78,13 +78,13 @@ export async function getBooks(
         }
       }
       return {
-        title: volumeInfo.title ?? "No title available",
-        subtitle: volumeInfo.subtitle ?? "No subtitle available",
-        authors: volumeInfo.authors ?? ["No authors available"],
-        publishedDate: volumeInfo.publishedDate ?? "No date available",
-        description: volumeInfo.description ?? "No description available",
-        pageCount: volumeInfo.pageCount ?? 0,
-        categories: volumeInfo.categories ?? ["No categories available"],
+        title: volumeInfo.title,
+        subtitle: volumeInfo.subtitle,
+        authors: volumeInfo.authors,
+        publishedDate: volumeInfo.publishedDate,
+        description: volumeInfo.description,
+        pageCount: volumeInfo.pageCount,
+        categories: volumeInfo.categories,
         isbn10,
         isbn13,
         thumbnail: volumeInfo.imageLinks
