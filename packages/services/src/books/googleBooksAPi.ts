@@ -63,10 +63,6 @@ export async function getBooks(
 
     const data = (await response.json()) as GoogleBooksApiResponse;
 
-    if (!data.items) {
-      throw new Error("No books found");
-    }
-
     const books: GoogleBook[] = data.items.map((item: BookItem) => {
       const volumeInfo = item.volumeInfo;
       let isbn10: string | null = null;
@@ -82,13 +78,13 @@ export async function getBooks(
         }
       }
       return {
-        title: volumeInfo.title || "No title available",
-        subtitle: volumeInfo.subtitle || "No subtitle available",
-        authors: volumeInfo.authors || ["No authors available"],
-        publishedDate: volumeInfo.publishedDate || "No date available",
-        description: volumeInfo.description || "No description available",
-        pageCount: volumeInfo.pageCount || 0,
-        categories: volumeInfo.categories || ["No categories available"],
+        title: volumeInfo.title ?? "No title available",
+        subtitle: volumeInfo.subtitle ?? "No subtitle available",
+        authors: volumeInfo.authors ?? ["No authors available"],
+        publishedDate: volumeInfo.publishedDate ?? "No date available",
+        description: volumeInfo.description ?? "No description available",
+        pageCount: volumeInfo.pageCount ?? 0,
+        categories: volumeInfo.categories ?? ["No categories available"],
         isbn10,
         isbn13,
         thumbnail: volumeInfo.imageLinks
