@@ -28,12 +28,11 @@ export const ShelvesResponseSchema = withPagination(ShelfResponseSchema);
 export const InsertShelfRequestSchema = InsertShelfSchema.omit({
   ownerId: true,
 }).extend({
-  books: z.array(
+  myBooks: z.array(
     z.object({
-      // if id is provided, it will be used to update the book
-      // otherwise, the name will be used to create a new book
-      id: z.string().nullable(),
       name: z.string(),
+      author: z.string().nullable(),
+      isbn: z.string().nullable(),
       shelfOrder: z.number(),
     })
   ),

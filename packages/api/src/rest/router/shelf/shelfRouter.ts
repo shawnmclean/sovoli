@@ -117,7 +117,7 @@ export const shelfRouter = tsr.router(shelfContract, {
 
     return {
       status: 200,
-      body: ShelfResponseSchema.parse(body),
+      body: ShelfResponseSchema.parse(shelf),
     };
   },
 });
