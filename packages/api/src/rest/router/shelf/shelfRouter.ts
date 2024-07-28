@@ -87,7 +87,8 @@ export const shelfRouter = tsr.router(shelfContract, {
         body: { message: "Shelf created but not returned" },
       };
 
-    // TODO: move all of this to trigger.dev
+    // TODO: handle books with id here
+    // TODO: move other operations to trigger.dev
     // since it will require calls to google books api
 
     // const books = body.books.map((book) => {

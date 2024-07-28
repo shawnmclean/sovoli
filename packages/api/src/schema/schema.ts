@@ -30,6 +30,9 @@ export const InsertShelfRequestSchema = InsertShelfSchema.omit({
 }).extend({
   books: z.array(
     z.object({
+      // if id is provided, it will be used to update the book
+      // otherwise, the name will be used to create a new book
+      id: z.string().nullable(),
       name: z.string(),
       shelfOrder: z.number(),
     })
