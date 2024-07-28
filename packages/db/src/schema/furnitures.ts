@@ -11,7 +11,7 @@ export const furnitures = pgTable(
     slug: varchar("slug", { length: 255 }).notNull(),
     name: varchar("name", { length: 255 }).notNull(),
     description: varchar("description", { length: 255 }),
-    ownerId: uuid("ownerId")
+    ownerId: uuid("owner_id")
       .notNull()
       .references(() => users.id),
   },
@@ -38,10 +38,10 @@ export const shelves = pgTable(
     slug: varchar("slug", { length: 255 }).notNull(),
     name: varchar("name", { length: 255 }).notNull(),
     description: varchar("description", { length: 255 }),
-    furnitureId: uuid("furnitureId")
+    furnitureId: uuid("furniture_id")
       .notNull()
       .references(() => furnitures.id),
-    ownerId: uuid("ownerId")
+    ownerId: uuid("owner_id")
       .notNull()
       .references(() => users.id),
   },

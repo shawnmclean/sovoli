@@ -6,6 +6,7 @@ import {
   ShelfResponseSchema,
   ShelvesResponseSchema,
 } from "../../../schema/schema";
+import { handleInferredBook } from "./handleBooks";
 
 export const shelfRouter = tsr.router(shelfContract, {
   getShelves: async ({ params: { username }, query: { page, pageSize } }) => {
@@ -67,7 +68,7 @@ export const shelfRouter = tsr.router(shelfContract, {
       .values({
         name: body.name,
         description: body.description,
-        slug: slug,
+        slug: body.slug,
         furnitureId: body.furnitureId,
         ownerId: user.id,
       })
@@ -87,33 +88,77 @@ export const shelfRouter = tsr.router(shelfContract, {
         body: { message: "Shelf created but not returned" },
       };
 
-    // TODO: handle books with id here
-    // TODO: move other operations to trigger.dev
-    // since it will require calls to google books api
+    if (body.myBooks && body.myBooks.length > 0) {
+      // TODO: Move this logic into a background job
+      // Workflow:
+      // 1. iterate over the books and hydrate them (if the book is coming from an inference system, confirm with google books api)
+      // a. call the google books api
+      // b. if the book is not found, save the error to the myBooks table
+      // c. if the book is found,
+      //  c.1 find the book in the database and save the id to the myBooks table
+      //  c.2 if the book is not found, save the book to the database and save the id to the myBooks table
+      // 2. Handle the shelf order logic
+      for (const myBook of body.myBooks) {
+        if (!myBook.inferredBook) continue;
 
-    // const books = body.books.map((book) => {
-    //   return {
-    //     name: book.name,
-    //     slug: slugify(book.name),
-    //     ownerId: user.id,
-    //     shelfId: shelf.id,
-    //     shelfOrder: book.shelfOrder,
-    //     bookId: null,
-    //   };
-    // });
+        try {
+          const book = await handleInferredBook(myBook.inferredBook);
 
-    // await db
-    //   .insert(schema.myBooks)
-    //   .values(books)
-    //   .onConflictDoUpdate({
-    //     target: [schema.myBooks.slug, schema.myBooks.ownerId],
-    //     set: {
-    //       name: sql.raw(`excluded.${schema.myBooks.name.name}`),
-    //       description: sql.raw(`excluded.${schema.myBooks.description.name}`),
-    //       shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
-    //       shelfOrder: sql.raw(`excluded.${schema.myBooks.shelfOrder.name}`),
-    //     },
-    //   });
+          await db
+            .insert(schema.myBooks)
+            .values({
+              name: myBook.inferredBook.title,
+              ownerId: user.id,
+              shelfId: shelf.id,
+              shelfOrder: myBook.shelfOrder,
+              inferredBook: { ...myBook.inferredBook },
+              bookId: book.id,
+              slug: slugify(book.title),
+            })
+            .onConflictDoUpdate({
+              target: [schema.myBooks.slug, schema.myBooks.ownerId],
+              set: {
+                name: sql.raw(`excluded.${schema.myBooks.name.name}`),
+                shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
+                shelfOrder: sql.raw(
+                  `excluded.${schema.myBooks.shelfOrder.name}`
+                ),
+                inferredBook: sql.raw(
+                  `excluded.${schema.myBooks.inferredBook.name}`
+                ),
+                bookId: sql.raw(`excluded.${schema.myBooks.bookId.name}`),
+              },
+            });
+        } catch (error) {
+          const errorMessage =
+            error instanceof Error ? error.message : String(error);
+
+          await db
+            .insert(schema.myBooks)
+            .values({
+              name: myBook.inferredBook.title,
+              ownerId: user.id,
+              shelfId: shelf.id,
+              shelfOrder: myBook.shelfOrder,
+              inferredBook: { ...myBook.inferredBook, error: errorMessage },
+              slug: slugify(myBook.inferredBook.title),
+            })
+            .onConflictDoUpdate({
+              target: [schema.myBooks.slug, schema.myBooks.ownerId],
+              set: {
+                name: sql.raw(`excluded.${schema.myBooks.name.name}`),
+                shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
+                shelfOrder: sql.raw(
+                  `excluded.${schema.myBooks.shelfOrder.name}`
+                ),
+                inferredBook: sql.raw(
+                  `excluded.${schema.myBooks.inferredBook.name}`
+                ),
+              },
+            });
+        }
+      }
+    }
 
     return {
       status: 200,
@@ -140,12 +185,12 @@ function getShelvesByUsernameFilter(username: string) {
   );
 }
 
-// function slugify(str: string) {
-//   return str
-//     .toLowerCase()
-//     .replace(/[^\w\s-]/g, "")
-//     .replace(/\s+/g, "-")
-//     .replace(/-+/g, "-")
-//     .replace(/^-+/, "")
-//     .replace(/-+$/, "");
-// }
+function slugify(str: string) {
+  return str
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
+}

@@ -8,4 +8,4 @@ const handler = createNextHandler(contract, router, {
   responseValidation: true,
 });
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST, handler as PUT, handler as DELETE };

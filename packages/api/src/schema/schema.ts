@@ -28,12 +28,12 @@ export const ShelvesResponseSchema = withPagination(ShelfResponseSchema);
 export const InsertShelfRequestSchema = InsertShelfSchema.omit({
   ownerId: true,
 }).extend({
-  myBooks: z.array(
-    z.object({
-      name: z.string(),
-      author: z.string().nullable(),
-      isbn: z.string().nullable(),
-      shelfOrder: z.number(),
-    })
-  ),
+  myBooks: z
+    .array(
+      z.object({
+        inferredBook: schema.InsertInferredBookSchema.optional(),
+        shelfOrder: z.number(),
+      })
+    )
+    .optional(),
 });
