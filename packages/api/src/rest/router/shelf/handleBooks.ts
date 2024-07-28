@@ -1,4 +1,3 @@
-import { z } from "zod";
 import { books } from "@sovoli/services";
 import { db, schema, sql } from "@sovoli/db";
 
@@ -65,21 +64,4 @@ export const handleInferredBook = async (
   if (!upsertedBook[0]) throw new Error("Upserted book not returned");
 
   return upsertedBook[0];
-};
-
-const parsePublishedDate = (publishedDate: string): Date | null => {
-  if (/^\d{4}$/.test(publishedDate)) {
-    // If the format is "YYYY"
-    const year = parseInt(publishedDate);
-    return new Date(Date.UTC(year, 0, 1));
-  } else if (/^\d{4}-\d{2}$/.test(publishedDate)) {
-    // If the format is "YYYY-MM"
-    const parts = publishedDate.split("-");
-    const year = parseInt(parts[0]);
-    const month = parseInt(parts[1]);
-    if (!isNaN(year) && !isNaN(month)) {
-      return new Date(Date.UTC(year, month - 1, 1)); // Months are 0-indexed in JavaScript Date
-    }
-  }
-  return null; // Invalid format
 };
