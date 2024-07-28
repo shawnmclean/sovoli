@@ -55,7 +55,7 @@ export const shelfRouter = tsr.router(shelfContract, {
     };
   },
 
-  putShelf: async ({ params: { username, slug }, body }) => {
+  putShelf: async ({ params: { username }, body }) => {
     // TODO: authorize the user > username
     const user = await db.query.users.findFirst({
       where: eq(schema.users.username, username),

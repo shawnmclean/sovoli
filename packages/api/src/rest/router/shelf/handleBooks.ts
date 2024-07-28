@@ -33,7 +33,7 @@ export const handleInferredBook = async (
 ) => {
   const validatedBook = await validateInferredBook(inferredBook);
 
-  const isbn = validatedBook.isbn13 || validatedBook.isbn10;
+  const isbn = validatedBook.isbn13 ?? validatedBook.isbn10;
   if (!isbn) throw new Error("No ISBN was returned");
 
   // Do this to get rid of the time zone offset
@@ -44,7 +44,7 @@ export const handleInferredBook = async (
     .values({
       title: validatedBook.title,
       subtitle: validatedBook.subtitle,
-      publishedDate: publishedDate?.toDateString(),
+      publishedDate: publishedDate.toDateString(),
       pageCount: validatedBook.pageCount,
       description: validatedBook.description,
       isbn: isbn,
