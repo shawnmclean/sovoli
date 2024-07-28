@@ -40,6 +40,7 @@ export const shelfContract = c.router({
   },
   putShelf: {
     method: "PUT",
+    // TODO: update this to /user/shelves/:slug when auth is in place
     path: `/users/:username/shelves/:slug`,
     pathParams: z.object({
       username: z.coerce.string(),

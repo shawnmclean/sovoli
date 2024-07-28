@@ -21,6 +21,7 @@ export const furnitures = pgTable(
 );
 
 export const SelectFurnitureSchema = createSelectSchema(furnitures);
+export const InsertFurnitureSchema = createInsertSchema(furnitures);
 
 export const furnituresRelations = relations(furnitures, ({ one, many }) => ({
   owner: one(users, {

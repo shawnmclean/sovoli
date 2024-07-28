@@ -1,5 +1,5 @@
 import { tsr } from "@ts-rest/serverless/next";
-import { db, eq, schema, inArray, count, and } from "@sovoli/db";
+import { db, eq, schema, inArray, count, and, sql } from "@sovoli/db";
 
 import { shelfContract } from "./shelfContract";
 import {
@@ -56,8 +56,64 @@ export const shelfRouter = tsr.router(shelfContract, {
 
   putShelf: async ({ params: { username, slug }, body }) => {
     // TODO: authorize the user > username
-    // TODO: upsert operation
-    console.log({ username, slug, body });
+    const user = await db.query.users.findFirst({
+      where: eq(schema.users.username, username),
+    });
+
+    if (!user) return { status: 404, body: { message: "User not found" } };
+
+    const returnedShelves = await db
+      .insert(schema.shelves)
+      .values({
+        name: body.name,
+        description: body.description,
+        slug: slug,
+        furnitureId: body.furnitureId,
+        ownerId: user.id,
+      })
+      .onConflictDoUpdate({
+        target: [schema.shelves.slug, schema.shelves.ownerId],
+        set: {
+          name: sql.raw(`excluded.${schema.shelves.name.name}`),
+          description: sql.raw(`excluded.${schema.shelves.description.name}`),
+        },
+      })
+      .returning();
+
+    const shelf = returnedShelves[0];
+    if (!shelf)
+      return {
+        status: 500,
+        body: { message: "Shelf created but not returned" },
+      };
+
+    // TODO: move all of this to trigger.dev
+    // since it will require calls to google books api
+
+    // const books = body.books.map((book) => {
+    //   return {
+    //     name: book.name,
+    //     slug: slugify(book.name),
+    //     ownerId: user.id,
+    //     shelfId: shelf.id,
+    //     shelfOrder: book.shelfOrder,
+    //     bookId: null,
+    //   };
+    // });
+
+    // await db
+    //   .insert(schema.myBooks)
+    //   .values(books)
+    //   .onConflictDoUpdate({
+    //     target: [schema.myBooks.slug, schema.myBooks.ownerId],
+    //     set: {
+    //       name: sql.raw(`excluded.${schema.myBooks.name.name}`),
+    //       description: sql.raw(`excluded.${schema.myBooks.description.name}`),
+    //       shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
+    //       shelfOrder: sql.raw(`excluded.${schema.myBooks.shelfOrder.name}`),
+    //     },
+    //   });
+
     return {
       status: 200,
       body: ShelfResponseSchema.parse(body),
@@ -82,3 +138,13 @@ function getShelvesByUsernameFilter(username: string) {
       )
   );
 }
+
+// function slugify(str: string) {
+//   return str
+//     .toLowerCase()
+//     .replace(/[^\w\s-]/g, "")
+//     .replace(/\s+/g, "-")
+//     .replace(/-+/g, "-")
+//     .replace(/^-+/, "")
+//     .replace(/-+$/, "");
+// }

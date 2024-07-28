@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@sovoli/db": "workspace:*",
+    "@sovoli/services": "workspace:*",
     "@trpc/server": "11.0.0-rc.461",
     "@ts-rest/core": "3.47.0",
     "@ts-rest/serverless": "3.47.0",

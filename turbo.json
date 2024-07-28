@@ -52,7 +52,8 @@
     "VERCEL_ENV",
     "VERCEL_URL",
     "VERCEL_PROJECT_PRODUCTION_URL",
-    "npm_lifecycle_event"
+    "npm_lifecycle_event",
+    "GOOGLE_BOOKS_API_KEY"
   ],
   "ui": "tui"
 }

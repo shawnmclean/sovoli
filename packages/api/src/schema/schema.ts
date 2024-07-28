@@ -25,6 +25,13 @@ export const ShelfResponseSchema = SelectShelfSchema.extend({
 
 export const ShelvesResponseSchema = withPagination(ShelfResponseSchema);
 
-export const InsertShelfRequestSchema = InsertShelfSchema.extend({
-  // TODO: add array of books here
+export const InsertShelfRequestSchema = InsertShelfSchema.omit({
+  ownerId: true,
+}).extend({
+  books: z.array(
+    z.object({
+      name: z.string(),
+      shelfOrder: z.number(),
+    })
+  ),
 });

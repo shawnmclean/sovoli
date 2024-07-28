@@ -238,6 +238,9 @@ importers:
       '@sovoli/db':
         specifier: workspace:*
         version: link:../db
+      '@sovoli/services':
+        specifier: workspace:*
+        version: link:../services
       '@trpc/server':
         specifier: 11.0.0-rc.461
         version: 11.0.0-rc.461
@@ -334,6 +337,24 @@ importers:
         specifier: rc-v8
         version: 8.0.0-alpha.54(eslint@9.6.0)(typescript@5.5.2)
     devDependencies:
+      '@sovoli/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      eslint:
+        specifier: 9.6.0
+        version: 9.6.0
+      prettier:
+        specifier: 3.1.1
+        version: 3.1.1
+      typescript:
+        specifier: 5.5.2
+        version: 5.5.2
+
+  packages/services:
+    devDependencies:
+      '@sovoli/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
       '@sovoli/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
