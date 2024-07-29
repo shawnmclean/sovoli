@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Linking,
-  Platform,
 } from "react-native";
 import { Text } from "@sovoli/ui/components/text";
 import RNButtons from "./rn-buttons";
@@ -91,7 +90,7 @@ export function HomeScreen() {
               <ListItem text="Shelves">
                 <List>
                   <ListItem text="✅ Routing">
-                    <Link href="/shawn/shelves/wardrobe-bottom-left-shelf">
+                    <Link href="/johndoe/shelves/wardrobe-bottom-left-shelf">
                       <Text className="ml-4 underline">View Shelf</Text>
                     </Link>
                   </ListItem>
