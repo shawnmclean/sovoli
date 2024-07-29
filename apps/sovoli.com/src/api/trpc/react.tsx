@@ -11,7 +11,7 @@ import type { AppRouter } from "@sovoli/api/trpc";
 
 import { env } from "~/env";
 import { getBaseUrl } from "~/utils/getBaseUrl";
-import { createQueryClient } from "./query-client";
+import { createQueryClient } from "../query-client";
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined;
 const getQueryClient = () => {

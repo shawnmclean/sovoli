@@ -6,20 +6,22 @@ import { Image } from "@sovoli/ui/components/image";
 import { Button } from "@sovoli/ui/components/button";
 import { BookHoverCard } from "@sovoli/ui/components/BookHoverCard";
 import { Gallery } from "@sovoli/ui/components/Gallery";
+import { z } from "zod";
 
-import type { RouterOutputs } from "@sovoli/api/trpc";
+import { contract } from "@sovoli/api/rest";
 
-type Shelf = NonNullable<RouterOutputs["shelf"]["bySlug"]>;
+//type Shelf = NonNullable<RouterOutputs["shelf"]["bySlug"]>;
+type Shelf = z.infer<(typeof contract.getShelf.responses)[200]>;
 
 export function ShelfScreen({ shelf }: { shelf: Shelf }) {
   return (
     <ScrollView className="mx-auto">
-      <Gallery images={shelf.images} />
+      {/* <Gallery images={shelf.images} /> */}
 
       <View className="container mx-auto grid gap-4">
         <View className="grid gap-2">
           <Text className="text-3xl font-bold sm:text-4xl lg:text-5xl">
-            {shelf.title}
+            {shelf.name}
           </Text>
           <Text className="text-muted-foreground sm:text-lg">
             {shelf.description}
@@ -28,56 +30,60 @@ export function ShelfScreen({ shelf }: { shelf: Shelf }) {
       </View>
       <View className="grid gap-8 border-border border-t my-5 pt-5">
         <View className="grid gap-2">
-          {shelf.books.map((book) => (
-            <View
-              key={book.isbn}
-              className="flex items-start border-border border-b py-3 gap-2"
-            >
-              <View className="flex-row w-full justify-between gap-2">
-                <View className="flex-1 flex-row gap-2">
-                  <View>
-                    <BookHoverCard book={book}>
-                      <Image
-                        src={book.image}
-                        alt="Book cover"
-                        width={100}
-                        height={150}
-                        className="aspect-[2/3] rounded-lg object-cover"
-                      />
-                    </BookHoverCard>
+          {shelf.books?.map((myBook) => (
+            <>
+              {myBook.book && (
+                <View
+                  key={myBook?.id}
+                  className="flex items-start border-border border-b py-3 gap-2"
+                >
+                  <View className="flex-row w-full justify-between gap-2">
+                    <View className="flex-1 flex-row gap-2">
+                      <View>
+                        {/* <BookHoverCard book={myBook.book}>
+                          <Image
+                            src={book.image}
+                            alt="Book cover"
+                            width={100}
+                            height={150}
+                            className="aspect-[2/3] rounded-lg object-cover"
+                          />
+                        </BookHoverCard> */}
+                      </View>
+                      <View className="flex shrink">
+                        {/* <BookHoverCard book={book}>*/}
+                        <Text className="text-lg font-semibold">
+                          {myBook.book.title}
+                        </Text>
+                        {/* </BookHoverCard>  */}
+                        <Text className="text-sm leading-relaxed text-muted-foreground">
+                          by {myBook.book.publisher}
+                        </Text>
+                      </View>
+                    </View>
+
+                    <View className="flex">
+                      <Button variant="outline">
+                        <Text>Save</Text>
+                      </Button>
+                    </View>
                   </View>
-                  <View className="flex shrink">
-                    <BookHoverCard book={book}>
-                      <Text className="text-lg font-semibold">
-                        {book.title}
+
+                  <View className="flex-row gap-4">
+                    <View>
+                      <Text className="text-sm text-muted-foreground">
+                        Recommended by
                       </Text>
-                    </BookHoverCard>
-                    <Text className="text-sm leading-relaxed text-muted-foreground">
-                      by {book.author}
-                    </Text>
+                    </View>
+                    <View>
+                      <Text className="text-sm text-muted-foreground">
+                        Updated last week
+                      </Text>
+                    </View>
                   </View>
                 </View>
-
-                <View className="flex">
-                  <Button variant="outline">
-                    <Text>Save</Text>
-                  </Button>
-                </View>
-              </View>
-
-              <View className="flex-row gap-4">
-                <View>
-                  <Text className="text-sm text-muted-foreground">
-                    Recommended by {book.recommendedBy}
-                  </Text>
-                </View>
-                <View>
-                  <Text className="text-sm text-muted-foreground">
-                    Updated last week
-                  </Text>
-                </View>
-              </View>
-            </View>
+              )}
+            </>
           ))}
         </View>
       </View>

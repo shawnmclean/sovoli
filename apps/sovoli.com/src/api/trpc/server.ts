@@ -6,7 +6,7 @@ import type { AppRouter } from "@sovoli/api/trpc";
 import { createCaller, createTRPCContext } from "@sovoli/api/trpc";
 // import { auth } from "@acme/auth";
 
-import { createQueryClient } from "./query-client";
+import { createQueryClient } from "../query-client";
 
 /**
  * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
