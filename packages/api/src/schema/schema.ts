@@ -12,8 +12,8 @@ export const NotFoundSchema = z.object({
 });
 
 export const MyBookResponseSchema = SelectMyBookSchema.extend({
-  book: schema.SelectBookSchema.optional(),
-  shelf: schema.SelectShelfSchema.optional(),
+  book: schema.SelectBookSchema.nullish(),
+  shelf: schema.SelectShelfSchema.nullish(),
 });
 
 export const MyBooksResponseSchema = withPagination(MyBookResponseSchema);
