@@ -8,10 +8,11 @@ import { createTRPCReact } from "@trpc/react-query";
 import SuperJSON from "superjson";
 
 import type { AppRouter } from "@sovoli/api/trpc";
+import { tsr } from "./rest/tsr";
 
 import { env } from "~/env";
 import { getBaseUrl } from "~/utils/getBaseUrl";
-import { createQueryClient } from "../query-client";
+import { createQueryClient } from "./query-client";
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined;
 const getQueryClient = () => {
@@ -24,13 +25,13 @@ const getQueryClient = () => {
   }
 };
 
-export const api = createTRPCReact<AppRouter>();
+export const trpc = createTRPCReact<AppRouter>();
 
-export function TRPCReactProvider(props: { children: React.ReactNode }) {
+export function QueryProvider(props: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
   const [trpcClient] = useState(() =>
-    api.createClient({
+    trpc.createClient({
       links: [
         loggerLink({
           enabled: (op) =>
@@ -52,9 +53,9 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <api.Provider client={trpcClient} queryClient={queryClient}>
-        {props.children}
-      </api.Provider>
+      <trpc.Provider client={trpcClient} queryClient={queryClient}>
+        <tsr.ReactQueryProvider>{props.children}</tsr.ReactQueryProvider>
+      </trpc.Provider>
     </QueryClientProvider>
   );
 }

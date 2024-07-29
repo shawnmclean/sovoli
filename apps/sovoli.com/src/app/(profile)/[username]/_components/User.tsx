@@ -1,6 +1,6 @@
 "use client";
 
-import { api } from "~/api/trpc/react";
+import { api } from "~/api/react";
 import { UserScreen } from "@sovoli/ui/screens/user";
 
 export function User({ username }: { username: string }) {
