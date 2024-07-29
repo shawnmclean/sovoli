@@ -1,3 +1,11 @@
 packages:
   - packages/*
   - apps/*
+
+catalog:
+  "@ts-rest/core": 3.49.0-beta.2
+  "@ts-rest/open-api": 3.49.0-beta.2
+  "@ts-rest/react-query": 3.49.0-beta.2
+  "@ts-rest/serverless": 3.49.0-beta.2
+  typescript: 5.5.2
+  zod: 3.23.8

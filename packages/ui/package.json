@@ -37,13 +37,13 @@
     "next-themes": "0.3.0",
     "solito": "4.2.2",
     "expo-image": "1.12.12",
-    "zod": "3.23.8"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@sovoli/typescript-config": "workspace:*",
     "@types/react": "18.2.79",
     "@types/node": "20.10.6",
-    "typescript": "5.5.2",
+    "typescript": "catalog:",
     "prettier": "3.1.1",
     "tailwindcss": "3.3.5"
   }
