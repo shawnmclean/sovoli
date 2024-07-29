@@ -1,7 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
-import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
+// import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
 
 import { api } from "~/api/trpc/api";
 
