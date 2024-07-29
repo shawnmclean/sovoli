@@ -1,7 +1,8 @@
 import { relations } from "drizzle-orm";
-import { pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
+import { jsonb, pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./identity";
 import { myBooks } from "./myBooks";
+import type { Image } from "./shared";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const furnitures = pgTable(
@@ -38,6 +39,7 @@ export const shelves = pgTable(
     slug: varchar("slug", { length: 255 }).notNull(),
     name: varchar("name", { length: 255 }).notNull(),
     description: varchar("description", { length: 255 }),
+    images: jsonb("images").$type<Image[]>(),
     furnitureId: uuid("furniture_id")
       .notNull()
       .references(() => furnitures.id),
