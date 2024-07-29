@@ -28,7 +28,7 @@ export default function Page() {
       {/* Changes page title visible on the header */}
       <Stack.Screen options={{ title: `User Books}` }} />
 
-      <ShelfScreen shelf={shelf} />
+      {/* <ShelfScreen shelf={shelf} /> */}
     </SafeAreaView>
   );
 }
