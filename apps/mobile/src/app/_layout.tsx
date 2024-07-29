@@ -11,7 +11,7 @@ import { Button } from "@sovoli/ui/components/button";
 
 import "@sovoli/ui/config/tailwind/globals.css";
 import React from "react";
-import { TRPCProvider } from "~/trpc/api";
+import { TRPCProvider } from "~/api/trpc/api";
 
 // Prevent the splash screen from auto-hiding before getting the color scheme.
 SplashScreen.preventAutoHideAsync();

@@ -1,4 +1,4 @@
-import { api } from "~/trpc/server";
+import { api } from "~/api/trpc/server";
 import { db } from "@sovoli/db";
 import { sql } from "drizzle-orm";
 

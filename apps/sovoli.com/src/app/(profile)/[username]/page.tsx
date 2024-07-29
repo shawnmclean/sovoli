@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import { api, HydrateClient } from "~/trpc/server";
+import { api, HydrateClient } from "~/api/trpc/server";
 import { User } from "./_components/User";
 import { Suspense } from "react";
 

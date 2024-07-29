@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { UiProviders } from "@sovoli/ui/providers";
 import { PortalHost } from "@rn-primitives/portal";
-import { TRPCReactProvider } from "~/trpc/react";
+import { TRPCReactProvider } from "~/api/trpc/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

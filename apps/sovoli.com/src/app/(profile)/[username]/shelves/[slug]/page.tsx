@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
 import { Suspense } from "react";
-import { api, HydrateClient } from "~/trpc/server";
+import { api, HydrateClient } from "~/api/trpc/server";
 import { Shelf } from "./_components/Shelf";
 
 export default function ShelfPage({
