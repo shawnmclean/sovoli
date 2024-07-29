@@ -36,18 +36,17 @@ export const handleInferredBook = async (
   const isbn = validatedBook.isbn13 ?? validatedBook.isbn10;
   if (!isbn) throw new Error("No ISBN was returned");
 
-  // Do this to get rid of the time zone offset
-  const publishedDate = new Date(validatedBook.publishedDate + "T00:00:00");
-
   const upsertedBook = await db
     .insert(schema.books)
     .values({
       title: validatedBook.title,
       subtitle: validatedBook.subtitle,
-      publishedDate: publishedDate.toDateString(),
+      publishedDate: validatedBook.publishedDate.toDateString(),
+      publisher: validatedBook.publisher,
       pageCount: validatedBook.pageCount,
       description: validatedBook.description,
       isbn: isbn,
+      language: validatedBook.language,
     })
     .onConflictDoUpdate({
       target: schema.books.isbn,
@@ -55,8 +54,10 @@ export const handleInferredBook = async (
         title: sql.raw(`excluded.${schema.books.title.name}`),
         subtitle: sql.raw(`excluded.${schema.books.subtitle.name}`),
         publishedDate: sql.raw(`excluded.${schema.books.publishedDate.name}`),
+        publisher: sql.raw(`excluded.${schema.books.publisher.name}`),
         pageCount: sql.raw(`excluded.${schema.books.pageCount.name}`),
         description: sql.raw(`excluded.${schema.books.description.name}`),
+        language: sql.raw(`excluded.${schema.books.language.name}`),
       },
     })
     .returning();

@@ -22,8 +22,10 @@ export const books = pgTable("books", {
   title: varchar("title", { length: 255 }).notNull(),
   subtitle: varchar("subtitle", { length: 255 }),
   publishedDate: date("published_date"),
+  publisher: varchar("publisher", { length: 255 }),
   pageCount: integer("page_count"),
   description: text("description"),
+  language: varchar("language", { length: 2 }),
 });
 
 export const SelectBookSchema = createSelectSchema(books);
