@@ -25,7 +25,7 @@ export function HomeScreen() {
         Goal: Working on something to help me read, write and think better.
       </Text>
 
-      <Link href="/shawn">
+      <Link href="/johndoe">
         <Text className="underline">My Profile</Text>
       </Link>
 
