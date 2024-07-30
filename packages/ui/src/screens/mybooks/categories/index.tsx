@@ -73,10 +73,12 @@ export default function Categories() {
             </CardHeader>
             <CardContent className="gap-4 native:gap-2">
               <View className="gap-1">
-                <Link href={`/shawn/books/shelves/wardrobe-bottom-left-shelf`}>
+                <Link
+                  href={`/johndoe/books/shelves/wardrobe-bottom-left-shelf`}
+                >
                   <Text>Wardrobe Bottom Left Shelf</Text>
                 </Link>
-                <Link href={`/shawn/books/shelves/wardrobe-top-left-shelf`}>
+                <Link href={`/johndoe/books/shelves/wardrobe-top-left-shelf`}>
                   <Text>Wardrobe Top Left Shelf</Text>
                 </Link>
               </View>
