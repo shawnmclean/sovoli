@@ -1,8 +1,7 @@
+/* eslint-disable no-restricted-properties */
 import { createEnv } from "@t3-oss/env-nextjs";
 import { vercel } from "@t3-oss/env-nextjs/presets";
 import { z } from "zod";
-
-// import { env as authEnv } from "@acme/auth/env";
 
 export const env = createEnv({
   extends: [vercel()],
