@@ -18,7 +18,7 @@
     "@sovoli/ui": "workspace:*",
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",
-    "@tanstack/react-query": "5.51.15",
+    "@tanstack/react-query": "catalog:",
     "@trpc/client": "11.0.0-rc.461",
     "@t3-oss/env-nextjs": "0.10.1",
     "@ts-rest/serverless": "catalog:",
