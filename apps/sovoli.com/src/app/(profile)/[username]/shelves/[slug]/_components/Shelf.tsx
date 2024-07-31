@@ -1,7 +1,7 @@
 "use client";
 
 // import { api } from "~/api/trpc/react";
-import { tsr } from "~/api/rest/tsr";
+import { tsr } from "~/api/tsr";
 import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
 
 export function Shelf({ username, slug }: { username: string; slug: string }) {

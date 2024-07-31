@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { UiProviders } from "@sovoli/ui/providers";
 import { PortalHost } from "@rn-primitives/portal";
-import { QueryProvider } from "~/api/react";
+import { QueryProviders } from "~/api/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -41,7 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <UiProviders>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProviders>{children}</QueryProviders>
         </UiProviders>
         <SpeedInsights />
         <Analytics />

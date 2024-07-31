@@ -30,9 +30,9 @@ export function ShelfScreen({ shelf }: { shelf: Shelf }) {
       </View>
       <View className="grid gap-8 border-border border-t my-5 pt-5">
         <View className="grid gap-2">
-          {shelf.books?.map((myBook) => (
-            <>
-              {myBook.book && (
+          {shelf.books?.map(
+            (myBook) =>
+              myBook.book && (
                 <View
                   key={myBook?.id}
                   className="flex items-start border-border border-b py-3 gap-2"
@@ -82,9 +82,8 @@ export function ShelfScreen({ shelf }: { shelf: Shelf }) {
                     </View>
                   </View>
                 </View>
-              )}
-            </>
-          ))}
+              )
+          )}
         </View>
       </View>
     </ScrollView>
