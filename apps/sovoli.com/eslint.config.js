@@ -5,7 +5,6 @@ import reactConfig from "@sovoli/eslint-config/react";
 /** @type {import('typescript-eslint').Config} */
 export default [
   {
-    files: ["**/*.js", "**/*.ts", "**/*.tsx"],
     ignores: [".next/**"],
   },
   ...baseConfig,
