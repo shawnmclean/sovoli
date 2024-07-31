@@ -44,7 +44,7 @@
     "@types/node": "20.10.6",
     "@babel/core": "7.24.0",
     "@types/react": "18.2.79",
-    "eslint": "9.6.0",
+    "eslint": "catalog:",
     "tailwindcss": "3.3.4",
     "typescript": "catalog:"
   }

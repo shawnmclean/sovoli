@@ -27,6 +27,6 @@
     "@sovoli/typescript-config": "workspace:*",
     "typescript": "catalog:",
     "prettier": "3.1.1",
-    "eslint": "9.6.0"
+    "eslint": "catalog:"
   }
 }
