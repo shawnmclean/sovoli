@@ -7,7 +7,7 @@ import { createTRPCReact } from "@trpc/react-query";
 import SuperJSON from "superjson";
 
 import type { AppRouter } from "@sovoli/api/trpc";
-import { api as tsr } from "./tsr";
+import { tsr } from "./tsr";
 
 import { env } from "~/env";
 import { getBaseUrl } from "~/utils/getBaseUrl";

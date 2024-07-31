@@ -10,6 +10,5 @@ const tsr = initTsrReactQuery(contract, {
 });
 
 const queryClient = cache(getQueryClient);
-const client = tsr.initQueryClient(queryClient());
 
-export { tsr as api, client };
+export { tsr, queryClient };

@@ -5,13 +5,14 @@ import { dehydrate } from "@tanstack/query-core";
 import { HydrationBoundary } from "@tanstack/react-query";
 // import { api, HydrateClient } from "~/api/trpc/server";
 import { Shelf } from "./_components/Shelf";
-import { client } from "~/api/tsr";
+import { tsr, queryClient } from "~/api/tsr";
 
 export default function ShelfPage({
   params,
 }: {
   params: { username: string; slug: string };
 }) {
+  const client = tsr.initQueryClient(queryClient());
   void client.getShelf.prefetchQuery({
     queryKey: ["username", "slug"],
     queryData: {
