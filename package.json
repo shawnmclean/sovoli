@@ -18,7 +18,7 @@
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "prettier": "3.1.1",
+    "prettier": "catalog:",
     "turbo": "2.0.6"
   },
   "pnpm": {
@@ -33,5 +33,6 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35"
+  "packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35",
+  "prettier": "@sovoli/prettier-config"
 }

@@ -55,6 +55,7 @@
     "tailwindcss": "3.4.4",
     "tailwindcss-animate": "1.0.7",
     "typescript": "catalog:",
-    "prettier": "3.1.1"
-  }
+    "prettier": "catalog:"
+  },
+  "prettier": "@sovoli/prettier-config"
 }
