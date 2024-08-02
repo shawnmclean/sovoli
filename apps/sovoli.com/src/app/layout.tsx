@@ -1,12 +1,12 @@
-
 import "raf/polyfill";
 
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
-import { UiProviders } from "@sovoli/ui/providers";
 import { PortalHost } from "@rn-primitives/portal";
+import { UiProviders } from "@sovoli/ui/providers";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import { QueryProviders } from "~/api/react";
 import StyledJsxRegistry from "./registry";
 
@@ -41,9 +41,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <StyledJsxRegistry>
-        <UiProviders>
-          <QueryProviders>{children}</QueryProviders>
-        </UiProviders>
+          <UiProviders>
+            <QueryProviders>{children}</QueryProviders>
+          </UiProviders>
         </StyledJsxRegistry>
         <SpeedInsights />
         <Analytics />
