@@ -1,5 +1,3 @@
-/** @jsxImportSource react */
-
 export default function Furniture({
   params,
 }: {

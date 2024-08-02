@@ -1,4 +1,3 @@
-/** @jsxImportSource react */
 import "@sovoli/ui/config/tailwind/globals.css";
 import "raf/polyfill";
 

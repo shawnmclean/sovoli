@@ -1,8 +1,8 @@
-import { withExpo } from "@expo/next-adapter";
+
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [
@@ -20,7 +20,7 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config) => {
+  webpack: (config, {webpack}) => {
     // Needed to get postgres db adapter: https://github.com/vercel/next.js/discussions/50177#discussioncomment-9409065
     // config.externals.push("cloudflare:sockets");
     // config.externalsType = "commonjs";
@@ -37,17 +37,22 @@ const nextConfig = {
       ".web.tsx",
       ...config.resolve.extensions,
     ];
+
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
+      })
+    );
     return config;
   },
 
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
-    "expo",
     "@sovoli/ui",
     "@sovoli/api",
     "nativewind",
-    "react-native",
     "react-native-css-interop",
+    "@gluestack-ui/nativewind-utils",
     "react-native-reanimated",
     "react-native-gesture-handler",
     "solito",
@@ -58,4 +63,4 @@ const nextConfig = {
   eslint: { ignoreDuringBuilds: true },
 };
 
-export default withExpo(nextConfig);
+export default nextConfig;

@@ -14,6 +14,6 @@
     // Turning this on cus of jsxImportSource, when fixed, we can remove this
     "strictNullChecks": true
   },
-  "include": [".", ".next/types/**/*.ts", "app-env.d.ts", "next-env.d.ts"],
+  "include": [ ".next/types/**/*.ts", "app-env.d.ts", "next-env.d.ts"],
   "exclude": ["node_modules"]
 }

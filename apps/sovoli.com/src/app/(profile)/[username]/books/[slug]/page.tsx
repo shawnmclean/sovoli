@@ -1,5 +1,3 @@
-/** @jsxImportSource react */
-
 import MyBookDetailsScreen from "@sovoli/ui/screens/mybooks/details";
 
 export default function MyBookDetails({

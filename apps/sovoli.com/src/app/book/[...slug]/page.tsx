@@ -1,5 +1,3 @@
-/** @jsxImportSource react */
-
 import Component from "./Component";
 
 export default function BookDetails({

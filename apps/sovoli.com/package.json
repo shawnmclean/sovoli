@@ -13,7 +13,6 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@expo/next-adapter": "6.0.0",
     "@rn-primitives/portal": "1.0.3",
     "@sovoli/ui": "workspace:*",
     "@sovoli/api": "workspace:*",

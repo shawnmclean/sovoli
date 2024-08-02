@@ -1,5 +1,3 @@
-/** @jsxImportSource react */
-
 import { MyBooksScreen } from "@sovoli/ui/screens/mybooks";
 
 export default function MyBooks({ params }: { params: { username: string } }) {

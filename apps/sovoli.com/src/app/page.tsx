@@ -1,5 +1,3 @@
-/** @jsxImportSource react */
-
 import { HomeScreen } from "@sovoli/ui/screens/home";
 
 export default function Home() {
