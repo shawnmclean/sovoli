@@ -1,14 +1,24 @@
 "use client";
 
 import "@sovoli/ui/config/tailwind/globals.css";
+
 import React, { useRef, useState } from "react";
-import { useServerInsertedHTML } from "next/navigation";
-import { StyleRegistry, createStyleRegistry } from "styled-jsx";
+// @ts-expect-error see: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/70147
+import { AppRegistry } from "react-native-web";
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import { Main } from "next/document";
+import { useServerInsertedHTML } from "next/navigation";
 import { flush } from "@gluestack-ui/nativewind-utils/flush";
-// @ts-ignore
-import { AppRegistry } from "react-native-web";
+import { createStyleRegistry, StyleRegistry } from "styled-jsx";
+
+// Explicitly define the types until they are fixed in DefinitelyTyped
+interface AppRegistryType {
+  registerComponent: (name: string, componentProvider: () => unknown) => void;
+  getApplication: (name: string) => { getStyleElement: () => JSX.Element };
+}
+
+// Cast AppRegistry to the defined type
+const TypedAppRegistry = AppRegistry as unknown as AppRegistryType;
 
 export default function StyledJsxRegistry({
   children,
@@ -21,8 +31,8 @@ export default function StyledJsxRegistry({
   const isServerInserted = useRef(false);
 
   useServerInsertedHTML(() => {
-    AppRegistry.registerComponent("Main", () => Main);
-    const { getStyleElement } = AppRegistry.getApplication("Main");
+    TypedAppRegistry.registerComponent("Main", () => Main);
+    const { getStyleElement } = TypedAppRegistry.getApplication("Main");
     if (!isServerInserted.current) {
       isServerInserted.current = true;
       const styles = [getStyleElement(), jsxStyleRegistry.styles(), flush()];
