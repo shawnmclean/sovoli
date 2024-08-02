@@ -1,15 +1,13 @@
+"use client";
+
 import { ThemeProvider as NextThemeProvider } from "next-themes";
 
-export function ThemeProvider({
-  children,
-  mode,
-}: {
-  children: React.ReactNode;
-  mode?: "light" | "dark";
-}) {
+import { GluestackProvider } from "./gluestack-provider";
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
-    <NextThemeProvider attribute="class" defaultTheme={mode} enableSystem>
-      {children}
+    <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <GluestackProvider>{children}</GluestackProvider>
     </NextThemeProvider>
   );
 }

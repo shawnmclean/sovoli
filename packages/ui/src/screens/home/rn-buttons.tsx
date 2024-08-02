@@ -1,7 +1,9 @@
-import { View } from "react-native";
-import { Button } from "../../components/button";
-import { Text } from "../../components/text";
 import React from "react";
+import { View } from "react-native";
+
+import { Button, ButtonText } from "../../components/button";
+import { Text } from "../../components/text";
+
 // import {
 //   AlertDialog,
 //   AlertDialogAction,
@@ -25,8 +27,8 @@ function RNButtons() {
     <View>
       <View className="flex-row">
         <Text>Counter is {counter}</Text>
-        <Button className="m-2" onPress={handleCounter}>
-          <Text>Increase</Text>
+        <Button onPress={handleCounter}>
+          <ButtonText>Increase</ButtonText>
         </Button>
       </View>
       {/* <View className="flex-1 justify-center items-center">

@@ -2,19 +2,16 @@ import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider as RNThemeProvider,
-  Theme,
 } from "@react-navigation/native";
 
-export function ThemeProvider({
-  children,
-  mode,
-}: {
-  children: React.ReactNode;
-  mode?: "light" | "dark";
-}) {
+import { useColorScheme } from "../hooks/useColorScheme";
+import { GluestackProvider } from "./gluestack-provider";
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { colorScheme } = useColorScheme();
   return (
-    <RNThemeProvider value={mode === "dark" ? DarkTheme : DefaultTheme}>
-      {children}
+    <RNThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <GluestackProvider>{children}</GluestackProvider>
     </RNThemeProvider>
   );
 }

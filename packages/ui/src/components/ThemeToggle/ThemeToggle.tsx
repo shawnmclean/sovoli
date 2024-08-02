@@ -1,12 +1,13 @@
 "use client";
 
 import { View } from "react-native";
+
 import { useColorScheme } from "../../hooks/useColorScheme";
-import { Text } from "../text";
-import { Button } from "../button";
+import { Button, ButtonText } from "../button";
 
 export function ThemeToggle() {
-  const { isDarkColorScheme, setColorScheme } = useColorScheme();
+  const { isDarkColorScheme, colorScheme, setColorScheme } = useColorScheme();
+  console.log("theme-toggle", colorScheme);
   return (
     <View className="flex-row">
       <Button
@@ -15,7 +16,7 @@ export function ThemeToggle() {
           setColorScheme(newTheme);
         }}
       >
-        <Text>Toggle Theme</Text>
+        <ButtonText>{colorScheme}</ButtonText>
       </Button>
     </View>
   );
