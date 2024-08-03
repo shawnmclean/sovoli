@@ -4,7 +4,6 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { SafeAreaProvider } from "./safe-area-provider";
-// import { StylesProvider } from "./styles-provider";
 import { ThemeProvider } from "./theme-provider";
 
 export function UiProviders({ children }: { children: React.ReactNode }) {
@@ -12,11 +11,9 @@ export function UiProviders({ children }: { children: React.ReactNode }) {
     <>
       <SafeAreaProvider>
         <ThemeProvider>
-          {/* <StylesProvider> */}
           <GestureHandlerRootView style={{ flex: 1 }}>
             {children}
           </GestureHandlerRootView>
-          {/* </StylesProvider> */}
         </ThemeProvider>
       </SafeAreaProvider>
     </>
