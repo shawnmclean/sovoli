@@ -18,8 +18,6 @@
   },
   "dependencies": {
     "@sovoli/api": "workspace:*",
-    "@gluestack-ui/overlay": "0.1.15",
-    "@gluestack-ui/toast": "1.0.7",
     "@rn-primitives/slot": "1.0.3",
     "@rn-primitives/types": "1.0.3",
     "@rn-primitives/hover-card": "1.0.3",
@@ -43,7 +41,6 @@
   },
   "devDependencies": {
     "@sovoli/typescript-config": "workspace:*",
-    "@sovoli/prettier-config": "workspace:*",
     "@types/react": "18.2.79",
     "@types/node": "catalog:",
     "typescript": "catalog:",

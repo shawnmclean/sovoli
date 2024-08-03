@@ -1,4 +1,4 @@
-
+import "@sovoli/ui/config/tailwind/globals.css";
 import "raf/polyfill";
 
 import type { Metadata, Viewport } from "next";
@@ -8,7 +8,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { UiProviders } from "@sovoli/ui/providers";
 import { PortalHost } from "@rn-primitives/portal";
 import { QueryProviders } from "~/api/react";
-import StyledJsxRegistry from "./registry";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,11 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <StyledJsxRegistry>
         <UiProviders>
           <QueryProviders>{children}</QueryProviders>
         </UiProviders>
-        </StyledJsxRegistry>
         <SpeedInsights />
         <Analytics />
         <PortalHost />

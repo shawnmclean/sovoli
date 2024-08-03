@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@rn-primitives/portal": "1.0.3",
-    "@gluestack-ui/nativewind-utils": "1.0.23",
     "@sovoli/ui": "workspace:*",
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",
@@ -43,7 +42,6 @@
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",
     "@sovoli/typescript-config": "workspace:*",
-    "@sovoli/prettier-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "18.2.79",
     "@types/react-dom": "18.2.18",

@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
-import baseConfig from "@sovoli/ui/config/tailwind/web";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import baseConfig from "@sovoli/ui/config/tailwind/web";
 
 export default {
   // We need to append the path to the UI package to the content array so that
