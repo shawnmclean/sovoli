@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
-import animate from "tailwindcss-animate";
-import { hairlineWidth } from "nativewind/theme";
 // @ts-expect-error - no types
 import nativewind from "nativewind/preset";
+import { hairlineWidth } from "nativewind/theme";
+import animate from "tailwindcss-animate";
 
 export default {
   darkMode: "class",
@@ -47,6 +47,7 @@ export default {
         },
       },
       borderWidth: {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
         hairline: hairlineWidth(),
       },
       keyframes: {

@@ -1,9 +1,8 @@
-import { NAV_THEME } from "../lib/constants";
+import type { Theme } from "@react-navigation/native";
+import { ThemeProvider as RNThemeProvider } from "@react-navigation/native";
+
 import { useColorScheme } from "../hooks/useColorScheme/useColorScheme";
-import {
-  Theme,
-  ThemeProvider as RNThemeProvider,
-} from "@react-navigation/native";
+import { NAV_THEME } from "../lib/constants";
 
 const LIGHT_THEME: Theme = {
   dark: false,

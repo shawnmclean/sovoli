@@ -1,11 +1,11 @@
 import * as React from "react";
 import { View } from "react-native";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "../hover-card";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Text } from "../text";
-import { Image } from "../image";
 
-type Book = {
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "../hover-card";
+import { Image } from "../image";
+import { Text } from "../text";
+
+interface Book {
   title: string;
   author: string;
   isbn: string;
@@ -13,7 +13,7 @@ type Book = {
   notes: string;
   description: string;
   image: string;
-};
+}
 
 export function BookHoverCard({
   book,
@@ -33,7 +33,7 @@ export function BookHoverCard({
       <HoverCardTrigger className="group web:focus:outline-none">
         {children}
       </HoverCardTrigger>
-      <HoverCardContent insets={contentInsets} className="w-80 native:w-96">
+      <HoverCardContent insets={contentInsets} className="native:w-96 w-80">
         <View className="flex flex-row justify-between gap-4">
           <Image
             src={book.image}
@@ -42,15 +42,15 @@ export function BookHoverCard({
             height={150}
             className="aspect-[2/3] rounded-lg object-cover"
           />
-          <View className="gap-1 flex-1">
-            <Text className="text-sm native:text-base font-semibold">
+          <View className="flex-1 gap-1">
+            <Text className="native:text-base text-sm font-semibold">
               {book.title}
             </Text>
-            <Text className="text-sm native:text-base">
+            <Text className="native:text-base text-sm">
               Wishes they were part of the triangle company.
             </Text>
-            <View className="flex flex-row items-center pt-2 gap-2">
-              <Text className="text-xs native:text-sm text-muted-foreground">
+            <View className="flex flex-row items-center gap-2 pt-2">
+              <Text className="native:text-sm text-muted-foreground text-xs">
                 Fingers crossed since December 2021
               </Text>
             </View>

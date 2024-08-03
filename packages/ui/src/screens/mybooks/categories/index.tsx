@@ -7,10 +7,10 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@sovoli/ui/components/card";
+import { Link } from "@sovoli/ui/components/link";
 import {
   Tabs,
   TabsContent,
@@ -18,7 +18,6 @@ import {
   TabsTrigger,
 } from "@sovoli/ui/components/tabs";
 import { Text } from "@sovoli/ui/components/text";
-import { Link } from "@sovoli/ui/components/link";
 
 export default function Categories() {
   const [value, setValue] = React.useState("lists");
@@ -58,7 +57,7 @@ export default function Categories() {
                 etc)
               </CardDescription>
             </CardHeader>
-            <CardContent className="gap-4 native:gap-2">
+            <CardContent className="native:gap-2 gap-4">
               <View className="gap-1">
                 <Text>Lists</Text>
               </View>
@@ -71,7 +70,7 @@ export default function Categories() {
               <CardTitle>Shelves (2)</CardTitle>
               <CardDescription>Physical bookshelves</CardDescription>
             </CardHeader>
-            <CardContent className="gap-4 native:gap-2">
+            <CardContent className="native:gap-2 gap-4">
               <View className="gap-1">
                 <Link
                   href={`/johndoe/books/shelves/wardrobe-bottom-left-shelf`}

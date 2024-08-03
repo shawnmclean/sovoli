@@ -14,7 +14,8 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "lint": "eslint"
   },
   "dependencies": {
     "@sovoli/api": "workspace:*",
@@ -41,6 +42,8 @@
   },
   "devDependencies": {
     "@sovoli/typescript-config": "workspace:*",
+    "@sovoli/eslint-config": "workspace:*",
+    "@types/react-native": "0.73.0",
     "@types/react": "18.2.79",
     "@types/node": "catalog:",
     "typescript": "catalog:",

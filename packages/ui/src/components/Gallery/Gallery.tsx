@@ -1,11 +1,12 @@
-import { useEffect, useState, useRef } from "react";
+import type { ICarouselInstance } from "react-native-reanimated-carousel";
+import { useEffect, useRef, useState } from "react";
 import { useWindowDimensions, View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
-import { window, COVER_IMAGE_ASPECT_RATIO } from "../../lib/constants";
-import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
-import { LongPressGestureHandler } from "react-native-gesture-handler";
-import { Image } from "../image";
+import Carousel from "react-native-reanimated-carousel";
+
+import { COVER_IMAGE_ASPECT_RATIO, window } from "../../lib/constants";
 import { Badge } from "../badge";
+import { Image } from "../image";
 import { Text } from "../text";
 
 const PAGE_WIDTH = window.width;
@@ -18,7 +19,7 @@ export function Gallery({
 }) {
   const windowWidth = useWindowDimensions().width;
   const [carouselHeight, setCarouselHeight] = useState<number>(
-    Math.min(PAGE_WIDTH / COVER_IMAGE_ASPECT_RATIO, MAX_CAROSEL_HEIGHT)
+    Math.min(PAGE_WIDTH / COVER_IMAGE_ASPECT_RATIO, MAX_CAROSEL_HEIGHT),
   );
   const scrollOffsetValue = useSharedValue<number>(0);
   const [index, setIndex] = useState(0);
@@ -26,7 +27,7 @@ export function Gallery({
 
   useEffect(() => {
     setCarouselHeight(
-      Math.min(windowWidth / COVER_IMAGE_ASPECT_RATIO, MAX_CAROSEL_HEIGHT)
+      Math.min(windowWidth / COVER_IMAGE_ASPECT_RATIO, MAX_CAROSEL_HEIGHT),
     );
   }, [windowWidth]);
 
@@ -50,7 +51,7 @@ export function Gallery({
             return <Text>No image</Text>;
           }
           return (
-            <View className="w-full h-full ">
+            <View className="h-full w-full">
               <Image fill src={image.src} alt={image.alt} />
             </View>
           );

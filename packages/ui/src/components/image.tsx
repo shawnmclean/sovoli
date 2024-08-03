@@ -1,9 +1,9 @@
-import { SolitoImage } from "solito/image";
+import type { ComponentProps } from "react";
 import { cssInterop } from "nativewind";
-import { ComponentProps } from "react";
+import { SolitoImage } from "solito/image";
 
 const ImageWrapper = (
-  props: ComponentProps<typeof SolitoImage> & { className?: string }
+  props: ComponentProps<typeof SolitoImage> & { className?: string },
 ) => {
   return <SolitoImage {...props} />;
 };

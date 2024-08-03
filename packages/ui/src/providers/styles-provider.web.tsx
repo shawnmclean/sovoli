@@ -1,6 +1,5 @@
-// @ts-nocheck
-import { useServerInsertedHTML } from "next/navigation";
 import { StyleSheet } from "react-native";
+import { useServerInsertedHTML } from "next/navigation";
 
 export function StylesProvider({ children }: { children: React.ReactNode }) {
   useServerInsertedHTML(() => {
