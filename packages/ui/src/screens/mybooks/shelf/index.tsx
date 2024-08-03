@@ -1,6 +1,6 @@
 "use client";
 
-import type { contract } from "@sovoli/api/rest";
+import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
 import { ScrollView, View } from "react-native";
 // import { BookHoverCard } from "@sovoli/ui/components/BookHoverCard";

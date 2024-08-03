@@ -12,9 +12,9 @@
       "types": "./dist/trpc/index.d.ts",
       "default": "./src/trpc/index.ts"
     },
-    "./rest": {
-      "types": "./dist/rest/index.d.ts",
-      "default": "./src/rest/index.ts"
+    "./tsr": {
+      "types": "./dist/tsr/index.d.ts",
+      "default": "./src/tsr/index.ts"
     }
   },
   "scripts": {

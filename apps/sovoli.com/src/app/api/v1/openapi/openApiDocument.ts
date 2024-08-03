@@ -1,5 +1,6 @@
-import { contract } from "@sovoli/api/rest";
+import { contract } from "@sovoli/api/tsr";
 import { generateOpenApi } from "@ts-rest/open-api";
+
 import { getBaseUrl } from "~/utils/getBaseUrl";
 
 const openApiDocument = generateOpenApi(
@@ -12,7 +13,7 @@ const openApiDocument = generateOpenApi(
   },
   {
     setOperationId: true,
-  }
+  },
 );
 openApiDocument.servers = [
   {

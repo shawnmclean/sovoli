@@ -1,4 +1,4 @@
-import { router, contract } from "@sovoli/api/rest";
+import { contract, router } from "@sovoli/api/tsr";
 import { createNextHandler } from "@ts-rest/serverless/next";
 
 const handler = createNextHandler(contract, router, {

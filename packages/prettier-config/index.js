@@ -1,4 +1,4 @@
-import { fileURLToPath } from "url";
+import { fileURLToPath, URL } from "url";
 
 /** @typedef {import("prettier").Config} PrettierConfig */
 /** @typedef {import("prettier-plugin-tailwindcss").PluginOptions} TailwindConfig */
