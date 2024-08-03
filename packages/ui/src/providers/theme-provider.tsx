@@ -1,19 +1,23 @@
+import { NAV_THEME } from "../lib/constants";
+import { useColorScheme } from "../hooks/useColorScheme/useColorScheme";
 import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider as RNThemeProvider,
   Theme,
+  ThemeProvider as RNThemeProvider,
 } from "@react-navigation/native";
 
-export function ThemeProvider({
-  children,
-  mode,
-}: {
-  children: React.ReactNode;
-  mode?: "light" | "dark";
-}) {
+const LIGHT_THEME: Theme = {
+  dark: false,
+  colors: NAV_THEME.light,
+};
+const DARK_THEME: Theme = {
+  dark: true,
+  colors: NAV_THEME.dark,
+};
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { isDarkColorScheme } = useColorScheme();
   return (
-    <RNThemeProvider value={mode === "dark" ? DarkTheme : DefaultTheme}>
+    <RNThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       {children}
     </RNThemeProvider>
   );
