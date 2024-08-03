@@ -1,14 +1,13 @@
 "use client";
 
+import type { contract } from "@sovoli/api/rest";
+import type { z } from "zod";
 import { ScrollView, View } from "react-native";
-import { Text } from "@sovoli/ui/components/text";
-import { Image } from "@sovoli/ui/components/image";
+// import { BookHoverCard } from "@sovoli/ui/components/BookHoverCard";
 import { Button } from "@sovoli/ui/components/button";
-import { BookHoverCard } from "@sovoli/ui/components/BookHoverCard";
-import { Gallery } from "@sovoli/ui/components/Gallery";
-import { z } from "zod";
-
-import { contract } from "@sovoli/api/rest";
+// import { Gallery } from "@sovoli/ui/components/Gallery";
+// import { Image } from "@sovoli/ui/components/image";
+import { Text } from "@sovoli/ui/components/text";
 
 //type Shelf = NonNullable<RouterOutputs["shelf"]["bySlug"]>;
 type Shelf = z.infer<(typeof contract.getShelf.responses)[200]>;
@@ -28,16 +27,16 @@ export function ShelfScreen({ shelf }: { shelf: Shelf }) {
           </Text>
         </View>
       </View>
-      <View className="grid gap-8 border-border border-t my-5 pt-5">
+      <View className="border-border my-5 grid gap-8 border-t pt-5">
         <View className="grid gap-2">
           {shelf.books?.map(
             (myBook) =>
               myBook.book && (
                 <View
-                  key={myBook?.id}
-                  className="flex items-start border-border border-b py-3 gap-2"
+                  key={myBook.id}
+                  className="border-border flex items-start gap-2 border-b py-3"
                 >
-                  <View className="flex-row w-full justify-between gap-2">
+                  <View className="w-full flex-row justify-between gap-2">
                     <View className="flex-1 flex-row gap-2">
                       <View>
                         {/* <BookHoverCard book={myBook.book}>
@@ -56,7 +55,7 @@ export function ShelfScreen({ shelf }: { shelf: Shelf }) {
                           {myBook.book.title}
                         </Text>
                         {/* </BookHoverCard>  */}
-                        <Text className="text-sm leading-relaxed text-muted-foreground">
+                        <Text className="text-muted-foreground text-sm leading-relaxed">
                           by {myBook.book.publisher}
                         </Text>
                       </View>
@@ -71,18 +70,18 @@ export function ShelfScreen({ shelf }: { shelf: Shelf }) {
 
                   <View className="flex-row gap-4">
                     <View>
-                      <Text className="text-sm text-muted-foreground">
+                      <Text className="text-muted-foreground text-sm">
                         Recommended by
                       </Text>
                     </View>
                     <View>
-                      <Text className="text-sm text-muted-foreground">
+                      <Text className="text-muted-foreground text-sm">
                         Updated last week
                       </Text>
                     </View>
                   </View>
                 </View>
-              )
+              ),
           )}
         </View>
       </View>
