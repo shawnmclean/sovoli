@@ -18,11 +18,9 @@
   },
   "dependencies": {
     "@sovoli/api": "workspace:*",
-    "@gluestack-ui/alert-dialog": "0.1.30",
     "@gluestack-ui/overlay": "0.1.15",
     "@gluestack-ui/toast": "1.0.7",
     "@gluestack-ui/button": "1.0.7",
-    "@legendapp/motion": "2.3.0",
     "@rn-primitives/slot": "1.0.3",
     "@rn-primitives/types": "1.0.3",
     "@rn-primitives/hover-card": "1.0.3",
