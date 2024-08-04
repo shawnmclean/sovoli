@@ -3,8 +3,10 @@ import { initContract } from "@ts-rest/core";
 import {
   InsertShelfRequestSchema,
   NotFoundSchema,
+  ShelfBooksResponseSchema,
   ShelfResponseSchema,
   ShelvesResponseSchema,
+  ZPaginationRequestQuerySchema,
 } from "../../../schema/schema";
 
 const c = initContract();
@@ -25,6 +27,21 @@ export const shelfContract = c.router({
     },
     summary: "Get shelves by username",
   },
+  getShelfBooks: {
+    method: "GET",
+    path: `/users/:username/shelves/:slug/books`,
+    pathParams: z.object({
+      username: z.coerce.string(),
+      slug: z.coerce.string(),
+    }),
+    query: ZPaginationRequestQuerySchema,
+    responses: {
+      404: NotFoundSchema,
+      200: ShelfBooksResponseSchema,
+    },
+    summary: "Get a shelf and it's books by slug",
+  },
+  // TODO remove this route
   getShelf: {
     method: "GET",
     path: `/users/:username/shelves/:slug`,
@@ -36,7 +53,7 @@ export const shelfContract = c.router({
       404: NotFoundSchema,
       200: ShelfResponseSchema,
     },
-    summary: "Get a shelf and it's books by slug",
+    summary: "Get a shelf by slug",
   },
   putShelf: {
     method: "PUT",
@@ -48,7 +65,7 @@ export const shelfContract = c.router({
     }),
     body: InsertShelfRequestSchema,
     responses: {
-      200: ShelfResponseSchema,
+      200: ShelfBooksResponseSchema,
     },
   },
 });

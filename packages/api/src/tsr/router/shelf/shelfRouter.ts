@@ -3,10 +3,12 @@ import { db, eq, schema, inArray, count, and, sql } from "@sovoli/db";
 
 import { shelfContract } from "./shelfContract";
 import {
-  ShelfResponseSchema,
+  ShelfBooksResponseSchema,
   ShelvesResponseSchema,
+  ShelfResponseSchema
 } from "../../../schema/schema";
 import { handleInferredBook } from "./handleBooks";
+
 
 export const shelfRouter = tsr.router(shelfContract, {
   getShelves: async ({ params: { username }, query: { page, pageSize } }) => {
@@ -35,16 +37,40 @@ export const shelfRouter = tsr.router(shelfContract, {
     };
   },
 
+  getShelfBooks: async ({ params: { username, slug }, query: { page, pageSize } }) => {
+    const filter = getShelvesByUsernameFilter(username, slug);
+    const [data, total] = await Promise.all([
+      db.query.myBooks.findMany({
+        with: {
+          book: true,
+        },
+        where: filter,
+        limit: pageSize,
+        offset: (page - 1) * pageSize,
+      }),
+      db.select({ count: count() }).from(schema.shelves).where(filter),
+    ]);
+    console.log(data);
+    console.log(total);
+    
+    throw new Error("Not implemented");
+  },
+
   getShelf: async ({ params: { username, slug } }) => {
-    const filter = getShelvesByUsernameFilter(username);
+    const filter = getShelvesByUsernameFilter(username, slug);
+    // TODO: when drizzle implements aggregates on extras, this update this: https://github.com/drizzle-team/drizzle-orm/issues/961#issuecomment-1987382404
     const shelf = await db.query.shelves.findFirst({
       with: {
         furniture: true,
-        books: {
-          with: { book: true },
-        },
       },
-      where: and(filter, eq(schema.shelves.slug, slug)),
+      extras:{
+        totalBooks: sql<number>`(
+        SELECT CAST(COUNT(*) AS INTEGER)
+        FROM ${schema.myBooks} 
+        WHERE shelf_id = ${schema.shelves.id}
+      )`.as("total_books"),
+      },
+      where: filter,
     });
 
     if (!shelf) return { status: 404, body: { message: "Shelf not found" } };
@@ -162,13 +188,13 @@ export const shelfRouter = tsr.router(shelfContract, {
 
     return {
       status: 200,
-      body: ShelfResponseSchema.parse(shelf),
+      body: ShelfBooksResponseSchema.parse(shelf),
     };
   },
 });
 
-function getShelvesByUsernameFilter(username: string) {
-  return inArray(
+function getShelvesByUsernameFilter(username: string, shelfSlug?: string) {
+  const usernameFilter = inArray(
     schema.shelves.furnitureId,
     db
       .select({ id: schema.furnitures.id })
@@ -183,6 +209,13 @@ function getShelvesByUsernameFilter(username: string) {
         )
       )
   );
+
+  if (shelfSlug) {
+    return and(usernameFilter, eq(schema.shelves.slug, shelfSlug));
+  }
+  else {
+    return usernameFilter;
+  }
 }
 
 function slugify(str: string) {
