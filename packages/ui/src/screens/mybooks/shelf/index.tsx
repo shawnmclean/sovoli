@@ -25,65 +25,13 @@ export function ShelfScreen({ shelf }: { shelf: Shelf }) {
           <Text className="text-muted-foreground sm:text-lg">
             {shelf.description}
           </Text>
+          <Text className="text-xs text-muted-foreground">
+            {shelf.totalBooks} books
+          </Text>
         </View>
       </View>
       <View className="border-border my-5 grid gap-8 border-t pt-5">
-        <View className="grid gap-2">
-          {shelf.books?.map(
-            (myBook) =>
-              myBook.book && (
-                <View
-                  key={myBook.id}
-                  className="border-border flex items-start gap-2 border-b py-3"
-                >
-                  <View className="w-full flex-row justify-between gap-2">
-                    <View className="flex-1 flex-row gap-2">
-                      <View>
-                        {/* <BookHoverCard book={myBook.book}>
-                          <Image
-                            src={book.image}
-                            alt="Book cover"
-                            width={100}
-                            height={150}
-                            className="aspect-[2/3] rounded-lg object-cover"
-                          />
-                        </BookHoverCard> */}
-                      </View>
-                      <View className="flex shrink">
-                        {/* <BookHoverCard book={book}>*/}
-                        <Text className="text-lg font-semibold">
-                          {myBook.book.title}
-                        </Text>
-                        {/* </BookHoverCard>  */}
-                        <Text className="text-muted-foreground text-sm leading-relaxed">
-                          by {myBook.book.publisher}
-                        </Text>
-                      </View>
-                    </View>
-
-                    <View className="flex">
-                      <Button variant="outline">
-                        <Text>Save</Text>
-                      </Button>
-                    </View>
-                  </View>
-
-                  <View className="flex-row gap-4">
-                    <View>
-                      <Text className="text-muted-foreground text-sm">
-                        Recommended by
-                      </Text>
-                    </View>
-                    <View>
-                      <Text className="text-muted-foreground text-sm">
-                        Updated last week
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              ),
-          )}
-        </View>
+        
       </View>
     </ScrollView>
   );
