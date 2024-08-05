@@ -26,6 +26,7 @@
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",
     "@sovoli/typescript-config": "workspace:*",
+    "@sovoli/prettier-config": "workspace:*",
     "dotenv-cli": "7.4.2",
     "drizzle-kit": "0.22.8",
     "eslint": "catalog:",

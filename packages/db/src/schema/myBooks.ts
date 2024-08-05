@@ -1,20 +1,21 @@
-import { desc, relations } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import {
+  date,
   integer,
   jsonb,
   pgTable,
+  text,
   unique,
   uuid,
   varchar,
-  date,
-  text,
 } from "drizzle-orm/pg-core";
-import { users } from "./identity";
-import { shelves } from "./furnitures";
 import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-const ImageTypeEnum = z.enum(["smallThumbnail", "thumbnail", "cover", "illustration"]);
+import { shelves } from "./furnitures";
+import { users } from "./identity";
+
+const ImageTypeEnum = z.enum(["thumbnail", "cover", "illustration"]);
 
 export type ImageType = z.infer<typeof ImageTypeEnum>;
 
@@ -81,7 +82,7 @@ export const myBooks = pgTable(
   },
   (table) => ({
     uniqueSlug: unique().on(table.ownerId, table.slug),
-  })
+  }),
 );
 
 export const SelectMyBookSchema = createSelectSchema(myBooks);

@@ -1,9 +1,16 @@
 import { relations } from "drizzle-orm";
 import { jsonb, pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { z } from "zod";
+
 import { users } from "./identity";
 import { myBooks } from "./myBooks";
-import type { Image } from "./shared";
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+
+export const ImageSchema = z.object({
+  url: z.string(),
+});
+
+export type Image = z.infer<typeof ImageSchema>;
 
 export const furnitures = pgTable(
   "furniture",
@@ -18,7 +25,7 @@ export const furnitures = pgTable(
   },
   (table) => ({
     uniqueSlug: unique().on(table.ownerId, table.slug),
-  })
+  }),
 );
 
 export const SelectFurnitureSchema = createSelectSchema(furnitures);
@@ -49,7 +56,7 @@ export const shelves = pgTable(
   },
   (table) => ({
     uniqueSlug: unique().on(table.ownerId, table.slug),
-  })
+  }),
 );
 
 export const SelectShelfSchema = createSelectSchema(shelves);
