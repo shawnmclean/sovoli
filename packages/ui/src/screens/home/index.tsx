@@ -1,23 +1,24 @@
 "use client";
 
 import {
-  View,
-  TextInput,
-  ScrollView,
-  TouchableOpacity,
   Linking,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { Text } from "@sovoli/ui/components/text";
-import RNButtons from "./rn-buttons";
-import { ThemeToggle } from "@sovoli/ui/components/ThemeToggle/ThemeToggle";
 import { Button } from "@sovoli/ui/components/button";
 import { Image } from "@sovoli/ui/components/image";
 import { Link } from "@sovoli/ui/components/link";
+import { Text } from "@sovoli/ui/components/text";
+import { ThemeToggle } from "@sovoli/ui/components/ThemeToggle/ThemeToggle";
+
+import RNButtons from "./rn-buttons";
 
 export function HomeScreen() {
   return (
     <ScrollView className="mx-auto">
-      <Text className="text-2xl font-bold mb-4">
+      <Text className="mb-4 text-2xl font-bold">
         👀 Personal use software, pls leave, kthxbai
       </Text>
 
@@ -65,13 +66,13 @@ export function HomeScreen() {
                 height={200}
                 width={200}
                 contentFit={"contain"}
-                className="rounded-lg aspect-square object-cover"
+                className="aspect-square rounded-lg object-cover"
                 src="https://qr.expo.dev/eas-update?slug=exp&projectId=c82a6e08-f764-4f82-abd5-d5361a82df44&groupId=3e304481-e9c3-43f7-85ac-2d5ba4014793"
               />
               <Button
                 onPress={() =>
                   Linking.openURL(
-                    "https://expo.dev/preview/update?message=init&updateRuntimeVersion=1.0.0&createdAt=2024-07-01T18%3A20%3A25.119Z&slug=exp&projectId=c82a6e08-f764-4f82-abd5-d5361a82df44&group=5496aae0-7639-485d-9842-587fd0dead6b"
+                    "https://expo.dev/preview/update?message=init&updateRuntimeVersion=1.0.0&createdAt=2024-07-01T18%3A20%3A25.119Z&slug=exp&projectId=c82a6e08-f764-4f82-abd5-d5361a82df44&group=5496aae0-7639-485d-9842-587fd0dead6b",
                   )
                 }
               >
@@ -94,7 +95,12 @@ export function HomeScreen() {
                       <Text className="ml-4 underline">View Shelf</Text>
                     </Link>
                   </ListItem>
-                  <ListItem text="♻️ HiFi" />
+                  <ListItem text="♻️ HiFi">
+                    <ListItem text="Shelf Image" />
+                    <ListItem text="Book Details (Image, Title, Description, etc)" />
+                    <ListItem text="Authors (Image, Name, Description, etc)" />
+                    <ListItem text="Paginate" />
+                  </ListItem>
                   <ListItem text="Social Images" />
                   <ListItem text="SEO" />
                   <ListItem text="Feedback" />
@@ -103,7 +109,9 @@ export function HomeScreen() {
               <ListItem text="Furniture" />
               <ListItem text="Lists" />
               <ListItem text="Books" />
-              <ListItem text="Swap UI (expo/next) to use ts-rest for API" />
+              <ListItem text="Authors" />
+              <ListItem text="✅ Swap NextJs UI to use ts-rest for API" />
+              <ListItem text="Swap Expo UI to use ts-rest for API" />
             </List>
           </ListItem>
         </List>
@@ -114,8 +122,11 @@ export function HomeScreen() {
           <ListItem text="✅ Get user shelf by slug" />
           <ListItem text="✅ Get /api/v1/users/{username}" />
           <ListItem text="⭕️ Generate OpenAPI Spec (3.0.2 instead of 3.1.0)" />
-          <ListItem text="Batch Upsert MyBooks" />
-          <ListItem text="Batch Upsert Shelves?" />
+          <ListItem text="🕕 putShelf - Batch Upsert inferred MyBooks on shelf" />
+          <ListItem text="✅ /api/v1/users/{username}/shelves/{shelf-slug} - get single shelf with book count" />
+          <ListItem text="✅ /api/v1/users/{username}/shelves/ - get list of shelves with book count" />
+          <ListItem text="✅ /api/v1/users/{username}/shelves/{shelf-slug}/books - get list of books on shelf" />
+          <ListItem text="✅ Paginate shelf books and shelves" />
         </List>
       </Section>
 
@@ -129,9 +140,32 @@ export function HomeScreen() {
 
       <Section title="😈 ChatGPT">
         <List>
-          <ListItem text="✅ MyGPT - Upload OpenAPI Spec" />
-          <ListItem text="MyGPT - Call Batch Upsert MyBooks" />
-          <ListItem text="MyGPT - Call Batch Upsert Shelves?" />
+          <ListItem text="✅ Sovoli Book Shelf Organizer GPT - Batch Upsert of books on shelf" />
+          <ListItem text="Sovoli Book Notes GPT - Add notes to book" />
+        </List>
+      </Section>
+
+      <Section title="💥 Explosion (Inference population)">
+        <List>
+          <ListItem text="Populate Books from title/author/isbn inference">
+            <ListItem text="✅ Google Books API Enrichment" />
+            <ListItem text="OpenLibrary API Enrichment" />
+          </ListItem>
+          <ListItem text="Author table enrichment">
+            <ListItem text="Populate Books table from Author (all books by author must be added)" />
+          </ListItem>
+          <ListItem text="Offload to Trigger.dev or other background job service" />
+        </List>
+      </Section>
+
+      <Section title="Passkeys Auth">
+        <List>
+          <ListItem text="username/passkeys registration" />
+          <ListItem text="passkeys login" />
+          <ListItem text="ChatGPT auth" />
+          <ListItem text="TRPC auth" />
+          <ListItem text="TSR auth" />
+          <ListItem text="Expo auth" />
         </List>
       </Section>
 
@@ -148,77 +182,6 @@ export function HomeScreen() {
           <ListItem text="🕛 Pull from Db" />
         </List>
       </Section>
-
-      <Section title="Auth">
-        <List>
-          <ListItem text="Db: Session model" />
-          <ListItem text="Non authenticated sessions" />
-          <ListItem text="Session Id: [sessionId]" />
-          <ListItem text="Web users: [web sessions count here]" />
-          <ListItem text="Mobile users: [mobile sessions count here]" />
-        </List>
-      </Section>
-
-      <Section title="My Books">
-        <List>
-          <ListItem text="Db: Account, MyBook models. Connect Session to MyBooks" />
-          <ListItem text="Seed Account and MyBook tables" />
-          <ListItem text="Back MyBooks listing and details with by database" />
-        </List>
-      </Section>
-
-      <Section title="Image Upload / Storage">
-        {/* <TextInput type="file" className="block mb-2" /> */}
-        <List>
-          <ListItem text="Persistent storage link here">
-            <TouchableOpacity className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-              <Text>Show button for a popup with image data here</Text>
-            </TouchableOpacity>
-          </ListItem>
-          <ListItem text="Explode image data">
-            <TouchableOpacity className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-              <Text>RAG</Text>
-            </TouchableOpacity>
-          </ListItem>
-          <ListItem text="Write to books (link to all books here)" />
-          <ListItem text="Write to session books (link to current session books here)" />
-        </List>
-      </Section>
-
-      <Section title="Take Notes">
-        <TextInput
-          placeholder="Input for notes on book"
-          className="block border border-gray-300 p-2 mb-2"
-        />
-        {/* <TextInput type="file" className="block mb-2" /> */}
-        <List>
-          <ListItem text="Scan notes (image upload, read highlight and jottings)" />
-        </List>
-      </Section>
-
-      <Section title="Auth">
-        <List>
-          <ListItem text="WhatsApp TOTP" />
-          <ListItem text="Migrate session data" />
-        </List>
-      </Section>
-
-      <Section title="Onboard">
-        <TextInput
-          placeholder="Accept Username"
-          className="block border border-gray-300 p-2 mb-2"
-        />
-        <TouchableOpacity className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-          <Text>View user profile</Text>
-        </TouchableOpacity>
-      </Section>
-
-      <Section title="Generative UX">
-        <List>
-          <ListItem text="Reflow the above workflow into generative UX flows" />
-          <ListItem text="Spike on generative UI for RN" />
-        </List>
-      </Section>
     </ScrollView>
   );
 }
@@ -231,7 +194,7 @@ const Section = ({
   children: React.ReactNode;
 }) => (
   <View className="mb-8">
-    <Text className="text-xl font-semibold mb-2">{title}</Text>
+    <Text className="mb-2 text-xl font-semibold">{title}</Text>
     {children}
   </View>
 );
