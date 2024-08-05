@@ -3,7 +3,6 @@
 import {
   Linking,
   ScrollView,
-  TextInput,
   View,
 } from "react-native";
 import { Button } from "@sovoli/ui/components/button";
