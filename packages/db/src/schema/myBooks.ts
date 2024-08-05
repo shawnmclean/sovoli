@@ -1,4 +1,4 @@
-import { relations } from "drizzle-orm";
+import { desc, relations } from "drizzle-orm";
 import {
   integer,
   jsonb,
@@ -14,11 +14,23 @@ import { shelves } from "./furnitures";
 import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
+const ImageTypeEnum = z.enum(["smallThumbnail", "thumbnail", "cover", "illustration"]);
+
+export type ImageType = z.infer<typeof ImageTypeEnum>;
+
+export const BookImageSchema = z.object({
+  url: z.string(),
+  type: ImageTypeEnum,
+});
+
+export type BookImage = z.infer<typeof BookImageSchema>;
+
 export const books = pgTable("books", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
   isbn: varchar("isbn", { length: 13 }).notNull().unique(),
-  // lets not add a slug for now until we have a better idea of how to handle it: https://chatgpt.com/share/7cea2ff0-4534-40b1-ba17-c0df16edfec7
-  // slug: varchar("slug", { length: 255 }).notNull().unique(),
+  // slug will be in the form of {title}-{author}-{isbn}
+  // TODO: populate this, then make it notNull()
+  slug: varchar("slug", { length: 255 }).unique(),
   title: varchar("title", { length: 255 }).notNull(),
   subtitle: varchar("subtitle", { length: 255 }),
   publishedDate: date("published_date"),
@@ -26,6 +38,7 @@ export const books = pgTable("books", {
   pageCount: integer("page_count"),
   description: text("description"),
   language: varchar("language", { length: 2 }),
+  images: jsonb("images").$type<BookImage[]>(),
 });
 
 export const SelectBookSchema = createSelectSchema(books);
