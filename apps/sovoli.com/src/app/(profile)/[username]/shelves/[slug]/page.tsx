@@ -13,7 +13,7 @@ export default function ShelfPage({
   params: { username: string; slug: string };
 }) {
   const client = tsr.initQueryClient(queryClient());
-  void client.getShelf.prefetchQuery({
+  void client.getShelfBooks.prefetchQuery({
     queryKey: ["username", "slug"],
     queryData: {
       params: {

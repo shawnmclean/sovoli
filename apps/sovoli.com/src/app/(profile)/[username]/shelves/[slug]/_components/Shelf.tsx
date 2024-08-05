@@ -5,7 +5,7 @@ import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
 
 export function Shelf({ username, slug }: { username: string; slug: string }) {
   // const [shelf] = api.shelf.bySlug.useSuspenseQuery({ slug, username });
-  const { data } = tsr.getShelf.useSuspenseQuery({
+  const { data } = tsr.getShelfBooks.useSuspenseQuery({
     queryKey: ["username", "slug"],
     queryData: {
       params: {
@@ -19,7 +19,6 @@ export function Shelf({ username, slug }: { username: string; slug: string }) {
 
   return (
     <>
-      <h1>{shelf.slug}</h1>
       <ShelfScreen shelf={shelf} />
     </>
   );
