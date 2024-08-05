@@ -1,6 +1,3 @@
-
-
-
 import { Suspense } from "react";
 import { dehydrate } from "@tanstack/query-core";
 import { HydrationBoundary } from "@tanstack/react-query";
@@ -23,18 +20,6 @@ export default function ShelfPage({
     },
   });
 
-  // void client.getShelfBooks.prefetchQuery({
-  //   queryKey: ["username", "slug"],
-  //   queryData: {
-  //     params: {
-  //       username: params.username,
-  //       slug: params.slug,
-  //     },
-  //     query: {
-  //       page:1
-  //     }
-  //   },
-  // });
 
   const dehydratedState = dehydrate(client);
 
