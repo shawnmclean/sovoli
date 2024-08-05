@@ -1,18 +1,17 @@
+import { and, count, db, eq, inArray, schema, sql } from "@sovoli/db";
 import { tsr } from "@ts-rest/serverless/next";
-import { db, eq, schema, inArray, count, and, sql } from "@sovoli/db";
 
-import { shelfContract } from "./shelfContract";
 import {
   ShelfBooksResponseSchema,
+  ShelfResponseSchema,
   ShelvesResponseSchema,
-  ShelfResponseSchema
 } from "../../../schema/schema";
 import { handleInferredBook } from "./handleBooks";
-
+import { shelfContract } from "./shelfContract";
 
 export const shelfRouter = tsr.router(shelfContract, {
   getShelves: async ({ params: { username }, query: { page, pageSize } }) => {
-    const filter = getShelvesByUsernameFilter(username);
+    const filter = getShelvesByOwnerUsernameFilter(username);
     const [data, total] = await Promise.all([
       db.query.shelves.findMany({
         with: {
@@ -21,7 +20,7 @@ export const shelfRouter = tsr.router(shelfContract, {
             with: { book: true },
           },
         },
-        extras:{
+        extras: {
           totalBooks: sql<number>`(
           SELECT CAST(COUNT(*) AS INTEGER)
           FROM ${schema.myBooks} 
@@ -44,8 +43,23 @@ export const shelfRouter = tsr.router(shelfContract, {
     };
   },
 
-  getShelfBooks: async ({ params: { username, slug }, query: { page, pageSize } }) => {
-    const filter = getShelvesByUsernameFilter(username, slug);
+  getShelfBooks: async ({
+    params: { username, slug },
+    query: { page, pageSize },
+  }) => {
+    let shelf;
+    try {
+      shelf = await fetchShelf(username, slug);
+    } catch (error) {
+      return {
+        status: 404,
+        body: {
+          message: error instanceof Error ? error.message : "Unknown error",
+        },
+      };
+    }
+
+    const filter = getBookOnShelfByOwnerUsernameFilter(username, slug);
     const [data, total] = await Promise.all([
       db.query.myBooks.findMany({
         with: {
@@ -55,37 +69,36 @@ export const shelfRouter = tsr.router(shelfContract, {
         limit: pageSize,
         offset: (page - 1) * pageSize,
       }),
-      db.select({ count: count() }).from(schema.shelves).where(filter),
+      db.select({ count: count() }).from(schema.myBooks).where(filter),
     ]);
-    console.log(data);
-    console.log(total);
-    
-    throw new Error("Not implemented");
-  },
 
-  getShelf: async ({ params: { username, slug } }) => {
-    const filter = getShelvesByUsernameFilter(username, slug);
-    // TODO: when drizzle implements aggregates on extras, this update this: https://github.com/drizzle-team/drizzle-orm/issues/961#issuecomment-1987382404
-    const shelf = await db.query.shelves.findFirst({
-      with: {
-        furniture: true,
-      },
-      extras:{
-        totalBooks: sql<number>`(
-        SELECT CAST(COUNT(*) AS INTEGER)
-        FROM ${schema.myBooks} 
-        WHERE shelf_id = ${schema.shelves.id}
-      )`.as("total_books"),
-      },
-      where: filter,
+    const response = ShelfBooksResponseSchema.parse({
+      shelf,
+      data,
+      meta: { page, pageSize, total: total[0]?.count },
     });
-
-    if (!shelf) return { status: 404, body: { message: "Shelf not found" } };
 
     return {
       status: 200,
-      body: ShelfResponseSchema.parse(shelf),
+      body: response,
     };
+  },
+
+  getShelf: async ({ params: { username, slug } }) => {
+    try {
+      const shelf = await fetchShelf(username, slug);
+      return {
+        status: 200,
+        body: ShelfResponseSchema.parse(shelf),
+      };
+    } catch (error) {
+      return {
+        status: 404,
+        body: {
+          message: error instanceof Error ? error.message : "Unknown error",
+        },
+      };
+    }
   },
 
   putShelf: async ({ params: { username }, body }) => {
@@ -154,10 +167,10 @@ export const shelfRouter = tsr.router(shelfContract, {
                 name: sql.raw(`excluded.${schema.myBooks.name.name}`),
                 shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
                 shelfOrder: sql.raw(
-                  `excluded.${schema.myBooks.shelfOrder.name}`
+                  `excluded.${schema.myBooks.shelfOrder.name}`,
                 ),
                 inferredBook: sql.raw(
-                  `excluded.${schema.myBooks.inferredBook.name}`
+                  `excluded.${schema.myBooks.inferredBook.name}`,
                 ),
                 bookId: sql.raw(`excluded.${schema.myBooks.bookId.name}`),
               },
@@ -182,10 +195,10 @@ export const shelfRouter = tsr.router(shelfContract, {
                 name: sql.raw(`excluded.${schema.myBooks.name.name}`),
                 shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
                 shelfOrder: sql.raw(
-                  `excluded.${schema.myBooks.shelfOrder.name}`
+                  `excluded.${schema.myBooks.shelfOrder.name}`,
                 ),
                 inferredBook: sql.raw(
-                  `excluded.${schema.myBooks.inferredBook.name}`
+                  `excluded.${schema.myBooks.inferredBook.name}`,
                 ),
               },
             });
@@ -200,29 +213,56 @@ export const shelfRouter = tsr.router(shelfContract, {
   },
 });
 
-function getShelvesByUsernameFilter(username: string, shelfSlug?: string) {
-  const usernameFilter = inArray(
-    schema.shelves.furnitureId,
-    db
-      .select({ id: schema.furnitures.id })
-      .from(schema.furnitures)
-      .where(
-        inArray(
-          schema.furnitures.ownerId,
-          db
-            .select({ id: schema.users.id })
-            .from(schema.users)
-            .where(eq(schema.users.username, username))
-        )
-      )
-  );
+const fetchShelf = async (username: string, slug: string) => {
+  const filter = getShelvesByOwnerUsernameFilter(username, slug);
+  const shelf = await db.query.shelves.findFirst({
+    with: {
+      furniture: true,
+    },
+    extras: {
+      totalBooks: sql<number>`(
+        SELECT CAST(COUNT(*) AS INTEGER)
+        FROM ${schema.myBooks}
+        WHERE shelf_id = ${schema.shelves.id}
+      )`.as("total_books"),
+    },
+    where: filter,
+  });
 
+  if (!shelf) throw new Error("Shelf not found");
+
+  return ShelfResponseSchema.parse(shelf);
+};
+
+function getBookOnShelfByOwnerUsernameFilter(
+  username: string,
+  shelfSlug?: string,
+) {
+  return inArray(
+    schema.myBooks.shelfId,
+    db
+      .select({ id: schema.shelves.id })
+      .from(schema.shelves)
+      .where(getShelvesByOwnerUsernameFilter(username, shelfSlug)),
+  );
+}
+
+function getShelvesByOwnerUsernameFilter(username: string, shelfSlug?: string) {
   if (shelfSlug) {
-    return and(usernameFilter, eq(schema.shelves.slug, shelfSlug));
+    return and(onUserShelf(username), eq(schema.shelves.slug, shelfSlug));
+  } else {
+    return onUserShelf(username);
   }
-  else {
-    return usernameFilter;
-  }
+}
+
+function onUserShelf(username: string) {
+  return inArray(
+    schema.shelves.ownerId,
+    db
+      .select({ id: schema.users.id })
+      .from(schema.users)
+      .where(eq(schema.users.username, username)),
+  );
 }
 
 function slugify(str: string) {

@@ -25,12 +25,6 @@ export const MyBookResponseSchema = SelectMyBookSchema.extend({
   shelf: schema.SelectShelfSchema.nullish(),
 });
 
-export const MyBooksResponseSchema = withPagination(MyBookResponseSchema);
-
-export const ShelfBooksResponseSchema = z.object({
-  shelf: SelectShelfSchema,
-  books: withPagination(MyBookResponseSchema),
-})
 
 export const ShelfResponseSchema = SelectShelfSchema.extend({
   furniture: schema.SelectFurnitureSchema.optional(),
@@ -39,6 +33,12 @@ export const ShelfResponseSchema = SelectShelfSchema.extend({
 
 export const ShelvesResponseSchema = withPagination(ShelfResponseSchema);
 
+export const MyBooksResponseSchema = withPagination(MyBookResponseSchema);
+
+export const ShelfBooksResponseSchema = withPagination(MyBookResponseSchema.omit({shelf: true}))
+  .extend({
+    shelf: ShelfResponseSchema
+  })
 
 
 export const InsertShelfRequestSchema = InsertShelfSchema.omit({

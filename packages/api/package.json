@@ -37,6 +37,7 @@
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",
     "@sovoli/typescript-config": "workspace:*",
+    "@sovoli/prettier-config": "workspace:*",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
