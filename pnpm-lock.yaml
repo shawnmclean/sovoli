@@ -226,6 +226,9 @@ importers:
       '@sovoli/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@sovoli/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
       '@sovoli/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config

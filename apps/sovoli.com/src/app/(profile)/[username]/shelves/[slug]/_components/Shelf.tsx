@@ -1,9 +1,18 @@
 "use client";
 
-import { tsr } from "~/api/tsr";
 import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
 
-export function Shelf({ username, slug }: { username: string; slug: string }) {
+import { tsr } from "~/api/tsr";
+
+export function Shelf({
+  username,
+  slug,
+  page,
+}: {
+  username: string;
+  slug: string;
+  page: number | undefined;
+}) {
   const { data } = tsr.getShelfBooks.useSuspenseQuery({
     queryKey: ["username", "slug"],
     queryData: {
@@ -11,12 +20,13 @@ export function Shelf({ username, slug }: { username: string; slug: string }) {
         username,
         slug,
       },
+      query: {
+        page,
+      },
     },
   });
 
   const shelf = data.body;
 
-  return (
-      <ShelfScreen shelf={shelf} />
-  );
+  return <ShelfScreen shelf={shelf} />;
 }

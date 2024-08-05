@@ -87,6 +87,11 @@ export function ShelfScreen({ shelf }: { shelf: Shelf }) {
               ),
           )}
         </View>
+        <View className="flex-1 flex justify-end">
+          <Text className="text-muted-foreground text-sm">
+            {shelf.meta.page} of {Math.ceil(shelf.meta.total / shelf.meta.pageSize)}
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );
