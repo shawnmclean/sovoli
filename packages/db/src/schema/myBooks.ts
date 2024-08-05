@@ -15,6 +15,34 @@ import { z } from "zod";
 import { shelves } from "./furnitures";
 import { users } from "./identity";
 
+export const AuthorLinkSchema = z.object({
+  title: z.string(),
+  value: z.string(),
+  type: z.enum(["url", "email", "phone"]),
+});
+
+export type AuthorLink = z.infer<typeof AuthorLinkSchema>;
+
+export const RemoteAuthorIdSchema = z.object({
+  type: z.enum(["openlibrary", "goodreads", "amazon"]),
+  id: z.string(),
+});
+
+export type RemoteAuthorId = z.infer<typeof RemoteAuthorIdSchema>;
+
+export const authors = pgTable("authors", {
+  id: uuid("id").notNull().primaryKey().defaultRandom(),
+  name: varchar("name", { length: 255 }).notNull(),
+  bio: text("bio"),
+  alternateNames: jsonb("alternate_names").$type<string[]>(),
+  birthDate: date("birth_date"),
+  deathDate: date("death_date"),
+  links: jsonb("links").$type<AuthorLink[]>(),
+  remoteIds: jsonb("remote_ids").$type<RemoteAuthorId[]>(),
+  createdAt: date("created_at").notNull().defaultNow(),
+  updatedAt: date("updated_at").notNull().defaultNow(),
+});
+
 const ImageTypeEnum = z.enum(["thumbnail", "cover", "illustration"]);
 
 export type ImageType = z.infer<typeof ImageTypeEnum>;
@@ -40,6 +68,11 @@ export const books = pgTable("books", {
   description: text("description"),
   language: varchar("language", { length: 2 }),
   images: jsonb("images").$type<BookImage[]>(),
+});
+
+export const authorBooks = pgTable("author_books", {
+  bookId: uuid("book_id").references(() => books.id),
+  authorId: uuid("author_id").references(() => authors.id),
 });
 
 export const SelectBookSchema = createSelectSchema(books);

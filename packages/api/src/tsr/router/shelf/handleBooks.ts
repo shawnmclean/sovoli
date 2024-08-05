@@ -1,5 +1,5 @@
-import { books } from "@sovoli/services";
 import { db, schema, sql } from "@sovoli/db";
+import { books } from "@sovoli/services";
 
 const validateInferredBook = async (book: schema.InsertInferredBook) => {
   let matchedBooks: books.GoogleBook[] = [];
@@ -29,7 +29,7 @@ const validateInferredBook = async (book: schema.InsertInferredBook) => {
 };
 
 export const handleInferredBook = async (
-  inferredBook: schema.InsertInferredBook
+  inferredBook: schema.InsertInferredBook,
 ) => {
   const validatedBook = await validateInferredBook(inferredBook);
 

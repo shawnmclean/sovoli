@@ -12,8 +12,8 @@ interface VolumeInfo {
     identifier: string;
   }[];
   imageLinks?: {
-    smallThumbnail: string;
-    thumbnail: string;
+    smallThumbnail?: string;
+    thumbnail?: string;
   };
   language: string;
 }
@@ -83,6 +83,7 @@ export async function getBooks(
           }
         }
       }
+
       return {
         title: volumeInfo.title,
         subtitle: volumeInfo.subtitle,
@@ -96,9 +97,7 @@ export async function getBooks(
         isbn10,
         isbn13,
         language: volumeInfo.language,
-        thumbnail: volumeInfo.imageLinks
-          ? volumeInfo.imageLinks.thumbnail
-          : null,
+        thumbnail: volumeInfo.imageLinks?.thumbnail ?? volumeInfo.imageLinks?.smallThumbnail ?? null,
       };
     });
 
