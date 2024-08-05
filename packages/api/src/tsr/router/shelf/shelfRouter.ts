@@ -21,6 +21,13 @@ export const shelfRouter = tsr.router(shelfContract, {
             with: { book: true },
           },
         },
+        extras:{
+          totalBooks: sql<number>`(
+          SELECT CAST(COUNT(*) AS INTEGER)
+          FROM ${schema.myBooks} 
+          WHERE shelf_id = ${schema.shelves.id}
+        )`.as("total_books"),
+        },
         where: filter,
         limit: pageSize,
         offset: (page - 1) * pageSize,
