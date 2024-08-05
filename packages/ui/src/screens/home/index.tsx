@@ -4,7 +4,6 @@ import {
   Linking,
   ScrollView,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { Button } from "@sovoli/ui/components/button";
