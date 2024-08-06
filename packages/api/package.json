@@ -15,6 +15,10 @@
     "./tsr": {
       "types": "./dist/tsr/index.d.ts",
       "default": "./src/tsr/index.ts"
+    },
+    "./tsr/contract": {
+      "types": "./dist/tsr/contract.d.ts",
+      "default": "./src/tsr/contract.ts"
     }
   },
   "scripts": {

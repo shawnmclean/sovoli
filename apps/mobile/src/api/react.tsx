@@ -43,7 +43,7 @@ export function QueryProviders(props: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <trpc.Provider client={trpcClient} queryClient={queryClient}>
-        {props.children}
+        <tsr.ReactQueryProvider>{props.children}</tsr.ReactQueryProvider>
       </trpc.Provider>
     </QueryClientProvider>
   );
