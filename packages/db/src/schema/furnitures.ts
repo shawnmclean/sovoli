@@ -1,10 +1,8 @@
-import { relations } from "drizzle-orm";
 import { jsonb, pgTable, unique, uuid, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 import { users } from "./identity";
-import { myBooks } from "./myBooks";
 
 export const ImageSchema = z.object({
   url: z.string(),
@@ -31,14 +29,6 @@ export const furnitures = pgTable(
 export const SelectFurnitureSchema = createSelectSchema(furnitures);
 export const InsertFurnitureSchema = createInsertSchema(furnitures);
 
-export const furnituresRelations = relations(furnitures, ({ one, many }) => ({
-  owner: one(users, {
-    fields: [furnitures.ownerId],
-    references: [users.id],
-  }),
-  shelves: many(shelves),
-}));
-
 export const shelves = pgTable(
   "shelf",
   {
@@ -61,15 +51,3 @@ export const shelves = pgTable(
 
 export const SelectShelfSchema = createSelectSchema(shelves);
 export const InsertShelfSchema = createInsertSchema(shelves);
-
-export const shelvesRelations = relations(shelves, ({ one, many }) => ({
-  furniture: one(furnitures, {
-    fields: [shelves.furnitureId],
-    references: [furnitures.id],
-  }),
-  owner: one(users, {
-    fields: [shelves.ownerId],
-    references: [users.id],
-  }),
-  books: many(myBooks),
-}));
