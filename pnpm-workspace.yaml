@@ -3,11 +3,16 @@ packages:
   - apps/*
 
 catalog:
-  "@tanstack/react-query": 5.51.15
-  "@ts-rest/core": 3.49.0
-  "@ts-rest/open-api": 3.49.0
-  "@ts-rest/react-query": 3.49.0
-  "@ts-rest/serverless": 3.49.0
+  "@tanstack/react-query": 5.51.21
+  "@ts-rest/core": 3.49.3
+  "@ts-rest/open-api": 3.49.3
+  "@ts-rest/react-query": 3.49.3
+  "@ts-rest/serverless": 3.49.3
+  "@trpc/client": 11.0.0-rc.461
+  "@trpc/next": 11.0.0-rc.461
+  "@trpc/react-query": 11.0.0-rc.461
+  "@trpc/server": 11.0.0-rc.461
+  "@types/react": 18.2.79
   "@types/node": 22.0.2
   prettier: 3.3.3
   eslint: 9.8.0
