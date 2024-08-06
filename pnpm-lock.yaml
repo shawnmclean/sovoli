@@ -71,6 +71,9 @@ importers:
       '@sovoli/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@tanstack/react-query':
+        specifier: 'catalog:'
+        version: 5.51.15(react@18.2.0)
       class-variance-authority:
         specifier: 0.7.0
         version: 0.7.0
@@ -126,6 +129,9 @@ importers:
       '@sovoli/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@sovoli/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
       '@sovoli/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -377,7 +383,7 @@ importers:
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-65903583-20240805(eslint@9.8.0)
+        version: 5.1.0-rc-187dd6a7-20240806(eslint@9.8.0)
       eslint-plugin-turbo:
         specifier: 2.0.11
         version: 2.0.11(eslint@9.8.0)
@@ -4053,8 +4059,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-65903583-20240805:
-    resolution: {integrity: sha512-NEsjgvv/oqnwGu1PIuk0LKo5UrBO0SnvFdavWl56R5SAcHPZi+sEnQ7Onzp6hpRuEAC69bhfTA/9no6JItCM/w==}
+  eslint-plugin-react-hooks@5.1.0-rc-187dd6a7-20240806:
+    resolution: {integrity: sha512-glBBlHhCbg/Jm50sSKiYj2aAa6Bf1IvHHg/sChrXudGHzhYPc3+0i0scSBzgxHEy5CNkA7sQwy8GM46yaSj5wA==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -11846,7 +11852,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-65903583-20240805(eslint@9.8.0):
+  eslint-plugin-react-hooks@5.1.0-rc-187dd6a7-20240806(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
 

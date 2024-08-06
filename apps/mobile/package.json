@@ -19,6 +19,7 @@
     "@sovoli/api": "workspace:*",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@expo/metro-config": "0.18.3",
+    "@tanstack/react-query": "catalog:",
     "@react-navigation/native": "6.0.2",
     "@rn-primitives/portal": "1.0.3",
     "expo": "51.0.17",
@@ -41,11 +42,13 @@
   "devDependencies": {
     "@sovoli/typescript-config": "workspace:*",
     "@sovoli/eslint-config": "workspace:*",
+    "@sovoli/prettier-config": "workspace:*",
     "@types/node": "catalog:",
     "@babel/core": "7.24.0",
     "@types/react": "18.2.79",
     "eslint": "catalog:",
     "tailwindcss": "3.3.4",
     "typescript": "catalog:"
-  }
+  },
+  "prettier": "@sovoli/prettier-config"
 }

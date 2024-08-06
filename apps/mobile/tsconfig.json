@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
-      "@sovoli/ui/*": ["../../packages/ui/src/*"]
+      "@sovoli/ui/*": ["../../packages/ui/src/*"],
+      "@sovoli/api/*": ["../../packages/api/src/*"]
     },
     "jsx": "react-native",
     "checkJs": false

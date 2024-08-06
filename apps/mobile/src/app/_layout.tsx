@@ -1,17 +1,19 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 
 import { SplashScreen, Stack } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { PortalHost } from "@rn-primitives/portal";
+import { Button } from "@sovoli/ui/components/button";
+import { Text } from "@sovoli/ui/components/text";
 import { useColorScheme } from "@sovoli/ui/hooks/useColorScheme";
 import { UiProviders } from "@sovoli/ui/providers";
-import { PortalHost } from "@rn-primitives/portal";
-import { Text } from "@sovoli/ui/components/text";
-import { Button } from "@sovoli/ui/components/button";
 
 import "@sovoli/ui/config/tailwind/globals.css";
+
 import React from "react";
-import { TRPCProvider } from "~/api/trpc/api";
+
+import { QueryProviders } from "~/api/react";
 
 // Prevent the splash screen from auto-hiding before getting the color scheme.
 SplashScreen.preventAutoHideAsync();
@@ -50,7 +52,7 @@ export default function RootLayout() {
     return null;
   }
   return (
-    <TRPCProvider>
+    <QueryProviders>
       <UiProviders>
         {/*
           The Stack component displays the current page.
@@ -79,7 +81,7 @@ export default function RootLayout() {
         <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
         <PortalHost />
       </UiProviders>
-    </TRPCProvider>
+    </QueryProviders>
   );
 }
 function toOptions(name: string) {
