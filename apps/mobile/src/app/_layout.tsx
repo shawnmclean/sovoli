@@ -23,30 +23,38 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const { colorScheme, isDarkColorScheme, setColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
-
+  const initialLoadRef = React.useRef(true);
+  // Effect to load and set the initial color scheme
   React.useEffect(() => {
-    (async () => {
-      const theme = await AsyncStorage.getItem("theme");
+    if (initialLoadRef.current) {
+      initialLoadRef.current = false;
+      (async () => {
+        console.log("running effect");
+        const theme = await AsyncStorage.getItem("theme");
 
-      if (!theme) {
-        // setAndroidNavigationBar(colorScheme);
-        AsyncStorage.setItem("theme", colorScheme);
+        console.log("theme", theme);
+        if (!theme) {
+          await AsyncStorage.setItem("theme", colorScheme);
+          setIsColorSchemeLoaded(true);
+          return;
+        }
+        const colorTheme = theme === "dark" ? "dark" : "light";
+        if (colorTheme !== colorScheme) {
+          setColorScheme(colorTheme);
+        }
         setIsColorSchemeLoaded(true);
-        return;
-      }
-      const colorTheme = theme === "dark" ? "dark" : "light";
-      // setAndroidNavigationBar(colorTheme);
-      if (colorTheme !== colorScheme) {
-        setColorScheme(colorTheme);
-
-        setIsColorSchemeLoaded(true);
-        return;
-      }
-      setIsColorSchemeLoaded(true);
-    })().finally(() => {
-      SplashScreen.hideAsync();
-    });
+      })().finally(() => {
+        SplashScreen.hideAsync();
+      });
+    }
   }, [colorScheme, setColorScheme]);
+
+  // Effect to update storage whenever colorScheme changes
+  React.useEffect(() => {
+    if (isColorSchemeLoaded) {
+      AsyncStorage.setItem("theme", colorScheme);
+    }
+  }, [colorScheme, isColorSchemeLoaded]);
 
   if (!isColorSchemeLoaded) {
     return null;
