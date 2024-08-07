@@ -12,11 +12,14 @@ import { Text } from "../text";
 const PAGE_WIDTH = window.width;
 const MAX_CAROSEL_HEIGHT = 500;
 
-export function Gallery({
-  images,
-}: {
-  images: { src: string; alt: string }[];
-}) {
+export interface Image {
+  url: string;
+  isCover: boolean;
+  order?: number;
+  alt?: string;
+}
+
+export function Gallery({ images }: { images: Image[] }) {
   const windowWidth = useWindowDimensions().width;
   const [carouselHeight, setCarouselHeight] = useState<number>(
     Math.min(PAGE_WIDTH / COVER_IMAGE_ASPECT_RATIO, MAX_CAROSEL_HEIGHT),
@@ -52,7 +55,7 @@ export function Gallery({
           }
           return (
             <View className="h-full w-full">
-              <Image fill src={image.src} alt={image.alt} />
+              <Image fill src={image.url} alt={image.alt ?? ""} />
             </View>
           );
         }}

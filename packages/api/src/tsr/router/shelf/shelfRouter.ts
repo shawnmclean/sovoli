@@ -77,7 +77,7 @@ export const shelfRouter = tsr.router(shelfContract, {
       data,
       meta: { page, pageSize, total: total[0]?.count },
     });
-
+    console.log({ response });
     return {
       status: 200,
       body: response,

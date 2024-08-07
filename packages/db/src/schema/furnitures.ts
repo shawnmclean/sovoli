@@ -6,6 +6,9 @@ import { users } from "./identity";
 
 export const ImageSchema = z.object({
   url: z.string(),
+  isCover: z.boolean().default(false),
+  order: z.number().int().optional(),
+  alt: z.string().optional(),
 });
 
 export type Image = z.infer<typeof ImageSchema>;
