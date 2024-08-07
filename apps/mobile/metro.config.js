@@ -35,6 +35,10 @@ function withMonorepoPaths(config) {
     path.resolve(workspaceRoot, "node_modules"),
   ];
 
+  // enable package exports
+  config.resolver.unstable_enableSymlinks = true;
+  config.resolver.unstable_enablePackageExports = true;
+
   return config;
 }
 

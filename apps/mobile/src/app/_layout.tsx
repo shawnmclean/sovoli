@@ -3,7 +3,7 @@
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { PortalHost } from "@rn-primitives/portal";
+// import { PortalHost } from "@rn-primitives/portal";
 import { Button } from "@sovoli/ui/components/button";
 import { Text } from "@sovoli/ui/components/text";
 import { useColorScheme } from "@sovoli/ui/hooks/useColorScheme";
@@ -29,10 +29,8 @@ export default function RootLayout() {
     if (initialLoadRef.current) {
       initialLoadRef.current = false;
       (async () => {
-        console.log("running effect");
         const theme = await AsyncStorage.getItem("theme");
 
-        console.log("theme", theme);
         if (!theme) {
           await AsyncStorage.setItem("theme", colorScheme);
           setIsColorSchemeLoaded(true);
@@ -87,7 +85,7 @@ export default function RootLayout() {
           }}
         />
         <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-        <PortalHost />
+        {/* <PortalHost /> */}
       </UiProviders>
     </QueryProviders>
   );
