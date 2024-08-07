@@ -1,5 +1,3 @@
-
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -16,11 +14,16 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "books.google.com.jm",
+        hostname: "ivzknqycaxkrztubruny.supabase.co",
+      },
+      // Development Bucket
+      {
+        protocol: "https",
+        hostname: "qxvzrmayigmtjhfucogx.supabase.co",
       },
     ],
   },
-  webpack: (config, {webpack}) => {
+  webpack: (config, { webpack }) => {
     // Needed to get postgres db adapter: https://github.com/vercel/next.js/discussions/50177#discussioncomment-9409065
     // config.externals.push("cloudflare:sockets");
     // config.externalsType = "commonjs";
@@ -41,7 +44,7 @@ const nextConfig = {
     config.plugins.push(
       new webpack.DefinePlugin({
         __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
-      })
+      }),
     );
     return config;
   },
