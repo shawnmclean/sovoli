@@ -10,8 +10,8 @@ module.exports = withTurborepoManagedCache(
     withNativeWind(getDefaultConfig(__dirname), {
       input: "../../packages/ui/src/config/tailwind/globals.css",
       configPath: "./tailwind.config.ts",
-    })
-  )
+    }),
+  ),
 );
 
 /**
@@ -34,6 +34,10 @@ function withMonorepoPaths(config) {
     path.resolve(projectRoot, "node_modules"),
     path.resolve(workspaceRoot, "node_modules"),
   ];
+
+  // enable package exports
+  config.resolver.unstable_enableSymlinks = true;
+  config.resolver.unstable_enablePackageExports = true;
 
   return config;
 }
