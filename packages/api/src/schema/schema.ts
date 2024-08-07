@@ -1,10 +1,12 @@
-import { schema } from "@sovoli/db";
 import {
   ImageSchema,
+  InsertInferredBookSchema,
   InsertShelfSchema,
+  SelectBookSchema,
+  SelectFurnitureSchema,
   SelectMyBookSchema,
   SelectShelfSchema,
-} from "@sovoli/db/src/schema";
+} from "@sovoli/db/schema";
 import { z } from "zod";
 
 import { withPagination } from "./withPagination";
@@ -23,12 +25,12 @@ export const NotFoundSchema = z.object({
 });
 
 export const MyBookResponseSchema = SelectMyBookSchema.extend({
-  book: schema.SelectBookSchema.nullish(),
-  shelf: schema.SelectShelfSchema.nullish(),
+  book: SelectBookSchema.nullish(),
+  shelf: SelectShelfSchema.nullish(),
 });
 
 export const ShelfResponseSchema = SelectShelfSchema.extend({
-  furniture: schema.SelectFurnitureSchema.optional(),
+  furniture: SelectFurnitureSchema.optional(),
   totalBooks: z.number(),
   images: z.array(ImageSchema).optional(),
 });
@@ -49,7 +51,7 @@ export const InsertShelfRequestSchema = InsertShelfSchema.omit({
   myBooks: z
     .array(
       z.object({
-        inferredBook: schema.InsertInferredBookSchema.optional(),
+        inferredBook: InsertInferredBookSchema.optional(),
         shelfOrder: z.number(),
       }),
     )

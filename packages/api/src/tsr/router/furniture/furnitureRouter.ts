@@ -1,5 +1,5 @@
+import { and, db, eq, inArray, schema } from "@sovoli/db";
 import { tsr } from "@ts-rest/serverless/next";
-import { db, eq, and, schema, inArray } from "@sovoli/db";
 
 import { furnitureContract } from "./furnitureContract";
 
@@ -13,8 +13,8 @@ export const furnitureRouter = tsr.router(furnitureContract, {
           db
             .select({ id: schema.users.id })
             .from(schema.users)
-            .where(eq(schema.users.username, username))
-        )
+            .where(eq(schema.users.username, username)),
+        ),
       ),
     });
 

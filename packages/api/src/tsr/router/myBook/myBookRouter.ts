@@ -1,11 +1,11 @@
+import { and, count, db, eq, inArray, schema } from "@sovoli/db";
 import { tsr } from "@ts-rest/serverless/next";
-import { db, eq, and, schema, inArray, count } from "@sovoli/db";
 
-import { myBookContract } from "./myBookContract";
 import {
   MyBookResponseSchema,
   MyBooksResponseSchema,
 } from "../../../schema/schema";
+import { myBookContract } from "./myBookContract";
 
 export const myBookRouter = tsr.router(myBookContract, {
   getMyBooks: async ({ params: { username }, query: { page, pageSize } }) => {
@@ -57,6 +57,6 @@ function getBooksByUsernameFilter(username: string) {
     db
       .select({ id: schema.users.id })
       .from(schema.users)
-      .where(eq(schema.users.username, username))
+      .where(eq(schema.users.username, username)),
   );
 }

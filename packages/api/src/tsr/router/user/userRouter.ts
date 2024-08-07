@@ -1,7 +1,6 @@
+import { db, eq, schema } from "@sovoli/db";
+import { SelectUserSchema } from "@sovoli/db/schema";
 import { tsr } from "@ts-rest/serverless/next";
-import { eq } from "@sovoli/db";
-
-import { db, schema } from "@sovoli/db";
 
 import { userContract } from "./userContract";
 
@@ -15,7 +14,7 @@ export const userRouter = tsr.router(userContract, {
 
     return {
       status: 200,
-      body: schema.SelectUserSchema.parse(user),
+      body: SelectUserSchema.parse(user),
     };
   },
 });

@@ -1,6 +1,6 @@
-import { z } from "zod";
+import { SelectFurnitureSchema } from "@sovoli/db/schema";
 import { initContract } from "@ts-rest/core";
-import { schema } from "@sovoli/db";
+import { z } from "zod";
 
 const c = initContract();
 
@@ -13,7 +13,7 @@ export const furnitureContract = c.router({
       slug: z.coerce.string(),
     }),
     responses: {
-      200: schema.SelectFurnitureSchema.nullable(),
+      200: SelectFurnitureSchema.nullable(),
     },
     summary: "Get a furniture by slug",
   },

@@ -1,6 +1,7 @@
-import { z } from "zod";
+import { SelectUserSchema } from "@sovoli/db/schema";
 import { initContract } from "@ts-rest/core";
-import { schema } from "@sovoli/db";
+import { z } from "zod";
+
 import { ZUnsuccessfulResponseSchema } from "../../../schema";
 
 const c = initContract();
@@ -13,7 +14,7 @@ export const userContract = c.router({
       username: z.coerce.string(),
     }),
     responses: {
-      200: schema.SelectUserSchema.nullable(),
+      200: SelectUserSchema.nullable(),
       404: ZUnsuccessfulResponseSchema,
     },
     summary: "Get a user by username",
