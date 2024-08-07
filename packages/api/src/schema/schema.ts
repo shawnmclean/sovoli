@@ -30,9 +30,9 @@ export const MyBookResponseSchema = SelectMyBookSchema.extend({
 });
 
 export const ShelfResponseSchema = SelectShelfSchema.extend({
-  furniture: SelectFurnitureSchema.optional(),
+  furniture: SelectFurnitureSchema.nullish(),
   totalBooks: z.number(),
-  images: z.array(ImageSchema).optional(),
+  images: z.array(ImageSchema).nullish(),
 });
 
 export const ShelvesResponseSchema = withPagination(ShelfResponseSchema);
