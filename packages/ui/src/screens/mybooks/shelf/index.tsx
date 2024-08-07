@@ -26,7 +26,9 @@ export function ShelfScreen({
           <Text className="text-3xl font-bold sm:text-4xl lg:text-5xl">
             {shelf.name}
           </Text>
-          <Text className="text-muted-foreground sm:text-lg">{shelf.name}</Text>
+          <Text className="text-muted-foreground sm:text-lg">
+            {shelf.description}
+          </Text>
           <Text className="text-xs text-muted-foreground">
             {shelf.totalBooks} books
           </Text>

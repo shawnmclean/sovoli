@@ -28,7 +28,5 @@ export function Shelf({
 
   const shelf = data.body;
 
-  console.log({ shelf });
-
   return <ShelfScreen shelf={shelf} />;
 }
