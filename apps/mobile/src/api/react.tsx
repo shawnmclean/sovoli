@@ -6,10 +6,11 @@ import { createTRPCReact } from "@trpc/react-query";
 import superjson from "superjson";
 
 import { getBaseUrl } from "~/utils/getBaseUrl";
-import { tsr } from "./tsr";
+
+// import { tsr } from "./tsr";
 
 export const trpc = createTRPCReact<AppRouter>();
-export { tsr };
+// export { tsr };
 
 export function QueryProviders(props: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -43,7 +44,9 @@ export function QueryProviders(props: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <trpc.Provider client={trpcClient} queryClient={queryClient}>
-        <tsr.ReactQueryProvider>{props.children}</tsr.ReactQueryProvider>
+        {/* <tsr.ReactQueryProvider> */}
+        {props.children}
+        {/* </tsr.ReactQueryProvider> */}
       </trpc.Provider>
     </QueryClientProvider>
   );
