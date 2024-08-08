@@ -4,6 +4,7 @@ import { dehydrate } from "@tanstack/query-core";
 import { HydrationBoundary } from "@tanstack/react-query";
 
 import { getQueryClient, tsr } from "~/api/tsr";
+import { config } from "~/utils/config";
 import { Shelf } from "./_components/Shelf";
 
 interface Props {
@@ -29,8 +30,22 @@ export async function generateMetadata({
     },
   });
 
+  const coverImage = body.shelf.images?.[0];
+
   return {
     title: body.shelf.name,
+    description: body.shelf.description,
+    openGraph: {
+      title: body.shelf.name,
+      description: body.shelf.description ?? config.description,
+      url: config.url + "/" + params.username + "/shelves/" + params.slug,
+      siteName: config.siteName,
+      images: coverImage && [
+        {
+          url: coverImage.url,
+        },
+      ],
+    },
   };
 }
 

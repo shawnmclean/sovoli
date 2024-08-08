@@ -3,11 +3,13 @@ import "raf/polyfill";
 
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
-import { UiProviders } from "@sovoli/ui/providers";
 import { PortalHost } from "@rn-primitives/portal";
+import { UiProviders } from "@sovoli/ui/providers";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import { QueryProviders } from "~/api/react";
+import { config } from "~/utils/config";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,9 +21,25 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Sovoli: Your Ultimate Book Organizer",
-  description:
-    "Track your reading progress, write notes, and share your library with Sovoli. Start organizing your knowledge today!",
+  title: {
+    default: config.title,
+    template: `%s | ${config.siteName}`,
+  },
+  description: config.description,
+  openGraph: {
+    title: config.title,
+    description: config.description,
+    url: config.url,
+    siteName: config.siteName,
+    images: [
+      // {
+      //   url: "https://sovoli.com/images/og-image.png",
+      //   width: 1200,
+      //   height: 630,
+      //   alt: "Sovoli: Your Ultimate Book Organizer",
+      // },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
