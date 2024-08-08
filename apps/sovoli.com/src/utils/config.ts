@@ -6,7 +6,7 @@ export const config = {
   url: "https://sovoli.com",
   images: [
     {
-      url: "https://sovoli.com/images/og-image.png",
+      url: "/images/og-image.webp",
       width: 1200,
       height: 630,
       alt: "Sovoli: Your Ultimate Book Organizer",

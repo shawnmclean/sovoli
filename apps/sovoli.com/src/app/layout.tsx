@@ -31,14 +31,7 @@ export const metadata: Metadata = {
     description: config.description,
     url: config.url,
     siteName: config.siteName,
-    images: [
-      // {
-      //   url: "https://sovoli.com/images/og-image.png",
-      //   width: 1200,
-      //   height: 630,
-      //   alt: "Sovoli: Your Ultimate Book Organizer",
-      // },
-    ],
+    images: config.images,
   },
 };
 
