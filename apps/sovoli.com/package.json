@@ -18,6 +18,7 @@
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",
     "@tanstack/react-query": "catalog:",
+    "@tanstack/react-query-devtools": "5.51.23",
     "@trpc/client": "catalog:",
     "@trpc/next": "catalog:",
     "@trpc/react-query": "catalog:",

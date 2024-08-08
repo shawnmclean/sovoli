@@ -1,49 +1,18 @@
 "use client";
 
-import type { AppRouter } from "@sovoli/api/trpc";
-import { useState } from "react";
-import {
-  defaultShouldDehydrateQuery,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
-// import { loggerLink, unstable_httpBatchStreamLink } from "@trpc/client";
-import { createTRPCReact } from "@trpc/react-query";
-import SuperJSON from "superjson";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-// import { env } from "~/env";
-// import { getBaseUrl } from "~/utils/getBaseUrl";
-// import { getQueryClient } from "./query-client";
+import { getQueryClient } from "./query-client";
 import { tsr } from "./tsr";
 
-export const trpc = createTRPCReact<AppRouter>();
-
-export function QueryProviders(props: { children: React.ReactNode }) {
-  const [trpcClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            // With SSR, we usually want to set some default staleTime
-            // above 0 to avoid refetching immediately on the client
-            staleTime: 30 * 1000,
-          },
-          dehydrate: {
-            serializeData: SuperJSON.serialize,
-            shouldDehydrateQuery: (query) =>
-              defaultShouldDehydrateQuery(query) ||
-              query.state.status === "pending",
-          },
-          hydrate: {
-            deserializeData: SuperJSON.deserialize,
-          },
-        },
-      }),
-  );
+export function QueryProviders({ children }: { children: React.ReactNode }) {
+  const queryClient = getQueryClient();
 
   return (
-    <QueryClientProvider client={trpcClient}>
-      <tsr.ReactQueryProvider>{props.children}</tsr.ReactQueryProvider>
+    <QueryClientProvider client={queryClient}>
+      <tsr.ReactQueryProvider>{children}</tsr.ReactQueryProvider>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }
