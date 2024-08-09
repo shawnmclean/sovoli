@@ -8,32 +8,40 @@ import { tsr } from "~/api/tsr";
 import { config } from "~/utils/config";
 import { Shelf } from "./_components/Shelf";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: { username: string; slug: string };
   searchParams: { page: number | undefined };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const client = tsr.initQueryClient(getQueryClientRsc());
-  await client.invalidateQueries({ queryKey: ["username", "slug"] });
-  const { body } = await client.getShelf.fetchQuery({
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
+  const client = tsr.initQueryClient(getQueryClientRsc(true));
+  const { body } = await client.getShelfBooks.fetchQuery({
     queryKey: ["username", "slug"],
     queryData: {
       params: {
         username: params.username,
         slug: params.slug,
       },
+      query: {
+        page: searchParams.page,
+      },
     },
   });
 
-  const coverImage = body.images?.[0];
+  const shelf = body.shelf;
+  const coverImage = shelf.images?.[0];
 
   return {
-    title: body.name,
-    description: body.description,
+    title: shelf.name,
+    description: shelf.description,
     openGraph: {
-      title: body.name,
-      description: body.description ?? config.description,
+      title: shelf.name,
+      description: shelf.description ?? config.description,
       url: config.url + "/" + params.username + "/shelves/" + params.slug,
       siteName: config.siteName,
       images: coverImage && [
@@ -46,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function ShelfPage({ params, searchParams }: Props) {
-  const client = tsr.initQueryClient(getQueryClientRsc());
+  const client = tsr.initQueryClient(getQueryClientRsc(true));
   void client.getShelfBooks.prefetchQuery({
     queryKey: ["username", "slug"],
     queryData: {

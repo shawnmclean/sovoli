@@ -7,7 +7,7 @@ import { getQueryClient } from "./query-client";
 import { tsr } from "./tsr";
 
 export function QueryProviders({ children }: { children: React.ReactNode }) {
-  const queryClient = getQueryClient();
+  const queryClient = getQueryClient(true);
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -23,6 +23,9 @@ export function Shelf({
       query: {
         page,
       },
+      fetchOptions: {
+        cache: "no-store",
+      },
     },
   });
 

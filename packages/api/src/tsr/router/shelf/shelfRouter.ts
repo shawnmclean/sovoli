@@ -54,7 +54,10 @@ export const shelfRouter = tsr.router(shelfContract, {
       return {
         status: 404,
         body: {
-          message: error instanceof Error ? error.message : "Unknown error",
+          message:
+            error instanceof Error
+              ? error.message
+              : "shelf does not exist for this username",
         },
       };
     }
