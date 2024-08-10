@@ -140,3 +140,21 @@ Example: https://openlibrary.org/authors/OL8473943A/works.json
 
 Use the entries[].key to get the linked book and continue to populate the `books` table.
 
+### Flowchart
+
+```mermaid
+flowchart TD
+    A[Inferred Books] -->|Store In MyBook| B(Google Books API)
+    B --> |Store in Books and link MyBook| BT[Book & MyBook Table]
+    B --> |Get OL Book|C(OpenLibrary Book)
+    C --> |Update Books|BT[Books Table]
+    C --> H{Author In DB?}
+    H --> |no| D(OpenLibrary Author)
+    H --> |yes| LA(Link Author and Book)
+    D --> |Store in Authors and link Books| ADB[Author Table]
+    D --> |Get Author Works| E(OpenLibrary Author Works)
+    E --> I{Is Book in DB?}
+    I --> |no| C
+    I --> |yes| Z[End]
+
+```
