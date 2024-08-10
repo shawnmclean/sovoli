@@ -63,21 +63,80 @@ We will need to store temporary data on myBooks such as what the book is inferre
 
 Add a few columns:
 
-1. `name` - the title that the inference system thinks is the best match. This will be updated as we link the book.
-2. `inferredAuthor` - the author that the inference system thinks is the best match
-3. `triggerDevId` - the trigger dev handle id thats handling the inference population.
-4. `inferredIsbns` - the list of ISBNs that the inference system thinks are the best match
-5. `verified` - a boolean that will be set to true when the inference is validated by user.
-6. `inferenceError` - the error that the inference system encountered, if any.
-7. `inferenceSystems` - the list of inference systems that the inference system uses to validate the inference. ie. googleBooks, openLibrary, etc
+* `inferredTitle` - the title that the inference system thinks is the best match
+* `inferredAuthor` - the author that the inference system thinks is the best match
+* `inferredIsbn` - the ISBN that the inference system thinks is the best match
+* `triggerDevId` - the trigger dev handle id thats handling the inference population.
+* `probableIsbns` - the list of ISBNs that the inference validationsystem thinks are the best match
+* `verified` - a boolean that will be set to true when the inference is validated by user.
+* `inferenceError` - the error that the inference system encountered, if any.
 
 `slug` and `bookId` will be null until automatic inference validation is done.
 
-Questions:
+unique index on `inferredTitle` and `inferredAuthor` to prevent duplicate inference submissions.
 
-If the same book is added with inferred title and author, what should happen?
+
+For the `books` table:
+
+* `inferenceSystems` - the list of inference systems that the inference system uses to validate the inference. ie. googleBooks, openLibrary, etc
 
 ### Flow
 
 1. User adds a book to `my-books` table with inference data.
-2. 
+2. Write services (shelf, mybooks, list) will call the inference service to validate the inference if inferredTitle and inferredAuthor are not null.
+3. The triggerDevId should be saved to the respective myBooks record.
+4. If a list of books were added, batch the triggerDev calls.
+
+
+### Algorithm
+
+**Prepare from the trigger** 
+
+1. Get the book from the database.
+2. Since the book is scanned by the spine, it is more likely that the title is correct, then less so the author and then the ISBN. So we will query using the following order:
+
+**Google Books API Calls**
+
+Search logic:
+
+1. title, author, ISBN
+2. if nothing is found, try title, author
+3. if nothing is found, try title only
+
+We will use the plain google books api q parameter without any filters, since the filters are giving us inacurate results during testing.
+
+The API will return a list of books that match the query.
+
+We will create the book and link `my-book` to it.
+
+Also update the `inferenceSystems` column to include `googleBooks`.
+
+*note*: We went with google api because it has a very good fuzzy search logic to find the best match.
+
+**OpenLibrary API Calls**
+
+For each book that google books returns, we need to make another request to OpenLibrary API to get more data, the cover image and author.
+
+See: https://openlibrary.org/dev/docs/api/read
+
+Update the `books` table with what we found.
+
+Also update the `inferenceSystems` column to include `openLibrary`.
+
+**note: include the cover image in the book record**
+
+**Get the author**
+
+Use the OpenLibrary API to get the authors of the book.
+
+Update the `authors` table with what we found and link the book to the author.
+
+See: https://openlibrary.org/dev/docs/api/authors
+Example: https://openlibrary.org/authors/OL8473943A.json
+
+Then get the books written by the authors. This should be offloaded to new background services as we do not know how far down the network it can go.
+
+Example: https://openlibrary.org/authors/OL8473943A/works.json
+
+Use the entries[].key to get the linked book and continue to populate the `books` table.
+
