@@ -1,37 +1,41 @@
 ## Book Inference Architecture
 
+This ADR is a living document that will be updated as we go along with the implementation as the book inference system is a small part of the Sovoli product.
+
 ## Status: Draft
+
+Date: 2024-08-11
 
 ## Context
 
 Sovoli is heavily reliant on machine learning to help users manage their books and their reading habits.
 
-ML are inference systems, which is probability and may or may not be correct.
+The first part of the user's journey is to input the books they own into the system. We want to make this so easy that it accepts a book image and infers the book title, author, and ISBN. Having ML process an image of the shelf instead of OCR individual books is a massive improvement over existing solutions.
 
-The first part of the user's journey is to input the books they own into the system. We want to make this so easy that it accepts a book image and infers the book title, author, and ISBN.
+ML are inference systems, which is probability and may or may not be correct.
 
 THe system will try to resolve the inference by sending this data to API to get the top 5 books that match the inference data.
 
 We will link to the first book in the list as the book that the inference system thinks is the best match until the user validates the inference.
 
-Concepts:
+There are 2 main validation methods:
 
 1. Automatic inference validation - this validation is done by the systems such as API calls to google books api and OpenLibrary API.
 2. Manual validation - this is done by the user. This will flag the book as verified.
 
 ### Issues
 
-Currently, the API for the shelf also accepts this information, which can be a list of books of over 100 books.
+Currently, the API for putting books on the shelf also accepts this information, which can be a list of over 100 books.
 
-Each book has to make a request to google books api.
+Each book has to make a request to multiple services such as google books API and OpenLibrary API.
 
 For each book that google books returns, we need to make another request to OpenLibrary API to get more data, the cover image and author.
 
-As you can imagine, this is a very expensive operation and we are already running into our serverless timeout issues with just 30 books and the google books api.
+As you can imagine, this is a very expensive operation and we are already running into our serverless timeout issues with just 30 books and the google books api call.
 
-We need to come up with system design that will allow us to do this with 2 principles in mind:
+We need to come up with system design that will allow us to do this with the following principles in mind:
 
-1. Scalable (no timeouts)
+1. Scalable (no timeouts) - we should handle many books and account for retry mechanisms
 2. Good user feedback (users should see the progress of the inference process)
 3. Cheap (batching whenever we can)
 
@@ -144,17 +148,36 @@ Use the entries[].key to get the linked book and continue to populate the `books
 
 ```mermaid
 flowchart TD
-    A[Inferred Books] -->|Store In MyBook| B(Google Books API)
-    B --> |Store in Books and link MyBook| BT[Book & MyBook Table]
-    B --> |Get OL Book|C(OpenLibrary Book)
-    C --> |Update Books|BT[Books Table]
-    C --> H{Author In DB?}
-    H --> |no| D(OpenLibrary Author)
-    H --> |yes| LA(Link Author and Book)
-    D --> |Store in Authors and link Books| ADB[Author Table]
-    D --> |Get Author Works| E(OpenLibrary Author Works)
-    E --> I{Is Book in DB?}
-    I --> |no| C
-    I --> |yes| Z[End]
+    A(Start - Inferred Books Data Received) --> B[Store Inferred Data in MyBook]
+
+    B --> C(Start Background Job)
+
+    C --> |Title/Author match found in Books Table|D{Found}
+
+    D --> |high confidence match| E[Link MyBook and Book]
+    D --> |low/no confidence| G[Call Google Books API with Title, Author, ISBN]
+    
+    G --> |Results Found| H[Store Result in Books and link MyBook]
+    G --> |No Results| J[Log Error]
+    
+    H --> I[Call OpenLibrary API for Additional Data]
+    
+    I --> K[Store OpenLibrary Data in Books]
+    I --> L{Is Author in DB?}
+    
+    L -->|No| M[Background Job: Call OpenLibrary API for Author Details]
+    L -->|Yes| N[Link Author to Book]
+
+    N --> |if last updated 3 months ago|M
+
+    M --> O[Update Author Table and link book]
+    O --> P[Call OpenLibrary API for Author Works]
+    
+    P --> Q{Are the Books in DB?}
+    Q -->|No| R[Store New Books in Books Table]
+    Q -->|Yes| Z[End - Process Complete]
+
+    N --> Z[End - Process Complete]
+    R --> Z[End - Process Complete]
 
 ```
