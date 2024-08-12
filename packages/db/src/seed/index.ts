@@ -247,45 +247,45 @@ const seedBooks = async () => {
   console.log("🧨 Done seeding the books table successfully...\n");
 };
 
-const seedInferredBooks = async () => {
-  const johnDoe = await db.query.users.findFirst({
-    where: eq(schema.users.username, "johndoe"),
-  });
+// const seedInferredBooks = async () => {
+//   const johnDoe = await db.query.users.findFirst({
+//     where: eq(schema.users.username, "johndoe"),
+//   });
 
-  if (!johnDoe) throw new Error("johndoe user not found");
+//   if (!johnDoe) throw new Error("johndoe user not found");
 
-  const result = await db
-    .insert(schema.myBooks)
-    .values([
-      {
-        inferredBook: {
-          title: "The Power of Habit",
-          author: "Charles Duhigg",
-          isbn: "9780141036145",
-        },
-        name: "The Power of Habit",
-        ownerId: johnDoe.id,
-      },
-      {
-        inferredBook: {
-          title: "The 7 Habits of Highly Effective People",
-          author: "Stephen Covey",
-          isbn: "9780307358839",
-        },
-        name: "The 7 Habits of Highly Effective People",
-        ownerId: johnDoe.id,
-      },
-    ])
-    .returning({ id: schema.myBooks.id });
-  console.log("🧨 Done seeding the inferredBooks table successfully...\n");
-  console.log(JSON.stringify(result, null, 2));
-};
+//   const result = await db
+//     .insert(schema.myBooks)
+//     .values([
+//       {
+//         inferredBook: {
+//           title: "The Power of Habit",
+//           author: "Charles Duhigg",
+//           isbn: "9780141036145",
+//         },
+//         name: "The Power of Habit",
+//         ownerId: johnDoe.id,
+//       },
+//       {
+//         inferredBook: {
+//           title: "The 7 Habits of Highly Effective People",
+//           author: "Stephen Covey",
+//           isbn: "9780307358839",
+//         },
+//         name: "The 7 Habits of Highly Effective People",
+//         ownerId: johnDoe.id,
+//       },
+//     ])
+//     .returning({ id: schema.myBooks.id });
+//   console.log("🧨 Done seeding the inferredBooks table successfully...\n");
+//   console.log(JSON.stringify(result, null, 2));
+// };
 
 const main = async () => {
   console.log("🧨 Started seeding the database...\n");
   await seedBooks();
   await seedUsers();
-  await seedInferredBooks();
+  // await seedInferredBooks();
   console.log("\n🧨 Done seeding the database successfully...\n");
 };
 
