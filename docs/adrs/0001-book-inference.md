@@ -10,28 +10,41 @@ Date: 2024-08-11
 
 Sovoli is heavily reliant on machine learning to help users manage their books and their reading habits.
 
-The first part of the user's journey is to input the books they own into the system. We want to make this so easy that it accepts a book image and infers the book title, author, and ISBN. Having ML process an image of the shelf instead of OCR individual books is a massive improvement over existing solutions.
+The first part of the user's journey is to input the books they own into the system. We want to make this so easy that it accepts an image of the shelf, showing the spines, which we infer the book title and author. 
 
-ML are inference systems, which is probability and may or may not be correct.
+*🎨 Prod Note: Having ML process an image of the shelf instead of OCR individual books is a massive improvement over existing solutions.*
 
-THe system will try to resolve the inference by sending this data to API to get the top 5 books that match the inference data.
+However, in some cases, we may take a photo of the front of the book if there are no words on the spine. If this is the case, we are better off scanning the ISBN.
 
-We will link to the first book in the list as the book that the inference system thinks is the best match until the user validates the inference.
+We have a few problems here:
+
+1. Sovoli is a new system, so we won't have a lot of books in the database.
+2. ML are inference systems, which is probability and may or may not be correct when using the title and author.
+
+We need a system that will allow us to get the book using a best match algorithm. Ie. Title and Author fuzzy match. If ISBN is provided, ignore the title and author and just use the ISBN.
+
+### Stale Data
+
+Since we are populating the database, we need to ensure we have the latest data so we will keep track of the last updated date for each book and then we can use that to determine if the book is stale.
+
+### Validating Inference
 
 There are 2 main validation methods:
 
 1. Automatic inference validation - this validation is done by the systems such as API calls to google books api and OpenLibrary API.
 2. Manual validation - this is done by the user. This will flag the book as verified.
 
-### Issues
+## Issues
 
-Currently, the API for putting books on the shelf also accepts this information, which can be a list of over 100 books.
+Currently, the API for putting books on the shelf also accepts a list of book titles and authors.
+
+See this link for efficient searching: https://chatgpt.com/share/bd4bbb76-283b-4703-9640-c27b044cc741
+
+If there are no match in our database, the operation becomes intensive.
+
+We need to create the book and link it to the user's `my-books` table, along with linking the ones that we find in the database.
 
 Each book has to make a request to multiple services such as google books API and OpenLibrary API.
-
-For each book that google books returns, we need to make another request to OpenLibrary API to get more data, the cover image and author.
-
-As you can imagine, this is a very expensive operation and we are already running into our serverless timeout issues with just 30 books and the google books api call.
 
 We need to come up with system design that will allow us to do this with the following principles in mind:
 
@@ -41,143 +54,156 @@ We need to come up with system design that will allow us to do this with the fol
 
 ## Design
 
-Lets start with some high level design:
-
-Scenario 1: Fresh start, no books on the shelf.
-
-Scenario 2: Updating an existing shelf, some books are already validated on the shelf, new books are being added.
-
+Check the Flowchart below for a visual representation.
 
 ### Architecture
 
 * API accepts a list of books.
-  * the book can be inference data (title, author, isbn)
+  * the book can be inference data (title and author)
   * the book can be a known ISBN 
-* Where this list is possible:
+* This operation happens on the following routes:
   * Shelf `PUT /users/:username/shelves/:slug`
   * List `PUT /users/:username/lists/:slug`
-  * Books `PUT /users/:username/books/:slug`
+  * MyBooks `PUT /users/:username/mybooks/:slug`
 
-This means that each individual book should user submitted book (`my-book` in the db) should handle its own inference resolution and validation.
+Since there are multiple routes that can accept a list of books, we will need to setup a centralized book inference system. One that will handle the inference, validation and refreshing of stale data.
 
+### Db schema
 
-### Db schema on insertion
+`my-books` table:
 
-We will need to store temporary data on myBooks such as what the book is inferred to be when chatGPT parses the book image.
-
-Add a few columns:
-
-* `inferredTitle` - the title that the inference system thinks is the best match
-* `inferredAuthor` - the author that the inference system thinks is the best match
-* `inferredIsbn` - the ISBN that the inference system thinks is the best match
-* `triggerDevId` - the trigger dev handle id thats handling the inference population.
-* `probableIsbns` - the list of ISBNs that the inference validationsystem thinks are the best match
+* `name` - the title that the inference system thinks is the best match
 * `verified` - a boolean that will be set to true when the inference is validated by user.
+* `book-id` - link to the book in the `books` table
+
+
+`books` table:
+
+* `title` - the title that the inference system thinks is the best match
+* `triggerDevId` - the trigger dev handle id thats handling the inference population.
 * `inferenceError` - the error that the inference system encountered, if any.
+* `lastGoogleUpdated` - the last time the book was updated from google books
+* `lastOLUpdated` - the last time the book was updated from openlibrary
 
-`slug` and `bookId` will be null until automatic inference validation is done.
+`authors` table:
 
-unique index on `inferredTitle` and `inferredAuthor` to prevent duplicate inference submissions.
-
-
-For the `books` table:
-
-* `inferenceSystems` - the list of inference systems that the inference system uses to validate the inference. ie. googleBooks, openLibrary, etc
+* `name` - the author that the inference system thinks is the best match
+* `olKey` - the openlibrary key for the author
+* `triggerDevId` - the trigger dev handle id thats handling the inference population.
+* `inferenceError` - the error that the inference system encountered, if any.
+* `lastUpdated` - the last time the author was updated
 
 ### Flow
 
-1. User adds a book to `my-books` table with inference data.
-2. Write services (shelf, mybooks, list) will call the inference service to validate the inference if inferredTitle and inferredAuthor are not null.
-3. The triggerDevId should be saved to the respective myBooks record.
-4. If a list of books were added, batch the triggerDev calls.
+Scenario 1: User sends a list of books with title and author.
+
+Route: `PUT /users/:username/mybooks/:slug`
+Route: `PUT /users/:username/shelves/:slug` - create a shelf with the books
+
+1. Get the books from the inference system.
+2. If the book is not found, the inference system will create it and kick off a background job to hydrate the book. This also happens if the book is stale.
+3. We then add these books to the `my-books` table.
+4. We will try to return the books to the user as early as possible. We will try to ensure that the book also contains the triggerDevId so that we can keep track of the book hydration.
+
+**caveat**: we will only allow a user to have one of each book when using this route with title and author.
 
 
-### Algorithm
+### Background Algorithm
+
+The background hydration algorithm will be triggered by sending the id of the book. Whenever possible, we will batch trigger this.
 
 **Prepare from the trigger** 
 
 1. Get the book from the database.
-2. Since the book is scanned by the spine, it is more likely that the title is correct, then less so the author and then the ISBN. So we will query using the following order:
+2. If there is no ISBN, we will need to search for the book using the title and author.
+3. If there is an ISBN, run the ISBN Hydration algorithm.
 
 **Google Books API Calls**
 
-Search logic:
+Since the book is scanned by the spine, it is more likely that the title is correct, then less so the author. So we will query using the following order:
 
-1. title, author, ISBN
-2. if nothing is found, try title, author
-3. if nothing is found, try title only
 
-We will use the plain google books api q parameter without any filters, since the filters are giving us inacurate results during testing.
+1. title, author
+2. if nothing is found, try title only
+
+We will use the plain google books api q parameter without any filters, since the filters are giving us inaccurate results during testing.
 
 The API will return a list of books that match the query.
 
-We will create the book and link `my-book` to it.
-
-Also update the `inferenceSystems` column to include `googleBooks`.
-
 *note*: We went with google api because it has a very good fuzzy search logic to find the best match.
 
-**OpenLibrary API Calls**
+**After Google Books API Calls**
 
-For each book that google books returns, we need to make another request to OpenLibrary API to get more data, the cover image and author.
+3. For each of the books returned, we will upsert the `books` table with relevant data. This means we will add the other books that are returned from google books. We will ensure we update the `lastGoogleUpdated` column as this is used to determine if the book is stale, so we do not rerun the google API again.
+4. We now have a list of books that we will need to hydrate again using the OL API. So we will trigger a batch of the hydration background job again.
+
+
+**Hydration Algorithm**
+
+We will check the lastUpdated columns for google and openlibrary. If either is stale, we will update either in parallel:
+
+**OpenLibrary:**
 
 See: https://openlibrary.org/dev/docs/api/read
 
-Update the `books` table with what we found.
-
-Also update the `inferenceSystems` column to include `openLibrary`.
-
 **note: include the cover image in the book record**
 
-**Get the author**
 
-Use the OpenLibrary API to get the authors of the book.
+**Google Books:**
 
-Update the `authors` table with what we found and link the book to the author.
+See: https://developers.google.com/books/docs/overview
+
+We will use the author from the OL API to update the `authors` table. So we will run an upsert on the `authors` table that is linked to the book using the OLKey.
+
+However, we need to hydrate the author some more since OL does not return everything about the author.
+
+So if the author is new or stale (no or old lastUpdated), we will trigger a background job to hydrate the author.
+
+This will also be batched when possible as the book may have many authors.
+
+**Hydrate Author Algorithm**
+
+Hydrate a single author by the author id.
+
+1. Get the author from the Db.
+2. If there is no OLKey, we will need to search for the author using the name.
+3. If the author is stale (or newly found from search), we will need to call the OL API to get the author's complete data.
 
 See: https://openlibrary.org/dev/docs/api/authors
 Example: https://openlibrary.org/authors/OL8473943A.json
 
-Then get the books written by the authors. This should be offloaded to new background services as we do not know how far down the network it can go.
+4. Then get the books written by the authors.
 
 Example: https://openlibrary.org/authors/OL8473943A/works.json
 
-Use the entries[].key to get the linked book and continue to populate the `books` table.
+We will create upserts on the `books` table for each book returned. Get all the ids and then batch trigger the hydration background job for books again. We will not set the lastUpdatedOL since this call does not return the full data.
 
 ### Flowchart
 
 ```mermaid
 flowchart TD
-    A(Start - Inferred Books Data Received) --> B[Store Inferred Data in MyBook]
+    A[Start] --> |Input: Title/Author or ISBN array|B{Check DB}
+    B --> |Book Found|C[Return Books]
+    C --> |If Stale|I
 
-    B --> C(Start Background Job)
-
-    C --> |Title/Author match found in Books Table|D{Found}
-
-    D --> |high confidence match| E[Link MyBook and Book]
-    D --> |low/no confidence| G[Call Google Books API with Title, Author, ISBN]
+    B --> |Not Found|D[Create Books]
+    D --> C
     
-    G --> |Results Found| H[Store Result in Books and link MyBook]
-    G --> |No Results| J[Log Error]
-    
-    H --> I[Call OpenLibrary API for Additional Data]
-    
-    I --> K[Store OpenLibrary Data in Books]
-    I --> L{Is Author in DB?}
-    
-    L -->|No| M[Background Job: Call OpenLibrary API for Author Details]
-    L -->|Yes| N[Link Author to Book]
+    D --> |Book Ids|I(fa:fa-cog Trigger Book Hydration)
 
-    N --> |if last updated 3 months ago|M
+    I --> J{Hydration Type}
+    J --> |Title/Author|L(fa:fa-cloud Google Book Search API)
+    L --> |Top 10 Books|M[Upsert by ISBN]
+    M --> |Book Ids|I
 
-    M --> O[Update Author Table and link book]
-    O --> P[Call OpenLibrary API for Author Works]
-    
-    P --> Q{Are the Books in DB?}
-    Q -->|No| R[Store New Books in Books Table]
-    Q -->|Yes| Z[End - Process Complete]
+    J --> |ISBN|K(fa:fa-cloud Google/OL Book API)
+    K --> O[Update Books and link Authors]
 
-    N --> Z[End - Process Complete]
-    R --> Z[End - Process Complete]
+    O --> |Author new/stale?|P(fa:fa-cog Trigger Author Hydration)
+    P --> Q(fa:fa-cloud Get Author from OL API)
+    Q --> R[Update Author]
 
+    Q --> S(fa:fa-cloud Get Author Works from OL API)
+    S --> T[Upsert Books and link Author]
+    T --> |Book Ids|I
 ```
