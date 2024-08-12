@@ -1,6 +1,8 @@
-import { api } from "~/api/trpc";
+import { helloWorld } from "@sovoli/api/trigger";
 import { db } from "@sovoli/db";
 import { sql } from "drizzle-orm";
+
+import { api } from "~/api/trpc";
 
 export async function GET() {
   // health check for all systems
@@ -12,6 +14,8 @@ export async function GET() {
   // - database
   // - AI Gateway (OpenAI, etc)
   let trpcHealth, dbHealth;
+
+  await helloWorld.trigger({ message: "health check" });
 
   try {
     trpcHealth = await api.health.check();
