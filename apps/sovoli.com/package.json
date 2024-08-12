@@ -6,7 +6,9 @@
   "scripts": {
     "build": "pnpm with-env next build",
     "clean": "git clean -xdf .next .turbo node_modules",
-    "dev": "pnpm with-env next dev",
+    "dev": "concurrently --raw --kill-others pnpm:dev:*",
+    "dev:next": "pnpm with-env next dev",
+    "dev:trigger": "pnpm with-env pnpm dlx trigger.dev@beta dev",
     "start": "pnpm with-env next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
@@ -51,6 +53,7 @@
     "@types/swagger-ui-react": "4.18.3",
     "autoprefixer": "10.4.19",
     "babel-plugin-react-native-web": "0.19.10",
+    "concurrently": "8.2.2",
     "dotenv-cli": "7.4.2",
     "eslint": "catalog:",
     "postcss": "8.4.38",
