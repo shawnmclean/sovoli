@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  Linking,
-  ScrollView,
-  View,
-} from "react-native";
+import { Linking, ScrollView, View } from "react-native";
 import { Button } from "@sovoli/ui/components/button";
 import { Image } from "@sovoli/ui/components/image";
 import { Link } from "@sovoli/ui/components/link";
@@ -17,12 +13,28 @@ export function HomeScreen() {
   return (
     <ScrollView className="mx-auto">
       <Text className="mb-4 text-2xl font-bold">
-        👀 Personal use software, pls leave, kthxbai
+        Sovoli: Connecting Ideas, Advancing Knowledge
       </Text>
 
       <Text className="mb-8">
-        Goal: Working on something to help me read, write and think better.
+        Sovoli’s mission is to advance knowledge by connecting diverse fields of
+        thought, enabling a more holistic and interconnected understanding of
+        our world.
       </Text>
+
+      <Text className="mb-8">
+        We aim to empower individuals to think better by making it easier to
+        conduct meaningful research, share insights, and contribute to the
+        progress of society.
+      </Text>
+
+      <Text className="mb-8">
+        This is a very early stage project, and we are still in the process of
+        building out the core features. This front-page will be updated as we
+        progress.
+      </Text>
+
+      <Text className="mb-4 text-2xl font-bold">Roadmap</Text>
 
       <Link href="/johndoe">
         <Text className="underline">My Profile</Text>

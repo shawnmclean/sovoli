@@ -1,15 +1,15 @@
 export const config = {
-  title: "Sovoli: Your Ultimate Book Organizer",
+  title: "Sovoli: Digitize and Organize Your Bookshelf",
   siteName: "Sovoli",
   description:
-    "Track your reading progress, write notes, and share your library with Sovoli. Start organizing your knowledge today!",
+    "Discover Sovoli, the platform that helps you easily digitize and organize your bookshelf. Upload photos of your books, let AI recognize and categorize them, and create a digital library that’s searchable and accessible anytime. Perfect for avid readers, researchers, and book collectors looking to manage and explore their personal book collection efficiently.",
   url: "https://sovoli.com",
   images: [
     {
       url: "/images/og-image.webp",
       width: 1200,
       height: 630,
-      alt: "Sovoli: Your Ultimate Book Organizer",
+      alt: "Sovoli: Digitize and Organize Your Bookshelf",
     },
   ],
 };
