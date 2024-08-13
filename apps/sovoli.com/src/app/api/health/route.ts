@@ -1,4 +1,4 @@
-import { helloWorld } from "@sovoli/api/trigger";
+// import { helloWorld } from "@sovoli/api/trigger";
 import { db } from "@sovoli/db";
 import { sql } from "drizzle-orm";
 
@@ -17,7 +17,7 @@ export async function GET() {
   // - AI Gateway (OpenAI, etc)
   let trpcHealth, dbHealth;
 
-  await helloWorld.trigger({ message: "health check" });
+  // await helloWorld.trigger({ message: "health check" });
 
   try {
     trpcHealth = await api.health.check();
