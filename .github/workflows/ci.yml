@@ -56,11 +56,11 @@ jobs:
       - name: Lint
         run: pnpm lint
       
-      - name: 🚀 Preview Trigger.dev
-        if: github.event_name == 'pull_request'
-        env:
-          TRIGGER_ACCESS_TOKEN: ${{ secrets.TRIGGER_ACCESS_TOKEN }}
-        run: cd apps/sovoli.com && pnpm deploy:trigger
+      # - name: 🚀 Preview Trigger.dev
+      #   if: github.event_name == 'pull_request'
+      #   env:
+      #     TRIGGER_ACCESS_TOKEN: ${{ secrets.TRIGGER_ACCESS_TOKEN }}
+      #   run: cd apps/sovoli.com && pnpm deploy:trigger
 
       - name: 🚀 Deploy Trigger.dev
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
