@@ -1,4 +1,4 @@
-import { contract } from "@sovoli/api/tsr";
+import { contract } from "@sovoli/api/tsr/contract";
 import { generateOpenApi } from "@ts-rest/open-api";
 
 import { getBaseUrl } from "~/utils/getBaseUrl";

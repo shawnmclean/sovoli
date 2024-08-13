@@ -12,6 +12,7 @@ catalog:
   "@trpc/next": 11.0.0-rc.461
   "@trpc/react-query": 11.0.0-rc.461
   "@trpc/server": 11.0.0-rc.461
+  "@trigger.dev/sdk": 3.0.0-beta.52
   "@types/react": 18.2.79
   "@types/node": 22.0.2
   prettier: 3.3.3

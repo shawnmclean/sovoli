@@ -12,6 +12,10 @@
       "types": "./dist/trpc/index.d.ts",
       "default": "./src/trpc/index.ts"
     },
+    "./trigger": {
+      "types": "./dist/trigger/index.d.ts",
+      "default": "./src/trigger/index.ts"
+    },
     "./tsr": {
       "types": "./dist/tsr/index.d.ts",
       "default": "./src/tsr/index.ts"
@@ -32,6 +36,7 @@
   "dependencies": {
     "@sovoli/db": "workspace:*",
     "@sovoli/services": "workspace:*",
+    "@trigger.dev/sdk": "catalog:",
     "@trpc/server": "catalog:",
     "@ts-rest/core": "catalog:",
     "@ts-rest/serverless": "catalog:",

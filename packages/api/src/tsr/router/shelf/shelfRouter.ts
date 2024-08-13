@@ -6,6 +6,7 @@ import {
   ShelfResponseSchema,
   ShelvesResponseSchema,
 } from "../../../schema/schema";
+import { helloWorld } from "../../../trigger";
 import { handleInferredBook } from "./handleBooks";
 import { shelfContract } from "./shelfContract";
 
@@ -88,6 +89,7 @@ export const shelfRouter = tsr.router(shelfContract, {
   },
 
   getShelf: async ({ params: { username, slug } }) => {
+    await helloWorld.trigger({ message: `getShelf: ${username}/${slug}` });
     try {
       const shelf = await fetchShelf(username, slug);
       return {
