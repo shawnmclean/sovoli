@@ -55,6 +55,18 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+      
+      - name: 🚀 Preview Mobile
+        if: github.event_name == 'pull_request'
+        env:
+          TRIGGER_ACCESS_TOKEN: ${{ secrets.TRIGGER_ACCESS_TOKEN }}
+        run: cd apps/sovoli.com && pnpm dlx trigger.dev@beta deploy --env staging
+
+      - name: 🚀 Deploy Trigger.dev
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          TRIGGER_ACCESS_TOKEN: ${{ secrets.TRIGGER_ACCESS_TOKEN }}
+        run: cd apps/sovoli.com && pnpm dlx trigger.dev@beta deploy
 
   build-for-IOS:
     name: Build for iOS
