@@ -36,7 +36,7 @@
   "dependencies": {
     "@sovoli/db": "workspace:*",
     "@sovoli/services": "workspace:*",
-    "@trigger.dev/sdk": "catalog:",
+    "@trigger.dev/sdk": "3.0.0-beta.52",
     "@trpc/server": "catalog:",
     "@ts-rest/core": "catalog:",
     "@ts-rest/serverless": "catalog:",

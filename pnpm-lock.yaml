@@ -9,9 +9,6 @@ catalogs:
     '@tanstack/react-query':
       specifier: 5.51.21
       version: 5.51.21
-    '@trigger.dev/sdk':
-      specifier: 3.0.0-beta.52
-      version: 3.0.0-beta.52
     '@trpc/client':
       specifier: 11.0.0-rc.461
       version: 11.0.0-rc.461
@@ -45,9 +42,6 @@ catalogs:
     prettier:
       specifier: 3.3.3
       version: 3.3.3
-    trigger.dev:
-      specifier: 3.0.0-beta.52
-      version: 3.0.0-beta.52
     typescript:
       specifier: 5.5.2
       version: 5.5.2
@@ -205,7 +199,7 @@ importers:
         specifier: 5.51.23
         version: 5.51.23(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@trigger.dev/sdk':
-        specifier: 'catalog:'
+        specifier: 3.0.0-beta.52
         version: 3.0.0-beta.52(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.4)
       '@trpc/client':
         specifier: 'catalog:'
@@ -314,7 +308,7 @@ importers:
         specifier: 1.0.7
         version: 1.0.7(tailwindcss@3.4.4)
       trigger.dev:
-        specifier: 'catalog:'
+        specifier: 3.0.0-beta.52
         version: 3.0.0-beta.52(@types/react@18.2.79)(bufferutil@4.0.8)
       typescript:
         specifier: 'catalog:'
@@ -329,7 +323,7 @@ importers:
         specifier: workspace:*
         version: link:../services
       '@trigger.dev/sdk':
-        specifier: 'catalog:'
+        specifier: 3.0.0-beta.52
         version: 3.0.0-beta.52(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.4)
       '@trpc/server':
         specifier: 'catalog:'
