@@ -4,6 +4,8 @@ import { sql } from "drizzle-orm";
 
 import { api } from "~/api/trpc";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   // health check for all systems
   // Systems:
