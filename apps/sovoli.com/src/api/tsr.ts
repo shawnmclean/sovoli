@@ -1,4 +1,4 @@
-import { contract } from "@sovoli/api/tsr";
+import { contract } from "@sovoli/api/tsr/contract";
 import { initTsrReactQuery } from "@ts-rest/react-query/v5";
 
 import { getBaseUrl } from "~/utils/getBaseUrl";
