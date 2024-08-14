@@ -4,22 +4,22 @@ const books: (typeof schema.books.$inferInsert)[] = [
   {
     title: "The Power of Habit",
     description: "A book about habits",
-    isbn: "9780141036145",
+    isbn13: "9780141036145",
   },
   {
     title: "The 7 Habits of Highly Effective People",
     description: "A book about habits",
-    isbn: "9780307358839",
+    isbn13: "9780307358839",
   },
   {
     title: "The Art of War",
     description: "A book about war",
-    isbn: "9780439136365",
+    isbn13: "9780439136365",
   },
   {
     title: "Titanic",
     description: "A book about the Titanic",
-    isbn: "9780439136365",
+    isbn13: "9780439136365",
   },
 ];
 
@@ -224,16 +224,16 @@ const seedUsers = async () => {
 };
 
 const seedBooks = async () => {
-  for (const { title, description, isbn } of books) {
+  for (const { title, description, isbn13 } of books) {
     await db
       .insert(schema.books)
       .values({
         title,
         description,
-        isbn,
+        isbn13,
       })
       .onConflictDoUpdate({
-        target: schema.books.isbn,
+        target: schema.books.isbn13,
         set: {
           title: sql.raw(`excluded.${schema.books.title.name}`),
           description: sql.raw(`excluded.${schema.books.description.name}`),

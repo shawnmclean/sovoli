@@ -7,7 +7,6 @@ import {
   ShelvesResponseSchema,
 } from "../../../schema/schema";
 import { helloWorld } from "../../../trigger";
-import { handleInferredBook } from "./handleBooks";
 import { shelfContract } from "./shelfContract";
 
 export const shelfRouter = tsr.router(shelfContract, {
@@ -152,62 +151,62 @@ export const shelfRouter = tsr.router(shelfContract, {
       for (const myBook of body.myBooks) {
         if (!myBook.inferredBook) continue;
 
-        try {
-          const book = await handleInferredBook(myBook.inferredBook);
+        // try {
+        //   const book = await handleInferredBook(myBook.inferredBook);
 
-          await db
-            .insert(schema.myBooks)
-            .values({
-              name: myBook.inferredBook.title,
-              ownerId: user.id,
-              shelfId: shelf.id,
-              shelfOrder: myBook.shelfOrder,
-              inferredBook: { ...myBook.inferredBook },
-              bookId: book.id,
-              slug: slugify(book.title),
-            })
-            .onConflictDoUpdate({
-              target: [schema.myBooks.slug, schema.myBooks.ownerId],
-              set: {
-                name: sql.raw(`excluded.${schema.myBooks.name.name}`),
-                shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
-                shelfOrder: sql.raw(
-                  `excluded.${schema.myBooks.shelfOrder.name}`,
-                ),
-                inferredBook: sql.raw(
-                  `excluded.${schema.myBooks.inferredBook.name}`,
-                ),
-                bookId: sql.raw(`excluded.${schema.myBooks.bookId.name}`),
-              },
-            });
-        } catch (error) {
-          const errorMessage =
-            error instanceof Error ? error.message : String(error);
+        //   await db
+        //     .insert(schema.myBooks)
+        //     .values({
+        //       name: myBook.inferredBook.title,
+        //       ownerId: user.id,
+        //       shelfId: shelf.id,
+        //       shelfOrder: myBook.shelfOrder,
+        //       inferredBook: { ...myBook.inferredBook },
+        //       bookId: book.id,
+        //       slug: slugify(book.title),
+        //     })
+        //     .onConflictDoUpdate({
+        //       target: [schema.myBooks.slug, schema.myBooks.ownerId],
+        //       set: {
+        //         name: sql.raw(`excluded.${schema.myBooks.name.name}`),
+        //         shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
+        //         shelfOrder: sql.raw(
+        //           `excluded.${schema.myBooks.shelfOrder.name}`,
+        //         ),
+        //         inferredBook: sql.raw(
+        //           `excluded.${schema.myBooks.inferredBook.name}`,
+        //         ),
+        //         bookId: sql.raw(`excluded.${schema.myBooks.bookId.name}`),
+        //       },
+        //     });
+        // } catch (error) {
+        //   const errorMessage =
+        //     error instanceof Error ? error.message : String(error);
 
-          await db
-            .insert(schema.myBooks)
-            .values({
-              name: myBook.inferredBook.title,
-              ownerId: user.id,
-              shelfId: shelf.id,
-              shelfOrder: myBook.shelfOrder,
-              inferredBook: { ...myBook.inferredBook, error: errorMessage },
-              slug: slugify(myBook.inferredBook.title),
-            })
-            .onConflictDoUpdate({
-              target: [schema.myBooks.slug, schema.myBooks.ownerId],
-              set: {
-                name: sql.raw(`excluded.${schema.myBooks.name.name}`),
-                shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
-                shelfOrder: sql.raw(
-                  `excluded.${schema.myBooks.shelfOrder.name}`,
-                ),
-                inferredBook: sql.raw(
-                  `excluded.${schema.myBooks.inferredBook.name}`,
-                ),
-              },
-            });
-        }
+        //   await db
+        //     .insert(schema.myBooks)
+        //     .values({
+        //       name: myBook.inferredBook.title,
+        //       ownerId: user.id,
+        //       shelfId: shelf.id,
+        //       shelfOrder: myBook.shelfOrder,
+        //       inferredBook: { ...myBook.inferredBook, error: errorMessage },
+        //       slug: slugify(myBook.inferredBook.title),
+        //     })
+        //     .onConflictDoUpdate({
+        //       target: [schema.myBooks.slug, schema.myBooks.ownerId],
+        //       set: {
+        //         name: sql.raw(`excluded.${schema.myBooks.name.name}`),
+        //         shelfId: sql.raw(`excluded.${schema.myBooks.shelfId.name}`),
+        //         shelfOrder: sql.raw(
+        //           `excluded.${schema.myBooks.shelfOrder.name}`,
+        //         ),
+        //         inferredBook: sql.raw(
+        //           `excluded.${schema.myBooks.inferredBook.name}`,
+        //         ),
+        //       },
+        //     });
+        // }
       }
     }
 
@@ -268,14 +267,4 @@ function onUserShelf(username: string) {
       .from(schema.users)
       .where(eq(schema.users.username, username)),
   );
-}
-
-function slugify(str: string) {
-  return str
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-+/, "")
-    .replace(/-+$/, "");
 }

@@ -1,6 +1,5 @@
 import {
   ImageSchema,
-  InsertInferredBookSchema,
   InsertShelfSchema,
   SelectBookSchema,
   SelectFurnitureSchema,
@@ -45,13 +44,19 @@ export const ShelfBooksResponseSchema = withPagination(
   shelf: ShelfResponseSchema,
 });
 
+export const InferredBookSchema = z.object({
+  title: z.string().optional(),
+  author: z.string().optional(),
+  isbn: z.string().optional(),
+});
+
 export const InsertShelfRequestSchema = InsertShelfSchema.omit({
   ownerId: true,
 }).extend({
   myBooks: z
     .array(
       z.object({
-        inferredBook: InsertInferredBookSchema.optional(),
+        inferredBook: InferredBookSchema.optional(),
         shelfOrder: z.number(),
       }),
     )

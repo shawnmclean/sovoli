@@ -14,59 +14,71 @@ import { z } from "zod";
 import { shelves } from "./furnitures";
 import { users } from "./identity";
 
-export const AuthorLinkSchema = z.object({
-  title: z.string(),
-  value: z.string(),
-  type: z.enum(["url", "email", "phone"]),
-});
-
-export type AuthorLink = z.infer<typeof AuthorLinkSchema>;
-
-export const RemoteAuthorIdSchema = z.object({
-  type: z.enum(["openlibrary", "goodreads", "amazon"]),
-  id: z.string(),
-});
-
-export type RemoteAuthorId = z.infer<typeof RemoteAuthorIdSchema>;
-
 export const authors = pgTable("authors", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
+  // open library id
+  olid: varchar("olid", { length: 20 }).unique(),
+
   name: varchar("name", { length: 255 }).notNull(),
+  fullName: varchar("full_name", { length: 255 }),
   bio: text("bio"),
   alternateNames: jsonb("alternate_names").$type<string[]>(),
   birthDate: date("birth_date"),
   deathDate: date("death_date"),
-  links: jsonb("links").$type<AuthorLink[]>(),
-  remoteIds: jsonb("remote_ids").$type<RemoteAuthorId[]>(),
+
+  // The following fields are only used for the inference system
+  triggerDevId: varchar("trigger_dev_id", { length: 255 }),
+  inferrenceError: text("inferrence_error"),
+  // we are only updating from openlibrary right now
+  lastOLUpdated: date("last_ol_updated"),
+
+  website: varchar("website", { length: 255 }),
+  email: varchar("email", { length: 255 }),
+  phone: varchar("phone", { length: 255 }),
+
   createdAt: date("created_at").notNull().defaultNow(),
   updatedAt: date("updated_at").notNull().defaultNow(),
 });
 
-const ImageTypeEnum = z.enum(["thumbnail", "cover", "illustration"]);
-
-export type ImageType = z.infer<typeof ImageTypeEnum>;
-
-export const BookImageSchema = z.object({
-  url: z.string(),
-  type: ImageTypeEnum,
+export const BookCoverSchema = z.object({
+  small: z.string(),
+  medium: z.string(),
+  large: z.string(),
 });
 
-export type BookImage = z.infer<typeof BookImageSchema>;
+export type BookCover = z.infer<typeof BookCoverSchema>;
 
 export const books = pgTable("books", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
-  isbn: varchar("isbn", { length: 13 }).notNull().unique(),
-  // slug will be in the form of {title}-{author}-{isbn}
-  // TODO: populate this, then make it notNull()
-  slug: varchar("slug", { length: 255 }).unique(),
-  title: varchar("title", { length: 255 }).notNull(),
+
+  // stores both ISBN-13 and ISBN-10
+  isbn13: varchar("isbn_13", { length: 13 }).unique(),
+  isbn10: varchar("isbn_10", { length: 10 }).unique(),
+  // open library id
+  olid: varchar("olid", { length: 20 }).unique(),
+
+  title: varchar("title", { length: 255 }),
   subtitle: varchar("subtitle", { length: 255 }),
+
+  // slug will be in the form of {title}-{author}-{isbn}
+  slug: varchar("slug", { length: 255 }).unique(),
+
   publishedDate: date("published_date"),
   publisher: varchar("publisher", { length: 255 }),
   pageCount: integer("page_count"),
   description: text("description"),
   language: varchar("language", { length: 2 }),
-  images: jsonb("images").$type<BookImage[]>(),
+  cover: jsonb("cover").$type<BookCover>(),
+
+  // The following fields are only used for the inference system
+  triggerDevId: varchar("trigger_dev_id", { length: 255 }),
+  inferrenceError: text("inferrence_error"),
+  lastGoogleUpdated: date("last_google_updated"),
+  lastOLUpdated: date("last_ol_updated"),
+  inferredAuthor: varchar("inferred_author", { length: 255 }),
+
+  createdAt: date("created_at").notNull().defaultNow(),
+  updatedAt: date("updated_at").notNull().defaultNow(),
 });
 
 export const authorBooks = pgTable("author_books", {
@@ -76,36 +88,22 @@ export const authorBooks = pgTable("author_books", {
 
 export const SelectBookSchema = createSelectSchema(books);
 
-export const InferredBookSchema = z.object({
-  title: z.string(),
-  author: z.string().optional(),
-  isbn: z.string().optional(),
-  error: z.string().optional(),
-});
-
-export const InsertInferredBookSchema = InferredBookSchema.omit({
-  error: true,
-});
-export type InsertInferredBook = z.infer<typeof InsertInferredBookSchema>;
-export type InferredBook = z.infer<typeof InferredBookSchema>;
-
 export const myBooks = pgTable(
   "myBooks",
   {
     id: uuid("id").notNull().primaryKey().defaultRandom(),
-    slug: varchar("slug", { length: 255 }).notNull(),
+    slug: varchar("slug", { length: 255 }),
     // usually follows the title of the book
-    name: varchar("name", { length: 255 }).notNull(),
+    name: varchar("name", { length: 255 }),
     description: text("description"),
     ownerId: uuid("owner_id")
       .notNull()
       .references(() => users.id),
     shelfId: uuid("shelf_id").references(() => shelves.id),
     shelfOrder: integer("shelf_order"),
+    verifiedDate: date("verified_date"),
 
-    inferredBook: jsonb("inferred_book").$type<InferredBook>(),
-
-    // if bookId is null, that means it needs manual validation from the inferredBook data
+    // TODO: after inference system is done, make this notNull
     bookId: uuid("book_id").references(() => books.id),
   },
   (table) => ({
