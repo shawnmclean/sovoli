@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { dehydrate } from "@tanstack/query-core";
-import { HydrationBoundary } from "@tanstack/react-query";
+import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
 
 import { getQueryClientRsc } from "~/api/query-client";
 import { tsr } from "~/api/tsr";
 import { config } from "~/utils/config";
-import { Shelf } from "./_components/Shelf";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +16,7 @@ export async function generateMetadata({
   params,
   searchParams,
 }: Props): Promise<Metadata> {
-  const client = tsr.initQueryClient(getQueryClientRsc(true));
+  const client = tsr.initQueryClient(getQueryClientRsc());
   const { body } = await client.getShelfBooks.fetchQuery({
     queryKey: ["username", "slug"],
     queryData: {
@@ -53,9 +50,9 @@ export async function generateMetadata({
   };
 }
 
-export default function ShelfPage({ params, searchParams }: Props) {
-  const client = tsr.initQueryClient(getQueryClientRsc(true));
-  void client.getShelfBooks.prefetchQuery({
+export default async function ShelfPage({ params, searchParams }: Props) {
+  const client = tsr.initQueryClient(getQueryClientRsc());
+  const { body } = await client.getShelfBooks.fetchQuery({
     queryKey: ["username", "slug"],
     queryData: {
       params: {
@@ -68,13 +65,5 @@ export default function ShelfPage({ params, searchParams }: Props) {
     },
   });
 
-  const dehydratedState = dehydrate(client);
-
-  return (
-    <HydrationBoundary state={dehydratedState}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Shelf {...params} {...searchParams} />
-      </Suspense>
-    </HydrationBoundary>
-  );
+  return <ShelfScreen shelf={body} />;
 }
