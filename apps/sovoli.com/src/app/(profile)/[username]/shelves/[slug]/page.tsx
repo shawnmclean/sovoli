@@ -15,11 +15,11 @@ interface Props {
   searchParams: { page: number | undefined };
 }
 
-const client = tsr.initQueryClient(getQueryClientRsc(true));
 export async function generateMetadata({
   params,
   searchParams,
 }: Props): Promise<Metadata> {
+  const client = tsr.initQueryClient(getQueryClientRsc(true));
   const { body } = await client.getShelfBooks.fetchQuery({
     queryKey: ["username", "slug"],
     queryData: {
@@ -54,6 +54,7 @@ export async function generateMetadata({
 }
 
 export default function ShelfPage({ params, searchParams }: Props) {
+  const client = tsr.initQueryClient(getQueryClientRsc(true));
   void client.getShelfBooks.prefetchQuery({
     queryKey: ["username", "slug"],
     queryData: {
