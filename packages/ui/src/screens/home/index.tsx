@@ -17,9 +17,8 @@ export function HomeScreen() {
       </Text>
 
       <Text className="mb-8">
-        Sovoli’s mission is to advance knowledge by connecting diverse fields of
-        thought, enabling a more holistic and interconnected understanding of
-        our world.
+        Our mission is to advance interconnected knowledge and holistic
+        understanding of our world.
       </Text>
 
       <Text className="mb-8">
