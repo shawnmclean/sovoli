@@ -5,7 +5,7 @@ import reactConfig from "@sovoli/eslint-config/react";
 /** @type {import('typescript-eslint').Config} */
 export default [
   {
-    ignores: [".next/**"],
+    ignores: [".next/**", ".trigger/**"],
   },
   ...baseConfig,
   ...reactConfig,

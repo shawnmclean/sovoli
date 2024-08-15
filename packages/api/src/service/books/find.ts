@@ -6,14 +6,18 @@ export interface FindBooksOptions {
   isbn?: string;
 }
 
-export async function findBooks(
+export function findBooks(
   options: FindBooksOptions,
 ): Promise<SelectBookSchema> {
   // title and author must exist if isbn is not provided
-  if (!options.isbn && (!options.title || !options.author)) {
-    throw new Error(
-      "title and author must be provided if isbn is not provided",
-    );
+  if (!options.isbn && !options.title) {
+    throw new Error("title must be provided if isbn is not provided");
+  }
+  if (options.isbn) {
+    getBookByIsbn(options.isbn);
+  }
+  if (options.title) {
+    getBookByTitle(options.title, options.author);
   }
   throw new Error("Not implemented");
 }
@@ -23,7 +27,8 @@ export async function findBooks(
  * @param title
  * @param author
  */
-async function getBookByTitleAndAuthor(title: string, author?: string) {
+function getBookByTitle(title: string, author?: string) {
+  console.log(">>> getBookByTitleAndAuthor", { title, author });
   throw new Error("Not implemented");
 }
 
@@ -31,6 +36,7 @@ async function getBookByTitleAndAuthor(title: string, author?: string) {
  * Get the first matching book by isbn, it will check the isbn13 and isbn10 fields
  * @param isbn
  */
-async function getBookByIsbn(isbn: string) {
+function getBookByIsbn(isbn: string) {
+  console.log(">>> getBookByIsbn", { isbn });
   throw new Error("Not implemented");
 }
