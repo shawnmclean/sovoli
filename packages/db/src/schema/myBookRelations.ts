@@ -2,7 +2,7 @@ import { relations } from "drizzle-orm";
 
 import { shelves } from "./furnitures";
 import { users } from "./identity";
-import { books, myBooks } from "./myBooks";
+import { bookEmbeddings, books, myBooks } from "./myBooks";
 
 export const booksRelations = relations(books, ({ many }) => ({
   myBooks: many(myBooks),
@@ -19,6 +19,13 @@ export const myBooksRelations = relations(myBooks, ({ one }) => ({
   }),
   book: one(books, {
     fields: [myBooks.bookId],
+    references: [books.id],
+  }),
+}));
+
+export const bookEmbeddingsRelations = relations(bookEmbeddings, ({ one }) => ({
+  book: one(books, {
+    fields: [bookEmbeddings.bookId],
     references: [books.id],
   }),
 }));

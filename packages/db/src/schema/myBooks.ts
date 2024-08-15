@@ -1,5 +1,6 @@
 import {
   date,
+  index,
   integer,
   jsonb,
   pgTable,
@@ -7,6 +8,7 @@ import {
   unique,
   uuid,
   varchar,
+  vector,
 } from "drizzle-orm/pg-core";
 import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -80,6 +82,23 @@ export const books = pgTable("books", {
   createdAt: date("created_at").notNull().defaultNow(),
   updatedAt: date("updated_at").notNull().defaultNow(),
 });
+
+export const bookEmbeddings = pgTable(
+  "book_embeddings",
+  {
+    bookId: uuid("book_id").references(() => books.id),
+    // 1536 is default size for openai embeddings
+    openAIEmbedding: vector("open_ai_embedding", { dimensions: 1536 }),
+    openAIEmbeddingUpdated: date("open_ai_embedding_updated"),
+  },
+  (table) => ({
+    // Use HNSW indexing with vector_cosine_ops for optimal search performance with OpenAI embeddings
+    openAIEmbeddingIndex: index("open_ai_embedding_index").using(
+      "hnsw",
+      table.openAIEmbedding.op("vector_cosine_ops"),
+    ),
+  }),
+);
 
 export const authorBooks = pgTable("author_books", {
   bookId: uuid("book_id").references(() => books.id),
