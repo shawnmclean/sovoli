@@ -37,6 +37,7 @@ export const ShelfResponseSchema = SelectShelfSchema.extend({
 export const ShelvesResponseSchema = withPagination(ShelfResponseSchema);
 
 export const MyBooksResponseSchema = withPagination(MyBookResponseSchema);
+export const PutMyBooksResponseSchema = MyBookResponseSchema.array();
 
 export const ShelfBooksResponseSchema = withPagination(
   MyBookResponseSchema.omit({ shelf: true }),

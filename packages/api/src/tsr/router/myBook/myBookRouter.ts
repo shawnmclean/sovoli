@@ -4,12 +4,41 @@ import { tsr } from "@ts-rest/serverless/next";
 import {
   MyBookResponseSchema,
   MyBooksResponseSchema,
+  PutMyBooksResponseSchema,
 } from "../../../schema/schema";
+import { UserNotFoundError } from "../../../service/errors";
+import { putMyBooks } from "../../../service/mybooks";
 import { myBookContract } from "./myBookContract";
 
 export const myBookRouter = tsr.router(myBookContract, {
+  putMyBooks: async ({ params: { username }, body }) => {
+    let myBooks;
+    try {
+      myBooks = await putMyBooks({ username, books: body });
+    } catch (error) {
+      if (error instanceof UserNotFoundError) {
+        return {
+          status: 404,
+          body: {
+            message: error.message,
+          },
+        };
+      }
+      return {
+        status: 500,
+        body: {
+          message: "Unknown error",
+        },
+      };
+    }
+    // move the parse outside of the try catch to ensure correct parse error
+    return {
+      status: 200,
+      body: PutMyBooksResponseSchema.parse(myBooks),
+    };
+  },
   getMyBooks: async ({ params: { username }, query: { page, pageSize } }) => {
-    const filter = getBooksByUsernameFilter(username);
+    const filter = getMyBooksByUsernameFilter(username);
     const [data, total] = await Promise.all([
       db.query.myBooks.findMany({
         with: {
@@ -32,7 +61,7 @@ export const myBookRouter = tsr.router(myBookContract, {
     };
   },
   getMyBook: async ({ params: { username, slug } }) => {
-    const filter = getBooksByUsernameFilter(username);
+    const filter = getMyBooksByUsernameFilter(username);
 
     const myBook = await db.query.myBooks.findFirst({
       with: {
@@ -51,7 +80,7 @@ export const myBookRouter = tsr.router(myBookContract, {
   },
 });
 
-function getBooksByUsernameFilter(username: string) {
+function getMyBooksByUsernameFilter(username: string) {
   return inArray(
     schema.myBooks.ownerId,
     db

@@ -87,6 +87,7 @@ export const authorBooks = pgTable("author_books", {
 });
 
 export const SelectBookSchema = createSelectSchema(books);
+export type SelectBookSchema = z.infer<typeof SelectBookSchema>;
 
 export const myBooks = pgTable(
   "myBooks",
