@@ -19,8 +19,7 @@ export const myBookContract = c.router({
     }),
     body: z
       .object({
-        title: z.string().optional(),
-        author: z.string().optional(),
+        query: z.string().optional(),
         isbn: z.string().optional(),
         shelfId: z.number().optional(),
       })

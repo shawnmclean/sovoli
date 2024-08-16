@@ -1,12 +1,13 @@
 import { db, eq, schema } from "@sovoli/db";
 
+import type { MatchedBook } from "../books";
+import { searchBooks } from "../books";
 import { UserNotFoundError } from "../errors";
 
 export interface PutMyBooksOptions {
   username: string;
   books: {
-    title?: string;
-    author?: string;
+    query?: string;
     isbn?: string;
     shelfId?: number;
   }[];
@@ -29,9 +30,32 @@ export async function putMyBooks(options: PutMyBooksOptions) {
   });
   if (!user) throw new UserNotFoundError(options.username);
 
-  // for each book in options, find the book in the database from the inference system.
-  // the inference system will return the book/create it if it doesn't exist.
-  // we will then link the book to the user by updating the myBooks table.
+  // search for the books
+  const bookMatches = await searchBooks({
+    queries: options.books.map((book) => ({
+      query: book.query,
+      isbn: book.isbn,
+    })),
+  });
+
+  // for each book, get the best match and link the book to the user by updating the myBooks table.
+  const books = bookMatches
+    .map((bookMatch) => getBestMatch(bookMatch.books))
+    .filter((bestMatch) => bestMatch !== undefined);
+
+  books.map((book) => console.log({ book }));
 
   return user.myBooks;
+}
+
+function getBestMatch(books: MatchedBook[]): MatchedBook | undefined {
+  if (books.length === 0) return undefined;
+
+  // pick the highest similarity book, if no similarity, get the first book
+  return books.reduce((bestMatch, currentBook) => {
+    const bestSimilarity = bestMatch?.similarity ?? 0;
+    const currentSimilarity = currentBook.similarity ?? 0;
+
+    return currentSimilarity > bestSimilarity ? currentBook : bestMatch;
+  }, books[0]);
 }
