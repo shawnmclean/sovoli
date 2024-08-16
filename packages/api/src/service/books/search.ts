@@ -1,6 +1,8 @@
 import type { SelectBookSchema } from "@sovoli/db/schema";
+import { openai } from "@ai-sdk/openai";
 import { db, inArray, sql } from "@sovoli/db";
 import { embeddingsCache } from "@sovoli/db/schema";
+import { embedMany } from "ai";
 
 export interface SearchBooksQuery {
   isbn?: string;
@@ -78,15 +80,19 @@ async function searchEmbeddings(
 
   // if there are queries to update, update the cache
   if (queriesToUpdate.length > 0) {
-    const embeddings = await getOpenAIEmbeddings(queriesToUpdate);
+    let embeddings: number[][];
+    try {
+      embeddings = await getOpenAIEmbeddings(queriesToUpdate);
+      const embedData = embeddings.map((embedding, index) => ({
+        // ensure the text never is undefined in the event openAI returns more embeddings than queries
+        text: queriesToUpdate[index] ?? `unknown-${index}`,
+        embedding,
+      }));
 
-    const embedData = embeddings.map((embedding, index) => ({
-      // ensure the text never is undefined in the event openAI returns more embeddings than queries
-      text: queriesToUpdate[index] ?? `unknown-${index}`,
-      embedding,
-    }));
-
-    await setCachedEmbedding(embedData);
+      await setCachedEmbedding(embedData);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   // TODO query the db with the embeddings for the books
@@ -134,7 +140,11 @@ async function setCachedEmbedding(
     });
 }
 
-function getOpenAIEmbeddings(queries: string[]): Promise<number[][]> {
-  console.log(">>> getOpenAIEmbedding", { queries });
-  throw new Error("Not implemented");
+async function getOpenAIEmbeddings(queries: string[]): Promise<number[][]> {
+  const { embeddings } = await embedMany({
+    model: openai.embedding("text-embedding-3-small"),
+    values: queries,
+  });
+
+  return embeddings;
 }
