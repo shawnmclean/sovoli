@@ -1,4 +1,6 @@
 import type { SelectBookSchema } from "@sovoli/db/schema";
+import { db, inArray, or } from "@sovoli/db";
+import { books as booksSchema } from "@sovoli/db/schema";
 
 export interface FindBooksOptions {
   title?: string;
@@ -6,7 +8,7 @@ export interface FindBooksOptions {
   isbn?: string;
 }
 
-export function findBooks(
+export async function findBooks(
   options: FindBooksOptions,
 ): Promise<SelectBookSchema> {
   // title and author must exist if isbn is not provided
@@ -14,7 +16,8 @@ export function findBooks(
     throw new Error("title must be provided if isbn is not provided");
   }
   if (options.isbn) {
-    getBookByIsbn(options.isbn);
+    const books = await getBooksByIsbns([options.isbn]);
+    console.log(">>> getBookByIsbn", { isbn: options.isbn, books });
   }
   if (options.title) {
     getBookByTitle(options.title, options.author);
@@ -36,7 +39,12 @@ function getBookByTitle(title: string, author?: string) {
  * Get the first matching book by isbn, it will check the isbn13 and isbn10 fields
  * @param isbn
  */
-function getBookByIsbn(isbn: string) {
-  console.log(">>> getBookByIsbn", { isbn });
-  throw new Error("Not implemented");
+export async function getBooksByIsbns(isbns: string[]) {
+  if (isbns.length === 0) return [];
+  return await db.query.books.findMany({
+    where: or(
+      inArray(booksSchema.isbn13, isbns),
+      inArray(booksSchema.isbn10, isbns),
+    ),
+  });
 }

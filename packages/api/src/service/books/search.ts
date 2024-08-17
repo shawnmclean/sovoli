@@ -9,6 +9,8 @@ import {
 } from "@sovoli/db/schema";
 import { embedMany } from "ai";
 
+import { getBooksByIsbns } from "./find";
+
 export interface SearchBooksQuery {
   isbn?: string;
   /**
@@ -87,13 +89,29 @@ export async function searchBooks(
 async function searchByISBN(
   isbns: string[],
 ): Promise<SearchBooksQueryResult[]> {
-  // TODO: implement logic to search by ISBN
-  return Promise.resolve(
-    isbns.map((isbn) => ({
-      query: { isbn: isbn },
-      books: [],
-    })),
+  const books = await getBooksByIsbns(isbns);
+  // Create a map to group books by their ISBN
+  const booksByIsbn = isbns.reduce<Record<string, MatchedBook[]>>(
+    (acc, isbn) => {
+      const matchedBooks = books
+        .filter((book) => book.isbn10 === isbn || book.isbn13 === isbn)
+        .map((book) => ({
+          book,
+          similarity: 1,
+        }));
+
+      acc[isbn] = matchedBooks;
+      return acc;
+    },
+    {},
   );
+
+  const results = isbns.map((isbn) => ({
+    query: { isbn },
+    books: booksByIsbn[isbn] ?? [], // Default to an empty array if no books matched
+  }));
+
+  return results;
 }
 
 async function searchByQuery(
