@@ -37,6 +37,14 @@ export interface SearchBooksOptions {
   queries: SearchBooksQuery[];
 }
 
+interface SearchQuery {
+  query: string;
+  templatedQuery: string;
+}
+/**
+ * A hash map of templated query hashes to search queries
+ */
+type QueryHashes = Record<string, SearchQuery>;
 /**
  * Search for books by title, author, isbn, and query
  * @param options
@@ -47,28 +55,43 @@ export async function searchBooks(
 ): Promise<SearchBooksQueryResult[]> {
   console.time("Total Search Time");
   // separate the queries into the ones that uses ISBN and the ones that use the query
-  const { queryQueries } = options.queries.reduce<{
+  const { isbnQueries, queryHashes } = options.queries.reduce<{
     isbnQueries: SearchBooksQuery[];
-    queryQueries: Record<string, string>;
+    queryHashes: QueryHashes;
   }>(
     (acc, query) => {
       if (query.isbn) {
+        // Collect ISBN queries as before
         acc.isbnQueries.push(query);
       } else if (query.query) {
-        // add context to the query
-        const templatedQuery = `Book title and possible author: ${query.query}`;
-        const hash = cleanupAndHashQuery(templatedQuery);
-        acc.queryQueries[hash] = templatedQuery;
+        // Add context to the query, clean up and standardize the string
+        const cleanedQuery = query.query.toLowerCase().trim(); // Optional: Trim leading/trailing whitespace
+
+        const templatedQuery = `Book title and possible author: ${cleanedQuery}`;
+
+        const hash = crypto
+          .createHash("sha256")
+          .update(templatedQuery)
+          .digest("hex");
+
+        // Store the original query and the templated query in the hash map
+        acc.queryHashes[hash] = {
+          templatedQuery,
+          query: query.query,
+        };
       }
 
       return acc;
     },
-    { isbnQueries: [], queryQueries: {} },
+    { isbnQueries: [], queryHashes: {} },
   );
+
+  console.log(">>> queryHashes", queryHashes);
+  console.log(">>> isbnQueries", isbnQueries);
 
   console.time("Embeddings Search Time");
   // TODO: figure out parallelization
-  const queriesResults = await searchEmbeddings(queryQueries);
+  const queriesResults = await searchEmbeddings(queryHashes);
   console.timeEnd("Embeddings Search Time");
 
   // TODO: any missing books should be added to the db
@@ -78,7 +101,7 @@ export async function searchBooks(
 }
 
 async function searchEmbeddings(
-  queries: Record<string, string>,
+  queries: QueryHashes,
 ): Promise<SearchBooksQueryResult[]> {
   // Extract the keys (hashes) from the queries object
   const queryHashes = Object.keys(queries);
@@ -100,16 +123,13 @@ async function searchEmbeddings(
   }, {});
 
   // Get the queries that need to be updated (those not found in the cache)
-  const queriesToUpdate = queryHashes.reduce<Record<string, string>>(
-    (acc, hash) => {
-      const query = queries[hash];
-      if (!cachedEmbeddings[hash] && query) {
-        acc[hash] = query;
-      }
-      return acc;
-    },
-    {},
-  );
+  const queriesToUpdate = queryHashes.reduce<QueryHashes>((acc, hash) => {
+    const query = queries[hash];
+    if (!cachedEmbeddings[hash] && query) {
+      acc[hash] = query;
+    }
+    return acc;
+  }, {});
 
   // Extract just the values (queries) that need to be updated
   const queriesToSend = Object.values(queriesToUpdate);
@@ -118,7 +138,9 @@ async function searchEmbeddings(
     let embeddings: number[][];
 
     try {
-      embeddings = await getOpenAIEmbeddings(queriesToSend);
+      embeddings = await getOpenAIEmbeddings(
+        queriesToSend.map((q) => q.templatedQuery),
+      );
       // Construct the data to be cached, ensuring alignment between hashes and embeddings
       const embedData = Object.keys(queriesToUpdate).reduce<
         { id: string; openAIEmbedding: number[] }[]
@@ -147,24 +169,13 @@ async function searchEmbeddings(
 
       return {
         books: booksWithSimilarity,
-        query: { query: queries[hash] },
+        query: { query: queries[hash]?.query },
       };
     }),
   );
   console.timeEnd("Books Search Time");
 
   return result;
-}
-
-function cleanupAndHashQuery(query: string): string {
-  // Remove all non-alphanumeric characters and convert to lowercase
-  const cleaned = query.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
-
-  // Create a SHA-256 hash of the cleaned string
-  const hash = crypto.createHash("sha256").update(cleaned).digest("hex");
-
-  // Return the resulting hash
-  return hash;
 }
 
 async function getCachedEmbeddings(hashedQueries: string[]) {
