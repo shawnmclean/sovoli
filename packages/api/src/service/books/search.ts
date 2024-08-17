@@ -55,52 +55,74 @@ export async function searchBooks(
 ): Promise<SearchBooksQueryResult[]> {
   console.time("Total Search Time");
   // separate the queries into the ones that uses ISBN and the ones that use the query
-  const { isbnQueries, queryHashes } = options.queries.reduce<{
-    isbnQueries: SearchBooksQuery[];
-    queryHashes: QueryHashes;
-  }>(
-    (acc, query) => {
-      if (query.isbn) {
-        // Collect ISBN queries as before
-        acc.isbnQueries.push(query);
-      } else if (query.query) {
-        // Add context to the query, clean up and standardize the string
-        const cleanedQuery = query.query.toLowerCase().trim(); // Optional: Trim leading/trailing whitespace
+  const isbnQueries: string[] = [];
+  const textQueries: string[] = [];
+  options.queries.forEach((query) => {
+    if (query.isbn) {
+      isbnQueries.push(query.isbn);
+    } else if (query.query) {
+      textQueries.push(query.query);
+    }
+  });
 
-        const templatedQuery = `Book title and possible author: ${cleanedQuery}`;
-
-        const hash = crypto
-          .createHash("sha256")
-          .update(templatedQuery)
-          .digest("hex");
-
-        // Store the original query and the templated query in the hash map
-        acc.queryHashes[hash] = {
-          templatedQuery,
-          query: query.query,
-        };
-      }
-
-      return acc;
-    },
-    { isbnQueries: [], queryHashes: {} },
-  );
-
-  console.log(">>> queryHashes", queryHashes);
+  console.log(">>> textQueries", textQueries);
   console.log(">>> isbnQueries", isbnQueries);
 
-  console.time("Embeddings Search Time");
-  // TODO: figure out parallelization
-  const queriesResults = await searchEmbeddings(queryHashes);
-  console.timeEnd("Embeddings Search Time");
+  console.time("Db Search Time");
+  const [isbnResults, textResults] = await Promise.all([
+    searchByISBN(isbnQueries),
+    searchByQuery(textQueries),
+  ]);
+
+  console.timeEnd("Db Search Time");
 
   // TODO: any missing books should be added to the db
+  const combinedResults = [...isbnResults, ...textResults];
 
+  console.log(">>> combinedResults", combinedResults);
   console.timeEnd("Total Search Time");
-  return queriesResults;
+  return combinedResults;
 }
 
-async function searchEmbeddings(
+async function searchByISBN(
+  isbns: string[],
+): Promise<SearchBooksQueryResult[]> {
+  // TODO: implement logic to search by ISBN
+  return Promise.resolve(
+    isbns.map((isbn) => ({
+      query: { isbn: isbn },
+      books: [],
+    })),
+  );
+}
+
+async function searchByQuery(
+  queries: string[],
+): Promise<SearchBooksQueryResult[]> {
+  const queryHashes = queries.reduce<QueryHashes>((acc, query) => {
+    // Add context to the query, clean up and standardize the string
+    const cleanedQuery = query.toLowerCase().trim(); // Optional: Trim leading/trailing whitespace
+
+    const templatedQuery = `Book title and possible author: ${cleanedQuery}`;
+
+    const hash = crypto
+      .createHash("sha256")
+      .update(templatedQuery)
+      .digest("hex");
+
+    // Store the original query and the templated query in the hash map
+    acc[hash] = {
+      templatedQuery,
+      query: query,
+    };
+
+    return acc;
+  }, {});
+
+  return searchByEmbeddings(queryHashes);
+}
+
+async function searchByEmbeddings(
   queries: QueryHashes,
 ): Promise<SearchBooksQueryResult[]> {
   // Extract the keys (hashes) from the queries object
