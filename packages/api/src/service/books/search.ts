@@ -45,6 +45,7 @@ export interface SearchBooksOptions {
 export async function searchBooks(
   options: SearchBooksOptions,
 ): Promise<SearchBooksQueryResult[]> {
+  console.time("Total Search Time");
   // separate the queries into the ones that uses ISBN and the ones that use the query
   const { queryQueries } = options.queries.reduce<{
     isbnQueries: SearchBooksQuery[];
@@ -65,11 +66,14 @@ export async function searchBooks(
     { isbnQueries: [], queryQueries: {} },
   );
 
+  console.time("Embeddings Search Time");
   // TODO: figure out parallelization
   const queriesResults = await searchEmbeddings(queryQueries);
+  console.timeEnd("Embeddings Search Time");
 
   // TODO: any missing books should be added to the db
 
+  console.timeEnd("Total Search Time");
   return queriesResults;
 }
 
@@ -79,8 +83,10 @@ async function searchEmbeddings(
   // Extract the keys (hashes) from the queries object
   const queryHashes = Object.keys(queries);
 
+  console.time("Cached Embeddings Search Time");
   // check if the query is in the cache
   const cachedEmbeddings = await getCachedEmbeddings(queryHashes);
+  console.timeEnd("Cached Embeddings Search Time");
 
   // this should have our cached embeddings and the embeddings coming from openAI
   const finalEmbeddings: Record<string, number[]> = Object.keys(
@@ -133,15 +139,19 @@ async function searchEmbeddings(
     }
   }
 
-  const result: SearchBooksQueryResult[] = [];
-  for (const [hash, embedding] of Object.entries(finalEmbeddings)) {
-    // Ensure that the embedding is defined
-    const booksWithSimilarity = await getBooksByEmbeddings(embedding);
-    result.push({
-      books: booksWithSimilarity,
-      query: { query: queries[hash] },
-    });
-  }
+  console.time("Books Search Time");
+  const result: SearchBooksQueryResult[] = await Promise.all(
+    Object.entries(finalEmbeddings).map(async ([hash, embedding]) => {
+      // Ensure that the embedding is defined
+      const booksWithSimilarity = await getBooksByEmbeddings(embedding);
+
+      return {
+        books: booksWithSimilarity,
+        query: { query: queries[hash] },
+      };
+    }),
+  );
+  console.timeEnd("Books Search Time");
 
   return result;
 }
