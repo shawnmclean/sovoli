@@ -87,7 +87,7 @@ async function insertMyBooks(myBooksToInsert: InsertMyBookSchema[]) {
  * @param books
  * @returns MatchedBook | undefined
  */
-function getBestMatch(books: MatchedBook[]): MatchedBook | undefined {
+export function getBestMatch(books: MatchedBook[]): MatchedBook | undefined {
   if (books.length === 0) return undefined;
 
   // Pick the highest similarity book; if no similarity, get the first book

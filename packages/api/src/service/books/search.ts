@@ -112,7 +112,7 @@ export async function searchBooks(
   return finalResults;
 }
 
-async function searchExternallyAndPopulate(
+export async function searchExternallyAndPopulate(
   queries: SearchBooksQuery[],
 ): Promise<SearchBooksQueryResult[]> {
   console.time("Search Externally Time");
