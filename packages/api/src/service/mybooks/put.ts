@@ -80,7 +80,7 @@ export async function putMyBooks(options: PutMyBooksOptions) {
   const insertedMyBooks = await insertMyBooks(myBooksToInsert);
   await hydrateMyBooks.trigger({ userId: user.id });
 
-  return insertedMyBooks;
+  return [...existingBooks, ...insertedMyBooks];
 }
 
 async function insertMyBooks(myBooksToInsert: InsertMyBookSchema[]) {
