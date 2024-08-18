@@ -1,4 +1,4 @@
-import type { InsertMyBookSchema, SelectMyBookSchema } from "@sovoli/db/schema";
+import type { InsertMyBookSchema } from "@sovoli/db/schema";
 import { db, eq, schema, sql } from "@sovoli/db";
 
 import type { MatchedBook } from "../books";
@@ -12,6 +12,7 @@ export interface PutMyBooksOptions {
     query?: string;
   }[];
 }
+
 /**
  * Before this function is called, ensure the user has permission to update this user's books
  * @param options
@@ -28,36 +29,55 @@ export async function putMyBooks(options: PutMyBooksOptions) {
     },
     where: eq(schema.users.username, options.username),
   });
+
   if (!user) throw new UserNotFoundError(options.username);
 
-  // search for the books internally
+  // Step 1: Get unique queries from the input and filter out nulls
+  const uniqueQueries = Array.from(
+    new Set(
+      options.books
+        .map((book) => book.query?.toLowerCase().trim())
+        .filter((query): query is string => query !== undefined),
+    ),
+  );
+
+  // Step 2: Filter out queries that the user has already searched for
+  const existingBooks = user.myBooks.filter(
+    (myBook) => myBook.query && uniqueQueries.includes(myBook.query),
+  );
+
+  // Step 3: Filter out queries that need to be searched by removing the queries that matches the existingBooks
+  // Create a Set of existing queries for quick lookup
+  const existingQueriesSet = new Set(
+    existingBooks.map((book) => book.query?.toLowerCase().trim()),
+  );
+
+  // Step 4: Filter out queries that need to be searched
+  const filteredQueries = uniqueQueries.filter(
+    (query) => !existingQueriesSet.has(query),
+  );
+
+  if (filteredQueries.length === 0) return existingBooks;
+
+  // Step 3: Search for books based on filtered queries
   const bookMatches = await searchBooks({
-    queries: options.books.map((book) => ({
-      query: book.query,
-    })),
+    queries: filteredQueries.map((query) => ({ query })),
   });
 
-  // Prepare a list to hold the myBooks insert objects
-  const myBooksToInsert: InsertMyBookSchema[] = [];
-
-  // for each book, get the best match if available
-  // then create the my-book insert object using the id
-  // for the queries without a match, create the my-book insert object with the query
-  bookMatches.forEach((bookMatch) => {
+  // Prepare a list of myBooks insert objects
+  const myBooksToInsert: InsertMyBookSchema[] = bookMatches.map((bookMatch) => {
     const bestMatch = getBestMatch(bookMatch.books);
 
-    const baseMyBook: InsertMyBookSchema = {
+    return {
       name: bestMatch?.book.title,
       ownerId: user.id,
       query: bookMatch.query.query,
-      bookId: bestMatch?.book.id, // If no match, leave bookId as null
+      bookId: bestMatch?.book.id ?? null, // If no match, set bookId as null
     };
-
-    myBooksToInsert.push(baseMyBook);
   });
 
+  // Insert books and hydrate user's myBooks
   const insertedMyBooks = await insertMyBooks(myBooksToInsert);
-
   await hydrateMyBooks.trigger({ userId: user.id });
 
   return insertedMyBooks;
@@ -65,40 +85,16 @@ export async function putMyBooks(options: PutMyBooksOptions) {
 
 async function insertMyBooks(myBooksToInsert: InsertMyBookSchema[]) {
   try {
-    // Separate the rows with NULL and non-NULL bookId
-    const nonNullBookIdInserts = myBooksToInsert.filter(
-      (book) => book.bookId !== undefined,
-    );
-    const nullBookIdInserts = myBooksToInsert.filter(
-      (book) => book.bookId === undefined,
-    );
-
-    let createdBooks: SelectMyBookSchema[] = [];
-    // Insert rows with non-NULL bookId and handle conflicts
-    if (nonNullBookIdInserts.length > 0) {
-      const nonNullResults = await db
-        .insert(schema.myBooks)
-        .values(nonNullBookIdInserts)
-        .onConflictDoUpdate({
-          target: [schema.myBooks.ownerId, schema.myBooks.bookId],
-          set: {
-            name: sql.raw(`excluded.${schema.myBooks.name.name}`),
-          },
-        })
-        .returning();
-
-      createdBooks = createdBooks.concat(nonNullResults);
-    }
-
-    // Insert rows with NULL bookId without ON CONFLICT logic
-    if (nullBookIdInserts.length > 0) {
-      const nullResults = await db
-        .insert(schema.myBooks)
-        .values(nullBookIdInserts)
-        .returning();
-
-      createdBooks = createdBooks.concat(nullResults);
-    }
+    const createdBooks = await db
+      .insert(schema.myBooks)
+      .values(myBooksToInsert)
+      .onConflictDoUpdate({
+        target: [schema.myBooks.ownerId, schema.myBooks.bookId],
+        set: {
+          name: sql.raw(`excluded.${schema.myBooks.name.name}`),
+        },
+      })
+      .returning();
 
     return createdBooks;
   } catch (error) {
@@ -113,13 +109,11 @@ async function insertMyBooks(myBooksToInsert: InsertMyBookSchema[]) {
  * @returns MatchedBook | undefined
  */
 export function getBestMatch(books: MatchedBook[]): MatchedBook | undefined {
-  if (books.length === 0) return undefined;
-
-  // Pick the highest similarity book; if no similarity, get the first book
-  return books.reduce((bestMatch, currentBook) => {
-    const bestSimilarity = bestMatch?.similarity ?? 0;
-    const currentSimilarity = currentBook.similarity ?? 0;
-
-    return currentSimilarity > bestSimilarity ? currentBook : bestMatch;
-  }, books[0]);
+  return books.reduce(
+    (bestMatch, currentBook) =>
+      (currentBook.similarity ?? 0) > (bestMatch?.similarity ?? 0)
+        ? currentBook
+        : bestMatch,
+    books[0],
+  );
 }

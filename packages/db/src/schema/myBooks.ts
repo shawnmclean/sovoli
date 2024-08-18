@@ -167,11 +167,9 @@ export const myBooks = pgTable(
   },
   (table) => ({
     /**
-     * Only allow a distinct book per owner when bookId is not NULL
+     * only allow a distinct book per owner
      */
-    uniqueBook: uniqueIndex("unique_owner_book")
-      .on(table.ownerId, table.bookId)
-      .where(sql`${table.bookId} IS NOT NULL`),
+    uniqueBook: unique("unique_owner_book").on(table.ownerId, table.bookId),
   }),
 );
 
