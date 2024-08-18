@@ -4,7 +4,7 @@ import {
   integer,
   jsonb,
   pgTable,
-  primaryKey,
+  // primaryKey,
   text,
   unique,
   uniqueIndex,
@@ -45,9 +45,9 @@ export const authors = pgTable("authors", {
 });
 
 export const BookCoverSchema = z.object({
-  small: z.string(),
-  medium: z.string(),
-  large: z.string(),
+  small: z.string().optional(),
+  medium: z.string().optional(),
+  large: z.string().optional(),
 });
 
 export type BookCover = z.infer<typeof BookCoverSchema>;
@@ -149,12 +149,23 @@ export const myBooks = pgTable(
     shelfOrder: integer("shelf_order"),
     verifiedDate: date("verified_date"),
 
-    // TODO: after inference system is done, make this notNull
+    // the query that was used to search for the book
+    query: varchar("query", { length: 255 }),
+    triggerDevId: varchar("trigger_dev_id", { length: 255 }),
+
     bookId: uuid("book_id").references(() => books.id),
   },
   (table) => ({
-    uniqueSlug: unique().on(table.ownerId, table.slug),
+    uniqueSlug: unique("unique_owner_slug")
+      .on(table.ownerId, table.slug)
+      .nullsNotDistinct(),
+    uniqueQuery: unique("unique_owner_query")
+      .on(table.ownerId, table.query)
+      .nullsNotDistinct(),
   }),
 );
 
 export const SelectMyBookSchema = createSelectSchema(myBooks);
+export const InsertMyBookSchema = createInsertSchema(myBooks);
+export type InsertMyBookSchema = z.infer<typeof InsertMyBookSchema>;
+export type SelectMyBookSchema = z.infer<typeof SelectMyBookSchema>;

@@ -82,12 +82,15 @@ export async function searchBooks(
 
   const combinedDbResults = [...isbnResults, ...textResults];
 
+  return combinedDbResults;
+
   // Identify queries that have no matching books
   const unmatchedQueries = combinedDbResults
     .filter((result) => result.books.length === 0)
     .map((result) => result.query);
 
-  // If there are unmatched queries, search externally
+  // If there are unmatched queries, create the books in the database, get the ids, fire off trigger.dev to hydrate.
+  // since this operation can take a while
   let externalResults: SearchBooksQueryResult[] = [];
   if (unmatchedQueries.length > 0) {
     try {
@@ -119,7 +122,9 @@ async function searchExternallyAndPopulate(
   await Promise.all(
     queries.map(async (query) => {
       const googleBooks = await booksService.searchGoogleBooks(query);
-
+      googleBooks.forEach((book) =>
+        console.log(book.title, book.publishedDate),
+      );
       // Convert GoogleBooks to InsertBookSchema format
       const booksToInsert: InsertBookSchema[] = googleBooks.map(
         (googleBook) => ({
@@ -129,10 +134,7 @@ async function searchExternallyAndPopulate(
           olid: null, // Assuming Google Books doesn't provide OLID
           title: googleBook.title,
           subtitle: googleBook.subtitle ?? null,
-          publishedDate: googleBook.publishedDate
-            ? new Date(googleBook.publishedDate).toISOString()
-            : null,
-
+          publishedDate: googleBook.publishedDate?.toISOString(),
           publisher: googleBook.publisher,
           pageCount: googleBook.pageCount,
           description: googleBook.description,

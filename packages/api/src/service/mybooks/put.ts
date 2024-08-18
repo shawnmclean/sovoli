@@ -1,6 +1,8 @@
-import { db, eq, schema } from "@sovoli/db";
+import type { InsertMyBookSchema } from "@sovoli/db/schema";
+import { db, eq, schema, sql } from "@sovoli/db";
 
 import type { MatchedBook } from "../books";
+import { hydrateMyBooks } from "../../trigger/myBooks";
 import { searchBooks } from "../books";
 import { UserNotFoundError } from "../errors";
 
@@ -8,8 +10,6 @@ export interface PutMyBooksOptions {
   username: string;
   books: {
     query?: string;
-    isbn?: string;
-    shelfId?: number;
   }[];
 }
 /**
@@ -30,32 +30,79 @@ export async function putMyBooks(options: PutMyBooksOptions) {
   });
   if (!user) throw new UserNotFoundError(options.username);
 
-  // search for the books
+  // search for the books internally
   const bookMatches = await searchBooks({
     queries: options.books.map((book) => ({
       query: book.query,
-      isbn: book.isbn,
     })),
   });
 
-  // for each book, get the best match and link the book to the user by updating the myBooks table.
-  const books = bookMatches
-    .map((bookMatch) => getBestMatch(bookMatch.books))
-    .filter((bestMatch) => bestMatch !== undefined);
+  // Prepare a list to hold the myBooks insert objects
+  const myBooksToInsert: InsertMyBookSchema[] = [];
 
-  books.map((book) => console.log({ book }));
+  // for each book, get the best match if available
+  // then create the my-book insert object using the id
+  // for the queries without a match, create the my-book insert object with the query
+  bookMatches.forEach((bookMatch) => {
+    const bestMatch = getBestMatch(bookMatch.books);
 
-  return user.myBooks;
+    const baseMyBook: InsertMyBookSchema = {
+      slug: bestMatch?.book.slug ?? slugify(bookMatch.query.query ?? ""),
+      name: bestMatch?.book.title,
+      ownerId: user.id,
+      query: bookMatch.query.query,
+      bookId: bestMatch?.book.id, // If no match, leave bookId as null
+    };
+
+    myBooksToInsert.push(baseMyBook);
+  });
+
+  const insertedMyBooks = await insertMyBooks(myBooksToInsert);
+
+  await hydrateMyBooks.trigger({ userId: user.id });
+
+  return insertedMyBooks;
 }
 
+async function insertMyBooks(myBooksToInsert: InsertMyBookSchema[]) {
+  try {
+    return await db
+      .insert(schema.myBooks)
+      .values(myBooksToInsert)
+      .onConflictDoUpdate({
+        target: [schema.myBooks.ownerId, schema.myBooks.slug],
+        set: {
+          name: sql.raw(`excluded.${schema.myBooks.name.name}`),
+        },
+      })
+      .returning();
+  } catch (error) {
+    console.error("Error inserting myBooks:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get the best match from a list of matched books based on similarity.
+ * @param books
+ * @returns MatchedBook | undefined
+ */
 function getBestMatch(books: MatchedBook[]): MatchedBook | undefined {
   if (books.length === 0) return undefined;
 
-  // pick the highest similarity book, if no similarity, get the first book
+  // Pick the highest similarity book; if no similarity, get the first book
   return books.reduce((bestMatch, currentBook) => {
     const bestSimilarity = bestMatch?.similarity ?? 0;
     const currentSimilarity = currentBook.similarity ?? 0;
 
     return currentSimilarity > bestSimilarity ? currentBook : bestMatch;
   }, books[0]);
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
