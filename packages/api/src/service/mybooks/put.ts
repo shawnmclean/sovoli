@@ -1,4 +1,4 @@
-import type { InsertMyBookSchema } from "@sovoli/db/schema";
+import type { InsertMyBookSchema, SelectMyBookSchema } from "@sovoli/db/schema";
 import { db, eq, schema, sql } from "@sovoli/db";
 
 import type { MatchedBook } from "../books";
@@ -47,7 +47,6 @@ export async function putMyBooks(options: PutMyBooksOptions) {
     const bestMatch = getBestMatch(bookMatch.books);
 
     const baseMyBook: InsertMyBookSchema = {
-      slug: bestMatch?.book.slug ?? slugify(bookMatch.query.query ?? ""),
       name: bestMatch?.book.title,
       ownerId: user.id,
       query: bookMatch.query.query,
@@ -66,16 +65,42 @@ export async function putMyBooks(options: PutMyBooksOptions) {
 
 async function insertMyBooks(myBooksToInsert: InsertMyBookSchema[]) {
   try {
-    return await db
-      .insert(schema.myBooks)
-      .values(myBooksToInsert)
-      .onConflictDoUpdate({
-        target: [schema.myBooks.ownerId, schema.myBooks.slug],
-        set: {
-          name: sql.raw(`excluded.${schema.myBooks.name.name}`),
-        },
-      })
-      .returning();
+    // Separate the rows with NULL and non-NULL bookId
+    const nonNullBookIdInserts = myBooksToInsert.filter(
+      (book) => book.bookId !== undefined,
+    );
+    const nullBookIdInserts = myBooksToInsert.filter(
+      (book) => book.bookId === undefined,
+    );
+
+    let createdBooks: SelectMyBookSchema[] = [];
+    // Insert rows with non-NULL bookId and handle conflicts
+    if (nonNullBookIdInserts.length > 0) {
+      const nonNullResults = await db
+        .insert(schema.myBooks)
+        .values(nonNullBookIdInserts)
+        .onConflictDoUpdate({
+          target: [schema.myBooks.ownerId, schema.myBooks.bookId],
+          set: {
+            name: sql.raw(`excluded.${schema.myBooks.name.name}`),
+          },
+        })
+        .returning();
+
+      createdBooks = createdBooks.concat(nonNullResults);
+    }
+
+    // Insert rows with NULL bookId without ON CONFLICT logic
+    if (nullBookIdInserts.length > 0) {
+      const nullResults = await db
+        .insert(schema.myBooks)
+        .values(nullBookIdInserts)
+        .returning();
+
+      createdBooks = createdBooks.concat(nullResults);
+    }
+
+    return createdBooks;
   } catch (error) {
     console.error("Error inserting myBooks:", error);
     throw error;
@@ -97,12 +122,4 @@ export function getBestMatch(books: MatchedBook[]): MatchedBook | undefined {
 
     return currentSimilarity > bestSimilarity ? currentBook : bestMatch;
   }, books[0]);
-}
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 }

@@ -68,7 +68,8 @@ export const myBookRouter = tsr.router(myBookContract, {
         shelf: true,
         book: true,
       },
-      where: and(filter, eq(schema.myBooks.slug, slug)),
+      // TODO: get the linked book by slug
+      // where: and(filter, eq(schema.myBooks.slug, slug)),
     });
 
     if (!myBook) return { status: 404, body: { message: "Book not found" } };

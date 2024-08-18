@@ -46,8 +46,9 @@ export async function insertBooks(
         target: [
           booksSchema.isbn13,
           booksSchema.isbn10,
-          booksSchema.slug,
+          booksSchema.ean,
           booksSchema.asin,
+          booksSchema.slug,
           booksSchema.olid,
         ],
         set: {

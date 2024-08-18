@@ -37,6 +37,7 @@ export interface GoogleBook {
   categories: string[];
   isbn10: string | null;
   isbn13: string | null;
+  ean: string | null;
   thumbnail: string | null;
   language: string;
 }
@@ -101,6 +102,7 @@ export async function searchGoogleBooks(
         const volumeInfo = item.volumeInfo;
         let isbn10: string | null = null;
         let isbn13: string | null = null;
+        let ean: string | null = null;
 
         if (volumeInfo.industryIdentifiers) {
           for (const identifier of volumeInfo.industryIdentifiers) {
@@ -108,6 +110,11 @@ export async function searchGoogleBooks(
               isbn10 = identifier.identifier;
             } else if (identifier.type === "ISBN_13") {
               isbn13 = identifier.identifier;
+            } else if (
+              identifier.type === "OTHER" &&
+              identifier.identifier.startsWith("EAN:")
+            ) {
+              ean = identifier.identifier.substring(4); // Extract the EAN after "EAN:"
             }
           }
         }
@@ -134,6 +141,7 @@ export async function searchGoogleBooks(
           categories: volumeInfo.categories,
           isbn10,
           isbn13,
+          ean,
           language: volumeInfo.language,
           thumbnail:
             volumeInfo.imageLinks?.thumbnail ??

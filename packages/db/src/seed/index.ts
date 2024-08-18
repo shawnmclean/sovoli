@@ -41,19 +41,19 @@ const data = [
             books: [
               {
                 name: "The Power of Habit",
-                slug: "the-power-of-habit",
+
                 description: "A book about habits",
                 order: 0,
               },
               {
                 name: "The 7 Habits of Highly Effective People",
-                slug: "the-7-habits-of-highly-effective-people",
+
                 description: "A book about habits",
                 order: 1,
               },
               {
                 name: "The Art of War",
-                slug: "the-art-of-war",
+
                 description: "A book about war",
                 order: 2,
               },
@@ -66,7 +66,7 @@ const data = [
             books: [
               {
                 name: "Titanic",
-                slug: "titanic",
+
                 description: "A book about the Titanic",
                 order: 0,
               },
@@ -168,7 +168,7 @@ const seedUsers = async () => {
 
             if (!shelf) break;
 
-            for (const { name, slug, description, order } of books) {
+            for (const { name, description, order } of books) {
               const book = await db.query.books.findFirst({
                 where: eq(schema.books.title, name),
               });
@@ -179,7 +179,7 @@ const seedUsers = async () => {
                 .insert(schema.myBooks)
                 .values({
                   name,
-                  slug,
+
                   description,
                   ownerId: user.id,
                   shelfId: shelf.id,
@@ -187,7 +187,7 @@ const seedUsers = async () => {
                   bookId: book.id,
                 })
                 .onConflictDoUpdate({
-                  target: [schema.myBooks.slug, schema.myBooks.ownerId],
+                  target: [schema.myBooks.ownerId, schema.myBooks.bookId],
                   set: {
                     name: sql.raw(`excluded.${schema.myBooks.name.name}`),
                     description: sql.raw(

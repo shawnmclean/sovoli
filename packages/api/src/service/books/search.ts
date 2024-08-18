@@ -233,7 +233,7 @@ async function searchByQuery(
     // Store the original query and the templated query in the hash map
     acc[hash] = {
       templatedQuery,
-      query: query,
+      query: cleanedQuery,
     };
 
     return acc;

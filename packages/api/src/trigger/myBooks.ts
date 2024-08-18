@@ -61,7 +61,6 @@ export const hydrateMyBooks = task({
         .set({
           bookId: updatedBook.book.id,
           name: updatedBook.book.title,
-          slug: updatedBook.book.slug,
         })
         .where(eq(myBooks.id, updatedBook.myBookId));
     }

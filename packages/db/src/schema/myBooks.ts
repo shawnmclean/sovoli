@@ -1,3 +1,4 @@
+import { sql } from "drizzle-orm";
 import {
   date,
   index,
@@ -60,6 +61,8 @@ export const books = pgTable(
     // stores both ISBN-13 and ISBN-10
     isbn13: varchar("isbn_13", { length: 13 }).unique(),
     isbn10: varchar("isbn_10", { length: 10 }).unique(),
+    ean: varchar("ean", { length: 13 }).unique(),
+
     // open library id
     olid: varchar("olid", { length: 20 }).unique(),
     // amazon asin
@@ -94,7 +97,14 @@ export const books = pgTable(
       // Composite unique index to ensure no duplicate combinations of isbn13, isbn10, olid, and slug, while
       // ensuring that the database supports null behavior but not null uniqueness
       compositeUniqueIndex: unique("unique_book_composite")
-        .on(table.isbn13, table.isbn10, table.asin, table.olid, table.slug)
+        .on(
+          table.isbn13,
+          table.isbn10,
+          table.asin,
+          table.olid,
+          table.ean,
+          table.slug,
+        )
         .nullsNotDistinct(),
       slugIndex: uniqueIndex("unique_book_slug").on(table.slug),
     };
@@ -135,10 +145,9 @@ export type SelectBookSchema = z.infer<typeof SelectBookSchema>;
 export type InsertBookSchema = z.infer<typeof InsertBookSchema>;
 
 export const myBooks = pgTable(
-  "myBooks",
+  "my_books",
   {
     id: uuid("id").notNull().primaryKey().defaultRandom(),
-    slug: varchar("slug", { length: 255 }),
     // usually follows the title of the book
     name: varchar("name", { length: 255 }),
     description: text("description"),
@@ -151,17 +160,18 @@ export const myBooks = pgTable(
 
     // the query that was used to search for the book
     query: varchar("query", { length: 255 }),
+    queryError: text("query_error"),
     triggerDevId: varchar("trigger_dev_id", { length: 255 }),
 
     bookId: uuid("book_id").references(() => books.id),
   },
   (table) => ({
-    uniqueSlug: unique("unique_owner_slug")
-      .on(table.ownerId, table.slug)
-      .nullsNotDistinct(),
-    uniqueQuery: unique("unique_owner_query")
-      .on(table.ownerId, table.query)
-      .nullsNotDistinct(),
+    /**
+     * Only allow a distinct book per owner when bookId is not NULL
+     */
+    uniqueBook: uniqueIndex("unique_owner_book")
+      .on(table.ownerId, table.bookId)
+      .where(sql`${table.bookId} IS NOT NULL`),
   }),
 );
 
