@@ -4,13 +4,15 @@ import {
   integer,
   jsonb,
   pgTable,
+  primaryKey,
   text,
   unique,
+  uniqueIndex,
   uuid,
   varchar,
   vector,
 } from "drizzle-orm/pg-core";
-import { createSelectSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 import { shelves } from "./furnitures";
@@ -50,38 +52,54 @@ export const BookCoverSchema = z.object({
 
 export type BookCover = z.infer<typeof BookCoverSchema>;
 
-export const books = pgTable("books", {
-  id: uuid("id").notNull().primaryKey().defaultRandom(),
+export const books = pgTable(
+  "books",
+  {
+    id: uuid("id").notNull().primaryKey().defaultRandom(),
 
-  // stores both ISBN-13 and ISBN-10
-  isbn13: varchar("isbn_13", { length: 13 }).unique(),
-  isbn10: varchar("isbn_10", { length: 10 }).unique(),
-  // open library id
-  olid: varchar("olid", { length: 20 }).unique(),
+    // stores both ISBN-13 and ISBN-10
+    isbn13: varchar("isbn_13", { length: 13 }).unique(),
+    isbn10: varchar("isbn_10", { length: 10 }).unique(),
+    // open library id
+    olid: varchar("olid", { length: 20 }).unique(),
+    // amazon asin
+    asin: varchar("asin", { length: 20 }).unique(),
 
-  title: varchar("title", { length: 255 }),
-  subtitle: varchar("subtitle", { length: 255 }),
+    title: varchar("title", { length: 255 }).notNull(),
+    subtitle: varchar("subtitle", { length: 255 }),
+    editions: varchar("editions", { length: 255 }),
 
-  // slug will be in the form of {title}-{author}-{isbn}
-  slug: varchar("slug", { length: 255 }).unique(),
+    // slug will be in the form of {title}-{author}-{isbn}
+    slug: varchar("slug", { length: 255 }).unique(),
 
-  publishedDate: date("published_date"),
-  publisher: varchar("publisher", { length: 255 }),
-  pageCount: integer("page_count"),
-  description: text("description"),
-  language: varchar("language", { length: 2 }),
-  cover: jsonb("cover").$type<BookCover>(),
+    publishedDate: date("published_date"),
+    publisher: varchar("publisher", { length: 255 }),
+    pageCount: integer("page_count").default(0),
+    description: text("description"),
+    language: varchar("language", { length: 2 }),
+    cover: jsonb("cover").$type<BookCover>(),
 
-  // The following fields are only used for the inference system
-  triggerDevId: varchar("trigger_dev_id", { length: 255 }),
-  inferrenceError: text("inferrence_error"),
-  lastGoogleUpdated: date("last_google_updated"),
-  lastOLUpdated: date("last_ol_updated"),
-  inferredAuthor: varchar("inferred_author", { length: 255 }),
+    // The following fields are only used for the inference system
+    triggerDevId: varchar("trigger_dev_id", { length: 255 }),
+    inferrenceError: text("inferrence_error"),
+    lastGoogleUpdated: date("last_google_updated"),
+    lastOLUpdated: date("last_ol_updated"),
+    inferredAuthor: varchar("inferred_author", { length: 255 }),
 
-  createdAt: date("created_at").notNull().defaultNow(),
-  updatedAt: date("updated_at").notNull().defaultNow(),
-});
+    createdAt: date("created_at").notNull().defaultNow(),
+    updatedAt: date("updated_at").notNull().defaultNow(),
+  },
+  (table) => {
+    return {
+      // Composite unique index to ensure no duplicate combinations of isbn13, isbn10, olid, and slug, while
+      // ensuring that the database supports null behavior but not null uniqueness
+      compositeUniqueIndex: unique("unique_book_composite")
+        .on(table.isbn13, table.isbn10, table.asin, table.olid, table.slug)
+        .nullsNotDistinct(),
+      slugIndex: uniqueIndex("unique_book_slug").on(table.slug),
+    };
+  },
+);
 
 export const bookEmbeddings = pgTable(
   "book_embeddings",
@@ -100,13 +118,21 @@ export const bookEmbeddings = pgTable(
   }),
 );
 
-export const authorBooks = pgTable("author_books", {
-  bookId: uuid("book_id").references(() => books.id),
-  authorId: uuid("author_id").references(() => authors.id),
-});
+export const authorBooks = pgTable(
+  "author_books",
+  {
+    bookId: uuid("book_id").references(() => books.id),
+    authorId: uuid("author_id").references(() => authors.id),
+  },
+  // (table) => ({
+  //   pk: primaryKey({ columns: [table.bookId, table.authorId] }),
+  // }),
+);
 
 export const SelectBookSchema = createSelectSchema(books);
+export const InsertBookSchema = createInsertSchema(books);
 export type SelectBookSchema = z.infer<typeof SelectBookSchema>;
+export type InsertBookSchema = z.infer<typeof InsertBookSchema>;
 
 export const myBooks = pgTable(
   "myBooks",

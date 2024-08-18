@@ -2,7 +2,7 @@ interface VolumeInfo {
   title: string;
   subtitle?: string;
   authors: string[];
-  publishedDate: string;
+  publishedDate?: string;
   publisher: string;
   description: string;
   pageCount: number;
@@ -28,9 +28,9 @@ interface GoogleBooksApiResponse {
 
 export interface GoogleBook {
   title: string;
-  subtitle?: string;
+  subtitle: string | null;
   authors: string[];
-  publishedDate: Date;
+  publishedDate: Date | null;
   publisher: string;
   description: string;
   pageCount: number;
@@ -41,22 +41,37 @@ export interface GoogleBook {
   language: string;
 }
 
-export async function getBooks(
-  title: string,
-  author: string | null,
-  isbn: string | null
+export interface SearchBooksQueryOptions {
+  isbn?: string;
+  /**
+   * this can be a semantic search query that will use the embeddings to search for books
+   */
+  query?: string;
+}
+
+export async function searchGoogleBooks(
+  options: SearchBooksQueryOptions,
 ): Promise<GoogleBook[]> {
-  let query = `${encodeURIComponent(title)}`;
+  let query = ``;
 
-  if (author) {
-    query += ` ${encodeURIComponent(author)}`;
+  // either query or isbn must be provided
+  if (!options.query && !options.isbn) {
+    throw new Error("query with title and author or isbn must be provided");
   }
 
-  if (isbn) {
-    query += ` ${encodeURIComponent(isbn)}`;
+  if (options.query) {
+    query += encodeURIComponent(options.query);
   }
 
-  const maxResults = 1;
+  if (options.isbn) {
+    // Append ISBN search to the query. If there's already a query, add a plus sign to combine them.
+    if (query) {
+      query += `+`;
+    }
+    query += `isbn:${encodeURIComponent(options.isbn)}`;
+  }
+
+  const maxResults = 2;
 
   const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
 
@@ -86,10 +101,12 @@ export async function getBooks(
 
       return {
         title: volumeInfo.title,
-        subtitle: volumeInfo.subtitle,
+        subtitle: volumeInfo.subtitle ?? null,
         authors: volumeInfo.authors,
         // Do this to get rid of the time zone offset
-        publishedDate: new Date(volumeInfo.publishedDate + "T00:00:00"),
+        publishedDate: volumeInfo.publishedDate
+          ? new Date(volumeInfo.publishedDate + "T00:00:00")
+          : null,
         publisher: volumeInfo.publisher,
         description: volumeInfo.description,
         pageCount: volumeInfo.pageCount,
@@ -97,7 +114,10 @@ export async function getBooks(
         isbn10,
         isbn13,
         language: volumeInfo.language,
-        thumbnail: volumeInfo.imageLinks?.thumbnail ?? volumeInfo.imageLinks?.smallThumbnail ?? null,
+        thumbnail:
+          volumeInfo.imageLinks?.thumbnail ??
+          volumeInfo.imageLinks?.smallThumbnail ??
+          null,
       };
     });
 

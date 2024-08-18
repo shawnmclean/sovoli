@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import type { SelectBookSchema } from "@sovoli/db/schema";
+import type { InsertBookSchema, SelectBookSchema } from "@sovoli/db/schema";
 import { openai } from "@ai-sdk/openai";
 import { cosineDistance, db, desc, eq, gt, inArray, sql } from "@sovoli/db";
 import {
@@ -7,9 +7,11 @@ import {
   bookSearchEmbeddingsCache,
   books as booksTable,
 } from "@sovoli/db/schema";
+import { books as booksService } from "@sovoli/services";
 import { embedMany } from "ai";
 
 import { getBooksByIsbns } from "./find";
+import { insertBooks } from "./insert";
 
 export interface SearchBooksQuery {
   isbn?: string;
@@ -67,8 +69,8 @@ export async function searchBooks(
     }
   });
 
-  console.log(">>> textQueries", textQueries);
-  console.log(">>> isbnQueries", isbnQueries);
+  // console.log(">>> textQueries", textQueries);
+  // console.log(">>> isbnQueries", isbnQueries);
 
   console.time("Db Search Time");
   const [isbnResults, textResults] = await Promise.all([
@@ -78,12 +80,110 @@ export async function searchBooks(
 
   console.timeEnd("Db Search Time");
 
-  // TODO: any missing books should be added to the db
-  const combinedResults = [...isbnResults, ...textResults];
+  const combinedDbResults = [...isbnResults, ...textResults];
 
-  console.log(">>> combinedResults", combinedResults);
+  // Identify queries that have no matching books
+  const unmatchedQueries = combinedDbResults
+    .filter((result) => result.books.length === 0)
+    .map((result) => result.query);
+
+  // If there are unmatched queries, search externally
+  let externalResults: SearchBooksQueryResult[] = [];
+  if (unmatchedQueries.length > 0) {
+    try {
+      console.time("External Search Time");
+      externalResults = await searchExternallyAndPopulate(unmatchedQueries);
+      console.timeEnd("External Search Time");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // Combine the db results and external results
+  const finalResults = [
+    ...combinedDbResults.filter((result) => result.books.length > 0),
+    ...externalResults,
+  ];
+
   console.timeEnd("Total Search Time");
-  return combinedResults;
+  return finalResults;
+}
+
+async function searchExternallyAndPopulate(
+  queries: SearchBooksQuery[],
+): Promise<SearchBooksQueryResult[]> {
+  console.time("Search Externally Time");
+  // 1. Perform external search and keep track of results
+  const queryToBooksMap = new Map<SearchBooksQuery, InsertBookSchema[]>();
+
+  await Promise.all(
+    queries.map(async (query) => {
+      const googleBooks = await booksService.searchGoogleBooks(query);
+
+      // Convert GoogleBooks to InsertBookSchema format
+      const booksToInsert: InsertBookSchema[] = googleBooks.map(
+        (googleBook) => ({
+          isbn13: googleBook.isbn13 ?? null,
+          isbn10: googleBook.isbn10 ?? null,
+          asin: null, // Assuming Google Books doesn't provide ASIN
+          olid: null, // Assuming Google Books doesn't provide OLID
+          title: googleBook.title,
+          subtitle: googleBook.subtitle ?? null,
+          publishedDate: googleBook.publishedDate
+            ? new Date(googleBook.publishedDate).toISOString()
+            : null,
+
+          publisher: googleBook.publisher,
+          pageCount: googleBook.pageCount,
+          description: googleBook.description,
+          language: googleBook.language,
+          lastGoogleUpdated: new Date().toISOString(),
+          inferredAuthor: Array.isArray(googleBook.authors)
+            ? googleBook.authors.join(", ")
+            : googleBook.authors,
+          cover: {
+            small: googleBook.thumbnail ?? null,
+            medium: googleBook.thumbnail ?? null,
+            large: googleBook.thumbnail ?? null,
+          },
+          slug: null, // Let the insertion function generate this if necessary
+        }),
+      );
+
+      // Store the mapping from query to books
+      queryToBooksMap.set(query, booksToInsert);
+    }),
+  );
+  console.timeEnd("Search Externally Time");
+
+  // 2. Insert the books into the database
+  console.time("Insert Books Time");
+  const allBooksToInsert = Array.from(queryToBooksMap.values()).flat();
+  const insertedBooks = await insertBooks(allBooksToInsert);
+  console.timeEnd("Insert Books Time");
+
+  // 3. Map the inserted books back to their queries
+  const searchResults: SearchBooksQueryResult[] = Array.from(
+    queryToBooksMap.entries(),
+  ).map(([query, originalBooksToInsert]) => {
+    // Find the corresponding inserted books
+    const matchedBooks: MatchedBook[] = insertedBooks
+      .filter((insertedBook) =>
+        originalBooksToInsert.some(
+          (book) =>
+            book.isbn13 === insertedBook.isbn13 ||
+            book.isbn10 === insertedBook.isbn10,
+        ),
+      )
+      .map((book) => ({ book, similarity: undefined })); // Set similarity if needed
+
+    return {
+      query,
+      books: matchedBooks,
+    };
+  });
+
+  return searchResults;
 }
 
 async function searchByISBN(
