@@ -51,6 +51,7 @@ export interface SearchBooksQueryOptions {
 
 export async function searchGoogleBooks(
   options: SearchBooksQueryOptions,
+  maxRetries = 5,
 ): Promise<GoogleBook[]> {
   let query = ``;
 
@@ -75,55 +76,86 @@ export async function searchGoogleBooks(
 
   const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
 
-  try {
-    //TODO: handle rate limit
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+  let retryCount = 0;
+  let delay = 1000; // Start with a 1-second delay for retries
 
-    const data = (await response.json()) as GoogleBooksApiResponse;
-
-    const books: GoogleBook[] = data.items.map((item: BookItem) => {
-      const volumeInfo = item.volumeInfo;
-      let isbn10: string | null = null;
-      let isbn13: string | null = null;
-
-      if (volumeInfo.industryIdentifiers) {
-        for (const identifier of volumeInfo.industryIdentifiers) {
-          if (identifier.type === "ISBN_10") {
-            isbn10 = identifier.identifier;
-          } else if (identifier.type === "ISBN_13") {
-            isbn13 = identifier.identifier;
-          }
-        }
+  while (retryCount < maxRetries) {
+    try {
+      const response = await fetch(url);
+      if (response.status === 429) {
+        // Rate limit hit, wait and retry
+        retryCount++;
+        console.warn(`Rate limit hit, retrying in ${delay / 1000} seconds...`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        delay *= 2; // Exponential backoff
+        continue; // Retry the request
       }
 
-      return {
-        title: volumeInfo.title,
-        subtitle: volumeInfo.subtitle ?? null,
-        authors: volumeInfo.authors,
-        // Do this to get rid of the time zone offset
-        publishedDate: volumeInfo.publishedDate
-          ? new Date(volumeInfo.publishedDate + "T00:00:00")
-          : null,
-        publisher: volumeInfo.publisher,
-        description: volumeInfo.description,
-        pageCount: volumeInfo.pageCount,
-        categories: volumeInfo.categories,
-        isbn10,
-        isbn13,
-        language: volumeInfo.language,
-        thumbnail:
-          volumeInfo.imageLinks?.thumbnail ??
-          volumeInfo.imageLinks?.smallThumbnail ??
-          null,
-      };
-    });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-    return books;
-  } catch (error) {
-    console.error(error);
-    throw error;
+      const data = (await response.json()) as GoogleBooksApiResponse;
+
+      const books: GoogleBook[] = data.items.map((item: BookItem) => {
+        const volumeInfo = item.volumeInfo;
+        let isbn10: string | null = null;
+        let isbn13: string | null = null;
+
+        if (volumeInfo.industryIdentifiers) {
+          for (const identifier of volumeInfo.industryIdentifiers) {
+            if (identifier.type === "ISBN_10") {
+              isbn10 = identifier.identifier;
+            } else if (identifier.type === "ISBN_13") {
+              isbn13 = identifier.identifier;
+            }
+          }
+        }
+
+        // Robust handling of publishedDate
+        let publishedDate: Date | null = null;
+        if (volumeInfo.publishedDate) {
+          publishedDate = new Date(volumeInfo.publishedDate);
+          // Check if the date is valid
+          if (isNaN(publishedDate.getTime())) {
+            publishedDate = null; // Handle invalid dates
+          }
+        }
+
+        return {
+          title: volumeInfo.title,
+          subtitle: volumeInfo.subtitle ?? null,
+          authors: volumeInfo.authors,
+          // Do this to get rid of the time zone offset
+          publishedDate: publishedDate,
+          publisher: volumeInfo.publisher,
+          description: volumeInfo.description,
+          pageCount: volumeInfo.pageCount,
+          categories: volumeInfo.categories,
+          isbn10,
+          isbn13,
+          language: volumeInfo.language,
+          thumbnail:
+            volumeInfo.imageLinks?.thumbnail ??
+            volumeInfo.imageLinks?.smallThumbnail ??
+            null,
+        };
+      });
+
+      return books; // Return books if successful
+    } catch (error) {
+      if (retryCount >= maxRetries) {
+        console.error("Max retries reached. Could not fetch data.");
+        throw error;
+      }
+
+      console.error(
+        `Error occurred, retrying (${retryCount}/${maxRetries})...`,
+        error,
+      );
+      retryCount++;
+    }
   }
+
+  throw new Error("Failed to fetch books after multiple attempts.");
 }
