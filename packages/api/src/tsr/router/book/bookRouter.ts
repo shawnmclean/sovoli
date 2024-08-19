@@ -1,26 +1,31 @@
-
+import { count, db, schema } from "@sovoli/db";
 import { tsr } from "@ts-rest/serverless/next";
 
-import { bookContract } from "./bookContract";
 import { BooksResponseSchema } from "../../../schema";
 import { searchBooksByQuery } from "../../../service/books";
-import { count, db, schema } from "@sovoli/db";
+import { bookContract } from "./bookContract";
 
 export const bookRouter = tsr.router(bookContract, {
   listOrSearchBooks: async ({ query: { q, page, pageSize } }) => {
-    if(q) {
+    if (q) {
       // search by query
-      const books = await searchBooksByQuery({
+      const { books, total } = await searchBooksByQuery({
         query: q,
         page: page,
         pageSize: pageSize,
-      } );
+      });
+
+      console.log(">> books", books);
+      console.log(">> total", total);
+
       return {
         status: 200,
-        body: BooksResponseSchema.parse(books),
+        body: BooksResponseSchema.parse({
+          data: books,
+          meta: { page, pageSize, total },
+        }),
       };
-    }
-    else {
+    } else {
       // list all books
       const [data, total] = await Promise.all([
         db.query.books.findMany({
@@ -29,7 +34,7 @@ export const bookRouter = tsr.router(bookContract, {
         }),
         db.select({ count: count() }).from(schema.books),
       ]);
-  
+
       return {
         status: 200,
         body: BooksResponseSchema.parse({
@@ -38,5 +43,5 @@ export const bookRouter = tsr.router(bookContract, {
         }),
       };
     }
+  },
 });
-

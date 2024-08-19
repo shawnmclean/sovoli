@@ -47,13 +47,17 @@ export interface SearchBooksByQueryOptions {
   pageSize: number;
 }
 
-export async function searchBooksByQuery(query: SearchBooksByQueryOptions) {
+export async function searchBooksByQuery(
+  query: SearchBooksByQueryOptions,
+): Promise<SearchBooksQueryResult> {
   // search internally first
   const internalResults = await searchInternalByQueries([query]);
+  if (internalResults.length > 0 && internalResults[0]) {
+    return internalResults[0];
+  }
 
   // TODO: if no results, search externally
-
-  return internalResults;
+  return { query, books: [], total: 0 };
 }
 
 async function searchInternalByQueries(
@@ -276,7 +280,7 @@ async function getBooksByEmbeddings(
       .offset((page - 1) * pageSize)
       .limit(pageSize),
     db
-      .select({ count: sql<number>`count(*)` })
+      .select({ count: count() })
       .from(bookEmbeddings)
       .innerJoin(booksTable, eq(bookEmbeddings.bookId, booksTable.id))
       .where(gt(similarity, 0.5)),
