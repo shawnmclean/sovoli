@@ -48,11 +48,26 @@ export async function searchBooksByQuery(
 ): Promise<SearchBooksQueryResult> {
   // search internally first
   const internalResults = await searchInternalByQueries([query]);
-  if (internalResults.length > 0 && internalResults[0]) {
+  if (
+    internalResults.length > 0 &&
+    internalResults[0] &&
+    internalResults[0].books.length > 0
+  ) {
     return internalResults[0];
   }
 
-  // TODO: if no results, search externally
+  console.log(">>> no internalresults found for query", query);
+  const externalResults = await searchExternallyAndPopulate([query]);
+  if (
+    externalResults.length > 0 &&
+    externalResults[0] &&
+    externalResults[0].books.length > 0
+  ) {
+    return externalResults[0];
+  }
+
+  console.log(">>> no results found for query", query);
+
   return { query, books: [], total: 0 };
 }
 

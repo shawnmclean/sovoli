@@ -27,6 +27,8 @@ export async function getSearchEmbeddings(
   // Get cached embeddings
   const cachedEmbeddings = await getCachedEmbeddings(Object.keys(queryHashes));
 
+  console.log(">>> embeddings cache hit for", Object.keys(cachedEmbeddings));
+
   // Identify and collect the SearchQuery records that need new embeddings
   const missingSearchQueries: QueryHashes = Object.keys(queryHashes).reduce(
     (acc, hash) => {
@@ -39,6 +41,10 @@ export async function getSearchEmbeddings(
   );
 
   if (Object.keys(missingSearchQueries).length > 0) {
+    console.log(
+      ">>> embeddings cache missed for",
+      Object.keys(missingSearchQueries),
+    );
     // Generate new embeddings for missing queries
     // will return the emebeddings following the same order as the missingSearchQueries
     const newEmbeddings = await getOpenAIEmbeddings(

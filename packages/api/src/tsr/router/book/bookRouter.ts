@@ -15,9 +15,6 @@ export const bookRouter = tsr.router(bookContract, {
         pageSize: pageSize,
       });
 
-      console.log(">> books", books);
-      console.log(">> total", total);
-
       return {
         status: 200,
         body: BooksResponseSchema.parse({
