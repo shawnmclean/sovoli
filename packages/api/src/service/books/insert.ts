@@ -7,6 +7,8 @@ import type {
 import { db, sql } from "@sovoli/db";
 import { BookCoverSchema, books as booksSchema } from "@sovoli/db/schema";
 
+import { hydrateBooks } from "../../trigger";
+
 export async function insertBooks(
   books: InsertBookSchema[],
 ): Promise<SelectBookSchema[]> {
@@ -46,7 +48,6 @@ export async function insertBooks(
         target: [
           booksSchema.isbn13,
           booksSchema.isbn10,
-          booksSchema.ean,
           booksSchema.asin,
           booksSchema.slug,
           booksSchema.olid,
@@ -75,7 +76,9 @@ export async function insertBooks(
         },
       })
       .returning();
-
+    await hydrateBooks.trigger({
+      bookIds: insertedBooks.map((book) => book.id),
+    });
     return insertedBooks;
   } catch (conflictError) {
     console.error("Conflict error");
@@ -83,7 +86,7 @@ export async function insertBooks(
   }
 }
 
-function generateSlug(book: InsertBookSchema): string {
+function generateSlug(book: InsertBookSchema, maxLength = 70): string {
   const sanitizeString = (str: string): string => {
     return str
       .toLowerCase() // Convert to lowercase
@@ -94,9 +97,24 @@ function generateSlug(book: InsertBookSchema): string {
 
   const title = book.title ? sanitizeString(book.title) : "";
   const author = book.inferredAuthor ? sanitizeString(book.inferredAuthor) : "";
-  const isbn = book.isbn13 ?? book.isbn10 ?? "";
-  // If ISBN is not present, use a UUID or another unique identifier
-  const uniqueId = isbn || randomUUID();
 
-  return `${title}-${author}-${uniqueId}`;
+  // Ensure uniqueId is always defined, using ISBN if available, or a fallback UUID
+  const isbn = book.isbn13 ?? book.isbn10;
+  const uniqueId = isbn
+    ? isbn.slice(-5)
+    : (randomUUID().split("-")[0] ?? randomUUID());
+
+  // Calculate the available length for the title
+  const maxTitleLength = maxLength - (author.length + uniqueId.length + 2); // 2 for the hyphens
+
+  // Truncate the title if it exceeds the maximum allowed length
+  const shortenedTitle =
+    title.length > maxTitleLength
+      ? title.substring(0, maxTitleLength).trim().replace(/-+$/, "")
+      : title;
+
+  // Combine the shortened title, author, and unique identifier into the final slug
+  const slug = `${shortenedTitle}-${author}-${uniqueId}`;
+
+  return slug;
 }

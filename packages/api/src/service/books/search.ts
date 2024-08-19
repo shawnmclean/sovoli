@@ -120,9 +120,7 @@ export async function searchExternallyAndPopulate(
   await Promise.all(
     queries.map(async (query) => {
       const googleBooks = await booksService.searchGoogleBooks(query);
-      googleBooks.forEach((book) =>
-        console.log(book.title, book.publishedDate),
-      );
+
       // Convert GoogleBooks to InsertBookSchema format
       const booksToInsert: InsertBookSchema[] = googleBooks.map(
         (googleBook) => ({

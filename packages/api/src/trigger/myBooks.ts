@@ -1,5 +1,5 @@
 import { and, db, eq, isNull } from "@sovoli/db";
-import { myBooks } from "@sovoli/db/schema";
+import { myBooks, SelectBookSchema } from "@sovoli/db/schema";
 import { task } from "@trigger.dev/sdk/v3";
 
 import type { MatchedBook } from "../service/books";
@@ -35,27 +35,27 @@ export const hydrateMyBooks = task({
 
     const results = await searchBooks({ queries });
 
-    const updatedBooks = userBooks
-      .map((myBook) => {
-        const matchedResult = results.find(
-          (result) => result.query.query === myBook.query,
-        );
+    const updatedBooks = userBooks.reduce<
+      { myBookId: string; book: SelectBookSchema }[]
+    >((acc, myBook) => {
+      const matchedResult = results.find(
+        (result) => result.query.query === myBook.query,
+      );
 
-        if (matchedResult && matchedResult.books.length > 0) {
-          const bestMatch = getBestMatch(matchedResult.books);
-          if (!bestMatch) return null;
-          return {
+      if (matchedResult && matchedResult.books.length > 0) {
+        const bestMatch = getBestMatch(matchedResult.books);
+        if (bestMatch) {
+          acc.push({
             myBookId: myBook.id,
             book: bestMatch.book,
-          };
+          });
         }
-        return null;
-      })
-      .filter(Boolean);
+      }
+      return acc;
+    }, []);
 
     // Step 5: Update the myBooks table with the matched bookIds
     for (const updatedBook of updatedBooks) {
-      if (!updatedBook) continue;
       await db
         .update(myBooks)
         .set({
@@ -64,8 +64,6 @@ export const hydrateMyBooks = task({
         })
         .where(eq(myBooks.id, updatedBook.myBookId));
     }
-
-    console.log(">>> results", { results });
   },
 });
 

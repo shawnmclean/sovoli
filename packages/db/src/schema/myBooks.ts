@@ -45,9 +45,9 @@ export const authors = pgTable("authors", {
 });
 
 export const BookCoverSchema = z.object({
-  small: z.string().optional(),
-  medium: z.string().optional(),
-  large: z.string().optional(),
+  small: z.string().nullish(),
+  medium: z.string().nullish(),
+  large: z.string().nullish(),
 });
 
 export type BookCover = z.infer<typeof BookCoverSchema>;
@@ -60,7 +60,6 @@ export const books = pgTable(
     // stores both ISBN-13 and ISBN-10
     isbn13: varchar("isbn_13", { length: 13 }).unique(),
     isbn10: varchar("isbn_10", { length: 10 }).unique(),
-    ean: varchar("ean", { length: 13 }).unique(),
 
     // open library id
     olid: varchar("olid", { length: 20 }).unique(),
@@ -78,7 +77,7 @@ export const books = pgTable(
     publisher: varchar("publisher", { length: 255 }),
     pageCount: integer("page_count").default(0),
     description: text("description"),
-    language: varchar("language", { length: 2 }),
+    language: varchar("language", { length: 7 }),
     cover: jsonb("cover").$type<BookCover>(),
 
     // The following fields are only used for the inference system
@@ -96,14 +95,7 @@ export const books = pgTable(
       // Composite unique index to ensure no duplicate combinations of isbn13, isbn10, olid, and slug, while
       // ensuring that the database supports null behavior but not null uniqueness
       compositeUniqueIndex: unique("unique_book_composite")
-        .on(
-          table.isbn13,
-          table.isbn10,
-          table.asin,
-          table.olid,
-          table.ean,
-          table.slug,
-        )
+        .on(table.isbn13, table.isbn10, table.asin, table.olid, table.slug)
         .nullsNotDistinct(),
       slugIndex: uniqueIndex("unique_book_slug").on(table.slug),
     };

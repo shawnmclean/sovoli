@@ -37,7 +37,6 @@ export interface GoogleBook {
   categories: string[];
   isbn10: string | null;
   isbn13: string | null;
-  ean: string | null;
   thumbnail: string | null;
   language: string;
 }
@@ -52,7 +51,7 @@ export interface SearchBooksQueryOptions {
 
 export async function searchGoogleBooks(
   options: SearchBooksQueryOptions,
-  maxRetries = 5,
+  maxRetries = 10,
 ): Promise<GoogleBook[]> {
   let query = ``;
 
@@ -73,7 +72,7 @@ export async function searchGoogleBooks(
     query += `isbn:${encodeURIComponent(options.isbn)}`;
   }
 
-  const maxResults = 2;
+  const maxResults = 5;
 
   const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
 
@@ -98,57 +97,59 @@ export async function searchGoogleBooks(
 
       const data = (await response.json()) as GoogleBooksApiResponse;
 
-      const books: GoogleBook[] = data.items.map((item: BookItem) => {
-        const volumeInfo = item.volumeInfo;
-        let isbn10: string | null = null;
-        let isbn13: string | null = null;
-        let ean: string | null = null;
+      const books: GoogleBook[] = data.items
+        .map((item: BookItem) => {
+          const volumeInfo = item.volumeInfo;
+          if (
+            !volumeInfo.industryIdentifiers ||
+            volumeInfo.industryIdentifiers.length === 0
+          ) {
+            return null; // Skip this item if there are no industry identifiers
+          }
 
-        if (volumeInfo.industryIdentifiers) {
+          let isbn10: string | null = null;
+          let isbn13: string | null = null;
+
           for (const identifier of volumeInfo.industryIdentifiers) {
             if (identifier.type === "ISBN_10") {
               isbn10 = identifier.identifier;
             } else if (identifier.type === "ISBN_13") {
               isbn13 = identifier.identifier;
-            } else if (
-              identifier.type === "OTHER" &&
-              identifier.identifier.startsWith("EAN:")
-            ) {
-              ean = identifier.identifier.substring(4); // Extract the EAN after "EAN:"
+            } else {
+              return null; // Skip this item if the identifier type is not supported
             }
           }
-        }
 
-        // Robust handling of publishedDate
-        let publishedDate: Date | null = null;
-        if (volumeInfo.publishedDate) {
-          publishedDate = new Date(volumeInfo.publishedDate);
-          // Check if the date is valid
-          if (isNaN(publishedDate.getTime())) {
-            publishedDate = null; // Handle invalid dates
+          // Robust handling of publishedDate
+          let publishedDate: Date | null = null;
+          if (volumeInfo.publishedDate) {
+            publishedDate = new Date(volumeInfo.publishedDate);
+            // Check if the date is valid
+            if (isNaN(publishedDate.getTime())) {
+              publishedDate = null; // Handle invalid dates
+            }
           }
-        }
 
-        return {
-          title: volumeInfo.title,
-          subtitle: volumeInfo.subtitle ?? null,
-          authors: volumeInfo.authors,
-          // Do this to get rid of the time zone offset
-          publishedDate: publishedDate,
-          publisher: volumeInfo.publisher,
-          description: volumeInfo.description,
-          pageCount: volumeInfo.pageCount,
-          categories: volumeInfo.categories,
-          isbn10,
-          isbn13,
-          ean,
-          language: volumeInfo.language,
-          thumbnail:
-            volumeInfo.imageLinks?.thumbnail ??
-            volumeInfo.imageLinks?.smallThumbnail ??
-            null,
-        };
-      });
+          return {
+            title: volumeInfo.title,
+            subtitle: volumeInfo.subtitle ?? null,
+            authors: volumeInfo.authors,
+            // Do this to get rid of the time zone offset
+            publishedDate: publishedDate,
+            publisher: volumeInfo.publisher,
+            description: volumeInfo.description,
+            pageCount: volumeInfo.pageCount,
+            categories: volumeInfo.categories,
+            isbn10,
+            isbn13,
+            language: volumeInfo.language,
+            thumbnail:
+              volumeInfo.imageLinks?.thumbnail ??
+              volumeInfo.imageLinks?.smallThumbnail ??
+              null,
+          };
+        })
+        .filter((book): book is GoogleBook => !!book); // Filter out null values
 
       return books; // Return books if successful
     } catch (error) {
