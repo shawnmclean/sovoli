@@ -1,8 +1,7 @@
 import type { InsertBookSchema, SelectBookSchema } from "@sovoli/db/schema";
-import { cosineDistance, count, db, eq, gt, sql } from "@sovoli/db";
-import { bookEmbeddings, books as booksTable } from "@sovoli/db/schema";
 import { books as booksService } from "@sovoli/services";
 
+import { getBooksByEmbeddings } from "./bookEmbeddings";
 // import { getBooksByIsbns } from "./find";
 import { insertBooks } from "./insert";
 import { getSearchEmbeddings } from "./searchEmbeddings";
@@ -273,37 +272,3 @@ export async function searchExternallyAndPopulate(
 
 //   return results;
 // }
-
-async function getBooksByEmbeddings(
-  embedding: number[],
-  page = 1,
-  pageSize = 10,
-): Promise<{ data: SelectBookSchema[]; total: number }> {
-  const similarity = sql<number>`1 - (${cosineDistance(bookEmbeddings.openAIEmbedding, embedding)})`;
-
-  const [rows, totalResult] = await Promise.all([
-    db
-      .select({
-        book: booksTable,
-      })
-      .from(bookEmbeddings)
-      .innerJoin(booksTable, eq(bookEmbeddings.bookId, booksTable.id))
-      .where(gt(similarity, 0.5))
-      .orderBy(similarity)
-      .offset((page - 1) * pageSize)
-      .limit(pageSize),
-    db
-      .select({ count: count() })
-      .from(bookEmbeddings)
-      .innerJoin(booksTable, eq(bookEmbeddings.bookId, booksTable.id))
-      .where(gt(similarity, 0.5)),
-  ]);
-
-  const data = rows.map((row) => row.book); // Extract only the book data
-  const total = totalResult[0]?.count ?? 0; // Extract the count from totalResult
-
-  return {
-    data,
-    total,
-  };
-}

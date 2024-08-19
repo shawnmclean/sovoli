@@ -2,6 +2,8 @@ import { db, inArray } from "@sovoli/db";
 import { books as booksSchema } from "@sovoli/db/schema";
 import { task } from "@trigger.dev/sdk/v3";
 
+import { updateBookEmbeddings } from "../service/books/bookEmbeddings";
+
 export interface HydrateBooksOptions {
   bookIds: string[];
 }
@@ -21,6 +23,8 @@ export const hydrateBooks = task({
 
     // print book titles
     books.forEach((book) => console.log(book.title));
+
+    await updateBookEmbeddings(bookIds);
 
     // check if google book is stale (> 3 months old)
 

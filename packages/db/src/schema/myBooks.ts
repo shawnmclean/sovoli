@@ -4,6 +4,7 @@ import {
   integer,
   jsonb,
   pgTable,
+  primaryKey,
   // primaryKey,
   text,
   unique,
@@ -43,6 +44,11 @@ export const authors = pgTable("authors", {
   createdAt: date("created_at").notNull().defaultNow(),
   updatedAt: date("updated_at").notNull().defaultNow(),
 });
+
+export const SelectAuthorSchema = createSelectSchema(authors);
+export const InsertAuthorSchema = createInsertSchema(authors);
+export type SelectAuthorSchema = z.infer<typeof SelectAuthorSchema>;
+export type InsertAuthorSchema = z.infer<typeof InsertBookSchema>;
 
 export const BookCoverSchema = z.object({
   small: z.string().nullish(),
@@ -105,10 +111,14 @@ export const books = pgTable(
 export const bookEmbeddings = pgTable(
   "book_embeddings",
   {
-    bookId: uuid("book_id").references(() => books.id),
+    bookId: uuid("book_id")
+      .primaryKey()
+      .references(() => books.id),
     // 1536 is default size for openai embeddings
     openAIEmbedding: vector("open_ai_embedding", { dimensions: 1536 }),
-    openAIEmbeddingUpdated: date("open_ai_embedding_updated"),
+    openAIEmbeddingUpdated: date("open_ai_embedding_updated")
+      .notNull()
+      .defaultNow(),
   },
   (table) => ({
     // Use HNSW indexing with vector_cosine_ops for optimal search performance with OpenAI embeddings
@@ -119,21 +129,26 @@ export const bookEmbeddings = pgTable(
   }),
 );
 
-export const authorBooks = pgTable(
-  "author_books",
+export const authorsToBooks = pgTable(
+  "authors_to_books",
   {
-    bookId: uuid("book_id").references(() => books.id),
-    authorId: uuid("author_id").references(() => authors.id),
+    bookId: uuid("book_id")
+      .notNull()
+      .references(() => books.id),
+    authorId: uuid("author_id")
+      .notNull()
+      .references(() => authors.id),
   },
-  // (table) => ({
-  //   pk: primaryKey({
-  //     name: "author_books_pk",
-  //     columns: [table.bookId, table.authorId],
-  //   }),
-  // }),
+  (table) => ({
+    pk: primaryKey({
+      columns: [table.bookId, table.authorId],
+    }),
+  }),
 );
 
-export const SelectBookSchema = createSelectSchema(books);
+export const SelectBookSchema = createSelectSchema(books).extend({
+  authors: z.array(SelectAuthorSchema).optional(),
+});
 export const InsertBookSchema = createInsertSchema(books);
 export type SelectBookSchema = z.infer<typeof SelectBookSchema>;
 export type InsertBookSchema = z.infer<typeof InsertBookSchema>;
