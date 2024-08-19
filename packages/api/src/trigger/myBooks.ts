@@ -43,11 +43,11 @@ export const hydrateMyBooks = task({
       );
 
       if (matchedResult && matchedResult.books.length > 0) {
-        const bestMatch = getBestMatch(matchedResult.books);
+        const bestMatch = matchedResult.books[0]; //getBestMatch(matchedResult.books);
         if (bestMatch) {
           acc.push({
             myBookId: myBook.id,
-            book: bestMatch.book,
+            book: bestMatch,
           });
         }
       }

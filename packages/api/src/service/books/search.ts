@@ -1,13 +1,9 @@
-import { cosineDistance, count, db, desc, eq, gt, sql } from "@sovoli/db";
-import {
-  bookEmbeddings,
-  books as booksTable,
-  InsertBookSchema,
-  SelectBookSchema,
-} from "@sovoli/db/schema";
+import type { InsertBookSchema, SelectBookSchema } from "@sovoli/db/schema";
+import { cosineDistance, count, db, eq, gt, sql } from "@sovoli/db";
+import { bookEmbeddings, books as booksTable } from "@sovoli/db/schema";
 import { books as booksService } from "@sovoli/services";
 
-import { getBooksByIsbns } from "./find";
+// import { getBooksByIsbns } from "./find";
 import { insertBooks } from "./insert";
 import { getSearchEmbeddings } from "./searchEmbeddings";
 
@@ -124,7 +120,8 @@ export async function searchBooks(
 
   console.time("Db Search Time");
   const [isbnResults, textResults] = await Promise.all([
-    searchByISBN(isbnQueries),
+    // searchByISBN(isbnQueries),
+    [],
     searchInternalByQueries(textQueries),
   ]);
 
@@ -233,33 +230,34 @@ export async function searchExternallyAndPopulate(
   return searchResults;
 }
 
-async function searchByISBN(
-  isbns: string[],
-): Promise<SearchBooksQueryResult[]> {
-  const books = await getBooksByIsbns(isbns);
-  // Create a map to group books by their ISBN
-  const booksByIsbn = isbns.reduce<Record<string, MatchedBook[]>>(
-    (acc, isbn) => {
-      const matchedBooks = books
-        .filter((book) => book.isbn10 === isbn || book.isbn13 === isbn)
-        .map((book) => ({
-          book,
-          similarity: 1,
-        }));
+// async function searchByISBN(
+//   isbns: string[],
+// ): Promise<SearchBooksQueryResult[]> {
+//   const books = await getBooksByIsbns(isbns);
+//   // Create a map to group books by their ISBN
+//   const booksByIsbn = isbns.reduce<Record<string, MatchedBook[]>>(
+//     (acc, isbn) => {
+//       const matchedBooks = books
+//         .filter((book) => book.isbn10 === isbn || book.isbn13 === isbn)
+//         .map((book) => ({
+//           book,
+//           similarity: 1,
+//         }));
 
-      acc[isbn] = matchedBooks;
-      return acc;
-    },
-    {},
-  );
+//       acc[isbn] = matchedBooks;
+//       return acc;
+//     },
+//     {},
+//   );
 
-  const results = isbns.map((isbn) => ({
-    query: { isbn },
-    books: booksByIsbn[isbn] ?? [], // Default to an empty array if no books matched
-  }));
+//   const results = isbns.map((isbn) => ({
+//     query: { isbn },
+//     books: booksByIsbn[isbn] ?? [], // Default to an empty array if no books matched
+//     total: 0,
+//   }));
 
-  return results;
-}
+//   return results;
+// }
 
 async function getBooksByEmbeddings(
   embedding: number[],

@@ -1,7 +1,7 @@
 import type { InsertMyBookSchema } from "@sovoli/db/schema";
 import { db, eq, schema } from "@sovoli/db";
 
-import { hydrateMyBooks } from "../../trigger/myBooks";
+// import { hydrateMyBooks } from "../../trigger/myBooks";
 import { UserNotFoundError } from "../errors";
 
 export interface PutMyBooksOptions {
