@@ -68,7 +68,7 @@ export async function putMyBookQueries(options: PutMyBooksOptions) {
     .onConflictDoNothing()
     .returning();
 
-  await hydrateMyBooks.trigger({ userId: user.id });
+  // await hydrateMyBooks.trigger({ userId: user.id });
 
-  return insertedBooks;
+  return [...insertedBooks, ...existingBooks];
 }
