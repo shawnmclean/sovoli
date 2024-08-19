@@ -1,6 +1,6 @@
 import { and, db, eq, isNull } from "@sovoli/db";
-import { InsertMyBookSchema, myBooks } from "@sovoli/db/schema";
-import { logger, task, wait } from "@trigger.dev/sdk/v3";
+import { myBooks } from "@sovoli/db/schema";
+import { task } from "@trigger.dev/sdk/v3";
 
 import { searchExternallyAndPopulate } from "../service/books";
 import { getBestMatch } from "../service/mybooks";

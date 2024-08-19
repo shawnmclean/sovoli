@@ -61,15 +61,15 @@ export const myBookRouter = tsr.router(myBookContract, {
     };
   },
   getMyBook: async ({ params: { username, slug } }) => {
-    const filter = getMyBooksByUsernameFilter(username);
+    const usernameFilter = getMyBooksByUsernameFilter(username);
+    const bookFilter = getMyBooksBySlugFilter(slug);
 
     const myBook = await db.query.myBooks.findFirst({
       with: {
         shelf: true,
         book: true,
       },
-      // TODO: get the linked book by slug
-      // where: and(filter, eq(schema.myBooks.slug, slug)),
+      where: and(usernameFilter, bookFilter),
     });
 
     if (!myBook) return { status: 404, body: { message: "Book not found" } };
@@ -88,5 +88,15 @@ function getMyBooksByUsernameFilter(username: string) {
       .select({ id: schema.users.id })
       .from(schema.users)
       .where(eq(schema.users.username, username)),
+  );
+}
+
+function getMyBooksBySlugFilter(slug: string) {
+  return inArray(
+    schema.myBooks.bookId,
+    db
+      .select({ id: schema.books.id })
+      .from(schema.books)
+      .where(eq(schema.books.slug, slug)),
   );
 }

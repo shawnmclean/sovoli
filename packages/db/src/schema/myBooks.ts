@@ -1,11 +1,10 @@
-import { sql } from "drizzle-orm";
 import {
   date,
   index,
   integer,
   jsonb,
   pgTable,
-  // primaryKey,
+  primaryKey,
   text,
   unique,
   uniqueIndex,
@@ -134,9 +133,9 @@ export const authorBooks = pgTable(
     bookId: uuid("book_id").references(() => books.id),
     authorId: uuid("author_id").references(() => authors.id),
   },
-  // (table) => ({
-  //   pk: primaryKey({ columns: [table.bookId, table.authorId] }),
-  // }),
+  (table) => ({
+    pk: primaryKey({ columns: [table.bookId, table.authorId] }),
+  }),
 );
 
 export const SelectBookSchema = createSelectSchema(books);
