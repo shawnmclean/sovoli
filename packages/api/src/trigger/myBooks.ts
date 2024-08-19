@@ -2,8 +2,8 @@ import { and, db, eq, isNull } from "@sovoli/db";
 import { myBooks } from "@sovoli/db/schema";
 import { task } from "@trigger.dev/sdk/v3";
 
-import { searchExternallyAndPopulate } from "../service/books";
-import { getBestMatch } from "../service/mybooks";
+import type { MatchedBook } from "../service/books";
+import { searchBooks } from "../service/books";
 
 export interface HydrateMyBooksOptions {
   userId: string;
@@ -33,7 +33,7 @@ export const hydrateMyBooks = task({
       query: myBook.query ?? undefined,
     }));
 
-    const results = await searchExternallyAndPopulate(queries);
+    const results = await searchBooks({ queries });
 
     const updatedBooks = userBooks
       .map((myBook) => {
@@ -68,3 +68,18 @@ export const hydrateMyBooks = task({
     console.log(">>> results", { results });
   },
 });
+
+/**
+ * Get the best match from a list of matched books based on similarity.
+ * @param books
+ * @returns MatchedBook | undefined
+ */
+export function getBestMatch(books: MatchedBook[]): MatchedBook | undefined {
+  return books.reduce(
+    (bestMatch, currentBook) =>
+      (currentBook.similarity ?? 0) > (bestMatch?.similarity ?? 0)
+        ? currentBook
+        : bestMatch,
+    books[0],
+  );
+}

@@ -4,7 +4,7 @@ import {
   integer,
   jsonb,
   pgTable,
-  primaryKey,
+  // primaryKey,
   text,
   unique,
   uniqueIndex,
@@ -133,9 +133,12 @@ export const authorBooks = pgTable(
     bookId: uuid("book_id").references(() => books.id),
     authorId: uuid("author_id").references(() => authors.id),
   },
-  (table) => ({
-    pk: primaryKey({ columns: [table.bookId, table.authorId] }),
-  }),
+  // (table) => ({
+  //   pk: primaryKey({
+  //     name: "author_books_pk",
+  //     columns: [table.bookId, table.authorId],
+  //   }),
+  // }),
 );
 
 export const SelectBookSchema = createSelectSchema(books);
@@ -169,6 +172,8 @@ export const myBooks = pgTable(
      * only allow a distinct book per owner
      */
     uniqueBook: unique("unique_owner_book").on(table.ownerId, table.bookId),
+
+    uniqueQuery: unique("unique_owner_query").on(table.ownerId, table.query),
   }),
 );
 

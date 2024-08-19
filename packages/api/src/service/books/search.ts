@@ -82,8 +82,6 @@ export async function searchBooks(
 
   const combinedDbResults = [...isbnResults, ...textResults];
 
-  return combinedDbResults;
-
   // Identify queries that have no matching books
   const unmatchedQueries = combinedDbResults
     .filter((result) => result.books.length === 0)

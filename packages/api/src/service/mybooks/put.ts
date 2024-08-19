@@ -1,9 +1,7 @@
 import type { InsertMyBookSchema } from "@sovoli/db/schema";
-import { db, eq, schema, sql } from "@sovoli/db";
+import { db, eq, schema } from "@sovoli/db";
 
-import type { MatchedBook } from "../books";
 import { hydrateMyBooks } from "../../trigger/myBooks";
-import { searchBooks } from "../books";
 import { UserNotFoundError } from "../errors";
 
 export interface PutMyBooksOptions {
@@ -14,11 +12,11 @@ export interface PutMyBooksOptions {
 }
 
 /**
- * Before this function is called, ensure the user has permission to update this user's books
+ * This function will update the user's myBooks table with the given queries and fire off a background job to hydrate the books.
  * @param options
  * @returns
  */
-export async function putMyBooks(options: PutMyBooksOptions) {
+export async function putMyBookQueries(options: PutMyBooksOptions) {
   const user = await db.query.users.findFirst({
     with: {
       myBooks: {
@@ -59,61 +57,18 @@ export async function putMyBooks(options: PutMyBooksOptions) {
 
   if (filteredQueries.length === 0) return existingBooks;
 
-  // Step 3: Search for books based on filtered queries
-  const bookMatches = await searchBooks({
-    queries: filteredQueries.map((query) => ({ query })),
-  });
+  const booksToInsert: InsertMyBookSchema[] = filteredQueries.map((query) => ({
+    query,
+    ownerId: user.id,
+  }));
 
-  // Prepare a list of myBooks insert objects
-  const myBooksToInsert: InsertMyBookSchema[] = bookMatches.map((bookMatch) => {
-    const bestMatch = getBestMatch(bookMatch.books);
+  const insertedBooks = await db
+    .insert(schema.myBooks)
+    .values(booksToInsert)
+    .onConflictDoNothing()
+    .returning();
 
-    return {
-      name: bestMatch?.book.title,
-      ownerId: user.id,
-      query: bookMatch.query.query,
-      bookId: bestMatch?.book.id ?? null, // If no match, set bookId as null
-    };
-  });
-
-  // Insert books and hydrate user's myBooks
-  const insertedMyBooks = await insertMyBooks(myBooksToInsert);
   await hydrateMyBooks.trigger({ userId: user.id });
 
-  return [...existingBooks, ...insertedMyBooks];
-}
-
-async function insertMyBooks(myBooksToInsert: InsertMyBookSchema[]) {
-  try {
-    const createdBooks = await db
-      .insert(schema.myBooks)
-      .values(myBooksToInsert)
-      .onConflictDoUpdate({
-        target: [schema.myBooks.ownerId, schema.myBooks.bookId],
-        set: {
-          name: sql.raw(`excluded.${schema.myBooks.name.name}`),
-        },
-      })
-      .returning();
-
-    return createdBooks;
-  } catch (error) {
-    console.error("Error inserting myBooks:", error);
-    throw error;
-  }
-}
-
-/**
- * Get the best match from a list of matched books based on similarity.
- * @param books
- * @returns MatchedBook | undefined
- */
-export function getBestMatch(books: MatchedBook[]): MatchedBook | undefined {
-  return books.reduce(
-    (bestMatch, currentBook) =>
-      (currentBook.similarity ?? 0) > (bestMatch?.similarity ?? 0)
-        ? currentBook
-        : bestMatch,
-    books[0],
-  );
+  return insertedBooks;
 }

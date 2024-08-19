@@ -7,14 +7,14 @@ import {
   PutMyBooksResponseSchema,
 } from "../../../schema/schema";
 import { UserNotFoundError } from "../../../service/errors";
-import { putMyBooks } from "../../../service/mybooks";
+import { putMyBookQueries } from "../../../service/mybooks";
 import { myBookContract } from "./myBookContract";
 
 export const myBookRouter = tsr.router(myBookContract, {
   putMyBooks: async ({ params: { username }, body }) => {
     let myBooks;
     try {
-      myBooks = await putMyBooks({ username, books: body });
+      myBooks = await putMyBookQueries({ username, books: body });
     } catch (error) {
       if (error instanceof UserNotFoundError) {
         return {
