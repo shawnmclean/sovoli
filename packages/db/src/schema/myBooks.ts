@@ -153,6 +153,16 @@ export const InsertBookSchema = createInsertSchema(books);
 export type SelectBookSchema = z.infer<typeof SelectBookSchema>;
 export type InsertBookSchema = z.infer<typeof InsertBookSchema>;
 
+export const MyBookHydrationErrorSchema = z.object({
+  message: z.string(),
+  triggerDevId: z.string(),
+  duplicatedMyBookId: z.string().nullish(),
+});
+
+export type MyBookHydrationErrorSchema = z.infer<
+  typeof MyBookHydrationErrorSchema
+>;
+
 export const myBooks = pgTable(
   "my_books",
   {
@@ -169,8 +179,7 @@ export const myBooks = pgTable(
 
     // the query that was used to search for the book
     query: varchar("query", { length: 255 }),
-    queryError: text("query_error"),
-    triggerDevId: varchar("trigger_dev_id", { length: 255 }),
+    queryError: jsonb("query_error").$type<MyBookHydrationErrorSchema>(),
 
     bookId: uuid("book_id").references(() => books.id),
   },

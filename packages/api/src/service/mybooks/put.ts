@@ -1,7 +1,7 @@
-import type { InsertMyBookSchema } from "@sovoli/db/schema";
+import type { SelectMyBookSchema } from "@sovoli/db/schema";
 import { db, eq, schema } from "@sovoli/db";
 
-// import { hydrateMyBooks } from "../../trigger/myBooks";
+import { hydrateMyBook } from "../../trigger/myBooks";
 import { UserNotFoundError } from "../errors";
 
 export interface PutMyBooksOptions {
@@ -55,20 +55,24 @@ export async function putMyBookQueries(options: PutMyBooksOptions) {
     (query) => !existingQueriesSet.has(query),
   );
 
-  if (filteredQueries.length === 0) return existingBooks;
+  let insertedBooks: SelectMyBookSchema[] = [];
+  if (filteredQueries.length > 0) {
+    const booksToInsert = filteredQueries.map((query) => ({
+      query,
+      ownerId: user.id,
+    }));
 
-  const booksToInsert: InsertMyBookSchema[] = filteredQueries.map((query) => ({
-    query,
-    ownerId: user.id,
-  }));
+    insertedBooks = await db
+      .insert(schema.myBooks)
+      .values(booksToInsert)
+      .onConflictDoNothing()
+      .returning();
+  }
+  const allBooks = [...insertedBooks, ...existingBooks];
 
-  const insertedBooks = await db
-    .insert(schema.myBooks)
-    .values(booksToInsert)
-    .onConflictDoNothing()
-    .returning();
+  await hydrateMyBook.batchTrigger(
+    allBooks.map((book) => ({ payload: { myBookId: book.id } })),
+  );
 
-  // await hydrateMyBooks.trigger({ userId: user.id });
-
-  return [...insertedBooks, ...existingBooks];
+  return allBooks;
 }

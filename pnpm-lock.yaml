@@ -199,8 +199,8 @@ importers:
         specifier: 5.51.23
         version: 5.51.23(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@trigger.dev/sdk':
-        specifier: 3.0.0-beta.52
-        version: 3.0.0-beta.52(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.4)
+        specifier: 3.0.0-beta.55
+        version: 3.0.0-beta.55(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.4)
       '@trpc/client':
         specifier: 'catalog:'
         version: 11.0.0-rc.461(@trpc/server@11.0.0-rc.461)
@@ -308,8 +308,8 @@ importers:
         specifier: 1.0.7
         version: 1.0.7(tailwindcss@3.4.4)
       trigger.dev:
-        specifier: 3.0.0-beta.52
-        version: 3.0.0-beta.52(@types/react@18.2.79)(bufferutil@4.0.8)
+        specifier: 3.0.0-beta.55
+        version: 3.0.0-beta.55(@types/react@18.2.79)(bufferutil@4.0.8)
       typescript:
         specifier: 'catalog:'
         version: 5.5.2
@@ -326,8 +326,8 @@ importers:
         specifier: workspace:*
         version: link:../services
       '@trigger.dev/sdk':
-        specifier: 3.0.0-beta.52
-        version: 3.0.0-beta.52(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.4)
+        specifier: 3.0.0-beta.55
+        version: 3.0.0-beta.55(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.4)
       '@trpc/server':
         specifier: 'catalog:'
         version: 11.0.0-rc.461
@@ -428,7 +428,7 @@ importers:
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-1eaccd82-20240816(eslint@9.8.0)
+        version: 5.1.0-rc-a960b92c-20240819(eslint@9.8.0)
       eslint-plugin-turbo:
         specifier: 2.0.11
         version: 2.0.11(eslint@9.8.0)
@@ -3274,16 +3274,16 @@ packages:
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
 
-  '@trigger.dev/core-backend@3.0.0-beta.52':
-    resolution: {integrity: sha512-UQOfMjpFl6tgxfnEfb24KwFeKjSnRBf1dnbfxLo+8wA+E/5T7Dvq2BuWNrCArFI1LBCL2QL73zlGTf0ON9ovuQ==}
+  '@trigger.dev/core-backend@3.0.0-beta.55':
+    resolution: {integrity: sha512-JLRaiawxVyG0fparYskiluPxWqzFXrqXKJFMKW6CgXklRCHMRjH5ezai62yUxAeKM8LX2BIOhOpeXB3z50Re1w==}
     engines: {node: '>=18.0.0'}
 
-  '@trigger.dev/core@3.0.0-beta.52':
-    resolution: {integrity: sha512-t4DRibuiQjHXgauQBHS46xtyrVeUo9dHa5Cerl2XUgVSYFCAUKLDdP/a1gMgDtotS46vcSRIe3bIecKDqMXHbQ==}
+  '@trigger.dev/core@3.0.0-beta.55':
+    resolution: {integrity: sha512-MXfBnM3HvT+RyXwlIeQjUJ0lWKg5vFrPugwy5AbDaio/p8QLyRpEHIL8zcMU6rUxdjD7jVbZk3KTUnGRLRZ+tw==}
     engines: {node: '>=18.0.0'}
 
-  '@trigger.dev/sdk@3.0.0-beta.52':
-    resolution: {integrity: sha512-fiT3n2udWfpGDnbIHiSs/HMRBeJqLej0p1mgMaV/9b5xu59G6FF8MP9cV9AS2llK4nmH7kE8ySpzqmi+lykXqA==}
+  '@trigger.dev/sdk@3.0.0-beta.55':
+    resolution: {integrity: sha512-B4mS79S0esp5yRun/siDHIRfD8ZF8S6dadYayq0Irj2izFx50R3bUJ+BXh6gPx/4cF26NL7jcJMOwtW8P9PsFQ==}
     engines: {node: '>=18.0.0'}
 
   '@trpc/client@11.0.0-rc.461':
@@ -4782,8 +4782,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-1eaccd82-20240816:
-    resolution: {integrity: sha512-hEgkysGdyuEW0uL6ZUVzipHSoV5433VoxL9WRgRo5uUUaB7Niz++w4WFk0V44oXjLPu7ZlG8M1mprCBSfKtcYg==}
+  eslint-plugin-react-hooks@5.1.0-rc-a960b92c-20240819:
+    resolution: {integrity: sha512-18xsW8xcNX40F3O9Z66URXZjRQ7Vjjb1sOG3164D9nArpkzqxmagY3E9D0B+lbldpMQlROpQ4YJk7DLjSR2JhA==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -8110,8 +8110,8 @@ packages:
   tree-sitter@0.20.4:
     resolution: {integrity: sha512-rjfR5dc4knG3jnJNN/giJ9WOoN1zL/kZyrS0ILh+eqq8RNcIbiXA63JsMEgluug0aNvfQvK4BfCErN1vIzvKog==}
 
-  trigger.dev@3.0.0-beta.52:
-    resolution: {integrity: sha512-T/m6HZvNvgKt1Zdu9799rNuHvPzItAdNs7ogSJK1X95lLlCp0+uvJPhcfZA4ueF3rd9rzoTH4aHxQhrykyeYPA==}
+  trigger.dev@3.0.0-beta.55:
+    resolution: {integrity: sha512-hGkU6K3SE2CWjVpF7KaDkfszX+GLC2a3i1/HdId6ukur+M46C7Arib8wK7djb65g05fu6aNPXvfz9eC1zs0nZg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -12222,11 +12222,11 @@ snapshots:
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
-  '@trigger.dev/core-backend@3.0.0-beta.52':
+  '@trigger.dev/core-backend@3.0.0-beta.55':
     dependencies:
       '@opentelemetry/api': 1.9.0
 
-  '@trigger.dev/core@3.0.0-beta.52(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
+  '@trigger.dev/core@3.0.0-beta.55(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
     dependencies:
       '@google-cloud/precise-date': 4.0.0
       '@opentelemetry/api': 1.9.0
@@ -12252,13 +12252,13 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@trigger.dev/sdk@3.0.0-beta.52(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.4)':
+  '@trigger.dev/sdk@3.0.0-beta.55(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.4)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.48.0
       '@opentelemetry/semantic-conventions': 1.25.1
-      '@trigger.dev/core': 3.0.0-beta.52(bufferutil@4.0.8)(utf-8-validate@6.0.4)
-      '@trigger.dev/core-backend': 3.0.0-beta.52
+      '@trigger.dev/core': 3.0.0-beta.55(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      '@trigger.dev/core-backend': 3.0.0-beta.55
       chalk: 5.3.0
       cronstrue: 2.50.0
       debug: 4.3.6
@@ -13895,7 +13895,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-1eaccd82-20240816(eslint@9.8.0):
+  eslint-plugin-react-hooks@5.1.0-rc-a960b92c-20240819(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
 
@@ -17738,7 +17738,7 @@ snapshots:
       prebuild-install: 7.1.2
     optional: true
 
-  trigger.dev@3.0.0-beta.52(@types/react@18.2.79)(bufferutil@4.0.8):
+  trigger.dev@3.0.0-beta.55(@types/react@18.2.79)(bufferutil@4.0.8):
     dependencies:
       '@anatine/esbuild-decorators': 0.2.19(esbuild@0.19.12)
       '@clack/prompts': 0.7.0
@@ -17755,7 +17755,7 @@ snapshots:
       '@opentelemetry/sdk-trace-base': 1.25.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-node': 1.25.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.25.1
-      '@trigger.dev/core': 3.0.0-beta.52(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      '@trigger.dev/core': 3.0.0-beta.55(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       '@types/degit': 2.8.6
       chalk: 5.3.0
       chokidar: 3.6.0

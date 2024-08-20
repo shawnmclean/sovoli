@@ -1,83 +1,123 @@
-import { and, db, eq, isNull } from "@sovoli/db";
-import { myBooks, SelectBookSchema } from "@sovoli/db/schema";
-import { task } from "@trigger.dev/sdk/v3";
+import type { MyBookHydrationErrorSchema } from "@sovoli/db/schema";
+import { and, db, eq } from "@sovoli/db";
+import { myBooks } from "@sovoli/db/schema";
+import { logger, task } from "@trigger.dev/sdk/v3";
 
-import type { MatchedBook } from "../service/books";
 import { searchBooks } from "../service/books";
 
-export interface HydrateMyBooksOptions {
-  userId: string;
+export interface HydrateMyBookOptions {
+  myBookId: string;
 }
 
-//1. You need to export each task
-export const hydrateMyBooks = task({
-  //2. Use a unique id for each task
-  id: "hydrate-my-books",
-  //3. The run function is the main function of the task
-  run: async ({ userId }: HydrateMyBooksOptions, { ctx }) => {
-    const userBooks = await db
-      .update(myBooks)
-      .set({
-        triggerDevId: ctx.run.id,
-      })
-      .where(and(eq(myBooks.ownerId, userId), isNull(myBooks.bookId)))
-      .returning();
+export const hydrateMyBook = task({
+  id: "hydrate-my-book",
+  run: async ({ myBookId }: HydrateMyBookOptions, { ctx }) => {
+    const myBook = await db.query.myBooks.findFirst({
+      where: eq(myBooks.id, myBookId),
+    });
 
-    if (userBooks.length === 0) return;
-
-    // searchandpopulate the books by query
-    // get the book ids, then update the myBooks table with the book ids
-    // set the triggerDevId to null.
-    // fire off a batch trigger to hydrate the books
-    const queries = userBooks.map((myBook) => ({
-      query: myBook.query ?? undefined,
-    }));
-
-    const results = await searchBooks({ queries });
-
-    const updatedBooks = userBooks.reduce<
-      { myBookId: string; book: SelectBookSchema }[]
-    >((acc, myBook) => {
-      const matchedResult = results.find(
-        (result) => result.query.query === myBook.query,
-      );
-
-      if (matchedResult && matchedResult.books.length > 0) {
-        const bestMatch = matchedResult.books[0]; //getBestMatch(matchedResult.books);
-        if (bestMatch) {
-          acc.push({
-            myBookId: myBook.id,
-            book: bestMatch,
-          });
-        }
-      }
-      return acc;
-    }, []);
-
-    // Step 5: Update the myBooks table with the matched bookIds
-    for (const updatedBook of updatedBooks) {
+    if (!myBook) {
+      logger.error(`MyBook not found`);
+      return;
+    }
+    if (myBook.bookId) {
+      logger.error(`MyBook already hydrated`);
+      return;
+    }
+    if (!myBook.query) {
+      const errorMessage = `MyBook has no query`;
+      logger.error(errorMessage);
       await db
         .update(myBooks)
         .set({
-          bookId: updatedBook.book.id,
-          name: updatedBook.book.title,
+          queryError: {
+            message: errorMessage,
+            triggerDevId: ctx.run.id,
+          },
         })
-        .where(eq(myBooks.id, updatedBook.myBookId));
+        .where(eq(myBooks.id, myBookId));
+      return;
+    }
+
+    const results = await searchBooks({ queries: [{ query: myBook.query }] });
+
+    if (!results[0]?.books[0]) {
+      logger.error(`No results found for query`);
+      await db
+        .update(myBooks)
+        .set({
+          queryError: {
+            message: `No results found for query: ${myBook.query}`,
+            triggerDevId: ctx.run.id,
+          },
+        })
+        .where(eq(myBooks.id, myBookId));
+      return;
+    }
+
+    const bestMatch = results[0].books[0];
+
+    try {
+      await db
+        .update(myBooks)
+        .set({ bookId: bestMatch.id, name: bestMatch.title })
+        .where(eq(myBooks.id, myBookId));
+    } catch (error) {
+      const queryError: MyBookHydrationErrorSchema = {
+        message: "Error linking query to book",
+        triggerDevId: ctx.run.id,
+      };
+
+      // Check if the error is an object and has a code property
+      if (isDatabaseError(error)) {
+        // Handle specific database error codes
+        if (error.code === "23505") {
+          // if its a constraint violation, check if the book already exists for the user
+          const bookExist = await db.query.myBooks.findFirst({
+            columns: { id: true },
+            where: and(
+              eq(myBooks.ownerId, myBook.ownerId),
+              eq(myBooks.bookId, bestMatch.id),
+            ),
+          });
+          if (bookExist) {
+            queryError.message = "Book already exists for the user";
+            queryError.duplicatedMyBookId = bookExist.id;
+          }
+        } else {
+          queryError.message = `Database error with code ${error.code}: ${error.message}`;
+        }
+      } else {
+        queryError.message =
+          error instanceof Error ? error.message : "Unknown error occurred";
+      }
+
+      logger.error(queryError.message);
+
+      await db
+        .update(myBooks)
+        .set({
+          queryError,
+        })
+        .where(eq(myBooks.id, myBookId));
+
+      // Re-throw the error if it's not handled to ensure it's not silently ignored
+      if (!queryError.duplicatedMyBookId) {
+        throw new Error(queryError.message);
+      }
     }
   },
 });
-
 /**
- * Get the best match from a list of matched books based on similarity.
- * @param books
- * @returns MatchedBook | undefined
+ * Type guard to check if an error is a database error with a code property.
  */
-export function getBestMatch(books: MatchedBook[]): MatchedBook | undefined {
-  return books.reduce(
-    (bestMatch, currentBook) =>
-      (currentBook.similarity ?? 0) > (bestMatch?.similarity ?? 0)
-        ? currentBook
-        : bestMatch,
-    books[0],
+function isDatabaseError(
+  error: unknown,
+): error is { code: string; message: string } {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    typeof (error as { code: string }).code === "string"
   );
 }
