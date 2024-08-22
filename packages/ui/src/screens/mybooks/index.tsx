@@ -21,22 +21,23 @@ export function MyBooksScreen({ profile }: Props) {
       <Text>{profile.myBooks.data.length} books</Text>
       
       {profile.myBooks.data.map((book) => (
-        <MyBookItem key={book.id} myBook={book} />
+        <MyBookItem key={book.id} myBook={book} username={profile.username} />
       ))}
     </ScrollView>
   );
 }
 
 interface MyBookItemProps {
+  username: string;
   myBook: MyBooksProfile["myBooks"]["data"][0];
 }
-function MyBookItem({myBook}: MyBookItemProps) {
+function MyBookItem({username,myBook}: MyBookItemProps) {
 
   if(!myBook.book) {
     return <Text>id: {myBook.id}, query: {myBook.query}</Text>
   } else {
   return (
-    <Link href={`/johndoe/mybooks/${myBook.book.slug}`}>
+    <Link href={`/${username}/mybooks/${myBook.book.slug}`}>
       <Text className="underline">{myBook.book.title}</Text>
     </Link>
   );}
