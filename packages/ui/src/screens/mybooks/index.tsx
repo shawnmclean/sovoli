@@ -2,7 +2,7 @@
 
 import { ScrollView } from "react-native";
 import Categories from "./categories";
-import { Link } from "solito/link";
+// import { Link } from "solito/link";
 import { Text } from "@sovoli/ui/components/text";
 import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
@@ -25,10 +25,10 @@ export function MyBooksScreen(profile: MyBooksProfile) {
 }
 
 
-function MyBookItem(myBook: MyBooksProfile["myBooks"]["data"][0]) {
-  return (
-    <Link href={`/johndoe/books/${myBook.slug}`}>
-      <Text className="underline">{myBook.title}</Text>
-    </Link>
-  );
-}
+// function MyBookItem(myBook: MyBooksProfile["myBooks"]["data"][0]) {
+//   return (
+//     <Link href={`/johndoe/books/${myBook.slug}`}>
+//       <Text className="underline">{myBook.title}</Text>
+//     </Link>
+//   );
+// }
