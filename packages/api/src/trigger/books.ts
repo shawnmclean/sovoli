@@ -1,35 +1,85 @@
-import { db, inArray } from "@sovoli/db";
-import { books as booksSchema } from "@sovoli/db/schema";
-import { task } from "@trigger.dev/sdk/v3";
+import type { SelectBookSchema } from "@sovoli/db/schema";
+import { db, eq } from "@sovoli/db";
+import { BookCoverSchema, books as booksSchema } from "@sovoli/db/schema";
+import { bookService } from "@sovoli/services";
+import { logger, task } from "@trigger.dev/sdk/v3";
 
 import { updateBookEmbeddings } from "../service/books/bookEmbeddings";
 
-export interface HydrateBooksOptions {
-  bookIds: string[];
+export interface HydrateBookOptions {
+  bookId: string;
 }
 
-export const hydrateBooks = task({
+export const hydrateBook = task({
   id: "hydrate-books",
-  run: async ({ bookIds }: HydrateBooksOptions, { ctx }) => {
+  run: async ({ bookId }: HydrateBookOptions, { ctx }) => {
     const books = await db
       .update(booksSchema)
       .set({
         triggerDevId: ctx.run.id,
       })
-      .where(inArray(booksSchema.id, bookIds))
+      .where(eq(booksSchema.id, bookId))
       .returning();
 
-    if (books.length === 0) return;
+    const book = books[0];
+    if (!book) {
+      logger.error(`Book not found for bookId: ${bookId}`);
+      return;
+    }
 
-    // print book titles
-    books.forEach((book) => console.log(book.title));
+    const isbn = book.isbn13 ?? book.isbn10;
+    if (!isbn) {
+      logger.error(`No ISBN found for bookId: ${bookId}`);
+      return;
+    }
 
-    await updateBookEmbeddings(bookIds);
+    if (isOLDataStale(book)) {
+      const olBookData = await bookService.openlibrary.getBookByISBN(isbn);
+      if (olBookData) {
+        // TODO: take out the authors and create a new table for them
 
-    // check if google book is stale (> 3 months old)
+        await db
+          .update(booksSchema)
+          .set({
+            isbn13: olBookData.isbn13 ?? undefined,
+            isbn10: olBookData.isbn10 ?? undefined,
+            olid: olBookData.olid,
+            publishedDate: olBookData.publishedDate?.toISOString(),
+            publisher: olBookData.publisher,
+            lastOLUpdated: new Date().toISOString(),
+            cover: BookCoverSchema.parse(olBookData.cover),
+            updatedAt: new Date().toISOString(),
+          })
+          .where(eq(booksSchema.id, book.id));
 
-    // check if openlibrary book is stale (> 3 months old)
+        await updateBookEmbeddings([book.id]);
+      }
+    }
 
-    // embeddings update
+    if (isGoogleDataStale(book)) {
+      logger.warn(`Google data is stale for bookId: ${bookId}`);
+    }
   },
 });
+
+const THREE_MONTHS_IN_MS = 1000 * 60 * 60 * 24 * 30 * 3;
+
+function isOLDataStale(book: SelectBookSchema) {
+  const { lastOLUpdated } = book;
+
+  const lastOLUpdatedTime = lastOLUpdated
+    ? new Date(lastOLUpdated).getTime()
+    : 0;
+
+  return lastOLUpdatedTime < Date.now() - THREE_MONTHS_IN_MS;
+}
+
+function isGoogleDataStale(book: SelectBookSchema) {
+  const { lastGoogleUpdated } = book;
+
+  const lastGoogleUpdatedTime = lastGoogleUpdated
+    ? new Date(lastGoogleUpdated).getTime()
+    : 0;
+
+  return lastGoogleUpdatedTime < Date.now() - THREE_MONTHS_IN_MS;
+}

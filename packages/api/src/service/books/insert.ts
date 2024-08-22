@@ -7,7 +7,7 @@ import type {
 import { db, sql } from "@sovoli/db";
 import { BookCoverSchema, books as booksSchema } from "@sovoli/db/schema";
 
-import { hydrateBooks } from "../../trigger";
+import { hydrateBook } from "../../trigger";
 
 export async function insertBooks(
   books: InsertBookSchema[],
@@ -76,9 +76,9 @@ export async function insertBooks(
         },
       })
       .returning();
-    await hydrateBooks.trigger({
-      bookIds: insertedBooks.map((book) => book.id),
-    });
+    await hydrateBook.batchTrigger(
+      insertedBooks.map((book) => ({ payload: { bookId: book.id } })),
+    );
     return insertedBooks;
   } catch (conflictError) {
     console.error("Conflict error");

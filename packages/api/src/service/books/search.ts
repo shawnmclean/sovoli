@@ -1,5 +1,5 @@
 import type { InsertBookSchema, SelectBookSchema } from "@sovoli/db/schema";
-import { books as booksService } from "@sovoli/services";
+import { bookService } from "@sovoli/services";
 
 import { getBooksByEmbeddings } from "./bookEmbeddings";
 // import { getBooksByIsbns } from "./find";
@@ -180,7 +180,8 @@ export async function searchExternallyAndPopulate(
 
   await Promise.all(
     queries.map(async (query) => {
-      const googleBooks = await booksService.searchGoogleBooks(query);
+      const googleBooks =
+        await bookService.googlebooks.searchGoogleBooks(query);
 
       // Convert GoogleBooks to InsertBookSchema format
       const booksToInsert: InsertBookSchema[] = googleBooks.map(

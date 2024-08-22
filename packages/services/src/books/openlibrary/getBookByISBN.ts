@@ -13,10 +13,10 @@ interface OpenLibraryPublisher {
   name: string;
 }
 
-interface OpenLibraryCover {
-  small: string;
-  medium: string;
-  large: string;
+export interface OpenLibraryCover {
+  small?: string;
+  medium?: string;
+  large?: string;
 }
 
 interface OpenLibrarySubject {
@@ -107,10 +107,10 @@ interface OpenLibraryResponse {
 
 export interface OpenLibraryBook {
   title: string;
-  authors: string[];
+  authors: { name: string; olid: string | null }[];
   publishedDate: Date | null;
   publisher: string;
-  olid: string | null;
+  olid: string;
   isbn13: string | null;
   isbn10: string | null;
   subjects: string[];
@@ -167,15 +167,23 @@ export async function getBookByISBN(
         }
       }
 
+      // Handle authors
+      const authors = bookData.authors.map((author) => {
+        return {
+          name: author.name,
+          olid: extractAuthorId(author.url) ?? null,
+        };
+      });
+
       // Extract data and map to OpenLibraryBook
       const book: OpenLibraryBook = {
         title: bookData.title,
-        authors: bookData.authors.map((author) => author.name),
+        authors: authors,
         publishedDate: publishedDate,
         publisher: bookData.publishers[0]?.name ?? "",
         isbn13: bookData.identifiers.isbn_13?.[0] ?? null,
         isbn10: bookData.identifiers.isbn_10?.[0] ?? null,
-        olid: bookData.identifiers.openlibrary?.[0] ?? null,
+        olid: bookData.identifiers.openlibrary?.[0] ?? "",
         cover: bookData.cover,
         subjects: bookData.subjects.map((subject) => subject.name),
         itemURL: bookData.url,
@@ -197,4 +205,17 @@ export async function getBookByISBN(
   }
 
   throw new Error("Failed to fetch book data after multiple attempts.");
+}
+
+function extractAuthorId(url: string): string | null {
+  const parts = url.split("/");
+  // The author ID is the part after "/authors/"
+  const authorIdIndex = parts.indexOf("authors") + 1;
+
+  if (authorIdIndex > 0 && authorIdIndex < parts.length) {
+    const authorId = parts[authorIdIndex];
+    return authorId ? authorId : null; // Explicitly return null if authorId is undefined or empty
+  }
+
+  return null; // Return null if "authors" is not found or if the index is out of bounds
 }
