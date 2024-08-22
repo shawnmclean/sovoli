@@ -52,12 +52,12 @@ interface OpenLibraryData {
   identifiers: OpenLibraryIdentifiers;
   publishers: OpenLibraryPublisher[];
   publish_date: string;
-  subjects: OpenLibrarySubject[];
+  subjects?: OpenLibrarySubject[];
   subject_places: OpenLibrarySubjectPlace[];
   subject_people: OpenLibrarySubjectPerson[];
   excerpts: OpenLibraryExcerpt[];
   links: OpenLibraryLink[];
-  cover: OpenLibraryCover;
+  cover?: OpenLibraryCover;
 }
 
 interface OpenLibraryDetails {
@@ -113,9 +113,8 @@ export interface OpenLibraryBook {
   olid: string;
   isbn13: string | null;
   isbn10: string | null;
-  subjects: string[];
   itemURL: string;
-  cover: OpenLibraryCover;
+  cover?: OpenLibraryCover;
 }
 export async function getBookByISBN(
   isbn: string,
@@ -185,7 +184,6 @@ export async function getBookByISBN(
         isbn10: bookData.identifiers.isbn_10?.[0] ?? null,
         olid: bookData.identifiers.openlibrary?.[0] ?? "",
         cover: bookData.cover,
-        subjects: bookData.subjects.map((subject) => subject.name),
         itemURL: bookData.url,
       };
 

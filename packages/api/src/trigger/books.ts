@@ -11,7 +11,7 @@ export interface HydrateBookOptions {
 }
 
 export const hydrateBook = task({
-  id: "hydrate-books",
+  id: "hydrate-book",
   run: async ({ bookId }: HydrateBookOptions, { ctx }) => {
     const books = await db
       .update(booksSchema)
@@ -34,25 +34,32 @@ export const hydrateBook = task({
     }
 
     if (isOLDataStale(book)) {
-      const olBookData = await bookService.openlibrary.getBookByISBN(isbn);
-      if (olBookData) {
-        // TODO: take out the authors and create a new table for them
+      try {
+        const olBookData = await bookService.openlibrary.getBookByISBN(isbn);
+        if (olBookData) {
+          // TODO: take out the authors and create a new table for them
 
-        await db
-          .update(booksSchema)
-          .set({
-            isbn13: olBookData.isbn13 ?? undefined,
-            isbn10: olBookData.isbn10 ?? undefined,
-            olid: olBookData.olid,
-            publishedDate: olBookData.publishedDate?.toISOString(),
-            publisher: olBookData.publisher,
-            lastOLUpdated: new Date().toISOString(),
-            cover: BookCoverSchema.parse(olBookData.cover),
-            updatedAt: new Date().toISOString(),
-          })
-          .where(eq(booksSchema.id, book.id));
+          await db
+            .update(booksSchema)
+            .set({
+              isbn13: olBookData.isbn13 ?? undefined,
+              isbn10: olBookData.isbn10 ?? undefined,
+              olid: olBookData.olid,
+              publishedDate: olBookData.publishedDate?.toISOString(),
+              publisher: olBookData.publisher,
+              lastOLUpdated: new Date().toISOString(),
+              cover: olBookData.cover
+                ? BookCoverSchema.parse(olBookData.cover)
+                : undefined,
+              updatedAt: new Date().toISOString(),
+            })
+            .where(eq(booksSchema.id, book.id));
 
-        await updateBookEmbeddings([book.id]);
+          await updateBookEmbeddings([book.id]);
+        }
+      } catch (error) {
+        logger.error(`Error hydrating book: ${bookId}`);
+        throw error;
       }
     }
 
