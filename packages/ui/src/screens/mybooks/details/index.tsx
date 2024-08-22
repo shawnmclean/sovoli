@@ -8,8 +8,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@sovoli/ui/components/card";
+import type { contract } from "@sovoli/api/tsr";
+import type { z } from "zod";
 
-export default function MyBookDetailsScreen() {
+type MyBook = z.infer<(typeof contract.getMyBook.responses)[200]>;
+
+interface Props {
+  myBook: MyBook;
+}
+
+export default function MyBookDetailsScreen({ myBook }: Props) {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 16 }}>
       <View className="max-w-6xl mx-auto">
@@ -27,8 +35,8 @@ export default function MyBookDetailsScreen() {
                 shadowRadius: 2,
               }}
             />
-            <Text className="text-2xl font-bold mt-4">The Alchemist</Text>
-            <Text className="text-muted-foreground">by Paulo Coelho</Text>
+            <Text className="text-2xl font-bold mt-4">{myBook.book?.title}</Text>
+            <Text className="text-muted-foreground">by {myBook.book?.inferredAuthor}</Text>
           </View>
           <View className="space-y-8">
             <Card>
@@ -37,21 +45,10 @@ export default function MyBookDetailsScreen() {
               </CardHeader>
               <CardContent>
                 <Text className="text-muted-foreground mt-2">
-                  I first read The Alchemist a few years ago and it has become
-                  one of my all-time favorite books. The story of Santiago's
-                  journey to find his personal legend is both inspiring and
-                  thought-provoking. Coelho's writing is beautiful and poetic,
-                  and the book is full of profound insights about life, dreams,
-                  and following your heart.
+                  Lorem Ipsum 
                 </Text>
                 <Text className="text-muted-foreground mt-4">
-                  One of the things I love most about this book is how it
-                  encourages the reader to embrace the unknown and trust the
-                  journey. Santiago's willingness to take risks and face his
-                  fears is something I aspire to in my own life. The book has
-                  also helped me to appreciate the importance of being present
-                  and paying attention to the signs and omens that the universe
-                  sends our way.
+                  Sit Delores
                 </Text>
               </CardContent>
             </Card>
@@ -106,22 +103,7 @@ export default function MyBookDetailsScreen() {
               </CardHeader>
               <CardContent>
                 <Text className="text-muted-foreground mt-2">
-                  The Alchemist follows the journey of a young shepherd named
-                  Santiago who travels from his home in Spain to the Egyptian
-                  desert in search of a treasure buried near the Pyramids. Along
-                  the way, he meets a Gypsy woman, a man who calls himself king,
-                  and an alchemist, all of whom point Santiago in the direction
-                  of his quest. No one knows what the treasure is, or if
-                  Santiago will be able to surmount the obstacles in his path.
-                  But what starts out as a journey to find worldly goods turns
-                  into a discovery of the treasures found within.
-                </Text>
-                <Text className="text-muted-foreground mt-4">
-                  The Alchemist is a transformative novel about the essential
-                  wisdom of listening to our hearts, recognizing opportunity,
-                  and following our dreams. It is a story about the journey of
-                  self-discovery and the profound lessons we can learn from the
-                  world around us.
+                  {myBook.book?.description}
                 </Text>
               </CardContent>
             </Card>
@@ -136,10 +118,9 @@ export default function MyBookDetailsScreen() {
                     style={{ width: 100, height: 100, borderRadius: 50 }}
                   />
                   <View>
-                    <Text className="font-bold">Paulo Coelho</Text>
+                    <Text className="font-bold">{myBook.book?.inferredAuthor}</Text>
                     <Text className="text-muted-foreground">
-                      Paulo Coelho is a Brazilian lyricist and novelist. He is
-                      best known for his novel The Alchemist.
+                      {myBook.book?.authors && "No authors found"}
                     </Text>
                   </View>
                 </View>

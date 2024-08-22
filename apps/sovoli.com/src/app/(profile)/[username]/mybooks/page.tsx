@@ -15,7 +15,7 @@ async function getUserMyBooksProfile({ params, searchParams }: Props) {
   const client = tsr.initQueryClient(getQueryClientRsc());
   try {
     return await client.getUserMyBooksProfile.fetchQuery({
-      queryKey: ["username", "slug"],
+      queryKey: ["username"],
       queryData: {
         params: {
           username: params.username,
@@ -42,9 +42,6 @@ export default async function MyBooks({ params, searchParams }: Props) {
 
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
-      <h1>My books: {response.body.name}</h1>
-      <p>{response.body.myBooks.data.length} books</p>
-
       <MyBooksScreen profile={response.body} />
     </div>
   );

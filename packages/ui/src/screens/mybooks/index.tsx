@@ -1,7 +1,7 @@
 "use client";
 
 import { ScrollView } from "react-native";
-import Categories from "./categories";
+// import Categories from "./categories";
 import { Text } from "@sovoli/ui/components/text";
 import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
@@ -16,9 +16,9 @@ interface Props {
 export function MyBooksScreen({ profile }: Props) {
   return (
     <ScrollView className="mx-auto">
-      <Categories />
+      {/* <Categories /> */}
       <Text>Hello {profile.name}</Text>
-      {/* <Text>{profile.myBooks.data.length} books</Text> */}
+      <Text>{profile.myBooks.data.length} books</Text>
       
       {profile.myBooks.data.map((book) => (
         <MyBookItem key={book.id} myBook={book} />
