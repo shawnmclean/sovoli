@@ -66,7 +66,7 @@ export function Pagination({  page, pageSize, total, baseUrl }: PaginationProps)
       <Text>Page {page} of {totalPages}</Text>
 
       {page > 1 ? (
-        <Link href={`${baseUrl}?page=${page - 1}`}>
+        <Link href={`${baseUrl}${page - 1 === 1 ? '' : `?page=${page - 1}`}`}>
           <Button variant="outline">
             <Text>Previous</Text>
           </Button>
