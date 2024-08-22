@@ -34,17 +34,34 @@ function getBookEmbedTemplate(book: SelectBookSchema) {
   const authorsList = book.authors?.map((author) => author.name).join(", ");
 
   return `
-    Title: ${book.title}
-    Subtitle: ${book.subtitle}
-    Authors: ${authorsList ?? book.inferredAuthor}
-    Publisher: ${book.publisher}
-    Published Date: ${book.publishedDate}
-    ISBN-13: ${book.isbn13}
-    ISBN-10: ${book.isbn10}
-    Language: ${book.language}
-    Description: ${book.description}
-    Page Count: ${book.pageCount}
-  `;
+  // Important: This section describes the book titled '${book.title}' authored primarily by ${authorsList ?? book.inferredAuthor}.
+  Title: ${book.title}
+  Subtitle: ${book.subtitle}
+  
+  // Note: The following are the authors of this book.
+  Authors: ${authorsList ?? book.inferredAuthor}
+  Authors Repeated: ${authorsList ?? book.inferredAuthor} (Primary Author: ${authorsList ?? book.inferredAuthor?.split(",")[0]})
+  
+  Publisher: ${book.publisher}
+  Published Date: ${book.publishedDate}
+  
+  // Identifier Information:
+  ISBN-13: ${book.isbn13}
+  ISBN-10: ${book.isbn10}
+  
+  // Language of the text:
+  Language: ${book.language}
+  
+  // Book Description:
+  Description: ${book.description}
+  Description (with Author context): ${book.description} This important work is authored by ${authorsList ?? book.inferredAuthor}, providing key insights into the subject of ${book.title}.
+  
+  // Physical attributes of the book:
+  Page Count: ${book.pageCount}
+
+  // End of Metadata
+
+`;
 }
 
 async function setBookEmbeddings(

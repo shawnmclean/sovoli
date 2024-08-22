@@ -20,7 +20,6 @@ export const userContract = c.router({
     },
     summary: "Get a user by username",
   },
-
   getUserMyBooksProfile: {
     method: "GET",
     path: "/users/:username/mybooks-profile",
@@ -35,5 +34,6 @@ export const userContract = c.router({
       200: GetUserMyBooksProfileResponseSchema,
       404: ZUnsuccessfulResponseSchema,
     },
+    summary: "Get a user's my books profile",
   },
 });
