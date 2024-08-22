@@ -1,1 +1,2 @@
-export * from "./googleBooksAPi";
+export * from "./googlebooks";
+export * from "./openlibrary";

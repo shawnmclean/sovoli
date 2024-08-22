@@ -218,6 +218,7 @@ export async function searchExternallyAndPopulate(
   // 2. Insert the books into the database
   console.time("Insert Books Time");
   const allBooksToInsert = Array.from(queryToBooksMap.values()).flat();
+  // TODO: this may have to be done as a background job
   const insertedBooks = await insertBooks(allBooksToInsert);
   console.timeEnd("Insert Books Time");
 
