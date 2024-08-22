@@ -1,6 +1,7 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
+import { Text } from "@sovoli/ui/components/text";
+import MyBookDetailsScreen from "@sovoli/ui/screens/mybooks/details";
 
 import { tsr } from "~/api/react";
 
@@ -16,15 +17,12 @@ export default function Page() {
     return null;
   }
 
-  const { isSuccess, data } = tsr.getShelfBooks.useQuery({
+  const { isSuccess, data } = tsr.getMyBook.useQuery({
     queryKey: ["username", "slug"],
     queryData: {
       params: {
         username,
         slug,
-      },
-      query: {
-        page: 1,
       },
     },
   });
@@ -33,13 +31,15 @@ export default function Page() {
     return null;
   }
 
-  const shelf = data.body;
+  const myBook = data.body;
+
   return (
     <SafeAreaView className="bg-background">
       {/* Changes page title visible on the header */}
-      <Stack.Screen options={{ title: `User Books` }} />
+      <Stack.Screen options={{ title: "My Book" }} />
 
-      <ShelfScreen shelf={shelf} />
+      <Text>{slug}</Text>
+      <MyBookDetailsScreen myBook={myBook} />
     </SafeAreaView>
   );
 }

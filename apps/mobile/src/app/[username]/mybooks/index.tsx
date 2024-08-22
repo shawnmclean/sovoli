@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { UserScreen } from "@sovoli/ui/screens/user";
+import { MyBooksScreen } from "@sovoli/ui/screens/mybooks";
 
 import { tsr } from "~/api/react";
 
@@ -11,8 +11,8 @@ export default function Page() {
     return null;
   }
 
-  const { isSuccess, data } = tsr.getUser.useQuery({
-    queryKey: ["username"],
+  const { isSuccess, data } = tsr.getUserMyBooksProfile.useQuery({
+    queryKey: ["username", "mybooks-profile"],
     queryData: {
       params: {
         username,
@@ -29,8 +29,8 @@ export default function Page() {
   return (
     <SafeAreaView className="bg-background">
       {/* Changes page title visible on the header */}
-      <Stack.Screen options={{ title: "User Page" }} />
-      <UserScreen profile={profile} />
+      <Stack.Screen options={{ title: "User Books" }} />
+      <MyBooksScreen profile={profile} />
     </SafeAreaView>
   );
 }

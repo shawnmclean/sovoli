@@ -15,7 +15,7 @@ export const userContract = c.router({
       username: z.coerce.string(),
     }),
     responses: {
-      200: SelectUserSchema.nullable(),
+      200: SelectUserSchema,
       404: ZUnsuccessfulResponseSchema,
     },
     summary: "Get a user by username",

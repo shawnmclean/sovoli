@@ -1,16 +1,44 @@
-// import { api, HydrateClient } from "~/api/trpc";
-import { Suspense } from "react";
+import { notFound } from "next/navigation";
+import { UserScreen } from "@sovoli/ui/screens/user";
 
-import { User } from "./_components/User";
+import { getQueryClientRsc } from "~/api/query-client";
+import { tsr } from "~/api/tsr";
 
-export default function UserPage({ params }: { params: { username: string } }) {
-  // void api.user.byUsername.prefetch({ username: params.username });
+export const dynamic = "force-dynamic";
+
+interface Props {
+  params: { username: string };
+}
+
+async function getUserProfile({ params }: Props) {
+  const client = tsr.initQueryClient(getQueryClientRsc());
+  try {
+    return await client.getUserMyBooksProfile.fetchQuery({
+      queryKey: ["username"],
+      queryData: {
+        params: {
+          username: params.username,
+        },
+      },
+    });
+  } catch (error) {
+    // Type guard to check if error is an object with a 'status' property
+    if (typeof error === "object" && error !== null && "status" in error) {
+      const status = (error as { status?: number }).status; // Safe type assertion
+
+      if (status === 404) return null;
+    }
+  }
+}
+
+export default async function UserPage({ params }: Props) {
+  const response = await getUserProfile({ params });
+
+  if (!response) return notFound();
 
   return (
-    // <HydrateClient>
-    <Suspense fallback={<div>Loading...</div>}>
-      <User username={params.username} />
-    </Suspense>
-    // </HydrateClient>
+    <div className="min-h-screen dark:bg-black sm:pl-60">
+      <UserScreen profile={response.body} />
+    </div>
   );
 }
