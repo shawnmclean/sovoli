@@ -98,7 +98,7 @@ interface OpenLibraryRecord {
 }
 
 interface OpenLibraryResponse {
-  records: Record<string, OpenLibraryRecord>;
+  records?: Record<string, OpenLibraryRecord>;
   /**
    * No idea what this is, but the response returns it empty
    */
@@ -147,6 +147,9 @@ export async function getBookByISBN(
       }
 
       const data = (await response.json()) as OpenLibraryResponse;
+      if (!data.records) {
+        return null;
+      }
 
       // Assuming there's only one record for the given ISBN
       const record = Object.values(data.records)[0];
@@ -202,7 +205,9 @@ export async function getBookByISBN(
     }
   }
 
-  throw new Error("Failed to fetch book data after multiple attempts.");
+  throw new Error(
+    `Failed to fetch book data after multiple attempts. ISBN: ${isbn}`,
+  );
 }
 
 function extractAuthorId(url: string): string | null {

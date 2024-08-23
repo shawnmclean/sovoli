@@ -12,6 +12,8 @@ import { hydrateBook } from "../../trigger";
 export async function insertBooks(
   books: InsertBookSchema[],
 ): Promise<SelectBookSchema[]> {
+  if (books.length === 0) return [];
+
   const cleanedBooks = books.map((book) => {
     let cover: BookCover | null = null;
 
