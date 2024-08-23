@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import gluestackPlugin from "@gluestack-ui/nativewind-utils/tailwind-plugin";
 // @ts-expect-error - no types
 import nativewind from "nativewind/preset";
 import { hairlineWidth } from "nativewind/theme";
@@ -7,7 +8,7 @@ import animate from "tailwindcss-animate";
 export default {
   darkMode: "class",
   content: ["src/**/*.{ts,tsx}"],
-  plugins: [animate],
+  plugins: [animate, gluestackPlugin],
   presets: [nativewind],
   theme: {
     extend: {

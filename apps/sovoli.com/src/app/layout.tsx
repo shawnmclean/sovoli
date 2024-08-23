@@ -10,6 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { QueryProviders } from "~/api/react";
 import { config } from "~/utils/config";
+import StyledJsxRegistry from "./registry";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -50,12 +51,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <UiProviders>
-          <QueryProviders>{children}</QueryProviders>
-        </UiProviders>
-        <SpeedInsights />
-        <Analytics />
-        <PortalHost />
+        <StyledJsxRegistry>
+          <UiProviders>
+            <QueryProviders>{children}</QueryProviders>
+          </UiProviders>
+          <SpeedInsights />
+          <Analytics />
+          <PortalHost />
+        </StyledJsxRegistry>
       </body>
     </html>
   );
