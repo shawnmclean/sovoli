@@ -74,7 +74,7 @@ export async function searchGoogleBooks(
 
   const maxResults = 5;
 
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&printType=BOOKS&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
 
   let retryCount = 0;
   let delay = 1000; // Start with a 1-second delay for retries

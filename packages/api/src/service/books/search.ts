@@ -55,7 +55,6 @@ export async function searchBooksByQuery(
     return internalResults[0];
   }
 
-  console.log(">>> no internalresults found for query", query);
   const externalResults = await searchExternallyAndPopulate([query]);
   if (
     externalResults.length > 0 &&
@@ -64,8 +63,6 @@ export async function searchBooksByQuery(
   ) {
     return externalResults[0];
   }
-
-  console.log(">>> no results found for query", query);
 
   return { query, books: [], total: 0 };
 }
@@ -128,9 +125,6 @@ export async function searchBooks(
       });
     }
   });
-
-  // console.log(">>> textQueries", textQueries);
-  // console.log(">>> isbnQueries", isbnQueries);
 
   console.time("Db Search Time");
   const [isbnResults, textResults] = await Promise.all([

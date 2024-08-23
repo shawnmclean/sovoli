@@ -54,8 +54,6 @@ export const hydrateBook = task({
               updatedAt: new Date().toISOString(),
             })
             .where(eq(booksSchema.id, book.id));
-
-          await updateBookEmbeddings([book.id]);
         }
       } catch (error) {
         logger.error(`Error hydrating book: ${bookId}`);
@@ -66,6 +64,8 @@ export const hydrateBook = task({
     if (isGoogleDataStale(book)) {
       logger.warn(`Google data is stale for bookId: ${bookId}`);
     }
+
+    await updateBookEmbeddings([book.id]);
   },
 });
 

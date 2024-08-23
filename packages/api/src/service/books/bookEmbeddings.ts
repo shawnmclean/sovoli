@@ -18,7 +18,6 @@ export async function updateBookEmbeddings(bookIds: string[]) {
 
   const bookTemplates = books.map(getBookEmbedTemplate);
 
-  console.log(">>> bookTemplates", bookTemplates);
   const embeddings = await getOpenAIEmbeddings(bookTemplates);
 
   await setBookEmbeddings(
@@ -120,8 +119,6 @@ export async function getBooksByEmbeddings(
       .innerJoin(booksTable, eq(bookEmbeddings.bookId, booksTable.id))
       .where(gt(similarity, 0.5)),
   ]);
-
-  console.log(">>> rows", rows);
 
   const data = rows.map((row) => row.book); // Extract only the book data
   const total = totalResult[0]?.count ?? 0; // Extract the count from totalResult

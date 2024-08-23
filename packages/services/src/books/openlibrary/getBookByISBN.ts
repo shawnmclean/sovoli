@@ -48,7 +48,7 @@ interface OpenLibraryData {
   url: string;
   key: string;
   title: string;
-  authors: OpenLibraryAuthor[];
+  authors?: OpenLibraryAuthor[];
   identifiers: OpenLibraryIdentifiers;
   publishers: OpenLibraryPublisher[];
   publish_date: string;
@@ -170,7 +170,7 @@ export async function getBookByISBN(
       }
 
       // Handle authors
-      const authors = bookData.authors.map((author) => {
+      const authors = bookData.authors?.map((author) => {
         return {
           name: author.name,
           olid: extractAuthorId(author.url) ?? null,
@@ -180,7 +180,7 @@ export async function getBookByISBN(
       // Extract data and map to OpenLibraryBook
       const book: OpenLibraryBook = {
         title: bookData.title,
-        authors: authors,
+        authors: authors ?? [],
         publishedDate: publishedDate,
         publisher: bookData.publishers[0]?.name ?? "",
         isbn13: bookData.identifiers.isbn_13?.[0] ?? null,
