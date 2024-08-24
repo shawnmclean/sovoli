@@ -50,7 +50,7 @@ interface OpenLibraryData {
   title: string;
   authors?: OpenLibraryAuthor[];
   identifiers: OpenLibraryIdentifiers;
-  publishers: OpenLibraryPublisher[];
+  publishers?: OpenLibraryPublisher[];
   publish_date: string;
   subjects?: OpenLibrarySubject[];
   subject_places: OpenLibrarySubjectPlace[];
@@ -108,8 +108,8 @@ interface OpenLibraryResponse {
 export interface OpenLibraryBook {
   title: string;
   authors: { name: string; olid: string | null }[];
-  publishedDate: Date | null;
-  publisher: string;
+  publishedDate?: Date;
+  publisher?: string;
   olid: string;
   isbn13: string | null;
   isbn10: string | null;
@@ -181,8 +181,8 @@ export async function getBookByISBN(
       const book: OpenLibraryBook = {
         title: bookData.title,
         authors: authors ?? [],
-        publishedDate: publishedDate,
-        publisher: bookData.publishers[0]?.name ?? "",
+        publishedDate: publishedDate ?? undefined,
+        publisher: bookData.publishers?.[0]?.name ?? undefined,
         isbn13: bookData.identifiers.isbn_13?.[0] ?? null,
         isbn10: bookData.identifiers.isbn_10?.[0] ?? null,
         olid: bookData.identifiers.openlibrary?.[0] ?? "",
