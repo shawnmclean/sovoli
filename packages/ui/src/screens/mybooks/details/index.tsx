@@ -3,7 +3,7 @@
 import { View, ScrollView } from "react-native";
 import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
-import { Text } from "@sovoli/ui/components/text";
+import { Text } from "@sovoli/ui/components/ui/text";
 
 type MyBook = z.infer<(typeof contract.getMyBook.responses)[200]>;
 

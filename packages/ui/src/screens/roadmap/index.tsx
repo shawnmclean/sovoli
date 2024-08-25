@@ -1,16 +1,16 @@
 "use client";
 
 import { Linking, ScrollView, View } from "react-native";
-import { Button, ButtonText } from "@sovoli/ui/components/button";
-import { Image } from "@sovoli/ui/components/image";
-import { Link } from "@sovoli/ui/components/link";
-import { Text } from "@sovoli/ui/components/text";
+import { Button, ButtonText } from "@sovoli/ui/components/ui/button";
+import { Image } from "@sovoli/ui/components/ui/image";
+import { Link } from "@sovoli/ui/components/ui/link";
+import { Text } from "@sovoli/ui/components/ui/text";
 import { ThemeToggle } from "@sovoli/ui/components/ThemeToggle/ThemeToggle";
-import { Icon, AddIcon } from "@sovoli/ui/components/icon";
+import { Icon, AddIcon } from "@sovoli/ui/components/ui/icon";
 
 import RNButtons from "./rn-buttons";
 
-export function HomeScreen() {
+export function RoadmapScreen() {
   return (
     <ScrollView>
       <Text className="mb-4 text-2xl font-bold">

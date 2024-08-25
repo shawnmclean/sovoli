@@ -2,8 +2,8 @@
 
 import { View } from "react-native";
 import { useColorScheme } from "../../hooks/useColorScheme";
-import { Button, ButtonIcon } from "../button";
-import { SunIcon, MoonIcon } from "../icon";
+import { Button, ButtonIcon } from "../ui/button";
+import { SunIcon, MoonIcon } from "../ui/icon";
 
 export function ThemeToggle() {
   const { isDarkColorScheme, setColorScheme } = useColorScheme();

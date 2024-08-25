@@ -5,9 +5,9 @@ import { useSharedValue } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
 
 import { COVER_IMAGE_ASPECT_RATIO, window } from "../../lib/constants";
-import { Badge, BadgeText } from "../badge";
-import { Image } from "../image";
-import { Text } from "../text";
+import { Badge, BadgeText } from "../ui/badge";
+import { Image } from "../ui/image";
+import { Text } from "../ui/text";
 
 const PAGE_WIDTH = window.width;
 const MAX_CAROSEL_HEIGHT = 500;

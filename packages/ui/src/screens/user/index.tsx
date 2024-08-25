@@ -1,11 +1,11 @@
 "use client";
 
 import { ScrollView } from "react-native";
-import { Text } from "../../components/text";
+import { Text } from "../../components/ui/text";
 
 import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
-import { Link } from "@sovoli/ui/components/link";
+import { Link } from "@sovoli/ui/components/ui/link";
 
 type Profile = z.infer<(typeof contract.getUser.responses)[200]>;
 

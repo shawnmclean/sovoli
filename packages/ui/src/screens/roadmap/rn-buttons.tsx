@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import { Button, ButtonText } from "../../components/button";
-import { Text } from "../../components/text";
+import { Button, ButtonText } from "../../components/ui/button";
+import { Text } from "../../components/ui/text";
 import React from "react";
 // import {
 //   AlertDialog,

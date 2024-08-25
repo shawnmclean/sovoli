@@ -2,11 +2,11 @@
 
 import { ScrollView,  View } from "react-native";
 // import Categories from "./categories";
-import { Text } from "@sovoli/ui/components/text";
+import { Text } from "@sovoli/ui/components/ui/text";
 import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
-import { Link } from "@sovoli/ui/components/link";
-import { Button } from "@sovoli/ui/components/button";
+import { Link } from "@sovoli/ui/components/ui/link";
+import { Button } from "@sovoli/ui/components/ui/button";
 
 type MyBooksProfile = z.infer<(typeof contract.getUserMyBooksProfile.responses)[200]>;
 

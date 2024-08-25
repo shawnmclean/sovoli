@@ -1,7 +1,7 @@
 "use client";
 
 import { View } from "react-native";
-import { Text } from "@sovoli/ui/components/text";
+import { Text } from "@sovoli/ui/components/ui/text";
 
 export default function Categories() {
   return (

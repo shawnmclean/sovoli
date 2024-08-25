@@ -4,10 +4,10 @@ import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
 import { ScrollView, View } from "react-native";
 // import { BookHoverCard } from "@sovoli/ui/components/BookHoverCard";
-import { Button } from "@sovoli/ui/components/button";
+import { Button } from "@sovoli/ui/components/ui/button";
 import { Gallery } from "@sovoli/ui/components/Gallery";
 // import { Image } from "@sovoli/ui/components/image";
-import { Text } from "@sovoli/ui/components/text";
+import { Text } from "@sovoli/ui/components/ui/text";
 
 //type Shelf = NonNullable<RouterOutputs["shelf"]["bySlug"]>;
 type Shelf = z.infer<(typeof contract.getShelfBooks.responses)[200]>;
