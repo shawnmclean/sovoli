@@ -1,7 +1,7 @@
 "use client";
 
 import { Linking, ScrollView, View } from "react-native";
-import { Button } from "@sovoli/ui/components/button";
+import { Button, ButtonText } from "@sovoli/ui/components/button";
 import { Image } from "@sovoli/ui/components/image";
 import { Link } from "@sovoli/ui/components/link";
 import { Text } from "@sovoli/ui/components/text";
@@ -12,7 +12,7 @@ import RNButtons from "./rn-buttons";
 
 export function HomeScreen() {
   return (
-    <ScrollView className="mx-auto">
+    <ScrollView>
       <Text className="mb-4 text-2xl font-bold">
         Sovoli: Connecting Ideas, Advancing Knowledge
         <Icon className="ml-2" size="lg" as={AddIcon} />
@@ -60,9 +60,7 @@ export function HomeScreen() {
           <ListItem text="🚩 SSR RN TW: (Wait on NativeWind fixup)" />
           <ListItem text="✅ Share screen in Expo and Next" />
           <ListItem text="✅ Share TW Config" />
-          <ListItem text="✅ Dark Mode Toggle">
-            <ThemeToggle />
-          </ListItem>
+          <ListItem text="✅ Dark Mode Toggle" />
         </List>
       </Section>
 
@@ -87,7 +85,7 @@ export function HomeScreen() {
                   )
                 }
               >
-                <Text>Open Expo Go</Text>
+                <ButtonText>Open Expo Go</ButtonText>
               </Button>
             </View>
           </ListItem>
@@ -192,6 +190,8 @@ export function HomeScreen() {
           </ListItem>
           <ListItem text="🕛 Pull from Db" />
         </List>
+        
+            <ThemeToggle />
       </Section>
     </ScrollView>
   );

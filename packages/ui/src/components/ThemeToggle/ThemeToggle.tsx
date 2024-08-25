@@ -2,20 +2,20 @@
 
 import { View } from "react-native";
 import { useColorScheme } from "../../hooks/useColorScheme";
-import { Text } from "../text";
-import { Button } from "../button";
+import { Button, ButtonIcon } from "../button";
+import { SunIcon, MoonIcon } from "../icon";
 
 export function ThemeToggle() {
   const { isDarkColorScheme, setColorScheme } = useColorScheme();
   return (
     <View className="flex-row">
-      <Button
+      <Button className="rounded-full p-3.5" variant="solid"
         onPress={() => {
           const newTheme = isDarkColorScheme ? "light" : "dark";
           setColorScheme(newTheme);
         }}
       >
-        <Text>Toggle Theme</Text>
+        {isDarkColorScheme ? <ButtonIcon as={MoonIcon} /> : <ButtonIcon as={SunIcon} />}
       </Button>
     </View>
   );

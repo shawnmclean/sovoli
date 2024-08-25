@@ -538,6 +538,9 @@ importers:
       expo-image:
         specifier: 1.12.12
         version: 1.12.12(expo@51.0.24(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(bufferutil@4.0.8))
+      lucide-react-native:
+        specifier: 0.436.0
+        version: 0.436.0(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
       nativewind:
         specifier: 4.0.36
         version: 4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.3.5)
@@ -6437,6 +6440,13 @@ packages:
   lru-cache@7.18.3:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
+
+  lucide-react-native@0.436.0:
+    resolution: {integrity: sha512-QTokIONu7WO8SNqFHMYbmHtzPIPdem9FfQdHjCXTKlPJGes1TFH2cKHyL8gdTdRtwEPpjwXGPDC5G179L4S+4Q==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+      react-native-svg: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
 
   magic-string@0.30.11:
     resolution: {integrity: sha512-+Wri9p0QHMy+545hKww7YAu5NyzF8iomPL/RQazugQ9+Ez4Ic3mERMd8ZTX5rfK944j+560ZJi8iAwgak1Ac7A==}
@@ -16117,6 +16127,12 @@ snapshots:
       yallist: 4.0.0
 
   lru-cache@7.18.3: {}
+
+  lucide-react-native@0.436.0(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
+      react-native-svg: 15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
 
   magic-string@0.30.11:
     dependencies:

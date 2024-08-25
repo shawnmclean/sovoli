@@ -9,8 +9,7 @@
     "./screens/*": "./src/screens/*",
     "./providers/*": "./src/providers/*",
     "./hooks/*": "./src/hooks/*",
-    "./config/*": "./src/config/*",
-    "./config/tailwind/globals.css": "./src/config/tailwind/globals.css"
+    "./config/*": "./src/config/*"
   },
   "scripts": {
     "clean": "rm -rf dist",
@@ -29,6 +28,7 @@
     "@rn-primitives/hover-card": "1.0.3",
     "@rn-primitives/alert-dialog": "1.0.3",
     "@rn-primitives/tabs": "1.0.3",
+    "lucide-react-native": "0.436.0",
     "react": "18.2.0",
     "react-native": "0.74.3",
     "react-native-svg": "15.2.0",

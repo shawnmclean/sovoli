@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Button } from "../../components/button";
+import { Button, ButtonText } from "../../components/button";
 import { Text } from "../../components/text";
 import React from "react";
 // import {
@@ -26,7 +26,7 @@ function RNButtons() {
       <View className="flex-row">
         <Text>Counter is {counter}</Text>
         <Button className="m-2" onPress={handleCounter}>
-          <Text>Increase</Text>
+          <ButtonText>Increase</ButtonText>
         </Button>
       </View>
       {/* <View className="flex-1 justify-center items-center">
