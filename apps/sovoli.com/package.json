@@ -17,7 +17,6 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@rn-primitives/portal": "1.0.3",
     "@gluestack/ui-next-adapter": "2.1.12",
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",

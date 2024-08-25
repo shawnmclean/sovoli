@@ -3,7 +3,6 @@ import "raf/polyfill";
 
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { PortalHost } from "@rn-primitives/portal";
 import { UiProviders } from "@sovoli/ui/providers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -60,7 +59,6 @@ export default function RootLayout({
           </UiProviders>
           <SpeedInsights />
           <Analytics />
-          <PortalHost />
         </StyledJsxRegistry>
       </body>
     </html>
