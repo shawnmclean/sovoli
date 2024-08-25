@@ -17,7 +17,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@rn-primitives/portal": "1.0.3",
+    "@gluestack/ui-next-adapter": "2.1.12",
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",
     "@sovoli/ui": "workspace:*",
@@ -61,7 +61,7 @@
     "eslint": "catalog:",
     "postcss": "8.4.38",
     "prettier": "catalog:",
-    "tailwindcss": "3.4.4",
+    "tailwindcss": "3.4.10",
     "tailwindcss-animate": "1.0.7",
     "typescript": "catalog:"
   },

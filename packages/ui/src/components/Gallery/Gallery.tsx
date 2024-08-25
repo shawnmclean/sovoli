@@ -5,7 +5,7 @@ import { useSharedValue } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
 
 import { COVER_IMAGE_ASPECT_RATIO, window } from "../../lib/constants";
-import { Badge } from "../badge";
+import { Badge, BadgeText } from "../badge";
 import { Image } from "../image";
 import { Text } from "../text";
 
@@ -62,11 +62,10 @@ export function Gallery({ images }: { images: Image[] }) {
       />
       <Badge
         className="absolute bottom-2 right-2 opacity-80"
-        variant="secondary"
       >
-        <Text>
+        <BadgeText>
           {index + 1} / {images.length}
-        </Text>
+        </BadgeText>
       </Badge>
     </View>
   );

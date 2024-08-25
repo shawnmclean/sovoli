@@ -3,13 +3,13 @@ import "raf/polyfill";
 
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { PortalHost } from "@rn-primitives/portal";
 import { UiProviders } from "@sovoli/ui/providers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { QueryProviders } from "~/api/react";
 import { config } from "~/utils/config";
+import StyledJsxRegistry from "./registry";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -49,13 +49,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <UiProviders>
-          <QueryProviders>{children}</QueryProviders>
-        </UiProviders>
-        <SpeedInsights />
-        <Analytics />
-        <PortalHost />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable}`}
+        style={{ display: "flex" }}
+      >
+        <StyledJsxRegistry>
+          <UiProviders>
+            <QueryProviders>{children}</QueryProviders>
+          </UiProviders>
+          <SpeedInsights />
+          <Analytics />
+        </StyledJsxRegistry>
       </body>
     </html>
   );
