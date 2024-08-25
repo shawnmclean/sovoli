@@ -17,7 +17,8 @@
     ".next/types/**/*.ts",
     "app-env.d.ts",
     "next-env.d.ts",
-    "trigger.config.ts"
+    "trigger.config.ts",
+    "tailwind.config.ts"
   ],
   "exclude": ["node_modules"]
 }
