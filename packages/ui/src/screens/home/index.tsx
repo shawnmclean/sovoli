@@ -6,6 +6,7 @@ import { Image } from "@sovoli/ui/components/image";
 import { Link } from "@sovoli/ui/components/link";
 import { Text } from "@sovoli/ui/components/text";
 import { ThemeToggle } from "@sovoli/ui/components/ThemeToggle/ThemeToggle";
+import { Icon, AddIcon } from "@sovoli/ui/components/icon";
 
 import RNButtons from "./rn-buttons";
 
@@ -14,6 +15,7 @@ export function HomeScreen() {
     <ScrollView className="mx-auto">
       <Text className="mb-4 text-2xl font-bold">
         Sovoli: Connecting Ideas, Advancing Knowledge
+        <Icon className="ml-2" size="lg" as={AddIcon} />
       </Text>
 
       <Text className="mb-8">

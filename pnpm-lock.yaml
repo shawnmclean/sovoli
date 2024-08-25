@@ -431,7 +431,7 @@ importers:
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-eb3ad065-20240822(eslint@9.8.0)
+        version: 5.1.0-rc-b57d2823-20240822(eslint@9.8.0)
       eslint-plugin-turbo:
         specifier: 2.0.11
         version: 2.0.11(eslint@9.8.0)
@@ -502,6 +502,9 @@ importers:
       '@gluestack-ui/button':
         specifier: 1.0.7
         version: 1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      '@gluestack-ui/icon':
+        specifier: 0.1.22
+        version: 0.1.22(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
       '@gluestack-ui/nativewind-utils':
         specifier: 1.0.23
         version: 1.0.23(nativewind@4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.6.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.3.5))(react@18.2.0)(tailwindcss@3.3.5)
@@ -2118,6 +2121,12 @@ packages:
       react: '>=16'
       react-dom: '>=16'
 
+  '@gluestack-ui/icon@0.1.22':
+    resolution: {integrity: sha512-6E8N0OEEike0p6ITRJoEYpRlHqjRAabekEVSOk/HM/v+MJONT613TlQari5ozBHcaNLn/JhJqRxNHxNrzxd+ZQ==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+
   '@gluestack-ui/nativewind-utils@1.0.23':
     resolution: {integrity: sha512-4sLc24QwhYWEpyz/ApGqwLOzkZ/tUxpWHtsnIaibgmACcS+BaEebgfGwqmSp215cFE2UlMGofFKDCrdA5UGN0A==}
     peerDependencies:
@@ -2126,6 +2135,12 @@ packages:
 
   '@gluestack-ui/overlay@0.1.15':
     resolution: {integrity: sha512-yHInyJ/sH84X/3chun/tT+YfMIEX/680F31cMHQ5KsHRN4LwF3jOghUkS4592q3Wf32Zmqx0JwTrN8q6wOBT9A==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+
+  '@gluestack-ui/provider@0.1.12':
+    resolution: {integrity: sha512-EvDEknx6qkrJuKC8ygdixiTvnAAji9moArREueNJdhJp8Af53UIzgWk4m4oqGlRfgrw6p1xApgE/2VTwGE5f7w==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -3680,6 +3695,12 @@ packages:
   '@types/statuses@2.0.5':
     resolution: {integrity: sha512-jmIUGWrAiwu3dZpxntxieC+1n/5c3mjrImkmOSQ2NC5uP6cYO4aAZDdSmRcI5C1oiTmqlZGHC+/NmJrKogbP5A==}
 
+  '@types/strip-bom@3.0.0':
+    resolution: {integrity: sha512-xevGOReSYGM7g/kUBZzPqCrR/KYAo+F0yiPc85WFTJa0MSLtyFTVTU6cJu/aV4mid7IffDIWqo69THF2o4JiEQ==}
+
+  '@types/strip-json-comments@0.0.30':
+    resolution: {integrity: sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==}
+
   '@types/swagger-ui-react@4.18.3':
     resolution: {integrity: sha512-Mo/R7IjDVwtiFPs84pWvh5pI9iyNGBjmfielxqbOh2Jv+8WVSDVe8Nu25kb5BOuV2xmGS3o33jr6nwDJMBcX+Q==}
 
@@ -5062,8 +5083,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-eb3ad065-20240822:
-    resolution: {integrity: sha512-0kRgi63o6UVkYeo1aePMQuuN20HnfIqMl7Ol/VOwY7UectPexCmZp9AcmGmQ8JTnBomO8/B9Y2zbcrUSeajX0w==}
+  eslint-plugin-react-hooks@5.1.0-rc-b57d2823-20240822:
+    resolution: {integrity: sha512-YY9FJcnmCAA/DVWYjm7TBcgKDWZGtrIzL2BrddxM705RTZog56zdu4G0//d1W9TZV3mQkDratfjtH/tMTaL5Gw==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -8476,6 +8497,9 @@ packages:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
     engines: {node: '>=6'}
 
+  tsconfig@7.0.0:
+    resolution: {integrity: sha512-vZXmzPrL+EmC4T/4rVlT2jNVMWCi/O4DIiSj3UHg1OE5kCKbk4mfrXc6dZksLgRM/TZlKnousKH9bbTazUWRRw==}
+
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
@@ -8595,6 +8619,11 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  typescript@4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
 
   typescript@5.5.2:
     resolution: {integrity: sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==}
@@ -10895,6 +10924,16 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
+  '@gluestack-ui/icon@0.1.22(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@gluestack-ui/provider': 0.1.12(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - react-native
+
   '@gluestack-ui/nativewind-utils@1.0.23(nativewind@4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.6.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.3.5))(react@18.2.0)(tailwindcss@3.3.5)':
     dependencies:
       find-yarn-workspace-root: 2.0.0
@@ -10912,6 +10951,16 @@ snapshots:
       '@react-native-aria/overlays': 0.3.14(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - react-native
+
+  '@gluestack-ui/provider@0.1.12(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@react-native-aria/interactions': 0.2.13(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.3(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tsconfig: 7.0.0
+      typescript: 4.9.5
     transitivePeerDependencies:
       - react-native
 
@@ -13031,6 +13080,10 @@ snapshots:
 
   '@types/statuses@2.0.5': {}
 
+  '@types/strip-bom@3.0.0': {}
+
+  '@types/strip-json-comments@0.0.30': {}
+
   '@types/swagger-ui-react@4.18.3':
     dependencies:
       '@types/react': 18.2.79
@@ -14565,7 +14618,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-eb3ad065-20240822(eslint@9.8.0):
+  eslint-plugin-react-hooks@5.1.0-rc-b57d2823-20240822(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
 
@@ -18564,6 +18617,13 @@ snapshots:
       minimist: 1.2.8
       strip-bom: 3.0.0
 
+  tsconfig@7.0.0:
+    dependencies:
+      '@types/strip-bom': 3.0.0
+      '@types/strip-json-comments': 0.0.30
+      strip-bom: 3.0.0
+      strip-json-comments: 2.0.1
+
   tslib@2.6.3: {}
 
   tsx@4.16.2:
@@ -18684,6 +18744,8 @@ snapshots:
     transitivePeerDependencies:
       - eslint
       - supports-color
+
+  typescript@4.9.5: {}
 
   typescript@5.5.2: {}
 
