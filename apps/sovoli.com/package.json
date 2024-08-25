@@ -61,7 +61,7 @@
     "eslint": "catalog:",
     "postcss": "8.4.38",
     "prettier": "catalog:",
-    "tailwindcss": "3.4.4",
+    "tailwindcss": "3.4.10",
     "tailwindcss-animate": "1.0.7",
     "typescript": "catalog:"
   },

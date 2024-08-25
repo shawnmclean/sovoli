@@ -3,7 +3,6 @@ import gluestackPlugin from "@gluestack-ui/nativewind-utils/tailwind-plugin";
 // @ts-expect-error - no types
 import nativewind from "nativewind/preset";
 
-/** @type {import('tailwindcss').Config} */
 export default {
   darkMode: "class",
   content: ["src/**/*.{ts,tsx}"],
@@ -174,9 +173,6 @@ export default {
         },
       },
       fontFamily: {
-        heading: undefined,
-        body: undefined,
-        mono: undefined,
         roboto: ['Roboto', 'sans-serif'],
       },
       fontWeight: {

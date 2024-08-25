@@ -50,7 +50,7 @@
     "@babel/core": "7.24.0",
     "@types/react": "18.2.79",
     "eslint": "catalog:",
-    "tailwindcss": "3.3.4",
+    "tailwindcss": "3.4.10",
     "typescript": "catalog:"
   },
   "prettier": "@sovoli/prettier-config"

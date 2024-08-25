@@ -3,6 +3,7 @@
 import { View, ScrollView } from "react-native";
 import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
+import { Text } from "@sovoli/ui/components/text";
 
 type MyBook = z.infer<(typeof contract.getMyBook.responses)[200]>;
 
@@ -15,7 +16,7 @@ export default function MyBookDetailsScreen({ myBook }: Props) {
     <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 16 }}>
       <View className="max-w-6xl mx-auto">
         <View className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8">
-          {myBook.name}
+          <Text>{myBook.name}</Text>
         </View>
       </View>
     </ScrollView>
