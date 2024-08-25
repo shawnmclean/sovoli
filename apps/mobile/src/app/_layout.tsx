@@ -3,8 +3,8 @@
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Button, ButtonText } from "@sovoli/ui/components/button";
-import { Text } from "@sovoli/ui/components/text";
+import { Button, ButtonText } from "@sovoli/ui/components/ui/button";
+import { Text } from "@sovoli/ui/components/ui/text";
 import { useColorScheme } from "@sovoli/ui/hooks/useColorScheme";
 import { UiProviders } from "@sovoli/ui/providers";
 

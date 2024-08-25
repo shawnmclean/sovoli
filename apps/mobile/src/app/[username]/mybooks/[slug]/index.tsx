@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Text } from "@sovoli/ui/components/text";
+import { Text } from "@sovoli/ui/components/ui/text";
 import MyBookDetailsScreen from "@sovoli/ui/screens/mybooks/details";
 
 import { tsr } from "~/api/react";
