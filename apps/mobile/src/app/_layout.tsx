@@ -3,8 +3,9 @@
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Button, ButtonText } from "@sovoli/ui/components/ui/button";
-import { Text } from "@sovoli/ui/components/ui/text";
+import { Header } from "@sovoli/ui/components/Header";
+// import { Button, ButtonText } from "@sovoli/ui/components/ui/button";
+// import { Text } from "@sovoli/ui/components/ui/text";
 import { useColorScheme } from "@sovoli/ui/hooks/useColorScheme";
 import { UiProviders } from "@sovoli/ui/providers";
 
@@ -65,22 +66,23 @@ export default function RootLayout() {
         */}
         <Stack
           screenOptions={{
-            headerTitle(props) {
-              return (
-                <Text className="text-xl font-semibold">
-                  {toOptions(props.children)}
-                </Text>
-              );
-            },
-            headerRight: () => (
-              <Button
-                onPress={() => {
-                  setColorScheme(colorScheme == "dark" ? "light" : "dark");
-                }}
-              >
-                <ButtonText>{colorScheme}</ButtonText>
-              </Button>
-            ),
+            // headerTitle(props) {
+            //   return (
+            //     <Text className="text-xl font-semibold">
+            //       {toOptions(props.children)}
+            //     </Text>
+            //   );
+            // },
+            header: () => <Header />,
+            // headerRight: () => (
+            //   <Button
+            //     onPress={() => {
+            //       setColorScheme(colorScheme == "dark" ? "light" : "dark");
+            //     }}
+            //   >
+            //     <ButtonText>{colorScheme}</ButtonText>
+            //   </Button>
+            // ),
           }}
         />
         <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
@@ -89,14 +91,14 @@ export default function RootLayout() {
     </QueryProviders>
   );
 }
-function toOptions(name: string) {
-  const title = name
-    .split("-")
-    .map(function (str: string) {
-      return str.replace(/\b\w/g, function (char) {
-        return char.toUpperCase();
-      });
-    })
-    .join(" ");
-  return title;
-}
+// function toOptions(name: string) {
+//   const title = name
+//     .split("-")
+//     .map(function (str: string) {
+//       return str.replace(/\b\w/g, function (char) {
+//         return char.toUpperCase();
+//       });
+//     })
+//     .join(" ");
+//   return title;
+// }

@@ -44,6 +44,7 @@
   "devDependencies": {
     "@sovoli/typescript-config": "workspace:*",
     "@sovoli/eslint-config": "workspace:*",
+    "@sovoli/prettier-config": "workspace:*",
     "@types/react": "18.2.79",
     "@types/node": "catalog:",
     "typescript": "catalog:",
