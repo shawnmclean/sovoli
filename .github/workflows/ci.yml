@@ -123,6 +123,8 @@ jobs:
 
       - name: Build
         run: pnpm build --filter="@sovoli/mobile"
+        env:
+          NODE_ENV: production
 
       # - name: 📷 Check fingerprint
       #   id: fingerprint
