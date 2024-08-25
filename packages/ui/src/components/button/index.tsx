@@ -113,7 +113,7 @@ cssInterop(PrimitiveIcon, {
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
+      // @ts-expect-error - no types
       fill: true,
       color: true,
       stroke: true,

@@ -66,15 +66,15 @@ const iconStyle = tva({
   },
 });
 
+// @ts-expect-error - no types
 cssInterop(UIIcon, {
   className: {
-    target: 'style',
+    target: "style",
     nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: true,
-      stroke: true,
+      height: "height",
+      width: "width",
+      fill: "fill",
+      color: "color",
     },
   },
 });
