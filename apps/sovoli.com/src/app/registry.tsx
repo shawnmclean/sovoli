@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 "use client";
 
 import React, { useRef, useState } from "react";
-// @ts-expect-error
+// @ts-expect-error - what gluestack recommends, dunno if bs
 import { AppRegistry } from "react-native-web";
+// eslint-disable-next-line @next/next/no-document-import-in-page
 import { Main } from "next/document";
 import { useServerInsertedHTML } from "next/navigation";
 import { flush } from "@gluestack-ui/nativewind-utils/flush";

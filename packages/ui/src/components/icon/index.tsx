@@ -96,6 +96,7 @@ export const Icon = React.forwardRef<React.ElementRef<typeof Svg>, IIConProps>(
       );
     } else if (
       (props.height !== undefined || props.width !== undefined) &&
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       size === undefined
     ) {
       return (
@@ -133,7 +134,7 @@ const createIconUI = ({ ...props }: ParameterTypes) => {
     ) => {
       return (
         <UIIconCreateIcon
-          // @ts-ignore
+          // @ts-expect-error - no types
           ref={ref}
           {...props}
           className={iconStyle({ size, class: className })}

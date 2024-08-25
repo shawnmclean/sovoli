@@ -47,6 +47,7 @@ export function GluestackUIProvider({
   useSafeLayoutEffect(() => {
     if (mode !== 'system') {
       const documentElement = document.documentElement;
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (documentElement) {
         documentElement.classList.add(mode);
         documentElement.classList.remove(mode === 'light' ? 'dark' : 'light');
@@ -67,6 +68,7 @@ export function GluestackUIProvider({
   useSafeLayoutEffect(() => {
     if (typeof window !== 'undefined') {
       const documentElement = document.documentElement;
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (documentElement) {
         const head = documentElement.querySelector('head');
         let style = head?.querySelector(`[id='${variableStyleTagId}']`);

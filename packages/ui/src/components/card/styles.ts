@@ -1,5 +1,6 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { isWeb } from '@gluestack-ui/nativewind-utils/IsWeb';
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 const baseStyle = isWeb ? 'flex flex-col relative z-0' : '';
 
 export const cardStyle = tva({
