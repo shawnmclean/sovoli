@@ -1,28 +1,13 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@sovoli/db";
 import NextAuth from "next-auth";
-import Passkey from "next-auth/providers/passkey";
+import Resend from "next-auth/providers/resend";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
-    Passkey({
-      formFields: {
-        username: {
-          label: "Username",
-          required: true,
-          autocomplete: "username webauthn",
-        },
-        email: {
-          label: "Email",
-          required: true,
-          autocomplete: "email webauthn",
-        },
-      },
+    Resend({
+      from: "hello@sovoli.com",
     }),
   ],
   adapter: DrizzleAdapter(db),
-
-  experimental: {
-    enableWebAuthn: true,
-  },
 });

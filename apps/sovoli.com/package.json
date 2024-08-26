@@ -18,8 +18,6 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "1.4.2",
-    "@simplewebauthn/server": "9.0.3",
-    "@simplewebauthn/browser": "9.0.1",
     "@gluestack/ui-next-adapter": "2.1.12",
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",
