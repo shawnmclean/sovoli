@@ -1,6 +1,6 @@
 import { HomeScreen } from "@sovoli/ui/screens/home";
 
-import { signIn } from "~/auth";
+import { auth, signIn } from "~/auth";
 
 export default function Home() {
   return (
@@ -20,15 +20,26 @@ export default function Home() {
   );
 }
 
-function SignIn() {
+async function SignIn() {
+  const session = await auth();
+
+  if (!session) {
+    return (
+      <form
+        action={async () => {
+          "use server";
+          await signIn();
+        }}
+      >
+        <button type="submit">Sign in</button>
+      </form>
+    );
+  }
+
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn();
-      }}
-    >
-      <button type="submit">Sign in</button>
-    </form>
+    <div>
+      Logged in as {session.user.name} - {session.user.email} -{" "}
+      {session.user.username}
+    </div>
   );
 }
