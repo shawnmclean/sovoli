@@ -17,6 +17,9 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "1.4.2",
+    "@simplewebauthn/server": "10.0.1",
+    "@simplewebauthn/browser": "10.0.0",
     "@gluestack/ui-next-adapter": "2.1.12",
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",
