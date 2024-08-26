@@ -19,7 +19,7 @@ import { z } from "zod";
 import { shelves } from "./furnitures";
 import { users } from "./identity";
 
-export const authors = pgTable("authors", {
+export const authors = pgTable("author", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
   // open library id
   olid: varchar("olid", { length: 20 }).unique(),
@@ -59,7 +59,7 @@ export const BookCoverSchema = z.object({
 export type BookCover = z.infer<typeof BookCoverSchema>;
 
 export const books = pgTable(
-  "books",
+  "book",
   {
     id: uuid("id").notNull().primaryKey().defaultRandom(),
 
@@ -109,7 +109,7 @@ export const books = pgTable(
 );
 
 export const bookEmbeddings = pgTable(
-  "book_embeddings",
+  "book_embedding",
   {
     bookId: uuid("book_id")
       .primaryKey()
@@ -164,7 +164,7 @@ export type MyBookHydrationErrorSchema = z.infer<
 >;
 
 export const myBooks = pgTable(
-  "my_books",
+  "my_book",
   {
     id: uuid("id").notNull().primaryKey().defaultRandom(),
     // usually follows the title of the book

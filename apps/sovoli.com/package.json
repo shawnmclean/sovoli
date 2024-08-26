@@ -36,6 +36,7 @@
     "@vercel/speed-insights": "1.0.12",
     "nativewind": "4.0.36",
     "next": "14.2.4",
+    "next-auth": "5.0.0-beta.20",
     "raf": "3.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -53,7 +54,6 @@
     "@types/react": "18.2.79",
     "@types/react-dom": "18.2.18",
     "@types/swagger-ui-react": "4.18.3",
-    "trigger.dev": "3.0.0-beta.55",
     "autoprefixer": "10.4.19",
     "babel-plugin-react-native-web": "0.19.10",
     "concurrently": "8.2.2",
@@ -63,6 +63,7 @@
     "prettier": "catalog:",
     "tailwindcss": "3.4.10",
     "tailwindcss-animate": "1.0.7",
+    "trigger.dev": "3.0.0-beta.55",
     "typescript": "catalog:"
   },
   "prettier": "@sovoli/prettier-config"
