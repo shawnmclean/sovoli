@@ -1,13 +1,13 @@
 "use client";
 
-import { ScrollView } from "react-native";
-import { Text } from "../../components/ui/text";
-
 import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
+import { ScrollView } from "react-native";
 import { Link } from "@sovoli/ui/components/ui/link";
 
-type Profile = z.infer<(typeof contract.getUser.responses)[200]>;
+import { Text } from "../../components/ui/text";
+
+type Profile = z.infer<(typeof contract.getUserMyBooksProfile.responses)[200]>;
 
 interface Props {
   profile: Profile;
@@ -16,7 +16,7 @@ interface Props {
 export function UserScreen({ profile }: Props) {
   return (
     <ScrollView className="mx-auto">
-      <Text className="text-2xl font-bold mb-4">
+      <Text className="mb-4 text-2xl font-bold">
         👀 User Screen: {profile.name}
       </Text>
       <Link href={`/${profile.username}/mybooks`}>

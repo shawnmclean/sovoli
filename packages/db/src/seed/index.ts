@@ -27,6 +27,7 @@ const data = [
   {
     name: "John Doe",
     username: "johndoe",
+    email: "johndoe@sovoli.com",
     furnitures: [
       {
         name: "Wardrobe",
@@ -85,6 +86,7 @@ const data = [
   {
     name: "Jane Doe",
     username: "janedoe",
+    email: "janedoe@sovoli.com",
     furnitures: [
       {
         name: "Wardrobe",
@@ -105,11 +107,12 @@ const data = [
 
 const seedUsers = async () => {
   try {
-    for (const { name, username, furnitures } of data) {
+    for (const { name, email, username, furnitures } of data) {
       const [user] = await db
         .insert(schema.users)
         .values({
           name,
+          email,
           username,
         })
         .onConflictDoUpdate({
