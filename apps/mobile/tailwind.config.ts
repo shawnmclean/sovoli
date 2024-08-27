@@ -5,7 +5,8 @@ const config = {
   darkMode: "class",
   content: [
     ...baseConfig.content,
-    "../../packages/ui/**/*.{ts,tsx}",
+    "../../packages/ui/src/components/**/*.{ts,tsx}",
+    "../../packages/ui/src/screens/**/*.{ts,tsx}",
     "./node_modules/@sovoli/**/*.{ts,tsx}",
   ],
   presets: [baseConfig],
