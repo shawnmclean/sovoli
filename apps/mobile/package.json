@@ -5,6 +5,7 @@
   "main": "expo-router/entry",
   "scripts": {
     "dev": "expo start",
+    "clean": "git clean -xdf node_modules .turbo .expo android ios build",
     "prebuild": "expo prebuild",
     "build": "expo export --output-dir ./build --platform ios",
     "lint": "eslint",

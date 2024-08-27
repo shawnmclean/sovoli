@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf .turbo node_modules",
+    "clean": "git clean -xdf node_modules dist .turbo",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "migrate": "pnpm with-env tsx ./src/migrate/index.ts",
