@@ -72,9 +72,9 @@ jobs:
     name: Build for iOS
     needs: build
     runs-on: macos-latest
-    # REQUIRED: limit concurrency when pushing main(default) branch to prevent conflict for this action to update its fingerprint database
-    concurrency: fingerprint-${{ github.event_name != 'pull_request' && 'main' || github.run_id }}
-    # To use Remote Caching, uncomment the next lines and follow the steps below.
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}-build-ios
+      cancel-in-progress: true
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ vars.TURBO_TEAM }}
@@ -121,16 +121,10 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: pnpm build --filter="@sovoli/mobile"
+      - name: EAS Build
+        run: cd apps/mobile && eas build -p ios --profile preview --local --output build.ipa --non-interactive
         env:
           NODE_ENV: production
-
-      # - name: 📷 Check fingerprint
-      #   id: fingerprint
-      #   uses: expo/expo-github-action/fingerprint@main
-      #   with:
-      #     working-directory: apps/mobile
 
       - name: 🚀 Update Mobile
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
