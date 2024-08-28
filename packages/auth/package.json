@@ -7,8 +7,7 @@
       ".": {
         "react-server": "./src/index.rsc.ts",
         "default": "./src/index.ts"
-      },
-      "./env": "./env.ts"
+      }
     },
     "license": "MIT",
     "scripts": {
@@ -20,9 +19,9 @@
     "dependencies": {
       "@sovoli/db": "workspace:*",
       "@auth/core": "0.34.2",
-      "@auth/drizzle-adapter": "^1.4.2",
-      "@t3-oss/env-nextjs": "^0.11.0",
-      "next": "^14.2.5",
+      "@auth/drizzle-adapter": "1.4.2",
+      "@t3-oss/env-nextjs": "0.11.0",
+      "next": "14.2.5",
       "next-auth": "5.0.0-beta.20",
       "react": "18.2.0",
       "react-dom": "18.2.0",
@@ -36,5 +35,5 @@
       "prettier": "catalog:",
       "typescript": "catalog:"
     },
-    "prettier": "@acme/prettier-config"
+    "prettier": "@sovoli/prettier-config"
   }
