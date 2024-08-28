@@ -10,8 +10,7 @@
     "clean": "git clean -xdf node_modules dist .turbo",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "with-env": "dotenv -e ../../.env --"
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {},
   "devDependencies": {
