@@ -1,6 +1,5 @@
+import { auth, signIn } from "@sovoli/auth";
 import { HomeScreen } from "@sovoli/ui/screens/home";
-
-import { auth, signIn } from "~/auth";
 
 export default function Home() {
   return (
