@@ -1,4 +1,4 @@
 import { contract } from "./contract";
-import { router } from "./root";
+import { middlewares, router } from "./root";
 
-export { router, contract };
+export { router, contract, middlewares };
