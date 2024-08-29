@@ -319,6 +319,9 @@ importers:
       '@ai-sdk/openai':
         specifier: 0.0.47
         version: 0.0.47(zod@3.23.8)
+      '@sovoli/auth':
+        specifier: workspace:*
+        version: link:../auth
       '@sovoli/db':
         specifier: workspace:*
         version: link:../db

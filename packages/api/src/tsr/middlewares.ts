@@ -1,15 +1,7 @@
+import { auth, validateToken } from "@sovoli/auth";
 import { tsr } from "@ts-rest/serverless/next";
 
 import type { GlobalRequestContext } from "./router/identity/identityRouter";
-
-// Temp until we move the auth into its own package
-function validateToken(authToken: string) {
-  return { user: { id: authToken } };
-}
-// Temp until we move the auth into its own package
-function auth() {
-  return null;
-}
 
 /**
  * Isomorphic Session getter for API requests
