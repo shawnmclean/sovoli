@@ -37,8 +37,6 @@ async function SignIn() {
 
   return (
     <div>
-      Logged in as {session.user.name} - {session.user.email} -{" "}
-      {session.user.username} - {session.user.id}
       <pre>{JSON.stringify(session, null, 2)}</pre>
     </div>
   );
