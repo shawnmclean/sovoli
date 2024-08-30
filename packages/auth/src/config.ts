@@ -1,4 +1,8 @@
-import type { DefaultSession, NextAuthConfig, Session as NextAuthSession } from "next-auth";
+import type {
+  DefaultSession,
+  NextAuthConfig,
+  Session as NextAuthSession,
+} from "next-auth";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@sovoli/db";
 // import {
@@ -8,7 +12,6 @@ import { db } from "@sovoli/db";
 //   verificationTokens,
 // } from "@sovoli/db/schema";
 import Resend from "next-auth/providers/resend";
-
 
 const adapter = DrizzleAdapter(db);
 
@@ -27,28 +30,29 @@ export const authConfig: NextAuthConfig = {
         ...session,
         user: {
           ...session.user,
-          username: user.username,
         },
       };
     },
   },
-}
+  session: {
+    strategy: "jwt",
+  },
+};
 
 export const validateToken = async (
-    token: string,
-  ): Promise<NextAuthSession | null> => {
-    const sessionToken = token.slice("Bearer ".length);
-    const session = await adapter.getSessionAndUser?.(sessionToken);
-    return session
-      ? {
-          user: {
-            ...session.user,
-          },
-          expires: session.session.expires.toISOString(),
-        }
-      : null;
-  };
-
+  token: string,
+): Promise<NextAuthSession | null> => {
+  const sessionToken = token.slice("Bearer ".length);
+  const session = await adapter.getSessionAndUser?.(sessionToken);
+  return session
+    ? {
+        user: {
+          ...session.user,
+        },
+        expires: session.session.expires.toISOString(),
+      }
+    : null;
+};
 
 declare module "next-auth" {
   interface User {
