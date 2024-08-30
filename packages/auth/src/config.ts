@@ -23,9 +23,7 @@ export const authConfig: NextAuthConfig = {
     }),
   ],
   callbacks: {
-    session({ session, user }) {
-      // `session.user.address` is now a valid property, and will be type-checked
-      // in places like `useSession().data.user` or `auth().user`
+    session({ session }) {
       return {
         ...session,
         user: {
