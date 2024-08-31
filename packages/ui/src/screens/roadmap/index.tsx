@@ -1,12 +1,12 @@
 "use client";
 
 import { Linking, ScrollView, View } from "react-native";
+import { ThemeToggle } from "@sovoli/ui/components/ThemeToggle/ThemeToggle";
 import { Button, ButtonText } from "@sovoli/ui/components/ui/button";
+import { AddIcon, Icon } from "@sovoli/ui/components/ui/icon";
 import { Image } from "@sovoli/ui/components/ui/image";
 import { Link } from "@sovoli/ui/components/ui/link";
 import { Text } from "@sovoli/ui/components/ui/text";
-import { ThemeToggle } from "@sovoli/ui/components/ThemeToggle/ThemeToggle";
-import { Icon, AddIcon } from "@sovoli/ui/components/ui/icon";
 
 import RNButtons from "./rn-buttons";
 
@@ -172,7 +172,6 @@ export function RoadmapScreen() {
           <ListItem text="username/passkeys registration" />
           <ListItem text="passkeys login" />
           <ListItem text="ChatGPT auth" />
-          <ListItem text="TRPC auth" />
           <ListItem text="TSR auth" />
           <ListItem text="Expo auth" />
         </List>
@@ -190,8 +189,8 @@ export function RoadmapScreen() {
           </ListItem>
           <ListItem text="🕛 Pull from Db" />
         </List>
-        
-            <ThemeToggle />
+
+        <ThemeToggle />
       </Section>
     </ScrollView>
   );

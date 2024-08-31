@@ -8,10 +8,6 @@ catalog:
   "@ts-rest/open-api": 3.49.3
   "@ts-rest/react-query": 3.49.3
   "@ts-rest/serverless": 3.49.3
-  "@trpc/client": 11.0.0-rc.461
-  "@trpc/next": 11.0.0-rc.461
-  "@trpc/react-query": 11.0.0-rc.461
-  "@trpc/server": 11.0.0-rc.461
   "@types/react": 18.2.79
   "@types/node": 22.0.2
   prettier: 3.3.3

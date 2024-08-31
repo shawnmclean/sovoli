@@ -21,8 +21,6 @@
     "@react-native-async-storage/async-storage": "1.23.1",
     "@expo/metro-config": "0.18.11",
     "@tanstack/react-query": "catalog:",
-    "@trpc/client": "catalog:",
-    "@trpc/react-query": "catalog:",
     "@ts-rest/core": "catalog:",
     "@ts-rest/react-query": "catalog:",
     "@react-navigation/native": "6.0.2",

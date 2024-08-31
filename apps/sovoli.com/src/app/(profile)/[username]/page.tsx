@@ -13,6 +13,7 @@ interface Props {
 async function getUserProfile({ params }: Props) {
   const client = tsr.initQueryClient(getQueryClientRsc());
   try {
+    console.log("getUserProfile");
     return await client.getUserMyBooksProfile.fetchQuery({
       queryKey: ["username"],
       queryData: {
@@ -22,6 +23,7 @@ async function getUserProfile({ params }: Props) {
       },
     });
   } catch (error) {
+    console.log(error);
     // Type guard to check if error is an object with a 'status' property
     if (typeof error === "object" && error !== null && "status" in error) {
       const status = (error as { status?: number }).status; // Safe type assertion
@@ -33,9 +35,9 @@ async function getUserProfile({ params }: Props) {
 
 export default async function UserPage({ params }: Props) {
   const response = await getUserProfile({ params });
-
   if (!response) return notFound();
 
+  console.log(response.body);
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
       <UserScreen profile={response.body} />

@@ -2,8 +2,6 @@
 import { db } from "@sovoli/db";
 import { sql } from "drizzle-orm";
 
-import { api } from "~/api/trpc";
-
 export const dynamic = "force-dynamic";
 
 export async function GET() {
@@ -15,15 +13,10 @@ export async function GET() {
   // - analytics
   // - database
   // - AI Gateway (OpenAI, etc)
-  let trpcHealth, dbHealth;
+  let dbHealth;
 
   // await helloWorld.trigger({ message: "health check" });
 
-  try {
-    trpcHealth = await api.health.check();
-  } catch (e) {
-    trpcHealth = { status: "error", error: e };
-  }
   try {
     // check round trip time to db health check
     const startTime = Date.now();
@@ -45,7 +38,7 @@ export async function GET() {
     };
   }
 
-  const data = { status: "ok", trpc: trpcHealth, db: dbHealth };
+  const data = { status: "ok", db: dbHealth };
 
   return Response.json(data);
 }

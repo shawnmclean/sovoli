@@ -22,6 +22,7 @@ export const userRouter = tsr.router(userContract, {
     params: { username },
     query: { page, pageSize },
   }) => {
+    console.log("getUserMyBooksProfile");
     const filter = getMyBooksByUsernameFilter(username);
     const [user, mybooks, mybooksTotal] = await Promise.all([
       db.query.users.findFirst({
