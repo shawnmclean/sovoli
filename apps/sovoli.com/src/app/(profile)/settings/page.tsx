@@ -1,6 +1,6 @@
 import { auth, signIn } from "@sovoli/auth";
 
-export default async function SettingsPage() {
+export default function SettingsPage() {
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
       <h1>Settings</h1>
