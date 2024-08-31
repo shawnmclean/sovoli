@@ -9,7 +9,7 @@ export const meContract = c.router({
     path: "/me",
     responses: {
       200: z.object({
-        email: z.string(),
+        email: z.string().nullish(),
       }),
     },
     summary: "Get the authenticated user",

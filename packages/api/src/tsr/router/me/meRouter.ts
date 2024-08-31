@@ -1,14 +1,16 @@
-import type { User } from "@sovoli/auth";
 import { tsr, TsRestResponse } from "@ts-rest/serverless/fetch";
 
-import type { TSRContext } from "../../types";
+import type { TSRAuthContext, TSRGlobalContext } from "../../types";
 import { meContract } from "./meContract";
 
 export const meRouter = tsr.router(meContract, {
-  getMe: tsr.routeWithMiddleware(meContract.getMe)<TSRContext, { user: User }>({
+  getMe: tsr.routeWithMiddleware(meContract.getMe)<
+    TSRGlobalContext,
+    TSRAuthContext
+  >({
     middleware: [
-      (request) => {
-        if (!request.session) {
+      (req) => {
+        if (!req.session) {
           return TsRestResponse.fromJson({
             status: 401,
             body: {
@@ -16,17 +18,17 @@ export const meRouter = tsr.router(meContract, {
             },
           });
         }
-        request.user = request.session.user;
+        req.user = req.session.user;
       },
     ],
-    handler: (_, { request: { user } }) => {
+    handler: async (_, { request: { user } }) => {
       console.log(user);
-      return {
+      return Promise.resolve({
         status: 200,
         body: {
           email: user.email,
         },
-      };
+      });
     },
   }),
 });
