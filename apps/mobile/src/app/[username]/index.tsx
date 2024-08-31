@@ -2,7 +2,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { UserScreen } from "@sovoli/ui/screens/user";
 
-import { tsr } from "~/api/react";
+import { tsr } from "~/api/tsr";
 
 export default function Page() {
   const { username } = useLocalSearchParams();
