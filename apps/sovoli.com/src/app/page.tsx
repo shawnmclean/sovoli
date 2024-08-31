@@ -1,4 +1,4 @@
-import { auth, signIn } from "@sovoli/auth";
+import { auth, signIn, signOut } from "@sovoli/auth";
 import { HomeScreen } from "@sovoli/ui/screens/home";
 
 export default function Home() {
@@ -36,8 +36,13 @@ async function SignIn() {
   }
 
   return (
-    <div>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
-    </div>
+    <form
+      action={async () => {
+        "use server";
+        await signOut();
+      }}
+    >
+      <button type="submit">Sign out</button>
+    </form>
   );
 }
