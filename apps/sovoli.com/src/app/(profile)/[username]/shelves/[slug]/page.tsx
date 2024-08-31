@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
 
 import { getQueryClientRsc } from "~/api/query-client";
-import { tsr } from "~/api/tsr";
+import { tsrReactQuery } from "~/api/tsr";
 import { config } from "~/utils/config";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +14,7 @@ interface Props {
 }
 
 async function getShelfBooks({ params, searchParams }: Props) {
-  const client = tsr.initQueryClient(getQueryClientRsc());
+  const client = tsrReactQuery.initQueryClient(getQueryClientRsc());
   try {
     return await client.getShelfBooks.fetchQuery({
       queryKey: ["username", "slug"],

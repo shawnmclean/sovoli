@@ -1,8 +1,8 @@
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import { UserScreen } from "@sovoli/ui/screens/user";
 
-import { getQueryClientRsc } from "~/api/query-client";
-import { tsr } from "~/api/tsr";
+import { api } from "~/api/tsr";
 
 export const dynamic = "force-dynamic";
 
@@ -10,34 +10,24 @@ interface Props {
   params: { username: string };
 }
 
-async function getUserProfile({ params }: Props) {
-  const client = tsr.initQueryClient(getQueryClientRsc());
-  try {
-    console.log("getUserProfile");
-    return await client.getUserMyBooksProfile.fetchQuery({
-      queryKey: ["username"],
-      queryData: {
-        params: {
-          username: params.username,
-        },
-      },
-    });
-  } catch (error) {
-    console.log(error);
-    // Type guard to check if error is an object with a 'status' property
-    if (typeof error === "object" && error !== null && "status" in error) {
-      const status = (error as { status?: number }).status; // Safe type assertion
+const getUserProfile = cache(async ({ params }: Props) => {
+  const response = await api.getUserMyBooksProfile({
+    params: {
+      username: params.username,
+    },
+  });
+  // Debugging the response
+  console.log("API Response:", response);
+  console.log("Response Status:", response.status);
+  // console.log("Response Body:", response.body);
 
-      if (status === 404) return null;
-    }
-  }
-}
+  return response;
+});
 
 export default async function UserPage({ params }: Props) {
   const response = await getUserProfile({ params });
-  if (!response) return notFound();
+  if (response.status !== 200) return notFound();
 
-  console.log(response.body);
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
       <UserScreen profile={response.body} />

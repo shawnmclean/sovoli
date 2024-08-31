@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { MyBooksScreen } from "@sovoli/ui/screens/mybooks";
 
 import { getQueryClientRsc } from "~/api/query-client";
-import { tsr } from "~/api/tsr";
+import { tsrReactQuery } from "~/api/tsr";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 async function getUserMyBooksProfile({ params, searchParams }: Props) {
-  const client = tsr.initQueryClient(getQueryClientRsc());
+  const client = tsrReactQuery.initQueryClient(getQueryClientRsc());
   try {
     return await client.getUserMyBooksProfile.fetchQuery({
       queryKey: ["username"],

@@ -2,7 +2,7 @@
 
 import { ShelfScreen } from "@sovoli/ui/screens/mybooks/shelf";
 
-import { tsr } from "~/api/tsr";
+import { tsrReactQuery } from "~/api/tsr";
 
 export function Shelf({
   username,
@@ -13,7 +13,7 @@ export function Shelf({
   slug: string;
   page: number | undefined;
 }) {
-  const { data } = tsr.getShelfBooks.useSuspenseQuery({
+  const { data } = tsrReactQuery.getShelfBooks.useSuspenseQuery({
     queryKey: ["username", "slug"],
     queryData: {
       params: {
