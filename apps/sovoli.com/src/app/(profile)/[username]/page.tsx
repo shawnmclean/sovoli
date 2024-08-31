@@ -15,11 +15,10 @@ const getUserProfile = cache(async ({ params }: Props) => {
     params: {
       username: params.username,
     },
+    fetchOptions: {
+      cache: "no-store",
+    },
   });
-  // Debugging the response
-  console.log("API Response:", response);
-  console.log("Response Status:", response.status);
-  // console.log("Response Body:", response.body);
 
   return response;
 });

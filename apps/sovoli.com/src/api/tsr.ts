@@ -7,7 +7,9 @@ import { getBaseUrl } from "~/utils/getBaseUrl";
 
 const clientOptions = {
   baseUrl: getBaseUrl() + "/api/v1",
-  baseHeaders: {},
+  baseHeaders: {
+    "x-app-source": "ts-rest",
+  },
   throwOnUnknownStatus: true,
 } satisfies InitClientArgs;
 
