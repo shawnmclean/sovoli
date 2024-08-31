@@ -1,7 +1,8 @@
+import type { Session } from "@sovoli/auth";
 import type { TsRestRequest } from "@ts-rest/serverless";
 
-export interface Context {
-  user: string;
+export interface TSRContext {
+  session: Session | null;
 }
 
-export type ExtendedRequest = TsRestRequest & Context;
+export type ExtendedRequest = TsRestRequest & TSRContext;

@@ -2,3 +2,5 @@ import { contract } from "./contract";
 import { router } from "./root";
 
 export { router, contract };
+
+export type { TSRContext } from "./types";

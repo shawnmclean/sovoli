@@ -1,6 +1,6 @@
 import { count, db, eq, inArray, schema, sql } from "@sovoli/db";
 import { SelectUserSchema } from "@sovoli/db/schema";
-import { tsr } from "@ts-rest/serverless/next";
+import { tsr } from "@ts-rest/serverless/fetch";
 
 import { GetUserMyBooksProfileResponseSchema } from "./schema";
 import { userContract } from "./userContract";
@@ -22,7 +22,6 @@ export const userRouter = tsr.router(userContract, {
     params: { username },
     query: { page, pageSize },
   }) => {
-    console.log("getUserMyBooksProfile");
     const filter = getMyBooksByUsernameFilter(username);
     const [user, mybooks, mybooksTotal] = await Promise.all([
       db.query.users.findFirst({
