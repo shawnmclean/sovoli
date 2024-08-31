@@ -3,7 +3,7 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import { Text } from "@sovoli/ui/components/ui/text";
 import MyBookDetailsScreen from "@sovoli/ui/screens/mybooks/details";
 
-import { tsr } from "~/api/react";
+import { tsr } from "~/api/tsr";
 
 export default function Page() {
   const { username, slug } = useLocalSearchParams();
