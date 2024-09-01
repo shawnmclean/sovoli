@@ -14,7 +14,6 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
           <VStack className="w-full">{children}</VStack>
         </HStack>
       </VStack>
-      {children}
     </VStack>
     // </SafeAreaView>
   );
