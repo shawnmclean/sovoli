@@ -23,7 +23,7 @@
   "dependencies": {
     "@vercel/postgres": "0.9.0",
     "@auth/drizzle-adapter": "1.4.2",
-    "drizzle-orm": "0.31.2",
+    "drizzle-orm": "0.33.0",
     "drizzle-zod": "0.5.1",
     "zod": "catalog:"
   },
@@ -32,7 +32,7 @@
     "@sovoli/typescript-config": "workspace:*",
     "@sovoli/prettier-config": "workspace:*",
     "dotenv-cli": "7.4.2",
-    "drizzle-kit": "0.22.8",
+    "drizzle-kit": "0.24.2",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:",

@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import { MyBooksScreen } from "@sovoli/ui/screens/mybooks";
 
-import { getQueryClientRsc } from "~/api/query-client";
-import { tsrReactQuery } from "~/api/tsr";
+import { api } from "~/api/tsr";
 
 export const dynamic = "force-dynamic";
 
@@ -12,33 +11,23 @@ interface Props {
 }
 
 async function getUserMyBooksProfile({ params, searchParams }: Props) {
-  const client = tsrReactQuery.initQueryClient(getQueryClientRsc());
-  try {
-    return await client.getUserMyBooksProfile.fetchQuery({
-      queryKey: ["username"],
-      queryData: {
-        params: {
-          username: params.username,
-        },
-        query: {
-          page: searchParams.page,
-        },
-      },
-    });
-  } catch (error) {
-    // Type guard to check if error is an object with a 'status' property
-    if (typeof error === "object" && error !== null && "status" in error) {
-      const status = (error as { status?: number }).status; // Safe type assertion
-
-      if (status === 404) return null;
-    }
-  }
+  return await api.getUserMyBooksProfile({
+    params: {
+      username: params.username,
+    },
+    query: {
+      page: searchParams.page,
+    },
+    fetchOptions: {
+      cache: "no-store",
+    },
+  });
 }
 
 export default async function MyBooks({ params, searchParams }: Props) {
   const response = await getUserMyBooksProfile({ params, searchParams });
 
-  if (!response) return notFound();
+  if (response.status !== 200) return notFound();
 
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
