@@ -518,6 +518,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@gluestack-ui/avatar':
+        specifier: 0.1.17
+        version: 0.1.17(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
       '@gluestack-ui/button':
         specifier: 1.0.7
         version: 1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
@@ -536,6 +539,9 @@ importers:
       '@sovoli/api':
         specifier: workspace:*
         version: link:../api
+      '@unitools/image':
+        specifier: 0.0.5
+        version: 0.0.5(expo-image@1.12.12(expo@51.0.24(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(bufferutil@4.0.8)))
       class-variance-authority:
         specifier: 0.7.0
         version: 0.7.0
@@ -2118,6 +2124,12 @@ packages:
   '@formatjs/intl-localematcher@0.5.4':
     resolution: {integrity: sha512-zTwEpWOzZ2CiKcB93BLngUX59hQkuZjT2+SAQEscSm52peDW/getsawMcWF1rGRpMCX6D7nSJA3CzJ8gn13N/g==}
 
+  '@gluestack-ui/avatar@0.1.17':
+    resolution: {integrity: sha512-L7R3GVjYK6o+tdCiCDZXvHjPi1FKwt9XAFHGlEsQ4dX6Qe7yWEi3K+e5UBpS1ugvja7SmNS+YZwvr+nnVcmohQ==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+
   '@gluestack-ui/button@1.0.7':
     resolution: {integrity: sha512-6hz5BPoB+iHMpDvys6AbIpeRPbnFiqyE3SnnbKPSCj8lgl3Dr9sFln41BvDmqmZ98d0usJluk50rz8pVNRZRgw==}
     peerDependencies:
@@ -3536,6 +3548,11 @@ packages:
   '@typescript-eslint/visitor-keys@8.3.0':
     resolution: {integrity: sha512-RmZwrTbQ9QveF15m/Cl28n0LXD6ea2CjkhH5rQ55ewz3H24w+AMCJHPVYaZ8/0HoG8Z3cLLFFycRXxeO2tz9FA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@unitools/image@0.0.5':
+    resolution: {integrity: sha512-w34iTSvim5jqBunAJONMddyGOpKMyhd6lAD6mzqGyK9PV1qekMY3ajvpl9rvK8bE5cX3g5l07+QDEuT1ZWIQ2w==}
+    peerDependencies:
+      expo-image: ^1.10.6
 
   '@urql/core@2.3.6':
     resolution: {integrity: sha512-PUxhtBh7/8167HJK6WqBv6Z0piuiaZHQGYbhwpNL9aIQmLROPEdaUYkY4wh45wPQXcTpnd11l0q3Pw+TI11pdw==}
@@ -10612,6 +10629,14 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
+  '@gluestack-ui/avatar@0.1.17(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - react-native
+
   '@gluestack-ui/button@1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
@@ -12665,6 +12690,10 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.3.0
       eslint-visitor-keys: 3.4.3
+
+  '@unitools/image@0.0.5(expo-image@1.12.12(expo@51.0.24(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(bufferutil@4.0.8)))':
+    dependencies:
+      expo-image: 1.12.12(expo@51.0.24(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(bufferutil@4.0.8))
 
   '@urql/core@2.3.6(graphql@15.8.0)':
     dependencies:
