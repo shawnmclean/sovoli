@@ -11,6 +11,7 @@ import { Image } from "@sovoli/ui/components/ui/image";
 import { Link } from "@sovoli/ui/components/ui/link";
 // import Categories from "./categories";
 import { Text } from "@sovoli/ui/components/ui/text";
+import { VStack } from "@sovoli/ui/components/ui/vstack";
 
 type MyBooksProfile = z.infer<
   (typeof contract.getUserMyBooksProfile.responses)[200]
@@ -27,10 +28,11 @@ export function MyBooksScreen({ profile }: Props) {
       <Text>Hello {profile.name}</Text>
       <Text>{profile.myBooks.meta.total} books</Text>
 
-      {profile.myBooks.data.map((book) => (
-        <MyBookItem key={book.id} myBook={book} username={profile.username} />
-      ))}
-
+      <VStack className="w-full" space="2xl">
+        {profile.myBooks.data.map((book) => (
+          <MyBookItem key={book.id} myBook={book} username={profile.username} />
+        ))}
+      </VStack>
       <Pagination
         page={profile.myBooks.meta.page}
         pageSize={profile.myBooks.meta.pageSize}
@@ -61,11 +63,10 @@ function MyBookItem({ username, myBook }: MyBookItemProps) {
 
     return (
       <HStack
-        className="border-border-300 h-full items-center rounded-xl border p-3"
+        className="border-border-300 h-full rounded-xl border p-3"
         space="lg"
       >
-        {" "}
-        <Box className="relative h-full w-40 rounded">
+        <Box className="relative h-full rounded">
           <Image
             contentFit="cover"
             height={80}
@@ -75,9 +76,12 @@ function MyBookItem({ username, myBook }: MyBookItemProps) {
             alt={myBook.book.title}
           />
         </Box>
-        <Link href={`/${username}/mybooks/${myBook.book.slug}`}>
-          <Text className="underline">{myBook.book.title}</Text>
-        </Link>
+        <VStack space="md">
+          <Link href={`/${username}/mybooks/${myBook.book.slug}`}>
+            <Text className="underline">{myBook.book.title}</Text>
+          </Link>
+          <Text className="text-sm">{myBook.book.inferredAuthor}</Text>
+        </VStack>
       </HStack>
     );
   }
