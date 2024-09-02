@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MyBooksScreen } from "@sovoli/ui/screens/mybooks";
 
 import { api } from "~/api/tsr";
+import { config } from "~/utils/config";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +24,32 @@ async function getUserMyBooksProfile({ params, searchParams }: Props) {
       cache: "no-store",
     },
   });
+}
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
+  const response = await getUserMyBooksProfile({ params, searchParams });
+
+  if (response.status !== 200) return notFound();
+
+  const user = response.body;
+  // const coverImage = shelf.images?.[0];
+
+  return {
+    title: `${user.name}'s Books`,
+    openGraph: {
+      title: `${user.name}'s Books`,
+      url: config.url + "/" + params.username + "/mybooks/",
+      siteName: config.siteName,
+      // images: coverImage && [
+      //   {
+      //     url: coverImage.url,
+      //   },
+      // ],
+    },
+  };
 }
 
 export default async function MyBooks({ params, searchParams }: Props) {
