@@ -539,6 +539,9 @@ importers:
       '@sovoli/api':
         specifier: workspace:*
         version: link:../api
+      '@sovoli/db':
+        specifier: workspace:*
+        version: link:../db
       '@unitools/image':
         specifier: 0.0.5
         version: 0.0.5(expo-image@1.12.12(expo@51.0.24(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(bufferutil@4.0.8)))

@@ -12,7 +12,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "lh3.googleusercontent.com",
+        hostname: "covers.openlibrary.org",
+      },
+      {
+        protocol: "http",
+        hostname: "books.google.com",
       },
       {
         protocol: "https",
