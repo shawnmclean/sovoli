@@ -59,7 +59,7 @@ function MyBookItem({ username, myBook }: MyBookItemProps) {
     const cover = myBook.book.cover as BookCover;
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    const coverUrl = cover?.medium || "https://via.placeholder.com/100";
+    const coverUrl = cover.medium ?? "https://via.placeholder.com/100";
 
     return (
       <HStack
