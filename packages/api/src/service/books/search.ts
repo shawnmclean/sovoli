@@ -47,6 +47,7 @@ export async function searchBooksByQuery(
 ): Promise<SearchBooksQueryResult> {
   // search internally first
   const internalResults = await searchInternalByQueries([query]);
+  console.log("internal results", internalResults);
   if (
     internalResults.length > 0 &&
     internalResults[0] &&
@@ -54,6 +55,8 @@ export async function searchBooksByQuery(
   ) {
     return internalResults[0];
   }
+
+  console.log("no internal results, searching externally");
 
   const externalResults = await searchExternallyAndPopulate([query]);
   if (
@@ -70,6 +73,16 @@ export async function searchBooksByQuery(
 async function searchInternalByQueries(
   queries: SearchBooksByQueryOptions[],
 ): Promise<SearchBooksQueryResult[]> {
+  console.log("searching internally disabled for now");
+
+  return Promise.resolve(
+    queries.map((q) => ({
+      query: { query: q.query },
+      books: [],
+      total: 0,
+    })),
+  );
+
   // get the search embeddings for the queries
   const searchEmbeddings = await getSearchEmbeddings(
     queries.map((q) => q.query),
