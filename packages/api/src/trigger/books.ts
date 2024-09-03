@@ -16,6 +16,7 @@ import { googlebooks } from "@sovoli/services/src/books";
 import { logger, task } from "@trigger.dev/sdk/v3";
 
 import { insertBooks } from "../service/books/insert";
+import { hydrateAuthor } from "./authors";
 
 // import { updateBookEmbeddings } from "../service/books/bookEmbeddings";
 
@@ -80,14 +81,41 @@ export const hydrateBook = task({
     };
 
     // Merge with the existing book data
-    const finalBookData = {
+    const finalBookData: InsertBookSchema = {
       ...book,
       ...mergedBookData,
     };
 
-    await insertBooks([finalBookData]);
+    const [[insertedBook], insertedAuthors] = await Promise.all([
+      insertBooks([finalBookData]),
+      insertAuthors(
+        oLBookData?.authors.map((author) => ({
+          name: author.name,
+          olid: author.olid,
+        })) ?? [],
+      ),
+    ]);
 
-    // await Promise.all([hydrateFromOL(book), hydrateFromGoogle(book)]);
+    logger.info(`Upserted book: ${finalBookData.id}`);
+    logger.info(
+      `Upserted authors: ${insertedAuthors.map((a) => a.id).join(", ")}`,
+    );
+
+    // there should only be one book inserted/updated
+    if (insertedBook) {
+      // link the authors to the book
+      const insertedAuthorsToBooks = await insertAuthorToBooks(
+        insertedAuthors.map((author) => ({
+          authorId: author.id,
+          bookId: insertedBook.id,
+        })),
+      );
+      logger.info(`Linked authors to book: ${insertedAuthorsToBooks.length}`);
+    }
+
+    await hydrateAuthor.batchTrigger(
+      insertedAuthors.map((author) => ({ payload: { authorId: author.id } })),
+    );
 
     // TODO: turn back on when we figure out RAG
     // await updateBookEmbeddings([book.id]);
@@ -95,113 +123,41 @@ export const hydrateBook = task({
 });
 
 async function getFromOL(isbn: string) {
+  logger.info(`Fetching book from openlibrary: ${isbn}`);
   const result = await bookService.openlibrary.getBookByISBN(isbn);
   return result;
 }
 async function getFromGoogle(isbn: string) {
+  logger.info(`Fetching book from google: ${isbn}`);
   const result = await googlebooks.searchGoogleBooks({ isbn });
-  return result[0];
+  return result[0] ?? null;
 }
 
-async function hydrateFromOL(book: SelectBookSchema) {
-  const isbn = book.isbn13 ?? book.isbn10;
-  if (!isbn) {
-    logger.error(`No ISBN found for bookId: ${book.id}`);
-    return;
-  }
+async function insertAuthors(authors: InsertAuthorSchema[]) {
+  if (authors.length === 0) return [];
+  const insertedAuthors = await db
+    .insert(authorsSchema)
+    .values(authors)
+    .onConflictDoUpdate({
+      target: [authorsSchema.olid],
+      set: {
+        name: sql.raw(`excluded.${authorsSchema.name.name}`),
+      },
+    })
+    .returning();
 
-  if (isOLDataStale(book)) {
-    try {
-      const olBookData = await bookService.openlibrary.getBookByISBN(isbn);
-      if (olBookData) {
-        await db
-          .update(booksSchema)
-          .set({
-            isbn13: olBookData.isbn13 ?? undefined,
-            isbn10: olBookData.isbn10 ?? undefined,
-            olid: olBookData.olid,
-            publishedDate: olBookData.publishedDate?.toISOString(),
-            publisher: olBookData.publisher,
-            lastOLUpdated: new Date().toISOString(),
-            cover: olBookData.cover
-              ? BookCoverSchema.parse(olBookData.cover)
-              : undefined,
-            updatedAt: new Date().toISOString(),
-          })
-          .where(eq(booksSchema.id, book.id));
-
-        const insertAuthors: InsertAuthorSchema[] = olBookData.authors.map(
-          (author) => ({
-            name: author.name,
-            olid: author.olid,
-          }),
-        );
-        const insertedAuthors = await db
-          .insert(authorsSchema)
-          .values(insertAuthors)
-          .onConflictDoUpdate({
-            target: [authorsSchema.olid],
-            set: {
-              name: sql.raw(`excluded.${authorsSchema.name.name}`),
-            },
-          })
-          .returning();
-
-        const insertAuthorToBooks: InsertAuthorToBookSchema[] =
-          insertedAuthors.map((author) => ({
-            authorId: author.id,
-            bookId: book.id,
-          }));
-        await db
-          .insert(authorsToBooksSchema)
-          .values(insertAuthorToBooks)
-          .onConflictDoNothing();
-      }
-    } catch (error) {
-      logger.error(`Error hydrating book from openlibrary: ${book.id}`);
-      throw error;
-    }
-  }
+  return insertedAuthors;
 }
 
-async function hydrateFromGoogle(book: SelectBookSchema) {
-  const isbn = book.isbn13 ?? book.isbn10;
-  if (!isbn) {
-    logger.error(`No ISBN found for bookId: ${book.id}`);
-    return;
-  }
-  if (isGoogleDataStale(book)) {
-    try {
-      const googleBooks = await googlebooks.searchGoogleBooks({ isbn });
-      const book = googleBooks[0];
-      if (book) {
-        await db.update(booksSchema).set({
-          isbn13: book.isbn13,
-          isbn10: book.isbn10,
-          title: book.title,
-          subtitle: book.subtitle ?? null,
-          publishedDate: book.publishedDate?.toISOString(),
-          publisher: book.publisher,
-          pageCount: book.pageCount,
-          description: book.description,
-          language: book.language,
-          lastGoogleUpdated: new Date().toISOString(),
-          inferredAuthor: Array.isArray(book.authors)
-            ? book.authors.join(", ")
-            : book.authors,
-          cover: {
-            small: book.thumbnail ?? null,
-            medium: book.thumbnail ?? null,
-            large: book.thumbnail ?? null,
-          },
-        });
-      }
-    } catch (error) {
-      logger.error(`Error hydrating book from google: ${book.id}`);
-      throw error;
-    }
-    logger.warn(`Google data is stale for bookId: ${book.id}`);
-  }
+async function insertAuthorToBooks(authorsToBooks: InsertAuthorToBookSchema[]) {
+  if (authorsToBooks.length === 0) return [];
+  const insertedAuthorsToBooks = await db
+    .insert(authorsToBooksSchema)
+    .values(authorsToBooks)
+    .onConflictDoNothing()
+    .returning();
+
+  return insertedAuthorsToBooks;
 }
 
 const THREE_MONTHS_IN_MS = 1000 * 60 * 60 * 24 * 30 * 3;

@@ -17,6 +17,9 @@ export async function insertBooks(
   const cleanedBooks = books.map((book) => {
     let cover: BookCover | null = null;
 
+    //if there is an id, delete it, because we are going to use the other composite keys
+    delete book.id;
+
     // Parse and validate the cover if it exists
     if (book.cover) {
       try {
