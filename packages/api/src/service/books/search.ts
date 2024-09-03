@@ -187,8 +187,10 @@ export async function searchExternallyAndPopulate(
 
   await Promise.all(
     queries.map(async (query) => {
-      const googleBooks =
-        await bookService.googlebooks.searchGoogleBooks(query);
+      const googleBooks = await bookService.googlebooks.searchGoogleBooks({
+        ...query,
+        limit: 1,
+      });
 
       // Convert GoogleBooks to InsertBookSchema format
       const booksToInsert: InsertBookSchema[] = googleBooks.map(
@@ -216,7 +218,6 @@ export async function searchExternallyAndPopulate(
           slug: null, // Let the insertion function generate this if necessary
         }),
       );
-
       // Store the mapping from query to books
       queryToBooksMap.set(query, booksToInsert);
     }),
@@ -225,8 +226,8 @@ export async function searchExternallyAndPopulate(
 
   // 2. Insert the books into the database
   console.time("Insert Books Time");
+
   const allBooksToInsert = Array.from(queryToBooksMap.values()).flat();
-  // TODO: this may have to be done as a background job
   const insertedBooks = await insertBooks(allBooksToInsert);
   console.timeEnd("Insert Books Time");
 

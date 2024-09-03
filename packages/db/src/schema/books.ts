@@ -23,7 +23,7 @@ export const authors = pgTable("author", {
   name: varchar("name", { length: 255 }).notNull(),
   fullName: varchar("full_name", { length: 255 }),
   bio: text("bio"),
-  alternateNames: jsonb("alternate_names").$type<string[]>(),
+  alternateNames: varchar("alternate_names", { length: 255 }).array(),
   birthDate: date("birth_date"),
   deathDate: date("death_date"),
 
@@ -42,9 +42,11 @@ export const authors = pgTable("author", {
 });
 
 export const SelectAuthorSchema = createSelectSchema(authors);
-export const InsertAuthorSchema = createInsertSchema(authors);
+export const InsertAuthorSchema = createInsertSchema(authors, {
+  alternateNames: z.array(z.string()).optional(),
+});
 export type SelectAuthorSchema = z.infer<typeof SelectAuthorSchema>;
-export type InsertAuthorSchema = z.infer<typeof InsertBookSchema>;
+export type InsertAuthorSchema = z.infer<typeof InsertAuthorSchema>;
 
 export const BookCoverSchema = z.object({
   small: z.string().nullish(),
@@ -148,3 +150,6 @@ export const authorsToBooks = pgTable(
     }),
   }),
 );
+
+export const InsertAuthorToBookSchema = createInsertSchema(authorsToBooks);
+export type InsertAuthorToBookSchema = z.infer<typeof InsertAuthorToBookSchema>;

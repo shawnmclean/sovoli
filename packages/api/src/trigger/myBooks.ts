@@ -39,6 +39,7 @@ export const hydrateMyBook = task({
       return;
     }
 
+    logger.info(`Searching for query: ${myBook.query}`);
     const results = await searchBooks({ queries: [{ query: myBook.query }] });
 
     if (!results[0]?.books[0]) {

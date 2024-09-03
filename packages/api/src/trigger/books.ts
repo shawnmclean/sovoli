@@ -1,10 +1,20 @@
-import type { SelectBookSchema } from "@sovoli/db/schema";
-import { db, eq } from "@sovoli/db";
-import { BookCoverSchema, books as booksSchema } from "@sovoli/db/schema";
+import type {
+  InsertAuthorSchema,
+  InsertAuthorToBookSchema,
+  SelectBookSchema,
+} from "@sovoli/db/schema";
+import { db, eq, sql } from "@sovoli/db";
+import {
+  authors as authorsSchema,
+  authorsToBooks as authorsToBooksSchema,
+  BookCoverSchema,
+  books as booksSchema,
+} from "@sovoli/db/schema";
 import { bookService } from "@sovoli/services";
+import { googlebooks } from "@sovoli/services/src/books";
 import { logger, task } from "@trigger.dev/sdk/v3";
 
-import { updateBookEmbeddings } from "../service/books/bookEmbeddings";
+// import { updateBookEmbeddings } from "../service/books/bookEmbeddings";
 
 export interface HydrateBookOptions {
   bookId: string;
@@ -37,8 +47,6 @@ export const hydrateBook = task({
       try {
         const olBookData = await bookService.openlibrary.getBookByISBN(isbn);
         if (olBookData) {
-          // TODO: take out the authors and create a new table for them
-
           await db
             .update(booksSchema)
             .set({
@@ -54,18 +62,75 @@ export const hydrateBook = task({
               updatedAt: new Date().toISOString(),
             })
             .where(eq(booksSchema.id, book.id));
+
+          const insertAuthors: InsertAuthorSchema[] = olBookData.authors.map(
+            (author) => ({
+              name: author.name,
+              olid: author.olid,
+            }),
+          );
+          const insertedAuthors = await db
+            .insert(authorsSchema)
+            .values(insertAuthors)
+            .onConflictDoUpdate({
+              target: [authorsSchema.olid],
+              set: {
+                name: sql.raw(`excluded.${authorsSchema.name.name}`),
+              },
+            })
+            .returning();
+
+          const insertAuthorToBooks: InsertAuthorToBookSchema[] =
+            insertedAuthors.map((author) => ({
+              authorId: author.id,
+              bookId: book.id,
+            }));
+          await db
+            .insert(authorsToBooksSchema)
+            .values(insertAuthorToBooks)
+            .onConflictDoNothing();
         }
       } catch (error) {
-        logger.error(`Error hydrating book: ${bookId}`);
+        logger.error(`Error hydrating book from openlibrary: ${bookId}`);
         throw error;
       }
     }
 
     if (isGoogleDataStale(book)) {
+      try {
+        const googleBooks = await googlebooks.searchGoogleBooks({ isbn });
+        const book = googleBooks[0];
+        if (book) {
+          await db.update(booksSchema).set({
+            isbn13: book.isbn13,
+            isbn10: book.isbn10,
+            title: book.title,
+            subtitle: book.subtitle ?? null,
+            publishedDate: book.publishedDate?.toISOString(),
+            publisher: book.publisher,
+            pageCount: book.pageCount,
+            description: book.description,
+            language: book.language,
+            lastGoogleUpdated: new Date().toISOString(),
+            inferredAuthor: Array.isArray(book.authors)
+              ? book.authors.join(", ")
+              : book.authors,
+            cover: {
+              small: book.thumbnail ?? null,
+              medium: book.thumbnail ?? null,
+              large: book.thumbnail ?? null,
+            },
+          });
+        }
+      } catch (error) {
+        logger.error(`Error hydrating book from google: ${bookId}`);
+        throw error;
+      }
       logger.warn(`Google data is stale for bookId: ${bookId}`);
     }
 
-    await updateBookEmbeddings([book.id]);
+    // TODO: turn back on when we figure out RAG
+    // await updateBookEmbeddings([book.id]);
   },
 });
 

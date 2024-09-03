@@ -47,34 +47,34 @@ export interface SearchBooksQueryOptions {
    * this can be a semantic search query that will use the embeddings to search for books
    */
   query?: string;
+
+  limit?: number;
 }
 
 export async function searchGoogleBooks(
-  options: SearchBooksQueryOptions,
+  { isbn, query, limit = 5 }: SearchBooksQueryOptions,
   maxRetries = 10,
 ): Promise<GoogleBook[]> {
-  let query = ``;
+  let searchQuery = ``;
 
   // either query or isbn must be provided
-  if (!options.query && !options.isbn) {
+  if (!query && !isbn) {
     throw new Error("query with title and author or isbn must be provided");
   }
 
-  if (options.query) {
-    query += encodeURIComponent(options.query);
+  if (query) {
+    searchQuery += encodeURIComponent(query);
   }
 
-  if (options.isbn) {
+  if (isbn) {
     // Append ISBN search to the query. If there's already a query, add a plus sign to combine them.
     if (query) {
-      query += `+`;
+      searchQuery += `+`;
     }
-    query += `isbn:${encodeURIComponent(options.isbn)}`;
+    searchQuery += `isbn:${encodeURIComponent(isbn)}`;
   }
 
-  const maxResults = 5;
-
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&printType=BOOKS&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=${limit}&printType=BOOKS&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
 
   let retryCount = 0;
   let delay = 1000; // Start with a 1-second delay for retries
