@@ -5,3 +5,5 @@ export * from "./furnitureRelations";
 export * from "./myBooks";
 export * from "./myBookRelations";
 export * from "./embeddings";
+export * from "./books";
+export * from "./bookRelations";
