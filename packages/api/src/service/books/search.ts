@@ -3,7 +3,7 @@ import { bookService } from "@sovoli/services";
 
 import { getBooksByEmbeddings } from "./bookEmbeddings";
 // import { getBooksByIsbns } from "./find";
-import { insertBooks } from "./insert";
+import { upsertBooksFromGoogle } from "./insert";
 import { getSearchEmbeddings } from "./searchEmbeddings";
 
 export interface SearchBooksQuery {
@@ -228,7 +228,7 @@ export async function searchExternallyAndPopulate(
   console.time("Insert Books Time");
 
   const allBooksToInsert = Array.from(queryToBooksMap.values()).flat();
-  const insertedBooks = await insertBooks(allBooksToInsert);
+  const insertedBooks = await upsertBooksFromGoogle(allBooksToInsert);
   console.timeEnd("Insert Books Time");
 
   // 3. Map the inserted books back to their queries

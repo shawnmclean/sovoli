@@ -1,4 +1,5 @@
 interface VolumeInfo {
+  id: string;
   title: string;
   subtitle?: string;
   authors: string[];
@@ -27,6 +28,7 @@ interface GoogleBooksApiResponse {
 }
 
 export interface GoogleBook {
+  id: string;
   title: string;
   subtitle: string | null;
   authors: string[];
@@ -131,6 +133,7 @@ export async function searchGoogleBooks(
           }
 
           return {
+            id: volumeInfo.id,
             title: volumeInfo.title,
             subtitle: volumeInfo.subtitle ?? null,
             authors: volumeInfo.authors,

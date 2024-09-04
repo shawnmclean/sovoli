@@ -65,6 +65,9 @@ export const books = pgTable(
     isbn13: varchar("isbn_13", { length: 13 }).unique(),
     isbn10: varchar("isbn_10", { length: 10 }).unique(),
 
+    // google book id
+    googleId: varchar("google_id", { length: 20 }).unique(),
+
     // open library id
     olid: varchar("olid", { length: 20 }).unique(),
     // amazon asin
@@ -74,7 +77,7 @@ export const books = pgTable(
     subtitle: varchar("subtitle", { length: 255 }),
     editions: varchar("editions", { length: 255 }),
 
-    // slug will be in the form of {title}-{author}-{isbn}
+    // slug will be in the form of {title}-{isbn}
     slug: varchar("slug", { length: 255 }).unique(),
 
     publishedDate: date("published_date"),
@@ -98,8 +101,15 @@ export const books = pgTable(
     return {
       // Composite unique index to ensure no duplicate combinations of isbn13, isbn10, olid, and slug, while
       // ensuring that the database supports null behavior but not null uniqueness
-      compositeUniqueIndex: unique("unique_book_composite")
-        .on(table.isbn13, table.isbn10, table.asin, table.olid, table.slug)
+      compositeUniqueIndex: unique("unique_google_book_composite")
+        .on(
+          table.isbn13,
+          table.isbn10,
+          table.asin,
+          table.olid,
+          table.googleId,
+          table.slug,
+        )
         .nullsNotDistinct(),
       slugIndex: uniqueIndex("unique_book_slug").on(table.slug),
     };
