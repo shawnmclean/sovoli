@@ -88,7 +88,7 @@ export async function insertBooks(
   }
 }
 
-function generateSlug(book: InsertBookSchema, maxLength = 70): string {
+function generateSlug(book: InsertBookSchema): string {
   const sanitizeString = (str: string): string => {
     return str
       .toLowerCase() // Convert to lowercase
@@ -97,26 +97,19 @@ function generateSlug(book: InsertBookSchema, maxLength = 70): string {
       .replace(/\s+/g, "-"); // Replace spaces with hyphens
   };
 
-  const title = book.title ? sanitizeString(book.title) : "";
-  const author = book.inferredAuthor ? sanitizeString(book.inferredAuthor) : "";
+  const title = sanitizeString(book.title);
 
   // Ensure uniqueId is always defined, using ISBN if available, or a fallback UUID
   const isbn = book.isbn13 ?? book.isbn10;
-  const uniqueId = isbn
-    ? isbn.slice(-5)
-    : (randomUUID().split("-")[0] ?? randomUUID());
+  const uniqueId = isbn ?? randomUUID().replace(/-/g, "");
 
-  // Calculate the available length for the title
-  const maxTitleLength = maxLength - (author.length + uniqueId.length + 2); // 2 for the hyphens
+  // Calculate maximum allowed title length, leaving space for unique ID and hyphen
+  const maxTitleLength = 255 - (uniqueId.length + 1); // +1 for the hyphen
+  const truncatedTitle =
+    title.length > maxTitleLength ? title.slice(0, maxTitleLength) : title;
 
-  // Truncate the title if it exceeds the maximum allowed length
-  const shortenedTitle =
-    title.length > maxTitleLength
-      ? title.substring(0, maxTitleLength).trim().replace(/-+$/, "")
-      : title;
-
-  // Combine the shortened title, author, and unique identifier into the final slug
-  const slug = `${shortenedTitle}-${author}-${uniqueId}`;
+  // Combine title and unique ID to form the slug
+  const slug = `${truncatedTitle}-${uniqueId}`;
 
   return slug;
 }
