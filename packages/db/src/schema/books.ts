@@ -89,7 +89,7 @@ export const books = pgTable(
     inferrenceError: text("inferrence_error"),
     lastGoogleUpdated: date("last_google_updated"),
     lastOLUpdated: date("last_ol_updated"),
-    inferredAuthor: varchar("inferred_author", { length: 255 }),
+    inferredAuthor: text("inferred_author"),
 
     createdAt: date("created_at").notNull().defaultNow(),
     updatedAt: date("updated_at").notNull().defaultNow(),
