@@ -101,7 +101,7 @@ export const books = pgTable(
     return {
       // Composite unique index to ensure no duplicate combinations of isbn13, isbn10, olid, and slug, while
       // ensuring that the database supports null behavior but not null uniqueness
-      compositeUniqueIndex: unique("unique_google_book_composite")
+      compositeUnique: unique("unique_book_composite")
         .on(
           table.isbn13,
           table.isbn10,
@@ -111,6 +111,11 @@ export const books = pgTable(
           table.slug,
         )
         .nullsNotDistinct(),
+      googleCmposite: unique("unique_book_google").on(
+        table.googleId,
+        table.isbn10,
+        table.isbn13,
+      ),
       slugIndex: uniqueIndex("unique_book_slug").on(table.slug),
     };
   },

@@ -183,7 +183,10 @@ export async function searchExternallyAndPopulate(
 ): Promise<SearchBooksQueryResult[]> {
   console.time("Search Externally Time");
   // 1. Perform external search and keep track of results
-  const queryToBooksMap = new Map<SearchBooksQuery, InsertBookSchema[]>();
+  const queryToBooksMap = new Map<
+    SearchBooksQuery,
+    bookService.googlebooks.GoogleBook[]
+  >();
 
   await Promise.all(
     queries.map(async (query) => {
@@ -191,35 +194,8 @@ export async function searchExternallyAndPopulate(
         ...query,
         limit: 1,
       });
-
-      // Convert GoogleBooks to InsertBookSchema format
-      const booksToInsert: InsertBookSchema[] = googleBooks.map(
-        (googleBook) => ({
-          isbn13: googleBook.isbn13 ?? null,
-          isbn10: googleBook.isbn10 ?? null,
-          asin: null, // Assuming Google Books doesn't provide ASIN
-          olid: null, // Assuming Google Books doesn't provide OLID
-          title: googleBook.title,
-          subtitle: googleBook.subtitle ?? null,
-          publishedDate: googleBook.publishedDate?.toISOString(),
-          publisher: googleBook.publisher,
-          pageCount: googleBook.pageCount,
-          description: googleBook.description,
-          language: googleBook.language,
-          lastGoogleUpdated: new Date().toISOString(),
-          inferredAuthor: Array.isArray(googleBook.authors)
-            ? googleBook.authors.join(", ")
-            : googleBook.authors,
-          cover: {
-            small: googleBook.thumbnail ?? null,
-            medium: googleBook.thumbnail ?? null,
-            large: googleBook.thumbnail ?? null,
-          },
-          slug: null, // Let the insertion function generate this if necessary
-        }),
-      );
       // Store the mapping from query to books
-      queryToBooksMap.set(query, booksToInsert);
+      queryToBooksMap.set(query, googleBooks);
     }),
   );
   console.timeEnd("Search Externally Time");

@@ -4,6 +4,7 @@ import type {
   InsertBookSchema,
   SelectBookSchema,
 } from "@sovoli/db/schema";
+import type { bookService } from "@sovoli/services";
 import { db, sql } from "@sovoli/db";
 import { BookCoverSchema, books as booksSchema } from "@sovoli/db/schema";
 
@@ -41,8 +42,32 @@ function cleanBook(book: InsertBookSchema) {
 }
 // TODO: update this to accept google books and do the mapping here.
 export async function upsertBooksFromGoogle(
-  books: InsertBookSchema[],
+  googleBooks: bookService.googlebooks.GoogleBook[],
 ): Promise<SelectBookSchema[]> {
+  const books: InsertBookSchema[] = googleBooks.map((googleBook) => ({
+    isbn13: googleBook.isbn13 ?? null,
+    isbn10: googleBook.isbn10 ?? null,
+    asin: null, // Assuming Google Books doesn't provide ASIN
+    olid: null, // Assuming Google Books doesn't provide OLID
+    title: googleBook.title,
+    subtitle: googleBook.subtitle ?? null,
+    publishedDate: googleBook.publishedDate?.toISOString(),
+    publisher: googleBook.publisher,
+    pageCount: googleBook.pageCount,
+    description: googleBook.description,
+    language: googleBook.language,
+    lastGoogleUpdated: new Date().toISOString(),
+    inferredAuthor: Array.isArray(googleBook.authors)
+      ? googleBook.authors.join(", ")
+      : googleBook.authors,
+    cover: {
+      small: googleBook.thumbnail ?? null,
+      medium: googleBook.thumbnail ?? null,
+      large: googleBook.thumbnail ?? null,
+    },
+    slug: null, // Let the insertion function generate this if necessary
+  }));
+
   const cleanedBooks = books.map(cleanBook);
 
   try {
@@ -50,7 +75,7 @@ export async function upsertBooksFromGoogle(
       .insert(booksSchema)
       .values(cleanedBooks)
       .onConflictDoUpdate({
-        target: [booksSchema.googleId],
+        target: [booksSchema.googleId, booksSchema.isbn10, booksSchema.isbn13],
         set: {
           title: sql.raw(`excluded.${booksSchema.title.name}`),
           subtitle: sql.raw(`excluded.${booksSchema.subtitle.name}`),
