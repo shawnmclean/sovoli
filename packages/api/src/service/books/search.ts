@@ -1,6 +1,7 @@
-import type { InsertBookSchema, SelectBookSchema } from "@sovoli/db/schema";
+import type { SelectBookSchema } from "@sovoli/db/schema";
 import { bookService } from "@sovoli/services";
 
+import { hydrateBook } from "../../trigger";
 import { getBooksByEmbeddings } from "./bookEmbeddings";
 // import { getBooksByIsbns } from "./find";
 import { upsertBooksFromGoogle } from "./insert";
@@ -159,6 +160,7 @@ export async function searchBooks(
   // since this operation can take a while
   let externalResults: SearchBooksQueryResult[] = [];
   if (unmatchedQueries.length > 0) {
+    console.log("Books not found in db, searching externally");
     try {
       console.time("External Search Time");
       externalResults = await searchExternallyAndPopulate(unmatchedQueries);
@@ -206,6 +208,13 @@ export async function searchExternallyAndPopulate(
   const allBooksToInsert = Array.from(queryToBooksMap.values()).flat();
   const insertedBooks = await upsertBooksFromGoogle(allBooksToInsert);
   console.timeEnd("Insert Books Time");
+
+  // This will fire off the trigger.dev task to hydrate the book
+  if (insertedBooks.length > 0) {
+    await hydrateBook.batchTrigger(
+      insertedBooks.map((book) => ({ payload: { bookId: book.id } })),
+    );
+  }
 
   // 3. Map the inserted books back to their queries
   const searchResults: SearchBooksQueryResult[] = Array.from(

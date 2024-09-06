@@ -1,54 +1,18 @@
 import { randomUUID } from "crypto";
-import type {
-  BookCover,
-  InsertBookSchema,
-  SelectBookSchema,
-} from "@sovoli/db/schema";
+import type { SelectBookSchema } from "@sovoli/db/schema";
 import type { bookService } from "@sovoli/services";
-import { db, sql } from "@sovoli/db";
+import { db, eq, getTableConfig, sql } from "@sovoli/db";
 import { BookCoverSchema, books as booksSchema } from "@sovoli/db/schema";
 
-import { hydrateBook } from "../../trigger";
-
-function cleanBook(book: InsertBookSchema) {
-  let cover: BookCover | null = null;
-
-  //if there is an id, delete it, because we are going to use the other composite keys
-  delete book.id;
-
-  // Parse and validate the cover if it exists
-  if (book.cover) {
-    try {
-      const parsedCover =
-        typeof book.cover === "string"
-          ? (JSON.parse(book.cover) as unknown)
-          : book.cover;
-
-      // Ensure parsedCover matches BookCover schema
-      cover = BookCoverSchema.parse(parsedCover);
-    } catch (error) {
-      console.error(
-        `Invalid cover format for book "${book.title || "unknown"}":`,
-        error,
-      );
-    }
-  }
-  // Return the book object with either an existing slug or a generated one
-  return {
-    ...book,
-    slug: book.slug ?? generateSlug(book),
-    cover: cover,
-  };
-}
-// TODO: update this to accept google books and do the mapping here.
 export async function upsertBooksFromGoogle(
   googleBooks: bookService.googlebooks.GoogleBook[],
 ): Promise<SelectBookSchema[]> {
-  const books: InsertBookSchema[] = googleBooks.map((googleBook) => ({
+  if (googleBooks.length === 0) return [];
+
+  const books = googleBooks.map((googleBook) => ({
+    googleId: googleBook.id,
     isbn13: googleBook.isbn13 ?? null,
     isbn10: googleBook.isbn10 ?? null,
-    asin: null, // Assuming Google Books doesn't provide ASIN
-    olid: null, // Assuming Google Books doesn't provide OLID
     title: googleBook.title,
     subtitle: googleBook.subtitle ?? null,
     publishedDate: googleBook.publishedDate?.toISOString(),
@@ -60,22 +24,23 @@ export async function upsertBooksFromGoogle(
     inferredAuthor: Array.isArray(googleBook.authors)
       ? googleBook.authors.join(", ")
       : googleBook.authors,
-    cover: {
+    cover: BookCoverSchema.parse({
       small: googleBook.thumbnail ?? null,
       medium: googleBook.thumbnail ?? null,
       large: googleBook.thumbnail ?? null,
-    },
-    slug: null, // Let the insertion function generate this if necessary
+    }),
+    slug: generateSlug(
+      googleBook.title,
+      googleBook.isbn10 ?? googleBook.isbn13,
+    ),
   }));
-
-  const cleanedBooks = books.map(cleanBook);
 
   try {
     const insertedBooks = await db
       .insert(booksSchema)
-      .values(cleanedBooks)
+      .values(books)
       .onConflictDoUpdate({
-        target: [booksSchema.googleId, booksSchema.isbn10, booksSchema.isbn13],
+        target: [booksSchema.googleId],
         set: {
           title: sql.raw(`excluded.${booksSchema.title.name}`),
           subtitle: sql.raw(`excluded.${booksSchema.subtitle.name}`),
@@ -84,16 +49,16 @@ export async function upsertBooksFromGoogle(
           pageCount: sql.raw(`excluded.${booksSchema.pageCount.name}`),
           description: sql.raw(`excluded.${booksSchema.description.name}`),
           language: sql.raw(`excluded.${booksSchema.language.name}`),
-          cover: sql.raw(`excluded.${booksSchema.cover.name}`),
-          updatedAt: sql`now()`,
-          triggerDevId: sql.raw(`excluded.${booksSchema.triggerDevId.name}`),
-          inferrenceError: sql.raw(
-            `excluded.${booksSchema.inferrenceError.name}`,
+          cover: sql.raw(
+            `COALESCE(excluded.${booksSchema.cover.name}, ${getTableConfig(booksSchema).name}.${booksSchema.cover.name})`,
           ),
+          slug: sql.raw(
+            `COALESCE(excluded.${booksSchema.slug.name}, ${getTableConfig(booksSchema).name}.${booksSchema.slug.name})`,
+          ),
+          updatedAt: sql`now()`,
           lastGoogleUpdated: sql.raw(
             `excluded.${booksSchema.lastGoogleUpdated.name}`,
           ),
-          lastOLUpdated: sql.raw(`excluded.${booksSchema.lastOLUpdated.name}`),
           inferredAuthor: sql.raw(
             `excluded.${booksSchema.inferredAuthor.name}`,
           ),
@@ -101,9 +66,6 @@ export async function upsertBooksFromGoogle(
       })
       .returning();
 
-    await hydrateBook.batchTrigger(
-      insertedBooks.map((book) => ({ payload: { bookId: book.id } })),
-    );
     return insertedBooks;
   } catch (error) {
     console.error("Error upserting books from google");
@@ -111,60 +73,34 @@ export async function upsertBooksFromGoogle(
   }
 }
 
-export async function insertBooks(
-  books: InsertBookSchema[],
-): Promise<SelectBookSchema[]> {
-  if (books.length === 0) return [];
+export async function updateBookFromOpenLibrary(
+  bookId: string,
+  openLibraryBook: bookService.openlibrary.OpenLibraryBook,
+): Promise<SelectBookSchema> {
+  const updatedBook = await db
+    .update(booksSchema)
+    .set({
+      olid: openLibraryBook.olid,
+      updatedAt: new Date().toISOString(),
+      lastOLUpdated: new Date().toISOString(),
+      cover: BookCoverSchema.parse({
+        small: openLibraryBook.cover?.small ?? null,
+        medium: openLibraryBook.cover?.medium ?? null,
+        large: openLibraryBook.cover?.large ?? null,
+      }),
+    })
+    .where(eq(booksSchema.id, bookId))
+    .returning();
 
-  const cleanedBooks = books.map((book) => cleanBook(book));
-
-  try {
-    const insertedBooks = await db
-      .insert(booksSchema)
-      .values(cleanedBooks)
-      .onConflictDoUpdate({
-        target: [
-          booksSchema.isbn13,
-          booksSchema.isbn10,
-          booksSchema.asin,
-          booksSchema.slug,
-          booksSchema.olid,
-        ],
-        set: {
-          title: sql.raw(`excluded.${booksSchema.title.name}`),
-          subtitle: sql.raw(`excluded.${booksSchema.subtitle.name}`),
-          publishedDate: sql.raw(`excluded.${booksSchema.publishedDate.name}`),
-          publisher: sql.raw(`excluded.${booksSchema.publisher.name}`),
-          pageCount: sql.raw(`excluded.${booksSchema.pageCount.name}`),
-          description: sql.raw(`excluded.${booksSchema.description.name}`),
-          language: sql.raw(`excluded.${booksSchema.language.name}`),
-          cover: sql.raw(`excluded.${booksSchema.cover.name}`),
-          updatedAt: sql`now()`,
-          triggerDevId: sql.raw(`excluded.${booksSchema.triggerDevId.name}`),
-          inferrenceError: sql.raw(
-            `excluded.${booksSchema.inferrenceError.name}`,
-          ),
-          lastGoogleUpdated: sql.raw(
-            `excluded.${booksSchema.lastGoogleUpdated.name}`,
-          ),
-          lastOLUpdated: sql.raw(`excluded.${booksSchema.lastOLUpdated.name}`),
-          inferredAuthor: sql.raw(
-            `excluded.${booksSchema.inferredAuthor.name}`,
-          ),
-        },
-      })
-      .returning();
-    await hydrateBook.batchTrigger(
-      insertedBooks.map((book) => ({ payload: { bookId: book.id } })),
-    );
-    return insertedBooks;
-  } catch (conflictError) {
-    console.error("Conflict error");
-    throw conflictError;
+  if (!updatedBook[0]) {
+    console.error(`Book not found for bookId: ${bookId}`);
+    throw new Error(`Book not found for bookId: ${bookId}`);
   }
+
+  return updatedBook[0];
 }
 
-function generateSlug(book: InsertBookSchema): string {
+function generateSlug(title: string, isbn: string | null): string {
   const sanitizeString = (str: string): string => {
     return str
       .toLowerCase() // Convert to lowercase
@@ -173,16 +109,17 @@ function generateSlug(book: InsertBookSchema): string {
       .replace(/\s+/g, "-"); // Replace spaces with hyphens
   };
 
-  const title = sanitizeString(book.title);
+  const sanitizedTitle = sanitizeString(title);
 
   // Ensure uniqueId is always defined, using ISBN if available, or a fallback UUID
-  const isbn = book.isbn13 ?? book.isbn10;
   const uniqueId = isbn ?? randomUUID().replace(/-/g, "");
 
   // Calculate maximum allowed title length, leaving space for unique ID and hyphen
   const maxTitleLength = 255 - (uniqueId.length + 1); // +1 for the hyphen
   const truncatedTitle =
-    title.length > maxTitleLength ? title.slice(0, maxTitleLength) : title;
+    sanitizedTitle.length > maxTitleLength
+      ? sanitizedTitle.slice(0, maxTitleLength)
+      : sanitizedTitle;
 
   // Combine title and unique ID to form the slug
   const slug = `${truncatedTitle}-${uniqueId}`;

@@ -1,5 +1,4 @@
 interface VolumeInfo {
-  id: string;
   title: string;
   subtitle?: string;
   authors: string[];
@@ -20,6 +19,7 @@ interface VolumeInfo {
 }
 
 interface BookItem {
+  id: string;
   volumeInfo: VolumeInfo;
 }
 
@@ -99,60 +99,51 @@ export async function searchGoogleBooks(
 
       const data = (await response.json()) as GoogleBooksApiResponse;
 
-      const books: GoogleBook[] = data.items
-        .map((item: BookItem) => {
-          const volumeInfo = item.volumeInfo;
-          if (
-            !volumeInfo.industryIdentifiers ||
-            volumeInfo.industryIdentifiers.length === 0
-          ) {
-            return null; // Skip this item if there are no industry identifiers
-          }
+      const books: GoogleBook[] = data.items.map((item: BookItem) => {
+        const volumeInfo = item.volumeInfo;
 
-          let isbn10: string | null = null;
-          let isbn13: string | null = null;
+        let isbn10: string | null = null;
+        let isbn13: string | null = null;
 
+        if (volumeInfo.industryIdentifiers) {
           for (const identifier of volumeInfo.industryIdentifiers) {
             if (identifier.type === "ISBN_10") {
               isbn10 = identifier.identifier;
             } else if (identifier.type === "ISBN_13") {
               isbn13 = identifier.identifier;
-            } else {
-              return null; // Skip this item if the identifier type is not supported
             }
           }
+        }
 
-          // Robust handling of publishedDate
-          let publishedDate: Date | null = null;
-          if (volumeInfo.publishedDate) {
-            publishedDate = new Date(volumeInfo.publishedDate);
-            // Check if the date is valid
-            if (isNaN(publishedDate.getTime())) {
-              publishedDate = null; // Handle invalid dates
-            }
+        // Robust handling of publishedDate
+        let publishedDate: Date | null = null;
+        if (volumeInfo.publishedDate) {
+          publishedDate = new Date(volumeInfo.publishedDate);
+          // Check if the date is valid
+          if (isNaN(publishedDate.getTime())) {
+            publishedDate = null; // Handle invalid dates
           }
-
-          return {
-            id: volumeInfo.id,
-            title: volumeInfo.title,
-            subtitle: volumeInfo.subtitle ?? null,
-            authors: volumeInfo.authors,
-            // Do this to get rid of the time zone offset
-            publishedDate: publishedDate,
-            publisher: volumeInfo.publisher,
-            description: volumeInfo.description,
-            pageCount: volumeInfo.pageCount,
-            categories: volumeInfo.categories,
-            isbn10,
-            isbn13,
-            language: volumeInfo.language,
-            thumbnail:
-              volumeInfo.imageLinks?.thumbnail ??
-              volumeInfo.imageLinks?.smallThumbnail ??
-              null,
-          };
-        })
-        .filter((book): book is GoogleBook => !!book); // Filter out null values
+        }
+        return {
+          id: item.id,
+          title: volumeInfo.title,
+          subtitle: volumeInfo.subtitle ?? null,
+          authors: volumeInfo.authors,
+          // Do this to get rid of the time zone offset
+          publishedDate: publishedDate,
+          publisher: volumeInfo.publisher,
+          description: volumeInfo.description,
+          pageCount: volumeInfo.pageCount,
+          categories: volumeInfo.categories,
+          isbn10,
+          isbn13,
+          language: volumeInfo.language,
+          thumbnail:
+            volumeInfo.imageLinks?.thumbnail ??
+            volumeInfo.imageLinks?.smallThumbnail ??
+            null,
+        };
+      });
 
       return books; // Return books if successful
     } catch (error) {

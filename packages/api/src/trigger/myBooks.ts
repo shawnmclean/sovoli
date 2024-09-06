@@ -1,7 +1,7 @@
 import type { MyBookHydrationErrorSchema } from "@sovoli/db/schema";
 import { and, db, eq } from "@sovoli/db";
 import { myBooks } from "@sovoli/db/schema";
-import { logger, task } from "@trigger.dev/sdk/v3";
+import { AbortTaskRunError, logger, task } from "@trigger.dev/sdk/v3";
 
 import { searchBooks } from "../service/books";
 
@@ -11,22 +11,15 @@ export interface HydrateMyBookOptions {
 
 export const hydrateMyBook = task({
   id: "hydrate-my-book",
-  run: async ({ myBookId }: HydrateMyBookOptions, { ctx }) => {
-    const myBook = await db.query.myBooks.findFirst({
-      where: eq(myBooks.id, myBookId),
-    });
+  onFailure: async ({ myBookId }: HydrateMyBookOptions, error, { ctx }) => {
+    let errorMessage = "An unknown error occurred";
 
-    if (!myBook) {
-      logger.error(`MyBook not found`);
-      return;
+    // Narrow the error type to check if it has a message property
+    if (error instanceof Error) {
+      errorMessage = error.message;
     }
-    if (myBook.bookId) {
-      logger.error(`MyBook already hydrated`);
-      return;
-    }
-    if (!myBook.query) {
-      const errorMessage = `MyBook has no query`;
-      logger.error(errorMessage);
+
+    if (errorMessage !== "MyBook not found") {
       await db
         .update(myBooks)
         .set({
@@ -36,24 +29,29 @@ export const hydrateMyBook = task({
           },
         })
         .where(eq(myBooks.id, myBookId));
+    }
+  },
+  run: async ({ myBookId }: HydrateMyBookOptions, { ctx }) => {
+    const myBook = await db.query.myBooks.findFirst({
+      where: eq(myBooks.id, myBookId),
+    });
+
+    if (!myBook) {
+      throw new Error(`MyBook not found`);
+    }
+    if (myBook.bookId) {
+      logger.info(`MyBook already hydrated`);
       return;
+    }
+    if (!myBook.query) {
+      throw new AbortTaskRunError("MyBook has no query");
     }
 
     logger.info(`Searching for query: ${myBook.query}`);
     const results = await searchBooks({ queries: [{ query: myBook.query }] });
 
     if (!results[0]?.books[0]) {
-      logger.error(`No results found for query`);
-      await db
-        .update(myBooks)
-        .set({
-          queryError: {
-            message: `No results found for query: ${myBook.query}`,
-            triggerDevId: ctx.run.id,
-          },
-        })
-        .where(eq(myBooks.id, myBookId));
-      return;
+      throw new Error("No results found for query");
     }
 
     const bestMatch = results[0].books[0];
@@ -63,6 +61,7 @@ export const hydrateMyBook = task({
         .update(myBooks)
         .set({ bookId: bestMatch.id, name: bestMatch.title })
         .where(eq(myBooks.id, myBookId));
+      logger.info(`Book: ${bestMatch.id} linked to myBook: ${myBookId}`);
     } catch (error) {
       const queryError: MyBookHydrationErrorSchema = {
         message: "Error linking query to book",
