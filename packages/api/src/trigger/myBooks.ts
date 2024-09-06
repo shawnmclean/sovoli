@@ -63,6 +63,8 @@ export const hydrateMyBook = task({
         .where(eq(myBooks.id, myBookId));
       logger.info(`Book: ${bestMatch.id} linked to myBook: ${myBookId}`);
     } catch (error) {
+      // TODO: move this error logic to a custom error class and handle it in the failure handler
+
       const queryError: MyBookHydrationErrorSchema = {
         message: "Error linking query to book",
         triggerDevId: ctx.run.id,
