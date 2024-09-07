@@ -15,7 +15,7 @@ import {
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const authors = pgTable("author", {
+export const Author = pgTable("author", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
   // open library id
   olid: varchar("olid", { length: 20 }).unique(),
@@ -41,8 +41,10 @@ export const authors = pgTable("author", {
   updatedAt: date("updated_at").notNull().defaultNow(),
 });
 
-export const SelectAuthorSchema = createSelectSchema(authors);
-export const InsertAuthorSchema = createInsertSchema(authors, {
+export const SelectAuthorSchema = createSelectSchema(Author, {
+  alternateNames: z.array(z.string()).optional(),
+});
+export const InsertAuthorSchema = createInsertSchema(Author, {
   alternateNames: z.array(z.string()).optional(),
 });
 export type SelectAuthorSchema = z.infer<typeof SelectAuthorSchema>;
@@ -157,7 +159,7 @@ export const authorsToBooks = pgTable(
       .references(() => books.id),
     authorId: uuid("author_id")
       .notNull()
-      .references(() => authors.id),
+      .references(() => Author.id),
   },
   (table) => ({
     pk: primaryKey({

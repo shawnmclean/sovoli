@@ -1,6 +1,6 @@
 import { relations } from "drizzle-orm";
 
-import { authors, authorsToBooks, bookEmbeddings, books } from "./books";
+import { Author, authorsToBooks, bookEmbeddings, books } from "./books";
 import { myBooks } from "./myBooks";
 
 export const booksRelations = relations(books, ({ many, one }) => ({
@@ -9,14 +9,14 @@ export const booksRelations = relations(books, ({ many, one }) => ({
   authorsToBooks: many(authorsToBooks),
 }));
 
-export const authorsRelations = relations(authors, ({ many }) => ({
+export const authorsRelations = relations(Author, ({ many }) => ({
   authorsToBooks: many(authorsToBooks),
 }));
 
 export const authorsToBooksRelations = relations(authorsToBooks, ({ one }) => ({
-  author: one(authors, {
+  author: one(Author, {
     fields: [authorsToBooks.authorId],
-    references: [authors.id],
+    references: [Author.id],
   }),
   book: one(books, {
     fields: [authorsToBooks.bookId],

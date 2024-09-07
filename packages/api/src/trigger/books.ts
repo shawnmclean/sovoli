@@ -5,13 +5,13 @@ import type {
 } from "@sovoli/db/schema";
 import { db, eq, sql } from "@sovoli/db";
 import {
-  authors as authorsSchema,
+  Author,
   authorsToBooks as authorsToBooksSchema,
   books as booksSchema,
 } from "@sovoli/db/schema";
 import { bookService } from "@sovoli/services";
 import { googlebooks } from "@sovoli/services/src/books";
-import { logger, task } from "@trigger.dev/sdk/v3";
+import { AbortTaskRunError, logger, task } from "@trigger.dev/sdk/v3";
 
 import {
   updateBookFromOpenLibrary,
@@ -76,11 +76,13 @@ async function hydrateBookFromOpenLibrary(book: SelectBookSchema) {
   }
   const olBook = await bookService.openlibrary.getBookByISBN(isbn);
 
-  if (!olBook) return null;
+  if (!olBook) {
+    throw new AbortTaskRunError(`Book not found for bookId: ${book.id}`);
+  }
 
   const updatedBook = await updateBookFromOpenLibrary(book.id, olBook);
 
-  logger.info(`Hydrated book from openlibrary: ${book.id}`);
+  logger.info(`Hydrated book from openlibrary: ${updatedBook.id}`);
 
   logger.info(
     `Updating authors: ${olBook.authors.map((author) => author.olid).join(", ")}`,
@@ -151,12 +153,12 @@ async function hydrateBookFromGoogle(book: SelectBookSchema) {
 async function upsertAuthors(authors: InsertAuthorSchema[]) {
   if (authors.length === 0) return [];
   const insertedAuthors = await db
-    .insert(authorsSchema)
+    .insert(Author)
     .values(authors)
     .onConflictDoUpdate({
-      target: [authorsSchema.olid],
+      target: [Author.olid],
       set: {
-        name: sql.raw(`excluded.${authorsSchema.name.name}`),
+        name: sql.raw(`excluded.${Author.name.name}`),
       },
     })
     .returning();
