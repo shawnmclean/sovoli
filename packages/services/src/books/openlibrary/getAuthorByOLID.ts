@@ -6,7 +6,7 @@ export interface OpenLibraryLink {
   };
 }
 
-export interface OpenLibraryAuthor {
+interface OpenLibraryAuthorResponse {
   key: string;
   name: string;
   title?: string; // "OBE"
@@ -14,7 +14,12 @@ export interface OpenLibraryAuthor {
   fuller_name?: string; // "Joanne \"Jo\" Rowling"
   birth_date?: string; // "31 July 1965"
   death_date?: string; // If available
-  bio?: string;
+  bio?:
+    | string
+    | {
+        value: string;
+        type: string;
+      };
   entity_type?: string; // "person"
   alternate_names?: string[]; // Array of alternate names
   photos?: number[]; // Array of photo IDs
@@ -34,6 +39,16 @@ export interface OpenLibraryAuthor {
   };
 }
 
+export interface OpenLibraryAuthor {
+  name: string;
+  fullName: string | null;
+  birthDate: Date | null;
+  deathDate: Date | null;
+  bio: string | null;
+  alternateNames: string[];
+  website: string | null;
+}
+
 export async function getAuthorByOLID(
   olid: string,
   maxRetries = 10,
@@ -49,8 +64,11 @@ export async function getAuthorByOLID(
 
   while (retryCount < maxRetries) {
     try {
-      const response = await fetch(url);
-
+      const response = await fetch(url, {
+        headers: {
+          "User-Agent": "sovoli.com | github.com/shawnmclean/sovoli",
+        },
+      });
       if (response.status === 429) {
         // Rate limit hit, wait and retry
         retryCount++;
@@ -67,9 +85,24 @@ export async function getAuthorByOLID(
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = (await response.json()) as OpenLibraryAuthor;
+      const data = (await response.json()) as OpenLibraryAuthorResponse;
 
-      return data;
+      const bio =
+        typeof data.bio === "string" ? data.bio : (data.bio?.value ?? null);
+      const website = data.links?.filter(
+        (link) => link.type?.key === "/type/link",
+      )[0];
+      const author: OpenLibraryAuthor = {
+        name: data.name,
+        fullName: data.fuller_name ?? null,
+        birthDate: data.birth_date ? new Date(data.birth_date) : null,
+        deathDate: data.death_date ? new Date(data.death_date) : null,
+        bio: bio,
+        alternateNames: data.alternate_names ?? [],
+        website: website?.url ?? null,
+      };
+
+      return author;
     } catch (error) {
       if (retryCount >= maxRetries) {
         console.error("Max retries reached. Could not fetch data.");

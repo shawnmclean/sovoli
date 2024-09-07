@@ -77,7 +77,9 @@ async function hydrateBookFromOpenLibrary(book: SelectBookSchema) {
   const olBook = await bookService.openlibrary.getBookByISBN(isbn);
 
   if (!olBook) {
-    throw new AbortTaskRunError(`Book not found for bookId: ${book.id}`);
+    throw new AbortTaskRunError(
+      `Book not found on Open Library for bookId: ${book.id} with isbn: ${isbn}`,
+    );
   }
 
   const updatedBook = await updateBookFromOpenLibrary(book.id, olBook);

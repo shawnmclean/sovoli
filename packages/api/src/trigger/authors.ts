@@ -71,11 +71,14 @@ async function updateAuthorFromOpenLibrary(
     .update(Author)
     .set({
       name: author.name,
-      fullName: author.fuller_name,
+      fullName: author.fullName,
       bio: author.bio,
-      birthDate: author.birth_date,
-      deathDate: author.death_date,
-      alternateNames: author.alternate_names,
+      birthDate: author.birthDate?.toISOString(),
+      deathDate: author.deathDate?.toISOString(),
+      website: author.website,
+      alternateNames: author.alternateNames,
+      lastOLUpdated: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     })
     .where(eq(Author.id, authorId))
     .returning();

@@ -108,7 +108,7 @@ interface OpenLibraryResponse {
 export interface OpenLibraryBook {
   title: string;
   authors: { name: string; olid: string | null }[];
-  publishedDate?: Date;
+  publishedDate: Date | null;
   publisher?: string;
   olid: string;
   isbn13: string | null;
@@ -131,7 +131,11 @@ export async function getBookByISBN(
 
   while (retryCount < maxRetries) {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          "User-Agent": "sovoli.com | github.com/shawnmclean/sovoli",
+        },
+      });
 
       if (response.status === 429) {
         // Rate limit hit, wait and retry
@@ -162,16 +166,6 @@ export async function getBookByISBN(
 
       const { data: bookData } = record;
 
-      // Robust handling of publishedDate
-      let publishedDate: Date | null = null;
-      if (bookData.publish_date) {
-        publishedDate = new Date(bookData.publish_date);
-        // Check if the date is valid
-        if (isNaN(publishedDate.getTime())) {
-          publishedDate = null; // Handle invalid dates
-        }
-      }
-
       // Handle authors
       const authors = bookData.authors?.map((author) => {
         return {
@@ -184,7 +178,9 @@ export async function getBookByISBN(
       const book: OpenLibraryBook = {
         title: bookData.title,
         authors: authors ?? [],
-        publishedDate: publishedDate ?? undefined,
+        publishedDate: bookData.publish_date
+          ? new Date(bookData.publish_date)
+          : null,
         publisher: bookData.publishers?.[0]?.name ?? undefined,
         isbn13: bookData.identifiers.isbn_13?.[0] ?? null,
         isbn10: bookData.identifiers.isbn_10?.[0] ?? null,

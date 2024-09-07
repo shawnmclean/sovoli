@@ -77,17 +77,21 @@ export async function updateBookFromOpenLibrary(
   bookId: string,
   openLibraryBook: bookService.openlibrary.OpenLibraryBook,
 ): Promise<SelectBookSchema> {
+  // if the cover is null, we don't want to update the cover
+  const cover = openLibraryBook.cover
+    ? BookCoverSchema.parse({
+        small: openLibraryBook.cover.small ?? null,
+        medium: openLibraryBook.cover.medium ?? null,
+        large: openLibraryBook.cover.large ?? null,
+      })
+    : undefined;
   const updatedBook = await db
     .update(booksSchema)
     .set({
       olid: openLibraryBook.olid,
       updatedAt: new Date().toISOString(),
       lastOLUpdated: new Date().toISOString(),
-      cover: BookCoverSchema.parse({
-        small: openLibraryBook.cover?.small ?? null,
-        medium: openLibraryBook.cover?.medium ?? null,
-        large: openLibraryBook.cover?.large ?? null,
-      }),
+      cover: cover,
     })
     .where(eq(booksSchema.id, bookId))
     .returning();
