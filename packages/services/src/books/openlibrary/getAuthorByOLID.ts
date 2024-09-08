@@ -89,9 +89,9 @@ export async function getAuthorByOLID(
 
       const bio =
         typeof data.bio === "string" ? data.bio : (data.bio?.value ?? null);
-      const website = data.links?.filter(
+      const website = data.links?.find(
         (link) => link.type?.key === "/type/link",
-      )[0];
+      );
       const author: OpenLibraryAuthor = {
         name: data.name,
         fullName: data.fuller_name ?? null,
