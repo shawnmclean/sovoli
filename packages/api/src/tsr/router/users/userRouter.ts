@@ -3,9 +3,9 @@ import { SelectUserSchema } from "@sovoli/db/schema";
 import { tsr } from "@ts-rest/serverless/fetch";
 
 import { GetUserMyBooksProfileResponseSchema } from "./schema";
-import { userContract } from "./userContract";
+import { usersContract } from "./userContract";
 
-export const userRouter = tsr.router(userContract, {
+export const usersRouter = tsr.router(usersContract, {
   getUser: async ({ params: { username } }) => {
     const user = await db.query.users.findFirst({
       where: eq(schema.users.username, username),

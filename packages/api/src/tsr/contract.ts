@@ -5,12 +5,12 @@ import { furnitureContract } from "./router/furniture/furnitureContract";
 // import { meContract } from "./router/me/meContract";
 import { myBookContract } from "./router/myBook/myBookContract";
 import { shelfContract } from "./router/shelf/shelfContract";
-import { userContract } from "./router/user/userContract";
+import { usersContract } from "./router/users/userContract";
 
 const c = initContract();
 
 export const contract = c.router({
-  ...userContract,
+  ...usersContract,
   ...furnitureContract,
   ...shelfContract,
   ...myBookContract,

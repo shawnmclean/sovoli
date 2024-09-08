@@ -6,10 +6,10 @@ import { furnitureRouter } from "./router/furniture/furnitureRouter";
 // import { meRouter } from "./router/me/meRouter";
 import { myBookRouter } from "./router/myBook/myBookRouter";
 import { shelfRouter } from "./router/shelf/shelfRouter";
-import { userRouter } from "./router/user/userRouter";
+import { usersRouter } from "./router/users/userRouter";
 
 export const router = tsr.router(contract, {
-  ...userRouter,
+  ...usersRouter,
   ...furnitureRouter,
   ...shelfRouter,
   ...myBookRouter,

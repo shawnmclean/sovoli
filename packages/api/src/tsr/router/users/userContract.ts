@@ -7,7 +7,7 @@ import { GetUserMyBooksProfileResponseSchema } from "./schema";
 
 const c = initContract();
 
-export const userContract = c.router({
+export const usersContract = c.router({
   getUser: {
     method: "GET",
     path: `/users/:username`,
