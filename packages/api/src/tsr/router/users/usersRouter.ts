@@ -3,7 +3,7 @@ import { SelectUserSchema } from "@sovoli/db/schema";
 import { tsr } from "@ts-rest/serverless/fetch";
 
 import { GetUserMyBooksProfileResponseSchema } from "./schema";
-import { usersContract } from "./userContract";
+import { usersContract } from "./usersContract";
 
 export const usersRouter = tsr.router(usersContract, {
   getUser: async ({ params: { username } }) => {

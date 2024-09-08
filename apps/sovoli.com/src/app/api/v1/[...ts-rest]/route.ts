@@ -3,7 +3,8 @@ import { contract, router } from "@sovoli/api/tsr";
 import { auth } from "@sovoli/auth";
 import { fetchRequestHandler, tsr } from "@ts-rest/serverless/fetch";
 
-const handler = auth((request: Request) => {
+const handler = auth((request) => {
+  console.log("request", request.auth);
   return fetchRequestHandler({
     request,
     contract,
@@ -18,6 +19,7 @@ const handler = auth((request: Request) => {
           // TODO: We know this works if the browser is authenticated via cookies,
           // TODO: so we need to check to ensure that if the request is coming from Expo or 3rd party, that we are evaluating the bearer token
           req.session = await auth();
+          console.log("req.session", req.session);
         }),
       ],
     },
