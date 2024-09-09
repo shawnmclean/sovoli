@@ -11,11 +11,11 @@ import { usersContract } from "./router/users/usersContract";
 const c = initContract();
 
 export const contract = c.router({
-  ...usersContract,
-  ...furnitureContract,
-  ...shelfContract,
-  ...myBookContract,
-  ...bookContract,
-  ...userContract,
+  // ...usersContract,
+  // ...furnitureContract,
+  // ...shelfContract,
+  // ...myBookContract,
+  // ...bookContract,
+  user: userContract,
   // ...meContract,
 });

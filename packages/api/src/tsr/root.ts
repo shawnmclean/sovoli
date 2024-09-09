@@ -1,5 +1,6 @@
-import { tsr } from "@ts-rest/serverless/next";
+import { tsr } from "@ts-rest/serverless/fetch";
 
+import type { TSRAuthContext, TSRGlobalContext } from "./types";
 import { contract } from "./contract";
 import { bookRouter } from "./router/book/bookRouter";
 import { furnitureRouter } from "./router/furniture/furnitureRouter";
@@ -9,12 +10,10 @@ import { shelfRouter } from "./router/shelf/shelfRouter";
 import { userRouter } from "./router/user/userRouter";
 import { usersRouter } from "./router/users/usersRouter";
 
-export const router = tsr.router(contract, {
-  ...usersRouter,
-  ...furnitureRouter,
-  ...shelfRouter,
-  ...myBookRouter,
-  ...bookRouter,
-  ...userRouter,
-  // ...meRouter,
-});
+export const router = tsr
+  .routerBuilder<typeof contract>(contract)
+  .requestMiddleware<TSRAuthContext>(async (req, ctx) => {
+    console.log("middleware req", req);
+    console.log("middleware ctx", ctx);
+  })
+  .subRouter("user", userRouter);
