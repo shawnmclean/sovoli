@@ -19,7 +19,10 @@ export default async function SettingsPage() {
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
       <h1>Settings</h1>
-      <p>Name from API:{response.body.name}</p>
+      <p>
+        Name from API:
+        {response.status === 200 ? response.body.name : "unauthenticated"}
+      </p>
       <SignIn />
     </div>
   );
