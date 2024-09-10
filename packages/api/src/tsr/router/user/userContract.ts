@@ -5,7 +5,7 @@ const c = initContract();
 
 export const userContract = c.router(
   {
-    getUser: {
+    me: {
       method: "GET",
       path: `/`,
       responses: {

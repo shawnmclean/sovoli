@@ -7,7 +7,7 @@ import { userContract } from "./userContract";
 export const userRouter = tsr
   .platformContext<PlatformContext>()
   .routerBuilder(userContract)
-  .routeWithMiddleware("getUser", (routerBuilder) =>
+  .routeWithMiddleware("me", (routerBuilder) =>
     routerBuilder
       .middleware<TSRAuthContext>(authMiddleware)
       .handler(async (_, { request: { user } }) => {
