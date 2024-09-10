@@ -40,8 +40,8 @@ export const authConfig: NextAuthConfig = {
 export const validateToken = async (
   token: string,
 ): Promise<NextAuthSession | null> => {
-  const sessionToken = token.slice("Bearer ".length);
-  const session = await adapter.getSessionAndUser?.(sessionToken);
+  console.log("validateToken", token);
+  const session = await adapter.getSessionAndUser?.(token);
   return session
     ? {
         user: {
