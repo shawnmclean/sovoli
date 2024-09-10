@@ -17,7 +17,7 @@ export default function Page() {
     return null;
   }
 
-  const { isSuccess, data } = tsr.getMyBook.useQuery({
+  const { isSuccess, data } = tsr.myBook.getMyBook.useQuery({
     queryKey: ["username", "slug"],
     queryData: {
       params: {

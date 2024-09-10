@@ -1,11 +1,11 @@
 "use client";
 
-import { View, ScrollView } from "react-native";
 import type { contract } from "@sovoli/api/tsr";
 import type { z } from "zod";
+import { ScrollView, View } from "react-native";
 import { Text } from "@sovoli/ui/components/ui/text";
 
-type MyBook = z.infer<(typeof contract.getMyBook.responses)[200]>;
+type MyBook = z.infer<(typeof contract.myBook.getMyBook.responses)[200]>;
 
 interface Props {
   myBook: MyBook;
@@ -14,8 +14,8 @@ interface Props {
 export default function MyBookDetailsScreen({ myBook }: Props) {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 16 }}>
-      <View className="max-w-6xl mx-auto">
-        <View className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8">
+      <View className="mx-auto max-w-6xl">
+        <View className="grid grid-cols-1 gap-8 md:grid-cols-[300px_1fr]">
           <Text>{myBook.name}</Text>
         </View>
       </View>

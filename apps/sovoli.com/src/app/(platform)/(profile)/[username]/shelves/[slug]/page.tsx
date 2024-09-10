@@ -16,7 +16,7 @@ interface Props {
 async function getShelfBooks({ params, searchParams }: Props) {
   const client = tsrReactQuery.initQueryClient(getQueryClientRsc());
   try {
-    return await client.getShelfBooks.fetchQuery({
+    return await client.shelf.getShelfBooks.fetchQuery({
       queryKey: ["username", "slug"],
       queryData: {
         params: {

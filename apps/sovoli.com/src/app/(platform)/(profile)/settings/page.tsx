@@ -1,9 +1,28 @@
+import { cache } from "react";
 import { auth, signIn } from "@sovoli/auth";
 
-export default function SettingsPage() {
+import { api } from "~/api/tsr";
+
+const getUserProfile = cache(async () => {
+  const response = await api.user.me({
+    fetchOptions: {
+      cache: "no-store",
+    },
+  });
+
+  return response;
+});
+
+export default async function SettingsPage() {
+  const response = await getUserProfile();
+
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
       <h1>Settings</h1>
+      <p>
+        Name from API:
+        {response.status === 200 ? response.body.name : "unauthenticated"}
+      </p>
       <SignIn />
     </div>
   );

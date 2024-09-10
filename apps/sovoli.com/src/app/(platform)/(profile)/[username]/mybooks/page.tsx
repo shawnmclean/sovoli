@@ -13,7 +13,7 @@ interface Props {
 }
 
 async function getUserMyBooksProfile({ params, searchParams }: Props) {
-  return await api.getUserMyBooksProfile({
+  return await api.users.getUserMyBooksProfile({
     params: {
       username: params.username,
     },

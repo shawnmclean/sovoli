@@ -16,7 +16,7 @@ export default function Page() {
     return null;
   }
 
-  const { isSuccess, data } = tsr.getShelfBooks.useQuery({
+  const { isSuccess, data } = tsr.shelf.getShelfBooks.useQuery({
     queryKey: ["username", "slug"],
     queryData: {
       params: {

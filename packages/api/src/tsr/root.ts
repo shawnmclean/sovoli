@@ -1,5 +1,6 @@
-import { tsr } from "@ts-rest/serverless/next";
+import { tsr } from "@ts-rest/serverless/fetch";
 
+import type { PlatformContext, TSRGlobalContext } from "./types";
 import { contract } from "./contract";
 import { bookRouter } from "./router/book/bookRouter";
 import { furnitureRouter } from "./router/furniture/furnitureRouter";
@@ -9,12 +10,19 @@ import { shelfRouter } from "./router/shelf/shelfRouter";
 import { userRouter } from "./router/user/userRouter";
 import { usersRouter } from "./router/users/usersRouter";
 
-export const router = tsr.router(contract, {
-  ...usersRouter,
-  ...furnitureRouter,
-  ...shelfRouter,
-  ...myBookRouter,
-  ...bookRouter,
-  ...userRouter,
-  // ...meRouter,
-});
+export const router = tsr
+  .platformContext<PlatformContext>()
+  .routerBuilder<typeof contract>(contract)
+  .requestMiddleware<TSRGlobalContext>((req, { auth }) => {
+    if (auth) {
+      req.session = auth;
+    } else {
+      // pull the session from the api keys/token/bearer
+    }
+  })
+  .subRouter("user", userRouter)
+  .subRouter("book", bookRouter)
+  .subRouter("furniture", furnitureRouter)
+  .subRouter("myBook", myBookRouter)
+  .subRouter("shelf", shelfRouter)
+  .subRouter("users", usersRouter);

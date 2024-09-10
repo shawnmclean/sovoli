@@ -11,7 +11,7 @@ export default function Page() {
     return null;
   }
 
-  const { isSuccess, data } = tsr.getUserMyBooksProfile.useQuery({
+  const { isSuccess, data } = tsr.users.getUserMyBooksProfile.useQuery({
     queryKey: ["username", "mybooks-profile"],
     queryData: {
       params: {

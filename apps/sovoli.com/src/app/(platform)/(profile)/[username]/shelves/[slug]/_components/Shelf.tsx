@@ -13,7 +13,7 @@ export function Shelf({
   slug: string;
   page: number | undefined;
 }) {
-  const { data } = tsrReactQuery.getShelfBooks.useSuspenseQuery({
+  const { data } = tsrReactQuery.shelf.getShelfBooks.useSuspenseQuery({
     queryKey: ["username", "slug"],
     queryData: {
       params: {
