@@ -10,7 +10,7 @@ const options = {
   basePath: "/api/v1",
 } as FetchHandlerOptions<PlatformContext, TSRGlobalContext>;
 
-const handler = auth(async (request) => {
+const handler = auth((request) => {
   return fetchRequestHandler({
     request,
     contract,

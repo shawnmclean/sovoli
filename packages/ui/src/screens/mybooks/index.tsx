@@ -14,7 +14,7 @@ import { Text } from "@sovoli/ui/components/ui/text";
 import { VStack } from "@sovoli/ui/components/ui/vstack";
 
 type MyBooksProfile = z.infer<
-  (typeof contract.getUserMyBooksProfile.responses)[200]
+  (typeof contract.users.getUserMyBooksProfile.responses)[200]
 >;
 
 interface Props {
@@ -55,10 +55,8 @@ function MyBookItem({ username, myBook }: MyBookItemProps) {
       </Text>
     );
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const cover = myBook.book.cover as BookCover;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const coverUrl = cover.medium ?? "https://via.placeholder.com/100";
 
     return (
@@ -71,7 +69,6 @@ function MyBookItem({ username, myBook }: MyBookItemProps) {
             contentFit="cover"
             height={80}
             width={80}
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             src={coverUrl}
             alt={myBook.book.title}
           />

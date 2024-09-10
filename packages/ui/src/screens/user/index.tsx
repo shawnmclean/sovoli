@@ -7,7 +7,9 @@ import { Link } from "@sovoli/ui/components/ui/link";
 
 import { Text } from "../../components/ui/text";
 
-type Profile = z.infer<(typeof contract.getUserMyBooksProfile.responses)[200]>;
+type Profile = z.infer<
+  (typeof contract.users.getUserMyBooksProfile.responses)[200]
+>;
 
 interface Props {
   profile: Profile;
