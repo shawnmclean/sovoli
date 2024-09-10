@@ -13,7 +13,7 @@ interface Props {
 async function getMyBooks({ params }: Props) {
   const client = tsrReactQuery.initQueryClient(getQueryClientRsc());
   try {
-    return await client.getMyBook.fetchQuery({
+    return await client.users.getMyBook.fetchQuery({
       queryKey: ["username", "slug"],
       queryData: {
         params: {

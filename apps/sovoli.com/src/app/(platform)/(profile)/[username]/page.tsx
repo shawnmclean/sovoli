@@ -11,7 +11,7 @@ interface Props {
 }
 
 const getUserProfile = cache(async ({ params }: Props) => {
-  const response = await api.getUserMyBooksProfile({
+  const response = await api.users.getUserMyBooksProfile({
     params: {
       username: params.username,
     },

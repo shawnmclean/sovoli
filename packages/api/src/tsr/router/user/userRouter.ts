@@ -1,18 +1,33 @@
-import { TSRAuthContext, TSRGlobalContext } from "@sovoli/api/tsr";
-import { count, db, eq, inArray, schema, sql } from "@sovoli/db";
-import { SelectUserSchema } from "@sovoli/db/schema";
 import { tsr } from "@ts-rest/serverless/fetch";
 
+import type { PlatformContext, TSRAuthContext } from "../../types";
+import { authMiddleware } from "../authMiddleware";
 import { userContract } from "./userContract";
 
-export const userRouter = tsr.routerBuilder(userContract).fullRouter({
-  getUser: async (_, req) => {
-    console.log("router req", req);
-    return {
-      status: 200,
-      body: {
-        name: "John Doe",
-      },
-    };
-  },
-});
+export const userRouter = tsr
+  .platformContext<PlatformContext>()
+  .routerBuilder(userContract)
+  .routeWithMiddleware("getUser", (routerBuilder) =>
+    routerBuilder
+      .middleware<TSRAuthContext>(authMiddleware)
+      .handler(async (_, { request: { user } }) => {
+        return Promise.resolve({
+          status: 200,
+          body: {
+            name: user.name ?? "Anonymous",
+          },
+        });
+      }),
+  )
+  .routeWithMiddleware("ping", (routerBuilder) =>
+    routerBuilder
+      .middleware<TSRAuthContext>(authMiddleware)
+      .handler(async ({ query: { message } }, { request: { user } }) => {
+        return Promise.resolve({
+          status: 200,
+          body: {
+            message: `${user.name} says ${message ?? "Hello"}`,
+          },
+        });
+      }),
+  );

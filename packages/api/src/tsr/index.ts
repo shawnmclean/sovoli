@@ -3,4 +3,8 @@ import { router } from "./root";
 
 export { router, contract };
 
-export type { TSRGlobalContext as TSRContext } from "./types";
+export type {
+  PlatformContext,
+  TSRGlobalContext,
+  TSRAuthContext,
+} from "./types";
