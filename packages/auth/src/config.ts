@@ -3,7 +3,6 @@ import type {
   NextAuthConfig,
   Session as NextAuthSession,
 } from "next-auth";
-import { decode } from "@auth/core/jwt";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@sovoli/db";
 // import {
