@@ -14,6 +14,7 @@ const handler = auth(async (request) => {
   // if req.auth is null, authjs only checks the cookies, we need to check the auth header
   if (!request.auth) {
     const authToken = request.headers.get("Authorization");
+    console.log("request.headers", request.headers);
     console.log("authToken", authToken);
     if (authToken) {
       const sessionToken = authToken.slice("Bearer ".length);
