@@ -3,6 +3,7 @@ import type {
   NextAuthConfig,
   Session as NextAuthSession,
 } from "next-auth";
+import type { AdapterSession } from "next-auth/adapters";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@sovoli/db";
 // import {
@@ -45,15 +46,16 @@ export const authConfig: NextAuthConfig = {
  */
 export const validateToken = async (
   sessionToken: string,
-): Promise<NextAuthSession | null> => {
+): Promise<NextAuthSession | DefaultSession | null> => {
   const session = await adapter.getSessionAndUser?.(sessionToken);
 
   return session
     ? {
+        ...session.session,
+        expires: session.session.expires.toISOString(),
         user: {
           ...session.user,
         },
-        expires: session.session.expires.toISOString(),
       }
     : null;
 };
@@ -102,7 +104,7 @@ declare module "next-auth" {
   interface User {
     username: string;
   }
-  interface Session {
+  interface Session extends AdapterSession {
     user: {
       username: string;
     } & DefaultSession["user"];
