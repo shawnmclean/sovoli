@@ -46,7 +46,9 @@ export const authConfig: NextAuthConfig = {
 export const validateToken = async (
   sessionToken: string,
 ): Promise<NextAuthSession | null> => {
+  console.log("sessionToken", sessionToken);
   const session = await adapter.getSessionAndUser?.(sessionToken);
+  console.log("session", session);
   return session
     ? {
         user: {
