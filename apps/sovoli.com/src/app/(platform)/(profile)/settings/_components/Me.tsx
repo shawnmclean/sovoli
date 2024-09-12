@@ -16,7 +16,7 @@ export function Me() {
 
   return (
     <>
-      <h1>Suspense query</h1>
+      <h1>Suspense Rendered</h1>
       <p>Name from API: {me.name}</p>
     </>
   );

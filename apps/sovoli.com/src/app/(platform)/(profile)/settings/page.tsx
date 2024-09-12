@@ -16,13 +16,13 @@ export default async function SettingsPage() {
     <div className="min-h-screen dark:bg-black sm:pl-60">
       <h1>Settings</h1>
 
-      <SignIn />
-
       <HydrationBoundary state={dehydrate(client)}>
         <Suspense fallback={<div>Loading...</div>}>
           <Me />
         </Suspense>
       </HydrationBoundary>
+
+      <SignIn />
     </div>
   );
 }
@@ -45,6 +45,9 @@ async function SignIn() {
 
   return (
     <div>
+      <h1>Server Rendered</h1>
+      <p>Name from Server: {session.user.name}</p>
+
       <pre>{JSON.stringify(session, null, 2)}</pre>
     </div>
   );
