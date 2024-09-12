@@ -1,0 +1,8 @@
+{
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [{ "key": "Authorization", "value": "Authorization" }]
+    }
+  ]
+}
