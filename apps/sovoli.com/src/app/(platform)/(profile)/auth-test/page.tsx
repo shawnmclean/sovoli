@@ -1,10 +1,9 @@
 import { Suspense } from "react";
-import { auth, signIn } from "@sovoli/auth";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 import { getQueryClientRsc } from "~/api/query-client";
 import { tsrReactQuery } from "~/api/tsr";
-import { Me } from "./_components/Me";
+import { Me } from "../settings/_components/Me";
 
 export default async function SettingsPage() {
   const client = tsrReactQuery.initQueryClient(getQueryClientRsc());
@@ -14,38 +13,13 @@ export default async function SettingsPage() {
 
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
-      <h1>Settings</h1>
-
-      <SignIn />
+      <h1>React Query Auth Test</h1>
 
       <HydrationBoundary state={dehydrate(client)}>
         <Suspense fallback={<div>Loading...</div>}>
           <Me />
         </Suspense>
       </HydrationBoundary>
-    </div>
-  );
-}
-
-async function SignIn() {
-  const session = await auth();
-
-  if (!session) {
-    return (
-      <form
-        action={async () => {
-          "use server";
-          await signIn();
-        }}
-      >
-        <button type="submit">Sign in</button>
-      </form>
-    );
-  }
-
-  return (
-    <div>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
     </div>
   );
 }
