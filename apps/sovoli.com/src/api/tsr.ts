@@ -21,7 +21,9 @@ const clientOptions = {
     // See: https://github.com/ts-rest/ts-rest/issues/436
     let authHeader = {};
     if (isServer) {
+      console.log("server api");
       const session = await auth();
+      console.log(session);
       if (session) {
         authHeader = {
           Authorization: `Bearer ${session.sessionToken}`,
