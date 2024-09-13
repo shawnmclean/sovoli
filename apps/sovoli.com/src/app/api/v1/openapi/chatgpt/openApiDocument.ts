@@ -4,7 +4,7 @@ import { generateOpenApi } from "@ts-rest/open-api";
 import { getBaseUrl } from "~/utils/getBaseUrl";
 
 const openApiDocument = generateOpenApi(
-  contract.user,
+  contract.chatgpt,
   {
     info: {
       title: "Sovoli API",

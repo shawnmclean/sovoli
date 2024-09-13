@@ -1,6 +1,7 @@
 import { initContract } from "@ts-rest/core";
 
 import { bookContract } from "./router/book/bookContract";
+import { chatGPTContract } from "./router/chatGPT/chatGPTContract";
 import { furnitureContract } from "./router/furniture/furnitureContract";
 import { myBookContract } from "./router/myBook/myBookContract";
 import { shelfContract } from "./router/shelf/shelfContract";
@@ -16,4 +17,5 @@ export const contract = c.router({
   myBook: myBookContract,
   book: bookContract,
   user: userContract,
+  chatgpt: chatGPTContract,
 });
