@@ -289,6 +289,9 @@ importers:
       '@ai-sdk/openai':
         specifier: 0.0.47
         version: 0.0.47(zod@3.23.8)
+      '@anatine/zod-openapi':
+        specifier: 2.2.6
+        version: 2.2.6(openapi3-ts@2.0.2)(zod@3.23.8)
       '@sovoli/auth':
         specifier: workspace:*
         version: link:../auth
@@ -310,6 +313,9 @@ importers:
       ai:
         specifier: 3.3.8
         version: 3.3.8(react@18.2.0)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.4.38(typescript@5.5.2))(zod@3.23.8)
+      parse-multipart-data:
+        specifier: 1.5.0
+        version: 1.5.0
       superjson:
         specifier: 2.2.1
         version: 2.2.1
@@ -450,7 +456,7 @@ importers:
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-e56f4ae3-20240830(eslint@9.8.0)
+        version: 5.1.0-rc-206df66e-20240912(eslint@9.8.0)
       eslint-plugin-turbo:
         specifier: 2.0.11
         version: 2.0.11(eslint@9.8.0)
@@ -712,6 +718,12 @@ packages:
     resolution: {integrity: sha512-q0qHfnuNYVKu0Swrnnvfj9971AEyW7c8v9jCOZGCl5ZbyGMNG4RPyJkRcMi/JC8CRfdOe0IDfNm1nNsi2avprg==}
     peerDependencies:
       openapi3-ts: ^2.0.0 || ^3.0.0
+      zod: ^3.20.0
+
+  '@anatine/zod-openapi@2.2.6':
+    resolution: {integrity: sha512-Z5sr2Nq2xifEpPbPdUcvyl776LY652oR3VHMV++WFSmRrRL8RDP2XTkbuGn+vgfVNOD7UrndYwCWnxaiw7IZog==}
+    peerDependencies:
+      openapi3-ts: ^4.1.2
       zod: ^3.20.0
 
   '@auth/core@0.34.2':
@@ -4857,8 +4869,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-e56f4ae3-20240830:
-    resolution: {integrity: sha512-w+VTy81b3KCQYWhe2Ux/kVqhiyqieaWbHfPlSwU8sKLeHOPl2LPlCn1wWRJE7KMb5/bkrOtAyWrwhlasqUsePA==}
+  eslint-plugin-react-hooks@5.1.0-rc-206df66e-20240912:
+    resolution: {integrity: sha512-7ApoGzoavioLFz1Vb2eQKnA6S9zdCWFkMNe17uBHQ0n0o9j1UiZxzaQumHrPNXMJwvCR1nuvpHxHOg7tRKw81g==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -6895,6 +6907,9 @@ packages:
   parse-ms@4.0.0:
     resolution: {integrity: sha512-TXfryirbmq34y8QBwgqCVLi+8oA3oWx2eAnSn62ITyEhEYaWRlVZ2DvMM9eZbMs/RfxPu/PK/aBLyGj4IrqMHw==}
     engines: {node: '>=18'}
+
+  parse-multipart-data@1.5.0:
+    resolution: {integrity: sha512-ck5zaMF0ydjGfejNMnlo5YU2oJ+pT+80Jb1y4ybanT27j+zbVP/jkYmCrUGsEln0Ox/hZmuvgy8Ra7AxbXP2Mw==}
 
   parse-png@2.1.0:
     resolution: {integrity: sha512-Nt/a5SfCLiTnQAjx3fHlqp8hRgTL3z7kTQZzvIMS9uCAepnCyjpdEc6M/sz69WqMBdaDBw9sF1F1UaHROYzGkQ==}
@@ -8939,6 +8954,12 @@ snapshots:
       esbuild: 0.19.12
 
   '@anatine/zod-openapi@1.14.2(openapi3-ts@2.0.2)(zod@3.23.8)':
+    dependencies:
+      openapi3-ts: 2.0.2
+      ts-deepmerge: 6.2.1
+      zod: 3.23.8
+
+  '@anatine/zod-openapi@2.2.6(openapi3-ts@2.0.2)(zod@3.23.8)':
     dependencies:
       openapi3-ts: 2.0.2
       ts-deepmerge: 6.2.1
@@ -14141,7 +14162,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-e56f4ae3-20240830(eslint@9.8.0):
+  eslint-plugin-react-hooks@5.1.0-rc-206df66e-20240912(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
 
@@ -16445,6 +16466,8 @@ snapshots:
       json-parse-better-errors: 1.0.2
 
   parse-ms@4.0.0: {}
+
+  parse-multipart-data@1.5.0: {}
 
   parse-png@2.1.0:
     dependencies:
