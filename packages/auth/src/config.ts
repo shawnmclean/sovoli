@@ -5,16 +5,15 @@ import type {
 } from "next-auth";
 import type { AdapterSession } from "next-auth/adapters";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { db } from "@sovoli/db";
-// import {
-//   accounts,
-//   sessions,
-//   users,
-//   verificationTokens,
-// } from "@sovoli/db/schema";
+import { db, schema } from "@sovoli/db";
 import Resend from "next-auth/providers/resend";
 
-const adapter = DrizzleAdapter(db);
+const adapter = DrizzleAdapter(db, {
+  usersTable: schema.users,
+  accountsTable: schema.accounts,
+  sessionsTable: schema.sessions,
+  verificationTokensTable: schema.verificationTokens,
+});
 
 export const authConfig: NextAuthConfig = {
   adapter,
@@ -59,46 +58,6 @@ export const validateToken = async (
       }
     : null;
 };
-
-// const validateJwtToken = async (
-//   token: string,
-// ): Promise<NextAuthSession | null> => {
-//   const secureCookie = process.env.NODE_ENV === "production";
-//   const decoded = await decode({
-//     token,
-//     secret: process.env.AUTH_SECRET ?? "secret",
-//     salt: secureCookie
-//       ? "__Secure-authjs.session-token"
-//       : "authjs.session-token",
-//   });
-
-//   return decoded
-//     ? {
-//         user: {
-//           username: decoded.email,
-//         },
-//         expires: new Date().toISOString(),
-//       }
-//     : null;
-// };
-
-// const validatePersonalAccessToken = async (
-//   token: string,
-// ): Promise<NextAuthSession | null> => {
-//   // TODO: create a personal access token table and hash the token
-//   // but for now, lets go with the user id as the token
-//   const userToken = token.replace(PAT_PREFIX, ""); // Remove prefix
-//   const user = await adapter.getUser?.(userToken);
-
-//   return user
-//     ? {
-//         user: {
-//           ...user,
-//         },
-//         expires: new Date().toISOString(),
-//       }
-//     : null;
-// };
 
 declare module "next-auth" {
   interface User {
