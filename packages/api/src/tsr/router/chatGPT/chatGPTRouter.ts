@@ -15,6 +15,7 @@ export const chatGPTRouter = tsr
           status: 200,
           body: {
             items: body.openaiFileIdRefs,
+            books: body.books,
           },
         });
       }),

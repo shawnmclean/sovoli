@@ -1,4 +1,5 @@
 import { extendZodWithOpenApi } from "@anatine/zod-openapi";
+import { books } from "@sovoli/db/schema";
 import { initContract } from "@ts-rest/core";
 import { z } from "zod";
 
@@ -20,6 +21,11 @@ export const chatGPTContract = c.router(
             download_link: z.string(),
           }),
         ),
+        books: z.array(
+          z.object({
+            name: z.string(),
+          }),
+        ),
       }),
       responses: {
         200: z.object({
@@ -27,6 +33,11 @@ export const chatGPTContract = c.router(
             z.object({
               name: z.string(),
               download_link: z.string(),
+            }),
+          ),
+          books: z.array(
+            z.object({
+              name: z.string(),
             }),
           ),
         }),
