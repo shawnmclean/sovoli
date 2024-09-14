@@ -13,7 +13,8 @@ export const userContract = c.router(
       path: `/`,
       responses: {
         200: z.object({
-          name: z.string(),
+          name: z.string().nullish(),
+          username: z.string().nullish(),
         }),
       },
       summary: "Get the currently logged in user",
@@ -62,5 +63,8 @@ export const userContract = c.router(
     commonResponses: {
       401: c.type<{ message: "Unauthorized" }>(),
     },
+    baseHeaders: z.object({
+      authorization: z.string(),
+    }),
   },
 );

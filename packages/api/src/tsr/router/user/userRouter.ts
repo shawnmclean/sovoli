@@ -15,7 +15,8 @@ export const userRouter = tsr
         return Promise.resolve({
           status: 200,
           body: {
-            name: user.name ?? "Anonymous",
+            name: user.name,
+            username: user.username,
           },
         });
       }),

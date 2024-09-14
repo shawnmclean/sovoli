@@ -61,11 +61,6 @@ export const validateToken = async (
 
 declare module "next-auth" {
   interface User {
-    username: string;
-  }
-  interface Session extends AdapterSession {
-    user: {
-      username: string;
-    } & DefaultSession["user"];
+    username?: string | null;
   }
 }
