@@ -7,7 +7,7 @@ import { chatGPTContract } from "./chatGPTContract";
 export const chatGPTRouter = tsr
   .platformContext<PlatformContext>()
   .routerBuilder(chatGPTContract)
-  .routeWithMiddleware("createBookList", (routerBuilder) =>
+  .routeWithMiddleware("createResearchCollection", (routerBuilder) =>
     routerBuilder
       .middleware<TSRAuthContext>(authMiddleware)
       .handler(async ({ body }) => {

@@ -59,12 +59,16 @@ export const userContract = c.router(
     },
   },
   {
+    metadata: {
+      openApiSecurity: [
+        {
+          BearerAuth: [],
+        },
+      ],
+    },
     pathPrefix: "/user",
     commonResponses: {
       401: c.type<{ message: "Unauthorized" }>(),
     },
-    baseHeaders: z.object({
-      authorization: z.string(),
-    }),
   },
 );

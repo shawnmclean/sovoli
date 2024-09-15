@@ -1,5 +1,4 @@
 import { extendZodWithOpenApi } from "@anatine/zod-openapi";
-import { books } from "@sovoli/db/schema";
 import { initContract } from "@ts-rest/core";
 import { z } from "zod";
 
@@ -9,9 +8,9 @@ const c = initContract();
 
 export const chatGPTContract = c.router(
   {
-    createBookList: {
+    createResearchCollection: {
       method: "POST",
-      path: `/`,
+      path: `/research-collection`,
       body: z.object({
         openaiFileIdRefs: z.array(
           z.object({
@@ -42,10 +41,17 @@ export const chatGPTContract = c.router(
           ),
         }),
       },
-      summary: "Get the currently logged in user",
+      summary: "Create a Research Collection",
     },
   },
   {
+    metadata: {
+      openApiSecurity: [
+        {
+          BearerAuth: [],
+        },
+      ],
+    },
     pathPrefix: "/chatgpt",
     commonResponses: {
       401: c.type<{ message: "Unauthorized" }>(),
