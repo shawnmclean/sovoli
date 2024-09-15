@@ -63,4 +63,7 @@ declare module "next-auth" {
   interface User {
     username?: string | null;
   }
+  interface Session extends AdapterSession {
+    user: DefaultSession["user"];
+  }
 }
