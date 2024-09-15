@@ -3,7 +3,7 @@ import { TsRestResponse } from "@ts-rest/serverless/fetch";
 import type { TSRAuthContext } from "../types";
 
 export const authMiddleware = (req: TSRAuthContext) => {
-  if (!req.session) {
+  if (!req.session?.user) {
     return TsRestResponse.fromJson(
       {
         message: "Unauthorized",
