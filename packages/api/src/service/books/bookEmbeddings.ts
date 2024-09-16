@@ -1,11 +1,11 @@
 import type { SelectBookSchema } from "@sovoli/db/schema";
 import { openai } from "@ai-sdk/openai";
 import { cosineDistance, count, db, eq, gt, inArray, sql } from "@sovoli/db";
-import { bookEmbeddings, books as booksTable } from "@sovoli/db/schema";
+import { Book, BookEmbedding } from "@sovoli/db/schema";
 import { embedMany } from "ai";
 
 export async function updateBookEmbeddings(bookIds: string[]) {
-  const books = await db.query.books.findMany({
+  const books = await db.query.Book.findMany({
     with: {
       authorsToBooks: {
         with: {
@@ -13,7 +13,7 @@ export async function updateBookEmbeddings(bookIds: string[]) {
         },
       },
     },
-    where: inArray(booksTable.id, bookIds),
+    where: inArray(Book.id, bookIds),
   });
 
   const bookTemplates = books.map(getBookEmbedTemplate);
@@ -67,13 +67,13 @@ async function setBookEmbeddings(
   data: { bookId: string; openAIEmbedding: number[] }[],
 ) {
   await db
-    .insert(bookEmbeddings)
+    .insert(BookEmbedding)
     .values(data)
     .onConflictDoUpdate({
-      target: bookEmbeddings.bookId,
+      target: BookEmbedding.bookId,
       set: {
         openAIEmbedding: sql.raw(
-          `excluded.${bookEmbeddings.openAIEmbedding.name}`,
+          `excluded.${BookEmbedding.openAIEmbedding.name}`,
         ),
       },
     });
@@ -99,24 +99,24 @@ export async function getBooksByEmbeddings(
   page = 1,
   pageSize = 10,
 ): Promise<{ data: SelectBookSchema[]; total: number }> {
-  const similarity = sql<number>`1 - (${cosineDistance(bookEmbeddings.openAIEmbedding, embedding)})`;
+  const similarity = sql<number>`1 - (${cosineDistance(BookEmbedding.openAIEmbedding, embedding)})`;
 
   const [rows, totalResult] = await Promise.all([
     db
       .select({
-        book: booksTable,
+        book: Book,
         similarity,
       })
-      .from(bookEmbeddings)
-      .innerJoin(booksTable, eq(bookEmbeddings.bookId, booksTable.id))
+      .from(BookEmbedding)
+      .innerJoin(Book, eq(BookEmbedding.bookId, Book.id))
       .where(gt(similarity, 0.5))
       .orderBy(similarity)
       .offset((page - 1) * pageSize)
       .limit(pageSize),
     db
       .select({ count: count() })
-      .from(bookEmbeddings)
-      .innerJoin(booksTable, eq(bookEmbeddings.bookId, booksTable.id))
+      .from(BookEmbedding)
+      .innerJoin(Book, eq(BookEmbedding.bookId, Book.id))
       .where(gt(similarity, 0.5)),
   ]);
 

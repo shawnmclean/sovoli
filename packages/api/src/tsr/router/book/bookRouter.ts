@@ -25,11 +25,11 @@ export const bookRouter = tsr.router(bookContract, {
     } else {
       // list all books
       const [data, total] = await Promise.all([
-        db.query.books.findMany({
+        db.query.Book.findMany({
           limit: pageSize,
           offset: (page - 1) * pageSize,
         }),
-        db.select({ count: count() }).from(schema.books),
+        db.select({ count: count() }).from(schema.Book),
       ]);
 
       return {

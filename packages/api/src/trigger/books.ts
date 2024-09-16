@@ -4,11 +4,7 @@ import type {
   SelectBookSchema,
 } from "@sovoli/db/schema";
 import { db, eq, sql } from "@sovoli/db";
-import {
-  Author,
-  authorsToBooks as authorsToBooksSchema,
-  books as booksSchema,
-} from "@sovoli/db/schema";
+import { Author, AuthorToBook, Book } from "@sovoli/db/schema";
 import { bookService } from "@sovoli/services";
 import { googlebooks } from "@sovoli/services/src/books";
 import { AbortTaskRunError, logger, task } from "@trigger.dev/sdk/v3";
@@ -29,11 +25,11 @@ export const hydrateBook = task({
   id: "hydrate-book",
   run: async ({ bookId }: HydrateBookOptions, { ctx }) => {
     const books = await db
-      .update(booksSchema)
+      .update(Book)
       .set({
         triggerDevId: ctx.run.id,
       })
-      .where(eq(booksSchema.id, bookId))
+      .where(eq(Book.id, bookId))
       .returning();
 
     const book = books[0];
@@ -173,7 +169,7 @@ async function upsertAuthorsToBooks(
 ) {
   if (authorsToBooks.length === 0) return [];
   const insertedAuthorsToBooks = await db
-    .insert(authorsToBooksSchema)
+    .insert(AuthorToBook)
     .values(authorsToBooks)
     .onConflictDoNothing()
     .returning();

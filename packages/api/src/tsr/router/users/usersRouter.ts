@@ -7,8 +7,8 @@ import { usersContract } from "./usersContract";
 
 export const usersRouter = tsr.router(usersContract, {
   getUser: async ({ params: { username } }) => {
-    const user = await db.query.users.findFirst({
-      where: eq(schema.users.username, username),
+    const user = await db.query.User.findFirst({
+      where: eq(schema.User.username, username),
     });
 
     if (!user) return { status: 404, body: { message: "User not found" } };
@@ -24,19 +24,19 @@ export const usersRouter = tsr.router(usersContract, {
   }) => {
     const filter = getMyBooksByUsernameFilter(username);
     const [user, mybooks, mybooksTotal] = await Promise.all([
-      db.query.users.findFirst({
-        where: eq(schema.users.username, username),
-        with: {
-          shelves: {
-            extras: {
-              totalBooks: sql<number>`(
-                SELECT CAST(COUNT(*) AS INTEGER)
-                FROM ${schema.myBooks}
-                WHERE shelf_id = ${schema.shelves.id}
-              )`.as("total_books"),
-            },
-          },
-        },
+      db.query.User.findFirst({
+        where: eq(schema.User.username, username),
+        // with: {
+        //   shelves: {
+        //     extras: {
+        //       totalBooks: sql<number>`(
+        //         SELECT CAST(COUNT(*) AS INTEGER)
+        //         FROM ${schema.myBooks}
+        //         WHERE shelf_id = ${schema.shelves.id}
+        //       )`.as("total_books"),
+        //     },
+        //   },
+        // },
       }),
       db.query.myBooks.findMany({
         with: {
@@ -68,8 +68,8 @@ function getMyBooksByUsernameFilter(username: string) {
   return inArray(
     schema.myBooks.ownerId,
     db
-      .select({ id: schema.users.id })
-      .from(schema.users)
-      .where(eq(schema.users.username, username)),
+      .select({ id: schema.User.id })
+      .from(schema.User)
+      .where(eq(schema.User.username, username)),
   );
 }

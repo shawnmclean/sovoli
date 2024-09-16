@@ -1,6 +1,6 @@
 import type { SelectBookSchema } from "@sovoli/db/schema";
 import { db, inArray, or } from "@sovoli/db";
-import { books as booksSchema } from "@sovoli/db/schema";
+import { Book } from "@sovoli/db/schema";
 
 export interface FindBooksOptions {
   title?: string;
@@ -39,10 +39,7 @@ export function findBooks(
  */
 export async function getBooksByIsbns(isbns: string[]) {
   if (isbns.length === 0) return [];
-  return await db.query.books.findMany({
-    where: or(
-      inArray(booksSchema.isbn13, isbns),
-      inArray(booksSchema.isbn10, isbns),
-    ),
+  return await db.query.Book.findMany({
+    where: or(inArray(Book.isbn13, isbns), inArray(Book.isbn10, isbns)),
   });
 }

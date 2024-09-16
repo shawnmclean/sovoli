@@ -1,21 +1,16 @@
 import { relations } from "drizzle-orm";
 
-import { books } from "./books";
-import { shelves } from "./furnitures";
-import { users } from "./identity";
+import { Book } from "./Book";
 import { myBooks } from "./myBooks";
+import { User } from "./User";
 
 export const myBooksRelations = relations(myBooks, ({ one }) => ({
-  owner: one(users, {
+  owner: one(User, {
     fields: [myBooks.ownerId],
-    references: [users.id],
+    references: [User.id],
   }),
-  shelf: one(shelves, {
-    fields: [myBooks.shelfId],
-    references: [shelves.id],
-  }),
-  book: one(books, {
+  book: one(Book, {
     fields: [myBooks.bookId],
-    references: [books.id],
+    references: [Book.id],
   }),
 }));

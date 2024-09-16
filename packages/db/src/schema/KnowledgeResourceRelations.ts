@@ -1,19 +1,19 @@
 import { relations } from "drizzle-orm";
 
-import { books } from "./books";
-import { users } from "./identity";
+import { Book } from "./Book";
 import { KnowledgeResource } from "./KnowledgeResource";
+import { User } from "./User";
 
 export const KnowledgeResourceRelations = relations(
   KnowledgeResource,
   ({ one }) => ({
-    User: one(users, {
+    User: one(User, {
       fields: [KnowledgeResource.userId],
-      references: [users.id],
+      references: [User.id],
     }),
-    KnowledgeResource: one(books, {
+    Book: one(Book, {
       fields: [KnowledgeResource.bookId],
-      references: [books.id],
+      references: [Book.id],
     }),
   }),
 );

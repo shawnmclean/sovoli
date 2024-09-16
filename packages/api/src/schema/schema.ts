@@ -1,11 +1,4 @@
-import {
-  ImageSchema,
-  InsertShelfSchema,
-  SelectBookSchema,
-  SelectFurnitureSchema,
-  SelectMyBookSchema,
-  SelectShelfSchema,
-} from "@sovoli/db/schema";
+import { SelectBookSchema, SelectMyBookSchema } from "@sovoli/db/schema";
 import { z } from "zod";
 
 import { withPagination } from "./withPagination";
@@ -27,41 +20,13 @@ export const BooksResponseSchema = withPagination(SelectBookSchema);
 
 export const MyBookResponseSchema = SelectMyBookSchema.extend({
   book: SelectBookSchema.nullish(),
-  shelf: SelectShelfSchema.nullish(),
 });
-
-export const ShelfResponseSchema = SelectShelfSchema.extend({
-  furniture: SelectFurnitureSchema.nullish(),
-  totalBooks: z.number(),
-  images: z.array(ImageSchema).nullish(),
-});
-
-export const ShelvesResponseSchema = withPagination(ShelfResponseSchema);
 
 export const MyBooksResponseSchema = withPagination(MyBookResponseSchema);
 export const PutMyBooksResponseSchema = MyBookResponseSchema.array();
-
-export const ShelfBooksResponseSchema = withPagination(
-  MyBookResponseSchema.omit({ shelf: true }),
-).extend({
-  shelf: ShelfResponseSchema,
-});
 
 export const InferredBookSchema = z.object({
   title: z.string().optional(),
   author: z.string().optional(),
   isbn: z.string().optional(),
-});
-
-export const InsertShelfRequestSchema = InsertShelfSchema.omit({
-  ownerId: true,
-}).extend({
-  myBooks: z
-    .array(
-      z.object({
-        inferredBook: InferredBookSchema.optional(),
-        shelfOrder: z.number(),
-      }),
-    )
-    .optional(),
 });

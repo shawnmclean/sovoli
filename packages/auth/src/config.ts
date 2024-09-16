@@ -9,10 +9,10 @@ import { db, schema } from "@sovoli/db";
 import Resend from "next-auth/providers/resend";
 
 const adapter = DrizzleAdapter(db, {
-  usersTable: schema.users,
-  accountsTable: schema.accounts,
-  sessionsTable: schema.sessions,
-  verificationTokensTable: schema.verificationTokens,
+  usersTable: schema.User,
+  accountsTable: schema.Account,
+  sessionsTable: schema.Session,
+  verificationTokensTable: schema.VerificationToken,
 });
 
 export const authConfig: NextAuthConfig = {

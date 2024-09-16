@@ -43,7 +43,6 @@ export const myBookRouter = tsr.router(myBookContract, {
       db.query.myBooks.findMany({
         with: {
           book: true,
-          shelf: true,
         },
         where: filter,
         limit: pageSize,
@@ -66,7 +65,6 @@ export const myBookRouter = tsr.router(myBookContract, {
 
     const myBook = await db.query.myBooks.findFirst({
       with: {
-        shelf: true,
         book: true,
       },
       where: and(usernameFilter, bookFilter),
@@ -85,9 +83,9 @@ function getMyBooksByUsernameFilter(username: string) {
   return inArray(
     schema.myBooks.ownerId,
     db
-      .select({ id: schema.users.id })
-      .from(schema.users)
-      .where(eq(schema.users.username, username)),
+      .select({ id: schema.User.id })
+      .from(schema.User)
+      .where(eq(schema.User.username, username)),
   );
 }
 
@@ -95,8 +93,8 @@ function getMyBooksBySlugFilter(slug: string) {
   return inArray(
     schema.myBooks.bookId,
     db
-      .select({ id: schema.books.id })
-      .from(schema.books)
-      .where(eq(schema.books.slug, slug)),
+      .select({ id: schema.Book.id })
+      .from(schema.Book)
+      .where(eq(schema.Book.slug, slug)),
   );
 }

@@ -17,7 +17,7 @@ export interface PutMyBooksOptions {
  * @returns
  */
 export async function putMyBookQueries(options: PutMyBooksOptions) {
-  const user = await db.query.users.findFirst({
+  const user = await db.query.User.findFirst({
     with: {
       myBooks: {
         with: {
@@ -25,7 +25,7 @@ export async function putMyBookQueries(options: PutMyBooksOptions) {
         },
       },
     },
-    where: eq(schema.users.username, options.username),
+    where: eq(schema.User.username, options.username),
   });
 
   if (!user) throw new UserNotFoundError(options.username);

@@ -1,6 +1,6 @@
-import { db, eq, schema, sql } from "../";
+import { db, schema, sql } from "../";
 
-const books: (typeof schema.books.$inferInsert)[] = [
+const books: (typeof schema.Book.$inferInsert)[] = [
   {
     title: "The Power of Habit",
     description: "A book about habits",
@@ -23,202 +23,8 @@ const books: (typeof schema.books.$inferInsert)[] = [
   },
 ];
 
-const data = [
-  {
-    name: "John Doe",
-    username: "johndoe",
-    email: "johndoe@sovoli.com",
-    furnitures: [
-      {
-        name: "Wardrobe",
-        slug: "wardrobe",
-        description:
-          "A wardrobe with drawers for clothes and shelves for books",
-        shelves: [
-          {
-            name: "Wardrobe Top Left Shelf",
-            description: "The Commmunication and Social Intelligence Shelf",
-            slug: "wardrobe-top-left-shelf",
-            books: [
-              {
-                name: "The Power of Habit",
-
-                description: "A book about habits",
-                order: 0,
-              },
-              {
-                name: "The 7 Habits of Highly Effective People",
-
-                description: "A book about habits",
-                order: 1,
-              },
-              {
-                name: "The Art of War",
-
-                description: "A book about war",
-                order: 2,
-              },
-            ],
-          },
-          {
-            name: "Wardrobe Bottom Left Shelf",
-            description: "The Psychology and Self-Help Shelf",
-            slug: "wardrobe-bottom-left-shelf",
-            books: [
-              {
-                name: "Titanic",
-
-                description: "A book about the Titanic",
-                order: 0,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: "Writing Desk",
-        slug: "writing-desk",
-        description: "A desk with a drawer and shelves",
-        shelves: [],
-      },
-    ],
-  },
-  {
-    name: "Jane Doe",
-    username: "janedoe",
-    email: "janedoe@sovoli.com",
-    furnitures: [
-      {
-        name: "Wardrobe",
-        slug: "wardrobe",
-        description: "Wardrobe for clothes and books",
-        shelves: [
-          {
-            name: "Wardrobe Top Left Shelf",
-            slug: "wardrobe-top-left-shelf",
-            description: "Shelf for all my books",
-            books: [],
-          },
-        ],
-      },
-    ],
-  },
-];
-
-const seedUsers = async () => {
+const seedUsers = () => {
   try {
-    for (const { name, email, username, furnitures } of data) {
-      const [user] = await db
-        .insert(schema.users)
-        .values({
-          name,
-          email,
-          username,
-        })
-        .onConflictDoUpdate({
-          target: schema.users.username,
-          set: {
-            name: sql.raw(`excluded.${schema.users.name.name}`),
-          },
-        })
-        .returning();
-
-      if (!user) break;
-
-      for (const { name, description, slug, shelves } of furnitures) {
-        const [furniture] = await db
-          .insert(schema.furnitures)
-          .values({
-            name,
-            description,
-            slug,
-            ownerId: user.id,
-          })
-          .onConflictDoUpdate({
-            target: [schema.furnitures.slug, schema.furnitures.ownerId],
-            set: {
-              name: sql.raw(`excluded.${schema.furnitures.name.name}`),
-              description: sql.raw(
-                `excluded.${schema.furnitures.description.name}`,
-              ),
-            },
-          })
-          .returning();
-
-        if (!furniture) break;
-
-        for (const { name, description, slug, books } of shelves) {
-          {
-            const [shelf] = await db
-              .insert(schema.shelves)
-              .values({
-                name,
-                description,
-                slug,
-                furnitureId: furniture.id,
-                ownerId: user.id,
-              })
-              .onConflictDoUpdate({
-                target: [schema.shelves.slug, schema.shelves.ownerId],
-                set: {
-                  name: sql.raw(`excluded.${schema.shelves.name.name}`),
-                  description: sql.raw(
-                    `excluded.${schema.shelves.description.name}`,
-                  ),
-                },
-              })
-              .returning();
-
-            if (!shelf) break;
-
-            for (const { name, description, order } of books) {
-              const book = await db.query.books.findFirst({
-                where: eq(schema.books.title, name),
-              });
-              if (!book) break;
-              console.log("creating myBooks for book", book);
-
-              await db
-                .insert(schema.myBooks)
-                .values({
-                  name,
-
-                  description,
-                  ownerId: user.id,
-                  shelfId: shelf.id,
-                  shelfOrder: order,
-                  bookId: book.id,
-                })
-                .onConflictDoUpdate({
-                  target: [schema.myBooks.ownerId, schema.myBooks.bookId],
-                  set: {
-                    name: sql.raw(`excluded.${schema.myBooks.name.name}`),
-                    description: sql.raw(
-                      `excluded.${schema.myBooks.description.name}`,
-                    ),
-                  },
-                })
-                .returning();
-            }
-          }
-        }
-      }
-    }
-
-    const users = await db.query.users.findMany({
-      with: {
-        furnitures: {
-          with: {
-            shelves: {
-              with: {
-                books: true,
-              },
-            },
-          },
-        },
-      },
-    });
-    console.log(JSON.stringify(users, null, 2));
     console.log("🧨 Done seeding the users table successfully...\n");
   } catch (error) {
     console.error("🚨 Failed to seed users table!");
@@ -229,60 +35,26 @@ const seedUsers = async () => {
 const seedBooks = async () => {
   for (const { title, description, isbn13 } of books) {
     await db
-      .insert(schema.books)
+      .insert(schema.Book)
       .values({
         title,
         description,
         isbn13,
       })
       .onConflictDoUpdate({
-        target: schema.books.isbn13,
+        target: schema.Book.isbn13,
         set: {
-          title: sql.raw(`excluded.${schema.books.title.name}`),
-          description: sql.raw(`excluded.${schema.books.description.name}`),
+          title: sql.raw(`excluded.${schema.Book.title.name}`),
+          description: sql.raw(`excluded.${schema.Book.description.name}`),
         },
       })
       .returning();
   }
 
-  const createdBooks = await db.query.books.findMany();
+  const createdBooks = await db.query.Book.findMany();
   console.log(JSON.stringify(createdBooks, null, 2));
   console.log("🧨 Done seeding the books table successfully...\n");
 };
-
-// const seedInferredBooks = async () => {
-//   const johnDoe = await db.query.users.findFirst({
-//     where: eq(schema.users.username, "johndoe"),
-//   });
-
-//   if (!johnDoe) throw new Error("johndoe user not found");
-
-//   const result = await db
-//     .insert(schema.myBooks)
-//     .values([
-//       {
-//         inferredBook: {
-//           title: "The Power of Habit",
-//           author: "Charles Duhigg",
-//           isbn: "9780141036145",
-//         },
-//         name: "The Power of Habit",
-//         ownerId: johnDoe.id,
-//       },
-//       {
-//         inferredBook: {
-//           title: "The 7 Habits of Highly Effective People",
-//           author: "Stephen Covey",
-//           isbn: "9780307358839",
-//         },
-//         name: "The 7 Habits of Highly Effective People",
-//         ownerId: johnDoe.id,
-//       },
-//     ])
-//     .returning({ id: schema.myBooks.id });
-//   console.log("🧨 Done seeding the inferredBooks table successfully...\n");
-//   console.log(JSON.stringify(result, null, 2));
-// };
 
 const main = async () => {
   console.log("🧨 Started seeding the database...\n");

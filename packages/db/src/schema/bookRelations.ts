@@ -1,32 +1,32 @@
 import { relations } from "drizzle-orm";
 
-import { Author, authorsToBooks, bookEmbeddings, books } from "./books";
+import { Author, AuthorToBook, Book, BookEmbedding } from "./Book";
 import { myBooks } from "./myBooks";
 
-export const booksRelations = relations(books, ({ many, one }) => ({
+export const BookRelations = relations(Book, ({ many, one }) => ({
   myBooks: many(myBooks),
-  embedding: one(bookEmbeddings),
-  authorsToBooks: many(authorsToBooks),
+  embedding: one(BookEmbedding),
+  authorsToBooks: many(AuthorToBook),
 }));
 
-export const authorsRelations = relations(Author, ({ many }) => ({
-  authorsToBooks: many(authorsToBooks),
+export const AuthorRelations = relations(Author, ({ many }) => ({
+  authorsToBooks: many(AuthorToBook),
 }));
 
-export const authorsToBooksRelations = relations(authorsToBooks, ({ one }) => ({
+export const AuthorToBookRelations = relations(AuthorToBook, ({ one }) => ({
   author: one(Author, {
-    fields: [authorsToBooks.authorId],
+    fields: [AuthorToBook.authorId],
     references: [Author.id],
   }),
-  book: one(books, {
-    fields: [authorsToBooks.bookId],
-    references: [books.id],
+  book: one(Book, {
+    fields: [AuthorToBook.bookId],
+    references: [Book.id],
   }),
 }));
 
-export const bookEmbeddingsRelations = relations(bookEmbeddings, ({ one }) => ({
-  book: one(books, {
-    fields: [bookEmbeddings.bookId],
-    references: [books.id],
+export const BookEmbeddingRelations = relations(BookEmbedding, ({ one }) => ({
+  book: one(Book, {
+    fields: [BookEmbedding.bookId],
+    references: [Book.id],
   }),
 }));

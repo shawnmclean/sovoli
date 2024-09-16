@@ -11,9 +11,8 @@ import {
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-import { books } from "./books";
-import { shelves } from "./furnitures";
-import { users } from "./identity";
+import { Book } from "./Book";
+import { User } from "./User";
 
 export const MyBookHydrationErrorSchema = z.object({
   message: z.string(),
@@ -34,8 +33,7 @@ export const myBooks = pgTable(
     description: text("description"),
     ownerId: uuid("owner_id")
       .notNull()
-      .references(() => users.id),
-    shelfId: uuid("shelf_id").references(() => shelves.id),
+      .references(() => User.id),
     shelfOrder: integer("shelf_order"),
     verifiedDate: date("verified_date"),
 
@@ -43,7 +41,7 @@ export const myBooks = pgTable(
     query: varchar("query", { length: 255 }),
     queryError: jsonb("query_error").$type<MyBookHydrationErrorSchema>(),
 
-    bookId: uuid("book_id").references(() => books.id),
+    bookId: uuid("book_id").references(() => Book.id),
   },
   (table) => ({
     /**

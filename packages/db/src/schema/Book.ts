@@ -58,7 +58,7 @@ export const BookCoverSchema = z.object({
 
 export type BookCover = z.infer<typeof BookCoverSchema>;
 
-export const books = pgTable(
+export const Book = pgTable(
   "book",
   {
     id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -123,19 +123,19 @@ export const books = pgTable(
   },
 );
 
-export const SelectBookSchema = createSelectSchema(books).extend({
+export const SelectBookSchema = createSelectSchema(Book).extend({
   authors: z.array(SelectAuthorSchema).optional(),
 });
-export const InsertBookSchema = createInsertSchema(books);
+export const InsertBookSchema = createInsertSchema(Book);
 export type SelectBookSchema = z.infer<typeof SelectBookSchema>;
 export type InsertBookSchema = z.infer<typeof InsertBookSchema>;
 
-export const bookEmbeddings = pgTable(
+export const BookEmbedding = pgTable(
   "book_embedding",
   {
     bookId: uuid("book_id")
       .primaryKey()
-      .references(() => books.id),
+      .references(() => Book.id),
     // 1536 is default size for openai embeddings
     openAIEmbedding: vector("open_ai_embedding", { dimensions: 1536 }),
     openAIEmbeddingUpdated: date("open_ai_embedding_updated")
@@ -151,12 +151,12 @@ export const bookEmbeddings = pgTable(
   }),
 );
 
-export const authorsToBooks = pgTable(
-  "authors_to_books",
+export const AuthorToBook = pgTable(
+  "author_to_book",
   {
     bookId: uuid("book_id")
       .notNull()
-      .references(() => books.id),
+      .references(() => Book.id),
     authorId: uuid("author_id")
       .notNull()
       .references(() => Author.id),
@@ -168,5 +168,5 @@ export const authorsToBooks = pgTable(
   }),
 );
 
-export const InsertAuthorToBookSchema = createInsertSchema(authorsToBooks);
+export const InsertAuthorToBookSchema = createInsertSchema(AuthorToBook);
 export type InsertAuthorToBookSchema = z.infer<typeof InsertAuthorToBookSchema>;

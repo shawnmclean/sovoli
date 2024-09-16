@@ -5,9 +5,7 @@ import type { PlatformContext, TSRGlobalContext } from "./types";
 import { contract } from "./contract";
 import { bookRouter } from "./router/book/bookRouter";
 import { chatGPTRouter } from "./router/chatGPT/chatGPTRouter";
-import { furnitureRouter } from "./router/furniture/furnitureRouter";
 import { myBookRouter } from "./router/myBook/myBookRouter";
-import { shelfRouter } from "./router/shelf/shelfRouter";
 import { userRouter } from "./router/user/userRouter";
 import { usersRouter } from "./router/users/usersRouter";
 
@@ -29,8 +27,6 @@ export const router = tsr
   })
   .subRouter("user", userRouter)
   .subRouter("book", bookRouter)
-  .subRouter("furniture", furnitureRouter)
   .subRouter("myBook", myBookRouter)
-  .subRouter("shelf", shelfRouter)
   .subRouter("users", usersRouter)
   .subRouter("chatgpt", chatGPTRouter);

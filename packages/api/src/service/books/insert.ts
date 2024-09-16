@@ -2,7 +2,7 @@ import { randomUUID } from "crypto";
 import type { SelectBookSchema } from "@sovoli/db/schema";
 import type { bookService } from "@sovoli/services";
 import { db, eq, getTableConfig, sql } from "@sovoli/db";
-import { BookCoverSchema, books as booksSchema } from "@sovoli/db/schema";
+import { Book, BookCoverSchema } from "@sovoli/db/schema";
 
 export async function upsertBooksFromGoogle(
   googleBooks: bookService.googlebooks.GoogleBook[],
@@ -37,31 +37,27 @@ export async function upsertBooksFromGoogle(
 
   try {
     const insertedBooks = await db
-      .insert(booksSchema)
+      .insert(Book)
       .values(books)
       .onConflictDoUpdate({
-        target: [booksSchema.googleId],
+        target: [Book.googleId],
         set: {
-          title: sql.raw(`excluded.${booksSchema.title.name}`),
-          subtitle: sql.raw(`excluded.${booksSchema.subtitle.name}`),
-          publishedDate: sql.raw(`excluded.${booksSchema.publishedDate.name}`),
-          publisher: sql.raw(`excluded.${booksSchema.publisher.name}`),
-          pageCount: sql.raw(`excluded.${booksSchema.pageCount.name}`),
-          description: sql.raw(`excluded.${booksSchema.description.name}`),
-          language: sql.raw(`excluded.${booksSchema.language.name}`),
+          title: sql.raw(`excluded.${Book.title.name}`),
+          subtitle: sql.raw(`excluded.${Book.subtitle.name}`),
+          publishedDate: sql.raw(`excluded.${Book.publishedDate.name}`),
+          publisher: sql.raw(`excluded.${Book.publisher.name}`),
+          pageCount: sql.raw(`excluded.${Book.pageCount.name}`),
+          description: sql.raw(`excluded.${Book.description.name}`),
+          language: sql.raw(`excluded.${Book.language.name}`),
           cover: sql.raw(
-            `COALESCE(excluded.${booksSchema.cover.name}, ${getTableConfig(booksSchema).name}.${booksSchema.cover.name})`,
+            `COALESCE(excluded.${Book.cover.name}, ${getTableConfig(Book).name}.${Book.cover.name})`,
           ),
           slug: sql.raw(
-            `COALESCE(excluded.${booksSchema.slug.name}, ${getTableConfig(booksSchema).name}.${booksSchema.slug.name})`,
+            `COALESCE(excluded.${Book.slug.name}, ${getTableConfig(Book).name}.${Book.slug.name})`,
           ),
           updatedAt: sql`now()`,
-          lastGoogleUpdated: sql.raw(
-            `excluded.${booksSchema.lastGoogleUpdated.name}`,
-          ),
-          inferredAuthor: sql.raw(
-            `excluded.${booksSchema.inferredAuthor.name}`,
-          ),
+          lastGoogleUpdated: sql.raw(`excluded.${Book.lastGoogleUpdated.name}`),
+          inferredAuthor: sql.raw(`excluded.${Book.inferredAuthor.name}`),
         },
       })
       .returning();
@@ -86,14 +82,14 @@ export async function updateBookFromOpenLibrary(
       })
     : undefined;
   const updatedBook = await db
-    .update(booksSchema)
+    .update(Book)
     .set({
       olid: openLibraryBook.olid,
       updatedAt: new Date().toISOString(),
       lastOLUpdated: new Date().toISOString(),
       cover: cover,
     })
-    .where(eq(booksSchema.id, bookId))
+    .where(eq(Book.id, bookId))
     .returning();
 
   if (!updatedBook[0]) {
