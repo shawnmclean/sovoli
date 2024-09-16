@@ -1,6 +1,7 @@
 import type { AdapterAccountType } from "next-auth/adapters";
 import {
   integer,
+  pgEnum,
   pgTable,
   primaryKey,
   text,
@@ -10,8 +11,16 @@ import {
 } from "drizzle-orm/pg-core";
 import { createSelectSchema } from "drizzle-zod";
 
+import { createEnumObject } from "../utils";
+
+const UserTypes = ["Bot", "Human"] as const;
+export const UserType = createEnumObject(UserTypes);
+
+export const userTypeEnum = pgEnum("user_type", UserTypes);
 export const User = pgTable("user", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
+  type: userTypeEnum("type").notNull().default(UserType.Human),
+
   name: varchar("name", { length: 255 }),
   username: varchar("username", { length: 255 }).unique(),
   email: varchar("email", { length: 255 }).notNull().unique(),

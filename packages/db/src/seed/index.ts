@@ -1,4 +1,5 @@
 import { db, schema, sql } from "../";
+import { UserType } from "../schema";
 
 const books: (typeof schema.Book.$inferInsert)[] = [
   {
@@ -23,8 +24,41 @@ const books: (typeof schema.Book.$inferInsert)[] = [
   },
 ];
 
-const seedUsers = () => {
+const users: (typeof schema.User.$inferInsert)[] = [
+  {
+    name: "John Doe",
+    username: "johndoe",
+    email: "john@doe.com",
+    type: UserType.Human,
+  },
+  {
+    name: "ChatGPT",
+    username: "chatgpt",
+    email: "jane@doe.com",
+    type: UserType.Bot,
+  },
+];
+
+const seedUsers = async () => {
   try {
+    for (const { name, username, email, type } of users) {
+      await db
+        .insert(schema.User)
+        .values({
+          name,
+          username,
+          email,
+          type,
+        })
+        .onConflictDoUpdate({
+          target: schema.User.email,
+          set: {
+            name: sql.raw(`excluded.${schema.User.name.name}`),
+          },
+        })
+        .returning();
+    }
+
     console.log("🧨 Done seeding the users table successfully...\n");
   } catch (error) {
     console.error("🚨 Failed to seed users table!");
@@ -59,7 +93,7 @@ const seedBooks = async () => {
 const main = async () => {
   console.log("🧨 Started seeding the database...\n");
   await seedBooks();
-  seedUsers();
+  await seedUsers();
   // await seedInferredBooks();
   console.log("\n🧨 Done seeding the database successfully...\n");
 };
