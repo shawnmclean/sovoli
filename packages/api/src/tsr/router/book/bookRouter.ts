@@ -2,7 +2,7 @@ import { count, db, schema } from "@sovoli/db";
 import { tsr } from "@ts-rest/serverless/next";
 
 import { BooksResponseSchema } from "../../../schema";
-import { searchBooksByQuery } from "../../../service/books";
+import { searchBooksByQuery } from "../../../services/books";
 import { bookContract } from "./bookContract";
 
 export const bookRouter = tsr.router(bookContract, {

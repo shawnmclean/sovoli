@@ -6,8 +6,8 @@ import {
   MyBooksResponseSchema,
   PutMyBooksResponseSchema,
 } from "../../../schema/schema";
-import { UserNotFoundError } from "../../../service/errors";
-import { putMyBookQueries } from "../../../service/mybooks";
+import { UserNotFoundError } from "../../../services/errors";
+import { putMyBookQueries } from "../../../services/mybooks";
 import { myBookContract } from "./myBookContract";
 
 export const myBookRouter = tsr.router(myBookContract, {

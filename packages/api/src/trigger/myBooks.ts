@@ -3,7 +3,7 @@ import { and, db, eq } from "@sovoli/db";
 import { myBooks } from "@sovoli/db/schema";
 import { AbortTaskRunError, logger, task } from "@trigger.dev/sdk/v3";
 
-import { searchBooks } from "../service/books";
+import { searchBooks } from "../services/books";
 
 export interface HydrateMyBookOptions {
   myBookId: string;

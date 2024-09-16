@@ -1,4 +1,4 @@
-import { count, db, eq, inArray, schema, sql } from "@sovoli/db";
+import { count, db, eq, inArray, schema } from "@sovoli/db";
 import { SelectUserSchema } from "@sovoli/db/schema";
 import { tsr } from "@ts-rest/serverless/fetch";
 

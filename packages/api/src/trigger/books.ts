@@ -12,7 +12,7 @@ import { AbortTaskRunError, logger, task } from "@trigger.dev/sdk/v3";
 import {
   updateBookFromOpenLibrary,
   upsertBooksFromGoogle,
-} from "../service/books/insert";
+} from "../services/books/insert";
 import { hydrateAuthor } from "./authors";
 
 // import { updateBookEmbeddings } from "../service/books/bookEmbeddings";

@@ -59,7 +59,7 @@ const seedBooks = async () => {
 const main = async () => {
   console.log("🧨 Started seeding the database...\n");
   await seedBooks();
-  await seedUsers();
+  seedUsers();
   // await seedInferredBooks();
   console.log("\n🧨 Done seeding the database successfully...\n");
 };
