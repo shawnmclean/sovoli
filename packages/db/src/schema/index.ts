@@ -7,3 +7,5 @@ export * from "./myBookRelations";
 export * from "./embeddings";
 export * from "./books";
 export * from "./bookRelations";
+export * from "./KnowledgeResource";
+export * from "./KnowledgeResourceRelations";
