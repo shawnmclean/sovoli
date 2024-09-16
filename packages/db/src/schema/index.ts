@@ -2,7 +2,7 @@ export * from "./User";
 export * from "./UserRelations";
 export * from "./myBooks";
 export * from "./myBookRelations";
-export * from "./embeddings";
+export * from "./Embeddings";
 export * from "./Book";
 export * from "./BookRelations";
 export * from "./KnowledgeResource";
