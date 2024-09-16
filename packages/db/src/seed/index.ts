@@ -55,6 +55,24 @@ const knowledgeResources: (typeof schema.KnowledgeResource.$inferInsert)[] = [
   },
 ];
 
+const collections: (typeof schema.Collection.$inferInsert)[] = [
+  {
+    id: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
+    name: "Owned",
+    description: "All the books I own",
+    userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
+    isDefault: true,
+    isPublic: true,
+  },
+  {
+    id: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
+    name: "Psychology Shelf",
+    description: "All the books about psychology",
+    userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
+    isPublic: true,
+  },
+];
+
 const seedUsers = async () => {
   await db
     .insert(schema.User)
@@ -98,6 +116,8 @@ const seedKnowledgeResources = async () => {
         description: sql.raw(
           `excluded.${schema.KnowledgeResource.description.name}`,
         ),
+        userId: sql.raw(`excluded.${schema.KnowledgeResource.userId.name}`),
+        bookId: sql.raw(`excluded.${schema.KnowledgeResource.bookId.name}`),
       },
     });
 
@@ -108,11 +128,32 @@ const seedKnowledgeResources = async () => {
   );
 };
 
+const seedCollections = async () => {
+  await db
+    .insert(schema.Collection)
+    .values(collections)
+    .onConflictDoUpdate({
+      target: schema.Collection.id,
+      set: {
+        name: sql.raw(`excluded.${schema.Collection.name.name}`),
+        description: sql.raw(`excluded.${schema.Collection.description.name}`),
+        userId: sql.raw(`excluded.${schema.Collection.userId.name}`),
+        isDefault: sql.raw(`excluded.${schema.Collection.isDefault.name}`),
+        isPublic: sql.raw(`excluded.${schema.Collection.isPublic.name}`),
+      },
+    });
+
+  const createdCollections = await db.query.Collection.findMany();
+  console.log(JSON.stringify(createdCollections, null, 2));
+  console.log("🧨 Done seeding the collections table successfully...\n");
+};
+
 const main = async () => {
   console.log("🧨 Started seeding the database...\n");
   await seedBooks();
   await seedUsers();
   await seedKnowledgeResources();
+  await seedCollections();
   // await seedInferredBooks();
   console.log("\n🧨 Done seeding the database successfully...\n");
 };

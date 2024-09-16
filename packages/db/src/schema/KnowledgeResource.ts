@@ -1,4 +1,11 @@
-import { date, pgTable, text, uuid, varchar } from "drizzle-orm/pg-core";
+import {
+  date,
+  integer,
+  pgTable,
+  text,
+  uuid,
+  varchar,
+} from "drizzle-orm/pg-core";
 
 import { Book } from "./Book";
 import { User } from "./User";
@@ -14,6 +21,8 @@ export const KnowledgeResource = pgTable("knowledge_resource", {
   verifiedDate: date("verified_date"),
 
   bookId: uuid("book_id").references(() => Book.id),
+
+  chapterNumber: integer("chapter_number"),
 
   // the query that was used to search for the book
   // this may come in the form of "book: {title}" or "isbn: {isbn}"

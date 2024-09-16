@@ -7,3 +7,5 @@ export * from "./Book";
 export * from "./BookRelations";
 export * from "./KnowledgeResource";
 export * from "./KnowledgeResourceRelations";
+export * from "./Collection";
+export * from "./CollectionRelations";
