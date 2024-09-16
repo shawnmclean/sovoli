@@ -26,6 +26,12 @@ const books: (typeof schema.Book.$inferInsert)[] = [
     description: "A book about stress",
     isbn13: "1235456789122",
   },
+  {
+    id: "c5996f1d-18e4-4dcd-9444-349a59160973",
+    title: "Harry Potter and the Philosopher's Stone",
+    description: "A book about Harry Potter",
+    isbn13: "1238I21398",
+  },
 ];
 
 const users: (typeof schema.User.$inferInsert)[] = [
@@ -49,8 +55,22 @@ const knowledgeResources: (typeof schema.KnowledgeResource.$inferInsert)[] = [
   {
     id: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
     name: "The Stress of Life",
-    description: "Stress of life book",
+    description: "Stress of life book added by John Doe",
     bookId: "1f1fe6e2-df13-42e1-8e79-83a74f2fb811",
+    userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
+  },
+  {
+    id: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
+    name: "The Power of Habit",
+    description: "Power of habit book added by John Doe",
+    bookId: "c1108c8d-43e6-43cf-b5a1-e3a3009a80b1",
+    userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
+  },
+  {
+    id: "e20976f2-58f4-4428-bd5a-5777d4f8f277",
+    name: "Harry Potter and the Philosopher's Stone",
+    description: "Harry Potter book added by John Doe",
+    bookId: "c5996f1d-18e4-4dcd-9444-349a59160973",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
   },
 ];
@@ -59,7 +79,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
   {
     id: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
     name: "Owned",
-    description: "All the books I own",
+    description: "All the books John Doe owns",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     isDefault: true,
     isPublic: true,
@@ -67,9 +87,45 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
   {
     id: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
     name: "Psychology Shelf",
-    description: "All the books about psychology",
+    description: "All the books John Doe reads about psychology",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     isPublic: true,
+  },
+];
+
+const collectionItems: (typeof schema.CollectionItem.$inferInsert)[] = [
+  {
+    id: "00c9c48b-3c7c-4552-aec3-29694d7565ae",
+    collectionId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
+    knowledgeResourceId: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
+    notes: "This is a note about the book stress of life for john doe on owned",
+  },
+  {
+    id: "697032a6-f874-4747-b2f1-c050f8872446",
+    collectionId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
+    knowledgeResourceId: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
+    notes: "This is a note about the power of habit book for john doe in owned",
+  },
+  {
+    id: "a75bf6ab-2c55-4f3e-a45e-5db8bb4fb586",
+    collectionId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
+    knowledgeResourceId: "e20976f2-58f4-4428-bd5a-5777d4f8f277",
+    notes: "This is a note about the Harry Potter book for john doe in owned",
+  },
+  // the psychology shelf for john doe
+  {
+    id: "7c8dc146-1170-4acb-a771-85d9f12f096e",
+    collectionId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
+    knowledgeResourceId: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
+    notes:
+      "This is a note about the book stress of life for john doe on psychology shelf",
+  },
+  {
+    id: "45f29c6b-3469-4310-b381-a7027211b456",
+    collectionId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
+    knowledgeResourceId: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
+    notes:
+      "This is a note about the power of habit book for john doe on psychology shelf",
   },
 ];
 
@@ -148,12 +204,36 @@ const seedCollections = async () => {
   console.log("🧨 Done seeding the collections table successfully...\n");
 };
 
+const seedCollectionItems = async () => {
+  await db
+    .insert(schema.CollectionItem)
+    .values(collectionItems)
+    .onConflictDoUpdate({
+      target: schema.CollectionItem.id,
+      set: {
+        collectionId: sql.raw(
+          `excluded.${schema.CollectionItem.collectionId.name}`,
+        ),
+        knowledgeResourceId: sql.raw(
+          `excluded.${schema.CollectionItem.knowledgeResourceId.name}`,
+        ),
+        notes: sql.raw(`excluded.${schema.CollectionItem.notes.name}`),
+        order: sql.raw(`excluded.${schema.CollectionItem.order.name}`),
+      },
+    });
+
+  const createdCollectionItems = await db.query.CollectionItem.findMany();
+  console.log(JSON.stringify(createdCollectionItems, null, 2));
+  console.log("🧨 Done seeding the collection items table successfully...\n");
+};
+
 const main = async () => {
   console.log("🧨 Started seeding the database...\n");
   await seedBooks();
   await seedUsers();
   await seedKnowledgeResources();
   await seedCollections();
+  await seedCollectionItems();
   // await seedInferredBooks();
   console.log("\n🧨 Done seeding the database successfully...\n");
 };
