@@ -1,9 +1,10 @@
 import {
   boolean,
-  date,
   integer,
   pgTable,
   text,
+  timestamp,
+  unique,
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -11,23 +12,34 @@ import {
 import { KnowledgeResource } from "./KnowledgeResource";
 import { User } from "./User";
 
-export const Collection = pgTable("collection", {
-  id: uuid("id").notNull().primaryKey().defaultRandom(),
-  // usually follows the title of the book
-  name: varchar("name", { length: 255 }),
-  description: text("description"),
-  userId: uuid("user_id")
-    .notNull()
-    .references(() => User.id),
+export const Collection = pgTable(
+  "collection",
+  {
+    id: uuid("id").notNull().primaryKey().defaultRandom(),
+    // usually follows the title of the book
+    name: varchar("name", { length: 255 }),
+    description: text("description"),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => User.id),
 
-  // these collections are created when a user is created, they can never be deleted
-  isDefault: boolean("is_default").notNull().default(false),
+    slug: varchar("slug", { length: 255 }),
 
-  isPublic: boolean("is_public").notNull().default(false),
+    // these collections are created when a user is created, they can never be deleted
+    isDefault: boolean("is_default").notNull().default(false),
 
-  createdAt: date("created_at").notNull().defaultNow(),
-  updatedAt: date("updated_at").notNull().defaultNow(),
-});
+    isPublic: boolean("is_public").notNull().default(false),
+
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  },
+  (table) => ({
+    /**
+     * only allow a distinct slug per owner
+     */
+    uniqueOwnerSlug: unique("unique_owner_slug").on(table.userId, table.slug),
+  }),
+);
 
 export const CollectionItem = pgTable("collection_item", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -44,6 +56,6 @@ export const CollectionItem = pgTable("collection_item", {
 
   notes: text("notes"),
 
-  createdAt: date("created_at").notNull().defaultNow(),
-  updatedAt: date("updated_at").notNull().defaultNow(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

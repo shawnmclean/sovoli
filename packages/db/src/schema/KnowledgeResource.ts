@@ -3,6 +3,7 @@ import {
   integer,
   pgTable,
   text,
+  timestamp,
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -30,6 +31,6 @@ export const KnowledgeResource = pgTable("knowledge_resource", {
   triggerDevId: varchar("trigger_dev_id", { length: 255 }),
   triggerError: text("trigger_error"),
 
-  createdAt: date("created_at").notNull().defaultNow(),
-  updatedAt: date("updated_at").notNull().defaultNow(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

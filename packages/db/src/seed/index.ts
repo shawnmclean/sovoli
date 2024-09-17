@@ -83,6 +83,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     isDefault: true,
     isPublic: true,
+    slug: "owned",
   },
   {
     id: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
@@ -90,6 +91,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     description: "All the books ChatGPT reads about psychology",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     isPublic: true,
+    slug: "psychology-shelf",
   },
   {
     id: "cc9cf8b2-42ea-4e27-9a31-7b50ab4dace4",
@@ -97,6 +99,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     description: "All the books John Doe owns",
     userId: "2b3f6532-7053-4415-981e-9bde21b6dd9f",
     isPublic: true,
+    slug: "owned",
   },
 ];
 
@@ -203,6 +206,7 @@ const seedCollections = async () => {
         userId: sql.raw(`excluded.${schema.Collection.userId.name}`),
         isDefault: sql.raw(`excluded.${schema.Collection.isDefault.name}`),
         isPublic: sql.raw(`excluded.${schema.Collection.isPublic.name}`),
+        slug: sql.raw(`excluded.${schema.Collection.slug.name}`),
       },
     });
 
