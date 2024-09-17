@@ -1,8 +1,7 @@
-import { describe } from "node:test";
 import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
-import { count, db, eq, inArray, isNotNull, schema, sql } from "@sovoli/db";
+import { count, db, eq, inArray, schema, sql } from "@sovoli/db";
 
 import { config } from "~/utils/config";
 
@@ -93,11 +92,11 @@ async function getUserCollections({
 
 const retrieveUserCollections = cache(
   async ({ params, searchParams }: Props) => {
-    // try {
-    return await getUserCollections({ params, searchParams });
-    // } catch (error) {
-    //   return notFound();
-    // }
+    try {
+      return await getUserCollections({ params, searchParams });
+    } catch (error) {
+      return notFound();
+    }
   },
 );
 
