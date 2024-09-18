@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
-import { count, db, eq, inArray, schema, sql } from "@sovoli/db";
+import { auth } from "@sovoli/auth";
+import { and, count, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 
 import { config } from "~/utils/config";
 
 export const dynamic = "force-dynamic";
 
-interface Props {
+interface BaseOptions {
+  authUserId?: string;
+}
+
+interface Props extends BaseOptions {
   params: { username: string };
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
@@ -22,12 +27,29 @@ function getCollectionsByUsernameFilter(username: string) {
   );
 }
 
+function getPrivacyFilter(authUserId?: string) {
+  // always include public collections
+  const isPrivate = eq(schema.Collection.isPrivate, false);
+  if (!authUserId) return isPrivate;
+
+  // if the user is authenticated, include private collections only if the user is the owner
+  return or(
+    isPrivate,
+    and(
+      eq(schema.Collection.isPrivate, true),
+      eq(schema.Collection.userId, authUserId),
+    ),
+  );
+}
+
 // TODO: add auth user id to filter out public collections
 async function getUserCollections({
   params: { username },
   searchParams: { page = 1, pageSize = 30 },
+  authUserId,
 }: Props) {
   const filter = getCollectionsByUsernameFilter(username);
+  const privacyFilter = getPrivacyFilter(authUserId);
 
   const collectionsQuery = db
     .select({
@@ -36,7 +58,7 @@ async function getUserCollections({
       name: schema.Collection.name,
       description: schema.Collection.description,
       isDefault: schema.Collection.isDefault,
-      isPublic: schema.Collection.isPublic,
+      isPrivate: schema.Collection.isPrivate,
       createdAt: schema.Collection.createdAt,
       updatedAt: schema.Collection.updatedAt,
       totalItems: count(schema.CollectionItem.id),
@@ -48,7 +70,7 @@ async function getUserCollections({
       totalCollections: sql<number>`COUNT(*) OVER()`.as("totalCollections"),
     })
     .from(schema.Collection)
-    .where(filter)
+    .where(and(filter, privacyFilter))
     .leftJoin(
       schema.CollectionItem,
       eq(schema.CollectionItem.collectionId, schema.Collection.id),
@@ -93,8 +115,13 @@ async function getUserCollections({
 
 const retrieveUserCollections = cache(
   async ({ params, searchParams }: Props) => {
+    const session = await auth();
     try {
-      return await getUserCollections({ params, searchParams });
+      return await getUserCollections({
+        params,
+        searchParams,
+        authUserId: session?.user?.id,
+      });
     } catch {
       return notFound();
     }

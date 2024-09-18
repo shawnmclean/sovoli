@@ -28,7 +28,7 @@ export const Collection = pgTable(
     // these collections are created when a user is created, they can never be deleted
     isDefault: boolean("is_default").notNull().default(false),
 
-    isPublic: boolean("is_public").notNull().default(false),
+    isPrivate: boolean("is_public").notNull().default(false),
 
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),

@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import { cache } from "react";
+import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, schema } from "@sovoli/db";
 
 import { config } from "~/utils/config";
 
 export const dynamic = "force-dynamic";
 
-interface Props {
+interface BaseOptions {
+  authUserId?: string;
+}
+
+interface Props extends BaseOptions {
   params: { username: string; slug: string };
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
@@ -35,6 +40,7 @@ function getCollectionBySlugFilter(slug: string) {
 async function getUserCollectionBySlug({
   params: { username, slug },
   searchParams: { page = 1, pageSize = 30 },
+  authUserId,
 }: Props) {
   const usernameFilter = getCollectionByUsernameFilter(username);
   const slugFilter = getCollectionBySlugFilter(slug);
@@ -47,6 +53,9 @@ async function getUserCollectionBySlug({
   });
 
   if (!collection) throw Error("Collection not found");
+
+  if (collection.isPrivate && collection.userId !== authUserId)
+    throw Error("Collection is private");
 
   const collectionItems = await db
     .select()
@@ -74,8 +83,13 @@ async function getUserCollectionBySlug({
 
 const retrieveUserCollection = cache(
   async ({ params, searchParams }: Props) => {
+    const session = await auth();
     //    try {
-    return await getUserCollectionBySlug({ params, searchParams });
+    return await getUserCollectionBySlug({
+      params,
+      searchParams,
+      authUserId: session?.user?.id,
+    });
     // } catch {
     //   return notFound();
     // }

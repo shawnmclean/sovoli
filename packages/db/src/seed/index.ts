@@ -82,7 +82,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     description: "All the books ChatGPT owns",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     isDefault: true,
-    isPublic: true,
+    isPrivate: false,
     slug: "owned",
   },
   {
@@ -90,7 +90,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     name: "Psychology Shelf",
     description: "All the books ChatGPT reads about psychology",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
-    isPublic: true,
+    isPrivate: false,
     slug: "psychology-shelf",
   },
   {
@@ -98,8 +98,16 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     name: "Owned",
     description: "All the books John Doe owns",
     userId: "2b3f6532-7053-4415-981e-9bde21b6dd9f",
-    isPublic: true,
+    isPrivate: false,
     slug: "owned",
+  },
+  {
+    id: "1297a14b-f942-4532-be54-4b6e542ca04c",
+    name: "Privatre Collection",
+    description: "John Doe's private collection",
+    userId: "2b3f6532-7053-4415-981e-9bde21b6dd9f",
+    isPrivate: true,
+    slug: "private-collection",
   },
 ];
 
@@ -205,7 +213,7 @@ const seedCollections = async () => {
         description: sql.raw(`excluded.${schema.Collection.description.name}`),
         userId: sql.raw(`excluded.${schema.Collection.userId.name}`),
         isDefault: sql.raw(`excluded.${schema.Collection.isDefault.name}`),
-        isPublic: sql.raw(`excluded.${schema.Collection.isPublic.name}`),
+        isPrivate: sql.raw(`excluded.${schema.Collection.isPrivate.name}`),
         slug: sql.raw(`excluded.${schema.Collection.slug.name}`),
       },
     });
