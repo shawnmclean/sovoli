@@ -32,6 +32,7 @@ async function getUserCollections({
   const collectionsQuery = db
     .select({
       id: schema.Collection.id,
+      slug: schema.Collection.slug,
       name: schema.Collection.name,
       description: schema.Collection.description,
       isDefault: schema.Collection.isDefault,
@@ -94,7 +95,7 @@ const retrieveUserCollections = cache(
   async ({ params, searchParams }: Props) => {
     try {
       return await getUserCollections({ params, searchParams });
-    } catch (error) {
+    } catch {
       return notFound();
     }
   },
@@ -116,7 +117,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function MyBooks({ params, searchParams }: Props) {
+export default async function UserCollectionsPage({
+  params,
+  searchParams,
+}: Props) {
   const { user, collections } = await retrieveUserCollections({
     params,
     searchParams,
@@ -130,10 +134,13 @@ export default async function MyBooks({ params, searchParams }: Props) {
       <pre>{JSON.stringify(collections, null, 2)}</pre>
       <div>
         {collections.data.map((collection) => (
-          <div key={collection.id}>
+          <a
+            key={collection.id}
+            href={`/${params.username}/collections/${collection.slug}`}
+          >
             <h2>{collection.name}</h2>
             <p>{collection.description}</p>
-          </div>
+          </a>
         ))}
       </div>
     </div>
