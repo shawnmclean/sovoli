@@ -47,9 +47,9 @@ export const CollectionItem = pgTable("collection_item", {
   collectionId: uuid("collection_id")
     .notNull()
     .references(() => Collection.id),
-  knowledgeResourceId: uuid("knowledge_resource_id").references(
-    () => KnowledgeResource.id,
-  ),
+  knowledgeResourceId: uuid("knowledge_resource_id")
+    .notNull()
+    .references(() => KnowledgeResource.id),
 
   // optional ordering for the items in the collection (useful for study guides or arranging books on a shelf)
   order: integer("order"),

@@ -73,6 +73,12 @@ const knowledgeResources: (typeof schema.KnowledgeResource.$inferInsert)[] = [
     bookId: "c5996f1d-18e4-4dcd-9444-349a59160973",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
   },
+  {
+    id: "cd281ef5-4ebc-4af2-bcdd-80e732529a7b",
+    name: "Just a note about psychology",
+    description: "Pain and simple note",
+    userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
+  },
 ];
 
 const collections: (typeof schema.Collection.$inferInsert)[] = [
@@ -144,6 +150,12 @@ const collectionItems: (typeof schema.CollectionItem.$inferInsert)[] = [
     knowledgeResourceId: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
     notes:
       "This is a note about the power of habit book for ChatGPT on psychology shelf",
+  },
+  {
+    id: "bb801c78-3657-4bef-ad12-3a8f0eadb735",
+    collectionId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
+    notes: "This is just a note",
+    knowledgeResourceId: "cd281ef5-4ebc-4af2-bcdd-80e732529a7b",
   },
 ];
 

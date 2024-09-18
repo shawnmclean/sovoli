@@ -1,7 +1,8 @@
+import type { Book } from "@sovoli/db/schema";
 import type { Metadata } from "next";
 import { cache } from "react";
 import { auth } from "@sovoli/auth";
-import { and, db, eq, inArray, schema } from "@sovoli/db";
+import { and, db, eq, inArray, schema, sql } from "@sovoli/db";
 
 import { config } from "~/utils/config";
 
@@ -36,7 +37,6 @@ function getCollectionBySlugFilter(slug: string) {
   );
 }
 
-// TODO: add auth user id to filter out public collections
 async function getUserCollectionBySlug({
   params: { username, slug },
   searchParams: { page = 1, pageSize = 30 },
@@ -58,17 +58,35 @@ async function getUserCollectionBySlug({
     throw Error("Collection is private");
 
   const collectionItems = await db
-    .select()
+    .select({
+      id: schema.CollectionItem.id,
+      note: schema.CollectionItem.notes,
+      knowledge: {
+        id: schema.KnowledgeResource.id,
+        name: schema.KnowledgeResource.name,
+        description: schema.KnowledgeResource.description,
+        book: sql<typeof Book>`
+          CASE
+            WHEN ${schema.Book.id} IS NOT NULL
+            THEN json_build_object(
+              'id', ${schema.Book.id},
+              'name', ${schema.Book.title}
+            )
+            ELSE NULL
+          END
+        `.as("book"),
+      },
+    })
     .from(schema.CollectionItem)
     .where(eq(schema.CollectionItem.collectionId, collection.id))
-    // .leftJoin(
-    //   schema.KnowledgeResource,
-    //   eq(
-    //     schema.CollectionItem.knowledgeResourceId,
-    //     schema.KnowledgeResource.id,
-    //   ),
-    // )
-    // .groupBy(schema.KnowledgeResource.id)
+    .leftJoin(
+      schema.KnowledgeResource,
+      eq(
+        schema.CollectionItem.knowledgeResourceId,
+        schema.KnowledgeResource.id,
+      ),
+    )
+    .leftJoin(schema.Book, eq(schema.KnowledgeResource.bookId, schema.Book.id))
     .limit(pageSize)
     .offset((page - 1) * pageSize);
 

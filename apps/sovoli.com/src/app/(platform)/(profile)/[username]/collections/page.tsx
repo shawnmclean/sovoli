@@ -42,7 +42,6 @@ function getPrivacyFilter(authUserId?: string) {
   );
 }
 
-// TODO: add auth user id to filter out public collections
 async function getUserCollections({
   params: { username },
   searchParams: { page = 1, pageSize = 30 },
