@@ -21,8 +21,8 @@ export function UserScreen({ profile }: Props) {
       <Text className="mb-4 text-2xl font-bold">
         👀 User Screen: {profile.name}
       </Text>
-      <Link href={`/${profile.username}/mybooks`}>
-        <Text>My Books</Text>
+      <Link href={`/${profile.username}/collections`}>
+        <Text>My Collections</Text>
       </Link>
     </ScrollView>
   );

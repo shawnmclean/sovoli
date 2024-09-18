@@ -86,6 +86,11 @@ async function getUserCollections({
 
   const [user, collections] = await Promise.all([
     db.query.User.findFirst({
+      columns: {
+        id: true,
+        name: true,
+        username: true,
+      },
       where: eq(schema.User.username, username),
     }),
     collectionsQuery,
@@ -169,7 +174,6 @@ export default async function UserCollectionsPage({
             href={`/${params.username}/collections/${collection.slug}`}
           >
             <h2>{collection.name}</h2>
-            <p>{collection.description}</p>
           </a>
         ))}
       </div>

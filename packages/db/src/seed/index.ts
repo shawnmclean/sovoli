@@ -36,6 +36,13 @@ const books: (typeof schema.Book.$inferInsert)[] = [
 
 const users: (typeof schema.User.$inferInsert)[] = [
   {
+    id: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
+    name: "Shawn",
+    username: "shawn",
+    email: "shawn@sovoli.com",
+    type: UserType.Human,
+  },
+  {
     id: "2b3f6532-7053-4415-981e-9bde21b6dd9f",
     name: "John Doe",
     username: "johndoe",
@@ -114,6 +121,23 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     userId: "2b3f6532-7053-4415-981e-9bde21b6dd9f",
     isPrivate: true,
     slug: "private-collection",
+  },
+  // Shawn's collection
+  {
+    id: "fa822f2f-f11a-4a76-a2e1-199170d5b50c",
+    name: "Shawn's Collection",
+    description: "Shawn's collection",
+    userId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
+    isPrivate: false,
+    slug: "shawn-collection",
+  },
+  {
+    id: "efab5eab-4f0f-4545-a6ca-10aae137f6ba",
+    name: "Shawn's Private Collection",
+    description: "Shawn's private collection",
+    userId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
+    isPrivate: true,
+    slug: "shawn-private-collection",
   },
 ];
 
