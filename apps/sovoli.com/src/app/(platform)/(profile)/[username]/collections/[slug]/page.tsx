@@ -12,7 +12,7 @@ interface BaseOptions {
   authUserId?: string;
 }
 
-interface Props extends BaseOptions {
+interface GetUserCollectionBySlugOptions extends BaseOptions {
   params: { username: string; slug: string };
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
@@ -41,7 +41,7 @@ async function getUserCollectionBySlug({
   params: { username, slug },
   searchParams: { page = 1, pageSize = 30 },
   authUserId,
-}: Props) {
+}: GetUserCollectionBySlugOptions) {
   const usernameFilter = getCollectionByUsernameFilter(username);
   const slugFilter = getCollectionBySlugFilter(slug);
 
@@ -97,6 +97,11 @@ async function getUserCollectionBySlug({
       //   meta: { page, pageSize, total: totalCollections },
     },
   };
+}
+
+interface Props {
+  params: { username: string; slug: string };
+  searchParams: { page: number | undefined; pageSize: number | undefined };
 }
 
 const retrieveUserCollection = cache(

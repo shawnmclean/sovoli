@@ -11,8 +11,7 @@ export const dynamic = "force-dynamic";
 interface BaseOptions {
   authUserId?: string;
 }
-
-interface Props extends BaseOptions {
+interface GetUserCollectionsOptions extends BaseOptions {
   params: { username: string };
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
@@ -46,7 +45,7 @@ async function getUserCollections({
   params: { username },
   searchParams: { page = 1, pageSize = 30 },
   authUserId,
-}: Props) {
+}: GetUserCollectionsOptions) {
   const filter = getCollectionsByUsernameFilter(username);
   const privacyFilter = getPrivacyFilter(authUserId);
 
@@ -110,6 +109,11 @@ async function getUserCollections({
       meta: { page, pageSize, total: totalCollections },
     },
   };
+}
+
+interface Props {
+  params: { username: string };
+  searchParams: { page: number | undefined; pageSize: number | undefined };
 }
 
 const retrieveUserCollections = cache(
