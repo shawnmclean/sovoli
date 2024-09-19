@@ -53,7 +53,7 @@ const users: (typeof schema.User.$inferInsert)[] = [
     id: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     name: "ChatGPT",
     username: "chatgpt",
-    email: "jane@doe.com",
+    email: "hi@sovoli.com",
     type: UserType.Bot,
   },
 ];
