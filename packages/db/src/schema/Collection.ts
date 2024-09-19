@@ -46,10 +46,10 @@ export const CollectionMediaAsset = pgTable("collection_media_asset", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
   collectionId: uuid("collection_id")
     .notNull()
-    .references(() => Collection.id),
+    .references(() => Collection.id, { onDelete: "cascade" }),
   mediaAssetId: uuid("media_asset_id")
     .notNull()
-    .references(() => MediaAsset.id),
+    .references(() => MediaAsset.id, { onDelete: "cascade" }),
 });
 
 export const CollectionItem = pgTable("collection_item", {
@@ -57,10 +57,10 @@ export const CollectionItem = pgTable("collection_item", {
 
   collectionId: uuid("collection_id")
     .notNull()
-    .references(() => Collection.id),
+    .references(() => Collection.id, { onDelete: "cascade" }),
   knowledgeResourceId: uuid("knowledge_resource_id")
     .notNull()
-    .references(() => KnowledgeResource.id),
+    .references(() => KnowledgeResource.id, { onDelete: "cascade" }),
 
   // optional ordering for the items in the collection (useful for study guides or arranging books on a shelf)
   order: integer("order"),
