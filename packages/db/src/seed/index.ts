@@ -1,5 +1,5 @@
 import { db, schema, sql } from "../";
-import { UserType } from "../schema";
+import { MediaAssetHost, UserType } from "../schema";
 
 const books: (typeof schema.Book.$inferInsert)[] = [
   {
@@ -183,6 +183,24 @@ const collectionItems: (typeof schema.CollectionItem.$inferInsert)[] = [
   },
 ];
 
+const mediaAssets: (typeof schema.MediaAsset.$inferInsert)[] = [
+  {
+    id: "25192f66-bbbb-4aa6-9016-ceacb4786379",
+    host: MediaAssetHost.Supabase,
+    bucket: "collection-images",
+    path: "collection-images/0c274f47-ace1-49b1-8005-bdb8cab523ce.jpg",
+  },
+];
+
+const collectionMediaAssets: (typeof schema.CollectionMediaAsset.$inferInsert)[] =
+  [
+    {
+      id: "e0c9c48b-3c7c-4552-aec3-29694d7565ae",
+      collectionId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
+      mediaAssetId: "25192f66-bbbb-4aa6-9016-ceacb4786379",
+    },
+  ];
+
 const seedUsers = async () => {
   await db
     .insert(schema.User)
@@ -282,14 +300,58 @@ const seedCollectionItems = async () => {
   console.log("🧨 Done seeding the collection items table successfully...\n");
 };
 
+const seedMediaAssets = async () => {
+  await db
+    .insert(schema.MediaAsset)
+    .values(mediaAssets)
+    .onConflictDoUpdate({
+      target: schema.MediaAsset.id,
+      set: {
+        host: sql.raw(`excluded.${schema.MediaAsset.host.name}`),
+        bucket: sql.raw(`excluded.${schema.MediaAsset.bucket.name}`),
+        path: sql.raw(`excluded.${schema.MediaAsset.path.name}`),
+      },
+    });
+
+  const createdMediaAssets = await db.query.MediaAsset.findMany();
+  console.log(JSON.stringify(createdMediaAssets, null, 2));
+  console.log("🧨 Done seeding the media assets table successfully...\n");
+};
+
+const seedCollectionMediaAssets = async () => {
+  await db
+    .insert(schema.CollectionMediaAsset)
+    .values(collectionMediaAssets)
+    .onConflictDoUpdate({
+      target: schema.CollectionMediaAsset.id,
+      set: {
+        collectionId: sql.raw(
+          `excluded.${schema.CollectionMediaAsset.collectionId.name}`,
+        ),
+        mediaAssetId: sql.raw(
+          `excluded.${schema.CollectionMediaAsset.mediaAssetId.name}`,
+        ),
+      },
+    });
+
+  const createdCollectionMediaAssets =
+    await db.query.CollectionMediaAsset.findMany();
+  console.log(JSON.stringify(createdCollectionMediaAssets, null, 2));
+  console.log(
+    "🧨 Done seeding the collection media assets table successfully...\n",
+  );
+};
+
 const main = async () => {
   console.log("🧨 Started seeding the database...\n");
   await seedBooks();
   await seedUsers();
   await seedKnowledgeResources();
+  await seedMediaAssets();
   await seedCollections();
   await seedCollectionItems();
-  // await seedInferredBooks();
+  await seedCollectionMediaAssets();
+
   console.log("\n🧨 Done seeding the database successfully...\n");
 };
 

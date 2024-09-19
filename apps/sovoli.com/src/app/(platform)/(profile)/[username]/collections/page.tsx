@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cache } from "react";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import { auth } from "@sovoli/auth";
 import { and, count, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 
@@ -49,7 +49,59 @@ async function getUserCollections({
   const filter = getCollectionsByUsernameFilter(username);
   const privacyFilter = getPrivacyFilter(authUserId);
 
+  const mediaAssetsQuery = db.$with("media_assets_subquery").as(
+    db
+      .select({
+        collectionId: schema.CollectionMediaAsset.collectionId,
+        mediaAssets: sql`
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'media_asset_id', ${schema.MediaAsset.id},
+              'host', ${schema.MediaAsset.host},
+              'bucket', ${schema.MediaAsset.bucket},
+              'path', ${schema.MediaAsset.path}
+            )
+          )`.as("mediaAssets"),
+      })
+      .from(schema.CollectionMediaAsset)
+      .leftJoin(
+        schema.MediaAsset,
+        eq(schema.MediaAsset.id, schema.CollectionMediaAsset.mediaAssetId),
+      )
+      .groupBy(schema.CollectionMediaAsset.collectionId),
+  );
+
+  const collectionCountQuery = db.$with("collection_count_subquery").as(
+    db
+      .select({
+        collectionId: schema.Collection.id,
+        totalCollectionItems: count(schema.CollectionItem.id).as(
+          "totalCollectionItems",
+        ),
+        // using a window function to count the number of collections matching the filter (ignoring pagination)
+        totalCollections: sql<number>`COUNT(*) OVER()`.as("totalCollections"),
+        totalBooks: sql<number>`
+          COUNT(CASE WHEN ${schema.KnowledgeResource.bookId} IS NOT NULL THEN 1 ELSE NULL END)
+        `.as("totalBooks"),
+      })
+      .from(schema.Collection)
+      .where(and(filter, privacyFilter))
+      .leftJoin(
+        schema.CollectionItem,
+        eq(schema.CollectionItem.collectionId, schema.Collection.id),
+      )
+      .leftJoin(
+        schema.KnowledgeResource,
+        eq(
+          schema.CollectionItem.knowledgeResourceId,
+          schema.KnowledgeResource.id,
+        ),
+      )
+      .groupBy(schema.Collection.id),
+  );
+
   const collectionsQuery = db
+    .with(mediaAssetsQuery, collectionCountQuery)
     .select({
       id: schema.Collection.id,
       slug: schema.Collection.slug,
@@ -59,28 +111,21 @@ async function getUserCollections({
       isPrivate: schema.Collection.isPrivate,
       createdAt: schema.Collection.createdAt,
       updatedAt: schema.Collection.updatedAt,
-      totalItems: count(schema.CollectionItem.id),
-      totalBooks: sql<number>`
-        COUNT(CASE WHEN ${schema.KnowledgeResource.bookId} IS NOT NULL THEN 1 ELSE NULL END)
-      `.as("totalBooks"),
-
-      // using a window function to count the number of collections matching the filter (ignoring pagination)
-      totalCollections: sql<number>`COUNT(*) OVER()`.as("totalCollections"),
+      totalItems: collectionCountQuery.totalCollectionItems,
+      totalBooks: collectionCountQuery.totalBooks,
+      totalCollections: collectionCountQuery.totalCollections,
+      mediaAssets: sql`COALESCE(${mediaAssetsQuery.mediaAssets}, '[]')`,
     })
     .from(schema.Collection)
     .where(and(filter, privacyFilter))
     .leftJoin(
-      schema.CollectionItem,
-      eq(schema.CollectionItem.collectionId, schema.Collection.id),
+      collectionCountQuery,
+      eq(collectionCountQuery.collectionId, schema.Collection.id),
     )
     .leftJoin(
-      schema.KnowledgeResource,
-      eq(
-        schema.CollectionItem.knowledgeResourceId,
-        schema.KnowledgeResource.id,
-      ),
+      mediaAssetsQuery,
+      eq(mediaAssetsQuery.collectionId, schema.Collection.id),
     )
-    .groupBy(schema.Collection.id)
     .limit(pageSize)
     .offset((page - 1) * pageSize);
 
@@ -124,15 +169,15 @@ interface Props {
 const retrieveUserCollections = cache(
   async ({ params, searchParams }: Props) => {
     const session = await auth();
-    try {
-      return await getUserCollections({
-        params,
-        searchParams,
-        authUserId: session?.user?.id,
-      });
-    } catch {
-      return notFound();
-    }
+    // try {
+    return await getUserCollections({
+      params,
+      searchParams,
+      authUserId: session?.user?.id,
+    });
+    // } catch {
+    //   return notFound();
+    // }
   },
 );
 
