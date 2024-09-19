@@ -10,6 +10,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 import { KnowledgeResource } from "./KnowledgeResource";
+import { MediaAsset } from "./MediaAsset";
 import { User } from "./User";
 
 export const Collection = pgTable(
@@ -40,6 +41,16 @@ export const Collection = pgTable(
     uniqueOwnerSlug: unique("unique_owner_slug").on(table.userId, table.slug),
   }),
 );
+
+export const CollectionMediaAsset = pgTable("collection_media_asset", {
+  id: uuid("id").notNull().primaryKey().defaultRandom(),
+  collectionId: uuid("collection_id")
+    .notNull()
+    .references(() => Collection.id),
+  mediaAssetId: uuid("media_asset_id")
+    .notNull()
+    .references(() => MediaAsset.id),
+});
 
 export const CollectionItem = pgTable("collection_item", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),

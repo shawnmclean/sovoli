@@ -97,6 +97,9 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     isDefault: true,
     isPrivate: false,
     slug: "owned",
+    images: [
+      "https://qxvzrmayigmtjhfucogx.supabase.co/storage/v1/object/sign/collection-images/0c274f47-ace1-49b1-8005-bdb8cab523ce.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjb2xsZWN0aW9uLWltYWdlcy8wYzI3NGY0Ny1hY2UxLTQ5YjEtODAwNS1iZGI4Y2FiNTIzY2UuanBnIiwiaWF0IjoxNzI2NzU1MDA2LCJleHAiOjE3NTgyOTEwMDZ9.R3btDU4_mqThBn2xKtaS1zBwb-2NpH1Na44t_1IcoyA&t=2024-09-19T14%3A10%3A05.295Z",
+    ],
   },
   {
     id: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",

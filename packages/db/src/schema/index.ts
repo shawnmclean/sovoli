@@ -9,3 +9,5 @@ export * from "./KnowledgeResource";
 export * from "./KnowledgeResourceRelations";
 export * from "./Collection";
 export * from "./CollectionRelations";
+export * from "./MediaAsset";
+export * from "./MediaAssetRelation";

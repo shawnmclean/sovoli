@@ -7,6 +7,7 @@ import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 // import { Avatar, AvatarFallbackText } from "../ui/avatar";
 import { HStack } from "../ui/hstack";
 import { ChevronLeftIcon, Icon, MenuIcon } from "../ui/icon";
+import { Link } from "../ui/link";
 import { Text } from "../ui/text";
 
 export function Header() {
@@ -38,8 +39,11 @@ function MobileHeader() {
         >
           <Icon as={ChevronLeftIcon} className="mr-2" />
         </Pressable>
-        <Text className="text-xl">Mobile Header</Text>
+        <Link href={`/`}>
+          <Text className="text-2xl">Sovoli</Text>
+        </Link>
       </HStack>
+
       <ThemeToggle />
     </HStack>
   );
@@ -56,13 +60,19 @@ function WebHeader() {
         >
           <Icon as={MenuIcon} size="lg" className="mx-5" />
         </Pressable>
-        <Text className="text-2xl">Web Header</Text>
+        <Link href={`/`}>
+          <Text className="text-2xl">Sovoli</Text>
+        </Link>
       </HStack>
 
-      {/* <Avatar className="h-9 w-9">
-        <AvatarFallbackText className="font-light">A</AvatarFallbackText>
-      </Avatar> */}
-      <ThemeToggle />
+      <HStack className="items-center space-x-2">
+        <HStack className="mr-5 space-x-2">
+          <Link href={`/users`}>
+            <Text>Users</Text>
+          </Link>
+        </HStack>
+        <ThemeToggle />
+      </HStack>
     </HStack>
   );
 }
