@@ -28,12 +28,13 @@ interface GetUserCollectionsOptions extends BaseOptions {
 }
 
 function getByUsernameFilter(username: string) {
+  const cleanedUsername = username.toLowerCase();
   return inArray(
     schema.Knowledge.userId,
     db
       .select({ id: schema.User.id })
       .from(schema.User)
-      .where(eq(schema.User.username, username)),
+      .where(eq(schema.User.username, cleanedUsername)),
   );
 }
 
