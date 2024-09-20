@@ -2,7 +2,18 @@ import type { Metadata } from "next";
 import { cache } from "react";
 // import { notFound } from "next/navigation";
 import { auth } from "@sovoli/auth";
-import { and, count, db, eq, inArray, or, schema, sql } from "@sovoli/db";
+import {
+  alias,
+  and,
+  count,
+  db,
+  eq,
+  inArray,
+  or,
+  schema,
+  sql,
+} from "@sovoli/db";
+import { KnowledgeType } from "@sovoli/db/schema";
 
 import { config } from "~/utils/config";
 
@@ -16,9 +27,9 @@ interface GetUserCollectionsOptions extends BaseOptions {
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
 
-function getCollectionsByUsernameFilter(username: string) {
+function getByUsernameFilter(username: string) {
   return inArray(
-    schema.Collection.userId,
+    schema.Knowledge.userId,
     db
       .select({ id: schema.User.id })
       .from(schema.User)
@@ -28,15 +39,15 @@ function getCollectionsByUsernameFilter(username: string) {
 
 function getPrivacyFilter(authUserId?: string) {
   // always include public collections
-  const isPrivate = eq(schema.Collection.isPrivate, false);
+  const isPrivate = eq(schema.Knowledge.isPrivate, false);
   if (!authUserId) return isPrivate;
 
   // if the user is authenticated, include private collections only if the user is the owner
   return or(
     isPrivate,
     and(
-      eq(schema.Collection.isPrivate, true),
-      eq(schema.Collection.userId, authUserId),
+      eq(schema.Knowledge.isPrivate, true),
+      eq(schema.Knowledge.userId, authUserId),
     ),
   );
 }
@@ -46,13 +57,13 @@ async function getUserCollections({
   searchParams: { page = 1, pageSize = 30 },
   authUserId,
 }: GetUserCollectionsOptions) {
-  const filter = getCollectionsByUsernameFilter(username);
+  const usernameFilter = getByUsernameFilter(username);
   const privacyFilter = getPrivacyFilter(authUserId);
 
-  const mediaAssetsQuery = db.$with("media_assets_subquery").as(
+  const mediaAssetsSubquery = db.$with("media_assets_subquery").as(
     db
       .select({
-        collectionId: schema.CollectionMediaAsset.collectionId,
+        knowledgeId: schema.KnowledgeMediaAsset.knowledgeId,
         mediaAssets: sql`
           JSON_AGG(
             JSON_BUILD_OBJECT(
@@ -63,68 +74,73 @@ async function getUserCollections({
             )
           )`.as("mediaAssets"),
       })
-      .from(schema.CollectionMediaAsset)
+      .from(schema.KnowledgeMediaAsset)
       .leftJoin(
         schema.MediaAsset,
-        eq(schema.MediaAsset.id, schema.CollectionMediaAsset.mediaAssetId),
+        eq(schema.MediaAsset.id, schema.KnowledgeMediaAsset.mediaAssetId),
       )
-      .groupBy(schema.CollectionMediaAsset.collectionId),
+      .groupBy(schema.KnowledgeMediaAsset.knowledgeId),
   );
 
-  const collectionCountQuery = db.$with("collection_count_subquery").as(
-    db
-      .select({
-        collectionId: schema.Collection.id,
-        totalCollectionItems: count(schema.CollectionItem.id).as(
-          "totalCollectionItems",
-        ),
-        // using a window function to count the number of collections matching the filter (ignoring pagination)
-        totalCollections: sql<number>`COUNT(*) OVER()`.as("totalCollections"),
-        totalBooks: sql<number>`
-          COUNT(CASE WHEN ${schema.KnowledgeResource.bookId} IS NOT NULL THEN 1 ELSE NULL END)
+  const childKnowledge = alias(schema.Knowledge, "child_knowledge");
+  const knowledgeConnectionSubquery = db
+    .$with("knowledge_connection_subquery")
+    .as(
+      db
+        .select({
+          knowledgeId: schema.Knowledge.id,
+          totalConnections: count(schema.KnowledgeConnection.id).as(
+            "totalConnections",
+          ),
+          totalBooks: sql<number>`
+          COUNT(${childKnowledge.id}) FILTER (WHERE ${childKnowledge.type} = ${KnowledgeType.Book})
         `.as("totalBooks"),
-      })
-      .from(schema.Collection)
-      .where(and(filter, privacyFilter))
-      .leftJoin(
-        schema.CollectionItem,
-        eq(schema.CollectionItem.collectionId, schema.Collection.id),
-      )
-      .leftJoin(
-        schema.KnowledgeResource,
-        eq(
-          schema.CollectionItem.knowledgeResourceId,
-          schema.KnowledgeResource.id,
-        ),
-      )
-      .groupBy(schema.Collection.id),
-  );
+        })
+        .from(schema.Knowledge)
+        .where(and(usernameFilter, privacyFilter))
+        .leftJoin(
+          schema.KnowledgeConnection,
+          eq(schema.KnowledgeConnection.sourceKnowledgeId, schema.Knowledge.id),
+        )
+        .leftJoin(
+          childKnowledge,
+          eq(schema.KnowledgeConnection.targetKnowledgeId, childKnowledge.id),
+        )
+        .groupBy(schema.Knowledge.id),
+    );
 
   const collectionsQuery = db
-    .with(mediaAssetsQuery, collectionCountQuery)
+    .with(mediaAssetsSubquery, knowledgeConnectionSubquery)
     .select({
-      id: schema.Collection.id,
-      slug: schema.Collection.slug,
-      name: schema.Collection.name,
-      description: schema.Collection.description,
-      isDefault: schema.Collection.isDefault,
-      isPrivate: schema.Collection.isPrivate,
-      createdAt: schema.Collection.createdAt,
-      updatedAt: schema.Collection.updatedAt,
-      totalItems: collectionCountQuery.totalCollectionItems,
-      totalBooks: collectionCountQuery.totalBooks,
-      totalCollections: collectionCountQuery.totalCollections,
-      mediaAssets: sql`COALESCE(${mediaAssetsQuery.mediaAssets}, '[]')`,
+      id: schema.Knowledge.id,
+      slug: schema.Knowledge.slug,
+      name: schema.Knowledge.name,
+      description: schema.Knowledge.description,
+      isPrivate: schema.Knowledge.isPrivate,
+      createdAt: schema.Knowledge.createdAt,
+      updatedAt: schema.Knowledge.updatedAt,
+      // using a window function to count the number of collections matching the filter (ignoring pagination)
+      totalItems: sql<number>`COUNT(*) OVER()`.as("totalItems"),
+      // totalItems: knowledgeConnectionSubquery.totalItems,
+      totalBooks: knowledgeConnectionSubquery.totalBooks,
+      totalConnections: knowledgeConnectionSubquery.totalConnections,
+      mediaAssets: sql`COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]')`,
     })
-    .from(schema.Collection)
-    .where(and(filter, privacyFilter))
-    .leftJoin(
-      collectionCountQuery,
-      eq(collectionCountQuery.collectionId, schema.Collection.id),
+    .from(schema.Knowledge)
+    .where(
+      and(
+        usernameFilter,
+        privacyFilter,
+        eq(schema.Knowledge.type, KnowledgeType.Collection),
+      ),
     )
     .leftJoin(
-      mediaAssetsQuery,
-      eq(mediaAssetsQuery.collectionId, schema.Collection.id),
+      knowledgeConnectionSubquery,
+      eq(knowledgeConnectionSubquery.knowledgeId, schema.Knowledge.id),
+    )
+    .leftJoin(
+      mediaAssetsSubquery,
+      eq(mediaAssetsSubquery.knowledgeId, schema.Knowledge.id),
     )
     .limit(pageSize)
     .offset((page - 1) * pageSize);
@@ -142,12 +158,11 @@ async function getUserCollections({
   ]);
 
   // Extract total collections from the first collection (since it's duplicated in all rows)
-  const totalCollections =
-    collections.length > 0 ? collections[0]?.totalCollections : 0;
+  const totalItems = collections.length > 0 ? collections[0]?.totalItems : 0;
 
   // Remove totalCollections from individual collections
   const cleanedCollections = collections.map(
-    ({ totalCollections: _, ...rest }) => rest,
+    ({ totalItems: _, ...rest }) => rest,
   );
 
   if (!user) throw Error("User not found");
@@ -156,7 +171,7 @@ async function getUserCollections({
     user,
     collections: {
       data: cleanedCollections,
-      meta: { page, pageSize, total: totalCollections },
+      meta: { page, pageSize, total: totalItems },
     },
   };
 }
