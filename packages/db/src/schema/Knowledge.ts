@@ -1,6 +1,5 @@
 import {
   boolean,
-  check,
   date,
   integer,
   pgEnum,
