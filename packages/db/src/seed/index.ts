@@ -1,5 +1,5 @@
 import { db, schema, sql } from "../";
-import { MediaAssetHost, UserType } from "../schema";
+import { KnowledgeType, MediaAssetHost, UserType } from "../schema";
 
 const books: (typeof schema.Book.$inferInsert)[] = [
   {
@@ -58,13 +58,15 @@ const users: (typeof schema.User.$inferInsert)[] = [
   },
 ];
 
-const knowledgeResources: (typeof schema.KnowledgeResource.$inferInsert)[] = [
+const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   {
     id: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
     name: "The Stress of Life",
     description: "Stress of life book added by ChatGPT",
     bookId: "1f1fe6e2-df13-42e1-8e79-83a74f2fb811",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
+    type: KnowledgeType.Book,
+    slug: "the-stress-of-life",
   },
   {
     id: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
@@ -72,6 +74,8 @@ const knowledgeResources: (typeof schema.KnowledgeResource.$inferInsert)[] = [
     description: "Power of habit book added by ChatGPT",
     bookId: "c1108c8d-43e6-43cf-b5a1-e3a3009a80b1",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
+    type: KnowledgeType.Book,
+    slug: "the-power-of-habit",
   },
   {
     id: "e20976f2-58f4-4428-bd5a-5777d4f8f277",
@@ -79,24 +83,27 @@ const knowledgeResources: (typeof schema.KnowledgeResource.$inferInsert)[] = [
     description: "Harry Potter book added by ChatGPT",
     bookId: "c5996f1d-18e4-4dcd-9444-349a59160973",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
+    type: KnowledgeType.Book,
+    slug: "harry-potter-and-the-philosophers-stone",
   },
   {
     id: "cd281ef5-4ebc-4af2-bcdd-80e732529a7b",
     name: "Just a note about psychology",
     description: "Pain and simple note",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
+    type: KnowledgeType.Note,
+    slug: "just-a-note-about-psychology",
   },
-];
+  // collections
 
-const collections: (typeof schema.Collection.$inferInsert)[] = [
   {
     id: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
     name: "Owned",
     description: "All the books ChatGPT owns",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
-    isDefault: true,
     isPrivate: false,
     slug: "owned",
+    type: KnowledgeType.Collection,
   },
   {
     id: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
@@ -105,6 +112,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     isPrivate: false,
     slug: "psychology-shelf",
+    type: KnowledgeType.Collection,
   },
   {
     id: "cc9cf8b2-42ea-4e27-9a31-7b50ab4dace4",
@@ -113,6 +121,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     userId: "2b3f6532-7053-4415-981e-9bde21b6dd9f",
     isPrivate: false,
     slug: "owned",
+    type: KnowledgeType.Collection,
   },
   {
     id: "1297a14b-f942-4532-be54-4b6e542ca04c",
@@ -121,6 +130,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     userId: "2b3f6532-7053-4415-981e-9bde21b6dd9f",
     isPrivate: true,
     slug: "private-collection",
+    type: KnowledgeType.Collection,
   },
   // Shawn's collection
   {
@@ -130,6 +140,7 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     userId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
     isPrivate: false,
     slug: "shawn-collection",
+    type: KnowledgeType.Collection,
   },
   {
     id: "efab5eab-4f0f-4545-a6ca-10aae137f6ba",
@@ -138,50 +149,54 @@ const collections: (typeof schema.Collection.$inferInsert)[] = [
     userId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
     isPrivate: true,
     slug: "shawn-private-collection",
+    type: KnowledgeType.Collection,
   },
 ];
 
-const collectionItems: (typeof schema.CollectionItem.$inferInsert)[] = [
-  {
-    id: "00c9c48b-3c7c-4552-aec3-29694d7565ae",
-    collectionId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
-    knowledgeResourceId: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
-    notes: "This is a note about the book stress of life for ChatGPT on owned",
-  },
-  {
-    id: "697032a6-f874-4747-b2f1-c050f8872446",
-    collectionId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
-    knowledgeResourceId: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
-    notes: "This is a note about the power of habit book for ChatGPT in owned",
-  },
-  {
-    id: "a75bf6ab-2c55-4f3e-a45e-5db8bb4fb586",
-    collectionId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
-    knowledgeResourceId: "e20976f2-58f4-4428-bd5a-5777d4f8f277",
-    notes: "This is a note about the Harry Potter book for ChatGPT in owned",
-  },
-  // the psychology shelf for ChatGPT
-  {
-    id: "7c8dc146-1170-4acb-a771-85d9f12f096e",
-    collectionId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
-    knowledgeResourceId: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
-    notes:
-      "This is a note about the book stress of life for ChatGPT on psychology shelf",
-  },
-  {
-    id: "45f29c6b-3469-4310-b381-a7027211b456",
-    collectionId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
-    knowledgeResourceId: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
-    notes:
-      "This is a note about the power of habit book for ChatGPT on psychology shelf",
-  },
-  {
-    id: "bb801c78-3657-4bef-ad12-3a8f0eadb735",
-    collectionId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
-    notes: "This is just a note",
-    knowledgeResourceId: "cd281ef5-4ebc-4af2-bcdd-80e732529a7b",
-  },
-];
+const knowledgeConnections: (typeof schema.KnowledgeConnection.$inferInsert)[] =
+  [
+    {
+      id: "00c9c48b-3c7c-4552-aec3-29694d7565ae",
+      sourceKnowledgeId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
+      targetKnowledgeId: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
+      notes:
+        "This is a note about the book stress of life for ChatGPT on owned",
+    },
+    {
+      id: "697032a6-f874-4747-b2f1-c050f8872446",
+      sourceKnowledgeId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
+      targetKnowledgeId: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
+      notes:
+        "This is a note about the power of habit book for ChatGPT in owned",
+    },
+    {
+      id: "a75bf6ab-2c55-4f3e-a45e-5db8bb4fb586",
+      sourceKnowledgeId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
+      targetKnowledgeId: "e20976f2-58f4-4428-bd5a-5777d4f8f277",
+      notes: "This is a note about the Harry Potter book for ChatGPT in owned",
+    },
+    // the psychology shelf for ChatGPT
+    {
+      id: "7c8dc146-1170-4acb-a771-85d9f12f096e",
+      sourceKnowledgeId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
+      targetKnowledgeId: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
+      notes:
+        "This is a note about the book stress of life for ChatGPT on psychology shelf",
+    },
+    {
+      id: "45f29c6b-3469-4310-b381-a7027211b456",
+      sourceKnowledgeId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
+      targetKnowledgeId: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
+      notes:
+        "This is a note about the power of habit book for ChatGPT on psychology shelf",
+    },
+    {
+      id: "bb801c78-3657-4bef-ad12-3a8f0eadb735",
+      sourceKnowledgeId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
+      notes: "This is just a note",
+      targetKnowledgeId: "cd281ef5-4ebc-4af2-bcdd-80e732529a7b",
+    },
+  ];
 
 const mediaAssets: (typeof schema.MediaAsset.$inferInsert)[] = [
   {
@@ -192,11 +207,11 @@ const mediaAssets: (typeof schema.MediaAsset.$inferInsert)[] = [
   },
 ];
 
-const collectionMediaAssets: (typeof schema.CollectionMediaAsset.$inferInsert)[] =
+const knowledgeMediaAssets: (typeof schema.KnowledgeMediaAsset.$inferInsert)[] =
   [
     {
       id: "e0c9c48b-3c7c-4552-aec3-29694d7565ae",
-      collectionId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
+      knowledgeId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
       mediaAssetId: "25192f66-bbbb-4aa6-9016-ceacb4786379",
     },
   ];
@@ -233,71 +248,56 @@ const seedBooks = async () => {
   console.log("🧨 Done seeding the books table successfully...\n");
 };
 
-const seedKnowledgeResources = async () => {
+const seedKnowledges = async () => {
   await db
-    .insert(schema.KnowledgeResource)
-    .values(knowledgeResources)
+    .insert(schema.Knowledge)
+    .values(knowledges)
     .onConflictDoUpdate({
-      target: schema.KnowledgeResource.id,
+      target: schema.Knowledge.id,
       set: {
-        name: sql.raw(`excluded.${schema.KnowledgeResource.name.name}`),
-        description: sql.raw(
-          `excluded.${schema.KnowledgeResource.description.name}`,
+        name: sql.raw(`excluded.${schema.Knowledge.name.name}`),
+        description: sql.raw(`excluded.${schema.Knowledge.description.name}`),
+        userId: sql.raw(`excluded.${schema.Knowledge.userId.name}`),
+        bookId: sql.raw(`excluded.${schema.Knowledge.bookId.name}`),
+        type: sql.raw(`excluded.${schema.Knowledge.type.name}`),
+        slug: sql.raw(`excluded.${schema.Knowledge.slug.name}`),
+        isPrivate: sql.raw(`excluded.${schema.Knowledge.isPrivate.name}`),
+        chapterNumber: sql.raw(
+          `excluded.${schema.Knowledge.chapterNumber.name}`,
         ),
-        userId: sql.raw(`excluded.${schema.KnowledgeResource.userId.name}`),
-        bookId: sql.raw(`excluded.${schema.KnowledgeResource.bookId.name}`),
       },
     });
 
-  const createdKnowledgeResources = await db.query.KnowledgeResource.findMany();
+  const createdKnowledgeResources = await db.query.Knowledge.findMany();
   console.log(JSON.stringify(createdKnowledgeResources, null, 2));
   console.log(
     "🧨 Done seeding the knowledge resources table successfully...\n",
   );
 };
-
-const seedCollections = async () => {
+const seedKnowledgeConnections = async () => {
   await db
-    .insert(schema.Collection)
-    .values(collections)
+    .insert(schema.KnowledgeConnection)
+    .values(knowledgeConnections)
     .onConflictDoUpdate({
-      target: schema.Collection.id,
+      target: schema.KnowledgeConnection.id,
       set: {
-        name: sql.raw(`excluded.${schema.Collection.name.name}`),
-        description: sql.raw(`excluded.${schema.Collection.description.name}`),
-        userId: sql.raw(`excluded.${schema.Collection.userId.name}`),
-        isDefault: sql.raw(`excluded.${schema.Collection.isDefault.name}`),
-        isPrivate: sql.raw(`excluded.${schema.Collection.isPrivate.name}`),
-        slug: sql.raw(`excluded.${schema.Collection.slug.name}`),
+        targetKnowledgeId: sql.raw(
+          `excluded.${schema.KnowledgeConnection.targetKnowledgeId.name}`,
+        ),
+        sourceKnowledgeId: sql.raw(
+          `excluded.${schema.KnowledgeConnection.sourceKnowledgeId.name}`,
+        ),
+        notes: sql.raw(`excluded.${schema.KnowledgeConnection.notes.name}`),
+        order: sql.raw(`excluded.${schema.KnowledgeConnection.order.name}`),
       },
     });
 
-  const createdCollections = await db.query.Collection.findMany();
-  console.log(JSON.stringify(createdCollections, null, 2));
-  console.log("🧨 Done seeding the collections table successfully...\n");
-};
-
-const seedCollectionItems = async () => {
-  await db
-    .insert(schema.CollectionItem)
-    .values(collectionItems)
-    .onConflictDoUpdate({
-      target: schema.CollectionItem.id,
-      set: {
-        collectionId: sql.raw(
-          `excluded.${schema.CollectionItem.collectionId.name}`,
-        ),
-        knowledgeResourceId: sql.raw(
-          `excluded.${schema.CollectionItem.knowledgeResourceId.name}`,
-        ),
-        notes: sql.raw(`excluded.${schema.CollectionItem.notes.name}`),
-        order: sql.raw(`excluded.${schema.CollectionItem.order.name}`),
-      },
-    });
-
-  const createdCollectionItems = await db.query.CollectionItem.findMany();
-  console.log(JSON.stringify(createdCollectionItems, null, 2));
-  console.log("🧨 Done seeding the collection items table successfully...\n");
+  const createdKnowledgeConnections =
+    await db.query.KnowledgeConnection.findMany();
+  console.log(JSON.stringify(createdKnowledgeConnections, null, 2));
+  console.log(
+    "🧨 Done seeding the createdKnowledgeConnections items table successfully...\n",
+  );
 };
 
 const seedMediaAssets = async () => {
@@ -318,25 +318,24 @@ const seedMediaAssets = async () => {
   console.log("🧨 Done seeding the media assets table successfully...\n");
 };
 
-const seedCollectionMediaAssets = async () => {
+const seedKnowledgeMediaAssets = async () => {
   await db
-    .insert(schema.CollectionMediaAsset)
-    .values(collectionMediaAssets)
+    .insert(schema.KnowledgeMediaAsset)
+    .values(knowledgeMediaAssets)
     .onConflictDoUpdate({
-      target: schema.CollectionMediaAsset.id,
+      target: schema.KnowledgeMediaAsset.id,
       set: {
-        collectionId: sql.raw(
-          `excluded.${schema.CollectionMediaAsset.collectionId.name}`,
+        knowledgeId: sql.raw(
+          `excluded.${schema.KnowledgeMediaAsset.knowledgeId.name}`,
         ),
         mediaAssetId: sql.raw(
-          `excluded.${schema.CollectionMediaAsset.mediaAssetId.name}`,
+          `excluded.${schema.KnowledgeMediaAsset.mediaAssetId.name}`,
         ),
       },
     });
 
-  const createdCollectionMediaAssets =
-    await db.query.CollectionMediaAsset.findMany();
-  console.log(JSON.stringify(createdCollectionMediaAssets, null, 2));
+  const createdKnowledgeAssets = await db.query.KnowledgeMediaAsset.findMany();
+  console.log(JSON.stringify(createdKnowledgeAssets, null, 2));
   console.log(
     "🧨 Done seeding the collection media assets table successfully...\n",
   );
@@ -346,11 +345,10 @@ const main = async () => {
   console.log("🧨 Started seeding the database...\n");
   await seedBooks();
   await seedUsers();
-  await seedKnowledgeResources();
+  await seedKnowledges();
   await seedMediaAssets();
-  await seedCollections();
-  await seedCollectionItems();
-  await seedCollectionMediaAssets();
+  await seedKnowledgeConnections();
+  await seedKnowledgeMediaAssets();
 
   console.log("\n🧨 Done seeding the database successfully...\n");
 };

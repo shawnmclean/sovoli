@@ -1,12 +1,10 @@
 import { relations } from "drizzle-orm";
 
-import { Collection } from "./Collection";
-import { KnowledgeResource } from "./KnowledgeResource";
+import { Knowledge } from "./Knowledge";
 import { myBooks } from "./myBooks";
 import { User } from "./User";
 
 export const UserRelations = relations(User, ({ many }) => ({
-  KnowledgeResources: many(KnowledgeResource),
-  Collections: many(Collection),
+  KnowledgeResources: many(Knowledge),
   myBooks: many(myBooks),
 }));
