@@ -1,7 +1,6 @@
 import { cache } from "react";
 import { auth } from "@sovoli/auth";
-import { and, count, db, eq, inArray, or, schema, sql } from "@sovoli/db";
-import { KnowledgeType } from "@sovoli/db/schema";
+import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 
 export const dynamic = "force-dynamic";
 
@@ -47,6 +46,30 @@ async function getKnowledgeBySlug({
   const privacyFilter = getPrivacyFilter(authUserId);
   const slugFilter = eq(schema.Knowledge.slug, slug);
 
+  const knowledgeResult = await db.query.Knowledge.findFirst({
+    with: {
+      User: {
+        columns: {
+          id: true,
+          name: true,
+          username: true,
+        },
+      },
+      KnowledgeMediaAssets: {
+        columns: {
+          id: true,
+        },
+        with: {
+          MediaAsset: true,
+        },
+      },
+    },
+    where: and(usernameFilter, privacyFilter, slugFilter),
+  });
+  if (!knowledgeResult) throw Error("Knowledge not found");
+  // Destructure to extract the user and the rest of the knowledge
+  const { User: user, ...knowledge } = knowledgeResult;
+
   const mediaAssetsSubquery = db.$with("media_assets_subquery").as(
     db
       .select({
@@ -54,10 +77,15 @@ async function getKnowledgeBySlug({
         mediaAssets: sql`
           JSON_AGG(
             JSON_BUILD_OBJECT(
-              'media_asset_id', ${schema.MediaAsset.id},
-              'host', ${schema.MediaAsset.host},
-              'bucket', ${schema.MediaAsset.bucket},
-              'path', ${schema.MediaAsset.path}
+              'id', ${schema.KnowledgeMediaAsset.id},
+              'MediaAsset', JSON_BUILD_OBJECT(
+                'id', ${schema.MediaAsset.id},
+                'host', ${schema.MediaAsset.host},
+                'bucket', ${schema.MediaAsset.bucket},
+                'path', ${schema.MediaAsset.path},
+                'createdAt', ${schema.MediaAsset.createdAt},
+                'updatedAt', ${schema.MediaAsset.updatedAt}
+              )
             )
           )`.as("mediaAssets"),
       })
@@ -69,96 +97,53 @@ async function getKnowledgeBySlug({
       .groupBy(schema.KnowledgeMediaAsset.knowledgeId),
   );
 
-  const knowledgeConnectionSubquery = db
-    .$with("knowledge_connection_subquery")
-    .as(
-      db
-        .select({
-          sourceKnowledgeId: schema.KnowledgeConnection.sourceKnowledgeId,
-          connections: sql`
-          JSON_AGG(
-            JSON_BUILD_OBJECT(
-              'id', ${schema.KnowledgeConnection.id},
-              'sourceKnowledgeId', ${schema.KnowledgeConnection.sourceKnowledgeId},
-              'targetKnowledgeId', ${schema.KnowledgeConnection.targetKnowledgeId},
-              'notes', ${schema.KnowledgeConnection.notes},
-              'createdAt', ${schema.KnowledgeConnection.createdAt},
-              'updatedAt', ${schema.KnowledgeConnection.updatedAt},
-              'Knowledge', JSON_BUILD_OBJECT(
-                'id', ${schema.Knowledge.id},
-                'name', ${schema.Knowledge.name},
-                'type', ${schema.Knowledge.type},
-                'description', ${schema.Knowledge.description}
-              )
-            )
-          )`.as("connections"),
-          totalConnections: count(schema.KnowledgeConnection.id).as(
-            "totalConnections",
-          ),
-          totalBooks: sql<number>`
-          COUNT(${schema.Knowledge.id}) FILTER (WHERE ${schema.Knowledge.type} = ${KnowledgeType.Book})
-        `.as("totalBooks"),
-        })
-        .from(schema.KnowledgeConnection)
-        .where(privacyFilter)
-        .leftJoin(
-          schema.Knowledge,
-          eq(schema.KnowledgeConnection.targetKnowledgeId, schema.Knowledge.id),
-        )
-        .groupBy(schema.KnowledgeConnection.sourceKnowledgeId),
-    );
-
-  const knowledgeQuery = db
-    .with(mediaAssetsSubquery, knowledgeConnectionSubquery)
+  const connections = await db
+    .with(mediaAssetsSubquery)
     .select({
-      id: schema.Knowledge.id,
-      slug: schema.Knowledge.slug,
-      name: schema.Knowledge.name,
-      description: schema.Knowledge.description,
-      type: schema.Knowledge.type,
-      isPrivate: schema.Knowledge.isPrivate,
-      createdAt: schema.Knowledge.createdAt,
-      updatedAt: schema.Knowledge.updatedAt,
-      // using a window function to count the number of collections matching the filter (ignoring pagination)
-      totalItems: sql<number>`COUNT(*) OVER()`.as("totalItems"),
-      // totalItems: knowledgeConnectionSubquery.totalItems,
-      totalBooks: knowledgeConnectionSubquery.totalBooks,
-      totalConnections: knowledgeConnectionSubquery.totalConnections,
-      mediaAssets: sql`COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]')`,
-      connections: sql`COALESCE(${knowledgeConnectionSubquery.connections}, '[]')`,
+      id: schema.KnowledgeConnection.id,
+      notes: schema.KnowledgeConnection.notes,
+      Knowledge: sql`JSON_BUILD_OBJECT(
+        'id', ${schema.Knowledge.id},
+        'slug', ${schema.Knowledge.slug},
+        'name', ${schema.Knowledge.name},
+        'description', ${schema.Knowledge.description},
+        'type', ${schema.Knowledge.type},
+        'isPrivate', ${schema.Knowledge.isPrivate},
+        'createdAt', ${schema.Knowledge.createdAt},
+        'updatedAt', ${schema.Knowledge.updatedAt},
+        'KnowledgeMediaAssets', COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]'),
+        'Book', JSON_BUILD_OBJECT(
+          'id', ${schema.Book.id},
+          'title', ${schema.Book.title},
+          'description', ${schema.Book.description},
+          'isbn13', ${schema.Book.isbn13},
+          'createdAt', ${schema.Book.createdAt},
+          'updatedAt', ${schema.Book.updatedAt}
+        )
+      )
+      `,
     })
-    .from(schema.Knowledge)
-    .where(and(usernameFilter, privacyFilter, slugFilter))
+    .from(schema.KnowledgeConnection)
+    .where(
+      and(
+        privacyFilter,
+        eq(schema.KnowledgeConnection.sourceKnowledgeId, knowledge.id),
+      ),
+    )
     .leftJoin(
-      knowledgeConnectionSubquery,
-      eq(knowledgeConnectionSubquery.sourceKnowledgeId, schema.Knowledge.id),
+      schema.Knowledge,
+      eq(schema.KnowledgeConnection.targetKnowledgeId, schema.Knowledge.id),
     )
     .leftJoin(
       mediaAssetsSubquery,
       eq(mediaAssetsSubquery.knowledgeId, schema.Knowledge.id),
     )
-    .limit(1);
-
-  const [user, knowledgeResults] = await Promise.all([
-    db.query.User.findFirst({
-      columns: {
-        id: true,
-        name: true,
-        username: true,
-      },
-      where: eq(schema.User.username, username),
-    }),
-    knowledgeQuery,
-  ]);
-
-  const knowledge = knowledgeResults[0];
-
-  if (!user) throw Error("User not found");
-  if (!knowledge) throw Error("Knowledge not found");
+    .leftJoin(schema.Book, eq(schema.Knowledge.bookId, schema.Book.id));
 
   return {
     user,
     knowledge,
+    connections,
   };
 }
 

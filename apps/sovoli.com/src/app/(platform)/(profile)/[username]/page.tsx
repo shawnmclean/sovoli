@@ -2,17 +2,7 @@ import type { Metadata } from "next";
 import { cache } from "react";
 // import { notFound } from "next/navigation";
 import { auth } from "@sovoli/auth";
-import {
-  alias,
-  and,
-  count,
-  db,
-  eq,
-  inArray,
-  or,
-  schema,
-  sql,
-} from "@sovoli/db";
+import { and, count, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 import { KnowledgeType } from "@sovoli/db/schema";
 
 import { config } from "~/utils/config";
@@ -67,10 +57,15 @@ async function getKnowledges({
         mediaAssets: sql`
           JSON_AGG(
             JSON_BUILD_OBJECT(
-              'media_asset_id', ${schema.MediaAsset.id},
-              'host', ${schema.MediaAsset.host},
-              'bucket', ${schema.MediaAsset.bucket},
-              'path', ${schema.MediaAsset.path}
+              'id', ${schema.KnowledgeMediaAsset.id},
+              'MediaAsset', JSON_BUILD_OBJECT(
+                'id', ${schema.MediaAsset.id},
+                'host', ${schema.MediaAsset.host},
+                'bucket', ${schema.MediaAsset.bucket},
+                'path', ${schema.MediaAsset.path},
+                'createdAt', ${schema.MediaAsset.createdAt},
+                'updatedAt', ${schema.MediaAsset.updatedAt}
+              )
             )
           )`.as("mediaAssets"),
       })
@@ -82,31 +77,26 @@ async function getKnowledges({
       .groupBy(schema.KnowledgeMediaAsset.knowledgeId),
   );
 
-  const childKnowledge = alias(schema.Knowledge, "child_knowledge");
   const knowledgeConnectionSubquery = db
     .$with("knowledge_connection_subquery")
     .as(
       db
         .select({
-          knowledgeId: schema.Knowledge.id,
+          sourceKnowledgeId: schema.KnowledgeConnection.sourceKnowledgeId,
           totalConnections: count(schema.KnowledgeConnection.id).as(
             "totalConnections",
           ),
           totalBooks: sql<number>`
-          COUNT(${childKnowledge.id}) FILTER (WHERE ${childKnowledge.type} = ${KnowledgeType.Book})
+          COUNT(${schema.Knowledge.id}) FILTER (WHERE ${schema.Knowledge.type} = ${KnowledgeType.Book})
         `.as("totalBooks"),
         })
-        .from(schema.Knowledge)
-        .where(and(usernameFilter, privacyFilter))
+        .from(schema.KnowledgeConnection)
+        .where(privacyFilter)
         .leftJoin(
-          schema.KnowledgeConnection,
-          eq(schema.KnowledgeConnection.sourceKnowledgeId, schema.Knowledge.id),
+          schema.Knowledge,
+          eq(schema.KnowledgeConnection.targetKnowledgeId, schema.Knowledge.id),
         )
-        .leftJoin(
-          childKnowledge,
-          eq(schema.KnowledgeConnection.targetKnowledgeId, childKnowledge.id),
-        )
-        .groupBy(schema.Knowledge.id),
+        .groupBy(schema.KnowledgeConnection.sourceKnowledgeId),
     );
 
   const knowledgesQuery = db
@@ -125,13 +115,13 @@ async function getKnowledges({
       // totalItems: knowledgeConnectionSubquery.totalItems,
       totalBooks: knowledgeConnectionSubquery.totalBooks,
       totalConnections: knowledgeConnectionSubquery.totalConnections,
-      mediaAssets: sql`COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]')`,
+      KnowledgeMediaAssets: sql`COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]')`,
     })
     .from(schema.Knowledge)
     .where(and(usernameFilter, privacyFilter))
     .leftJoin(
       knowledgeConnectionSubquery,
-      eq(knowledgeConnectionSubquery.knowledgeId, schema.Knowledge.id),
+      eq(knowledgeConnectionSubquery.sourceKnowledgeId, schema.Knowledge.id),
     )
     .leftJoin(
       mediaAssetsSubquery,
