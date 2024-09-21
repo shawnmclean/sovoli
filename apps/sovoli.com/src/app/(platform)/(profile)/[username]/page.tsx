@@ -22,8 +22,8 @@ export const dynamic = "force-dynamic";
 interface BaseOptions {
   authUserId?: string;
 }
-interface GetUserCollectionsOptions extends BaseOptions {
-  params: { username: string };
+interface GetKnowledgesOptions extends BaseOptions {
+  username: string;
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
 
@@ -52,11 +52,11 @@ function getPrivacyFilter(authUserId?: string) {
   );
 }
 
-async function getUserCollections({
-  params: { username },
+async function getKnowledges({
+  username,
   searchParams: { page = 1, pageSize = 30 },
   authUserId,
-}: GetUserCollectionsOptions) {
+}: GetKnowledgesOptions) {
   const usernameFilter = getByUsernameFilter(username);
   const privacyFilter = getPrivacyFilter(authUserId);
 
@@ -109,7 +109,7 @@ async function getUserCollections({
         .groupBy(schema.Knowledge.id),
     );
 
-  const collectionsQuery = db
+  const knowledgesQuery = db
     .with(mediaAssetsSubquery, knowledgeConnectionSubquery)
     .select({
       id: schema.Knowledge.id,
@@ -140,7 +140,7 @@ async function getUserCollections({
     .limit(pageSize)
     .offset((page - 1) * pageSize);
 
-  const [user, collections] = await Promise.all([
+  const [user, knowledges] = await Promise.all([
     db.query.User.findFirst({
       columns: {
         id: true,
@@ -149,14 +149,14 @@ async function getUserCollections({
       },
       where: eq(schema.User.username, username),
     }),
-    collectionsQuery,
+    knowledgesQuery,
   ]);
 
   // Extract total collections from the first collection (since it's duplicated in all rows)
-  const totalItems = collections.length > 0 ? collections[0]?.totalItems : 0;
+  const totalItems = knowledges.length > 0 ? knowledges[0]?.totalItems : 0;
 
   // Remove totalCollections from individual collections
-  const cleanedCollections = collections.map(
+  const cleanedKnowledges = knowledges.map(
     ({ totalItems: _, ...rest }) => rest,
   );
 
@@ -164,8 +164,8 @@ async function getUserCollections({
 
   return {
     user,
-    collections: {
-      data: cleanedCollections,
+    knowledges: {
+      data: cleanedKnowledges,
       meta: { page, pageSize, total: totalItems },
     },
   };
@@ -176,26 +176,24 @@ interface Props {
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
 
-const retrieveUserCollections = cache(
-  async ({ params, searchParams }: Props) => {
-    const session = await auth();
-    // try {
-    return await getUserCollections({
-      params,
-      searchParams,
-      authUserId: session?.user?.id,
-    });
-    // } catch {
-    //   return notFound();
-    // }
-  },
-);
+const retrieveKnowledges = cache(async ({ params, searchParams }: Props) => {
+  const session = await auth();
+  // try {
+  return await getKnowledges({
+    username: params.username,
+    searchParams,
+    authUserId: session?.user?.id,
+  });
+  // } catch {
+  //   return notFound();
+  // }
+});
 
 export async function generateMetadata({
   params,
   searchParams,
 }: Props): Promise<Metadata> {
-  const { user } = await retrieveUserCollections({ params, searchParams });
+  const { user } = await retrieveKnowledges({ params, searchParams });
 
   return {
     title: `${user.name}'s Collections`,
@@ -207,11 +205,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function UserCollectionsPage({
-  params,
-  searchParams,
-}: Props) {
-  const { user, collections } = await retrieveUserCollections({
+export default async function KnowledgesPage({ params, searchParams }: Props) {
+  const { user, knowledges: collections } = await retrieveKnowledges({
     params,
     searchParams,
   });

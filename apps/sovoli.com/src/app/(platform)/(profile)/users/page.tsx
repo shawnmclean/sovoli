@@ -39,7 +39,7 @@ export default async function UserPage({ searchParams }: Props) {
       <ul>
         {response.data.map((user) => (
           <li key={user.id}>
-            <a href={`/${user.username}/collections`}>{user.name}</a>
+            <a href={`/${user.username}`}>{user.name}</a>
           </li>
         ))}
       </ul>

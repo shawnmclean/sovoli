@@ -151,6 +151,15 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     slug: "shawn-private-collection",
     type: KnowledgeType.Collection,
   },
+  {
+    id: "dcdd76fd-0f1c-45db-acda-fce13f90c69b",
+    name: "Shawn's Public Collection With Private Collection",
+    description: "Shawn's Public Collection With Private Collection",
+    userId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
+    isPrivate: false,
+    slug: "shawn-public-collection-with-private-collection",
+    type: KnowledgeType.Collection,
+  },
 ];
 
 const knowledgeConnections: (typeof schema.KnowledgeConnection.$inferInsert)[] =
@@ -195,6 +204,14 @@ const knowledgeConnections: (typeof schema.KnowledgeConnection.$inferInsert)[] =
       sourceKnowledgeId: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
       notes: "This is just a note",
       targetKnowledgeId: "cd281ef5-4ebc-4af2-bcdd-80e732529a7b",
+    },
+    // shawn's public collection with private collection
+    {
+      id: "59c55a8d-7437-45c0-ab66-b09045046199",
+      sourceKnowledgeId: "dcdd76fd-0f1c-45db-acda-fce13f90c69b",
+      targetKnowledgeId: "efab5eab-4f0f-4545-a6ca-10aae137f6ba",
+      notes:
+        "This  is a private connection between shawn's public collection and shawn's private collection",
     },
   ];
 
