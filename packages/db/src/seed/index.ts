@@ -222,6 +222,12 @@ const mediaAssets: (typeof schema.MediaAsset.$inferInsert)[] = [
     bucket: "collection-images",
     path: "collection-images/0c274f47-ace1-49b1-8005-bdb8cab523ce.jpg",
   },
+  {
+    id: "63375850-63e4-4c5b-92d1-f7f02e561bca",
+    host: MediaAssetHost.Supabase,
+    bucket: "collection-images",
+    path: "collection-images/63375850-63e4-4c5b-92d1-f7f02e561bca.jpg",
+  },
 ];
 
 const knowledgeMediaAssets: (typeof schema.KnowledgeMediaAsset.$inferInsert)[] =
@@ -230,6 +236,11 @@ const knowledgeMediaAssets: (typeof schema.KnowledgeMediaAsset.$inferInsert)[] =
       id: "e0c9c48b-3c7c-4552-aec3-29694d7565ae",
       knowledgeId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
       mediaAssetId: "25192f66-bbbb-4aa6-9016-ceacb4786379",
+    },
+    {
+      id: "80f87669-b1d5-476b-827e-b5549d3b1235",
+      knowledgeId: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
+      mediaAssetId: "63375850-63e4-4c5b-92d1-f7f02e561bca",
     },
   ];
 
