@@ -20,7 +20,7 @@ import { SelectKnowledgeConnectionSchema } from "./KnowledgeConnection";
 import { SelectKnowledgeMediaAssetSchema } from "./KnowledgeMediaAsset";
 import { User } from "./User";
 
-const KnowledgeTypes = ["Collection", "Book", "Note"] as const;
+export const KnowledgeTypes = ["Collection", "Book", "Note"] as const;
 export const KnowledgeType = createEnumObject(KnowledgeTypes);
 export const knowledgeTypeEnum = pgEnum("knowledge_type", KnowledgeTypes);
 export const Knowledge = pgTable(
@@ -34,6 +34,13 @@ export const Knowledge = pgTable(
       .notNull()
       .references(() => User.id),
     verifiedDate: date("verified_date"),
+
+    // this will hold the thoughts of the knowledge, in markdown format.
+    content: text("content"),
+    // this will hold additional context for the knowledge such as page text from OCR.
+    context: text("context"),
+    // thie will describe the context data, such as saying "OCR from page 10 of book "The Great Gatsby""
+    contextDescription: text("context_description"),
 
     slug: varchar("slug", { length: 255 }),
     type: knowledgeTypeEnum("type").notNull().default(KnowledgeType.Book),
