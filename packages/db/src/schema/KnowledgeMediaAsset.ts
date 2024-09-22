@@ -1,5 +1,5 @@
 import type { z } from "zod";
-import { pgTable, uuid } from "drizzle-orm/pg-core";
+import { pgTable, timestamp, uuid } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 import { Knowledge } from "./Knowledge";
@@ -13,6 +13,8 @@ export const KnowledgeMediaAsset = pgTable("knowledge_media_asset", {
   mediaAssetId: uuid("media_asset_id")
     .notNull()
     .references(() => MediaAsset.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 export const SelectKnowledgeMediaAssetSchema = createSelectSchema(

@@ -29,15 +29,15 @@ const baseSelectKnowledgeConnectionSchema =
 export type KnowledgeConnection = z.infer<
   typeof baseSelectKnowledgeConnectionSchema
 > & {
-  SourceKnowledge: SelectKnowledgeSchema;
-  TargetKnowledge: SelectKnowledgeSchema;
+  SourceKnowledge?: SelectKnowledgeSchema | null;
+  TargetKnowledge?: SelectKnowledgeSchema | null;
 };
 
 // Recursive schema for KnowledgeConnection with type hint
 export const SelectKnowledgeConnectionSchema: z.ZodType<KnowledgeConnection> =
   baseSelectKnowledgeConnectionSchema.extend({
-    SourceKnowledge: z.lazy(() => SelectKnowledgeSchema), // Lazy recursion for source knowledge
-    TargetKnowledge: z.lazy(() => SelectKnowledgeSchema), // Lazy recursion for target knowledge
+    SourceKnowledge: z.lazy(() => SelectKnowledgeSchema.nullish()), // Lazy recursion for source knowledge
+    TargetKnowledge: z.lazy(() => SelectKnowledgeSchema.nullish()), // Lazy recursion for target knowledge
   });
 
 export type SelectKnowledgeConnectionSchema = z.infer<

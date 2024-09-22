@@ -1,7 +1,7 @@
-import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { cache } from "react";
 import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
+import { SelectKnowledgeSchema } from "@sovoli/db/schema";
 
 import KnowledgeDetails from "./_components/KnowledgeDetails";
 
@@ -10,7 +10,12 @@ export const dynamic = "force-dynamic";
 interface BaseOptions {
   authUserId?: string;
 }
-interface GetKnowledgeBySlugOptions extends BaseOptions {
+
+interface PaginationFilter {
+  page?: number;
+  pageSize?: number;
+}
+interface GetKnowledgeBySlugOptions extends BaseOptions, PaginationFilter {
   username: string;
   slug: string;
 }
@@ -44,6 +49,8 @@ async function getKnowledgeBySlug({
   username,
   slug,
   authUserId,
+  page = 1,
+  pageSize = 30,
 }: GetKnowledgeBySlugOptions) {
   const usernameFilter = getByUsernameFilter(username);
   const privacyFilter = getPrivacyFilter(authUserId);
@@ -78,6 +85,10 @@ async function getKnowledgeBySlug({
           JSON_AGG(
             JSON_BUILD_OBJECT(
               'id', ${schema.KnowledgeMediaAsset.id},
+              'knowledgeId', ${schema.KnowledgeMediaAsset.knowledgeId},
+              'mediaAssetId', ${schema.KnowledgeMediaAsset.mediaAssetId},
+              'createdAt', ${schema.KnowledgeMediaAsset.createdAt},
+              'updatedAt', ${schema.KnowledgeMediaAsset.updatedAt},
               'MediaAsset', JSON_BUILD_OBJECT(
                 'id', ${schema.MediaAsset.id},
                 'host', ${schema.MediaAsset.host},
@@ -107,9 +118,11 @@ async function getKnowledgeBySlug({
       targetKnowledgeId: schema.KnowledgeConnection.targetKnowledgeId,
       createdAt: schema.KnowledgeConnection.createdAt,
       updatedAt: schema.KnowledgeConnection.updatedAt,
-      SourceKnowledge: sql<SelectKnowledgeSchema>`NULL`,
-      TargetKnowledge: sql<SelectKnowledgeSchema>`JSON_BUILD_OBJECT(
+      totalItems: sql<number>`COUNT(*) OVER()`.as("totalItems"),
+      SourceKnowledge: sql<SelectKnowledgeSchema | null>`NULL`,
+      TargetKnowledge: sql<SelectKnowledgeSchema | null>`JSON_BUILD_OBJECT(
         'id', ${schema.Knowledge.id},
+        'userId', ${schema.Knowledge.userId},
         'slug', ${schema.Knowledge.slug},
         'name', ${schema.Knowledge.name},
         'description', ${schema.Knowledge.description},
@@ -117,7 +130,15 @@ async function getKnowledgeBySlug({
         'isPrivate', ${schema.Knowledge.isPrivate},
         'createdAt', ${schema.Knowledge.createdAt},
         'updatedAt', ${schema.Knowledge.updatedAt},
+        'triggerDevId', ${schema.Knowledge.triggerDevId},
+        'triggerError', ${schema.Knowledge.triggerError},
+        'verifiedDate', ${schema.Knowledge.verifiedDate},
         'KnowledgeMediaAssets', COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]'),
+        'bookId', ${schema.Knowledge.bookId},
+        'chapterNumber', ${schema.Knowledge.chapterNumber},
+        'isPrivate', ${schema.Knowledge.isPrivate},
+        'query', ${schema.Knowledge.query},
+        'Connections', json_build_array(),
         'Book', CASE
           WHEN ${schema.Book.id} IS NOT NULL THEN JSON_BUILD_OBJECT(
             'id', ${schema.Book.id},
@@ -148,14 +169,72 @@ async function getKnowledgeBySlug({
       mediaAssetsSubquery,
       eq(mediaAssetsSubquery.knowledgeId, schema.Knowledge.id),
     )
-    .leftJoin(schema.Book, eq(schema.Knowledge.bookId, schema.Book.id));
+    .leftJoin(schema.Book, eq(schema.Knowledge.bookId, schema.Book.id))
+    .limit(pageSize)
+    .offset((page - 1) * pageSize);
+
+  const totalItems = connections.length > 0 ? connections[0]?.totalItems : 0;
+
+  // Remove totalCollections from individual collections and format dates
+  const cleanedConnections = connections.map(({ totalItems: _, ...rest }) => {
+    if (rest.SourceKnowledge) {
+      rest.SourceKnowledge.createdAt = new Date(rest.SourceKnowledge.createdAt);
+      rest.SourceKnowledge.updatedAt = new Date(rest.SourceKnowledge.updatedAt);
+
+      rest.SourceKnowledge.KnowledgeMediaAssets.forEach(
+        (knowledgeMediaAsset) => {
+          knowledgeMediaAsset.createdAt = new Date(
+            knowledgeMediaAsset.createdAt,
+          );
+          knowledgeMediaAsset.updatedAt = new Date(
+            knowledgeMediaAsset.updatedAt,
+          );
+
+          knowledgeMediaAsset.MediaAsset.createdAt = new Date(
+            knowledgeMediaAsset.MediaAsset.createdAt,
+          );
+          knowledgeMediaAsset.MediaAsset.updatedAt = new Date(
+            knowledgeMediaAsset.MediaAsset.updatedAt,
+          );
+        },
+      );
+    }
+    if (rest.TargetKnowledge) {
+      rest.TargetKnowledge.createdAt = new Date(rest.TargetKnowledge.createdAt);
+      rest.TargetKnowledge.updatedAt = new Date(rest.TargetKnowledge.updatedAt);
+
+      rest.TargetKnowledge.KnowledgeMediaAssets.forEach(
+        (knowledgeMediaAsset) => {
+          knowledgeMediaAsset.createdAt = new Date(
+            knowledgeMediaAsset.createdAt,
+          );
+          knowledgeMediaAsset.updatedAt = new Date(
+            knowledgeMediaAsset.updatedAt,
+          );
+
+          knowledgeMediaAsset.MediaAsset.createdAt = new Date(
+            knowledgeMediaAsset.MediaAsset.createdAt,
+          );
+          knowledgeMediaAsset.MediaAsset.updatedAt = new Date(
+            knowledgeMediaAsset.MediaAsset.updatedAt,
+          );
+        },
+      );
+    }
+
+    return rest;
+  });
+  console.log(JSON.stringify(cleanedConnections, null, 2));
+
+  const knowledgeResponse = SelectKnowledgeSchema.parse({
+    ...knowledge,
+    Connections: cleanedConnections,
+  });
 
   return {
     user,
-    knowledge: {
-      ...knowledge,
-      Connections: connections,
-    },
+    knowledge: knowledgeResponse,
+    meta: { page, pageSize, total: totalItems },
   };
 }
 
