@@ -1,4 +1,5 @@
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+import { KnowledgeType } from "@sovoli/db/schema";
 
 import BookDetails from "./BookDetails";
 import CollectionDetails from "./CollectionDetails";
@@ -19,11 +20,11 @@ export default function KnowledgeDetails({ knowledge }: Props) {
 
 function KnowledgeComponentSwitcher({ knowledge }: Props) {
   switch (knowledge.type) {
-    case "Book":
+    case KnowledgeType.Book:
       return <BookDetails knowledge={knowledge} />;
-    case "Collection":
+    case KnowledgeType.Collection:
       return <CollectionDetails knowledge={knowledge} />;
-    case "Note":
+    case KnowledgeType.Note:
       return <NoteDetails knowledge={knowledge} />;
   }
 }
