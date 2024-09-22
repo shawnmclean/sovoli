@@ -1,3 +1,4 @@
+import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { cache } from "react";
 import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
@@ -58,9 +59,6 @@ async function getKnowledgeBySlug({
         },
       },
       KnowledgeMediaAssets: {
-        columns: {
-          id: true,
-        },
         with: {
           MediaAsset: true,
         },
@@ -104,7 +102,7 @@ async function getKnowledgeBySlug({
     .select({
       id: schema.KnowledgeConnection.id,
       notes: schema.KnowledgeConnection.notes,
-      Knowledge: sql`JSON_BUILD_OBJECT(
+      Knowledge: sql<SelectKnowledgeSchema>`JSON_BUILD_OBJECT(
         'id', ${schema.Knowledge.id},
         'slug', ${schema.Knowledge.slug},
         'name', ${schema.Knowledge.name},
@@ -170,17 +168,16 @@ const retreiveKnowledgeBySlug = cache(async ({ params }: Props) => {
 });
 
 export default async function KnowledgePage({ params }: Props) {
-  const response = await retreiveKnowledgeBySlug({
+  const { knowledge, connections } = await retreiveKnowledgeBySlug({
     params,
   });
 
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
-      <h1>Knowledge Details</h1>
       <a href={`/${params.username}`}>Back to {params.username}</a>
 
-      <pre>{JSON.stringify(response, null, 2)}</pre>
-      <KnowledgeDetails knowledge={response.knowledge} />
+      <KnowledgeDetails knowledge={knowledge} />
+      <pre>{JSON.stringify(connections, null, 2)}</pre>
     </div>
   );
 }

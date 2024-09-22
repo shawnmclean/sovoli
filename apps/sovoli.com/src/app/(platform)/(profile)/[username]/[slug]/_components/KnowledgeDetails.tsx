@@ -8,12 +8,22 @@ interface Props {
   knowledge: SelectKnowledgeSchema;
 }
 export default function KnowledgeDetails({ knowledge }: Props) {
+  return (
+    <div>
+      <h1>{knowledge.name}</h1>
+      <p>{knowledge.description}</p>
+      <KnowledgeComponentSwitcher knowledge={knowledge} />
+    </div>
+  );
+}
+
+function KnowledgeComponentSwitcher({ knowledge }: Props) {
   switch (knowledge.type) {
     case "Book":
-      return <BookDetails />;
+      return <BookDetails knowledge={knowledge} />;
     case "Collection":
-      return <CollectionDetails />;
+      return <CollectionDetails knowledge={knowledge} />;
     case "Note":
-      return <NoteDetails />;
+      return <NoteDetails knowledge={knowledge} />;
   }
 }

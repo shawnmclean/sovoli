@@ -15,7 +15,8 @@ import { z } from "zod";
 
 import { createEnumObject } from "../utils";
 import { Book } from "./Book";
-import { MediaAsset } from "./MediaAsset";
+import { SelectKnowledgeConnectionSchema } from "./KnowledgeConnection";
+import { MediaAsset, SelectMediaAssetSchema } from "./MediaAsset";
 import { User } from "./User";
 
 const KnowledgeTypes = ["Collection", "Book", "Note"] as const;
@@ -58,11 +59,6 @@ export const Knowledge = pgTable(
   }),
 );
 
-export const SelectKnowledgeSchema = createSelectSchema(Knowledge);
-export const InsertKnowledgeSchema = createInsertSchema(Knowledge);
-export type InsertKnowledgeSchema = z.infer<typeof InsertKnowledgeSchema>;
-export type SelectKnowledgeSchema = z.infer<typeof SelectKnowledgeSchema>;
-
 export const KnowledgeMediaAsset = pgTable("knowledge_media_asset", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
   knowledgeId: uuid("knowledge_id")
@@ -72,3 +68,24 @@ export const KnowledgeMediaAsset = pgTable("knowledge_media_asset", {
     .notNull()
     .references(() => MediaAsset.id, { onDelete: "cascade" }),
 });
+
+export const SelectKnowledgeMediaAssetSchema = createSelectSchema(
+  KnowledgeMediaAsset,
+).extend({
+  MediaAsset: SelectMediaAssetSchema,
+});
+export const InsertKnowledgeMediaAssetSchema =
+  createInsertSchema(KnowledgeMediaAsset);
+export type InsertKnowledgeMediaAssetSchema = z.infer<
+  typeof InsertKnowledgeMediaAssetSchema
+>;
+export type SelectKnowledgeMediaAssetSchema = z.infer<
+  typeof SelectKnowledgeMediaAssetSchema
+>;
+
+export const SelectKnowledgeSchema = createSelectSchema(Knowledge).extend({
+  KnowledgeMediaAssets: z.array(SelectKnowledgeMediaAssetSchema),
+});
+export const InsertKnowledgeSchema = createInsertSchema(Knowledge);
+export type InsertKnowledgeSchema = z.infer<typeof InsertKnowledgeSchema>;
+export type SelectKnowledgeSchema = z.infer<typeof SelectKnowledgeSchema>;
