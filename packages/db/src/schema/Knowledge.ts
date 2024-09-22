@@ -13,9 +13,11 @@ import {
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
+import type { KnowledgeConnection } from "./KnowledgeConnection";
 import { createEnumObject } from "../utils";
 import { Book } from "./Book";
-import { MediaAsset, SelectMediaAssetSchema } from "./MediaAsset";
+import { SelectKnowledgeConnectionSchema } from "./KnowledgeConnection";
+import { SelectKnowledgeMediaAssetSchema } from "./KnowledgeMediaAsset";
 import { User } from "./User";
 
 const KnowledgeTypes = ["Collection", "Book", "Note"] as const;
@@ -58,33 +60,20 @@ export const Knowledge = pgTable(
   }),
 );
 
-export const KnowledgeMediaAsset = pgTable("knowledge_media_asset", {
-  id: uuid("id").notNull().primaryKey().defaultRandom(),
-  knowledgeId: uuid("knowledge_id")
-    .notNull()
-    .references(() => Knowledge.id, { onDelete: "cascade" }),
-  mediaAssetId: uuid("media_asset_id")
-    .notNull()
-    .references(() => MediaAsset.id, { onDelete: "cascade" }),
-});
+const baseKnowledgeSchema = createSelectSchema(Knowledge);
 
-export const SelectKnowledgeMediaAssetSchema = createSelectSchema(
-  KnowledgeMediaAsset,
-).extend({
-  MediaAsset: SelectMediaAssetSchema,
-});
-export const InsertKnowledgeMediaAssetSchema =
-  createInsertSchema(KnowledgeMediaAsset);
-export type InsertKnowledgeMediaAssetSchema = z.infer<
-  typeof InsertKnowledgeMediaAssetSchema
->;
-export type SelectKnowledgeMediaAssetSchema = z.infer<
-  typeof SelectKnowledgeMediaAssetSchema
->;
+// Manually defining Knowledge type to handle recursion
+export type SelectKnowledgeSchema = z.infer<typeof baseKnowledgeSchema> & {
+  Connections: KnowledgeConnection[];
+  KnowledgeMediaAssets: SelectKnowledgeMediaAssetSchema[];
+};
 
-export const SelectKnowledgeSchema = createSelectSchema(Knowledge).extend({
-  KnowledgeMediaAssets: z.array(SelectKnowledgeMediaAssetSchema),
-});
+// Recursive schema for Knowledge
+export const SelectKnowledgeSchema: z.ZodType<SelectKnowledgeSchema> =
+  baseKnowledgeSchema.extend({
+    KnowledgeMediaAssets: z.array(SelectKnowledgeMediaAssetSchema),
+    Connections: z.lazy(() => z.array(SelectKnowledgeConnectionSchema)), // Recursive connections
+  });
+
 export const InsertKnowledgeSchema = createInsertSchema(Knowledge);
 export type InsertKnowledgeSchema = z.infer<typeof InsertKnowledgeSchema>;
-export type SelectKnowledgeSchema = z.infer<typeof SelectKnowledgeSchema>;

@@ -102,7 +102,13 @@ async function getKnowledgeBySlug({
     .select({
       id: schema.KnowledgeConnection.id,
       notes: schema.KnowledgeConnection.notes,
-      Knowledge: sql<SelectKnowledgeSchema>`JSON_BUILD_OBJECT(
+      order: schema.KnowledgeConnection.order,
+      sourceKnowledgeId: schema.KnowledgeConnection.sourceKnowledgeId,
+      targetKnowledgeId: schema.KnowledgeConnection.targetKnowledgeId,
+      createdAt: schema.KnowledgeConnection.createdAt,
+      updatedAt: schema.KnowledgeConnection.updatedAt,
+      SourceKnowledge: sql<SelectKnowledgeSchema>`NULL`,
+      TargetKnowledge: sql<SelectKnowledgeSchema>`JSON_BUILD_OBJECT(
         'id', ${schema.Knowledge.id},
         'slug', ${schema.Knowledge.slug},
         'name', ${schema.Knowledge.name},
@@ -130,6 +136,7 @@ async function getKnowledgeBySlug({
     .where(
       and(
         privacyFilter,
+        // where the parent is the knowledge we are looking for
         eq(schema.KnowledgeConnection.sourceKnowledgeId, knowledge.id),
       ),
     )
@@ -145,8 +152,10 @@ async function getKnowledgeBySlug({
 
   return {
     user,
-    knowledge,
-    connections,
+    knowledge: {
+      ...knowledge,
+      Connections: connections,
+    },
   };
 }
 
@@ -168,7 +177,7 @@ const retreiveKnowledgeBySlug = cache(async ({ params }: Props) => {
 });
 
 export default async function KnowledgePage({ params }: Props) {
-  const { knowledge, connections } = await retreiveKnowledgeBySlug({
+  const { knowledge } = await retreiveKnowledgeBySlug({
     params,
   });
 
@@ -177,7 +186,6 @@ export default async function KnowledgePage({ params }: Props) {
       <a href={`/${params.username}`}>Back to {params.username}</a>
 
       <KnowledgeDetails knowledge={knowledge} />
-      <pre>{JSON.stringify(connections, null, 2)}</pre>
     </div>
   );
 }

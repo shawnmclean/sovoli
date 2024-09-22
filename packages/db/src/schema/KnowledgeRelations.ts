@@ -1,9 +1,9 @@
 import { relations } from "drizzle-orm";
 
 import { Book } from "./Book";
-import { Knowledge, KnowledgeMediaAsset } from "./Knowledge";
+import { Knowledge } from "./Knowledge";
 import { KnowledgeConnection } from "./KnowledgeConnection";
-import { MediaAsset } from "./MediaAsset";
+import { KnowledgeMediaAsset } from "./KnowledgeMediaAsset";
 import { User } from "./User";
 
 export const KnowledgeRelations = relations(Knowledge, ({ one, many }) => ({
@@ -18,17 +18,3 @@ export const KnowledgeRelations = relations(Knowledge, ({ one, many }) => ({
   KnowledgeConnections: many(KnowledgeConnection),
   KnowledgeMediaAssets: many(KnowledgeMediaAsset),
 }));
-
-export const KnowledgeMediaAssetRelations = relations(
-  KnowledgeMediaAsset,
-  ({ one }) => ({
-    Knowledge: one(Knowledge, {
-      fields: [KnowledgeMediaAsset.knowledgeId],
-      references: [Knowledge.id],
-    }),
-    MediaAsset: one(MediaAsset, {
-      fields: [KnowledgeMediaAsset.mediaAssetId],
-      references: [MediaAsset.id],
-    }),
-  }),
-);

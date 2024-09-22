@@ -1,8 +1,8 @@
-import type { z } from "zod";
 import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { z } from "zod";
 
-import { Knowledge } from "./Knowledge";
+import { Knowledge, SelectKnowledgeSchema } from "./Knowledge";
 
 export const KnowledgeConnection = pgTable("knowledge_connection", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -23,13 +23,29 @@ export const KnowledgeConnection = pgTable("knowledge_connection", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-export const SelectKnowledgeConnectionSchema =
+const baseSelectKnowledgeConnectionSchema =
   createSelectSchema(KnowledgeConnection);
-export const InsertKnowledgeConnectionSchema =
-  createInsertSchema(KnowledgeConnection);
+
+export type KnowledgeConnection = z.infer<
+  typeof baseSelectKnowledgeConnectionSchema
+> & {
+  SourceKnowledge: SelectKnowledgeSchema;
+  TargetKnowledge: SelectKnowledgeSchema;
+};
+
+// Recursive schema for KnowledgeConnection with type hint
+export const SelectKnowledgeConnectionSchema: z.ZodType<KnowledgeConnection> =
+  baseSelectKnowledgeConnectionSchema.extend({
+    SourceKnowledge: z.lazy(() => SelectKnowledgeSchema), // Lazy recursion for source knowledge
+    TargetKnowledge: z.lazy(() => SelectKnowledgeSchema), // Lazy recursion for target knowledge
+  });
+
 export type SelectKnowledgeConnectionSchema = z.infer<
   typeof SelectKnowledgeConnectionSchema
 >;
+
+export const InsertKnowledgeConnectionSchema =
+  createInsertSchema(KnowledgeConnection);
 export type InsertKnowledgeConnectionSchema = z.infer<
   typeof InsertKnowledgeConnectionSchema
 >;

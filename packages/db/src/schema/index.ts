@@ -11,3 +11,5 @@ export * from "./KnowledgeConnection";
 export * from "./KnowledgeConnectionRelations";
 export * from "./MediaAsset";
 export * from "./MediaAssetRelation";
+export * from "./KnowledgeMediaAsset";
+export * from "./KnowledgeMediaAssetRelation";
