@@ -51,7 +51,12 @@ const PostKnowledgeSchemaRequest = z.object({
 
         // object type is structured for inference
         targetKnowledge: z.object({
-          query: z.string(),
+          query: z
+            .string()
+            .openapi({
+              description:
+                "The query that was used to search for the book. If the book is already in your knowledge library, it will be linked.",
+            }),
           type: z.enum(KnowledgeTypes),
         }),
       }),
