@@ -2,6 +2,8 @@ import { cache } from "react";
 import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 
+import KnowledgeDetails from "./_components/KnowledgeDetails";
+
 export const dynamic = "force-dynamic";
 
 interface BaseOptions {
@@ -112,14 +114,17 @@ async function getKnowledgeBySlug({
         'createdAt', ${schema.Knowledge.createdAt},
         'updatedAt', ${schema.Knowledge.updatedAt},
         'KnowledgeMediaAssets', COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]'),
-        'Book', JSON_BUILD_OBJECT(
-          'id', ${schema.Book.id},
-          'title', ${schema.Book.title},
-          'description', ${schema.Book.description},
-          'isbn13', ${schema.Book.isbn13},
-          'createdAt', ${schema.Book.createdAt},
-          'updatedAt', ${schema.Book.updatedAt}
-        )
+        'Book', CASE
+          WHEN ${schema.Book.id} IS NOT NULL THEN JSON_BUILD_OBJECT(
+            'id', ${schema.Book.id},
+            'title', ${schema.Book.title},
+            'description', ${schema.Book.description},
+            'isbn13', ${schema.Book.isbn13},
+            'createdAt', ${schema.Book.createdAt},
+            'updatedAt', ${schema.Book.updatedAt}
+          )
+          ELSE NULL
+        END
       )
       `,
     })
@@ -175,6 +180,7 @@ export default async function KnowledgePage({ params }: Props) {
       <a href={`/${params.username}`}>Back to {params.username}</a>
 
       <pre>{JSON.stringify(response, null, 2)}</pre>
+      <KnowledgeDetails knowledge={response.knowledge} />
     </div>
   );
 }

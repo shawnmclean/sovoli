@@ -10,6 +10,8 @@ import {
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { z } from "zod";
 
 import { createEnumObject } from "../utils";
 import { Book } from "./Book";
@@ -55,6 +57,11 @@ export const Knowledge = pgTable(
     uniqueOwnerSlug: unique("unique_owner_slug").on(table.userId, table.slug),
   }),
 );
+
+export const SelectKnowledgeSchema = createSelectSchema(Knowledge);
+export const InsertKnowledgeSchema = createInsertSchema(Knowledge);
+export type InsertKnowledgeSchema = z.infer<typeof InsertKnowledgeSchema>;
+export type SelectKnowledgeSchema = z.infer<typeof SelectKnowledgeSchema>;
 
 export const KnowledgeMediaAsset = pgTable("knowledge_media_asset", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
