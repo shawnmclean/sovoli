@@ -21,7 +21,7 @@ const hasSecurity = (
 };
 
 const openApiDocument = generateOpenApi(
-  contract.chatgpt,
+  contract.knowledge,
   {
     info: {
       title: "Sovoli API",
