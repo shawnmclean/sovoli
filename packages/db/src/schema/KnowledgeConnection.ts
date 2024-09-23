@@ -12,7 +12,7 @@ import { z } from "zod";
 import { createEnumObject } from "../utils";
 import { Knowledge, SelectKnowledgeSchema } from "./Knowledge";
 
-export const KnowledgeConnectionTypes = ["Contains", "Book", "Note"] as const;
+export const KnowledgeConnectionTypes = ["Contains", "Recommends"] as const;
 export const KnowledgeConnectionType = createEnumObject(
   KnowledgeConnectionTypes,
 );
