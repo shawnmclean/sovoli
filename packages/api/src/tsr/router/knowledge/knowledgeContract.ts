@@ -48,7 +48,10 @@ const PostKnowledgeSchemaRequest = z.object({
   connections: z
     .array(
       z.object({
-        notes: z.string(),
+        notes: z.string().openapi({
+          description:
+            "Additional notes in markdown format about the connection such as why it was recommended or added to the collection.",
+        }),
         order: z.number(),
         type: z.enum(KnowledgeConnectionTypes),
 
@@ -56,7 +59,7 @@ const PostKnowledgeSchemaRequest = z.object({
         targetKnowledge: z.object({
           query: z.string().openapi({
             description:
-              "The query that was used to search for the book. If the book is already in your knowledge library, it will be linked.",
+              "The query is used to search for the book. If the book is already in your knowledge library, it will be linked. Example: `{title} {author}`",
           }),
           type: z.enum(KnowledgeTypes),
         }),
