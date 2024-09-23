@@ -1,6 +1,9 @@
+import { extendZodWithOpenApi } from "@anatine/zod-openapi";
 import { KnowledgeConnectionTypes, KnowledgeTypes } from "@sovoli/db/schema";
 import { initContract } from "@ts-rest/core";
 import { z } from "zod";
+
+extendZodWithOpenApi(z);
 
 const PostKnowledgeSchemaRequest = z.object({
   openaiFileIdRefs: z

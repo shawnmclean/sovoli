@@ -1,4 +1,5 @@
 import { initContract } from "@ts-rest/core";
+import { z } from "zod";
 
 import { bookContract } from "./router/book/bookContract";
 import { knowledgeContract } from "./router/knowledge/knowledgeContract";
