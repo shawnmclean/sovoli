@@ -51,12 +51,10 @@ const PostKnowledgeSchemaRequest = z.object({
 
         // object type is structured for inference
         targetKnowledge: z.object({
-          query: z
-            .string()
-            .openapi({
-              description:
-                "The query that was used to search for the book. If the book is already in your knowledge library, it will be linked.",
-            }),
+          query: z.string().openapi({
+            description:
+              "The query that was used to search for the book. If the book is already in your knowledge library, it will be linked.",
+          }),
           type: z.enum(KnowledgeTypes),
         }),
       }),
@@ -68,6 +66,10 @@ const PostKnowledgeSchemaResponse = z.object({
   username: z.string().nullish(),
   name: z.string().nullish(),
 });
+
+export type PostKnowledgeSchemaRequest = z.infer<
+  typeof PostKnowledgeSchemaRequest
+>;
 
 const c = initContract();
 

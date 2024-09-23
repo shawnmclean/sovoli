@@ -21,18 +21,6 @@ export const userRouter = tsr
         });
       }),
   )
-  .routeWithMiddleware("ping", (routerBuilder) =>
-    routerBuilder
-      .middleware<TSRAuthContext>(authMiddleware)
-      .handler(async ({ query: { message } }, { request: { user } }) => {
-        return Promise.resolve({
-          status: 200,
-          body: {
-            message: `${user.name} says ${message ?? "Hello"}`,
-          },
-        });
-      }),
-  )
   .routeWithMiddleware("upload", (routerBuilder) =>
     routerBuilder
       .middleware<TSRAuthContext>(authMiddleware)

@@ -19,18 +19,6 @@ export const userContract = c.router(
       },
       summary: "Get the currently logged in user",
     },
-    ping: {
-      method: "GET",
-      path: `/ping`,
-      query: z.object({
-        message: z.string().optional(),
-      }),
-      responses: {
-        200: z.object({
-          message: z.string(),
-        }),
-      },
-    },
     upload: {
       method: "POST",
       path: `/upload`,
