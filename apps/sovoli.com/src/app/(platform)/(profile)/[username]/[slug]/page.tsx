@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { notFound, permanentRedirect } from "next/navigation";
 import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 import { SelectKnowledgeSchema } from "@sovoli/db/schema";
@@ -17,7 +18,7 @@ interface PaginationFilter {
 }
 interface GetKnowledgeBySlugOptions extends BaseOptions, PaginationFilter {
   username: string;
-  slug: string;
+  slugOrId: string;
 }
 
 function getByUsernameFilter(username: string) {
@@ -45,16 +46,33 @@ function getPrivacyFilter(authUserId?: string) {
   );
 }
 
+function getSlugOrIdFilter(slugOrId: string) {
+  function isUUID(value: string): boolean {
+    const uuidRegex =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    return uuidRegex.test(value);
+  }
+
+  // Check if the slugOrId is a UUID
+  if (isUUID(slugOrId)) {
+    // If it's a UUID, search by ID
+    return eq(schema.Knowledge.id, slugOrId);
+  } else {
+    // Otherwise, treat it as a slug
+    return eq(schema.Knowledge.slug, slugOrId);
+  }
+}
+
 async function getKnowledgeBySlug({
   username,
-  slug,
+  slugOrId,
   authUserId,
   page = 1,
   pageSize = 30,
 }: GetKnowledgeBySlugOptions) {
   const usernameFilter = getByUsernameFilter(username);
   const privacyFilter = getPrivacyFilter(authUserId);
-  const slugFilter = eq(schema.Knowledge.slug, slug);
+  const slugFilter = getSlugOrIdFilter(slugOrId);
 
   const knowledgeResult = await db.query.Knowledge.findFirst({
     with: {
@@ -73,6 +91,7 @@ async function getKnowledgeBySlug({
     },
     where: and(usernameFilter, privacyFilter, slugFilter),
   });
+
   if (!knowledgeResult) throw Error("Knowledge not found");
   // Destructure to extract the user and the rest of the knowledge
   const { User: user, ...knowledge } = knowledgeResult;
@@ -228,7 +247,6 @@ async function getKnowledgeBySlug({
 
     return rest;
   });
-  console.log(JSON.stringify(cleanedConnections, null, 2));
 
   const knowledgeResponse = SelectKnowledgeSchema.parse({
     ...knowledge,
@@ -246,18 +264,36 @@ interface Props {
   params: { username: string; slug: string };
 }
 
-const retreiveKnowledgeBySlug = cache(async ({ params }: Props) => {
-  const session = await auth();
-  // try {
-  return await getKnowledgeBySlug({
-    username: params.username,
-    authUserId: session?.user?.id,
-    slug: params.slug,
-  });
-  // } catch {
-  //   return notFound();
-  // }
-});
+const retreiveKnowledgeBySlug = cache(
+  async ({ params: { username, slug } }: Props) => {
+    const session = await auth();
+
+    // see: https://stackoverflow.com/questions/76191324/next-13-4-error-next-redirect-in-api-routes
+    let redirectPath: string | null = null;
+    try {
+      const knowledgeResponse = await getKnowledgeBySlug({
+        username: username,
+        authUserId: session?.user?.id,
+        slugOrId: slug,
+      });
+
+      if (
+        knowledgeResponse.knowledge.id === slug &&
+        knowledgeResponse.knowledge.slug
+      ) {
+        redirectPath = `/${username}/${knowledgeResponse.knowledge.slug}`;
+      }
+
+      return knowledgeResponse;
+    } catch {
+      return notFound();
+    } finally {
+      if (redirectPath) {
+        permanentRedirect(redirectPath);
+      }
+    }
+  },
+);
 
 export default async function KnowledgePage({ params }: Props) {
   const { knowledge } = await retreiveKnowledgeBySlug({
