@@ -3,7 +3,7 @@ import { relations } from "drizzle-orm";
 import { Book } from "./Book";
 import { Knowledge } from "./Knowledge";
 import { KnowledgeConnection } from "./KnowledgeConnection";
-import { KnowledgeMediaAsset } from "./KnowledgeMediaAsset";
+import { MediaAsset } from "./MediaAsset";
 import { User } from "./User";
 
 export const KnowledgeRelations = relations(Knowledge, ({ one, many }) => ({
@@ -16,5 +16,5 @@ export const KnowledgeRelations = relations(Knowledge, ({ one, many }) => ({
     references: [Book.id],
   }),
   KnowledgeConnections: many(KnowledgeConnection),
-  KnowledgeMediaAssets: many(KnowledgeMediaAsset),
+  MediaAssets: many(MediaAsset),
 }));

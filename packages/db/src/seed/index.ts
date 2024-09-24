@@ -218,31 +218,19 @@ const knowledgeConnections: (typeof schema.KnowledgeConnection.$inferInsert)[] =
 const mediaAssets: (typeof schema.MediaAsset.$inferInsert)[] = [
   {
     id: "25192f66-bbbb-4aa6-9016-ceacb4786379",
+    knowledgeId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
     host: MediaAssetHost.Supabase,
     bucket: "collection-images",
     path: "collection-images/0c274f47-ace1-49b1-8005-bdb8cab523ce.jpg",
   },
   {
     id: "63375850-63e4-4c5b-92d1-f7f02e561bca",
+    knowledgeId: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
     host: MediaAssetHost.Supabase,
     bucket: "collection-images",
     path: "collection-images/63375850-63e4-4c5b-92d1-f7f02e561bca.jpg",
   },
 ];
-
-const knowledgeMediaAssets: (typeof schema.KnowledgeMediaAsset.$inferInsert)[] =
-  [
-    {
-      id: "e0c9c48b-3c7c-4552-aec3-29694d7565ae",
-      knowledgeId: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
-      mediaAssetId: "25192f66-bbbb-4aa6-9016-ceacb4786379",
-    },
-    {
-      id: "80f87669-b1d5-476b-827e-b5549d3b1235",
-      knowledgeId: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
-      mediaAssetId: "63375850-63e4-4c5b-92d1-f7f02e561bca",
-    },
-  ];
 
 const seedUsers = async () => {
   await db
@@ -346,29 +334,6 @@ const seedMediaAssets = async () => {
   console.log("🧨 Done seeding the media assets table successfully...\n");
 };
 
-const seedKnowledgeMediaAssets = async () => {
-  await db
-    .insert(schema.KnowledgeMediaAsset)
-    .values(knowledgeMediaAssets)
-    .onConflictDoUpdate({
-      target: schema.KnowledgeMediaAsset.id,
-      set: {
-        knowledgeId: sql.raw(
-          `excluded.${schema.KnowledgeMediaAsset.knowledgeId.name}`,
-        ),
-        mediaAssetId: sql.raw(
-          `excluded.${schema.KnowledgeMediaAsset.mediaAssetId.name}`,
-        ),
-      },
-    });
-
-  const createdKnowledgeAssets = await db.query.KnowledgeMediaAsset.findMany();
-  console.log(JSON.stringify(createdKnowledgeAssets, null, 2));
-  console.log(
-    "🧨 Done seeding the collection media assets table successfully...\n",
-  );
-};
-
 const main = async () => {
   console.log("🧨 Started seeding the database...\n");
   await seedBooks();
@@ -376,7 +341,6 @@ const main = async () => {
   await seedKnowledges();
   await seedMediaAssets();
   await seedKnowledgeConnections();
-  await seedKnowledgeMediaAssets();
 
   console.log("\n🧨 Done seeding the database successfully...\n");
 };

@@ -1,8 +1,16 @@
 import type { z } from "zod";
-import { pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgEnum,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 import { createEnumObject } from "../utils";
+import { Knowledge } from "./Knowledge";
 
 const MediaAssetHosts = ["Supabase"] as const;
 export const MediaAssetHost = createEnumObject(MediaAssetHosts);
@@ -10,6 +18,11 @@ export const MediaAssetHost = createEnumObject(MediaAssetHosts);
 export const mediaAssetHostEnum = pgEnum("media_asset_host", MediaAssetHosts);
 export const MediaAsset = pgTable("media_asset", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
+  knowledgeId: uuid("knowledge_id")
+    .notNull()
+    .references(() => Knowledge.id, { onDelete: "cascade" }),
+
+  order: integer("order"),
 
   host: mediaAssetHostEnum("host").notNull(),
   bucket: text("bucket"),

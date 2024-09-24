@@ -83,11 +83,7 @@ async function getKnowledgeBySlug({
           username: true,
         },
       },
-      KnowledgeMediaAssets: {
-        with: {
-          MediaAsset: true,
-        },
-      },
+      MediaAssets: true,
     },
     where: and(usernameFilter, privacyFilter, slugFilter),
   });
@@ -99,32 +95,23 @@ async function getKnowledgeBySlug({
   const mediaAssetsSubquery = db.$with("media_assets_subquery").as(
     db
       .select({
-        knowledgeId: schema.KnowledgeMediaAsset.knowledgeId,
+        knowledgeId: schema.MediaAsset.knowledgeId,
         mediaAssets: sql`
           JSON_AGG(
             JSON_BUILD_OBJECT(
-              'id', ${schema.KnowledgeMediaAsset.id},
-              'knowledgeId', ${schema.KnowledgeMediaAsset.knowledgeId},
-              'mediaAssetId', ${schema.KnowledgeMediaAsset.mediaAssetId},
-              'createdAt', ${schema.KnowledgeMediaAsset.createdAt},
-              'updatedAt', ${schema.KnowledgeMediaAsset.updatedAt},
-              'MediaAsset', JSON_BUILD_OBJECT(
-                'id', ${schema.MediaAsset.id},
-                'host', ${schema.MediaAsset.host},
-                'bucket', ${schema.MediaAsset.bucket},
-                'path', ${schema.MediaAsset.path},
-                'createdAt', ${schema.MediaAsset.createdAt},
-                'updatedAt', ${schema.MediaAsset.updatedAt}
-              )
+              'id', ${schema.MediaAsset.id},
+              'knowledgeId', ${schema.MediaAsset.knowledgeId},
+              'order', ${schema.MediaAsset.order},
+              'host', ${schema.MediaAsset.host},
+              'bucket', ${schema.MediaAsset.bucket},
+              'path', ${schema.MediaAsset.path},
+              'createdAt', ${schema.MediaAsset.createdAt},
+              'updatedAt', ${schema.MediaAsset.updatedAt}
             )
           )`.as("mediaAssets"),
       })
-      .from(schema.KnowledgeMediaAsset)
-      .leftJoin(
-        schema.MediaAsset,
-        eq(schema.MediaAsset.id, schema.KnowledgeMediaAsset.mediaAssetId),
-      )
-      .groupBy(schema.KnowledgeMediaAsset.knowledgeId),
+      .from(schema.MediaAsset)
+      .groupBy(schema.MediaAsset.knowledgeId),
   );
 
   const connections = await db
@@ -156,7 +143,7 @@ async function getKnowledgeBySlug({
         'triggerDevId', ${schema.Knowledge.triggerDevId},
         'triggerError', ${schema.Knowledge.triggerError},
         'verifiedDate', ${schema.Knowledge.verifiedDate},
-        'KnowledgeMediaAssets', COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]'),
+        'MediaAssets', COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]'),
         'bookId', ${schema.Knowledge.bookId},
         'chapterNumber', ${schema.Knowledge.chapterNumber},
         'isPrivate', ${schema.Knowledge.isPrivate},
@@ -204,45 +191,19 @@ async function getKnowledgeBySlug({
       rest.SourceKnowledge.createdAt = new Date(rest.SourceKnowledge.createdAt);
       rest.SourceKnowledge.updatedAt = new Date(rest.SourceKnowledge.updatedAt);
 
-      rest.SourceKnowledge.KnowledgeMediaAssets.forEach(
-        (knowledgeMediaAsset) => {
-          knowledgeMediaAsset.createdAt = new Date(
-            knowledgeMediaAsset.createdAt,
-          );
-          knowledgeMediaAsset.updatedAt = new Date(
-            knowledgeMediaAsset.updatedAt,
-          );
-
-          knowledgeMediaAsset.MediaAsset.createdAt = new Date(
-            knowledgeMediaAsset.MediaAsset.createdAt,
-          );
-          knowledgeMediaAsset.MediaAsset.updatedAt = new Date(
-            knowledgeMediaAsset.MediaAsset.updatedAt,
-          );
-        },
-      );
+      rest.SourceKnowledge.MediaAssets.forEach((mediaAsset) => {
+        mediaAsset.createdAt = new Date(mediaAsset.createdAt);
+        mediaAsset.updatedAt = new Date(mediaAsset.updatedAt);
+      });
     }
     if (rest.TargetKnowledge) {
       rest.TargetKnowledge.createdAt = new Date(rest.TargetKnowledge.createdAt);
       rest.TargetKnowledge.updatedAt = new Date(rest.TargetKnowledge.updatedAt);
 
-      rest.TargetKnowledge.KnowledgeMediaAssets.forEach(
-        (knowledgeMediaAsset) => {
-          knowledgeMediaAsset.createdAt = new Date(
-            knowledgeMediaAsset.createdAt,
-          );
-          knowledgeMediaAsset.updatedAt = new Date(
-            knowledgeMediaAsset.updatedAt,
-          );
-
-          knowledgeMediaAsset.MediaAsset.createdAt = new Date(
-            knowledgeMediaAsset.MediaAsset.createdAt,
-          );
-          knowledgeMediaAsset.MediaAsset.updatedAt = new Date(
-            knowledgeMediaAsset.MediaAsset.updatedAt,
-          );
-        },
-      );
+      rest.TargetKnowledge.MediaAssets.forEach((mediaAsset) => {
+        mediaAsset.createdAt = new Date(mediaAsset.createdAt);
+        mediaAsset.updatedAt = new Date(mediaAsset.updatedAt);
+      });
     }
 
     return rest;
@@ -285,7 +246,8 @@ const retreiveKnowledgeBySlug = cache(
       }
 
       return knowledgeResponse;
-    } catch {
+    } catch (e) {
+      console.log(e);
       return notFound();
     } finally {
       if (redirectPath) {

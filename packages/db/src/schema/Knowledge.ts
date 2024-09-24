@@ -17,7 +17,7 @@ import type { KnowledgeConnection } from "./KnowledgeConnection";
 import { createEnumObject } from "../utils";
 import { Book } from "./Book";
 import { SelectKnowledgeConnectionSchema } from "./KnowledgeConnection";
-import { SelectKnowledgeMediaAssetSchema } from "./KnowledgeMediaAsset";
+import { SelectMediaAssetSchema } from "./MediaAsset";
 import { User } from "./User";
 
 export const KnowledgeTypes = ["Collection", "Book", "Note"] as const;
@@ -72,13 +72,13 @@ const baseKnowledgeSchema = createSelectSchema(Knowledge);
 // Manually defining Knowledge type to handle recursion
 export type SelectKnowledgeSchema = z.infer<typeof baseKnowledgeSchema> & {
   Connections: KnowledgeConnection[];
-  KnowledgeMediaAssets: SelectKnowledgeMediaAssetSchema[];
+  MediaAssets: SelectMediaAssetSchema[];
 };
 
 // Recursive schema for Knowledge
 export const SelectKnowledgeSchema: z.ZodType<SelectKnowledgeSchema> =
   baseKnowledgeSchema.extend({
-    KnowledgeMediaAssets: z.array(SelectKnowledgeMediaAssetSchema),
+    MediaAssets: z.array(SelectMediaAssetSchema),
     Connections: z.lazy(() => z.array(SelectKnowledgeConnectionSchema)), // Recursive connections
   });
 

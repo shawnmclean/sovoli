@@ -53,28 +53,23 @@ async function getKnowledges({
   const mediaAssetsSubquery = db.$with("media_assets_subquery").as(
     db
       .select({
-        knowledgeId: schema.KnowledgeMediaAsset.knowledgeId,
+        knowledgeId: schema.MediaAsset.knowledgeId,
         mediaAssets: sql`
           JSON_AGG(
             JSON_BUILD_OBJECT(
-              'id', ${schema.KnowledgeMediaAsset.id},
-              'MediaAsset', JSON_BUILD_OBJECT(
-                'id', ${schema.MediaAsset.id},
-                'host', ${schema.MediaAsset.host},
-                'bucket', ${schema.MediaAsset.bucket},
-                'path', ${schema.MediaAsset.path},
-                'createdAt', ${schema.MediaAsset.createdAt},
-                'updatedAt', ${schema.MediaAsset.updatedAt}
-              )
+              'id', ${schema.MediaAsset.id},
+              'knowledgeId', ${schema.MediaAsset.knowledgeId},
+              'order', ${schema.MediaAsset.order},
+              'host', ${schema.MediaAsset.host},
+              'bucket', ${schema.MediaAsset.bucket},
+              'path', ${schema.MediaAsset.path},
+              'createdAt', ${schema.MediaAsset.createdAt},
+              'updatedAt', ${schema.MediaAsset.updatedAt}
             )
           )`.as("mediaAssets"),
       })
-      .from(schema.KnowledgeMediaAsset)
-      .leftJoin(
-        schema.MediaAsset,
-        eq(schema.MediaAsset.id, schema.KnowledgeMediaAsset.mediaAssetId),
-      )
-      .groupBy(schema.KnowledgeMediaAsset.knowledgeId),
+      .from(schema.MediaAsset)
+      .groupBy(schema.MediaAsset.knowledgeId),
   );
 
   const knowledgeConnectionSubquery = db
@@ -115,7 +110,7 @@ async function getKnowledges({
       // totalItems: knowledgeConnectionSubquery.totalItems,
       totalBooks: knowledgeConnectionSubquery.totalBooks,
       totalConnections: knowledgeConnectionSubquery.totalConnections,
-      KnowledgeMediaAssets: sql`COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]')`,
+      MediaAssets: sql`COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]')`,
     })
     .from(schema.Knowledge)
     .where(and(usernameFilter, privacyFilter))
