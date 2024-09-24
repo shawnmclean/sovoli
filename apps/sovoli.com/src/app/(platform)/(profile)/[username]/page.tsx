@@ -99,7 +99,7 @@ async function getKnowledges({
     .select({
       id: schema.Knowledge.id,
       slug: schema.Knowledge.slug,
-      name: schema.Knowledge.name,
+      title: schema.Knowledge.title,
       description: schema.Knowledge.description,
       type: schema.Knowledge.type,
       isPrivate: schema.Knowledge.isPrivate,
@@ -206,9 +206,9 @@ export default async function KnowledgesPage({ params, searchParams }: Props) {
         {collections.data.map((collection) => (
           <a
             key={collection.id}
-            href={`/${params.username}/${collection.slug}`}
+            href={`/${params.username}/${collection.slug ?? collection.id}`}
           >
-            <h2>{collection.name}</h2>
+            <h2>{collection.title}</h2>
           </a>
         ))}
       </div>

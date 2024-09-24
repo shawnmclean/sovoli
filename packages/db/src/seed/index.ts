@@ -61,7 +61,7 @@ const users: (typeof schema.User.$inferInsert)[] = [
 const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   {
     id: "dde7b8d8-d8ed-41e5-853e-02a3d26f3521",
-    name: "The Stress of Life",
+    title: "The Stress of Life",
     description: "Stress of life book added by ChatGPT",
     bookId: "1f1fe6e2-df13-42e1-8e79-83a74f2fb811",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
@@ -70,7 +70,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   },
   {
     id: "db2cbda9-032e-494e-83b2-6f0bb6dd0f86",
-    name: "The Power of Habit",
+    title: "The Power of Habit",
     description: "Power of habit book added by ChatGPT",
     bookId: "c1108c8d-43e6-43cf-b5a1-e3a3009a80b1",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
@@ -79,7 +79,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   },
   {
     id: "e20976f2-58f4-4428-bd5a-5777d4f8f277",
-    name: "Harry Potter and the Philosopher's Stone",
+    title: "Harry Potter and the Philosopher's Stone",
     description: "Harry Potter book added by ChatGPT",
     bookId: "c5996f1d-18e4-4dcd-9444-349a59160973",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
@@ -88,7 +88,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   },
   {
     id: "cd281ef5-4ebc-4af2-bcdd-80e732529a7b",
-    name: "Just a note about psychology",
+    title: "Just a note about psychology",
     description: "Pain and simple note",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     type: KnowledgeType.Note,
@@ -98,7 +98,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
 
   {
     id: "85cf848e-09ca-45b4-96a0-73f38cf48afd",
-    name: "Owned",
+    title: "Owned",
     description: "All the books ChatGPT owns",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     isPrivate: false,
@@ -107,7 +107,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   },
   {
     id: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
-    name: "Psychology Shelf",
+    title: "Psychology Shelf",
     description: "All the books ChatGPT reads about psychology",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     isPrivate: false,
@@ -116,7 +116,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   },
   {
     id: "cc9cf8b2-42ea-4e27-9a31-7b50ab4dace4",
-    name: "Owned",
+    title: "Owned",
     description: "All the books John Doe owns",
     userId: "2b3f6532-7053-4415-981e-9bde21b6dd9f",
     isPrivate: false,
@@ -125,7 +125,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   },
   {
     id: "1297a14b-f942-4532-be54-4b6e542ca04c",
-    name: "Privatre Collection",
+    title: "Privatre Collection",
     description: "John Doe's private collection",
     userId: "2b3f6532-7053-4415-981e-9bde21b6dd9f",
     isPrivate: true,
@@ -135,7 +135,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   // Shawn's collection
   {
     id: "fa822f2f-f11a-4a76-a2e1-199170d5b50c",
-    name: "Shawn's Collection",
+    title: "Shawn's Collection",
     description: "Shawn's collection",
     userId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
     isPrivate: false,
@@ -144,7 +144,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   },
   {
     id: "efab5eab-4f0f-4545-a6ca-10aae137f6ba",
-    name: "Shawn's Private Collection",
+    title: "Shawn's Private Collection",
     description: "Shawn's private collection",
     userId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
     isPrivate: true,
@@ -153,7 +153,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
   },
   {
     id: "dcdd76fd-0f1c-45db-acda-fce13f90c69b",
-    name: "Shawn's Public Collection With Private Collection",
+    title: "Shawn's Public Collection With Private Collection",
     description: "Shawn's Public Collection With Private Collection",
     userId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
     isPrivate: false,
@@ -271,7 +271,7 @@ const seedKnowledges = async () => {
     .onConflictDoUpdate({
       target: schema.Knowledge.id,
       set: {
-        name: sql.raw(`excluded.${schema.Knowledge.name.name}`),
+        title: sql.raw(`excluded.${schema.Knowledge.title.name}`),
         description: sql.raw(`excluded.${schema.Knowledge.description.name}`),
         userId: sql.raw(`excluded.${schema.Knowledge.userId.name}`),
         bookId: sql.raw(`excluded.${schema.Knowledge.bookId.name}`),

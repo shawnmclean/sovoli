@@ -11,7 +11,7 @@ interface Props {
 export default function KnowledgeDetails({ knowledge }: Props) {
   return (
     <div>
-      <h1>{knowledge.name}</h1>
+      <h1>{knowledge.title}</h1>
       <p>{knowledge.description}</p>
       <KnowledgeComponentSwitcher knowledge={knowledge} />
     </div>

@@ -1,3 +1,4 @@
+import { db, schema } from "@sovoli/db";
 import { tsr } from "@ts-rest/serverless/fetch";
 
 import type { PlatformContext, TSRAuthContext } from "../../types";
@@ -13,8 +14,57 @@ interface CreateKnowledgeOptions extends BaseOptions {
   knowledge: PostKnowledgeSchemaRequest;
 }
 
-function createKnowledge(knowledge: CreateKnowledgeOptions) {
+async function createKnowledge({
+  knowledge,
+  authUserId,
+}: CreateKnowledgeOptions) {
+  if (!authUserId) {
+    throw new Error("authUserId is required");
+  }
+
   console.log(JSON.stringify(knowledge, null, 2));
+  await db.transaction(async (tx) => {
+    const sourceKnowledge = await tx
+      .insert(schema.Knowledge)
+      .values({
+        title: knowledge.title,
+        userId: authUserId,
+        type: knowledge.type,
+      })
+      .returning({ id: schema.Knowledge.id });
+
+    const sourceKnowledgeId = sourceKnowledge[0]?.id;
+    if (!sourceKnowledgeId) {
+      throw new Error("Failed to create knowledge");
+    }
+
+    if (knowledge.connections?.length) {
+      for (const connection of knowledge.connections) {
+        // Insert the connected knowledge item
+        const targetKnowledge = await tx
+          .insert(schema.Knowledge)
+          .values({
+            query: connection.targetKnowledge.query,
+            type: connection.targetKnowledge.type,
+            userId: authUserId,
+          })
+          .returning({ id: schema.Knowledge.id });
+
+        const targetKnowledgeId = targetKnowledge[0]?.id;
+        if (!targetKnowledgeId) {
+          throw new Error("Failed to create target knowledge");
+        }
+
+        // Create the connection between the main knowledge and the target knowledge
+        await tx.insert(schema.KnowledgeConnection).values({
+          sourceKnowledgeId,
+          targetKnowledgeId,
+          notes: connection.notes,
+          type: connection.type,
+        });
+      }
+    }
+  });
 }
 
 export const knowledgeRouter = tsr
@@ -24,7 +74,7 @@ export const knowledgeRouter = tsr
     routerBuilder
       .middleware<TSRAuthContext>(authMiddleware)
       .handler(async ({ body }, { request: { user } }) => {
-        createKnowledge({ knowledge: body, authUserId: user.id });
+        await createKnowledge({ knowledge: body, authUserId: user.id });
         return Promise.resolve({
           status: 200,
           body: {

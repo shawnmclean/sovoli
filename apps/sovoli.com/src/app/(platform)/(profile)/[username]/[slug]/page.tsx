@@ -131,7 +131,7 @@ async function getKnowledgeBySlug({
         'id', ${schema.Knowledge.id},
         'userId', ${schema.Knowledge.userId},
         'slug', ${schema.Knowledge.slug},
-        'name', ${schema.Knowledge.name},
+        'title', ${schema.Knowledge.title},
         'description', ${schema.Knowledge.description},
         'content', ${schema.Knowledge.content},
         'context', ${schema.Knowledge.context},
