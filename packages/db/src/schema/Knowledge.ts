@@ -42,6 +42,9 @@ export const Knowledge = pgTable(
     // thie will describe the context data, such as saying "OCR from page 10 of book "The Great Gatsby""
     contextDescription: text("context_description"),
 
+    // this is true is the knowledge is posted directly and not from a collection
+    isOrigin: boolean("is_origin").notNull().default(false),
+
     slug: varchar("slug", { length: 255 }),
     type: knowledgeTypeEnum("type").notNull().default(KnowledgeType.Book),
 
@@ -67,17 +70,18 @@ export const Knowledge = pgTable(
   }),
 );
 
-const baseKnowledgeSchema = createSelectSchema(Knowledge);
+export const BaseKnowledgeSchema = createSelectSchema(Knowledge);
+export type BaseKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema>;
 
 // Manually defining Knowledge type to handle recursion
-export type SelectKnowledgeSchema = z.infer<typeof baseKnowledgeSchema> & {
+export type SelectKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema> & {
   Connections: KnowledgeConnection[];
   MediaAssets: SelectMediaAssetSchema[];
 };
 
 // Recursive schema for Knowledge
 export const SelectKnowledgeSchema: z.ZodType<SelectKnowledgeSchema> =
-  baseKnowledgeSchema.extend({
+  BaseKnowledgeSchema.extend({
     MediaAssets: z.array(SelectMediaAssetSchema),
     Connections: z.lazy(() => z.array(SelectKnowledgeConnectionSchema)), // Recursive connections
   });

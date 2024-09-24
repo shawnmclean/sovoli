@@ -17,6 +17,10 @@ interface GetKnowledgesOptions extends BaseOptions {
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
 
+function getFeedFilter() {
+  return eq(schema.Knowledge.isOrigin, true);
+}
+
 function getByUsernameFilter(username: string) {
   return inArray(
     schema.Knowledge.userId,
@@ -49,6 +53,7 @@ async function getKnowledges({
 }: GetKnowledgesOptions) {
   const usernameFilter = getByUsernameFilter(username);
   const privacyFilter = getPrivacyFilter(authUserId);
+  const feedFilter = getFeedFilter();
 
   const mediaAssetsSubquery = db.$with("media_assets_subquery").as(
     db
@@ -102,6 +107,7 @@ async function getKnowledges({
       title: schema.Knowledge.title,
       description: schema.Knowledge.description,
       type: schema.Knowledge.type,
+      isOrigin: schema.Knowledge.isOrigin,
       isPrivate: schema.Knowledge.isPrivate,
       createdAt: schema.Knowledge.createdAt,
       updatedAt: schema.Knowledge.updatedAt,
@@ -113,7 +119,7 @@ async function getKnowledges({
       MediaAssets: sql`COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]')`,
     })
     .from(schema.Knowledge)
-    .where(and(usernameFilter, privacyFilter))
+    .where(and(usernameFilter, privacyFilter, feedFilter))
     .leftJoin(
       knowledgeConnectionSubquery,
       eq(knowledgeConnectionSubquery.sourceKnowledgeId, schema.Knowledge.id),

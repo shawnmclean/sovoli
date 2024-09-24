@@ -1,3 +1,4 @@
+import type { BaseKnowledgeSchema } from "@sovoli/db/schema";
 import { db, schema } from "@sovoli/db";
 import { tsr } from "@ts-rest/serverless/fetch";
 
@@ -21,20 +22,21 @@ async function createKnowledge({
   if (!authUserId) {
     throw new Error("authUserId is required");
   }
+  let createdSourceKnowledge: BaseKnowledgeSchema | undefined;
 
-  console.log(JSON.stringify(knowledge, null, 2));
   await db.transaction(async (tx) => {
-    const sourceKnowledge = await tx
+    const sourceKnowledges = await tx
       .insert(schema.Knowledge)
       .values({
         title: knowledge.title,
         userId: authUserId,
         type: knowledge.type,
+        isOrigin: true,
       })
-      .returning({ id: schema.Knowledge.id });
+      .returning();
 
-    const sourceKnowledgeId = sourceKnowledge[0]?.id;
-    if (!sourceKnowledgeId) {
+    createdSourceKnowledge = sourceKnowledges[0];
+    if (!createdSourceKnowledge) {
       throw new Error("Failed to create knowledge");
     }
 
@@ -57,7 +59,7 @@ async function createKnowledge({
 
         // Create the connection between the main knowledge and the target knowledge
         await tx.insert(schema.KnowledgeConnection).values({
-          sourceKnowledgeId,
+          sourceKnowledgeId: createdSourceKnowledge.id,
           targetKnowledgeId,
           notes: connection.notes,
           type: connection.type,
@@ -65,6 +67,8 @@ async function createKnowledge({
       }
     }
   });
+
+  return createdSourceKnowledge;
 }
 
 export const knowledgeRouter = tsr
@@ -74,13 +78,15 @@ export const knowledgeRouter = tsr
     routerBuilder
       .middleware<TSRAuthContext>(authMiddleware)
       .handler(async ({ body }, { request: { user } }) => {
-        await createKnowledge({ knowledge: body, authUserId: user.id });
-        return Promise.resolve({
-          status: 200,
-          body: {
-            name: user.name,
-            username: user.username,
-          },
+        const createdKnowledge = await createKnowledge({
+          knowledge: body,
+          authUserId: user.id,
         });
+
+        if (!createdKnowledge) throw new Error("Failed to create knowledge");
+        return {
+          status: 200,
+          body: createdKnowledge,
+        };
       }),
   );

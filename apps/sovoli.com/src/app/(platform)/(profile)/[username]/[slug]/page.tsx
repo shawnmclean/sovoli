@@ -131,6 +131,7 @@ async function getKnowledgeBySlug({
         'id', ${schema.Knowledge.id},
         'userId', ${schema.Knowledge.userId},
         'slug', ${schema.Knowledge.slug},
+        'isOrigin', ${schema.Knowledge.isOrigin},
         'title', ${schema.Knowledge.title},
         'description', ${schema.Knowledge.description},
         'content', ${schema.Knowledge.content},
@@ -223,10 +224,14 @@ async function getKnowledgeBySlug({
 
 interface Props {
   params: { username: string; slug: string };
+  searchParams: { page: number | undefined; pageSize: number | undefined };
 }
 
 const retreiveKnowledgeBySlug = cache(
-  async ({ params: { username, slug } }: Props) => {
+  async ({
+    params: { username, slug },
+    searchParams: { page, pageSize },
+  }: Props) => {
     const session = await auth();
 
     // see: https://stackoverflow.com/questions/76191324/next-13-4-error-next-redirect-in-api-routes
@@ -236,6 +241,8 @@ const retreiveKnowledgeBySlug = cache(
         username: username,
         authUserId: session?.user?.id,
         slugOrId: slug,
+        page,
+        pageSize,
       });
 
       if (
@@ -257,15 +264,17 @@ const retreiveKnowledgeBySlug = cache(
   },
 );
 
-export default async function KnowledgePage({ params }: Props) {
-  const { knowledge } = await retreiveKnowledgeBySlug({
+export default async function KnowledgePage({ params, searchParams }: Props) {
+  const { knowledge, meta } = await retreiveKnowledgeBySlug({
     params,
+    searchParams,
   });
 
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
       <a href={`/${params.username}`}>Back to {params.username}</a>
 
+      <pre>{JSON.stringify(meta, null, 2)}</pre>
       <KnowledgeDetails knowledge={knowledge} />
     </div>
   );
