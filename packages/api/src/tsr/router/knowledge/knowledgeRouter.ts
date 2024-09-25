@@ -1,9 +1,11 @@
 import type { BaseKnowledgeSchema } from "@sovoli/db/schema";
 import { db, schema } from "@sovoli/db";
+import { MediaAssetHost } from "@sovoli/db/schema";
 import { tsr } from "@ts-rest/serverless/fetch";
 
 import type { PlatformContext, TSRAuthContext } from "../../types";
 import type { PostKnowledgeSchemaRequest } from "./knowledgeContract";
+import { hydrateKnowledge, hydrateMedia } from "../../../trigger";
 import { authMiddleware } from "../authMiddleware";
 import { knowledgeContract } from "./knowledgeContract";
 
@@ -22,6 +24,8 @@ async function createKnowledge({
   if (!authUserId) {
     throw new Error("authUserId is required");
   }
+  let createdKnowledgeIds: string[] = [];
+  let createdMediaAssetIds: string[] = [];
   let createdSourceKnowledge: BaseKnowledgeSchema | undefined;
 
   await db.transaction(async (tx) => {
@@ -39,8 +43,10 @@ async function createKnowledge({
     if (!createdSourceKnowledge) {
       throw new Error("Failed to create knowledge");
     }
+    createdKnowledgeIds.push(createdSourceKnowledge.id);
 
-    if (knowledge.connections?.length) {
+    if (knowledge.connections) {
+      // TODO: batch insert the knowledge and then connections
       for (const connection of knowledge.connections) {
         // Insert the connected knowledge item
         const targetKnowledge = await tx
@@ -56,6 +62,7 @@ async function createKnowledge({
         if (!targetKnowledgeId) {
           throw new Error("Failed to create target knowledge");
         }
+        createdKnowledgeIds.push(targetKnowledgeId);
 
         // Create the connection between the main knowledge and the target knowledge
         await tx.insert(schema.KnowledgeConnection).values({
@@ -66,8 +73,36 @@ async function createKnowledge({
         });
       }
     }
+
+    if (knowledge.openaiFileIdRefs) {
+      // TODO batch insert these
+      for (const openaiFileIdRef of knowledge.openaiFileIdRefs) {
+        const createdMediaAsset = await tx
+          .insert(schema.MediaAsset)
+          .values({
+            knowledgeId: createdSourceKnowledge.id,
+            host: MediaAssetHost.OpenAI,
+            downloadLink: openaiFileIdRef.download_link,
+            mimeType: openaiFileIdRef.mime_type,
+          })
+          .returning();
+        const mediaAsset = createdMediaAsset[0];
+        if (!mediaAsset) {
+          throw new Error("Failed to create media asset");
+        }
+        createdMediaAssetIds.push(mediaAsset.id);
+      }
+    }
   });
 
+  await hydrateKnowledge.batchTrigger(
+    createdKnowledgeIds.map((id) => ({ payload: { knowledgeId: id } })),
+  );
+  await hydrateMedia.batchTrigger(
+    createdMediaAssetIds.map((id) => ({ payload: { mediaId: id } })),
+  );
+
+  // TOODO: rebuild the knowledge with the connections and media assets
   return createdSourceKnowledge;
 }
 
