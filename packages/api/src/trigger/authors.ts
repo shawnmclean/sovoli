@@ -1,8 +1,10 @@
 import type { SelectAuthorSchema } from "@sovoli/db/schema";
 import { db, eq } from "@sovoli/db";
 import { Author } from "@sovoli/db/schema";
-import { bookService } from "@sovoli/services";
 import { AbortTaskRunError, logger, task } from "@trigger.dev/sdk/v3";
+
+import type { OpenLibraryAuthor } from "../services/openlibrary";
+import { getAuthorByOLID } from "../services/openlibrary";
 
 export interface HydrateAuthorOptions {
   authorId: string;
@@ -50,7 +52,7 @@ async function hydrateAuthorFromOpenLibrary(author: SelectAuthorSchema) {
 
   logger.info(`Hydrating author from openlibrary: ${author.id}`);
 
-  const olAuthor = await bookService.openlibrary.getAuthorByOLID(author.olid);
+  const olAuthor = await getAuthorByOLID(author.olid);
 
   if (!olAuthor) {
     throw new AbortTaskRunError(`Author not found for OLID: ${author.olid}`);
@@ -65,7 +67,7 @@ async function hydrateAuthorFromOpenLibrary(author: SelectAuthorSchema) {
 
 async function updateAuthorFromOpenLibrary(
   authorId: string,
-  author: bookService.openlibrary.OpenLibraryAuthor,
+  author: OpenLibraryAuthor,
 ) {
   const insertedAuthors = await db
     .update(Author)

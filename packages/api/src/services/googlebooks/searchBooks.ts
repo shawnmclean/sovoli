@@ -1,3 +1,5 @@
+import { env } from "../../env";
+
 interface VolumeInfo {
   title: string;
   subtitle?: string;
@@ -76,7 +78,7 @@ export async function searchGoogleBooks(
     searchQuery += `isbn:${encodeURIComponent(isbn)}`;
   }
 
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=${limit}&printType=BOOKS&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=${limit}&printType=BOOKS&key=${env.GOOGLE_BOOKS_API_KEY}`;
 
   let retryCount = 0;
   let delay = 1000; // Start with a 1-second delay for retries

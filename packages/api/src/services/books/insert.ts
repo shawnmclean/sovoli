@@ -1,11 +1,13 @@
 import { randomUUID } from "crypto";
 import type { SelectBookSchema } from "@sovoli/db/schema";
-import type { bookService } from "@sovoli/services";
 import { db, eq, getTableConfig, sql } from "@sovoli/db";
 import { Book, BookCoverSchema } from "@sovoli/db/schema";
 
+import type { GoogleBook } from "../googlebooks";
+import type { OpenLibraryBook } from "../openlibrary";
+
 export async function upsertBooksFromGoogle(
-  googleBooks: bookService.googlebooks.GoogleBook[],
+  googleBooks: GoogleBook[],
 ): Promise<SelectBookSchema[]> {
   if (googleBooks.length === 0) return [];
 
@@ -71,7 +73,7 @@ export async function upsertBooksFromGoogle(
 
 export async function updateBookFromOpenLibrary(
   bookId: string,
-  openLibraryBook: bookService.openlibrary.OpenLibraryBook,
+  openLibraryBook: OpenLibraryBook,
 ): Promise<SelectBookSchema> {
   // if the cover is null, we don't want to update the cover
   const cover = openLibraryBook.cover

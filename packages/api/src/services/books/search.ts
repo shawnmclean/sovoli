@@ -1,6 +1,7 @@
 import type { SelectBookSchema } from "@sovoli/db/schema";
-import { bookService } from "@sovoli/services";
 
+import type { GoogleBook } from "../../services/googlebooks";
+import { searchGoogleBooks } from "../../services/googlebooks";
 import { hydrateBook } from "../../trigger";
 import { getBooksByEmbeddings } from "./bookEmbeddings";
 // import { getBooksByIsbns } from "./find";
@@ -185,14 +186,11 @@ export async function searchExternallyAndPopulate(
 ): Promise<SearchBooksQueryResult[]> {
   console.time("Search Externally Time");
   // 1. Perform external search and keep track of results
-  const queryToBooksMap = new Map<
-    SearchBooksQuery,
-    bookService.googlebooks.GoogleBook[]
-  >();
+  const queryToBooksMap = new Map<SearchBooksQuery, GoogleBook[]>();
 
   await Promise.all(
     queries.map(async (query) => {
-      const googleBooks = await bookService.googlebooks.searchGoogleBooks({
+      const googleBooks = await searchGoogleBooks({
         ...query,
         limit: 1,
       });

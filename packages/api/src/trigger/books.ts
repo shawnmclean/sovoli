@@ -5,14 +5,14 @@ import type {
 } from "@sovoli/db/schema";
 import { db, eq, sql } from "@sovoli/db";
 import { Author, AuthorToBook, Book } from "@sovoli/db/schema";
-import { bookService } from "@sovoli/services";
-import { googlebooks } from "@sovoli/services/src/books";
 import { AbortTaskRunError, logger, task } from "@trigger.dev/sdk/v3";
 
 import {
   updateBookFromOpenLibrary,
   upsertBooksFromGoogle,
 } from "../services/books/insert";
+import { searchGoogleBooks } from "../services/googlebooks";
+import { getBookByISBN } from "../services/openlibrary";
 import { hydrateAuthor } from "./authors";
 
 // import { updateBookEmbeddings } from "../service/books/bookEmbeddings";
@@ -70,7 +70,7 @@ async function hydrateBookFromOpenLibrary(book: SelectBookSchema) {
     logger.error(`No ISBN found for bookId: ${book.id}`);
     return;
   }
-  const olBook = await bookService.openlibrary.getBookByISBN(isbn);
+  const olBook = await getBookByISBN(isbn);
 
   if (!olBook) {
     throw new AbortTaskRunError(
@@ -133,7 +133,7 @@ async function hydrateBookFromGoogle(book: SelectBookSchema) {
     logger.error(`No ISBN found for bookId: ${book.id}`);
     return;
   }
-  const result = await googlebooks.searchGoogleBooks({ isbn });
+  const result = await searchGoogleBooks({ isbn });
 
   const googleBook = result[0];
   if (!googleBook) return null;
