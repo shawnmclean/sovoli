@@ -84,6 +84,7 @@ async function getKnowledgeBySlug({
         },
       },
       MediaAssets: true,
+      Book: true,
     },
     where: and(usernameFilter, privacyFilter, slugFilter),
   });
@@ -154,8 +155,26 @@ async function getKnowledgeBySlug({
           WHEN ${schema.Book.id} IS NOT NULL THEN JSON_BUILD_OBJECT(
             'id', ${schema.Book.id},
             'title', ${schema.Book.title},
+            'subtitle', ${schema.Book.subtitle},
             'description', ${schema.Book.description},
             'isbn13', ${schema.Book.isbn13},
+            'isbn10', ${schema.Book.isbn10},
+            'asin', ${schema.Book.asin},
+            'editions', ${schema.Book.editions},
+            'googleId', ${schema.Book.googleId},
+            'olid', ${schema.Book.olid},
+            'slug', ${schema.Book.slug},
+            'publishedDate', ${schema.Book.publishedDate},
+            'publisher', ${schema.Book.publisher},
+            'pageCount', ${schema.Book.pageCount},
+            'description', ${schema.Book.description},
+            'language', ${schema.Book.language},
+            'cover', ${schema.Book.cover},
+            'triggerDevId', ${schema.Book.triggerDevId},
+            'inferrenceError', ${schema.Book.inferrenceError},
+            'lastGoogleUpdated', ${schema.Book.lastGoogleUpdated},
+            'lastOLUpdated', ${schema.Book.lastOLUpdated},
+            'inferredAuthor', ${schema.Book.inferredAuthor},
             'createdAt', ${schema.Book.createdAt},
             'updatedAt', ${schema.Book.updatedAt}
           )
@@ -254,7 +273,7 @@ const retreiveKnowledgeBySlug = cache(
 
       return knowledgeResponse;
     } catch (e) {
-      console.log(e);
+      console.log(JSON.stringify(e, null, 2));
       return notFound();
     } finally {
       if (redirectPath) {

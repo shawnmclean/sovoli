@@ -9,6 +9,15 @@ import { hydrateKnowledge, hydrateMedia } from "../../../trigger";
 import { authMiddleware } from "../authMiddleware";
 import { knowledgeContract } from "./knowledgeContract";
 
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s]/gi, "")
+    .split(/\s+/)
+    .filter((word) => word.length)
+    .join("-");
+}
+
 interface BaseOptions {
   authUserId?: string;
 }
@@ -24,11 +33,12 @@ async function createKnowledge({
   if (!authUserId) {
     throw new Error("authUserId is required");
   }
-  let createdKnowledgeIds: string[] = [];
-  let createdMediaAssetIds: string[] = [];
+  const createdKnowledgeIds: string[] = [];
+  const createdMediaAssetIds: string[] = [];
   let createdSourceKnowledge: BaseKnowledgeSchema | undefined;
 
   await db.transaction(async (tx) => {
+    // TODO: handle duplicate slugs
     const sourceKnowledges = await tx
       .insert(schema.Knowledge)
       .values({
@@ -36,6 +46,7 @@ async function createKnowledge({
         userId: authUserId,
         type: knowledge.type,
         isOrigin: true,
+        slug: slugify(knowledge.title),
       })
       .returning();
 

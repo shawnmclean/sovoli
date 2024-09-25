@@ -38,10 +38,24 @@ export const hydrateKnowledge = task({
 
     // TODO: figure out how to handle the case where the book is already linked
     // to a different knowledge for the same user
+    // TODO: handle duplicate slugs
     await db
       .update(schema.Knowledge)
-      .set({ bookId: bestMatch.id, title: bestMatch.title })
+      .set({
+        bookId: bestMatch.id,
+        title: bestMatch.title,
+        slug: slugify(bestMatch.title),
+      })
       .where(eq(schema.Knowledge.id, knowledgeId));
     logger.info(`Book: ${bestMatch.id} linked to Knowledge: ${knowledgeId}`);
   },
 });
+
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s]/gi, "")
+    .split(/\s+/)
+    .filter((word) => word.length)
+    .join("-");
+}
