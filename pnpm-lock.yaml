@@ -301,6 +301,12 @@ importers:
       '@sovoli/services':
         specifier: workspace:*
         version: link:../services
+      '@supabase/supabase-js':
+        specifier: 2.45.4
+        version: 2.45.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      '@t3-oss/env-core':
+        specifier: 0.11.1
+        version: 0.11.1(typescript@5.5.2)(zod@3.23.8)
       '@trigger.dev/sdk':
         specifier: 3.0.0-beta.55
         version: 3.0.0-beta.55(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.4)
@@ -456,7 +462,7 @@ importers:
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-206df66e-20240912(eslint@9.8.0)
+        version: 5.1.0-rc-04bd67a4-20240924(eslint@9.8.0)
       eslint-plugin-turbo:
         specifier: 2.0.11
         version: 2.0.11(eslint@9.8.0)
@@ -3189,6 +3195,28 @@ packages:
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
+  '@supabase/auth-js@2.65.0':
+    resolution: {integrity: sha512-+wboHfZufAE2Y612OsKeVP4rVOeGZzzMLD/Ac3HrTQkkY4qXNjI6Af9gtmxwccE5nFvTiF114FEbIQ1hRq5uUw==}
+
+  '@supabase/functions-js@2.4.1':
+    resolution: {integrity: sha512-8sZ2ibwHlf+WkHDUZJUXqqmPvWQ3UHN0W30behOJngVh/qHHekhJLCFbh0AjkE9/FqqXtf9eoVvmYgfCLk5tNA==}
+
+  '@supabase/node-fetch@2.6.15':
+    resolution: {integrity: sha512-1ibVeYUacxWYi9i0cf5efil6adJ9WRyZBLivgjs+AUpewx1F3xPi7gLgaASI2SmIQxPoCEjAsLAzKPgMJVgOUQ==}
+    engines: {node: 4.x || >=6.0.0}
+
+  '@supabase/postgrest-js@1.16.1':
+    resolution: {integrity: sha512-EOSEZFm5pPuCPGCmLF1VOCS78DfkSz600PBuvBND/IZmMciJ1pmsS3ss6TkB6UkuvTybYiBh7gKOYyxoEO3USA==}
+
+  '@supabase/realtime-js@2.10.2':
+    resolution: {integrity: sha512-qyCQaNg90HmJstsvr2aJNxK2zgoKh9ZZA8oqb7UT2LCh3mj9zpa3Iwu167AuyNxsxrUE8eEJ2yH6wLCij4EApA==}
+
+  '@supabase/storage-js@2.7.0':
+    resolution: {integrity: sha512-iZenEdO6Mx9iTR6T7wC7sk6KKsoDPLq8rdu5VRy7+JiT1i8fnqfcOr6mfF2Eaqky9VQzhP8zZKQYjzozB65Rig==}
+
+  '@supabase/supabase-js@2.45.4':
+    resolution: {integrity: sha512-E5p8/zOLaQ3a462MZnmnz03CrduA5ySH9hZyL03Y+QZLIOO4/Gs8Rdy4ZCKDHsN7x0xdanVEWWFN3pJFQr9/hg==}
+
   '@swagger-api/apidom-ast@1.0.0-alpha.9':
     resolution: {integrity: sha512-SAOQrFSFwgDiI4QSIPDwAIJEb4Za+8bu45sNojgV3RMtCz+n4Agw66iqGsDib5YSI/Cg1h4AKFovT3iWdfGWfw==}
 
@@ -3296,6 +3324,15 @@ packages:
 
   '@t3-oss/env-core@0.11.0':
     resolution: {integrity: sha512-PSalC5bG0a7XbyoLydiQdAnx3gICX6IQNctvh+TyLrdFxsxgocdj9Ui7sd061UlBzi+z4aIGjnem1kZx9QtUgQ==}
+    peerDependencies:
+      typescript: '>=5.0.0'
+      zod: ^3.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  '@t3-oss/env-core@0.11.1':
+    resolution: {integrity: sha512-MaxOwEoG1ntCFoKJsS7nqwgcxLW1SJw238AJwfJeaz3P/8GtkxXZsPPolsz1AdYvUTbe3XvqZ/VCdfjt+3zmKw==}
     peerDependencies:
       typescript: '>=5.0.0'
       zod: ^3.0.0
@@ -3453,6 +3490,9 @@ packages:
   '@types/pg@8.11.6':
     resolution: {integrity: sha512-/2WmmBXHLsfRqzfHW7BNZ8SbYzE8OSk7i3WjFYvfgRHj7S1xj+16Je5fUKv3lVdVzk/zn9TXOqf+avFCFIE0yQ==}
 
+  '@types/phoenix@1.6.5':
+    resolution: {integrity: sha512-xegpDuR+z0UqG9fwHqNoy3rI7JDlvaPh2TY47Fl80oq6g+hXT+c/LEuE43X48clZ6lOfANl5WrPur9fYO1RJ/w==}
+
   '@types/prop-types@15.7.12':
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
 
@@ -3497,6 +3537,9 @@ packages:
 
   '@types/wrap-ansi@3.0.0':
     resolution: {integrity: sha512-ltIpx+kM7g/MLRZfkbL7EsCEjfzCcScLpkg37eXEtx5kmrAKBkTJwd1GIAjDSL8wTpM6Hzn5YO4pSb91BEwu1g==}
+
+  '@types/ws@8.5.12':
+    resolution: {integrity: sha512-3tPRkv1EtkDpzlgyKyI8pGsGZAGPEaXeu0DOj5DI25Ja91bdAYddYHbADRYVrZMRbfW+1l5YwXVDKohDJNQxkQ==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -4869,8 +4912,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-206df66e-20240912:
-    resolution: {integrity: sha512-7ApoGzoavioLFz1Vb2eQKnA6S9zdCWFkMNe17uBHQ0n0o9j1UiZxzaQumHrPNXMJwvCR1nuvpHxHOg7tRKw81g==}
+  eslint-plugin-react-hooks@5.1.0-rc-04bd67a4-20240924:
+    resolution: {integrity: sha512-7z/4xgNRUds/0jLx1znXbHS1KWIfaLJgaP9maBR3P16ynGppsxmxSgnVAG6NBRYfvn0yfYecU5mGPXjcZnrtPw==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -12045,6 +12088,48 @@ snapshots:
 
   '@socket.io/component-emitter@3.1.2': {}
 
+  '@supabase/auth-js@2.65.0':
+    dependencies:
+      '@supabase/node-fetch': 2.6.15
+
+  '@supabase/functions-js@2.4.1':
+    dependencies:
+      '@supabase/node-fetch': 2.6.15
+
+  '@supabase/node-fetch@2.6.15':
+    dependencies:
+      whatwg-url: 5.0.0
+
+  '@supabase/postgrest-js@1.16.1':
+    dependencies:
+      '@supabase/node-fetch': 2.6.15
+
+  '@supabase/realtime-js@2.10.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
+    dependencies:
+      '@supabase/node-fetch': 2.6.15
+      '@types/phoenix': 1.6.5
+      '@types/ws': 8.5.12
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@supabase/storage-js@2.7.0':
+    dependencies:
+      '@supabase/node-fetch': 2.6.15
+
+  '@supabase/supabase-js@2.45.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
+    dependencies:
+      '@supabase/auth-js': 2.65.0
+      '@supabase/functions-js': 2.4.1
+      '@supabase/node-fetch': 2.6.15
+      '@supabase/postgrest-js': 1.16.1
+      '@supabase/realtime-js': 2.10.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      '@supabase/storage-js': 2.7.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   '@swagger-api/apidom-ast@1.0.0-alpha.9':
     dependencies:
       '@babel/runtime-corejs3': 7.25.0
@@ -12404,6 +12489,12 @@ snapshots:
     optionalDependencies:
       typescript: 5.5.2
 
+  '@t3-oss/env-core@0.11.1(typescript@5.5.2)(zod@3.23.8)':
+    dependencies:
+      zod: 3.23.8
+    optionalDependencies:
+      typescript: 5.5.2
+
   '@t3-oss/env-nextjs@0.10.1(typescript@5.5.2)(zod@3.23.8)':
     dependencies:
       '@t3-oss/env-core': 0.10.1(typescript@5.5.2)(zod@3.23.8)
@@ -12592,6 +12683,8 @@ snapshots:
       pg-protocol: 1.6.1
       pg-types: 4.0.2
 
+  '@types/phoenix@1.6.5': {}
+
   '@types/prop-types@15.7.12': {}
 
   '@types/ramda@0.30.2':
@@ -12630,6 +12723,10 @@ snapshots:
   '@types/use-sync-external-store@0.0.3': {}
 
   '@types/wrap-ansi@3.0.0': {}
+
+  '@types/ws@8.5.12':
+    dependencies:
+      '@types/node': 22.5.0
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -14162,7 +14259,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-206df66e-20240912(eslint@9.8.0):
+  eslint-plugin-react-hooks@5.1.0-rc-04bd67a4-20240924(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
 

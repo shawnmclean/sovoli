@@ -13,5 +13,5 @@ export const config: TriggerConfig = {
       randomize: true,
     },
   },
-  dependenciesToBundle: [/^@sovoli\//],
+  dependenciesToBundle: [/^@sovoli\//, "@t3-oss/env-core"],
 };

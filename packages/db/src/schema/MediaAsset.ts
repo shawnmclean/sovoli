@@ -33,6 +33,7 @@ export const MediaAsset = pgTable("media_asset", {
   path: text("path"),
 
   // for openai
+  name: text("name"),
   downloadLink: text("download_link"),
 
   createdAt: timestamp("created_at").notNull().defaultNow(),

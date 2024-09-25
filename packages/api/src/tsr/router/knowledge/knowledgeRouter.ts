@@ -95,6 +95,7 @@ async function createKnowledge({
             host: MediaAssetHost.OpenAI,
             downloadLink: openaiFileIdRef.download_link,
             mimeType: openaiFileIdRef.mime_type,
+            name: openaiFileIdRef.name,
           })
           .returning();
         const mediaAsset = createdMediaAsset[0];
