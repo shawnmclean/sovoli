@@ -40,9 +40,9 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      # - name: Copy env
-      #   shell: bash
-      #   run: cp .env.example .env
+      - name: Copy env
+        shell: bash
+        run: cp .env.example .env
 
       - name: 📦 Install dependencies
         run: pnpm install
