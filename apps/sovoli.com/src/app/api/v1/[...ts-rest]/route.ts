@@ -4,6 +4,8 @@ import { contract, router } from "@sovoli/api/tsr";
 import { auth, validateToken } from "@sovoli/auth";
 import { fetchRequestHandler } from "@ts-rest/serverless/fetch";
 
+export const dynamic = "force-dynamic";
+
 const options = {
   jsonQuery: true,
   responseValidation: true,
