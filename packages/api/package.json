@@ -19,7 +19,8 @@
     "./services": {
       "types": "./dist/services/index.d.ts",
       "default": "./src/services/index.ts"
-    }
+    },
+    "./env": "./src/env.ts"
   },
   "scripts": {
     "build": "tsc",

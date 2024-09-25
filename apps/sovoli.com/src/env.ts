@@ -1,10 +1,10 @@
-/* eslint-disable no-restricted-properties */
+import { env as apiEnv } from "@sovoli/api/env";
 import { createEnv } from "@t3-oss/env-nextjs";
 import { vercel } from "@t3-oss/env-nextjs/presets";
 import { z } from "zod";
 
 export const env = createEnv({
-  extends: [vercel()],
+  extends: [vercel(), apiEnv],
   shared: {
     NODE_ENV: z
       .enum(["development", "production", "test"])
