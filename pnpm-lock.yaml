@@ -265,6 +265,9 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 9.8.0
+      jiti:
+        specifier: ^1.21.6
+        version: 1.21.6
       postcss:
         specifier: 8.4.38
         version: 8.4.38
