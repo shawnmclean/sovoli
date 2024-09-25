@@ -1,8 +1,8 @@
 import { extendZodWithOpenApi } from "@anatine/zod-openapi";
 import {
-  BaseKnowledgeSchema,
   KnowledgeConnectionTypes,
   KnowledgeTypes,
+  SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
 import { initContract } from "@ts-rest/core";
 import { z } from "zod";
@@ -72,7 +72,10 @@ const PostKnowledgeSchemaRequest = z.object({
     .optional(),
 });
 
-const PostKnowledgeSchemaResponse = BaseKnowledgeSchema;
+const PostKnowledgeSchemaResponse = z.intersection(
+  SelectKnowledgeSchema,
+  z.object({ url: z.string().url() }),
+);
 
 export type PostKnowledgeSchemaRequest = z.infer<
   typeof PostKnowledgeSchemaRequest

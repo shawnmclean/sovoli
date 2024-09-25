@@ -7,6 +7,8 @@ export const env = createEnv({
     SUPABASE_MEDIA_BUCKET: z.string().min(1),
     SUPABASE_URL: z.string().min(1),
     SUPABASE_ANON_KEY: z.string().min(1),
+    VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
+    PORT: z.string().optional(),
   },
 
   /**

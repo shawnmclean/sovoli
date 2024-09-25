@@ -1,6 +1,9 @@
 import type {
-  BaseKnowledgeSchema,
+  InsertKnowledgeConnectionSchema,
   InsertKnowledgeSchema,
+  InsertMediaAssetSchema,
+  SelectKnowledgeConnectionSchema,
+  SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
 import { db, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
@@ -9,6 +12,7 @@ import { tsr } from "@ts-rest/serverless/fetch";
 import type { PlatformContext, TSRAuthContext } from "../../types";
 import type { PostKnowledgeSchemaRequest } from "./knowledgeContract";
 import { hydrateKnowledge, hydrateMedia } from "../../../trigger";
+import { getBaseUrl } from "../../../utils/getBaseUrl";
 import { authMiddleware } from "../authMiddleware";
 import { knowledgeContract } from "./knowledgeContract";
 
@@ -35,7 +39,7 @@ async function createParentKnowledge(knowledge: InsertKnowledgeSchema) {
     throw new Error("title is required");
   }
   let slug = slugify(knowledge.title);
-  let createdSourceKnowledge: BaseKnowledgeSchema | undefined;
+  let createdSourceKnowledge: SelectKnowledgeSchema | undefined;
   let retryCount = 0;
   while (retryCount < 50) {
     try {
@@ -47,8 +51,12 @@ async function createParentKnowledge(knowledge: InsertKnowledgeSchema) {
         })
         .returning();
 
-      createdSourceKnowledge = sourceKnowledges[0];
-      if (createdSourceKnowledge) {
+      if (sourceKnowledges[0]) {
+        createdSourceKnowledge = {
+          ...sourceKnowledges[0],
+          MediaAssets: [],
+          Connections: [],
+        };
         break;
       }
     } catch (error) {
@@ -63,6 +71,11 @@ async function createParentKnowledge(knowledge: InsertKnowledgeSchema) {
       }
     }
   }
+
+  if (!createdSourceKnowledge) {
+    throw new Error("Failed to create knowledge after retries");
+  }
+
   return createdSourceKnowledge;
 }
 
@@ -73,8 +86,6 @@ async function createKnowledge({
   if (!authUserId) {
     throw new Error("authUserId is required");
   }
-  const createdKnowledgeIds: string[] = [];
-  const createdMediaAssetIds: string[] = [];
   const createdSourceKnowledge = await createParentKnowledge({
     title: knowledge.title,
     userId: authUserId,
@@ -82,72 +93,110 @@ async function createKnowledge({
     isOrigin: true,
   });
 
-  if (!createdSourceKnowledge) {
-    throw new Error("Failed to create knowledge after retries");
-  }
-  createdKnowledgeIds.push(createdSourceKnowledge.id);
-
-  // use a transaction to submit all connections, target knowledge, and media assets to ensure consistency
-  await db.transaction(async (tx) => {
-    if (knowledge.connections) {
-      // TODO: batch insert the knowledge and then connections
-      for (const connection of knowledge.connections) {
-        // Insert the connected knowledge item
-        const targetKnowledge = await tx
-          .insert(schema.Knowledge)
-          .values({
-            query: connection.targetKnowledge.query,
-            type: connection.targetKnowledge.type,
-            userId: authUserId,
-          })
-          .returning({ id: schema.Knowledge.id });
-
-        const targetKnowledgeId = targetKnowledge[0]?.id;
-        if (!targetKnowledgeId) {
-          throw new Error("Failed to create target knowledge");
-        }
-        createdKnowledgeIds.push(targetKnowledgeId);
-
-        // Create the connection between the main knowledge and the target knowledge
-        await tx.insert(schema.KnowledgeConnection).values({
-          sourceKnowledgeId: createdSourceKnowledge.id,
-          targetKnowledgeId,
-          notes: connection.notes,
-          type: connection.type,
-        });
-      }
+  const mediaAssets: InsertMediaAssetSchema[] = [];
+  if (knowledge.openaiFileIdRefs) {
+    for (const openaiFileIdRef of knowledge.openaiFileIdRefs) {
+      mediaAssets.push({
+        knowledgeId: createdSourceKnowledge.id,
+        host: MediaAssetHost.OpenAI,
+        downloadLink: openaiFileIdRef.download_link,
+        mimeType: openaiFileIdRef.mime_type,
+        name: openaiFileIdRef.name,
+      });
     }
-
-    if (knowledge.openaiFileIdRefs) {
-      // TODO batch insert these
-      for (const openaiFileIdRef of knowledge.openaiFileIdRefs) {
-        const createdMediaAsset = await tx
-          .insert(schema.MediaAsset)
-          .values({
-            knowledgeId: createdSourceKnowledge.id,
-            host: MediaAssetHost.OpenAI,
-            downloadLink: openaiFileIdRef.download_link,
-            mimeType: openaiFileIdRef.mime_type,
-            name: openaiFileIdRef.name,
-          })
-          .returning();
-        const mediaAsset = createdMediaAsset[0];
-        if (!mediaAsset) {
-          throw new Error("Failed to create media asset");
-        }
-        createdMediaAssetIds.push(mediaAsset.id);
-      }
-    }
-  });
-
-  if (createdKnowledgeIds.length > 0) {
-    await hydrateKnowledge.batchTrigger(
-      createdKnowledgeIds.map((id) => ({ payload: { knowledgeId: id } })),
-    );
   }
-  if (createdMediaAssetIds.length > 0) {
+  // keeping this separate check if there are more assets in another future object other than openaiFileIdRefs
+  if (mediaAssets.length > 0) {
+    const createdMediaAssets = await db
+      .insert(schema.MediaAsset)
+      .values(mediaAssets)
+      .returning();
+    createdSourceKnowledge.MediaAssets = createdMediaAssets;
+  }
+
+  // pull all target knowledge knowledge.connections array so we can batch insert them
+  const targetKnowledges: InsertKnowledgeSchema[] = [];
+  const connections: InsertKnowledgeConnectionSchema[] = [];
+  if (knowledge.connections) {
+    for (const connection of knowledge.connections) {
+      // Collect target knowledge for batch insert
+      targetKnowledges.push({
+        query: connection.targetKnowledge.query,
+        type: connection.targetKnowledge.type,
+        userId: authUserId,
+      });
+
+      // Prepare connections with a placeholder for targetKnowledgeId
+      connections.push({
+        sourceKnowledgeId: createdSourceKnowledge.id,
+        targetKnowledgeId: "temp",
+        notes: connection.notes,
+        type: connection.type,
+      });
+    }
+  }
+  // use a transaction to submit all connections and target knowledge to ensure consistency
+  if (targetKnowledges.length > 0) {
+    await db.transaction(async (tx) => {
+      const createdTargetKnowledges = await tx
+        .insert(schema.Knowledge)
+        .values(targetKnowledges)
+        .returning();
+
+      createdTargetKnowledges.forEach((targetKnowledge, index) => {
+        if (connections[index]) {
+          connections[index].targetKnowledgeId = targetKnowledge.id; // Replace "temp" with actual ID
+        }
+      });
+
+      const createdConnections = await tx
+        .insert(schema.KnowledgeConnection)
+        .values(connections)
+        .returning();
+
+      createdConnections.forEach((connection) => {
+        // Find the corresponding `TargetKnowledge` from `createdTargetKnowledges` by matching `targetKnowledgeId`
+        const targetKnowledge = createdTargetKnowledges.find(
+          (targetKnowledge) =>
+            targetKnowledge.id === connection.targetKnowledgeId,
+        );
+
+        if (targetKnowledge) {
+          const completeTargetKnowledge: SelectKnowledgeSchema = {
+            ...targetKnowledge,
+            Connections: [],
+            MediaAssets: [],
+          };
+
+          // Push the connection with its target knowledge into the source knowledge's connections array
+          const selectConnection: SelectKnowledgeConnectionSchema = {
+            ...connection,
+            TargetKnowledge: completeTargetKnowledge, // Properly attach target knowledge
+          };
+          createdSourceKnowledge.Connections.push(selectConnection);
+        } else {
+          throw new Error(
+            `TargetKnowledge with id ${connection.targetKnowledgeId} not found`,
+          );
+        }
+      });
+    });
+  }
+
+  if (createdSourceKnowledge.Connections.length > 0) {
+    await hydrateKnowledge.batchTrigger([
+      { payload: { knowledgeId: createdSourceKnowledge.id } }, // add the source knowledge to the queue
+      ...createdSourceKnowledge.Connections.map((connection) => ({
+        // add the connections to the queue
+        payload: { knowledgeId: connection.targetKnowledgeId },
+      })),
+    ]);
+  }
+  if (createdSourceKnowledge.MediaAssets.length > 0) {
     await hydrateMedia.batchTrigger(
-      createdMediaAssetIds.map((id) => ({ payload: { mediaId: id } })),
+      createdSourceKnowledge.MediaAssets.map((asset) => ({
+        payload: { mediaId: asset.id },
+      })),
     );
   }
 
@@ -167,10 +216,13 @@ export const knowledgeRouter = tsr
           authUserId: user.id,
         });
 
-        if (!createdKnowledge) throw new Error("Failed to create knowledge");
+        const response = {
+          ...createdKnowledge,
+          url: `${getBaseUrl()}/${user.username}/${createdKnowledge.slug}`,
+        };
         return {
           status: 200,
-          body: createdKnowledge,
+          body: response,
         };
       }),
   );

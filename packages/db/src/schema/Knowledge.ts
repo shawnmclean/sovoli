@@ -13,7 +13,6 @@ import {
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-import type { KnowledgeConnection } from "./KnowledgeConnection";
 import { createEnumObject } from "../utils";
 import { Book, SelectBookSchema } from "./Book";
 import { SelectKnowledgeConnectionSchema } from "./KnowledgeConnection";
@@ -75,7 +74,7 @@ export type BaseKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema>;
 
 // Manually defining Knowledge type to handle recursion
 export type SelectKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema> & {
-  Connections: KnowledgeConnection[];
+  Connections: SelectKnowledgeConnectionSchema[];
   MediaAssets: SelectMediaAssetSchema[];
   Book?: SelectBookSchema | null;
 };
