@@ -1,4 +1,7 @@
-import type { BaseKnowledgeSchema } from "@sovoli/db/schema";
+import type {
+  BaseKnowledgeSchema,
+  InsertKnowledgeSchema,
+} from "@sovoli/db/schema";
 import { db, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { tsr } from "@ts-rest/serverless/fetch";
@@ -26,6 +29,43 @@ interface CreateKnowledgeOptions extends BaseOptions {
   knowledge: PostKnowledgeSchemaRequest;
 }
 
+type QueryError = Error & { code?: unknown };
+async function createParentKnowledge(knowledge: InsertKnowledgeSchema) {
+  if (!knowledge.title) {
+    throw new Error("title is required");
+  }
+  let slug = slugify(knowledge.title);
+  let createdSourceKnowledge: BaseKnowledgeSchema | undefined;
+  let retryCount = 0;
+  while (retryCount < 50) {
+    try {
+      const sourceKnowledges = await db
+        .insert(schema.Knowledge)
+        .values({
+          ...knowledge,
+          slug: slug,
+        })
+        .returning();
+
+      createdSourceKnowledge = sourceKnowledges[0];
+      if (createdSourceKnowledge) {
+        break;
+      }
+    } catch (error) {
+      const queryError = error as QueryError;
+      if (typeof queryError.code === "string" && queryError.code === "23505") {
+        // Unique violation (Postgres specific error code)
+        // Regenerate slug by appending a unique identifier (e.g., retryCount)
+        slug = slugify(knowledge.title) + "-" + (retryCount + 1);
+        retryCount++;
+      } else {
+        throw error; // Re-throw other errors
+      }
+    }
+  }
+  return createdSourceKnowledge;
+}
+
 async function createKnowledge({
   knowledge,
   authUserId,
@@ -35,27 +75,20 @@ async function createKnowledge({
   }
   const createdKnowledgeIds: string[] = [];
   const createdMediaAssetIds: string[] = [];
-  let createdSourceKnowledge: BaseKnowledgeSchema | undefined;
+  const createdSourceKnowledge = await createParentKnowledge({
+    title: knowledge.title,
+    userId: authUserId,
+    type: knowledge.type,
+    isOrigin: true,
+  });
 
+  if (!createdSourceKnowledge) {
+    throw new Error("Failed to create knowledge after retries");
+  }
+  createdKnowledgeIds.push(createdSourceKnowledge.id);
+
+  // use a transaction to submit all connections, target knowledge, and media assets to ensure consistency
   await db.transaction(async (tx) => {
-    // TODO: handle duplicate slugs
-    const sourceKnowledges = await tx
-      .insert(schema.Knowledge)
-      .values({
-        title: knowledge.title,
-        userId: authUserId,
-        type: knowledge.type,
-        isOrigin: true,
-        slug: slugify(knowledge.title),
-      })
-      .returning();
-
-    createdSourceKnowledge = sourceKnowledges[0];
-    if (!createdSourceKnowledge) {
-      throw new Error("Failed to create knowledge");
-    }
-    createdKnowledgeIds.push(createdSourceKnowledge.id);
-
     if (knowledge.connections) {
       // TODO: batch insert the knowledge and then connections
       for (const connection of knowledge.connections) {
@@ -107,12 +140,16 @@ async function createKnowledge({
     }
   });
 
-  await hydrateKnowledge.batchTrigger(
-    createdKnowledgeIds.map((id) => ({ payload: { knowledgeId: id } })),
-  );
-  await hydrateMedia.batchTrigger(
-    createdMediaAssetIds.map((id) => ({ payload: { mediaId: id } })),
-  );
+  if (createdKnowledgeIds.length > 0) {
+    await hydrateKnowledge.batchTrigger(
+      createdKnowledgeIds.map((id) => ({ payload: { knowledgeId: id } })),
+    );
+  }
+  if (createdMediaAssetIds.length > 0) {
+    await hydrateMedia.batchTrigger(
+      createdMediaAssetIds.map((id) => ({ payload: { mediaId: id } })),
+    );
+  }
 
   // TOODO: rebuild the knowledge with the connections and media assets
   return createdSourceKnowledge;
