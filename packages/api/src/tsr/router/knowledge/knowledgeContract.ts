@@ -30,23 +30,30 @@ const PostKnowledgeSchemaRequest = z.object({
   description: z.string(),
   content: z.string().openapi({
     description: "This field holds the highlighted text in Markdown format.",
-    example: "## Important Concept\nThis text was highlighted by the user.",
+    examples: ["## Important Concept\nThis text was highlighted by the user."],
   }),
 
   // New context field to hold non-highlighted text
-  context: z.string().optional().openapi({
-    description:
-      "This field contains additional text (not highlighted) used as context for AI models.",
-    example:
-      "This is some text that was not highlighted but is still important for context.",
-  }),
+  context: z
+    .string()
+    .optional()
+    .openapi({
+      description:
+        "This field contains additional text (not highlighted) used as context for AI models.",
+      examples: [
+        "This is some text that was not highlighted but is still important for context.",
+      ],
+    }),
 
   // A description of what the context represents
-  contextDescription: z.string().optional().openapi({
-    description:
-      "This field describes the type of text in the context field, e.g., 'Page text', 'Surrounding paragraphs'.",
-    example: "Full page text",
-  }),
+  contextDescription: z
+    .string()
+    .optional()
+    .openapi({
+      description:
+        "This field describes the type of text in the context field, e.g., 'Page text', 'Surrounding paragraphs'.",
+      examples: ["Full page text"],
+    }),
   type: z.enum(KnowledgeTypes),
 
   connections: z
