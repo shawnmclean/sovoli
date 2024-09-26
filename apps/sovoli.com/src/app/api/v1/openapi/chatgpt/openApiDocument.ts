@@ -1,4 +1,5 @@
 import type { SecurityRequirementObject } from "openapi3-ts";
+import { upgrade } from "@scalar/openapi-parser";
 import { contract } from "@sovoli/api/tsr/contract";
 import { generateOpenApi } from "@ts-rest/open-api";
 
@@ -20,7 +21,7 @@ const hasSecurity = (
   );
 };
 
-const openApiDocument = generateOpenApi(
+const tsrOpenApiSpec = generateOpenApi(
   contract.knowledge,
   {
     info: {
@@ -54,11 +55,14 @@ const openApiDocument = generateOpenApi(
     }),
   },
 );
-openApiDocument.servers = [
+tsrOpenApiSpec.servers = [
   {
     url: `${getBaseUrl()}/api/v1`,
     description: "Sovoli API",
   },
 ];
 
-export { openApiDocument };
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const { specification } = upgrade(tsrOpenApiSpec);
+
+export { specification };

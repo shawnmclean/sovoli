@@ -1,9 +1,5 @@
-import { upgrade } from "@scalar/openapi-parser";
-
-import { openApiDocument } from "./openApiDocument";
-
-const openApiDoc = upgrade(openApiDocument);
+import { specification } from "./openApiDocument";
 
 export function GET() {
-  return Response.json(openApiDoc.specification);
+  return Response.json(specification);
 }

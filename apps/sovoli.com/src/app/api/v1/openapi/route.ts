@@ -1,5 +1,5 @@
-import { openApiDocument } from "./openApiDocument";
+import { specification } from "./openApiDocument";
 
 export function GET() {
-  return Response.json(openApiDocument);
+  return Response.json(specification);
 }
