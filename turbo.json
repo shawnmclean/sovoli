@@ -55,7 +55,12 @@
     "npm_lifecycle_event",
     "GOOGLE_BOOKS_API_KEY",
     "TRIGGER_SECRET_KEY",
-    "AUTH_SECRET"
+    "AUTH_SECRET",
+    "OPENAI_API_KEY",
+    "SUPABASE_MEDIA_BUCKET",
+    "SUPABASE_URL",
+    "SUPABASE_ANON_KEY"
+
   ],
   "ui": "tui"
 }

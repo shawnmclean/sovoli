@@ -10,7 +10,6 @@ export const env = createEnv({
     VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
     PORT: z.string().optional(),
     OPENAI_API_KEY: z.string().min(1),
-    TRIGGER_SECRET_KEY: z.string().min(1),
   },
 
   /**
