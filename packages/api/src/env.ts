@@ -9,6 +9,7 @@ export const env = createEnv({
     SUPABASE_ANON_KEY: z.string().min(1),
     VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
     PORT: z.string().optional(),
+    OPENAI_API_KEY: z.string().min(1),
   },
 
   /**
