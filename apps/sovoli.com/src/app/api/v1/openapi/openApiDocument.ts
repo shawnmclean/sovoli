@@ -29,6 +29,7 @@ const tsrOpenApiSpec = generateOpenApi(
       version: "1.0.0",
     },
     components: {
+      schemas: {},
       securitySchemes: {
         BearerAuth: {
           type: "http",
