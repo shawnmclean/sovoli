@@ -125,9 +125,11 @@ export const Book = pgTable(
 
 export const SelectBookSchema = createSelectSchema(Book).extend({
   authors: z.array(SelectAuthorSchema).optional(),
+  cover: BookCoverSchema.nullish(),
 });
 export const InsertBookSchema = createInsertSchema(Book);
 export type SelectBookSchema = z.infer<typeof SelectBookSchema>;
+
 export type InsertBookSchema = z.infer<typeof InsertBookSchema>;
 
 export const BookEmbedding = pgTable(
