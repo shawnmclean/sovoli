@@ -40,7 +40,8 @@
     "react-native-web": "0.19.12",
     "superjson": "2.2.1",
     "swagger-ui-react": "5.17.14",
-    "zod": "catalog:"
+    "zod": "catalog:",
+    "@scalar/openapi-parser": "0.8.4"
   },
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",
