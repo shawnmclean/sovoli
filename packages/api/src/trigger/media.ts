@@ -59,6 +59,7 @@ async function copyFileToSupabase(media: SelectMediaAssetSchema) {
     const finalMimeType =
       media.mimeType ?? response.headers.get("content-type");
 
+    //TODO: may want to get the mime type from the file extension
     if (!finalMimeType) {
       throw new Error("Could not determine MIME type");
     }
