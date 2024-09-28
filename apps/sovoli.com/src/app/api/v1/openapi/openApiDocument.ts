@@ -63,7 +63,6 @@ tsrOpenApiSpec.servers = [
   },
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const { specification } = upgrade(tsrOpenApiSpec);
 
 export { specification };
