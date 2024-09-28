@@ -3,8 +3,11 @@ import { db, eq, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { createClient } from "@supabase/supabase-js";
 import { logger, task } from "@trigger.dev/sdk/v3";
+import { filetypeinfo } from "magic-bytes.js";
 
 import { env } from "../env";
+
+const MAX_ALLOWED_FILE_SIZE = 1024 * 1024 * 3; // 3MB
 
 export interface HydrateMediaOptions {
   mediaId: string;
@@ -12,33 +15,111 @@ export interface HydrateMediaOptions {
 
 export const hydrateMedia = task({
   id: "hydrate-media",
-  run: async ({ mediaId }: HydrateMediaOptions) => {
-    const media = await db.query.MediaAsset.findFirst({
-      where: eq(schema.MediaAsset.id, mediaId),
-    });
-    if (!media) {
-      throw new Error(`Media not found`);
-    }
-
-    const updatedMedia = await copyFileToSupabase(media);
-
-    await db
+  run: async ({ mediaId }: HydrateMediaOptions, { ctx }) => {
+    const workingMedia = await db
       .update(schema.MediaAsset)
       .set({
-        host: MediaAssetHost.Supabase,
-        bucket: updatedMedia.bucket,
-        path: updatedMedia.path,
-        mimeType: updatedMedia.mimeType,
-        updatedAt: new Date(),
+        triggerDevId: ctx.run.id,
       })
-      .where(eq(schema.MediaAsset.id, mediaId));
+      .where(eq(schema.MediaAsset.id, mediaId))
+      .returning();
+
+    const media = workingMedia[0];
+    if (!media) {
+      throw new Error(`Media not found for id: ${mediaId}`);
+    }
+    let updatedMedia: CopyFileToSupabaseResult | null = null;
+    let errorMessage: string | null = null;
+
+    try {
+      // Attempt to copy the file to Supabase
+      updatedMedia = await copyFileToSupabase(media);
+    } catch (error) {
+      // Log the error and set error message for the media update
+      console.log(error);
+      errorMessage = error instanceof Error ? error.message : "Unknown error";
+    }
+
+    if (updatedMedia) {
+      await db
+        .update(schema.MediaAsset)
+        .set({
+          host: MediaAssetHost.Supabase,
+          bucket: updatedMedia.bucket,
+          path: updatedMedia.path,
+          mimeType: updatedMedia.mimeType,
+          updatedAt: new Date(),
+        })
+        .where(eq(schema.MediaAsset.id, mediaId));
+    } else if (errorMessage) {
+      await db
+        .update(schema.MediaAsset)
+        .set({
+          updatedAt: new Date(),
+          triggerDevError: errorMessage,
+        })
+        .where(eq(schema.MediaAsset.id, mediaId));
+    }
 
     logger.info(`Hydrated media: ${mediaId}`);
   },
 });
 
 const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY);
-async function copyFileToSupabase(media: SelectMediaAssetSchema) {
+
+const uploadWithRetries = async (
+  newFilename: string,
+  fileBuffer: ArrayBuffer,
+  mimeType: string,
+) => {
+  const maxRetries = 3;
+  let attempts = 0;
+
+  while (attempts < maxRetries) {
+    try {
+      const { data, error } = await supabase.storage
+        .from(env.SUPABASE_MEDIA_BUCKET)
+        .upload(newFilename, fileBuffer, {
+          contentType: mimeType,
+        });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      return data; // Successful upload
+    } catch (e) {
+      attempts++;
+      if (attempts >= maxRetries) {
+        if (e instanceof Error) {
+          logger.error(
+            `Failed to upload file after ${attempts} attempts: ${e.message}`,
+          );
+          throw e; // rethrow the error
+        } else {
+          logger.error(
+            `Failed to upload file after ${attempts} attempts due to an unknown error`,
+          );
+          throw new Error("Unknown error occurred during upload");
+        }
+      }
+      await new Promise((resolve) => setTimeout(resolve, attempts * 1000)); // Backoff
+    }
+  }
+
+  // If we reach here, it means all retries failed (used to satisfy typescript undefined return type)
+  throw new Error("Upload failed after all retries");
+};
+
+interface CopyFileToSupabaseResult {
+  bucket: string;
+  path: string;
+  mimeType: string;
+}
+
+async function copyFileToSupabase(
+  media: SelectMediaAssetSchema,
+): Promise<CopyFileToSupabaseResult> {
   if (media.host === MediaAssetHost.Supabase) {
     throw new Error("Media is already on supabase");
   }
@@ -46,47 +127,34 @@ async function copyFileToSupabase(media: SelectMediaAssetSchema) {
     throw new Error("Media has no download link");
   }
 
-  try {
-    const response = await fetch(media.downloadLink);
-    if (!response.ok) {
-      throw new Error(`Failed to download media from: ${media.downloadLink}`);
-    }
-
-    // Convert the response into a buffer
-    const fileBuffer = await response.arrayBuffer();
-
-    // Use the mimeType from the database or fallback to the response header content type
-    const finalMimeType =
-      media.mimeType ?? response.headers.get("content-type");
-
-    //TODO: may want to get the mime type from the file extension
-    if (!finalMimeType) {
-      throw new Error("Could not determine MIME type");
-    }
-
-    // Extract the file extension from the `name` field
-    const fileExtension = media.name?.split(".").pop();
-
-    if (!fileExtension) {
-      throw new Error("Could not determine file extension");
-    }
-
-    const path = `${media.id}.${fileExtension}`;
-    const { data, error } = await supabase.storage
-      .from(env.SUPABASE_MEDIA_BUCKET)
-      .upload(path, new Blob([fileBuffer]), { contentType: finalMimeType });
-
-    if (error) {
-      throw error;
-    }
-
-    return {
-      bucket: env.SUPABASE_MEDIA_BUCKET,
-      path: data.path,
-      mimeType: finalMimeType,
-    };
-  } catch (e) {
-    console.log(e);
-    throw e;
+  const response = await fetch(media.downloadLink);
+  if (!response.ok) {
+    throw new Error(`Failed to download media from: ${media.downloadLink}`);
   }
+  const contentLength = response.headers.get("Content-Length");
+  if (contentLength && parseInt(contentLength, 10) > MAX_ALLOWED_FILE_SIZE) {
+    throw new Error("File is too large to process");
+  }
+
+  // Convert the response into a buffer
+  const fileBuffer = await response.arrayBuffer();
+
+  // Convert to Uint8Array for magic-bytes.js, we only need the first 100 bytes
+  const bytesForDetection = new Uint8Array(fileBuffer).slice(0, 100);
+  const fileTypeResult = filetypeinfo(bytesForDetection);
+
+  const fileType = fileTypeResult[0];
+  if (!fileType || !fileType.mime || !fileType.extension) {
+    throw new Error("Could not detect file type, mime, or extension");
+  }
+
+  const newFilename = `${media.id}.${fileType.extension}`;
+
+  const data = await uploadWithRetries(newFilename, fileBuffer, fileType.mime);
+
+  return {
+    bucket: env.SUPABASE_MEDIA_BUCKET,
+    path: data.path,
+    mimeType: fileType.mime,
+  };
 }

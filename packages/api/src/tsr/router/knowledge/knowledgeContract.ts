@@ -16,7 +16,7 @@ const PostKnowledgeSchemaRequest = z.object({
         name: z.string(),
         id: z.string(),
         mime_type: z.string().nullish(),
-        download_link: z.string(),
+        download_link: z.string().url(),
       }),
     )
     .optional()

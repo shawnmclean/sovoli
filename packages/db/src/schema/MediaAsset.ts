@@ -36,6 +36,9 @@ export const MediaAsset = pgTable("media_asset", {
   name: text("name"),
   downloadLink: text("download_link"),
 
+  triggerDevId: varchar("trigger_dev_id", { length: 255 }),
+  triggerDevError: text("trigger_dev_error"),
+
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
