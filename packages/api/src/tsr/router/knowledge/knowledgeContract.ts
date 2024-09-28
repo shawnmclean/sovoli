@@ -21,7 +21,6 @@ const PostKnowledgeSchemaRequest = z.object({
     )
     .optional()
     .openapi({
-      nullable: true,
       description:
         "This object is meant for ChatGPT to send files related to the knowledge, such as images, PDFs, etc.",
     }),
