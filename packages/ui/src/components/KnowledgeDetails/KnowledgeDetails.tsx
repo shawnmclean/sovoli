@@ -56,7 +56,7 @@ export default function KnowledgeDetails({ knowledge }: Props) {
         type="single"
         isCollapsible={true}
         isDisabled={false}
-        className="m-5 w-[90%] border border-outline-200"
+        className="border border-outline-200"
       >
         <AccordionItem value="a">
           <AccordionHeader>
