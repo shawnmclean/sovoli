@@ -12,7 +12,7 @@ import { Image } from "../ui/image";
 import { Text } from "../ui/text";
 
 const PAGE_WIDTH = window.width;
-const MAX_CAROSEL_HEIGHT = 500;
+const MAX_CAROUSEL_HEIGHT = 500;
 
 export interface Image {
   src: string;
@@ -21,9 +21,9 @@ export interface Image {
 }
 
 export function Gallery({ images }: { images: Image[] }) {
-  const windowWidth = useWindowDimensions().width;
+  const { width: windowWidth } = useWindowDimensions();
   const [carouselHeight, setCarouselHeight] = useState<number>(
-    Math.min(PAGE_WIDTH / COVER_IMAGE_ASPECT_RATIO, MAX_CAROSEL_HEIGHT),
+    Math.min(PAGE_WIDTH / COVER_IMAGE_ASPECT_RATIO, MAX_CAROUSEL_HEIGHT),
   );
   const scrollOffsetValue = useSharedValue<number>(0);
   const [index, setIndex] = useState(0);
@@ -31,7 +31,7 @@ export function Gallery({ images }: { images: Image[] }) {
 
   useEffect(() => {
     setCarouselHeight(
-      Math.min(windowWidth / COVER_IMAGE_ASPECT_RATIO, MAX_CAROSEL_HEIGHT),
+      Math.min(windowWidth / COVER_IMAGE_ASPECT_RATIO, MAX_CAROUSEL_HEIGHT),
     );
   }, [windowWidth]);
 

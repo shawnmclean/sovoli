@@ -1,7 +1,9 @@
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+import { View } from "react-native";
 import { KnowledgeType, MediaAssetHost } from "@sovoli/db/schema";
 import { Gallery } from "@sovoli/ui/components/Gallery";
 
+import { Heading } from "../ui/heading";
 import BookDetails from "./BookDetails";
 import CollectionDetails from "./CollectionDetails";
 import NoteDetails from "./NoteDetails";
@@ -21,12 +23,15 @@ export default function KnowledgeDetails({ knowledge }: Props) {
   }).filter((image) => image !== null);
 
   return (
-    <div>
-      {images.length > 0 && <Gallery images={images} />}
-      <h1>{knowledge.title}</h1>
-      <p>{knowledge.description}</p>
+    <>
+      <Heading size="2xl" className="font-roboto">
+        {knowledge.title}
+      </Heading>
+      <View className="my-2">
+        {images.length > 0 && <Gallery images={images} />}
+      </View>
       <KnowledgeComponentSwitcher knowledge={knowledge} />
-    </div>
+    </>
   );
 }
 

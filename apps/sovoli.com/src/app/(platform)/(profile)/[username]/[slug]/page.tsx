@@ -3,8 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 import { SelectKnowledgeSchema } from "@sovoli/db/schema";
-
-import KnowledgeDetails from "./_components/KnowledgeDetails";
+import { KnowledgeDetailsScreen } from "@sovoli/ui/screens/knowledge-details";
 
 export const dynamic = "force-dynamic";
 
@@ -284,17 +283,10 @@ const retreiveKnowledgeBySlug = cache(
 );
 
 export default async function KnowledgePage({ params, searchParams }: Props) {
-  const { knowledge, meta } = await retreiveKnowledgeBySlug({
+  const { knowledge } = await retreiveKnowledgeBySlug({
     params,
     searchParams,
   });
 
-  return (
-    <div className="min-h-screen dark:bg-black sm:pl-60">
-      <a href={`/${params.username}`}>Back to {params.username}</a>
-
-      <pre>{JSON.stringify(meta, null, 2)}</pre>
-      <KnowledgeDetails knowledge={knowledge} />
-    </div>
-  );
+  return <KnowledgeDetailsScreen knowledge={knowledge} />;
 }
