@@ -3,7 +3,9 @@ import { View } from "react-native";
 import { KnowledgeType, MediaAssetHost } from "@sovoli/db/schema";
 import { Gallery } from "@sovoli/ui/components/Gallery";
 
+import { Divider } from "../ui/divider";
 import { Heading } from "../ui/heading";
+import { Text } from "../ui/text";
 import BookDetails from "./BookDetails";
 import CollectionDetails from "./CollectionDetails";
 import NoteDetails from "./NoteDetails";
@@ -31,6 +33,10 @@ export default function KnowledgeDetails({ knowledge }: Props) {
         {images.length > 0 && <Gallery images={images} />}
       </View>
       <KnowledgeComponentSwitcher knowledge={knowledge} />
+      <Divider />
+      <View>
+        <Text>{knowledge.createdAt.toString()}</Text>
+      </View>
     </>
   );
 }

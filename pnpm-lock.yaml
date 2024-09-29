@@ -524,6 +524,9 @@ importers:
       '@gluestack-ui/button':
         specifier: 1.0.7
         version: 1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      '@gluestack-ui/divider':
+        specifier: 0.1.9
+        version: 0.1.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@gluestack-ui/icon':
         specifier: 0.1.22
         version: 0.1.22(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
@@ -2140,6 +2143,12 @@ packages:
 
   '@gluestack-ui/button@1.0.7':
     resolution: {integrity: sha512-6hz5BPoB+iHMpDvys6AbIpeRPbnFiqyE3SnnbKPSCj8lgl3Dr9sFln41BvDmqmZ98d0usJluk50rz8pVNRZRgw==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+
+  '@gluestack-ui/divider@0.1.9':
+    resolution: {integrity: sha512-wuQDEfgZwBoxxd9AKTNKxUK5W7EZ1SiuYpEljm77yekV3vw86t6X1AIJ+zIjDaOFzlNcvWx9ZD8NRXtRkDFiHw==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -10318,6 +10327,11 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - react-native
+
+  '@gluestack-ui/divider@0.1.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
 
   '@gluestack-ui/hooks@0.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:

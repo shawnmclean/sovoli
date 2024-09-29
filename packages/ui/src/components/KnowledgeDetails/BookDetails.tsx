@@ -6,8 +6,7 @@ interface Props {
 export default function BookDetails({ knowledge }: Props) {
   return (
     <div>
-      <h1>Book Details</h1>
-      <pre>{JSON.stringify(knowledge, null, 2)}</pre>
+      <h1>Book Details {knowledge.description}</h1>
     </div>
   );
 }

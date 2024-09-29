@@ -21,6 +21,7 @@
     "@sovoli/db": "workspace:*",
     "@gluestack-ui/button": "1.0.7",
     "@gluestack-ui/icon": "0.1.22",
+    "@gluestack-ui/divider": "0.1.9",
     "@gluestack-ui/overlay": "0.1.15",
     "@gluestack-ui/toast": "1.0.7",
     "@gluestack-ui/nativewind-utils": "1.0.23",
