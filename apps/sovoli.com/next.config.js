@@ -9,6 +9,8 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    loader: "custom",
+    loaderFile: "./src/utils/supabaseImageLoader.ts",
     dangerouslyAllowSVG: true,
     remotePatterns: [
       {
