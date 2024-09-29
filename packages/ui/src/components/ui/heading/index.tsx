@@ -1,4 +1,5 @@
 import type { VariantProps } from "@gluestack-ui/nativewind-utils";
+import type { Text } from "react-native";
 import React, { forwardRef, memo } from "react";
 import { H1, H2, H3, H4, H5, H6 } from "@expo/html-elements";
 import { cssInterop } from "nativewind";
@@ -18,7 +19,7 @@ cssInterop(H5, { className: "style" });
 cssInterop(H6, { className: "style" });
 
 const MappedHeading = memo(
-  forwardRef<React.ElementRef<typeof H1>, IHeadingProps>(
+  forwardRef<typeof Text, IHeadingProps>(
     (
       {
         size,
@@ -170,7 +171,7 @@ const MappedHeading = memo(
 );
 
 const Heading = memo(
-  forwardRef<React.ElementRef<typeof H1>, IHeadingProps>(
+  forwardRef<typeof Text, IHeadingProps>(
     ({ className, size = "lg", as: AsComp, ...props }, ref) => {
       const {
         isTruncated,
