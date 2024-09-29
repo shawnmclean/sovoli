@@ -133,7 +133,9 @@ async function copyFileToSupabase(
   }
   const contentLength = response.headers.get("Content-Length");
   if (contentLength && parseInt(contentLength, 10) > MAX_ALLOWED_FILE_SIZE) {
-    throw new Error("File is too large to process");
+    throw new Error(
+      `File is too large, must be less than ${(MAX_ALLOWED_FILE_SIZE / (1024 * 1024)).toFixed(2)} MB`,
+    );
   }
 
   // Convert the response into a buffer
