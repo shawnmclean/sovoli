@@ -17,7 +17,7 @@ export const router = tsr
     if (auth) {
       req.session = auth;
     } else {
-      // pull the session from the api keys/token/bearer
+      // pull the sessionid from the bearer token and validate it
       const authToken = req.headers.get("Authorization");
       if (authToken) {
         const sessionToken = authToken.slice("Bearer ".length);

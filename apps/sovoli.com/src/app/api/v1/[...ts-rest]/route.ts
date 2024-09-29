@@ -1,7 +1,7 @@
 import type { PlatformContext, TSRGlobalContext } from "@sovoli/api/tsr";
 import type { FetchHandlerOptions } from "@ts-rest/serverless/fetch";
 import { contract, router } from "@sovoli/api/tsr";
-import { auth, validateToken } from "@sovoli/auth";
+import { auth } from "@sovoli/auth";
 import { fetchRequestHandler } from "@ts-rest/serverless/fetch";
 
 export const dynamic = "force-dynamic";
@@ -33,15 +33,6 @@ const options = {
 } as FetchHandlerOptions<PlatformContext, TSRGlobalContext>;
 
 const handler = auth(async (request) => {
-  // if req.auth is null, authjs only checks the cookies, we need to check the auth header
-  if (!request.auth) {
-    const authToken = request.headers.get("Authorization");
-    if (authToken) {
-      const sessionToken = authToken.slice("Bearer ".length);
-      request.auth = await validateToken(sessionToken);
-    }
-  }
-
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return fetchRequestHandler({
     request,
@@ -49,6 +40,7 @@ const handler = auth(async (request) => {
     router,
     options,
     platformContext: {
+      // pass the auth object from the `auth` wrapper to the platform context
       auth: request.auth,
     },
   });
