@@ -1,3 +1,5 @@
+"use client";
+
 import type { ICarouselInstance } from "react-native-reanimated-carousel";
 import { useEffect, useRef, useState } from "react";
 import { useWindowDimensions, View } from "react-native";
@@ -13,8 +15,7 @@ const PAGE_WIDTH = window.width;
 const MAX_CAROSEL_HEIGHT = 500;
 
 export interface Image {
-  url: string;
-  isCover: boolean;
+  src: string;
   order?: number;
   alt?: string;
 }
@@ -55,14 +56,12 @@ export function Gallery({ images }: { images: Image[] }) {
           }
           return (
             <View className="h-full w-full">
-              <Image fill src={image.url} alt={image.alt ?? ""} />
+              <Image fill src={image.src} alt={image.alt ?? ""} />
             </View>
           );
         }}
       />
-      <Badge
-        className="absolute bottom-2 right-2 opacity-80"
-      >
+      <Badge className="absolute bottom-2 right-2 opacity-80">
         <BadgeText>
           {index + 1} / {images.length}
         </BadgeText>
