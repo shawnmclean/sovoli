@@ -23,6 +23,7 @@
     "@gluestack-ui/icon": "0.1.22",
     "@gluestack-ui/divider": "0.1.9",
     "@gluestack-ui/overlay": "0.1.15",
+    "@gluestack-ui/accordion": "1.0.7",
     "@gluestack-ui/toast": "1.0.7",
     "@gluestack-ui/nativewind-utils": "1.0.23",
     "@gluestack-ui/avatar": "0.1.17",

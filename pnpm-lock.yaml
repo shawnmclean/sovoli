@@ -518,6 +518,9 @@ importers:
       '@expo/html-elements':
         specifier: 0.10.1
         version: 0.10.1
+      '@gluestack-ui/accordion':
+        specifier: 1.0.7
+        version: 1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
       '@gluestack-ui/avatar':
         specifier: 0.1.17
         version: 0.1.17(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
@@ -2135,6 +2138,12 @@ packages:
   '@formatjs/intl-localematcher@0.5.4':
     resolution: {integrity: sha512-zTwEpWOzZ2CiKcB93BLngUX59hQkuZjT2+SAQEscSm52peDW/getsawMcWF1rGRpMCX6D7nSJA3CzJ8gn13N/g==}
 
+  '@gluestack-ui/accordion@1.0.7':
+    resolution: {integrity: sha512-pvEjAL343p/npQfmNFmKDy+p/POUua0/hog8weFRZ7E0CzI00VHDxIsbmkBEREjhzekRXry/wg8se6lGlKOpCA==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+
   '@gluestack-ui/avatar@0.1.17':
     resolution: {integrity: sha512-L7R3GVjYK6o+tdCiCDZXvHjPi1FKwt9XAFHGlEsQ4dX6Qe7yWEi3K+e5UBpS1ugvja7SmNS+YZwvr+nnVcmohQ==}
     peerDependencies:
@@ -2893,6 +2902,12 @@ packages:
     resolution: {integrity: sha512-l+sJ7xTdD5Sd6+rDNDaeJCSPnHOsI+BaJyApvb/YcVgHa7rB47lp6TXCWUCDItcPY4JqRGyeByRJVrtzBFTWCw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
+
+  '@react-native-aria/accordion@0.0.2':
+    resolution: {integrity: sha512-2Wa/YDBc2aCunTLpqwxTfCwn1t63KSAIoXd0hqrUGJJF+N2bEs2Hqs9ZgyKJ/hzFxCknVPMqo0fEVE1H23Z5+g==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
 
   '@react-native-aria/focus@0.2.9':
     resolution: {integrity: sha512-zVgOIzKwnsyyurUxlZnzUKB2ekK/cmK64sQJIKKUlkJKVxd2EAFf7Sjz/NVEoMhTODN3qGRASTv9bMk/pBzzVA==}
@@ -10310,6 +10325,17 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
+  '@gluestack-ui/accordion@1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      '@react-native-aria/accordion': 0.0.2(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      '@react-native-aria/interactions': 0.2.13(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - react-native
+
   '@gluestack-ui/avatar@0.1.17(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
@@ -11117,6 +11143,11 @@ snapshots:
       '@react-types/shared': 3.24.1(react@18.2.0)
       '@swc/helpers': 0.5.12
       react: 18.2.0
+
+  '@react-native-aria/accordion@0.0.2(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
 
   '@react-native-aria/focus@0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
     dependencies:
