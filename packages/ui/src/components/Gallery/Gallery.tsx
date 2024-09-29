@@ -61,6 +61,7 @@ export function Gallery({ images }: { images: Image[] }) {
           );
         }}
       />
+
       <Badge className="absolute bottom-2 right-2 opacity-80">
         <BadgeText>
           {index + 1} / {images.length}

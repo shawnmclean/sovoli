@@ -22,7 +22,7 @@ export default function KnowledgeDetails({ knowledge }: Props) {
 
   return (
     <div>
-      <Gallery images={images} />
+      {images.length > 0 && <Gallery images={images} />}
       <h1>{knowledge.title}</h1>
       <p>{knowledge.description}</p>
       <KnowledgeComponentSwitcher knowledge={knowledge} />
