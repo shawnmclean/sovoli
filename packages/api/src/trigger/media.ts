@@ -50,6 +50,7 @@ export const hydrateMedia = task({
           bucket: updatedMedia.bucket,
           path: updatedMedia.path,
           mimeType: updatedMedia.mimeType,
+          triggerDevError: null,
           updatedAt: new Date(),
         })
         .where(eq(schema.MediaAsset.id, mediaId));
