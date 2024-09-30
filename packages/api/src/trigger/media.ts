@@ -6,6 +6,8 @@ import { logger, task } from "@trigger.dev/sdk/v3";
 import { filetypeinfo } from "magic-bytes.js";
 
 import { env } from "../env";
+import { AsyncResilience } from "../utils/retry/AsyncResilience";
+import { retryAsync } from "../utils/retry/retry-async";
 
 const MAX_ALLOWED_FILE_SIZE = 1024 * 1024 * 3; // 3MB
 
@@ -67,49 +69,33 @@ export const hydrateMedia = task({
 
 const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY);
 
-const uploadWithRetries = async (
+async function uploadFile(
   newFilename: string,
   fileBuffer: ArrayBuffer,
   mimeType: string,
-) => {
-  const maxRetries = 3;
-  let attempts = 0;
+) {
+  const { data, error } = await supabase.storage
+    .from(env.SUPABASE_MEDIA_BUCKET)
+    .upload(newFilename, fileBuffer, {
+      contentType: mimeType,
+    });
 
-  while (attempts < maxRetries) {
-    try {
-      const { data, error } = await supabase.storage
-        .from(env.SUPABASE_MEDIA_BUCKET)
-        .upload(newFilename, fileBuffer, {
-          contentType: mimeType,
-        });
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      return data; // Successful upload
-    } catch (e) {
-      attempts++;
-      if (attempts >= maxRetries) {
-        if (e instanceof Error) {
-          logger.error(
-            `Failed to upload file after ${attempts} attempts: ${e.message}`,
-          );
-          throw e; // rethrow the error
-        } else {
-          logger.error(
-            `Failed to upload file after ${attempts} attempts due to an unknown error`,
-          );
-          throw new Error("Unknown error occurred during upload");
-        }
-      }
-      await new Promise((resolve) => setTimeout(resolve, attempts * 1000)); // Backoff
-    }
+  if (error) {
+    throw new Error(`Supabase upload error: ${error.message}`);
   }
 
-  // If we reach here, it means all retries failed (used to satisfy typescript undefined return type)
-  throw new Error("Upload failed after all retries");
-};
+  return data;
+}
+
+async function downloadFile(downloadLink: string) {
+  const response = await fetch(downloadLink);
+  if (!response.ok) {
+    throw new Error(
+      `File download error: Failed to download media from: ${downloadLink}`,
+    );
+  }
+  return response;
+}
 
 interface CopyFileToSupabaseResult {
   bucket: string;
@@ -123,14 +109,16 @@ async function copyFileToSupabase(
   if (media.host === MediaAssetHost.Supabase) {
     throw new Error("Media is already on supabase");
   }
-  if (!media.downloadLink) {
+  const downloadLink = media.downloadLink;
+  if (!downloadLink) {
     throw new Error("Media has no download link");
   }
 
-  const response = await fetch(media.downloadLink);
-  if (!response.ok) {
-    throw new Error(`Failed to download media from: ${media.downloadLink}`);
-  }
+  const response = await retryAsync(
+    () => downloadFile(downloadLink),
+    AsyncResilience.aggressive(),
+  );
+
   const contentLength = response.headers.get("Content-Length");
   if (contentLength && parseInt(contentLength, 10) > MAX_ALLOWED_FILE_SIZE) {
     throw new Error(
@@ -145,18 +133,22 @@ async function copyFileToSupabase(
   const bytesForDetection = new Uint8Array(fileBuffer).slice(0, 100);
   const fileTypeResult = filetypeinfo(bytesForDetection);
 
-  const fileType = fileTypeResult[0];
-  if (!fileType || !fileType.mime || !fileType.extension) {
-    throw new Error("Could not detect file type, mime, or extension");
+  const mime = fileTypeResult[0]?.mime;
+  const extension = fileTypeResult[0]?.extension;
+  if (!mime || !extension) {
+    throw new Error("Could not detect file type; mime or extension is missing");
   }
 
-  const newFilename = `${media.id}.${fileType.extension}`;
+  const newFilename = `${media.id}.${extension}`;
 
-  const data = await uploadWithRetries(newFilename, fileBuffer, fileType.mime);
+  const data = await retryAsync(
+    () => uploadFile(newFilename, fileBuffer, mime),
+    AsyncResilience.exponentialBackoffWithJitter(),
+  );
 
   return {
     bucket: env.SUPABASE_MEDIA_BUCKET,
     path: data.path,
-    mimeType: fileType.mime,
+    mimeType: mime,
   };
 }
