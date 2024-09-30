@@ -43,12 +43,16 @@ export default function KnowledgeDetails({ knowledge }: Props) {
       <View className="my-2">
         {images.length > 0 && <Gallery images={images} />}
       </View>
-      <KnowledgeComponentSwitcher knowledge={knowledge} />
+      <View>
+        <Text>{knowledge.description}</Text>
+      </View>
       <Divider />
       <View>
         <Text>{knowledge.createdAt.toString()}</Text>
       </View>
       <Divider />
+
+      <KnowledgeComponentSwitcher knowledge={knowledge} />
 
       <Accordion
         size="md"
