@@ -1,5 +1,6 @@
 import { extendZodWithOpenApi } from "@anatine/zod-openapi";
 import {
+  KnowledgeConnectionMetadatachema,
   KnowledgeConnectionTypes,
   KnowledgeTypes,
   SelectKnowledgeSchema,
@@ -64,6 +65,8 @@ const PostKnowledgeSchemaRequest = z.object({
         }),
         order: z.number(),
         type: z.enum(KnowledgeConnectionTypes),
+
+        metadata: KnowledgeConnectionMetadatachema.optional(),
 
         // object type is structured for inference
         targetKnowledge: z.object({
