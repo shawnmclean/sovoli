@@ -1,9 +1,12 @@
+import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound, permanentRedirect } from "next/navigation";
 import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
-import { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { KnowledgeDetailsScreen } from "@sovoli/ui/screens/knowledge-details";
+
+import { config } from "~/utils/config";
 
 export const dynamic = "force-dynamic";
 
@@ -274,6 +277,22 @@ const retreiveKnowledgeBySlug = cache(
     }
   },
 );
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
+  const { knowledge } = await retreiveKnowledgeBySlug({ params, searchParams });
+
+  return {
+    title: `${knowledge.title} - ${knowledge.User?.name}`,
+    openGraph: {
+      title: `${knowledge.title} - ${knowledge.User?.name}`,
+      url: config.url + "/" + params.username + "/" + knowledge.slug,
+      siteName: config.siteName,
+    },
+  };
+}
 
 export default async function KnowledgePage({ params, searchParams }: Props) {
   const { knowledge } = await retreiveKnowledgeBySlug({

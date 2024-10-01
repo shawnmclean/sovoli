@@ -468,7 +468,7 @@ importers:
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-3edc000d-20240926(eslint@9.8.0)
+        version: 5.1.0-rc-d8c90fa4-20241001(eslint@9.8.0)
       eslint-plugin-turbo:
         specifier: 2.0.11
         version: 2.0.11(eslint@9.8.0)
@@ -554,6 +554,9 @@ importers:
       class-variance-authority:
         specifier: 0.7.0
         version: 0.7.0
+      date-fns:
+        specifier: 4.1.0
+        version: 4.1.0
       expo-image:
         specifier: 1.12.12
         version: 1.12.12(expo@51.0.24(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(bufferutil@4.0.8))
@@ -4370,6 +4373,9 @@ packages:
     resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
 
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
+
   dayjs@1.11.13:
     resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
 
@@ -4806,8 +4812,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-3edc000d-20240926:
-    resolution: {integrity: sha512-9E3TnhvxK6OWwG8EQyGlb2V9n0NQ+e1euW3Jj+t3M+6CkoBAKX25OPOn6QLK9Ylxib3xd4houOOUmrvwCSa8Jw==}
+  eslint-plugin-react-hooks@5.1.0-rc-d8c90fa4-20241001:
+    resolution: {integrity: sha512-QXbrGKwGhYTsC7Ss6cjPx9TN5rU7BiRtxStLIEJ9IVlTANKnJ62IXOpvHtTVx/Tlcv4MIU1vZo8bNXFsRMUBwA==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -13036,6 +13042,8 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.4
 
+  date-fns@4.1.0: {}
+
   dayjs@1.11.13: {}
 
   debug@2.6.9:
@@ -13539,7 +13547,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-3edc000d-20240926(eslint@9.8.0):
+  eslint-plugin-react-hooks@5.1.0-rc-d8c90fa4-20241001(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
 

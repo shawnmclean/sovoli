@@ -17,6 +17,7 @@ import { Divider } from "../ui/divider";
 import { Heading } from "../ui/heading";
 import { ChevronDownIcon, ChevronUpIcon } from "../ui/icon";
 import { Text } from "../ui/text";
+import { TimeAgo } from "../ui/time-ago";
 import BookDetails from "./BookDetails";
 import CollectionDetails from "./CollectionDetails";
 import NoteDetails from "./NoteDetails";
@@ -48,7 +49,7 @@ export default function KnowledgeDetails({ knowledge }: Props) {
       </View>
       <Divider />
       <View>
-        <Text>{knowledge.createdAt.toString()}</Text>
+        <TimeAgo datetime={knowledge.createdAt} />
       </View>
       <Divider />
 
