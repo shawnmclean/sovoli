@@ -26,13 +26,13 @@ export const knowledgeConnectionTypeEnum = pgEnum(
   KnowledgeConnectionTypes,
 );
 
-export const KnowledgeConnectionMetadatachema = z.object({
+export const KnowledgeConnectionMetadataSchema = z.object({
   page: z.number().optional(),
   chapter: z.number().optional(),
 });
 
-export type KnowledgeConnectionMetadatachema = z.infer<
-  typeof KnowledgeConnectionMetadatachema
+export type KnowledgeConnectionMetadataSchema = z.infer<
+  typeof KnowledgeConnectionMetadataSchema
 >;
 
 export const KnowledgeConnection = pgTable("knowledge_connection", {
@@ -54,14 +54,18 @@ export const KnowledgeConnection = pgTable("knowledge_connection", {
 
   notes: text("notes"),
 
-  metadata: jsonb("metadata").$type<KnowledgeConnectionMetadatachema>(),
+  metadata: jsonb("metadata").$type<KnowledgeConnectionMetadataSchema>(),
 
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-const baseSelectKnowledgeConnectionSchema =
-  createSelectSchema(KnowledgeConnection);
+const baseSelectKnowledgeConnectionSchema = createSelectSchema(
+  KnowledgeConnection,
+  {
+    metadata: KnowledgeConnectionMetadataSchema,
+  },
+);
 
 export type KnowledgeConnection = z.infer<
   typeof baseSelectKnowledgeConnectionSchema
@@ -81,8 +85,12 @@ export type SelectKnowledgeConnectionSchema = z.infer<
   typeof SelectKnowledgeConnectionSchema
 >;
 
-export const InsertKnowledgeConnectionSchema =
-  createInsertSchema(KnowledgeConnection);
+export const InsertKnowledgeConnectionSchema = createInsertSchema(
+  KnowledgeConnection,
+  {
+    metadata: KnowledgeConnectionMetadataSchema,
+  },
+);
 export type InsertKnowledgeConnectionSchema = z.infer<
   typeof InsertKnowledgeConnectionSchema
 >;
