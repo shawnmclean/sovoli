@@ -1,5 +1,6 @@
 import {
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   text,
@@ -12,7 +13,11 @@ import { z } from "zod";
 import { createEnumObject } from "../utils";
 import { Knowledge, SelectKnowledgeSchema } from "./Knowledge";
 
-export const KnowledgeConnectionTypes = ["Contains", "Recommends"] as const;
+export const KnowledgeConnectionTypes = [
+  "Contains",
+  "Recommends",
+  "Refers",
+] as const;
 export const KnowledgeConnectionType = createEnumObject(
   KnowledgeConnectionTypes,
 );
@@ -20,6 +25,15 @@ export const knowledgeConnectionTypeEnum = pgEnum(
   "knowledge_collection_type",
   KnowledgeConnectionTypes,
 );
+
+export const KnowledgeConnectionMetadatachema = z.object({
+  page: z.number().optional(),
+  chapter: z.number().optional(),
+});
+
+export type KnowledgeConnectionMetadatachema = z.infer<
+  typeof KnowledgeConnectionMetadatachema
+>;
 
 export const KnowledgeConnection = pgTable("knowledge_connection", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -39,6 +53,8 @@ export const KnowledgeConnection = pgTable("knowledge_connection", {
   order: integer("order"),
 
   notes: text("notes"),
+
+  metadata: jsonb("metadata").$type<KnowledgeConnectionMetadatachema>(),
 
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
