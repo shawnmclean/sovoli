@@ -132,6 +132,7 @@ async function createKnowledge({
         targetKnowledgeId: "temp",
         notes: connection.notes,
         type: connection.type,
+        metadata: connection.metadata,
       });
     }
   }

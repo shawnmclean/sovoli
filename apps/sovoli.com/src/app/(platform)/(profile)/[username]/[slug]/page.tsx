@@ -6,6 +6,7 @@ import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 import { KnowledgeDetailsScreen } from "@sovoli/ui/screens/knowledge-details";
 
+import { metadata } from "~/app/layout";
 import { config } from "~/utils/config";
 
 export const dynamic = "force-dynamic";
@@ -120,6 +121,7 @@ async function getKnowledgeBySlug({
       targetKnowledgeId: schema.KnowledgeConnection.targetKnowledgeId,
       createdAt: schema.KnowledgeConnection.createdAt,
       updatedAt: schema.KnowledgeConnection.updatedAt,
+      metadata: schema.KnowledgeConnection.metadata,
       totalItems: sql<number>`COUNT(*) OVER()`.as("totalItems"),
       SourceKnowledge: sql<SelectKnowledgeSchema | null>`NULL`,
       TargetKnowledge: sql<SelectKnowledgeSchema | null>`JSON_BUILD_OBJECT(
