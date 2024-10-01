@@ -1,4 +1,5 @@
 import type { AdapterAccountType } from "next-auth/adapters";
+import type { z } from "zod";
 import {
   integer,
   pgEnum,
@@ -29,6 +30,7 @@ export const User = pgTable("user", {
 });
 
 export const SelectUserSchema = createSelectSchema(User);
+export type SelectUserSchema = z.infer<typeof SelectUserSchema>;
 
 export const Account = pgTable(
   "account",

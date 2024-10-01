@@ -8,6 +8,7 @@ import { Box } from "../ui/box";
 import { Heading } from "../ui/heading";
 import { HStack } from "../ui/hstack";
 import { Image } from "../ui/image";
+import { Link } from "../ui/link";
 import { ScrollView } from "../ui/scroll-view";
 import { Text } from "../ui/text";
 import { VStack } from "../ui/vstack";
@@ -42,20 +43,26 @@ function ConnectionItem({ item }: ConnectionItemProps) {
   if (!knowledge) {
     return <View>No target knowledge</View>;
   }
+  const owner = knowledge.User;
+  if (!owner) {
+    return <View>No owner</View>;
+  }
   return (
-    <HStack
-      className="border-border-300 h-full items-center rounded-xl border p-3"
-      space="lg"
-    >
-      <Box className="relative h-full w-40 rounded">
-        <KnowledgeImage knowledge={knowledge} />
-      </Box>
-      <VStack className="h-full justify-between" space="md">
-        <Text className="text-sm">{knowledge.type}</Text>
-        <Heading size="md">{knowledge.title}</Heading>
-        <Text className="line-clamp-2">{knowledge.description}</Text>
-      </VStack>
-    </HStack>
+    <Link href={`/${owner.username}/${knowledge.slug}`}>
+      <HStack
+        className="border-border-300 h-full items-center rounded-xl border p-3"
+        space="lg"
+      >
+        <Box className="relative h-full w-40 rounded">
+          <KnowledgeImage knowledge={knowledge} />
+        </Box>
+        <VStack className="h-full justify-between" space="md">
+          <Text className="text-sm">{knowledge.type}</Text>
+          <Heading size="md">{knowledge.title}</Heading>
+          <Text className="line-clamp-2">{knowledge.description}</Text>
+        </VStack>
+      </HStack>
+    </Link>
   );
 }
 interface KnowledgeImageProps {

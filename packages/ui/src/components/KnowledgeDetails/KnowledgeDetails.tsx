@@ -48,7 +48,7 @@ export default function KnowledgeDetails({ knowledge }: Props) {
       </View>
       <Divider />
       <View>
-        <Text>{knowledge.createdAt.toString()}</Text>
+        <Text>{knowledge.createdAt?.toString()}</Text>
       </View>
       <Divider />
 

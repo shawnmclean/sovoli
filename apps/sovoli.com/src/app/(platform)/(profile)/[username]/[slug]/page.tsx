@@ -73,24 +73,16 @@ async function getKnowledgeBySlug({
   const privacyFilter = getPrivacyFilter(authUserId);
   const slugFilter = getSlugOrIdFilter(slugOrId);
 
-  const knowledgeResult = await db.query.Knowledge.findFirst({
+  const knowledgeResult = (await db.query.Knowledge.findFirst({
     with: {
-      User: {
-        columns: {
-          id: true,
-          name: true,
-          username: true,
-        },
-      },
+      User: true,
       MediaAssets: true,
       Book: true,
     },
     where: and(usernameFilter, privacyFilter, slugFilter),
-  });
+  })) as SelectKnowledgeSchema | undefined;
 
   if (!knowledgeResult) throw Error("Knowledge not found");
-  // Destructure to extract the user and the rest of the knowledge
-  const { User: user, ...knowledge } = knowledgeResult;
 
   const mediaAssetsSubquery = db.$with("media_assets_subquery").as(
     db
@@ -149,6 +141,11 @@ async function getKnowledgeBySlug({
         'chapterNumber', ${schema.Knowledge.chapterNumber},
         'isPrivate', ${schema.Knowledge.isPrivate},
         'query', ${schema.Knowledge.query},
+        'User', JSON_BUILD_OBJECT(
+          'id', ${schema.User.id},
+          'username', ${schema.User.username},
+          'name', ${schema.User.name}
+        ),
         'Connections', json_build_array(),
         'Book', CASE
           WHEN ${schema.Book.id} IS NOT NULL THEN JSON_BUILD_OBJECT(
@@ -187,13 +184,14 @@ async function getKnowledgeBySlug({
       and(
         privacyFilter,
         // where the parent is the knowledge we are looking for
-        eq(schema.KnowledgeConnection.sourceKnowledgeId, knowledge.id),
+        eq(schema.KnowledgeConnection.sourceKnowledgeId, knowledgeResult.id),
       ),
     )
     .leftJoin(
       schema.Knowledge,
       eq(schema.KnowledgeConnection.targetKnowledgeId, schema.Knowledge.id),
     )
+    .leftJoin(schema.User, eq(schema.Knowledge.userId, schema.User.id))
     .leftJoin(
       mediaAssetsSubquery,
       eq(mediaAssetsSubquery.knowledgeId, schema.Knowledge.id),
@@ -227,15 +225,10 @@ async function getKnowledgeBySlug({
 
     return rest;
   });
-
-  const knowledgeResponse = SelectKnowledgeSchema.parse({
-    ...knowledge,
-    Connections: cleanedConnections,
-  });
+  knowledgeResult.Connections = cleanedConnections;
 
   return {
-    user,
-    knowledge: knowledgeResponse,
+    knowledge: knowledgeResult,
     meta: { page, pageSize, total: totalItems },
   };
 }

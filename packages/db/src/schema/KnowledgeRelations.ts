@@ -15,6 +15,6 @@ export const KnowledgeRelations = relations(Knowledge, ({ one, many }) => ({
     fields: [Knowledge.bookId],
     references: [Book.id],
   }),
-  KnowledgeConnections: many(KnowledgeConnection),
+  Connections: many(KnowledgeConnection),
   MediaAssets: many(MediaAsset),
 }));
