@@ -60,6 +60,11 @@ function ConnectionItem({ item }: ConnectionItemProps) {
           <Text className="text-sm">{knowledge.type}</Text>
           <Heading size="md">{knowledge.title}</Heading>
           <Text className="line-clamp-2">{knowledge.description}</Text>
+          {knowledge.Book && (
+            <Text className="text-sm text-typography-500">
+              by {knowledge.Book.inferredAuthor}
+            </Text>
+          )}
         </VStack>
       </HStack>
     </Link>
