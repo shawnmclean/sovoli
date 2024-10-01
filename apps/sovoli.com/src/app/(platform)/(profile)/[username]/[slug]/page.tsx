@@ -6,7 +6,6 @@ import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 import { KnowledgeDetailsScreen } from "@sovoli/ui/screens/knowledge-details";
 
-import { metadata } from "~/app/layout";
 import { config } from "~/utils/config";
 
 export const dynamic = "force-dynamic";
@@ -79,7 +78,13 @@ async function getKnowledgeBySlug({
 
   const knowledgeResult = (await db.query.Knowledge.findFirst({
     with: {
-      User: true,
+      User: {
+        columns: {
+          id: true,
+          username: true,
+          name: true,
+        },
+      },
       MediaAssets: true,
       Book: true,
     },
