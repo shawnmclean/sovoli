@@ -11,6 +11,7 @@ import { Image } from "../ui/image";
 import { Link } from "../ui/link";
 import { ScrollView } from "../ui/scroll-view";
 import { Text } from "../ui/text";
+import { TimeAgo } from "../ui/time-ago";
 import { VStack } from "../ui/vstack";
 
 interface Props {
@@ -60,11 +61,17 @@ function ConnectionItem({ item }: ConnectionItemProps) {
           <Text className="text-sm">{knowledge.type}</Text>
           <Heading size="md">{knowledge.title}</Heading>
           <Text className="line-clamp-2">{knowledge.description}</Text>
-          {knowledge.Book && (
-            <Text className="text-sm text-typography-500">
-              by {knowledge.Book.inferredAuthor}
-            </Text>
-          )}
+          <HStack space="md">
+            {knowledge.Book && (
+              <Text className="text-sm text-typography-500">
+                by {knowledge.Book.inferredAuthor}
+              </Text>
+            )}
+            <TimeAgo
+              datetime={knowledge.createdAt}
+              className="text-sm text-typography-500"
+            />
+          </HStack>
         </VStack>
       </HStack>
     </Link>

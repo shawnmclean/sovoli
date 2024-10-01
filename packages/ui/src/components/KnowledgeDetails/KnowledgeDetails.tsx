@@ -49,7 +49,10 @@ export default function KnowledgeDetails({ knowledge }: Props) {
       </View>
       <Divider />
       <View>
-        <TimeAgo datetime={knowledge.createdAt} />
+        <TimeAgo
+          datetime={knowledge.createdAt}
+          className="text-typography-500"
+        />
       </View>
       <Divider />
 
