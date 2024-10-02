@@ -80,11 +80,11 @@ async function createParentKnowledge(knowledge: InsertKnowledgeSchema) {
   return createdSourceKnowledge;
 }
 
-function generateSessionKey() {
+function generateAuthToken() {
   return randomBytes(32).toString("hex");
 }
 
-function hashSessionKey(key: string) {
+function hashAuthToken(key: string) {
   return createHash("sha256").update(key).digest("hex");
 }
 
@@ -96,11 +96,11 @@ async function createKnowledge({
     throw new Error("authUserId is required");
   }
 
-  const sessionKey = generateSessionKey();
-  const sessionKeyHashed = hashSessionKey(sessionKey);
+  const authToken = generateAuthToken();
+  const authTokenHashed = hashAuthToken(authToken);
   const createdSourceKnowledge = await createParentKnowledge({
     ...knowledge,
-    sessionKeyHashed,
+    authTokenHashed,
     userId: authUserId,
     isOrigin: true,
   });
@@ -216,7 +216,7 @@ async function createKnowledge({
   // TOODO: rebuild the knowledge with the connections and media assets
   return {
     knowledge: createdSourceKnowledge,
-    sessionKey,
+    authToken,
   };
 }
 
@@ -227,7 +227,7 @@ export const knowledgeRouter = tsr
     routerBuilder
       .middleware<TSRAuthContext>(authMiddleware)
       .handler(async ({ body }, { request: { user } }) => {
-        const { knowledge, sessionKey } = await createKnowledge({
+        const { knowledge, authToken } = await createKnowledge({
           knowledge: body,
           authUserId: user.id,
         });
@@ -235,7 +235,7 @@ export const knowledgeRouter = tsr
         const response = {
           ...knowledge,
           url: `${getBaseUrl()}/${user.username}/${knowledge.slug}`,
-          sessionKey,
+          authToken,
         };
         return {
           status: 200,

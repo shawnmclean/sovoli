@@ -83,9 +83,9 @@ const BaseUpsertKnowledgeSchemaResponse = z.intersection(
   SelectKnowledgeSchema,
   z.object({
     url: z.string().url(),
-    sessionKey: z.string().openapi({
+    authToken: z.string().openapi({
       description:
-        "The unique session key for the knowledge to use for updating it if the knowledge is created by a bot.",
+        "The auth token for the knowledge to use for updating it if the knowledge is created by a bot.",
     }),
   }),
 );
@@ -112,14 +112,14 @@ const PutConnectionSchema = BaseConnectionSchema.extend({
     description:
       "The unique ID of the connection, required for updates. If this is omitted, the connection will be created.",
   }),
-  sessionKey: z.string().optional().openapi({
-    description:
-      "The unique session key for the knowledge to use for updating it if the knowledge was created by a bot such as ChatGPT.",
-  }),
 });
 
 const PutKnowledgeSchemaRequest = BaseUpsertKnowledgeSchemaRequest.extend({
   connections: z.array(PutConnectionSchema).optional(),
+  authToken: z.string().optional().openapi({
+    description:
+      "This token is mandatory for updates if the knowledge was created by a bot such as ChatGPT.",
+  }),
 
   removeConnections: z
     .array(

@@ -36,7 +36,7 @@ export const Knowledge = pgTable(
 
     // this is used for bot accounts who create a knowledge but needs to update in in the same session.
     // since bots are used by other users, such as chatgpt, we cannot allow them to update knowledge created by other users.
-    sessionKeyHashed: varchar("session_key_hashed", { length: 255 }),
+    authTokenHashed: varchar("auth_token_hashed", { length: 255 }),
 
     // this will hold the thoughts of the knowledge, in markdown format.
     content: text("content"),
