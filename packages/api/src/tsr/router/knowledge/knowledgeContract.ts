@@ -107,44 +107,47 @@ export type PostKnowledgeSchemaRequest = z.infer<
 
 // #region PUT /knowledge/:id Schamas
 
-const PutConnectionSchema = BaseConnectionSchema.extend({
+const PutConnectionSchema = BaseConnectionSchema.partial().extend({
   id: z.string().optional().openapi({
     description:
       "The unique ID of the connection, required for updates. If this is omitted, the connection will be created.",
   }),
 });
 
-const PutKnowledgeSchemaRequest = BaseUpsertKnowledgeSchemaRequest.extend({
-  connections: z.array(PutConnectionSchema).optional(),
-  authToken: z.string().optional().openapi({
-    description:
-      "This token is mandatory for updates if the knowledge was created by a bot such as ChatGPT.",
-  }),
-
-  removeConnections: z
-    .array(
-      z.object({
-        id: z.string().openapi({
-          description:
-            "The unique ID of the connection to remove. This is required for deleting a connection.",
-        }),
-      }),
-    )
-    .optional()
-    .openapi({
+const PutKnowledgeSchemaRequest =
+  BaseUpsertKnowledgeSchemaRequest.partial().extend({
+    connections: z.array(PutConnectionSchema).optional(),
+    authToken: z.string().optional().openapi({
       description:
-        "List of connections to be removed. Each entry should include the `connectionId`.",
+        "This token is mandatory for updates if the knowledge was created by a bot such as ChatGPT.",
     }),
 
-  removeMediaAssets: z.array(
-    z.object({
-      id: z.string().openapi({
+    removeConnections: z
+      .array(
+        z.object({
+          id: z.string().openapi({
+            description:
+              "The unique ID of the connection to remove. This is required for deleting a connection.",
+          }),
+        }),
+      )
+      .optional()
+      .openapi({
         description:
-          "The unique ID of the media asset to remove. This is required for deleting a media asset.",
+          "List of connections to be removed. Each entry should include the `connectionId`.",
       }),
-    }),
-  ),
-});
+
+    removeMediaAssets: z
+      .array(
+        z.object({
+          id: z.string().openapi({
+            description:
+              "The unique ID of the media asset to remove. This is required for deleting a media asset.",
+          }),
+        }),
+      )
+      .optional(),
+  });
 
 const PutKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse;
 
