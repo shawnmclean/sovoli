@@ -87,9 +87,8 @@ async function createKnowledge({
     throw new Error("authUserId is required");
   }
   const createdSourceKnowledge = await createParentKnowledge({
-    title: knowledge.title,
+    ...knowledge,
     userId: authUserId,
-    type: knowledge.type,
     isOrigin: true,
   });
 
