@@ -10,7 +10,29 @@ import { z } from "zod";
 
 extendZodWithOpenApi(z);
 
-const PostKnowledgeSchemaRequest = z.object({
+// #region Shared Schemas
+
+// Base schema for connections without connectionId (used for creating connections)
+const BaseConnectionSchema = z.object({
+  notes: z.string().openapi({
+    description:
+      "Additional notes in markdown format about the connection such as why it was recommended or added to the collection.",
+  }),
+  order: z.number(),
+  type: z.enum(KnowledgeConnectionTypes),
+
+  metadata: KnowledgeConnectionMetadataSchema.optional(),
+
+  targetKnowledge: z.object({
+    query: z.string().openapi({
+      description:
+        "The query is used to search for the book. If the book is already in your knowledge library, it will be linked. Example: `{title} {author}`",
+    }),
+    type: z.enum(KnowledgeTypes),
+  }),
+});
+
+const BaseUpsertKnowledgeSchemaRequest = z.object({
   openaiFileIdRefs: z
     .array(
       z.object({
@@ -55,40 +77,81 @@ const PostKnowledgeSchemaRequest = z.object({
       examples: ["Full page text"],
     }),
   type: z.enum(KnowledgeTypes),
-
-  connections: z
-    .array(
-      z.object({
-        notes: z.string().openapi({
-          description:
-            "Additional notes in markdown format about the connection such as why it was recommended or added to the collection.",
-        }),
-        order: z.number(),
-        type: z.enum(KnowledgeConnectionTypes),
-
-        metadata: KnowledgeConnectionMetadataSchema.optional(),
-
-        // object type is structured for inference
-        targetKnowledge: z.object({
-          query: z.string().openapi({
-            description:
-              "The query is used to search for the book. If the book is already in your knowledge library, it will be linked. Example: `{title} {author}`",
-          }),
-          type: z.enum(KnowledgeTypes),
-        }),
-      }),
-    )
-    .optional(),
 });
 
-const PostKnowledgeSchemaResponse = z.intersection(
+const BaseUpsertKnowledgeSchemaResponse = z.intersection(
   SelectKnowledgeSchema,
-  z.object({ url: z.string().url() }),
+  z.object({
+    url: z.string().url(),
+    sessionKey: z.string().openapi({
+      description:
+        "The unique session key for the knowledge to use for updating it if the knowledge is created by a bot.",
+    }),
+  }),
 );
+
+// #endregion
+
+// #region POST /knowledge Schamas
+const PostKnowledgeSchemaRequest = BaseUpsertKnowledgeSchemaRequest.extend({
+  connections: z.array(BaseConnectionSchema).optional(),
+});
+
+const PostKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse;
 
 export type PostKnowledgeSchemaRequest = z.infer<
   typeof PostKnowledgeSchemaRequest
 >;
+
+// #endregion
+
+// #region PUT /knowledge/:id Schamas
+
+const PutConnectionSchema = BaseConnectionSchema.extend({
+  connectionId: z.string().optional().openapi({
+    description: "The unique ID of the connection, required for updates.",
+  }),
+  sessionKey: z.string().optional().openapi({
+    description:
+      "The unique session key for the knowledge to use for updating it if the knowledge was created by a bot.",
+  }),
+});
+
+const PutKnowledgeSchemaRequest = BaseUpsertKnowledgeSchemaRequest.extend({
+  connections: z.array(PutConnectionSchema).optional(),
+
+  removeConnections: z
+    .array(
+      z.object({
+        id: z.string().openapi({
+          description:
+            "The unique ID of the connection to remove. This is required for deleting a connection.",
+        }),
+      }),
+    )
+    .optional()
+    .openapi({
+      description:
+        "List of connections to be removed. Each entry should include the `connectionId`.",
+    }),
+
+  removeMediaAssets: z.array(
+    z.object({
+      id: z.string().openapi({
+        description:
+          "The unique ID of the media asset to remove. This is required for deleting a media asset.",
+      }),
+    }),
+  ),
+});
+
+const PutKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse;
+
+export type PutKnowledgeSchemaRequest = z.infer<
+  typeof PutKnowledgeSchemaRequest
+>;
+
+// #endregion
 
 const c = initContract();
 
@@ -100,6 +163,14 @@ export const knowledgeContract = c.router(
       body: PostKnowledgeSchemaRequest,
       responses: {
         200: PostKnowledgeSchemaResponse,
+      },
+    },
+    putKnowledge: {
+      method: "PUT",
+      path: `/:id`,
+      body: PutKnowledgeSchemaRequest,
+      responses: {
+        200: PutKnowledgeSchemaResponse,
       },
     },
   },

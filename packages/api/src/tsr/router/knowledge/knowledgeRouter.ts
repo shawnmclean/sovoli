@@ -1,3 +1,4 @@
+import { createHash, randomBytes } from "crypto";
 import type {
   InsertKnowledgeConnectionSchema,
   InsertKnowledgeSchema,
@@ -79,6 +80,14 @@ async function createParentKnowledge(knowledge: InsertKnowledgeSchema) {
   return createdSourceKnowledge;
 }
 
+function generateSessionKey() {
+  return randomBytes(32).toString("hex");
+}
+
+function hashSessionKey(key: string) {
+  return createHash("sha256").update(key).digest("hex");
+}
+
 async function createKnowledge({
   knowledge,
   authUserId,
@@ -86,8 +95,12 @@ async function createKnowledge({
   if (!authUserId) {
     throw new Error("authUserId is required");
   }
+
+  const sessionKey = generateSessionKey();
+  const sessionKeyHashed = hashSessionKey(sessionKey);
   const createdSourceKnowledge = await createParentKnowledge({
     ...knowledge,
+    sessionKeyHashed,
     userId: authUserId,
     isOrigin: true,
   });
@@ -201,7 +214,10 @@ async function createKnowledge({
   }
 
   // TOODO: rebuild the knowledge with the connections and media assets
-  return createdSourceKnowledge;
+  return {
+    knowledge: createdSourceKnowledge,
+    sessionKey,
+  };
 }
 
 export const knowledgeRouter = tsr
@@ -211,18 +227,27 @@ export const knowledgeRouter = tsr
     routerBuilder
       .middleware<TSRAuthContext>(authMiddleware)
       .handler(async ({ body }, { request: { user } }) => {
-        const createdKnowledge = await createKnowledge({
+        const { knowledge, sessionKey } = await createKnowledge({
           knowledge: body,
           authUserId: user.id,
         });
 
         const response = {
-          ...createdKnowledge,
-          url: `${getBaseUrl()}/${user.username}/${createdKnowledge.slug}`,
+          ...knowledge,
+          url: `${getBaseUrl()}/${user.username}/${knowledge.slug}`,
+          sessionKey,
         };
         return {
           status: 200,
           body: response,
         };
+      }),
+  )
+  .routeWithMiddleware("putKnowledge", (routerBuilder) =>
+    routerBuilder
+      .middleware<TSRAuthContext>(authMiddleware)
+      .handler(({ body }, { request: { user } }) => {
+        console.log(body, user);
+        throw new Error("Not implemented");
       }),
   );
