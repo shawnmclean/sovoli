@@ -108,12 +108,13 @@ export type PostKnowledgeSchemaRequest = z.infer<
 // #region PUT /knowledge/:id Schamas
 
 const PutConnectionSchema = BaseConnectionSchema.extend({
-  connectionId: z.string().optional().openapi({
-    description: "The unique ID of the connection, required for updates.",
+  id: z.string().optional().openapi({
+    description:
+      "The unique ID of the connection, required for updates. If this is omitted, the connection will be created.",
   }),
   sessionKey: z.string().optional().openapi({
     description:
-      "The unique session key for the knowledge to use for updating it if the knowledge was created by a bot.",
+      "The unique session key for the knowledge to use for updating it if the knowledge was created by a bot such as ChatGPT.",
   }),
 });
 
