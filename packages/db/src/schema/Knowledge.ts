@@ -88,7 +88,7 @@ export type SelectKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema> & {
 export const SelectKnowledgeSchema = BaseKnowledgeSchema.extend({
   User: SelectUserSchema.nullish(),
   MediaAssets: z.array(SelectMediaAssetSchema),
-  SourceConnections: z.lazy(() => z.array(SelectKnowledgeConnectionSchema)), // Recursive connections
+  SourceConnections: z.lazy(() => SelectKnowledgeConnectionSchema.array()), // Recursive connections
   Book: SelectBookSchema.nullish(),
 });
 

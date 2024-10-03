@@ -156,7 +156,7 @@ async function getKnowledgeBySlug({
           'username', ${schema.User.username},
           'name', ${schema.User.name}
         ),
-        'Connections', json_build_array(),
+        'SourceConnections', json_build_array(),
         'Book', CASE
           WHEN ${schema.Book.id} IS NOT NULL THEN JSON_BUILD_OBJECT(
             'id', ${schema.Book.id},
@@ -235,7 +235,7 @@ async function getKnowledgeBySlug({
 
     return rest;
   });
-  knowledgeResult.Connections = cleanedConnections;
+  knowledgeResult.SourceConnections = cleanedConnections;
 
   return {
     knowledge: knowledgeResult,

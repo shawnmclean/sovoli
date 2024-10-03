@@ -103,7 +103,7 @@ export const createKnowledge = async ({
         if (targetKnowledge) {
           const completeTargetKnowledge: SelectKnowledgeSchema = {
             ...targetKnowledge,
-            Connections: [],
+            SourceConnections: [],
             MediaAssets: [],
           };
 
@@ -112,7 +112,7 @@ export const createKnowledge = async ({
             ...connection,
             TargetKnowledge: completeTargetKnowledge, // Properly attach target knowledge
           };
-          createdSourceKnowledge.Connections.push(selectConnection);
+          createdSourceKnowledge.SourceConnections.push(selectConnection);
         } else {
           throw new Error(
             `TargetKnowledge with id ${connection.targetKnowledgeId} not found`,
@@ -122,10 +122,10 @@ export const createKnowledge = async ({
     });
   }
 
-  if (createdSourceKnowledge.Connections.length > 0) {
+  if (createdSourceKnowledge.SourceConnections.length > 0) {
     await hydrateKnowledge.batchTrigger([
       { payload: { knowledgeId: createdSourceKnowledge.id } }, // add the source knowledge to the queue
-      ...createdSourceKnowledge.Connections.map((connection) => ({
+      ...createdSourceKnowledge.SourceConnections.map((connection) => ({
         // add the connections to the queue
         payload: { knowledgeId: connection.targetKnowledgeId },
       })),
@@ -168,7 +168,7 @@ const createParentKnowledge = async (knowledge: InsertKnowledgeSchema) => {
         createdSourceKnowledge = {
           ...sourceKnowledges[0],
           MediaAssets: [],
-          Connections: [],
+          SourceConnections: [],
         };
         break;
       }

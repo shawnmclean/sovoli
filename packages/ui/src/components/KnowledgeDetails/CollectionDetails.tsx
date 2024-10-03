@@ -25,7 +25,7 @@ export default function CollectionDetails({ knowledge }: Props) {
           <VStack space="lg">
             <Heading size="lg">Collections</Heading>
             <VStack className="h-full" space="md">
-              {knowledge.Connections.map((connection, index) => {
+              {knowledge.SourceConnections.map((connection, index) => {
                 return <ConnectionItem item={connection} key={index} />;
               })}
             </VStack>
