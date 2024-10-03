@@ -1,4 +1,3 @@
-import { createHash, randomBytes } from "crypto";
 import type {
   InsertKnowledgeConnectionSchema,
   InsertKnowledgeSchema,
@@ -11,6 +10,7 @@ import { MediaAssetHost } from "@sovoli/db/schema";
 
 import type { PostKnowledgeSchemaRequest } from "../../tsr/router/knowledge/knowledgeContract";
 import { hydrateKnowledge, hydrateMedia } from "../../trigger";
+import { generateAuthToken, hashAuthToken } from "../../utils/authTokens";
 import { slugify } from "../../utils/slugify";
 
 export interface CreateKnowledgeOptions {
@@ -191,11 +191,3 @@ const createParentKnowledge = async (knowledge: InsertKnowledgeSchema) => {
 
   return createdSourceKnowledge;
 };
-
-function generateAuthToken() {
-  return randomBytes(32).toString("hex");
-}
-
-function hashAuthToken(key: string) {
-  return createHash("sha256").update(key).digest("hex");
-}

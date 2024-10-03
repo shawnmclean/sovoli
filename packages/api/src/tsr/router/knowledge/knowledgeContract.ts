@@ -79,16 +79,9 @@ const BaseUpsertKnowledgeSchemaRequest = z.object({
   type: z.enum(KnowledgeTypes),
 });
 
-const BaseUpsertKnowledgeSchemaResponse = z.intersection(
-  SelectKnowledgeSchema,
-  z.object({
-    url: z.string().url(),
-    authToken: z.string().openapi({
-      description:
-        "The auth token for the knowledge to use for updating it if the knowledge is created by a bot.",
-    }),
-  }),
-);
+const BaseUpsertKnowledgeSchemaResponse = SelectKnowledgeSchema.extend({
+  url: z.string().url(),
+});
 
 // #endregion
 
@@ -97,7 +90,12 @@ const PostKnowledgeSchemaRequest = BaseUpsertKnowledgeSchemaRequest.extend({
   connections: z.array(BaseConnectionSchema).optional(),
 });
 
-const PostKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse;
+const PostKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse.extend({
+  authToken: z.string().openapi({
+    description:
+      "The auth token for the knowledge to use for updating it if the knowledge is created by a bot.",
+  }),
+});
 
 export type PostKnowledgeSchemaRequest = z.infer<
   typeof PostKnowledgeSchemaRequest
@@ -172,6 +170,9 @@ export const knowledgeContract = c.router(
     putKnowledge: {
       method: "PUT",
       path: `/:id`,
+      pathParams: z.object({
+        id: z.coerce.string(),
+      }),
       body: PutKnowledgeSchemaRequest,
       responses: {
         200: PutKnowledgeSchemaResponse,

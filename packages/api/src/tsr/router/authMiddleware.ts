@@ -1,9 +1,10 @@
+import type { AuthUser } from "@supabase/supabase-js";
 import { TsRestResponse } from "@ts-rest/serverless/fetch";
 
 import type { TSRAuthContext } from "../types";
 
 export const authMiddleware = (req: TSRAuthContext) => {
-  if (!req.session?.user) {
+  if (!req.session?.user?.id) {
     return TsRestResponse.fromJson(
       {
         message: "Unauthorized",
@@ -12,5 +13,5 @@ export const authMiddleware = (req: TSRAuthContext) => {
     );
   }
 
-  req.user = req.session.user;
+  req.user = req.session.user as AuthUser;
 };

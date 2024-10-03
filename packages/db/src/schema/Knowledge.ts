@@ -85,13 +85,12 @@ export type SelectKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema> & {
 };
 
 // Recursive schema for Knowledge
-export const SelectKnowledgeSchema: z.ZodType<SelectKnowledgeSchema> =
-  BaseKnowledgeSchema.extend({
-    User: SelectUserSchema.nullish(),
-    MediaAssets: z.array(SelectMediaAssetSchema),
-    Connections: z.lazy(() => z.array(SelectKnowledgeConnectionSchema)), // Recursive connections
-    Book: SelectBookSchema.nullish(),
-  });
+export const SelectKnowledgeSchema = BaseKnowledgeSchema.extend({
+  User: SelectUserSchema.nullish(),
+  MediaAssets: z.array(SelectMediaAssetSchema),
+  Connections: z.lazy(() => z.array(SelectKnowledgeConnectionSchema)), // Recursive connections
+  Book: SelectBookSchema.nullish(),
+});
 
 export const InsertKnowledgeSchema = createInsertSchema(Knowledge);
 export type InsertKnowledgeSchema = z.infer<typeof InsertKnowledgeSchema>;
