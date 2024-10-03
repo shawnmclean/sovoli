@@ -79,7 +79,7 @@ export type BaseKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema>;
 // Manually defining Knowledge type to handle recursion
 export type SelectKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema> & {
   User?: SelectUserSchema | null;
-  Connections: SelectKnowledgeConnectionSchema[];
+  SourceConnections: SelectKnowledgeConnectionSchema[];
   MediaAssets: SelectMediaAssetSchema[];
   Book?: SelectBookSchema | null;
 };
@@ -88,7 +88,7 @@ export type SelectKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema> & {
 export const SelectKnowledgeSchema = BaseKnowledgeSchema.extend({
   User: SelectUserSchema.nullish(),
   MediaAssets: z.array(SelectMediaAssetSchema),
-  Connections: z.lazy(() => z.array(SelectKnowledgeConnectionSchema)), // Recursive connections
+  SourceConnections: z.lazy(() => z.array(SelectKnowledgeConnectionSchema)), // Recursive connections
   Book: SelectBookSchema.nullish(),
 });
 

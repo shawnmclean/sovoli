@@ -17,7 +17,7 @@ export const updateKnowledge = async ({
       User: {
         columns: { id: true, type: true },
       },
-      Connections: true,
+      SourceConnections: true,
       MediaAssets: true,
     },
     where: and(
