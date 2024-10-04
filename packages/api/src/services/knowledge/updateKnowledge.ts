@@ -1,7 +1,9 @@
+import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { and, db, eq, inArray, schema } from "@sovoli/db";
-import { SelectKnowledgeSchema } from "@sovoli/db/schema";
+import { UserType } from "@sovoli/db/schema";
 
 import type { PutKnowledgeSchemaRequest } from "../../tsr/router/knowledge/knowledgeContract";
+import { hashAuthToken } from "../../utils/authTokens";
 
 export interface CreateKnowledgeOptions {
   authUserId: string;
@@ -30,6 +32,17 @@ export const updateKnowledge = async ({
 
   if (!knowledgeToUpdate) {
     throw Error("User does not have the rights to modify the knowledge");
+  }
+  // if the user is a bot, it can only update knowledge with the same auth token
+  if (knowledgeToUpdate.User.type === UserType.Bot) {
+    const token = knowledge.authToken;
+    if (!token) {
+      throw Error("Bot knowledge must have an auth token");
+    }
+    const hashedToken = hashAuthToken(token);
+    if (hashedToken !== knowledgeToUpdate.authTokenHashed) {
+      throw Error("Bot knowledge must have the same auth token");
+    }
   }
 
   // update the parent knowledge
