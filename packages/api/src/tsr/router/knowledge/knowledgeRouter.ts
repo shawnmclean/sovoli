@@ -39,10 +39,13 @@ export const knowledgeRouter = tsr
           knowledge: body,
           authUserId: user.id,
         });
+
         const response = {
           ...knowledge,
           url: `${getBaseUrl()}/${user.username}/${knowledge.slug}`,
         };
+
+        console.log(response);
         return {
           status: 200,
           body: response,
