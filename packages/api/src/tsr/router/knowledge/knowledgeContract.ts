@@ -86,8 +86,11 @@ const BaseUpsertKnowledgeSchemaResponse = SelectKnowledgeSchema.extend({
 // #endregion
 
 // #region POST /knowledge Schamas
+const PostConnectionSchema = BaseConnectionSchema;
+export type PostConnectionSchema = z.infer<typeof PostConnectionSchema>;
+
 const PostKnowledgeSchemaRequest = BaseUpsertKnowledgeSchemaRequest.extend({
-  connections: BaseConnectionSchema.array().optional(),
+  connections: PostConnectionSchema.array().optional(),
 });
 
 const PostKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse.extend({

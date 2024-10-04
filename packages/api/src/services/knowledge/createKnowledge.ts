@@ -1,8 +1,6 @@
 import type {
-  InsertKnowledgeConnectionSchema,
   InsertKnowledgeSchema,
   InsertMediaAssetSchema,
-  SelectKnowledgeConnectionSchema,
   SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
 import { db, schema } from "@sovoli/db";
@@ -12,6 +10,7 @@ import type { PostKnowledgeSchemaRequest } from "../../tsr/router/knowledge/know
 import { hydrateKnowledge, hydrateMedia } from "../../trigger";
 import { generateAuthToken, hashAuthToken } from "../../utils/authTokens";
 import { slugify } from "../../utils/slugify";
+import { createConnections } from "./createConnections";
 
 export interface CreateKnowledgeOptions {
   authUserId: string;
@@ -49,77 +48,22 @@ export const createKnowledge = async ({
       .insert(schema.MediaAsset)
       .values(mediaAssets)
       .returning();
-    createdSourceKnowledge.MediaAssets = createdMediaAssets;
+    createdSourceKnowledge.MediaAssets = [
+      ...createdSourceKnowledge.MediaAssets,
+      ...createdMediaAssets,
+    ];
   }
 
-  // pull all target knowledge knowledge.connections array so we can batch insert them
-  const targetKnowledges: InsertKnowledgeSchema[] = [];
-  const connections: InsertKnowledgeConnectionSchema[] = [];
   if (knowledge.connections) {
-    for (const connection of knowledge.connections) {
-      // Collect target knowledge for batch insert
-      targetKnowledges.push({
-        query: connection.targetKnowledge.query,
-        type: connection.targetKnowledge.type,
-        userId: authUserId,
-      });
-
-      // Prepare connections with a placeholder for targetKnowledgeId
-      connections.push({
-        sourceKnowledgeId: createdSourceKnowledge.id,
-        targetKnowledgeId: "temp",
-        notes: connection.notes,
-        type: connection.type,
-        metadata: connection.metadata,
-      });
-    }
-  }
-  // use a transaction to submit all connections and target knowledge to ensure consistency
-  if (targetKnowledges.length > 0) {
-    await db.transaction(async (tx) => {
-      const createdTargetKnowledges = await tx
-        .insert(schema.Knowledge)
-        .values(targetKnowledges)
-        .returning();
-
-      createdTargetKnowledges.forEach((targetKnowledge, index) => {
-        if (connections[index]) {
-          connections[index].targetKnowledgeId = targetKnowledge.id; // Replace "temp" with actual ID
-        }
-      });
-
-      const createdConnections = await tx
-        .insert(schema.KnowledgeConnection)
-        .values(connections)
-        .returning();
-
-      createdConnections.forEach((connection) => {
-        // Find the corresponding `TargetKnowledge` from `createdTargetKnowledges` by matching `targetKnowledgeId`
-        const targetKnowledge = createdTargetKnowledges.find(
-          (targetKnowledge) =>
-            targetKnowledge.id === connection.targetKnowledgeId,
-        );
-
-        if (targetKnowledge) {
-          const completeTargetKnowledge: SelectKnowledgeSchema = {
-            ...targetKnowledge,
-            SourceConnections: [],
-            MediaAssets: [],
-          };
-
-          // Push the connection with its target knowledge into the source knowledge's connections array
-          const selectConnection: SelectKnowledgeConnectionSchema = {
-            ...connection,
-            TargetKnowledge: completeTargetKnowledge, // Properly attach target knowledge
-          };
-          createdSourceKnowledge.SourceConnections.push(selectConnection);
-        } else {
-          throw new Error(
-            `TargetKnowledge with id ${connection.targetKnowledgeId} not found`,
-          );
-        }
-      });
+    const createdConnections = await createConnections({
+      sourceKnowledgeId: createdSourceKnowledge.id,
+      authUserId,
+      connections: knowledge.connections,
     });
+    createdSourceKnowledge.SourceConnections = [
+      ...createdSourceKnowledge.SourceConnections,
+      ...createdConnections,
+    ];
   }
 
   if (createdSourceKnowledge.SourceConnections.length > 0) {
