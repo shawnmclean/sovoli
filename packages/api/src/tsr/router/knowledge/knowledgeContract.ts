@@ -87,7 +87,7 @@ const BaseUpsertKnowledgeSchemaResponse = SelectKnowledgeSchema.extend({
 
 // #region POST /knowledge Schamas
 const PostKnowledgeSchemaRequest = BaseUpsertKnowledgeSchemaRequest.extend({
-  connections: z.array(BaseConnectionSchema).optional(),
+  connections: BaseConnectionSchema.array().optional(),
 });
 
 const PostKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse.extend({
@@ -114,7 +114,7 @@ const PutConnectionSchema = BaseConnectionSchema.partial().extend({
 
 const PutKnowledgeSchemaRequest =
   BaseUpsertKnowledgeSchemaRequest.partial().extend({
-    connections: z.array(PutConnectionSchema).optional(),
+    connections: PutConnectionSchema.array().optional(),
     authToken: z.string().optional().openapi({
       description:
         "This token is mandatory for updates if the knowledge was created by a bot such as ChatGPT.",

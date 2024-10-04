@@ -44,8 +44,6 @@ export const knowledgeRouter = tsr
           ...knowledge,
           url: `${getBaseUrl()}/${user.username}/${knowledge.slug}`,
         };
-
-        console.log(response);
         return {
           status: 200,
           body: response,
