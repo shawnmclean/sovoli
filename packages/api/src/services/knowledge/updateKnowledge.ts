@@ -1,14 +1,21 @@
+import type { SQL } from "@sovoli/db";
 import type {
   InsertMediaAssetSchema,
   SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
-import { and, db, eq, inArray, schema } from "@sovoli/db";
-import { MediaAssetHost, UserType } from "@sovoli/db/schema";
+import { and, db, eq, inArray, schema, sql } from "@sovoli/db";
+import {
+  knowledgeConnectionTypeEnum,
+  MediaAssetHost,
+  UserType,
+} from "@sovoli/db/schema";
 
-import type { PutKnowledgeSchemaRequest } from "../../tsr/router/knowledge/knowledgeContract";
+import type {
+  PutKnowledgeSchemaRequest,
+  UpdateConnectionSchema,
+} from "../../tsr/router/knowledge/knowledgeContract";
 import { hashAuthToken } from "../../utils/authTokens";
 import { createConnections } from "./createConnections";
-import { updateConnections } from "./updateConnections";
 
 export interface CreateKnowledgeOptions {
   authUserId: string;
@@ -21,13 +28,22 @@ export const updateKnowledge = async ({
   knowledgeId,
   knowledge,
 }: CreateKnowledgeOptions) => {
+  // Filter out connections that don't have an id (i.e., connections being added)
+  const mutationConnectionIds = knowledge.connections
+    ?.filter((c) => c.action !== "add") // Only keep connections that are not "add"
+    .map((c) => c.id);
+
   const knowledgeToUpdate = await db.query.Knowledge.findFirst({
     with: {
       User: {
         columns: { id: true, type: true },
       },
-      SourceConnections: true,
-      MediaAssets: true,
+      SourceConnections: {
+        where: inArray(
+          schema.KnowledgeConnection.id,
+          mutationConnectionIds ?? [],
+        ),
+      },
     },
     where: and(
       eq(schema.Knowledge.id, knowledgeId),
@@ -35,9 +51,12 @@ export const updateKnowledge = async ({
     ),
   });
 
+  // #region Auth Checks
+
   if (!knowledgeToUpdate) {
     throw Error("User does not have the rights to modify the knowledge");
   }
+
   // if the user is a bot, it can only update knowledge with the same auth token
   if (knowledgeToUpdate.User.type === UserType.Bot) {
     const token = knowledge.authToken;
@@ -50,24 +69,56 @@ export const updateKnowledge = async ({
     }
   }
 
-  // update the parent knowledge
-  const updatedKnowledges = await db
-    .update(schema.Knowledge)
-    .set({
-      ...knowledge,
-    })
-    .where(eq(schema.Knowledge.id, knowledgeId))
-    .returning();
+  // check that all connections are in the knowledgeToUpdate.SourceConnections
+  // if any is missing, throw an error that the connection is not found as part of the knowledge
+  const sourceConnectionIds = knowledgeToUpdate.SourceConnections.map(
+    (conn) => conn.id,
+  );
+  const invalidIds = mutationConnectionIds?.filter(
+    (id) => !sourceConnectionIds.includes(id),
+  );
 
-  if (!updatedKnowledges[0]) {
-    throw Error("Knowledge not found/updated");
+  // If there are invalid ids, throw an error
+  if (invalidIds && invalidIds.length > 0) {
+    throw new Error(
+      `Invalid connection(s): ${invalidIds.join(", ")} are not part of the current knowledge.`,
+    );
   }
 
-  const updatedKnowledge: SelectKnowledgeSchema = {
-    ...updatedKnowledges[0],
+  // #endregion
+
+  let updatedKnowledge: SelectKnowledgeSchema = {
+    ...knowledgeToUpdate,
     MediaAssets: [],
     SourceConnections: [],
   };
+
+  const fieldsToUpdate = Object.fromEntries(
+    Object.entries({
+      title: knowledge.title,
+      description: knowledge.description,
+      content: knowledge.content,
+      context: knowledge.context,
+      contextDescription: knowledge.contextDescription,
+      type: knowledge.type,
+    }).filter(([_, value]) => value !== undefined),
+  );
+
+  if (Object.keys(fieldsToUpdate).length > 0) {
+    const updatedKnowledges = await db
+      .update(schema.Knowledge)
+      .set(fieldsToUpdate)
+      .where(eq(schema.Knowledge.id, knowledgeId))
+      .returning();
+    if (!updatedKnowledges[0]) {
+      throw Error("Knowledge not found/updated");
+    }
+    // Merge the database updated fields back into updatedKnowledge
+    updatedKnowledge = {
+      ...updatedKnowledge,
+      ...updatedKnowledges[0], // merge updated values from DB
+    };
+  }
 
   if (knowledge.connections) {
     const connectionsToUpdate = knowledge.connections.filter(
@@ -81,9 +132,7 @@ export const updateKnowledge = async ({
     );
 
     const [updatedConnections, createdConnections] = await Promise.all([
-      updateConnections({
-        connections: connectionsToUpdate,
-      }),
+      updateConnections(connectionsToUpdate),
       createConnections({
         sourceKnowledgeId: updatedKnowledge.id,
         authUserId,
@@ -138,4 +187,66 @@ export const updateKnowledge = async ({
   }
 
   return updatedKnowledge;
+};
+
+const updateConnections = async (connections: UpdateConnectionSchema[]) => {
+  if (connections.length === 0) {
+    return [];
+  }
+
+  const ids: string[] = connections.map((input) => input.id);
+
+  const sqlChunksForNotes: SQL[] = [sql`(case`];
+  const sqlChunksForType: SQL[] = [sql`(case`];
+  const sqlChunksForMetadata: SQL[] = [sql`(case`];
+
+  for (const input of connections) {
+    if (input.notes !== undefined) {
+      sqlChunksForNotes.push(
+        sql`when ${schema.KnowledgeConnection.id} = ${input.id} then ${input.notes}`,
+      );
+    }
+
+    if (input.type !== undefined) {
+      sqlChunksForType.push(
+        sql`when ${schema.KnowledgeConnection.id} = ${input.id} then ${input.type}::${sql.raw(knowledgeConnectionTypeEnum.enumName)}`,
+      );
+    }
+
+    if (input.metadata !== undefined) {
+      sqlChunksForMetadata.push(
+        sql`when ${schema.KnowledgeConnection.id} = ${input.id} then ${input.metadata}::jsonb`,
+      );
+    }
+  }
+
+  sqlChunksForNotes.push(sql`end)`);
+  sqlChunksForType.push(sql`end)`);
+  sqlChunksForMetadata.push(sql`end)`);
+
+  // join the chunks, if there less than 3, (case and end) then keep as undefined so we don't set that
+  const finalNotesSql =
+    sqlChunksForNotes.length > 2
+      ? sql.join(sqlChunksForNotes, sql.raw(" "))
+      : undefined;
+  const finalTypeSql =
+    sqlChunksForType.length > 2
+      ? sql.join(sqlChunksForType, sql.raw(" "))
+      : undefined;
+  const finalMetadataSql =
+    sqlChunksForMetadata.length > 2
+      ? sql.join(sqlChunksForMetadata, sql.raw(" "))
+      : undefined;
+
+  const updatedKnowledgeConnections = await db
+    .update(schema.KnowledgeConnection)
+    .set({
+      notes: finalNotesSql,
+      type: finalTypeSql,
+      metadata: finalMetadataSql,
+    })
+    .where(inArray(schema.KnowledgeConnection.id, ids))
+    .returning();
+
+  return updatedKnowledgeConnections;
 };

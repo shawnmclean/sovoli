@@ -29,7 +29,7 @@ export const User = pgTable("user", {
   image: text("image"),
 });
 
-export const SelectUserSchema = createSelectSchema(User);
+export const SelectUserSchema = createSelectSchema(User).partial();
 export type SelectUserSchema = z.infer<typeof SelectUserSchema>;
 
 export const Account = pgTable(
