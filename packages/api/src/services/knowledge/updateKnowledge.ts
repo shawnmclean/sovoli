@@ -1,8 +1,5 @@
 import type {
-  InsertKnowledgeConnectionSchema,
-  InsertKnowledgeSchema,
   InsertMediaAssetSchema,
-  SelectKnowledgeConnectionSchema,
   SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
 import { and, db, eq, inArray, schema } from "@sovoli/db";
