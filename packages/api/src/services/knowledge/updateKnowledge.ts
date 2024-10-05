@@ -199,6 +199,7 @@ const updateConnections = async (connections: UpdateConnectionSchema[]) => {
   const sqlChunksForNotes: SQL[] = [sql`(case`];
   const sqlChunksForType: SQL[] = [sql`(case`];
   const sqlChunksForMetadata: SQL[] = [sql`(case`];
+  const sqlChunksForOrder: SQL[] = [sql`(case`];
 
   for (const input of connections) {
     if (input.notes !== undefined) {
@@ -218,11 +219,18 @@ const updateConnections = async (connections: UpdateConnectionSchema[]) => {
         sql`when ${schema.KnowledgeConnection.id} = ${input.id} then ${input.metadata}::jsonb`,
       );
     }
+
+    if (input.order !== undefined) {
+      sqlChunksForOrder.push(
+        sql`when ${schema.KnowledgeConnection.id} = ${input.id} then ${input.order}::integer`,
+      );
+    }
   }
 
   sqlChunksForNotes.push(sql`end)`);
   sqlChunksForType.push(sql`end)`);
   sqlChunksForMetadata.push(sql`end)`);
+  sqlChunksForOrder.push(sql`end)`);
 
   // join the chunks, if there less than 3, (case and end) then keep as undefined so we don't set that
   const finalNotesSql =
@@ -238,12 +246,18 @@ const updateConnections = async (connections: UpdateConnectionSchema[]) => {
       ? sql.join(sqlChunksForMetadata, sql.raw(" "))
       : undefined;
 
+  const finalOrderSql =
+    sqlChunksForOrder.length > 2
+      ? sql.join(sqlChunksForOrder, sql.raw(" "))
+      : undefined;
+
   const updatedKnowledgeConnections = await db
     .update(schema.KnowledgeConnection)
     .set({
       notes: finalNotesSql,
       type: finalTypeSql,
       metadata: finalMetadataSql,
+      order: finalOrderSql,
     })
     .where(inArray(schema.KnowledgeConnection.id, ids))
     .returning();
