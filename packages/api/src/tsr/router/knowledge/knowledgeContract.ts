@@ -107,13 +107,29 @@ export type PostKnowledgeSchemaRequest = z.infer<
 // #endregion
 
 // #region PUT /knowledge/:id Schamas
-
-const PutConnectionSchema = BaseConnectionSchema.partial().extend({
-  id: z.string().optional().openapi({
+const UpdateConnectionSchema = BaseConnectionSchema.partial().extend({
+  action: z.literal("update"),
+  id: z.string().openapi({
     description:
       "The unique ID of the connection, required for updates. If this is omitted, the connection will be created.",
   }),
 });
+const AddConnectionSchema = BaseConnectionSchema.extend({
+  action: z.literal("add"),
+});
+const RemoveConnectionSchema = z.object({
+  action: z.literal("remove"),
+  id: z.string().openapi({
+    description:
+      "The unique ID of the connection to remove. This is required for deleting a connection.",
+  }),
+});
+
+const PutConnectionSchema = z.discriminatedUnion("action", [
+  UpdateConnectionSchema,
+  AddConnectionSchema,
+  RemoveConnectionSchema,
+]);
 
 const PutKnowledgeSchemaRequest =
   BaseUpsertKnowledgeSchemaRequest.partial().extend({
@@ -122,21 +138,6 @@ const PutKnowledgeSchemaRequest =
       description:
         "This token is mandatory for updates if the knowledge was created by a bot such as ChatGPT.",
     }),
-
-    removeConnections: z
-      .array(
-        z.object({
-          id: z.string().openapi({
-            description:
-              "The unique ID of the connection to remove. This is required for deleting a connection.",
-          }),
-        }),
-      )
-      .optional()
-      .openapi({
-        description:
-          "List of connections to be removed. Each entry should include the `connectionId`.",
-      }),
 
     removeMediaAssets: z
       .array(
