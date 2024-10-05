@@ -18,6 +18,10 @@ export const createConnections = async ({
   authUserId,
   connections,
 }: CreateConnectionsOptions) => {
+  if (connections.length === 0) {
+    return [];
+  }
+
   // pull all target knowledge knowledge.connections array so we can batch insert them
   const targetKnowledges: InsertKnowledgeSchema[] = [];
   const connectionsToInsert: InsertKnowledgeConnectionSchema[] = [];

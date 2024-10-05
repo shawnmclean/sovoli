@@ -11,6 +11,7 @@ import { MediaAssetHost, UserType } from "@sovoli/db/schema";
 import type { PutKnowledgeSchemaRequest } from "../../tsr/router/knowledge/knowledgeContract";
 import { hashAuthToken } from "../../utils/authTokens";
 import { createConnections } from "./createConnections";
+import { updateConnections } from "./updateConnections";
 
 export interface CreateKnowledgeOptions {
   authUserId: string;
@@ -72,28 +73,38 @@ export const updateKnowledge = async ({
   };
 
   if (knowledge.connections) {
+    const connectionsToUpdate = knowledge.connections.filter(
+      (c) => c.action === "update",
+    );
     const connectionsToInsert = knowledge.connections.filter(
       (c) => c.action === "add",
     );
-    const createdConnections = await createConnections({
-      sourceKnowledgeId: updatedKnowledge.id,
-      authUserId,
-      connections: connectionsToInsert,
-    });
-    updatedKnowledge.SourceConnections = [
-      ...updatedKnowledge.SourceConnections,
-      ...createdConnections,
-    ];
-
     const connectionsToDelete = knowledge.connections.filter(
       (c) => c.action === "remove",
     );
-    await db.delete(schema.KnowledgeConnection).where(
-      inArray(
-        schema.KnowledgeConnection.id,
-        connectionsToDelete.map((c) => c.id),
+
+    const [updatedConnections, createdConnections] = await Promise.all([
+      updateConnections({
+        connections: connectionsToUpdate,
+      }),
+      createConnections({
+        sourceKnowledgeId: updatedKnowledge.id,
+        authUserId,
+        connections: connectionsToInsert,
+      }),
+      db.delete(schema.KnowledgeConnection).where(
+        inArray(
+          schema.KnowledgeConnection.id,
+          connectionsToDelete.map((c) => c.id),
+        ),
       ),
-    );
+    ]);
+
+    updatedKnowledge.SourceConnections = [
+      ...updatedKnowledge.SourceConnections,
+      ...createdConnections,
+      ...updatedConnections,
+    ];
   }
 
   // update/ add media assets

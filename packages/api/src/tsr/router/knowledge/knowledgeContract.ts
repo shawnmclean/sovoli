@@ -107,13 +107,15 @@ export type PostKnowledgeSchemaRequest = z.infer<
 // #endregion
 
 // #region PUT /knowledge/:id Schamas
-const UpdateConnectionSchema = BaseConnectionSchema.partial().extend({
+export const UpdateConnectionSchema = BaseConnectionSchema.partial().extend({
   action: z.literal("update"),
   id: z.string().openapi({
     description:
       "The unique ID of the connection, required for updates. If this is omitted, the connection will be created.",
   }),
 });
+export type UpdateConnectionSchema = z.infer<typeof UpdateConnectionSchema>;
+
 const AddConnectionSchema = BaseConnectionSchema.extend({
   action: z.literal("add"),
 });
