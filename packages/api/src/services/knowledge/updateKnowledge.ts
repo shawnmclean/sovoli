@@ -14,6 +14,7 @@ import type {
   PutKnowledgeSchemaRequest,
   UpdateConnectionSchema,
 } from "../../tsr/router/knowledge/knowledgeContract";
+import { hydrateKnowledge, hydrateMedia } from "../../trigger";
 import { hashAuthToken } from "../../utils/authTokens";
 import { createConnections } from "./createConnections";
 
@@ -177,7 +178,7 @@ export const updateKnowledge = async ({
 
   // if there are media assets in delete, remove those
   if (knowledge.removeMediaAssets) {
-    // TODO: clean up supabase storage first, (get path and delete)
+    // TODO: flag asset for deletion
     // await db.delete(schema.MediaAsset).where(
     //   inArray(
     //     schema.MediaAsset.id,
@@ -185,6 +186,29 @@ export const updateKnowledge = async ({
     //   ),
     // );
   }
+
+  const triggerPromises = [];
+  if (updatedKnowledge.SourceConnections.length > 0) {
+    const hydrateKnowledgePromise = hydrateKnowledge.batchTrigger([
+      { payload: { knowledgeId: updatedKnowledge.id } }, // add the source knowledge to the queue
+      ...updatedKnowledge.SourceConnections.map((connection) => ({
+        // add the connections to the queue
+        payload: { knowledgeId: connection.targetKnowledgeId },
+      })),
+    ]);
+
+    triggerPromises.push(hydrateKnowledgePromise);
+  }
+  if (updatedKnowledge.MediaAssets.length > 0) {
+    const hydrateMediaPromise = hydrateMedia.batchTrigger(
+      updatedKnowledge.MediaAssets.map((asset) => ({
+        payload: { mediaId: asset.id },
+      })),
+    );
+    triggerPromises.push(hydrateMediaPromise);
+  }
+
+  await Promise.all(triggerPromises);
 
   return updatedKnowledge;
 };

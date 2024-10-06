@@ -66,22 +66,28 @@ export const createKnowledge = async ({
     ];
   }
 
+  const triggerPromises = [];
   if (createdSourceKnowledge.SourceConnections.length > 0) {
-    await hydrateKnowledge.batchTrigger([
+    const hydrateKnowledgePromise = hydrateKnowledge.batchTrigger([
       { payload: { knowledgeId: createdSourceKnowledge.id } }, // add the source knowledge to the queue
       ...createdSourceKnowledge.SourceConnections.map((connection) => ({
         // add the connections to the queue
         payload: { knowledgeId: connection.targetKnowledgeId },
       })),
     ]);
+
+    triggerPromises.push(hydrateKnowledgePromise);
   }
   if (createdSourceKnowledge.MediaAssets.length > 0) {
-    await hydrateMedia.batchTrigger(
+    const hydrateMediaPromise = hydrateMedia.batchTrigger(
       createdSourceKnowledge.MediaAssets.map((asset) => ({
         payload: { mediaId: asset.id },
       })),
     );
+    triggerPromises.push(hydrateMediaPromise);
   }
+
+  await Promise.all(triggerPromises);
 
   // TOODO: rebuild the knowledge with the connections and media assets
   return {
