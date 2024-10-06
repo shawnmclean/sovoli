@@ -192,7 +192,7 @@ export const updateKnowledge = async ({
     const hydrateKnowledgePromise = hydrateKnowledge.batchTrigger([
       { payload: { knowledgeId: updatedKnowledge.id } }, // add the source knowledge to the queue
       ...updatedKnowledge.SourceConnections.map((connection) => ({
-        // add the connections to the queue
+        // add the connections to the queue, even if they belong to someone else or is hydrated already, its a tradeoff
         payload: { knowledgeId: connection.targetKnowledgeId },
       })),
     ]);

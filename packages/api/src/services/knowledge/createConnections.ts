@@ -51,6 +51,8 @@ export const createConnections = async ({
         .values(targetKnowledges)
         .returning();
 
+      // TODO: should we call trigger here instead of at the parent level?
+
       createdTargetKnowledges.forEach((targetKnowledge, index) => {
         if (connectionsToInsert[index]) {
           connectionsToInsert[index].targetKnowledgeId = targetKnowledge.id; // Replace "temp" with actual ID
