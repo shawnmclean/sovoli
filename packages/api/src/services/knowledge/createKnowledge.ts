@@ -56,9 +56,9 @@ export const createKnowledge = async ({
 
   if (knowledge.connections) {
     const createdConnections = await createConnections({
-      sourceKnowledgeId: createdSourceKnowledge.id,
       authUserId,
       connections: knowledge.connections,
+      parentKnowledge: createdSourceKnowledge,
     });
     createdSourceKnowledge.SourceConnections = [
       ...createdSourceKnowledge.SourceConnections,

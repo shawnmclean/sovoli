@@ -2,21 +2,22 @@ import type {
   InsertKnowledgeConnectionSchema,
   InsertKnowledgeSchema,
   SelectKnowledgeConnectionSchema,
+  SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
 import { db, schema } from "@sovoli/db";
 
 import type { PostConnectionSchema } from "../../tsr/router/knowledge/knowledgeContract";
 
 export interface CreateConnectionsOptions {
-  sourceKnowledgeId: string;
   authUserId: string;
+  parentKnowledge: SelectKnowledgeSchema;
   connections: PostConnectionSchema[];
 }
 
 export const createConnections = async ({
-  sourceKnowledgeId,
   authUserId,
   connections,
+  parentKnowledge,
 }: CreateConnectionsOptions) => {
   if (connections.length === 0) {
     return [];
@@ -32,11 +33,12 @@ export const createConnections = async ({
       query: connection.targetKnowledge.query,
       type: connection.targetKnowledge.type,
       userId: authUserId,
+      isPrivate: parentKnowledge.isPrivate,
     });
 
     // Prepare connections with a placeholder for targetKnowledgeId
     connectionsToInsert.push({
-      sourceKnowledgeId: sourceKnowledgeId,
+      sourceKnowledgeId: parentKnowledge.id,
       targetKnowledgeId: "temp",
       notes: connection.notes,
       type: connection.type,

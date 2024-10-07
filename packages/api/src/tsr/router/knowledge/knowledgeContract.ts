@@ -77,6 +77,8 @@ const BaseUpsertKnowledgeSchemaRequest = z.object({
       examples: ["Full page text"],
     }),
   type: z.enum(KnowledgeTypes),
+
+  iaPrivate: z.boolean().optional().default(false),
 });
 
 const BaseUpsertKnowledgeSchemaResponse = SelectKnowledgeSchema.extend({

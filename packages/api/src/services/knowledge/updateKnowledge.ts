@@ -102,6 +102,7 @@ export const updateKnowledge = async ({
       context: knowledge.context,
       contextDescription: knowledge.contextDescription,
       type: knowledge.type,
+      isPrivate: knowledge.iaPrivate,
     }).filter(([_, value]) => value !== undefined),
   );
 
@@ -133,9 +134,10 @@ export const updateKnowledge = async ({
     );
 
     const [updatedConnections, createdConnections] = await Promise.all([
+      // TODO: we may want to update all child connections, such as if the parent privacy changes, all child connections should be updated
       updateConnections(connectionsToUpdate),
       createConnections({
-        sourceKnowledgeId: updatedKnowledge.id,
+        parentKnowledge: updatedKnowledge,
         authUserId,
         connections: connectionsToInsert,
       }),
