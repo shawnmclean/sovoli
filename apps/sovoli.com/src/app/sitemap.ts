@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { db, eq, schema } from "@sovoli/db";
+import { and, db, eq, schema } from "@sovoli/db";
 
 import { getBaseUrl } from "~/utils/getBaseUrl";
 
@@ -14,9 +14,10 @@ export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     },
     columns: {
+      id: true,
       slug: true,
     },
-    where: eq(schema.Knowledge.isOrigin, true),
+    where: and(eq(schema.Knowledge.isPrivate, false)),
   });
 
   return [
@@ -29,7 +30,7 @@ export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     ...originKnowledges.map((knowledge) => ({
-      url: `${baseUrl}/${knowledge.User.username}/${knowledge.slug}`,
+      url: `${baseUrl}/${knowledge.User.username}/${knowledge.slug ?? knowledge.id}`,
       lastModified: new Date(),
     })),
   ];
