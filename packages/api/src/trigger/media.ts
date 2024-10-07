@@ -30,6 +30,17 @@ export const hydrateMedia = task({
     if (!media) {
       throw new Error(`Media not found for id: ${mediaId}`);
     }
+
+    // if flagged for deletion, remove the file and remove the entity
+    // TODO: what if flagged for deletion before the file is uploaded?
+    if (media.delete && media.host === MediaAssetHost.Supabase && media.path) {
+      await removeFile(media.path);
+      await db
+        .delete(schema.MediaAsset)
+        .where(eq(schema.MediaAsset.id, mediaId));
+      return;
+    }
+
     let updatedMedia: CopyFileToSupabaseResult | null = null;
     let errorMessage: string | null = null;
 
@@ -69,6 +80,16 @@ export const hydrateMedia = task({
 });
 
 const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY);
+
+async function removeFile(path: string) {
+  const { error } = await supabase.storage
+    .from(env.SUPABASE_MEDIA_BUCKET)
+    .remove([path]);
+
+  if (error) {
+    throw new Error(`Supabase remove error: ${error.message}`);
+  }
+}
 
 async function uploadFile(
   newFilename: string,

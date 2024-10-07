@@ -1,5 +1,6 @@
 import type { z } from "zod";
 import {
+  boolean,
   integer,
   pgEnum,
   pgTable,
@@ -35,6 +36,9 @@ export const MediaAsset = pgTable("media_asset", {
   // for openai
   name: text("name"),
   downloadLink: text("download_link"),
+
+  // if this is set to true, check the host and remove the file, then remove this entity
+  delete: boolean("delete"),
 
   triggerDevId: varchar("trigger_dev_id", { length: 255 }),
   triggerDevError: text("trigger_dev_error"),

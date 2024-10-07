@@ -143,13 +143,14 @@ const PutKnowledgeSchemaRequest =
         "This token is mandatory for updates if the knowledge was created by a bot such as ChatGPT.",
     }),
 
-    removeMediaAssets: z
+    assets: z
       .array(
         z.object({
           id: z.string().openapi({
             description:
               "The unique ID of the media asset to remove. This is required for deleting a media asset.",
           }),
+          action: z.literal("remove"),
         }),
       )
       .optional(),

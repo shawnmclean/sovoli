@@ -2,6 +2,7 @@ import type { SQL } from "@sovoli/db";
 import type {
   InsertMediaAssetSchema,
   SelectKnowledgeSchema,
+  SelectMediaAssetSchema,
 } from "@sovoli/db/schema";
 import { and, db, eq, inArray, schema, sql } from "@sovoli/db";
 import {
@@ -134,7 +135,7 @@ export const updateKnowledge = async ({
     );
 
     const [updatedConnections, createdConnections] = await Promise.all([
-      // TODO: we may want to update all child connections, such as if the parent privacy changes, all child connections should be updated
+      // TODO: we may want to update all child connections, such as if the parent privacy changes, all child connections should be updated (if they were created as part of the origin)
       updateConnections(connectionsToUpdate),
       createConnections({
         parentKnowledge: updatedKnowledge,
@@ -178,15 +179,26 @@ export const updateKnowledge = async ({
     updatedKnowledge.MediaAssets = createdMediaAssets;
   }
 
+  const assetsToDelete: SelectMediaAssetSchema[] = [];
   // if there are media assets in delete, remove those
-  if (knowledge.removeMediaAssets) {
-    // TODO: flag asset for deletion
-    // await db.delete(schema.MediaAsset).where(
-    //   inArray(
-    //     schema.MediaAsset.id,
-    //     knowledge.removeMediaAssets.map((c) => c.id),
-    //   ),
-    // );
+  if (knowledge.assets) {
+    const assetToDeleteIds = knowledge.assets.filter(
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      (c) => c.action === "remove",
+    );
+
+    const deletedAssets = await db
+      .update(schema.MediaAsset)
+      .set({ delete: true })
+      .where(
+        inArray(
+          schema.MediaAsset.id,
+          assetToDeleteIds.map((c) => c.id),
+        ),
+      )
+      .returning();
+
+    assetsToDelete.push(...deletedAssets);
   }
 
   const triggerPromises = [];
@@ -201,12 +213,15 @@ export const updateKnowledge = async ({
 
     triggerPromises.push(hydrateKnowledgePromise);
   }
-  if (updatedKnowledge.MediaAssets.length > 0) {
-    const hydrateMediaPromise = hydrateMedia.batchTrigger(
-      updatedKnowledge.MediaAssets.map((asset) => ({
+  if (updatedKnowledge.MediaAssets.length > 0 || assetsToDelete.length > 0) {
+    const hydrateMediaPromise = hydrateMedia.batchTrigger([
+      ...assetsToDelete.map((asset) => ({
         payload: { mediaId: asset.id },
       })),
-    );
+      ...updatedKnowledge.MediaAssets.map((asset) => ({
+        payload: { mediaId: asset.id },
+      })),
+    ]);
     triggerPromises.push(hydrateMediaPromise);
   }
 
