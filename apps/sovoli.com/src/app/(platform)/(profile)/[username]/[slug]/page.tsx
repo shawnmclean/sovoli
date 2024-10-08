@@ -218,7 +218,7 @@ async function getKnowledgeBySlug({
       rest.SourceKnowledge.createdAt = new Date(rest.SourceKnowledge.createdAt);
       rest.SourceKnowledge.updatedAt = new Date(rest.SourceKnowledge.updatedAt);
 
-      rest.SourceKnowledge.MediaAssets.forEach((mediaAsset) => {
+      rest.SourceKnowledge.MediaAssets?.forEach((mediaAsset) => {
         mediaAsset.createdAt = new Date(mediaAsset.createdAt);
         mediaAsset.updatedAt = new Date(mediaAsset.updatedAt);
       });
@@ -227,7 +227,7 @@ async function getKnowledgeBySlug({
       rest.TargetKnowledge.createdAt = new Date(rest.TargetKnowledge.createdAt);
       rest.TargetKnowledge.updatedAt = new Date(rest.TargetKnowledge.updatedAt);
 
-      rest.TargetKnowledge.MediaAssets.forEach((mediaAsset) => {
+      rest.TargetKnowledge.MediaAssets?.forEach((mediaAsset) => {
         mediaAsset.createdAt = new Date(mediaAsset.createdAt);
         mediaAsset.updatedAt = new Date(mediaAsset.updatedAt);
       });

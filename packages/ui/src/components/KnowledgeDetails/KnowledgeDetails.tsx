@@ -28,7 +28,7 @@ interface Props {
   knowledge: SelectKnowledgeSchema;
 }
 export default function KnowledgeDetails({ knowledge }: Props) {
-  const images = knowledge.MediaAssets.map((mediaAsset) => {
+  const images = knowledge.MediaAssets?.map((mediaAsset) => {
     if (mediaAsset.host === MediaAssetHost.Supabase && mediaAsset.path) {
       return {
         src: `${mediaAsset.bucket}/${mediaAsset.path}`,
@@ -44,7 +44,7 @@ export default function KnowledgeDetails({ knowledge }: Props) {
         {knowledge.title}
       </Heading>
       <View className="my-2">
-        {images.length > 0 && <Gallery images={images} />}
+        {images && images.length > 0 && <Gallery images={images} />}
       </View>
       <View>
         <Text>{knowledge.description}</Text>

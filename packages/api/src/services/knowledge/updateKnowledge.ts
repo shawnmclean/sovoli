@@ -89,12 +89,6 @@ export const updateKnowledge = async ({
 
   // #endregion
 
-  let updatedKnowledge: SelectKnowledgeSchema = {
-    ...knowledgeToUpdate,
-    MediaAssets: [],
-    SourceConnections: [],
-  };
-
   const fieldsToUpdate = Object.fromEntries(
     Object.entries({
       title: knowledge.title,
@@ -107,6 +101,8 @@ export const updateKnowledge = async ({
     }).filter(([_, value]) => value !== undefined),
   );
 
+  let updatedKnowledge: SelectKnowledgeSchema = knowledgeToUpdate;
+
   if (Object.keys(fieldsToUpdate).length > 0) {
     const updatedKnowledges = await db
       .update(schema.Knowledge)
@@ -116,11 +112,13 @@ export const updateKnowledge = async ({
     if (!updatedKnowledges[0]) {
       throw Error("Knowledge not found/updated");
     }
-    // Merge the database updated fields back into updatedKnowledge
-    updatedKnowledge = {
-      ...updatedKnowledge,
-      ...updatedKnowledges[0], // merge updated values from DB
-    };
+    updatedKnowledge = updatedKnowledges[0];
+  }
+  if (!updatedKnowledge.MediaAssets) {
+    updatedKnowledge.MediaAssets = [];
+  }
+  if (!updatedKnowledge.SourceConnections) {
+    updatedKnowledge.SourceConnections = [];
   }
 
   if (knowledge.connections) {

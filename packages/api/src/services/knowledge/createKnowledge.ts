@@ -29,6 +29,12 @@ export const createKnowledge = async ({
     userId: authUserId,
     isOrigin: true,
   });
+  if (!createdSourceKnowledge.MediaAssets) {
+    createdSourceKnowledge.MediaAssets = [];
+  }
+  if (!createdSourceKnowledge.SourceConnections) {
+    createdSourceKnowledge.SourceConnections = [];
+  }
 
   const mediaAssets: InsertMediaAssetSchema[] = [];
   if (knowledge.openaiFileIdRefs) {
