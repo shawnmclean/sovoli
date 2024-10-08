@@ -56,6 +56,8 @@ export default function KnowledgeDetails({ knowledge }: Props) {
       </View>
       <Divider />
 
+      <View>{knowledge.content}</View>
+
       <KnowledgeComponentSwitcher knowledge={knowledge} />
 
       <Accordion
@@ -97,12 +99,12 @@ export default function KnowledgeDetails({ knowledge }: Props) {
 }
 
 function KnowledgeComponentSwitcher({ knowledge }: Props) {
-  switch (knowledge.type) {
-    case KnowledgeType.Book:
-      return <BookDetails knowledge={knowledge} />;
-    case KnowledgeType.Collection:
-      return <CollectionDetails knowledge={knowledge} />;
-    case KnowledgeType.Note:
-      return <NoteDetails knowledge={knowledge} />;
-  }
+  // switch (knowledge.type) {
+  //   case KnowledgeType.Book:
+  //     return <BookDetails knowledge={knowledge} />;
+  //   case KnowledgeType.Collection:
+  return <CollectionDetails knowledge={knowledge} />;
+  // case KnowledgeType.Note:
+  //   return <NoteDetails knowledge={knowledge} />;
+  // }
 }

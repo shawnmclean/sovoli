@@ -58,15 +58,18 @@ function ConnectionItem({ item }: ConnectionItemProps) {
           <KnowledgeImage knowledge={knowledge} />
         </Box>
         <VStack className="h-full justify-between" space="md">
-          <Text className="text-sm">{knowledge.type}</Text>
+          <Text className="text-sm">
+            {knowledge.type} - {item.type}
+          </Text>
           <Heading size="md">{knowledge.title}</Heading>
+          {knowledge.Book && (
+            <Text className="text-sm text-typography-500">
+              by {knowledge.Book.inferredAuthor}
+            </Text>
+          )}
           <Text className="line-clamp-2">{knowledge.description}</Text>
+          <Text>Notes: {item.notes}</Text>
           <HStack space="md">
-            {knowledge.Book && (
-              <Text className="text-sm text-typography-500">
-                by {knowledge.Book.inferredAuthor}
-              </Text>
-            )}
             <TimeAgo
               datetime={knowledge.createdAt}
               className="text-sm text-typography-500"
