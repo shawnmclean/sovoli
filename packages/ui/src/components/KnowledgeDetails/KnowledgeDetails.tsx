@@ -1,6 +1,6 @@
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { View } from "react-native";
-import { KnowledgeType, MediaAssetHost } from "@sovoli/db/schema";
+import { MediaAssetHost } from "@sovoli/db/schema";
 import { Gallery } from "@sovoli/ui/components/Gallery";
 
 import {
@@ -18,9 +18,10 @@ import { Heading } from "../ui/heading";
 import { ChevronDownIcon, ChevronUpIcon } from "../ui/icon";
 import { Text } from "../ui/text";
 import { TimeAgo } from "../ui/time-ago";
-import BookDetails from "./BookDetails";
+// import BookDetails from "./BookDetails";
 import CollectionDetails from "./CollectionDetails";
-import NoteDetails from "./NoteDetails";
+
+// import NoteDetails from "./NoteDetails";
 
 interface Props {
   knowledge: SelectKnowledgeSchema;
