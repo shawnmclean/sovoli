@@ -67,9 +67,19 @@ export const Knowledge = pgTable(
   },
   (table) => ({
     /**
+     * only allow a distinct book per owner
+     */
+    uniqueBook: unique("unique_knowledge_user_book").on(
+      table.userId,
+      table.bookId,
+    ),
+    /**
      * only allow a distinct slug per owner
      */
-    uniqueOwnerSlug: unique("unique_owner_slug").on(table.userId, table.slug),
+    uniqueOwnerSlug: unique("unique_knowledge_user_slug").on(
+      table.userId,
+      table.slug,
+    ),
   }),
 );
 
@@ -80,6 +90,7 @@ export type BaseKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema>;
 export type SelectKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema> & {
   User?: SelectUserSchema | null;
   SourceConnections?: SelectKnowledgeConnectionSchema[] | null;
+  TargetConnections?: SelectKnowledgeConnectionSchema[] | null;
   MediaAssets?: SelectMediaAssetSchema[] | null;
   Book?: SelectBookSchema | null;
 };
@@ -89,6 +100,9 @@ export const SelectKnowledgeSchema = BaseKnowledgeSchema.extend({
   User: SelectUserSchema.nullish(),
   MediaAssets: SelectMediaAssetSchema.array().nullish(),
   SourceConnections: z
+    .lazy(() => SelectKnowledgeConnectionSchema.array())
+    .nullish(), // Recursive connections
+  TargetConnections: z
     .lazy(() => SelectKnowledgeConnectionSchema.array())
     .nullish(), // Recursive connections
   Book: SelectBookSchema.nullish(),

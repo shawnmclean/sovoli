@@ -23,12 +23,12 @@ export const createKnowledge = async ({
 }: CreateKnowledgeOptions) => {
   const authToken = generateAuthToken();
   const authTokenHashed = hashAuthToken(authToken);
-  const createdSourceKnowledge = await createParentKnowledge({
+  const createdSourceKnowledge = (await createParentKnowledge({
     ...knowledge,
     authTokenHashed,
     userId: authUserId,
     isOrigin: true,
-  });
+  })) as SelectKnowledgeSchema;
   if (!createdSourceKnowledge.MediaAssets) {
     createdSourceKnowledge.MediaAssets = [];
   }
@@ -108,7 +108,6 @@ const createParentKnowledge = async (knowledge: InsertKnowledgeSchema) => {
     throw new Error("title is required");
   }
   let slug = slugify(knowledge.title);
-  let createdSourceKnowledge: SelectKnowledgeSchema | undefined;
   let retryCount = 0;
   while (retryCount < 50) {
     try {
@@ -121,12 +120,7 @@ const createParentKnowledge = async (knowledge: InsertKnowledgeSchema) => {
         .returning();
 
       if (sourceKnowledges[0]) {
-        createdSourceKnowledge = {
-          ...sourceKnowledges[0],
-          MediaAssets: [],
-          SourceConnections: [],
-        };
-        break;
+        return sourceKnowledges[0];
       }
     } catch (error) {
       const queryError = error as QueryError;
@@ -140,10 +134,4 @@ const createParentKnowledge = async (knowledge: InsertKnowledgeSchema) => {
       }
     }
   }
-
-  if (!createdSourceKnowledge) {
-    throw new Error("Failed to create knowledge after retries");
-  }
-
-  return createdSourceKnowledge;
 };
