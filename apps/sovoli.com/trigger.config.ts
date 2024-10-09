@@ -1,17 +1,6 @@
-import type { TriggerConfig } from "@trigger.dev/sdk/v3";
+import { defineConfig } from "@trigger.dev/sdk/v3";
 
-export const config: TriggerConfig = {
+export default defineConfig({
   project: "proj_vhxpbpwzmqmdszvhjrqp",
-  logLevel: "log",
-  retries: {
-    enabledInDev: true,
-    default: {
-      maxAttempts: 3,
-      minTimeoutInMs: 1000,
-      maxTimeoutInMs: 10000,
-      factor: 2,
-      randomize: true,
-    },
-  },
-  dependenciesToBundle: [/^@sovoli\//, "@t3-oss/env-core"],
-};
+  maxDuration: 60 * 5, // 5 mins
+});
