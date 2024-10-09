@@ -122,6 +122,7 @@ const createParentKnowledge = async (knowledge: InsertKnowledgeSchema) => {
       if (sourceKnowledges[0]) {
         return sourceKnowledges[0];
       }
+      retryCount++;
     } catch (error) {
       const queryError = error as QueryError;
       if (typeof queryError.code === "string" && queryError.code === "23505") {

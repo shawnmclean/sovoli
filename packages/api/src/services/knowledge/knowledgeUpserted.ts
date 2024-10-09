@@ -109,6 +109,7 @@ const handleBookKnowledgeTypeUpserted = async (
             slug,
           })
           .where(eq(schema.Knowledge.id, knowledge.id));
+        return;
       } catch (error) {
         const queryError = error as QueryError;
         if (
