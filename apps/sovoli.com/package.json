@@ -25,7 +25,7 @@
     "@t3-oss/env-nextjs": "0.11.1",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-query-devtools": "5.51.23",
-    "@trigger.dev/sdk": "3.0.0-beta.55",
+    "@trigger.dev/sdk": "3.0.11",
     "@ts-rest/open-api": "catalog:",
     "@ts-rest/react-query": "catalog:",
     "@ts-rest/serverless": "catalog:",
@@ -61,7 +61,7 @@
     "prettier": "catalog:",
     "tailwindcss": "3.4.10",
     "tailwindcss-animate": "1.0.7",
-    "trigger.dev": "3.0.0-beta.55",
+    "trigger.dev": "3.0.11",
     "typescript": "catalog:"
   },
   "prettier": "@sovoli/prettier-config"
