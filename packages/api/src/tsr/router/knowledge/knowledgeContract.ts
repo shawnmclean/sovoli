@@ -17,16 +17,32 @@ const BaseConnectionSchema = z.object({
   notes: z.string().openapi({
     description:
       "Additional notes in markdown format about the connection such as why it was recommended or added to the collection.",
+    examples: [
+      `This book explores the concept of mortality and how it influences human behavior. It aligns with the existential themes present on the shelf and provides a psychological perspective on how people cope with the knowledge of death.
+      
+      ## Learning outcomes:
+      
+      - What psychological mechanisms do people use to deny death?
+      - How does the fear of death influence human culture and behavior?
+      `,
+    ],
   }),
   order: z.number(),
-  type: z.enum(KnowledgeConnectionTypes),
+  type: z.enum(KnowledgeConnectionTypes).openapi({
+    description: `
+      'Contains' means that the knowledge is a part of the target knowledge such as a book shelf or collection.
+      'Recommends' means that the knowledge is recommended to the user based on their preferences.
+      'Refers' means that the knowledge is a reference to the target knowledge, such as a book review or a blog post.
+    `,
+  }),
 
   metadata: KnowledgeConnectionMetadataSchema.optional(),
 
   targetKnowledge: z.object({
     query: z.string().openapi({
       description:
-        "The query is used to search for the book. If the book is already in your knowledge library, it will be linked. Example: `{title} {author}`",
+        "The query is used to search for the book. If the book is already in your knowledge library, it will be linked. Format: `{title} {author}`",
+      examples: ["The Interpretation of Dreams Sigmung Freud"],
     }),
     type: z.enum(KnowledgeTypes),
   }),
