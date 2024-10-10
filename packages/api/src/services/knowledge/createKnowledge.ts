@@ -85,11 +85,17 @@ export const createKnowledge = async ({
     triggerPromises.push(hydrateKnowledgePromise);
   }
   if (createdSourceKnowledge.MediaAssets.length > 0) {
+    const mediaIds = createdSourceKnowledge.MediaAssets.map(
+      (asset) => asset.id,
+    );
     const hydrateMediaPromise = hydrateMedia.batchTrigger(
-      createdSourceKnowledge.MediaAssets.map((asset) => ({
-        payload: { mediaId: asset.id },
+      mediaIds.map((id) => ({
+        payload: {
+          mediaId: id,
+        },
       })),
     );
+    console.log(`triggering media update for ids: ${mediaIds.join(", ")}`);
     triggerPromises.push(hydrateMediaPromise);
   }
 
