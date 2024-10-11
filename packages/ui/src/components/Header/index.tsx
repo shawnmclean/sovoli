@@ -67,6 +67,9 @@ function WebHeader() {
 
       <HStack className="items-center space-x-2">
         <HStack className="mr-5 space-x-2">
+          <Link href={`/feed`}>
+            <Text>Feed</Text>
+          </Link>
           <Link href={`/users`}>
             <Text>Users</Text>
           </Link>
