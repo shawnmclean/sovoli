@@ -61,7 +61,7 @@ const BaseUpsertKnowledgeSchemaRequest = z.object({
     .optional()
     .openapi({
       description:
-        "This object is meant for ChatGPT to send files related to the knowledge, such as images, PDFs, etc.",
+        "This object is meant for ChatGPT to send files related to the knowledge, such as images, PDFs, etc. For images, the recommended resolution is 1600x900, 16:9 ratio.",
     }),
 
   title: z.string(),
