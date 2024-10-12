@@ -15,7 +15,7 @@ export function KnowledgeContent({ knowledge }: Props) {
       components={{
         p: ({ children }) => <Text className="my-2">{children}</Text>,
         h1: ({ children }) => (
-          <Heading className="my-3" size="5xl">
+          <Heading className="my-3" size="3xl">
             {children}
           </Heading>
         ),

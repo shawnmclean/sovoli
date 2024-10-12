@@ -39,7 +39,7 @@ export default function KnowledgeDetails({ knowledge }: Props) {
 
   return (
     <>
-      <Heading size="2xl" className="font-roboto">
+      <Heading size="3xl" className="font-roboto">
         {knowledge.title}
       </Heading>
       <View className="my-2">
