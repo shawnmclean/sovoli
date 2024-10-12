@@ -6,6 +6,7 @@ import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
 import { KnowledgeDetailsScreen } from "@sovoli/ui/screens/knowledge-details";
 
+import { env } from "~/env";
 import { config } from "~/utils/config";
 
 export const dynamic = "force-dynamic";
@@ -290,13 +291,20 @@ export async function generateMetadata({
   searchParams,
 }: Props): Promise<Metadata> {
   const { knowledge } = await retreiveKnowledgeBySlug({ params, searchParams });
+  // Get the image path from the MediaAssets
+  const image = knowledge.MediaAssets?.[0];
 
+  // Construct the URL for the OpenGraph image using the Supabase public storage URL
+  const imageUrl = image
+    ? `${env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${image.bucket}/${image.path}`
+    : undefined;
   return {
     title: `${knowledge.title} - ${knowledge.User?.name}`,
     openGraph: {
       title: `${knowledge.title} - ${knowledge.User?.name}`,
       url: config.url + "/" + params.username + "/" + knowledge.slug,
       siteName: config.siteName,
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }
