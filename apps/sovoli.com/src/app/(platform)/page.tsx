@@ -17,9 +17,7 @@ const retrieveLatestKnowledges = cache(async () => {
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Feed`,
     openGraph: {
-      title: `$Feed`,
       url: config.url + "/feed/",
       siteName: config.siteName,
     },
