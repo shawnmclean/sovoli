@@ -2,8 +2,6 @@ import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { View } from "react-native";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { Gallery } from "@sovoli/ui/components/Gallery";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 import {
   Accordion,
@@ -22,6 +20,7 @@ import { Text } from "../ui/text";
 import { TimeAgo } from "../ui/time-ago";
 // import BookDetails from "./BookDetails";
 import CollectionDetails from "./CollectionDetails";
+import { KnowledgeContent } from "./KnowledgeContent";
 
 // import NoteDetails from "./NoteDetails";=
 interface Props {
@@ -59,7 +58,7 @@ export default function KnowledgeDetails({ knowledge }: Props) {
       <Divider />
 
       <View>
-        <Markdown remarkPlugins={[remarkGfm]}>{knowledge.content}</Markdown>
+        <KnowledgeContent knowledge={knowledge} />
       </View>
 
       <KnowledgeComponentSwitcher knowledge={knowledge} />
