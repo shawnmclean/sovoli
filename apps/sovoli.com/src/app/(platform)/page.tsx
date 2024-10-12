@@ -1,48 +1,37 @@
-import { auth, signIn, signOut } from "@sovoli/auth";
-import { HomeScreen } from "@sovoli/ui/screens/home";
+import type { Metadata } from "next";
+import { cache } from "react";
+import { getLatestKnowledges } from "@sovoli/api/services";
+import { FeedScreen } from "@sovoli/ui/screens/feed";
 
-export default function Home() {
-  return (
-    <div className="container mx-auto">
-      <main className="flex-1">
-        <HomeScreen />
-        <SignIn />
-      </main>
-      <footer className="py-6 md:px-8 md:py-0">
-        <iframe
-          src="https://status.sovoli.com/badge?theme=dark"
-          width="250"
-          height="30"
-        ></iframe>
-      </footer>
-    </div>
-  );
+import { config } from "~/utils/config";
+
+export const dynamic = "force-dynamic";
+
+const retrieveLatestKnowledges = cache(async () => {
+  // try {
+  return await getLatestKnowledges();
+  // } catch {
+  //   return notFound();
+  // }
+});
+
+export function generateMetadata(): Metadata {
+  return {
+    title: `Feed`,
+    openGraph: {
+      title: `$Feed`,
+      url: config.url + "/feed/",
+      siteName: config.siteName,
+    },
+  };
 }
 
-async function SignIn() {
-  const session = await auth();
-
-  if (!session) {
-    return (
-      <form
-        action={async () => {
-          "use server";
-          await signIn();
-        }}
-      >
-        <button type="submit">Sign in</button>
-      </form>
-    );
-  }
+export default async function FeedPage() {
+  const knowledges = await retrieveLatestKnowledges();
 
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut();
-      }}
-    >
-      <button type="submit">Sign out</button>
-    </form>
+    <div className="min-h-screen dark:bg-black sm:pl-60">
+      <FeedScreen knowledges={knowledges} />
+    </div>
   );
 }
