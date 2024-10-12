@@ -57,7 +57,7 @@ export function FeedScreen({ knowledges }: FeedScreenProps) {
                       <Heading size="md">{item.title}</Heading>
                       <Text className="line-clamp-2">{item.description}</Text>
                       <Text className="text-sm">
-                        created by{" "}
+                        {item.type} created by{" "}
                         <Link href={`/${item.User?.username}`}>
                           {item.User?.name}
                         </Link>
