@@ -19,6 +19,7 @@
   "dependencies": {
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",
+    "@mdxeditor/editor": "3.14.0",
     "@gluestack-ui/button": "1.0.7",
     "@gluestack-ui/icon": "0.1.22",
     "@gluestack-ui/divider": "0.1.9",
