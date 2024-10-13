@@ -14,20 +14,23 @@ extendZodWithOpenApi(z);
 
 // Base schema for connections without connectionId (used for creating connections)
 const BaseConnectionSchema = z.object({
-  notes: z.string().openapi({
-    description:
-      "Additional notes in markdown format about the connection such as why it was recommended or added to the collection.",
-    examples: [
-      `This book explores the concept of mortality and how it influences human behavior. It aligns with the existential themes present on the shelf and provides a psychological perspective on how people cope with the knowledge of death.
+  notes: z
+    .string()
+    .optional()
+    .openapi({
+      description:
+        "Additional notes in markdown format about the connection such as why it was recommended or added to the collection.",
+      examples: [
+        `This book explores the concept of mortality and how it influences human behavior. It aligns with the existential themes present on the shelf and provides a psychological perspective on how people cope with the knowledge of death.
       
       ## Learning outcomes:
       
       - What psychological mechanisms do people use to deny death?
       - How does the fear of death influence human culture and behavior?
       `,
-    ],
-  }),
-  order: z.number(),
+      ],
+    }),
+  order: z.number().optional(),
   type: z.enum(KnowledgeConnectionTypes).openapi({
     description: `
       'Contains' means that the knowledge is a part of the target knowledge such as a book shelf or collection.
