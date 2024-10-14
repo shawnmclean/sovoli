@@ -14,4 +14,10 @@ export default [
       "@next/next/no-duplicate-head": "off",
     },
   },
+  {
+    files: ['src/pages/**/*', 'src/app/**/{page,layout,not-found,robots,sitemap}.tsx', 'src/middleware.ts', 'src/loaders/**/*'],
+    rules: {
+      'import/no-default-export': 'off',
+    },
+  }
 ];

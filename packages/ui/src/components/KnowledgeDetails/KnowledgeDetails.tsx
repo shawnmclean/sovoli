@@ -19,14 +19,14 @@ import { ChevronDownIcon, ChevronUpIcon } from "../ui/icon";
 import { Text } from "../ui/text";
 import { TimeAgo } from "../ui/time-ago";
 // import BookDetails from "./BookDetails";
-import CollectionDetails from "./CollectionDetails";
+import { CollectionDetails } from "./CollectionDetails";
 import { KnowledgeContent } from "./KnowledgeContent";
 
 // import NoteDetails from "./NoteDetails";=
 interface Props {
   knowledge: SelectKnowledgeSchema;
 }
-export default function KnowledgeDetails({ knowledge }: Props) {
+export function KnowledgeDetails({ knowledge }: Props) {
   const images = knowledge.MediaAssets?.map((mediaAsset) => {
     if (mediaAsset.host === MediaAssetHost.Supabase && mediaAsset.path) {
       return {

@@ -6,7 +6,8 @@
   "exports": {
     "./base": "./base.js",
     "./nextjs": "./nextjs.js",
-    "./react": "./react.js"
+    "./react": "./react.js",
+    "./expo": "./expo.js"
   },
   "scripts": {
     "clean": "git clean -xdf node_modules",
@@ -16,7 +17,7 @@
   "dependencies": {
     "@eslint/compat": "1.1.1",
     "@next/eslint-plugin-next": "14.2.4",
-    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.9.0",
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "rc",

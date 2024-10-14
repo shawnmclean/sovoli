@@ -1,6 +1,3 @@
-
-
-
 import Image from "next/image";
 
 /**
@@ -8,10 +5,10 @@ import Image from "next/image";
  * @see https://v0.dev/t/jYrzfYCANPI
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-export default function Component() {
+export function Component() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-[300px_1fr]">
         <div className="flex flex-col items-center">
           <Image
             src="/placeholder.svg"
@@ -20,7 +17,7 @@ export default function Component() {
             height={450}
             className="rounded-lg shadow-lg"
           />
-          <h1 className="text-2xl font-bold mt-4">The Alchemist</h1>
+          <h1 className="mt-4 text-2xl font-bold">The Alchemist</h1>
           <p className="text-muted-foreground">by Paulo Coelho</p>
         </div>
         <div className="space-y-8">
@@ -46,7 +43,7 @@ export default function Component() {
           </div>
           <div>
             <h2 className="text-xl font-bold">About the Author</h2>
-            <div className="flex items-center gap-4 mt-4">
+            <div className="mt-4 flex items-center gap-4">
               <Image
                 src="/placeholder.svg"
                 alt="Author Photo"

@@ -13,7 +13,7 @@ import {
 } from "@mdxeditor/editor";
 
 // Only import this to the next file
-export default function InitializedMDXEditor({
+export function InitializedMDXEditor({
   editorRef,
   ...props
 }: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps) {

@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
 
-import base from "./base";
+import { base } from "./base";
 
-export default {
+export const web = {
   content: base.content,
   presets: [base],
   theme: {

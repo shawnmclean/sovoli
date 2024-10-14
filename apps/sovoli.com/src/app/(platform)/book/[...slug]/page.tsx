@@ -1,4 +1,4 @@
-import Component from "./Component";
+import { Component } from "./Component";
 
 export default function BookDetails({
   params,
@@ -9,7 +9,7 @@ export default function BookDetails({
   // the goal of this structure is to have a title slug first and then an isbn slug second.
 
   return (
-    <div className="min-h-screen sm:pl-60 dark:bg-black">
+    <div className="min-h-screen dark:bg-black sm:pl-60">
       <h1>Book details: {params.username}</h1>
       {params.slug.map((slug) => (
         <p>{slug}</p>

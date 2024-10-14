@@ -9,7 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { QueryProviders } from "~/api/react";
 import { config } from "~/utils/config";
-import StyledJsxRegistry from "./registry";
+import { StyledJsxRegistry } from "./registry";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

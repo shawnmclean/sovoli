@@ -17,7 +17,7 @@ import { VStack } from "../ui/vstack";
 interface Props {
   knowledge: SelectKnowledgeSchema;
 }
-export default function CollectionDetails({ knowledge }: Props) {
+export function CollectionDetails({ knowledge }: Props) {
   return (
     <View>
       <VStack>
