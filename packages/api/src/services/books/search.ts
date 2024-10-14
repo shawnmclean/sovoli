@@ -18,10 +18,6 @@ export interface SearchBooksQuery {
 
 export interface SearchBooksQueryResult {
   /**
-   * the query that was used to search for the book
-   */
-  query: SearchBooksQuery;
-  /**
    * books matching the query
    */
   books: SelectBookSchema[];
@@ -40,15 +36,23 @@ export interface SearchBooksOptions {
 
 export interface SearchBooksByQueryOptions {
   query: string;
-  page: number;
-  pageSize: number;
+  page?: number;
+  pageSize?: number;
 }
 
-export async function searchBooksByQuery(
-  query: SearchBooksByQueryOptions,
-): Promise<SearchBooksQueryResult> {
+export async function searchBooksByQuery({
+  query,
+  page = 1,
+  pageSize = 10,
+}: SearchBooksByQueryOptions): Promise<SearchBooksQueryResult> {
   // search internally first
-  const internalResults = await searchInternalByQueries([query]);
+  const internalResults = await searchInternalByQueries([
+    {
+      query,
+      page,
+      pageSize,
+    },
+  ]);
   console.log("internal results", internalResults);
   if (
     internalResults.length > 0 &&
@@ -60,7 +64,11 @@ export async function searchBooksByQuery(
 
   console.log("no internal results, searching externally");
 
-  const externalResults = await searchExternallyAndPopulate([query]);
+  const externalResults = await searchExternallyAndPopulate([
+    {
+      query,
+    },
+  ]);
   if (
     externalResults.length > 0 &&
     externalResults[0] &&
@@ -69,7 +77,7 @@ export async function searchBooksByQuery(
     return externalResults[0];
   }
 
-  return { query, books: [], total: 0 };
+  return { books: [], total: 0 };
 }
 
 async function searchInternalByQueries(
@@ -115,70 +123,6 @@ async function searchInternalByQueries(
   console.timeEnd("Books Search Time");
 
   return result;
-}
-
-/**
- * Search for books by title, author, isbn, and query
- * @param options
- * @returns
- */
-export async function searchBooks(
-  options: SearchBooksOptions,
-): Promise<SearchBooksQueryResult[]> {
-  console.time("Total Search Time");
-  // separate the queries into the ones that uses ISBN and the ones that use the query
-  const isbnQueries: string[] = [];
-  const textQueries: SearchBooksByQueryOptions[] = [];
-  options.queries.forEach((query) => {
-    if (query.isbn) {
-      isbnQueries.push(query.isbn);
-    } else if (query.query) {
-      textQueries.push({
-        query: query.query,
-        page: 1,
-        pageSize: 10,
-      });
-    }
-  });
-
-  console.time("Db Search Time");
-  const [isbnResults, textResults] = await Promise.all([
-    // searchByISBN(isbnQueries),
-    [],
-    searchInternalByQueries(textQueries),
-  ]);
-
-  console.timeEnd("Db Search Time");
-
-  const combinedDbResults = [...isbnResults, ...textResults];
-
-  // Identify queries that have no matching books
-  const unmatchedQueries = combinedDbResults
-    .filter((result) => result.books.length === 0)
-    .map((result) => result.query);
-
-  // If there are unmatched queries, create the books in the database, get the ids, fire off trigger.dev to hydrate.
-  // since this operation can take a while
-  let externalResults: SearchBooksQueryResult[] = [];
-  if (unmatchedQueries.length > 0) {
-    console.log("Books not found in db, searching externally");
-    try {
-      console.time("External Search Time");
-      externalResults = await searchExternallyAndPopulate(unmatchedQueries);
-      console.timeEnd("External Search Time");
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  // Combine the db results and external results
-  const finalResults = [
-    ...combinedDbResults.filter((result) => result.books.length > 0),
-    ...externalResults,
-  ];
-
-  console.timeEnd("Total Search Time");
-  return finalResults;
 }
 
 export async function searchExternallyAndPopulate(

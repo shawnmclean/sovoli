@@ -2,7 +2,7 @@ import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { and, db, eq, inArray, schema } from "@sovoli/db";
 
 import { slugify } from "../../utils/slugify";
-import { searchBooks } from "../books";
+import { searchBooksByQuery } from "../books";
 
 export interface KnowledgeUpsertedOptions {
   knowledgeId: string;
@@ -55,15 +55,15 @@ const handleBookKnowledgeTypeUpserted = async (
     throw new Error("Knowledge has no query");
   }
   console.log(`Searching for query: ${knowledge.query}`);
-  const results = await searchBooks({
-    queries: [{ query: knowledge.query }],
+  const results = await searchBooksByQuery({
+    query: knowledge.query,
   });
 
-  if (!results[0]?.books[0]) {
+  if (!results.books[0]) {
     throw new Error("No results found for query");
   }
 
-  const bestMatch = results[0].books[0];
+  const bestMatch = results.books[0];
 
   // check if user already has the book
   const bookKnowledge = await db.query.Knowledge.findFirst({

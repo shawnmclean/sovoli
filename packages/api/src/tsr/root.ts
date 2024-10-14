@@ -5,7 +5,6 @@ import type { PlatformContext, TSRGlobalContext } from "./types";
 import { contract } from "./contract";
 import { bookRouter } from "./router/book/bookRouter";
 import { knowledgeRouter } from "./router/knowledge/knowledgeRouter";
-import { myBookRouter } from "./router/myBook/myBookRouter";
 import { userRouter } from "./router/user/userRouter";
 import { usersRouter } from "./router/users/usersRouter";
 
@@ -27,6 +26,5 @@ export const router = tsr
   })
   .subRouter("user", userRouter)
   .subRouter("book", bookRouter)
-  .subRouter("myBook", myBookRouter)
   .subRouter("users", usersRouter)
   .subRouter("knowledge", knowledgeRouter);
