@@ -1,55 +1,12 @@
-import { findBookByISBN, searchBooksByQuery } from "@sovoli/api/services";
-import { BarcodeReader } from "@sovoli/ui/components/BarcodeReader";
+import { BookScanner } from "./_components/BookScanner";
 
 export const dynamic = "force-dynamic";
 
-export default async function BarcodeISBNPage() {
-  const response = await searchBooksByQuery({
-    query: "The Interpretation of Dreams Sigmung Freud",
-  });
-
-  if (!response.books[0]) {
-    return <div>No book found</div>;
-  }
-
-  const book = response.books[0];
-
-  const responseIsbn = await findBookByISBN({ isbn: "9780195122350" });
-
-  if (!responseIsbn.book) {
-    return <div>No book found</div>;
-  }
-
-  const bookIsbn = responseIsbn.book;
-
+export default function BarcodeISBNPage() {
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
-      <h1>Book Page</h1>
-      <BarcodeReader />
-
-      <p>
-        Book title: {book.title}
-        <br />
-        Book description: {book.description}
-        <br />
-        Id: {book.id}
-        <br />
-        ISBN10: {book.isbn10}
-        <br />
-        ISBN13: {book.isbn13}
-      </p>
-      <hr />
-      <p>
-        Book title: {bookIsbn.title}
-        <br />
-        Book description: {bookIsbn.description}
-        <br />
-        Id: {bookIsbn.id}
-        <br />
-        ISBN10: {bookIsbn.isbn10}
-        <br />
-        ISBN13: {bookIsbn.isbn13}
-      </p>
+      <h1>Scan Book By ISBN</h1>
+      <BookScanner />
     </div>
   );
 }
