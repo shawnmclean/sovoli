@@ -7,7 +7,7 @@
     "build": "pnpm with-env next build",
     "clean": "git clean -xdf node_modules .next .turbo",
     "dev": "concurrently --raw --kill-others pnpm:dev:*",
-    "dev:next": "pnpm with-env next dev",
+    "dev:next": "pnpm with-env next dev --experimental-https",
     "dev:trigger": "pnpm with-env trigger dev",
     "deploy:trigger-prod": "trigger deploy",
     "deploy:trigger": "trigger deploy --env staging",

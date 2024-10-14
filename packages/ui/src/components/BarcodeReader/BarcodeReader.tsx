@@ -3,7 +3,6 @@
 import { BarcodeFormat } from "@zxing/library";
 import { useZxing } from "react-zxing";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface BarcodeReaderProps {
   onISBNFound: (isbn: string) => void;
 }

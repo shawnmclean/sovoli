@@ -468,7 +468,7 @@ importers:
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-cd22717c-20241013(eslint@9.8.0)
+        version: 5.1.0-rc-6cf85185-20241014(eslint@9.8.0)
       eslint-plugin-turbo:
         specifier: 2.0.11
         version: 2.0.11(eslint@9.8.0)
@@ -515,6 +515,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@custom-react-hooks/all':
+        specifier: 1.5.1
+        version: 1.5.1(react@18.2.0)
       '@expo/html-elements':
         specifier: 0.10.1
         version: 0.10.1
@@ -1628,6 +1631,181 @@ packages:
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
+
+  '@custom-react-hooks/all@1.5.1':
+    resolution: {integrity: sha512-3gHRVLFf3JoBaS9BMBMbpkeECqXCR4eF8uzwr9IO6Gq5DUoGMEMXJik0yAxfSQ2IJMQbki7ag1gOOU25hmR+5g==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-async@1.5.1':
+    resolution: {integrity: sha512-DIjFQgG9S/MuVsn8XscNXm3lsL8h7PzQkFjAA6eYGw26jPYFNJAmlfVDJ7p+5opR3EeDp3zrp+J792inw4XjFw==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-click-outside@1.5.1':
+    resolution: {integrity: sha512-IK4yI5Lcz/pa8x3tz4RM2az0YLbf96I6ufdmypg0JYe4oozK9MeCugUy0H30ZKXq8+EPfIomkcNzMQPVi3uIOQ==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-clipboard@1.5.1':
+    resolution: {integrity: sha512-rXwbVk8GtqZHTJsEWl1ubkE/uEiZR1OpvErdCpvctKVbwwAulhYwfvrU9CvoVywcqbVoj8j+gHYcYXNCyUh4Xw==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-debounce@1.5.1':
+    resolution: {integrity: sha512-7QnbWhchDjEEERFG9mT7GSNoq+MlrRI8UnymVl45+vrYiZhbzHkESShTOYxxkFuXzoHGSD1J4toxhITvr78tng==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-document-title@1.5.1':
+    resolution: {integrity: sha512-splFtDraaAfNMby/quvd69ODN1QtcNkq/oAV78WEe3FQPwtLLrIQ379UNV/TkpFoMmQodWqIfUTG005VLLyEvQ==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-drag-drop@1.5.1':
+    resolution: {integrity: sha512-7zSKWm3IJCmBt+RMeflLyOaU/pTmT4tlr1ZT5yzRZJ2Hk3w+Xdpxjap1nLT4rjmvOncTgflxlBGbEaU2mBLuRg==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-effect-once@1.5.1':
+    resolution: {integrity: sha512-W7sbx04LNtZQnxtf3yu90WUsBYNxCkjLSVSdrbJGCtknj57Jz1vjfroCK1ywUgSlmPIOUvreYEb4ZvIgLds9XQ==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-element-size@1.5.1':
+    resolution: {integrity: sha512-6aYMvWXeaKH1gYrkbmVJsYeZzZCmXX4jOs+wNAxF/z/3nzqjEe8oYVGMLjZyMM4sNnlB/ugskOdhgFbBo4u5uw==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-event-listener@1.5.1':
+    resolution: {integrity: sha512-U6NTT+VkdEDVIt6S7cnibDhiSI9fTwT73MO+CQ47eAAzUk5Zw8qw+I0b192sE9lZL1o/8dayRsBLno53sPDF0w==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-fetch@1.5.1':
+    resolution: {integrity: sha512-lSzUn+4B1o63h+IfsWuceabVnKr0WiJn1jZg52XheboevuYrn7KZB/5rtjCDBTQcOlDYR5Umt0oKqBQbnnpOxg==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-form@1.5.1':
+    resolution: {integrity: sha512-wdjq50rPte1VVUbEHTDBsYAllhG3l2eS+RhgWfJryl1Y8Em9imaIv3yXIPoOxyF7It4JH7SwEPf8X+xnjKvPvQ==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-geo-location@1.5.1':
+    resolution: {integrity: sha512-loJ/PYJcE6Gl2bJKCWIBaN/rbXfT86JDHCDzcW0jkPS2YQvz3pNr02GTxSzsHq74pxQ3aIuOKNXc1vm4WyZRQQ==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-hover@1.5.1':
+    resolution: {integrity: sha512-6mT6jOtuqb1xbX0W90lnGcVhDPq7PoH0iCag+S+tnQ0MU7S4sDlyNxgL5GqgX/S2K5F7kLV4Xm6tHErB47+cBA==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-idle@1.5.1':
+    resolution: {integrity: sha512-cZ/deXTYYK6mZx6ypui3d3ravJsk7wE9OTozFTybDHMxTmTg3ubO9ymaXj/SCg81TGJOXucFEryOQ90QGQWLsg==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-image-load@1.5.1':
+    resolution: {integrity: sha512-Qc2mSYi/pNdXpX4/OjhlperAfQfo9U8Wt8OVXJX2UAM1XEhf8yZxC67bLKuIzG5gy14ie+pvUd9L7Ip0buwO2g==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-key-press@1.5.1':
+    resolution: {integrity: sha512-WICfqHoKDYSBD1m9+27PkJQIUJWNO+IsDNJ9/GZE8vaYlSzZwrA6+KlMfarV2U37cSmP3sAAPVtrm5qQBKWuWw==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-lock-body-scroll@1.5.1':
+    resolution: {integrity: sha512-2UvcBVCHdShXiFj+nShNKVRZGCijUwdRYN27XZgNTXsjr1PNXoQykzkYQJzkWHbrf6/EL1c6S7Q7blwhtt2P3A==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-long-press@1.5.1':
+    resolution: {integrity: sha512-axv3mFLboNW9LhqeR4na8MXZ63fRPYv3qT/5rA92Dnlv3ajJVS4RkXzlocMAlhYEbcjTsKKvCXKWp34gOT3iXA==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-media-devices@1.5.1':
+    resolution: {integrity: sha512-dyehy9DAMPVVKnCFzC2FFy83kBMALeDkihPB78Y2q0TcPBAjzyTaCRnBRKwjvwmRIeoBTUZmm6vIdlvc35sPwA==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-media-query@1.5.1':
+    resolution: {integrity: sha512-a9ON4m1XjlWlCSHmtZ4Horau/1DWURbHlk6dq7mNkaOM5vRyxp2EgklWrUqoX2Ywnqnr065YYDgqUUA0VYZDTw==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-mouse@1.5.1':
+    resolution: {integrity: sha512-W+wwxZaKb/C5pHTxCNlsCg723nmLzCXa379HIYuf7LLx3dvik8jlNx+kcATIhYIAD0F0miLKxlHt4etKqdKkwg==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-on-screen@1.5.1':
+    resolution: {integrity: sha512-BSEgu9PvqhnqkCF73ZdG7mN6NkzJ8ISrqkKIx1g2ipb5skzenDwAb/6dUZ33jOEX3oyvWc/dVGQcboeTh3fVww==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-orientation@1.5.1':
+    resolution: {integrity: sha512-u2Cb90zhDynAMAoduZcykjxmXC2Ld36iGImut0cqhoYJOIBB7cHxwuGCfwBIq1E1ACLSdTBvbF9Qw+PTySeSdw==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-permission@1.5.1':
+    resolution: {integrity: sha512-bng0fld04S+AXUZGYeZs0hFs1090sVEjVjkRLiSMG89k4vVeYCJukUsIZU9qcBvAH3974qrUNEgTs3UF2XbPGg==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-portal@1.5.1':
+    resolution: {integrity: sha512-+mjAu6bvzh76JFpIl2YOg35MEet2+Pm6EKTbAtIIJKhNZAe+DLjkX1Ay81Fsk6xeHtYmDdXhpzq04RkFSKTRpw==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-script@1.5.1':
+    resolution: {integrity: sha512-mekSTSiR86WdaAb/+saYgcyRlVpxbqZVSNkRPywbXHqQyPzt2aU5m78EzxF6BxukkBmTFBu/MBn2j9sr4H3WTQ==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-status@1.5.1':
+    resolution: {integrity: sha512-8C93QAOVh2ePQlgqV2rjjgHc7CbGZjc7tycy5PoeiheQAGaz9OQCwZ35JG7XxGmKKxtUlmPQXmYBYVNw3dQQ5A==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-step@1.5.1':
+    resolution: {integrity: sha512-JxiWjktbHrVwcS59xoMsElscOQ7FclIvF8hkAYau1dtOCvHYHhILf0lcLKiSHZQeVR4iplBsKeGurozzksY5ww==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-storage@1.5.1':
+    resolution: {integrity: sha512-d6Rh03fTVx8FQTotZOapkkZf+czd3OtTJdeM3FO32TH3cnOujLrJTI/pefg1YwRbAQKwzaglwen9GJw/I52fyA==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-throttle@1.5.1':
+    resolution: {integrity: sha512-hobT+Op2YIrkiFHoelKumHEP4g7S/xBXaHJhdU5ChvnF9iE5iRO7UDVsEtTniJqsTU1c3cIMSXngvEQ8qgkLeg==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-timeout@1.5.1':
+    resolution: {integrity: sha512-YVh4HONt0wcWcdezRZm29KjgJRxN7MMJw51EshSuR0rfON4ltnIjd7ThJMMb/4qEUiZmgP2Ok+t1/bjXwCfMWQ==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-toggle@1.5.1':
+    resolution: {integrity: sha512-R+xu3XZ2xMCmYiYInXGXxZKBp3bn020yRPWns+h0TwVLPax1yX31j8kXVnw/QF7nts2C4w1LTpz3R6TyLeCbUw==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-update-effect@1.5.1':
+    resolution: {integrity: sha512-liufSqtdFQxt7rIRNKZ+ygxpbl1YBhX9OdmGpbiqkH1sdkrlcHOAzZjH/xKOXcHMbBlfRqxjaVbeB3reidZ5Jw==}
+    peerDependencies:
+      react: '>=16'
+
+  '@custom-react-hooks/use-window-size@1.5.1':
+    resolution: {integrity: sha512-7SA+ivPqeeakTUKoQDUtv2o0uriFxLZR6YZ36TagF7AShe5El6HnqLh3+9F5HiVEJpmrUjUOsdFt2MI8Y1ZeKw==}
+    peerDependencies:
+      react: '>=16'
 
   '@depot/cli-darwin-arm64@0.0.1-cli.2.73.0':
     resolution: {integrity: sha512-nXG6loMJxbfWnKoVvTvrw19GAX3TxsgUy2mnb7sKv06VjUeMvsvBueXAW4lxO5Cf89oim9b0/Agnj/B3IVD2Kg==}
@@ -5589,8 +5767,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-cd22717c-20241013:
-    resolution: {integrity: sha512-p4gcOd9uRugj0w+23DAcb1quxz0RLLQrebiQ2wQ3+LbRlSic5SwixqdZmMsuQLkKdWYYftVIH6gsBoUBHNdsZg==}
+  eslint-plugin-react-hooks@5.1.0-rc-6cf85185-20241014:
+    resolution: {integrity: sha512-BeEXOFhXkde3ltdeI6TaiNm/2Fq7wevwjf6c+nPG57QewYiVRD5W910pEnsJikneK1QWrX5OgZS1vpCpUxzfYw==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -10957,6 +11135,180 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
+  '@custom-react-hooks/all@1.5.1(react@18.2.0)':
+    dependencies:
+      '@custom-react-hooks/use-async': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-click-outside': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-clipboard': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-debounce': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-document-title': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-drag-drop': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-effect-once': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-element-size': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-event-listener': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-fetch': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-form': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-geo-location': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-hover': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-idle': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-image-load': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-key-press': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-lock-body-scroll': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-long-press': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-media-devices': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-media-query': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-mouse': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-on-screen': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-orientation': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-permission': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-portal': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-script': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-status': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-step': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-storage': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-throttle': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-timeout': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-toggle': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-update-effect': 1.5.1(react@18.2.0)
+      '@custom-react-hooks/use-window-size': 1.5.1(react@18.2.0)
+      react: 18.2.0
+
+  '@custom-react-hooks/use-async@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-click-outside@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-clipboard@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-debounce@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-document-title@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-drag-drop@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-effect-once@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-element-size@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-event-listener@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-fetch@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-form@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-geo-location@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-hover@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-idle@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-image-load@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-key-press@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-lock-body-scroll@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-long-press@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-media-devices@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-media-query@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-mouse@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-on-screen@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-orientation@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-permission@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-portal@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-script@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-status@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-step@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-storage@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-throttle@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-timeout@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-toggle@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-update-effect@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@custom-react-hooks/use-window-size@1.5.1(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@depot/cli-darwin-arm64@0.0.1-cli.2.73.0':
     optional: true
 
@@ -15638,7 +15990,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-cd22717c-20241013(eslint@9.8.0):
+  eslint-plugin-react-hooks@5.1.0-rc-6cf85185-20241014(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
 

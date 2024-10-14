@@ -23,7 +23,11 @@ export function CollectionDetails({ knowledge }: Props) {
       <VStack>
         <ScrollView showsVerticalScrollIndicator={false} className="gap-7">
           <VStack space="lg">
-            <Heading size="lg">Collections</Heading>
+            <Link
+              href={`/${knowledge.User?.username}/${knowledge.slug}/connections`}
+            >
+              <Heading size="lg">Collections</Heading>
+            </Link>
             <VStack className="h-full" space="md">
               {knowledge.SourceConnections?.map((connection, index) => {
                 return <ConnectionItem item={connection} key={index} />;
