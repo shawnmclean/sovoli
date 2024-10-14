@@ -1,4 +1,4 @@
-import { searchBooksByQuery } from "@sovoli/api/services";
+import { findBookByISBN, searchBooksByQuery } from "@sovoli/api/services";
 
 export const dynamic = "force-dynamic";
 
@@ -13,6 +13,14 @@ export default async function BookPage() {
 
   const book = response.books[0];
 
+  const responseIsbn = await findBookByISBN({ isbn: "9780195122350" });
+
+  if (!responseIsbn.book) {
+    return <div>No book found</div>;
+  }
+
+  const bookIsbn = responseIsbn.book;
+
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
       <h1>Book Page</h1>
@@ -26,6 +34,18 @@ export default async function BookPage() {
         ISBN10: {book.isbn10}
         <br />
         ISBN13: {book.isbn13}
+      </p>
+      <hr />
+      <p>
+        Book title: {bookIsbn.title}
+        <br />
+        Book description: {bookIsbn.description}
+        <br />
+        Id: {bookIsbn.id}
+        <br />
+        ISBN10: {bookIsbn.isbn10}
+        <br />
+        ISBN13: {bookIsbn.isbn13}
       </p>
     </div>
   );

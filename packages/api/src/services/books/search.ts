@@ -1,4 +1,5 @@
 import type { SelectBookSchema } from "@sovoli/db/schema";
+import { db, eq, or, schema } from "@sovoli/db";
 
 import type { GoogleBook } from "../../services/googlebooks";
 import { searchGoogleBooks } from "../../services/googlebooks";
@@ -16,7 +17,7 @@ export interface SearchBooksQuery {
   query?: string;
 }
 
-export interface SearchBooksQueryResult {
+export interface SearchBooksByQueryResult {
   /**
    * books matching the query
    */
@@ -30,21 +31,17 @@ export interface MatchedBook {
   similarity?: number;
 }
 
-export interface SearchBooksOptions {
-  queries: SearchBooksQuery[];
-}
-
 export interface SearchBooksByQueryOptions {
   query: string;
   page?: number;
   pageSize?: number;
 }
 
-export async function searchBooksByQuery({
+export const searchBooksByQuery = async ({
   query,
   page = 1,
   pageSize = 10,
-}: SearchBooksByQueryOptions): Promise<SearchBooksQueryResult> {
+}: SearchBooksByQueryOptions): Promise<SearchBooksByQueryResult> => {
   // search internally first
   const internalResults = await searchInternalByQueries([
     {
@@ -78,11 +75,11 @@ export async function searchBooksByQuery({
   }
 
   return { books: [], total: 0 };
-}
+};
 
 async function searchInternalByQueries(
   queries: SearchBooksByQueryOptions[],
-): Promise<SearchBooksQueryResult[]> {
+): Promise<SearchBooksByQueryResult[]> {
   console.log("searching internally disabled for now");
 
   return Promise.resolve(
@@ -99,7 +96,7 @@ async function searchInternalByQueries(
   );
 
   console.time("Books Search Time");
-  const result: SearchBooksQueryResult[] = await Promise.all(
+  const result: SearchBooksByQueryResult[] = await Promise.all(
     searchEmbeddings.map(async (embedding, index) => {
       if (!queries[index])
         throw new Error(
@@ -127,7 +124,7 @@ async function searchInternalByQueries(
 
 export async function searchExternallyAndPopulate(
   queries: SearchBooksQuery[],
-): Promise<SearchBooksQueryResult[]> {
+): Promise<SearchBooksByQueryResult[]> {
   console.time("Search Externally Time");
   // 1. Perform external search and keep track of results
   const queryToBooksMap = new Map<SearchBooksQuery, GoogleBook[]>();
@@ -159,7 +156,7 @@ export async function searchExternallyAndPopulate(
   }
 
   // 3. Map the inserted books back to their queries
-  const searchResults: SearchBooksQueryResult[] = Array.from(
+  const searchResults: SearchBooksByQueryResult[] = Array.from(
     queryToBooksMap.entries(),
   ).map(([query, originalBooksToInsert]) => {
     // Find the corresponding inserted books
@@ -181,31 +178,46 @@ export async function searchExternallyAndPopulate(
   return searchResults;
 }
 
-// async function searchByISBN(
-//   isbns: string[],
-// ): Promise<SearchBooksQueryResult[]> {
-//   const books = await getBooksByIsbns(isbns);
-//   // Create a map to group books by their ISBN
-//   const booksByIsbn = isbns.reduce<Record<string, MatchedBook[]>>(
-//     (acc, isbn) => {
-//       const matchedBooks = books
-//         .filter((book) => book.isbn10 === isbn || book.isbn13 === isbn)
-//         .map((book) => ({
-//           book,
-//           similarity: 1,
-//         }));
+export interface SearchBooksByISBNQuery {
+  isbn: string;
+}
 
-//       acc[isbn] = matchedBooks;
-//       return acc;
-//     },
-//     {},
-//   );
+export interface FindBookByISBNResult {
+  /**
+   * book matching the query
+   */
+  book?: SelectBookSchema;
+}
 
-//   const results = isbns.map((isbn) => ({
-//     query: { isbn },
-//     books: booksByIsbn[isbn] ?? [], // Default to an empty array if no books matched
-//     total: 0,
-//   }));
+export const findBookByISBN = async ({
+  isbn,
+}: SearchBooksByISBNQuery): Promise<FindBookByISBNResult> => {
+  const internalBook = await db.query.Book.findFirst({
+    where: or(eq(schema.Book.isbn10, isbn), eq(schema.Book.isbn13, isbn)),
+  });
 
-//   return results;
-// }
+  if (internalBook) {
+    return {
+      book: internalBook,
+    };
+  }
+
+  console.log("no internal results, searching externally");
+
+  const externalResults = await searchExternallyAndPopulate([
+    {
+      isbn: isbn,
+    },
+  ]);
+  if (
+    externalResults.length > 0 &&
+    externalResults[0] &&
+    externalResults[0].books.length > 0
+  ) {
+    return {
+      book: externalResults[0].books[0],
+    };
+  }
+
+  return {};
+};
