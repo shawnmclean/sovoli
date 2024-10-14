@@ -12,7 +12,9 @@ export default function ConnectionsEditPage({
 }: Props) {
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
-      <h1>Scan Book By ISBN</h1>
+      <h1>
+        Scan Book By ISBN - {username}/{slug}
+      </h1>
       <BookScanner />
     </div>
   );
