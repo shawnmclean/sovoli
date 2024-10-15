@@ -17,12 +17,10 @@ const dividerStyle = tva({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 const UIDivider = createDivider({ Root: View });
 
 cssInterop(UIDivider, { className: "style" });
 
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 type IUIDividerProps = React.ComponentPropsWithoutRef<typeof UIDivider> &
   VariantProps<typeof dividerStyle>;
 
@@ -35,9 +33,7 @@ const Divider = React.forwardRef<
       ref={ref}
       {...props}
       className={dividerStyle({
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         orientation,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         class: className,
       })}
     />
