@@ -1,3 +1,4 @@
+import { InferInsertModel, InferSelectModel, sql } from "drizzle-orm";
 import {
   date,
   index,
@@ -7,7 +8,6 @@ import {
   primaryKey,
   text,
   unique,
-  uniqueIndex,
   uuid,
   varchar,
   vector,
@@ -58,79 +58,103 @@ export const BookCoverSchema = z.object({
 
 export type BookCover = z.infer<typeof BookCoverSchema>;
 
-export const Book = pgTable(
-  "book",
-  {
-    id: uuid("id").notNull().primaryKey().defaultRandom(),
+export const BookDimensionsSchema = z.object({
+  length: z.object({
+    unit: z.string(),
+    value: z.number(),
+  }),
+  width: z.object({
+    unit: z.string(),
+    value: z.number(),
+  }),
+  height: z.object({
+    unit: z.string(),
+    value: z.number(),
+  }),
+  weight: z.object({
+    unit: z.string(),
+  }),
+});
+export type BookDimensions = z.infer<typeof BookDimensionsSchema>;
 
-    // stores both ISBN-13 and ISBN-10
-    isbn13: varchar("isbn_13", { length: 13 }).unique(),
-    isbn10: varchar("isbn_10", { length: 10 }).unique(),
+export const OtherISBNSchema = z.object({
+  isbn: z.string(),
+  binding: z.string(),
+});
+export type OtherISBN = z.infer<typeof OtherISBNSchema>;
 
-    // google book id
-    googleId: varchar("google_id", { length: 20 }).unique(),
+export const Book = pgTable("book", {
+  id: uuid("id").notNull().primaryKey().defaultRandom(),
 
-    // open library id
-    olid: varchar("olid", { length: 20 }).unique(),
-    // amazon asin
-    asin: varchar("asin", { length: 20 }).unique(),
+  // stores both ISBN-13 and ISBN-10
+  isbn13: varchar("isbn_13", { length: 13 }).unique(),
+  isbn10: varchar("isbn_10", { length: 10 }).unique(),
 
-    title: varchar("title", { length: 255 }).notNull(),
-    subtitle: varchar("subtitle", { length: 255 }),
-    editions: varchar("editions", { length: 255 }),
+  // google book id
+  googleId: varchar("google_id", { length: 20 }).unique(),
 
-    // slug will be in the form of {title}-{isbn}
-    slug: varchar("slug", { length: 255 }).unique(),
+  // open library id
+  olid: varchar("olid", { length: 20 }).unique(),
+  // amazon asin
+  asin: varchar("asin", { length: 20 }).unique(),
 
-    publishedDate: date("published_date"),
-    publisher: varchar("publisher", { length: 255 }),
-    pageCount: integer("page_count").default(0),
-    description: text("description"),
-    language: varchar("language", { length: 7 }),
-    cover: jsonb("cover").$type<BookCover>(),
+  title: text("title").notNull(),
+  longTitle: text("long_title"),
+  language: varchar("language", { length: 7 }),
+  image: text("image"),
+  dimensions: text("dimensions"),
+  structuredDimensions: jsonb("structured_dimensions").$type<BookDimensions>(),
+  pageCount: integer("page_count").default(0),
+  subjects: text("subjects")
+    .array()
+    .$type<string[]>()
+    .notNull()
+    .default(sql`'{}'::text[]`),
+  authors: text("authors")
+    .array()
+    .$type<string[]>()
+    .notNull()
+    .default(sql`'{}'::text[]`),
+  publishedDate: date("published_date"),
+  publisher: varchar("publisher", { length: 255 }),
+  binding: text("binding"),
+  otherISBNs: jsonb("other_isbns").$type<OtherISBN[]>(),
 
-    // The following fields are only used for the inference system
-    triggerDevId: varchar("trigger_dev_id", { length: 255 }),
-    inferrenceError: text("inferrence_error"),
-    lastGoogleUpdated: date("last_google_updated"),
-    lastOLUpdated: date("last_ol_updated"),
-    inferredAuthor: text("inferred_author"),
+  description: text("description"),
 
-    createdAt: date("created_at").notNull().defaultNow(),
-    updatedAt: date("updated_at").notNull().defaultNow(),
-  },
-  (table) => {
-    return {
-      // Composite unique index to ensure no duplicate combinations of isbn13, isbn10, olid, and slug, while
-      // ensuring that the database supports null behavior but not null uniqueness
-      compositeUnique: unique("unique_book_composite")
-        .on(
-          table.isbn13,
-          table.isbn10,
-          table.asin,
-          table.olid,
-          table.googleId,
-          table.slug,
-        )
-        .nullsNotDistinct(),
-      googleCmposite: unique("unique_book_google").on(
-        table.googleId,
-        table.isbn10,
-        table.isbn13,
-      ),
-      slugIndex: uniqueIndex("unique_book_slug").on(table.slug),
-    };
-  },
-);
+  subtitle: varchar("subtitle", { length: 255 }),
+  editions: varchar("editions", { length: 255 }),
+
+  // slug will be in the form of {title}-{isbn}
+  slug: varchar("slug", { length: 255 }).unique(),
+
+  cover: jsonb("cover").$type<BookCover>(),
+
+  // The following fields are only used for the inference system
+  triggerDevId: varchar("trigger_dev_id", { length: 255 }),
+  lastISBNdbUpdated: date("last_isbndb_updated"),
+
+  inferrenceError: text("inferrence_error"),
+  lastGoogleUpdated: date("last_google_updated"),
+  lastOLUpdated: date("last_ol_updated"),
+  inferredAuthor: text("inferred_author"),
+
+  createdAt: date("created_at").notNull().defaultNow(),
+  updatedAt: date("updated_at").notNull().defaultNow(),
+});
 
 export const SelectBookSchema = createSelectSchema(Book).extend({
   authors: z.array(SelectAuthorSchema).optional(),
   cover: BookCoverSchema.nullish(),
 });
 export const InsertBookSchema = createInsertSchema(Book);
-export type SelectBookSchema = z.infer<typeof SelectBookSchema>;
 
+export type SelectBookSchema = z.infer<typeof SelectBookSchema>;
 export type InsertBookSchema = z.infer<typeof InsertBookSchema>;
+
+export type SelectBook = InferSelectModel<typeof Book>;
+
+export type InsertBook = InferInsertModel<typeof Book>;
 
 export const BookEmbedding = pgTable(
   "book_embedding",
