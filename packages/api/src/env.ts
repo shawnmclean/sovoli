@@ -3,6 +3,7 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
+    ISBN_DB_API_KEY: z.string().min(1),
     GOOGLE_BOOKS_API_KEY: z.string().min(1),
     SUPABASE_MEDIA_BUCKET: z.string().min(1),
     SUPABASE_URL: z.string().min(1),
