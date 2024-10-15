@@ -1,11 +1,7 @@
 "use server";
 
-import { findBookByISBN } from "@sovoli/api/services";
+// import { getBookFromISBNdb } from "@sovoli/api/services";
 
-export async function createConnection(isbn: string) {
-  const response = await findBookByISBN({
-    isbn,
-  });
-
-  return response.book;
+export function createConnection(_isbn: string) {
+  throw new Error("Not implemented");
 }

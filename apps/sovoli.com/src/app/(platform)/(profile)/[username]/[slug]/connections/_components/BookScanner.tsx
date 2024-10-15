@@ -1,26 +1,25 @@
 "use client";
 
-import type { SelectBookSchema } from "@sovoli/db/schema";
 import { useState } from "react";
 import { BarcodeReader } from "@sovoli/ui/components/BarcodeReader";
 
-import { createConnection } from "../actions";
-
 export function BookScanner() {
-  const [books, setBooks] = useState<SelectBookSchema[]>([]);
+  // const [books, setBooks] = useState<SelectBookSchema[]>([]);
+  const [isbns, setIsbns] = useState<string[]>([]);
 
-  const handleISBNFound = async (isbn: string) => {
-    const book = await createConnection(isbn);
-    if (!book) return;
-    setBooks([...books, book]);
+  const handleISBNFound = (isbn: string) => {
+    setIsbns([...isbns, isbn]);
+    // const book = await createConnection(isbn);
+    // if (!book) return;
+    // setBooks([...books, book]);
   };
 
   return (
     <div>
       <BarcodeReader onISBNFound={handleISBNFound} />
 
-      {books.map((book) => (
-        <p key={book.id}>{book.title}</p>
+      {isbns.map((isbn) => (
+        <p key={isbn}>{isbn}</p>
       ))}
     </div>
   );
