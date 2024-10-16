@@ -1,4 +1,5 @@
-import { InferInsertModel, InferSelectModel, sql } from "drizzle-orm";
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import {
   date,
   index,
@@ -7,7 +8,6 @@ import {
   pgTable,
   primaryKey,
   text,
-  unique,
   uuid,
   varchar,
   vector,
