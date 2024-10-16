@@ -1,44 +1,45 @@
-import type { SelectBookSchema } from "@sovoli/db/schema";
+import type { SelectBook } from "@sovoli/db/schema";
 
 import { searchBooksFromISBNdb } from "../isbndb";
-
-// import { getBooksByIsbns } from "./find";
-
-export interface SearchBooksQuery {
-  isbn?: string;
-  /**
-   * this can be a semantic search query that will use the embeddings to search for books
-   */
-  query?: string;
-}
+import { upsertBooks } from "./insert";
 
 export interface SearchBooksByQueryResult {
   /**
    * books matching the query
    */
-  books: SelectBookSchema[];
+  books: SelectBook[];
 
   total: number;
 }
-
-export interface MatchedBook {
-  book: SelectBookSchema;
-  similarity?: number;
-}
-
 export interface SearchBooksByQueryOptions {
   query: string;
   page?: number;
   pageSize?: number;
 }
 
-export const searchBooksByQuery = async (
-  _: SearchBooksByQueryOptions,
-): Promise<SearchBooksByQueryResult> => {
-  const books = await searchBooksFromISBNdb(_);
+export const searchBooksByQuery = async ({
+  query,
+  page = 1,
+  pageSize = 20,
+}: SearchBooksByQueryOptions): Promise<SearchBooksByQueryResult> => {
+  // TODO: search internal with full text search
+
+  console.log("no internal results, searching externally");
+
+  const externalBooks = await searchBooksFromISBNdb({
+    query,
+    page,
+    pageSize,
+  });
+
+  console.log(`books found from external: ${externalBooks.length}`);
+
+  const upsertedBooks = await upsertBooks(externalBooks);
+
+  console.log(`books upserted: ${upsertedBooks.length}`);
 
   return {
-    books,
-    total: books.length,
+    books: upsertedBooks,
+    total: upsertedBooks.length,
   };
 };

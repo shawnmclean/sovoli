@@ -8,6 +8,7 @@ import {
   pgTable,
   primaryKey,
   text,
+  unique,
   uuid,
   varchar,
   vector,
@@ -83,65 +84,78 @@ export const OtherISBNSchema = z.object({
 });
 export type OtherISBN = z.infer<typeof OtherISBNSchema>;
 
-export const Book = pgTable("book", {
-  id: uuid("id").notNull().primaryKey().defaultRandom(),
+export const Book = pgTable(
+  "book",
+  {
+    id: uuid("id").notNull().primaryKey().defaultRandom(),
 
-  // stores both ISBN-13 and ISBN-10
-  isbn13: varchar("isbn_13", { length: 13 }).unique(),
-  isbn10: varchar("isbn_10", { length: 10 }).unique(),
+    // stores both ISBN-13 and ISBN-10
+    isbn13: varchar("isbn_13", { length: 13 }).unique(),
+    isbn10: varchar("isbn_10", { length: 10 }).unique(),
 
-  // google book id
-  googleId: varchar("google_id", { length: 20 }).unique(),
+    // google book id
+    googleId: varchar("google_id", { length: 20 }).unique(),
 
-  // open library id
-  olid: varchar("olid", { length: 20 }).unique(),
-  // amazon asin
-  asin: varchar("asin", { length: 20 }).unique(),
+    // open library id
+    olid: varchar("olid", { length: 20 }).unique(),
+    // amazon asin
+    asin: varchar("asin", { length: 20 }).unique(),
 
-  title: text("title").notNull(),
-  longTitle: text("long_title"),
-  language: varchar("language", { length: 7 }),
-  image: text("image"),
-  dimensions: text("dimensions"),
-  structuredDimensions: jsonb("structured_dimensions").$type<BookDimensions>(),
-  pageCount: integer("page_count").default(0),
-  subjects: text("subjects")
-    .array()
-    .$type<string[]>()
-    .notNull()
-    .default(sql`'{}'::text[]`),
-  authors: text("authors")
-    .array()
-    .$type<string[]>()
-    .notNull()
-    .default(sql`'{}'::text[]`),
-  publishedDate: date("published_date"),
-  publisher: varchar("publisher", { length: 255 }),
-  binding: text("binding"),
-  otherISBNs: jsonb("other_isbns").$type<OtherISBN[]>(),
+    title: text("title").notNull(),
+    longTitle: text("long_title"),
+    language: varchar("language", { length: 7 }),
+    image: text("image"),
+    dimensions: text("dimensions"),
+    structuredDimensions: jsonb(
+      "structured_dimensions",
+    ).$type<BookDimensions>(),
+    pageCount: integer("page_count").default(0),
+    subjects: text("subjects")
+      .array()
+      .$type<string[]>()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    authors: text("authors")
+      .array()
+      .$type<string[]>()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    publishedDate: date("published_date"),
+    publisher: varchar("publisher", { length: 255 }),
+    binding: text("binding"),
+    otherISBNs: jsonb("other_isbns").$type<OtherISBN[]>(),
 
-  description: text("description"),
+    description: text("description"),
 
-  subtitle: varchar("subtitle", { length: 255 }),
-  editions: varchar("editions", { length: 255 }),
+    subtitle: varchar("subtitle", { length: 255 }),
+    editions: varchar("editions", { length: 255 }),
 
-  // slug will be in the form of {title}-{isbn}
-  slug: varchar("slug", { length: 255 }).unique(),
+    // slug will be in the form of {title}-{isbn}
+    slug: varchar("slug", { length: 255 }).unique(),
 
-  cover: jsonb("cover").$type<BookCover>(),
+    cover: jsonb("cover").$type<BookCover>(),
 
-  // The following fields are only used for the inference system
-  triggerDevId: varchar("trigger_dev_id", { length: 255 }),
-  lastISBNdbUpdated: date("last_isbndb_updated"),
+    // The following fields are only used for the inference system
+    triggerDevId: varchar("trigger_dev_id", { length: 255 }),
+    lastISBNdbUpdated: date("last_isbndb_updated"),
 
-  inferrenceError: text("inferrence_error"),
-  lastGoogleUpdated: date("last_google_updated"),
-  lastOLUpdated: date("last_ol_updated"),
-  inferredAuthor: text("inferred_author"),
+    inferrenceError: text("inferrence_error"),
+    lastGoogleUpdated: date("last_google_updated"),
+    lastOLUpdated: date("last_ol_updated"),
+    inferredAuthor: text("inferred_author"),
 
-  createdAt: date("created_at").notNull().defaultNow(),
-  updatedAt: date("updated_at").notNull().defaultNow(),
-});
+    createdAt: date("created_at").notNull().defaultNow(),
+    updatedAt: date("updated_at").notNull().defaultNow(),
+  },
+  (table) => {
+    return {
+      isbnCompositeUnique: unique("unique_isbn_composite").on(
+        table.isbn10,
+        table.isbn13,
+      ),
+    };
+  },
+);
 
 export const SelectBookSchema = createSelectSchema(Book).extend({
   authors: z.array(SelectAuthorSchema).optional(),
