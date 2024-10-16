@@ -6,22 +6,26 @@ import { AsyncResilience } from "../../utils/retry/AsyncResilience";
 import { retryAsync } from "../../utils/retry/retry-async";
 import { transformISBNdbToInsertBook } from "./transformISBNdbToBook";
 
-// Response object structure for getBookByISBN
-export interface GetBookFromISBNdbResponse {
-  book: Book; // Book object for the given ISBN
+// Response object structure for getBooksByQuery or getBooksByISBN
+export interface SearchBooksFromISBNdbResponse {
+  books: Book[]; // Array of Book objects from the given query or ISBN search
 }
 
-export interface GetBookFromISBNdbOptions {
-  isbn: string;
+export interface SearchtBooksFromISBNdbOptions {
+  query: string;
+  page?: number;
+  pageSize?: number;
 }
 
-export const getBookFromISBNdb = async ({
-  isbn,
-}: GetBookFromISBNdbOptions): Promise<InsertBook | null> => {
+export const searchBooksFromISBNdb = async ({
+  query,
+  page = 1,
+  pageSize = 20,
+}: SearchtBooksFromISBNdbOptions): Promise<InsertBook[]> => {
   const apiKey = env.ISBN_DB_API_KEY;
-  const url = `https://api2.isbndb.com/book/${isbn}`;
+  const url = `https://api2.isbndb.com/books/${encodeURIComponent(query)}?page=${page}&pageSize=${pageSize}`;
 
-  const fetchBookFunc = async () => {
+  const fetchBooksFunc = async () => {
     const response = await fetch(url, {
       headers: {
         Authorization: apiKey,
@@ -37,7 +41,7 @@ export const getBookFromISBNdb = async ({
   };
 
   const response = await retryAsync(
-    fetchBookFunc,
+    fetchBooksFunc,
     AsyncResilience.exponentialBackoffWithJitter(),
   );
 
@@ -46,6 +50,8 @@ export const getBookFromISBNdb = async ({
     throw new Error("Failed to fetch book data");
   }
 
-  const data = (await response.json()) as GetBookFromISBNdbResponse;
-  return transformISBNdbToInsertBook(data.book);
+  const data = (await response.json()) as SearchBooksFromISBNdbResponse;
+
+  // Transform each book into the InsertBook schema
+  return data.books.map(transformISBNdbToInsertBook);
 };

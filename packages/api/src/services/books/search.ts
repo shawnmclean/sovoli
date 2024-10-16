@@ -1,5 +1,7 @@
 import type { SelectBookSchema } from "@sovoli/db/schema";
 
+import { searchBooksFromISBNdb } from "../isbndb";
+
 // import { getBooksByIsbns } from "./find";
 
 export interface SearchBooksQuery {
@@ -30,8 +32,13 @@ export interface SearchBooksByQueryOptions {
   pageSize?: number;
 }
 
-export const searchBooksByQuery = (
+export const searchBooksByQuery = async (
   _: SearchBooksByQueryOptions,
 ): Promise<SearchBooksByQueryResult> => {
-  throw new Error("Not implemented");
+  const books = await searchBooksFromISBNdb(_);
+
+  return {
+    books,
+    total: books.length,
+  };
 };
