@@ -1,4 +1,5 @@
 import type { SelectBook } from "@sovoli/db/schema";
+import { db, schema, sql } from "@sovoli/db";
 
 import { searchBooksFromISBNdb } from "../isbndb";
 import { upsertBooks } from "./insert";
@@ -8,8 +9,6 @@ export interface SearchBooksByQueryResult {
    * books matching the query
    */
   books: SelectBook[];
-
-  total: number;
 }
 export interface SearchBooksByQueryOptions {
   query: string;
@@ -22,7 +21,16 @@ export const searchBooksByQuery = async ({
   page = 1,
   pageSize = 20,
 }: SearchBooksByQueryOptions): Promise<SearchBooksByQueryResult> => {
-  // TODO: search internal with full text search
+  const internalBooks = await db.query.Book.findMany({
+    where: sql`${schema.Book.search} @@ websearch_to_tsquery('english', ${query})`,
+  });
+
+  if (internalBooks.length > 0) {
+    console.log(`found ${internalBooks.length} books in internal db`);
+    return {
+      books: internalBooks,
+    };
+  }
 
   console.log("no internal results, searching externally");
 
@@ -40,6 +48,5 @@ export const searchBooksByQuery = async ({
 
   return {
     books: upsertedBooks,
-    total: upsertedBooks.length,
   };
 };

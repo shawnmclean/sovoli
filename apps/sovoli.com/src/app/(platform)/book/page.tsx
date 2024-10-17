@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 
 export default async function BookPage() {
   const response = await searchBooksByQuery({
-    query: "Female body emera",
+    query: "robert becker",
   });
 
   return (
