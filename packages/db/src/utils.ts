@@ -1,3 +1,5 @@
+import { customType } from "drizzle-orm/pg-core";
+
 export const createEnumObject = <T extends readonly [string, ...string[]]>(
   values: T,
 ): Record<T[number], T[number]> => {
@@ -7,3 +9,9 @@ export const createEnumObject = <T extends readonly [string, ...string[]]>(
   }
   return obj;
 };
+
+export const tsVector = customType<{ data: string }>({
+  dataType() {
+    return "tsvector";
+  },
+});

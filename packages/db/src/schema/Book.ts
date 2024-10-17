@@ -1,4 +1,4 @@
-import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
+import type { InferInsertModel, InferSelectModel, SQL } from "drizzle-orm";
 import { sql } from "drizzle-orm";
 import {
   date,
@@ -15,6 +15,8 @@ import {
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
+
+import { tsVector } from "../utils";
 
 export const Author = pgTable("author", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -146,6 +148,11 @@ export const Book = pgTable(
 
     createdAt: date("created_at").notNull().defaultNow(),
     updatedAt: date("updated_at").notNull().defaultNow(),
+
+    search: tsVector("search").generatedAlwaysAs(
+      (): SQL =>
+        sql`to_tsvector('english', ${Book.title} || ' ' || immutable_array_to_string(${Book.authors}, ' '))`,
+    ),
   },
   (table) => {
     return {
@@ -153,6 +160,7 @@ export const Book = pgTable(
         table.isbn10,
         table.isbn13,
       ),
+      searchIndex: index("idx_search").using("gin", table.search),
     };
   },
 );
