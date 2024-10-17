@@ -1,6 +1,6 @@
 import { task } from "@trigger.dev/sdk/v3";
 
-import { knowledgeUpserted } from "../services/knowledge/knowledgeUpserted";
+import { knowledgeUpserted } from "../services/knowledge";
 
 export interface HydrateKnowledgeOptions {
   knowledgeId: string;
