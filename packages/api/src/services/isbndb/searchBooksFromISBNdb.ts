@@ -20,7 +20,8 @@ export interface SearchtBooksFromISBNdbOptions {
 export const searchBooksFromISBNdb = async ({
   query,
   page = 1,
-  pageSize = 20,
+  // max size is 1000 (their default is 20)
+  pageSize = 1000,
 }: SearchtBooksFromISBNdbOptions): Promise<InsertBook[]> => {
   const apiKey = env.ISBN_DB_API_KEY;
   const url = `https://api2.isbndb.com/books/${encodeURIComponent(query)}?page=${page}&pageSize=${pageSize}`;
