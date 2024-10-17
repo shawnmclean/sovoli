@@ -43,12 +43,14 @@
     "superjson": "2.2.1",
     "parse-multipart-data": "1.5.0",
     "magic-bytes.js": "1.10.0",
+    "lodash": "4.17.21",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",
     "@sovoli/typescript-config": "workspace:*",
     "@sovoli/prettier-config": "workspace:*",
+    "@types/lodash": "4.17.10",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"

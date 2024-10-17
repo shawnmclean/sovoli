@@ -322,6 +322,9 @@ importers:
       ai:
         specifier: 3.3.8
         version: 3.3.8(react@18.2.0)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.4.38(typescript@5.5.2))(zod@3.23.8)
+      lodash:
+        specifier: 4.17.21
+        version: 4.17.21
       magic-bytes.js:
         specifier: 1.10.0
         version: 1.10.0
@@ -344,6 +347,9 @@ importers:
       '@sovoli/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@types/lodash':
+        specifier: 4.17.10
+        version: 4.17.10
       eslint:
         specifier: 'catalog:'
         version: 9.8.0
@@ -468,7 +474,7 @@ importers:
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-6cf85185-20241014(eslint@9.8.0)
+        version: 5.1.0-rc-77b637d6-20241016(eslint@9.8.0)
       eslint-plugin-turbo:
         specifier: 2.0.11
         version: 2.0.11(eslint@9.8.0)
@@ -4108,6 +4114,9 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
+  '@types/lodash@4.17.10':
+    resolution: {integrity: sha512-YpS0zzoduEhuOWjAotS6A5AVCva7X4lVlYLF0FYHAY9sdraBfnatttHItlWeZdGhuEkf+OzMNg2ZYAx8t+52uQ==}
+
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
 
@@ -5589,8 +5598,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-6cf85185-20241014:
-    resolution: {integrity: sha512-BeEXOFhXkde3ltdeI6TaiNm/2Fq7wevwjf6c+nPG57QewYiVRD5W910pEnsJikneK1QWrX5OgZS1vpCpUxzfYw==}
+  eslint-plugin-react-hooks@5.1.0-rc-77b637d6-20241016:
+    resolution: {integrity: sha512-lGKra+7UDOdruymKEJu/60zfzp8TvtdcxIAkwkhw/5NfSllWsW/pIoO5SIOy8W8gddtTZp/Uw9UYpTFeOiebIw==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -13948,6 +13957,8 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
+  '@types/lodash@4.17.10': {}
+
   '@types/mdast@4.0.4':
     dependencies:
       '@types/unist': 3.0.3
@@ -15638,7 +15649,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.0
 
-  eslint-plugin-react-hooks@5.1.0-rc-6cf85185-20241014(eslint@9.8.0):
+  eslint-plugin-react-hooks@5.1.0-rc-77b637d6-20241016(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
 

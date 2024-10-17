@@ -1,5 +1,6 @@
 import type { InsertBook, SelectBook } from "@sovoli/db/schema";
 import { db, schema, sql } from "@sovoli/db";
+import { chunk } from "lodash";
 
 import { bookUpsertedEvent } from "../../trigger/bookUpsertedEvent";
 
@@ -36,8 +37,14 @@ export const upsertBooks = async (
     })
     .returning();
 
+  // batch these calls by 100 max
   const payload = insertedBooks.map((b) => ({ payload: { bookId: b.id } }));
-  await bookUpsertedEvent.batchTrigger(payload);
+  const chunks = chunk(payload, 100);
+
+  await Promise.all(
+    chunks.map((chunk) => bookUpsertedEvent.batchTrigger(chunk)),
+  );
+
   console.log(`Book upserted event fired for ${payload.length} books`);
 
   return insertedBooks;
