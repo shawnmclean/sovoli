@@ -20,6 +20,10 @@
       "types": "./dist/services/index.d.ts",
       "default": "./src/services/index.ts"
     },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "default": "./src/utils/index.ts"
+    },
     "./env": "./src/env.ts"
   },
   "scripts": {
