@@ -26,6 +26,8 @@ program
         knowledgeUpserted({ knowledgeId: knowledge.id }),
       ),
     );
+
+    console.log("🎉 Done");
   });
 
 program.parse();

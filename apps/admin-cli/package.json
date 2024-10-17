@@ -31,6 +31,7 @@
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:",
+    "dotenv-cli": "7.4.2",
     "tsx": "4.19.1"
   },
   "prettier": "@sovoli/prettier-config"
