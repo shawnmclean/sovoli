@@ -9,7 +9,7 @@ export const bookRouter = tsr.router(bookContract, {
   listOrSearchBooks: async ({ query: { q, page, pageSize } }) => {
     if (q) {
       // search by query
-      const { books, total } = await searchBooksByQuery({
+      const { books } = await searchBooksByQuery({
         query: q,
         page: page,
         pageSize: pageSize,
@@ -19,7 +19,7 @@ export const bookRouter = tsr.router(bookContract, {
         status: 200,
         body: BooksResponseSchema.parse({
           data: books,
-          meta: { page, pageSize, total },
+          meta: { page, pageSize, total: 0 },
         }),
       };
     } else {
