@@ -1,0 +1,37 @@
+{
+  "name": "@sovoli/admin-cli",
+  "version": "0.0.1",
+  "description": "Sovoli admin-cli CLI",
+  "private": true,
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "sovoli": "./bin/run.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf node_modules dist .turbo",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "run-cli": "pnpm with-env tsx ./src/index.ts",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@commander-js/extra-typings": "12.1.0",
+    "@sovoli/api": "workspace:*",
+    "@sovoli/db": "workspace:*",
+    "commander": "12.1.0",
+    "@t3-oss/env-core": "0.11.1"
+  },
+  "devDependencies": {
+    "@sovoli/eslint-config": "workspace:*",
+    "@sovoli/typescript-config": "workspace:*",
+    "@sovoli/prettier-config": "workspace:*",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:",
+    "tsx": "4.19.1"
+  },
+  "prettier": "@sovoli/prettier-config"
+}
