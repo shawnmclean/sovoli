@@ -50,7 +50,7 @@ BEGIN
     ) THEN
         create policy "Public Access Bucket Images Delete"
         on storage.objects for delete
-        with check (bucket_id = 'media');
+        using (bucket_id = 'media');
     END IF;
 END $$;
 
