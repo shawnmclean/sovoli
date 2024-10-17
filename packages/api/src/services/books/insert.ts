@@ -1,6 +1,6 @@
 import type { InsertBook, SelectBook } from "@sovoli/db/schema";
 import { db, schema, sql } from "@sovoli/db";
-import { chunk } from "lodash";
+import chunk from "lodash/chunk";
 
 import { bookUpsertedEvent } from "../../trigger/bookUpsertedEvent";
 
