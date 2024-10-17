@@ -92,8 +92,8 @@ export const Book = pgTable(
     id: uuid("id").notNull().primaryKey().defaultRandom(),
 
     // stores both ISBN-13 and ISBN-10
-    isbn13: varchar("isbn_13", { length: 13 }).unique(),
-    isbn10: varchar("isbn_10", { length: 10 }).unique(),
+    isbn13: varchar("isbn_13", { length: 15 }).unique(),
+    isbn10: varchar("isbn_10", { length: 15 }).unique(),
 
     // google book id
     googleId: varchar("google_id", { length: 20 }).unique(),
@@ -123,13 +123,13 @@ export const Book = pgTable(
       .notNull()
       .default(sql`'{}'::text[]`),
     publishedDate: date("published_date"),
-    publisher: varchar("publisher", { length: 255 }),
+    publisher: text("publisher"),
     binding: text("binding"),
     otherISBNs: jsonb("other_isbns").$type<OtherISBN[]>(),
 
     description: text("description"),
 
-    subtitle: varchar("subtitle", { length: 255 }),
+    subtitle: text("subtitle"),
     editions: varchar("editions", { length: 255 }),
 
     // slug will be in the form of {title}-{isbn}
