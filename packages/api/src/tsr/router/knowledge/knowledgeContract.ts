@@ -2,6 +2,7 @@ import { extendZodWithOpenApi } from "@anatine/zod-openapi";
 import {
   KnowledgeConnectionMetadataSchema,
   KnowledgeConnectionTypes,
+  KnowledgeQueryTypes,
   KnowledgeTypes,
   SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
@@ -47,6 +48,7 @@ const BaseConnectionSchema = z.object({
         "The query is used to search for the book. If the book is already in your knowledge library, it will be linked. Format: `{title} {author}`",
       examples: ["The Interpretation of Dreams Sigmung Freud"],
     }),
+    queryType: z.enum(KnowledgeQueryTypes),
     type: z.enum(KnowledgeTypes),
   }),
 });
@@ -70,7 +72,8 @@ const BaseUpsertKnowledgeSchemaRequest = z.object({
   title: z.string(),
   description: z.string(),
   content: z.string().openapi({
-    description: "This field holds the highlighted text in Markdown format.",
+    description:
+      "This field holds the highlighted text in Markdown format. It supports Github Flavored Markdown",
     examples: ["## Important Concept\nThis text was highlighted by the user."],
   }),
 

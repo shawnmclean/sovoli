@@ -15,7 +15,7 @@ import type {
   PutKnowledgeSchemaRequest,
   UpdateConnectionSchema,
 } from "../../tsr/router/knowledge/knowledgeContract";
-import { hydrateKnowledge, hydrateMedia } from "../../trigger";
+import { hydrateMedia, knowledgeUpsertedEvent } from "../../trigger";
 import { hashAuthToken } from "../../utils/authTokens";
 import { createConnections } from "./createConnections";
 
@@ -201,7 +201,7 @@ export const updateKnowledge = async ({
 
   const triggerPromises = [];
   if (updatedKnowledge.SourceConnections.length > 0) {
-    const hydrateKnowledgePromise = hydrateKnowledge.batchTrigger([
+    const hydrateKnowledgePromise = knowledgeUpsertedEvent.batchTrigger([
       { payload: { knowledgeId: updatedKnowledge.id } }, // add the source knowledge to the queue
       ...updatedKnowledge.SourceConnections.map((connection) => ({
         // add the connections to the queue, even if they belong to someone else or is hydrated already, its a tradeoff

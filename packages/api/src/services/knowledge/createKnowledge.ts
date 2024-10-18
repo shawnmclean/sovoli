@@ -7,7 +7,7 @@ import { db, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
 
 import type { PostKnowledgeSchemaRequest } from "../../tsr/router/knowledge/knowledgeContract";
-import { hydrateKnowledge, hydrateMedia } from "../../trigger";
+import { hydrateMedia, knowledgeUpsertedEvent } from "../../trigger";
 import { generateAuthToken, hashAuthToken } from "../../utils/authTokens";
 import { slugify } from "../../utils/slugify";
 import { createConnections } from "./createConnections";
@@ -74,7 +74,7 @@ export const createKnowledge = async ({
 
   const triggerPromises = [];
   if (createdSourceKnowledge.SourceConnections.length > 0) {
-    const hydrateKnowledgePromise = hydrateKnowledge.batchTrigger([
+    const hydrateKnowledgePromise = knowledgeUpsertedEvent.batchTrigger([
       { payload: { knowledgeId: createdSourceKnowledge.id } }, // add the source knowledge to the queue
       ...createdSourceKnowledge.SourceConnections.map((connection) => ({
         // add the connections to the queue
