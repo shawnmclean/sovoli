@@ -22,6 +22,14 @@ import { SelectUserSchema, User } from "./User";
 export const KnowledgeTypes = ["Collection", "Book", "Note"] as const;
 export const KnowledgeType = createEnumObject(KnowledgeTypes);
 export const knowledgeTypeEnum = pgEnum("knowledge_type", KnowledgeTypes);
+
+export const KnowledgeQueryTypes = ["query", "isbn"] as const;
+export const KnowledgeQueryType = createEnumObject(KnowledgeQueryTypes);
+export const knowledgeQueryTypeEnum = pgEnum(
+  "knowledge_query_type",
+  KnowledgeQueryTypes,
+);
+
 export const Knowledge = pgTable(
   "knowledge",
   {
@@ -56,11 +64,15 @@ export const Knowledge = pgTable(
     chapterNumber: integer("chapter_number"),
     isPrivate: boolean("is_public").notNull().default(false),
 
-    // the query that was used to search for the book
-    // this may come in the form of "book: {title}" or "isbn: {isbn}"
-    query: varchar("query", { length: 255 }),
-    triggerDevId: varchar("trigger_dev_id", { length: 255 }),
-    triggerError: text("trigger_error"),
+    // the query that is used to hydrate the knowledge, whether its a book (search type; isbn/query), article, youtube, etc
+    query: text("query"),
+    queryType: knowledgeQueryTypeEnum("query_type")
+      .notNull()
+      .default(KnowledgeQueryType.query),
+
+    // this is used for if the event was triggered by a background job service
+    jobId: varchar("job_id", { length: 255 }),
+    jobError: text("job_error"),
 
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),

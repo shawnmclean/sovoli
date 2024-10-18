@@ -1,15 +1,22 @@
-import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+import type { SelectBook, SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { and, db, eq, inArray, schema } from "@sovoli/db";
+import { KnowledgeQueryType } from "@sovoli/db/schema";
 
 import { slugify } from "../../utils/slugify";
-import { searchBooksByQuery } from "../books";
+import { findBookByISBN, searchBooksByQuery } from "../books";
 
 export interface KnowledgeUpsertedOptions {
   knowledgeId: string;
+
+  /**
+   * this is used for if the event was triggered by a background job service
+   */
+  jobId?: string;
 }
 
 export const knowledgeUpserted = async ({
   knowledgeId,
+  jobId,
 }: KnowledgeUpsertedOptions) => {
   const knowledge = await db.query.Knowledge.findFirst({
     with: {
@@ -26,16 +33,31 @@ export const knowledgeUpserted = async ({
     throw new Error(`Knowledge not found`);
   }
 
-  switch (knowledge.type) {
-    case "Book":
-      await handleBookKnowledgeTypeUpserted(knowledge);
-      break;
-    case "Note":
-      handleNoteKnowledgeTypeUpserted();
-      break;
-    case "Collection":
-      handleCollectionKnowledgeTypeUpserted();
-      break;
+  try {
+    switch (knowledge.type) {
+      case "Book":
+        await handleBookKnowledgeTypeUpserted(knowledge);
+        break;
+      case "Note":
+        handleNoteKnowledgeTypeUpserted();
+        break;
+      case "Collection":
+        handleCollectionKnowledgeTypeUpserted();
+        break;
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(`Error handling knowledge ${knowledge.id}: ${error.message}`);
+      await db
+        .update(schema.Knowledge)
+        .set({
+          jobError: error.message,
+          jobId: jobId,
+        })
+        .where(eq(schema.Knowledge.id, knowledgeId));
+    }
+
+    throw error;
   }
 };
 
@@ -54,21 +76,44 @@ const handleBookKnowledgeTypeUpserted = async (
   if (!knowledge.query) {
     throw new Error("Knowledge has no query");
   }
-  console.log(`Searching for query: ${knowledge.query}`);
-  const results = await searchBooksByQuery({
-    query: knowledge.query,
-  });
-
-  if (!results.books[0]) {
-    throw new Error("No results found for query");
+  if (
+    knowledge.queryType !== KnowledgeQueryType.isbn ||
+    knowledge.queryType !== KnowledgeQueryType.query
+  ) {
+    throw new Error(
+      "Knowledge query type must be either isbn or query for a book",
+    );
   }
 
-  const bestMatch = results.books[0];
+  let book: SelectBook | undefined;
+
+  switch (knowledge.queryType) {
+    case KnowledgeQueryType.isbn: {
+      console.log("searching for book by isbn");
+      const result = await findBookByISBN({
+        isbn: knowledge.query,
+      });
+      book = result.book;
+      break;
+    }
+    case KnowledgeQueryType.query: {
+      console.log("searching for book by query");
+      const results = await searchBooksByQuery({
+        query: knowledge.query,
+      });
+      book = results.books[0];
+      break;
+    }
+  }
+
+  if (!book) {
+    throw new Error("No book found for query");
+  }
 
   // check if user already has the book
   const bookKnowledge = await db.query.Knowledge.findFirst({
     where: and(
-      eq(schema.Knowledge.bookId, bestMatch.id),
+      eq(schema.Knowledge.bookId, book.id),
       eq(schema.Knowledge.userId, knowledge.User.id),
     ),
   });
@@ -97,15 +142,15 @@ const handleBookKnowledgeTypeUpserted = async (
       .where(eq(schema.Knowledge.id, knowledge.id));
   } else {
     // update the knowledge with the book information
-    let slug = slugify(bestMatch.title);
+    let slug = slugify(book.title);
     let retryCount = 0;
     while (retryCount < 50) {
       try {
         await db
           .update(schema.Knowledge)
           .set({
-            bookId: bestMatch.id,
-            title: bestMatch.title,
+            bookId: book.id,
+            title: book.title,
             slug,
           })
           .where(eq(schema.Knowledge.id, knowledge.id));
@@ -118,7 +163,7 @@ const handleBookKnowledgeTypeUpserted = async (
         ) {
           // Unique violation (Postgres specific error code)
           // Regenerate slug by appending a unique identifier (e.g., retryCount)
-          slug = slugify(bestMatch.title) + "-" + (retryCount + 1);
+          slug = slugify(book.title) + "-" + (retryCount + 1);
           retryCount++;
         } else {
           throw error; // Re-throw other errors
