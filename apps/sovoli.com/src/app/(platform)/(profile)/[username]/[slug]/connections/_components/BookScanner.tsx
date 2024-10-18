@@ -8,7 +8,12 @@ export function BookScanner() {
   const [isbns, setIsbns] = useState<string[]>([]);
 
   const handleISBNFound = (isbn: string) => {
-    setIsbns([...isbns, isbn]);
+    // check if isbn is already in the list, then do nothing
+
+    setIsbns((prev) => {
+      if (prev.includes(isbn)) return prev;
+      return [isbn, ...prev];
+    });
     // const book = await createConnection(isbn);
     // if (!book) return;
     // setBooks([...books, book]);
