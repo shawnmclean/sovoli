@@ -65,7 +65,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     description: "Stress of life book added by ChatGPT",
     bookId: "1f1fe6e2-df13-42e1-8e79-83a74f2fb811",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
-    type: KnowledgeType.Book,
+    type: KnowledgeType.book,
     slug: "the-stress-of-life",
   },
   {
@@ -74,7 +74,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     description: "Power of habit book added by ChatGPT",
     bookId: "c1108c8d-43e6-43cf-b5a1-e3a3009a80b1",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
-    type: KnowledgeType.Book,
+    type: KnowledgeType.book,
     slug: "the-power-of-habit",
   },
   {
@@ -83,7 +83,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     description: "Harry Potter book added by ChatGPT",
     bookId: "c5996f1d-18e4-4dcd-9444-349a59160973",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
-    type: KnowledgeType.Book,
+    type: KnowledgeType.book,
     slug: "harry-potter-and-the-philosophers-stone",
   },
   {
@@ -92,7 +92,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     description: "Pain and simple note",
     userId: "f1a2ab2a-9195-45c1-982e-8b5bc661986c",
     isOrigin: true,
-    type: KnowledgeType.Note,
+    type: KnowledgeType.note,
     slug: "just-a-note-about-psychology",
   },
   // collections
@@ -105,7 +105,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     isPrivate: false,
     isOrigin: true,
     slug: "owned",
-    type: KnowledgeType.Collection,
+    type: KnowledgeType.collection,
   },
   {
     id: "a9d2fc8d-d5d0-454c-848a-6a91d8a432b9",
@@ -115,7 +115,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     isPrivate: false,
     isOrigin: true,
     slug: "psychology-shelf",
-    type: KnowledgeType.Collection,
+    type: KnowledgeType.collection,
   },
   {
     id: "cc9cf8b2-42ea-4e27-9a31-7b50ab4dace4",
@@ -125,7 +125,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     isPrivate: false,
     isOrigin: true,
     slug: "owned",
-    type: KnowledgeType.Collection,
+    type: KnowledgeType.collection,
   },
   {
     id: "1297a14b-f942-4532-be54-4b6e542ca04c",
@@ -135,7 +135,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     isPrivate: true,
     isOrigin: true,
     slug: "private-collection",
-    type: KnowledgeType.Collection,
+    type: KnowledgeType.collection,
   },
   // Shawn's collection
   {
@@ -146,7 +146,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     isPrivate: false,
     isOrigin: true,
     slug: "shawn-collection",
-    type: KnowledgeType.Collection,
+    type: KnowledgeType.collection,
   },
   {
     id: "efab5eab-4f0f-4545-a6ca-10aae137f6ba",
@@ -156,7 +156,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     isPrivate: true,
     isOrigin: true,
     slug: "shawn-private-collection",
-    type: KnowledgeType.Collection,
+    type: KnowledgeType.collection,
   },
   {
     id: "dcdd76fd-0f1c-45db-acda-fce13f90c69b",
@@ -165,7 +165,7 @@ const knowledges: (typeof schema.Knowledge.$inferInsert)[] = [
     userId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
     isPrivate: false,
     slug: "shawn-public-collection-with-private-collection",
-    type: KnowledgeType.Collection,
+    type: KnowledgeType.collection,
   },
 ];
 

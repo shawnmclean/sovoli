@@ -57,7 +57,7 @@ export const Knowledge = pgTable(
     isOrigin: boolean("is_origin").notNull().default(false),
 
     slug: varchar("slug", { length: 255 }),
-    type: knowledgeTypeEnum("type").notNull().default(KnowledgeType.Book),
+    type: knowledgeTypeEnum("type").notNull().default(KnowledgeType.note),
 
     bookId: uuid("book_id").references(() => Book.id),
 

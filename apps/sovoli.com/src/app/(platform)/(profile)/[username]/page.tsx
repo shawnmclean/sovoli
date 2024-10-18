@@ -87,7 +87,7 @@ async function getKnowledges({
             "totalConnections",
           ),
           totalBooks: sql<number>`
-          COUNT(${schema.Knowledge.id}) FILTER (WHERE ${schema.Knowledge.type} = ${KnowledgeType.Book})
+          COUNT(${schema.Knowledge.id}) FILTER (WHERE ${schema.Knowledge.type} = ${KnowledgeType.book})
         `.as("totalBooks"),
         })
         .from(schema.KnowledgeConnection)
@@ -203,7 +203,7 @@ export default async function KnowledgesPage({ params, searchParams }: Props) {
   });
 
   return (
-    <div className="min-h-screen dark:bg-black sm:pl-60">
+    <div className="min-h-screen sm:pl-60 dark:bg-black">
       <h1>{user.name}'s Collections</h1>
 
       <pre>{JSON.stringify(user, null, 2)}</pre>
