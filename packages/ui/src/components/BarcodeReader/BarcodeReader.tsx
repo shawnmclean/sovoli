@@ -22,6 +22,7 @@ export function BarcodeReader({ onISBNFound }: BarcodeReaderProps) {
       }
     },
   });
+
   return (
     <>
       <video ref={ref} />
