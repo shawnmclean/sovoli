@@ -19,7 +19,7 @@ import { SelectKnowledgeConnectionSchema } from "./KnowledgeConnection";
 import { SelectMediaAssetSchema } from "./MediaAsset";
 import { SelectUserSchema, User } from "./User";
 
-export const KnowledgeTypes = ["Collection", "Book", "Note", "Shelf"] as const;
+export const KnowledgeTypes = ["collection", "book", "note", "shelf"] as const;
 export const KnowledgeType = createEnumObject(KnowledgeTypes);
 export const knowledgeTypeEnum = pgEnum("knowledge_type", KnowledgeTypes);
 

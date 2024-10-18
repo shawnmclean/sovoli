@@ -1,6 +1,6 @@
 import type { SelectBook, SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { and, db, eq, inArray, schema } from "@sovoli/db";
-import { KnowledgeQueryType } from "@sovoli/db/schema";
+import { KnowledgeQueryType, KnowledgeType } from "@sovoli/db/schema";
 
 import { slugify } from "../../utils/slugify";
 import { findBookByISBN, searchBooksByQuery } from "../books";
@@ -35,13 +35,16 @@ export const knowledgeUpserted = async ({
 
   try {
     switch (knowledge.type) {
-      case "Book":
+      case KnowledgeType.book:
         await handleBookKnowledgeTypeUpserted(knowledge);
         break;
-      case "Note":
+      case KnowledgeType.note:
         handleNoteKnowledgeTypeUpserted();
         break;
-      case "Collection":
+      case KnowledgeType.collection:
+        handleCollectionKnowledgeTypeUpserted();
+        break;
+      case KnowledgeType.shelf:
         handleCollectionKnowledgeTypeUpserted();
         break;
     }
@@ -56,7 +59,6 @@ export const knowledgeUpserted = async ({
         })
         .where(eq(schema.Knowledge.id, knowledgeId));
     }
-
     throw error;
   }
 };
@@ -77,7 +79,7 @@ const handleBookKnowledgeTypeUpserted = async (
     throw new Error("Knowledge has no query");
   }
   if (
-    knowledge.queryType !== KnowledgeQueryType.isbn ||
+    knowledge.queryType !== KnowledgeQueryType.isbn &&
     knowledge.queryType !== KnowledgeQueryType.query
   ) {
     throw new Error(
