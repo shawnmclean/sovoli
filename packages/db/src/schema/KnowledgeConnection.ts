@@ -5,6 +5,7 @@ import {
   pgTable,
   text,
   timestamp,
+  unique,
   uuid,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
@@ -14,9 +15,9 @@ import { createEnumObject } from "../utils";
 import { Knowledge, SelectKnowledgeSchema } from "./Knowledge";
 
 export const KnowledgeConnectionTypes = [
-  "Contains",
-  "Recommends",
-  "Refers",
+  "contains",
+  "recommends",
+  "refers",
 ] as const;
 export const KnowledgeConnectionType = createEnumObject(
   KnowledgeConnectionTypes,
@@ -35,30 +36,39 @@ export type KnowledgeConnectionMetadataSchema = z.infer<
   typeof KnowledgeConnectionMetadataSchema
 >;
 
-export const KnowledgeConnection = pgTable("knowledge_connection", {
-  id: uuid("id").notNull().primaryKey().defaultRandom(),
+export const KnowledgeConnection = pgTable(
+  "knowledge_connection",
+  {
+    id: uuid("id").notNull().primaryKey().defaultRandom(),
 
-  sourceKnowledgeId: uuid("source_knowledge_id")
-    .notNull()
-    .references(() => Knowledge.id, { onDelete: "cascade" }),
-  targetKnowledgeId: uuid("target_knowledge_id")
-    .notNull()
-    .references(() => Knowledge.id, { onDelete: "cascade" }),
+    sourceKnowledgeId: uuid("source_knowledge_id")
+      .notNull()
+      .references(() => Knowledge.id, { onDelete: "cascade" }),
+    targetKnowledgeId: uuid("target_knowledge_id")
+      .notNull()
+      .references(() => Knowledge.id, { onDelete: "cascade" }),
 
-  type: knowledgeConnectionTypeEnum("type")
-    .notNull()
-    .default(KnowledgeConnectionType.Contains),
+    type: knowledgeConnectionTypeEnum("type")
+      .notNull()
+      .default(KnowledgeConnectionType.contains),
 
-  // optional ordering for the items in the collection (useful for study guides or arranging books on a shelf)
-  order: integer("order"),
+    // optional ordering for the items in the collection (useful for study guides or arranging books on a shelf)
+    order: integer("order"),
 
-  notes: text("notes"),
+    notes: text("notes"),
 
-  metadata: jsonb("metadata").$type<KnowledgeConnectionMetadataSchema>(),
+    metadata: jsonb("metadata").$type<KnowledgeConnectionMetadataSchema>(),
 
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  updatedAt: timestamp("updated_at").notNull().defaultNow(),
-});
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  },
+  (table) => ({
+    uniqueKnowledgeConnection: unique("unique_knowledge_connection").on(
+      table.sourceKnowledgeId,
+      table.targetKnowledgeId,
+    ),
+  }),
+);
 
 const baseSelectKnowledgeConnectionSchema = createSelectSchema(
   KnowledgeConnection,
