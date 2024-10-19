@@ -120,7 +120,7 @@ const PostKnowledgeSchemaRequest = BaseUpsertKnowledgeSchemaRequest.extend({
 const PostKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse.extend({
   authToken: z.string().openapi({
     description:
-      "The auth token for the knowledge to use for updating it if the knowledge is created by a bot.",
+      "This token is recieved from the POST /knowledge endpoint and is mandatory to update the knowledge when the knowledge was created by a bot such as ChatGPT.",
   }),
 });
 
