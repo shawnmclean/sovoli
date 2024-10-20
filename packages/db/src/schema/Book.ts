@@ -53,14 +53,6 @@ export const InsertAuthorSchema = createInsertSchema(Author, {
 export type SelectAuthorSchema = z.infer<typeof SelectAuthorSchema>;
 export type InsertAuthorSchema = z.infer<typeof InsertAuthorSchema>;
 
-export const BookCoverSchema = z.object({
-  small: z.string().nullish(),
-  medium: z.string().nullish(),
-  large: z.string().nullish(),
-});
-
-export type BookCover = z.infer<typeof BookCoverSchema>;
-
 export const BookDimensionsSchema = z.object({
   length: z.object({
     unit: z.string(),
@@ -135,8 +127,6 @@ export const Book = pgTable(
     // slug will be in the form of {title}-{isbn}
     slug: varchar("slug", { length: 255 }).unique(),
 
-    cover: jsonb("cover").$type<BookCover>(),
-
     // The following fields are only used for the inference system
     triggerDevId: varchar("trigger_dev_id", { length: 255 }),
     lastISBNdbUpdated: date("last_isbndb_updated"),
@@ -165,10 +155,7 @@ export const Book = pgTable(
   },
 );
 
-export const SelectBookSchema = createSelectSchema(Book).extend({
-  authors: z.array(SelectAuthorSchema).optional(),
-  cover: BookCoverSchema.nullish(),
-});
+export const SelectBookSchema = createSelectSchema(Book);
 export const InsertBookSchema = createInsertSchema(Book);
 
 export type SelectBookSchema = z.infer<typeof SelectBookSchema>;

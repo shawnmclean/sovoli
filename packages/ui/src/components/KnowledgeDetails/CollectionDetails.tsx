@@ -67,7 +67,7 @@ function ConnectionItem({ item }: ConnectionItemProps) {
           </Text>
           <Heading size="md">{knowledge.title}</Heading>
           {knowledge.Book && (
-            <Text className="text-sm text-typography-500">
+            <Text className="text-typography-500 text-sm">
               by {knowledge.Book.inferredAuthor}
             </Text>
           )}
@@ -76,7 +76,7 @@ function ConnectionItem({ item }: ConnectionItemProps) {
           <HStack space="md">
             <TimeAgo
               datetime={knowledge.createdAt}
-              className="text-sm text-typography-500"
+              className="text-typography-500 text-sm"
             />
           </HStack>
         </VStack>
@@ -97,19 +97,13 @@ function KnowledgeImage({ knowledge }: KnowledgeImageProps) {
     return null;
   }
 
-  const bookCover = book.cover;
-  if (!bookCover) {
+  if (!book.image) {
     return null;
   }
 
   return (
     <Box className="relative h-full w-40 rounded">
-      <Image
-        src={book.cover?.medium ?? ""}
-        alt={book.title}
-        fill
-        className="h-full w-full"
-      />
+      <Image src={book.image} alt={book.title} fill className="h-full w-full" />
     </Box>
   );
 }

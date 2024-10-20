@@ -32,6 +32,7 @@ export const createConnections = async ({
     targetKnowledges.push({
       query: connection.targetKnowledge.query,
       type: connection.targetKnowledge.type,
+      queryType: connection.targetKnowledge.queryType,
       userId: authUserId,
       isPrivate: parentKnowledge.isPrivate,
     });

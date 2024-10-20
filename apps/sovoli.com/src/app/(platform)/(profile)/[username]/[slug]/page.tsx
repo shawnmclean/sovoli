@@ -66,7 +66,7 @@ function getSlugOrIdFilter(slugOrId: string) {
   }
 }
 
-async function getKnowledgeBySlug({
+export async function getKnowledgeBySlug({
   username,
   slugOrId,
   authUserId,
@@ -176,7 +176,6 @@ async function getKnowledgeBySlug({
             'pageCount', ${schema.Book.pageCount},
             'description', ${schema.Book.description},
             'language', ${schema.Book.language},
-            'cover', ${schema.Book.cover},
             'triggerDevId', ${schema.Book.triggerDevId},
             'inferrenceError', ${schema.Book.inferrenceError},
             'lastGoogleUpdated', ${schema.Book.lastGoogleUpdated},

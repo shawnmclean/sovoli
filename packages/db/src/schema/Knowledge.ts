@@ -1,3 +1,4 @@
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import {
   boolean,
   date,
@@ -94,6 +95,9 @@ export const Knowledge = pgTable(
     ),
   }),
 );
+
+export type SelectKnowledge = InferSelectModel<typeof Knowledge>;
+export type InsertKnowledge = InferInsertModel<typeof Knowledge>;
 
 export const BaseKnowledgeSchema = createSelectSchema(Knowledge);
 export type BaseKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema>;

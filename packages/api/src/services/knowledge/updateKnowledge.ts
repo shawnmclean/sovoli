@@ -19,17 +19,18 @@ import { hydrateMedia, knowledgeUpsertedEvent } from "../../trigger";
 import { hashAuthToken } from "../../utils/authTokens";
 import { createConnections } from "./createConnections";
 
-export interface CreateKnowledgeOptions {
+export interface UpdateKnowledgeOptions {
   authUserId: string;
   knowledgeId: string;
   knowledge: PutKnowledgeSchemaRequest;
 }
+export { PutKnowledgeSchemaRequest };
 
 export const updateKnowledge = async ({
   authUserId,
   knowledgeId,
   knowledge,
-}: CreateKnowledgeOptions) => {
+}: UpdateKnowledgeOptions) => {
   // Filter out connections that don't have an id (i.e., connections being added)
   const mutationConnectionIds = knowledge.connections
     ?.filter((c) => c.action !== "add") // Only keep connections that are not "add"
