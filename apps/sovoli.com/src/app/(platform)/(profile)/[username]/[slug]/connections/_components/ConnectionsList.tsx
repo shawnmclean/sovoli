@@ -22,10 +22,16 @@ export function ConnectionsList({ knowledge }: Props) {
   const [connections, setConnections] = useState<
     SelectKnowledgeConnectionSchema[]
   >(knowledge.SourceConnections ?? []);
+  const [error, setError] = useState<string | null>(null);
+  const [recentScan, setRecentScan] = useState<string | null>(null);
 
   const handleConnectionAdd = async (query: string) => {
+    setRecentScan(query);
     // ensure theres no duplications
-    if (connections.some((c) => c.TargetKnowledge?.query === query)) return;
+    if (connections.some((c) => c.TargetKnowledge?.query === query)) {
+      setError("This query is already in the list");
+      return;
+    }
 
     const updatedKnowledge = await updateKnowledgeAction({
       knowledge: {
@@ -62,7 +68,8 @@ export function ConnectionsList({ knowledge }: Props) {
         <input type="text" id="query" name="query" />
         <button type="submit">Add</button>
       </form>
-
+      {recentScan && <p className="text-green-500">{recentScan}</p>}
+      {error && <p className="text-red-500">{error}</p>}
       <ul>
         {connections.map((connection) => (
           <li key={connection.id} className="border-outline-200 m-3 border p-2">
