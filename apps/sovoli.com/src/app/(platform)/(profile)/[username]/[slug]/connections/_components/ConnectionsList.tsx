@@ -10,8 +10,7 @@ import {
   KnowledgeQueryType,
   KnowledgeType,
 } from "@sovoli/db/schema";
-
-// import { BarcodeReader } from "@sovoli/ui/components/BarcodeReader";
+import { BarcodeReader } from "@sovoli/ui/components/BarcodeReader";
 
 import { updateKnowledgeAction } from "../actions";
 
@@ -24,20 +23,10 @@ export function ConnectionsList({ knowledge }: Props) {
     SelectKnowledgeConnectionSchema[]
   >(knowledge.SourceConnections ?? []);
 
-  // const handleISBNFound = (isbn: string) => {
-  //   // check if isbn is already in the list, then do nothing
+  const handleConnectionAdd = async (query: string) => {
+    // ensure theres no duplications
+    if (connections.some((c) => c.TargetKnowledge?.query === query)) return;
 
-  //   setIsbns((prev) => {
-  //     if (prev.includes(isbn)) return prev;
-  //     return [isbn, ...prev];
-  //   });
-  //   // const book = await createConnection(isbn);
-  //   // if (!book) return;
-  //   // setBooks([...books, book]);
-  // };
-
-  const handleQuerySubmit = async (formData: FormData) => {
-    const query = formData.get("query")?.toString() ?? "";
     const updatedKnowledge = await updateKnowledgeAction({
       knowledge: {
         id: knowledge.id,
@@ -61,9 +50,14 @@ export function ConnectionsList({ knowledge }: Props) {
     }
   };
 
+  const handleQuerySubmit = async (formData: FormData) => {
+    const query = formData.get("query")?.toString() ?? "";
+    await handleConnectionAdd(query);
+  };
+
   return (
     <div>
-      {/* <BarcodeReader onISBNFound={handleISBNFound} /> */}
+      <BarcodeReader onISBNFound={handleConnectionAdd} />
       <form action={handleQuerySubmit}>
         <input type="text" id="query" name="query" />
         <button type="submit">Add</button>

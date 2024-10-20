@@ -27,7 +27,7 @@ function MobileHeader() {
   // const router = useRouter();
   return (
     <HStack
-      className="border-border-50 items-center justify-between border-b bg-background-0 px-4 py-6"
+      className="border-border-50 bg-background-0 items-center justify-between border-b px-4 py-6"
       space="md"
     >
       <HStack className="items-center">
@@ -44,14 +44,21 @@ function MobileHeader() {
         </Link>
       </HStack>
 
-      <ThemeToggle />
+      <HStack className="items-center space-x-2">
+        <HStack className="mr-5 space-x-2">
+          <Link href={`/about`}>
+            <Text>Sign Up</Text>
+          </Link>
+        </HStack>
+        <ThemeToggle />
+      </HStack>
     </HStack>
   );
 }
 
 function WebHeader() {
   return (
-    <HStack className="border-border-300 items-center justify-between border-b bg-background-0 pb-3 pr-10 pt-4">
+    <HStack className="border-border-300 bg-background-0 items-center justify-between border-b pb-3 pr-10 pt-4">
       <HStack className="items-center">
         <Pressable
           onPress={() => {
