@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound, permanentRedirect } from "next/navigation";
 import { auth } from "@sovoli/auth";
-import { and, db, eq, inArray, or, schema, sql } from "@sovoli/db";
+import { and, db, desc, eq, inArray, or, schema, sql } from "@sovoli/db";
 import { KnowledgeDetailsScreen } from "@sovoli/ui/screens/knowledge-details";
 
 import { env } from "~/env";
@@ -207,6 +207,7 @@ export async function getKnowledgeBySlug({
       eq(mediaAssetsSubquery.knowledgeId, schema.Knowledge.id),
     )
     .leftJoin(schema.Book, eq(schema.Knowledge.bookId, schema.Book.id))
+    .orderBy(desc(schema.KnowledgeConnection.createdAt))
     .limit(pageSize)
     .offset((page - 1) * pageSize);
 
