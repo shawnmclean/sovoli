@@ -26,6 +26,7 @@ export function ConnectionsList({ knowledge }: Props) {
   const [recentScan, setRecentScan] = useState<string | null>(null);
 
   const handleConnectionAdd = async (query: string) => {
+    setError(null);
     setRecentScan(query);
     // ensure theres no duplications
     if (connections.some((c) => c.TargetKnowledge?.query === query)) {

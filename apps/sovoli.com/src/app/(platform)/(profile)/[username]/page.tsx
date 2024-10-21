@@ -205,9 +205,6 @@ export default async function KnowledgesPage({ params, searchParams }: Props) {
   return (
     <div className="min-h-screen sm:pl-60 dark:bg-black">
       <h1>{user.name}'s Collections</h1>
-
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-      <pre>{JSON.stringify(collections, null, 2)}</pre>
       <div>
         {collections.data.map((collection) => (
           <a
