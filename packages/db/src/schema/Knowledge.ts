@@ -36,7 +36,7 @@ export const Knowledge = pgTable(
   {
     id: uuid("id").notNull().primaryKey().defaultRandom(),
     // usually follows the title of the book
-    title: varchar("name", { length: 255 }),
+    title: varchar("title", { length: 255 }),
     description: text("description"),
     userId: uuid("user_id")
       .notNull()
