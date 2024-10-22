@@ -167,6 +167,7 @@ export async function getKnowledgeBySlug({
             'isbn13', ${schema.Book.isbn13},
             'isbn10', ${schema.Book.isbn10},
             'asin', ${schema.Book.asin},
+            'image', ${schema.Book.image},
             'editions', ${schema.Book.editions},
             'googleId', ${schema.Book.googleId},
             'olid', ${schema.Book.olid},

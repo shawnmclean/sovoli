@@ -27,6 +27,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "images.isbndb.com",
+      },
+      {
+        protocol: "https",
         hostname: "ivzknqycaxkrztubruny.supabase.co",
       },
       // Development Bucket

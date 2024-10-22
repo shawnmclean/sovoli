@@ -5,6 +5,7 @@ import type {
   SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
 import { useState } from "react";
+import Image from "next/image";
 import {
   KnowledgeConnectionType,
   KnowledgeQueryType,
@@ -73,11 +74,27 @@ export function ConnectionsList({ knowledge }: Props) {
       {error && <p className="text-red-500">{error}</p>}
       <ul>
         {connections.map((connection) => (
-          <li key={connection.id} className="border-outline-200 m-3 border p-2">
-            <h4>{connection.TargetKnowledge?.title}</h4>
-            <p>{connection.TargetKnowledge?.type}</p>
-            <p>Query: {connection.TargetKnowledge?.query}</p>
-            <p>{connection.TargetKnowledge?.jobError}</p>
+          <li
+            key={connection.id}
+            className="border-outline-200 m-3 flex items-start border p-2"
+          >
+            {connection.TargetKnowledge?.Book?.image && (
+              <div className="relative mr-4 h-28 w-20">
+                <Image
+                  src={connection.TargetKnowledge.Book.image}
+                  alt="book cover"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded"
+                />
+              </div>
+            )}
+            <div>
+              <h4>{connection.TargetKnowledge?.title}</h4>
+              <p>{connection.TargetKnowledge?.type}</p>
+              <p>Query: {connection.TargetKnowledge?.query}</p>
+              <p>{connection.TargetKnowledge?.jobError}</p>
+            </div>
           </li>
         ))}
       </ul>
