@@ -27,14 +27,17 @@ export function ConnectionsList({ knowledge }: Props) {
   const [recentScan, setRecentScan] = useState<string | null>(null);
 
   const handleConnectionAdd = async (query: string) => {
+    // TODO: detect wether query is ISBN or title
     setError(null);
     setRecentScan(query);
     // ensure theres no duplications
+    // TODO: we need to run checks against the book isbns
     if (connections.some((c) => c.TargetKnowledge?.query === query)) {
       setError("This query is already in the list");
       return;
     }
 
+    // TODO: Handle duplicate key constraints (duplicate connections)
     const updatedKnowledge = await updateKnowledgeAction({
       knowledge: {
         id: knowledge.id,
