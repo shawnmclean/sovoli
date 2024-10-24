@@ -3,11 +3,18 @@
  * for Tailwind Intellisense & Autocompletion in the source files
  */
 import type { Config } from "tailwindcss";
-// @ts-expect-error - no types
-import nativewind from "nativewind/preset";
+import { nextui } from "@nextui-org/theme";
 
 export default {
-  content: ["src/**/*.tsx"],
-  presets: [nativewind],
-  important: "html",
+  content: [
+    // single component styles
+    "./node_modules/@nextui-org/theme/dist/components/button.js",
+    // or you can use a glob pattern (multiple component styles)
+    "./node_modules/@nextui-org/theme/dist/components/(button|snippet|code|input).js",
+  ],
+  theme: {
+    extend: {},
+  },
+  darkMode: "class",
+  plugins: [nextui()],
 } satisfies Config;
