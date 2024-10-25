@@ -30,7 +30,7 @@ export const userContract = c.router(
     },
     pathPrefix: "/user",
     commonResponses: {
-      401: c.type<{ message: "Unauthorized" }>(),
+      401:z.literal("Unauthorized")
     },
   },
 );

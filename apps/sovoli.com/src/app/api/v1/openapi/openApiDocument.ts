@@ -1,4 +1,4 @@
-import type { SecurityRequirementObject } from "openapi3-ts/oas31";
+import type { SecurityRequirementObject } from "openapi3-ts";
 import { upgrade } from "@scalar/openapi-parser";
 import { contract } from "@sovoli/api/tsr/contract";
 import { getBaseUrl } from "@sovoli/api/utils";
