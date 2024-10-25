@@ -1,12 +1,11 @@
 import "@sovoli/ui/styles/globals.css";
 
-import type { Metadata } from "next";
-import { UiProviders } from "@sovoli/ui/providers";
+import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { QueryProviders } from "~/api/react";
 import { config } from "~/utils/config";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: {
@@ -14,6 +13,9 @@ export const metadata: Metadata = {
     template: `%s | ${config.siteName}`,
   },
   description: config.description,
+  icons: {
+    icon: "/favicon.ico",
+  },
   openGraph: {
     title: config.title,
     description: config.description,
@@ -21,6 +23,13 @@ export const metadata: Metadata = {
     siteName: config.siteName,
     images: config.images,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({
@@ -31,9 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body>
-        <UiProviders>
-          <QueryProviders>{children}</QueryProviders>
-        </UiProviders>
+        <Providers>{children}</Providers>
         <SpeedInsights />
         <Analytics />
       </body>

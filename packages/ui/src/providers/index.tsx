@@ -3,9 +3,14 @@
 import { NextUIProvider } from "@nextui-org/system";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-export function UiProviders({ children }: { children: React.ReactNode }) {
+export interface UIProvidersProps {
+  children: React.ReactNode;
+  navigate: (href: string) => void;
+}
+
+export function UIProviders({ children, navigate }: UIProvidersProps) {
   return (
-    <NextUIProvider>
+    <NextUIProvider navigate={navigate}>
       <NextThemesProvider attribute="class" defaultTheme="dark">
         {children}
       </NextThemesProvider>
