@@ -1,17 +1,13 @@
-import type { ComponentProps } from "react";
-import { cssInterop } from "nativewind";
-import { SolitoImage } from "solito/image";
+import type { ImageProps as NextUIImageProps } from "@nextui-org/image";
+import { Image as NextUIImage } from "@nextui-org/image";
+import type { ImageProps as NextImageProps } from "next/image";
+import NextImage from "next/image";
+import type { FC } from "react";
 
-const ImageWrapper = (
-  props: ComponentProps<typeof SolitoImage> & { className?: string },
-) => {
-  return <SolitoImage {...props} />;
+// Combine the props from both NextUIImage and NextImage
+type CombinedImageProps = Omit<NextUIImageProps, 'as'> & NextImageProps;
+
+export const Image: FC<CombinedImageProps> = ({ ...props }) => {
+  console.log('image')
+  return <NextUIImage as={NextImage} {...props} />;
 };
-
-cssInterop(ImageWrapper, {
-  className: {
-    target: "style",
-  },
-});
-
-export const Image = ImageWrapper;

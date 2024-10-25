@@ -56,7 +56,7 @@ export function Gallery({ images }: { images: Image[] }) {
           }
           return (
             <View className="h-full w-full">
-              <Image fill src={image.src} alt={image.alt ?? ""} />
+              <Image fill src={image.src} alt={image.alt ?? ""}  />
             </View>
           );
         }}
