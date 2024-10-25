@@ -1,4 +1,4 @@
 
 export function Gallery() {
-  return <div>Gallery</div>;
+  return <div>Image Gallery bonk</div>;
 }

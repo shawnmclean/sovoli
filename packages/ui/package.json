@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@mdxeditor/editor": "3.14.0",
+    "@nextui-org/divider": "2.0.32",
     "@nextui-org/link": "2.0.35",
     "@nextui-org/image": "2.0.32",
     "@nextui-org/button": "2.0.38",

@@ -396,7 +396,7 @@ importers:
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-1631855f-20241023(eslint@9.8.0)
+        version: 5.1.0-rc-cae764ce-20241025(eslint@9.8.0)
       eslint-plugin-turbo:
         specifier: 2.0.11
         version: 2.0.11(eslint@9.8.0)
@@ -449,6 +449,9 @@ importers:
       '@nextui-org/button':
         specifier: 2.0.38
         version: 2.0.38(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@nextui-org/divider':
+        specifier: 2.0.32
+        version: 2.0.32(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@nextui-org/image':
         specifier: 2.0.32
         version: 2.0.32(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -2583,6 +2586,13 @@ packages:
       '@nextui-org/system': '>=2.0.0'
       '@nextui-org/theme': '>=2.1.0'
       framer-motion: '>=10.17.0'
+      react: '>=18'
+      react-dom: '>=18'
+
+  '@nextui-org/divider@2.0.32':
+    resolution: {integrity: sha512-2B2j3VmvVDFnMc9Uw7UWMkByA+osgnRmVwMZNZjl9g3oCycz3UDXotNJXjgsLocT8tGO8UwMcrdgo7QBZl52uw==}
+    peerDependencies:
+      '@nextui-org/theme': '>=2.1.0'
       react: '>=18'
       react-dom: '>=18'
 
@@ -4940,8 +4950,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-1631855f-20241023:
-    resolution: {integrity: sha512-ohDko9xwausG054sm2kvM0ZssnaZ0jRBL3tduCR9Bo3rott+zD8O9p6PC5B+LN/6f2RwKRNCdN2WcrkNul/ljg==}
+  eslint-plugin-react-hooks@5.1.0-rc-cae764ce-20241025:
+    resolution: {integrity: sha512-T0dII19NLMIDsd/kbOrPSVnbr0IhlFITOQoCVZuHDBatzGUY6p9wFPuAei7tQYpOnBhdywGIdx2nR4w/cfkcsA==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -10614,6 +10624,16 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
+  '@nextui-org/divider@2.0.32(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@nextui-org/react-rsc-utils': 2.0.14(react@18.2.0)
+      '@nextui-org/shared-utils': 2.0.8
+      '@nextui-org/system-rsc': 2.1.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(react@18.2.0)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.10)
+      '@react-types/shared': 3.23.1(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
   '@nextui-org/framer-utils@2.0.25(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@nextui-org/shared-utils': 2.0.8
@@ -11388,7 +11408,7 @@ snapshots:
       '@react-aria/utils': 3.24.1(react@18.2.0)
       '@react-stately/toggle': 3.7.8(react@18.2.0)
       '@react-types/button': 3.9.4(react@18.2.0)
-      '@react-types/shared': 3.23.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.13
       react: 18.2.0
 
@@ -11429,7 +11449,7 @@ snapshots:
     dependencies:
       '@react-aria/ssr': 3.9.6(react@18.2.0)
       '@react-aria/utils': 3.24.1(react@18.2.0)
-      '@react-types/shared': 3.23.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.13
       react: 18.2.0
 
@@ -11640,7 +11660,7 @@ snapshots:
 
   '@react-types/button@3.9.4(react@18.2.0)':
     dependencies:
-      '@react-types/shared': 3.23.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       react: 18.2.0
 
   '@react-types/checkbox@3.8.4(react@18.2.0)':
@@ -13432,7 +13452,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.1
 
-  eslint-plugin-react-hooks@5.1.0-rc-1631855f-20241023(eslint@9.8.0):
+  eslint-plugin-react-hooks@5.1.0-rc-cae764ce-20241025(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
 
