@@ -12,10 +12,12 @@ export function Navbar() {
   return (
     <NextUINavbar>
       <NavbarBrand>
-        Sovoli
-        <p className="font-bold text-inherit">ACME</p>
+        <Link href="/">
+        {/* Logo Image here */}
+        <p className="font-bold text-inherit">Sovoli</p>
+        </Link>
       </NavbarBrand>
-      <NavbarContent className="hidden gap-4 sm:flex" justify="center">
+      {/* <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         <NavbarItem>
           <Link color="foreground" href="#">
             Features
@@ -31,7 +33,7 @@ export function Navbar() {
             Integrations
           </Link>
         </NavbarItem>
-      </NavbarContent>
+      </NavbarContent> */}
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>

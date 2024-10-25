@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { config } from "~/utils/config";
 import { Providers } from "./providers";
+import { MainLayout } from "@sovoli/ui/components/MainLayout";
 
 export const metadata: Metadata = {
   title: {
@@ -40,7 +41,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <MainLayout>
+          {children}
+          </MainLayout>
+          </Providers>
         <SpeedInsights />
         <Analytics />
       </body>
