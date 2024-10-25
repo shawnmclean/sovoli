@@ -16,13 +16,11 @@
     "db:seed": "turbo -F @sovoli/db seed",
     "db:studio": "turbo -F @sovoli/db studio",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
-    "typecheck": "turbo run typecheck",
-    "postinstall": "patch-package"
+    "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
     "prettier": "catalog:",
-    "turbo": "2.0.11",
-    "patch-package": "8.0.0"
+    "turbo": "2.0.11"
   },
   "pnpm": {
     "peerDependencyRules": {
