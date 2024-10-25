@@ -5,7 +5,7 @@ import {
   Navbar as NextUINavbar,
 } from "@nextui-org/navbar";
 
-import { Button } from "../ui/button";
+// import { Button } from "../ui/button";
 import { Chip } from "../ui/chip";
 import { Link } from "../ui/link";
 

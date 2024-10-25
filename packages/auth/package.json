@@ -31,6 +31,7 @@
       "@sovoli/eslint-config": "workspace:*",
       "@sovoli/prettier-config": "workspace:*",
       "@sovoli/typescript-config": "workspace:*",
+      "@types/react": "18.2.79",
       "eslint": "catalog:",
       "prettier": "catalog:",
       "typescript": "catalog:"

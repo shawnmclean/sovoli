@@ -123,6 +123,9 @@ importers:
       '@trigger.dev/sdk':
         specifier: 3.0.12
         version: 3.0.12(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      '@ts-rest/core':
+        specifier: 'catalog:'
+        version: 3.51.0(@types/node@22.0.2)(zod@3.23.8)
       '@ts-rest/open-api':
         specifier: 'catalog:'
         version: 3.51.0(@ts-rest/core@3.51.0(@types/node@22.0.2)(zod@3.23.8))(zod@3.23.8)
@@ -141,6 +144,9 @@ importers:
       next:
         specifier: 14.2.4
         version: 14.2.4(@babel/core@7.26.0)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      openapi3-ts:
+        specifier: 4.4.0
+        version: 4.4.0
       raf:
         specifier: 3.4.1
         version: 3.4.1
@@ -216,7 +222,7 @@ importers:
         version: 0.0.47(zod@3.23.8)
       '@anatine/zod-openapi':
         specifier: 2.2.6
-        version: 2.2.6(openapi3-ts@2.0.2)(zod@3.23.8)
+        version: 2.2.6(openapi3-ts@4.4.0)(zod@3.23.8)
       '@sovoli/auth':
         specifier: workspace:*
         version: link:../auth
@@ -247,9 +253,6 @@ importers:
       magic-bytes.js:
         specifier: 1.10.0
         version: 1.10.0
-      parse-multipart-data:
-        specifier: 1.5.0
-        version: 1.5.0
       superjson:
         specifier: 2.2.1
         version: 2.2.1
@@ -318,6 +321,9 @@ importers:
       '@sovoli/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@types/react':
+        specifier: 18.2.79
+        version: 18.2.79
       eslint:
         specifier: 'catalog:'
         version: 9.8.0
@@ -342,6 +348,9 @@ importers:
       drizzle-zod:
         specifier: 0.5.1
         version: 0.5.1(drizzle-orm@0.33.0(@neondatabase/serverless@0.9.5)(@opentelemetry/api@1.9.0)(@types/pg@8.11.6)(@types/react@18.2.79)(@vercel/postgres@0.9.0)(react@18.2.0))(zod@3.23.8)
+      next-auth:
+        specifier: 5.0.0-beta.20
+        version: 5.0.0-beta.20(next@14.2.5(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       zod:
         specifier: 'catalog:'
         version: 3.23.8
@@ -379,6 +388,9 @@ importers:
       '@eslint/compat':
         specifier: 1.1.1
         version: 1.1.1
+      '@eslint/js':
+        specifier: 9.13.0
+        version: 9.13.0
       '@next/eslint-plugin-next':
         specifier: 14.2.4
         version: 14.2.4
@@ -432,6 +444,9 @@ importers:
       '@sovoli/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@types/node':
+        specifier: 'catalog:'
+        version: 22.0.2
       typescript:
         specifier: 'catalog:'
         version: 5.5.2
@@ -525,6 +540,9 @@ importers:
       '@types/react':
         specifier: 18.2.79
         version: 18.2.79
+      eslint:
+        specifier: 'catalog:'
+        version: 9.8.0
       postcss:
         specifier: 8.4.38
         version: 8.4.38
@@ -2136,6 +2154,10 @@ packages:
 
   '@eslint/eslintrc@3.1.0':
     resolution: {integrity: sha512-4Bfj15dVJdoy3RfZmmo86RK1Fwzn6SstsvK9JS+BaVKqC6QQQQyXekNaC+g+LKNgkQ+2VhGAzm6hO40AhMR3zQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/js@9.13.0':
+    resolution: {integrity: sha512-IFLyoY4d72Z5y/6o/BazFBezupzI/taV8sGumxTAVw3lXG9A6md1Dc34T9s1FoD/an9pJH8RHbAxsaEbBed9lA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/js@9.8.0':
@@ -6551,6 +6573,9 @@ packages:
   openapi3-ts@2.0.2:
     resolution: {integrity: sha512-TxhYBMoqx9frXyOgnRHufjQfPXomTIHYKhSKJ6jHfj13kS8OEIhvmE8CTuQyKtjjWttAjX5DPxM1vmalEpo8Qw==}
 
+  openapi3-ts@4.4.0:
+    resolution: {integrity: sha512-9asTNB9IkKEzWMcHmVZE7Ts3kC9G7AFHfs8i7caD8HbI76gEjdkId4z/AkP83xdZsH7PLAnnbl47qZkXuxpArw==}
+
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -6619,9 +6644,6 @@ packages:
 
   parse-entities@4.0.1:
     resolution: {integrity: sha512-SWzvYcSJh4d/SGLIOQfZ/CoNv6BTlI6YEQ7Nj82oDVnRpwe/Z/F1EMx42x3JAOwGBlCjeCH0BRJQbQ/opHL17w==}
-
-  parse-multipart-data@1.5.0:
-    resolution: {integrity: sha512-ck5zaMF0ydjGfejNMnlo5YU2oJ+pT+80Jb1y4ybanT27j+zbVP/jkYmCrUGsEln0Ox/hZmuvgy8Ra7AxbXP2Mw==}
 
   parse-png@2.1.0:
     resolution: {integrity: sha512-Nt/a5SfCLiTnQAjx3fHlqp8hRgTL3z7kTQZzvIMS9uCAepnCyjpdEc6M/sz69WqMBdaDBw9sF1F1UaHROYzGkQ==}
@@ -8207,9 +8229,9 @@ snapshots:
       ts-deepmerge: 6.2.1
       zod: 3.23.8
 
-  '@anatine/zod-openapi@2.2.6(openapi3-ts@2.0.2)(zod@3.23.8)':
+  '@anatine/zod-openapi@2.2.6(openapi3-ts@4.4.0)(zod@3.23.8)':
     dependencies:
-      openapi3-ts: 2.0.2
+      openapi3-ts: 4.4.0
       ts-deepmerge: 6.2.1
       zod: 3.23.8
 
@@ -9831,6 +9853,8 @@ snapshots:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+
+  '@eslint/js@9.13.0': {}
 
   '@eslint/js@9.8.0': {}
 
@@ -15429,6 +15453,10 @@ snapshots:
     dependencies:
       yaml: 1.10.2
 
+  openapi3-ts@4.4.0:
+    dependencies:
+      yaml: 2.6.0
+
   optionator@0.9.4:
     dependencies:
       deep-is: 0.1.4
@@ -15508,8 +15536,6 @@ snapshots:
       is-alphanumerical: 2.0.1
       is-decimal: 2.0.1
       is-hexadecimal: 2.0.1
-
-  parse-multipart-data@1.5.0: {}
 
   parse-png@2.1.0:
     dependencies:
@@ -15731,7 +15757,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 22.0.2
+      '@types/node': 22.8.0
       long: 5.2.3
 
   pump@3.0.2:
