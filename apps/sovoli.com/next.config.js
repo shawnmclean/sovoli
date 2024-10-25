@@ -14,10 +14,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "qr.expo.dev",
-      },
-      {
-        protocol: "https",
         hostname: "covers.openlibrary.org",
       },
       {

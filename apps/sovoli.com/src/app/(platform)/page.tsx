@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { config } from "~/utils/config";
-// import { Image } from "@sovoli/ui/components/ui/image";
+import { Image } from "@sovoli/ui/components/ui/image";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +18,7 @@ export default function FeedPage() {
 
   return (
     <div className="min-h-screen sm:pl-60 dark:bg-black">
-      {/* <Image fill src="media/71f089d5-7094-4e37-8dc4-6a5929a9ec41.webp" alt="hi" /> */}
+      <Image src="https://images.isbndb.com/covers/49/68/9798686284968.jpg" alt="hi" width={100} height={100} />
       {/* <FeedScreen knowledges={knowledges} /> */}
     </div>
   );
