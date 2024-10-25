@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { cache } from "react";
 import { getLatestKnowledges } from "@sovoli/api/services";
-import { FeedScreen } from "@sovoli/ui/screens/feed";
+
+// import { FeedScreen } from "@sovoli/ui/screens/feed";
 
 import { config } from "~/utils/config";
 
@@ -28,8 +29,8 @@ export default async function FeedPage() {
   const knowledges = await retrieveLatestKnowledges();
 
   return (
-    <div className="min-h-screen dark:bg-black sm:pl-60">
-      <FeedScreen knowledges={knowledges} />
+    <div className="min-h-screen sm:pl-60 dark:bg-black">
+      {/* <FeedScreen knowledges={knowledges} /> */}
     </div>
   );
 }

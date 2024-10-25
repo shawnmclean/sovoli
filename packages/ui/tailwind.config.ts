@@ -1,20 +1,26 @@
-/*
- * This file is not used for any compilation purpose, it is only used
- * for Tailwind Intellisense & Autocompletion in the source files
- */
-import type { Config } from "tailwindcss";
 import { nextui } from "@nextui-org/theme";
+import { Config } from "tailwindcss";
 
+/** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: [
-    // single component styles
-    "./node_modules/@nextui-org/theme/dist/components/button.js",
-    // or you can use a glob pattern (multiple component styles)
-    "./node_modules/@nextui-org/theme/dist/components/(button|snippet|code|input).js",
+    "../../packages/ui/src/**/*.{js,ts,jsx,tsx,mdx}",
+    "../.././node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
+  plugins: [
+    nextui({
+      layout: {
+        radius: {
+          small: "2px", // rounded-small
+          medium: "4px", // rounded-medium
+          large: "6px", // rounded-larg
+        },
+      },
+    }),
   ],
   theme: {
     extend: {},
   },
-  darkMode: "class",
-  plugins: [nextui()],
 } satisfies Config;

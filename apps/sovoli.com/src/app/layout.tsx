@@ -1,4 +1,4 @@
-import "@sovoli/ui/config/tailwind/globals.css";
+import "@sovoli/ui/styles/globals.css";
 
 import type { Metadata } from "next";
 import { UiProviders } from "@sovoli/ui/providers";

@@ -1,11 +1,11 @@
 import { auth, signIn, signOut } from "@sovoli/auth";
-import { HomeScreen } from "@sovoli/ui/screens/home";
+import { AboutScreen } from "@sovoli/ui/screens/about";
 
 export default function About() {
   return (
     <div className="container mx-auto">
       <main className="flex-1">
-        <HomeScreen />
+        <AboutScreen />
         <SignIn />
       </main>
       <footer className="py-6 md:px-8 md:py-0">

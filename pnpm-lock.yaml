@@ -146,7 +146,7 @@ importers:
         version: 1.0.12(next@14.2.4(@babel/core@7.24.0)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(svelte@4.2.19)(vue@3.4.38(typescript@5.5.2))
       nativewind:
         specifier: 4.0.36
-        version: 4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))
+        version: 4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))
       next:
         specifier: 14.2.4
         version: 14.2.4(@babel/core@7.24.0)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -159,12 +159,6 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
-      react-native-reanimated:
-        specifier: 3.10.1
-        version: 3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react-native-web:
-        specifier: 0.19.12
-        version: 0.19.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       superjson:
         specifier: 2.2.1
         version: 2.2.1
@@ -461,39 +455,15 @@ importers:
 
   packages/ui:
     dependencies:
-      '@expo/html-elements':
-        specifier: 0.10.1
-        version: 0.10.1
-      '@gluestack-ui/accordion':
-        specifier: 1.0.7
-        version: 1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/avatar':
-        specifier: 0.1.17
-        version: 0.1.17(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/button':
-        specifier: 1.0.7
-        version: 1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/divider':
-        specifier: 0.1.9
-        version: 0.1.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/icon':
-        specifier: 0.1.22
-        version: 0.1.22(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/nativewind-utils':
-        specifier: 1.0.23
-        version: 1.0.23(nativewind@4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))
-      '@gluestack-ui/overlay':
-        specifier: 0.1.15
-        version: 0.1.15(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/toast':
-        specifier: 1.0.7
-        version: 1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
       '@mdxeditor/editor':
         specifier: 3.14.0
         version: 3.14.0(@codemirror/language@6.10.3)(@lezer/common@1.2.2)(@lezer/highlight@1.2.1)(@types/react-dom@18.2.18)(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(yjs@13.6.19)
       '@nextui-org/button':
         specifier: 2.0.38
         version: 2.0.38(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@nextui-org/navbar':
+        specifier: 2.0.37
+        version: 2.0.37(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(@types/react@18.2.79)(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@nextui-org/system':
         specifier: 2.2.6
         version: 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -512,24 +482,12 @@ importers:
       '@zxing/library':
         specifier: 0.21.3
         version: 0.21.3
-      class-variance-authority:
-        specifier: 0.7.0
-        version: 0.7.0
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
-      expo-image:
-        specifier: 1.12.12
-        version: 1.12.12(expo@51.0.24(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(bufferutil@4.0.8))
       framer-motion:
         specifier: 11.11.9
         version: 11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      lucide-react-native:
-        specifier: 0.436.0
-        version: 0.436.0(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      nativewind:
-        specifier: 4.0.36
-        version: 4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))
       next-themes:
         specifier: 0.3.0
         version: 0.3.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -542,33 +500,12 @@ importers:
       react-markdown:
         specifier: 9.0.1
         version: 9.0.1(@types/react@18.2.79)(react@18.2.0)
-      react-native:
-        specifier: 0.74.3
-        version: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-      react-native-gesture-handler:
-        specifier: 2.17.1
-        version: 2.17.1(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react-native-reanimated:
-        specifier: 3.10.1
-        version: 3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react-native-reanimated-carousel:
-        specifier: 4.0.0-canary.15
-        version: 4.0.0-canary.15(@types/react@18.2.79)(react-native-gesture-handler@2.17.1(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react-native-safe-area-context:
-        specifier: 4.10.8
-        version: 4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react-native-svg:
-        specifier: 15.2.0
-        version: 15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
       react-zxing:
         specifier: 2.0.2
         version: 2.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       remark-gfm:
         specifier: 4.0.0
         version: 4.0.0
-      solito:
-        specifier: 4.2.2
-        version: 4.2.2
       tailwind-merge:
         specifier: 2.1.0
         version: 2.1.0
@@ -1658,10 +1595,6 @@ packages:
   '@drizzle-team/brocli@0.10.1':
     resolution: {integrity: sha512-AHy0vjc+n/4w/8Mif+w86qpppHuF3AyXbcWW+R/W7GNA3F5/p2nuhlkCJaTXSLZheB4l1rtHzOfr9A7NwoR/Zg==}
 
-  '@egjs/hammerjs@2.0.17':
-    resolution: {integrity: sha512-XQsZgjm2EcVUiZQf11UBJQfmZeEmOW8DpI1gsFeln6w0ae0ii4dMQEQ0kjl6DspdWX1aGY1/loyXnP0JS06e/A==}
-    engines: {node: '>=0.8.0'}
-
   '@esbuild-kit/core-utils@3.3.2':
     resolution: {integrity: sha512-sPRAnw9CdSsRmEtnsl2WXWdyquogVpB3yZ3dgwJfe8zrOzTsV7cJvmwrKVa+0ma5BoiGJ+BoqkMvawbayKUsqQ==}
 
@@ -2276,9 +2209,6 @@ packages:
   '@expo/env@0.3.0':
     resolution: {integrity: sha512-OtB9XVHWaXidLbHvrVDeeXa09yvTl3+IQN884sO6PhIi2/StXfgSH/9zC7IvzrDB8kW3EBJ1PPLuCUJ2hxAT7Q==}
 
-  '@expo/html-elements@0.10.1':
-    resolution: {integrity: sha512-3PTmtkV15D7+lykXVtvkH1jQ5Y6JE+e3zCaoMMux7z2cSLGQUNwDEUwG37gew3OEB1/E4/SEWgjvg8m7E6/e2Q==}
-
   '@expo/image-utils@0.5.1':
     resolution: {integrity: sha512-U/GsFfFox88lXULmFJ9Shfl2aQGcwoKPF7fawSCLixIKtMCpsI+1r0h+5i0nQnmt9tHuzXZDL8+Dg1z6OhkI9A==}
 
@@ -2353,84 +2283,6 @@ packages:
 
   '@formatjs/intl-localematcher@0.5.4':
     resolution: {integrity: sha512-zTwEpWOzZ2CiKcB93BLngUX59hQkuZjT2+SAQEscSm52peDW/getsawMcWF1rGRpMCX6D7nSJA3CzJ8gn13N/g==}
-
-  '@gluestack-ui/accordion@1.0.7':
-    resolution: {integrity: sha512-pvEjAL343p/npQfmNFmKDy+p/POUua0/hog8weFRZ7E0CzI00VHDxIsbmkBEREjhzekRXry/wg8se6lGlKOpCA==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/avatar@0.1.17':
-    resolution: {integrity: sha512-L7R3GVjYK6o+tdCiCDZXvHjPi1FKwt9XAFHGlEsQ4dX6Qe7yWEi3K+e5UBpS1ugvja7SmNS+YZwvr+nnVcmohQ==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/button@1.0.7':
-    resolution: {integrity: sha512-6hz5BPoB+iHMpDvys6AbIpeRPbnFiqyE3SnnbKPSCj8lgl3Dr9sFln41BvDmqmZ98d0usJluk50rz8pVNRZRgw==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/divider@0.1.9':
-    resolution: {integrity: sha512-wuQDEfgZwBoxxd9AKTNKxUK5W7EZ1SiuYpEljm77yekV3vw86t6X1AIJ+zIjDaOFzlNcvWx9ZD8NRXtRkDFiHw==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/hooks@0.1.11':
-    resolution: {integrity: sha512-bcBsF7bTo//JD6L9ekJu0rZs83qYD/pE/Uj3ih3OYEtGU0LDoYiGkBMmDRpVMcVv8bE3TCKivnhHaT/heafInA==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/icon@0.1.22':
-    resolution: {integrity: sha512-6E8N0OEEike0p6ITRJoEYpRlHqjRAabekEVSOk/HM/v+MJONT613TlQari5ozBHcaNLn/JhJqRxNHxNrzxd+ZQ==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/nativewind-utils@1.0.23':
-    resolution: {integrity: sha512-4sLc24QwhYWEpyz/ApGqwLOzkZ/tUxpWHtsnIaibgmACcS+BaEebgfGwqmSp215cFE2UlMGofFKDCrdA5UGN0A==}
-    peerDependencies:
-      nativewind: '>=4.0'
-      react: '>=16'
-
-  '@gluestack-ui/overlay@0.1.15':
-    resolution: {integrity: sha512-yHInyJ/sH84X/3chun/tT+YfMIEX/680F31cMHQ5KsHRN4LwF3jOghUkS4592q3Wf32Zmqx0JwTrN8q6wOBT9A==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/provider@0.1.12':
-    resolution: {integrity: sha512-EvDEknx6qkrJuKC8ygdixiTvnAAji9moArREueNJdhJp8Af53UIzgWk4m4oqGlRfgrw6p1xApgE/2VTwGE5f7w==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/react-native-aria@0.1.5':
-    resolution: {integrity: sha512-6IaE4fcBaGMu3kSDKAoo1wE5qXcoKDX5YA14zzYzXN2d67/K9NYSjpoo/GbxDWZVl45X6Z9QLS/SBP7SmsPO+Q==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/toast@1.0.7':
-    resolution: {integrity: sha512-mmeJftStDsoRHYX+CXxR8lxiCKtQhiSyIAvqvhdDWTqf8Nz9JnCCQKj1zrV2pSnC89Bt+3msfE54cATuU1JF0w==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/transitions@0.1.10':
-    resolution: {integrity: sha512-oOwYAmbebAowDCDZyRdGwhK2of46b642OZQxBBkln/BX7YEvY4PhQIfup0HUCG9YA5IzlQnw0iwqREbaVNKIgA==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-
-  '@gluestack-ui/utils@0.1.13':
-    resolution: {integrity: sha512-L9+ddAn5FLtNJYut7KBGChelt+SvDW3C+6dXduZyP9DD1BoDVTRVwPVYblvbefZf2ZOdTALtHIIO3n/n1bWlbg==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
 
   '@gluestack/ui-next-adapter@2.1.12':
     resolution: {integrity: sha512-0NhiqNUHtYPOkJpCADI1BovY8bT1ahEVAt/udycwfIkMKcXjlFY6bFSDYtx4xri7qh5yPp6xS6Yt/OBvVobzmg==}
@@ -2933,6 +2785,22 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
+  '@nextui-org/framer-utils@2.0.25':
+    resolution: {integrity: sha512-bhQKDg4c5Da4II4UYLKyvYagusTd62eVwPqpfUP+GHZKKZcmRaS6MQZTh4xJYbpyh298S4jRSH/AUAiN/OK3TQ==}
+    peerDependencies:
+      framer-motion: '>=10.17.0'
+      react: '>=18'
+      react-dom: '>=18'
+
+  '@nextui-org/navbar@2.0.37':
+    resolution: {integrity: sha512-HuHXMU+V367LlvSGjqRPBNKmOERLvc4XWceva+KmiT99BLqHmMECkQVTR6ogO36eJUU96aR8JSfAiHLjvw5msw==}
+    peerDependencies:
+      '@nextui-org/system': '>=2.0.0'
+      '@nextui-org/theme': '>=2.1.0'
+      framer-motion: '>=10.17.0'
+      react: '>=18'
+      react-dom: '>=18'
+
   '@nextui-org/react-rsc-utils@2.0.14':
     resolution: {integrity: sha512-s0GVgDhScyx+d9FtXd8BXf049REyaPvWsO4RRr7JDHrk91NlQ11Mqxka9o+8g5NX0rphI0rbe3/b1Dz+iQRx3w==}
     peerDependencies:
@@ -2982,6 +2850,21 @@ packages:
 
   '@nextui-org/use-aria-button@2.0.10':
     resolution: {integrity: sha512-tUpp4QMr1zugKPevyToeRHIufTuc/g+67/r/oQLRTG0mMo3yGVmggykQuYn22fqqZPpW6nHcB9VYc+XtZZ27TQ==}
+    peerDependencies:
+      react: '>=18'
+
+  '@nextui-org/use-aria-toggle-button@2.0.10':
+    resolution: {integrity: sha512-U5jOmEO+nMIgYvBF0+gJtdq8C6dynGMjzAboPG4FhuHOzDoNiC12G5FIbGnRe8K1hMsKVuaI72p9986NhfqNgw==}
+    peerDependencies:
+      react: '>=18'
+
+  '@nextui-org/use-measure@2.0.2':
+    resolution: {integrity: sha512-H/RSPPA9B5sZ10wiXR3jLlYFEuiVnc0O/sgLLQfrb5M0hvHoaqMThnsZpm//5iyS7tD7kxPeYNLa1EhzlQKxDA==}
+    peerDependencies:
+      react: '>=18'
+
+  '@nextui-org/use-scroll-position@2.0.9':
+    resolution: {integrity: sha512-tXbpb2bkKIjOp2I1uZ1T4T9Lxp0+Ta/TKu+5qvqsXkHRPbcoukdsquagYUDWK/fcumg72UPR8QP+na8KMn2gCg==}
     peerDependencies:
       react: '>=18'
 
@@ -3597,12 +3480,6 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
 
-  '@react-aria/overlays@3.23.2':
-    resolution: {integrity: sha512-vjlplr953YAuJfHiP4O+CyrTlr6OaFgXAGrzWq4MVMjnpV/PT5VRJWYFHR0sUGlHTPqeKS4NZbi/xCSgl/3pGQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
-
   '@react-aria/ssr@3.9.5':
     resolution: {integrity: sha512-xEwGKoysu+oXulibNUSkXf8itW0npHHTa6c4AyYeZIJyRoegeteYuFpZUBPtIDE8RfHdNsSmE1ssOkxRnwbkuQ==}
     engines: {node: '>= 12'}
@@ -3633,37 +3510,6 @@ packages:
     resolution: {integrity: sha512-IwEphTD75liO8g+6taS+4oqz+nnroocNfWVHWz7j+N+ZO2vYrc6PV1q7GQhuahL0IOR7JccFTsFKQ/mb6iZWAg==}
     peerDependencies:
       react: '>=16.8'
-
-  '@react-native-aria/accordion@0.0.2':
-    resolution: {integrity: sha512-2Wa/YDBc2aCunTLpqwxTfCwn1t63KSAIoXd0hqrUGJJF+N2bEs2Hqs9ZgyKJ/hzFxCknVPMqo0fEVE1H23Z5+g==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-
-  '@react-native-aria/focus@0.2.9':
-    resolution: {integrity: sha512-zVgOIzKwnsyyurUxlZnzUKB2ekK/cmK64sQJIKKUlkJKVxd2EAFf7Sjz/NVEoMhTODN3qGRASTv9bMk/pBzzVA==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-
-  '@react-native-aria/interactions@0.2.13':
-    resolution: {integrity: sha512-Uzru5Pqq5pG46lg/pzXoku9Y9k1UvuwJB/HRLSwahdC6eyNJOOm4kmadR/iziL/BeTAi5rOZsPEd0IKcMdH3nA==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-
-  '@react-native-aria/overlays@0.3.14':
-    resolution: {integrity: sha512-a8MIB2aBw5yitNB0szNqKQlm4ngOozHGVmXTbslejGIX2+3YQUg8e7J4ouT7ZgK2iIr2gIB3YrstHDM6mvKVmw==}
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-      react-native: '*'
-
-  '@react-native-aria/utils@0.2.11':
-    resolution: {integrity: sha512-8MzE25pYDo1ZQtu7N9grx2Q+2uK58Tvvg4iJ7Nvx3PXTEz2XKU8G//yX9un97f7zCM6ptL8viRdKbSYDBmQvsA==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
 
   '@react-native-community/cli-clean@13.6.9':
     resolution: {integrity: sha512-7Dj5+4p9JggxuVNOjPbduZBAP1SUgNhLKVw5noBUzT/3ZpUZkDM+RCSwyoyg8xKWoE4OrdUAXwAFlMcFDPKykA==}
@@ -3768,9 +3614,6 @@ packages:
   '@react-native/normalize-colors@0.74.85':
     resolution: {integrity: sha512-pcE4i0X7y3hsAE0SpIl7t6dUc0B0NZLd1yv7ssm4FrLhWG+CGyIq4eFDXpmPU1XHmL5PPySxTAjEMiwv6tAmOw==}
 
-  '@react-native/normalize-colors@0.74.87':
-    resolution: {integrity: sha512-Xh7Nyk/MPefkb0Itl5Z+3oOobeG9lfLb7ZOY2DKpFnoCE1TzBmib9vMNdFaLdSxLIP+Ec6icgKtdzYg8QUPYzA==}
-
   '@react-native/virtualized-lists@0.74.85':
     resolution: {integrity: sha512-jx2Zw0qlZteoQ+0KxRc7s4drsljLBEP534FaNZ950e9+CN9nVkLsV6rigcTjDR8wjKMSBWhKf0C0C3egYz7Ehg==}
     engines: {node: '>=18'}
@@ -3786,6 +3629,11 @@ packages:
     resolution: {integrity: sha512-XxZ2qScT5JPwGk9qiVJE4dtVh3AXTcYwGRA5RsHzC26oyVVsegPqY2PmNJGblAh6Q57VyodoVUyebE0Eo5CzRw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
+
+  '@react-stately/toggle@3.7.4':
+    resolution: {integrity: sha512-CoYFe9WrhLkDP4HGDpJYQKwfiYCRBAeoBQHv+JWl5eyK61S8xSwoHsveYuEZ3bowx71zyCnNAqWRrmNOxJ4CKA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
 
   '@react-stately/toggle@3.7.8':
     resolution: {integrity: sha512-ySOtkByvIY54yIu8IZ4lnvomQA0H+/mkZnd6T5fKN3tjvIzHmkUk3TAPmNInUxHX148tSW6mWwec0xvjYqEd6w==}
@@ -3831,11 +3679,6 @@ packages:
     resolution: {integrity: sha512-5d+3HbFDxGZjhbMBeFHRQhexMFt4pUce3okyRtUVKbbedQFUrtXSBg9VszgF2RTeQDKDkMCIQDtz5ccP/Lk1gw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-
-  '@react-types/shared@3.24.1':
-    resolution: {integrity: sha512-AUQeGYEm/zDTN6zLzdXolDxz3Jk5dDL7f506F07U8tBwxNNI3WRdhU84G0/AaFikOZzDXhOZDr3MhQMzyE7Ydw==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
 
   '@react-types/shared@3.25.0':
     resolution: {integrity: sha512-OZSyhzU6vTdW3eV/mz5i6hQwQUhkRs7xwY2d1aqPvTdMe0+2cY7Fwp45PAiwYLEj73i9ro2FxF9qC4DvHGSCgQ==}
@@ -4074,9 +3917,6 @@ packages:
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
-  '@types/hammerjs@2.0.45':
-    resolution: {integrity: sha512-qkcUlZmX6c4J8q45taBKTL3p+LbITgyx7qhlPYOdOHZB7B31K0mXbP5YA7i7SgDeEGuI9MnumiKPEMrxg8j3KQ==}
-
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
 
@@ -4142,12 +3982,6 @@ packages:
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
-
-  '@types/strip-bom@3.0.0':
-    resolution: {integrity: sha512-xevGOReSYGM7g/kUBZzPqCrR/KYAo+F0yiPc85WFTJa0MSLtyFTVTU6cJu/aV4mid7IffDIWqo69THF2o4JiEQ==}
-
-  '@types/strip-json-comments@0.0.30':
-    resolution: {integrity: sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==}
 
   '@types/swagger-ui-react@4.18.3':
     resolution: {integrity: sha512-Mo/R7IjDVwtiFPs84pWvh5pI9iyNGBjmfielxqbOh2Jv+8WVSDVe8Nu25kb5BOuV2xmGS3o33jr6nwDJMBcX+Q==}
@@ -4645,9 +4479,6 @@ packages:
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
 
-  boolbase@1.0.0:
-    resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
-
   bplist-creator@0.0.7:
     resolution: {integrity: sha512-xp/tcaV3T5PCiaY04mXga7o/TE+t95gqeLmADeBI1CvZtdWTbgBt3uLpvh4UWtenKeBhCV6oVxGk38yZr2uYEA==}
 
@@ -4819,9 +4650,6 @@ packages:
 
   cjs-module-lexer@1.4.0:
     resolution: {integrity: sha512-N1NGmowPlGBLsOZLPvm48StN04V4YvQRL0i6b7ctrVY3epjP/ct7hFLOItz6pDIvRjwpfPxi52a2UWV2ziir8g==}
-
-  class-variance-authority@0.7.0:
-    resolution: {integrity: sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==}
 
   classnames@2.5.1:
     resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
@@ -5040,23 +4868,9 @@ packages:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
     engines: {node: '>=8'}
 
-  css-in-js-utils@3.1.0:
-    resolution: {integrity: sha512-fJAcud6B3rRu+KHYk+Bwf+WFL2MDCJJ1XG9x137tJQ0xYxor7XziQtuGFbWNdqrvF4Tk26O3H73nfVqXt/fW1A==}
-
-  css-select@5.1.0:
-    resolution: {integrity: sha512-nwoRF1rvRRnnCqqY7updORDsuqKzqYJ28+oSMaJMMgOauh3fvwHqMS7EZpIPqK8GL+g9mKxF1vP/ZjSeNjEVHg==}
-
-  css-tree@1.1.3:
-    resolution: {integrity: sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==}
-    engines: {node: '>=8.0.0'}
-
   css-tree@2.3.1:
     resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
-
-  css-what@6.1.0:
-    resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
-    engines: {node: '>= 6'}
 
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -5240,22 +5054,6 @@ packages:
   doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
-
-  dom-helpers@5.2.1:
-    resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
-
-  dom-serializer@2.0.0:
-    resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
-
-  domelementtype@2.3.0:
-    resolution: {integrity: sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw==}
-
-  domhandler@5.0.3:
-    resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
-    engines: {node: '>= 4'}
-
-  domutils@3.1.0:
-    resolution: {integrity: sha512-H78uMmQtI2AhgDJjWeQmHwJJ2bLPD3GMmO7Zja/ZZh84wkm+4ut+IUnUdRa8uCGX88DiVx1j6FRe1XfxEgjEZA==}
 
   dotenv-cli@7.4.2:
     resolution: {integrity: sha512-SbUj8l61zIbzyhIbg0FwPJq6+wjbzdn9oEtozQpZ6kW2ihCcapKVZj49oCT3oPM+mgQm+itgvUQcG5szxVrZTA==}
@@ -5751,9 +5549,6 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
-  fast-loops@1.1.4:
-    resolution: {integrity: sha512-8dbd3XWoKCTms18ize6JmQF1SFnnfj5s0B7rRry22EofgMu7B6LKHVh+XfFqFGsqnbH54xgeO83PzpKI+ODhlg==}
-
   fast-npm-meta@0.2.2:
     resolution: {integrity: sha512-E+fdxeaOQGo/CMWc9f4uHFfgUPJRAu7N3uB8GBvB3SDPAIWJK4GKyYhkAGFq+GYrcbKNfQIz5VVQyJnDuPPCrg==}
 
@@ -6093,9 +5888,6 @@ packages:
     resolution: {integrity: sha512-cnN7bQUm65UWOy6cbGcCcZ3rpwW8Q/j4OP5aWRhEry4Z2t2aR1cjrbp0BS+KiBN0smvP1caBgAuxutvyvJILzQ==}
     engines: {node: '>=8'}
 
-  hoist-non-react-statics@3.3.2:
-    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
-
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
 
@@ -6124,9 +5916,6 @@ packages:
 
   humanize-duration@3.32.1:
     resolution: {integrity: sha512-inh5wue5XdfObhu/IGEMiA1nUXigSGcaKNemcbLRKa7jXYGDZXr3LoT9pTIzq2hPEbld7w/qv9h+ikWGz8fL1g==}
-
-  hyphenate-style-name@1.1.0:
-    resolution: {integrity: sha512-WDC/ui2VVRrz3jOVi+XtjqkDjiVjTtFaAGiW37k6b+ohyQ5wYDOGkvCZa8+H0nx3gyvv0+BST9xuOgIyGQ00gw==}
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -6177,9 +5966,6 @@ packages:
 
   inline-style-parser@0.2.4:
     resolution: {integrity: sha512-0aO8FkhNZlj/ZIbNi7Lxxr12obT7cL1moPfE4tg1LkX7LlLfC6DeX4l2ZEud1ukP9jNQyNnfzQVqwbwmAATY4Q==}
-
-  inline-style-prefixer@6.0.4:
-    resolution: {integrity: sha512-FwXmZC2zbeeS7NzGjJ6pAiqRhXR0ugUShSNb6GApMl6da0/XGc4MOJsoWAywia52EEWbXNSy0pzkwz/+Y+swSg==}
 
   internal-ip@4.3.0:
     resolution: {integrity: sha512-S1zBo1D6zcsyuC6PMmY5+55YMILQ9av8lotMx447Bq6SAgo/sDK6y6uUKmuYhW7eacnIhFfsPmCNYdDzsnnDCg==}
@@ -6844,13 +6630,6 @@ packages:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
 
-  lucide-react-native@0.436.0:
-    resolution: {integrity: sha512-QTokIONu7WO8SNqFHMYbmHtzPIPdem9FfQdHjCXTKlPJGes1TFH2cKHyL8gdTdRtwEPpjwXGPDC5G179L4S+4Q==}
-    peerDependencies:
-      react: ^16.5.1 || ^17.0.0 || ^18.0.0
-      react-native: '*'
-      react-native-svg: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
-
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
@@ -6948,17 +6727,11 @@ packages:
   mdast-util-to-string@4.0.0:
     resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
 
-  mdn-data@2.0.14:
-    resolution: {integrity: sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==}
-
   mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
 
   memoize-one@5.2.1:
     resolution: {integrity: sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==}
-
-  memoize-one@6.0.0:
-    resolution: {integrity: sha512-rkpe71W0N0c0Xz6QD0eJETuWAJGnJ9afsl1srmwPrI+yBCkge5EycXXbYRyvL29zZVUWQCY7InPRCv3GDXuZNw==}
 
   memory-cache@0.2.0:
     resolution: {integrity: sha512-OcjA+jzjOYzKmKS6IQVALHLVz+rNTMPoJvCztFaZxwG14wtAW7VRZjwTQu06vKCYOxh4jVnik7ya0SXTB0W+xA==}
@@ -7448,9 +7221,6 @@ packages:
   npm-run-path@5.3.0:
     resolution: {integrity: sha512-ppwTtiJZq0O/ai0z7yfudtBpWIoxM8yE6nHi1X47eFR2EWORqfbu6CnPlNsjeN683eT0qG6H/Pyf9fCcvjnnnQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
-  nth-check@2.1.1:
-    resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
   nullthrows@1.1.1:
     resolution: {integrity: sha512-2vPPEi+Z7WqML2jZYddDIfy5Dqb0r2fze2zTxNNknZaFpVHU3mFB3R+DWeJWGVx0ecvttSGlJTI+WG+8Z4cDWw==}
@@ -8052,51 +7822,12 @@ packages:
       react-native-svg:
         optional: true
 
-  react-native-gesture-handler@2.17.1:
-    resolution: {integrity: sha512-pWfniN6NuVKUq40KACuD3NCMe+bWNQCpD3cmxL6aLSCTwPKYmf7l4Lp0/E/almpjvxhybJZtFLU0w4tmxnIKaA==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-
-  react-native-reanimated-carousel@4.0.0-canary.15:
-    resolution: {integrity: sha512-Y/WD1RuB0AU+wN5cgl6KlauUlO8lTXcqiD5BNvCbxlaq55ep/Tdomz3glsX2vqnnyEvC+1VXg/3AUTLHLYHjow==}
-    peerDependencies:
-      '@types/react': '*'
-      '@types/react-native': '*'
-      react: '>=18.0.0'
-      react-native: '>=0.70.3'
-      react-native-gesture-handler: '>=2.9.0'
-      react-native-reanimated: '>=3.0.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      '@types/react-native':
-        optional: true
-
   react-native-reanimated@3.10.1:
     resolution: {integrity: sha512-sfxg6vYphrDc/g4jf/7iJ7NRi+26z2+BszPmvmk0Vnrz6FL7HYljJqTf531F1x6tFmsf+FEAmuCtTUIXFLVo9w==}
     peerDependencies:
       '@babel/core': ^7.0.0-0
       react: '*'
       react-native: '*'
-
-  react-native-safe-area-context@4.10.8:
-    resolution: {integrity: sha512-Jx1lovhvIdYygg0UsMCBUJN0Wvj9GlA5bbcBLzjZf93uJpNHzaiHC4hR280+sNVK1+/pMHEyEkXVHDZE5JWn0w==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-
-  react-native-svg@15.2.0:
-    resolution: {integrity: sha512-R0E6IhcJfVLsL0lRmnUSm72QO+mTqcAOM5Jb8FVGxJqX3NfJMlMP0YyvcajZiaRR8CqQUpEoqrY25eyZb006kw==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-
-  react-native-web@0.19.12:
-    resolution: {integrity: sha512-o2T0oztoVDQjztt4YksO9S1XRjoH/AqcSvifgWLrPJgGVbMWsfhILgl6lfUdEamVZzZSVV/2gqDVMAk/qq7mZw==}
-    peerDependencies:
-      react: ^18.0.0
-      react-dom: ^18.0.0
 
   react-native@0.74.3:
     resolution: {integrity: sha512-UFutCC6WEw6HkxlcpQ2BemKqi0JkwrgDchYB5Svi8Sp4Xwt4HA6LGEjNQgZ+3KM44bjyFRpofQym0uh0jACGng==}
@@ -8468,9 +8199,6 @@ packages:
     resolution: {integrity: sha512-/GbIKmo8ioc+NIWIhwdecY0ge+qVBSMdgxGygevmdHj24bsfgtCmcUUcQ5ZzcylGFHsN3k4HB4Cgkl96KVnuew==}
     engines: {node: '>=10.0.0'}
 
-  solito@4.2.2:
-    resolution: {integrity: sha512-VjuAZDEM5QJG2CVCpi94oFxXQKuYp1CP/VS8PzraMX7MVa3T6zwV6Ev4n4wMajv5LvRg9nwh5JNPasxQhS7IVA==}
-
   source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
     engines: {node: '>=0.10.0'}
@@ -8653,9 +8381,6 @@ packages:
         optional: true
       babel-plugin-macros:
         optional: true
-
-  styleq@0.1.3:
-    resolution: {integrity: sha512-3ZUifmCDCQanjeej1f6kyl/BeP/Vae5EYkQ9iJfUm/QwZvlgnZzyflqAsAWYURdtea8Vkvswu2GrC57h3qffcA==}
 
   sucrase@3.34.0:
     resolution: {integrity: sha512-70/LQEZ07TEcxiU2dz51FKaE6hCTWC6vr7FOk3Gr0U60C3shtAN+H+BFr9XlYe5xqf3RA8nrc+VIwzCfnxuXJw==}
@@ -8907,9 +8632,6 @@ packages:
   tsconfig-paths@3.15.0:
     resolution: {integrity: sha512-2Ac2RgzDe/cn48GvOe3M+o82pEFewD3UPbyoUHHdKasHwJKjds4fLXWf/Ux5kATBKN20oaFGu+jbElp1pos0mg==}
 
-  tsconfig@7.0.0:
-    resolution: {integrity: sha512-vZXmzPrL+EmC4T/4rVlT2jNVMWCi/O4DIiSj3UHg1OE5kCKbk4mfrXc6dZksLgRM/TZlKnousKH9bbTazUWRRw==}
-
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
@@ -9016,11 +8738,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
 
   typescript@5.5.2:
     resolution: {integrity: sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==}
@@ -10909,10 +10626,6 @@ snapshots:
 
   '@drizzle-team/brocli@0.10.1': {}
 
-  '@egjs/hammerjs@2.0.17':
-    dependencies:
-      '@types/hammerjs': 2.0.45
-
   '@esbuild-kit/core-utils@3.3.2':
     dependencies:
       esbuild: 0.18.20
@@ -11394,8 +11107,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@expo/html-elements@0.10.1': {}
-
   '@expo/image-utils@0.5.1':
     dependencies:
       '@expo/spawn-async': 1.7.2
@@ -11577,124 +11288,6 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
-  '@gluestack-ui/accordion@1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/accordion': 0.0.2(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/interactions': 0.2.13(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@gluestack-ui/avatar@0.1.17(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@gluestack-ui/button@1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/interactions': 0.2.13(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@gluestack-ui/divider@0.1.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  '@gluestack-ui/hooks@0.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  '@gluestack-ui/icon@0.1.22(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@gluestack-ui/provider': 0.1.12(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@gluestack-ui/nativewind-utils@1.0.23(nativewind@4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))':
-    dependencies:
-      find-yarn-workspace-root: 2.0.0
-      nativewind: 4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))
-      patch-package: 8.0.0
-      react: 18.2.0
-      tailwind-variants: 0.1.20(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))
-    transitivePeerDependencies:
-      - tailwindcss
-
-  '@gluestack-ui/overlay@0.1.15(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/interactions': 0.2.13(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/overlays': 0.3.14(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@gluestack-ui/provider@0.1.12(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@react-native-aria/interactions': 0.2.13(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      tsconfig: 7.0.0
-      typescript: 4.9.5
-    transitivePeerDependencies:
-      - react-native
-
-  '@gluestack-ui/react-native-aria@0.1.5(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@gluestack-ui/toast@1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@gluestack-ui/hooks': 0.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/overlay': 0.1.15(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/transitions': 0.1.10(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@gluestack-ui/transitions@0.1.10(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@gluestack-ui/overlay': 0.1.15(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/react-native-aria': 0.1.5(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@gluestack-ui/utils@0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@react-native-aria/focus': 0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - react-native
-
   '@gluestack/ui-next-adapter@2.1.12(@babel/core@7.24.0)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       find-yarn-workspace-root: 2.0.0
@@ -11788,14 +11381,14 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
       jest-mock: 29.7.0
 
   '@jest/fake-timers@29.7.0':
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -11814,7 +11407,7 @@ snapshots:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
       '@types/yargs': 15.0.19
       chalk: 4.1.2
 
@@ -11823,7 +11416,7 @@ snapshots:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
@@ -12309,6 +11902,39 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
+  '@nextui-org/framer-utils@2.0.25(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@nextui-org/shared-utils': 2.0.8
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@nextui-org/use-measure': 2.0.2(react@18.2.0)
+      framer-motion: 11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - '@nextui-org/theme'
+
+  '@nextui-org/navbar@2.0.37(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(@types/react@18.2.79)(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@nextui-org/framer-utils': 2.0.25(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@nextui-org/react-utils': 2.0.17(react@18.2.0)
+      '@nextui-org/shared-utils': 2.0.8
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))
+      '@nextui-org/use-aria-toggle-button': 2.0.10(react@18.2.0)
+      '@nextui-org/use-scroll-position': 2.0.9(react@18.2.0)
+      '@react-aria/focus': 3.17.1(react@18.2.0)
+      '@react-aria/interactions': 3.21.3(react@18.2.0)
+      '@react-aria/overlays': 3.22.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-aria/utils': 3.24.1(react@18.2.0)
+      '@react-stately/toggle': 3.7.4(react@18.2.0)
+      '@react-stately/utils': 3.10.1(react@18.2.0)
+      framer-motion: 11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-remove-scroll: 2.6.0(@types/react@18.2.79)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
+
   '@nextui-org/react-rsc-utils@2.0.14(react@18.2.0)':
     dependencies:
       react: 18.2.0
@@ -12385,6 +12011,23 @@ snapshots:
       '@react-aria/utils': 3.24.1(react@18.2.0)
       '@react-types/button': 3.9.4(react@18.2.0)
       '@react-types/shared': 3.23.1(react@18.2.0)
+      react: 18.2.0
+
+  '@nextui-org/use-aria-toggle-button@2.0.10(react@18.2.0)':
+    dependencies:
+      '@nextui-org/use-aria-button': 2.0.10(react@18.2.0)
+      '@react-aria/utils': 3.24.1(react@18.2.0)
+      '@react-stately/toggle': 3.7.4(react@18.2.0)
+      '@react-types/button': 3.9.4(react@18.2.0)
+      '@react-types/shared': 3.23.1(react@18.2.0)
+      react: 18.2.0
+
+  '@nextui-org/use-measure@2.0.2(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@nextui-org/use-scroll-position@2.0.9(react@18.2.0)':
+    dependencies:
       react: 18.2.0
 
   '@nodelib/fs.scandir@2.1.5':
@@ -12986,7 +12629,7 @@ snapshots:
       '@react-aria/utils': 3.25.2(react@18.2.0)
       '@react-stately/toggle': 3.7.8(react@18.2.0)
       '@react-types/button': 3.9.6(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       react: 18.2.0
 
@@ -12994,7 +12637,7 @@ snapshots:
     dependencies:
       '@react-aria/interactions': 3.22.2(react@18.2.0)
       '@react-aria/utils': 3.25.2(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       clsx: 2.0.0
       react: 18.2.0
@@ -13003,7 +12646,7 @@ snapshots:
     dependencies:
       '@react-aria/interactions': 3.22.2(react@18.2.0)
       '@react-aria/utils': 3.25.2(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       clsx: 2.0.0
       react: 18.2.0
@@ -13016,7 +12659,7 @@ snapshots:
       '@internationalized/string': 3.2.3
       '@react-aria/ssr': 3.9.5(react@18.2.0)
       '@react-aria/utils': 3.25.2(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       react: 18.2.0
 
@@ -13028,7 +12671,7 @@ snapshots:
       '@internationalized/string': 3.2.3
       '@react-aria/ssr': 3.9.5(react@18.2.0)
       '@react-aria/utils': 3.25.2(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       react: 18.2.0
 
@@ -13036,7 +12679,7 @@ snapshots:
     dependencies:
       '@react-aria/ssr': 3.9.5(react@18.2.0)
       '@react-aria/utils': 3.25.2(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       react: 18.2.0
 
@@ -13044,7 +12687,7 @@ snapshots:
     dependencies:
       '@react-aria/ssr': 3.9.5(react@18.2.0)
       '@react-aria/utils': 3.25.2(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       react: 18.2.0
 
@@ -13059,23 +12702,7 @@ snapshots:
       '@react-stately/overlays': 3.6.10(react@18.2.0)
       '@react-types/button': 3.9.6(react@18.2.0)
       '@react-types/overlays': 3.8.9(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
-      '@swc/helpers': 0.5.12
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  '@react-aria/overlays@3.23.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@react-aria/focus': 3.18.2(react@18.2.0)
-      '@react-aria/i18n': 3.12.2(react@18.2.0)
-      '@react-aria/interactions': 3.22.2(react@18.2.0)
-      '@react-aria/ssr': 3.9.5(react@18.2.0)
-      '@react-aria/utils': 3.25.2(react@18.2.0)
-      '@react-aria/visually-hidden': 3.8.15(react@18.2.0)
-      '@react-stately/overlays': 3.6.10(react@18.2.0)
-      '@react-types/button': 3.9.6(react@18.2.0)
-      '@react-types/overlays': 3.8.9(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -13088,8 +12715,8 @@ snapshots:
   '@react-aria/utils@3.24.1(react@18.2.0)':
     dependencies:
       '@react-aria/ssr': 3.9.5(react@18.2.0)
-      '@react-stately/utils': 3.10.3(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-stately/utils': 3.10.4(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       clsx: 2.0.0
       react: 18.2.0
@@ -13097,8 +12724,8 @@ snapshots:
   '@react-aria/utils@3.25.2(react@18.2.0)':
     dependencies:
       '@react-aria/ssr': 3.9.5(react@18.2.0)
-      '@react-stately/utils': 3.10.3(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-stately/utils': 3.10.4(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       clsx: 2.0.0
       react: 18.2.0
@@ -13107,7 +12734,7 @@ snapshots:
     dependencies:
       '@react-aria/interactions': 3.22.2(react@18.2.0)
       '@react-aria/utils': 3.25.2(react@18.2.0)
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       '@swc/helpers': 0.5.12
       react: 18.2.0
 
@@ -13120,44 +12747,6 @@ snapshots:
   '@react-hook/passive-layout-effect@1.2.1(react@18.2.0)':
     dependencies:
       react: 18.2.0
-
-  '@react-native-aria/accordion@0.0.2(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      react: 18.2.0
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-
-  '@react-native-aria/focus@0.2.9(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@react-aria/focus': 3.18.2(react@18.2.0)
-      react: 18.2.0
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-
-  '@react-native-aria/interactions@0.2.13(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@react-aria/interactions': 3.22.2(react@18.2.0)
-      '@react-aria/utils': 3.25.2(react@18.2.0)
-      '@react-native-aria/utils': 0.2.11(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-
-  '@react-native-aria/overlays@0.3.14(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@react-aria/interactions': 3.22.2(react@18.2.0)
-      '@react-aria/overlays': 3.23.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@react-native-aria/utils': 0.2.11(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      '@react-stately/overlays': 3.6.10(react@18.2.0)
-      '@react-types/overlays': 3.8.9(react@18.2.0)
-      dom-helpers: 5.2.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-
-  '@react-native-aria/utils@0.2.11(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@react-aria/ssr': 3.9.5(react@18.2.0)
-      '@react-aria/utils': 3.25.2(react@18.2.0)
-      react: 18.2.0
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
 
   '@react-native-community/cli-clean@13.6.9':
     dependencies:
@@ -13507,8 +13096,6 @@ snapshots:
 
   '@react-native/normalize-colors@0.74.85': {}
 
-  '@react-native/normalize-colors@0.74.87': {}
-
   '@react-native/virtualized-lists@0.74.85(@types/react@18.2.79)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)':
     dependencies:
       invariant: 2.2.4
@@ -13522,6 +13109,13 @@ snapshots:
     dependencies:
       '@react-stately/utils': 3.10.3(react@18.2.0)
       '@react-types/overlays': 3.8.9(react@18.2.0)
+      '@swc/helpers': 0.5.12
+      react: 18.2.0
+
+  '@react-stately/toggle@3.7.4(react@18.2.0)':
+    dependencies:
+      '@react-stately/utils': 3.10.4(react@18.2.0)
+      '@react-types/checkbox': 3.8.4(react@18.2.0)
       '@swc/helpers': 0.5.12
       react: 18.2.0
 
@@ -13549,12 +13143,12 @@ snapshots:
 
   '@react-types/button@3.9.4(react@18.2.0)':
     dependencies:
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       react: 18.2.0
 
   '@react-types/button@3.9.6(react@18.2.0)':
     dependencies:
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       react: 18.2.0
 
   '@react-types/checkbox@3.8.4(react@18.2.0)':
@@ -13564,14 +13158,10 @@ snapshots:
 
   '@react-types/overlays@3.8.9(react@18.2.0)':
     dependencies:
-      '@react-types/shared': 3.24.1(react@18.2.0)
+      '@react-types/shared': 3.25.0(react@18.2.0)
       react: 18.2.0
 
   '@react-types/shared@3.23.1(react@18.2.0)':
-    dependencies:
-      react: 18.2.0
-
-  '@react-types/shared@3.24.1(react@18.2.0)':
     dependencies:
       react: 18.2.0
 
@@ -13873,8 +13463,6 @@ snapshots:
 
   '@types/estree@1.0.5': {}
 
-  '@types/hammerjs@2.0.45': {}
-
   '@types/hast@3.0.4':
     dependencies:
       '@types/unist': 3.0.3
@@ -13906,7 +13494,7 @@ snapshots:
 
   '@types/node-forge@1.3.11':
     dependencies:
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
 
   '@types/node@12.20.55': {}
 
@@ -13946,10 +13534,6 @@ snapshots:
   '@types/shimmer@1.2.0': {}
 
   '@types/stack-utils@2.0.3': {}
-
-  '@types/strip-bom@3.0.0': {}
-
-  '@types/strip-json-comments@0.0.30': {}
 
   '@types/swagger-ui-react@4.18.3':
     dependencies:
@@ -14530,8 +14114,6 @@ snapshots:
       inherits: 2.0.4
       readable-stream: 3.6.2
 
-  boolbase@1.0.0: {}
-
   bplist-creator@0.0.7:
     dependencies:
       stream-buffers: 2.2.0
@@ -14710,7 +14292,7 @@ snapshots:
 
   chrome-launcher@0.15.2:
     dependencies:
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -14726,10 +14308,6 @@ snapshots:
       consola: 3.2.3
 
   cjs-module-lexer@1.4.0: {}
-
-  class-variance-authority@0.7.0:
-    dependencies:
-      clsx: 2.0.0
 
   classnames@2.5.1: {}
 
@@ -14957,29 +14535,10 @@ snapshots:
 
   crypto-random-string@2.0.0: {}
 
-  css-in-js-utils@3.1.0:
-    dependencies:
-      hyphenate-style-name: 1.1.0
-
-  css-select@5.1.0:
-    dependencies:
-      boolbase: 1.0.0
-      css-what: 6.1.0
-      domhandler: 5.0.3
-      domutils: 3.1.0
-      nth-check: 2.1.1
-
-  css-tree@1.1.3:
-    dependencies:
-      mdn-data: 2.0.14
-      source-map: 0.6.1
-
   css-tree@2.3.1:
     dependencies:
       mdn-data: 2.0.30
       source-map-js: 1.2.0
-
-  css-what@6.1.0: {}
 
   cssesc@3.0.0: {}
 
@@ -15148,29 +14707,6 @@ snapshots:
   doctrine@2.1.0:
     dependencies:
       esutils: 2.0.3
-
-  dom-helpers@5.2.1:
-    dependencies:
-      '@babel/runtime': 7.25.4
-      csstype: 3.1.3
-
-  dom-serializer@2.0.0:
-    dependencies:
-      domelementtype: 2.3.0
-      domhandler: 5.0.3
-      entities: 4.5.0
-
-  domelementtype@2.3.0: {}
-
-  domhandler@5.0.3:
-    dependencies:
-      domelementtype: 2.3.0
-
-  domutils@3.1.0:
-    dependencies:
-      dom-serializer: 2.0.0
-      domelementtype: 2.3.0
-      domhandler: 5.0.3
 
   dotenv-cli@7.4.2:
     dependencies:
@@ -15858,8 +15394,6 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
-  fast-loops@1.1.4: {}
-
   fast-npm-meta@0.2.2: {}
 
   fast-uri@3.0.1: {}
@@ -16237,10 +15771,6 @@ snapshots:
     dependencies:
       source-map: 0.7.4
 
-  hoist-non-react-statics@3.3.2:
-    dependencies:
-      react-is: 16.13.1
-
   hookable@5.5.3: {}
 
   hosted-git-info@3.0.8:
@@ -16269,8 +15799,6 @@ snapshots:
   human-signals@5.0.0: {}
 
   humanize-duration@3.32.1: {}
-
-  hyphenate-style-name@1.1.0: {}
 
   ieee754@1.2.1: {}
 
@@ -16320,11 +15848,6 @@ snapshots:
   ini@1.3.8: {}
 
   inline-style-parser@0.2.4: {}
-
-  inline-style-prefixer@6.0.4:
-    dependencies:
-      css-in-js-utils: 3.1.0
-      fast-loops: 1.1.4
 
   internal-ip@4.3.0:
     dependencies:
@@ -16573,7 +16096,7 @@ snapshots:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -16594,13 +16117,13 @@ snapshots:
   jest-mock@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
       jest-util: 29.7.0
 
   jest-util@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -16617,7 +16140,7 @@ snapshots:
 
   jest-worker@29.7.0:
     dependencies:
-      '@types/node': 12.20.55
+      '@types/node': 22.5.0
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -16941,12 +16464,6 @@ snapshots:
     dependencies:
       yallist: 4.0.0
 
-  lucide-react-native@0.436.0(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0):
-    dependencies:
-      react: 18.2.0
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-      react-native-svg: 15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-
   lz-string@1.5.0: {}
 
   magic-bytes.js@1.10.0: {}
@@ -17181,13 +16698,9 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
 
-  mdn-data@2.0.14: {}
-
   mdn-data@2.0.30: {}
 
   memoize-one@5.2.1: {}
-
-  memoize-one@6.0.0: {}
 
   memory-cache@0.2.0: {}
 
@@ -17757,9 +17270,9 @@ snapshots:
 
   nanoid@3.3.7: {}
 
-  nativewind@4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))):
+  nativewind@4.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))):
     dependencies:
-      react-native-css-interop: 0.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))
+      react-native-css-interop: 0.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2)))
       tailwindcss: 3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))
     transitivePeerDependencies:
       - '@babel/core'
@@ -17948,10 +17461,6 @@ snapshots:
   npm-run-path@5.3.0:
     dependencies:
       path-key: 4.0.0
-
-  nth-check@2.1.1:
-    dependencies:
-      boolbase: 1.0.0
 
   nullthrows@1.1.1: {}
 
@@ -18522,7 +18031,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  react-native-css-interop@0.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))):
+  react-native-css-interop@0.0.36(@babel/core@7.24.0)(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)(tailwindcss@3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))):
     dependencies:
       '@babel/helper-module-imports': 7.24.7
       '@babel/traverse': 7.25.4
@@ -18533,30 +18042,9 @@ snapshots:
       react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
       react-native-reanimated: 3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
       tailwindcss: 3.4.10(ts-node@10.9.2(@types/node@22.0.2)(typescript@5.5.2))
-    optionalDependencies:
-      react-native-safe-area-context: 4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react-native-svg: 15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  react-native-gesture-handler@2.17.1(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0):
-    dependencies:
-      '@egjs/hammerjs': 2.0.17
-      hoist-non-react-statics: 3.3.2
-      invariant: 2.2.4
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-
-  react-native-reanimated-carousel@4.0.0-canary.15(@types/react@18.2.79)(react-native-gesture-handler@2.17.1(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0):
-    dependencies:
-      react: 18.2.0
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-      react-native-gesture-handler: 2.17.1(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-      react-native-reanimated: 3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0)
-    optionalDependencies:
-      '@types/react': 18.2.79
 
   react-native-reanimated@3.10.1(@babel/core@7.24.0)(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0):
     dependencies:
@@ -18573,33 +18061,6 @@ snapshots:
       react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
     transitivePeerDependencies:
       - supports-color
-
-  react-native-safe-area-context@4.10.8(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0):
-    dependencies:
-      react: 18.2.0
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-
-  react-native-svg@15.2.0(react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0))(react@18.2.0):
-    dependencies:
-      css-select: 5.1.0
-      css-tree: 1.1.3
-      react: 18.2.0
-      react-native: 0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0)
-
-  react-native-web@0.19.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      '@babel/runtime': 7.25.4
-      '@react-native/normalize-colors': 0.74.87
-      fbjs: 3.0.5
-      inline-style-prefixer: 6.0.4
-      memoize-one: 6.0.0
-      nullthrows: 1.1.1
-      postcss-value-parser: 4.2.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      styleq: 0.1.3
-    transitivePeerDependencies:
-      - encoding
 
   react-native@0.74.3(@babel/core@7.24.0)(@babel/preset-env@7.25.4(@babel/core@7.24.0))(@types/react@18.2.79)(bufferutil@4.0.8)(react@18.2.0):
     dependencies:
@@ -19064,10 +18525,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  solito@4.2.2:
-    dependencies:
-      typescript: 5.5.2
-
   source-map-js@1.2.0: {}
 
   source-map-support@0.5.21:
@@ -19246,8 +18703,6 @@ snapshots:
       react: 18.2.0
     optionalDependencies:
       '@babel/core': 7.24.0
-
-  styleq@0.1.3: {}
 
   sucrase@3.34.0:
     dependencies:
@@ -19584,13 +19039,6 @@ snapshots:
       minimist: 1.2.8
       strip-bom: 3.0.0
 
-  tsconfig@7.0.0:
-    dependencies:
-      '@types/strip-bom': 3.0.0
-      '@types/strip-json-comments': 0.0.30
-      strip-bom: 3.0.0
-      strip-json-comments: 2.0.1
-
   tslib@2.7.0: {}
 
   tsx@4.16.2:
@@ -19703,8 +19151,6 @@ snapshots:
     transitivePeerDependencies:
       - eslint
       - supports-color
-
-  typescript@4.9.5: {}
 
   typescript@5.5.2: {}
 
