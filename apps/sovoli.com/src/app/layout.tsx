@@ -1,24 +1,12 @@
-import "@sovoli/ui/config/tailwind/globals.css";
-import "raf/polyfill";
+import "@sovoli/ui/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
-import { UiProviders } from "@sovoli/ui/providers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { QueryProviders } from "~/api/react";
 import { config } from "~/utils/config";
-import { StyledJsxRegistry } from "./registry";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-});
+import { Providers } from "./providers";
+import { MainLayout } from "@sovoli/ui/components/MainLayout";
 
 export const metadata: Metadata = {
   title: {
@@ -26,6 +14,9 @@ export const metadata: Metadata = {
     template: `%s | ${config.siteName}`,
   },
   description: config.description,
+  icons: {
+    icon: "/favicon.ico",
+  },
   openGraph: {
     title: config.title,
     description: config.description,
@@ -48,18 +39,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable}`}
-        style={{ display: "flex" }}
-      >
-        <StyledJsxRegistry>
-          <UiProviders>
-            <QueryProviders>{children}</QueryProviders>
-          </UiProviders>
-          <SpeedInsights />
-          <Analytics />
-        </StyledJsxRegistry>
+    <html lang="en" className="dark">
+      <body>
+        <Providers>
+          <MainLayout>
+          {children}
+          </MainLayout>
+          </Providers>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

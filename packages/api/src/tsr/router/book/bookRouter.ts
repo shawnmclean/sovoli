@@ -1,5 +1,5 @@
 import { count, db, schema } from "@sovoli/db";
-import { tsr } from "@ts-rest/serverless/next";
+import { tsr } from "@ts-rest/serverless/fetch";
 
 import { BooksResponseSchema } from "../../../schema";
 import { searchBooksByQuery } from "../../../services/books";

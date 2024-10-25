@@ -1,19 +1,11 @@
 import type { Config } from "tailwindcss";
-import { web } from "@sovoli/ui/config/tailwind/web";
-import { fontFamily } from "tailwindcss/defaultTheme";
+import nextUIConfig from "@sovoli/ui/tailwind.config";
 
 export default {
-  // We need to append the path to the UI package to the content array so that
-  // those classes are included correctly.
-  content: [...web.content, "../../packages/ui/src/**/*.{ts,tsx}"],
-  presets: [web],
-  important: "html",
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
-      },
-    },
-  },
+  content: [
+    ...nextUIConfig.content,
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  presets: [nextUIConfig],
 } satisfies Config;

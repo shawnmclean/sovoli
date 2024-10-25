@@ -19,32 +19,6 @@ export const userContract = c.router(
       },
       summary: "Get the currently logged in user",
     },
-    upload: {
-      method: "POST",
-      path: `/upload`,
-      contentType: "multipart/form-data",
-      // body: c.type<{ thumbnail: File }>(), // <- Use File type in here
-      body: z
-        .object({
-          files: z.array(z.string()).openapi({
-            type: "array",
-            items: { type: "string", format: "binary" },
-          }),
-        })
-        .nullish()
-        .openapi({ nullable: false }),
-      responses: {
-        200: z.object({
-          message: z.string(),
-          files: z.array(
-            z.object({
-              fileSize: z.string(),
-              fileName: z.string(),
-            }),
-          ),
-        }),
-      },
-    },
   },
   {
     metadata: {
@@ -56,7 +30,7 @@ export const userContract = c.router(
     },
     pathPrefix: "/user",
     commonResponses: {
-      401: c.type<{ message: "Unauthorized" }>(),
+      401:z.literal("Unauthorized")
     },
   },
 );

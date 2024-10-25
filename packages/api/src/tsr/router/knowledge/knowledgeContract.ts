@@ -220,7 +220,7 @@ export const knowledgeContract = c.router(
     },
     pathPrefix: "/knowledge",
     commonResponses: {
-      401: c.type<{ message: "Unauthorized" }>(),
+      401: z.literal("Unauthorized")
     },
   },
 );

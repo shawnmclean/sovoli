@@ -9,8 +9,7 @@
       "@sovoli/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [{ "name": "next" }],
-    "module": "esnext",
-    "jsxImportSource": "nativewind"
+    "module": "esnext"
   },
   "include": [
     "src/**/*",

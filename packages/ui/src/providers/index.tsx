@@ -1,21 +1,19 @@
 "use client";
 
-// react-native will select .web.tsx for web versions
-// import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { GluestackUIProvider } from "./gluestack-ui-provider";
-// import { SafeAreaProvider } from "./safe-area-provider";
-import { ThemeProvider } from "./theme-provider";
+import { NextUIProvider } from "@nextui-org/system";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-export function UiProviders({ children }: { children: React.ReactNode }) {
+export interface UIProvidersProps {
+  children: React.ReactNode;
+  navigate: (href: string) => void;
+}
+
+export function UIProviders({ children, navigate }: UIProvidersProps) {
   return (
-    // <SafeAreaProvider>
-    <GluestackUIProvider>
-      <ThemeProvider>
-        {/* <GestureHandlerRootView style={{ flex: 1 }}> */}
+    <NextUIProvider navigate={navigate}>
+      <NextThemesProvider attribute="class" defaultTheme="dark">
         {children}
-        {/* </GestureHandlerRootView> */}
-      </ThemeProvider>
-    </GluestackUIProvider>
-    // </SafeAreaProvider>
+      </NextThemesProvider>
+    </NextUIProvider>
   );
 }

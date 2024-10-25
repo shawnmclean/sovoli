@@ -3,11 +3,10 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "ES2022"],
     "jsx": "react-jsx",
-    "jsxImportSource": "nativewind",
     "paths": {
       "@sovoli/ui/*": ["./src/*"]
     }
   },
-  "include": ["*.ts", "src", "nativewind-env.d.ts"],
+  "include": ["*.ts", "src"],
   "exclude": ["dist", "build", "node_modules"]
 }

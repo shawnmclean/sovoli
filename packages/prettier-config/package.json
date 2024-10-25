@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@sovoli/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
     "typescript": "catalog:"
   },
   "prettier": "@sovoli/prettier-config"

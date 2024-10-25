@@ -1,13 +1,11 @@
-import { useColorScheme as useNativewindColorScheme } from "nativewind";
+import { useTheme } from "next-themes";
 
 export function useColorScheme() {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { colorScheme, setColorScheme, toggleColorScheme } =
-    useNativewindColorScheme();
+  const { theme, setTheme } = useTheme();
   return {
-    colorScheme: colorScheme ?? "dark",
-    isDarkColorScheme: colorScheme === "dark",
-    setColorScheme,
-    toggleColorScheme,
+    colorScheme: theme ?? "dark",
+    isDarkColorScheme: theme === "dark",
+    setColorScheme: setTheme,
+    toggleColorScheme: () => setTheme(theme === "dark" ? "light" : "dark"),
   };
 }

@@ -43,9 +43,9 @@
     "@ts-rest/core": "catalog:",
     "@ts-rest/serverless": "catalog:",
     "@anatine/zod-openapi": "2.2.6",
+    "openapi3-ts": "4.4.0",
     "ai": "3.3.8",
     "superjson": "2.2.1",
-    "parse-multipart-data": "1.5.0",
     "magic-bytes.js": "1.10.0",
     "lodash": "4.17.21",
     "zod": "catalog:"

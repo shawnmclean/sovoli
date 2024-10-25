@@ -1,5 +1,4 @@
 import { fileURLToPath } from "url";
-import { withGluestackUI } from "@gluestack/ui-next-adapter";
 import createJiti from "jiti";
 
 // Import env files to validate at build time. Use jiti so we can load .ts files in here.
@@ -13,10 +12,6 @@ const nextConfig = {
     loaderFile: "./src/loaders/supabaseImageLoader.ts",
     dangerouslyAllowSVG: true,
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "qr.expo.dev",
-      },
       {
         protocol: "https",
         hostname: "covers.openlibrary.org",
@@ -47,13 +42,6 @@ const nextConfig = {
     "@sovoli/api",
     "@sovoli/auth",
     "@sovoli/db",
-    "nativewind",
-    "react-native-svg",
-    "react-native-css-interop",
-    "@gluestack-ui/nativewind-utils",
-    "react-native-reanimated",
-    "react-native-gesture-handler",
-    "solito",
   ],
   experimental: {
     // forceSwcTransforms: true,
@@ -61,4 +49,4 @@ const nextConfig = {
   eslint: { ignoreDuringBuilds: true },
 };
 
-export default withGluestackUI(nextConfig);
+export default nextConfig;

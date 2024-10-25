@@ -1,22 +1,29 @@
 "use client";
 
-import { View } from "react-native";
+import { useEffect, useState } from "react";
+import { Button } from "@nextui-org/button";
+
 import { useColorScheme } from "../../hooks/useColorScheme";
-import { Button, ButtonIcon } from "../ui/button";
-import { SunIcon, MoonIcon } from "../ui/icon";
 
 export function ThemeToggle() {
+  const [mounted, setMounted] = useState(false);
   const { isDarkColorScheme, setColorScheme } = useColorScheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
   return (
-    <View className="flex-row">
-      <Button className="rounded-full p-3.5" variant="solid"
-        onPress={() => {
+    <div>
+      <Button
+        className="rounded-full p-3.5"
+        variant="solid"
+        onClick={() => {
           const newTheme = isDarkColorScheme ? "light" : "dark";
           setColorScheme(newTheme);
         }}
-      >
-        {isDarkColorScheme ? <ButtonIcon as={MoonIcon} /> : <ButtonIcon as={SunIcon} />}
-      </Button>
-    </View>
+      ></Button>
+    </div>
   );
 }

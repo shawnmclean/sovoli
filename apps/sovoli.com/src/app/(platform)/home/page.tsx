@@ -18,13 +18,13 @@ const retrieveLatestKnowledges = cache(async () => {
 export function generateMetadata(): Metadata {
   return {
     openGraph: {
-      url: config.url + "/feed/",
+      url: config.url + "/home/",
       siteName: config.siteName,
     },
   };
 }
 
-export default async function FeedPage() {
+export default async function HomePage() {
   const knowledges = await retrieveLatestKnowledges();
 
   return (
