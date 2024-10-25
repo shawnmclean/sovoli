@@ -26,7 +26,6 @@
     "peerDependencyRules": {
       "ignoreMissing": [
         "@babel/*",
-        "expo-modules-*",
         "typescript"
       ]
     }
