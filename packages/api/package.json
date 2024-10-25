@@ -43,6 +43,7 @@
     "@ts-rest/core": "catalog:",
     "@ts-rest/serverless": "catalog:",
     "@anatine/zod-openapi": "2.2.6",
+    "openapi3-ts": "4.4.0",
     "ai": "3.3.8",
     "superjson": "2.2.1",
     "magic-bytes.js": "1.10.0",
