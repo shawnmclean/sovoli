@@ -1,18 +1,10 @@
 "use client";
 
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
-import { ScrollView } from "react-native";
 import { MediaAssetHost } from "@sovoli/db/schema";
-import { Box } from "@sovoli/ui/components/ui/box";
-import { Heading } from "@sovoli/ui/components/ui/heading";
-import { HStack } from "@sovoli/ui/components/ui/hstack";
 import { Image } from "@sovoli/ui/components/ui/image";
 import { Link } from "@sovoli/ui/components/ui/link";
 import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
-import { VStack } from "@sovoli/ui/components/ui/vstack";
-import { isWeb } from "@sovoli/ui/lib/utils";
-
-import { Text } from "../../components/ui/text";
 
 export interface FeedScreenProps {
   knowledges: SelectKnowledgeSchema[];
@@ -20,57 +12,48 @@ export interface FeedScreenProps {
 
 export function FeedScreen({ knowledges }: FeedScreenProps) {
   return (
-    <VStack
+    <div
       className="mb-20 h-full w-full max-w-[1500px] self-center p-4 pb-0 md:mb-2 md:px-10 md:pb-0 md:pt-6"
-      space="2xl"
     >
-      <Heading size="2xl" className="font-roboto">
+      <h1 className="font-roboto">
         What's new?
-      </Heading>
+      </h1>
 
-      <HStack space="2xl" className="h-full w-full flex-1">
-        <ScrollView
-          className="max-w-[900px] flex-1 md:mb-2"
-          contentContainerStyle={{
-            paddingBottom: isWeb ? 0 : 140,
-          }}
-          showsVerticalScrollIndicator={false}
-        >
-          <VStack className="w-full" space="2xl">
+      <div className="h-full w-full flex-1">
+
             {knowledges.map((item, index) => {
               return (
                 <Link
+                color="foreground"
                   key={index}
                   href={`${item.User?.username}/${item.slug ?? item.id}`}
                 >
-                  <VStack className="border-border-300 rounded-xl border p-5">
-                    <Box className="h-64 w-full rounded">
+                  <div className="border-border-300 rounded-xl border p-5">
+                    <div className="h-64 w-full rounded">
                       <KnowledgeImage knowledge={item} />
-                    </Box>
-                    <VStack className="mt-4" space="md">
-                      <Text className="text-sm">
+                    </div>
+                    <div className="mt-4" >
+                      <p className="text-sm">
                         <TimeAgo
                           datetime={item.createdAt}
                           className="text-typography-500"
                         />
-                      </Text>
-                      <Heading size="md">{item.title}</Heading>
-                      <Text className="line-clamp-2">{item.description}</Text>
-                      <Text className="text-sm">
+                      </p>
+                      <h3 >{item.title}</h3>
+                      <p className="line-clamp-2">{item.description}</p>
+                      <p className="text-sm">
                         {item.type} created by{" "}
                         <Link href={`/${item.User?.username}`}>
                           {item.User?.name}
                         </Link>
-                      </Text>
-                    </VStack>
-                  </VStack>
+                      </p>
+                    </div>
+                  </div>
                 </Link>
               );
             })}
-          </VStack>
-        </ScrollView>
-      </HStack>
-    </VStack>
+      </div>
+    </div>
   );
 }
 
