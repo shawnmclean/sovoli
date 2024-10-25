@@ -34,13 +34,10 @@
     "date-fns": "4.1.0",
     "framer-motion": "11.11.9",
     "next-themes": "0.3.0",
-    "postcss": "8.4.38",
     "react": "18.2.0",
     "react-markdown": "9.0.1",
     "react-zxing": "2.0.2",
     "remark-gfm": "4.0.0",
-    "tailwind-merge": "2.1.0",
-    "tailwindcss-animate": "1.0.7",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -51,6 +48,8 @@
     "@types/react": "18.2.79",
     "prettier": "catalog:",
     "tailwindcss": "3.4.10",
+    "tailwind-variants": "0.1.20",
+    "postcss": "8.4.38",
     "typescript": "catalog:"
   },
   "prettier": "@sovoli/prettier-config"

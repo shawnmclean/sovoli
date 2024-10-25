@@ -55,7 +55,6 @@
     "jiti": "^1.21.6",
     "prettier": "catalog:",
     "tailwindcss": "3.4.10",
-    "tailwindcss-animate": "1.0.7",
     "trigger.dev": "3.0.12",
     "typescript": "catalog:"
   },

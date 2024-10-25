@@ -7,6 +7,6 @@
       "@sovoli/ui/*": ["./src/*"]
     }
   },
-  "include": ["*.ts", "src", "nativewind-env.d.ts"],
+  "include": ["*.ts", "src"],
   "exclude": ["dist", "build", "node_modules"]
 }
