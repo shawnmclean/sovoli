@@ -11,7 +11,7 @@ import { Link } from "../ui/link";
 
 export function Navbar() {
   return (
-    <NextUINavbar>
+    <NextUINavbar maxWidth="full">
       <NavbarBrand>
         <Link href="/">
           {/* Logo Image here */}
