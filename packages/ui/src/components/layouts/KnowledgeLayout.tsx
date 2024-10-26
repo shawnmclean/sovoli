@@ -1,3 +1,5 @@
+import { KnowledgeSubmenu } from "../submenu/KnowledgeSubmenu";
+
 export const KnowledgeLayout = ({
   children,
 }: {
@@ -5,7 +7,9 @@ export const KnowledgeLayout = ({
 }) => {
   return (
     <main className="flex-1">
-      <h1>Knowledge</h1>
+      <div className="flex w-full flex-col">
+        <KnowledgeSubmenu />
+      </div>
       {children}
     </main>
   );
