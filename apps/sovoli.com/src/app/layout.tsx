@@ -1,12 +1,12 @@
 import "@sovoli/ui/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
+import { MainLayout } from "@sovoli/ui/components/layouts/MainLayout";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { config } from "~/utils/config";
 import { Providers } from "./providers";
-import { MainLayout } from "@sovoli/ui/components/MainLayout";
 
 export const metadata: Metadata = {
   title: {
@@ -42,10 +42,8 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body>
         <Providers>
-          <MainLayout>
-          {children}
-          </MainLayout>
-          </Providers>
+          <MainLayout>{children}</MainLayout>
+        </Providers>
         <SpeedInsights />
         <Analytics />
       </body>
