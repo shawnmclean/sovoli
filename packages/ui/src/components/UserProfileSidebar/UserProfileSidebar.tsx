@@ -1,9 +1,15 @@
+import type { SelectUserSchema } from "@sovoli/db/schema";
+
 import { Avatar } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Link } from "../ui/link";
 
-export function UserProfileSidebar() {
+export interface UserProfileSidebarProps {
+  user: SelectUserSchema;
+}
+
+export function UserProfileSidebar({ user }: UserProfileSidebarProps) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-start gap-3">
@@ -26,10 +32,8 @@ export function UserProfileSidebar() {
           </Badge>
         </div>
         <div className="inline-flex flex-col items-start">
-          <h1 className="text-2xl font-bold leading-none">
-            Passenger Available
-          </h1>
-          <p className="text-sm text-gray-400">passenger_available</p>
+          <h1 className="text-2xl font-bold leading-none">{user.name}</h1>
+          <p className="text-sm text-gray-400">{user.username}</p>
         </div>
       </div>
       <div className="flex w-full justify-between gap-2">
