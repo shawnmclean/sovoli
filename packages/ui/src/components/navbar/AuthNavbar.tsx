@@ -63,7 +63,11 @@ export function AuthNavbar({ session }: AuthNavbarProps) {
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
+            <DropdownItem
+              key="profile"
+              className="h-14 gap-2"
+              href={`/${session.user?.username}`}
+            >
               <p className="font-semibold">Signed in as</p>
               <p className="font-semibold">{session.user?.email}</p>
             </DropdownItem>
