@@ -12,7 +12,7 @@ export const UserLayout = ({ children, username }: UserLayoutProps) => {
       <div className="flex w-full flex-col">
         <UserSubmenu username={username} />
       </div>
-      <div className="mx-auto flex max-w-6xl flex-col justify-center py-5 md:flex-row">
+      <div className="mx-auto flex max-w-7xl flex-col justify-center py-5 md:flex-row">
         <div className="w-full p-5 md:w-1/3">
           <UserProfileSidebar />
         </div>

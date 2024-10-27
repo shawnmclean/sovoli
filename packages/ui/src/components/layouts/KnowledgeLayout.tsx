@@ -16,7 +16,7 @@ export const KnowledgeLayout = ({
       <div className="flex w-full flex-col">
         <KnowledgeSubmenu username={username} slug={slug} />
       </div>
-      <div className="mx-auto flex max-w-6xl justify-center py-5">
+      <div className="mx-auto flex max-w-7xl justify-center py-5">
         {children}
       </div>
     </main>
