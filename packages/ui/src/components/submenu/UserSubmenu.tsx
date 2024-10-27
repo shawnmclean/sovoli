@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
+// using link here because of nextjs full refresh issue: https://github.com/nextui-org/nextui/issues/3786
 import { Link } from "../ui/link";
 import { Tab, Tabs } from "../ui/tabs";
 

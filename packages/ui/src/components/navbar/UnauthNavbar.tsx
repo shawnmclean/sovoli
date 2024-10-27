@@ -10,6 +10,7 @@ import { signIn } from "next-auth/react";
 
 import { Button } from "../ui/button";
 import { Chip } from "../ui/chip";
+// using link here because of nextjs full refresh issue and nextui link styles hard to override: https://github.com/nextui-org/nextui/issues/3786
 import { Link } from "../ui/link";
 
 export function UnauthNavbar() {
