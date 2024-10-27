@@ -1,9 +1,14 @@
 import { KnowledgeLayout } from "@sovoli/ui/components/layouts/KnowledgeLayout";
 
-export default function Layout({
-  children,
-}: Readonly<{
+interface Props {
   children: React.ReactNode;
-}>) {
-  return <KnowledgeLayout>{children}</KnowledgeLayout>;
+  params: Promise<{ username: string; slug: string }>;
+}
+export default async function Layout({ children, params }: Props) {
+  const { username, slug } = await params;
+  return (
+    <KnowledgeLayout username={username} slug={slug}>
+      {children}
+    </KnowledgeLayout>
+  );
 }

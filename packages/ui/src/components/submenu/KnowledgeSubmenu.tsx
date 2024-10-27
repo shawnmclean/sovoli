@@ -4,9 +4,33 @@ import { usePathname } from "next/navigation";
 
 import { Tab, Tabs } from "../ui/tabs";
 
-export function KnowledgeSubmenu() {
-  const pathname = usePathname();
+export interface KnowledgeSubmenuProps {
+  username: string;
+  slug: string;
+}
 
+export function KnowledgeSubmenu({ username, slug }: KnowledgeSubmenuProps) {
+  const pathname = usePathname();
+  // Define your tabs with their respective paths
+  const tabs = [
+    {
+      key: "content",
+      title: "Content",
+      path: `/${username}/${slug}`,
+    },
+    {
+      key: "connections",
+      title: "Connections",
+      path: `/${username}/${slug}/connections`,
+    },
+    // Add more tabs as needed
+  ];
+
+  // Function to determine the active tab
+  const getActiveTab = () => {
+    const activeTab = tabs.find((tab) => pathname === tab.path);
+    return activeTab ? activeTab.key : "content"; // Default to 'content' if no match
+  };
   return (
     <Tabs
       aria-label="Options"
@@ -19,24 +43,19 @@ export function KnowledgeSubmenu() {
         tab: "max-w-fit px-0 h-12",
         tabContent: "group-data-[selected=true]:text-[#06b6d4]",
       }}
-      selectedKey={pathname}
+      selectedKey={getActiveTab()}
     >
-      <Tab
-        key="content"
-        title={
-          <div className="flex items-center space-x-2">
-            <span>Content</span>
-          </div>
-        }
-      />
-      <Tab
-        key="connections"
-        title={
-          <div className="flex items-center space-x-2">
-            <span>Connections</span>
-          </div>
-        }
-      />
+      {tabs.map((tab) => (
+        <Tab
+          key={tab.key}
+          href={tab.path}
+          title={
+            <div className="flex items-center space-x-2">
+              <span>{tab.title}</span>
+            </div>
+          }
+        />
+      ))}
     </Tabs>
   );
 }

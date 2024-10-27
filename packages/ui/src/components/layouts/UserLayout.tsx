@@ -1,11 +1,16 @@
 import { UserSubmenu } from "../submenu/UserSubmenu";
 import { UserProfileSidebar } from "../UserProfileSidebar";
 
-export const UserLayout = ({ children }: { children: React.ReactNode }) => {
+export interface UserLayoutProps {
+  username: string;
+  children: React.ReactNode;
+}
+
+export const UserLayout = ({ children, username }: UserLayoutProps) => {
   return (
     <main className="flex-1">
       <div className="flex w-full flex-col">
-        <UserSubmenu />
+        <UserSubmenu username={username} />
       </div>
       <div className="mx-auto flex max-w-6xl flex-col justify-center py-5 md:flex-row">
         <div className="w-full p-5 md:w-1/3">

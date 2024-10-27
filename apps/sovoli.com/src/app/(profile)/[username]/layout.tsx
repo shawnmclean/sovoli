@@ -1,9 +1,10 @@
 import { UserLayout } from "@sovoli/ui/components/layouts/UserLayout";
 
-export default function Layout({
-  children,
-}: Readonly<{
+interface Props {
   children: React.ReactNode;
-}>) {
-  return <UserLayout>{children}</UserLayout>;
+  params: Promise<{ username: string }>;
+}
+export default async function Layout({ children, params }: Props) {
+  const { username } = await params;
+  return <UserLayout username={username}>{children}</UserLayout>;
 }

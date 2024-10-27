@@ -4,8 +4,29 @@ import { usePathname } from "next/navigation";
 
 import { Tab, Tabs } from "../ui/tabs";
 
-export function UserSubmenu() {
+export interface UserSubmenuProps {
+  username: string;
+}
+
+export function UserSubmenu({ username }: UserSubmenuProps) {
   const pathname = usePathname();
+
+  // Define your tabs with their respective paths
+  const tabs = [
+    { key: "overview", title: "Overview", path: `/${username}` },
+    {
+      key: "collections",
+      title: "Collections",
+      path: `/${username}/collections`,
+    },
+    { key: "shelves", title: "Shelves", path: `/${username}/shelves` },
+  ];
+
+  // Function to determine the active tab
+  const getActiveTab = () => {
+    const activeTab = tabs.find((tab) => pathname === tab.path);
+    return activeTab ? activeTab.key : "overview"; // Default to 'overview' if no match
+  };
 
   return (
     <Tabs
@@ -19,32 +40,19 @@ export function UserSubmenu() {
         tab: "max-w-fit px-0 h-12",
         tabContent: "group-data-[selected=true]:text-[#06b6d4]",
       }}
-      selectedKey={pathname}
+      selectedKey={getActiveTab()}
     >
-      <Tab
-        key="overview"
-        title={
-          <div className="flex items-center space-x-2">
-            <span>Overview</span>
-          </div>
-        }
-      />
-      <Tab
-        key="collections"
-        title={
-          <div className="flex items-center space-x-2">
-            <span>Collections</span>
-          </div>
-        }
-      />
-      <Tab
-        key="shelves"
-        title={
-          <div className="flex items-center space-x-2">
-            <span>Shelves</span>
-          </div>
-        }
-      />
+      {tabs.map((tab) => (
+        <Tab
+          key={tab.key}
+          href={tab.path}
+          title={
+            <div className="flex items-center space-x-2">
+              <span>{tab.title}</span>
+            </div>
+          }
+        />
+      ))}
     </Tabs>
   );
 }
