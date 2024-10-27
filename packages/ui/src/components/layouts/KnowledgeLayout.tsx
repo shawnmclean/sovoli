@@ -10,7 +10,9 @@ export const KnowledgeLayout = ({
       <div className="flex w-full flex-col">
         <KnowledgeSubmenu />
       </div>
-      {children}
+      <div className="mx-auto flex max-w-6xl justify-center py-5">
+        {children}
+      </div>
     </main>
   );
 };
