@@ -1,6 +1,7 @@
 "use client";
 
 import type { Session } from "@sovoli/auth";
+import NextLink from "next/link";
 import { Avatar } from "@nextui-org/avatar";
 import {
   NavbarBrand,
@@ -64,7 +65,7 @@ export function AuthNavbar({ session }: AuthNavbarProps) {
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem
-              as={Link}
+              as={NextLink}
               key="profile"
               className="h-14 gap-2"
               href={`/${session.user?.username}`}
@@ -72,7 +73,7 @@ export function AuthNavbar({ session }: AuthNavbarProps) {
               <p className="font-semibold">Signed in as</p>
               <p className="font-semibold">{session.user?.email}</p>
             </DropdownItem>
-            <DropdownItem key="settings" href="/settings" as={Link}>
+            <DropdownItem key="settings" href="/settings" as={NextLink}>
               My Settings
             </DropdownItem>
             <DropdownItem key="logout" color="danger" onClick={() => signOut()}>
