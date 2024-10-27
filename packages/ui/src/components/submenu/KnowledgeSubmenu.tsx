@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
+import { Link } from "../ui/link";
 import { Tab, Tabs } from "../ui/tabs";
 
 export interface KnowledgeSubmenuProps {
@@ -47,6 +48,7 @@ export function KnowledgeSubmenu({ username, slug }: KnowledgeSubmenuProps) {
     >
       {tabs.map((tab) => (
         <Tab
+          as={Link}
           key={tab.key}
           href={tab.path}
           title={
