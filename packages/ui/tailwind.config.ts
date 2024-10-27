@@ -14,6 +14,18 @@ export default {
       themes: {
         dark: {
           colors: {
+            default: {
+              100: "#FFFFFF",
+              200: "#F5F5F5",
+              300: "#E0E0E0",
+              400: "#BDBDBD",
+              500: "#9E9E9E",
+              600: "#757575",
+              700: "#616161",
+              800: "#424242",
+              900: "#212121",
+              DEFAULT: "#9E9E9E",
+            },
             primary: {
               100: "#CFE9FE",
               200: "#A0D0FD",
@@ -26,6 +38,18 @@ export default {
               900: "#031D71",
               DEFAULT: "#146BED",
             },
+            secondary: {
+              100: "#F1F8FF",
+              200: "#DDEBFF",
+              300: "#BBCFEE",
+              400: "#99AFC5",
+              500: "#7C8B99",
+              600: "#636E75",
+              700: "#4B565E",
+              800: "#353F44",
+              900: "#1E272A",
+              DEFAULT: "#7C8B99",
+            },
             success: {
               100: "#E8FAD2",
               200: "#CCF6A7",
@@ -37,18 +61,6 @@ export default {
               800: "#0F5F0A",
               900: "#064F07",
               DEFAULT: "#44A521",
-            },
-            info: {
-              100: "#CCF0FE",
-              200: "#9ADDFE",
-              300: "#67C4FD",
-              400: "#41ABFB",
-              500: "#0483F9",
-              600: "#0265D6",
-              700: "#024BB3",
-              800: "#013590",
-              900: "#002577",
-              DEFAULT: "#0483F9",
             },
             warning: {
               100: "#FFF3CC",

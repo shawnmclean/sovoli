@@ -1,6 +1,7 @@
 import { Avatar } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { Link } from "../ui/link";
 
 export function UserProfileSidebar() {
   return (
@@ -28,7 +29,7 @@ export function UserProfileSidebar() {
           <h1 className="text-2xl font-bold leading-none">
             Passenger Available
           </h1>
-          <p className="text-sm text-gray-500">passenger_available</p>
+          <p className="text-sm text-gray-400">passenger_available</p>
         </div>
       </div>
       <div className="flex w-full justify-between gap-2">
@@ -41,6 +42,16 @@ export function UserProfileSidebar() {
         <Button isIconOnly variant="ghost" className="w-auto">
           ...
         </Button>
+      </div>
+      <div className="flex gap-5 text-sm">
+        <Link href="/shawn/observers" color="foreground" className="gap-1">
+          <span className="font-bold">50</span>
+          <span className="text-gray-500">observers</span>
+        </Link>
+        <Link href="/shawn/observations" color="foreground" className="gap-1">
+          <span className="font-bold">4</span>
+          <span className="text-gray-500">observing</span>
+        </Link>
       </div>
     </div>
   );
