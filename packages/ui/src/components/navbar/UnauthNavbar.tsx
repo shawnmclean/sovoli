@@ -16,7 +16,7 @@ export function UnauthNavbar() {
   return (
     <NextUINavbar maxWidth="full">
       <NavbarBrand>
-        <Link href="/">
+        <Link href="/" color="foreground">
           {/* Logo Image here */}
           <p className="font-bold text-inherit">Sovoli</p>
         </Link>
