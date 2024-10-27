@@ -34,14 +34,12 @@ export function UserSubmenu({ username }: UserSubmenuProps) {
     <>
       <Tabs
         aria-label="Options"
-        color="primary"
         variant="underlined"
         classNames={{
           tabList:
             "gap-6 w-full relative rounded-none p-0 border-b border-divider px-5",
-          cursor: "w-full bg-[#22d3ee]",
+          cursor: "w-full",
           tab: "max-w-fit px-0 h-12",
-          tabContent: "group-data-[selected=true]:text-[#06b6d4]",
         }}
         selectedKey={getActiveTab()}
       >

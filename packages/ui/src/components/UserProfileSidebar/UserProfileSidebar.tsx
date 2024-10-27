@@ -25,7 +25,7 @@ export function UserProfileSidebar() {
           </Badge>
         </div>
         <div className="inline-flex flex-col items-start">
-          <h1 className="text-2xl font-bold leading-none text-primary">
+          <h1 className="text-2xl font-bold leading-none">
             Passenger Available
           </h1>
           <p className="text-sm text-gray-500">passenger_available</p>
