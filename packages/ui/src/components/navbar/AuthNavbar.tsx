@@ -4,7 +4,6 @@ import type { Session } from "@sovoli/auth";
 import NextLink from "next/link";
 import { Avatar } from "@nextui-org/avatar";
 import {
-  NavbarBrand,
   NavbarContent,
   NavbarItem,
   Navbar as NextUINavbar,
@@ -22,17 +21,22 @@ import { Link } from "../ui/link";
 
 export interface AuthNavbarProps {
   session: Session;
+  NavbarContextComponent: React.ReactNode;
 }
 
-export function AuthNavbar({ session }: AuthNavbarProps) {
+export function AuthNavbar({
+  session,
+  NavbarContextComponent,
+}: AuthNavbarProps) {
   return (
     <NextUINavbar maxWidth="full">
-      <NavbarBrand>
+      <NavbarContent>
         <Link href="/" color="foreground">
           {/* Logo Image here */}
           <p className="font-bold text-inherit">Sovoli</p>
         </Link>
-      </NavbarBrand>
+        <NavbarItem>{NavbarContextComponent}</NavbarItem>
+      </NavbarContent>
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         <NavbarItem>
           <Chip color="warning" variant="dot">

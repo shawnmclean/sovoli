@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  NavbarBrand,
   NavbarContent,
   NavbarItem,
   Navbar as NextUINavbar,
@@ -13,15 +12,20 @@ import { Chip } from "../ui/chip";
 // using link here because of nextjs full refresh issue and nextui link styles hard to override: https://github.com/nextui-org/nextui/issues/3786
 import { Link } from "../ui/link";
 
-export function UnauthNavbar() {
+export interface UnauthNavbarProps {
+  NavbarContextComponent: React.ReactNode;
+}
+
+export function UnauthNavbar({ NavbarContextComponent }: UnauthNavbarProps) {
   return (
     <NextUINavbar maxWidth="full">
-      <NavbarBrand>
+      <NavbarContent>
         <Link href="/" color="foreground">
           {/* Logo Image here */}
           <p className="font-bold text-inherit">Sovoli</p>
         </Link>
-      </NavbarBrand>
+        <NavbarItem>{NavbarContextComponent}</NavbarItem>
+      </NavbarContent>
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         <NavbarItem>
           <Chip color="warning" variant="dot">

@@ -1,9 +1,9 @@
 // import { getBookFromISBNdb } from "@sovoli/api/services";
 import { auth } from "@sovoli/auth";
 
+import { getKnowledgeBySlug } from "../_lib/getKnowledgeService";
 // import { and, db, eq, inArray, schema } from "@sovoli/db";
 
-import { getKnowledgeBySlug } from "../page";
 import { ConnectionsList } from "./_components/ConnectionsList";
 
 export const dynamic = "force-dynamic";
@@ -46,7 +46,7 @@ export default async function ConnectionsEditPage({
   });
 
   return (
-    <div className="min-h-screen sm:pl-60 dark:bg-black">
+    <div className="min-h-screen dark:bg-black sm:pl-60">
       <h1>
         Scan Book By ISBN - {username}/{slug}
       </h1>

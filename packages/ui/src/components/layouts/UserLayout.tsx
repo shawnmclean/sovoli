@@ -12,7 +12,7 @@ export interface UserLayoutProps {
 export const UserLayout = ({ children, user }: UserLayoutProps) => {
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} />
       <main className="flex-1">
         <div className="flex w-full flex-col">
           <UserSubmenu username={user.username ?? ""} />

@@ -1,28 +1,34 @@
+import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+
 import { Navbar } from "../navbar";
 import { KnowledgeSubmenu } from "../submenu/KnowledgeSubmenu";
 
 export interface KnowledgeLayoutProps {
-  username: string;
-  slug: string;
+  knowledge: SelectKnowledgeSchema;
   children: React.ReactNode;
 }
 
 export const KnowledgeLayout = ({
   children,
-  slug,
-  username,
+  knowledge,
 }: KnowledgeLayoutProps) => {
+  if (!knowledge.User) {
+    throw new Error("User not found");
+  }
   return (
     <div>
-      <Navbar />
-    <main className="flex-1">
-      <div className="flex w-full flex-col">
-        <KnowledgeSubmenu username={username} slug={slug} />
-      </div>
-      <div className="mx-auto flex max-w-7xl justify-center py-5">
-        {children}
-      </div>
-    </main>
+      <Navbar user={knowledge.User} />
+      <main className="flex-1">
+        <div className="flex w-full flex-col">
+          <KnowledgeSubmenu
+            username={knowledge.User.username ?? ""}
+            slug={knowledge.slug ?? ""}
+          />
+        </div>
+        <div className="mx-auto flex max-w-7xl justify-center py-5">
+          {children}
+        </div>
+      </main>
     </div>
   );
 };
