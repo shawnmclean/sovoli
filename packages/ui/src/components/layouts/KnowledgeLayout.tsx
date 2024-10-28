@@ -1,3 +1,4 @@
+import { Navbar } from "../navbar";
 import { KnowledgeSubmenu } from "../submenu/KnowledgeSubmenu";
 
 export interface KnowledgeLayoutProps {
@@ -12,6 +13,8 @@ export const KnowledgeLayout = ({
   username,
 }: KnowledgeLayoutProps) => {
   return (
+    <div>
+      <Navbar />
     <main className="flex-1">
       <div className="flex w-full flex-col">
         <KnowledgeSubmenu username={username} slug={slug} />
@@ -20,5 +23,6 @@ export const KnowledgeLayout = ({
         {children}
       </div>
     </main>
+    </div>
   );
 };

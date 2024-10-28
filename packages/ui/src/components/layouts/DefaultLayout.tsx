@@ -1,6 +1,10 @@
 import { Navbar } from "../navbar";
 
-export const MainLayout = ({ children }: { children: React.ReactNode }) => {
+export interface DefaultLayoutProps {
+  children: React.ReactNode;
+}
+
+export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   return (
     <div>
       <Navbar />

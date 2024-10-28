@@ -1,7 +1,6 @@
 import "@sovoli/ui/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
-import { MainLayout } from "@sovoli/ui/components/layouts/MainLayout";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -41,9 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body>
-        <Providers>
-          <MainLayout>{children}</MainLayout>
-        </Providers>
+        <Providers>{children}</Providers>
         <SpeedInsights />
         <Analytics />
       </body>

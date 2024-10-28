@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { UserLayout } from "@sovoli/ui/components/layouts/UserLayout";
 
-import { getUserProfile, preload } from "../_lib/getUserProfile";
+import { getUserProfile, preload } from "./_lib/getUserProfile";
 
 interface Props {
   children: React.ReactNode;
