@@ -1,4 +1,6 @@
-import Image from "next/image";
+"use client";
+
+import { Image } from "../ui/image";
 
 export interface GalleryProps {
   images: { src: string; alt: string }[];
@@ -17,8 +19,6 @@ export function Gallery({ images }: GalleryProps) {
             alt={images[0].alt || "Main Image"}
             width={400}
             height={400}
-            className="rounded-lg"
-            priority
           />
         </div>
       </div>
