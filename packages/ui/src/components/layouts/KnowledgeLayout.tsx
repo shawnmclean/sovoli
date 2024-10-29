@@ -17,7 +17,7 @@ export const KnowledgeLayout = ({
   }
   return (
     <div>
-      <Navbar user={knowledge.User} />
+      <Navbar user={knowledge.User} knowledge={knowledge} />
       <main className="flex-1">
         <div className="flex w-full flex-col">
           <KnowledgeSubmenu

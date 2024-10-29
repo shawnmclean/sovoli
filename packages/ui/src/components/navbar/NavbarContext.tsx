@@ -1,14 +1,30 @@
-import type { SelectUserSchema } from "@sovoli/db/schema";
+"use client";
 
-import { Link } from "../ui/link";
+import type {
+  SelectKnowledgeSchema,
+  SelectUserSchema,
+} from "@sovoli/db/schema";
+
+import { BreadcrumbItem, Breadcrumbs } from "../ui/breadcrumbs";
 
 export interface NavbarContextProps {
   user?: SelectUserSchema;
+  knowledge?: SelectKnowledgeSchema;
 }
-export const NavbarContext = ({ user }: NavbarContextProps) => {
+export const NavbarContext = ({ user, knowledge }: NavbarContextProps) => {
   return (
-    <Link href={`/${user?.username}`} color="foreground">
-      {user?.username}
-    </Link>
+    <Breadcrumbs
+      separator="/"
+      itemClasses={{
+        separator: "px-2",
+      }}
+    >
+      <BreadcrumbItem href={`/${user?.username}`}>Home</BreadcrumbItem>
+      {knowledge && (
+        <BreadcrumbItem href={`/${user?.username}/${knowledge.slug}`}>
+          {knowledge.title}
+        </BreadcrumbItem>
+      )}
+    </Breadcrumbs>
   );
 };

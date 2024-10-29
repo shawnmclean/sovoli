@@ -49,11 +49,11 @@ export function UserProfileSidebar({ user }: UserProfileSidebarProps) {
       </div>
       <div className="flex gap-5 text-sm">
         <Link href="/shawn/observers" color="foreground" className="gap-1">
-          <span className="font-bold">50</span>
+          <span className="font-bold">0</span>
           <span className="text-gray-500">observers</span>
         </Link>
         <Link href="/shawn/observations" color="foreground" className="gap-1">
-          <span className="font-bold">4</span>
+          <span className="font-bold">0</span>
           <span className="text-gray-500">observing</span>
         </Link>
       </div>

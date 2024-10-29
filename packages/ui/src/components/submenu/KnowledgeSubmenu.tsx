@@ -39,7 +39,7 @@ export function KnowledgeSubmenu({ username, slug }: KnowledgeSubmenuProps) {
       variant="underlined"
       classNames={{
         tabList:
-          "gap-6 w-full relative rounded-none p-0 border-b border-divider px-5",
+          "gap-6 w-full relative rounded-none p-0 border-b border-divider px-6",
         cursor: "w-full",
         tab: "max-w-fit px-0 h-12",
       }}
