@@ -50,7 +50,7 @@ export function KnowledgeDetails({ knowledge }: Props) {
             <section className="w-full">
               {images && images.length > 0 && (
                 <div className="my-4">
-                  <Gallery />
+                  <Gallery images={images} />
                 </div>
               )}
               <KnowledgeContent knowledge={knowledge} />
@@ -77,7 +77,7 @@ export function KnowledgeDetails({ knowledge }: Props) {
             {/* Additional space for more information */}
             <div className="space-y-4 border-t border-divider pt-4">
               {/* Placeholder for future info */}
-              <p className="text-gray-400">More details coming soon...</p>
+              <p className="text-gray-400">Type: {knowledge.type}</p>
             </div>
           </div>
         </div>
