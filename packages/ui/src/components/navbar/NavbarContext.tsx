@@ -17,9 +17,12 @@ export const NavbarContext = ({ user, knowledge }: NavbarContextProps) => {
       separator="/"
       itemClasses={{
         separator: "px-2",
+        item: "text-muted-foreground",
       }}
     >
-      <BreadcrumbItem href={`/${user?.username}`}>{user?.name}</BreadcrumbItem>
+      <BreadcrumbItem href={`/${user?.username}`} isCurrent={false}>
+        {user?.name}
+      </BreadcrumbItem>
       {knowledge && (
         <BreadcrumbItem
           href={`/${user?.username}/${knowledge.slug}`}
