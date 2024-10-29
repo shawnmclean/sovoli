@@ -18,16 +18,14 @@ export const KnowledgeLayout = ({
   return (
     <div>
       <Navbar user={knowledge.User} knowledge={knowledge} />
-      <main className="flex-1">
+      <main>
         <div className="flex w-full flex-col">
           <KnowledgeSubmenu
             username={knowledge.User.username ?? ""}
             slug={knowledge.slug ?? ""}
           />
         </div>
-        <div className="mx-auto flex max-w-7xl justify-center py-5">
-          {children}
-        </div>
+        {children}
       </main>
     </div>
   );
