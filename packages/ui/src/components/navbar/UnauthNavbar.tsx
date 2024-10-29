@@ -45,7 +45,7 @@ export function UnauthNavbar({ NavbarContextComponent }: UnauthNavbarProps) {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button color="primary" variant="flat" onClick={() => signIn()}>
+          <Button color="primary" onClick={() => signIn()}>
             Sign In
           </Button>
         </NavbarItem>
