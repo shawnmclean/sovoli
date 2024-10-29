@@ -40,5 +40,9 @@ export default async function KnowledgePage({ params, searchParams }: Props) {
     searchParams,
   });
 
-  return <KnowledgeDetailsScreen knowledge={knowledge} />;
+  return (
+    <div>
+      <KnowledgeDetailsScreen knowledge={knowledge} />
+    </div>
+  );
 }

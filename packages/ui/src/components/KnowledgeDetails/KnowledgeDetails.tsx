@@ -2,6 +2,7 @@ import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { Gallery } from "@sovoli/ui/components/Gallery";
 
+import { KnowledgeHeader } from "../knowledge/KnowledgeHeader";
 import { Divider } from "../ui/divider";
 import { TimeAgo } from "../ui/time-ago";
 // import BookDetails from "./BookDetails";
@@ -25,13 +26,9 @@ export function KnowledgeDetails({ knowledge }: Props) {
 
   return (
     <>
-      <h1  className="font-roboto">
-        {knowledge.title}
-      </h1>
+      <KnowledgeHeader knowledge={knowledge} />
+      <div className="my-2">{images && images.length > 0 && <Gallery />}</div>
       <div className="my-2">
-        {images && images.length > 0 && <Gallery />}
-      </div>
-      <div>
         <p>{knowledge.description}</p>
       </div>
       <Divider />
@@ -48,7 +45,6 @@ export function KnowledgeDetails({ knowledge }: Props) {
       </div>
 
       <KnowledgeComponentSwitcher knowledge={knowledge} />
-
     </>
   );
 }

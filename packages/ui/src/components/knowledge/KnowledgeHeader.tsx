@@ -1,13 +1,15 @@
+import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+
 export interface KnowledgeHeaderProps {
-  title: string;
-  description: string;
+  knowledge: SelectKnowledgeSchema;
 }
 
-export function KnowledgeHeader({ title, description }: KnowledgeHeaderProps) {
+export function KnowledgeHeader({ knowledge }: KnowledgeHeaderProps) {
   return (
-    <div className="flex flex-col justify-start px-6">
-      <h1 className="text-4xl font-bold">{title}</h1>
-      <p className="text-muted-foreground text-lg">{description}</p>
+    <div className="border-b border-divider px-6 py-3">
+      <div className="flex flex-col justify-start">
+        <h1 className="text-2xl font-bold">{knowledge.title}</h1>
+      </div>
     </div>
   );
 }
