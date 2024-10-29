@@ -32,6 +32,7 @@
     "@nextui-org/system": "2.2.6",
     "@nextui-org/theme": "2.2.11",
     "@nextui-org/tabs": "2.0.37",
+    "@nextui-org/user": "2.0.34",
     "@sovoli/auth": "workspace:*",
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",

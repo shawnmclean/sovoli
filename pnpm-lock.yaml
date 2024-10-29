@@ -503,6 +503,9 @@ importers:
       '@nextui-org/theme':
         specifier: 2.2.11
         version: 2.2.11(tailwindcss@3.4.10)
+      '@nextui-org/user':
+        specifier: 2.0.34
+        version: 2.0.34(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@sovoli/api':
         specifier: workspace:*
         version: link:../api
@@ -2659,6 +2662,14 @@ packages:
     resolution: {integrity: sha512-n5Qiv3ferKn+cSxU3Vv+96LdG8I/00mzc7Veoan+P9GL0aCTrsPB6RslTsiblaiAXQcqTiFXd8xwsK309DXOXA==}
     peerDependencies:
       react: '>=18'
+
+  '@nextui-org/user@2.0.34':
+    resolution: {integrity: sha512-7MN/xBaMhDJ0b+hB2YpGIm2DsC9CTpN1ab+EKwhUuWn26SgXw2FNu8CSHViyDEkvOP7sYKdHLp9UtSo/f3JnsQ==}
+    peerDependencies:
+      '@nextui-org/system': '>=2.0.0'
+      '@nextui-org/theme': '>=2.1.0'
+      react: '>=18'
+      react-dom: '>=18'
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -10913,6 +10924,18 @@ snapshots:
   '@nextui-org/use-update-effect@2.0.6(react@18.2.0)':
     dependencies:
       react: 18.2.0
+
+  '@nextui-org/user@2.0.34(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@nextui-org/avatar': 2.0.33(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@nextui-org/react-utils': 2.0.17(react@18.2.0)
+      '@nextui-org/shared-utils': 2.0.8
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.10)
+      '@react-aria/focus': 3.17.1(react@18.2.0)
+      '@react-aria/utils': 3.24.1(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:

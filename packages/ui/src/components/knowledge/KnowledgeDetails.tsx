@@ -4,7 +4,9 @@ import { Gallery } from "@sovoli/ui/components/Gallery";
 
 import { KnowledgeContent } from "../KnowledgeDetails/KnowledgeContent";
 import { Button } from "../ui/button";
+import { Link } from "../ui/link";
 import { TimeAgo } from "../ui/time-ago";
+import { User } from "../ui/user";
 
 interface Props {
   knowledge: SelectKnowledgeSchema;
@@ -59,14 +61,17 @@ export function KnowledgeDetails({ knowledge }: Props) {
           <div className="space-y-4">
             {/* User Information */}
             <section className="flex items-center space-x-4">
-              <img alt="username avatar" className="h-12 w-12 rounded-full" />
-              <div>
-                <p className="font-medium">Username</p>
-                <TimeAgo
-                  datetime={knowledge.createdAt}
-                  className="text-sm text-gray-500"
+              <Link href={`/${knowledge.User?.username}`} color="foreground">
+                <User
+                  name={knowledge.User?.name}
+                  avatarProps={{
+                    radius: "sm",
+                    size: "md",
+                    src: "https://qxvzrmayigmtjhfucogx.supabase.co/storage/v1/object/public/media/profile/mix.webp?t=2024-10-26T02%3A43%3A35.093Z",
+                  }}
+                  description={<TimeAgo datetime={knowledge.createdAt} />}
                 />
-              </div>
+              </Link>
             </section>
 
             {/* Additional space for more information */}
