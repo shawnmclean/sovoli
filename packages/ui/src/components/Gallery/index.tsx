@@ -16,20 +16,18 @@ export interface GalleryProps {
 
 export function Gallery({ images }: GalleryProps) {
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel className="w-full max-w-full">
       <CarouselContent>
         {images.map((image, i) => (
           <CarouselItem key={i}>
-            <div className="relative h-64 w-full p-1">
-              {" "}
-              {/* Set height for aspect ratio */}
-              <Image
-                src={image.src}
-                alt={image.alt || "Image"}
-                fill
-                className="rounded-lg object-cover"
-              />
-            </div>
+            <Image
+              src={image.src}
+              alt={image.alt || "Image"}
+              style={{ width: "100%", height: "auto" }}
+              className="object-cover"
+              width={16}
+              height={9}
+            />
           </CarouselItem>
         ))}
       </CarouselContent>

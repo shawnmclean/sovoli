@@ -74,8 +74,8 @@ const arrowButtonStyles = tv({
       vertical: ["left-1/2", "-translate-x-1/2", "rotate-90"],
     },
     position: {
-      left: "-left-12",
-      right: "-right-12",
+      left: "left-5",
+      right: "right-5",
       top: "-top-12",
       bottom: "-bottom-12",
     },
