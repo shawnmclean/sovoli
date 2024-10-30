@@ -31,10 +31,12 @@ export function AuthNavbar({
   return (
     <NextUINavbar maxWidth="full">
       <NavbarContent justify="start" className="min-w-0">
-        <Link href="/" color="foreground" className="shrink-0">
-          {/* Logo Image here */}
-          <p className="whitespace-nowrap font-bold text-inherit">Sovoli</p>
-        </Link>
+        <NavbarItem className="shrink-0">
+          <Link href="/" color="foreground">
+            {/* Logo Image here */}
+            <p className="whitespace-nowrap font-bold text-inherit">Sovoli</p>
+          </Link>
+        </NavbarItem>
         <NavbarItem className="overflow-hidden">
           {NavbarContextComponent}
         </NavbarItem>
