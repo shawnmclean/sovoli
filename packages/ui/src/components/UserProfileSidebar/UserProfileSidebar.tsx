@@ -27,7 +27,7 @@ export function UserProfileSidebar({ user }: UserProfileSidebarProps) {
               color="warning"
               radius="sm"
               className="h-20 w-20 text-large"
-              src="https://qxvzrmayigmtjhfucogx.supabase.co/storage/v1/object/public/media/profile/mix.webp?t=2024-10-26T02%3A43%3A35.093Z"
+              src="https://qxvzrmayigmtjhfucogx.supabase.co/storage/v1/object/public/media/profile/mix.webp"
             />
           </Badge>
         </div>

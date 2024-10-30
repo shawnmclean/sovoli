@@ -4,9 +4,16 @@ import type {
 } from "@sovoli/db/schema";
 import { auth } from "@sovoli/auth";
 
-import { AuthNavbar } from "./AuthNavbar";
-import { NavbarContext } from "./NavbarContext";
-import { UnauthNavbar } from "./UnauthNavbar";
+import { Chip } from "../ui/chip";
+import { Link } from "../ui/link";
+import {
+  NavbarContent,
+  NavbarItem,
+  Navbar as NextUINavbar,
+} from "../ui/navbar";
+import { NavbarAppLinks } from "./NavbarAppLinks";
+import { NavbarRightProfile } from "./NavbarRightProfile";
+import { NavbarRightSignIn } from "./NavbarRightSignIn";
 
 export interface NavbarProps {
   user?: SelectUserSchema;
@@ -16,17 +23,35 @@ export interface NavbarProps {
 export async function Navbar({ user, knowledge }: NavbarProps) {
   const session = await auth();
 
-  const navbarContextComponent = (
-    <NavbarContext user={user} knowledge={knowledge} />
+  const appLinksComponent = (
+    <NavbarAppLinks user={user} knowledge={knowledge} />
   );
 
-  if (session) {
-    return (
-      <AuthNavbar
-        session={session}
-        NavbarContextComponent={navbarContextComponent}
-      />
-    );
-  }
-  return <UnauthNavbar NavbarContextComponent={navbarContextComponent} />;
+  const navBarRightComponent = session ? (
+    <NavbarRightProfile session={session} />
+  ) : (
+    <NavbarRightSignIn />
+  );
+
+  return (
+    <NextUINavbar maxWidth="full">
+      <NavbarContent justify="start" className="min-w-0">
+        <NavbarItem className="shrink-0">
+          <Link href="/" color="foreground">
+            {/* Logo Image here */}
+            <p className="whitespace-nowrap font-bold text-inherit">Sovoli</p>
+          </Link>
+        </NavbarItem>
+        <NavbarItem className="overflow-hidden">{appLinksComponent}</NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden sm:flex">
+          <Chip color="warning" variant="dot">
+            Reworking Design System
+          </Chip>
+        </NavbarItem>
+        <NavbarItem>{navBarRightComponent}</NavbarItem>
+      </NavbarContent>
+    </NextUINavbar>
+  );
 }

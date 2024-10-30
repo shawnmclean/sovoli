@@ -7,11 +7,11 @@ import type {
 
 import { BreadcrumbItem, Breadcrumbs } from "../ui/breadcrumbs";
 
-export interface NavbarContextProps {
+export interface NavbarAppLinksProps {
   user?: SelectUserSchema;
   knowledge?: SelectKnowledgeSchema;
 }
-export const NavbarContext = ({ user, knowledge }: NavbarContextProps) => {
+export const NavbarAppLinks = ({ user, knowledge }: NavbarAppLinksProps) => {
   return (
     <Breadcrumbs
       separator="/"
