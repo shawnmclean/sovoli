@@ -3,7 +3,7 @@ import { MediaAssetHost } from "@sovoli/db/schema";
 import { Gallery } from "@sovoli/ui/components/Gallery";
 
 import { KnowledgeContent } from "../KnowledgeDetails/KnowledgeContent";
-import { Button } from "../ui/button";
+// import { Button } from "../ui/button";
 import { Link } from "../ui/link";
 import { TimeAgo } from "../ui/time-ago";
 import { User } from "../ui/user";
@@ -29,10 +29,10 @@ export function KnowledgeDetails({ knowledge }: Props) {
       <div className="flex justify-center border-b border-divider">
         <div className="flex w-full max-w-7xl items-center justify-between p-6">
           <h1 className="text-2xl font-bold">{knowledge.title}</h1>
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <Button variant="bordered">Remix</Button>
             <Button variant="bordered">Star</Button>
-          </div>
+          </div> */}
         </div>
       </div>
 
