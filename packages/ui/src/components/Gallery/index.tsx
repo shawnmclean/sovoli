@@ -15,6 +15,20 @@ export interface GalleryProps {
 }
 
 export function Gallery({ images }: GalleryProps) {
+  if (images.length < 1) return;
+
+  if (images.length === 1 && images[0]) {
+    return (
+      <Image
+        src={images[0].src}
+        alt={images[0].alt || "Image"}
+        style={{ width: "100%", height: "auto" }}
+        className="object-cover"
+        width={16}
+        height={9}
+      />
+    );
+  }
   return (
     <Carousel className="w-full max-w-full">
       <CarouselContent>
@@ -31,8 +45,12 @@ export function Gallery({ images }: GalleryProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      {images.length > 1 ? (
+        <>
+          <CarouselPrevious />
+          <CarouselNext />
+        </>
+      ) : null}
     </Carousel>
   );
 }
