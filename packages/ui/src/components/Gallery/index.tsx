@@ -45,12 +45,8 @@ export function Gallery({ images }: GalleryProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      {images.length > 1 ? (
-        <>
-          <CarouselPrevious />
-          <CarouselNext />
-        </>
-      ) : null}
+      <CarouselPrevious />
+      <CarouselNext />
     </Carousel>
   );
 }

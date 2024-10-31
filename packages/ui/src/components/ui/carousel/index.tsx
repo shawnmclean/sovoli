@@ -67,8 +67,12 @@ const carouselItemStyles = tv({
 });
 
 const arrowButtonStyles = tv({
-  base: "absolute h-8 w-8 rounded-full",
+  base: "absolute h-8 w-8 rounded-full opacity-80",
   variants: {
+    visibility: {
+      visible: "visible",
+      hidden: "invisible",
+    },
     orientation: {
       horizontal: ["top-1/2", "-translate-y-1/2"],
       vertical: ["left-1/2", "-translate-x-1/2", "rotate-90"],
@@ -236,13 +240,7 @@ const CarouselPrevious = React.forwardRef<
   React.ComponentProps<typeof Button>
 >(
   (
-    {
-      className,
-      variant = "bordered",
-      isIconOnly = true,
-      size = "sm",
-      ...props
-    },
+    { className, variant = "faded", isIconOnly = true, size = "sm", ...props },
     ref,
   ) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
@@ -256,6 +254,7 @@ const CarouselPrevious = React.forwardRef<
         className={arrowButtonStyles({
           orientation,
           position: orientation === "horizontal" ? "left" : "top",
+          visibility: canScrollPrev ? "visible" : "hidden",
           className,
         })}
         disabled={!canScrollPrev}
@@ -275,13 +274,7 @@ const CarouselNext = React.forwardRef<
   React.ComponentProps<typeof Button>
 >(
   (
-    {
-      className,
-      variant = "bordered",
-      isIconOnly = true,
-      size = "sm",
-      ...props
-    },
+    { className, variant = "faded", isIconOnly = true, size = "sm", ...props },
     ref,
   ) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
@@ -295,6 +288,7 @@ const CarouselNext = React.forwardRef<
         className={arrowButtonStyles({
           orientation,
           position: orientation === "horizontal" ? "right" : "bottom",
+          visibility: canScrollNext ? "visible" : "hidden",
           className,
         })}
         disabled={!canScrollNext}
