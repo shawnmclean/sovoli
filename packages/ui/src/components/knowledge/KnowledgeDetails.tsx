@@ -43,7 +43,7 @@ export function KnowledgeDetails({ knowledge }: Props) {
           <div className="space-y-6 lg:col-span-2">
             {/* Description Section */}
             <section className="w-full">
-              <p className="text-gray-500">{knowledge.description}</p>
+              <p className="text-gray-400">{knowledge.description}</p>
             </section>
 
             {/* Content Section */}
