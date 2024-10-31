@@ -30,15 +30,14 @@ export function Gallery({ images }: GalleryProps) {
     );
   }
   return (
-    <Carousel className="w-full max-w-full">
+    <Carousel className="rounded-lg border border-default-200">
       <CarouselContent>
         {images.map((image, i) => (
-          <CarouselItem key={i}>
+          <CarouselItem key={i} className="flex items-center justify-center">
             <Image
               src={image.src}
               alt={image.alt || "Image"}
-              style={{ width: "100%", height: "auto" }}
-              className="object-cover"
+              className="h-auto max-h-[600px] w-auto object-contain"
               width={16}
               height={9}
             />
