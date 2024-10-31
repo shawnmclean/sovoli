@@ -30,7 +30,7 @@ export function Gallery({ images }: GalleryProps) {
     );
   }
   return (
-    <Carousel className="rounded-lg border border-default-200">
+    <Carousel className="overflow-hidden rounded-lg border border-default-200">
       <CarouselContent>
         {images.map((image, i) => (
           <CarouselItem key={i} className="flex items-center justify-center">
