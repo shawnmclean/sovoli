@@ -21,9 +21,14 @@ export function KnowledgeSubmenu({ username, slug }: KnowledgeSubmenuProps) {
       path: `/${username}/${slug}`,
     },
     {
-      key: "connections",
-      title: "Connections",
-      path: `/${username}/${slug}/connections`,
+      key: "discussions",
+      title: "Discussions",
+      path: `/${username}/${slug}/discussions`,
+    },
+    {
+      key: "graph",
+      title: "Graph",
+      path: `/${username}/${slug}/graph`,
     },
     // Add more tabs as needed
   ];

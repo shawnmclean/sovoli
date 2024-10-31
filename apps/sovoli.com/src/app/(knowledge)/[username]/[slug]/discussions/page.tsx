@@ -8,7 +8,7 @@ import { ConnectionsList } from "./_components/ConnectionsList";
 
 export const dynamic = "force-dynamic";
 
-interface Props {
+interface DiscussionsPageProps {
   params: { username: string; slug: string };
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
@@ -35,9 +35,9 @@ interface Props {
 //   );
 // }
 
-export default async function ConnectionsEditPage({
+export default async function DiscussionsPage({
   params: { username, slug },
-}: Props) {
+}: DiscussionsPageProps) {
   const session = await auth();
   const knowledgeResponse = await getKnowledgeBySlug({
     username: username,
