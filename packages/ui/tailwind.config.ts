@@ -1,5 +1,7 @@
-import { nextui } from "@nextui-org/theme";
+import { commonColors, nextui } from "@nextui-org/theme";
+import typography from "@tailwindcss/typography";
 import { Config } from "tailwindcss";
+import { PluginUtils } from "tailwindcss/types/config";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -10,6 +12,7 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   plugins: [
+    typography,
     nextui({
       themes: {
         dark: {
@@ -99,6 +102,30 @@ export default {
     }),
   ],
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            "--tw-prose-body": "hsl(var(--nextui-default-700))",
+            "--tw-prose-headings": "hsl(var(--nextui-foreground))",
+            "--tw-prose-lead": "hsl(var(--nextui-default-600))",
+            "--tw-prose-links": "hsl(var(--nextui-default-900))",
+            "--tw-prose-bold": "hsl(var(--nextui-default-900))",
+            "--tw-prose-counters": "hsl(var(--nextui-default-500))",
+            "--tw-prose-bullets": "hsl(var(--nextui-default-300))",
+            "--tw-prose-hr": "hsl(var(--nextui-default-200))",
+            "--tw-prose-quotes": "hsl(var(--nextui-default-900))",
+            "--tw-prose-quote-borders": "hsl(var(--nextui-default-200))",
+            "--tw-prose-captions": "hsl(var(--nextui-default-500))",
+            "--tw-prose-code": "hsl(var(--nextui-default-900))",
+            "--tw-prose-pre-code": "hsl(var(--nextui-default-200))",
+            "--tw-prose-pre-bg": "hsl(var(--nextui-default-800))",
+            "--tw-prose-th-borders": "hsl(var(--nextui-default-300))",
+            "--tw-prose-td-borders": "hsl(var(--nextui-default-200))",
+            "--tw-prose-invert-body": "hsl(var(--nextui-default-300))",
+          },
+        },
+      },
+    },
   },
 } satisfies Config;

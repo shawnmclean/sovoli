@@ -7,8 +7,8 @@ export interface Props {
 }
 export function KnowledgeContent({ knowledge }: Props) {
   return (
-    <div>
+    <article className="prose lg:prose-lg max-w-none">
       <Markdown remarkPlugins={[remarkGfm]}>{knowledge.content}</Markdown>
-    </div>
+    </article>
   );
 }
