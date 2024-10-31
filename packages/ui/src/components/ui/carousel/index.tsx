@@ -47,7 +47,7 @@ const carouselContainer = tv({
 });
 
 const carouselContentStyles = tv({
-  base: "flex overflow-hidden",
+  base: "flex",
   variants: {
     orientation: {
       horizontal: "-ml-4",
