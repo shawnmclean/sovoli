@@ -35,7 +35,7 @@ export async function Navbar({ user, knowledge }: NavbarProps) {
 
   return (
     <NextUINavbar maxWidth="full">
-      <NavbarContent justify="start" className="min-w-0">
+      <div className="flex min-w-0 flex-row items-center gap-4">
         <NavbarItem className="shrink-0">
           <Link href="/" color="foreground">
             {/* Logo Image here */}
@@ -43,7 +43,8 @@ export async function Navbar({ user, knowledge }: NavbarProps) {
           </Link>
         </NavbarItem>
         <NavbarItem className="overflow-hidden">{appLinksComponent}</NavbarItem>
-      </NavbarContent>
+      </div>
+
       <NavbarContent justify="end">
         <NavbarItem className="hidden sm:flex">
           <Chip color="warning" variant="dot">
