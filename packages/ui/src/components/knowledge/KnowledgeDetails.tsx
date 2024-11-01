@@ -1,4 +1,5 @@
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+import { auth } from "@sovoli/auth";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { Gallery } from "@sovoli/ui/components/Gallery";
 
@@ -7,12 +8,14 @@ import { KnowledgeContent } from "../KnowledgeDetails/KnowledgeContent";
 import { Link } from "../ui/link";
 import { TimeAgo } from "../ui/time-ago";
 import { User } from "../ui/user";
+import { DetailsHeader } from "./DetailsHeader";
 
 interface Props {
   knowledge: SelectKnowledgeSchema;
 }
 
-export function KnowledgeDetails({ knowledge }: Props) {
+export async function KnowledgeDetails({ knowledge }: Props) {
+  const session = await auth();
   const images = knowledge.MediaAssets?.map((mediaAsset) => {
     if (mediaAsset.host === MediaAssetHost.Supabase && mediaAsset.path) {
       return {
@@ -27,13 +30,7 @@ export function KnowledgeDetails({ knowledge }: Props) {
     <div className="flex w-full flex-col">
       {/* Header Section */}
       <div className="flex justify-center border-b border-divider">
-        <div className="flex w-full max-w-7xl items-center justify-between p-6">
-          <h1 className="text-2xl font-bold">{knowledge.title}</h1>
-          {/* <div className="flex gap-4">
-            <Button variant="bordered">Remix</Button>
-            <Button variant="bordered">Star</Button>
-          </div> */}
-        </div>
+        <DetailsHeader knowledge={knowledge} session={session} />
       </div>
 
       {/* Main Content with 2-Column Layout */}

@@ -1,5 +1,3 @@
-"use client";
-
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { KnowledgeDetails } from "@sovoli/ui/components/knowledge/KnowledgeDetails";
 
