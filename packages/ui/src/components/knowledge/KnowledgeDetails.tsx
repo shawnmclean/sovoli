@@ -8,7 +8,7 @@ import { KnowledgeContent } from "../KnowledgeDetails/KnowledgeContent";
 import { Link } from "../ui/link";
 import { TimeAgo } from "../ui/time-ago";
 import { User } from "../ui/user";
-import { DetailsHeader } from "./DetailsHeader";
+import { HeaderActions } from "./HeaderActions";
 
 interface Props {
   knowledge: SelectKnowledgeSchema;
@@ -30,7 +30,14 @@ export async function KnowledgeDetails({ knowledge }: Props) {
     <div className="flex w-full flex-col">
       {/* Header Section */}
       <div className="flex justify-center border-b border-divider">
-        <DetailsHeader knowledge={knowledge} session={session} />
+        <div className="flex w-full max-w-7xl items-center justify-between p-6">
+          <h1 className="text-2xl font-bold">{knowledge.title}</h1>
+          <div className="flex gap-4">
+            {session?.userId === knowledge.User?.id && (
+              <HeaderActions knowledge={knowledge} session={session} />
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Main Content with 2-Column Layout */}
