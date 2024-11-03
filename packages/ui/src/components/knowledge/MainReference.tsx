@@ -3,6 +3,7 @@ import type { KnowledgeConnection } from "@sovoli/db/schema";
 import { Avatar } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "../ui/card";
+import { Chip } from "../ui/chip";
 import { Image } from "../ui/image";
 
 export interface MainReferenceProps {
@@ -37,9 +38,22 @@ function BookReference({ knowledgeConnection }: MainReferenceProps) {
           width={120}
           height={120}
         />
-        <div className="flex flex-col">
-          <h1 className="text-lg font-medium">{book.title}</h1>
-          <p className="text-sm text-foreground/80">By {authors.join(", ")}</p>
+        <div className="flex items-start justify-between">
+          <div className="flex flex-col">
+            <h1 className="text-lg font-medium">{book.title}</h1>
+            <p className="text-sm text-foreground/80">
+              By {authors.join(", ")}
+            </p>
+          </div>
+          <div className="inline-flex">
+            <Chip
+              size="sm"
+              variant="faded"
+              title="This note is a main reference to this book"
+            >
+              i
+            </Chip>
+          </div>
         </div>
       </CardBody>
     </Card>
