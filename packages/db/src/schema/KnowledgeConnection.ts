@@ -1,3 +1,4 @@
+import { eq, sql } from "drizzle-orm";
 import {
   integer,
   jsonb,
@@ -6,6 +7,7 @@ import {
   text,
   timestamp,
   unique,
+  uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
@@ -18,6 +20,10 @@ export const KnowledgeConnectionTypes = [
   "contains",
   "recommends",
   "refers",
+  "main_reference",
+  "supplemental_reference",
+  "comment",
+  "collection",
 ] as const;
 export const KnowledgeConnectionType = createEnumObject(
   KnowledgeConnectionTypes,
@@ -50,7 +56,7 @@ export const KnowledgeConnection = pgTable(
 
     type: knowledgeConnectionTypeEnum("type")
       .notNull()
-      .default(KnowledgeConnectionType.contains),
+      .default(KnowledgeConnectionType.collection),
 
     // optional ordering for the items in the collection (useful for study guides or arranging books on a shelf)
     order: integer("order"),
@@ -67,6 +73,15 @@ export const KnowledgeConnection = pgTable(
       table.sourceKnowledgeId,
       table.targetKnowledgeId,
     ),
+    uniqueMainReferencePerSource: uniqueIndex(
+      "unique_main_reference_per_source",
+    )
+      .on(table.sourceKnowledgeId)
+      .where(
+        sql.raw(
+          `${table.type.name} = '${KnowledgeConnectionType.main_reference}'`,
+        ),
+      ),
   }),
 );
 

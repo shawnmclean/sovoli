@@ -9,6 +9,7 @@ import { Link } from "../ui/link";
 import { TimeAgo } from "../ui/time-ago";
 import { User } from "../ui/user";
 import { HeaderActions } from "./HeaderActions";
+import { MainReference } from "./MainReference";
 
 interface Props {
   knowledge: SelectKnowledgeSchema;
@@ -25,6 +26,10 @@ export async function KnowledgeDetails({ knowledge }: Props) {
     }
     return null;
   }).filter((image) => image !== null);
+
+  const mainReference = knowledge.SourceConnections?.find(
+    (r) => r.type === "main_reference",
+  )?.TargetKnowledge;
 
   return (
     <div className="flex w-full flex-col">
@@ -57,8 +62,18 @@ export async function KnowledgeDetails({ knowledge }: Props) {
                   <Gallery images={images} />
                 </div>
               )}
+              {mainReference && (
+                <div className="my-4">
+                  <MainReference knowledge={mainReference} />
+                </div>
+              )}
               <KnowledgeContent knowledge={knowledge} />
             </section>
+            {knowledge.SourceConnections?.map((connection) => {
+              return (
+                <div className="my-4">{connection.TargetKnowledge?.title}</div>
+              );
+            })}
           </div>
 
           {/* Right Column: User Information and Meta */}
