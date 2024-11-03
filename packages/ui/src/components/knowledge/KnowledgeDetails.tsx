@@ -79,7 +79,7 @@ export async function KnowledgeDetails({ knowledge }: Props) {
           {/* Right Column: User Information and Meta */}
           <div className="space-y-4">
             {/* User Information */}
-            <section className="flex items-center space-x-4">
+            <section className="flex items-center gap-4">
               <Link href={`/${knowledge.User?.username}`} color="foreground">
                 <User
                   name={knowledge.User?.name}

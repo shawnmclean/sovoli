@@ -170,6 +170,7 @@ export async function getKnowledgeBySlug({
               'triggerDevId', ${schema.Book.triggerDevId},
               'inferrenceError', ${schema.Book.inferrenceError},
               'lastGoogleUpdated', ${schema.Book.lastGoogleUpdated},
+              'authors', ${schema.Book.authors},
               'lastOLUpdated', ${schema.Book.lastOLUpdated},
               'inferredAuthor', ${schema.Book.inferredAuthor},
               'createdAt', ${schema.Book.createdAt},
