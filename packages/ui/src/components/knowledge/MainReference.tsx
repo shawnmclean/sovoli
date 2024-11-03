@@ -1,11 +1,13 @@
-import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+import type { KnowledgeConnection } from "@sovoli/db/schema";
 
 export interface MainReferenceProps {
-  knowledge: SelectKnowledgeSchema;
+  knowledgeConnection: KnowledgeConnection;
 }
 
-export function MainReference({ knowledge }: MainReferenceProps) {
+export function MainReference({ knowledgeConnection }: MainReferenceProps) {
   return (
-    <div className="flex flex-col gap-4">Referencing: {knowledge.title}</div>
+    <div className="flex flex-col gap-4">
+      Referencing: {knowledgeConnection.TargetKnowledge?.title}
+    </div>
   );
 }

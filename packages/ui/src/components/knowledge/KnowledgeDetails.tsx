@@ -29,7 +29,7 @@ export async function KnowledgeDetails({ knowledge }: Props) {
 
   const mainReference = knowledge.SourceConnections?.find(
     (r) => r.type === "main_reference",
-  )?.TargetKnowledge;
+  );
 
   return (
     <div className="flex w-full flex-col">
@@ -64,7 +64,7 @@ export async function KnowledgeDetails({ knowledge }: Props) {
               )}
               {mainReference && (
                 <div className="my-4">
-                  <MainReference knowledge={mainReference} />
+                  <MainReference knowledgeConnection={mainReference} />
                 </div>
               )}
               <KnowledgeContent knowledge={knowledge} />
