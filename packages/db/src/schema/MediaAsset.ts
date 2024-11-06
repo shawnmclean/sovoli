@@ -1,4 +1,5 @@
 import type { z } from "zod";
+import { createId } from "@paralleldrive/cuid2";
 import {
   boolean,
   integer,
@@ -6,7 +7,6 @@ import {
   pgTable,
   text,
   timestamp,
-  uuid,
   varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
@@ -19,7 +19,7 @@ export const MediaAssetHost = createEnumObject(MediaAssetHosts);
 
 export const mediaAssetHostEnum = pgEnum("media_asset_host", MediaAssetHosts);
 export const MediaAsset = pgTable("media_asset", {
-  id: uuid("id").notNull().primaryKey().defaultRandom(),
+  id: varchar("id", { length: 256 }).primaryKey().$defaultFn(createId),
   knowledgeId: varchar("knowledge_id", { length: 256 })
     .notNull()
     .references(() => Knowledge.id, { onDelete: "cascade" }),
