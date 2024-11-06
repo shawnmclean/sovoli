@@ -1,4 +1,5 @@
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
+import { createId } from "@paralleldrive/cuid2";
 import {
   boolean,
   date,
@@ -35,6 +36,7 @@ export const Knowledge = pgTable(
   "knowledge",
   {
     id: uuid("id").notNull().primaryKey().defaultRandom(),
+    idVc: varchar("id_vc", { length: 256 }).$defaultFn(createId),
     // usually follows the title of the book
     title: varchar("title", { length: 255 }),
     description: text("description"),

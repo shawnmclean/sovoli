@@ -26,7 +26,8 @@
     "next-auth": "5.0.0-beta.20",
     "drizzle-orm": "0.33.0",
     "drizzle-zod": "0.5.1",
-    "zod": "catalog:"
+    "zod": "catalog:",
+    "@paralleldrive/cuid2": "2.2.2"
   },
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",

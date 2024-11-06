@@ -9,6 +9,7 @@ import {
   unique,
   uniqueIndex,
   uuid,
+  varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -53,6 +54,9 @@ export const KnowledgeConnection = pgTable(
     targetKnowledgeId: uuid("target_knowledge_id")
       .notNull()
       .references(() => Knowledge.id, { onDelete: "cascade" }),
+
+    sourceKnowledgeIdVc: varchar("source_knowledge_id_vc", { length: 256 }),
+    targetKnowledgeIdVc: varchar("target_knowledge_id_vc", { length: 256 }),
 
     type: knowledgeConnectionTypeEnum("type")
       .notNull()

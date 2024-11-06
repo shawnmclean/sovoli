@@ -23,6 +23,7 @@ export const MediaAsset = pgTable("media_asset", {
   knowledgeId: uuid("knowledge_id")
     .notNull()
     .references(() => Knowledge.id, { onDelete: "cascade" }),
+  knowledgeIdVc: varchar("knowledge_id_vc", { length: 256 }),
   mimeType: varchar("mime_type", { length: 255 }),
 
   order: integer("order"),
