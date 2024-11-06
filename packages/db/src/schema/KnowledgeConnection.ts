@@ -50,15 +50,19 @@ export const KnowledgeConnection = pgTable(
     id: uuid("id").notNull().primaryKey().defaultRandom(),
     idVc: varchar("id_vc", { length: 256 }).$defaultFn(createId),
 
-    sourceKnowledgeId: uuid("source_knowledge_id")
-      .notNull()
-      .references(() => Knowledge.id, { onDelete: "cascade" }),
-    targetKnowledgeId: uuid("target_knowledge_id")
-      .notNull()
-      .references(() => Knowledge.id, { onDelete: "cascade" }),
+    sourceKnowledgeId: uuid("source_knowledge_id"),
+    // .notNull()
+    // .references(() => Knowledge.id, { onDelete: "cascade" }),
+    targetKnowledgeId: uuid("target_knowledge_id"),
+    // .notNull()
+    // .references(() => Knowledge.id, { onDelete: "cascade" }),
 
-    sourceKnowledgeIdVc: varchar("source_knowledge_id_vc", { length: 256 }),
-    targetKnowledgeIdVc: varchar("target_knowledge_id_vc", { length: 256 }),
+    sourceKnowledgeIdVc: varchar("source_knowledge_id_vc", { length: 256 })
+      .notNull()
+      .references(() => Knowledge.idVc, { onDelete: "cascade" }),
+    targetKnowledgeIdVc: varchar("target_knowledge_id_vc", { length: 256 })
+      .notNull()
+      .references(() => Knowledge.idVc, { onDelete: "cascade" }),
 
     type: knowledgeConnectionTypeEnum("type")
       .notNull()
