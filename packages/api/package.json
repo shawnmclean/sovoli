@@ -16,10 +16,7 @@
       "types": "./dist/tsr/contract.d.ts",
       "default": "./src/tsr/contract.ts"
     },
-    "./services": {
-      "types": "./dist/services/index.d.ts",
-      "default": "./src/services/index.ts"
-    },
+    "./services/": "./src/services/",
     "./utils": {
       "types": "./dist/utils/index.d.ts",
       "default": "./src/utils/index.ts"
