@@ -9,7 +9,6 @@ import {
   timestamp,
   unique,
   uniqueIndex,
-  uuid,
   varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
@@ -47,7 +46,10 @@ export type KnowledgeConnectionMetadataSchema = z.infer<
 export const KnowledgeConnection = pgTable(
   "knowledge_connection",
   {
-    id: uuid("id").notNull().primaryKey().defaultRandom(),
+    id: varchar("id", { length: 256 })
+      .notNull()
+      .primaryKey()
+      .$defaultFn(createId),
 
     sourceKnowledgeId: varchar("source_knowledge_id", { length: 256 })
       .notNull()
