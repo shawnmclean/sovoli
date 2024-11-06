@@ -7,12 +7,12 @@ export const KnowledgeConnectopmRelations = relations(
   KnowledgeConnection,
   ({ one }) => ({
     TargetKnowledge: one(Knowledge, {
-      fields: [KnowledgeConnection.targetKnowledgeId],
+      fields: [KnowledgeConnection.targetKnowledgeIdVc],
       references: [Knowledge.id],
       relationName: "Target",
     }),
     SourceKnowledge: one(Knowledge, {
-      fields: [KnowledgeConnection.sourceKnowledgeId],
+      fields: [KnowledgeConnection.sourceKnowledgeIdVc],
       references: [Knowledge.id],
       relationName: "Source",
     }),

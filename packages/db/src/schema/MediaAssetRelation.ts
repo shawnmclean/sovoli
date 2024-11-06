@@ -5,7 +5,7 @@ import { MediaAsset } from "./MediaAsset";
 
 export const MediaAssetRelations = relations(MediaAsset, ({ one }) => ({
   Knowledge: one(Knowledge, {
-    fields: [MediaAsset.knowledgeId],
+    fields: [MediaAsset.knowledgeIdVc],
     references: [Knowledge.id],
   }),
 }));
