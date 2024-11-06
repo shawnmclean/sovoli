@@ -35,8 +35,7 @@ export const knowledgeQueryTypeEnum = pgEnum(
 export const Knowledge = pgTable(
   "knowledge",
   {
-    id: uuid("id").notNull().primaryKey().defaultRandom(),
-    idVc: varchar("id_vc", { length: 256 }).unique().$defaultFn(createId),
+    id: varchar("id", { length: 256 }).primaryKey().$defaultFn(createId),
     // usually follows the title of the book
     title: varchar("title", { length: 255 }),
     description: text("description"),

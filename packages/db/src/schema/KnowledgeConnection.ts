@@ -48,14 +48,13 @@ export const KnowledgeConnection = pgTable(
   "knowledge_connection",
   {
     id: uuid("id").notNull().primaryKey().defaultRandom(),
-    idVc: varchar("id_vc", { length: 256 }).$defaultFn(createId),
 
-    sourceKnowledgeIdVc: varchar("source_knowledge_id_vc", { length: 256 })
+    sourceKnowledgeId: varchar("source_knowledge_id", { length: 256 })
       .notNull()
-      .references(() => Knowledge.idVc, { onDelete: "cascade" }),
-    targetKnowledgeIdVc: varchar("target_knowledge_id_vc", { length: 256 })
+      .references(() => Knowledge.id, { onDelete: "cascade" }),
+    targetKnowledgeId: varchar("target_knowledge_id", { length: 256 })
       .notNull()
-      .references(() => Knowledge.idVc, { onDelete: "cascade" }),
+      .references(() => Knowledge.id, { onDelete: "cascade" }),
 
     type: knowledgeConnectionTypeEnum("type")
       .notNull()
@@ -73,13 +72,13 @@ export const KnowledgeConnection = pgTable(
   },
   (table) => ({
     uniqueKnowledgeConnection: unique("unique_knowledge_connection").on(
-      table.sourceKnowledgeIdVc,
-      table.targetKnowledgeIdVc,
+      table.sourceKnowledgeId,
+      table.targetKnowledgeId,
     ),
     uniqueMainReferencePerSource: uniqueIndex(
       "unique_main_reference_per_source",
     )
-      .on(table.sourceKnowledgeIdVc)
+      .on(table.sourceKnowledgeId)
       .where(
         sql.raw(
           `${table.type.name} = '${KnowledgeConnectionType.main_reference}'`,

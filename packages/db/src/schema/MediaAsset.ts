@@ -20,9 +20,9 @@ export const MediaAssetHost = createEnumObject(MediaAssetHosts);
 export const mediaAssetHostEnum = pgEnum("media_asset_host", MediaAssetHosts);
 export const MediaAsset = pgTable("media_asset", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
-  knowledgeIdVc: varchar("knowledge_id_vc", { length: 256 })
+  knowledgeId: varchar("knowledge_id", { length: 256 })
     .notNull()
-    .references(() => Knowledge.idVc, { onDelete: "cascade" }),
+    .references(() => Knowledge.id, { onDelete: "cascade" }),
   mimeType: varchar("mime_type", { length: 255 }),
 
   order: integer("order"),
