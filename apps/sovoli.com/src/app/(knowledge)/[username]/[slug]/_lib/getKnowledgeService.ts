@@ -110,6 +110,9 @@ export async function getKnowledgeBySlug({
     .with(mediaAssetsSubquery)
     .select({
       id: schema.KnowledgeConnection.id,
+      idVc: schema.KnowledgeConnection.idVc,
+      sourceKnowledgeIdVc: schema.KnowledgeConnection.sourceKnowledgeIdVc,
+      targetKnowledgeIdVc: schema.KnowledgeConnection.targetKnowledgeIdVc,
       notes: schema.KnowledgeConnection.notes,
       order: schema.KnowledgeConnection.order,
       type: schema.KnowledgeConnection.type,
@@ -122,6 +125,7 @@ export async function getKnowledgeBySlug({
       SourceKnowledge: sql<SelectKnowledgeSchema | null>`NULL`,
       TargetKnowledge: sql<SelectKnowledgeSchema | null>`JSON_BUILD_OBJECT(
           'id', ${schema.Knowledge.id},
+          'id_vc', ${schema.Knowledge.idVc},
           'userId', ${schema.Knowledge.userId},
           'slug', ${schema.Knowledge.slug},
           'isOrigin', ${schema.Knowledge.isOrigin},

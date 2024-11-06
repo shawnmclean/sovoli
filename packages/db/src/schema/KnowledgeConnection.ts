@@ -1,3 +1,4 @@
+import { createId } from "@paralleldrive/cuid2";
 import { sql } from "drizzle-orm";
 import {
   integer,
@@ -47,6 +48,7 @@ export const KnowledgeConnection = pgTable(
   "knowledge_connection",
   {
     id: uuid("id").notNull().primaryKey().defaultRandom(),
+    idVc: varchar("id_vc", { length: 256 }).$defaultFn(createId),
 
     sourceKnowledgeId: uuid("source_knowledge_id")
       .notNull()
