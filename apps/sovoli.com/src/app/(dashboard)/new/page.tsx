@@ -1,14 +1,30 @@
 import { BatchCreateKnowledge } from "@sovoli/api/services/knowledge/batchCreateKnowledge";
+import { auth } from "@sovoli/auth";
 import { db } from "@sovoli/db";
 
 export default function NewPage() {
   async function create() {
     "use server";
+    const session = await auth();
+    if (!session) {
+      throw new Error("Not authenticated");
+    }
     const batchCreateKnowledge = new BatchCreateKnowledge(db);
-    await batchCreateKnowledge.call({
-      authUserId: "192914a3-fa51-4df7-ab6e-7a1d622c49dd",
-      title: "asdf",
+    const created = await batchCreateKnowledge.call({
+      authUserId: session.userId,
+      knowledges: [
+        {
+          title: "test",
+          description: "test",
+          content: "test",
+          type: "collection",
+          query: "test",
+          queryType: "query",
+          isOrigin: true,
+        },
+      ],
     });
+    console.log(created);
   }
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">

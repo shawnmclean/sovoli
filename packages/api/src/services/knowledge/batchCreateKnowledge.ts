@@ -1,8 +1,17 @@
+import type { KnowledgeQueryType, KnowledgeType } from "@sovoli/db/schema";
 import { db, schema } from "@sovoli/db";
 
 export interface BatchCreateKnowledgeOptions {
   authUserId: string;
-  title: string;
+  knowledges: {
+    title?: string;
+    description?: string;
+    content?: string;
+    type: KnowledgeType;
+    isOrigin: boolean;
+    query?: string;
+    queryType?: KnowledgeQueryType;
+  }[];
 }
 
 export class BatchCreateKnowledge {
@@ -12,11 +21,19 @@ export class BatchCreateKnowledge {
     this.dbClient = dbClient;
   }
 
-  public async call({ authUserId, title }: BatchCreateKnowledgeOptions) {
-    console.log("create");
-    await this.dbClient.insert(schema.Knowledge).values({
+  public async call({ authUserId, knowledges }: BatchCreateKnowledgeOptions) {
+    if (knowledges.length === 0) {
+      throw new Error("No knowledges provided");
+    }
+
+    const knowledgesToCreate = knowledges.map((knowledge) => ({
+      ...knowledge,
       userId: authUserId,
-      title,
-    });
+    }));
+
+    return await this.dbClient
+      .insert(schema.Knowledge)
+      .values(knowledgesToCreate)
+      .returning();
   }
 }

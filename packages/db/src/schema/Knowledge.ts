@@ -22,11 +22,13 @@ import { SelectUserSchema, User } from "./User";
 
 export const KnowledgeTypes = ["collection", "book", "note", "shelf"] as const;
 export const KnowledgeType = createEnumObject(KnowledgeTypes);
-export const knowledgeTypeEnum = pgEnum("knowledge_type", KnowledgeTypes);
+export type KnowledgeType = (typeof KnowledgeTypes)[number];
+const knowledgeTypeEnum = pgEnum("knowledge_type", KnowledgeTypes);
 
 export const KnowledgeQueryTypes = ["query", "isbn"] as const;
 export const KnowledgeQueryType = createEnumObject(KnowledgeQueryTypes);
-export const knowledgeQueryTypeEnum = pgEnum(
+export type KnowledgeQueryType = (typeof KnowledgeQueryTypes)[number];
+const knowledgeQueryTypeEnum = pgEnum(
   "knowledge_query_type",
   KnowledgeQueryTypes,
 );
