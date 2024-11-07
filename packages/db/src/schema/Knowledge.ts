@@ -9,7 +9,6 @@ import {
   text,
   timestamp,
   unique,
-  uuid,
   varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
@@ -39,9 +38,9 @@ export const Knowledge = pgTable(
     // usually follows the title of the book
     title: varchar("title", { length: 255 }),
     description: text("description"),
-    userId: uuid("user_id")
+    userId: varchar("user_id", { length: 256 })
       .notNull()
-      .references(() => User.id),
+      .references(() => User.tid, { onDelete: "cascade" }),
     verifiedDate: date("verified_date"),
 
     // this is used for bot accounts who create a knowledge but needs to update in in the same session.
@@ -61,7 +60,7 @@ export const Knowledge = pgTable(
     slug: varchar("slug", { length: 255 }),
     type: knowledgeTypeEnum("type").notNull().default(KnowledgeType.note),
 
-    bookId: uuid("book_id").references(() => Book.id),
+    bookId: varchar("book_id", { length: 256 }).references(() => Book.id),
 
     chapterNumber: integer("chapter_number"),
     isPrivate: boolean("is_public").notNull().default(false),

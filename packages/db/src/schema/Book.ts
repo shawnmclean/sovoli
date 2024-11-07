@@ -1,4 +1,5 @@
 import type { InferInsertModel, InferSelectModel, SQL } from "drizzle-orm";
+import { createId } from "@paralleldrive/cuid2";
 import { sql } from "drizzle-orm";
 import {
   date,
@@ -8,7 +9,6 @@ import {
   pgTable,
   text,
   unique,
-  uuid,
   varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
@@ -44,7 +44,7 @@ export type OtherISBN = z.infer<typeof OtherISBNSchema>;
 export const Book = pgTable(
   "book",
   {
-    id: uuid("id").notNull().primaryKey().defaultRandom(),
+    id: varchar("id", { length: 256 }).primaryKey().$defaultFn(createId),
 
     // stores both ISBN-13 and ISBN-10
     isbn13: varchar("isbn_13", { length: 15 }).unique(),

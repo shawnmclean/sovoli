@@ -1,5 +1,6 @@
 import type { AdapterAccountType } from "next-auth/adapters";
 import type { z } from "zod";
+import { createId } from "@paralleldrive/cuid2";
 import {
   integer,
   pgEnum,
@@ -19,6 +20,7 @@ export const UserType = createEnumObject(UserTypes);
 
 export const userTypeEnum = pgEnum("user_type", UserTypes);
 export const User = pgTable("user", {
+  tid: varchar("tid", { length: 256 }).unique().$defaultFn(createId),
   id: uuid("id").notNull().primaryKey().defaultRandom(),
   type: userTypeEnum("type").notNull().default(UserType.Human),
 
@@ -38,6 +40,8 @@ export const Account = pgTable(
     userId: uuid("user_id")
       .notNull()
       .references(() => User.id, { onDelete: "cascade" }),
+    tid: varchar("tuser_id", { length: 256 }),
+
     type: text("type").$type<AdapterAccountType>().notNull(),
     provider: text("provider").notNull(),
     providerAccountId: text("provider_account_id").notNull(),
@@ -61,6 +65,7 @@ export const Session = pgTable("session", {
   userId: uuid("user_id")
     .notNull()
     .references(() => User.id, { onDelete: "cascade" }),
+  tuserId: varchar("tuser_id", { length: 256 }),
   expires: timestamp("expires", { mode: "date" }).notNull(),
 });
 
