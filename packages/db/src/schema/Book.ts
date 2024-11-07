@@ -6,52 +6,15 @@ import {
   integer,
   jsonb,
   pgTable,
-  primaryKey,
   text,
   unique,
   uuid,
   varchar,
-  vector,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 import { tsVector } from "../utils";
-
-export const Author = pgTable("author", {
-  id: uuid("id").notNull().primaryKey().defaultRandom(),
-  // open library id
-  olid: varchar("olid", { length: 20 }).unique(),
-
-  name: varchar("name", { length: 255 }).notNull(),
-  fullName: varchar("full_name", { length: 255 }),
-  bio: text("bio"),
-  alternateNames: varchar("alternate_names", { length: 255 }).array(),
-  birthDate: date("birth_date"),
-  deathDate: date("death_date"),
-
-  // The following fields are only used for the inference system
-  triggerDevId: varchar("trigger_dev_id", { length: 255 }),
-  inferrenceError: text("inferrence_error"),
-  // we are only updating from openlibrary right now
-  lastOLUpdated: date("last_ol_updated"),
-
-  website: varchar("website", { length: 255 }),
-  email: varchar("email", { length: 255 }),
-  phone: varchar("phone", { length: 255 }),
-
-  createdAt: date("created_at").notNull().defaultNow(),
-  updatedAt: date("updated_at").notNull().defaultNow(),
-});
-
-export const SelectAuthorSchema = createSelectSchema(Author, {
-  alternateNames: z.array(z.string()).optional(),
-});
-export const InsertAuthorSchema = createInsertSchema(Author, {
-  alternateNames: z.array(z.string()).optional(),
-});
-export type SelectAuthorSchema = z.infer<typeof SelectAuthorSchema>;
-export type InsertAuthorSchema = z.infer<typeof InsertAuthorSchema>;
 
 export const BookDimensionsSchema = z.object({
   length: z.object({
@@ -164,44 +127,3 @@ export type InsertBookSchema = z.infer<typeof InsertBookSchema>;
 export type SelectBook = InferSelectModel<typeof Book>;
 
 export type InsertBook = InferInsertModel<typeof Book>;
-
-export const BookEmbedding = pgTable(
-  "book_embedding",
-  {
-    bookId: uuid("book_id")
-      .primaryKey()
-      .references(() => Book.id),
-    // 1536 is default size for openai embeddings
-    openAIEmbedding: vector("open_ai_embedding", { dimensions: 1536 }),
-    openAIEmbeddingUpdated: date("open_ai_embedding_updated")
-      .notNull()
-      .defaultNow(),
-  },
-  (table) => ({
-    // Use HNSW indexing with vector_cosine_ops for optimal search performance with OpenAI embeddings
-    openAIEmbeddingIndex: index("open_ai_embedding_index").using(
-      "hnsw",
-      table.openAIEmbedding.op("vector_cosine_ops"),
-    ),
-  }),
-);
-
-export const AuthorToBook = pgTable(
-  "author_to_book",
-  {
-    bookId: uuid("book_id")
-      .notNull()
-      .references(() => Book.id),
-    authorId: uuid("author_id")
-      .notNull()
-      .references(() => Author.id),
-  },
-  (table) => ({
-    pk: primaryKey({
-      columns: [table.bookId, table.authorId],
-    }),
-  }),
-);
-
-export const InsertAuthorToBookSchema = createInsertSchema(AuthorToBook);
-export type InsertAuthorToBookSchema = z.infer<typeof InsertAuthorToBookSchema>;
