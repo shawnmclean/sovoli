@@ -40,7 +40,7 @@ export const Knowledge = pgTable(
     description: text("description"),
     userId: varchar("user_id", { length: 256 })
       .notNull()
-      .references(() => User.tid, { onDelete: "cascade" }),
+      .references(() => User.id, { onDelete: "cascade" }),
     verifiedDate: date("verified_date"),
 
     // this is used for bot accounts who create a knowledge but needs to update in in the same session.

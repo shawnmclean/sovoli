@@ -8,7 +8,6 @@ import {
   primaryKey,
   text,
   timestamp,
-  uuid,
   varchar,
 } from "drizzle-orm/pg-core";
 import { createSelectSchema } from "drizzle-zod";
@@ -20,8 +19,7 @@ export const UserType = createEnumObject(UserTypes);
 
 export const userTypeEnum = pgEnum("user_type", UserTypes);
 export const User = pgTable("user", {
-  tid: varchar("tid", { length: 256 }).unique().$defaultFn(createId),
-  id: uuid("id").notNull().primaryKey().defaultRandom(),
+  id: varchar("id", { length: 256 }).primaryKey().$defaultFn(createId),
   type: userTypeEnum("type").notNull().default(UserType.Human),
 
   name: varchar("name", { length: 255 }),
@@ -37,10 +35,9 @@ export type SelectUserSchema = z.infer<typeof SelectUserSchema>;
 export const Account = pgTable(
   "account",
   {
-    userId: uuid("user_id")
+    userId: varchar("user_id", { length: 256 })
       .notNull()
       .references(() => User.id, { onDelete: "cascade" }),
-    tid: varchar("tuser_id", { length: 256 }),
 
     type: text("type").$type<AdapterAccountType>().notNull(),
     provider: text("provider").notNull(),
@@ -62,10 +59,9 @@ export const Account = pgTable(
 
 export const Session = pgTable("session", {
   sessionToken: text("session_token").primaryKey(),
-  userId: uuid("user_id")
+  userId: varchar("user_id", { length: 256 })
     .notNull()
     .references(() => User.id, { onDelete: "cascade" }),
-  tuserId: varchar("tuser_id", { length: 256 }),
   expires: timestamp("expires", { mode: "date" }).notNull(),
 });
 
