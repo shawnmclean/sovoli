@@ -1,6 +1,5 @@
 export * from "./User";
 export * from "./UserRelations";
-export * from "./Embeddings";
 export * from "./Book";
 export * from "./BookRelations";
 export * from "./Knowledge";
