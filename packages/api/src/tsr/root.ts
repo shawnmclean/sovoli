@@ -6,7 +6,6 @@ import { contract } from "./contract";
 import { bookRouter } from "./router/book/bookRouter";
 import { knowledgeRouter } from "./router/knowledge/knowledgeRouter";
 import { userRouter } from "./router/user/userRouter";
-import { usersRouter } from "./router/users/usersRouter";
 
 export const router = tsr
   .platformContext<PlatformContext>()
@@ -26,5 +25,4 @@ export const router = tsr
   })
   .subRouter("user", userRouter)
   .subRouter("book", bookRouter)
-  .subRouter("users", usersRouter)
   .subRouter("knowledge", knowledgeRouter);

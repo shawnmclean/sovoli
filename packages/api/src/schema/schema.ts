@@ -1,4 +1,4 @@
-import { SelectBookSchema, SelectMyBookSchema } from "@sovoli/db/schema";
+import { SelectBookSchema } from "@sovoli/db/schema";
 import { z } from "zod";
 
 import { withPagination } from "./withPagination";
@@ -17,16 +17,3 @@ export const NotFoundSchema = z.object({
 });
 
 export const BooksResponseSchema = withPagination(SelectBookSchema);
-
-export const MyBookResponseSchema = SelectMyBookSchema.extend({
-  book: SelectBookSchema.nullish(),
-});
-
-export const MyBooksResponseSchema = withPagination(MyBookResponseSchema);
-export const PutMyBooksResponseSchema = MyBookResponseSchema.array();
-
-export const InferredBookSchema = z.object({
-  title: z.string().optional(),
-  author: z.string().optional(),
-  isbn: z.string().optional(),
-});

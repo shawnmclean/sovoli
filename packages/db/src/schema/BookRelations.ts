@@ -1,10 +1,8 @@
 import { relations } from "drizzle-orm";
 
 import { Author, AuthorToBook, Book, BookEmbedding } from "./Book";
-import { myBooks } from "./myBooks";
 
 export const BookRelations = relations(Book, ({ many, one }) => ({
-  myBooks: many(myBooks),
   embedding: one(BookEmbedding),
   authorsToBooks: many(AuthorToBook),
 }));
