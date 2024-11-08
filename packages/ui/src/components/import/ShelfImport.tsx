@@ -10,6 +10,10 @@ interface NormalizedBooks {
   author: string;
   isbn: string;
 }
+interface GroupedBooks {
+  name: string;
+  books: Omit<NormalizedBooks, "shelves">[];
+}
 
 function safeString(value: unknown): string {
   if (value == null) return ""; // Check for null or undefined and return an empty string
@@ -69,8 +73,30 @@ function extractDataFromCSVObject(
   return [];
 }
 
+function groupBooksByShelves(books: NormalizedBooks[]): GroupedBooks[] {
+  const shelvesMap: Record<string, NormalizedBooks[]> = {};
+
+  // Iterate through each book and organize them by shelves
+  books.forEach((book) => {
+    book.shelves.forEach((shelf) => {
+      if (!shelvesMap[shelf]) {
+        shelvesMap[shelf] = [];
+      }
+      shelvesMap[shelf].push(book);
+    });
+  });
+
+  // Convert the shelvesMap into an array of { name, books } objects
+  return Object.entries(shelvesMap).map(([name, books]) => ({
+    name,
+    books,
+  }));
+}
 export const ShelfImport = () => {
   const [books, setBooks] = useState<NormalizedBooks[]>([]);
+  const [groupedBooks, setGroupedBooks] = useState<GroupedBooks[]>([]);
+  const [activeTab, setActiveTab] = useState<"list" | "grouped">("list");
+
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: {
@@ -93,14 +119,12 @@ export const ShelfImport = () => {
         const sortedRecords = records.sort((a, b) => {
           const aIsInvalid = !a.title || !a.author || !a.isbn;
           const bIsInvalid = !b.title || !b.author || !b.isbn;
-
-          // Convert boolean values to numbers (true -> 1, false -> 0)
-          return Number(bIsInvalid) - Number(aIsInvalid); // Sort in descending order (errors first)
+          return Number(bIsInvalid) - Number(aIsInvalid);
         });
 
+        const groupedBooks = groupBooksByShelves(sortedRecords);
+        setGroupedBooks(groupedBooks);
         setBooks(sortedRecords);
-        console.log(data);
-        console.log(sortedRecords);
       };
       reader.readAsText(file);
     },
@@ -143,59 +167,113 @@ export const ShelfImport = () => {
         </div>
       </div>
 
-      <aside className="mt-6">
-        <h4 className="mb-4 text-lg font-semibold text-gray-700 dark:text-gray-300">
-          Accepted files
-        </h4>
-        <div className="overflow-x-auto">
-          <table className="min-w-full rounded-md border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
-            <thead className="border-b border-gray-200 bg-gray-100 dark:border-gray-600 dark:bg-gray-700">
-              <tr>
-                <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
-                  Shelf
-                </th>
-                <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
-                  Title
-                </th>
-                <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
-                  Author
-                </th>
-                <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
-                  ISBN
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {books.map((book) => {
-                // Check if any field is empty or contains an invalid value
-                const isInvalid = !book.title || !book.author || !book.isbn;
+      {/* Tab Navigation */}
+      <div className="mt-6 flex space-x-4">
+        <button
+          className={`rounded px-4 py-2 ${
+            activeTab === "list"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+          }`}
+          onClick={() => setActiveTab("list")}
+        >
+          List View
+        </button>
+        <button
+          className={`rounded px-4 py-2 ${
+            activeTab === "grouped"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+          }`}
+          onClick={() => setActiveTab("grouped")}
+        >
+          Grouped View
+        </button>
+      </div>
 
-                return (
-                  <tr
-                    key={book.isbn}
-                    className={`border-b border-gray-200 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-600 ${
-                      isInvalid ? "bg-red-100 dark:bg-red-800" : ""
-                    }`}
-                  >
-                    <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
-                      {book.shelves.join(", ")}
-                    </td>
-                    <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
-                      {book.title}
-                    </td>
-                    <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
-                      {book.author}
-                    </td>
-                    <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
-                      {book.isbn}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </aside>
+      {/* Tab Content */}
+      {activeTab === "list" ? (
+        <aside className="mt-6">
+          <h4 className="mb-4 text-lg font-semibold text-gray-700 dark:text-gray-300">
+            Accepted Files - List View
+          </h4>
+          <div className="overflow-x-auto">
+            <table className="min-w-full rounded-md border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+              <thead className="border-b border-gray-200 bg-gray-100 dark:border-gray-600 dark:bg-gray-700">
+                <tr>
+                  <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
+                    Shelf
+                  </th>
+                  <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
+                    Title
+                  </th>
+                  <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
+                    Author
+                  </th>
+                  <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
+                    ISBN
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {books.map((book, index) => {
+                  const isInvalid = !book.title || !book.author || !book.isbn;
+                  return (
+                    <tr
+                      key={index}
+                      className={`border-b border-gray-200 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-600 ${
+                        isInvalid ? "bg-red-100 dark:bg-red-800" : ""
+                      }`}
+                    >
+                      <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                        {book.shelves.join(", ")}
+                      </td>
+                      <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                        {book.title}
+                      </td>
+                      <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                        {book.author}
+                      </td>
+                      <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                        {book.isbn}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </aside>
+      ) : (
+        <aside className="mt-6">
+          <h4 className="mb-4 text-lg font-semibold text-gray-700 dark:text-gray-300">
+            Grouped Books by Shelves
+          </h4>
+          <div className="space-y-4">
+            {groupedBooks.map((group, index) => (
+              <div
+                key={index}
+                className="rounded-md border bg-gray-50 p-4 dark:bg-gray-800"
+              >
+                <h5 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                  {group.name}
+                </h5>
+                <ul className="mt-2 space-y-2">
+                  {group.books.map((book, bookIndex) => (
+                    <li
+                      key={bookIndex}
+                      className="text-gray-800 dark:text-gray-200"
+                    >
+                      <span className="font-semibold">{book.title}</span> by{" "}
+                      {book.author} (ISBN: {book.isbn})
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </aside>
+      )}
     </section>
   );
 };
