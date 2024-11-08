@@ -1,4 +1,4 @@
-import { BatchCreateKnowledge } from "@sovoli/api/services/knowledge/batchCreateKnowledge";
+import { BatchCreateKnowledges } from "@sovoli/api/services/knowledge/batchCreateKnowledges";
 import { auth } from "@sovoli/auth";
 import { db } from "@sovoli/db";
 
@@ -9,8 +9,8 @@ export default function NewPage() {
     if (!session) {
       throw new Error("Not authenticated");
     }
-    const batchCreateKnowledge = new BatchCreateKnowledge(db);
-    const created = await batchCreateKnowledge.call({
+    const batchCreateKnowledges = new BatchCreateKnowledges(db);
+    const created = await batchCreateKnowledges.call({
       authUserId: session.userId,
       knowledges: [
         {
