@@ -1,27 +1,27 @@
 import type { KnowledgeQueryType, KnowledgeType } from "@sovoli/db/schema";
 import { db, schema } from "@sovoli/db";
 
-export interface BatchCreateKnowledgeOptions {
+export interface BatchCreateKnowledgesOptions {
   authUserId: string;
   knowledges: {
     title?: string;
     description?: string;
     content?: string;
     type: KnowledgeType;
-    isOrigin: boolean;
+    isOrigin?: boolean;
     query?: string;
     queryType?: KnowledgeQueryType;
   }[];
 }
 
-export class BatchCreateKnowledge {
+export class BatchCreateKnowledges {
   dbClient: typeof db;
 
   constructor(dbClient: typeof db = db) {
     this.dbClient = dbClient;
   }
 
-  public async call({ authUserId, knowledges }: BatchCreateKnowledgeOptions) {
+  public async call({ authUserId, knowledges }: BatchCreateKnowledgesOptions) {
     if (knowledges.length === 0) {
       throw new Error("No knowledges provided");
     }
@@ -30,10 +30,13 @@ export class BatchCreateKnowledge {
       ...knowledge,
       userId: authUserId,
     }));
-
-    return await this.dbClient
+    const createdKnowledges = await this.dbClient
       .insert(schema.Knowledge)
       .values(knowledgesToCreate)
       .returning();
+
+    // TODO: call knowledgeUpserted
+
+    return createdKnowledges;
   }
 }

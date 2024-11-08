@@ -29,6 +29,7 @@ export const KnowledgeConnectionTypes = [
 export const KnowledgeConnectionType = createEnumObject(
   KnowledgeConnectionTypes,
 );
+export type KnowledgeConnectionType = (typeof KnowledgeConnectionTypes)[number];
 export const knowledgeConnectionTypeEnum = pgEnum(
   "knowledge_collection_type",
   KnowledgeConnectionTypes,

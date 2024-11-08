@@ -22,6 +22,15 @@ export default function NewPage() {
           queryType: "query",
           isOrigin: true,
         },
+        {
+          title: "test-2",
+          description: "test",
+          content: "test",
+          type: "collection",
+          query: "test",
+          queryType: "query",
+          isOrigin: true,
+        },
       ],
     });
     console.log(created);
