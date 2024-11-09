@@ -58,7 +58,7 @@ function mapGoodReadsSchema(
 function extractDataFromCSVObject(
   csvObject: Record<string, unknown>[],
 ): NormalizedBooks[] {
-  if (csvObject.length === 0) return [];
+  if (csvObject.length === 0) throw new Error("CSV file is empty");
 
   if (Object.prototype.hasOwnProperty.call(csvObject[0], "Bookshelves")) {
     return mapGoodReadsSchema(csvObject);
@@ -66,7 +66,7 @@ function extractDataFromCSVObject(
     return mapStoryGraphSchema(csvObject);
   }
 
-  return [];
+  throw new Error("Invalid CSV file");
 }
 
 function groupBooksByShelves(books: NormalizedBooks[]): GroupedBooks[] {
@@ -77,8 +77,11 @@ function groupBooksByShelves(books: NormalizedBooks[]): GroupedBooks[] {
       if (!shelvesMap[shelf]) {
         shelvesMap[shelf] = [];
       }
-      const { shelves, ...bookWithoutShelves } = book;
-      shelvesMap[shelf].push(bookWithoutShelves);
+      shelvesMap[shelf].push({
+        title: book.title,
+        author: book.author,
+        isbn: book.isbn,
+      });
     });
   });
 
@@ -88,11 +91,20 @@ function groupBooksByShelves(books: NormalizedBooks[]): GroupedBooks[] {
   }));
 }
 
-export const useCSVBooks = (
-  onBooksParsed: (books: NormalizedBooks[]) => void,
-) => {
-  const [books, setBooks] = useState<NormalizedBooks[]>([]);
-  const [groupedBooks, setGroupedBooks] = useState<GroupedBooks[]>([]);
+export interface ParsedBooksResult {
+  shelves: GroupedBooks[];
+  totalBooks: number;
+}
+
+export interface UseCSVBooksOptions {
+  onBooksParsed: (result: ParsedBooksResult) => void;
+}
+
+export const useCSVBooks = ({ onBooksParsed }: UseCSVBooksOptions) => {
+  const [parsedBooks, setParsedBooks] = useState<ParsedBooksResult | null>(
+    null,
+  );
+  const [error, setError] = useState<string | null>(null);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -102,16 +114,26 @@ export const useCSVBooks = (
       const reader = new FileReader();
       reader.onload = (event) => {
         const csvContent = event.target?.result as string;
-        const schema = inferSchema(csvContent);
-        const parser = initParser(schema);
-        const data = parser.typedObjs(csvContent);
-        const records = extractDataFromCSVObject(data);
+        let result: ParsedBooksResult;
+        try {
+          const schema = inferSchema(csvContent);
+          const parser = initParser(schema);
+          const data = parser.typedObjs(csvContent);
+          const records = extractDataFromCSVObject(data);
 
-        setBooks(records);
-        setGroupedBooks(groupBooksByShelves(records));
+          const shelves = groupBooksByShelves(records);
+          result = { shelves, totalBooks: records.length };
 
-        // Call the callback function with the parsed books
-        onBooksParsed(records);
+          setParsedBooks(result);
+          onBooksParsed(result);
+          setError(null);
+        } catch (e) {
+          if (e instanceof Error) {
+            setError(e.message);
+          } else {
+            setError("An unknown error occurred");
+          }
+        }
       };
       reader.readAsText(file);
     },
@@ -124,5 +146,5 @@ export const useCSVBooks = (
     onDrop,
   });
 
-  return { getRootProps, getInputProps, books, groupedBooks };
+  return { getRootProps, getInputProps, parsedBooks, error };
 };
