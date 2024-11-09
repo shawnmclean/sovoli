@@ -16,10 +16,10 @@ interface GroupedBooks {
 }
 
 function safeString(value: unknown): string {
-  if (value == null) return ""; // Check for null or undefined and return an empty string
-  if (typeof value === "string") return value; // Return the string directly if it's already a string
-  if (typeof value === "number" && !isNaN(value)) return value.toString(); // Convert valid numbers to strings
-  return ""; // Return an empty string for other cases (like NaN or non-string/number types)
+  if (value == null) return "";
+  if (typeof value === "string") return value;
+  if (typeof value === "number" && !isNaN(value)) return value.toString();
+  return "";
 }
 
 // Function to map data from StoryGraph Schema
@@ -29,7 +29,7 @@ function mapStoryGraphSchema(
   return data.map((item) => ({
     shelves: safeString(item.Tags)
       .split(",")
-      .map((tag) => tag.trim()), // Split tags into an array and trim
+      .map((tag) => tag.trim()),
     title: safeString(item.Title),
     author: safeString(item.Authors),
     isbn: safeString(item["ISBN/UID"]),
@@ -40,7 +40,6 @@ function mapGoodReadsSchema(
   data: Record<string, unknown>[],
 ): NormalizedBooks[] {
   return data.map((item) => {
-    // Helper function to clean ISBN values
     const cleanISBN = (isbn: unknown): string => {
       return safeString(isbn)
         .replace(/^="|"$|=/g, "")
@@ -50,10 +49,10 @@ function mapGoodReadsSchema(
     return {
       shelves: safeString(item.Bookshelves)
         .split(",")
-        .map((shelf) => shelf.trim()), // Split shelves into an array and trim
+        .map((shelf) => shelf.trim()),
       title: safeString(item.Title),
       author: safeString(item.Author),
-      isbn: cleanISBN(item.ISBN13 ?? item.ISBN), // Clean ISBN values
+      isbn: cleanISBN(item.ISBN13 ?? item.ISBN),
     };
   });
 }
@@ -63,7 +62,6 @@ function extractDataFromCSVObject(
 ): NormalizedBooks[] {
   if (csvObject.length === 0) return [];
 
-  // Detect schema based on the presence of certain keys
   if (Object.prototype.hasOwnProperty.call(csvObject[0], "Bookshelves")) {
     return mapGoodReadsSchema(csvObject);
   } else if (Object.prototype.hasOwnProperty.call(csvObject[0], "Tags")) {
@@ -74,45 +72,53 @@ function extractDataFromCSVObject(
 }
 
 function groupBooksByShelves(books: NormalizedBooks[]): GroupedBooks[] {
-  const shelvesMap: Record<string, NormalizedBooks[]> = {};
+  const shelvesMap: Record<string, Omit<NormalizedBooks, "shelves">[]> = {};
 
-  // Iterate through each book and organize them by shelves
   books.forEach((book) => {
     book.shelves.forEach((shelf) => {
       if (!shelvesMap[shelf]) {
         shelvesMap[shelf] = [];
       }
-      shelvesMap[shelf].push(book);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { shelves, ...bookWithoutShelves } = book;
+      shelvesMap[shelf].push(bookWithoutShelves);
     });
   });
 
-  // Convert the shelvesMap into an array of { name, books } objects
   return Object.entries(shelvesMap).map(([name, books]) => ({
     name,
     books,
   }));
 }
-export const ShelfImport = () => {
+
+export interface ShelfImportProps {
+  userCollections: {
+    id: string;
+    name: string;
+    type: "shelf" | "collection";
+    itemCount: number;
+  }[];
+}
+
+export const ShelfImport = ({ userCollections }: ShelfImportProps) => {
   const [books, setBooks] = useState<NormalizedBooks[]>([]);
   const [groupedBooks, setGroupedBooks] = useState<GroupedBooks[]>([]);
-  const [activeTab, setActiveTab] = useState<"list" | "grouped">("list");
+  const [selectedValues, setSelectedValues] = useState<Record<string, string>>(
+    {},
+  );
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: {
-      "text/csv": [".csv"],
-    },
+    accept: { "text/csv": [".csv"] },
     onDrop: (acceptedFiles) => {
       const file = acceptedFiles[0];
-      if (!file) {
-        return;
-      }
+      if (!file) return;
+
       const reader = new FileReader();
       reader.onload = (event) => {
         const csvContent = event.target?.result as string;
         const schema = inferSchema(csvContent);
         const parser = initParser(schema);
-
         const data = parser.typedObjs(csvContent);
         const records = extractDataFromCSVObject(data);
 
@@ -129,6 +135,13 @@ export const ShelfImport = () => {
       reader.readAsText(file);
     },
   });
+
+  const handleDropdownChange = (shelfName: string, value: string) => {
+    setSelectedValues((prev) => ({
+      ...prev,
+      [shelfName]: value,
+    }));
+  };
 
   return (
     <section className="container mx-auto p-4">
@@ -167,113 +180,41 @@ export const ShelfImport = () => {
         </div>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="mt-6 flex space-x-4">
-        <button
-          className={`rounded px-4 py-2 ${
-            activeTab === "list"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
-          }`}
-          onClick={() => setActiveTab("list")}
-        >
-          List View
-        </button>
-        <button
-          className={`rounded px-4 py-2 ${
-            activeTab === "grouped"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
-          }`}
-          onClick={() => setActiveTab("grouped")}
-        >
-          Grouped View
-        </button>
-      </div>
-
-      {/* Tab Content */}
-      {activeTab === "list" ? (
-        <aside className="mt-6">
-          <h4 className="mb-4 text-lg font-semibold text-gray-700 dark:text-gray-300">
-            Accepted Files - List View
-          </h4>
-          <div className="overflow-x-auto">
-            <table className="min-w-full rounded-md border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
-              <thead className="border-b border-gray-200 bg-gray-100 dark:border-gray-600 dark:bg-gray-700">
-                <tr>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
+      {/* Shelves Grid */}
+      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {groupedBooks.map((shelf) => (
+          <div
+            key={shelf.name}
+            className="rounded-lg bg-white p-4 shadow-md dark:bg-gray-700"
+          >
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+              {shelf.name} ({shelf.books.length})
+            </h3>
+            <select
+              className="mt-2 w-full rounded border p-2"
+              value={selectedValues[shelf.name] ?? "new-shelf"}
+              onChange={(e) => handleDropdownChange(shelf.name, e.target.value)}
+            >
+              <option value="new-shelf">New Shelf</option>
+              {userCollections.map((collection) => (
+                <option key={collection.id} value={collection.id}>
+                  {collection.name} ({collection.itemCount})
+                </option>
+              ))}
+            </select>
+            {selectedValues[shelf.name] === "new-shelf" && (
+              <div className="mt-2">
+                <label className="flex items-center space-x-2">
+                  <input type="checkbox" className="form-checkbox" />
+                  <span className="text-gray-700 dark:text-gray-300">
                     Shelf
-                  </th>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
-                    Title
-                  </th>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
-                    Author
-                  </th>
-                  <th className="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-300">
-                    ISBN
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {books.map((book, index) => {
-                  const isInvalid = !book.title || !book.author || !book.isbn;
-                  return (
-                    <tr
-                      key={index}
-                      className={`border-b border-gray-200 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-600 ${
-                        isInvalid ? "bg-red-100 dark:bg-red-800" : ""
-                      }`}
-                    >
-                      <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
-                        {book.shelves.join(", ")}
-                      </td>
-                      <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
-                        {book.title}
-                      </td>
-                      <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
-                        {book.author}
-                      </td>
-                      <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
-                        {book.isbn}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </aside>
-      ) : (
-        <aside className="mt-6">
-          <h4 className="mb-4 text-lg font-semibold text-gray-700 dark:text-gray-300">
-            Grouped Books by Shelves
-          </h4>
-          <div className="space-y-4">
-            {groupedBooks.map((group, index) => (
-              <div
-                key={index}
-                className="rounded-md border bg-gray-50 p-4 dark:bg-gray-800"
-              >
-                <h5 className="text-xl font-bold text-gray-800 dark:text-gray-200">
-                  {group.name}
-                </h5>
-                <ul className="mt-2 space-y-2">
-                  {group.books.map((book, bookIndex) => (
-                    <li
-                      key={bookIndex}
-                      className="text-gray-800 dark:text-gray-200"
-                    >
-                      <span className="font-semibold">{book.title}</span> by{" "}
-                      {book.author} (ISBN: {book.isbn})
-                    </li>
-                  ))}
-                </ul>
+                  </span>
+                </label>
               </div>
-            ))}
+            )}
           </div>
-        </aside>
-      )}
+        ))}
+      </div>
     </section>
   );
 };
