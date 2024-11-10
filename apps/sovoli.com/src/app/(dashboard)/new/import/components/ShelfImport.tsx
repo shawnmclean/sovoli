@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import type { GroupedBooks, ParsedBooksResult } from "./hooks/useCSVBooks";
+import type { GroupedBooks, ParsedBooksResult } from "../hooks/useCSVBooks";
 import { ImportForm } from "./ImportForm";
 import { ReadCSV } from "./ReadCSV";
 

@@ -1,4 +1,4 @@
-import { ShelfImport } from "@sovoli/ui/components/import/ShelfImport";
+import { ShelfImport } from "./components/ShelfImport";
 
 export default function ImportPage() {
   return (

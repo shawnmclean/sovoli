@@ -159,12 +159,18 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      react-dropzone:
+        specifier: 14.3.5
+        version: 14.3.5(react@18.2.0)
       server-only:
         specifier: 0.0.1
         version: 0.0.1
       superjson:
         specifier: 2.2.1
         version: 2.2.1
+      udsv:
+        specifier: 0.6.0
+        version: 0.6.0
       zod:
         specifier: 'catalog:'
         version: 3.23.8
@@ -554,9 +560,9 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
-      react-dropzone:
-        specifier: 14.3.5
-        version: 14.3.5(react@18.2.0)
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
       react-markdown:
         specifier: 9.0.1
         version: 9.0.1(@types/react@18.2.79)(react@18.2.0)
@@ -591,6 +597,9 @@ importers:
       '@types/react':
         specifier: 18.2.79
         version: 18.2.79
+      '@types/react-dom':
+        specifier: 18.2.18
+        version: 18.2.18
       eslint:
         specifier: 'catalog:'
         version: 9.8.0

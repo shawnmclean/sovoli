@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { importShelfAction } from "../actions/importShelfAction";
+
 // Define the interfaces
 interface NormalizedBooks {
   title: string;
@@ -15,22 +17,11 @@ interface GroupedBooks {
   books: Omit<NormalizedBooks, "shelves">[];
 }
 
-interface ImportFormProps {
-  userCollections: {
-    id: string;
-    name: string;
-    type: "shelf" | "collection";
-    itemCount: number;
-  }[];
-  groupedBooks: GroupedBooks[];
-}
-
 // ShelfItem Component
 const ShelfItem = ({
   name,
   booksCount,
   userCollections,
-  onDropdownChange,
 }: {
   name: string;
   booksCount: number;
@@ -40,7 +31,6 @@ const ShelfItem = ({
     type: "shelf" | "collection";
     itemCount: number;
   }[];
-  onDropdownChange: (value: string) => void;
 }) => {
   const [isAddEnabled, setIsAddEnabled] = useState(false);
   const [selectedValue, setSelectedValue] = useState("new-shelf");
@@ -51,7 +41,6 @@ const ShelfItem = ({
 
   const handleDropdownChange = (value: string) => {
     setSelectedValue(value);
-    onDropdownChange(value);
   };
 
   return (
@@ -75,6 +64,7 @@ const ShelfItem = ({
         className={`mt-2 w-full rounded border p-2 ${
           !isAddEnabled ? "opacity-50" : ""
         }`}
+        name="collection"
         value={selectedValue}
         onChange={(e) => handleDropdownChange(e.target.value)}
         disabled={!isAddEnabled}
@@ -99,27 +89,37 @@ const ShelfItem = ({
   );
 };
 
+interface ImportFormProps {
+  userCollections: {
+    id: string;
+    name: string;
+    type: "shelf" | "collection";
+    itemCount: number;
+  }[];
+  groupedBooks: GroupedBooks[];
+}
+
 // ImportForm Component
 export const ImportForm = ({
   userCollections,
   groupedBooks,
 }: ImportFormProps) => {
-  const handleDropdownChange = (shelfName: string, value: string) => {
-    // Handle dropdown change logic here
-    console.log(shelfName, value);
-  };
-
   return (
     <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {groupedBooks.map((shelf) => (
-        <ShelfItem
-          key={shelf.name}
-          name={shelf.name}
-          booksCount={shelf.books.length}
-          userCollections={userCollections}
-          onDropdownChange={(value) => handleDropdownChange(shelf.name, value)}
-        />
-      ))}
+      <form action={importShelfAction}>
+        <input id="shelves[0].name" name="test[0].name" type="text" />
+        {groupedBooks.map((shelf) => (
+          <ShelfItem
+            key={shelf.name}
+            name={shelf.name}
+            booksCount={shelf.books.length}
+            userCollections={userCollections}
+          />
+        ))}
+        <button type="submit" className="btn btn-primary">
+          Import
+        </button>
+      </form>
     </div>
   );
 };

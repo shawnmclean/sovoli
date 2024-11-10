@@ -1,5 +1,5 @@
-import type { ParsedBooksResult } from "./hooks/useCSVBooks";
-import { useCSVBooks } from "./hooks/useCSVBooks";
+import type { ParsedBooksResult } from "../hooks/useCSVBooks";
+import { useCSVBooks } from "../hooks/useCSVBooks";
 
 export interface ReadCSVProps {
   onBooksParsed: (result: ParsedBooksResult) => void;
