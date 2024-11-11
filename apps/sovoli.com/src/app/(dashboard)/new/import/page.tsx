@@ -1,9 +1,9 @@
-import { ShelfImport } from "./components/ShelfImport";
+import { ShelfImportForm } from "./components/ShelfImportForm";
 
 export default function ImportPage() {
   return (
     <div className="min-h-screen dark:bg-black sm:pl-60">
-      <ShelfImport
+      <ShelfImportForm
         userCollections={[
           {
             id: "1",
