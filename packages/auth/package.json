@@ -22,15 +22,16 @@
     "@auth/drizzle-adapter": "1.4.2",
     "next": "catalog:",
     "next-auth": "5.0.0-beta.20",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",
     "@sovoli/prettier-config": "workspace:*",
     "@sovoli/typescript-config": "workspace:*",
-    "@types/react": "18.2.79",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
