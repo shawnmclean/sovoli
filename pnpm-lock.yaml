@@ -108,6 +108,9 @@ importers:
 
   apps/sovoli.com:
     dependencies:
+      '@rvf/zod':
+        specifier: 6.0.3
+        version: 6.0.3(@rvf/core@6.1.4(@rvf/set-get@6.0.3)(react@18.2.0))(@rvf/set-get@6.0.3)(zod@3.23.8)
       '@scalar/nextjs-api-reference':
         specifier: 0.4.89
         version: 0.4.89(next@14.2.5(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
@@ -3780,6 +3783,22 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
+  '@rvf/core@6.1.4':
+    resolution: {integrity: sha512-sViRtsw7rSKT9duxiwmo+7NmowQMrJsV5noOc24sEiv/P6Ru1iDd6VVVWgZZGB0asapvqA8wzFj2lLyHnPMuLg==}
+    peerDependencies:
+      '@rvf/set-get': '>= 6.0.3 < 7.0.0'
+      react: ^17.0.2 || ^18.0.0
+
+  '@rvf/set-get@6.0.3':
+    resolution: {integrity: sha512-nv9r1Kr+eRaE9+e50atTqbNmobY7EiTGfh7OlDXyWe71nFK9XsQ3K4Tq1J/FsjrzhBGzGUGwLRxGd8/mxv+i6Q==}
+
+  '@rvf/zod@6.0.3':
+    resolution: {integrity: sha512-TiFbH6X5ru6ZJfip4oIT5MNlBO2trqZR9UqbkAAGDIzU+saw3A8C9yc/aAI9MdgEvQoerPRC68Tsze77cvdZHw==}
+    peerDependencies:
+      '@rvf/core': '>= 0.0.0 < 7.0.0'
+      '@rvf/set-get': '>= 6.0.3 < 7.0.0'
+      zod: '>= 3.11.0'
+
   '@scalar/nextjs-api-reference@0.4.89':
     resolution: {integrity: sha512-8TnKM4BvBgP2Nfq7uZqCScrcV733fFkDvfWfuW7WMVFyPIgNqwVZeyAZ0D5qCQ2xMp5Gw6B/Cz9YaMuGl/DUZA==}
     engines: {node: '>=18'}
@@ -5785,6 +5804,9 @@ packages:
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
+
+  immer@10.1.1:
+    resolution: {integrity: sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==}
 
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -12541,6 +12563,20 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
+  '@rvf/core@6.1.4(@rvf/set-get@6.0.3)(react@18.2.0)':
+    dependencies:
+      '@rvf/set-get': 6.0.3
+      immer: 10.1.1
+      react: 18.2.0
+
+  '@rvf/set-get@6.0.3': {}
+
+  '@rvf/zod@6.0.3(@rvf/core@6.1.4(@rvf/set-get@6.0.3)(react@18.2.0))(@rvf/set-get@6.0.3)(zod@3.23.8)':
+    dependencies:
+      '@rvf/core': 6.1.4(@rvf/set-get@6.0.3)(react@18.2.0)
+      '@rvf/set-get': 6.0.3
+      zod: 3.23.8
+
   '@scalar/nextjs-api-reference@0.4.89(next@14.2.5(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@scalar/types': 0.0.10
@@ -14894,6 +14930,8 @@ snapshots:
   ieee754@1.2.1: {}
 
   ignore@5.3.2: {}
+
+  immer@10.1.1: {}
 
   import-fresh@3.3.0:
     dependencies:

@@ -20,6 +20,9 @@ export interface ShelfImportFormProps {
 export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
   const [groupedBooks, setGroupedBooks] = useState<GroupedCSVBooks[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [mapping, setMapping] = useState<
+    { from: string; to: { id?: string; name?: string }; isEnabled: boolean }[]
+  >([]);
 
   const handleFileDropped = (file: File) => {
     try {
@@ -32,6 +35,14 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
           const grouped = groupCSVBooksByShelves(books);
           setGroupedBooks(grouped);
           setError(null); // Clear any previous errors
+
+          // Initialize the mapping based on parsed shelves
+          const initialMapping = grouped.map((shelf) => ({
+            from: shelf.name,
+            to: { id: undefined, name: "new-shelf" },
+            isEnabled: false, // Initially, "Add" is unchecked
+          }));
+          setMapping(initialMapping);
         } catch {
           setError(
             "Failed to parse the CSV file. Please check the format and try again.",
@@ -49,9 +60,29 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
     }
   };
 
+  const handleAddCheckboxChange = (index: number) => {
+    const updatedMapping = [...mapping];
+    if (updatedMapping[index]) {
+      updatedMapping[index].isEnabled = !updatedMapping[index].isEnabled;
+      setMapping(updatedMapping);
+    }
+  };
+
+  const handleDropdownChange = (index: number, value: string) => {
+    const updatedMapping = [...mapping];
+    if (updatedMapping[index]) {
+      updatedMapping[index].to = userCollections.find(
+        (collection) => collection.id === value,
+      )
+        ? { id: value, name: undefined }
+        : { id: undefined, name: "new-shelf" };
+      setMapping(updatedMapping);
+    }
+  };
+
   return (
     <section className="container mx-auto p-4">
-      <form action={importShelfAction}>
+      <form action={importShelfAction} method="post">
         <CSVFileInput onFileDropped={handleFileDropped} name="csvFile" />
 
         {error && (
@@ -60,14 +91,46 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
           </div>
         )}
 
-        {groupedBooks.map((shelf) => (
+        {groupedBooks.map((shelf, index) => (
           <ShelfItem
             key={shelf.name}
             name={shelf.name}
             booksCount={shelf.books.length}
             userCollections={userCollections}
+            isAddEnabled={mapping[index]?.isEnabled ?? false}
+            onAddCheckboxChange={() => handleAddCheckboxChange(index)}
+            selectedValue={mapping[index]?.to.id ?? "new-shelf"}
+            onDropdownChange={(value) => handleDropdownChange(index, value)}
           />
         ))}
+
+        {/* Structured Hidden Inputs */}
+        {mapping.map(
+          (map, index) =>
+            map.isEnabled && (
+              <div key={index}>
+                <input
+                  type="hidden"
+                  name={`mapping[${index}][from]`}
+                  value={map.from}
+                />
+                {map.to.id && (
+                  <input
+                    type="hidden"
+                    name={`mapping[${index}][to][id]`}
+                    value={map.to.id}
+                  />
+                )}
+                {map.to.name && (
+                  <input
+                    type="hidden"
+                    name={`mapping[${index}][to][name]`}
+                    value={map.to.name}
+                  />
+                )}
+              </div>
+            ),
+        )}
 
         <button type="submit" className="btn btn-primary">
           Import
@@ -81,6 +144,10 @@ const ShelfItem = ({
   name,
   booksCount,
   userCollections,
+  isAddEnabled,
+  onAddCheckboxChange,
+  selectedValue,
+  onDropdownChange,
 }: {
   name: string;
   booksCount: number;
@@ -90,18 +157,11 @@ const ShelfItem = ({
     type: "shelf" | "collection";
     itemCount: number;
   }[];
+  isAddEnabled: boolean;
+  onAddCheckboxChange: () => void;
+  selectedValue: string;
+  onDropdownChange: (value: string) => void;
 }) => {
-  const [isAddEnabled, setIsAddEnabled] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("new-shelf");
-
-  const handleAddCheckboxChange = () => {
-    setIsAddEnabled((prev) => !prev);
-  };
-
-  const handleDropdownChange = (value: string) => {
-    setSelectedValue(value);
-  };
-
   return (
     <div className="rounded-lg p-4 shadow-md dark:bg-gray-700">
       <div className="flex items-center justify-between">
@@ -113,7 +173,7 @@ const ShelfItem = ({
             type="checkbox"
             className="form-checkbox"
             checked={isAddEnabled}
-            onChange={handleAddCheckboxChange}
+            onChange={onAddCheckboxChange}
           />
           <span className="text-gray-700 dark:text-gray-300">Add</span>
         </label>
@@ -125,7 +185,7 @@ const ShelfItem = ({
         }`}
         name="collection"
         value={selectedValue}
-        onChange={(e) => handleDropdownChange(e.target.value)}
+        onChange={(e) => onDropdownChange(e.target.value)}
         disabled={!isAddEnabled}
       >
         <option value="new-shelf">New Shelf</option>

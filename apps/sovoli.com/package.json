@@ -17,6 +17,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@rvf/zod": "6.0.3",
     "@sovoli/api": "workspace:*",
     "@sovoli/auth": "workspace:*",
     "@sovoli/db": "workspace:*",

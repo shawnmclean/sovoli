@@ -1,5 +1,6 @@
 "use server";
 
+import { withZod } from "@rvf/zod";
 import { z } from "zod";
 
 import { groupCSVBooksByShelves } from "../lib/groupCSVBooksByShelves";
@@ -15,43 +16,35 @@ const csvFileSchema = z.instanceof(File).refine(
 );
 const importShelfSchema = z.object({
   csvFile: csvFileSchema,
-  mapping: z
-    .object({
-      shelves: z
-        .array(
-          z.object({
-            from: z.string(),
-            to: z.object({
-              id: z.string().optional(),
-              name: z.string().optional(),
-            }),
-          }),
-        )
-        .min(1),
-    })
-    .optional(),
+  mapping: z.array(
+    z.object({
+      from: z.string(),
+      to: z.object({
+        id: z.string().optional(),
+        name: z.string().optional(),
+      }),
+    }),
+  ),
 });
 
-export async function importShelfAction(formData: FormData) {
-  console.log(formData);
-  const data = Object.fromEntries(formData);
-  console.log(data);
-  const validatedFields = importShelfSchema.safeParse(data);
+const validator = withZod(importShelfSchema);
 
-  // Return early if the form data is invalid
-  if (!validatedFields.success) {
-    console.log(validatedFields.error.flatten().fieldErrors);
+export async function importShelfAction(formData: FormData) {
+  const result = await validator.validate(formData);
+
+  if (result.error) {
+    console.error(result.error.fieldErrors);
     return {
-      errors: validatedFields.error.flatten().fieldErrors,
+      errors: result.error.fieldErrors,
     };
   }
 
   try {
-    const file = data.csvFile as File;
+    const file = result.data.csvFile;
     const csvContent = await file.text();
     const books = parseCSVIntoBooks(csvContent);
     const groupedBooks = groupCSVBooksByShelves(books);
-    console.log(groupedBooks);
+    console.log(groupedBooks.length);
   } catch (e) {
     console.log(e);
   }
