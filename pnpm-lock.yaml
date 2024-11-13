@@ -202,6 +202,9 @@ importers:
       '@sovoli/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
+      '@types/lodash':
+        specifier: 4.17.10
+        version: 4.17.10
       '@types/node':
         specifier: 'catalog:'
         version: 22.8.0

@@ -76,7 +76,33 @@ export async function importShelfAction(formData: FormData) {
 
     const userMapping = result.data.mapping;
 
-    // TODO: move everything here to a service
+    // authorization check for existing shelves
+    const existingShelfIds =
+      userMapping?.map((m) => m.to.id).filter((id) => id != null) ?? [];
+    if (existingShelfIds.length > 0) {
+      const userShelvesFromDb = await db.query.Knowledge.findMany({
+        where: and(
+          eq(schema.Knowledge.userId, session.userId),
+          inArray(schema.Knowledge.id, existingShelfIds),
+        ),
+      });
+      // Get the IDs of shelves the user is authorized to modify
+      const userShelvesIdsFromDb = userShelvesFromDb.map((shelf) => shelf.id);
+
+      // Find any shelves in existingShelfIds that the user doesn't own
+      const unauthorizedShelves = existingShelfIds.filter(
+        (shelfId) => !userShelvesIdsFromDb.includes(shelfId),
+      );
+
+      // If there are any unauthorized shelves, throw an error
+      if (unauthorizedShelves.length > 0) {
+        throw new Error(
+          `You are not authorized to modify the following shelves: ${unauthorizedShelves.join(", ")}`,
+        );
+      }
+    }
+
+    // TODO: move everything here to a background service
     interface ShelfMapping {
       books: {
         query: string;
@@ -120,30 +146,6 @@ export async function importShelfAction(formData: FormData) {
           books: mapBooks(shelf.books),
         });
       }
-    }
-
-    const userShelvesFromDb = await db.query.Knowledge.findMany({
-      where: and(
-        eq(schema.Knowledge.userId, session.userId),
-        inArray(
-          schema.Knowledge.id,
-          existingShelves.map((s) => s.id),
-        ),
-      ),
-    });
-
-    const dbOwnedShelfIds = new Set(userShelvesFromDb.map((shelf) => shelf.id));
-
-    const unownedShelves = existingShelves.filter(
-      (shelf) => !dbOwnedShelfIds.has(shelf.id),
-    );
-
-    if (unownedShelves.length > 0) {
-      throw new Error(
-        `Unauthorized access: The following shelves are not owned by the user - ${unownedShelves
-          .map((shelf) => shelf.id)
-          .join(", ")}`,
-      );
     }
 
     const insertedShelves = await db
