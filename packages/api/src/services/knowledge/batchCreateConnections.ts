@@ -1,10 +1,10 @@
 import type { KnowledgeConnectionType } from "@sovoli/db/schema";
-import { db, schema } from "@sovoli/db";
+import { db, eq, schema } from "@sovoli/db";
 
 export interface BatchCreateConnectionsOptions {
   authUserId: string;
+  sourceKnowledgeId: string;
   connections: {
-    sourceKnowledgeId: string;
     targetKnowledgeId: string;
     notes?: string;
     metadata?: {
@@ -22,15 +22,37 @@ export class BatchCreateConnections {
     this.dbClient = dbClient;
   }
 
-  public async call({ connections }: BatchCreateConnectionsOptions) {
+  public async call({
+    authUserId,
+    sourceKnowledgeId,
+    connections,
+  }: BatchCreateConnectionsOptions) {
     if (connections.length === 0) {
       throw new Error("No connections provided");
     }
-    // TODO: should probably auth check if we can create connections for the source knowledge
+    const sourceKnowledge = await db.query.Knowledge.findFirst({
+      where: eq(schema.Knowledge.id, sourceKnowledgeId),
+    });
+
+    if (!sourceKnowledge) {
+      throw new Error("Source knowledge not found");
+    }
+
+    if (sourceKnowledge.userId !== authUserId) {
+      throw new Error(
+        "User does not have the rights to create connections for the source knowledge",
+      );
+    }
+
+    const connectionsToCreate = connections.map((connection) => ({
+      ...connection,
+      sourceKnowledgeId: sourceKnowledgeId,
+      userId: authUserId,
+    }));
 
     const createdConnections = await this.dbClient
       .insert(schema.KnowledgeConnection)
-      .values(connections)
+      .values(connectionsToCreate)
       .returning();
 
     return createdConnections;
