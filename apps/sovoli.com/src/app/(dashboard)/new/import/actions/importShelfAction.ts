@@ -1,13 +1,9 @@
 "use server";
 
 import { withZod } from "@rvf/zod";
-import {
-  BatchCreateKnowledges,
-  BatchCreateKnowledgesOptions,
-} from "@sovoli/api/services/knowledge/batchCreateKnowledges";
 import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, schema } from "@sovoli/db";
-import { KnowledgeQueryType, KnowledgeType } from "@sovoli/db/schema";
+import { KnowledgeQueryType } from "@sovoli/db/schema";
 import { z } from "zod";
 
 import { groupCSVBooksByShelves } from "../lib/groupCSVBooksByShelves";

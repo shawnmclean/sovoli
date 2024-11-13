@@ -1,5 +1,6 @@
 "use client";
 
+import type { KnowledgeType } from "@sovoli/db/schema";
 import { useState } from "react";
 
 import type { GroupedCSVBooks } from "../lib/groupCSVBooksByShelves";
@@ -11,8 +12,8 @@ import { CSVFileInput } from "./CSVFileInput";
 export interface ShelfImportFormProps {
   userCollections: {
     id: string;
-    name: string;
-    type: "shelf" | "collection";
+    title?: string | null;
+    type: KnowledgeType;
     itemCount: number;
   }[];
 }
@@ -153,8 +154,8 @@ const ShelfItem = ({
   booksCount: number;
   userCollections: {
     id: string;
-    name: string;
-    type: "shelf" | "collection";
+    title?: string | null;
+    type: KnowledgeType;
     itemCount: number;
   }[];
   isAddEnabled: boolean;
@@ -191,7 +192,7 @@ const ShelfItem = ({
         <option value="new-shelf">New Shelf</option>
         {userCollections.map((collection) => (
           <option key={collection.id} value={collection.id}>
-            {collection.name} ({collection.itemCount})
+            {collection.title} ({collection.itemCount})
           </option>
         ))}
       </select>
