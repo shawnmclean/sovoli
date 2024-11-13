@@ -40,20 +40,10 @@ function getPrivacyFilter(authUserId?: string) {
 }
 
 function getSlugOrIdFilter(slugOrId: string) {
-  function isUUID(value: string): boolean {
-    const uuidRegex =
-      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-    return uuidRegex.test(value);
-  }
-
-  // Check if the slugOrId is a UUID
-  if (isUUID(slugOrId)) {
-    // If it's a UUID, search by ID
-    return eq(schema.Knowledge.id, slugOrId);
-  } else {
-    // Otherwise, treat it as a slug
-    return eq(schema.Knowledge.slug, slugOrId);
-  }
+  return or(
+    eq(schema.Knowledge.slug, slugOrId),
+    eq(schema.Knowledge.id, slugOrId),
+  );
 }
 
 export async function getKnowledgeBySlug({
