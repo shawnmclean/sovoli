@@ -1,5 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
-import { sql } from "drizzle-orm";
+import { InferInsertModel, sql } from "drizzle-orm";
 import {
   integer,
   jsonb,
@@ -89,6 +89,10 @@ export const KnowledgeConnection = pgTable(
       ),
   }),
 );
+
+export type InsertKnowledgeConnection = InferInsertModel<
+  typeof KnowledgeConnection
+>;
 
 const baseSelectKnowledgeConnectionSchema = createSelectSchema(
   KnowledgeConnection,

@@ -42,6 +42,7 @@
     "server-only": "0.0.1",
     "superjson": "2.2.1",
     "zod": "catalog:",
+    "lodash": "4.17.21",
     "@scalar/openapi-parser": "0.8.4",
     "@scalar/nextjs-api-reference": "0.4.89"
   },
