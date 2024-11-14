@@ -22,7 +22,7 @@ export default async function ImportPage() {
   });
 
   return (
-    <div className="min-h-screen dark:bg-black sm:pl-60">
+    <div className="min-h-screen dark:bg-black">
       <ShelfImportForm userCollections={existingCollections} />
     </div>
   );

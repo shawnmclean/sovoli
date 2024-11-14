@@ -203,7 +203,7 @@ export default async function KnowledgesPage({ params, searchParams }: Props) {
   });
 
   return (
-    <div className="min-h-screen sm:pl-60 dark:bg-black">
+    <div className="min-h-screen dark:bg-black">
       <h1>{user.name}'s Collections</h1>
       <div>
         {collections.data.map((collection) => (

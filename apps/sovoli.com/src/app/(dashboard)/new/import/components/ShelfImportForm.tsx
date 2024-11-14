@@ -48,44 +48,43 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
     <section className="container mx-auto p-4">
       <Card>
         <form action={importShelfAction} method="post">
-          {currentStep === "file" && (
-            <>
-              <CardHeader>
-                <div className="flex flex-col gap-2">
-                  <h1 className="text-2xl font-bold">
-                    Upload your Goodreads or Storygraph data
-                  </h1>
-                  <p className="text-default-500">
-                    Upload or drag and drop the file below
-                  </p>
-                </div>
-              </CardHeader>
-              <Divider />
-              <CardBody>
-                <SelectFileStep onValidFileSelected={handleValidFileSelected} />
-              </CardBody>
-              <Divider />
-              <CardFooter>Upload stuff</CardFooter>
-            </>
-          )}
+          <CardHeader>
+            <div className="flex flex-col gap-2">
+              <h1 className="text-2xl font-bold">
+                {currentStep === "file"
+                  ? "Upload your Goodreads or Storygraph data"
+                  : "Map shelves"}
+              </h1>
+              <p className="text-default-500">
+                {currentStep === "file"
+                  ? "Upload or drag and drop the file below"
+                  : "Ensure you select shelves to import and map to existing ones"}
+              </p>
+            </div>
+          </CardHeader>
+          <Divider />
+          <CardBody>
+            <div className={currentStep === "file" ? "" : "hidden"}>
+              <SelectFileStep onValidFileSelected={handleValidFileSelected} />
+            </div>
 
-          {currentStep === "mapping" && (
-            <>
-              <CardHeader>
-                <div className="flex flex-col">
-                  <p className="text-md">NextUI</p>
-                  <p className="text-small text-default-500">nextui.org</p>
-                </div>
-              </CardHeader>
-              <Divider />
-              <CardBody>
-                <ShelfMappingStep
-                  shelves={shelves}
-                  userCollections={userCollections}
-                />
-              </CardBody>
-              <Divider />
-              <CardFooter>
+            {/* Only render the mapping step when the current step is "mapping" */}
+            {currentStep === "mapping" && (
+              <ShelfMappingStep
+                shelves={shelves}
+                userCollections={userCollections}
+              />
+            )}
+          </CardBody>
+          <Divider />
+          <CardFooter>
+            {currentStep === "file" ? (
+              <>
+                TODO: instructions for exporting data from Goodreads and
+                Storygraph
+              </>
+            ) : (
+              <>
                 <button
                   type="button"
                   onClick={handleBackToFileStep}
@@ -96,9 +95,9 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
                 <button type="submit" className="btn btn-primary">
                   Import
                 </button>
-              </CardFooter>
-            </>
-          )}
+              </>
+            )}
+          </CardFooter>
         </form>
       </Card>
     </section>
@@ -188,7 +187,6 @@ const ShelfMappingStep = ({
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 p-4">
-      <h1 className="text-2xl font-bold">Map books to shelves</h1>
       {shelves.map((shelf, index) => (
         <ShelfItem
           key={shelf.name}

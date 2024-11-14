@@ -20,17 +20,25 @@ export const CSVFileInput = ({ name, onFileDropped }: CSVFileInputProps) => {
   return (
     <div
       {...getRootProps({
-        className: "border-2 border-dashed rounded-xl p-6 text-center",
+        className:
+          "flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600",
       })}
     >
-      <input {...getInputProps()} name={name} id={name} className="sr-only" />
+      <input
+        {...getInputProps()}
+        title="upload file"
+        name={name}
+        id={name}
+        className="sr-only"
+      />
       <div className="flex flex-col items-center justify-center">
         <CloudUpload className="mb-5 h-12 w-12 text-gray-600 dark:text-gray-300" />
-        <p className="mb-2 text-gray-600 dark:text-gray-300">
-          Drag and drop your file here, or click to select file
+        <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
+          <span className="font-semibold">Click to upload</span> or drag and
+          drop
         </p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Goodreads or Storygraph exports
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          CSV file from Goodreads or Storygraph exports
         </p>
       </div>
     </div>

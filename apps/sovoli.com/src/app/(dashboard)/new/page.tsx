@@ -36,7 +36,7 @@ export default function NewPage() {
     console.log(created);
   }
   return (
-    <div className="min-h-screen dark:bg-black sm:pl-60">
+    <div className="min-h-screen dark:bg-black">
       <form action={create} method="post">
         <input type="text" name="title" />
         <button type="submit">Create</button>

@@ -13,7 +13,7 @@ export default async function SettingsPage() {
   });
 
   return (
-    <div className="min-h-screen dark:bg-black sm:pl-60">
+    <div className="min-h-screen dark:bg-black">
       <h1>Settings</h1>
 
       <HydrationBoundary state={dehydrate(client)}>

@@ -18,5 +18,5 @@ export function generateMetadata(): Metadata {
 
 export default function FeedPage() {
   return redirect("/dashboard");
-  return <div className="min-h-screen dark:bg-black sm:pl-60"></div>;
+  return <div className="min-h-screen dark:bg-black"></div>;
 }

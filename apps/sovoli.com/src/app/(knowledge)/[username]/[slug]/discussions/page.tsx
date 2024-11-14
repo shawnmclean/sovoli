@@ -46,7 +46,7 @@ export default async function DiscussionsPage({
   });
 
   return (
-    <div className="min-h-screen dark:bg-black sm:pl-60">
+    <div className="min-h-screen dark:bg-black">
       <h1>
         Scan Book By ISBN - {username}/{slug}
       </h1>

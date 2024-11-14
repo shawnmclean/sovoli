@@ -28,7 +28,7 @@ export default async function DashboardPage() {
   const knowledges = await retrieveLatestKnowledges();
 
   return (
-    <div className="min-h-screen dark:bg-black sm:pl-60">
+    <div className="min-h-screen dark:bg-black">
       <FeedScreen knowledges={knowledges} />
     </div>
   );
