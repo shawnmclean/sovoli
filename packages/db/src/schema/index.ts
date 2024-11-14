@@ -8,3 +8,5 @@ export * from "./KnowledgeConnection";
 export * from "./KnowledgeConnectionRelations";
 export * from "./MediaAsset";
 export * from "./MediaAssetRelation";
+export * from "./Import";
+export * from "./ImportRelations";
