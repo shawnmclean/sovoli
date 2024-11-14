@@ -20,11 +20,32 @@ export interface ShelfImportFormProps {
 
 export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
   const [groupedBooks, setGroupedBooks] = useState<GroupedCSVBooks[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [mapping, setMapping] = useState<
-    { from: string; to: { id?: string; name?: string }; isEnabled: boolean }[]
-  >([]);
 
+  const handleValidFileSelected = (shelves: GroupedCSVBooks[]) => {
+    setGroupedBooks(shelves);
+  };
+
+  return (
+    <section className="container mx-auto p-4">
+      <form action={importShelfAction} method="post">
+        <SelectFileStep onValidFileSelected={handleValidFileSelected} />
+        <ShelfMappingStep
+          shelves={groupedBooks}
+          userCollections={userCollections}
+        />
+        <button type="submit" className="btn btn-primary">
+          Import
+        </button>
+      </form>
+    </section>
+  );
+};
+
+interface SelectFileStepProps {
+  onValidFileSelected: (shelves: GroupedCSVBooks[]) => void;
+}
+const SelectFileStep = ({ onValidFileSelected }: SelectFileStepProps) => {
+  const [error, setError] = useState<string | null>(null);
   const handleFileDropped = (file: File) => {
     try {
       const reader = new FileReader();
@@ -34,16 +55,8 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
         try {
           const books = parseCSVIntoBooks(csvContent); // Pass csvContent as a string
           const grouped = groupCSVBooksByShelves(books);
-          setGroupedBooks(grouped);
-          setError(null); // Clear any previous errors
-
-          // Initialize the mapping based on parsed shelves
-          const initialMapping = grouped.map((shelf) => ({
-            from: shelf.name,
-            to: { id: undefined, name: "new-shelf" },
-            isEnabled: false, // Initially, "Add" is unchecked
-          }));
-          setMapping(initialMapping);
+          onValidFileSelected(grouped);
+          setError(null);
         } catch {
           setError(
             "Failed to parse the CSV file. Please check the format and try again.",
@@ -60,7 +73,35 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
       setError("Failed to read the file. Please try again.");
     }
   };
+  return (
+    <section className="flex flex-col items-center justify-center gap-4 p-4">
+      <h1 className="text-2xl font-bold">Select a CSV file</h1>
+      <CSVFileInput name="csvFile" onFileDropped={handleFileDropped} />{" "}
+      {error && (
+        <div className="mt-4 rounded-md bg-red-100 p-4 text-red-600 shadow-md">
+          <p className="text-lg font-semibold">{error}</p>
+        </div>
+      )}
+    </section>
+  );
+};
 
+interface ShelfMappingStepProps {
+  shelves: GroupedCSVBooks[];
+  userCollections: {
+    id: string;
+    title?: string | null;
+    type: KnowledgeType;
+    itemCount: number;
+  }[];
+}
+const ShelfMappingStep = ({
+  shelves,
+  userCollections,
+}: ShelfMappingStepProps) => {
+  const [mapping, setMapping] = useState<
+    { from: string; to: { id?: string; name?: string }; isEnabled: boolean }[]
+  >([]);
   const handleAddCheckboxChange = (index: number) => {
     const updatedMapping = [...mapping];
     if (updatedMapping[index]) {
@@ -82,61 +123,48 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
   };
 
   return (
-    <section className="container mx-auto p-4">
-      <form action={importShelfAction} method="post">
-        <CSVFileInput onFileDropped={handleFileDropped} name="csvFile" />
+    <section className="flex flex-col items-center justify-center gap-4 p-4">
+      <h1 className="text-2xl font-bold">Map books to shelves</h1>
+      {shelves.map((shelf, index) => (
+        <ShelfItem
+          key={shelf.name}
+          name={shelf.name}
+          booksCount={shelf.books.length}
+          userCollections={userCollections}
+          isAddEnabled={mapping[index]?.isEnabled ?? false}
+          onAddCheckboxChange={() => handleAddCheckboxChange(index)}
+          selectedValue={mapping[index]?.to.id ?? "new-shelf"}
+          onDropdownChange={(value) => handleDropdownChange(index, value)}
+        />
+      ))}
 
-        {error && (
-          <div className="mt-4 rounded-md bg-red-100 p-4 text-red-600 shadow-md">
-            <p className="text-lg font-semibold">{error}</p>
-          </div>
-        )}
-
-        {groupedBooks.map((shelf, index) => (
-          <ShelfItem
-            key={shelf.name}
-            name={shelf.name}
-            booksCount={shelf.books.length}
-            userCollections={userCollections}
-            isAddEnabled={mapping[index]?.isEnabled ?? false}
-            onAddCheckboxChange={() => handleAddCheckboxChange(index)}
-            selectedValue={mapping[index]?.to.id ?? "new-shelf"}
-            onDropdownChange={(value) => handleDropdownChange(index, value)}
-          />
-        ))}
-
-        {/* Structured Hidden Inputs */}
-        {mapping.map(
-          (map, index) =>
-            map.isEnabled && (
-              <div key={index}>
+      {/* Structured Hidden Inputs */}
+      {mapping.map(
+        (map, index) =>
+          map.isEnabled && (
+            <div key={index}>
+              <input
+                type="hidden"
+                name={`mapping[${index}][from]`}
+                value={map.from}
+              />
+              {map.to.id && (
                 <input
                   type="hidden"
-                  name={`mapping[${index}][from]`}
-                  value={map.from}
+                  name={`mapping[${index}][to][id]`}
+                  value={map.to.id}
                 />
-                {map.to.id && (
-                  <input
-                    type="hidden"
-                    name={`mapping[${index}][to][id]`}
-                    value={map.to.id}
-                  />
-                )}
-                {map.to.name && (
-                  <input
-                    type="hidden"
-                    name={`mapping[${index}][to][name]`}
-                    value={map.to.name}
-                  />
-                )}
-              </div>
-            ),
-        )}
-
-        <button type="submit" className="btn btn-primary">
-          Import
-        </button>
-      </form>
+              )}
+              {map.to.name && (
+                <input
+                  type="hidden"
+                  name={`mapping[${index}][to][name]`}
+                  value={map.to.name}
+                />
+              )}
+            </div>
+          ),
+      )}
     </section>
   );
 };
