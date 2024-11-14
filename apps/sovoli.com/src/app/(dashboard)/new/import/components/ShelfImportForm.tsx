@@ -2,6 +2,18 @@
 
 import type { KnowledgeType } from "@sovoli/db/schema";
 import { useState } from "react";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@sovoli/ui/components/ui/alert";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+} from "@sovoli/ui/components/ui/card";
+import { Divider } from "@sovoli/ui/components/ui/divider";
 
 import type { GroupedCSVBooks } from "../lib/groupCSVBooksByShelves";
 import { importShelfAction } from "../actions/importShelfAction";
@@ -19,24 +31,76 @@ export interface ShelfImportFormProps {
 }
 
 export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
-  const [groupedBooks, setGroupedBooks] = useState<GroupedCSVBooks[]>([]);
+  const [shelves, setShelves] = useState<GroupedCSVBooks[]>([]);
+  const [currentStep, setCurrentStep] = useState<"file" | "mapping">("file");
 
   const handleValidFileSelected = (shelves: GroupedCSVBooks[]) => {
-    setGroupedBooks(shelves);
+    setShelves(shelves);
+    setCurrentStep("mapping"); // Once shelves are available, go to mapping step
+  };
+
+  const handleBackToFileStep = () => {
+    setShelves([]); // Reset shelves data
+    setCurrentStep("file"); // Go back to file step
   };
 
   return (
     <section className="container mx-auto p-4">
-      <form action={importShelfAction} method="post">
-        <SelectFileStep onValidFileSelected={handleValidFileSelected} />
-        <ShelfMappingStep
-          shelves={groupedBooks}
-          userCollections={userCollections}
-        />
-        <button type="submit" className="btn btn-primary">
-          Import
-        </button>
-      </form>
+      <Card>
+        <form action={importShelfAction} method="post">
+          {currentStep === "file" && (
+            <>
+              <CardHeader>
+                <div className="flex flex-col gap-2">
+                  <h1 className="text-2xl font-bold">
+                    Upload your Goodreads or Storygraph data
+                  </h1>
+                  <p className="text-default-500">
+                    Upload or drag and drop the file below
+                  </p>
+                </div>
+              </CardHeader>
+              <Divider />
+              <CardBody>
+                <SelectFileStep onValidFileSelected={handleValidFileSelected} />
+              </CardBody>
+              <Divider />
+              <CardFooter>Upload stuff</CardFooter>
+            </>
+          )}
+
+          {currentStep === "mapping" && (
+            <>
+              <CardHeader>
+                <div className="flex flex-col">
+                  <p className="text-md">NextUI</p>
+                  <p className="text-small text-default-500">nextui.org</p>
+                </div>
+              </CardHeader>
+              <Divider />
+              <CardBody>
+                <ShelfMappingStep
+                  shelves={shelves}
+                  userCollections={userCollections}
+                />
+              </CardBody>
+              <Divider />
+              <CardFooter>
+                <button
+                  type="button"
+                  onClick={handleBackToFileStep}
+                  className="btn btn-secondary"
+                >
+                  Back to File Step
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  Import
+                </button>
+              </CardFooter>
+            </>
+          )}
+        </form>
+      </Card>
     </section>
   );
 };
@@ -75,12 +139,12 @@ const SelectFileStep = ({ onValidFileSelected }: SelectFileStepProps) => {
   };
   return (
     <section className="flex flex-col items-center justify-center gap-4 p-4">
-      <h1 className="text-2xl font-bold">Select a CSV file</h1>
       <CSVFileInput name="csvFile" onFileDropped={handleFileDropped} />{" "}
       {error && (
-        <div className="mt-4 rounded-md bg-red-100 p-4 text-red-600 shadow-md">
-          <p className="text-lg font-semibold">{error}</p>
-        </div>
+        <Alert variant="danger">
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
     </section>
   );
