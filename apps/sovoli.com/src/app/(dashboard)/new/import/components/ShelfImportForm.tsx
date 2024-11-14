@@ -14,6 +14,7 @@ import {
   CardHeader,
 } from "@sovoli/ui/components/ui/card";
 import { Divider } from "@sovoli/ui/components/ui/divider";
+import { SheetIcon } from "lucide-react";
 
 import type { GroupedCSVBooks } from "../lib/groupCSVBooksByShelves";
 import { importShelfAction } from "../actions/importShelfAction";
@@ -177,7 +178,8 @@ const ShelfMappingStep = ({
         {shelves.map((shelf, index) => (
           <tr key={index} className="">
             {/* Shelf Name (Left Column) */}
-            <td className="px-4 py-2">
+            <td className="flex flex-row gap-2 px-4 py-2">
+              <SheetIcon className="text-green-600 dark:text-green-300" />{" "}
               {shelf.name} ({shelf.books.length})
             </td>
 
