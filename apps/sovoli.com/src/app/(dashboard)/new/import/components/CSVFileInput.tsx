@@ -1,3 +1,4 @@
+import { CloudUpload } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 
 export interface CSVFileInputProps {
@@ -19,14 +20,19 @@ export const CSVFileInput = ({ name, onFileDropped }: CSVFileInputProps) => {
   return (
     <div
       {...getRootProps({
-        className:
-          "dropzone border-2 border-dashed border-gray-300 rounded-md p-6 text-center hover:bg-gray-100 transition-colors dark:border-gray-600 dark:hover:bg-gray-700",
+        className: "border-2 border-dashed rounded-xl p-6 text-center",
       })}
     >
-      <input {...getInputProps()} name={name} id={name} />
-      <p className="text-gray-600 dark:text-gray-300">
-        Drag 'n' drop some files here, or click to select files
-      </p>
+      <input {...getInputProps()} name={name} id={name} className="sr-only" />
+      <div className="flex flex-col items-center justify-center">
+        <CloudUpload className="mb-5 h-12 w-12 text-gray-600 dark:text-gray-300" />
+        <p className="mb-2 text-gray-600 dark:text-gray-300">
+          Drag and drop your file here, or click to select file
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Goodreads or Storygraph exports
+        </p>
+      </div>
     </div>
   );
 };
