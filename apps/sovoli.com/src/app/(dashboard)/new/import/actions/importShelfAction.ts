@@ -31,7 +31,9 @@ export async function importShelfAction(formData: FormData) {
 
   // authorization check for existing shelves
   const existingShelfIds =
-    userMapping?.map((m) => m.to.id).filter((id) => id != null) ?? [];
+    userMapping
+      ?.map((m) => m.to)
+      .filter((id) => id !== "do-not-import" && id !== "new-shelf") ?? [];
   if (existingShelfIds.length > 0) {
     const userShelvesFromDb = await db.query.Knowledge.findMany({
       where: and(

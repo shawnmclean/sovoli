@@ -188,7 +188,15 @@ const ShelfMappingStep = ({
 
             {/* Dropdown Column (Right) */}
             <td className="px-4 py-2">
-              <select className="rounded border px-2 py-1">
+              <input
+                type="hidden"
+                name={`mapping[${index}][from]`}
+                value={shelf.name}
+              />
+              <select
+                className="rounded border px-2 py-1"
+                name={`mapping[${index}][to]`}
+              >
                 <option value="do-not-import">Do Not Import</option>
                 <option value="new-shelf">New Shelf</option>
                 {userCollections.map((collection, idx) => (

@@ -12,16 +12,16 @@ const mappingSchema = z
   .array(
     z.object({
       from: z.string(),
-      to: z
-        .object({
-          id: z.string().optional(),
-          name: z.string().optional(),
-        })
-        .refine((data) => (data.id && !data.name) ?? (!data.id && data.name), {
-          message: "Either 'id' or 'name' must be provided, but not both.",
-        }),
+      to: z.union([
+        z.literal("do-not-import"), // Option 1: "do-not-import"
+        z.literal("new-shelf"), // Option 2: "new-shelf"
+        z.string().min(1), // Option 3: Non-empty string (for valid existing shelf id)
+      ]),
     }),
   )
+  .refine((mapping) => mapping.some((m) => m.to !== "do-not-import"), {
+    message: "At least one mapping must be non-do-not-import",
+  })
   .optional();
 
 /**

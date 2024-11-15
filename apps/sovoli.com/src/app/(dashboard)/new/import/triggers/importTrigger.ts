@@ -80,14 +80,14 @@ export const importTrigger = task({
       for (const shelf of shelves) {
         const mapping = userMapping?.find((m) => m.from === shelf.name);
 
-        if (mapping?.to.id) {
-          existingShelves.push({
-            id: mapping.to.id,
-            books: mapBooks(shelf.books),
-          });
-        } else {
+        if (!mapping || mapping.to === "new-shelf") {
           newShelves.push({
             name: shelf.name,
+            books: mapBooks(shelf.books),
+          });
+        } else if (mapping.to && mapping.to !== "do-not-import") {
+          existingShelves.push({
+            id: mapping.to,
             books: mapBooks(shelf.books),
           });
         }
