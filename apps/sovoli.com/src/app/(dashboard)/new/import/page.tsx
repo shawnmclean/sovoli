@@ -1,5 +1,5 @@
 import { auth } from "@sovoli/auth";
-import { and, db, eq, inArray, schema } from "@sovoli/db";
+import { and, db, eq, inArray, isNotNull, ne, schema } from "@sovoli/db";
 
 import { ShelfImportForm } from "./components/ShelfImportForm";
 
@@ -16,6 +16,8 @@ export default async function ImportPage() {
       itemCount: sql<number>`COUNT(*) OVER()`.as("itemCount"),
     }),
     where: and(
+      isNotNull(schema.Knowledge.title),
+      ne(schema.Knowledge.title, ""),
       eq(schema.Knowledge.userId, session.userId),
       inArray(schema.Knowledge.type, ["collection", "shelf"]),
     ),

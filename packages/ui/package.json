@@ -35,6 +35,8 @@
     "@nextui-org/user": "2.0.34",
     "@nextui-org/card": "2.0.34",
     "@nextui-org/switch": "2.0.34",
+    "@nextui-org/select": "2.2.7",
+    "@nextui-org/spinner": "2.0.34",
     "@sovoli/auth": "workspace:*",
     "@sovoli/api": "workspace:*",
     "@sovoli/db": "workspace:*",

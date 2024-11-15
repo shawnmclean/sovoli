@@ -7,6 +7,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@sovoli/ui/components/ui/alert";
+import { Button } from "@sovoli/ui/components/ui/button";
 import {
   Card,
   CardBody,
@@ -14,6 +15,8 @@ import {
   CardHeader,
 } from "@sovoli/ui/components/ui/card";
 import { Divider } from "@sovoli/ui/components/ui/divider";
+import { Select, SelectItem } from "@sovoli/ui/components/ui/select";
+import { Spinner } from "@sovoli/ui/components/ui/spinner";
 import { SheetIcon } from "lucide-react";
 
 import type { GroupedCSVBooks } from "../lib/groupCSVBooksByShelves";
@@ -25,7 +28,7 @@ import { CSVFileInput } from "./CSVFileInput";
 export interface ShelfImportFormProps {
   userCollections: {
     id: string;
-    title?: string | null;
+    title: string;
     type: KnowledgeType;
     itemCount: number;
   }[];
@@ -79,7 +82,7 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
             )}
           </CardBody>
           <Divider />
-          <CardFooter>
+          <CardFooter className="justify-between">
             {currentStep === "file" ? (
               <>
                 TODO: instructions for exporting data from Goodreads and
@@ -87,16 +90,12 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
               </>
             ) : (
               <>
-                <button
-                  type="button"
-                  onClick={handleBackToFileStep}
-                  className="btn btn-secondary"
-                >
+                <Button onClick={handleBackToFileStep} variant="light">
                   Back to File Step
-                </button>
-                <button type="submit" className="btn btn-primary">
+                </Button>
+                <Button type="submit" color="primary">
                   Import
-                </button>
+                </Button>
               </>
             )}
           </CardFooter>
@@ -110,8 +109,10 @@ interface SelectFileStepProps {
   onValidFileSelected: (shelves: GroupedCSVBooks[]) => void;
 }
 const SelectFileStep = ({ onValidFileSelected }: SelectFileStepProps) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const handleFileDropped = (file: File) => {
+    setLoading(true);
     try {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -137,15 +138,22 @@ const SelectFileStep = ({ onValidFileSelected }: SelectFileStepProps) => {
     } catch {
       setError("Failed to read the file. Please try again.");
     }
+    setLoading(false);
   };
   return (
     <section className="flex flex-col items-center justify-center gap-4 p-4">
-      <CSVFileInput name="csvFile" onFileDropped={handleFileDropped} />{" "}
-      {error && (
-        <Alert variant="danger">
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <CSVFileInput name="csvFile" onFileDropped={handleFileDropped} />{" "}
+          {error && (
+            <Alert variant="danger">
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+        </>
       )}
     </section>
   );
@@ -155,7 +163,7 @@ interface ShelfMappingStepProps {
   shelves: GroupedCSVBooks[];
   userCollections: {
     id: string;
-    title?: string | null;
+    title: string;
     type: KnowledgeType;
     itemCount: number;
   }[];
@@ -193,18 +201,19 @@ const ShelfMappingStep = ({
                 name={`mapping[${index}][from]`}
                 value={shelf.name}
               />
-              <select
-                className="rounded border px-2 py-1"
+              <Select
+                label="Mapping"
                 name={`mapping[${index}][to]`}
+                defaultSelectedKeys={["do-not-import"]}
               >
-                <option value="do-not-import">Do Not Import</option>
-                <option value="new-shelf">New Shelf</option>
-                {userCollections.map((collection, idx) => (
-                  <option key={idx} value={collection.id}>
+                <SelectItem key="do-not-import">Do Not Import</SelectItem>
+                <SelectItem key="new-shelf">New Shelf</SelectItem>
+                {userCollections.map((collection) => (
+                  <SelectItem key={collection.id} textValue={collection.title}>
                     {collection.title} ({collection.itemCount})
-                  </option>
+                  </SelectItem>
                 ))}
-              </select>
+              </Select>
             </td>
 
             {/* Checkbox Column (Far Right) */}
