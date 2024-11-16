@@ -31,25 +31,10 @@ export function Sidebar() {
         isVertical
         aria-label="Options"
         variant="underlined"
-        classNames={{
-          tabList:
-            "gap-6 w-full relative rounded-none p-0 border-b border-divider px-5",
-          cursor: "w-full",
-          tab: "max-w-fit px-0 h-12",
-        }}
         selectedKey={getActiveTab()}
       >
         {tabs.map((tab) => (
-          <Tab
-            as={Link}
-            key={tab.key}
-            href={tab.path}
-            title={
-              <div className="flex space-x-2">
-                <span>{tab.title}</span>
-              </div>
-            }
-          />
+          <Tab as={Link} key={tab.key} href={tab.path} title={tab.title} />
         ))}
       </Tabs>
     </>

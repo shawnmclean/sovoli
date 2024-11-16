@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { withZod } from "@rvf/zod";
 import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, schema } from "@sovoli/db";
@@ -8,19 +9,11 @@ import type { ImportData } from "../lib/schemas";
 import { formImportShelfSchema } from "../lib/schemas";
 import { importTrigger } from "../triggers/importTrigger";
 
-export type State =
-  | {
-      status: "success";
-      message: string;
-      id: string;
-      triggerDevId: string;
-    }
-  | {
-      status: "error";
-      message: string;
-      errors?: Record<string, string>;
-    }
-  | null;
+export type State = {
+  status: "error";
+  message: string;
+  errors?: Record<string, string>;
+} | null;
 
 const validator = withZod(formImportShelfSchema);
 
@@ -116,10 +109,5 @@ export async function importShelfAction(
   if (!importRestult) {
     throw new Error("Import not found");
   }
-  return {
-    status: "success",
-    message: "Import successful",
-    id: importRestult.id,
-    triggerDevId: trigger.id,
-  };
+  redirect("/settings/imports");
 }

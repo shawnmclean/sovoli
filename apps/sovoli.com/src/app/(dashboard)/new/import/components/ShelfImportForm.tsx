@@ -109,9 +109,14 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
         <Alert>
           <AlertTitle>{state.status}</AlertTitle>
           <AlertDescription>
-            {state.status === "success"
-              ? `Imported ${state.message}, ${state.id} - ${state.triggerDevId}`
-              : state.message}
+            <p>{state.message}</p>
+            <ul>
+              {Object.entries(state.errors ?? {}).map(([key, value]) => (
+                <li key={key}>
+                  <strong>{key}</strong>: {value}
+                </li>
+              ))}
+            </ul>
           </AlertDescription>
         </Alert>
       )}
