@@ -1,8 +1,11 @@
-import { DefaultLayout } from "@sovoli/ui/components/layouts/DefaultLayout";
+import { auth } from "@sovoli/auth";
+import { SettingsLayout } from "@sovoli/ui/components/layouts/SettingsLayout";
 
 interface Props {
   children: React.ReactNode;
 }
-export default function Layout({ children }: Props) {
-  return <DefaultLayout>{children}</DefaultLayout>;
+export default async function Layout({ children }: Props) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in to access this page");
+  return <SettingsLayout user={session.user}>{children}</SettingsLayout>;
 }
