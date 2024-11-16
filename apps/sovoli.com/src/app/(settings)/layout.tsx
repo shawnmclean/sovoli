@@ -6,6 +6,7 @@ interface Props {
 }
 export default async function Layout({ children }: Props) {
   const session = await auth();
-  if (!session) throw new Error("You must be logged in to access this page");
+  if (!session?.user)
+    throw new Error("You must be logged in to access this page");
   return <SettingsLayout user={session.user}>{children}</SettingsLayout>;
 }

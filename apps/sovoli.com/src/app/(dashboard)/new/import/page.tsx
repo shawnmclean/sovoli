@@ -12,7 +12,7 @@ export default async function ImportPage() {
   }
 
   const existingCollections = await db.query.Knowledge.findMany({
-    extras: (table, { sql }) => ({
+    extras: (_table, { sql }) => ({
       itemCount: sql<number>`COUNT(*) OVER()`.as("itemCount"),
     }),
     where: and(
@@ -23,9 +23,16 @@ export default async function ImportPage() {
     ),
   });
 
+  const collections = existingCollections.map((collection) => ({
+    id: collection.id,
+    title: collection.title ?? "unknown",
+    type: collection.type,
+    itemCount: collection.itemCount,
+  }));
+
   return (
     <div className="min-h-screen dark:bg-black">
-      <ShelfImportForm userCollections={existingCollections} />
+      <ShelfImportForm userCollections={collections} />
     </div>
   );
 }
