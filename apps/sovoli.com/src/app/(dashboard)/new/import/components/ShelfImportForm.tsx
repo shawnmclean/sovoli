@@ -106,7 +106,7 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
         </form>
       </Card>
       {state && (
-        <Alert>
+        <Alert variant="danger">
           <AlertTitle>{state.status}</AlertTitle>
           <AlertDescription>
             <p>{state.message}</p>

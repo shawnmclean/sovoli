@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { withZod } from "@rvf/zod";
 import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, schema } from "@sovoli/db";
+import { ImportStatus } from "@sovoli/db/schema";
 
 import type { ImportData } from "../lib/schemas";
 import { formImportShelfSchema } from "../lib/schemas";
@@ -83,6 +84,7 @@ export async function importShelfAction(
     .insert(schema.Import)
     .values({
       userId: session.userId,
+      status: ImportStatus.pending,
       source: "goodreads", //TODO detect this from the file or client
       importData,
     })

@@ -109,7 +109,9 @@ const handleBookKnowledgeTypeUpserted = async (
   }
 
   if (!book) {
-    throw new Error("No book found for query");
+    throw new Error(
+      `No book found for query: ${knowledge.query}, type: ${knowledge.queryType}`,
+    );
   }
 
   // check if user already has the book

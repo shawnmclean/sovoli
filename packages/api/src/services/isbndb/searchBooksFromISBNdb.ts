@@ -46,8 +46,12 @@ export const searchBooksFromISBNdb = async ({
     AsyncResilience.exponentialBackoffWithJitter(),
   );
 
+  if (response.status === 404) {
+    return [];
+  }
+
   if (!response.ok) {
-    throw new Error("Failed to fetch book data");
+    throw new Error(`Failed to fetch books from ISBNdb: ${response.status}`);
   }
 
   const data = (await response.json()) as SearchBooksFromISBNdbResponse;

@@ -36,7 +36,7 @@ export const importTrigger = task({
       .update(schema.Import)
       .set({
         triggerDevId: ctx.run.id,
-        status: ImportStatus.pending,
+        status: ImportStatus.running,
       })
       .where(eq(schema.Import.id, importId));
 
@@ -180,14 +180,25 @@ export const importTrigger = task({
       }));
       const chunks = chunk(payload, 100);
 
-      await Promise.all(
-        chunks.map((chunk) => knowledgeUpsertedEvent.batchTrigger(chunk)),
-      );
+      const runResults = [];
+      for (const chunk of chunks) {
+        const result = await knowledgeUpsertedEvent.batchTriggerAndWait(chunk);
+        runResults.push(...result.runs);
+      }
+
+      let hasError = false;
+      for (const run of runResults) {
+        if (!run.ok) {
+          console.error("error running trigger", run.error);
+          console.error(run.id);
+          hasError = true;
+        }
+      }
 
       await db
         .update(schema.Import)
         .set({
-          status: ImportStatus.completed,
+          status: hasError ? ImportStatus.failed : ImportStatus.completed,
         })
         .where(eq(schema.Import.id, importId));
     } catch (e) {

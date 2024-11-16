@@ -23,17 +23,17 @@ export const searchBooksByQuery = async ({
   pageSize = 20,
   forceExternal = false,
 }: SearchBooksByQueryOptions): Promise<SearchBooksByQueryResult> => {
-  const internalBooks = await db.query.Book.findMany({
+  const books = await db.query.Book.findMany({
     where: sql`${schema.Book.search} @@ websearch_to_tsquery('english', ${query})`,
     limit: pageSize,
     offset: (page - 1) * pageSize,
   });
 
   // TODO: later we can combine the internal and external search calls under a single promise.all
-  if (internalBooks.length > 0 && !forceExternal) {
-    console.log(`found ${internalBooks.length} books in internal db`);
+  if (books.length > 0 && !forceExternal) {
+    console.log(`found ${books.length} books in internal db`);
     return {
-      books: internalBooks,
+      books: books,
     };
   }
 
@@ -44,18 +44,24 @@ export const searchBooksByQuery = async ({
   });
 
   console.log(`books found from external: ${externalBooks.length}`);
+  if (externalBooks.length > 0) {
+    const upsertedExternalBooks = await upsertBooks(externalBooks);
+    console.log(`books upserted: ${upsertedExternalBooks.length}`);
+    const allBooks = [...books, ...upsertedExternalBooks];
 
-  const upsertedBooks = await upsertBooks(externalBooks);
+    // Filter out duplicate books by 'id' using a Map
+    const uniqueBooks = Array.from(
+      new Map(allBooks.map((book) => [book.id, book])).values(),
+    );
 
-  console.log(`books upserted: ${upsertedBooks.length}`);
+    return {
+      books: uniqueBooks,
+    };
+  }
 
-  const mergedBooks = Array.from(
-    new Map(
-      [...internalBooks, ...upsertedBooks].map((book) => [book.id, book]), // Use id as the unique key
-    ).values(), // Get unique books by id
-  );
+  console.log("no external results, returning internal results");
 
   return {
-    books: mergedBooks,
+    books,
   };
 };
