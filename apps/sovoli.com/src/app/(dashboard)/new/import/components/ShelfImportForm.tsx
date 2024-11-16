@@ -18,7 +18,9 @@ import { Divider } from "@sovoli/ui/components/ui/divider";
 import { Select, SelectItem } from "@sovoli/ui/components/ui/select";
 import { Spinner } from "@sovoli/ui/components/ui/spinner";
 import { SheetIcon } from "lucide-react";
+import { useFormState, useFormStatus } from "react-dom";
 
+import type { State } from "../actions/importShelfAction";
 import type { GroupedCSVBooks } from "../lib/groupCSVBooksByShelves";
 import { importShelfAction } from "../actions/importShelfAction";
 import { groupCSVBooksByShelves } from "../lib/groupCSVBooksByShelves";
@@ -35,6 +37,10 @@ export interface ShelfImportFormProps {
 }
 
 export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
+  const [state, formAction] = useFormState<State, FormData>(
+    importShelfAction,
+    null,
+  );
   const [shelves, setShelves] = useState<GroupedCSVBooks[]>([]);
   const [currentStep, setCurrentStep] = useState<"file" | "mapping">("file");
 
@@ -51,7 +57,7 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
   return (
     <section className="container mx-auto p-4">
       <Card>
-        <form action={importShelfAction} method="post">
+        <form action={formAction} method="post">
           <CardHeader>
             <div className="flex flex-col gap-2">
               <h1 className="text-2xl font-bold">
@@ -93,14 +99,22 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
                 <Button onClick={handleBackToFileStep} variant="light">
                   Back to File Step
                 </Button>
-                <Button type="submit" color="primary">
-                  Import
-                </Button>
+                <SubmitButton />
               </>
             )}
           </CardFooter>
         </form>
       </Card>
+      {state && (
+        <Alert>
+          <AlertTitle>{state.status}</AlertTitle>
+          <AlertDescription>
+            {state.status === "success"
+              ? `Imported ${state.message}, ${state.id} - ${state.triggerDevId}`
+              : state.message}
+          </AlertDescription>
+        </Alert>
+      )}
     </section>
   );
 };
@@ -172,6 +186,17 @@ const ShelfMappingStep = ({
   shelves,
   userCollections,
 }: ShelfMappingStepProps) => {
+  function getDefaultShelfMapping(shelf: string) {
+    if (shelf === "") return "do-not-import";
+    const userCollection = userCollections.find(
+      (collection) => collection.title === shelf,
+    );
+    if (userCollection) {
+      return userCollection.id;
+    }
+    return "new-shelf";
+  }
+
   return (
     <table className="table-auto border-collapse">
       <thead>
@@ -179,7 +204,6 @@ const ShelfMappingStep = ({
           <th className="px-4 py-2">Shelf in File</th>
           <th className="px-4 py-2"></th>
           <th className="px-4 py-2">Your existing shelves</th>
-          <th className="px-4 py-2"></th>
         </tr>
       </thead>
       <tbody>
@@ -202,25 +226,38 @@ const ShelfMappingStep = ({
                 value={shelf.name}
               />
               <Select
-                label="Mapping"
+                aria-label="Select a shelf to map to"
                 name={`mapping[${index}][to]`}
-                defaultSelectedKeys={["do-not-import"]}
+                defaultSelectedKeys={[getDefaultShelfMapping(shelf.name)]}
               >
-                <SelectItem key="do-not-import">Do Not Import</SelectItem>
-                <SelectItem key="new-shelf">New Shelf</SelectItem>
-                {userCollections.map((collection) => (
-                  <SelectItem key={collection.id} textValue={collection.title}>
-                    {collection.title} ({collection.itemCount})
-                  </SelectItem>
-                ))}
+                <SelectItem key="new-shelf" textValue="New Shelf">
+                  New Shelf
+                </SelectItem>
+                <SelectItem key="do-not-import" textValue="Do Not Import">
+                  Do Not Import
+                </SelectItem>
+                <>
+                  {userCollections.map((collection) => (
+                    <SelectItem key={collection.id}>
+                      {`${collection.title} (${collection.itemCount})`}
+                    </SelectItem>
+                  ))}
+                </>
               </Select>
             </td>
-
-            {/* Checkbox Column (Far Right) */}
-            <td className="px-4 py-2 text-center">t</td>
           </tr>
         ))}
       </tbody>
     </table>
   );
 };
+
+export function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button type="submit" color="primary" isLoading={pending}>
+      Import
+    </Button>
+  );
+}

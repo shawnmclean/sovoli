@@ -8,13 +8,31 @@ import type { ImportData } from "../lib/schemas";
 import { formImportShelfSchema } from "../lib/schemas";
 import { importTrigger } from "../triggers/importTrigger";
 
+export type State =
+  | {
+      status: "success";
+      message: string;
+      id: string;
+      triggerDevId: string;
+    }
+  | {
+      status: "error";
+      message: string;
+      errors?: Record<string, string>;
+    }
+  | null;
+
 const validator = withZod(formImportShelfSchema);
 
-export async function importShelfAction(formData: FormData) {
+export async function importShelfAction(
+  _prevState: State,
+  formData: FormData,
+): Promise<State> {
   const session = await auth();
   if (!session) {
     return {
-      errors: ["You must be logged in to import shelves"],
+      status: "error",
+      message: "You must be logged in to import shelves",
     };
   }
 
@@ -23,6 +41,8 @@ export async function importShelfAction(formData: FormData) {
   if (result.error) {
     console.error(result.error.fieldErrors);
     return {
+      status: "error",
+      message: "Failed to import shelves",
       errors: result.error.fieldErrors,
     };
   }
@@ -51,9 +71,10 @@ export async function importShelfAction(formData: FormData) {
 
     // If there are any unauthorized shelves, throw an error
     if (unauthorizedShelves.length > 0) {
-      throw new Error(
-        `You are not authorized to modify the following shelves: ${unauthorizedShelves.join(", ")}`,
-      );
+      return {
+        status: "error",
+        message: `You are not authorized to modify the following shelves: ${unauthorizedShelves.join(", ")}`,
+      };
     }
   }
 
@@ -95,5 +116,10 @@ export async function importShelfAction(formData: FormData) {
   if (!importRestult) {
     throw new Error("Import not found");
   }
-  return importRestult;
+  return {
+    status: "success",
+    message: "Import successful",
+    id: importRestult.id,
+    triggerDevId: trigger.id,
+  };
 }

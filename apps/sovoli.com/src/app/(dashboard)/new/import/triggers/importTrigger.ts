@@ -79,7 +79,6 @@ export const importTrigger = task({
 
       for (const shelf of shelves) {
         const mapping = userMapping?.find((m) => m.from === shelf.name);
-
         if (!mapping || mapping.to === "new-shelf") {
           newShelves.push({
             name: shelf.name,
@@ -93,20 +92,23 @@ export const importTrigger = task({
         }
       }
 
-      const insertedShelves = await db
-        .insert(schema.Knowledge)
-        .values(
-          newShelves.map((shelf) => ({
-            title: shelf.name,
-            description: "Shelf created by import",
-            type: KnowledgeType.shelf,
-            isOrigin: true,
-            userId: importResult.userId,
-          })),
-        )
-        .returning({
-          id: schema.Knowledge.id,
-        });
+      let insertedShelves: { id: string }[] = [];
+      if (newShelves.length > 0) {
+        insertedShelves = await db
+          .insert(schema.Knowledge)
+          .values(
+            newShelves.map((shelf) => ({
+              title: shelf.name,
+              description: "Shelf created by import",
+              type: KnowledgeType.shelf,
+              isOrigin: true,
+              userId: importResult.userId,
+            })),
+          )
+          .returning({
+            id: schema.Knowledge.id,
+          });
+      }
 
       const booksToInsert: InsertKnowledge[] = [];
       const shelfBookMappings: { shelfId: string; bookIndex: number }[] = [];
@@ -143,12 +145,15 @@ export const importTrigger = task({
         addBooksToInsert(shelf.id, shelf.books);
       });
 
-      const insertedBooks = await db
-        .insert(schema.Knowledge)
-        .values(booksToInsert)
-        .returning({
-          id: schema.Knowledge.id,
-        });
+      let insertedBooks: { id: string }[] = [];
+      if (booksToInsert.length > 0) {
+        insertedBooks = await db
+          .insert(schema.Knowledge)
+          .values(booksToInsert)
+          .returning({
+            id: schema.Knowledge.id,
+          });
+      }
 
       const connectionsToInsert: InsertKnowledgeConnection[] =
         shelfBookMappings.map(({ shelfId, bookIndex }) => {
