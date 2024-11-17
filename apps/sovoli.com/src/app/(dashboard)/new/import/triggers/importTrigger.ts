@@ -13,9 +13,10 @@ import {
 import { AbortTaskRunError, task } from "@trigger.dev/sdk/v3";
 import chunk from "lodash/chunk";
 
+import type { ImportDataError } from "../lib/schemas";
 import { groupCSVBooksByShelves } from "../lib/groupCSVBooksByShelves";
 import { parseCSVIntoBooks } from "../lib/parseCSVIntoBooks";
-import { ImportDataError, importDataSchema } from "../lib/schemas";
+import { importDataSchema } from "../lib/schemas";
 
 export interface ImportTriggerOptions {
   importId: string;
