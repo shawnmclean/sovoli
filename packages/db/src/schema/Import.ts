@@ -1,3 +1,4 @@
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { createId } from "@paralleldrive/cuid2";
 import {
   jsonb,
@@ -28,6 +29,7 @@ export const Import = pgTable("import", {
 
   source: importSourceEnum("source").notNull(),
   importData: jsonb("import_data").default({}),
+  errorData: jsonb("error_data"),
 
   triggerDevId: varchar("trigger_dev_id", { length: 255 }),
   triggerDevError: text("trigger_dev_error"),
@@ -36,3 +38,7 @@ export const Import = pgTable("import", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
+
+export type SelectImport = InferSelectModel<typeof Import>;
+
+export type InsertImport = InferInsertModel<typeof Import>;

@@ -192,7 +192,15 @@ const ShelfMappingStep = ({
   userCollections,
 }: ShelfMappingStepProps) => {
   function getDefaultShelfMapping(shelf: string) {
-    if (shelf === "") return "do-not-import";
+    const DO_NOT_IMPORT_DEFAULT_LIST = [
+      "",
+      "to-read",
+      "read",
+      "currently-reading",
+    ];
+
+    if (DO_NOT_IMPORT_DEFAULT_LIST.some((s) => s === shelf))
+      return "do-not-import";
     const userCollection = userCollections.find(
       (collection) => collection.title === shelf,
     );

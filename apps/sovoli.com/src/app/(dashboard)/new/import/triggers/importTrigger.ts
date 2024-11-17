@@ -15,7 +15,7 @@ import chunk from "lodash/chunk";
 
 import { groupCSVBooksByShelves } from "../lib/groupCSVBooksByShelves";
 import { parseCSVIntoBooks } from "../lib/parseCSVIntoBooks";
-import { importDataSchema } from "../lib/schemas";
+import { ImportDataError, importDataSchema } from "../lib/schemas";
 
 export interface ImportTriggerOptions {
   importId: string;
@@ -50,6 +50,7 @@ export const importTrigger = task({
 
       interface ShelfMapping {
         books: {
+          title: string;
           query: string;
           queryType: KnowledgeQueryType;
         }[];
@@ -66,11 +67,13 @@ export const importTrigger = task({
         books.map((book) => {
           if (book.isbn && book.isbn.length > 10) {
             return {
+              title: `${book.title} by ${book.author}`,
               query: book.isbn,
               queryType: KnowledgeQueryType.isbn,
             };
           } else {
             return {
+              title: `${book.title} by ${book.author}`,
               query: `${book.title} ${book.author}`,
               queryType: KnowledgeQueryType.query,
             };
@@ -115,10 +118,11 @@ export const importTrigger = task({
 
       const addBooksToInsert = (
         shelfId: string,
-        books: { query: string; queryType: KnowledgeQueryType }[],
+        books: ShelfMapping["books"],
       ) => {
         books.forEach((book) => {
           booksToInsert.push({
+            title: book.title,
             type: KnowledgeType.book,
             query: book.query,
             queryType: book.queryType,
@@ -145,13 +149,14 @@ export const importTrigger = task({
         addBooksToInsert(shelf.id, shelf.books);
       });
 
-      let insertedBooks: { id: string }[] = [];
+      let insertedBooks: { id: string; title: string | null }[] = [];
       if (booksToInsert.length > 0) {
         insertedBooks = await db
           .insert(schema.Knowledge)
           .values(booksToInsert)
           .returning({
             id: schema.Knowledge.id,
+            title: schema.Knowledge.title,
           });
       }
 
@@ -186,19 +191,25 @@ export const importTrigger = task({
         runResults.push(...result.runs);
       }
 
-      let hasError = false;
-      for (const run of runResults) {
+      const importError: ImportDataError = { message: "", errors: [] };
+      runResults.forEach((run, index) => {
         if (!run.ok) {
-          console.error("error running trigger", run.error);
-          console.error(run.id);
-          hasError = true;
+          const errorMessage =
+            run.error instanceof Error ? run.error.message : "Unknown error";
+          importError.errors.push({
+            book: insertedBooks[index]?.title ?? "",
+            message: errorMessage,
+          });
         }
-      }
-
+      });
       await db
         .update(schema.Import)
         .set({
-          status: hasError ? ImportStatus.failed : ImportStatus.completed,
+          status:
+            importError.errors.length > 0
+              ? ImportStatus.failed
+              : ImportStatus.completed,
+          errorData: importError,
         })
         .where(eq(schema.Import.id, importId));
     } catch (e) {

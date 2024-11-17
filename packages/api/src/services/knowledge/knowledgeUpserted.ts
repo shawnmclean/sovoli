@@ -128,6 +128,7 @@ const handleBookKnowledgeTypeUpserted = async (
     knowledge.TargetConnections.length > 0
   ) {
     // link the connections to the book knowledge and remove the old one
+    // If we try to link a book to a shelf that already has a book, we will get an error
     await db
       .update(schema.KnowledgeConnection)
       .set({

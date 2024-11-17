@@ -41,3 +41,15 @@ export const importDataSchema = z.object({
   csvContent: z.string(),
 });
 export type ImportData = z.infer<typeof importDataSchema>;
+
+export const importDataErrorSchema = z.object({
+  message: z.string(),
+  errors: z
+    .object({
+      book: z.string().optional(),
+      message: z.string().optional(),
+    })
+    .array(),
+});
+
+export type ImportDataError = z.infer<typeof importDataErrorSchema>;
