@@ -2,6 +2,7 @@ import type {
   InsertKnowledge,
   InsertKnowledgeConnection,
 } from "@sovoli/db/schema";
+import { PublishKnowledge } from "@sovoli/api/services/knowledge/publishKnowledge";
 import { knowledgeUpsertedEvent } from "@sovoli/api/trigger";
 import { db, eq, schema } from "@sovoli/db";
 import {
@@ -112,6 +113,14 @@ export const importTrigger = task({
           .returning({
             id: schema.Knowledge.id,
           });
+
+        const publishKnowledge = new PublishKnowledge();
+        for (const shelf of insertedShelves) {
+          await publishKnowledge.call({
+            authUserId: importResult.userId,
+            knowledgeId: shelf.id,
+          });
+        }
       }
 
       const booksToInsert: InsertKnowledge[] = [];

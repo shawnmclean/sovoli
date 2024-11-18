@@ -1,9 +1,9 @@
 import type { SelectBook, SelectKnowledgeSchema } from "@sovoli/db/schema";
-import { and, db, eq, inArray, schema } from "@sovoli/db";
+import { and, db, eq, schema } from "@sovoli/db";
 import { KnowledgeQueryType, KnowledgeType } from "@sovoli/db/schema";
 
-import { slugify } from "../../utils/slugify";
 import { findBookByISBN, searchBooksByQuery } from "../books";
+import { PublishKnowledge } from "./publishKnowledge";
 
 export interface KnowledgeUpsertedOptions {
   knowledgeId: string;
@@ -157,34 +157,19 @@ const handleBookKnowledgeTypeUpserted = async (
       .where(eq(schema.Knowledge.id, knowledge.id));
   } else {
     // update the knowledge with the book information
-    let slug = slugify(book.title);
-    let retryCount = 0;
-    while (retryCount < 50) {
-      try {
-        await db
-          .update(schema.Knowledge)
-          .set({
-            bookId: book.id,
-            title: book.title,
-            slug,
-          })
-          .where(eq(schema.Knowledge.id, knowledge.id));
-        return;
-      } catch (error) {
-        const queryError = error as QueryError;
-        if (
-          typeof queryError.code === "string" &&
-          queryError.code === "23505"
-        ) {
-          // Unique violation (Postgres specific error code)
-          // Regenerate slug by appending a unique identifier (e.g., retryCount)
-          slug = slugify(book.title) + "-" + (retryCount + 1);
-          retryCount++;
-        } else {
-          throw error; // Re-throw other errors
-        }
-      }
-    }
+    await db
+      .update(schema.Knowledge)
+      .set({
+        bookId: book.id,
+        title: book.title,
+      })
+      .where(eq(schema.Knowledge.id, knowledge.id));
+
+    const publishKnowledge = new PublishKnowledge();
+    await publishKnowledge.call({
+      authUserId: knowledge.userId,
+      knowledgeId: knowledge.id,
+    });
   }
 };
 
