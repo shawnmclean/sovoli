@@ -25,6 +25,7 @@ export const knowledgeUpserted = async ({
           id: true,
         },
       },
+      // targetconnections here means that the knowledge itself is the target and its getting the connections to a source
       TargetConnections: true,
     },
     where: eq(schema.Knowledge.id, knowledgeId),
@@ -129,17 +130,26 @@ const handleBookKnowledgeTypeUpserted = async (
   ) {
     // link the connections to the book knowledge and remove the old one
     // If we try to link a book to a shelf that already has a book, we will get an error
-    await db
-      .update(schema.KnowledgeConnection)
-      .set({
-        targetKnowledgeId: bookKnowledge.id,
-      })
-      .where(
-        inArray(
-          schema.KnowledgeConnection.id,
-          knowledge.TargetConnections.map((connection) => connection.id),
-        ),
-      );
+    for (const connection of knowledge.TargetConnections) {
+      try {
+        await db
+          .update(schema.KnowledgeConnection)
+          .set({
+            targetKnowledgeId: bookKnowledge.id,
+          })
+          .where(eq(schema.KnowledgeConnection.id, connection.id));
+      } catch (error) {
+        const queryError = error as QueryError;
+        if (
+          typeof queryError.code === "string" &&
+          queryError.code === "23505"
+        ) {
+          console.log("Book already linked to parent");
+        } else {
+          throw error; // Re-throw other errors
+        }
+      }
+    }
 
     // TODO: maybe not delete it? but redirect it? When we run into the issues we look back at this
     await db
