@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { KnowledgeDetailsScreen } from "@sovoli/ui/screens/knowledge-details";
 
 import { env } from "~/env";
 import { config } from "~/utils/config";
+import { KnowledgeDetails } from "./components/KnowledgeDetails";
 import { retreiveKnowledgeBySlug } from "./lib/getKnowledge";
 
 export const dynamic = "force-dynamic";
@@ -40,5 +40,5 @@ export default async function KnowledgePage({ params, searchParams }: Props) {
     searchParams,
   });
 
-  return <KnowledgeDetailsScreen knowledge={knowledge} />;
+  return <KnowledgeDetails knowledge={knowledge} />;
 }
