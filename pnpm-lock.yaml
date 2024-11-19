@@ -183,6 +183,12 @@ importers:
       react-dropzone:
         specifier: 14.3.5
         version: 14.3.5(react@18.2.0)
+      react-markdown:
+        specifier: 9.0.1
+        version: 9.0.1(@types/react@18.2.79)(react@18.2.0)
+      remark-gfm:
+        specifier: 4.0.0
+        version: 4.0.0
       server-only:
         specifier: 0.0.1
         version: 0.0.1

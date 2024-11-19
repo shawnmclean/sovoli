@@ -37,6 +37,8 @@
     "raf": "3.4.1",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "react-markdown": "9.0.1",
+    "remark-gfm": "4.0.0",
     "react-dropzone": "14.3.5",
     "lucide-react": "0.454.0",
     "udsv": "0.6.0",
