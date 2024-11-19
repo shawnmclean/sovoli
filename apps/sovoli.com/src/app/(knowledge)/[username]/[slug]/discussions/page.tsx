@@ -1,7 +1,7 @@
 // import { getBookFromISBNdb } from "@sovoli/api/services";
 import { auth } from "@sovoli/auth";
 
-import { getKnowledgeBySlug } from "../_lib/getKnowledgeService";
+import { getKnowledgeBySlug } from "../lib/getKnowledgeService";
 // import { and, db, eq, inArray, schema } from "@sovoli/db";
 
 import { ConnectionsList } from "./_components/ConnectionsList";

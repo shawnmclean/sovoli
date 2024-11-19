@@ -3,7 +3,7 @@ import { KnowledgeDetailsScreen } from "@sovoli/ui/screens/knowledge-details";
 
 import { env } from "~/env";
 import { config } from "~/utils/config";
-import { retreiveKnowledgeBySlug } from "./_lib/getKnowledge";
+import { retreiveKnowledgeBySlug } from "./lib/getKnowledge";
 
 export const dynamic = "force-dynamic";
 

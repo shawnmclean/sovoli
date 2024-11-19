@@ -1,6 +1,6 @@
 import { KnowledgeLayout } from "@sovoli/ui/components/layouts/KnowledgeLayout";
 
-import { preload, retreiveKnowledgeBySlug } from "./_lib/getKnowledge";
+import { preload, retreiveKnowledgeBySlug } from "./lib/getKnowledge";
 
 interface Props {
   children: React.ReactNode;
