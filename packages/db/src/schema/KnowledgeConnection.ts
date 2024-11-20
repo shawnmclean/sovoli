@@ -58,7 +58,7 @@ export const KnowledgeConnection = pgTable(
 
     type: knowledgeConnectionTypeEnum("type")
       .notNull()
-      .default(KnowledgeConnectionType.collection),
+      .default(KnowledgeConnectionType.contains),
 
     // optional ordering for the items in the collection (useful for study guides or arranging books on a shelf)
     order: integer("order"),

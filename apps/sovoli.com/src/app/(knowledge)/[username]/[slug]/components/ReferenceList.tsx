@@ -10,8 +10,13 @@ export interface ReferenceListProps {
 export function ReferenceList({ knowledgeConnections }: ReferenceListProps) {
   return (
     <div className="flex flex-col gap-4">
-      {knowledgeConnections.map((knowledgeConnection, index) => {
-        return <ReferenceItem item={knowledgeConnection} key={index} />;
+      {knowledgeConnections.map((knowledgeConnection) => {
+        return (
+          <ReferenceItem
+            item={knowledgeConnection}
+            key={knowledgeConnection.id}
+          />
+        );
       })}
     </div>
   );
