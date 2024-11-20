@@ -26,14 +26,14 @@ function getByUsernameFilter(username: string) {
 
 function getPrivacyFilter(authUserId?: string) {
   // always include public collections
-  const isPrivate = eq(schema.Knowledge.isPrivate, false);
+  const isPrivate = eq(schema.Knowledge.isPublic, true);
   if (!authUserId) return isPrivate;
 
   // if the user is authenticated, include private collections only if the user is the owner
   return or(
     isPrivate,
     and(
-      eq(schema.Knowledge.isPrivate, true),
+      eq(schema.Knowledge.isPublic, false),
       eq(schema.Knowledge.userId, authUserId),
     ),
   );
@@ -121,7 +121,7 @@ export async function getKnowledgeBySlug({
           'context', ${schema.Knowledge.context},
           'contextDescription', ${schema.Knowledge.contextDescription},
           'type', ${schema.Knowledge.type},
-          'isPrivate', ${schema.Knowledge.isPrivate},
+          'isPublic', ${schema.Knowledge.isPublic},
           'createdAt', ${schema.Knowledge.createdAt},
           'updatedAt', ${schema.Knowledge.updatedAt},
           'jobId', ${schema.Knowledge.jobId},
@@ -130,7 +130,6 @@ export async function getKnowledgeBySlug({
           'MediaAssets', COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]'),
           'bookId', ${schema.Knowledge.bookId},
           'chapterNumber', ${schema.Knowledge.chapterNumber},
-          'isPrivate', ${schema.Knowledge.isPrivate},
           'query', ${schema.Knowledge.query},
           'User', JSON_BUILD_OBJECT(
             'id', ${schema.User.id},

@@ -34,7 +34,7 @@ export const createConnections = async ({
       type: connection.targetKnowledge.type,
       queryType: connection.targetKnowledge.queryType,
       userId: authUserId,
-      isPrivate: parentKnowledge.isPrivate,
+      isPublic: parentKnowledge.isPublic,
     });
 
     // Prepare connections with a placeholder for targetKnowledgeId

@@ -65,7 +65,7 @@ export const Knowledge = pgTable(
     bookId: varchar("book_id", { length: 256 }).references(() => Book.id),
 
     chapterNumber: integer("chapter_number"),
-    isPrivate: boolean("is_public").notNull().default(false),
+    isPublic: boolean("is_public").notNull().default(true),
 
     // the query that is used to hydrate the knowledge, whether its a book (search type; isbn/query), article, youtube, etc
     query: text("query"),

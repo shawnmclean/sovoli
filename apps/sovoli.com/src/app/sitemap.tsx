@@ -18,7 +18,7 @@ export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
       id: true,
       slug: true,
     },
-    where: and(eq(schema.Knowledge.isPrivate, false)),
+    where: and(eq(schema.Knowledge.isPublic, true)),
   });
 
   return [

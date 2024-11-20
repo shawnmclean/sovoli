@@ -33,14 +33,14 @@ function getByUsernameFilter(username: string) {
 
 function getPrivacyFilter(authUserId?: string) {
   // always include public collections
-  const isPrivate = eq(schema.Knowledge.isPrivate, false);
+  const isPrivate = eq(schema.Knowledge.isPublic, true);
   if (!authUserId) return isPrivate;
 
   // if the user is authenticated, include private collections only if the user is the owner
   return or(
     isPrivate,
     and(
-      eq(schema.Knowledge.isPrivate, true),
+      eq(schema.Knowledge.isPublic, false),
       eq(schema.Knowledge.userId, authUserId),
     ),
   );
@@ -108,7 +108,7 @@ async function getKnowledges({
       description: schema.Knowledge.description,
       type: schema.Knowledge.type,
       isOrigin: schema.Knowledge.isOrigin,
-      isPrivate: schema.Knowledge.isPrivate,
+      isPublic: schema.Knowledge.isPublic,
       createdAt: schema.Knowledge.createdAt,
       updatedAt: schema.Knowledge.updatedAt,
       // using a window function to count the number of collections matching the filter (ignoring pagination)

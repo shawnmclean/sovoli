@@ -11,7 +11,7 @@ interface GetLatestKnowledgesOptions {
 function getFeedFilter() {
   return and(
     eq(schema.Knowledge.isOrigin, true),
-    eq(schema.Knowledge.isPrivate, false),
+    eq(schema.Knowledge.isPublic, true),
   );
 }
 
