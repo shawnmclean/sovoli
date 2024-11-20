@@ -1,3 +1,4 @@
+import { permanentRedirect } from "next/navigation";
 import { KnowledgeLayout } from "@sovoli/ui/components/layouts/KnowledgeLayout";
 
 import { preload, retreiveKnowledgeBySlug } from "./lib/getKnowledge";
@@ -8,6 +9,11 @@ interface Props {
 }
 export default async function Layout({ children, params }: Props) {
   const { username, slug } = await params;
+
+  // temp hack since I no longer have a chatgpt account and using my account instead (migrated data)
+  if (username.toLowerCase() === "chatgpt") {
+    return permanentRedirect("/shawn/" + slug);
+  }
 
   preload({
     params: { slug, username },
