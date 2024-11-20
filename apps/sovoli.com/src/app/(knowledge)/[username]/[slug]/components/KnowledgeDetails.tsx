@@ -6,7 +6,6 @@ import { Gallery } from "@sovoli/ui/components/Gallery";
 import { Link } from "@sovoli/ui/components/ui/link";
 import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
 import { User } from "@sovoli/ui/components/ui/user";
-import { R } from "node_modules/@tanstack/react-query-devtools/build/modern/devtools-PtxSnd7z";
 
 import { HeaderActions } from "./HeaderActions";
 import { KnowledgeContent } from "./KnowledgeContent";
