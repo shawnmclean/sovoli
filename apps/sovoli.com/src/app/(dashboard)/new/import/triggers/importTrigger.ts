@@ -180,7 +180,7 @@ export const importTrigger = task({
           return {
             sourceKnowledgeId: shelfId,
             targetKnowledgeId: bookId,
-            type: KnowledgeConnectionType.collection,
+            type: KnowledgeConnectionType.contains,
           };
         });
 
