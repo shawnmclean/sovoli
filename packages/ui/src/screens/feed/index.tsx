@@ -12,46 +12,47 @@ export interface FeedScreenProps {
 
 export function FeedScreen({ knowledges }: FeedScreenProps) {
   return (
-    <div
-      className="mb-20 h-full w-full max-w-[1500px] self-center p-4 pb-0 md:mb-2 md:px-10 md:pb-0 md:pt-6"
-    >
-      <h1 className="font-roboto">
-        What's new?
-      </h1>
+    <div className="mx-auto w-full max-w-5xl p-6">
+      <header className="mb-10 text-center">
+        <h1 className="mb-2 text-4xl font-bold">Writings on Sovoli</h1>
+        <p className="text-lg text-gray-400">
+          Insights, stories, and updates from our community.
+        </p>
+      </header>
 
-      <div className="h-full w-full flex-1">
-
-            {knowledges.map((item, index) => {
-              return (
-                <Link
-                color="foreground"
-                  key={index}
-                  href={`${item.User?.username}/${item.slug ?? item.id}`}
-                >
-                  <div className="border-border-300 rounded-xl border p-5">
-                    <div className="h-64 w-full rounded">
-                      <KnowledgeImage knowledge={item} />
-                    </div>
-                    <div className="mt-4" >
-                      <p className="text-sm">
-                        <TimeAgo
-                          datetime={item.createdAt}
-                          className="text-typography-500"
-                        />
-                      </p>
-                      <h3 >{item.title}</h3>
-                      <p className="line-clamp-2">{item.description}</p>
-                      <p className="text-sm">
-                        {item.type} created by{" "}
-                        <Link href={`/${item.User?.username}`}>
-                          {item.User?.name}
-                        </Link>
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {knowledges.map((item, index) => (
+          <div
+            key={index}
+            className="overflow-hidden rounded-lg border border-gray-200 shadow-lg transition-shadow hover:shadow-xl"
+          >
+            <Link
+              href={`/${item.User?.username}/${item.slug ?? item.id}`}
+              className="block"
+            >
+              <div className="relative h-48 bg-gray-100">
+                <KnowledgeImage knowledge={item} />
+              </div>
+              <div className="p-4">
+                <h2 className="mb-2 line-clamp-2 text-xl font-semibold text-gray-200">
+                  {item.title}
+                </h2>
+                <p className="mb-4 line-clamp-3 text-sm text-gray-400">
+                  {item.description ?? "No description available."}
+                </p>
+                <div className="text-sm text-gray-500">
+                  <TimeAgo datetime={item.createdAt} /> by{" "}
+                  <Link
+                    href={`/${item.User?.username}`}
+                    className="font-medium"
+                  >
+                    {item.User?.name ?? "Anonymous"}
+                  </Link>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -69,6 +70,19 @@ function KnowledgeImage({ knowledge }: { knowledge: SelectKnowledgeSchema }) {
   }).filter((image) => image !== null);
 
   if (images?.[0]) {
-    return <Image src={images[0].src} alt={images[0].alt} fill />;
+    return (
+      <Image
+        src={images[0].src}
+        alt={images[0].alt}
+        className="h-full w-full object-cover"
+      />
+    );
   }
+
+  // Placeholder for posts without images
+  return (
+    <div className="flex h-full w-full items-center justify-center bg-gray-200 text-gray-400">
+      No Image
+    </div>
+  );
 }
