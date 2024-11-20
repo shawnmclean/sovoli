@@ -71,7 +71,11 @@ export async function KnowledgeDetails({ knowledge }: Props) {
               <KnowledgeContent knowledge={knowledge} />
             </section>
             <ReferenceList
-              knowledgeConnections={knowledge.SourceConnections ?? []}
+              knowledgeConnections={
+                knowledge.SourceConnections?.filter(
+                  (c) => c.type !== "main_reference" && c.type !== "comment",
+                ) ?? []
+              }
             />
           </div>
 

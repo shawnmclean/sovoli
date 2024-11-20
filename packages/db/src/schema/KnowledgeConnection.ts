@@ -19,12 +19,9 @@ import { Knowledge, SelectKnowledgeSchema } from "./Knowledge";
 
 export const KnowledgeConnectionTypes = [
   "contains",
-  "recommends",
-  "refers",
   "main_reference",
   "supplemental_reference",
   "comment",
-  "collection",
 ] as const;
 export const KnowledgeConnectionType = createEnumObject(
   KnowledgeConnectionTypes,
