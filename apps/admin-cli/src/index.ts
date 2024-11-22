@@ -3,7 +3,7 @@ import { Option, program } from "@commander-js/extra-typings";
 
 import "./env";
 
-import { knowledgeUpserted } from "@sovoli/api/services/knowledge/knowledgeUpserted";
+import { knowledgeUpserted } from "@sovoli/core/services/knowledge/knowledgeUpserted";
 import { db, eq, schema } from "@sovoli/db";
 
 program

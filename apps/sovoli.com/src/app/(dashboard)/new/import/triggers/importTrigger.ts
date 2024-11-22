@@ -2,8 +2,8 @@ import type {
   InsertKnowledge,
   InsertKnowledgeConnection,
 } from "@sovoli/db/schema";
-import { PublishKnowledge } from "@sovoli/api/services/knowledge/publishKnowledge";
-import { knowledgeUpsertedEvent } from "@sovoli/api/trigger";
+import { PublishKnowledge } from "@sovoli/core/services/knowledge/publishKnowledge";
+import { knowledgeUpsertedEvent } from "@sovoli/core/trigger";
 import { db, eq, schema } from "@sovoli/db";
 import {
   ImportStatus,

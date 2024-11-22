@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getBaseUrl } from "@sovoli/api/utils";
+import { getBaseUrl } from "@sovoli/core/utils";
 import { and, db, eq, schema } from "@sovoli/db";
 
 export const dynamic = "force-dynamic";

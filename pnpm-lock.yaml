@@ -68,7 +68,7 @@ importers:
       '@commander-js/extra-typings':
         specifier: 12.1.0
         version: 12.1.0(commander@12.1.0)
-      '@sovoli/api':
+      '@sovoli/core':
         specifier: workspace:*
         version: link:../../packages/api
       '@sovoli/db':
@@ -117,7 +117,7 @@ importers:
       '@scalar/openapi-parser':
         specifier: 0.8.4
         version: 0.8.4
-      '@sovoli/api':
+      '@sovoli/core':
         specifier: workspace:*
         version: link:../../packages/api
       '@sovoli/auth':
@@ -560,7 +560,7 @@ importers:
       '@nextui-org/user':
         specifier: 2.0.34
         version: 2.0.34(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(framer-motion@11.11.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@nextui-org/theme@2.2.11(tailwindcss@3.4.10))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@sovoli/api':
+      '@sovoli/core':
         specifier: workspace:*
         version: link:../api
       '@sovoli/auth':

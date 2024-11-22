@@ -1,4 +1,4 @@
-// import { getBookFromISBNdb } from "@sovoli/api/services";
+// import { getBookFromISBNdb } from "@sovoli/core/services";
 import { auth } from "@sovoli/auth";
 
 import { getKnowledgeBySlug } from "../lib/getKnowledgeService";

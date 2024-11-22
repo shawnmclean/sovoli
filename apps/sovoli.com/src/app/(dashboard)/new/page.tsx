@@ -1,5 +1,5 @@
-import { BatchCreateKnowledges } from "@sovoli/api/services/knowledge/batchCreateKnowledges";
 import { auth } from "@sovoli/auth";
+import { BatchCreateKnowledges } from "@sovoli/core/services/knowledge/batchCreateKnowledges";
 import { db } from "@sovoli/db";
 
 export default function NewPage() {

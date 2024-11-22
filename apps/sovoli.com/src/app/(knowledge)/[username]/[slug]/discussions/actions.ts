@@ -1,8 +1,8 @@
 "use server";
 
-import type { PutKnowledgeSchemaRequest } from "@sovoli/api/services";
-import { updateKnowledge } from "@sovoli/api/services";
+import type { PutKnowledgeSchemaRequest } from "@sovoli/core/services";
 import { auth } from "@sovoli/auth";
+import { updateKnowledge } from "@sovoli/core/services";
 
 export interface UpdateKnowledgeActionOptions {
   knowledge: PutKnowledgeSchemaRequest & { id: string };

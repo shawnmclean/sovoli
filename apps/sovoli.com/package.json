@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@rvf/zod": "6.0.3",
-    "@sovoli/api": "workspace:*",
+    "@sovoli/core": "workspace:*",
     "@sovoli/auth": "workspace:*",
     "@sovoli/db": "workspace:*",
     "@sovoli/ui": "workspace:*",

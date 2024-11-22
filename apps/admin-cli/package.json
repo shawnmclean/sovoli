@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@commander-js/extra-typings": "12.1.0",
-    "@sovoli/api": "workspace:*",
+    "@sovoli/core": "workspace:*",
     "@sovoli/db": "workspace:*",
     "commander": "12.1.0",
     "@t3-oss/env-core": "0.11.1"

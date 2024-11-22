@@ -39,7 +39,7 @@ const nextConfig = {
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@sovoli/ui",
-    "@sovoli/api",
+    "@sovoli/core",
     "@sovoli/auth",
     "@sovoli/db",
   ],

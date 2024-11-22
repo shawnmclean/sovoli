@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cache } from "react";
-import { getLatestKnowledges } from "@sovoli/api/services";
+import { getLatestKnowledges } from "@sovoli/core/services";
 import { FeedScreen } from "@sovoli/ui/screens/feed";
 
 import { config } from "~/utils/config";

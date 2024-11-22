@@ -38,7 +38,7 @@
     "@nextui-org/select": "2.2.7",
     "@nextui-org/spinner": "2.0.34",
     "@sovoli/auth": "workspace:*",
-    "@sovoli/api": "workspace:*",
+    "@sovoli/core": "workspace:*",
     "@sovoli/db": "workspace:*",
     "@unitools/image": "0.0.5",
     "@zxing/library": "0.21.3",
