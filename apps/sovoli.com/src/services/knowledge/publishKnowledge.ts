@@ -1,21 +1,16 @@
-import { db, eq, schema } from "@sovoli/db";
+import { eq, schema } from "@sovoli/db";
 
 import { slugify } from "~/utils/slugify";
+import { BaseService } from "./baseService";
 
 export interface PublishKnowledgeOptions {
   authUserId: string;
   knowledgeId: string;
 }
 
-export class PublishKnowledge {
-  dbClient: typeof db;
-
-  constructor(dbClient: typeof db = db) {
-    this.dbClient = dbClient;
-  }
-
+export class PublishKnowledge extends BaseService {
   public async call({ authUserId, knowledgeId }: PublishKnowledgeOptions) {
-    const knowledge = await db.query.Knowledge.findFirst({
+    const knowledge = await this.dbClient.query.Knowledge.findFirst({
       where: eq(schema.Knowledge.id, knowledgeId),
     });
 
@@ -31,7 +26,7 @@ export class PublishKnowledge {
     let retryCount = 0;
     while (retryCount < 50) {
       try {
-        await db
+        await this.dbClient
           .update(schema.Knowledge)
           .set({
             slug,
