@@ -16,12 +16,15 @@
       "types": "./dist/tsr/contract.d.ts",
       "default": "./src/tsr/contract.ts"
     },
-    "./services/": "./src/services/",
     "./utils": {
       "types": "./dist/utils/index.d.ts",
       "default": "./src/utils/index.ts"
     },
-    "./env": "./src/env.ts"
+    "./env": "./src/env.ts",
+    "./services/": {
+      "types": "./dist/services/index.d.ts",
+      "default": "./src/services/index.ts"
+    }
   },
   "scripts": {
     "build": "tsc",

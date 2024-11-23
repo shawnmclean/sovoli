@@ -2,7 +2,6 @@ import type {
   InsertKnowledge,
   InsertKnowledgeConnection,
 } from "@sovoli/db/schema";
-import { PublishKnowledge } from "@sovoli/core/services/knowledge/publishKnowledge";
 import { knowledgeUpsertedEvent } from "@sovoli/core/trigger";
 import { db, eq, schema } from "@sovoli/db";
 import {
@@ -15,6 +14,7 @@ import { AbortTaskRunError, task } from "@trigger.dev/sdk/v3";
 import chunk from "lodash/chunk";
 
 import type { ImportDataError } from "../lib/schemas";
+import { PublishKnowledge } from "~/services/knowledge/publishKnowledge";
 import { groupCSVBooksByShelves } from "../lib/groupCSVBooksByShelves";
 import { parseCSVIntoBooks } from "../lib/parseCSVIntoBooks";
 import { importDataSchema } from "../lib/schemas";

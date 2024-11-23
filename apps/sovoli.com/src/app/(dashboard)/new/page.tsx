@@ -1,6 +1,4 @@
 import { auth } from "@sovoli/auth";
-import { BatchCreateKnowledges } from "@sovoli/core/services/knowledge/batchCreateKnowledges";
-import { db } from "@sovoli/db";
 
 export default function NewPage() {
   async function create() {
@@ -9,32 +7,8 @@ export default function NewPage() {
     if (!session) {
       throw new Error("Not authenticated");
     }
-    const batchCreateKnowledges = new BatchCreateKnowledges(db);
-    const created = await batchCreateKnowledges.call({
-      authUserId: session.userId,
-      knowledges: [
-        {
-          title: "test",
-          description: "test",
-          content: "test",
-          type: "collection",
-          query: "test",
-          queryType: "query",
-          isOrigin: true,
-        },
-        {
-          title: "test-2",
-          description: "test",
-          content: "test",
-          type: "collection",
-          query: "test",
-          queryType: "query",
-          isOrigin: true,
-        },
-      ],
-    });
-    console.log(created);
   }
+
   return (
     <div className="min-h-screen dark:bg-black">
       <form action={create} method="post">
