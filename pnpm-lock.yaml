@@ -65,6 +65,9 @@ importers:
 
   apps/sovoli.com:
     dependencies:
+      '@opentelemetry/api':
+        specifier: 1.9.0
+        version: 1.9.0
       '@rvf/zod':
         specifier: 6.0.3
         version: 6.0.3(@rvf/core@6.3.0(@rvf/set-get@6.0.3)(react@18.2.0))(@rvf/set-get@6.0.3)(zod@3.23.8)
