@@ -11,6 +11,7 @@ export const env = createEnv({
       .default("development"),
     PORT: z.string().optional(),
     VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
+    NEXT_RUNTIME: z.enum(["nodejs", "deno", "bun", "cloudflare-workers"]),
   },
   /**
    * Specify your server-side environment variables schema here.
@@ -38,6 +39,7 @@ export const env = createEnv({
     PORT: process.env.PORT,
     VERCEL_PROJECT_PRODUCTION_URL: process.env.VERCEL_PROJECT_PRODUCTION_URL,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_RUNTIME: process.env.NEXT_RUNTIME,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   skipValidation:
