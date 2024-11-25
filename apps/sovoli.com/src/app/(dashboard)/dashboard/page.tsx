@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { cache } from "react";
+import { trace } from "@opentelemetry/api";
 import { FeedScreen } from "@sovoli/ui/screens/feed";
 
 import { config } from "~/utils/config";
@@ -8,8 +9,17 @@ import { getLatestKnowledges } from "./lib/getLatestKnowledges";
 export const dynamic = "force-dynamic";
 
 const retrieveLatestKnowledges = cache(async () => {
+  return await trace
+    .getTracer("nextjs-example")
+    .startActiveSpan("fetchGithubStars", async (span) => {
+      try {
+        return await getLatestKnowledges();
+      } finally {
+        span.end();
+      }
+    });
   // try {
-  return await getLatestKnowledges();
+
   // } catch {
   //   return notFound();
   // }

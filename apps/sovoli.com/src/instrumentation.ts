@@ -1,9 +1,6 @@
-import { env } from "./env.js";
+import { registerOTel } from "@vercel/otel";
 
-console.log("instrumentation");
-export async function register() {
-  console.log("registering instrumentation");
-  if (env.NEXT_RUNTIME === "nodejs") {
-    await import("./instrumentation.node");
-  }
+export function register() {
+  console.log("Instrumentation registered");
+  registerOTel("your-service-name");
 }
