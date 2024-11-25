@@ -1,4 +1,9 @@
+import { context, trace } from "@opentelemetry/api";
+import { LoggerProvider } from "@opentelemetry/sdk-logs";
 import { and, db, desc, eq, lt, or, schema } from "@sovoli/db";
+import pino from "pino";
+
+const logger = pino();
 
 interface GetLatestKnowledgesOptions {
   cursor?: {
@@ -19,6 +24,8 @@ export const getLatestKnowledges = async ({
   cursor,
   limit = 10,
 }: GetLatestKnowledgesOptions = {}) => {
+  logger.info("inside getLatestKnowledges");
+
   const feedFilter = getFeedFilter();
 
   return db.query.Knowledge.findMany({
