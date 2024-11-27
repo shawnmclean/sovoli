@@ -19,7 +19,6 @@ export const env = createEnv({
   server: {
     POSTGRES_URL: z.string().url(),
     TRIGGER_SECRET_KEY: z.string(),
-    NEXT_RUNTIME: z.enum(["nodejs", "edge"]),
   },
 
   /**
