@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 const retrieveLatestKnowledges = cache(async () => {
   return await trace
     .getTracer("nextjs-example")
-    .startActiveSpan("fetchGithubStars", async (span) => {
+    .startActiveSpan("retrieveLatestKnowledges1", async (span) => {
       try {
         return await getLatestKnowledges();
       } finally {

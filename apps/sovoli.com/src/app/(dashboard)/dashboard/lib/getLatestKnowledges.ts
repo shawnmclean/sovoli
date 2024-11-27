@@ -1,5 +1,3 @@
-import { context, trace } from "@opentelemetry/api";
-import { LoggerProvider } from "@opentelemetry/sdk-logs";
 import { and, db, desc, eq, lt, or, schema } from "@sovoli/db";
 import pino from "pino";
 

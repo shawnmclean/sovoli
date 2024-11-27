@@ -1,9 +1,6 @@
-import { PinoInstrumentation } from "@opentelemetry/instrumentation-pino";
-import { registerOTel } from "@vercel/otel";
-
-export function register() {
-  registerOTel({
-    serviceName: "next-app",
-    instrumentations: [new PinoInstrumentation()],
-  });
+export async function register() {
+  if (process.env.NEXT_RUNTIME === "nodejs") {
+    console.log("instrumentation registering");
+    await import("./instrumentation.node");
+  }
 }
