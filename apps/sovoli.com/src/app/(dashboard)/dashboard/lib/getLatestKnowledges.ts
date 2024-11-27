@@ -22,7 +22,7 @@ export const getLatestKnowledges = async ({
   cursor,
   limit = 10,
 }: GetLatestKnowledgesOptions = {}) => {
-  logger.info("inside getLatestKnowledges");
+  logger.info({ test: "test string" }, "inside getLatestKnowledges");
 
   const feedFilter = getFeedFilter();
 

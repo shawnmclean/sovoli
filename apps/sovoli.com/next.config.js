@@ -47,8 +47,9 @@ const nextConfig = {
     instrumentationHook: true,
     serverComponentsExternalPackages: ["@opentelemetry/sdk-node", "pino"],
   },
-  /** We already do linting and typechecking as separate tasks in CI */ eslint:
-    { ignoreDuringBuilds: true },
+
+  /** We already do linting and typechecking as separate tasks in CI */
+  eslint: { ignoreDuringBuilds: true },
 };
 
 export default nextConfig;
