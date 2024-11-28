@@ -23,12 +23,13 @@ export const getLatestKnowledges = async ({
 }: GetLatestKnowledgesOptions = {}) => {
   const logger = new Logger();
   logger.info("inside getLatestKnowledges", {
-    test: "test string",
+    test: "new test string",
     nested: {
       test: "test string",
     },
   });
 
+  logger.info("just a message");
   const feedFilter = getFeedFilter();
 
   return db.query.Knowledge.findMany({
