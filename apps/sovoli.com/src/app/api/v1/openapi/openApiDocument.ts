@@ -1,8 +1,9 @@
 import type { SecurityRequirementObject } from "openapi3-ts/oas30";
 import { upgrade } from "@scalar/openapi-parser";
-import { contract } from "@sovoli/core/tsr/contract";
-import { getBaseUrl } from "@sovoli/core/utils";
 import { generateOpenApi } from "@ts-rest/open-api";
+
+import { contract } from "~/tsr/contract";
+import { getBaseUrl } from "~/utils/getBaseUrl";
 
 const hasCustomTags = (
   metadata: unknown,

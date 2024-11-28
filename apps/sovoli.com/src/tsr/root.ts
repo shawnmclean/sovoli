@@ -3,9 +3,7 @@ import { tsr } from "@ts-rest/serverless/fetch";
 
 import type { PlatformContext, TSRGlobalContext } from "./types";
 import { contract } from "./contract";
-import { bookRouter } from "./router/book/bookRouter";
 import { knowledgeRouter } from "./router/knowledge/knowledgeRouter";
-import { userRouter } from "./router/user/userRouter";
 
 export const router = tsr
   .platformContext<PlatformContext>()
@@ -23,6 +21,4 @@ export const router = tsr
       }
     }
   })
-  .subRouter("user", userRouter)
-  .subRouter("book", bookRouter)
   .subRouter("knowledge", knowledgeRouter);

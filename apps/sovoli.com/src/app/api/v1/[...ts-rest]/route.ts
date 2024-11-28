@@ -1,8 +1,9 @@
-import type { PlatformContext, TSRGlobalContext } from "@sovoli/core/tsr";
 import type { FetchHandlerOptions } from "@ts-rest/serverless/fetch";
 import { auth } from "@sovoli/auth";
-import { contract, router } from "@sovoli/core/tsr";
 import { fetchRequestHandler } from "@ts-rest/serverless/fetch";
+
+import type { PlatformContext, TSRGlobalContext } from "~/tsr";
+import { contract, router } from "~/tsr";
 
 export const dynamic = "force-dynamic";
 

@@ -1,7 +1,6 @@
-import type { AuthUser } from "@supabase/supabase-js";
 import { TsRestResponse } from "@ts-rest/serverless/fetch";
 
-import type { TSRAuthContext } from "../types";
+import type { AuthUser, TSRAuthContext } from "../types";
 
 export const authMiddleware = (req: TSRAuthContext) => {
   if (!req.session?.user?.id) {

@@ -1,6 +1,6 @@
 import { task } from "@trigger.dev/sdk/v3";
 
-import { knowledgeUpserted } from "../services/knowledge";
+import { knowledgeUpserted } from "~/services/knowledge/knowledgeUpserted";
 
 export interface KnowledgeUpsertedEventOptions {
   knowledgeId: string;

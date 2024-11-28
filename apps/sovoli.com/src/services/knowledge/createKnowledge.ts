@@ -7,8 +7,8 @@ import { db, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
 
 import type { PostKnowledgeSchemaRequest } from "../../tsr/router/knowledge/knowledgeContract";
+import { generateAuthToken, hashAuthToken } from "~/utils/authTokens";
 import { hydrateMedia, knowledgeUpsertedEvent } from "../../trigger";
-import { generateAuthToken, hashAuthToken } from "../../utils/authTokens";
 import { slugify } from "../../utils/slugify";
 import { createConnections } from "./createConnections";
 

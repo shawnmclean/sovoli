@@ -1,10 +1,7 @@
-import { Suspense } from "react";
 import { auth, signIn } from "@sovoli/auth";
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 import { getQueryClientRsc } from "~/api/query-client";
 import { tsrReactQuery } from "~/api/tsr";
-import { Me } from "./_components/Me";
 
 export default async function SettingsPage() {
   const client = tsrReactQuery.initQueryClient(getQueryClientRsc());
@@ -15,12 +12,6 @@ export default async function SettingsPage() {
   return (
     <div className="min-h-screen dark:bg-black">
       <h1>Settings</h1>
-
-      <HydrationBoundary state={dehydrate(client)}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Me />
-        </Suspense>
-      </HydrationBoundary>
 
       <SignIn />
     </div>

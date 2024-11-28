@@ -1,10 +1,11 @@
 import type { InitClientArgs } from "@ts-rest/core";
 import { auth } from "@sovoli/auth";
-import { contract } from "@sovoli/core/tsr/contract";
-import { getBaseUrl } from "@sovoli/core/utils";
 import { isServer } from "@tanstack/react-query";
 import { initClient, tsRestFetchApi } from "@ts-rest/core";
 import { initTsrReactQuery } from "@ts-rest/react-query/v5";
+
+import { contract } from "~/tsr/contract";
+import { getBaseUrl } from "~/utils/getBaseUrl";
 
 const clientOptions = {
   baseUrl: getBaseUrl() + "/api/v1",
