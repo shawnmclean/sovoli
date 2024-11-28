@@ -1,7 +1,5 @@
 import { and, db, desc, eq, lt, or, schema } from "@sovoli/db";
 
-import { Logger } from "~/core/logger/Logger";
-
 interface GetLatestKnowledgesOptions {
   cursor?: {
     id: string;
@@ -21,15 +19,6 @@ export const getLatestKnowledges = async ({
   cursor,
   limit = 10,
 }: GetLatestKnowledgesOptions = {}) => {
-  const logger = new Logger();
-  logger.info("inside getLatestKnowledges", {
-    test: "new test string",
-    nested: {
-      test: "test string",
-    },
-  });
-
-  logger.info("just a message");
   const feedFilter = getFeedFilter();
 
   return db.query.Knowledge.findMany({
