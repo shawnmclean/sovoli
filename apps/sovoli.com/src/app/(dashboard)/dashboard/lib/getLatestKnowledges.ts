@@ -1,7 +1,6 @@
 import { and, db, desc, eq, lt, or, schema } from "@sovoli/db";
-import pino from "pino";
 
-const logger = pino();
+import { Logger } from "~/core/logger/Logger";
 
 interface GetLatestKnowledgesOptions {
   cursor?: {
@@ -22,7 +21,13 @@ export const getLatestKnowledges = async ({
   cursor,
   limit = 10,
 }: GetLatestKnowledgesOptions = {}) => {
-  logger.info({ test: "test string" }, "inside getLatestKnowledges");
+  const logger = new Logger();
+  logger.info("inside getLatestKnowledges", {
+    test: "test string",
+    nested: {
+      test: "test string",
+    },
+  });
 
   const feedFilter = getFeedFilter();
 
