@@ -7,8 +7,8 @@ import { and, db, eq, inArray, schema } from "@sovoli/db";
 import { ImportStatus } from "@sovoli/db/schema";
 
 import type { ImportData } from "../lib/schemas";
+import { importTrigger } from "~/trigger/importTrigger";
 import { formImportShelfSchema } from "../lib/schemas";
-import { importTrigger } from "../triggers/importTrigger";
 
 export type State = {
   status: "error";

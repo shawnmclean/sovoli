@@ -15,7 +15,8 @@ import type {
   PutKnowledgeSchemaRequest,
   UpdateConnectionSchema,
 } from "../../tsr/router/knowledge/knowledgeContract";
-import { hydrateMedia, knowledgeUpsertedEvent } from "../../trigger";
+import { knowledgeUpsertedEvent } from "~/trigger/knowledgeUpsertedEvent";
+import { hydrateMedia } from "~/trigger/media";
 import { hashAuthToken } from "../../utils/authTokens";
 import { createConnections } from "./createConnections";
 

@@ -12,12 +12,12 @@ import {
 import { AbortTaskRunError, task } from "@trigger.dev/sdk/v3";
 import chunk from "lodash/chunk";
 
-import type { ImportDataError } from "../lib/schemas";
+import type { ImportDataError } from "~/app/(dashboard)/new/import/lib/schemas";
+import { groupCSVBooksByShelves } from "~/app/(dashboard)/new/import/lib/groupCSVBooksByShelves";
+import { parseCSVIntoBooks } from "~/app/(dashboard)/new/import/lib/parseCSVIntoBooks";
+import { importDataSchema } from "~/app/(dashboard)/new/import/lib/schemas";
 import { PublishKnowledge } from "~/services/knowledge/publishKnowledge";
-import { knowledgeUpsertedEvent } from "~/trigger/";
-import { groupCSVBooksByShelves } from "../lib/groupCSVBooksByShelves";
-import { parseCSVIntoBooks } from "../lib/parseCSVIntoBooks";
-import { importDataSchema } from "../lib/schemas";
+import { knowledgeUpsertedEvent } from "./knowledgeUpsertedEvent";
 
 export interface ImportTriggerOptions {
   importId: string;
