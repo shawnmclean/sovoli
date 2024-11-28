@@ -1,12 +1,47 @@
-import type { InsertBook, SelectBook } from "@sovoli/db/schema";
-import { db, schema, sql } from "@sovoli/db";
+import type { SelectBook } from "@sovoli/db/schema";
+import { db, eq, or, schema, sql } from "@sovoli/db";
 
-export const upsertBooks = async (
-  books: InsertBook[],
-): Promise<SelectBook[]> => {
-  const insertedBooks = await db
+import { getBookFromISBNdb } from "../isbndb/getBookFromISBNdb";
+
+export interface FindBookByISBNOptions {
+  isbn: string;
+}
+
+export interface FindBookByISBNResult {
+  /**
+   * book matching the query
+   */
+  book?: SelectBook;
+}
+
+export const findBookByISBN = async ({
+  isbn,
+}: FindBookByISBNOptions): Promise<FindBookByISBNResult> => {
+  const internalBook = await db.query.Book.findFirst({
+    where: or(eq(schema.Book.isbn10, isbn), eq(schema.Book.isbn13, isbn)),
+  });
+
+  if (internalBook) {
+    console.log("found book in internal db");
+    return {
+      book: internalBook,
+    };
+  }
+
+  console.log("no internal results, searching externally");
+
+  const externalBook = await getBookFromISBNdb({ isbn });
+
+  if (!externalBook) {
+    console.log("no external book found");
+    return {};
+  }
+
+  console.log("found external book");
+
+  const [insertedBooks] = await db
     .insert(schema.Book)
-    .values(books)
+    .values(externalBook)
     .onConflictDoUpdate({
       target: [schema.Book.isbn10, schema.Book.isbn13],
       set: {
@@ -34,5 +69,9 @@ export const upsertBooks = async (
     })
     .returning();
 
-  return insertedBooks;
+  console.log("upserted book");
+
+  return {
+    book: insertedBooks,
+  };
 };

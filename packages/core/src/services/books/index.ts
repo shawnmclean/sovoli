@@ -1,3 +1,3 @@
 export * from "./insert";
-export * from "./search";
+export * from "./searchBooksByQuery";
 export * from "./findBookByISBN";
