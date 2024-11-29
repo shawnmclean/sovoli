@@ -1,10 +1,9 @@
-import { env as apiEnv } from "@sovoli/core/env";
 import { createEnv } from "@t3-oss/env-nextjs";
 import { vercel } from "@t3-oss/env-nextjs/presets";
 import { z } from "zod";
 
 export const env = createEnv({
-  extends: [vercel(), apiEnv],
+  extends: [vercel()],
   shared: {
     NODE_ENV: z
       .enum(["development", "production", "test"])
@@ -19,6 +18,10 @@ export const env = createEnv({
   server: {
     POSTGRES_URL: z.string().url(),
     TRIGGER_SECRET_KEY: z.string(),
+    ISBN_DB_API_KEY: z.string().min(1),
+    SUPABASE_MEDIA_BUCKET: z.string().min(1),
+    SUPABASE_URL: z.string().min(1),
+    SUPABASE_ANON_KEY: z.string().min(1),
   },
 
   /**
