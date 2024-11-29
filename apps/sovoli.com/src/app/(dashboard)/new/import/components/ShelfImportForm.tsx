@@ -21,10 +21,10 @@ import { SheetIcon } from "lucide-react";
 import { useFormState, useFormStatus } from "react-dom";
 
 import type { State } from "../actions/importShelfAction";
-import type { GroupedCSVBooks } from "../lib/groupCSVBooksByShelves";
+import type { GroupedCSVBooks } from "~/services/import/groupCSVBooksByShelves";
+import { groupCSVBooksByShelves } from "~/services/import/groupCSVBooksByShelves";
+import { parseCSVIntoBooks } from "~/services/import/parseCSVIntoBooks";
 import { importShelfAction } from "../actions/importShelfAction";
-import { groupCSVBooksByShelves } from "../lib/groupCSVBooksByShelves";
-import { parseCSVIntoBooks } from "../lib/parseCSVIntoBooks";
 import { CSVFileInput } from "./CSVFileInput";
 
 export interface ShelfImportFormProps {
