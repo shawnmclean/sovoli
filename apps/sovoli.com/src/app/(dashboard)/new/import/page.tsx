@@ -6,9 +6,7 @@ import { ShelfImportForm } from "./components/ShelfImportForm";
 export default async function ImportPage() {
   const session = await auth();
   if (!session) {
-    return {
-      errors: ["You must be logged in to import shelves"],
-    };
+    throw new Error("You must be logged in to import shelves");
   }
 
   const existingCollections = await db.query.Knowledge.findMany({
