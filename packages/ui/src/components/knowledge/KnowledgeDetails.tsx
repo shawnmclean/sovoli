@@ -97,7 +97,6 @@ export async function KnowledgeDetails({ knowledge }: Props) {
             <div className="space-y-4 border-t border-divider pt-4">
               {/* Placeholder for future info */}
               <p className="text-gray-400">Type: {knowledge.type}</p>
-              <p className="text-gray-400">Posted From: ChatGPT</p>
             </div>
           </div>
         </div>
