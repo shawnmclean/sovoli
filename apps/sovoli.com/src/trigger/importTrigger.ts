@@ -11,13 +11,25 @@ import {
 } from "@sovoli/db/schema";
 import { AbortTaskRunError, task } from "@trigger.dev/sdk/v3";
 import chunk from "lodash/chunk";
+import { z } from "zod";
 
-import type { ImportDataError } from "~/app/(dashboard)/new/import/lib/schemas";
-import { importDataSchema } from "~/app/(dashboard)/new/import/lib/schemas";
+import { importShelfDataSchema } from "~/services/import/createShelfImport";
 import { groupCSVBooksByShelves } from "~/services/import/groupCSVBooksByShelves";
 import { parseCSVIntoBooks } from "~/services/import/parseCSVIntoBooks";
 import { PublishKnowledge } from "~/services/knowledge/publishKnowledge";
 import { knowledgeUpsertedEvent } from "./knowledgeUpsertedEvent";
+
+export const importDataErrorSchema = z.object({
+  message: z.string(),
+  errors: z
+    .object({
+      book: z.string().optional(),
+      message: z.string().optional(),
+    })
+    .array(),
+});
+
+export type ImportDataError = z.infer<typeof importDataErrorSchema>;
 
 export interface ImportTriggerOptions {
   importId: string;
@@ -42,7 +54,7 @@ export const importTrigger = task({
       })
       .where(eq(schema.Import.id, importId));
 
-    const { csvContent, mapping: userMapping } = importDataSchema.parse(
+    const { csvContent, mapping: userMapping } = importShelfDataSchema.parse(
       importResult.importData,
     );
 

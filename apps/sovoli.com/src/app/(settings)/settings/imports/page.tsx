@@ -2,7 +2,7 @@ import type { SelectImport } from "@sovoli/db/schema";
 import { auth } from "@sovoli/auth";
 import { db, eq, schema } from "@sovoli/db";
 
-import { importDataErrorSchema } from "~/app/(dashboard)/new/import/lib/schemas";
+import { importDataErrorSchema } from "~/trigger/importTrigger";
 
 export default async function SettingsImportPage() {
   const session = await auth();

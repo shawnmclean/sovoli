@@ -1,7 +1,7 @@
 import { eq, schema } from "@sovoli/db";
 
 import { slugify } from "~/utils/slugify";
-import { BaseService } from "./baseService";
+import { BaseService } from "../baseService";
 
 export interface PublishKnowledgeOptions {
   authUserId: string;
