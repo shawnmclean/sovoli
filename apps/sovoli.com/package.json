@@ -34,7 +34,6 @@
     "@scalar/nextjs-api-reference": "0.4.89",
     "@scalar/openapi-parser": "0.8.4",
     "@sovoli/auth": "workspace:*",
-    "@sovoli/core": "workspace:*",
     "@sovoli/db": "workspace:*",
     "@sovoli/ui": "workspace:*",
     "@t3-oss/env-nextjs": "0.11.1",

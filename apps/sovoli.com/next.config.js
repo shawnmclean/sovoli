@@ -37,12 +37,7 @@ const nextConfig = {
   },
 
   /** Enables hot reloading for local packages without a build step */
-  transpilePackages: [
-    "@sovoli/ui",
-    "@sovoli/core",
-    "@sovoli/auth",
-    "@sovoli/db",
-  ],
+  transpilePackages: ["@sovoli/ui", "@sovoli/auth", "@sovoli/db"],
   experimental: {
     instrumentationHook: true,
     serverComponentsExternalPackages: ["@opentelemetry/sdk-node", "pino"],

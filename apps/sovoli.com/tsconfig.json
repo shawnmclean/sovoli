@@ -6,8 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
-      "@sovoli/ui/*": ["../../packages/ui/src/*"],
-      "@sovoli/core/*": ["../../packages/api/src/*"]
+      "@sovoli/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [{ "name": "next" }],
     "module": "esnext"
