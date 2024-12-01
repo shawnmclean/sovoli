@@ -3,6 +3,7 @@ import { auth } from "@sovoli/auth";
 import { KnowledgeType } from "@sovoli/db/schema";
 
 import { GetKnowledges } from "~/services/knowledge/getKnowledges";
+import { ShelfList } from "./components/ShelfList";
 
 export const dynamic = "force-dynamic";
 
@@ -33,14 +34,7 @@ export default async function ShelvesPage({ params, searchParams }: Props) {
     <div className="min-h-screen dark:bg-black">
       <h1> Shelves</h1>
       <div>
-        {knowledges.data.map((collection) => (
-          <a
-            key={collection.id}
-            href={`/${params.username}/${collection.slug ?? collection.id}`}
-          >
-            <h2>{collection.title}</h2>
-          </a>
-        ))}
+        <ShelfList shelves={knowledges.data} />
       </div>
     </div>
   );

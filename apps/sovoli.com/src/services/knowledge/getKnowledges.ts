@@ -107,9 +107,10 @@ export class GetKnowledges extends BaseService {
     const totalItems = knowledges.length > 0 ? knowledges[0]?.totalItems : 0;
 
     // Remove totalCollections from individual collections
-    const cleanedKnowledges = knowledges.map(
-      ({ totalItems: _, ...rest }) => rest,
-    );
+    const cleanedKnowledges = knowledges.map(({ totalItems: _, ...rest }) => ({
+      ...rest,
+      url: `/${username}/${rest.slug ?? rest.id}`,
+    }));
 
     return {
       data: cleanedKnowledges,
