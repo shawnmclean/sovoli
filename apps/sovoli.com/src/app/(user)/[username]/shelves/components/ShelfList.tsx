@@ -1,13 +1,17 @@
+"use client";
+
 import Link from "next/link";
-import { Button, ButtonGroup } from "@sovoli/ui/components/ui/button";
+import { Button } from "@sovoli/ui/components/ui/button";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/ui/card";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
+  DropdownSection,
   DropdownTrigger,
 } from "@sovoli/ui/components/ui/dropdown";
-import { ChevronDownIcon } from "lucide-react";
+import { EllipsisIcon, PencilIcon, StarIcon, Trash2Icon } from "lucide-react";
+import { tv } from "tailwind-variants";
 
 import type { GetKnowledges } from "~/services/knowledge/getKnowledges";
 
@@ -27,6 +31,15 @@ export function ShelfList({ shelves }: ShelfListProps) {
   );
 }
 
+const dropdownIconStyles = tv({
+  base: "text-xl text-default-500 pointer-events-none flex-shrink-0",
+  variants: {
+    variant: {
+      danger: "text-danger",
+    },
+  },
+});
+
 function ShelfListItem({ shelf }: { shelf: Shelves["data"][0] }) {
   return (
     <Card
@@ -44,12 +57,11 @@ function ShelfListItem({ shelf }: { shelf: Shelves["data"][0] }) {
             <p className="text-tiny text-white/60">{shelf.description}</p>
           </div>
         </Link>
-        <ButtonGroup variant="flat" size="sm">
-          <Button>Starred</Button>
-          <Dropdown placement="bottom-end">
+        <div className="flex gap-4">
+          <Dropdown>
             <DropdownTrigger>
-              <Button isIconOnly>
-                <ChevronDownIcon />
+              <Button isIconOnly variant="flat" size="sm">
+                <StarIcon />
               </Button>
             </DropdownTrigger>
             <DropdownMenu
@@ -57,10 +69,45 @@ function ShelfListItem({ shelf }: { shelf: Shelves["data"][0] }) {
               selectionMode="single"
               className="max-w-[300px]"
             >
-              <DropdownItem key="merge">lol</DropdownItem>
+              <DropdownItem key="merge">Add to collection</DropdownItem>
             </DropdownMenu>
           </Dropdown>
-        </ButtonGroup>
+          <Dropdown>
+            <DropdownTrigger>
+              <Button isIconOnly variant="flat" size="sm">
+                <EllipsisIcon />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="Merge options"
+              selectionMode="single"
+              className="max-w-[300px]"
+            >
+              <DropdownSection showDivider>
+                <DropdownItem
+                  key="edit"
+                  startContent={<PencilIcon className={dropdownIconStyles()} />}
+                >
+                  Edit file
+                </DropdownItem>
+              </DropdownSection>
+              <DropdownSection>
+                <DropdownItem
+                  key="delete"
+                  className="text-danger"
+                  color="danger"
+                  startContent={
+                    <Trash2Icon
+                      className={dropdownIconStyles({ variant: "danger" })}
+                    />
+                  }
+                >
+                  Delete file
+                </DropdownItem>
+              </DropdownSection>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
       </CardFooter>
     </Card>
   );
