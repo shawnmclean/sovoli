@@ -75,6 +75,7 @@ export class GetKnowledges extends BaseService {
       .with(mediaAssetsSubquery, knowledgeConnectionSubquery)
       .select({
         id: schema.Knowledge.id,
+        userId: schema.Knowledge.userId,
         slug: schema.Knowledge.slug,
         title: schema.Knowledge.title,
         description: schema.Knowledge.description,
