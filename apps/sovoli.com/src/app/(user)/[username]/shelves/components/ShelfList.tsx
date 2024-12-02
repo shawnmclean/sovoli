@@ -6,9 +6,10 @@ import type { GetKnowledges } from "~/services/knowledge/getKnowledges";
 import { ShelfActions } from "./ShelfActions";
 
 type Shelves = Awaited<ReturnType<GetKnowledges["call"]>>;
+type ShelfItem = Shelves["data"][number];
 
 export interface ShelfListProps {
-  shelves: Shelves["data"];
+  shelves: ShelfItem[];
 }
 
 export function ShelfList({ shelves }: ShelfListProps) {
@@ -21,7 +22,7 @@ export function ShelfList({ shelves }: ShelfListProps) {
   );
 }
 
-async function ShelfListItem({ shelf }: { shelf: Shelves["data"][0] }) {
+async function ShelfListItem({ shelf }: { shelf: ShelfItem }) {
   const session = await auth();
   return (
     <Card

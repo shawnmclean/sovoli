@@ -72,6 +72,7 @@ function OwnerActions({ id }: { id: string }) {
         </DropdownSection>
         <DropdownSection>
           <DropdownItem
+            id={`delete-${id}`}
             key="delete"
             className="text-danger"
             color="danger"
