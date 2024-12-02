@@ -1,6 +1,7 @@
 "use client";
 
 import type { Session } from "@sovoli/auth";
+import { useState } from "react";
 import { Button } from "@sovoli/ui/components/ui/button";
 import {
   Dropdown,
@@ -11,6 +12,8 @@ import {
 } from "@sovoli/ui/components/ui/dropdown";
 import { EllipsisIcon, PencilIcon, StarIcon, Trash2Icon } from "lucide-react";
 import { tv } from "tailwind-variants";
+
+import { MediaManagerDialog } from "./MediaManagerDialog";
 
 export interface ShelfActionsProps {
   id: string;
@@ -50,42 +53,59 @@ export function ShelfActions({ id, ownerId, session }: ShelfActionsProps) {
 }
 
 function OwnerActions({ id }: { id: string }) {
+  const [isMediaManagerOpen, setIsMediaManagerOpen] = useState(false);
   return (
-    <Dropdown>
-      <DropdownTrigger>
-        <Button isIconOnly variant="flat" size="sm">
-          <EllipsisIcon />
-        </Button>
-      </DropdownTrigger>
-      <DropdownMenu
-        aria-label="Merge options"
-        selectionMode="single"
-        className="max-w-[300px]"
-      >
-        <DropdownSection showDivider>
-          <DropdownItem
-            key="edit"
-            startContent={<PencilIcon className={dropdownIconStyles()} />}
-          >
-            Edit file
-          </DropdownItem>
-        </DropdownSection>
-        <DropdownSection>
-          <DropdownItem
-            id={`delete-${id}`}
-            key="delete"
-            className="text-danger"
-            color="danger"
-            startContent={
-              <Trash2Icon
-                className={dropdownIconStyles({ variant: "danger" })}
-              />
-            }
-          >
-            Delete file
-          </DropdownItem>
-        </DropdownSection>
-      </DropdownMenu>
-    </Dropdown>
+    <>
+      {isMediaManagerOpen ? (
+        <MediaManagerDialog
+          knowledgeId={id}
+          onClosed={() => setIsMediaManagerOpen(false)}
+        />
+      ) : null}
+
+      <Dropdown>
+        <DropdownTrigger>
+          <Button isIconOnly variant="flat" size="sm">
+            <EllipsisIcon />
+          </Button>
+        </DropdownTrigger>
+        <DropdownMenu
+          aria-label="Merge options"
+          selectionMode="single"
+          className="max-w-[300px]"
+        >
+          <DropdownSection showDivider>
+            <DropdownItem
+              key="edit-media"
+              startContent={<PencilIcon className={dropdownIconStyles()} />}
+              onClick={() => setIsMediaManagerOpen(true)}
+            >
+              Media
+            </DropdownItem>
+            <DropdownItem
+              key="edit"
+              startContent={<PencilIcon className={dropdownIconStyles()} />}
+            >
+              Edit
+            </DropdownItem>
+          </DropdownSection>
+          <DropdownSection>
+            <DropdownItem
+              id={`delete-${id}`}
+              key="delete"
+              className="text-danger"
+              color="danger"
+              startContent={
+                <Trash2Icon
+                  className={dropdownIconStyles({ variant: "danger" })}
+                />
+              }
+            >
+              Delete
+            </DropdownItem>
+          </DropdownSection>
+        </DropdownMenu>
+      </Dropdown>
+    </>
   );
 }
