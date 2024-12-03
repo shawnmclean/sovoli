@@ -56,7 +56,7 @@ export function MediaManagerDialog({
     <Modal
       isOpen={isOpen}
       onOpenChange={onOpenChangeHandler}
-      size="5xl"
+      size="2xl"
       placement="center"
     >
       <ModalContent>
@@ -98,13 +98,14 @@ function ImageCropper({ imageSrc }: { imageSrc: string }) {
   };
 
   return (
-    <div>
-      <div className="relative h-48 w-full bg-gray-800 sm:h-96">
+    <div className="flex flex-col gap-2">
+      <div className="relative h-[400px] w-full bg-gray-800">
         <Cropper
           image={imageSrc}
           crop={crop}
           zoom={zoom}
-          aspect={4 / 3}
+          // to match aspect ratio of recommended Open Graph ratio
+          aspect={1.91 / 1}
           onCropChange={setCrop}
           onCropComplete={onCropComplete}
           onZoomChange={setZoom}
