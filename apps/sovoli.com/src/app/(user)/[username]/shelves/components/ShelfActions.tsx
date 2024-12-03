@@ -66,7 +66,7 @@ function OwnerActions({ id }: { id: string }) {
       <Dropdown>
         <DropdownTrigger>
           <Button isIconOnly variant="flat" size="sm">
-            <EllipsisIcon /> {isMediaManagerOpen ? "Close" : ""}
+            <EllipsisIcon /> {isMediaManagerOpen ? "Close" : "Edit"}
           </Button>
         </DropdownTrigger>
         <DropdownMenu
