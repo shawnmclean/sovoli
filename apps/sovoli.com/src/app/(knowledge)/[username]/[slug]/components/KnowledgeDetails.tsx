@@ -6,6 +6,7 @@ import { Gallery } from "@sovoli/ui/components/Gallery";
 import { Link } from "@sovoli/ui/components/ui/link";
 import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
 import { User } from "@sovoli/ui/components/ui/user";
+import { ChevronLeftIcon } from "lucide-react";
 
 import { HeaderActions } from "./HeaderActions";
 import { KnowledgeContent } from "./KnowledgeContent";
@@ -37,7 +38,18 @@ export async function KnowledgeDetails({ knowledge }: Props) {
       {/* Header Section */}
       <div className="flex justify-center border-b border-divider">
         <div className="flex w-full max-w-7xl items-center justify-between p-6">
-          <h1 className="text-2xl font-bold">{knowledge.title}</h1>
+          <div className="flex items-center gap-2">
+            {knowledge.type === "shelf" && (
+              <Link
+                href={`/${knowledge.User?.username}/shelves`}
+                title="Back to shelves"
+                className="hover:text-primary-dark flex items-center text-primary"
+              >
+                <ChevronLeftIcon className="h-6 w-6" />
+              </Link>
+            )}
+            <h1 className="text-2xl font-bold">{knowledge.title}</h1>
+          </div>
           <div className="flex gap-4">
             {session?.userId === knowledge.User?.id && (
               <HeaderActions knowledge={knowledge} session={session} />
