@@ -66,7 +66,7 @@ function OwnerActions({ id }: { id: string }) {
       <Dropdown>
         <DropdownTrigger>
           <Button isIconOnly variant="flat" size="sm">
-            <EllipsisIcon /> {isMediaManagerOpen ? "Close" : "Edit"}
+            <EllipsisIcon />
           </Button>
         </DropdownTrigger>
         <DropdownMenu
@@ -78,7 +78,7 @@ function OwnerActions({ id }: { id: string }) {
             <DropdownItem
               key="edit-media"
               startContent={<PencilIcon className={dropdownIconStyles()} />}
-              onClick={() => setIsMediaManagerOpen(true)}
+              onPress={() => setIsMediaManagerOpen(true)}
             >
               Media
             </DropdownItem>
