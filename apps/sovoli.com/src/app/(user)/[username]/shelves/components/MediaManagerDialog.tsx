@@ -1,7 +1,12 @@
 "use client";
 
-import type { Area, Point } from "react-easy-crop";
+import type { Point } from "react-easy-crop";
 import { useState } from "react";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@sovoli/ui/components/ui/alert";
 import { Button } from "@sovoli/ui/components/ui/button";
 import {
   Modal,
@@ -12,8 +17,13 @@ import {
   useDisclosure,
 } from "@sovoli/ui/components/ui/dialog";
 import { Slider } from "@sovoli/ui/components/ui/slider";
+import { useFormState } from "react-dom";
 import Cropper from "react-easy-crop";
 
+import type { State } from "../actions/updateMediaAssetAction";
+import type { CropOptions } from "~/core/image/getCroppedImage";
+import { getCroppedImage } from "~/core/image/getCroppedImage";
+import { updateMediaAssetAction } from "../actions/updateMediaAssetAction";
 import { ImageFileInput } from "./ImageFileInput";
 
 export interface MediaManagerProps {
@@ -29,13 +39,18 @@ export function MediaManagerDialog({
     defaultOpen: true,
   });
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [crop, setCrop] = useState<CropOptions | null>(null);
+  const [state, updateMediaAssetFormAction] = useFormState<State, FormData>(
+    updateMediaAssetAction,
+    null,
+  );
 
-  const onOpenChangeHandler = () => {
+  const handleOnOpen = () => {
     onOpenChange();
     onClosed();
   };
 
-  const onCancel = () => {
+  const handleCancel = () => {
     if (imageSrc) {
       setImageSrc(null);
     } else {
@@ -52,50 +67,81 @@ export function MediaManagerDialog({
     reader.readAsDataURL(file);
   };
 
+  const formAction = async (formData: FormData) => {
+    if (imageSrc && crop) {
+      const croppedImage = await getCroppedImage({
+        imageSrc: imageSrc,
+        crop: crop,
+      });
+
+      formData.delete("image");
+      formData.append("image", croppedImage);
+    }
+    updateMediaAssetFormAction(formData);
+  };
+
   return (
     <Modal
       isOpen={isOpen}
-      onOpenChange={onOpenChangeHandler}
+      onOpenChange={handleOnOpen}
       size="2xl"
       placement="center"
+      isDismissable={false}
     >
       <ModalContent>
-        {(onClose) => (
-          <>
-            <ModalHeader className="flex flex-col gap-1">
-              Manage Media - {knowledgeId}
-            </ModalHeader>
-            <ModalBody className="p-5">
-              {imageSrc ? (
-                <ImageCropper imageSrc={imageSrc} />
-              ) : (
-                <ImageFileInput
-                  name="csvFile"
-                  onFileDropped={handleFileDropped}
-                />
-              )}
-            </ModalBody>
-            <ModalFooter>
-              <Button color="danger" variant="light" onPress={onCancel}>
-                Cancel
-              </Button>
-              <Button color="primary" onPress={onClose}>
-                Upload
-              </Button>
-            </ModalFooter>
-          </>
-        )}
+        <form action={formAction} method="post">
+          <input type="hidden" name="knowledgeId" value={knowledgeId} />
+          <ModalHeader className="flex flex-col gap-1">
+            Manage Media - {knowledgeId}
+          </ModalHeader>
+          <ModalBody className="p-5">
+            {imageSrc ? (
+              <ImageCropper imageSrc={imageSrc} onCropComplete={setCrop} />
+            ) : (
+              <ImageFileInput name="image" onFileDropped={handleFileDropped} />
+            )}
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" variant="light" onPress={handleCancel}>
+              Cancel
+            </Button>
+            <Button
+              color="primary"
+              type="submit"
+              isDisabled={imageSrc === null}
+            >
+              Upload
+            </Button>
+
+            {state && (
+              <Alert variant="danger">
+                <AlertTitle>{state.status}</AlertTitle>
+                <AlertDescription>
+                  <p>{state.message}</p>
+                  <ul>
+                    {Object.entries(state.errors ?? {}).map(([key, value]) => (
+                      <li key={key}>
+                        <strong>{key}</strong>: {value}
+                      </li>
+                    ))}
+                  </ul>
+                </AlertDescription>
+              </Alert>
+            )}
+          </ModalFooter>
+        </form>
       </ModalContent>
     </Modal>
   );
 }
 
-function ImageCropper({ imageSrc }: { imageSrc: string }) {
+interface ImageCropperProps {
+  imageSrc: string;
+  onCropComplete: (croppedArea: CropOptions) => void;
+}
+function ImageCropper({ imageSrc, onCropComplete }: ImageCropperProps) {
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const onCropComplete = (croppedArea: Area, croppedAreaPixels: Area) => {
-    console.log(croppedArea, croppedAreaPixels);
-  };
 
   return (
     <div className="flex flex-col gap-2">
@@ -107,7 +153,9 @@ function ImageCropper({ imageSrc }: { imageSrc: string }) {
           // to match aspect ratio of recommended Open Graph ratio
           aspect={1.91 / 1}
           onCropChange={setCrop}
-          onCropComplete={onCropComplete}
+          onCropComplete={(croppedArea, croppedAreaPixels) =>
+            onCropComplete(croppedAreaPixels)
+          }
           onZoomChange={setZoom}
         />
       </div>
