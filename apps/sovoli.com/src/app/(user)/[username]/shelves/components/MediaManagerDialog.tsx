@@ -1,7 +1,7 @@
 "use client";
 
 import type { Point } from "react-easy-crop";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Alert,
   AlertDescription,
@@ -17,7 +17,7 @@ import {
   useDisclosure,
 } from "@sovoli/ui/components/ui/dialog";
 import { Slider } from "@sovoli/ui/components/ui/slider";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import Cropper from "react-easy-crop";
 
 import type { State } from "../actions/updateMediaAssetAction";
@@ -44,6 +44,12 @@ export function MediaManagerDialog({
     updateMediaAssetAction,
     null,
   );
+
+  useEffect(() => {
+    if (state?.status === "success") {
+      onClosed();
+    }
+  }, [onClosed, state]);
 
   const handleOnOpen = () => {
     onOpenChange();
@@ -105,13 +111,7 @@ export function MediaManagerDialog({
             <Button color="danger" variant="light" onPress={handleCancel}>
               Cancel
             </Button>
-            <Button
-              color="primary"
-              type="submit"
-              isDisabled={imageSrc === null}
-            >
-              Upload
-            </Button>
+            <SubmitButton isDisabled={imageSrc === null} />
 
             {state && (
               <Alert variant="danger">
@@ -171,5 +171,19 @@ function ImageCropper({ imageSrc, onCropComplete }: ImageCropperProps) {
         />
       </div>
     </div>
+  );
+}
+
+function SubmitButton({ isDisabled }: { isDisabled: boolean }) {
+  const { pending } = useFormStatus();
+  return (
+    <Button
+      type="submit"
+      color="primary"
+      isLoading={pending}
+      isDisabled={isDisabled}
+    >
+      Upload
+    </Button>
   );
 }

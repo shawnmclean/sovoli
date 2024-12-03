@@ -17,6 +17,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "2.2.2",
     "@opentelemetry/instrumentation": "0.55.0",
     "@opentelemetry/exporter-trace-otlp-http": "0.55.0",
     "@opentelemetry/exporter-logs-otlp-http": "0.55.0",

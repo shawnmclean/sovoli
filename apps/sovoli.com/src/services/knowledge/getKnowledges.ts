@@ -1,5 +1,5 @@
 import { and, count, db, eq, inArray, or, schema, sql } from "@sovoli/db";
-import { KnowledgeType } from "@sovoli/db/schema";
+import { KnowledgeType, SelectMediaAssetSchema } from "@sovoli/db/schema";
 
 import { BaseService } from "../baseService";
 
@@ -89,7 +89,9 @@ export class GetKnowledges extends BaseService {
         // totalItems: knowledgeConnectionSubquery.totalItems,
         totalBooks: knowledgeConnectionSubquery.totalBooks,
         totalConnections: knowledgeConnectionSubquery.totalConnections,
-        MediaAssets: sql`COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]')`,
+        MediaAssets: sql<
+          SelectMediaAssetSchema[]
+        >`COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]')`,
       })
       .from(schema.Knowledge)
       .where(and(usernameFilter, privacyFilter, feedFilter, typeFilter))

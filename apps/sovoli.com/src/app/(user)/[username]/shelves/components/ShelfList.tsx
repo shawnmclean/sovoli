@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { auth } from "@sovoli/auth";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/ui/card";
@@ -30,7 +31,18 @@ async function ShelfListItem({ shelf }: { shelf: ShelfItem }) {
       className="col-span-12 h-[300px] w-full sm:col-span-7"
     >
       <CardBody>
-        <Link href={shelf.url}></Link>
+        <Link href={shelf.url}>
+          {shelf.MediaAssets[0]?.path ? (
+            <Image
+              src={`${shelf.MediaAssets[0].bucket}/${shelf.MediaAssets[0].path}`}
+              alt={shelf.title ?? "Shelf cover"}
+              fill
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="h-full w-full bg-gray-200 dark:bg-gray-800" />
+          )}
+        </Link>
       </CardBody>
 
       <CardFooter className="border-t-1 border-default-600 bg-black/40 dark:border-default-100">
