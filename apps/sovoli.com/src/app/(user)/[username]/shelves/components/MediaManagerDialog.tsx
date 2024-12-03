@@ -53,7 +53,12 @@ export function MediaManagerDialog({
   };
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChangeHandler}>
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onOpenChangeHandler}
+      size="5xl"
+      placement="center"
+    >
       <ModalContent>
         {(onClose) => (
           <>
