@@ -34,7 +34,7 @@ export async function updateMediaAssetAction(
   }
 
   const result = await validator.validate(formData);
-
+  console.log(result);
   if (result.error) {
     console.error(result.error.fieldErrors);
     return {
@@ -44,7 +44,6 @@ export async function updateMediaAssetAction(
     };
   }
 
-  // TODO: can user update media assets for the knowledge?
   const knowledge = await db.query.Knowledge.findFirst({
     where: eq(schema.Knowledge.id, result.data.knowledgeId),
   });
@@ -76,7 +75,7 @@ export async function updateMediaAssetAction(
   if (error) {
     return {
       status: "error",
-      message: "Failed to upload file",
+      message: "Failed to upload file, try again",
     };
   }
 

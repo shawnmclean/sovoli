@@ -75,6 +75,7 @@ function KnowledgeImage({ knowledge }: { knowledge: SelectKnowledgeSchema }) {
         src={images[0].src}
         alt={images[0].alt}
         className="h-full w-full object-cover"
+        fill
       />
     );
   }
