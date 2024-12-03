@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { auth } from "@sovoli/auth";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/ui/card";
+import { LibraryBigIcon } from "lucide-react";
 
 import type { GetKnowledges } from "~/services/knowledge/getKnowledges";
 import { ShelfActions } from "./ShelfActions";
@@ -30,8 +31,8 @@ async function ShelfListItem({ shelf }: { shelf: ShelfItem }) {
       isFooterBlurred
       className="col-span-12 h-[300px] w-full sm:col-span-7"
     >
-      <CardBody>
-        <Link href={shelf.url}>
+      <CardBody className="flex grow">
+        <Link href={shelf.url} className="flex h-full w-full">
           {shelf.MediaAssets[0]?.path ? (
             <Image
               src={`${shelf.MediaAssets[0].bucket}/${shelf.MediaAssets[0].path}`}
@@ -40,7 +41,9 @@ async function ShelfListItem({ shelf }: { shelf: ShelfItem }) {
               className="h-full w-full object-cover"
             />
           ) : (
-            <div className="h-full w-full bg-gray-200 dark:bg-gray-800" />
+            <div className="flex h-full w-full items-center justify-center">
+              <LibraryBigIcon className="h-20 w-20 text-gray-400" />
+            </div>
           )}
         </Link>
       </CardBody>
