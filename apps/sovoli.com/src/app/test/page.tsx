@@ -11,10 +11,15 @@ export default function TestPage() {
     testAction,
     null,
   );
+
+  const formAction = (formData: FormData) => {
+    console.log("sending form data");
+    testFormAction(formData);
+  };
   return (
     <div>
       <h1>Test Page</h1>
-      <form method="post" action={testFormAction}>
+      <form method="post" action={formAction}>
         <input type="text" name="id" />
         <input type="submit" value="Submit" />
         <Button onPress={() => console.log("pressed")}>Test</Button>
