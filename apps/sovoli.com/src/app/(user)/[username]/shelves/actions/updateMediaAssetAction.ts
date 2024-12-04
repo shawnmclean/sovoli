@@ -8,6 +8,7 @@ import { db, eq, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { createClient } from "@supabase/supabase-js";
 
+import { Logger } from "~/core/logger/Logger";
 import { env } from "~/env";
 import { formUpdateMediaAssetSchema } from "./schemas";
 
@@ -17,6 +18,7 @@ export type State = {
   errors?: Record<string, string>;
 } | null;
 
+const logger = new Logger();
 const validator = withZod(formUpdateMediaAssetSchema);
 
 const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY);
@@ -25,6 +27,8 @@ export async function updateMediaAssetAction(
   _prevState: State,
   formData: FormData,
 ): Promise<State> {
+  logger.debug("running updateMediaAssetAction");
+  console.log("running updateMediaAssetAction");
   const session = await auth();
   if (!session) {
     return {
