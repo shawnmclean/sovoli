@@ -22,7 +22,7 @@ import Cropper from "react-easy-crop";
 
 import type { State } from "../actions/updateMediaAssetAction";
 import type { CropOptions } from "~/core/image/getCroppedImage";
-// import { getCroppedImage } from "~/core/image/getCroppedImage";
+import { getCroppedImage } from "~/core/image/getCroppedImage";
 import { updateMediaAssetAction } from "../actions/updateMediaAssetAction";
 import { ImageFileInput } from "./ImageFileInput";
 
@@ -73,14 +73,20 @@ export function MediaManagerDialog({
     reader.readAsDataURL(file);
   };
 
-  const formAction = (formData: FormData) => {
+  const formAction = async (formData: FormData) => {
     if (imageSrc && crop) {
-      // const croppedImage = await getCroppedImage({
-      //   imageSrc: imageSrc,
-      //   crop: crop,
-      // });
+      const croppedImage = await getCroppedImage({
+        imageSrc: imageSrc,
+        crop: crop,
+      });
+      console.log(croppedImage);
 
-      formData.append("hi", "howdy");
+      formData.delete("image");
+      // formData.append("image", croppedImage);
+      const mockFile = new File(["Test content"], "mock-file.txt", {
+        type: "text/plain",
+      });
+      formData.append("image", mockFile);
     }
     updateMediaAssetFormAction(formData);
   };
