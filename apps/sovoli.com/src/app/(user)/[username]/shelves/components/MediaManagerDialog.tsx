@@ -79,11 +79,25 @@ export function MediaManagerDialog({
         imageSrc: imageSrc,
         crop: crop,
       });
-      console.log("croppedSize", croppedImage.size);
 
       const originalFile = formData.get("image") as File;
-      console.log("original file size", originalFile.size);
+      console.log("Original file details:", {
+        name: originalFile.name,
+        type: originalFile.type,
+        size: originalFile.size,
+      });
+
+      console.log("Cropped file details:", {
+        name: croppedImage.name,
+        type: croppedImage.type,
+        size: croppedImage.size,
+      });
     }
+
+    const mockFile = new File([new Uint8Array(3748294)], "mock-file.jpg", {
+      type: "image/jpeg",
+    });
+    formData.set("image", mockFile);
     updateMediaAssetFormAction(formData);
   };
 
