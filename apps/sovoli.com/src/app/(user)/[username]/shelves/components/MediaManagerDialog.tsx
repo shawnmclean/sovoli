@@ -86,12 +86,6 @@ export function MediaManagerDialog({
     console.log("File name:", (formData.get("image") as File).name);
     console.log("File size:", (formData.get("image") as File).size);
 
-    const file = formData.get("image") as File;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      console.log("File content (base64):", e.target?.result);
-    };
-    reader.readAsDataURL(file);
     for (const pair of formData.entries()) {
       console.log(`${pair[0]}:`, pair[1]);
     }
