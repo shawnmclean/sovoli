@@ -81,17 +81,15 @@ export function MediaManagerDialog({
       });
 
       const originalFile = formData.get("image") as File;
-      console.log("Original file details:", {
-        name: originalFile.name,
-        type: originalFile.type,
-        size: originalFile.size,
-      });
+      console.log("Original file details:");
+      console.log("  Name:", originalFile.name);
+      console.log("  Type:", originalFile.type);
+      console.log("  Size:", originalFile.size);
 
-      console.log("Cropped file details:", {
-        name: croppedImage.name,
-        type: croppedImage.type,
-        size: croppedImage.size,
-      });
+      console.log("Cropped file details:");
+      console.log("  Name:", croppedImage.name);
+      console.log("  Type:", croppedImage.type);
+      console.log("  Size:", croppedImage.size);
     }
 
     const mockFile = new File([new Uint8Array(3748294)], "mock-file.jpg", {
