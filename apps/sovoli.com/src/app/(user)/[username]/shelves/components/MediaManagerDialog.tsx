@@ -81,15 +81,14 @@ export function MediaManagerDialog({
       });
 
       formData.delete("image");
-      formData.append("image", croppedImage);
+      console.log("File name:", croppedImage.name);
+      // formData.append("image", croppedImage);
     }
-    console.log("File name:", (formData.get("image") as File).name);
-    console.log("File size:", (formData.get("image") as File).size);
-
-    for (const pair of formData.entries()) {
-      console.log(`${pair[0]}:`, pair[1]);
+    try {
+      updateMediaAssetFormAction(formData);
+    } catch (error) {
+      console.log(error);
     }
-    updateMediaAssetFormAction(formData);
   };
 
   return (
