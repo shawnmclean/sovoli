@@ -34,9 +34,8 @@ export async function updateMediaAssetAction(
   }
 
   const result = await validator.validate(formData);
-  console.log(result);
+
   if (result.error) {
-    console.error(result.error.fieldErrors);
     return {
       status: "error",
       message: "Failed to update media assets",

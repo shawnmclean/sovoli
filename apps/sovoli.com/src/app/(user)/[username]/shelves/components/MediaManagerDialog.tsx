@@ -102,11 +102,12 @@ export function MediaManagerDialog({
             Manage Media - {knowledgeId}
           </ModalHeader>
           <ModalBody className="p-5">
+            <div className={imageSrc ? "hidden" : ""}>
+              <ImageFileInput name="image" onFileDropped={handleFileDropped} />
+            </div>
             {imageSrc ? (
               <ImageCropper imageSrc={imageSrc} onCropComplete={setCrop} />
-            ) : (
-              <ImageFileInput name="image" onFileDropped={handleFileDropped} />
-            )}
+            ) : null}
           </ModalBody>
           <ModalFooter>
             <Button color="danger" variant="light" onPress={handleCancel}>
