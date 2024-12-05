@@ -79,23 +79,8 @@ export function MediaManagerDialog({
         imageSrc: imageSrc,
         crop: crop,
       });
-
-      const originalFile = formData.get("image") as File;
-      console.log("Original file details:");
-      console.log("  Name:", originalFile.name);
-      console.log("  Type:", originalFile.type);
-      console.log("  Size:", originalFile.size);
-
-      // Add the original file to FormData as "image1"
-      formData.set("image1", originalFile);
-
-      // Remove the "image" field from FormData
       formData.delete("image");
-
-      console.log("FormData after modifications:");
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-      }
+      formData.append("image", croppedImage);
     }
     updateMediaAssetFormAction(formData);
   };

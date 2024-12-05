@@ -30,12 +30,43 @@ export async function getCroppedImage(options: GetCroppedImageOptions) {
     options.crop.height,
   );
 
-  const blob = await toBlobAsync(canvas, "image/png");
+  let blob = await toBlobAsync(canvas, "image/jpeg", 0.8); // Use JPEG for better compression
   if (!blob) {
     throw new Error("Failed to create Blob from canvas.");
   }
 
-  return new File([blob], "cropped-image.png", { type: "image/png" });
+  let sizeInMB = blob.size / (1024 * 1024); // Convert size to MB
+
+  // If the image exceeds 3MB, resize it
+  while (sizeInMB > 3) {
+    // Scale down the canvas dimensions
+    canvas.width = Math.floor(canvas.width * 0.9);
+    canvas.height = Math.floor(canvas.height * 0.9);
+
+    ctx?.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    ctx?.drawImage(
+      image,
+      options.crop.x,
+      options.crop.y,
+      options.crop.width,
+      options.crop.height,
+      0,
+      0,
+      canvas.width,
+      canvas.height,
+    );
+
+    // Recreate the blob with scaled-down canvas
+    blob = await toBlobAsync(canvas, "image/jpeg", 0.8);
+    if (!blob) {
+      throw new Error("Failed to create Blob from canvas.");
+    }
+
+    sizeInMB = blob.size / (1024 * 1024); // Update size
+  }
+
+  // Return the final cropped and resized image as a File
+  return new File([blob], "cropped-image.jpg", { type: "image/jpeg" });
 }
 
 function createImage(url: string): Promise<HTMLImageElement> {
@@ -51,6 +82,13 @@ function createImage(url: string): Promise<HTMLImageElement> {
 function toBlobAsync(
   canvas: HTMLCanvasElement,
   mimeType: string,
+  quality?: number,
 ): Promise<Blob | null> {
-  return new Promise((resolve) => canvas.toBlob(resolve, mimeType));
+  return new Promise((resolve) => {
+    if (mimeType === "image/jpeg" || mimeType === "image/webp") {
+      canvas.toBlob(resolve, mimeType, quality);
+    } else {
+      canvas.toBlob(resolve, mimeType);
+    }
+  });
 }
