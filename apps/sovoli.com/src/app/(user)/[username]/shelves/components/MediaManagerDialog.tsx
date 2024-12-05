@@ -79,15 +79,8 @@ export function MediaManagerDialog({
       //   imageSrc: imageSrc,
       //   crop: crop,
       // });
-      const img = formData.get("image");
 
-      if (img) {
-        formData.set("image1", img);
-      }
-    }
-    console.log("FormData before sending:");
-    for (const pair of formData.entries()) {
-      console.log(`${pair[0]}:`, pair[1]);
+      formData.append("hi", "howdy");
     }
     updateMediaAssetFormAction(formData);
   };
