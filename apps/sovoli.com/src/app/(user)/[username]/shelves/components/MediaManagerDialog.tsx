@@ -22,7 +22,7 @@ import Cropper from "react-easy-crop";
 
 import type { State } from "../actions/updateMediaAssetAction";
 import type { CropOptions } from "~/core/image/getCroppedImage";
-import { getCroppedImage } from "~/core/image/getCroppedImage";
+// import { getCroppedImage } from "~/core/image/getCroppedImage";
 import { updateMediaAssetAction } from "../actions/updateMediaAssetAction";
 import { ImageFileInput } from "./ImageFileInput";
 
@@ -39,6 +39,7 @@ export function MediaManagerDialog({
     defaultOpen: true,
   });
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [crop, setCrop] = useState<CropOptions | null>(null);
   const [state, updateMediaAssetFormAction] = useFormState<State, FormData>(
     updateMediaAssetAction,
@@ -73,18 +74,18 @@ export function MediaManagerDialog({
     reader.readAsDataURL(file);
   };
 
-  const formAction = async (formData: FormData) => {
-    console.log("action executing");
-    if (imageSrc && crop) {
-      const croppedImage = await getCroppedImage({
-        imageSrc: imageSrc,
-        crop: crop,
-      });
-      console.log("cropped image");
+  const formAction = (formData: FormData) => {
+    // console.log("action executing");
+    // if (imageSrc && crop) {
+    //   const croppedImage = await getCroppedImage({
+    //     imageSrc: imageSrc,
+    //     crop: crop,
+    //   });
+    //   console.log("cropped image");
 
-      formData.delete("image");
-      formData.append("image", croppedImage);
-    }
+    //   formData.delete("image");
+    //   formData.append("image", croppedImage);
+    // }
     console.log("sending form data");
     updateMediaAssetFormAction(formData);
   };
