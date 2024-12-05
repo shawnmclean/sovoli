@@ -40,6 +40,7 @@ export function MediaManagerDialog({
   });
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [crop, setCrop] = useState<CropOptions | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, updateMediaAssetFormAction] = useFormState<State, FormData>(
     updateMediaAssetAction,
     null,
@@ -83,10 +84,21 @@ export function MediaManagerDialog({
       formData.delete("image");
       formData.append("image", croppedImage);
     }
-    try {
-      updateMediaAssetFormAction(formData);
-    } catch (error) {
-      console.log(error);
+    // updateMediaAssetFormAction(formData);
+    const file = formData.get("image") as File;
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (file) {
+      forceDownload(file, file.name || "downloaded-image.png");
+    }
+    function forceDownload(file: File, fileName: string) {
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(file);
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     }
   };
 
