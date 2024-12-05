@@ -75,18 +75,15 @@ export function MediaManagerDialog({
   };
 
   const formAction = (formData: FormData) => {
-    // console.log("action executing");
     // if (imageSrc && crop) {
     //   const croppedImage = await getCroppedImage({
     //     imageSrc: imageSrc,
     //     crop: crop,
     //   });
-    //   console.log("cropped image");
 
     //   formData.delete("image");
     //   formData.append("image", croppedImage);
     // }
-    console.log("sending form data");
     updateMediaAssetFormAction(formData);
   };
 
