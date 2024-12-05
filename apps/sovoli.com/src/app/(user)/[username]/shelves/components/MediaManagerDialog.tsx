@@ -81,8 +81,7 @@ export function MediaManagerDialog({
       });
 
       formData.delete("image");
-      console.log("File name:", croppedImage.name);
-      // formData.append("image", croppedImage);
+      formData.append("image", croppedImage);
     }
     try {
       updateMediaAssetFormAction(formData);
