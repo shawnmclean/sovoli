@@ -15,5 +15,5 @@ const imageFileSchema = z.instanceof(File).refine(
  */
 export const formUpdateMediaAssetSchema = z.object({
   knowledgeId: z.string(),
-  image: imageFileSchema,
+  image1: imageFileSchema,
 });
