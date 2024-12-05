@@ -22,7 +22,7 @@ import Cropper from "react-easy-crop";
 
 import type { State } from "../actions/updateMediaAssetAction";
 import type { CropOptions } from "~/core/image/getCroppedImage";
-import { getCroppedImage } from "~/core/image/getCroppedImage";
+// import { getCroppedImage } from "~/core/image/getCroppedImage";
 import { updateMediaAssetAction } from "../actions/updateMediaAssetAction";
 import { ImageFileInput } from "./ImageFileInput";
 
@@ -39,8 +39,8 @@ export function MediaManagerDialog({
     defaultOpen: true,
   });
   const [imageSrc, setImageSrc] = useState<string | null>(null);
-  const [crop, setCrop] = useState<CropOptions | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [crop, setCrop] = useState<CropOptions | null>(null);
   const [state, updateMediaAssetFormAction] = useFormState<State, FormData>(
     updateMediaAssetAction,
     null,
@@ -74,21 +74,21 @@ export function MediaManagerDialog({
     reader.readAsDataURL(file);
   };
 
-  const formAction = async (formData: FormData) => {
-    if (imageSrc && crop) {
-      const croppedImage = await getCroppedImage({
-        imageSrc: imageSrc,
-        crop: crop,
-      });
-      console.log(JSON.stringify(croppedImage));
-      console.log("name", croppedImage.name);
-      console.log("type", croppedImage.type);
+  const formAction = (formData: FormData) => {
+    // if (imageSrc && crop) {
+    //   const croppedImage = await getCroppedImage({
+    //     imageSrc: imageSrc,
+    //     crop: crop,
+    //   });
+    //   console.log(JSON.stringify(croppedImage));
+    //   console.log("name", croppedImage.name);
+    //   console.log("type", croppedImage.type);
 
-      formData.delete("image");
-      formData.append("image", croppedImage);
-    }
-    console.log((formData.get("image") as File).name);
-    // updateMediaAssetFormAction(formData);
+    //   formData.delete("image");
+    //   formData.append("image", croppedImage);
+    // }
+    // console.log((formData.get("image") as File).name);
+    updateMediaAssetFormAction(formData);
   };
 
   return (
