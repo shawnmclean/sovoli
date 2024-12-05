@@ -22,7 +22,7 @@ import Cropper from "react-easy-crop";
 
 import type { State } from "../actions/updateMediaAssetAction";
 import type { CropOptions } from "~/core/image/getCroppedImage";
-// import { getCroppedImage } from "~/core/image/getCroppedImage";
+import { getCroppedImage } from "~/core/image/getCroppedImage";
 import { updateMediaAssetAction } from "../actions/updateMediaAssetAction";
 import { ImageFileInput } from "./ImageFileInput";
 
@@ -39,7 +39,6 @@ export function MediaManagerDialog({
     defaultOpen: true,
   });
   const [imageSrc, setImageSrc] = useState<string | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [crop, setCrop] = useState<CropOptions | null>(null);
   const [state, updateMediaAssetFormAction] = useFormState<State, FormData>(
     updateMediaAssetAction,
@@ -74,20 +73,28 @@ export function MediaManagerDialog({
     reader.readAsDataURL(file);
   };
 
-  const formAction = (formData: FormData) => {
-    // if (imageSrc && crop) {
-    //   const croppedImage = await getCroppedImage({
-    //     imageSrc: imageSrc,
-    //     crop: crop,
-    //   });
-    //   console.log(JSON.stringify(croppedImage));
-    //   console.log("name", croppedImage.name);
-    //   console.log("type", croppedImage.type);
+  const formAction = async (formData: FormData) => {
+    if (imageSrc && crop) {
+      const croppedImage = await getCroppedImage({
+        imageSrc: imageSrc,
+        crop: crop,
+      });
 
-    //   formData.delete("image");
-    //   formData.append("image", croppedImage);
-    // }
-    // console.log((formData.get("image") as File).name);
+      formData.delete("image");
+      formData.append("image", croppedImage);
+    }
+    console.log("File name:", (formData.get("image") as File).name);
+    console.log("File size:", (formData.get("image") as File).size);
+
+    const file = formData.get("image") as File;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      console.log("File content (base64):", e.target?.result);
+    };
+    reader.readAsDataURL(file);
+    for (const pair of formData.entries()) {
+      console.log(`${pair[0]}:`, pair[1]);
+    }
     updateMediaAssetFormAction(formData);
   };
 
