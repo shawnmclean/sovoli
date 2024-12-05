@@ -80,13 +80,14 @@ export function MediaManagerDialog({
         imageSrc: imageSrc,
         crop: crop,
       });
-      console.log(croppedImage);
+      console.log(JSON.stringify(croppedImage));
       console.log("name", croppedImage.name);
       console.log("type", croppedImage.type);
 
       formData.delete("image");
       formData.append("image", croppedImage);
     }
+    console.log((formData.get("image") as File).name);
     // updateMediaAssetFormAction(formData);
   };
 
