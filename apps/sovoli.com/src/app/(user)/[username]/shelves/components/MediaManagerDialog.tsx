@@ -79,8 +79,9 @@ export function MediaManagerDialog({
         imageSrc: imageSrc,
         crop: crop,
       });
-      formData.delete("image");
-      formData.append("image", croppedImage);
+      console.log(croppedImage);
+      // formData.delete("image");
+      // formData.append("image", croppedImage);
     }
     updateMediaAssetFormAction(formData);
   };
