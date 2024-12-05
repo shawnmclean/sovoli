@@ -22,7 +22,7 @@ import Cropper from "react-easy-crop";
 
 import type { State } from "../actions/updateMediaAssetAction";
 import type { CropOptions } from "~/core/image/getCroppedImage";
-import { getCroppedImage } from "~/core/image/getCroppedImage";
+// import { getCroppedImage } from "~/core/image/getCroppedImage";
 import { updateMediaAssetAction } from "../actions/updateMediaAssetAction";
 import { ImageFileInput } from "./ImageFileInput";
 
@@ -75,12 +75,15 @@ export function MediaManagerDialog({
 
   const formAction = async (formData: FormData) => {
     if (imageSrc && crop) {
-      const croppedImage = await getCroppedImage({
-        imageSrc: imageSrc,
-        crop: crop,
-      });
+      // const croppedImage = await getCroppedImage({
+      //   imageSrc: imageSrc,
+      //   crop: crop,
+      // });
+      const img = formData.get("image");
 
-      formData.set("image1", croppedImage);
+      if (img) {
+        formData.set("image1", img);
+      }
     }
     updateMediaAssetFormAction(formData);
   };
