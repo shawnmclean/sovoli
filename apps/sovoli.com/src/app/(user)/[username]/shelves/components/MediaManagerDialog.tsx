@@ -80,7 +80,7 @@ export function MediaManagerDialog({
         crop: crop,
       });
 
-      formData.set("image", croppedImage);
+      formData.set("image1", croppedImage);
     }
     updateMediaAssetFormAction(formData);
   };

@@ -1,14 +1,15 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { createId } from "@paralleldrive/cuid2";
+// import { revalidatePath } from "next/cache";
+// import { createId } from "@paralleldrive/cuid2";
 import { withZod } from "@rvf/zod";
 import { auth } from "@sovoli/auth";
-import { db, eq, schema } from "@sovoli/db";
-import { MediaAssetHost } from "@sovoli/db/schema";
-import { createClient } from "@supabase/supabase-js";
 
-import { env } from "~/env";
+// import { db, eq, schema } from "@sovoli/db";
+// import { MediaAssetHost } from "@sovoli/db/schema";
+// import { createClient } from "@supabase/supabase-js";
+
+// import { env } from "~/env";
 import { formUpdateMediaAssetSchema } from "./schemas";
 
 export type State = {
@@ -19,7 +20,7 @@ export type State = {
 
 const validator = withZod(formUpdateMediaAssetSchema);
 
-const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY);
+// const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY);
 
 export async function updateMediaAssetAction(
   _prevState: State,
@@ -43,53 +44,59 @@ export async function updateMediaAssetAction(
     };
   }
 
-  const knowledge = await db.query.Knowledge.findFirst({
-    where: eq(schema.Knowledge.id, result.data.knowledgeId),
-  });
-  if (!knowledge) {
-    return {
-      status: "error",
-      message: "Failed to update media assets",
-      errors: { knowledgeId: "Knowledge not found" },
-    };
-  }
-
-  if (knowledge.userId !== session.userId) {
-    return {
-      status: "error",
-      message: "Failed to update media assets",
-      errors: { knowledgeId: "You are not the owner of this knowledge" },
-    };
-  }
-
-  const file = result.data.image;
-  const fileBuffer = await file.arrayBuffer();
-  const newFilename = `${createId()}.${file.name.split(".").pop()}`;
-  const { data, error } = await supabase.storage
-    .from(env.SUPABASE_MEDIA_BUCKET)
-    .upload(newFilename, fileBuffer, {
-      contentType: file.type,
-    });
-
-  if (error) {
-    return {
-      status: "error",
-      message: "Failed to upload file, try again",
-    };
-  }
-
-  await db.insert(schema.MediaAsset).values({
-    knowledgeId: result.data.knowledgeId,
-    bucket: env.SUPABASE_MEDIA_BUCKET,
-    path: data.path,
-    mimeType: file.type,
-    host: MediaAssetHost.Supabase,
-  });
-
-  revalidatePath("/[username]/shelves", "page");
-
+  console.log(result.data);
   return {
-    status: "success",
     message: "Media asset updated",
+    status: "success",
   };
+
+  // const knowledge = await db.query.Knowledge.findFirst({
+  //   where: eq(schema.Knowledge.id, result.data.knowledgeId),
+  // });
+  // if (!knowledge) {
+  //   return {
+  //     status: "error",
+  //     message: "Failed to update media assets",
+  //     errors: { knowledgeId: "Knowledge not found" },
+  //   };
+  // }
+
+  // if (knowledge.userId !== session.userId) {
+  //   return {
+  //     status: "error",
+  //     message: "Failed to update media assets",
+  //     errors: { knowledgeId: "You are not the owner of this knowledge" },
+  //   };
+  // }
+
+  // const file = result.data.image;
+  // const fileBuffer = await file.arrayBuffer();
+  // const newFilename = `${createId()}.${file.name.split(".").pop()}`;
+  // const { data, error } = await supabase.storage
+  //   .from(env.SUPABASE_MEDIA_BUCKET)
+  //   .upload(newFilename, fileBuffer, {
+  //     contentType: file.type,
+  //   });
+
+  // if (error) {
+  //   return {
+  //     status: "error",
+  //     message: "Failed to upload file, try again",
+  //   };
+  // }
+
+  // await db.insert(schema.MediaAsset).values({
+  //   knowledgeId: result.data.knowledgeId,
+  //   bucket: env.SUPABASE_MEDIA_BUCKET,
+  //   path: data.path,
+  //   mimeType: file.type,
+  //   host: MediaAssetHost.Supabase,
+  // });
+
+  // revalidatePath("/[username]/shelves", "page");
+
+  // return {
+  //   status: "success",
+  //   message: "Media asset updated",
+  // };
 }

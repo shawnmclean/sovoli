@@ -2,7 +2,6 @@ import { z } from "zod";
 
 const imageFileSchema = z.instanceof(File).refine(
   (file) => {
-    console.log(file);
     return file.type === "image/png" || file.type === "image/jpeg";
   },
   {
@@ -16,4 +15,5 @@ const imageFileSchema = z.instanceof(File).refine(
 export const formUpdateMediaAssetSchema = z.object({
   knowledgeId: z.string(),
   image: imageFileSchema,
+  image1: imageFileSchema,
 });
