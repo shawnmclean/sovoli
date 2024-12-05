@@ -73,7 +73,7 @@ export function MediaManagerDialog({
     reader.readAsDataURL(file);
   };
 
-  const formAction = async (formData: FormData) => {
+  const formAction = (formData: FormData) => {
     if (imageSrc && crop) {
       // const croppedImage = await getCroppedImage({
       //   imageSrc: imageSrc,
@@ -84,6 +84,10 @@ export function MediaManagerDialog({
       if (img) {
         formData.set("image1", img);
       }
+    }
+    console.log("FormData before sending:");
+    for (const pair of formData.entries()) {
+      console.log(`${pair[0]}:`, pair[1]);
     }
     updateMediaAssetFormAction(formData);
   };
