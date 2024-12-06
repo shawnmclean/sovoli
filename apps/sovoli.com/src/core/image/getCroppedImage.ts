@@ -10,41 +10,24 @@ export interface GetCroppedImageOptions {
   crop: CropOptions;
 }
 
-export async function getCroppedImage(options: GetCroppedImageOptions) {
+export async function getCroppedImage(
+  options: GetCroppedImageOptions,
+): Promise<File> {
   const image = await createImage(options.imageSrc);
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
 
-  canvas.width = options.crop.width;
-  canvas.height = options.crop.height;
+  if (!ctx) throw new Error("Failed to get canvas rendering context.");
 
-  ctx?.drawImage(
-    image,
-    options.crop.x,
-    options.crop.y,
-    options.crop.width,
-    options.crop.height,
-    0,
-    0,
-    options.crop.width,
-    options.crop.height,
-  );
-
-  let blob = await toBlobAsync(canvas, "image/jpeg", 0.8); // Use JPEG for better compression
-  if (!blob) {
-    throw new Error("Failed to create Blob from canvas.");
-  }
-
-  let sizeInMB = blob.size / (1024 * 1024); // Convert size to MB
-
-  // If the image exceeds 3MB, resize it
-  while (sizeInMB > 3) {
-    // Scale down the canvas dimensions
-    canvas.width = Math.floor(canvas.width * 0.9);
-    canvas.height = Math.floor(canvas.height * 0.9);
-
-    ctx?.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-    ctx?.drawImage(
+  // Helper function to draw and create a Blob
+  const drawAndCreateBlob = async (
+    width: number,
+    height: number,
+  ): Promise<Blob> => {
+    canvas.width = width;
+    canvas.height = height;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
       image,
       options.crop.x,
       options.crop.y,
@@ -52,17 +35,22 @@ export async function getCroppedImage(options: GetCroppedImageOptions) {
       options.crop.height,
       0,
       0,
-      canvas.width,
-      canvas.height,
+      width,
+      height,
     );
+    const blob = await toBlobAsync(canvas, "image/jpeg", 0.8);
+    if (!blob) throw new Error("Failed to create Blob from canvas.");
+    return blob;
+  };
 
-    // Recreate the blob with scaled-down canvas
-    blob = await toBlobAsync(canvas, "image/jpeg", 0.8);
-    if (!blob) {
-      throw new Error("Failed to create Blob from canvas.");
-    }
+  // Draw the initial cropped image
+  let blob = await drawAndCreateBlob(options.crop.width, options.crop.height);
 
-    sizeInMB = blob.size / (1024 * 1024); // Update size
+  // Resize the image until it meets the size threshold
+  while (blob.size / (1024 * 1024) > 3) {
+    const newWidth = Math.floor(canvas.width * 0.9);
+    const newHeight = Math.floor(canvas.height * 0.9);
+    blob = await drawAndCreateBlob(newWidth, newHeight);
   }
 
   // Return the final cropped and resized image as a File
