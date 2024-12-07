@@ -1,5 +1,6 @@
+import type { SelectMediaAssetSchema } from "@sovoli/db/schema";
 import { and, count, db, eq, inArray, or, schema, sql } from "@sovoli/db";
-import { KnowledgeType, SelectMediaAssetSchema } from "@sovoli/db/schema";
+import { KnowledgeType } from "@sovoli/db/schema";
 
 import { BaseService } from "../baseService";
 
