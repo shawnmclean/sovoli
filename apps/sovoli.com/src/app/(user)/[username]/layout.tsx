@@ -13,8 +13,14 @@ export async function generateMetadata({ params }: Props) {
   const user = await getUserProfile(username);
   if (!user) return {};
 
+  const defaultTitle = user.name
+    ? `${user.username} (${user.name})`
+    : user.username;
   return {
-    title: user.username + user.name ? `(${user.name})` : "",
+    title: {
+      default: defaultTitle,
+      template: `${defaultTitle} / %s`,
+    },
   };
 }
 
