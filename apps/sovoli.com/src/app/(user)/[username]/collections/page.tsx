@@ -11,6 +11,12 @@ interface Props {
   searchParams: { page: number | undefined; pageSize: number | undefined };
 }
 
+export function generateMetadata() {
+  return {
+    title: "Collections",
+  };
+}
+
 const retrieveKnowledges = cache(async ({ params, searchParams }: Props) => {
   const session = await auth();
 
