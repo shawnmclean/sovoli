@@ -8,8 +8,8 @@ export interface PublishKnowledgeOptions {
   knowledgeId: string;
 }
 
-export class PublishKnowledge extends BaseService {
-  public async call({ authUserId, knowledgeId }: PublishKnowledgeOptions) {
+export class PublishKnowledge extends BaseService<PublishKnowledgeOptions> {
+  async execute({ authUserId, knowledgeId }: PublishKnowledgeOptions) {
     const knowledge = await this.dbClient.query.Knowledge.findFirst({
       where: eq(schema.Knowledge.id, knowledgeId),
     });

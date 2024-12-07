@@ -12,8 +12,39 @@ export interface GetKnowledgesOptions {
   type?: KnowledgeType;
 }
 
-export class GetKnowledges extends BaseService {
-  public async call({
+export interface Knowledge {
+  id: string;
+  url: string;
+  userId: string;
+  slug: string | null;
+  title: string | null;
+  description: string | null;
+  type: KnowledgeType;
+  isOrigin: boolean;
+  isPublic: boolean;
+  content: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  verifiedDate: string | null;
+  totalBooks: number;
+  totalConnections: number;
+
+  MediaAssets: SelectMediaAssetSchema[];
+}
+export interface GetKnowledgesResult {
+  data: Knowledge[];
+  meta: {
+    page: number;
+    pageSize: number;
+    total: number;
+  };
+}
+
+export class GetKnowledges extends BaseService<
+  GetKnowledgesOptions,
+  GetKnowledgesResult
+> {
+  async execute({
     authUserId,
     username,
     page = 1,
@@ -81,10 +112,12 @@ export class GetKnowledges extends BaseService {
         title: schema.Knowledge.title,
         description: schema.Knowledge.description,
         type: schema.Knowledge.type,
+        content: schema.Knowledge.content,
         isOrigin: schema.Knowledge.isOrigin,
         isPublic: schema.Knowledge.isPublic,
         createdAt: schema.Knowledge.createdAt,
         updatedAt: schema.Knowledge.updatedAt,
+        verifiedDate: schema.Knowledge.verifiedDate,
         // using a window function to count the number of collections matching the filter (ignoring pagination)
         totalItems: sql<number>`COUNT(*) OVER()`.as("totalItems"),
         // totalItems: knowledgeConnectionSubquery.totalItems,
@@ -108,7 +141,7 @@ export class GetKnowledges extends BaseService {
       .offset((page - 1) * pageSize);
 
     // Extract total collections from the first collection (since it's duplicated in all rows)
-    const totalItems = knowledges.length > 0 ? knowledges[0]?.totalItems : 0;
+    const totalItems = knowledges[0]?.totalItems ?? 0;
 
     // Remove totalCollections from individual collections
     const cleanedKnowledges = knowledges.map(({ totalItems: _, ...rest }) => ({

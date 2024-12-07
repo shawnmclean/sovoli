@@ -33,12 +33,20 @@ export interface CreateShelfImportOptions {
   csvContent: string;
 }
 
-export class CreateShelfImport extends BaseService {
-  public async call({
-    authUserId,
-    mapping,
-    csvContent,
-  }: CreateShelfImportOptions) {
+export type CreateShelfImportResult =
+  | {
+      id: string;
+    }
+  | {
+      status: string;
+      message: string;
+    };
+
+export class CreateShelfImport extends BaseService<
+  CreateShelfImportOptions,
+  CreateShelfImportResult
+> {
+  async execute({ authUserId, mapping, csvContent }: CreateShelfImportOptions) {
     // authorization check for existing shelves
     const existingShelfIds =
       mapping
