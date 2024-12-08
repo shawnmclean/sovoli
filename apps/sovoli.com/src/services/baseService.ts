@@ -1,11 +1,11 @@
-import type { AttributeValue, Exception } from "@opentelemetry/api";
+import type { Attributes, Exception } from "@opentelemetry/api";
 import { trace } from "@opentelemetry/api";
 import { db } from "@sovoli/db";
 import { flatten } from "flat";
 
 import { Logger } from "~/core/logger/Logger";
 
-const tracer = trace.getTracer("your-custom-traces");
+const tracer = trace.getTracer("sovoli-services");
 
 export abstract class BaseService<TOptions, TResult = void> {
   constructor(
@@ -19,16 +19,18 @@ export abstract class BaseService<TOptions, TResult = void> {
   public async call(options: TOptions): Promise<TResult> {
     return tracer.startActiveSpan(this.name + ".call", async (span) => {
       try {
-        // TODO: may need to run flatten on the options
-        const serializedOptions = this.flattenProperties(options);
+        const serializedOptions = this.flattenProperties({
+          input: options,
+        });
         span.setAttribute("serviceName", this.name);
-        span.setAttribute("input", serializedOptions);
+        span.setAttributes(serializedOptions);
 
         const result = await this.execute(options);
 
-        // Serialize result if necessary
-        const serializedResult = this.flattenProperties(result);
-        span.setAttribute("result", serializedResult);
+        const serializedResult = this.flattenProperties({
+          output: result,
+        });
+        span.setAttributes(serializedResult);
 
         return result;
       } catch (error: unknown) {
@@ -46,7 +48,7 @@ export abstract class BaseService<TOptions, TResult = void> {
     });
   }
 
-  private flattenProperties(object: unknown): AttributeValue {
+  private flattenProperties(object: unknown): Attributes {
     return flatten(object);
   }
 }
