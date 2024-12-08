@@ -1,8 +1,9 @@
 import type { SelectUserSchema } from "@sovoli/db/schema";
+import { Navbar } from "@sovoli/ui/components/navbar";
+import { UserSubmenu } from "@sovoli/ui/components/submenu/UserSubmenu";
+import { UserProfileSidebar } from "@sovoli/ui/components/UserProfileSidebar";
 
-import { Navbar } from "../navbar";
-import { UserSubmenu } from "../submenu/UserSubmenu";
-import { UserProfileSidebar } from "../UserProfileSidebar";
+import { UserProfileNavbarAppLinks } from "./UserProfileNavbarAppLinks";
 
 export interface UserLayoutProps {
   user: SelectUserSchema;
@@ -12,7 +13,7 @@ export interface UserLayoutProps {
 export const UserLayout = ({ children, user }: UserLayoutProps) => {
   return (
     <div>
-      <Navbar user={user} />
+      <Navbar AppLinks={<UserProfileNavbarAppLinks />} />
       <main className="flex-1">
         <div className="flex w-full flex-col">
           <UserSubmenu username={user.username ?? ""} />

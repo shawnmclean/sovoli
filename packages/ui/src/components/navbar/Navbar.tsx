@@ -1,7 +1,3 @@
-import type {
-  SelectKnowledgeSchema,
-  SelectUserSchema,
-} from "@sovoli/db/schema";
 import { auth } from "@sovoli/auth";
 
 import { Chip } from "../ui/chip";
@@ -11,21 +7,15 @@ import {
   NavbarItem,
   Navbar as NextUINavbar,
 } from "../ui/navbar";
-import { NavbarAppLinks } from "./NavbarAppLinks";
 import { NavbarRightProfile } from "./NavbarRightProfile";
 import { NavbarRightSignIn } from "./NavbarRightSignIn";
 
 export interface NavbarProps {
-  user?: SelectUserSchema;
-  knowledge?: SelectKnowledgeSchema;
+  AppLinks?: React.ReactNode;
 }
 
-export async function Navbar({ user, knowledge }: NavbarProps) {
+export async function Navbar({ AppLinks }: NavbarProps) {
   const session = await auth();
-
-  const appLinksComponent = (
-    <NavbarAppLinks user={user} knowledge={knowledge} />
-  );
 
   const navBarRightComponent = session ? (
     <NavbarRightProfile session={session} />
@@ -42,7 +32,7 @@ export async function Navbar({ user, knowledge }: NavbarProps) {
             <p className="whitespace-nowrap font-bold text-inherit">Sovoli</p>
           </Link>
         </NavbarItem>
-        <NavbarItem className="overflow-hidden">{appLinksComponent}</NavbarItem>
+        <NavbarItem className="overflow-hidden">{AppLinks}</NavbarItem>
       </div>
 
       <NavbarContent justify="end">

@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
-import { UserLayout } from "@sovoli/ui/components/layouts/UserLayout";
 
 import { getUserProfile, preload } from "../lib/getUserProfile";
+import { UserProfileProvider } from "../providers/UserProfileProvider";
+import { UserLayout } from "./components/UserLayout";
 
 interface Props {
   children: React.ReactNode;
@@ -32,5 +33,9 @@ export default async function Layout({ children, params }: Props) {
 
   if (!user) return notFound();
 
-  return <UserLayout user={user}>{children}</UserLayout>;
+  return (
+    <UserProfileProvider userProfile={user}>
+      <UserLayout user={user}>{children}</UserLayout>
+    </UserProfileProvider>
+  );
 }
