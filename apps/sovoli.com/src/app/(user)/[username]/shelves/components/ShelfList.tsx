@@ -16,7 +16,7 @@ export interface ShelfListProps {
 
 export function ShelfList({ shelves }: ShelfListProps) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
       {shelves.map((shelf) => (
         <ShelfListItem key={shelf.id} shelf={shelf} />
       ))}

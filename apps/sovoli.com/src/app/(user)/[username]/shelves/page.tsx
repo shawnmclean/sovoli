@@ -36,12 +36,5 @@ export default async function ShelvesPage({ params, searchParams }: Props) {
     params,
     searchParams,
   });
-  return (
-    <div className="min-h-screen dark:bg-black">
-      <h1> Shelves</h1>
-      <div>
-        <ShelfList shelves={knowledges.data} />
-      </div>
-    </div>
-  );
+  return <ShelfList shelves={knowledges.data} />;
 }
