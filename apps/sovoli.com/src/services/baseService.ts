@@ -1,6 +1,7 @@
-import type { Exception } from "@opentelemetry/api";
+import type { AttributeValue, Exception } from "@opentelemetry/api";
 import { trace } from "@opentelemetry/api";
 import { db } from "@sovoli/db";
+import { flatten } from "flat";
 
 import { Logger } from "~/core/logger/Logger";
 
@@ -19,14 +20,14 @@ export abstract class BaseService<TOptions, TResult = void> {
     return tracer.startActiveSpan(this.name + ".call", async (span) => {
       try {
         // TODO: may need to run flatten on the options
-        const serializedOptions = JSON.stringify(options);
+        const serializedOptions = this.flattenProperties(options);
         span.setAttribute("serviceName", this.name);
         span.setAttribute("input", serializedOptions);
 
         const result = await this.execute(options);
 
         // Serialize result if necessary
-        const serializedResult = JSON.stringify(result);
+        const serializedResult = this.flattenProperties(result);
         span.setAttribute("result", serializedResult);
 
         return result;
@@ -43,5 +44,9 @@ export abstract class BaseService<TOptions, TResult = void> {
         span.end();
       }
     });
+  }
+
+  private flattenProperties(object: unknown): AttributeValue {
+    return flatten(object);
   }
 }
