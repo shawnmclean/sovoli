@@ -4,14 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Tab, Tabs } from "@sovoli/ui/components/ui/tabs";
 
+import { useUserProfile } from "../../providers/UserProfileProvider";
+
 // using link here because of nextjs full refresh issue: https://github.com/nextui-org/nextui/issues/3786
 
-export interface UserSubmenuProps {
-  username: string;
-}
-
-export function UserSubmenu({ username }: UserSubmenuProps) {
+export function UserSubmenu() {
   const pathname = usePathname();
+  const { username } = useUserProfile();
 
   // Define your tabs with their respective paths
   const tabs = [

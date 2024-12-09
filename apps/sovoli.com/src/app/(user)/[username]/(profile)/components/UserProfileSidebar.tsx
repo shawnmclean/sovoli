@@ -1,14 +1,14 @@
-import type { SelectUserSchema } from "@sovoli/db/schema";
+"use client";
+
 import Link from "next/link";
 import { Avatar } from "@sovoli/ui/components/ui/avatar";
 import { Badge } from "@sovoli/ui/components/ui/badge";
 import { Button } from "@sovoli/ui/components/ui/button";
 
-export interface UserProfileSidebarProps {
-  user: SelectUserSchema;
-}
+import { useUserProfile } from "../../providers/UserProfileProvider";
 
-export function UserProfileSidebar({ user }: UserProfileSidebarProps) {
+export function UserProfileSidebar() {
+  const user = useUserProfile();
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-start gap-3">
