@@ -1,6 +1,6 @@
 import { permanentRedirect } from "next/navigation";
-import { KnowledgeLayout } from "@sovoli/ui/components/layouts/KnowledgeLayout";
 
+import { KnowledgeLayout } from "./components/KnowledgeLayout";
 import { preload, retreiveKnowledgeBySlug } from "./lib/getKnowledge";
 
 interface Props {

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
-import { getUserProfile, preload } from "../lib/getUserProfile";
-import { UserLayout } from "./components/UserLayout";
+import { getUserProfile, preload } from "./lib/getUserProfile";
+import { UserProfileProvider } from "./providers/UserProfileProvider";
 
 interface Props {
   children: React.ReactNode;
@@ -32,5 +32,7 @@ export default async function Layout({ children, params }: Props) {
 
   if (!user) return notFound();
 
-  return <UserLayout user={user}>{children}</UserLayout>;
+  return (
+    <UserProfileProvider userProfile={user}>{children}</UserProfileProvider>
+  );
 }

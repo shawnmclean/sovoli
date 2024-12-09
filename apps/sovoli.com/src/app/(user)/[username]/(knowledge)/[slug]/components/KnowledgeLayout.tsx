@@ -1,3 +1,9 @@
+import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+import { Navbar } from "@sovoli/ui/components/navbar";
+
+import { KnowledgeNavbarAppLinks } from "./KnowledgeNavbarAppLinks";
+import { KnowledgeSubmenu } from "./KnowledgeSubmenu";
+
 export interface KnowledgeLayoutProps {
   knowledge: SelectKnowledgeSchema;
   children: React.ReactNode;
@@ -12,7 +18,7 @@ export const KnowledgeLayout = ({
   }
   return (
     <div>
-      <Navbar user={knowledge.User} knowledge={knowledge} />
+      <Navbar AppLinks={<KnowledgeNavbarAppLinks knowledge={knowledge} />} />
       <main>
         <div className="flex w-full flex-col">
           <KnowledgeSubmenu
