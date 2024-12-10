@@ -3,6 +3,7 @@
 import type { Session } from "@sovoli/auth";
 import NextLink from "next/link";
 import { Avatar } from "@nextui-org/avatar";
+import { signOut } from "@sovoli/auth";
 import {
   Dropdown,
   DropdownItem,
