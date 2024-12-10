@@ -1,6 +1,8 @@
 import { permanentRedirect } from "next/navigation";
 
-import { KnowledgeLayout } from "./components/KnowledgeLayout";
+import { Navbar } from "~/components/navbar/Navbar";
+import { KnowledgeNavbarAppLinks } from "./components/KnowledgeNavbarAppLinks";
+import { KnowledgeSubmenu } from "./components/KnowledgeSubmenu";
 import { preload, retreiveKnowledgeBySlug } from "./lib/getKnowledge";
 
 interface Props {
@@ -25,5 +27,18 @@ export default async function Layout({ children, params }: Props) {
     searchParams: { page: 1, pageSize: 30 },
   });
 
-  return <KnowledgeLayout knowledge={knowledge}>{children}</KnowledgeLayout>;
+  return (
+    <div>
+      <Navbar AppLinks={<KnowledgeNavbarAppLinks knowledge={knowledge} />} />
+      <main>
+        <div className="flex w-full flex-col">
+          <KnowledgeSubmenu
+            username={knowledge.User?.username ?? ""}
+            slug={knowledge.slug ?? ""}
+          />
+        </div>
+        {children}
+      </main>
+    </div>
+  );
 }
