@@ -15,11 +15,10 @@ export const UserProfileNavbarAppLinks = () => {
       separator="/"
       itemClasses={{
         separator: "px-2",
-        item: "text-muted-foreground",
         base: "min-w-0",
       }}
     >
-      <BreadcrumbItem href={`/${user.username}`} isCurrent={false}>
+      <BreadcrumbItem href={`/${user.username}`}>
         <span className="overflow-hidden text-ellipsis">{user.name}</span>
       </BreadcrumbItem>
     </Breadcrumbs>
