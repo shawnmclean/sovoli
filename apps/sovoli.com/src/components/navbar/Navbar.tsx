@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { auth } from "@sovoli/auth";
 import { Badge } from "@sovoli/ui/components/ui/badge";
-import { Button } from "@sovoli/ui/components/ui/button";
-import { Chip } from "@sovoli/ui/components/ui/chip";
 import {
   NavbarContent,
   NavbarItem,
