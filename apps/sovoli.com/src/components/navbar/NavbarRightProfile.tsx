@@ -3,13 +3,14 @@
 import type { Session } from "@sovoli/auth";
 import NextLink from "next/link";
 import { Avatar } from "@nextui-org/avatar";
-import { signOut } from "@sovoli/auth";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
 } from "@sovoli/ui/components/ui/dropdown";
+
+import { SignOutButton } from "./SignOutButton";
 
 export interface NavbarRightProfileProps {
   session: Session;
@@ -42,8 +43,8 @@ export function NavbarRightProfile({ session }: NavbarRightProfileProps) {
         <DropdownItem key="settings" href="/settings" as={NextLink}>
           My Settings
         </DropdownItem>
-        <DropdownItem key="logout" color="danger" onClick={() => signOut()}>
-          Log Out
+        <DropdownItem key="logout" color="danger">
+          <SignOutButton />
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

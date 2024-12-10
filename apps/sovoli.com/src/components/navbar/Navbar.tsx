@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { auth } from "@sovoli/auth";
+import { Badge } from "@sovoli/ui/components/ui/badge";
+import { Button } from "@sovoli/ui/components/ui/button";
 import { Chip } from "@sovoli/ui/components/ui/chip";
 import {
   NavbarContent,
@@ -8,7 +10,7 @@ import {
 } from "@sovoli/ui/components/ui/navbar";
 
 import { NavbarRightProfile } from "./NavbarRightProfile";
-import { NavbarRightSignIn } from "./NavbarRightSignIn";
+import { SignInButton } from "./SignInButton";
 
 export interface NavbarProps {
   AppLinks?: React.ReactNode;
@@ -20,7 +22,7 @@ export async function Navbar({ AppLinks }: NavbarProps) {
   const navBarRightComponent = session ? (
     <NavbarRightProfile session={session} />
   ) : (
-    <NavbarRightSignIn />
+    <SignInButton />
   );
 
   return (
@@ -28,19 +30,22 @@ export async function Navbar({ AppLinks }: NavbarProps) {
       <div className="flex min-w-0 flex-row items-center gap-4">
         <NavbarItem className="shrink-0">
           <Link href="/" color="foreground">
-            {/* Logo Image here */}
-            <p className="whitespace-nowrap font-bold text-inherit">Sovoli</p>
+            <Badge
+              color="warning"
+              content="v0"
+              size="sm"
+              title="Unstable Software"
+              placement="bottom-right"
+              variant="faded"
+            >
+              <p className="whitespace-nowrap font-bold text-inherit">Sovoli</p>
+            </Badge>
           </Link>
         </NavbarItem>
         <NavbarItem className="overflow-hidden">{AppLinks}</NavbarItem>
       </div>
 
       <NavbarContent justify="end">
-        <NavbarItem className="hidden sm:flex">
-          <Chip color="warning" variant="dot">
-            Reworking Design System
-          </Chip>
-        </NavbarItem>
         <NavbarItem>{navBarRightComponent}</NavbarItem>
       </NavbarContent>
     </NextUINavbar>
