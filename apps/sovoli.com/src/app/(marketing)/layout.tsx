@@ -1,8 +1,13 @@
-import { DefaultLayout } from "@sovoli/ui/components/layouts/DefaultLayout";
+import { Navbar } from "~/components/navbar/Navbar";
 
 interface Props {
   children: React.ReactNode;
 }
 export default function Layout({ children }: Props) {
-  return <DefaultLayout>{children}</DefaultLayout>;
+  return (
+    <div>
+      <Navbar />
+      <main className="flex-1">{children}</main>
+    </div>
+  );
 }
