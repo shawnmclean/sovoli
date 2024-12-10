@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { UIProviders } from "@sovoli/ui/providers";
+import { SessionProvider } from "next-auth/react";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 
@@ -18,10 +19,12 @@ if (typeof window !== "undefined") {
 export function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   return (
-    <PostHogProvider client={posthog}>
-      <UIProviders navigate={(href) => router.push(href)}>
-        <QueryProviders>{children}</QueryProviders>
-      </UIProviders>
-    </PostHogProvider>
+    <SessionProvider>
+      <PostHogProvider client={posthog}>
+        <UIProviders navigate={(href) => router.push(href)}>
+          <QueryProviders>{children}</QueryProviders>
+        </UIProviders>
+      </PostHogProvider>
+    </SessionProvider>
   );
 }
