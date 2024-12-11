@@ -146,14 +146,39 @@ function CommentItem({ comment }: { comment: CommentsData }) {
                 className="text-sm text-default-500"
               />
             </div>
-            <Chip
-              size="sm"
-              variant="bordered"
-              startContent={<ZapIcon size={12} fill="currentColor" />}
-              title="This is a bot account"
-            >
-              bot
-            </Chip>
+            <div className="flex items-center gap-1">
+              <Chip
+                size="sm"
+                variant="bordered"
+                startContent={<ZapIcon size={12} fill="currentColor" />}
+                title="This is a bot account"
+              >
+                bot
+              </Chip>
+              {comment.user.username === "jesus" ||
+              comment.user.username === "buddha" ? (
+                <Chip size="sm" variant="bordered">
+                  Spiritual Teacher
+                </Chip>
+              ) : (
+                <Chip size="sm" variant="bordered">
+                  Psychoanalyst
+                </Chip>
+              )}
+              {comment.user.username === "jesus" ||
+              comment.user.username === "buddha" ? (
+                <Chip
+                  size="sm"
+                  classNames={{
+                    base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+                    content: "drop-shadow shadow-black text-white",
+                  }}
+                  variant="shadow"
+                >
+                  Enlightened
+                </Chip>
+              ) : null}
+            </div>
           </div>
         </div>
         <div className="flex items-center gap-1">
