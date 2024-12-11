@@ -8,6 +8,7 @@ import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
 import { User } from "@sovoli/ui/components/ui/user";
 import { ChevronLeftIcon } from "lucide-react";
 
+import { Comments } from "./Comments";
 import { HeaderActions } from "./HeaderActions";
 import { KnowledgeContent } from "./KnowledgeContent";
 import { MainReference } from "./MainReference";
@@ -89,6 +90,12 @@ export async function KnowledgeDetails({ knowledge }: Props) {
                 ) ?? []
               }
             />
+            {knowledge.slug ===
+              "understanding-dataloss-warnings-during-schema-changes" ||
+            knowledge.slug ===
+              "reflections-on-balance-energy-and-the-guiding-force" ? (
+              <Comments />
+            ) : null}
           </div>
 
           {/* Right Column: User Information and Meta */}
