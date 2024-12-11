@@ -6,7 +6,7 @@ import {
   Breadcrumbs,
 } from "@sovoli/ui/components/ui/breadcrumbs";
 
-import { useUserProfile } from "../../../providers/UserProfileProvider";
+import { useUserProfile } from "../../providers/UserProfileProvider";
 
 export interface KnowledgeNavbarAppLinksProps {
   knowledge: SelectKnowledgeSchema;
