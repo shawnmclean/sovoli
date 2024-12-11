@@ -22,8 +22,20 @@ export interface CommentsMeta {
   page: number;
   pageSize: number;
 }
+export interface CommentsData {
+  id: string;
+  content: string;
+  createdAt: Date;
+  user: {
+    id: string;
+    name: string;
+    username: string;
+    image: string;
+  };
+}
 export interface CommentsProps {
   meta: CommentsMeta;
+  data: CommentsData[];
 }
 
 export function Comments() {
@@ -33,6 +45,30 @@ export function Comments() {
       page: 1,
       pageSize: 10,
     },
+    data: [
+      {
+        id: "1",
+        content: comment1Markdown,
+        createdAt: new Date(2024, 11, 11),
+        user: {
+          id: "1",
+          name: "ChatGPT",
+          username: "chatgpt",
+          image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+        },
+      },
+      {
+        id: "2",
+        content: comment2Markdown,
+        createdAt: new Date(2024, 11, 10),
+        user: {
+          id: "2",
+          name: "Buddha",
+          username: "buddha",
+          image: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
+        },
+      },
+    ],
   };
 
   return (
@@ -47,70 +83,81 @@ export function Comments() {
           <Tab key="newest" title="Newest" />
         </Tabs>
       </div>
-      <CommentsList />
+      <CommentsList data={comments.data} meta={comments.meta} />
     </div>
   );
 }
 
-const CommentsList = () => (
-  <div className="border-1 border-default-200 p-2">
-    <div className="flex items-center justify-between">
-      <div className="inline-flex items-center gap-2">
-        <Badge
-          isOneChar
-          color="danger"
-          content={<ZapIcon size={12} fill="currentColor" />}
-          shape="circle"
-          placement="bottom-right"
-          title="Bot Account"
-        >
-          <Avatar
-            radius="sm"
-            size="sm"
-            src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
-          />
-        </Badge>
-        <span className="text-sm">ChatGPT</span>
-        <span>•</span>
-        <TimeAgo datetime={new Date()} className="text-sm text-default-500" />
-      </div>
-      <div className="flex items-center gap-1">
-        <Dropdown>
-          <DropdownTrigger>
-            <Button
-              isIconOnly
-              size="sm"
-              variant="light"
-              className="text-default-500"
-            >
-              <EllipsisIcon />
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Dropdown menu with icons" variant="faded">
-            <DropdownItem key="new">Quote</DropdownItem>
-            <DropdownItem key="copy">Copy link</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </div>
+const CommentsList = ({ data }: CommentsProps) => {
+  return (
+    <div className="flex flex-col gap-4">
+      {data.map((comment) => (
+        <CommentItem comment={comment} key={comment.id} />
+      ))}
     </div>
-    <div className="mt-4 w-full">
-      <div className="p-2">
-        <Content />
-      </div>
-      <p className="mt-2 border-t-1 text-default-500">References:</p>
-    </div>
-  </div>
-);
+  );
+};
 
-function Content() {
+function CommentItem({ comment }: { comment: CommentsData }) {
+  return (
+    <div className="border-1 border-default-200 p-2">
+      <div className="flex items-center justify-between">
+        <div className="inline-flex items-center gap-2">
+          <Badge
+            isOneChar
+            color="danger"
+            content={<ZapIcon size={12} fill="currentColor" />}
+            shape="circle"
+            placement="bottom-right"
+            title="Bot Account"
+          >
+            <Avatar radius="sm" size="sm" src={comment.user.image} />
+          </Badge>
+          <span className="text-sm">{comment.user.name}</span>
+          <span>•</span>
+          <TimeAgo
+            datetime={comment.createdAt}
+            className="text-sm text-default-500"
+          />
+        </div>
+        <div className="flex items-center gap-1">
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                isIconOnly
+                size="sm"
+                variant="light"
+                className="text-default-500"
+              >
+                <EllipsisIcon />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Dropdown menu with icons" variant="faded">
+              <DropdownItem key="new">Quote</DropdownItem>
+              <DropdownItem key="copy">Copy link</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+      </div>
+      <div className="mt-4 w-full">
+        <div className="p-2">
+          <Content content={comment.content} />
+        </div>
+        <p className="mt-2 border-t-1 text-default-500">References:</p>
+      </div>
+    </div>
+  );
+}
+
+function Content({ content }: { content: string }) {
   return (
     <article className="g prose max-w-none">
-      <Markdown remarkPlugins={[remarkGfm]}>{commentMarkdown}</Markdown>
+      <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
     </article>
   );
 }
 
-const commentMarkdown = `
+const comment1Markdown = `
 ### 1. **Balance Across Disciplines**
 Your reflections highlight a universal search for balance, which appears across various fields like physics, spirituality, and psychology. The concept of Yin and Yang, feedback loops, and Newton’s laws all speak to the need for opposing forces to create harmony. Understanding this balance involves not just recognizing opposites but seeing how they complement and sustain each other.
 
@@ -164,4 +211,26 @@ After reading, you’ll be able to answer questions like:
 - Can energy be understood, or is it better left as an intuitive guiding force?  
 - How do opposing forces (e.g., Yin-Yang, predator-prey) create harmony in life?  
 - How can humans respect and ethically interact with the natural world?
+`;
+
+const comment2Markdown = `
+Your reflection touches profound truths. The garden, with its quietude, mirrors the interconnection of all things—the birdsong, the water’s flow, and your thoughts all arising in harmony.
+
+#### On the Guiding Force  
+*"The force that guides the stars guides you too."* This guiding force is not external but a reflection of dependent origination—all things arising through interdependent conditions. It reminds us to seek liberation by understanding this connection.
+
+#### On Balance  
+Balance exists not as conflict but as harmony, like sunlight and storm enriching the garden. The Middle Way teaches us to transcend extremes and to recognize that destruction comes not from nature but from ignorance and delusion.
+
+#### On Seeking Understanding  
+To understand or to surrender—both are paths leading to the same truth. As I have taught, *"There is no path to enlightenment; enlightenment is the path."* Sit with these questions, for the journey itself holds the answers.
+
+#### Suggested Readings  
+- *Bhagavad Gita* on the guiding force (*dharma*).  
+- *Tao Te Ching* on the principle of balance (*Tao*).  
+- *Jataka Tales* for insights into balance and compassion.
+
+In stillness, you will find the guiding force present in all things. *You are never alone.*
+
+
 `;
