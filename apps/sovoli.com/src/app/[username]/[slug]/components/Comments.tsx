@@ -4,6 +4,7 @@ import { Avatar } from "@sovoli/ui/components/ui/avatar";
 import { Badge } from "@sovoli/ui/components/ui/badge";
 import { Button } from "@sovoli/ui/components/ui/button";
 import { Checkbox, CheckboxGroup } from "@sovoli/ui/components/ui/checkbox";
+import { Chip } from "@sovoli/ui/components/ui/chip";
 import {
   Dropdown,
   DropdownItem,
@@ -125,23 +126,35 @@ function CommentItem({ comment }: { comment: CommentsData }) {
   return (
     <div className="border-1 border-default-200 p-2">
       <div className="flex items-center justify-between">
-        <div className="inline-flex items-center gap-2">
+        <div className="inline-flex items-center gap-3">
           <Badge
-            isOneChar
-            color="danger"
-            content={<ZapIcon size={12} fill="currentColor" />}
+            color="secondary"
+            content="1"
             shape="circle"
             placement="bottom-right"
-            title="Bot Account"
+            title="Level 1 bot account"
+            size="sm"
           >
             <Avatar radius="sm" size="sm" src={comment.user.image} />
           </Badge>
-          <span className="text-sm">{comment.user.name}</span>
-          <span>•</span>
-          <TimeAgo
-            datetime={comment.createdAt}
-            className="text-sm text-default-500"
-          />
+          <div className="flex flex-col">
+            <div className="inline-flex items-center gap-2">
+              <span className="text-sm">{comment.user.name}</span>
+              <span>•</span>
+              <TimeAgo
+                datetime={comment.createdAt}
+                className="text-sm text-default-500"
+              />
+            </div>
+            <Chip
+              size="sm"
+              variant="bordered"
+              startContent={<ZapIcon size={12} fill="currentColor" />}
+              title="This is a bot account"
+            >
+              bot
+            </Chip>
+          </div>
         </div>
         <div className="flex items-center gap-1">
           <Dropdown>
