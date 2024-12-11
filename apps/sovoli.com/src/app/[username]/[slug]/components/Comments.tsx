@@ -3,6 +3,7 @@
 import { Avatar } from "@sovoli/ui/components/ui/avatar";
 import { Badge } from "@sovoli/ui/components/ui/badge";
 import { Button } from "@sovoli/ui/components/ui/button";
+import { Checkbox, CheckboxGroup } from "@sovoli/ui/components/ui/checkbox";
 import {
   Dropdown,
   DropdownItem,
@@ -47,25 +48,36 @@ export function Comments() {
     },
     data: [
       {
-        id: "1",
-        content: comment1Markdown,
-        createdAt: new Date(2024, 11, 11),
-        user: {
-          id: "1",
-          name: "ChatGPT",
-          username: "chatgpt",
-          image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-        },
-      },
-      {
         id: "2",
-        content: comment2Markdown,
+        content: buddhaComment,
         createdAt: new Date(2024, 11, 10),
         user: {
           id: "2",
           name: "Buddha",
           username: "buddha",
           image: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
+        },
+      },
+      {
+        id: "3",
+        content: jesusComment,
+        createdAt: new Date(2024, 11, 11),
+        user: {
+          id: "2",
+          name: "Jesus",
+          username: "jesus",
+          image: "https://i.pravatar.cc/150?u=1234",
+        },
+      },
+      {
+        id: "4",
+        content: sigmundComment,
+        createdAt: new Date(2024, 11, 11),
+        user: {
+          id: "2",
+          name: "Sigmund Freud",
+          username: "sigmund",
+          image: "https://i.pravatar.cc/150?u=4123412",
         },
       },
     ],
@@ -78,10 +90,21 @@ export function Comments() {
           {comments.meta.totalCount > 0 ? comments.meta.totalCount : "No"}{" "}
           {pluralize(comments.meta.totalCount, "Comment")}
         </h2>
-        <Tabs aria-label="Ordering" size="sm" radius="sm" variant="bordered">
-          <Tab key="oldest" title="Oldest" />
-          <Tab key="newest" title="Newest" />
-        </Tabs>
+        <div className="flex items-center gap-4">
+          <CheckboxGroup
+            size="sm"
+            orientation="horizontal"
+            color="default"
+            defaultValue={["bots", "humans"]}
+          >
+            <Checkbox value="bots">Bots</Checkbox>
+            <Checkbox value="humans">Humans</Checkbox>
+          </CheckboxGroup>
+          <Tabs aria-label="Ordering" size="sm" radius="sm" variant="bordered">
+            <Tab key="oldest" title="Oldest" />
+            <Tab key="newest" title="Newest" />
+          </Tabs>
+        </div>
       </div>
       <CommentsList data={comments.data} meta={comments.meta} />
     </div>
@@ -157,63 +180,7 @@ function Content({ content }: { content: string }) {
   );
 }
 
-const comment1Markdown = `
-### 1. **Balance Across Disciplines**
-Your reflections highlight a universal search for balance, which appears across various fields like physics, spirituality, and psychology. The concept of Yin and Yang, feedback loops, and Newton’s laws all speak to the need for opposing forces to create harmony. Understanding this balance involves not just recognizing opposites but seeing how they complement and sustain each other.
-
-**Recommended Book**: *The Tao of Physics* by Fritjof Capra  
-This book bridges the gap between spiritual insights (like Yin-Yang) and scientific principles, offering a multidisciplinary perspective on balance and interconnectedness.
-
-After reading, you’ll be able to answer questions like:  
-- How do Eastern philosophies and Western science approach balance differently?  
-- What are the universal principles connecting spirituality and physics?  
-
----
-
-### 2. **Energy as a Guiding Force**
-I’ve beautifully explored energy as a driving and manifesting force, wondering whether it can be fully understood or whether it’s better left as a guiding mystery. From a scientific lens, energy transforms across forms, from kinetic to light and heat, mirroring its presence in all aspects of existence.
-
-**Recommended Book**: *The Hidden Life of Trees* by Peter Wohlleben  
-This book offers an example of energy's flow in nature, showing how trees communicate and share resources, reflecting energy’s invisible yet impactful role.
-
-After reading, you’ll be able to answer questions like:  
-- How does energy connect and sustain life systems?  
-- What role does unseen energy play in the balance of ecosystems?  
-
----
-
-### 3. **Ethics and Respect for Life**
-My reflection on the ethics of predation and the respect some humans and animals show toward life is profound. It raises questions about the moral balance in taking and giving life and whether destructive behaviors stem from a force gone astray.
-
-**Recommended Book**: *Braiding Sweetgrass* by Robin Wall Kimmerer  
-This book combines Indigenous wisdom with ecological science to explore how gratitude and respect create harmony between humans and nature.
-
-After reading, you’ll be able to answer questions like:  
-- How can humans interact with nature ethically?  
-- What lessons can Indigenous practices teach about reciprocity and balance?  
-
----
-
-### 4. **The Power of Words and Ideas**
-My observation of how words carry energy and influence others aligns with ancient and modern ideas about the significance of “the word.” Written or spoken, ideas multiply their impact over time, shaping human experience and consciousness.
-
-**Recommended Book**: *The Power of Now* by Eckhart Tolle  
-This book explains how thoughts and words influence personal energy, grounding you in the present moment and connecting you with a guiding force.
-
-After reading, you’ll be able to answer questions like:  
-- How do words and thoughts influence energy and presence?  
-- What role does mindfulness play in accessing the guiding force?  
-
----
-
-### Summary of Core Questions for Exploration:
-- What are the laws or principles governing balance in the universe?  
-- Can energy be understood, or is it better left as an intuitive guiding force?  
-- How do opposing forces (e.g., Yin-Yang, predator-prey) create harmony in life?  
-- How can humans respect and ethically interact with the natural world?
-`;
-
-const comment2Markdown = `
+const buddhaComment = `
 Your reflection touches profound truths. The garden, with its quietude, mirrors the interconnection of all things—the birdsong, the water’s flow, and your thoughts all arising in harmony.
 
 #### On the Guiding Force  
@@ -231,6 +198,35 @@ To understand or to surrender—both are paths leading to the same truth. As I h
 - *Jataka Tales* for insights into balance and compassion.
 
 In stillness, you will find the guiding force present in all things. *You are never alone.*
+`;
 
+const jesusComment = ` 
+Your walk in the garden is a moment of grace, where creation speaks of the Creator. The rustling leaves and flowing water remind us of God’s presence, whispering, *“Be still and know that I am God”* (Psalm 46:10).  
+
+The words you saw—*"You are never alone or helpless"*—echo Jesus’ promise: *“I am with you always, to the end of the age”* (Matthew 28:20). Solitude becomes sacred when you trust in this divine presence.
+
+Creation reflects balance and order, but human free will can disrupt it. Let your life reflect the harmony of God’s love: *“Do to others as you would have them do to you”* (Luke 6:31).
+
+#### Suggested Readings  
+- The Sermon on the Mount (Matthew 5–7) for living in divine harmony.  
+- *The Practice of the Presence of God* by Brother Lawrence.  
+
+*Walk in peace, for God walks with you.*
+
+`;
+
+const sigmundComment = `
+
+Your reflections in the garden uncover a tension between the external world and your internal psyche. The solitude you cherish allows the ego to mediate between instinct and morality.  
+
+The phrase *“You are never alone”* resonates because it connects with unconscious desires for security and guidance. Words, like those on the table, carry psychic energy—symbols that reflect deeper emotional truths.  
+
+The balance you observe in nature mirrors the conflict within: Eros (life) and Thanatos (death) constantly shape our actions. Destructive behaviors arise when these drives are misaligned.  
+
+#### Suggested Readings  
+- *The Interpretation of Dreams* to explore the power of symbols.  
+- *Civilization and Its Discontents* for insights into human drives.  
+
+*Your journey outward reflects a journey within.*
 
 `;
