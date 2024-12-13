@@ -25,7 +25,7 @@ export async function Navbar({ AppLinks }: NavbarProps) {
 
   return (
     <NextUINavbar maxWidth="full">
-      <div className="flex min-w-0 flex-row items-center gap-4">
+      <div className="flex min-w-0 flex-row items-center gap-5">
         <NavbarItem className="shrink-0">
           <Link href="/" color="foreground">
             <Badge

@@ -1,11 +1,8 @@
 "use client";
 
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
-import {
-  BreadcrumbItem,
-  Breadcrumbs,
-} from "@sovoli/ui/components/ui/breadcrumbs";
 
+import { NavbarAppLinks } from "~/components/navbar/NavbarAppLinks";
 import { useUserProfile } from "../../providers/UserProfileProvider";
 
 export interface KnowledgeNavbarAppLinksProps {
@@ -16,19 +13,14 @@ export const KnowledgeNavbarAppLinks = ({
 }: KnowledgeNavbarAppLinksProps) => {
   const user = useUserProfile();
   return (
-    <Breadcrumbs
-      separator="/"
-      itemClasses={{
-        separator: "px-2",
-        base: "min-w-0",
-      }}
-    >
-      <BreadcrumbItem href={`/${user.username}`}>
-        <span className="overflow-hidden text-ellipsis">{user.name}</span>
-      </BreadcrumbItem>
-      <BreadcrumbItem href={`/${user.username}/${knowledge.slug}`}>
-        <span className="overflow-hidden text-ellipsis">{knowledge.title}</span>
-      </BreadcrumbItem>
-    </Breadcrumbs>
+    <NavbarAppLinks
+      items={[
+        { href: `/${user.username}`, name: user.name ?? user.username },
+        {
+          href: `/${user.username}/${knowledge.slug}`,
+          name: knowledge.title ?? "knowledge",
+        },
+      ]}
+    />
   );
 };

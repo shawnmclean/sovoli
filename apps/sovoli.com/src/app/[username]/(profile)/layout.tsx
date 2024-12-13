@@ -11,7 +11,7 @@ export default function Layout({ children }: Props) {
   return (
     <div>
       <Navbar AppLinks={<UserProfileNavbarAppLinks />} />
-      <main className="flex-1">
+      <main>
         <div className="flex w-full flex-col">
           <UserSubmenu />
         </div>

@@ -1,10 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-// using link here because of nextjs full refresh issue: https://github.com/nextui-org/nextui/issues/3786
-import { Link } from "../ui/link";
-import { Tab, Tabs } from "../ui/tabs";
+import { Tab, Tabs } from "@sovoli/ui/components/ui/tabs";
 
 export function Sidebar() {
   const pathname = usePathname();
