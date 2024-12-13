@@ -12,17 +12,15 @@ export default function Layout({ children }: Props) {
     <div>
       <Navbar AppLinks={<UserProfileNavbarAppLinks />} />
       <main>
-        <div className="flex w-full flex-col">
+        <div className="mb-4 flex w-full flex-col">
           <UserSubmenu />
         </div>
-        <div className="mx-auto flex max-w-7xl flex-col justify-center py-5 md:flex-row">
-          <div className="w-full p-5 md:w-1/3">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
+          <div className="w-full md:w-1/3">
             <UserProfileSidebar />
           </div>
 
-          <div className="mt-5 w-full p-5 md:ml-5 md:mt-0 md:w-2/3">
-            {children}
-          </div>
+          <div className="w-full md:w-3/4">{children}</div>
         </div>
       </main>
     </div>

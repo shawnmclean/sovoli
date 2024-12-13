@@ -38,7 +38,7 @@ export async function KnowledgeDetails({ knowledge }: Props) {
     <div className="flex w-full flex-col">
       {/* Header Section */}
       <div className="flex justify-center border-b border-divider">
-        <div className="flex w-full max-w-7xl items-center justify-between p-6">
+        <div className="flex w-full max-w-7xl items-center justify-between pb-6">
           <div className="flex items-center gap-2">
             {knowledge.type === "shelf" && (
               <Link

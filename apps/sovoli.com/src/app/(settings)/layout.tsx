@@ -24,11 +24,11 @@ export default async function Layout({ children }: Props) {
             User Settings for {session.user.username}
           </h1>
           <div className="flex flex-col justify-between gap-4 py-4 md:flex-row">
-            <nav className="w-full border-1 md:w-1/4">
+            <nav className="w-full md:w-1/4">
               <Sidebar />
             </nav>
 
-            <div className="w-full border-1 md:w-3/4">{children}</div>
+            <div className="w-full md:w-3/4">{children}</div>
           </div>
         </div>
       </main>
