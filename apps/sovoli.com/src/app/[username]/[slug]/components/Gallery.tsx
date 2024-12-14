@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../ui/carousel";
+} from "@sovoli/ui/components/ui/carousel";
 
 export interface GalleryProps {
   images: { src: string; alt: string }[];
