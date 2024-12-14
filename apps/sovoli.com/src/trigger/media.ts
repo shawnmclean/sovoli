@@ -9,7 +9,7 @@ import { env } from "../env";
 import { AsyncResilience } from "../utils/retry/AsyncResilience";
 import { retryAsync } from "../utils/retry/retry-async";
 
-const MAX_ALLOWED_FILE_SIZE = 1024 * 1024 * 3; // 3MB
+const MAX_ALLOWED_FILE_SIZE = 1024 * 1024 * 10; // 10MB
 
 export interface HydrateMediaOptions {
   mediaId: string;
