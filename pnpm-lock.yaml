@@ -138,8 +138,8 @@ importers:
         specifier: 5.51.23
         version: 5.51.23(@tanstack/react-query@5.51.21(react@18.2.0))(react@18.2.0)
       '@trigger.dev/sdk':
-        specifier: 3.0.12
-        version: 3.0.12(bufferutil@4.0.8)(utf-8-validate@6.0.5)
+        specifier: 3.3.7
+        version: 3.3.7(bufferutil@4.0.8)(utf-8-validate@6.0.5)(zod@3.23.8)
       '@ts-rest/core':
         specifier: 'catalog:'
         version: 3.51.0(@types/node@22.8.0)(zod@3.23.8)
@@ -277,8 +277,8 @@ importers:
         specifier: 3.4.10
         version: 3.4.10
       trigger.dev:
-        specifier: 3.0.12
-        version: 3.0.12(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.5)
+        specifier: 3.3.7
+        version: 3.3.7(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.5)
       typescript:
         specifier: 'catalog:'
         version: 5.5.2
@@ -1567,6 +1567,9 @@ packages:
   '@drizzle-team/brocli@0.10.2':
     resolution: {integrity: sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==}
 
+  '@electric-sql/client@1.0.0-beta.1':
+    resolution: {integrity: sha512-Ei9jN3pDoGzc+a/bGqnB5ajb52IvSv7/n2btuyzUlcOHIR2kM9fqtYTJXPwZYKLkGZlHWlpHgWyRtrinkP2nHg==}
+
   '@esbuild-kit/core-utils@3.3.2':
     resolution: {integrity: sha512-sPRAnw9CdSsRmEtnsl2WXWdyquogVpB3yZ3dgwJfe8zrOzTsV7cJvmwrKVa+0ma5BoiGJ+BoqkMvawbayKUsqQ==}
     deprecated: 'Merged into tsx: https://tsx.is'
@@ -2228,6 +2231,9 @@ packages:
 
   '@js-sdsl/ordered-map@4.4.2':
     resolution: {integrity: sha512-iUKgm52T8HOE/makSxjqoWhe95ZJA1/G1sYsGev2JDKUSS14KAgg1LHb+Ba+IPow0xflbnSkOsZcO08C7w1gYw==}
+
+  '@jsonhero/path@1.0.21':
+    resolution: {integrity: sha512-gVUDj/92acpVoJwsVJ/RuWOaHyG4oFzn898WNGQItLCTQ+hOaVlEaImhwE1WqOTf+l3dGOUkbSiVKlb3q1hd1Q==}
 
   '@lexical/clipboard@0.17.1':
     resolution: {integrity: sha512-OVqnEfWX8XN5xxuMPo6BfgGKHREbz++D5V5ISOiml0Z8fV/TQkdgwqbBJcUdJHGRHWSUwdK7CWGs/VALvVvZyw==}
@@ -4274,6 +4280,11 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
 
+  '@rollup/rollup-darwin-arm64@4.28.1':
+    resolution: {integrity: sha512-prduvrMKU6NzMq6nxzQw445zXgaDBbMQvmKSJaxpaZ5R1QDM8w+eGxo6Y/jhT/cLoCvnZI42oEqf9KQNYz1fqQ==}
+    cpu: [arm64]
+    os: [darwin]
+
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
@@ -4405,17 +4416,19 @@ packages:
     peerDependencies:
       react: ^18.0.0
 
-  '@trigger.dev/build@3.0.12':
-    resolution: {integrity: sha512-tI0Y1bDntETHy30L3UKHWfJR2bvQ67Mvpum80kF34UwuPY/gMG5Zn9jkgWBW/vKAsYNn335KAwuEL2gDV2Z8bg==}
+  '@trigger.dev/build@3.3.7':
+    resolution: {integrity: sha512-WtbcnHUpIyHziOcUOyjgqFtEGQBtRg5UDVJEywyhuKdifsRP5I+JOIxD4kDY1ShLPwhaS/0EGV+MUisdLY13Rw==}
     engines: {node: '>=18.20.0'}
 
-  '@trigger.dev/core@3.0.12':
-    resolution: {integrity: sha512-ErN70xGBLSXLEdjn/Q2BVKSqy5FMpue+7B1MT2ZCGD3jMu1vYnlDzVp847Au47cdQ5GoFSv3n1DteBLd3eDiBg==}
+  '@trigger.dev/core@3.3.7':
+    resolution: {integrity: sha512-K5mAYXYbhSi8TP57VorfTlbNcbR4WIhUfjCsuSwL5tl6rVIM88ZJDdTN034XlZBh0FhAKIIIp8MUG1wt3bRjkA==}
     engines: {node: '>=18.20.0'}
 
-  '@trigger.dev/sdk@3.0.12':
-    resolution: {integrity: sha512-1PU2yvmvKgk3dsbEpcmjHt6pBtmWtxRpqlb2U87g2ScZ2pJAZ01bx7iifXPp33HI86enj3TyFhGlba0MQDcCAQ==}
+  '@trigger.dev/sdk@3.3.7':
+    resolution: {integrity: sha512-PoEp6BMuC2UA6s8AgBaBth8w0GEgKvGfdbGPb5hxuUojm0ejSkQ9pFTNaV/R0l4FyfHzc1sTrC06GQuBXnoA8g==}
     engines: {node: '>=18.20.0'}
+    peerDependencies:
+      zod: ^3.0.0
 
   '@ts-rest/core@3.51.0':
     resolution: {integrity: sha512-v6lnWEcpZj1UgN9wb84XQ+EORP1QEtncFumoXMJjno5ZUV6vdjKze3MYcQN0C6vjBpIJPQEaI/gab2jr4/0KzQ==}
@@ -6021,6 +6034,10 @@ packages:
   event-target-shim@6.0.2:
     resolution: {integrity: sha512-8q3LsZjRezbFZ2PN+uP+Q7pnHUMmAOziU2vA2OwoFaKIXxlxl38IylhSSgUorWu/rf4er67w0ikBqjBFk/pomA==}
     engines: {node: '>=10.13.0'}
+
+  eventsource-parser@3.0.0:
+    resolution: {integrity: sha512-T1C0XCUimhxVQzW4zFipdx0SficT651NnkR0ZSH3yQwh+mFMdLfgjABVi4YtMTtaL4s168593DaoaRLMqryavA==}
+    engines: {node: '>=18.0.0'}
 
   evt@2.5.8:
     resolution: {integrity: sha512-wjurRtEqepH03fZSzkCUAw2tNNtEoeoEYXf7EqG8uU52wQ3D/+ctyQE8hf+YR/5DXZlwl2jNGLMm4hAd/wyD6g==}
@@ -8871,8 +8888,8 @@ packages:
   tinycolor2@1.6.0:
     resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==}
 
-  tinyexec@0.2.0:
-    resolution: {integrity: sha512-au8dwv4xKSDR+Fw52csDo3wcDztPdne2oM1o/7LFro4h6bdFmvyUAeAfX40pwDtzHgRFqz1XWaUqgKS2G83/ig==}
+  tinyexec@0.3.1:
+    resolution: {integrity: sha512-WiCJLEECkO18gwqIp6+hJg0//p23HXp4S+gGtAKu3mI2F2/sXC4FvHvXvB0zJVVaTPhx1/tOwdbRsa1sOBIKqQ==}
 
   tinyglobby@0.2.10:
     resolution: {integrity: sha512-Zc+8eJlFMvgatPZTl6A9L/yht8QqdmUNtURHaKZLmKBE12hNPSrqNkUp2cs3M/UKmNVVAMFQYSjYIVHDjW5zew==}
@@ -8903,8 +8920,8 @@ packages:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
     hasBin: true
 
-  trigger.dev@3.0.12:
-    resolution: {integrity: sha512-JRvNPu66wHeif3HnI6/cr6wVfH/RkaVa6ubRafLAHc5+6tjNNzXo0B0BaiWU3Aq3R0oBWZsZuPId2ApGEZxqBg==}
+  trigger.dev@3.3.7:
+    resolution: {integrity: sha512-Mwb37DsBenS+aP+DzujIBeLKbS1ffoTSnjZYCu/Go9D+zRE7mgfL1qRg3x50SbmDmQFrSXxmPt8Xen0J39ywWw==}
     engines: {node: '>=18.20.0'}
     hasBin: true
 
@@ -9429,9 +9446,6 @@ packages:
     engines: {node: '>=16.0.0'}
     peerDependencies:
       zod: ^3.18.0
-
-  zod@3.22.3:
-    resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
 
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
@@ -10746,6 +10760,10 @@ snapshots:
 
   '@drizzle-team/brocli@0.10.2': {}
 
+  '@electric-sql/client@1.0.0-beta.1':
+    optionalDependencies:
+      '@rollup/rollup-darwin-arm64': 4.28.1
+
   '@esbuild-kit/core-utils@3.3.2':
     dependencies:
       esbuild: 0.18.20
@@ -11471,6 +11489,8 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
 
   '@js-sdsl/ordered-map@4.4.2': {}
+
+  '@jsonhero/path@1.0.21': {}
 
   '@lexical/clipboard@0.17.1':
     dependencies:
@@ -13052,7 +13072,7 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.52.1
       '@types/shimmer': 1.2.0
-      import-in-the-middle: 1.11.0
+      import-in-the-middle: 1.11.2
       require-in-the-middle: 7.4.0
       semver: 7.6.3
       shimmer: 1.2.1
@@ -14472,6 +14492,9 @@ snapshots:
       '@react-types/shared': 3.26.0(react@18.2.0)
       react: 18.2.0
 
+  '@rollup/rollup-darwin-arm64@4.28.1':
+    optional: true
+
   '@rtsao/scc@1.1.0': {}
 
   '@rvf/core@6.3.0(@rvf/set-get@6.0.3)(react@18.2.0)':
@@ -14621,9 +14644,9 @@ snapshots:
       '@tanstack/query-core': 5.51.21
       react: 18.2.0
 
-  '@trigger.dev/build@3.0.12(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.5)':
+  '@trigger.dev/build@3.3.7(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.5)':
     dependencies:
-      '@trigger.dev/core': 3.0.12(bufferutil@4.0.8)(utf-8-validate@6.0.5)
+      '@trigger.dev/core': 3.3.7(bufferutil@4.0.8)(utf-8-validate@6.0.5)
       pkg-types: 1.2.1
       tinyglobby: 0.2.10
       tsconfck: 3.1.3(typescript@5.5.2)
@@ -14633,9 +14656,11 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@trigger.dev/core@3.0.12(bufferutil@4.0.8)(utf-8-validate@6.0.5)':
+  '@trigger.dev/core@3.3.7(bufferutil@4.0.8)(utf-8-validate@6.0.5)':
     dependencies:
+      '@electric-sql/client': 1.0.0-beta.1
       '@google-cloud/precise-date': 4.0.0
+      '@jsonhero/path': 1.0.21
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.52.1
       '@opentelemetry/exporter-logs-otlp-http': 0.52.1(@opentelemetry/api@1.9.0)
@@ -14647,25 +14672,28 @@ snapshots:
       '@opentelemetry/sdk-trace-base': 1.25.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-node': 1.25.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.25.1
+      dequal: 2.0.3
+      eventsource-parser: 3.0.0
       execa: 8.0.1
       humanize-duration: 3.32.1
+      jose: 5.9.6
       nanoid: 3.3.8
       socket.io-client: 4.7.5(bufferutil@4.0.8)(utf-8-validate@6.0.5)
       superjson: 2.2.1
-      zod: 3.22.3
+      zod: 3.23.8
       zod-error: 1.5.0
-      zod-validation-error: 1.5.0(zod@3.22.3)
+      zod-validation-error: 1.5.0(zod@3.23.8)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
       - utf-8-validate
 
-  '@trigger.dev/sdk@3.0.12(bufferutil@4.0.8)(utf-8-validate@6.0.5)':
+  '@trigger.dev/sdk@3.3.7(bufferutil@4.0.8)(utf-8-validate@6.0.5)(zod@3.23.8)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.52.1
       '@opentelemetry/semantic-conventions': 1.25.1
-      '@trigger.dev/core': 3.0.12(bufferutil@4.0.8)(utf-8-validate@6.0.5)
+      '@trigger.dev/core': 3.3.7(bufferutil@4.0.8)(utf-8-validate@6.0.5)
       chalk: 5.3.0
       cronstrue: 2.52.0
       debug: 4.3.7
@@ -14675,7 +14703,7 @@ snapshots:
       ulid: 2.3.0
       uuid: 9.0.1
       ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.5)
-      zod: 3.22.3
+      zod: 3.23.8
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -16535,6 +16563,8 @@ snapshots:
   event-target-shim@5.0.1: {}
 
   event-target-shim@6.0.2: {}
+
+  eventsource-parser@3.0.0: {}
 
   evt@2.5.8:
     dependencies:
@@ -19951,7 +19981,7 @@ snapshots:
 
   tinycolor2@1.6.0: {}
 
-  tinyexec@0.2.0: {}
+  tinyexec@0.3.1: {}
 
   tinyglobby@0.2.10:
     dependencies:
@@ -19979,7 +20009,7 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  trigger.dev@3.0.12(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.5):
+  trigger.dev@3.3.7(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.5):
     dependencies:
       '@clack/prompts': 0.7.0
       '@depot/cli': 0.0.1-cli.2.73.0
@@ -19995,8 +20025,8 @@ snapshots:
       '@opentelemetry/sdk-trace-base': 1.25.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-node': 1.25.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.25.1
-      '@trigger.dev/build': 3.0.12(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.5)
-      '@trigger.dev/core': 3.0.12(bufferutil@4.0.8)(utf-8-validate@6.0.5)
+      '@trigger.dev/build': 3.3.7(bufferutil@4.0.8)(typescript@5.5.2)(utf-8-validate@6.0.5)
+      '@trigger.dev/core': 3.3.7(bufferutil@4.0.8)(utf-8-validate@6.0.5)
       c12: 1.11.2(magicast@0.3.5)
       chalk: 5.3.0
       cli-table3: 0.6.5
@@ -20026,11 +20056,11 @@ snapshots:
       std-env: 3.8.0
       terminal-link: 3.0.0
       tiny-invariant: 1.3.3
-      tinyexec: 0.2.0
+      tinyexec: 0.3.1
       ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.5)
       xdg-app-paths: 8.3.0
-      zod: 3.22.3
-      zod-validation-error: 1.5.0(zod@3.22.3)
+      zod: 3.23.8
+      zod-validation-error: 1.5.0(zod@3.23.8)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -20514,11 +20544,9 @@ snapshots:
     dependencies:
       zod: 3.23.8
 
-  zod-validation-error@1.5.0(zod@3.22.3):
+  zod-validation-error@1.5.0(zod@3.23.8):
     dependencies:
-      zod: 3.22.3
-
-  zod@3.22.3: {}
+      zod: 3.23.8
 
   zod@3.23.8: {}
 

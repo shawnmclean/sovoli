@@ -41,7 +41,7 @@
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-query-devtools": "5.51.23",
     "@anatine/zod-openapi": "2.2.6",
-    "@trigger.dev/sdk": "3.0.12",
+    "@trigger.dev/sdk": "3.3.7",
     "@ts-rest/core": "catalog:",
     "@ts-rest/open-api": "catalog:",
     "@ts-rest/react-query": "catalog:",
@@ -89,7 +89,7 @@
     "prettier": "catalog:",
     "tailwindcss": "3.4.10",
     "tailwind-variants": "0.1.20",
-    "trigger.dev": "3.0.12",
+    "trigger.dev": "3.3.7",
     "typescript": "catalog:"
   },
   "prettier": "@sovoli/prettier-config"
