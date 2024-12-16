@@ -2,7 +2,7 @@
 
 import type { Session } from "@sovoli/auth";
 import NextLink from "next/link";
-import { Avatar } from "@nextui-org/avatar";
+import { Avatar } from "@sovoli/ui/components/ui/avatar";
 import {
   Dropdown,
   DropdownItem,
