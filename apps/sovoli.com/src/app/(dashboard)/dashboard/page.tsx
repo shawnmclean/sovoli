@@ -7,6 +7,7 @@ import { MediaAssetHost } from "@sovoli/db/schema";
 import { Image } from "@sovoli/ui/components/ui/image";
 import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
 
+import supabaseLoader from "~/loaders/supabaseImageLoader";
 import { config } from "~/utils/config";
 import { getLatestKnowledges } from "./lib/getLatestKnowledges";
 
@@ -96,6 +97,7 @@ function KnowledgeImage({ knowledge }: { knowledge: SelectKnowledgeSchema }) {
         alt={images[0].alt}
         className="h-full w-full object-cover"
         fill
+        loader={supabaseLoader}
       />
     );
   }

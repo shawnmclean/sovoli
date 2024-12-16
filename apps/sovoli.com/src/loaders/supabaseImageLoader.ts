@@ -1,3 +1,5 @@
+"use client";
+
 import { env } from "../env";
 
 export default function supabaseLoader({

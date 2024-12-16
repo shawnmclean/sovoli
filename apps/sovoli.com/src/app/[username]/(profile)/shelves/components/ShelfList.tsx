@@ -1,10 +1,12 @@
-import Image from "next/image";
+import NextImage from "next/image";
 import Link from "next/link";
 import { auth } from "@sovoli/auth";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/ui/card";
+import { Image } from "@sovoli/ui/components/ui/image";
 import { LibraryBigIcon } from "lucide-react";
 
 import type { GetKnowledges } from "~/services/knowledge/getKnowledges";
+import supabaseLoader from "~/loaders/supabaseImageLoader";
 import { ShelfActions } from "./ShelfActions";
 
 type Shelves = Awaited<ReturnType<GetKnowledges["call"]>>;
@@ -35,10 +37,12 @@ async function ShelfListItem({ shelf }: { shelf: ShelfItem }) {
         <Link href={shelf.url} className="flex h-full w-full">
           {shelf.MediaAssets[0]?.path ? (
             <Image
+              as={NextImage}
               src={`${shelf.MediaAssets[0].bucket}/${shelf.MediaAssets[0].path}`}
               alt={shelf.title ?? "Shelf cover"}
               fill
               className="h-full w-full object-cover"
+              loader={supabaseLoader}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center">

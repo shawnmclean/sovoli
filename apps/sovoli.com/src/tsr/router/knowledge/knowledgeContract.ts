@@ -158,7 +158,7 @@ const PutConnectionSchema = z.discriminatedUnion("action", [
   RemoveConnectionSchema,
 ]);
 
-const PutKnowledgeSchemaRequest =
+export const PutKnowledgeSchemaRequest =
   BaseUpsertKnowledgeSchemaRequest.partial().extend({
     connections: PutConnectionSchema.array().optional(),
     authToken: z.string().optional().openapi({
@@ -179,7 +179,7 @@ const PutKnowledgeSchemaRequest =
       .optional(),
   });
 
-const PutKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse;
+export const PutKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse;
 
 export type PutKnowledgeSchemaRequest = z.infer<
   typeof PutKnowledgeSchemaRequest
