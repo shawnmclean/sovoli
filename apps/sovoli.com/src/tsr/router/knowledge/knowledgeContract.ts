@@ -113,9 +113,10 @@ const BaseUpsertKnowledgeSchemaResponse = SelectKnowledgeSchema.extend({
 const PostConnectionSchema = BaseConnectionSchema;
 export type PostConnectionSchema = z.infer<typeof PostConnectionSchema>;
 
-const PostKnowledgeSchemaRequest = BaseUpsertKnowledgeSchemaRequest.extend({
-  connections: PostConnectionSchema.array().optional(),
-});
+export const PostKnowledgeSchemaRequest =
+  BaseUpsertKnowledgeSchemaRequest.extend({
+    connections: PostConnectionSchema.array().optional(),
+  });
 
 const PostKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse.extend({
   authToken: z.string().openapi({
@@ -220,7 +221,7 @@ export const knowledgeContract = c.router(
     },
     pathPrefix: "/knowledge",
     commonResponses: {
-      401: z.literal("Unauthorized")
+      401: z.literal("Unauthorized"),
     },
   },
 );
