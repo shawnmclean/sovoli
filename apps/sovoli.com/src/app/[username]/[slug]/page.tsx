@@ -8,13 +8,12 @@ import { retreiveKnowledgeBySlug } from "./lib/getKnowledge";
 export const dynamic = "force-dynamic";
 
 interface Props {
-  params: { username: string; slug: string };
-  searchParams: { page: number | undefined; pageSize: number | undefined };
+  params: Promise<{ username: string; slug: string }>;
+  searchParams: Promise<{ page: number | undefined; pageSize: number | undefined }>;
 }
-export async function generateMetadata({
-  params,
-  searchParams,
-}: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const { knowledge } = await retreiveKnowledgeBySlug({ params, searchParams });
   // Get the image path from the MediaAssets
   const image = knowledge.MediaAssets?.[0];
@@ -34,7 +33,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function KnowledgePage({ params, searchParams }: Props) {
+export default async function KnowledgePage(props: Props) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const { knowledge } = await retreiveKnowledgeBySlug({
     params,
     searchParams,

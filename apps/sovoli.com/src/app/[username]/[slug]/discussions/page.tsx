@@ -1,6 +1,6 @@
 interface DiscussionsPageProps {
-  params: { username: string; slug: string };
-  searchParams: { page: number | undefined; pageSize: number | undefined };
+  params: Promise<{ username: string; slug: string }>;
+  searchParams: Promise<{ page: number | undefined; pageSize: number | undefined }>;
 }
 
 export default function DiscussionsPage(_props: DiscussionsPageProps) {

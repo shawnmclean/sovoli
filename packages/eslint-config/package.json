@@ -14,22 +14,22 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@eslint/compat": "1.1.1",
-    "@eslint/js": "9.13.0",
-    "@next/eslint-plugin-next": "14.2.4",
+    "@eslint/compat": "1.2.4",
+    "@eslint/js": "9.17.0",
+    "@next/eslint-plugin-next": "15.1.0",
     "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-jsx-a11y": "6.9.0",
-    "eslint-plugin-react": "7.35.0",
-    "eslint-plugin-react-hooks": "rc",
-    "eslint-plugin-turbo": "2.0.11",
-    "typescript-eslint": "8.3.0"
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.2",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-turbo": "2.3.3",
+    "typescript-eslint": "8.18.0"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
     "@sovoli/typescript-config": "workspace:*",
-    "typescript": "catalog:",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
     "prettier": "catalog:",
-    "eslint": "catalog:"
+    "typescript": "catalog:"
   },
   "prettier": "@sovoli/prettier-config"
 }

@@ -7,8 +7,11 @@ import { GetKnowledges } from "~/services/knowledge/getKnowledges";
 export const dynamic = "force-dynamic";
 
 interface Props {
-  params: { username: string };
-  searchParams: { page: number | undefined; pageSize: number | undefined };
+  params: Promise<{ username: string }>;
+  searchParams: Promise<{
+    page: number | undefined;
+    pageSize: number | undefined;
+  }>;
 }
 
 export function generateMetadata() {
@@ -17,24 +20,33 @@ export function generateMetadata() {
   };
 }
 
-const retrieveKnowledges = cache(async ({ params, searchParams }: Props) => {
-  const session = await auth();
+const retrieveKnowledges = cache(
+  async (
+    username: string,
+    page: number | undefined,
+    pageSize: number | undefined,
+  ) => {
+    const session = await auth();
 
-  const getKnowledges = new GetKnowledges();
-  return await getKnowledges.call({
-    authUserId: session?.user?.id,
-    username: params.username,
-    page: searchParams.page,
-    pageSize: searchParams.pageSize,
-    type: KnowledgeType.collection,
-  });
-});
+    const getKnowledges = new GetKnowledges();
+    return await getKnowledges.call({
+      authUserId: session?.user?.id,
+      username: username,
+      page: page,
+      pageSize: pageSize,
+      type: KnowledgeType.collection,
+    });
+  },
+);
 
-export default async function CollectionsPage({ params, searchParams }: Props) {
-  const knowledges = await retrieveKnowledges({
-    params,
-    searchParams,
-  });
+export default async function CollectionsPage(props: Props) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+  const knowledges = await retrieveKnowledges(
+    params.username,
+    searchParams.page,
+    searchParams.pageSize,
+  );
   return (
     <div className="min-h-screen dark:bg-black">
       <h1> Collections</h1>

@@ -17,11 +17,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sovoli/db": "workspace:*",
-    "@auth/core": "0.34.2",
+    "@auth/core": "0.37.4",
     "@auth/drizzle-adapter": "1.4.2",
+    "@sovoli/db": "workspace:*",
     "next": "catalog:",
-    "next-auth": "5.0.0-beta.20",
+    "next-auth": "5.0.0-beta.25",
     "react": "catalog:",
     "react-dom": "catalog:",
     "zod": "catalog:"

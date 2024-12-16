@@ -2,6 +2,7 @@ import type {
   SelectKnowledgeConnectionSchema,
   SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
+import NextImage from "next/image";
 import { Image } from "@sovoli/ui/components/ui/image";
 import { Link } from "@sovoli/ui/components/ui/link";
 import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
@@ -84,7 +85,13 @@ function KnowledgeImage({ knowledge }: KnowledgeImageProps) {
 
   return (
     <div className="relative h-full w-40 rounded">
-      <Image src={book.image} alt={book.title} fill className="h-full w-full" />
+      <Image
+        as={NextImage}
+        src={book.image}
+        alt={book.title}
+        fill
+        className="h-full w-full"
+      />
     </div>
   );
 }

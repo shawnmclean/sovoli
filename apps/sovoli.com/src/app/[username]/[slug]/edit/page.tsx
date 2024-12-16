@@ -1,11 +1,12 @@
 export interface KnowledgeEditPageProps {
-  params: {
+  params: Promise<{
     username: string;
     slug: string;
-  };
+  }>;
 }
 
-export default function KnowledgeEditPage({ params }: KnowledgeEditPageProps) {
+export default async function KnowledgeEditPage(props: KnowledgeEditPageProps) {
+  const params = await props.params;
   return (
     <div>
       Edit Page: {params.username}/{params.slug}

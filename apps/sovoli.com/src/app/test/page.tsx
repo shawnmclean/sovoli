@@ -1,13 +1,13 @@
+import { useActionState } from "react";
 "use client";
 
 import { Button } from "@sovoli/ui/components/ui/button";
-import { useFormState } from "react-dom";
 
 import type { State } from "./action";
 import { testAction } from "./action";
 
 export default function TestPage() {
-  const [state, testFormAction] = useFormState<State, FormData>(
+  const [state, testFormAction] = useActionState<State, FormData>(
     testAction,
     null,
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import type { Point } from "react-easy-crop";
-import { useEffect, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import {
   Alert,
   AlertDescription,
@@ -17,7 +17,7 @@ import {
   useDisclosure,
 } from "@sovoli/ui/components/ui/dialog";
 import { Slider } from "@sovoli/ui/components/ui/slider";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import Cropper from "react-easy-crop";
 
 import type { State } from "../actions/updateMediaAssetAction";
@@ -40,7 +40,7 @@ export function MediaManagerDialog({
   });
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [crop, setCrop] = useState<CropOptions | null>(null);
-  const [state, updateMediaAssetFormAction] = useFormState<State, FormData>(
+  const [state, updateMediaAssetFormAction] = useActionState<State, FormData>(
     updateMediaAssetAction,
     null,
   );

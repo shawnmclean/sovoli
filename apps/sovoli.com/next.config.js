@@ -38,10 +38,7 @@ const nextConfig = {
 
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: ["@sovoli/ui", "@sovoli/auth", "@sovoli/db"],
-  experimental: {
-    instrumentationHook: true,
-    serverComponentsExternalPackages: ["@opentelemetry/sdk-node", "pino"],
-  },
+  serverExternalPackages: ["@opentelemetry/sdk-node", "pino"],
 
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },

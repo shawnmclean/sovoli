@@ -1,7 +1,7 @@
 "use client";
 
 import type { KnowledgeType } from "@sovoli/db/schema";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import {
   Alert,
   AlertDescription,
@@ -18,7 +18,7 @@ import { Divider } from "@sovoli/ui/components/ui/divider";
 import { Select, SelectItem } from "@sovoli/ui/components/ui/select";
 import { Spinner } from "@sovoli/ui/components/ui/spinner";
 import { SheetIcon } from "lucide-react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 
 import type { State } from "../actions/importShelfAction";
 import type { GroupedCSVBooks } from "~/services/import/groupCSVBooksByShelves";
@@ -37,7 +37,7 @@ export interface ShelfImportFormProps {
 }
 
 export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
-  const [state, formAction] = useFormState<State, FormData>(
+  const [state, formAction] = useActionState<State, FormData>(
     importShelfAction,
     null,
   );

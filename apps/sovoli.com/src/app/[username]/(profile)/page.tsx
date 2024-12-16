@@ -5,28 +5,27 @@ import { GetKnowledges } from "~/services/knowledge/getKnowledges";
 
 export const dynamic = "force-dynamic";
 
-interface Props {
-  params: { username: string };
-  searchParams: { page: number | undefined; pageSize: number | undefined };
-}
 
-const retrieveKnowledges = cache(async ({ params, searchParams }: Props) => {
+
+const retrieveKnowledges = cache(async (username: string, page: number | undefined, pageSize: number|undefined) => {
   const session = await auth();
 
   const getKnowledges = new GetKnowledges();
   return await getKnowledges.call({
     authUserId: session?.user?.id,
-    username: params.username,
-    page: searchParams.page,
-    pageSize: searchParams.pageSize,
+    username: username,
+    page: page,
+    pageSize: pageSize,
   });
 });
-
-export default async function KnowledgesPage({ params, searchParams }: Props) {
-  const knowledges = await retrieveKnowledges({
-    params,
-    searchParams,
-  });
+interface Props {
+  params: Promise<{ username: string }>;
+  searchParams: Promise<{ page: number | undefined; pageSize: number | undefined }>;
+}
+export default async function KnowledgesPage(props: Props) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+  const knowledges = await retrieveKnowledges(params.username, searchParams.page, searchParams.pageSize);
   return (
     <div className="min-h-screen dark:bg-black">
       <h1> Collections</h1>
