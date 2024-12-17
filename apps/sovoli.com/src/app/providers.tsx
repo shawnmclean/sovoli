@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useRouter } from "next/navigation";
 import { NextUIProvider } from "@sovoli/ui/providers";
 import { SessionProvider } from "next-auth/react";
@@ -9,7 +10,7 @@ import { PostHogProvider } from "posthog-js/react";
 
 import { QueryProviders } from "~/api/react";
 import { env } from "~/env";
-import PostHogPageView from "./PostHogPageView";
+import { PostHogPageView } from "./PostHogPageView";
 
 if (typeof window !== "undefined") {
   posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
@@ -24,7 +25,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
       <PostHogProvider client={posthog}>
-        <PostHogPageView />
+        <Suspense>
+          <PostHogPageView />
+        </Suspense>
         <NextUIProvider navigate={(href) => router.push(href)}>
           <ThemeProvider attribute="class" defaultTheme="dark">
             <QueryProviders>{children}</QueryProviders>

@@ -5,8 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { usePostHog } from "posthog-js/react";
 
-// eslint-disable-next-line import/no-default-export
-export default function PostHogPageView(): null {
+export function PostHogPageView(): null {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const posthog = usePostHog();
