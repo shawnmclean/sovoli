@@ -1,4 +1,3 @@
-import type { User } from "@sovoli/auth";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { auth } from "@sovoli/auth";
@@ -11,7 +10,9 @@ export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ): Promise<Response> {
-  return auth(async (authreq: unknown & { auth?: { user?: User } }) => {
+  const ctxParams = await params;
+
+  return auth(async (authreq) => {
     const id = (await params).id;
     const user = authreq.auth?.user;
 
@@ -34,15 +35,13 @@ export async function PUT(
         ...knowledge,
         url: `${getBaseUrl()}/${user.username}/${knowledge.slug}`,
       };
-      return {
-        status: 200,
-        body: response,
-      };
+
+      return NextResponse.json(response, { status: 200 });
     } catch {
       return NextResponse.json(
         { error: "Failed to create knowledge" },
         { status: 500 },
       );
     }
-  })(req, { params }) as Promise<Response>;
+  })(req, { params: ctxParams }) as Promise<Response>;
 }

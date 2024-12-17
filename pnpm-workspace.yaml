@@ -18,5 +18,5 @@ catalog:
   eslint: 9.8.0
   typescript: 5.5.2
   zod: 3.23.8
-  next: 14.2.5
+  next: 15.1.0
 
