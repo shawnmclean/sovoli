@@ -1,10 +1,9 @@
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import type { Metadata } from "next";
 import { cache } from "react";
-import NextImage from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { MediaAssetHost } from "@sovoli/db/schema";
-import { Image } from "@sovoli/ui/components/ui/image";
 import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
 
 import supabaseLoader from "~/loaders/supabaseImageLoader";
@@ -92,7 +91,6 @@ function KnowledgeImage({ knowledge }: { knowledge: SelectKnowledgeSchema }) {
   if (images?.[0]) {
     return (
       <Image
-        as={NextImage}
         src={images[0].src}
         alt={images[0].alt}
         className="h-full w-full object-cover"

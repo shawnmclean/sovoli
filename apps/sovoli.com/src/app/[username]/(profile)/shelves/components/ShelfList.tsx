@@ -1,8 +1,7 @@
-import NextImage from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { auth } from "@sovoli/auth";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/ui/card";
-import { Image } from "@sovoli/ui/components/ui/image";
 import { LibraryBigIcon } from "lucide-react";
 
 import type { GetKnowledges } from "~/services/knowledge/getKnowledges";
@@ -37,7 +36,6 @@ async function ShelfListItem({ shelf }: { shelf: ShelfItem }) {
         <Link href={shelf.url} className="flex h-full w-full">
           {shelf.MediaAssets[0]?.path ? (
             <Image
-              as={NextImage}
               src={`${shelf.MediaAssets[0].bucket}/${shelf.MediaAssets[0].path}`}
               alt={shelf.title ?? "Shelf cover"}
               fill
