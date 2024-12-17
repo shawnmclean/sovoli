@@ -24,10 +24,8 @@ export function Gallery({ images }: GalleryProps) {
       <Image
         src={images[0].src}
         alt={images[0].alt || "Image"}
-        style={{ width: "100%", height: "auto" }}
         className="object-cover"
-        width={16}
-        height={9}
+        fill
         as={NextImage}
         loader={supabaseLoader}
       />
@@ -42,8 +40,7 @@ export function Gallery({ images }: GalleryProps) {
               src={image.src}
               alt={image.alt || "Image"}
               className="h-auto max-h-[600px] w-auto object-contain"
-              width={16}
-              height={9}
+              fill
               as={NextImage}
               loader={supabaseLoader}
             />

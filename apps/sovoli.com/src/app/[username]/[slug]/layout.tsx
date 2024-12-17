@@ -9,13 +9,7 @@ interface Props {
   children: React.ReactNode;
   params: Promise<{ username: string; slug: string }>;
 }
-export default async function Layout(props: Props) {
-  const params = await props.params;
-
-  const {
-    children
-  } = props;
-
+export default async function Layout({ params, children }: Props) {
   const { username, slug } = await params;
 
   // temp hack since I no longer have a chatgpt account and using my account instead (migrated data)
