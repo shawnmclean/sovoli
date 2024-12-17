@@ -1,4 +1,5 @@
 import type { KnowledgeConnection } from "@sovoli/db/schema";
+import NextImage from "next/image";
 import { Avatar } from "@sovoli/ui/components/ui/avatar";
 import { Button } from "@sovoli/ui/components/ui/button";
 import {
@@ -9,6 +10,8 @@ import {
 } from "@sovoli/ui/components/ui/card";
 import { Chip } from "@sovoli/ui/components/ui/chip";
 import { Image } from "@sovoli/ui/components/ui/image";
+
+import supabaseLoader from "~/loaders/supabaseImageLoader";
 
 export interface MainReferenceProps {
   knowledgeConnection: KnowledgeConnection;
@@ -41,6 +44,8 @@ function BookReference({ knowledgeConnection }: MainReferenceProps) {
           className="object-cover"
           width={120}
           height={120}
+          as={NextImage}
+          loader={supabaseLoader}
         />
         <div className="flex items-start justify-between">
           <div className="flex flex-col">
@@ -95,6 +100,8 @@ function NoteReference({ knowledgeConnection }: MainReferenceProps) {
         className="z-0 h-full w-full object-cover"
         width={16}
         height={9}
+        as={NextImage}
+        loader={supabaseLoader}
       />
       <CardFooter className="absolute bottom-0 z-10 border-t-1 border-default-600 bg-black/40 dark:border-default-100">
         <div className="flex flex-grow items-center gap-2">

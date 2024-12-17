@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import NextImage from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -8,6 +8,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@sovoli/ui/components/ui/carousel";
+import { Image } from "@sovoli/ui/components/ui/image";
+
+import supabaseLoader from "~/loaders/supabaseImageLoader";
 
 export interface GalleryProps {
   images: { src: string; alt: string }[];
@@ -25,6 +28,8 @@ export function Gallery({ images }: GalleryProps) {
         className="object-cover"
         width={16}
         height={9}
+        as={NextImage}
+        loader={supabaseLoader}
       />
     );
   }
@@ -39,6 +44,8 @@ export function Gallery({ images }: GalleryProps) {
               className="h-auto max-h-[600px] w-auto object-contain"
               width={16}
               height={9}
+              as={NextImage}
+              loader={supabaseLoader}
             />
           </CarouselItem>
         ))}

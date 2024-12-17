@@ -1,7 +1,10 @@
 import type { KnowledgeConnection } from "@sovoli/db/schema";
+import NextImage from "next/image";
 import { Card, CardBody } from "@sovoli/ui/components/ui/card";
 import { Chip } from "@sovoli/ui/components/ui/chip";
 import { Image } from "@sovoli/ui/components/ui/image";
+
+import supabaseLoader from "~/loaders/supabaseImageLoader";
 
 export interface ReferenceListProps {
   knowledgeConnections: KnowledgeConnection[];
@@ -50,6 +53,8 @@ function BookReference({
           className="object-cover"
           width={120}
           height={120}
+          as={NextImage}
+          loader={supabaseLoader}
         />
         <div className="flex items-start justify-between">
           <div className="flex flex-col">
