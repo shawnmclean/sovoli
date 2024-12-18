@@ -25,24 +25,30 @@ export class FindBookByISBN extends BaseService<
       where: or(eq(schema.Book.isbn10, isbn), eq(schema.Book.isbn13, isbn)),
     });
 
-    if (internalBook && !forceExternal) {
-      console.log("found book in internal db");
-      return {
-        book: internalBook,
-      };
+    if (internalBook) {
+      this.logger.info("Found book in internal DB");
+
+      if (!forceExternal) {
+        return {
+          book: internalBook,
+        };
+      }
+
+      this.logger.info("Force external search despite finding internal result");
+    } else {
+      this.logger.info("No internal book found, proceeding to external search");
     }
 
-    console.log("no internal results, searching externally");
     const getBookFromISBNdb = new GetBookFromISBNdb();
 
     const { book } = await getBookFromISBNdb.call({ isbn });
 
     if (!book) {
-      console.log("no external book found");
+      this.logger.info("No external book found");
       return {};
     }
 
-    console.log("found external book");
+    this.logger.info("Found book externally and upserting into DB", book);
 
     const [insertedBooks] = await db
       .insert(schema.Book)
