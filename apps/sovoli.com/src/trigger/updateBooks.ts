@@ -1,4 +1,4 @@
-import { db, isNull, lt, or, schema } from "@sovoli/db";
+import { db, isNull, lt, or, schema, sql } from "@sovoli/db";
 import { logger, task } from "@trigger.dev/sdk/v3";
 
 import { FindBookByISBN } from "~/services/books/findBookByISBN";
@@ -22,6 +22,22 @@ export const updateBooks = task({
       limit: 250,
     });
 
+    const count = await db
+      .select({
+        count: sql<number>`count(*)`,
+      })
+      .from(schema.Book)
+      .where(
+        or(
+          lt(
+            schema.Book.lastISBNdbUpdated,
+            new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+          ),
+          isNull(schema.Book.lastISBNdbUpdated),
+        ),
+      );
+
+    logger.info(`Total ${count[0]?.count} books to update`);
     logger.info(`Found ${books.length} books to update`);
 
     let booksUpdated = 0;
