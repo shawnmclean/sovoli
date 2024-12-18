@@ -25,7 +25,7 @@ export class FindBookByISBN extends BaseService<
       where: or(eq(schema.Book.isbn10, isbn), eq(schema.Book.isbn13, isbn)),
     });
 
-    if (internalBook && !!forceExternal) {
+    if (internalBook && !forceExternal) {
       console.log("found book in internal db");
       return {
         book: internalBook,
