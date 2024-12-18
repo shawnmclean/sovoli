@@ -20,6 +20,10 @@ export class FindBookByISBN extends BaseService<
   FindBookByISBNOptions,
   FindBookByISBNResult
 > {
+  constructor() {
+    super("FindBookByISBN");
+  }
+
   protected async execute({ isbn, forceExternal }: FindBookByISBNOptions) {
     const internalBook = await db.query.Book.findFirst({
       where: or(eq(schema.Book.isbn10, isbn), eq(schema.Book.isbn13, isbn)),

@@ -9,6 +9,9 @@ export interface PublishKnowledgeOptions {
 }
 
 export class PublishKnowledge extends BaseService<PublishKnowledgeOptions> {
+  constructor() {
+    super("PublishKnowledge");
+  }
   async execute({ authUserId, knowledgeId }: PublishKnowledgeOptions) {
     const knowledge = await this.dbClient.query.Knowledge.findFirst({
       where: eq(schema.Knowledge.id, knowledgeId),

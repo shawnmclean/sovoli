@@ -44,6 +44,10 @@ export class GetKnowledges extends BaseService<
   GetKnowledgesOptions,
   GetKnowledgesResult
 > {
+  constructor() {
+    super("GetKnowledges");
+  }
+
   protected async execute({
     authUserId,
     username,

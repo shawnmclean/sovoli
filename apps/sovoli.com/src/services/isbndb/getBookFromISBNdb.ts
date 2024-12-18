@@ -19,6 +19,9 @@ export class GetBookFromISBNdb extends BaseService<
   GetBookFromISBNdbOptions,
   GetBookFromISBNdbResult
 > {
+  constructor() {
+    super("GetBookFromISBNdb");
+  }
   protected async execute({ isbn }: GetBookFromISBNdbOptions) {
     const apiKey = env.ISBN_DB_API_KEY;
     const url = `https://api2.isbndb.com/book/${isbn}`;

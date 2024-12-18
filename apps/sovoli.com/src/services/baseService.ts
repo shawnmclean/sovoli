@@ -9,9 +9,9 @@ const tracer = trace.getTracer("sovoli-services");
 
 export abstract class BaseService<TOptions, TResult = void> {
   constructor(
+    protected readonly name: string,
     protected readonly dbClient: typeof db = db,
     protected readonly logger: Logger = new Logger(),
-    protected readonly name: string = new.target.name,
   ) {}
 
   protected abstract execute(options: TOptions): Promise<TResult>;

@@ -46,6 +46,9 @@ export class CreateShelfImport extends BaseService<
   CreateShelfImportOptions,
   CreateShelfImportResult
 > {
+  constructor() {
+    super("CreateShelfImport");
+  }
   async execute({ authUserId, mapping, csvContent }: CreateShelfImportOptions) {
     // authorization check for existing shelves
     const existingShelfIds =

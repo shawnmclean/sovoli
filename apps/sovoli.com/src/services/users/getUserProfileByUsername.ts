@@ -17,6 +17,10 @@ export class GetUserProfileByUsername extends BaseService<
   GetUserProfileByUsernameOptions,
   UserProfile | null
 > {
+  constructor() {
+    super("GetUserProfileByUsername");
+  }
+
   async execute({ username }: GetUserProfileByUsernameOptions) {
     const user = await this.dbClient.query.User.findFirst({
       where: eq(schema.User.username, username),
