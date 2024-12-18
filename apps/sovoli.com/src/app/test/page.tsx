@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 export default async function TestPage() {
   const findBookByISBN = new FindBookByISBN();
   const { book } = await findBookByISBN.call({
-    isbn: "9780735211292",
+    isbn: "9780593133231",
     forceExternal: true,
   });
 

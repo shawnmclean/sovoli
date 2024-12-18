@@ -47,7 +47,10 @@ export class GetBookFromISBNdb extends BaseService<
     );
 
     if (!response.ok) {
-      this.logger.error("Failed to fetch book data");
+      const errorMessage = await response.text();
+      this.logger.error(
+        `Failed to fetch book data: ${errorMessage}, status: ${response.status}`,
+      );
       return {
         book: null,
       };
