@@ -1,13 +1,13 @@
 import type { InsertBook } from "@sovoli/db/schema";
 
-import type { Book } from "./models";
+import type { ISBNdbBook } from "./models";
 
 /**
  * Transforms the ISBNdb API response into the InsertBookSchema for the database.
  * @param book - The book data from ISBNdb API.
  * @returns The transformed InsertBookSchema object.
  */
-export const transformISBNdbToInsertBook = (book: Book): InsertBook => {
+export const transformISBNdbToInsertBook = (book: ISBNdbBook): InsertBook => {
   return {
     isbn13: book.isbn13, // Ensure fallback to null if no isbn13
     isbn10: book.isbn, // ISBN10 field

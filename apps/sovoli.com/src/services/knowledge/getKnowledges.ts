@@ -44,7 +44,7 @@ export class GetKnowledges extends BaseService<
   GetKnowledgesOptions,
   GetKnowledgesResult
 > {
-  async execute({
+  protected async execute({
     authUserId,
     username,
     page = 1,

@@ -1,6 +1,6 @@
 import type { InsertBook } from "@sovoli/db/schema";
 
-import type { Book } from "./models";
+import type { ISBNdbBook } from "./models";
 import { env } from "~/env";
 import { AsyncResilience } from "~/utils/retry/AsyncResilience";
 import { retryAsync } from "~/utils/retry/retry-async";
@@ -8,7 +8,7 @@ import { transformISBNdbToInsertBook } from "./transformISBNdbToBook";
 
 // Response object structure for getBooksByQuery or getBooksByISBN
 export interface SearchBooksFromISBNdbResponse {
-  books: Book[]; // Array of Book objects from the given query or ISBN search
+  books: ISBNdbBook[]; // Array of Book objects from the given query or ISBN search
 }
 
 export interface SearchtBooksFromISBNdbOptions {

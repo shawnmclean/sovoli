@@ -1,7 +1,7 @@
 import type { SelectBook } from "@sovoli/db/schema";
 import { db, eq, or, schema, sql } from "@sovoli/db";
 
-import { getBookFromISBNdb } from "../isbndb/getBookFromISBNdb";
+import { GetBookFromISBNdb } from "../isbndb/getBookFromISBNdb";
 
 export interface FindBookByISBNOptions {
   isbn: string;
@@ -29,10 +29,11 @@ export const findBookByISBN = async ({
   }
 
   console.log("no internal results, searching externally");
+  const getBookFromISBNdb = new GetBookFromISBNdb();
 
-  const externalBook = await getBookFromISBNdb({ isbn });
+  const { book } = await getBookFromISBNdb.call({ isbn });
 
-  if (!externalBook) {
+  if (!book) {
     console.log("no external book found");
     return {};
   }
@@ -41,7 +42,7 @@ export const findBookByISBN = async ({
 
   const [insertedBooks] = await db
     .insert(schema.Book)
-    .values(externalBook)
+    .values(book)
     .onConflictDoUpdate({
       target: [schema.Book.isbn10, schema.Book.isbn13],
       set: {

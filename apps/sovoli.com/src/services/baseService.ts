@@ -14,7 +14,7 @@ export abstract class BaseService<TOptions, TResult = void> {
     protected readonly name: string = new.target.name,
   ) {}
 
-  abstract execute(options: TOptions): Promise<TResult>;
+  protected abstract execute(options: TOptions): Promise<TResult>;
 
   public async call(options: TOptions): Promise<TResult> {
     return tracer.startActiveSpan(this.name + ".call", async (span) => {

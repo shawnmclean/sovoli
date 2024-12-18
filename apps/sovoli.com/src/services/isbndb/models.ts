@@ -40,7 +40,7 @@ export interface OtherISBN {
 }
 
 // Represents the full structure of a book in the response
-export interface Book {
+export interface ISBNdbBook {
   title: string; // Title of the book
   title_long?: string; // Long version of the title (if any)
   isbn: string; // ISBN-10
