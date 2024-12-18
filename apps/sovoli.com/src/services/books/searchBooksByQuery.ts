@@ -30,7 +30,7 @@ export const searchBooksByQuery = async ({
   });
 
   // TODO: later we can combine the internal and external search calls under a single promise.all
-  if (books.length > 0 && !forceExternal) {
+  if (books.length > 0 && !!forceExternal) {
     console.log(`found ${books.length} books in internal db`);
     return {
       books: books,

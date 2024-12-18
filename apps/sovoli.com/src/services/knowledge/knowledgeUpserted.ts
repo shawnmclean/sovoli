@@ -2,7 +2,7 @@ import type { SelectBook, SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { and, db, eq, schema } from "@sovoli/db";
 import { KnowledgeQueryType, KnowledgeType } from "@sovoli/db/schema";
 
-import { findBookByISBN } from "../books/findBookByISBN";
+import { FindBookByISBN } from "../books/findBookByISBN";
 import { searchBooksByQuery } from "../books/searchBooksByQuery";
 import { PublishKnowledge } from "./publishKnowledge";
 
@@ -94,7 +94,8 @@ const handleBookKnowledgeTypeUpserted = async (
   switch (knowledge.queryType) {
     case KnowledgeQueryType.isbn: {
       console.log("searching for book by isbn");
-      const result = await findBookByISBN({
+      const findBookByISBN = new FindBookByISBN();
+      const result = await findBookByISBN.call({
         isbn: knowledge.query,
       });
       book = result.book;
