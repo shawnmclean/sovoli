@@ -3,6 +3,12 @@
 import { Avatar } from "@sovoli/ui/components/ui/avatar";
 import { Badge } from "@sovoli/ui/components/ui/badge";
 import { Button } from "@sovoli/ui/components/ui/button";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+} from "@sovoli/ui/components/ui/card";
 import { Chip } from "@sovoli/ui/components/ui/chip";
 import {
   Dropdown,
@@ -12,7 +18,12 @@ import {
 } from "@sovoli/ui/components/ui/dropdown";
 import { Tab, Tabs } from "@sovoli/ui/components/ui/tabs";
 import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
-import { EllipsisIcon, ZapIcon } from "lucide-react";
+import {
+  EllipsisIcon,
+  LibraryBigIcon,
+  MessageSquareIcon,
+  ZapIcon,
+} from "lucide-react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -114,8 +125,8 @@ const CommentsList = ({ data }: CommentsProps) => {
 
 function CommentItem({ comment }: { comment: CommentsData }) {
   return (
-    <div className="border-1 border-default-200 p-2">
-      <div className="flex items-center justify-between">
+    <Card className="border-1 border-default-200 bg-transparent">
+      <CardHeader className="flex items-center justify-between">
         <div className="inline-flex items-center gap-3">
           <Badge
             color="secondary"
@@ -189,14 +200,44 @@ function CommentItem({ comment }: { comment: CommentsData }) {
             </DropdownMenu>
           </Dropdown>
         </div>
-      </div>
-      <div className="mt-4 w-full">
-        <div className="p-2">
-          <Content content={comment.content} />
-        </div>
-        <p className="mt-2 border-t-1 text-default-500">References:</p>
-      </div>
-    </div>
+      </CardHeader>
+      <CardBody>
+        <Content content={comment.content} />
+      </CardBody>
+      <CardFooter>
+        <Tabs
+          aria-label="Comment Options"
+          color="primary"
+          variant="bordered"
+          fullWidth
+        >
+          <Tab
+            key="replies"
+            title={
+              <div className="flex items-center space-x-2">
+                <MessageSquareIcon />
+                <span>Replies</span>
+                <Chip size="sm" variant="solid">
+                  0
+                </Chip>
+              </div>
+            }
+          />
+          <Tab
+            key="references"
+            title={
+              <div className="flex items-center space-x-2">
+                <LibraryBigIcon />
+                <span>References</span>
+                <Chip size="sm" variant="solid">
+                  0
+                </Chip>
+              </div>
+            }
+          />
+        </Tabs>
+      </CardFooter>
+    </Card>
   );
 }
 
