@@ -20,7 +20,7 @@ export function Gallery({ images }: GalleryProps) {
 
   if (images.length === 1 && images[0]) {
     return (
-      <div style={{ position: "relative", width: "100%", height: "500px" }}>
+      <div className="relative h-[500px] w-[100%]">
         <Image
           src={images[0].src}
           alt={images[0].alt || "Image"}
@@ -36,15 +36,15 @@ export function Gallery({ images }: GalleryProps) {
       <CarouselContent>
         {images.map((image, i) => (
           <CarouselItem key={i} className="flex items-center justify-center">
-            <Image
-              src={image.src}
-              alt={image.alt || "Image"}
-              className="h-auto max-h-[600px] w-auto object-contain"
-              width={16}
-              height={9}
-              fill
-              loader={supabaseLoader}
-            />
+            <div className="relative h-[500px] w-[100%]">
+              <Image
+                src={image.src}
+                alt={image.alt || "Image"}
+                className="object-contain"
+                fill
+                loader={supabaseLoader}
+              />
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>
