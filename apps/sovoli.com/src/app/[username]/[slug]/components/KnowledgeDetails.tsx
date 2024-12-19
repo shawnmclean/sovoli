@@ -7,12 +7,11 @@ import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
 import { User } from "@sovoli/ui/components/ui/user";
 import { ChevronLeftIcon } from "lucide-react";
 
-import { Comments } from "./Comments";
+import { Connections } from "./Connections";
 import { Gallery } from "./Gallery";
 import { HeaderActions } from "./HeaderActions";
 import { KnowledgeContent } from "./KnowledgeContent";
 import { MainReference } from "./MainReference";
-import { ReferenceList } from "./ReferenceList";
 
 interface Props {
   knowledge: SelectKnowledgeSchema;
@@ -83,19 +82,7 @@ export async function KnowledgeDetails({ knowledge }: Props) {
               )}
               <KnowledgeContent knowledge={knowledge} />
             </section>
-            <ReferenceList
-              knowledgeConnections={
-                knowledge.SourceConnections?.filter(
-                  (c) => c.type !== "main_reference" && c.type !== "comment",
-                ) ?? []
-              }
-            />
-            {knowledge.slug ===
-              "understanding-dataloss-warnings-during-schema-changes" ||
-            knowledge.slug ===
-              "reflections-on-balance-energy-and-the-guiding-force" ? (
-              <Comments />
-            ) : null}
+            <Connections knowledge={knowledge} />
           </div>
 
           {/* Right Column: User Information and Meta */}
