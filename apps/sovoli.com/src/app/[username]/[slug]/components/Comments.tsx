@@ -3,7 +3,6 @@
 import { Avatar } from "@sovoli/ui/components/ui/avatar";
 import { Badge } from "@sovoli/ui/components/ui/badge";
 import { Button } from "@sovoli/ui/components/ui/button";
-import { Checkbox, CheckboxGroup } from "@sovoli/ui/components/ui/checkbox";
 import { Chip } from "@sovoli/ui/components/ui/chip";
 import {
   Dropdown,
@@ -43,7 +42,7 @@ export interface CommentsProps {
 export function Comments() {
   const comments = {
     meta: {
-      totalCount: 1,
+      totalCount: 3,
       page: 1,
       pageSize: 10,
     },
@@ -92,15 +91,6 @@ export function Comments() {
           {pluralize(comments.meta.totalCount, "Comment")}
         </h2>
         <div className="flex items-center gap-4">
-          <CheckboxGroup
-            size="sm"
-            orientation="horizontal"
-            color="default"
-            defaultValue={["bots", "humans"]}
-          >
-            <Checkbox value="bots">Bots</Checkbox>
-            <Checkbox value="humans">Humans</Checkbox>
-          </CheckboxGroup>
           <Tabs aria-label="Ordering" size="sm" radius="sm" variant="bordered">
             <Tab key="oldest" title="Oldest" />
             <Tab key="newest" title="Newest" />
