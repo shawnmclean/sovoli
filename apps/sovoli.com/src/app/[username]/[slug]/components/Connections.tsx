@@ -1,6 +1,7 @@
 "use client";
 
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+import { useState } from "react";
 import { Chip } from "@sovoli/ui/components/ui/chip";
 // import { Button } from "../ui/button";
 import { Tab, Tabs } from "@sovoli/ui/components/ui/tabs";
@@ -13,12 +14,19 @@ export interface ConnectionsProps {
   knowledge: SelectKnowledgeSchema;
 }
 export function Connections({ knowledge }: ConnectionsProps) {
+  const [selectedKey, setSelectedKey] = useState<string>(
+    knowledge.type === "shelf" || knowledge.type === "collection"
+      ? "references"
+      : "replies",
+  );
   return (
     <Tabs
       aria-label="Comment Options"
       color="primary"
       variant="bordered"
       fullWidth
+      selectedKey={selectedKey}
+      onSelectionChange={(key) => setSelectedKey(key as string)}
     >
       <Tab
         key="replies"
