@@ -42,7 +42,24 @@ function BookReference({
   const book = knowledgeConnection.TargetKnowledge?.Book;
   const authors = book?.authors as unknown as string[];
 
-  if (!book) return null;
+  if (!book)
+    return (
+      <Card className="border-1 border-danger-300 bg-danger-50">
+        <CardBody>
+          <p className="text-danger-600">Error retrieving book information</p>
+          <p className="text-sm text-foreground/80">
+            Notes: {knowledgeConnection.notes}
+          </p>
+          <p className="text-sm text-foreground/80">
+            Error: {knowledgeConnection.TargetKnowledge?.jobError}
+          </p>
+          <p>
+            Query: {knowledgeConnection.TargetKnowledge?.query} -{" "}
+            {knowledgeConnection.TargetKnowledge?.queryType}
+          </p>
+        </CardBody>
+      </Card>
+    );
 
   return (
     <Card className="border border-default-200">

@@ -19,6 +19,7 @@ export function Connections({ knowledge }: ConnectionsProps) {
       ? "references"
       : "replies",
   );
+
   return (
     <Tabs
       aria-label="Comment Options"
@@ -54,7 +55,9 @@ export function Connections({ knowledge }: ConnectionsProps) {
             <LibraryBigIcon />
             <span>References</span>
             <Chip size="sm" variant="solid">
-              3
+              {knowledge.SourceConnections?.filter(
+                (c) => c.type !== "main_reference" && c.type !== "comment",
+              ).length ?? 0}
             </Chip>
           </div>
         }
