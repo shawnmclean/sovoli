@@ -5,11 +5,7 @@ import type {
   SelectMediaAssetSchema,
 } from "@sovoli/db/schema";
 import { and, db, eq, inArray, schema, sql } from "@sovoli/db";
-import {
-  knowledgeConnectionTypeEnum,
-  MediaAssetHost,
-  UserType,
-} from "@sovoli/db/schema";
+import { knowledgeConnectionTypeEnum, MediaAssetHost } from "@sovoli/db/schema";
 
 import type {
   PutKnowledgeSchemaRequest,
@@ -17,7 +13,6 @@ import type {
 } from "../../tsr/router/knowledge/knowledgeContract";
 import { knowledgeUpsertedEvent } from "~/trigger/knowledgeUpsertedEvent";
 import { hydrateMedia } from "~/trigger/media";
-import { hashAuthToken } from "../../utils/authTokens";
 import { createConnections } from "./createConnections";
 
 export interface UpdateKnowledgeOptions {
@@ -59,18 +54,6 @@ export const updateKnowledge = async ({
 
   if (!knowledgeToUpdate) {
     throw Error("User does not have the rights to modify the knowledge");
-  }
-
-  // if the user is a bot, it can only update knowledge with the same auth token
-  if (knowledgeToUpdate.User.type === UserType.Bot) {
-    const token = knowledge.authToken;
-    if (!token) {
-      throw Error("Bot knowledge must have an auth token");
-    }
-    const hashedToken = hashAuthToken(token);
-    if (hashedToken !== knowledgeToUpdate.authTokenHashed) {
-      throw Error("Bot knowledge must have the same auth token");
-    }
   }
 
   // check that all connections are in the knowledgeToUpdate.SourceConnections

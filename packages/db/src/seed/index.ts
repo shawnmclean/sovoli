@@ -281,10 +281,6 @@ const seedKnowledges = async () => {
         title: sql.raw(`excluded.${schema.Knowledge.title.name}`),
         description: sql.raw(`excluded.${schema.Knowledge.description.name}`),
         content: sql.raw(`excluded.${schema.Knowledge.content.name}`),
-        context: sql.raw(`excluded.${schema.Knowledge.context.name}`),
-        contextDescription: sql.raw(
-          `excluded.${schema.Knowledge.contextDescription.name}`,
-        ),
         isOrigin: sql.raw(`excluded.${schema.Knowledge.isOrigin.name}`),
         userId: sql.raw(`excluded.${schema.Knowledge.userId.name}`),
         bookId: sql.raw(`excluded.${schema.Knowledge.bookId.name}`),

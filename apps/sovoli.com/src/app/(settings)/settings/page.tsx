@@ -1,14 +1,6 @@
 import { auth, signIn } from "@sovoli/auth";
 
-import { getQueryClientRsc } from "~/api/query-client";
-import { tsrReactQuery } from "~/api/tsr";
-
-export default async function SettingsPage() {
-  const client = tsrReactQuery.initQueryClient(getQueryClientRsc());
-  await client.prefetchQuery({
-    queryKey: ["me"],
-  });
-
+export default function SettingsPage() {
   return (
     <div className="min-h-screen dark:bg-black">
       <h1>Settings</h1>

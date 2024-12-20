@@ -45,16 +45,8 @@ export const Knowledge = pgTable(
       .references(() => User.id, { onDelete: "cascade" }),
     verifiedDate: date("verified_date"),
 
-    // this is used for bot accounts who create a knowledge but needs to update in in the same session.
-    // since bots are used by other users, such as chatgpt, we cannot allow them to update knowledge created by other users.
-    authTokenHashed: varchar("auth_token_hashed", { length: 255 }),
-
     // this will hold the thoughts of the knowledge, in markdown format.
     content: text("content"),
-    // this will hold additional context for the knowledge such as page text from OCR.
-    context: text("context"),
-    // thie will describe the context data, such as saying "OCR from page 10 of book "The Great Gatsby""
-    contextDescription: text("context_description"),
 
     // this is true is the knowledge is posted directly and not from a collection
     isOrigin: boolean("is_origin").notNull().default(false),

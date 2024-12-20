@@ -8,7 +8,6 @@ import { ThemeProvider } from "next-themes";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 
-import { QueryProviders } from "~/api/react";
 import { env } from "~/env";
 import { PostHogPageView } from "./PostHogPageView";
 
@@ -30,7 +29,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         </Suspense>
         <NextUIProvider navigate={(href) => router.push(href)}>
           <ThemeProvider attribute="class" defaultTheme="dark">
-            <QueryProviders>{children}</QueryProviders>
+            {children}
           </ThemeProvider>
         </NextUIProvider>
       </PostHogProvider>

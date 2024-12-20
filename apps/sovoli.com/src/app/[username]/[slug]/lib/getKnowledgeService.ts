@@ -118,8 +118,6 @@ export async function getKnowledgeBySlug({
           'title', ${schema.Knowledge.title},
           'description', ${schema.Knowledge.description},
           'content', ${schema.Knowledge.content},
-          'context', ${schema.Knowledge.context},
-          'contextDescription', ${schema.Knowledge.contextDescription},
           'type', ${schema.Knowledge.type},
           'isPublic', ${schema.Knowledge.isPublic},
           'createdAt', ${schema.Knowledge.createdAt},

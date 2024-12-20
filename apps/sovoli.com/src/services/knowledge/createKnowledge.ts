@@ -9,7 +9,6 @@ import { MediaAssetHost } from "@sovoli/db/schema";
 import type { PostKnowledgeSchemaRequest } from "../../tsr/router/knowledge/knowledgeContract";
 import { knowledgeUpsertedEvent } from "~/trigger/knowledgeUpsertedEvent";
 import { hydrateMedia } from "~/trigger/media";
-import { generateAuthToken, hashAuthToken } from "~/utils/authTokens";
 import { slugify } from "../../utils/slugify";
 import { createConnections } from "./createConnections";
 
@@ -22,11 +21,8 @@ export const createKnowledge = async ({
   authUserId,
   knowledge,
 }: CreateKnowledgeOptions) => {
-  const authToken = generateAuthToken();
-  const authTokenHashed = hashAuthToken(authToken);
   const createdSourceKnowledge = (await createParentKnowledge({
     ...knowledge,
-    authTokenHashed,
     userId: authUserId,
     isOrigin: true,
   })) as SelectKnowledgeSchema;
@@ -105,7 +101,6 @@ export const createKnowledge = async ({
   // TOODO: rebuild the knowledge with the connections and media assets
   return {
     knowledge: createdSourceKnowledge,
-    authToken,
   };
 };
 

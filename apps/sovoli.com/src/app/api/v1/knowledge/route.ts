@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
       const bodyRaw = await request.json();
       const body = PostKnowledgeSchemaRequest.parse(bodyRaw);
 
-      const { knowledge, authToken } = await createKnowledge({
+      const { knowledge } = await createKnowledge({
         knowledge: body,
         authUserId: user.id,
       });
@@ -27,7 +27,6 @@ export async function POST(request: NextRequest) {
       const response = {
         ...knowledge,
         url: `${getBaseUrl()}/${user.username}/${knowledge.slug}`,
-        authToken,
       };
       return NextResponse.json(response, { status: 200 });
     } catch {
