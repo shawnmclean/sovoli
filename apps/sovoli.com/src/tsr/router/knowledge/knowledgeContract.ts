@@ -6,7 +6,6 @@ import {
   KnowledgeTypes,
   SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
-import { initContract } from "@ts-rest/core";
 import { z } from "zod";
 
 extendZodWithOpenApi(z);
@@ -118,13 +117,6 @@ export const PostKnowledgeSchemaRequest =
     connections: PostConnectionSchema.array().optional(),
   });
 
-const PostKnowledgeSchemaResponse = BaseUpsertKnowledgeSchemaResponse.extend({
-  authToken: z.string().openapi({
-    description:
-      "This token is recieved from the POST /knowledge endpoint and is mandatory to update the knowledge when the knowledge was created by a bot such as ChatGPT.",
-  }),
-});
-
 export type PostKnowledgeSchemaRequest = z.infer<
   typeof PostKnowledgeSchemaRequest
 >;
@@ -186,42 +178,3 @@ export type PutKnowledgeSchemaRequest = z.infer<
 >;
 
 // #endregion
-
-const c = initContract();
-
-export const knowledgeContract = c.router(
-  {
-    postKnowledge: {
-      method: "POST",
-      path: `/`,
-      body: PostKnowledgeSchemaRequest,
-      responses: {
-        200: PostKnowledgeSchemaResponse,
-      },
-    },
-    putKnowledge: {
-      method: "PUT",
-      path: `/:id`,
-      pathParams: z.object({
-        id: z.coerce.string(),
-      }),
-      body: PutKnowledgeSchemaRequest,
-      responses: {
-        200: PutKnowledgeSchemaResponse,
-      },
-    },
-  },
-  {
-    metadata: {
-      openApiSecurity: [
-        {
-          BearerAuth: [],
-        },
-      ],
-    },
-    pathPrefix: "/knowledge",
-    commonResponses: {
-      401: z.literal("Unauthorized"),
-    },
-  },
-);
