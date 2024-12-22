@@ -1,4 +1,4 @@
-import "@sovoli/ui/styles/globals.css";
+import "~/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
@@ -40,9 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body>
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
         <SpeedInsights />
         <Analytics />
       </body>

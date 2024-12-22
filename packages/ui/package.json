@@ -6,11 +6,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./components/*": "./src/components/*",
-    "./screens/*": "./src/screens/*",
     "./providers/*": "./src/providers/*",
-    "./hooks/*": "./src/hooks/*",
-    "./tailwind.config": "./tailwind.config.ts",
-    "./styles/*": "./src/styles/*"
+    "./tailwind.config": "./tailwind.config.ts"
   },
   "scripts": {
     "clean": "git clean -xdf node_modules dist .turbo",
