@@ -9,7 +9,7 @@ import {
 } from "@sovoli/ui/components/dropdown";
 import { ChevronDownIcon, FilePlusIcon, LibraryIcon } from "lucide-react";
 
-export function NewDropdown() {
+export const NewDropdown = () => {
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
   return (
@@ -38,4 +38,4 @@ export function NewDropdown() {
       </DropdownMenu>
     </Dropdown>
   );
-}
+};

@@ -2,7 +2,7 @@ import { Button } from "@sovoli/ui/components/button";
 
 import { signInAction } from "~/actions/signInAction";
 
-export function SignInButton() {
+export const SignInButton = () => {
   return (
     <form action={signInAction}>
       <Button color="primary" type="submit">
@@ -10,4 +10,4 @@ export function SignInButton() {
       </Button>
     </form>
   );
-}
+};

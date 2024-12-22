@@ -16,7 +16,7 @@ export interface NavbarRightProfileProps {
   session: Session;
 }
 
-export function NavbarRightProfile({ session }: NavbarRightProfileProps) {
+export const NavbarRightProfile = ({ session }: NavbarRightProfileProps) => {
   return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger>
@@ -49,4 +49,4 @@ export function NavbarRightProfile({ session }: NavbarRightProfileProps) {
       </DropdownMenu>
     </Dropdown>
   );
-}
+};

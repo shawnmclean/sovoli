@@ -1,9 +1,9 @@
 import { signOutAction } from "~/actions/signOutAction";
 
-export function SignOutButton() {
+export const SignOutButton = () => {
   return (
     <form action={signOutAction}>
       <button type="submit">Sign Out</button>
     </form>
   );
-}
+};

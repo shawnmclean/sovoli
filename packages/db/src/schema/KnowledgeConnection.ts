@@ -1,5 +1,6 @@
+import type { InferInsertModel } from "drizzle-orm";
 import { createId } from "@paralleldrive/cuid2";
-import { InferInsertModel, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import {
   integer,
   jsonb,

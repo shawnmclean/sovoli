@@ -15,7 +15,7 @@ export interface NavbarProps {
   AppLinks?: React.ReactNode;
 }
 
-export async function Navbar({ AppLinks }: NavbarProps) {
+export const Navbar = async ({ AppLinks }: NavbarProps) => {
   const session = await auth();
 
   return (
@@ -56,4 +56,4 @@ export async function Navbar({ AppLinks }: NavbarProps) {
       )}
     </NextUINavbar>
   );
-}
+};
