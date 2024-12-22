@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { auth } from "@sovoli/auth";
-import { Badge } from "@sovoli/ui/components/ui/badge";
+import { Badge } from "@sovoli/ui/components/badge";
 import {
   NavbarContent,
   NavbarItem,
   Navbar as NextUINavbar,
-} from "@sovoli/ui/components/ui/navbar";
+} from "@sovoli/ui/components/navbar";
 
 import { NavbarRightProfile } from "./NavbarRightProfile";
 import { NewDropdown } from "./NewDropdown";

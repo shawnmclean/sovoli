@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@sovoli/ui/components/ui/button";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-} from "@sovoli/ui/components/ui/dropdown";
+} from "@sovoli/ui/components/dropdown";
 import { ChevronDownIcon, FilePlusIcon, LibraryIcon } from "lucide-react";
 
 export function NewDropdown() {

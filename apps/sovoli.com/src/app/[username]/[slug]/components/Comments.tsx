@@ -1,23 +1,23 @@
 "use client";
 
-import { Avatar } from "@sovoli/ui/components/ui/avatar";
-import { Badge } from "@sovoli/ui/components/ui/badge";
-import { Button } from "@sovoli/ui/components/ui/button";
+import { Avatar } from "@sovoli/ui/components/avatar";
+import { Badge } from "@sovoli/ui/components/badge";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Card,
   CardBody,
   CardFooter,
   CardHeader,
-} from "@sovoli/ui/components/ui/card";
-import { Chip } from "@sovoli/ui/components/ui/chip";
+} from "@sovoli/ui/components/card";
+import { Chip } from "@sovoli/ui/components/chip";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-} from "@sovoli/ui/components/ui/dropdown";
-import { Tab, Tabs } from "@sovoli/ui/components/ui/tabs";
-import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
+} from "@sovoli/ui/components/dropdown";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
+import { TimeAgo } from "@sovoli/ui/components/time-ago";
 import {
   EllipsisIcon,
   LibraryBigIcon,

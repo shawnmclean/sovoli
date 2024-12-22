@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Tab, Tabs } from "@sovoli/ui/components/ui/tabs";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 
 import { useUserProfile } from "../../providers/UserProfileProvider";
 

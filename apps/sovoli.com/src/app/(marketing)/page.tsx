@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 import { config } from "~/utils/config";
 
-// import { Image } from "@sovoli/ui/components/ui/image";
+// import { Image } from "@sovoli/ui/components/image";
 
 export const dynamic = "force-dynamic";
 

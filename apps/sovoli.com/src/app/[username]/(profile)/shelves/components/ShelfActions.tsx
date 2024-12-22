@@ -2,14 +2,14 @@
 
 import type { Session } from "@sovoli/auth";
 import { useState } from "react";
-import { Button } from "@sovoli/ui/components/ui/button";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownSection,
   DropdownTrigger,
-} from "@sovoli/ui/components/ui/dropdown";
+} from "@sovoli/ui/components/dropdown";
 import { EllipsisIcon, PencilIcon, StarIcon, Trash2Icon } from "lucide-react";
 import { tv } from "tailwind-variants";
 

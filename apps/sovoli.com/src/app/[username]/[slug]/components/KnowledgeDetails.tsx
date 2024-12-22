@@ -2,9 +2,9 @@ import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { auth } from "@sovoli/auth";
 import { MediaAssetHost } from "@sovoli/db/schema";
 // import { Button } from "../ui/button";
-import { Link } from "@sovoli/ui/components/ui/link";
-import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
-import { User } from "@sovoli/ui/components/ui/user";
+import { Link } from "@sovoli/ui/components/link";
+import { TimeAgo } from "@sovoli/ui/components/time-ago";
+import { User } from "@sovoli/ui/components/user";
 import { ChevronLeftIcon } from "lucide-react";
 
 import { Connections } from "./Connections";

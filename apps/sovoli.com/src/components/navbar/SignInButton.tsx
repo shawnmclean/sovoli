@@ -1,4 +1,4 @@
-import { Button } from "@sovoli/ui/components/ui/button";
+import { Button } from "@sovoli/ui/components/button";
 
 import { signInAction } from "~/actions/signInAction";
 

@@ -3,9 +3,9 @@ import type {
   SelectKnowledgeSchema,
 } from "@sovoli/db/schema";
 import NextImage from "next/image";
-import { Image } from "@sovoli/ui/components/ui/image";
-import { Link } from "@sovoli/ui/components/ui/link";
-import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
+import { Image } from "@sovoli/ui/components/image";
+import { Link } from "@sovoli/ui/components/link";
+import { TimeAgo } from "@sovoli/ui/components/time-ago";
 
 interface Props {
   knowledge: SelectKnowledgeSchema;

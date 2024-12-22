@@ -2,9 +2,9 @@
 
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { useState } from "react";
-import { Chip } from "@sovoli/ui/components/ui/chip";
+import { Chip } from "@sovoli/ui/components/chip";
 // import { Button } from "../ui/button";
-import { Tab, Tabs } from "@sovoli/ui/components/ui/tabs";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 import { LibraryBigIcon, MessageSquareIcon } from "lucide-react";
 
 import { Comments } from "./Comments";

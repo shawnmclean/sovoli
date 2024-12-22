@@ -2,13 +2,13 @@
 
 import type { Session } from "@sovoli/auth";
 import NextLink from "next/link";
-import { Avatar } from "@sovoli/ui/components/ui/avatar";
+import { Avatar } from "@sovoli/ui/components/avatar";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-} from "@sovoli/ui/components/ui/dropdown";
+} from "@sovoli/ui/components/dropdown";
 
 import { SignOutButton } from "./SignOutButton";
 

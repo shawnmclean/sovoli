@@ -6,17 +6,17 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@sovoli/ui/components/ui/alert";
-import { Button } from "@sovoli/ui/components/ui/button";
+} from "@sovoli/ui/components/alert";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Card,
   CardBody,
   CardFooter,
   CardHeader,
-} from "@sovoli/ui/components/ui/card";
-import { Divider } from "@sovoli/ui/components/ui/divider";
-import { Select, SelectItem } from "@sovoli/ui/components/ui/select";
-import { Spinner } from "@sovoli/ui/components/ui/spinner";
+} from "@sovoli/ui/components/card";
+import { Divider } from "@sovoli/ui/components/divider";
+import { Select, SelectItem } from "@sovoli/ui/components/select";
+import { Spinner } from "@sovoli/ui/components/spinner";
 import { SheetIcon } from "lucide-react";
 import { useFormStatus } from "react-dom";
 

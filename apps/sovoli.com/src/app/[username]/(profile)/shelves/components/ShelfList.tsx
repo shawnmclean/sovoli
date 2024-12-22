@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { auth } from "@sovoli/auth";
-import { Card, CardBody, CardFooter } from "@sovoli/ui/components/ui/card";
+import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { LibraryBigIcon } from "lucide-react";
 
 import type { GetKnowledges } from "~/services/knowledge/getKnowledges";

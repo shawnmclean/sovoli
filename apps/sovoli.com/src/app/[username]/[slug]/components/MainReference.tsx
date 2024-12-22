@@ -1,15 +1,15 @@
 import type { KnowledgeConnection } from "@sovoli/db/schema";
 import NextImage from "next/image";
-import { Avatar } from "@sovoli/ui/components/ui/avatar";
-import { Button } from "@sovoli/ui/components/ui/button";
+import { Avatar } from "@sovoli/ui/components/avatar";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Card,
   CardBody,
   CardFooter,
   CardHeader,
-} from "@sovoli/ui/components/ui/card";
-import { Chip } from "@sovoli/ui/components/ui/chip";
-import { Image } from "@sovoli/ui/components/ui/image";
+} from "@sovoli/ui/components/card";
+import { Chip } from "@sovoli/ui/components/chip";
+import { Image } from "@sovoli/ui/components/image";
 
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 

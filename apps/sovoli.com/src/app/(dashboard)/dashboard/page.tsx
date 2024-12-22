@@ -4,7 +4,7 @@ import { cache } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MediaAssetHost } from "@sovoli/db/schema";
-import { TimeAgo } from "@sovoli/ui/components/ui/time-ago";
+import { TimeAgo } from "@sovoli/ui/components/time-ago";
 
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 import { config } from "~/utils/config";

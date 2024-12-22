@@ -1,8 +1,8 @@
 import type { KnowledgeConnection } from "@sovoli/db/schema";
 import NextImage from "next/image";
-import { Card, CardBody } from "@sovoli/ui/components/ui/card";
-import { Chip } from "@sovoli/ui/components/ui/chip";
-import { Image } from "@sovoli/ui/components/ui/image";
+import { Card, CardBody } from "@sovoli/ui/components/card";
+import { Chip } from "@sovoli/ui/components/chip";
+import { Image } from "@sovoli/ui/components/image";
 
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 

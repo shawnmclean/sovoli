@@ -6,8 +6,8 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@sovoli/ui/components/ui/alert";
-import { Button } from "@sovoli/ui/components/ui/button";
+} from "@sovoli/ui/components/alert";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Modal,
   ModalBody,
@@ -15,8 +15,8 @@ import {
   ModalFooter,
   ModalHeader,
   useDisclosure,
-} from "@sovoli/ui/components/ui/dialog";
-import { Slider } from "@sovoli/ui/components/ui/slider";
+} from "@sovoli/ui/components/dialog";
+import { Slider } from "@sovoli/ui/components/slider";
 import { useFormStatus } from "react-dom";
 import Cropper from "react-easy-crop";
 

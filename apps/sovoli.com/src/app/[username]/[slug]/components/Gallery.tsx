@@ -7,7 +7,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@sovoli/ui/components/ui/carousel";
+} from "@sovoli/ui/components/carousel";
 
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 
