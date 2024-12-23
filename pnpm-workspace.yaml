@@ -15,7 +15,7 @@ catalog:
   "@types/react-dom": 19.0.2
   "@types/node": 22.8.0
   prettier: 3.3.3
-  eslint: 9.8.0
+  eslint: 9.17.0
   typescript: 5.5.2
   zod: 3.23.8
   next: 15.1.0
