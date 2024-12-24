@@ -15,7 +15,7 @@ export const NewDropdown = () => {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button color="primary" endContent={<ChevronDownIcon />}>
+        <Button variant="bordered" endContent={<ChevronDownIcon />}>
           New
         </Button>
       </DropdownTrigger>
