@@ -97,7 +97,13 @@ export const MenuSelectHeading = ({ editor }: MenuSelectHeadingProps) => {
   return (
     <Dropdown>
       <DropdownTrigger asChild>
-        <Button endContent={<ChevronDownIcon />}>{current.label}</Button>
+        <Button
+          variant="light"
+          className="text-default-500"
+          endContent={<ChevronDownIcon />}
+        >
+          {current.label}
+        </Button>
       </DropdownTrigger>
       <DropdownMenu
         items={options}

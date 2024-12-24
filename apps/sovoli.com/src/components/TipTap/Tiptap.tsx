@@ -33,8 +33,8 @@ export const Tiptap = () => {
   if (!editor) return null;
 
   return (
-    <div className="w-full flex-row items-center gap-3 rounded-large border-2 border-default-200 px-3 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
-      <div>
+    <div className="w-full flex-row items-center gap-3 rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
+      <div className="flex flex-wrap gap-1 border-b-1 border-default-100 p-1">
         <ButtonGroup variant="light">
           <MenuButtonUndo editor={editor} />
           <MenuButtonRedo editor={editor} />

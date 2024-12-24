@@ -12,7 +12,9 @@ export const NoteForm = () => {
         fullWidth
         size="lg"
         variant="bordered"
-        className="text-3xl"
+        classNames={{
+          input: "font-bold text-3xl",
+        }}
       />
 
       <Input
