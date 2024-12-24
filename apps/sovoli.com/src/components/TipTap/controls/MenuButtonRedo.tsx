@@ -1,7 +1,7 @@
 import type { Editor } from "@tiptap/core";
 import React, { useCallback } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { RedoIcon, UndoIcon } from "lucide-react";
+import { RedoIcon } from "lucide-react";
 
 interface MenuButtonRedoProps {
   editor: Editor;
