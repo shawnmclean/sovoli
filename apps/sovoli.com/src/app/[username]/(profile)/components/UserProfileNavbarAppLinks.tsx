@@ -1,7 +1,7 @@
 "use client";
 
 import { NavbarAppLinks } from "~/components/navbar/NavbarAppLinks";
-import { useUserProfile } from "../../providers/UserProfileProvider";
+import { useUserProfile } from "../../context/UserProfileContext";
 
 export const UserProfileNavbarAppLinks = () => {
   const user = useUserProfile();

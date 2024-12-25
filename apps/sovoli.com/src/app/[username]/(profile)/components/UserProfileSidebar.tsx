@@ -5,7 +5,7 @@ import { Avatar } from "@sovoli/ui/components/avatar";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 
-import { useUserProfile } from "../../providers/UserProfileProvider";
+import { useUserProfile } from "../../context/UserProfileContext";
 
 export function UserProfileSidebar() {
   const user = useUserProfile();

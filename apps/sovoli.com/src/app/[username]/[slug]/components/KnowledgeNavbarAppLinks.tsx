@@ -3,7 +3,7 @@
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 
 import { NavbarAppLinks } from "~/components/navbar/NavbarAppLinks";
-import { useUserProfile } from "../../providers/UserProfileProvider";
+import { useUserProfile } from "../../context/UserProfileContext";
 
 export interface KnowledgeNavbarAppLinksProps {
   knowledge: SelectKnowledgeSchema;
