@@ -3,20 +3,10 @@
 import { ButtonGroup } from "@sovoli/ui/components/button";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { tv } from "tailwind-variants";
 
 import { MenuButtonRedo } from "./controls/MenuButtonRedo";
 import { MenuButtonUndo } from "./controls/MenuButtonUndo";
 import { MenuSelectHeading } from "./controls/MenuSelectHeading";
-
-const editorContainer = tv({
-  base: "w-full flex-row items-center gap-3 rounded-large border-2 border-default-200 px-3 shadow-sm hover:border-default-400 focus-within:border-default-foreground",
-  variants: {
-    focused: {
-      true: "border-default-foreground !important",
-    },
-  },
-});
 
 export const Tiptap = () => {
   const editor = useEditor({
