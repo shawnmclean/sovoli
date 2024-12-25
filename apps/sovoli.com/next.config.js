@@ -6,6 +6,9 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    authInterrupts: true,
+  },
   reactStrictMode: true,
   images: {
     loader: "custom",

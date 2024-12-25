@@ -2,11 +2,7 @@
 
 import type { KnowledgeType } from "@sovoli/db/schema";
 import { useActionState, useState } from "react";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@sovoli/ui/components/alert";
+import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Card,
@@ -107,10 +103,10 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
         </form>
       </Card>
       {state && (
-        <Alert variant="danger">
-          <AlertTitle>{state.status}</AlertTitle>
-          <AlertDescription>
-            <p>{state.message}</p>
+        <Alert
+          title={state.message}
+          color="danger"
+          description={
             <ul>
               {Object.entries(state.errors ?? {}).map(([key, value]) => (
                 <li key={key}>
@@ -118,8 +114,8 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
                 </li>
               ))}
             </ul>
-          </AlertDescription>
-        </Alert>
+          }
+        />
       )}
     </section>
   );
@@ -167,12 +163,7 @@ const SelectFileStep = ({ onValidFileSelected }: SelectFileStepProps) => {
       ) : (
         <>
           <CSVFileInput name="csvFile" onFileDropped={handleFileDropped} />{" "}
-          {error && (
-            <Alert variant="danger">
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
+          {error && <Alert color="danger" title="Error" description={error} />}
         </>
       )}
     </section>
