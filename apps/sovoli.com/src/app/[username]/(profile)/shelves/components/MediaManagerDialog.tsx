@@ -2,11 +2,7 @@
 
 import type { Point } from "react-easy-crop";
 import { useActionState, useEffect, useState } from "react";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@sovoli/ui/components/alert";
+import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Modal,
@@ -114,10 +110,9 @@ export function MediaManagerDialog({
             <SubmitButton isDisabled={imageSrc === null} />
 
             {state && (
-              <Alert variant="danger">
-                <AlertTitle>{state.status}</AlertTitle>
-                <AlertDescription>
-                  <p>{state.message}</p>
+              <Alert
+                title={state.message}
+                description={
                   <ul>
                     {Object.entries(state.errors ?? {}).map(([key, value]) => (
                       <li key={key}>
@@ -125,8 +120,8 @@ export function MediaManagerDialog({
                       </li>
                     ))}
                   </ul>
-                </AlertDescription>
-              </Alert>
+                }
+              />
             )}
           </ModalFooter>
         </form>
