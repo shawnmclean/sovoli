@@ -61,8 +61,6 @@ export const MenuSelectHeading = ({ editor }: MenuSelectHeadingProps) => {
   const isH5 = editor.isActive("heading", { level: 5 });
   const isH6 = editor.isActive("heading", { level: 6 });
 
-  console.log(isH1, isH2, isH3, isH4, isH5, isH6);
-
   const current = useMemo(() => {
     let key: string | number = "paragraph";
     if (isH1) key = 1;

@@ -1,17 +1,13 @@
 "use client";
 
 import { useActionState } from "react";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@sovoli/ui/components/alert";
+import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Form } from "@sovoli/ui/components/form";
 import { Input } from "@sovoli/ui/components/input";
 
 import type { State } from "../actions/newNoteAction";
-import { Tiptap } from "~/components/TipTap/Tiptap";
+import { Editor } from "~/components/Editor/Editor";
 import { newNoteAction } from "../actions/newNoteAction";
 
 export const NoteForm = () => {
@@ -39,7 +35,11 @@ export const NoteForm = () => {
         fullWidth
         variant="bordered"
       />
-      <Tiptap />
+      <Editor
+        onUpdate={({ editor }) => {
+          console.log(editor.getJSON());
+        }}
+      />
       <div className="flex w-full justify-between gap-2">
         <div className="w-full">
           {state?.status === "error" && (
@@ -59,7 +59,6 @@ export const NoteForm = () => {
           )}
         </div>
         <div className="flex gap-2">
-          <Button isLoading={pending}>Save Draft</Button>
           <Button color="primary" type="submit" isLoading={pending}>
             Create
           </Button>

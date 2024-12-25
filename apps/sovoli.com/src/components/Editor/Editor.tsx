@@ -1,5 +1,6 @@
 "use client";
 
+import type { EditorOptions } from "@tiptap/react";
 import { ButtonGroup } from "@sovoli/ui/components/button";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -8,7 +9,10 @@ import { MenuButtonRedo } from "./controls/MenuButtonRedo";
 import { MenuButtonUndo } from "./controls/MenuButtonUndo";
 import { MenuSelectHeading } from "./controls/MenuSelectHeading";
 
-export const Tiptap = () => {
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface EditorProps extends Partial<EditorOptions> {}
+
+export const Editor = (props: EditorProps) => {
   const editor = useEditor({
     extensions: [StarterKit],
     editorProps: {
@@ -17,7 +21,7 @@ export const Tiptap = () => {
           "w-full max-w-full py-6 px-8 prose prose-base prose-blue prose-headings:scroll-mt-[80px] focus:outline-none",
       },
     },
-    content: "<p>Start writing...</p>",
+    ...props,
   });
 
   if (!editor) return null;
