@@ -18,7 +18,6 @@ import { Divider } from "@sovoli/ui/components/divider";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { Spinner } from "@sovoli/ui/components/spinner";
 import { SheetIcon } from "lucide-react";
-import { useFormStatus } from "react-dom";
 
 import type { State } from "../actions/importShelfAction";
 import type { GroupedCSVBooks } from "~/services/import/groupCSVBooksByShelves";
@@ -37,7 +36,7 @@ export interface ShelfImportFormProps {
 }
 
 export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
-  const [state, formAction] = useActionState<State, FormData>(
+  const [state, formAction, pending] = useActionState<State, FormData>(
     importShelfAction,
     null,
   );
@@ -96,10 +95,12 @@ export const ShelfImportForm = ({ userCollections }: ShelfImportFormProps) => {
               </>
             ) : (
               <>
-                <Button onClick={handleBackToFileStep} variant="light">
+                <Button onPress={handleBackToFileStep} variant="light">
                   Back to File Step
                 </Button>
-                <SubmitButton />
+                <Button type="submit" color="primary" isLoading={pending}>
+                  Import
+                </Button>
               </>
             )}
           </CardFooter>
@@ -264,13 +265,3 @@ const ShelfMappingStep = ({
     </table>
   );
 };
-
-export function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button type="submit" color="primary" isLoading={pending}>
-      Import
-    </Button>
-  );
-}
