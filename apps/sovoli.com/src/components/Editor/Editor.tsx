@@ -9,25 +9,26 @@ import { EditorMenu } from "./controls/EditorMenu";
 
 export interface EditorProps extends Partial<EditorOptions> {
   name: string;
-  value?: string;
+  defaultValue?: string;
 }
 
-export const Editor = ({ name, value, ...rest }: EditorProps) => {
+export const Editor = ({ name, defaultValue, ...rest }: EditorProps) => {
   const jsonContent = useMemo(() => {
     try {
-      return value
-        ? (JSON.parse(value) as JSONContent)
+      return defaultValue
+        ? (JSON.parse(defaultValue) as JSONContent)
         : { type: "doc", content: [] };
     } catch (error) {
       console.error("Invalid JSON content provided to the editor:", error);
       return { type: "doc", content: [] };
     }
-  }, [value]);
+  }, [defaultValue]);
 
   const [editorValue, setEditorValue] = useState(JSON.stringify(jsonContent));
 
   const editor = useEditor({
     immediatelyRender: true,
+    shouldRerenderOnTransaction: false,
     extensions: [StarterKit],
     editorProps: {
       attributes: {

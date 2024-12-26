@@ -10,34 +10,17 @@ import type { State } from "../actions/newNoteAction";
 import { Editor } from "~/components/Editor/Editor";
 import { newNoteAction } from "../actions/newNoteAction";
 
-export const NoteForm = () => {
+export interface NoteFormProps {
+  title?: string;
+  description?: string;
+  content?: string;
+}
+
+export const NoteForm = ({ title, description, content }: NoteFormProps) => {
   const [state, formAction, pending] = useActionState<State, FormData>(
     newNoteAction,
     null,
   );
-  const json = `{
-    "type": "doc",
-    "content": [
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "Example "
-          },
-          {
-            "type": "text",
-            "marks": [
-              {
-                "type": "bold"
-              }
-            ],
-            "text": "Text"
-          }
-        ]
-      }
-    ]
-  }`;
 
   return (
     <Form className="w-full" action={formAction}>
@@ -50,6 +33,7 @@ export const NoteForm = () => {
         classNames={{
           input: "font-bold text-3xl",
         }}
+        defaultValue={title}
       />
 
       <Input
@@ -57,8 +41,9 @@ export const NoteForm = () => {
         placeholder="Description"
         fullWidth
         variant="bordered"
+        defaultValue={description}
       />
-      <Editor name="content" value={json} />
+      <Editor name="content" defaultValue={content} />
       <div className="flex w-full justify-between gap-2">
         <div className="w-full">
           {state?.status === "error" && (
