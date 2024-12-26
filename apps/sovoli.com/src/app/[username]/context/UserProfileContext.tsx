@@ -13,3 +13,15 @@ export const useUserProfile = () => {
   }
   return context;
 };
+
+export const UserProfileProvider = ({
+  children,
+  userProfile,
+}: {
+  children: React.ReactNode;
+  userProfile: UserProfile;
+}) => {
+  return (
+    <UserProfileContext value={userProfile}>{children}</UserProfileContext>
+  );
+};

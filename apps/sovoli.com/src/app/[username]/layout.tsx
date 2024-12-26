@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { UserProfileContext } from "./context/UserProfileContext";
+import { UserProfileProvider } from "./context/UserProfileContext";
 import { getUserProfile, preload } from "./lib/getUserProfile";
 
 interface Props {
@@ -32,5 +32,7 @@ export default async function Layout({ children, params }: Props) {
 
   if (!user) return notFound();
 
-  return <UserProfileContext value={user}>{children}</UserProfileContext>;
+  return (
+    <UserProfileProvider userProfile={user}>{children}</UserProfileProvider>
+  );
 }
