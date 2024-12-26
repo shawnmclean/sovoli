@@ -3,11 +3,6 @@ packages:
   - apps/*
 
 catalog:
-  "@tanstack/react-query": 5.51.21
-  "@ts-rest/core": 3.51.0
-  "@ts-rest/open-api": 3.51.0
-  "@ts-rest/react-query": 3.51.0
-  "@ts-rest/serverless": 3.51.0
   react: 19.0.0
   react-dom: 19.0.0
   lucide-react: 0.468.0

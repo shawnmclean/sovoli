@@ -1,19 +1,33 @@
 "use client";
 
-import type { EditorOptions } from "@tiptap/react";
-import { ButtonGroup } from "@sovoli/ui/components/button";
+import type { EditorOptions, JSONContent } from "@tiptap/react";
+import { useMemo, useState } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-import { MenuButtonRedo } from "./controls/MenuButtonRedo";
-import { MenuButtonUndo } from "./controls/MenuButtonUndo";
-import { MenuSelectHeading } from "./controls/MenuSelectHeading";
+import { EditorMenu } from "./controls/EditorMenu";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface EditorProps extends Partial<EditorOptions> {}
+export interface EditorProps extends Partial<EditorOptions> {
+  name: string;
+  value?: string;
+}
 
-export const Editor = (props: EditorProps) => {
+export const Editor = ({ name, value, ...rest }: EditorProps) => {
+  const jsonContent = useMemo(() => {
+    try {
+      return value
+        ? (JSON.parse(value) as JSONContent)
+        : { type: "doc", content: [] };
+    } catch (error) {
+      console.error("Invalid JSON content provided to the editor:", error);
+      return { type: "doc", content: [] };
+    }
+  }, [value]);
+
+  const [editorValue, setEditorValue] = useState(JSON.stringify(jsonContent));
+
   const editor = useEditor({
+    immediatelyRender: true,
     extensions: [StarterKit],
     editorProps: {
       attributes: {
@@ -21,21 +35,19 @@ export const Editor = (props: EditorProps) => {
           "w-full max-w-full py-6 px-8 prose prose-base prose-blue prose-headings:scroll-mt-[80px] focus:outline-none",
       },
     },
-    ...props,
+    content: jsonContent,
+    ...rest,
+    onUpdate: ({ editor }) => {
+      // TODO: performance issues may arise here, use debounce later
+      setEditorValue(JSON.stringify(editor.getJSON()));
+    },
   });
-
-  if (!editor) return null;
 
   return (
     <div className="w-full flex-row items-center gap-3 rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
-      <div className="flex flex-wrap gap-1 border-b-1 border-default-100 p-1">
-        <ButtonGroup variant="light">
-          <MenuButtonUndo editor={editor} />
-          <MenuButtonRedo editor={editor} />
-        </ButtonGroup>
-        <MenuSelectHeading editor={editor} />
-      </div>
+      <EditorMenu editor={editor} />
       <EditorContent editor={editor} />
+      <input type="hidden" name={name} value={editorValue} />
     </div>
   );
 };

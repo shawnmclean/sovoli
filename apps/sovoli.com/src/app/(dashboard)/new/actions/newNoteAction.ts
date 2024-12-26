@@ -33,5 +33,7 @@ export async function newNoteAction(
     };
   }
 
+  console.log(result.data);
+
   throw new Error("Not implemented");
 }

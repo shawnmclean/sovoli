@@ -95,6 +95,9 @@ importers:
       '@paralleldrive/cuid2':
         specifier: 2.2.2
         version: 2.2.2
+      '@rvf/react':
+        specifier: 7.0.1
+        version: 7.0.1(@rvf/core@7.0.1(@rvf/set-get@7.0.0)(react@19.0.0))(@rvf/set-get@7.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@rvf/zod':
         specifier: 7.0.1
         version: 7.0.1(@rvf/core@7.0.1(@rvf/set-get@7.0.0)(react@19.0.0))(@rvf/set-get@7.0.0)(zod@3.23.8)
@@ -2801,6 +2804,14 @@ packages:
     peerDependencies:
       '@rvf/set-get': '>= 6.0.3 < 8.0.0'
       react: ^18.0.0 || ^19.0.0
+
+  '@rvf/react@7.0.1':
+    resolution: {integrity: sha512-na0sqq7isZPi1AXpsm8h8tv5oJVo6L9ERTP83KE6CLnRxqZ4WK1UK5/3bWzJEyIkOFPIactnh3cvihwbUE+Ygw==}
+    peerDependencies:
+      '@rvf/core': '>= 6.1.2 < 8.0.0'
+      '@rvf/set-get': '>= 6.0.3 < 8.0.0'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
   '@rvf/set-get@7.0.0':
     resolution: {integrity: sha512-mseFkwanF/heWzO2Eey741P4m+Fovl9GWwa7Bfgw4YW2E7dcA6d7KAYl012rTGdW4L9KP5GOSA48CkEA1mC2eg==}
@@ -8779,6 +8790,13 @@ snapshots:
       '@rvf/set-get': 7.0.0
       immer: 10.1.1
       react: 19.0.0
+
+  '@rvf/react@7.0.1(@rvf/core@7.0.1(@rvf/set-get@7.0.0)(react@19.0.0))(@rvf/set-get@7.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@rvf/core': 7.0.1(@rvf/set-get@7.0.0)(react@19.0.0)
+      '@rvf/set-get': 7.0.0
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   '@rvf/set-get@7.0.0': {}
 

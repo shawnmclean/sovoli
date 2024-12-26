@@ -15,6 +15,29 @@ export const NoteForm = () => {
     newNoteAction,
     null,
   );
+  const json = `{
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Example "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "Text"
+          }
+        ]
+      }
+    ]
+  }`;
 
   return (
     <Form className="w-full" action={formAction}>
@@ -35,11 +58,7 @@ export const NoteForm = () => {
         fullWidth
         variant="bordered"
       />
-      <Editor
-        onUpdate={({ editor }) => {
-          console.log(editor.getJSON());
-        }}
-      />
+      <Editor name="content" value={json} />
       <div className="flex w-full justify-between gap-2">
         <div className="w-full">
           {state?.status === "error" && (
