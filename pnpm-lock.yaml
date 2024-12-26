@@ -116,6 +116,9 @@ importers:
       '@tiptap/core':
         specifier: 2.10.4
         version: 2.10.4(@tiptap/pm@2.10.4)
+      '@tiptap/html':
+        specifier: 2.10.4
+        version: 2.10.4(@tiptap/core@2.10.4(@tiptap/pm@2.10.4))(@tiptap/pm@2.10.4)
       '@tiptap/pm':
         specifier: 2.10.4
         version: 2.10.4
@@ -2992,6 +2995,12 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
+  '@tiptap/html@2.10.4':
+    resolution: {integrity: sha512-s9gWJy2Z+mfG5s8ewodv6d/iZq3bcc6osT9zsIvQcfoHh4j6Nq/DcIuZ/7AodgRFGZrIAEu4X1U4K2/Fk+gplA==}
+    peerDependencies:
+      '@tiptap/core': ^2.7.0
+      '@tiptap/pm': ^2.7.0
+
   '@tiptap/pm@2.10.4':
     resolution: {integrity: sha512-pZ4NEkRtYoDLe0spARvXZ1N3hNv/5u6vfPdPtEbmNpoOSjSNqDC1kVM+qJY0iaCYpxbxcv7cxn3kBumcFLQpJQ==}
 
@@ -3565,6 +3574,10 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
+  css-what@6.1.0:
+    resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
+    engines: {node: '>= 6'}
+
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
@@ -3834,6 +3847,10 @@ packages:
 
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
+    engines: {node: '>=0.12'}
+
+  entities@5.0.0:
+    resolution: {integrity: sha512-BeJFvFRJddxobhvEdm5GqHzRV/X+ACeuw0/BuuxsCh1EUZcAIz8+kYmBp/LrQuloy6K1f3a0M7+IhmZ7QnkISA==}
     engines: {node: '>=0.12'}
 
   es-abstract@1.23.7:
@@ -6058,6 +6075,10 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  zeed-dom@0.15.1:
+    resolution: {integrity: sha512-dtZ0aQSFyZmoJS0m06/xBN1SazUBPL5HpzlAcs/KcRW0rzadYw12deQBjeMhGKMMeGEp7bA9vmikMLaO4exBcg==}
+    engines: {node: '>=14.13.1'}
 
   zod-error@1.5.0:
     resolution: {integrity: sha512-zzopKZ/skI9iXpqCEPj+iLCKl9b88E43ehcU+sbRoHuwGd9F1IDVGQ70TyO6kmfiRL1g4IXkjsXK+g1gLYl4WQ==}
@@ -8964,6 +8985,12 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.10.4(@tiptap/pm@2.10.4)
 
+  '@tiptap/html@2.10.4(@tiptap/core@2.10.4(@tiptap/pm@2.10.4))(@tiptap/pm@2.10.4)':
+    dependencies:
+      '@tiptap/core': 2.10.4(@tiptap/pm@2.10.4)
+      '@tiptap/pm': 2.10.4
+      zeed-dom: 0.15.1
+
   '@tiptap/pm@2.10.4':
     dependencies:
       prosemirror-changeset: 2.2.1
@@ -9638,6 +9665,8 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
+  css-what@6.1.0: {}
+
   cssesc@3.0.0: {}
 
   csstype@3.1.3: {}
@@ -9812,6 +9841,8 @@ snapshots:
   engine.io-parser@5.2.3: {}
 
   entities@4.5.0: {}
+
+  entities@5.0.0: {}
 
   es-abstract@1.23.7:
     dependencies:
@@ -12602,6 +12633,11 @@ snapshots:
       yargs-parser: 21.1.1
 
   yocto-queue@0.1.0: {}
+
+  zeed-dom@0.15.1:
+    dependencies:
+      css-what: 6.1.0
+      entities: 5.0.0
 
   zod-error@1.5.0:
     dependencies:
