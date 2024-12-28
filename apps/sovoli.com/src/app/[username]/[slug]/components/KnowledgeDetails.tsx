@@ -1,10 +1,12 @@
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { auth } from "@sovoli/auth";
 import { MediaAssetHost } from "@sovoli/db/schema";
+import { Avatar } from "@sovoli/ui/components/avatar";
+import { Badge } from "@sovoli/ui/components/badge";
+import { Chip } from "@sovoli/ui/components/chip";
 // import { Button } from "../ui/button";
 import { Link } from "@sovoli/ui/components/link";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
-import { User } from "@sovoli/ui/components/user";
 import { ChevronLeftIcon } from "lucide-react";
 
 import { Connections } from "./Connections";
@@ -89,17 +91,48 @@ export async function KnowledgeDetails({ knowledge }: Props) {
           <div className="space-y-4">
             {/* User Information */}
             <section className="flex items-center gap-4">
-              <Link href={`/${knowledge.User?.username}`} color="foreground">
-                <User
-                  name={knowledge.User?.name}
-                  avatarProps={{
-                    radius: "sm",
-                    size: "md",
-                    src: "https://qxvzrmayigmtjhfucogx.supabase.co/storage/v1/object/public/media/profile/mix.webp?t=2024-10-26T02%3A43%3A35.093Z",
-                  }}
-                  description={<TimeAgo datetime={knowledge.createdAt} />}
+              <div className="flex flex-col">
+                <TimeAgo
+                  datetime={knowledge.createdAt}
+                  className="text-sm text-default-500"
                 />
-              </Link>
+                <div className="inline-flex items-center gap-3">
+                  <Link href={`/${knowledge.User?.username}`}>
+                    <Badge
+                      color="secondary"
+                      content="1"
+                      shape="circle"
+                      placement="bottom-right"
+                      title="Level 1 Researcher"
+                    >
+                      <Avatar
+                        radius="sm"
+                        src="https://qxvzrmayigmtjhfucogx.supabase.co/storage/v1/object/public/media/profile/mix.webp?t=2024-10-26T02%3A43%3A35.093Z"
+                      />
+                    </Badge>
+                  </Link>
+                  <div className="flex flex-col gap-1">
+                    <Link
+                      href={`/${knowledge.User?.username}`}
+                      color="foreground"
+                    >
+                      <span className="text-sm">{knowledge.User?.name}</span>
+                    </Link>
+                    <div className="flex items-center gap-1">
+                      <Chip
+                        size="sm"
+                        variant="dot"
+                        title="2 biology, 8 psychology"
+                      >
+                        Mindweaver
+                      </Chip>
+                    </div>
+                  </div>
+                </div>
+                <span className="text-sm">
+                  Currently Researching: Ego, Belief Systems
+                </span>
+              </div>
             </section>
 
             {/* Additional space for more information */}
