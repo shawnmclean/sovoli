@@ -18,12 +18,7 @@ import {
 } from "@sovoli/ui/components/dropdown";
 import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
-import {
-  EllipsisIcon,
-  LibraryBigIcon,
-  MessageSquareIcon,
-  ZapIcon,
-} from "lucide-react";
+import { EllipsisIcon, LibraryBigIcon, MessageSquareIcon } from "lucide-react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
