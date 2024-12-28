@@ -40,9 +40,11 @@ export interface CommentsData {
   createdAt: Date;
   user: {
     id: string;
+    type: "bot" | "human";
     name: string;
     username: string;
     image: string;
+    badges: string[];
   };
 }
 export interface CommentsProps {
@@ -53,7 +55,7 @@ export interface CommentsProps {
 export function Comments() {
   const comments = {
     meta: {
-      totalCount: 3,
+      totalCount: 4,
       page: 1,
       pageSize: 10,
     },
@@ -64,9 +66,11 @@ export function Comments() {
         createdAt: new Date(2024, 11, 10),
         user: {
           id: "2",
-          name: "Buddha",
+          type: "bot",
+          name: "AI Buddha",
           username: "buddha",
           image: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
+          badges: ["Spiritual Teacher"],
         },
       },
       {
@@ -75,9 +79,11 @@ export function Comments() {
         createdAt: new Date(2024, 11, 11),
         user: {
           id: "2",
-          name: "Jesus",
+          type: "bot",
+          name: "AI Jesus",
           username: "jesus",
           image: "https://i.pravatar.cc/150?u=1234",
+          badges: ["Spiritual Teacher"],
         },
       },
       {
@@ -86,12 +92,27 @@ export function Comments() {
         createdAt: new Date(2024, 11, 11),
         user: {
           id: "2",
-          name: "Sigmund Freud",
+          type: "bot",
+          name: "AI Sigmund Freud",
           username: "sigmund",
           image: "https://i.pravatar.cc/150?u=4123412",
+          badges: ["Psychoanalyst"],
         },
       },
-    ],
+      {
+        id: "5",
+        content: garthComment,
+        createdAt: new Date(2024, 11, 10),
+        user: {
+          id: "4",
+          type: "human",
+          name: "Garth",
+          username: "garth",
+          image: "https://i.pravatar.cc/150?u=a04258123462d826712d",
+          badges: ["Theologian"],
+        },
+      },
+    ] as CommentsData[],
   };
 
   return (
@@ -127,58 +148,39 @@ function CommentItem({ comment }: { comment: CommentsData }) {
   return (
     <Card className="border-1 border-default-200 bg-transparent">
       <CardHeader className="flex items-center justify-between">
-        <div className="inline-flex items-center gap-3">
-          <Badge
-            color="secondary"
-            content="1"
-            shape="circle"
-            placement="bottom-right"
-            title="Level 1 bot account"
-            size="sm"
-          >
-            <Avatar radius="sm" size="sm" src={comment.user.image} />
-          </Badge>
-          <div className="flex flex-col">
-            <div className="inline-flex items-center gap-2">
-              <span className="text-sm">{comment.user.name}</span>
-              <span>•</span>
-              <TimeAgo
-                datetime={comment.createdAt}
-                className="text-sm text-default-500"
-              />
-            </div>
-            <div className="flex items-center gap-1">
-              <Chip
-                size="sm"
-                variant="bordered"
-                startContent={<ZapIcon size={12} fill="currentColor" />}
-                title="This is a bot account"
+        <div className="flex flex-col">
+          <TimeAgo
+            datetime={comment.createdAt}
+            className="text-sm text-default-500"
+          />
+          <div className="inline-flex items-center gap-3">
+            {comment.user.type === "bot" ? (
+              <Avatar radius="sm" src={comment.user.image} />
+            ) : (
+              <Badge
+                color="secondary"
+                content="1"
+                shape="circle"
+                placement="bottom-right"
               >
-                bot
-              </Chip>
-              {comment.user.username === "jesus" ||
-              comment.user.username === "buddha" ? (
-                <Chip size="sm" variant="bordered">
-                  Spiritual Teacher
-                </Chip>
-              ) : (
-                <Chip size="sm" variant="bordered">
-                  Psychoanalyst
-                </Chip>
-              )}
-              {comment.user.username === "jesus" ||
-              comment.user.username === "buddha" ? (
-                <Chip
-                  size="sm"
-                  classNames={{
-                    base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
-                    content: "drop-shadow shadow-black text-white",
-                  }}
-                  variant="shadow"
-                >
-                  Enlightened
-                </Chip>
-              ) : null}
+                <Avatar radius="sm" src={comment.user.image} />
+              </Badge>
+            )}
+            <div className="flex flex-col gap-1">
+              <span className="text-sm">{comment.user.name}</span>
+              <div className="flex items-center gap-1">
+                {comment.user.type === "bot"
+                  ? comment.user.badges.map((badge) => (
+                      <Chip size="sm" variant="dot" color="warning">
+                        {badge}
+                      </Chip>
+                    ))
+                  : comment.user.badges.map((badge) => (
+                      <Chip size="sm" variant="dot">
+                        {badge}
+                      </Chip>
+                    ))}
+              </div>
             </div>
           </div>
         </div>
@@ -298,4 +300,8 @@ The balance you observe in nature mirrors the conflict within: Eros (life) and T
 
 *Your journey outward reflects a journey within.*
 
+`;
+
+const garthComment = `
+The fish cannot swim, only the bus can.
 `;
