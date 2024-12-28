@@ -130,7 +130,7 @@ export async function KnowledgeDetails({ knowledge }: Props) {
                   </div>
                 </div>
                 <span className="text-sm">
-                  Currently Researching: Ego, Belief Systems
+                  Researching: Ego, Belief Systems
                 </span>
               </div>
             </section>

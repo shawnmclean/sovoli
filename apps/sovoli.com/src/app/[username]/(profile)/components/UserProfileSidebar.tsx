@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
+import { Chip } from "@sovoli/ui/components/chip";
 
 import { useUserProfile } from "../../context/UserProfileContext";
 
@@ -30,9 +31,14 @@ export function UserProfileSidebar() {
             />
           </Badge>
         </div>
-        <div className="inline-flex flex-col items-start">
+        <div className="inline-flex flex-col items-start gap-1">
           <h1 className="text-2xl font-bold leading-none">{user.name}</h1>
-          <p className="text-sm text-gray-400">{user.username}</p>
+          <div className="flex items-center gap-1">
+            <Chip size="sm" variant="dot" title="2 biology, 8 psychology">
+              Mindweaver
+            </Chip>
+          </div>
+          <span className="text-sm">Researching: Ego, Belief Systems</span>
         </div>
       </div>
       <div className="flex w-full justify-between gap-2">
