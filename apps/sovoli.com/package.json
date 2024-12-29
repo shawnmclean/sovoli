@@ -46,6 +46,8 @@
     "@vercel/analytics": "1.4.1",
     "@vercel/otel": "1.10.0",
     "@vercel/speed-insights": "1.1.0",
+    "@ai-sdk/google": "1.0.12",
+    "ai": "4.0.22",
     "flat": "6.0.1",
     "lodash": "4.17.21",
     "lucide-react": "catalog:",
