@@ -27,7 +27,7 @@ export const Editor = ({ name, defaultValue, ...rest }: EditorProps) => {
   const [editorValue, setEditorValue] = useState(JSON.stringify(jsonContent));
 
   const editor = useEditor({
-    immediatelyRender: true,
+    immediatelyRender: false,
     shouldRerenderOnTransaction: false,
     extensions: [StarterKit],
     editorProps: {
@@ -43,6 +43,10 @@ export const Editor = ({ name, defaultValue, ...rest }: EditorProps) => {
       setEditorValue(JSON.stringify(editor.getJSON()));
     },
   });
+
+  if (!editor) {
+    return null;
+  }
 
   return (
     <div className="w-full flex-row items-center gap-3 rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
