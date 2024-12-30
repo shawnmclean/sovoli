@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Form } from "@sovoli/ui/components/form";
@@ -22,8 +22,49 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
     null,
   );
 
+  const [fileUploadStatus, setFileUploadStatus] = useState<
+    "idle" | "uploading" | "success" | "error"
+  >("idle");
+
+  const handleFileUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setFileUploadStatus("uploading");
+
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const response = await fetch("/api/ai/images/analyze", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const data = await response.json();
+        console.log("File uploaded successfully:", data);
+        setFileUploadStatus("success");
+      } else {
+        console.error("File upload failed:", response.statusText);
+        setFileUploadStatus("error");
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      setFileUploadStatus("error");
+    }
+  };
+
   return (
     <Form className="w-full" action={formAction}>
+      {" "}
+      <input type="file" id="image" name="image" onChange={handleFileUpload} />
+      {fileUploadStatus === "uploading" && <p>Uploading...</p>}
+      {fileUploadStatus === "success" && <p>File uploaded successfully!</p>}
+      {fileUploadStatus === "error" && <p>Failed to upload file.</p>}
       <Input
         placeholder="Title"
         name="title"
@@ -35,7 +76,6 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
         }}
         defaultValue={title}
       />
-
       <Input
         name="description"
         placeholder="Description"
