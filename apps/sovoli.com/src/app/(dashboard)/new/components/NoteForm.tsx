@@ -35,23 +35,36 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
     setFileUploadStatus("uploading");
 
     try {
-      const formData = new FormData();
-      formData.append("image", file);
-
-      const response = await fetch("/api/ai/images/analyze", {
+      const signedUrlResponse = await fetch("/api/images", {
         method: "POST",
-        body: formData,
+        body: JSON.stringify({ fileName: file.name, type: file.type }),
+      });
+      const { signedUrl, id, path } = (await signedUrlResponse.json()) as {
+        signedUrl: string;
+        id: string;
+        path: string;
+      };
+
+      const uploadResponse = await fetch(signedUrl, {
+        method: "PUT",
+        headers: {
+          "Content-Type": file.type,
+        },
+        body: file,
       });
 
-      if (response.ok) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        console.log("File uploaded successfully:", data);
-        setFileUploadStatus("success");
-      } else {
-        console.error("File upload failed:", response.statusText);
-        setFileUploadStatus("error");
+      if (!uploadResponse.ok) {
+        throw new Error("Failed to upload file");
       }
+
+      console.log("Upload Response:", uploadResponse);
+
+      console.log("File uploaded successfully!");
+      console.log("Signed URL:", signedUrl);
+      console.log("ID:", id);
+      console.log("Path:", path);
+
+      setFileUploadStatus("success");
     } catch (error) {
       console.error("Error uploading file:", error);
       setFileUploadStatus("error");
