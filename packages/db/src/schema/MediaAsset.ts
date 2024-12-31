@@ -13,6 +13,7 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 import { createEnumObject } from "../utils";
 import { Knowledge } from "./Knowledge";
+import { User } from "./User";
 
 const MediaAssetHosts = ["Supabase", "OpenAI"] as const;
 export const MediaAssetHost = createEnumObject(MediaAssetHosts);
@@ -20,9 +21,14 @@ export const MediaAssetHost = createEnumObject(MediaAssetHosts);
 export const mediaAssetHostEnum = pgEnum("media_asset_host", MediaAssetHosts);
 export const MediaAsset = pgTable("media_asset", {
   id: varchar("id", { length: 256 }).primaryKey().$defaultFn(createId),
-  knowledgeId: varchar("knowledge_id", { length: 256 })
-    .notNull()
-    .references(() => Knowledge.id, { onDelete: "cascade" }),
+  knowledgeId: varchar("knowledge_id", { length: 256 }).references(
+    () => Knowledge.id,
+    { onDelete: "cascade" },
+  ),
+  uploadedUserId: varchar("uploaded_user_id", { length: 256 }).references(
+    () => User.id,
+    { onDelete: "cascade" },
+  ),
   mimeType: varchar("mime_type", { length: 255 }),
 
   order: integer("order"),
