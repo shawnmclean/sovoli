@@ -37,7 +37,11 @@ export async function KnowledgeDetails({ knowledge }: Props) {
 
   return (
     <div className="flex w-full flex-col">
-      {/* Header Section */}
+      {images && images.length > 0 && (
+        <div className="my-4">
+          <Gallery images={images} />
+        </div>
+      )}
       <div className="flex justify-center border-b border-divider">
         <div className="flex w-full max-w-7xl items-center justify-between pb-6">
           <div className="flex items-center gap-2">
@@ -72,11 +76,6 @@ export async function KnowledgeDetails({ knowledge }: Props) {
 
             {/* Content Section */}
             <section className="w-full">
-              {images && images.length > 0 && (
-                <div className="my-4">
-                  <Gallery images={images} />
-                </div>
-              )}
               {mainReference && (
                 <div className="my-4">
                   <MainReference knowledgeConnection={mainReference} />
