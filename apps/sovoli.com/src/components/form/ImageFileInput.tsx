@@ -3,23 +3,23 @@ import { useDropzone } from "react-dropzone";
 
 export interface ImageFileInputProps {
   name: string;
-  onFileDropped: (file: File) => void;
+  multiple?: boolean;
+  onFileDropped: (files: File[]) => void;
 }
 
 export const ImageFileInput = ({
   name,
   onFileDropped,
+  multiple = false,
 }: ImageFileInputProps) => {
   const { getRootProps, getInputProps } = useDropzone({
-    multiple: false, // Only allow one file at a time
+    multiple: multiple, // Only allow one file at a time
     accept: {
       "image/jpeg": [],
       "image/png": [],
     },
     onDrop: (acceptedFiles) => {
-      if (acceptedFiles[0]) {
-        onFileDropped(acceptedFiles[0]); // Call the parent callback with the first file
-      }
+      onFileDropped(acceptedFiles);
     },
   });
 

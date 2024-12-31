@@ -18,9 +18,9 @@ import Cropper from "react-easy-crop";
 
 import type { State } from "../actions/updateMediaAssetAction";
 import type { CropOptions } from "~/core/image/getCroppedImage";
+import { ImageFileInput } from "~/components/form/ImageFileInput";
 import { getCroppedImage } from "~/core/image/getCroppedImage";
 import { updateMediaAssetAction } from "../actions/updateMediaAssetAction";
-import { ImageFileInput } from "./ImageFileInput";
 
 export interface MediaManagerProps {
   knowledgeId: string;
@@ -60,13 +60,15 @@ export function MediaManagerDialog({
     }
   };
 
-  const handleFileDropped = (file: File) => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const imageFile = event.target?.result as string;
-      setImageSrc(imageFile);
-    };
-    reader.readAsDataURL(file);
+  const handleFileDropped = (files: File[]) => {
+    if (files[0]) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const imageFile = event.target?.result as string;
+        setImageSrc(imageFile);
+      };
+      reader.readAsDataURL(files[0]);
+    }
   };
 
   const formAction = async (formData: FormData) => {
