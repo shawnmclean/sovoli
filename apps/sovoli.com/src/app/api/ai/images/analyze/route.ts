@@ -15,7 +15,7 @@ const imageFileSchema = z.instanceof(File).refine(
   },
 );
 
-export const formRequestBodySchema = z.object({
+const formRequestBodySchema = z.object({
   image: imageFileSchema,
 });
 
