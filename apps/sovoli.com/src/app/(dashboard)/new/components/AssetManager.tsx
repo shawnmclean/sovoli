@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { ne } from "@sovoli/db";
 import { CloudUpload } from "lucide-react";
-import { useDropzone } from "react-dropzone";
+import { FileRejection, useDropzone } from "react-dropzone";
 
 export interface AssetManagerProps {
   onFileUploaded: (file: File, id: string, path: string) => void;
@@ -15,22 +16,30 @@ interface FileState {
 
 export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
   const [files, setFiles] = useState<FileState[]>([]);
+  const [fileRejections, setFileRejections] = useState<FileRejection[]>([]);
+
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const newFiles = acceptedFiles.map((file) => ({
+      file,
+      preview: URL.createObjectURL(file),
+      status: "idle" as FileStatus,
+    }));
+    setFiles((current) => [...current, ...newFiles]);
+
+    for (const file of newFiles) {
+      void uploadFile(file);
+    }
+  }, []);
+
   const { getRootProps, getInputProps } = useDropzone({
     multiple: true,
     accept: {
       "image/jpeg": [],
       "image/png": [],
     },
-    onDrop: (acceptedFiles) => {
-      const newFiles = acceptedFiles.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-        status: "idle" as FileStatus,
-      }));
-      setFiles((current) => [...current, ...newFiles]);
-
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      newFiles.forEach((fileState) => uploadFile(fileState));
+    onDrop: (acceptedFiles, fileRejections) => {
+      onDrop(acceptedFiles);
+      setFileRejections(fileRejections);
     },
   });
 
@@ -41,7 +50,7 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
     );
 
     try {
-      const signedUrlResponse = await fetch("/api/images", {
+      const signedUrlResponse = await fetch("/api/assets", {
         method: "POST",
         body: JSON.stringify({ fileName: file.name, type: file.type }),
       });
@@ -100,6 +109,22 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
           </p>
         </div>
       </div>
+      {fileRejections.length > 0 && (
+        <div className="flex flex-col gap-2">
+          {fileRejections.map((fileRejection) => {
+            const { file } = fileRejection;
+            return (
+              <div key={file.name} className="flex flex-col items-center gap-2">
+                <div>
+                  {fileRejection.errors.map((error) => (
+                    <p key={error.code}>{error.message}</p>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
       <div className="flex flex-col gap-2">
         {files.map((file) => (
           <div
