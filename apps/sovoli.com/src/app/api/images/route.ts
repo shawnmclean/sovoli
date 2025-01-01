@@ -17,7 +17,8 @@ export const POST = async (
 ) => {
   const ctxParams = await params;
   return auth(async (authreq) => {
-    if (!authreq.auth)
+    const user = authreq.auth?.user;
+    if (!user)
       NextResponse.json({ message: "Not authenticated" }, { status: 401 });
 
     try {

@@ -29,6 +29,7 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
       }));
       setFiles((current) => [...current, ...newFiles]);
 
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       newFiles.forEach((fileState) => uploadFile(fileState));
     },
   });
