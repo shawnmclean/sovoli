@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState } from "react";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Form } from "@sovoli/ui/components/form";
@@ -9,6 +9,7 @@ import { Input } from "@sovoli/ui/components/input";
 import type { State } from "../actions/newNoteAction";
 import { Editor } from "~/components/Editor/Editor";
 import { newNoteAction } from "../actions/newNoteAction";
+import { AssetManager } from "./AssetManager";
 
 export interface NoteFormProps {
   title?: string;
@@ -22,62 +23,11 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
     null,
   );
 
-  const [fileUploadStatus, setFileUploadStatus] = useState<
-    "idle" | "uploading" | "success" | "error"
-  >("idle");
-
-  const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    setFileUploadStatus("uploading");
-
-    try {
-      const signedUrlResponse = await fetch("/api/images", {
-        method: "POST",
-        body: JSON.stringify({ fileName: file.name, type: file.type }),
-      });
-      const { signedUrl, id, path } = (await signedUrlResponse.json()) as {
-        signedUrl: string;
-        id: string;
-        path: string;
-      };
-
-      const uploadResponse = await fetch(signedUrl, {
-        method: "PUT",
-        headers: {
-          "Content-Type": file.type,
-        },
-        body: file,
-      });
-
-      if (!uploadResponse.ok) {
-        throw new Error("Failed to upload file");
-      }
-
-      console.log("Upload Response:", uploadResponse);
-
-      console.log("File uploaded successfully!");
-      console.log("Signed URL:", signedUrl);
-      console.log("ID:", id);
-      console.log("Path:", path);
-
-      setFileUploadStatus("success");
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      setFileUploadStatus("error");
-    }
-  };
-
   return (
     <Form className="w-full" action={formAction}>
-      {" "}
-      <input type="file" id="image" name="image" onChange={handleFileUpload} />
-      {fileUploadStatus === "uploading" && <p>Uploading...</p>}
-      {fileUploadStatus === "success" && <p>File uploaded successfully!</p>}
-      {fileUploadStatus === "error" && <p>Failed to upload file.</p>}
+      <AssetManager
+        onFileUploaded={(file, status, id) => console.log(file, status, id)}
+      />
       <Input
         placeholder="Title"
         name="title"
