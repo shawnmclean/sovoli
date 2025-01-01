@@ -19,7 +19,10 @@ export const POST = async (
   return auth(async (authreq) => {
     const user = authreq.auth?.user;
     if (!user)
-      NextResponse.json({ message: "Not authenticated" }, { status: 401 });
+      return NextResponse.json(
+        { message: "Not authenticated" },
+        { status: 401 },
+      );
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -48,6 +51,7 @@ export const POST = async (
         .insert(schema.MediaAsset)
         .values({
           id,
+          uploadedUserId: user.id,
           host: MediaAssetHost.Supabase,
           bucket: env.SUPABASE_MEDIA_BUCKET,
           path: data.path,
