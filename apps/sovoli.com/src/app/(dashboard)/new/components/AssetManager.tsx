@@ -13,7 +13,8 @@ import { CloudUpload, Trash2Icon } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { tv } from "tailwind-variants";
 
-import { UploadedAsset, useAssetFileUpload } from "~/hooks/useAssetFileUpload";
+import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
+import { useAssetFileUpload } from "~/hooks/useAssetFileUpload";
 
 const dropzoneStyles = tv({
   base: "flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg",

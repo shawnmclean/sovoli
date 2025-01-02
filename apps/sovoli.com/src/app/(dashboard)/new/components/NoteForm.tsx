@@ -6,11 +6,10 @@ import { Button } from "@sovoli/ui/components/button";
 import { Form } from "@sovoli/ui/components/form";
 import { Input } from "@sovoli/ui/components/input";
 import { Spinner } from "@sovoli/ui/components/spinner";
-import { set } from "lodash";
 
 import type { State } from "../actions/newNoteAction";
+import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
 import { Editor } from "~/components/Editor/Editor";
-import { UploadedAsset } from "~/hooks/useAssetFileUpload";
 import { newNoteAction } from "../actions/newNoteAction";
 import { AssetManager } from "./AssetManager";
 
