@@ -2,8 +2,20 @@ import type { FileRejection } from "react-dropzone";
 import { useCallback, useState } from "react";
 import { CloudUpload } from "lucide-react";
 import { useDropzone } from "react-dropzone";
+import { tv } from "tailwind-variants";
 
 import { useAssetFileUpload } from "~/hooks/useAssetFileUpload";
+
+const dropzoneStyles = tv({
+  base: "flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer ",
+  variants: {
+    active: {
+      true: "border-primary",
+      false:
+        "border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500",
+    },
+  },
+});
 
 export interface AssetManagerProps {
   onFileUploaded: (file: File, id: string, path: string) => void;
@@ -22,7 +34,7 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
     },
     [addFiles],
   );
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     multiple: true,
     accept: {
       "image/jpeg": [],
@@ -32,11 +44,12 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
   });
 
   return (
-    <div>
+    <div className="w-full">
       <div
         {...getRootProps({
-          className:
-            "flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600",
+          className: dropzoneStyles({
+            active: isDragActive,
+          }),
         })}
       >
         <input {...getInputProps()} title="upload file" className="sr-only" />
