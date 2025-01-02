@@ -1,13 +1,17 @@
 import { useCallback, useState } from "react";
 
-interface UploadResponse {
-  signedUrl: string;
+export interface UploadedAsset {
+  url: string;
   id: string;
+}
+
+interface UploadResponse extends UploadedAsset {
+  signedUrl: string;
   path: string;
 }
 
 export interface UseAssetFileUploadProps {
-  onFileUploaded: (file: File, id: string, path: string) => void;
+  onFileUploaded: (asset: UploadedAsset) => void;
 }
 
 export const useAssetFileUpload = ({
@@ -29,10 +33,10 @@ export const useAssetFileUpload = ({
           method: "POST",
           body: JSON.stringify({ fileName: file.name, type: file.type }),
         });
-        const { signedUrl, id, path } =
+        const signedUrlResponseBody =
           (await signedUrlResponse.json()) as UploadResponse;
 
-        const uploadResponse = await fetch(signedUrl, {
+        const uploadResponse = await fetch(signedUrlResponseBody.signedUrl, {
           method: "PUT",
           headers: {
             "Content-Type": file.type,
@@ -50,7 +54,7 @@ export const useAssetFileUpload = ({
           ),
         );
 
-        onFileUploaded(file, id, path);
+        onFileUploaded(signedUrlResponseBody);
       } catch (error) {
         console.error("Error uploading file:", error);
         setFiles((current) =>

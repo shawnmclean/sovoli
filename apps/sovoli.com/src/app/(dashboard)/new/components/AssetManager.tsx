@@ -1,5 +1,6 @@
 import type { FileRejection } from "react-dropzone";
 import { useCallback, useState } from "react";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Carousel,
   CarouselContent,
@@ -8,11 +9,11 @@ import {
   CarouselPrevious,
 } from "@sovoli/ui/components/carousel";
 import { Image } from "@sovoli/ui/components/image";
-import { CloudUpload } from "lucide-react";
+import { CloudUpload, Trash2Icon } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { tv } from "tailwind-variants";
 
-import { useAssetFileUpload } from "~/hooks/useAssetFileUpload";
+import { UploadedAsset, useAssetFileUpload } from "~/hooks/useAssetFileUpload";
 
 const dropzoneStyles = tv({
   base: "flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg",
@@ -30,7 +31,7 @@ const dropzoneStyles = tv({
 });
 
 export interface AssetManagerProps {
-  onFileUploaded: (file: File, id: string, path: string) => void;
+  onFileUploaded: (asset: UploadedAsset) => void;
 }
 
 export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
@@ -76,20 +77,22 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
                   className="flex items-center justify-center"
                 >
                   <div className="relative h-[500px] w-[100%]">
+                    <Button
+                      className="absolute right-1 top-1 z-20"
+                      isIconOnly
+                      onPress={() => removeFile(file.file)}
+                      size="sm"
+                      variant="ghost"
+                    >
+                      <Trash2Icon className="h-4 w-4" />
+                    </Button>
                     <div className="flex flex-col items-center gap-2">
-                      <div className="relative h-48 w-48 items-center rounded-lg bg-gray-200">
+                      <div className="h-48 w-48 items-center rounded-lg bg-gray-200">
                         <Image
                           src={file.preview}
                           alt="Preview"
                           className="object-contain"
                         />
-                        <button
-                          type="button"
-                          className="absolute right-2 top-2 rounded-full bg-red-500 p-2 text-white"
-                          onClick={() => removeFile(file.file)}
-                        >
-                          ✕
-                        </button>
                       </div>
                       <div>
                         {file.status === "uploading" && <p>Uploading...</p>}

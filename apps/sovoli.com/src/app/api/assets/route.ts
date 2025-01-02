@@ -69,6 +69,7 @@ export const POST = async (
       return NextResponse.json({
         signedUrl: data.signedUrl,
         id: createdMedia.id,
+        url: `${env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${env.SUPABASE_MEDIA_BUCKET}/${createdMedia.path}`,
         path: createdMedia.path,
       });
     } catch (error) {

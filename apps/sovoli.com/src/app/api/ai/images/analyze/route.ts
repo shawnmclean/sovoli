@@ -1,43 +1,20 @@
 import type { NextRequest } from "next/server";
 import { google } from "@ai-sdk/google";
-import { withZod } from "@rvf/zod";
 import { generateObject } from "ai";
 import { z } from "zod";
 
 const model = google("gemini-1.5-flash");
 
-const imageFileSchema = z.instanceof(File).refine(
-  (file) => {
-    return file.type === "image/png" || file.type === "image/jpeg";
-  },
-  {
-    message: "File must be an image",
-  },
-);
-
 const formRequestBodySchema = z.object({
-  image: imageFileSchema,
+  url: z.string().url(),
 });
 
-const validator = withZod(formRequestBodySchema);
-
 export async function POST(req: NextRequest): Promise<Response> {
-  const formData = await req.formData();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const bodyRaw = await req.json();
+  const body = formRequestBodySchema.parse(bodyRaw);
 
-  const result = await validator.validate(formData);
-
-  if (result.error) {
-    return new Response(JSON.stringify(result.error), {
-      status: 400,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
-
-  const image = result.data.image;
-
-  const fileBuffer = await image.arrayBuffer();
+  const imageUrl = body.url;
 
   const { object } = await generateObject({
     model: model,
@@ -62,7 +39,7 @@ export async function POST(req: NextRequest): Promise<Response> {
           },
           {
             type: "image",
-            image: fileBuffer,
+            image: imageUrl,
           },
         ],
       },
