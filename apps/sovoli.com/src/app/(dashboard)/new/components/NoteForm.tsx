@@ -26,7 +26,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
   return (
     <Form className="w-full" action={formAction}>
       <AssetManager
-        onFileUploaded={(file, status, id) => console.log(file, status, id)}
+        onFileUploaded={(file, id, path) => console.log(file, id, path)}
       />
       <Input
         placeholder="Title"

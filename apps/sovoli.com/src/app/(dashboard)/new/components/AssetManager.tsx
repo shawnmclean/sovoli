@@ -1,93 +1,35 @@
+import type { FileRejection } from "react-dropzone";
 import { useCallback, useState } from "react";
-import { ne } from "@sovoli/db";
 import { CloudUpload } from "lucide-react";
-import { FileRejection, useDropzone } from "react-dropzone";
+import { useDropzone } from "react-dropzone";
+
+import { useAssetFileUpload } from "~/hooks/useAssetFileUpload";
 
 export interface AssetManagerProps {
   onFileUploaded: (file: File, id: string, path: string) => void;
 }
 
-type FileStatus = "idle" | "uploading" | "success" | "error";
-interface FileState {
-  file: File;
-  preview: string;
-  status: FileStatus;
-}
-
 export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
-  const [files, setFiles] = useState<FileState[]>([]);
+  const { files, addFiles, removeFile } = useAssetFileUpload({
+    onFileUploaded,
+  });
   const [fileRejections, setFileRejections] = useState<FileRejection[]>([]);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    const newFiles = acceptedFiles.map((file) => ({
-      file,
-      preview: URL.createObjectURL(file),
-      status: "idle" as FileStatus,
-    }));
-    setFiles((current) => [...current, ...newFiles]);
-
-    for (const file of newFiles) {
-      void uploadFile(file);
-    }
-  }, []);
-
+  const onDrop = useCallback(
+    (acceptedFiles: File[], fileRejections: FileRejection[]) => {
+      addFiles(acceptedFiles);
+      setFileRejections(fileRejections);
+    },
+    [addFiles],
+  );
   const { getRootProps, getInputProps } = useDropzone({
     multiple: true,
     accept: {
       "image/jpeg": [],
       "image/png": [],
     },
-    onDrop: (acceptedFiles, fileRejections) => {
-      onDrop(acceptedFiles);
-      setFileRejections(fileRejections);
-    },
+    onDrop,
   });
-
-  const uploadFile = async (fileState: FileState) => {
-    const { file } = fileState;
-    setFiles((current) =>
-      current.map((f) => (f.file === file ? { ...f, status: "uploading" } : f)),
-    );
-
-    try {
-      const signedUrlResponse = await fetch("/api/assets", {
-        method: "POST",
-        body: JSON.stringify({ fileName: file.name, type: file.type }),
-      });
-      const { signedUrl, id, path } = (await signedUrlResponse.json()) as {
-        signedUrl: string;
-        id: string;
-        path: string;
-      };
-
-      const uploadResponse = await fetch(signedUrl, {
-        method: "PUT",
-        headers: {
-          "Content-Type": file.type,
-        },
-        body: file,
-      });
-
-      if (!uploadResponse.ok) {
-        throw new Error("Failed to upload file");
-      }
-
-      setFiles((current) =>
-        current.map((f) => (f.file === file ? { ...f, status: "success" } : f)),
-      );
-
-      onFileUploaded(file, id, path);
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      setFiles((current) =>
-        current.map((f) => (f.file === file ? { ...f, status: "error" } : f)),
-      );
-    }
-  };
-
-  const handleRemoveFile = (file: File) => {
-    setFiles((current) => current.filter((f) => f.file !== file));
-  };
 
   return (
     <div>
@@ -136,7 +78,7 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
               <button
                 type="button"
                 className="absolute right-2 top-2 rounded-full bg-red-500 p-2 text-white"
-                onClick={() => handleRemoveFile(file.file)}
+                onClick={() => removeFile(file.file)}
               >
                 ✕
               </button>
