@@ -1,7 +1,11 @@
 "use client";
 
-import type { EditorOptions, JSONContent } from "@tiptap/react";
-import { useMemo, useState } from "react";
+import type {
+  EditorOptions,
+  Editor as EditorType,
+  JSONContent,
+} from "@tiptap/react";
+import { useEffect, useMemo, useState } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
@@ -10,9 +14,10 @@ import { EditorMenu } from "./controls/EditorMenu";
 export interface EditorProps extends Partial<EditorOptions> {
   name: string;
   defaultValue?: string;
+  ref?: React.RefObject<EditorType | null>;
 }
 
-export const Editor = ({ name, defaultValue, ...rest }: EditorProps) => {
+export const Editor = ({ name, defaultValue, ref, ...rest }: EditorProps) => {
   const jsonContent = useMemo(() => {
     try {
       return defaultValue
@@ -44,6 +49,11 @@ export const Editor = ({ name, defaultValue, ...rest }: EditorProps) => {
     },
   });
 
+  useEffect(() => {
+    if (editor && ref && "current" in ref) {
+      ref.current = editor;
+    }
+  }, [editor, ref]);
   if (!editor) {
     return null;
   }

@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import type { Editor as EditorType } from "@tiptap/react";
+import { useActionState, useRef, useState } from "react";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Form } from "@sovoli/ui/components/form";
@@ -20,14 +21,12 @@ export interface NoteFormProps {
 }
 
 export const NoteForm = ({ title, description, content }: NoteFormProps) => {
+  const editorRef = useRef<EditorType | null>(null);
   const [state, formAction, pending] = useActionState<State, FormData>(
     newNoteAction,
     null,
   );
   const [aiLoading, setAiLoading] = useState<boolean>(false);
-  const [annotations, setAnnotations] = useState<
-    { page: number; chapter: string; highlights: string[] }[]
-  >([]);
 
   const onFileUploaded = async (asset: UploadedAsset) => {
     setAiLoading(true);
@@ -47,8 +46,21 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
       highlights: string[];
     };
 
-    setAnnotations((current) => [...current, responseBody]);
+    const content = responseBody.highlights.flatMap((highlight) => [
+      {
+        type: "blockquote",
+        content: [
+          { type: "paragraph", content: [{ type: "text", text: highlight }] },
+        ],
+      },
+      {
+        type: "paragraph",
+        content: [],
+      },
+    ]);
 
+    // Insert all content at once
+    editorRef.current?.commands.insertContent(content);
     setAiLoading(false);
   };
 
@@ -82,7 +94,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
             variant="bordered"
             defaultValue={description}
           />
-          <Editor name="content" defaultValue={content} />
+          <Editor name="content" defaultValue={content} ref={editorRef} />
           <div className="flex w-full justify-between gap-2">
             <div className="w-full">
               {state?.status === "error" && (
@@ -110,34 +122,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
             </div>
           </div>
         </div>
-        <div className="space-y-4">
-          side info
-          {annotations.length > 0 && (
-            <div className="flex flex-col gap-2">
-              {annotations.map((annotation, i) => (
-                <div key={i} className="flex flex-col gap-2">
-                  <div className="flex gap-2">
-                    <div className="w-full">
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Page {annotation.page}
-                      </p>
-                      <p className="text-lg font-bold">{annotation.chapter}</p>
-                    </div>
-                  </div>
-                  {annotation.highlights.map((highlight, j) => (
-                    <div key={j} className="flex gap-2">
-                      <div className="w-full">
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {highlight}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <div className="space-y-4">side info</div>
       </div>
     </Form>
   );
