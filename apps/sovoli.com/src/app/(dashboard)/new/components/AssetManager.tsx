@@ -1,5 +1,6 @@
 import type { FileRejection } from "react-dropzone";
 import { useCallback, useState } from "react";
+import Image from "next/image";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Carousel,
@@ -8,16 +9,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@sovoli/ui/components/carousel";
-import { Image } from "@sovoli/ui/components/image";
+import { Spinner } from "@sovoli/ui/components/spinner";
 import { CloudUpload, Trash2Icon } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { tv } from "tailwind-variants";
 
 import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
 import { useAssetFileUpload } from "~/hooks/useAssetFileUpload";
+import supabaseLoader from "~/loaders/supabaseImageLoader";
 
 const dropzoneStyles = tv({
-  base: "flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg",
+  base: "flex flex-col items-center justify-center h-64 w-full border-2 border-dashed rounded-lg",
   variants: {
     isDragActive: {
       true: "border-primary",
@@ -77,7 +79,7 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
                   key={i}
                   className="flex items-center justify-center"
                 >
-                  <div className="relative h-[500px] w-[100%]">
+                  <div className="relative h-64 w-[100%]">
                     <Button
                       className="absolute right-1 top-1 z-20"
                       isIconOnly
@@ -87,22 +89,21 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
                     >
                       <Trash2Icon className="h-4 w-4" />
                     </Button>
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="h-48 w-48 items-center rounded-lg bg-gray-200">
-                        <Image
-                          src={file.preview}
-                          alt="Preview"
-                          className="object-contain"
-                        />
+                    <Image
+                      src={file.preview}
+                      alt="Preview"
+                      className="object-contain"
+                      fill
+                      loader={supabaseLoader}
+                    />
+                    {(file.status === "uploading" ||
+                      file.status === "idle") && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="flex items-center justify-center rounded-lg bg-gray-300 bg-opacity-80 p-3">
+                          <Spinner className="h-6 w-6" />
+                        </div>
                       </div>
-                      <div>
-                        {file.status === "uploading" && <p>Uploading...</p>}
-                        {file.status === "success" && (
-                          <p>Uploaded successfully!</p>
-                        )}
-                        {file.status === "error" && <p>Upload failed.</p>}
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </CarouselItem>
               ))}
@@ -111,7 +112,7 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
             <CarouselNext />
           </Carousel>
         ) : (
-          <div className="flex flex-col items-center justify-center">
+          <div className="m-5 flex flex-col items-center justify-center">
             <CloudUpload className="mb-5 h-12 w-12 text-gray-600 dark:text-gray-300" />
             <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
               <span className="font-semibold">Click to upload</span> or drag and
