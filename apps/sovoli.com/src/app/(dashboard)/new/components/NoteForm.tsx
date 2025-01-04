@@ -4,9 +4,17 @@ import type { Editor as EditorType } from "@tiptap/react";
 import { useActionState, useRef, useState } from "react";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@sovoli/ui/components/dropdown";
 import { Form } from "@sovoli/ui/components/form";
 import { Input } from "@sovoli/ui/components/input";
 import { Spinner } from "@sovoli/ui/components/spinner";
+import { User } from "@sovoli/ui/components/user";
+import { ChevronDownIcon } from "lucide-react";
 
 import type { State } from "../actions/newNoteAction";
 import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
@@ -27,6 +35,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
     null,
   );
   const [aiLoading, setAiLoading] = useState<boolean>(false);
+  const [insertContent, setInsertContent] = useState<boolean>(false);
 
   const onFileUploaded = async (asset: UploadedAsset) => {
     setAiLoading(true);
@@ -61,6 +70,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
 
     // Insert all content at once
     editorRef.current?.commands.insertContent(content);
+    setInsertContent(true);
     setAiLoading(false);
   };
 
@@ -122,7 +132,44 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
             </div>
           </div>
         </div>
-        <div className="space-y-4">side info</div>
+        <div className="space-y-4">
+          <div className="flex flex-col gap-2">
+            <span>Main Reference:</span>
+            <div>
+              <Dropdown>
+                <DropdownTrigger>
+                  <div className="flex flex-row items-center justify-between rounded-md border-1 border-default-200 p-2">
+                    <User
+                      as="button"
+                      avatarProps={{
+                        radius: "none",
+                        src: "https://images.isbndb.com/covers/8575293482361.jpg",
+                      }}
+                      description="by Claude M. Bristol"
+                      name="Magic Of Believing"
+                    />
+                    <ChevronDownIcon />
+                  </div>
+                </DropdownTrigger>
+                <DropdownMenu>
+                  <DropdownItem key="book-1">Test</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+            {insertContent && (
+              <div className="flex flex-col gap-1 text-sm text-default-500">
+                <div className="flex items-center gap-1">
+                  <span className="font-medium">Chapter:</span>
+                  <span>MIND-STUFF EXPERIMENTS</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="font-medium">Pages:</span>
+                  <span>27</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </Form>
   );

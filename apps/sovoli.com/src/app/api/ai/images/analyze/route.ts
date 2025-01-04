@@ -31,10 +31,12 @@ export async function POST(req: NextRequest): Promise<Response> {
             type: "text",
             text: `
             This is an image of a page from a book.
-            The chapter is displayed at the top of the page. If you cannot determine page or chapter, leave it.
-            It should contain highlighted text, which may include a word, a phrase, a sentence, multiple sentences, or a paragraph.
+            Extract the page and the chaper name from the image.
+            It should contain user highlighted text, which may include a word, a phrase, a sentence, multiple sentences, or a paragraph.
             Separate each highlight into distinct entries if there is a natural or logical boundary, such as the end of a sentence or a clear change in context.
-            If a highlight spans multiple sentences, group them together into one entry only if they are part of the same continuous thought or context, and there is no visible separation.
+            Only extract the text if they are highlighted in the image or underlined. 
+            If the text is not highlighted or underlined, do not extract it. Do not extract text that are in quotes by the default print.
+            Compared the extracted text to the image to ensure that the text was acrruely highlighted.
             `,
           },
           {
