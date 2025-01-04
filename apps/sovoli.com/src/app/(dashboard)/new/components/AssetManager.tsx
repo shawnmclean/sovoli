@@ -34,10 +34,11 @@ const dropzoneStyles = tv({
 });
 
 export interface AssetManagerProps {
+  name: string;
   onFileUploaded: (asset: UploadedAsset) => void;
 }
 
-export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
+export const AssetManager = ({ onFileUploaded, name }: AssetManagerProps) => {
   const { files, addFiles, removeFile } = useAssetFileUpload({
     onFileUploaded,
   });
@@ -96,6 +97,13 @@ export const AssetManager = ({ onFileUploaded }: AssetManagerProps) => {
                       fill
                       loader={supabaseLoader}
                     />
+                    {file.uploadedAsset?.id && (
+                      <input
+                        type="hidden"
+                        name={`${name}[${i}][id]`}
+                        value={file.uploadedAsset.id}
+                      />
+                    )}
                     {(file.status === "uploading" ||
                       file.status === "idle") && (
                       <div className="absolute inset-0 flex items-center justify-center">

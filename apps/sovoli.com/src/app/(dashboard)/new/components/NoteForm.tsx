@@ -76,7 +76,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
 
   return (
     <Form className="w-full" action={formAction}>
-      <AssetManager onFileUploaded={onFileUploaded} />
+      <AssetManager name="assets" onFileUploaded={onFileUploaded} />
 
       {aiLoading && (
         <div className="flex items-center justify-center">

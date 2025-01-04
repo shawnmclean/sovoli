@@ -3,7 +3,8 @@
 import { redirect, unauthorized } from "next/navigation";
 import { withZod } from "@rvf/zod";
 import { auth } from "@sovoli/auth";
-import { db, schema } from "@sovoli/db";
+import { db, inArray, schema } from "@sovoli/db";
+import { eq } from "lodash";
 
 import { slugify } from "~/utils/slugify";
 import { formNewNoteSchema } from "./schemas";
@@ -35,6 +36,8 @@ export async function newNoteAction(
     };
   }
 
+  console.log(result.data);
+
   const [createdKnowledge] = await db
     .insert(schema.Knowledge)
     .values({
@@ -53,6 +56,18 @@ export async function newNoteAction(
       message: "Failed to create knowledge",
     };
   }
+
+  await db
+    .update(schema.MediaAsset)
+    .set({
+      knowledgeId: createdKnowledge.id,
+    })
+    .where(
+      inArray(
+        schema.MediaAsset.id,
+        result.data.assets.map((asset) => asset.id),
+      ),
+    );
 
   redirect(`/${session.user?.username}/${createdKnowledge.slug}`);
 }

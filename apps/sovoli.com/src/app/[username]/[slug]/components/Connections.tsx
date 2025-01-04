@@ -36,7 +36,7 @@ export function Connections({ knowledge }: ConnectionsProps) {
             <MessageSquareIcon />
             <span>Replies</span>
             <Chip size="sm" variant="solid">
-              3
+              0
             </Chip>
           </div>
         }

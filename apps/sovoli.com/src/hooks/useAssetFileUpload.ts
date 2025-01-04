@@ -50,7 +50,13 @@ export const useAssetFileUpload = ({
 
         setFiles((current) =>
           current.map((f) =>
-            f.file === file ? { ...f, status: "success" } : f,
+            f.file === file
+              ? {
+                  ...f,
+                  status: "success",
+                  uploadedAsset: signedUrlResponseBody,
+                }
+              : f,
           ),
         );
 
@@ -94,4 +100,5 @@ export interface FileState {
   file: File;
   preview: string;
   status: FileStatus;
+  uploadedAsset?: UploadedAsset;
 }
