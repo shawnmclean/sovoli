@@ -14,7 +14,7 @@ import { Form } from "@sovoli/ui/components/form";
 import { Input } from "@sovoli/ui/components/input";
 import { Spinner } from "@sovoli/ui/components/spinner";
 import { User } from "@sovoli/ui/components/user";
-import { ChevronDownIcon } from "lucide-react";
+import { ChevronDownIcon, PlusIcon, Trash2Icon } from "lucide-react";
 
 import type { State } from "../actions/newNoteAction";
 import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
@@ -29,6 +29,11 @@ export interface NoteFormProps {
 }
 
 export const NoteForm = ({ title, description, content }: NoteFormProps) => {
+  const [formTitle, setFormTitle] = useState<string>(title ?? "");
+  const [formDescription, setFormDescription] = useState<string>(
+    description ?? "",
+  );
+
   const editorRef = useRef<EditorType | null>(null);
   const [state, formAction, pending] = useActionState<State, FormData>(
     newNoteAction,
@@ -71,6 +76,10 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
     // Insert all content at once
     editorRef.current?.commands.insertContent(content);
     setInsertContent(true);
+    setFormTitle(`Annotation from "The Magic of Believing": Mind Over Matter`);
+    setFormDescription(
+      "Exploring J.B. Rhine's Groundbreaking Studies on Psychokinesis and the Power of the Mind to Influence Physical Objects",
+    );
     setAiLoading(false);
   };
 
@@ -93,7 +102,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
         classNames={{
           input: "font-bold text-3xl",
         }}
-        defaultValue={title}
+        value={formTitle}
       />
       <div className="grid w-full max-w-7xl grid-cols-1 gap-6 py-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
@@ -102,7 +111,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
             placeholder="Description"
             fullWidth
             variant="bordered"
-            defaultValue={description}
+            value={formDescription}
           />
           <Editor name="content" defaultValue={content} ref={editorRef} />
           <div className="flex w-full justify-between gap-2">
@@ -135,17 +144,17 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
         <div className="space-y-4">
           <div className="flex flex-col gap-2">
             <span>Main Reference:</span>
-            <div>
+            <div className="flex items-center justify-between gap-2">
               <Dropdown>
                 <DropdownTrigger>
-                  <div className="flex flex-row items-center justify-between rounded-md border-1 border-default-200 p-2">
+                  <div className="flex w-full flex-row items-center justify-between rounded-md border-1 border-default-200 p-2">
                     <User
                       as="button"
                       avatarProps={{
                         radius: "none",
                         src: "https://images.isbndb.com/covers/8575293482361.jpg",
                       }}
-                      description="by Claude M. Bristol"
+                      description="Book by Claude M. Bristol"
                       name="Magic Of Believing"
                     />
                     <ChevronDownIcon />
@@ -155,6 +164,9 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
                   <DropdownItem key="book-1">Test</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
+              <Button isIconOnly color="danger" variant="light">
+                <Trash2Icon />
+              </Button>
             </div>
             {insertContent && (
               <div className="flex flex-col gap-1 text-sm text-default-500">
@@ -168,6 +180,36 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
                 </div>
               </div>
             )}
+          </div>
+          <div className="flex flex-col gap-2">
+            <span>Supplemental References:</span>
+
+            <div className="flex items-center justify-between gap-2">
+              <Dropdown>
+                <DropdownTrigger>
+                  <div className="flex w-full flex-row items-center justify-between rounded-md border-1 border-default-200 p-2">
+                    <div className="flex flex-col gap-1">
+                      <div className="inline-flex flex-col items-start">
+                        <span className="text-small text-inherit">Ego</span>
+                        <span className="text-tiny text-foreground-400">
+                          Research by Shawn
+                        </span>
+                      </div>
+                    </div>
+                    <ChevronDownIcon />
+                  </div>
+                </DropdownTrigger>
+                <DropdownMenu>
+                  <DropdownItem key="book-1">Test</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+              <Button isIconOnly color="danger" variant="light">
+                <Trash2Icon />
+              </Button>
+            </div>
+            <Button isIconOnly variant="light">
+              <PlusIcon />
+            </Button>
           </div>
         </div>
       </div>
