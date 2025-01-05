@@ -31,8 +31,11 @@ export async function signinAction(
   }
 
   try {
-    console.log("signing in");
-    return await signIn("resend", formData);
+    console.log("signing in", formData);
+    return await signIn("resend", {
+      redirectTo: result.data.callbackUrl,
+      email: result.data.email,
+    });
   } catch (error) {
     if (error instanceof AuthError) {
       return redirect(`/error?error=${error.type}`);
