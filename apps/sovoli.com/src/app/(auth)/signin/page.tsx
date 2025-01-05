@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+
+import { auth } from "~/core/auth";
 import { SigninForm } from "./components/SigninForm";
 
 type SearchParams = Promise<{ callbackUrl: string }>;
@@ -7,6 +10,12 @@ export interface SigninPageProps {
 }
 
 export default async function SigninPage(props: SigninPageProps) {
+  const session = await auth();
+
+  if (session) {
+    redirect("/");
+  }
+
   const searchParams = await props.searchParams;
 
   const callbackUrl = searchParams.callbackUrl;
