@@ -4,6 +4,7 @@ import type {
   Session as NextAuthSession,
 } from "next-auth";
 import type { AdapterSession } from "next-auth/adapters";
+import { skipCSRFCheck } from "@auth/core";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db, schema } from "@sovoli/db";
 import Resend from "next-auth/providers/resend";
@@ -22,6 +23,9 @@ export const authConfig: NextAuthConfig = {
       from: "hello@sovoli.com",
     }),
   ],
+  pages: {
+    signIn: "/signin",
+  },
   callbacks: {
     session({ session }) {
       return {
@@ -35,6 +39,8 @@ export const authConfig: NextAuthConfig = {
   session: {
     strategy: "database",
   },
+  // no need for csfr in server actions: https://nextjs.org/blog/security-nextjs-server-components-actions#csrf
+  skipCSRFCheck: skipCSRFCheck,
 };
 
 // const PAT_PREFIX = "sop_";
