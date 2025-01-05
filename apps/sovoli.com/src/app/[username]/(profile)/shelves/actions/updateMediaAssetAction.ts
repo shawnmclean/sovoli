@@ -3,11 +3,11 @@
 import { revalidatePath } from "next/cache";
 import { createId } from "@paralleldrive/cuid2";
 import { withZod } from "@rvf/zod";
-import { auth } from "@sovoli/auth";
 import { db, eq, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { createClient } from "@supabase/supabase-js";
 
+import { auth } from "~/core/auth";
 import { env } from "~/env";
 import { formUpdateMediaAssetSchema } from "./schemas";
 

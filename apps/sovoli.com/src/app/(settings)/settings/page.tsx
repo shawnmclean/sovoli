@@ -1,4 +1,4 @@
-import { auth, signIn } from "@sovoli/auth";
+import { auth, signIn } from "~/core/auth";
 
 export default function SettingsPage() {
   return (

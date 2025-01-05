@@ -1,7 +1,7 @@
 import { cache } from "react";
-import { auth } from "@sovoli/auth";
 import { KnowledgeType } from "@sovoli/db/schema";
 
+import { auth } from "~/core/auth";
 import { GetKnowledges } from "~/services/knowledge/getKnowledges";
 import { ShelfList } from "./components/ShelfList";
 

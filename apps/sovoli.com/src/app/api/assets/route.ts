@@ -1,11 +1,11 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { createId } from "@paralleldrive/cuid2";
-import { auth } from "@sovoli/auth";
 import { db, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { createClient } from "@supabase/supabase-js";
 
+import { auth } from "~/core/auth";
 import { env } from "~/env";
 import { createSignedUrlRequestBodySchema } from "./schema";
 

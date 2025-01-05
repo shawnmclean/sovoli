@@ -2,8 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { withZod } from "@rvf/zod";
-import { auth } from "@sovoli/auth";
 
+import { auth } from "~/core/auth";
 import { CreateShelfImport } from "~/services/import/createShelfImport";
 import { formImportShelfSchema } from "./schemas";
 

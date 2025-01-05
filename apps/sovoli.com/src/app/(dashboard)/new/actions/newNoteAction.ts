@@ -2,9 +2,9 @@
 
 import { redirect, unauthorized } from "next/navigation";
 import { withZod } from "@rvf/zod";
-import { auth } from "@sovoli/auth";
 import { db, inArray, schema } from "@sovoli/db";
 
+import { auth } from "~/core/auth";
 import { slugify } from "~/utils/slugify";
 import { formNewNoteSchema } from "./schemas";
 

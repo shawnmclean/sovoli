@@ -1,4 +1,4 @@
-import { auth, signIn, signOut } from "@sovoli/auth";
+import { auth, signIn, signOut } from "~/core/auth";
 
 export default function About() {
   return (

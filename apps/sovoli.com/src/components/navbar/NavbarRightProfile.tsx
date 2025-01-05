@@ -1,6 +1,5 @@
 "use client";
 
-import type { Session } from "@sovoli/auth";
 import NextLink from "next/link";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import {
@@ -10,6 +9,7 @@ import {
   DropdownTrigger,
 } from "@sovoli/ui/components/dropdown";
 
+import type { Session } from "~/core/auth";
 import { SignOutButton } from "./SignOutButton";
 
 export interface NavbarRightProfileProps {

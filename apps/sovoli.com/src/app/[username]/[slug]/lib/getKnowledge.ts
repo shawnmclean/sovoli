@@ -3,8 +3,8 @@ import { cache } from "react";
 import "server-only";
 
 import { notFound, permanentRedirect } from "next/navigation";
-import { auth } from "@sovoli/auth";
 
+import { auth } from "~/core/auth";
 import { getKnowledgeBySlug } from "./getKnowledgeService";
 
 interface GetnowledgeOptions {

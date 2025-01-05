@@ -1,6 +1,6 @@
 "use server";
 
-import { signOut } from "@sovoli/auth";
+import { signOut } from "~/core/auth";
 
 export async function signOutAction() {
   await signOut();

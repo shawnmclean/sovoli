@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { auth } from "@sovoli/auth";
 import { Badge } from "@sovoli/ui/components/badge";
 import {
   NavbarContent,
@@ -7,6 +6,7 @@ import {
   Navbar as NextUINavbar,
 } from "@sovoli/ui/components/navbar";
 
+import { auth } from "~/core/auth";
 import { NavbarRightProfile } from "./NavbarRightProfile";
 import { NewDropdown } from "./NewDropdown";
 import { SignInButton } from "./SignInButton";

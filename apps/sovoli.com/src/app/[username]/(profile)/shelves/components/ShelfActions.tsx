@@ -1,6 +1,5 @@
 "use client";
 
-import type { Session } from "@sovoli/auth";
 import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import {
@@ -13,6 +12,7 @@ import {
 import { EllipsisIcon, PencilIcon, StarIcon, Trash2Icon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
+import type { Session } from "~/core/auth";
 import { MediaManagerDialog } from "./MediaManagerDialog";
 
 export interface ShelfActionsProps {

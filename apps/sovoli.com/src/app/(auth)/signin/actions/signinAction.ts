@@ -2,9 +2,9 @@
 
 import { redirect } from "next/navigation";
 import { withZod } from "@rvf/zod";
-import { signIn } from "@sovoli/auth";
 import { AuthError } from "next-auth";
 
+import { signIn } from "~/core/auth";
 import { formSigninSchema } from "./schemas";
 
 export type State = {

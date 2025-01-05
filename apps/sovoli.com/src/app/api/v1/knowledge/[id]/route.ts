@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { auth } from "@sovoli/auth";
 
+import { auth } from "~/core/auth";
 import { updateKnowledge } from "~/services/knowledge/updateKnowledge";
 import { PutKnowledgeSchemaRequest } from "~/tsr/router/knowledge/knowledgeContract";
 import { getBaseUrl } from "~/utils/getBaseUrl";

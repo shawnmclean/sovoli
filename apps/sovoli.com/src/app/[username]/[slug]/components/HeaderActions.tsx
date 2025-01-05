@@ -1,9 +1,10 @@
 "use client";
 
-import type { Session } from "@sovoli/auth";
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
+
+import type { Session } from "~/core/auth";
 
 export interface HeaderActionsProps {
   knowledge: SelectKnowledgeSchema;

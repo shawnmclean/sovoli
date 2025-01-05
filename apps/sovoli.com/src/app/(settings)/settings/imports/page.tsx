@@ -1,7 +1,7 @@
 import type { SelectImport } from "@sovoli/db/schema";
-import { auth } from "@sovoli/auth";
 import { db, eq, schema } from "@sovoli/db";
 
+import { auth } from "~/core/auth";
 import { importDataErrorSchema } from "~/trigger/importTrigger";
 
 export default async function SettingsImportPage() {

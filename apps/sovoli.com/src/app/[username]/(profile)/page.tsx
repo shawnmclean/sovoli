@@ -1,31 +1,42 @@
 import { cache } from "react";
-import { auth } from "@sovoli/auth";
 
+import { auth } from "~/core/auth";
 import { GetKnowledges } from "~/services/knowledge/getKnowledges";
 
 export const dynamic = "force-dynamic";
 
+const retrieveKnowledges = cache(
+  async (
+    username: string,
+    page: number | undefined,
+    pageSize: number | undefined,
+  ) => {
+    const session = await auth();
 
-
-const retrieveKnowledges = cache(async (username: string, page: number | undefined, pageSize: number|undefined) => {
-  const session = await auth();
-
-  const getKnowledges = new GetKnowledges();
-  return await getKnowledges.call({
-    authUserId: session?.user?.id,
-    username: username,
-    page: page,
-    pageSize: pageSize,
-  });
-});
+    const getKnowledges = new GetKnowledges();
+    return await getKnowledges.call({
+      authUserId: session?.user?.id,
+      username: username,
+      page: page,
+      pageSize: pageSize,
+    });
+  },
+);
 interface Props {
   params: Promise<{ username: string }>;
-  searchParams: Promise<{ page: number | undefined; pageSize: number | undefined }>;
+  searchParams: Promise<{
+    page: number | undefined;
+    pageSize: number | undefined;
+  }>;
 }
 export default async function KnowledgesPage(props: Props) {
   const searchParams = await props.searchParams;
   const params = await props.params;
-  const knowledges = await retrieveKnowledges(params.username, searchParams.page, searchParams.pageSize);
+  const knowledges = await retrieveKnowledges(
+    params.username,
+    searchParams.page,
+    searchParams.pageSize,
+  );
   return (
     <div className="min-h-screen dark:bg-black">
       <h1> Collections</h1>

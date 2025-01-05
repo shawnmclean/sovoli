@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { auth } from "@sovoli/auth";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { LibraryBigIcon } from "lucide-react";
 
 import type { GetKnowledges } from "~/services/knowledge/getKnowledges";
+import { auth } from "~/core/auth";
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 import { ShelfActions } from "./ShelfActions";
 

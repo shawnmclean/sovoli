@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn } from "@sovoli/auth";
+import { signIn } from "~/core/auth";
 
 export async function signInAction() {
   await signIn();

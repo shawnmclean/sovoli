@@ -1,5 +1,4 @@
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
-import { auth } from "@sovoli/auth";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Badge } from "@sovoli/ui/components/badge";
@@ -9,6 +8,7 @@ import { Link } from "@sovoli/ui/components/link";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
 import { ChevronLeftIcon } from "lucide-react";
 
+import { auth } from "~/core/auth";
 import { Connections } from "./Connections";
 import { Gallery } from "./Gallery";
 import { HeaderActions } from "./HeaderActions";

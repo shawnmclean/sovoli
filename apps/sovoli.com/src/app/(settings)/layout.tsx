@@ -1,7 +1,6 @@
-import { auth } from "@sovoli/auth";
-
 import { Navbar } from "~/components/navbar/Navbar";
 import { NavbarAppLinks } from "~/components/navbar/NavbarAppLinks";
+import { auth } from "~/core/auth";
 import { Sidebar } from "./components/SideBar";
 
 interface Props {

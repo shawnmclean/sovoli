@@ -1,6 +1,6 @@
-import { auth } from "@sovoli/auth";
 import { and, db, eq, inArray, isNotNull, ne, schema } from "@sovoli/db";
 
+import { auth } from "~/core/auth";
 import { ShelfImportForm } from "./components/ShelfImportForm";
 
 export default async function ImportPage() {
