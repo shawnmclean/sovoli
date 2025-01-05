@@ -60,8 +60,8 @@ importers:
         specifier: 2.2.6
         version: 2.2.6(openapi3-ts@4.4.0)(zod@3.24.1)
       '@auth/core':
-        specifier: 0.37.4
-        version: 0.37.4
+        specifier: 0.37.2
+        version: 0.37.2
       '@auth/drizzle-adapter':
         specifier: 1.7.4
         version: 1.7.4
