@@ -103,6 +103,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
           input: "font-bold text-3xl",
         }}
         value={formTitle}
+        onChange={(e) => setFormTitle(e.target.value)}
       />
       <div className="grid w-full max-w-7xl grid-cols-1 gap-6 py-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
@@ -112,6 +113,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
             fullWidth
             variant="bordered"
             value={formDescription}
+            onChange={(e) => setFormDescription(e.target.value)}
           />
           <Editor name="content" defaultValue={content} ref={editorRef} />
           <div className="flex w-full justify-between gap-2">
