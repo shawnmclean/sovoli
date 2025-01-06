@@ -19,16 +19,21 @@ import { ChevronDownIcon, PlusIcon, Trash2Icon } from "lucide-react";
 import type { State } from "../actions/newNoteAction";
 import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
 import { Editor } from "~/components/Editor/Editor";
-import { newNoteAction } from "../actions/newNoteAction";
 import { AssetManager } from "./AssetManager";
 
 export interface NoteFormProps {
   title?: string;
   description?: string;
   content?: string;
+  action: (state: State, formData: FormData) => Promise<State>;
 }
 
-export const NoteForm = ({ title, description, content }: NoteFormProps) => {
+export const NoteForm = ({
+  title,
+  description,
+  content,
+  action,
+}: NoteFormProps) => {
   const [formTitle, setFormTitle] = useState<string>(title ?? "");
   const [formDescription, setFormDescription] = useState<string>(
     description ?? "",
@@ -36,7 +41,7 @@ export const NoteForm = ({ title, description, content }: NoteFormProps) => {
 
   const editorRef = useRef<EditorType | null>(null);
   const [state, formAction, pending] = useActionState<State, FormData>(
-    newNoteAction,
+    action,
     null,
   );
   const [aiLoading, setAiLoading] = useState<boolean>(false);
