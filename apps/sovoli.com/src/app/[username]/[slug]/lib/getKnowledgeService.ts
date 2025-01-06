@@ -72,7 +72,7 @@ export async function getKnowledgeBySlug({
     where: and(usernameFilter, privacyFilter, slugFilter),
   })) as SelectKnowledgeSchema | undefined;
 
-  if (!knowledgeResult) throw Error("Knowledge not found");
+  if (!knowledgeResult) return null;
 
   const mediaAssetsSubquery = db.$with("media_assets_subquery").as(
     db

@@ -1,8 +1,9 @@
-import { permanentRedirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 
 import { Navbar } from "~/components/navbar/Navbar";
 import { KnowledgeNavbarAppLinks } from "./components/KnowledgeNavbarAppLinks";
 import { KnowledgeSubmenu } from "./components/KnowledgeSubmenu";
+import { KnowledgeProvider } from "./context/KnowledgeContext";
 import { preload, retreiveKnowledgeBySlug } from "./lib/getKnowledge";
 
 interface Props {
@@ -22,26 +23,34 @@ export default async function Layout({ params, children }: Props) {
     searchParams: { page: 1, pageSize: 30 },
   });
 
-  const { knowledge } = await retreiveKnowledgeBySlug({
+  const response = await retreiveKnowledgeBySlug({
     params: { slug, username },
     searchParams: { page: 1, pageSize: 30 },
   });
 
+  if (!response) return notFound();
+
+  if (response.knowledge.id === slug && response.knowledge.slug) {
+    return permanentRedirect(`/${username}/${response.knowledge.slug}`);
+  }
+
   return (
-    <div>
-      <Navbar AppLinks={<KnowledgeNavbarAppLinks knowledge={knowledge} />} />
+    <KnowledgeProvider knowledge={response.knowledge}>
+      <Navbar
+        AppLinks={<KnowledgeNavbarAppLinks knowledge={response.knowledge} />}
+      />
 
       <main>
         <div className="mb-4 flex w-full flex-col">
           <KnowledgeSubmenu
-            username={knowledge.User?.username ?? ""}
-            slug={knowledge.slug ?? ""}
+            username={response.knowledge.User?.username ?? ""}
+            slug={response.knowledge.slug ?? ""}
           />
         </div>
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
           <div className="w-full">{children}</div>
         </div>
       </main>
-    </div>
+    </KnowledgeProvider>
   );
 }
