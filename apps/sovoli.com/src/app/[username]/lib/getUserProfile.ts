@@ -12,7 +12,7 @@ export const preload = (username: string) => {
 export const getUserProfile = cache(async (username: string) => {
   const getUserProfileByUsername = new GetUserProfileByUsername();
 
-  const user = await getUserProfileByUsername.call({
+  const { user } = await getUserProfileByUsername.call({
     username,
   });
 

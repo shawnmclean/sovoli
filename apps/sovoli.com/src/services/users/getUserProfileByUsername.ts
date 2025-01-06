@@ -13,9 +13,13 @@ export interface GetUserProfileByUsernameOptions {
   username: string;
 }
 
+export interface GetUserProfileByUsernameResult {
+  user?: UserProfile | null;
+}
+
 export class GetUserProfileByUsername extends BaseService<
   GetUserProfileByUsernameOptions,
-  UserProfile | null
+  GetUserProfileByUsernameResult
 > {
   constructor() {
     super("GetUserProfileByUsername");
@@ -33,13 +37,18 @@ export class GetUserProfileByUsername extends BaseService<
     });
 
     // eslint-disable-next-line @typescript-eslint/prefer-optional-chain -- i want to make this check explicit, username will always be defined, this is to please the type checker
-    if (!user || !user.username) return null;
+    if (!user || !user.username)
+      return {
+        user: null,
+      };
 
     return {
-      id: user.id,
-      username: user.username,
-      name: user.name,
-      image: user.image,
+      user: {
+        id: user.id,
+        username: user.username,
+        name: user.name,
+        image: user.image,
+      },
     };
   }
 }
