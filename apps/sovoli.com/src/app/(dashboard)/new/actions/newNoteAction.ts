@@ -56,17 +56,19 @@ export async function newNoteAction(
     };
   }
 
-  await db
-    .update(schema.MediaAsset)
-    .set({
-      knowledgeId: createdKnowledge.id,
-    })
-    .where(
-      inArray(
-        schema.MediaAsset.id,
-        result.data.assets.map((asset) => asset.id),
-      ),
-    );
+  if (result.data.assets) {
+    await db
+      .update(schema.MediaAsset)
+      .set({
+        knowledgeId: createdKnowledge.id,
+      })
+      .where(
+        inArray(
+          schema.MediaAsset.id,
+          result.data.assets.map((asset) => asset.id),
+        ),
+      );
+  }
 
   redirect(`/${session.user?.username}/${createdKnowledge.slug}`);
 }
