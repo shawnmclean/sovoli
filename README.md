@@ -1,32 +1,13 @@
-# Turborepo react-native starter
+# Sovoli
 
-This is an official starter Turborepo.
+WIP: nothing here to see, pls leave.
 
-## Using this example
+### Development
 
-Run the following command:
+#### WebApp
 
-```sh
-npx create-turbo@latest -e with-react-native-web
-```
+Framework: [Next.js](https://nextjs.org/)
 
-## What's inside?
+Some links:
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `native`: a [react-native](https://reactnative.dev/) app built with [expo](https://docs.expo.dev/)
-- `web`: a [Next.js](https://nextjs.org/) app built with [react-native-web](https://necolas.github.io/react-native-web/)
-- `@repo/ui`: a stub [react-native](https://reactnative.dev/) component library shared by both `web` and `native` applications
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [Expo](https://docs.expo.dev/) for native development
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [Prettier](https://prettier.io) for code formatting
+- Data fetching: use the cache with server-only preload pattern: https://nextjs.org/docs/app/building-your-application/data-fetching/fetching#using-react-cache-and-server-only-with-the-preload-pattern
