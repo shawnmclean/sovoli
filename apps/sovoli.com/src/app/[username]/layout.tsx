@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { UserProfileProvider } from "./context/UserProfileContext";
@@ -8,10 +9,15 @@ interface Props {
   params: Promise<{ username: string }>;
 }
 
-export async function generateMetadata({ params }: Props) {
-  const { username } = await params;
+const retreiveUserProfile = async (username: string) => {
   const user = await getUserProfile(username);
-  if (!user) return {};
+  if (!user) return notFound();
+  return user;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { username } = await params;
+  const user = await retreiveUserProfile(username);
 
   const defaultTitle = user.name
     ? `${user.username} (${user.name})`
@@ -27,10 +33,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function Layout({ children, params }: Props) {
   const { username } = await params;
   preload(username);
-
-  const user = await getUserProfile(username);
-
-  if (!user) return notFound();
+  const user = await retreiveUserProfile(username);
 
   return (
     <UserProfileProvider userProfile={user}>{children}</UserProfileProvider>

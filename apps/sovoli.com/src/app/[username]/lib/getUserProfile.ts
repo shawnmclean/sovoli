@@ -1,5 +1,6 @@
 import { cache } from "react";
 
+// preload pattern: https://nextjs.org/docs/app/building-your-application/data-fetching/fetching#using-react-cache-and-server-only-with-the-preload-pattern
 import "server-only";
 
 import { GetUserProfileByUsername } from "~/services/users/getUserProfileByUsername";
