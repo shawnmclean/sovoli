@@ -1,15 +1,49 @@
+import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 
 import { Navbar } from "~/components/navbar/Navbar";
+import { env } from "~/env";
+import { config } from "~/utils/config";
 import { KnowledgeNavbarAppLinks } from "./components/KnowledgeNavbarAppLinks";
 import { KnowledgeSubmenu } from "./components/KnowledgeSubmenu";
 import { KnowledgeProvider } from "./context/KnowledgeContext";
-import { preload, retreiveKnowledgeBySlug } from "./lib/getKnowledge";
+import { getKnowledgeBySlugOrId, preload } from "./lib/getKnowledgeBySlugOrId";
 
 interface Props {
   children: React.ReactNode;
   params: Promise<{ username: string; slug: string }>;
 }
+const retreiveKnowledgeBySlug = async (username: string, slugOrId: string) => {
+  const response = await getKnowledgeBySlugOrId(username, slugOrId);
+  if (!response?.knowledge) return notFound();
+
+  if (response.knowledge.id === slugOrId && response.knowledge.slug) {
+    return permanentRedirect(`/${username}/${response.knowledge.slug}`);
+  }
+  return response.knowledge;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { username, slug } = await params;
+  const knowledge = await retreiveKnowledgeBySlug(username, slug);
+  // Get the image path from the MediaAssets
+  const image = knowledge.MediaAssets?.[0];
+
+  // Construct the URL for the OpenGraph image using the Supabase public storage URL
+  const imageUrl = image
+    ? `${env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${image.bucket}/${image.path}`
+    : undefined;
+  return {
+    title: `${knowledge.title} - ${knowledge.User?.name}`,
+    openGraph: {
+      title: `${knowledge.title} - ${knowledge.User?.name}`,
+      url: config.url + "/" + username + "/" + knowledge.slug,
+      siteName: config.siteName,
+      images: imageUrl ? [imageUrl] : [],
+    },
+  };
+}
+
 export default async function Layout({ params, children }: Props) {
   const { username, slug } = await params;
 
@@ -18,33 +52,19 @@ export default async function Layout({ params, children }: Props) {
     return permanentRedirect("/shawn/" + slug);
   }
 
-  preload({
-    params: { slug, username },
-    searchParams: { page: 1, pageSize: 30 },
-  });
+  preload(username, slug);
 
-  const response = await retreiveKnowledgeBySlug({
-    params: { slug, username },
-    searchParams: { page: 1, pageSize: 30 },
-  });
-
-  if (!response) return notFound();
-
-  if (response.knowledge.id === slug && response.knowledge.slug) {
-    return permanentRedirect(`/${username}/${response.knowledge.slug}`);
-  }
+  const knowledge = await retreiveKnowledgeBySlug(username, slug);
 
   return (
-    <KnowledgeProvider knowledge={response.knowledge}>
-      <Navbar
-        AppLinks={<KnowledgeNavbarAppLinks knowledge={response.knowledge} />}
-      />
+    <KnowledgeProvider knowledge={knowledge}>
+      <Navbar AppLinks={<KnowledgeNavbarAppLinks knowledge={knowledge} />} />
 
       <main>
         <div className="mb-4 flex w-full flex-col">
           <KnowledgeSubmenu
-            username={response.knowledge.User?.username ?? ""}
-            slug={response.knowledge.slug ?? ""}
+            username={knowledge.User?.username ?? ""}
+            slug={knowledge.slug ?? ""}
           />
         </div>
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">

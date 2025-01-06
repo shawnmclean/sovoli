@@ -1,4 +1,5 @@
-import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
+"use client";
+
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Badge } from "@sovoli/ui/components/badge";
@@ -7,20 +8,19 @@ import { Chip } from "@sovoli/ui/components/chip";
 import { Link } from "@sovoli/ui/components/link";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
 import { ChevronLeftIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
 
-import { auth } from "~/core/auth";
+import { useKnowledge } from "../context/KnowledgeContext";
 import { Connections } from "./Connections";
 import { Gallery } from "./Gallery";
 import { HeaderActions } from "./HeaderActions";
 import { KnowledgeContent } from "./KnowledgeContent";
 import { MainReference } from "./MainReference";
 
-interface Props {
-  knowledge: SelectKnowledgeSchema;
-}
+export function KnowledgeDetails() {
+  const { data: session } = useSession();
+  const knowledge = useKnowledge();
 
-export async function KnowledgeDetails({ knowledge }: Props) {
-  const session = await auth();
   const images = knowledge.MediaAssets?.map((mediaAsset) => {
     if (mediaAsset.host === MediaAssetHost.Supabase && mediaAsset.path) {
       return {
