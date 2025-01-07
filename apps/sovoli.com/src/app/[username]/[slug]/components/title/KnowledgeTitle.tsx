@@ -19,7 +19,7 @@ export function KnowledgeTitle() {
       {isEditing ? (
         <TitleUpdateForm
           id={knowledge.id}
-          title={knowledge.title ?? ""}
+          title={title}
           onCancel={() => setIsEditing(false)}
           onSubmitted={(newTitle) => {
             setTitle(newTitle);
