@@ -10,7 +10,7 @@ export function KnowledgeTitle() {
   const { data: session } = useSession();
 
   return (
-    <div className="flex w-full max-w-7xl items-center justify-between pb-6">
+    <div className="flex w-full max-w-7xl items-center justify-between border-b border-divider p-6">
       <div className="flex items-center gap-2">
         {knowledge.type === "shelf" && (
           <Link

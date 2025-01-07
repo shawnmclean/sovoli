@@ -48,6 +48,7 @@ export function KnowledgeSubmenu({ username, slug }: KnowledgeSubmenuProps) {
         cursor: "w-full",
         tab: "max-w-fit px-0 h-12",
       }}
+      className="w-full"
       selectedKey={getActiveTab()}
     >
       {tabs.map((tab) => (

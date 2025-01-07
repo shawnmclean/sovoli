@@ -23,16 +23,12 @@ export function KnowledgeDetails() {
 
   return (
     <div className="flex w-full flex-col">
-      <div className="my-4">
-        <KnowledgeGallery />
-      </div>
-      <div className="flex justify-center border-b border-divider">
-        <KnowledgeTitle />
-      </div>
+      <KnowledgeGallery />
+      <KnowledgeTitle />
 
       {/* Main Content with 2-Column Layout */}
-      <div className="flex justify-center">
-        <div className="grid w-full max-w-7xl grid-cols-1 gap-6 py-6 lg:grid-cols-3">
+      <div className="flex justify-center p-6">
+        <div className="gap-6a grid w-full max-w-7xl grid-cols-1 lg:grid-cols-3">
           {/* Left Column: Main Content */}
           <div className="space-y-6 lg:col-span-2">
             {/* Description Section */}

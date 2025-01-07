@@ -61,14 +61,12 @@ export default async function Layout({ params, children }: Props) {
       <Navbar AppLinks={<KnowledgeNavbarAppLinks knowledge={knowledge} />} />
 
       <main>
-        <div className="mb-4 flex w-full flex-col">
-          <KnowledgeSubmenu
-            username={knowledge.User?.username ?? ""}
-            slug={knowledge.slug ?? ""}
-          />
-        </div>
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
-          <div className="w-full">{children}</div>
+        <KnowledgeSubmenu
+          username={knowledge.User?.username ?? ""}
+          slug={knowledge.slug ?? ""}
+        />
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 md:flex-row">
+          {children}
         </div>
       </main>
     </KnowledgeProvider>
