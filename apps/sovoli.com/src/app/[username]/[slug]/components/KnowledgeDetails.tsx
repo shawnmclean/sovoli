@@ -28,7 +28,7 @@ export function KnowledgeDetails() {
 
       {/* Main Content with 2-Column Layout */}
       <div className="flex justify-center p-6">
-        <div className="gap-6a grid w-full max-w-7xl grid-cols-1 lg:grid-cols-3">
+        <div className="grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Left Column: Main Content */}
           <div className="space-y-6 lg:col-span-2">
             {/* Description Section */}
