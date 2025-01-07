@@ -2,6 +2,8 @@
 
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import type { JSONContent } from "@tiptap/core";
+import { Button } from "@sovoli/ui/components/button";
+import { Edit2Icon, EyeIcon, MessageSquareIcon } from "lucide-react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -12,14 +14,44 @@ export function KnowledgeContent() {
   const knowledge = useKnowledge();
 
   return (
-    <>
-      <section className="w-full">
+    <div className="w-full">
+      <div className="mb-6 flex w-full items-center justify-between border-b border-divider pb-4">
+        <div className="flex items-center gap-1">
+          <Button
+            variant="light"
+            size="sm"
+            className="text-default-400"
+            startContent={<MessageSquareIcon className="h-5 w-5" />}
+            title="Lies, nobody reads this."
+          >
+            4
+          </Button>
+          <Button
+            variant="light"
+            size="sm"
+            className="text-default-400"
+            startContent={<EyeIcon className="h-5 w-5" />}
+            title="I wish, will replace with real number when I figure out how to log views LOL."
+          >
+            1.1k
+          </Button>
+        </div>
+        <Button
+          isIconOnly
+          variant="light"
+          size="sm"
+          className="text-default-400"
+        >
+          <Edit2Icon className="h-5 w-5" />
+        </Button>
+      </div>
+      <section>
         <p className="text-gray-400">{knowledge.description}</p>
       </section>
-      <section className="w-full">
+      <section>
         <Content knowledge={knowledge} />
       </section>
-    </>
+    </div>
   );
 }
 
