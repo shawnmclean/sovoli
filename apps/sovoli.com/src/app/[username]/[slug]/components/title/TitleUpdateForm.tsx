@@ -22,16 +22,14 @@ export function TitleUpdateForm({
   const [state, formAction, pending] = useActionState<State, FormData>(
     async (_, formData) => {
       try {
-        // Call the update action
         const result = await updateTitleAction(null, formData);
 
-        // If the action succeeds, trigger the onUpdate callback
         if (result?.status === "success") {
           const updatedTitle = formData.get("title") as string;
           onSubmitted(updatedTitle);
         }
 
-        return result; // Return the result for further state handling
+        return result;
       } catch (error) {
         console.error("Error during form action:", error);
         return { status: "error", message: "Failed to update title." };

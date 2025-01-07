@@ -1,14 +1,29 @@
+"use client";
+
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import type { JSONContent } from "@tiptap/core";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { generateHTML } from "~/components/Editor/generateHTML";
+import { useKnowledge } from "../../context/KnowledgeContext";
 
-export interface Props {
-  knowledge: SelectKnowledgeSchema;
+export function KnowledgeContent() {
+  const knowledge = useKnowledge();
+
+  return (
+    <>
+      <section className="w-full">
+        <p className="text-gray-400">{knowledge.description}</p>
+      </section>
+      <section className="w-full">
+        <Content knowledge={knowledge} />
+      </section>
+    </>
+  );
 }
-export function KnowledgeContent({ knowledge }: Props) {
+
+const Content = ({ knowledge }: { knowledge: SelectKnowledgeSchema }) => {
   if (knowledge.content?.startsWith("{")) {
     const contentHTML = getContent(knowledge);
 
@@ -25,7 +40,7 @@ export function KnowledgeContent({ knowledge }: Props) {
       </article>
     );
   }
-}
+};
 
 const getContent = (knowledge: SelectKnowledgeSchema) => {
   if (!knowledge.content) return "Nothing to see here";

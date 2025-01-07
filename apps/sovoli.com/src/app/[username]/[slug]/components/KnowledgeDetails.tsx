@@ -9,7 +9,7 @@ import { TimeAgo } from "@sovoli/ui/components/time-ago";
 
 import { useKnowledge } from "../context/KnowledgeContext";
 import { Connections } from "./Connections";
-import { KnowledgeContent } from "./KnowledgeContent";
+import { KnowledgeContent } from "./content/KnowledgeContent";
 import { KnowledgeGallery } from "./KnowledgeGallry";
 import { MainReference } from "./MainReference";
 import { KnowledgeTitle } from "./title/KnowledgeTitle";
@@ -31,20 +31,7 @@ export function KnowledgeDetails() {
         <div className="grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Left Column: Main Content */}
           <div className="space-y-6 lg:col-span-2">
-            {/* Description Section */}
-            <section className="w-full">
-              <p className="text-gray-400">{knowledge.description}</p>
-            </section>
-
-            {/* Content Section */}
-            <section className="w-full">
-              {mainReference && (
-                <div className="my-4">
-                  <MainReference knowledgeConnection={mainReference} />
-                </div>
-              )}
-              <KnowledgeContent knowledge={knowledge} />
-            </section>
+            <KnowledgeContent />
             <Connections knowledge={knowledge} />
           </div>
 
@@ -100,6 +87,11 @@ export function KnowledgeDetails() {
             <div className="space-y-4 border-t border-divider pt-4">
               {/* Placeholder for future info */}
               <p className="text-gray-400">Type: {knowledge.type}</p>
+              {mainReference && (
+                <div className="my-4">
+                  <MainReference knowledgeConnection={mainReference} />
+                </div>
+              )}
             </div>
           </div>
         </div>
