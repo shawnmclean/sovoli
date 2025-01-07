@@ -9,6 +9,7 @@ import { TitleUpdateForm } from "./TitleUpdateForm";
 
 export function KnowledgeTitle() {
   const knowledge = useKnowledge();
+  const [title, setTitle] = useState(knowledge.title ?? "");
   const { data: session } = useSession();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -20,10 +21,14 @@ export function KnowledgeTitle() {
           id={knowledge.id}
           title={knowledge.title ?? ""}
           onCancel={() => setIsEditing(false)}
+          onSubmitted={(newTitle) => {
+            setTitle(newTitle);
+            setIsEditing(false);
+          }}
         />
       ) : (
         <div className="flex w-full flex-row justify-between">
-          <h1 className="text-2xl font-bold">{knowledge.title}</h1>
+          <h1 className="text-2xl font-bold">{title}</h1>
 
           {session?.userId === knowledge.User?.id && (
             <Button

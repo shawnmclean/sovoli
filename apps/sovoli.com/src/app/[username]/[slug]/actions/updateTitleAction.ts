@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { unauthorized } from "next/navigation";
 import { withZod } from "@rvf/zod";
 import { db, eq, schema } from "@sovoli/db";
@@ -41,7 +42,7 @@ export async function updateTitleAction(
     })
     .where(eq(schema.Knowledge.id, result.data.id));
 
-  return {
-    status: "success",
-  };
+  revalidatePath("[username]/[slug]", "page");
+
+  return { status: "success" };
 }
