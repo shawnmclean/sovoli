@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { MediaAssetHost } from "@sovoli/db/schema";
 import {
   Carousel,
   CarouselContent,
@@ -10,13 +11,22 @@ import {
 } from "@sovoli/ui/components/carousel";
 
 import supabaseLoader from "~/loaders/supabaseImageLoader";
+import { useKnowledge } from "../context/KnowledgeContext";
 
-export interface GalleryProps {
-  images: { src: string; alt: string }[];
-}
+export function KnowledgeGallery() {
+  const knowledge = useKnowledge();
 
-export function Gallery({ images }: GalleryProps) {
-  if (images.length < 1) return;
+  const images = knowledge.MediaAssets?.map((mediaAsset) => {
+    if (mediaAsset.host === MediaAssetHost.Supabase && mediaAsset.path) {
+      return {
+        src: `${mediaAsset.bucket}/${mediaAsset.path}`,
+        alt: mediaAsset.name ?? `${knowledge.title} image`,
+      };
+    }
+    return null;
+  }).filter((image) => image !== null);
+
+  if (!images || images.length < 1) return;
 
   if (images.length === 1 && images[0]) {
     return (

@@ -1,35 +1,21 @@
 "use client";
 
-import { MediaAssetHost } from "@sovoli/db/schema";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Chip } from "@sovoli/ui/components/chip";
 // import { Button } from "../ui/button";
 import { Link } from "@sovoli/ui/components/link";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
-import { ChevronLeftIcon } from "lucide-react";
-import { useSession } from "next-auth/react";
 
 import { useKnowledge } from "../context/KnowledgeContext";
 import { Connections } from "./Connections";
-import { Gallery } from "./Gallery";
-import { HeaderActions } from "./HeaderActions";
 import { KnowledgeContent } from "./KnowledgeContent";
+import { KnowledgeGallery } from "./KnowledgeGallry";
 import { MainReference } from "./MainReference";
+import { KnowledgeTitle } from "./title/KnowledgeTitle";
 
 export function KnowledgeDetails() {
-  const { data: session } = useSession();
   const knowledge = useKnowledge();
-
-  const images = knowledge.MediaAssets?.map((mediaAsset) => {
-    if (mediaAsset.host === MediaAssetHost.Supabase && mediaAsset.path) {
-      return {
-        src: `${mediaAsset.bucket}/${mediaAsset.path}`,
-        alt: mediaAsset.name ?? `${knowledge.title} image`,
-      };
-    }
-    return null;
-  }).filter((image) => image !== null);
 
   const mainReference = knowledge.SourceConnections?.find(
     (r) => r.type === "main_reference",
@@ -37,31 +23,11 @@ export function KnowledgeDetails() {
 
   return (
     <div className="flex w-full flex-col">
-      {images && images.length > 0 && (
-        <div className="my-4">
-          <Gallery images={images} />
-        </div>
-      )}
+      <div className="my-4">
+        <KnowledgeGallery />
+      </div>
       <div className="flex justify-center border-b border-divider">
-        <div className="flex w-full max-w-7xl items-center justify-between pb-6">
-          <div className="flex items-center gap-2">
-            {knowledge.type === "shelf" && (
-              <Link
-                href={`/${knowledge.User?.username}/shelves`}
-                title="Back to shelves"
-                className="hover:text-primary-dark flex items-center text-primary"
-              >
-                <ChevronLeftIcon className="h-6 w-6" />
-              </Link>
-            )}
-            <h1 className="text-2xl font-bold">{knowledge.title}</h1>
-          </div>
-          <div className="flex gap-4">
-            {session?.userId === knowledge.User?.id && (
-              <HeaderActions knowledge={knowledge} session={session} />
-            )}
-          </div>
-        </div>
+        <KnowledgeTitle />
       </div>
 
       {/* Main Content with 2-Column Layout */}
