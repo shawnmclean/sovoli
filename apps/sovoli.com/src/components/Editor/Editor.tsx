@@ -54,14 +54,17 @@ export const Editor = ({ name, defaultValue, ref, ...rest }: EditorProps) => {
       ref.current = editor;
     }
   }, [editor, ref]);
+
   if (!editor) {
     return null;
   }
 
   return (
-    <div className="relative h-[500px] overflow-auto w-full flex-row items-center gap-3 rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
+    <div className="relative h-[500px] w-full overflow-auto flex flex-col items-start gap-3 rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
       <EditorMenu editor={editor} />
-      <EditorContent editor={editor} />
+      <div className="flex-1 w-full overflow-auto p-2">
+        <EditorContent editor={editor} />
+      </div>
       <input type="hidden" name={name} value={editorValue} />
     </div>
   );
