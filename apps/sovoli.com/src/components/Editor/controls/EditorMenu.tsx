@@ -13,7 +13,7 @@ export interface EditorMenuProps {
 
 export const EditorMenu = ({ editor }: EditorMenuProps) => {
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex w-full flex-wrap gap-1 border-b border-default-100 p-1 shadow-md">
+    <div className="flex w-full flex-wrap gap-1 border-b border-default-100 p-1 shadow-md">
       <ButtonGroup variant="light" size="sm">
         <MenuButtonUndo editor={editor} />
         <MenuButtonRedo editor={editor} />
