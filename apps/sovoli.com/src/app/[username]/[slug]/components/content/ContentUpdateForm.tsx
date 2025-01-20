@@ -5,6 +5,7 @@ import { Input } from "@sovoli/ui/components/input";
 
 import type { State } from "../../actions/updateTitleAction";
 import { Editor } from "~/components/Editor/Editor";
+import { updateContentAction } from "../../actions/updateContentAction";
 
 export interface ContentUpdateFormProps {
   id: string;
@@ -22,12 +23,20 @@ export function ContentUpdateForm({
   onSubmitted,
 }: ContentUpdateFormProps) {
   const [state, formAction, pending] = useActionState<State, FormData>(
-    (_, formData) => {
-      onSubmitted(
-        formData.get("description") as string,
-        formData.get("content") as string,
-      );
-      return { status: "success" };
+    async (_, formData) => {
+      try {
+        const result = await updateContentAction(null, formData);
+
+        if (result?.status === "success") {
+          const updatedDescription = formData.get("description") as string
+          const updatedContent = formData.get("content") as string;
+          onSubmitted(updatedDescription, updatedContent)
+        }
+        return result;
+      } catch (error) {
+        return { status: "error", message: "Failed" }
+      }
+
     },
     null,
   );

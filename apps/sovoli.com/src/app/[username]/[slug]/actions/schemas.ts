@@ -8,3 +8,11 @@ export const updateTitleFormSchema = z.object({
   title: z.string().optional(),
 });
 export type UpdateTitleFormSchema = z.infer<typeof updateTitleFormSchema>;
+
+export const updateContentSchema = z.object({
+  id: z.string(),
+  description: z.string(),
+  content: z.string()
+})
+
+export type UpdateContentFormSchema = z.infer<typeof updateContentSchema>;
