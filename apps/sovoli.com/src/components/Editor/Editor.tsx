@@ -59,7 +59,7 @@ export const Editor = ({ name, defaultValue, ref, ...rest }: EditorProps) => {
   }
 
   return (
-    <div className="w-full flex-row items-center gap-3 rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
+    <div className="relative h-[500px] overflow-auto w-full flex-row items-center gap-3 rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
       <EditorMenu editor={editor} />
       <EditorContent editor={editor} />
       <input type="hidden" name={name} value={editorValue} />
