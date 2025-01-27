@@ -58,7 +58,6 @@ export const NoteForm = ({
     if (!response.ok) {
       throw new Error("Failed to analyze image");
     }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const responseBody = (await response.json()) as {
       page: number;
       chapter: string;
