@@ -1,5 +1,7 @@
 import Link from "next/link";
+import NextLink from "next/link";
 import { Badge } from "@sovoli/ui/components/badge";
+import { Button } from "@sovoli/ui/components/button";
 import {
   NavbarContent,
   NavbarItem,
@@ -9,7 +11,6 @@ import {
 import { auth } from "~/core/auth";
 import { NavbarRightProfile } from "./NavbarRightProfile";
 import { NewDropdown } from "./NewDropdown";
-import { SignInButton } from "./SignInButton";
 
 export interface NavbarProps {
   AppLinks?: React.ReactNode;
@@ -50,7 +51,9 @@ export const Navbar = async ({ AppLinks }: NavbarProps) => {
       ) : (
         <NavbarContent justify="end">
           <NavbarItem>
-            <SignInButton />
+            <Button color="primary" href="/api/auth/signin" as={NextLink}>
+              Sign In
+            </Button>
           </NavbarItem>
         </NavbarContent>
       )}

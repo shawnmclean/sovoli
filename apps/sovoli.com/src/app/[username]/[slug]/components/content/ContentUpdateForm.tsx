@@ -28,15 +28,14 @@ export function ContentUpdateForm({
         const result = await updateContentAction(null, formData);
 
         if (result?.status === "success") {
-          const updatedDescription = formData.get("description") as string
+          const updatedDescription = formData.get("description") as string;
           const updatedContent = formData.get("content") as string;
-          onSubmitted(updatedDescription, updatedContent)
+          onSubmitted(updatedDescription, updatedContent);
         }
         return result;
-      } catch (error) {
-        return { status: "error", message: "Failed" }
+      } catch {
+        return { status: "error", message: "Failed" };
       }
-
     },
     null,
   );

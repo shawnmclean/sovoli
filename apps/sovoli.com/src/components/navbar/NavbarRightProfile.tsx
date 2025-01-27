@@ -10,8 +10,6 @@ import {
   DropdownTrigger,
 } from "@sovoli/ui/components/dropdown";
 
-import { SignOutButton } from "./SignOutButton";
-
 export interface NavbarRightProfileProps {
   session: Session;
 }
@@ -43,8 +41,13 @@ export const NavbarRightProfile = ({ session }: NavbarRightProfileProps) => {
         <DropdownItem key="settings" href="/settings" as={NextLink}>
           My Settings
         </DropdownItem>
-        <DropdownItem key="logout" color="danger">
-          <SignOutButton />
+        <DropdownItem
+          color="danger"
+          key="signout"
+          href="/signout"
+          as={NextLink}
+        >
+          Sign out
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

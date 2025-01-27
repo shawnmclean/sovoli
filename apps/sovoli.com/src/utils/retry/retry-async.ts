@@ -66,7 +66,6 @@ export function retryAsync<T>(
       e = err;
       if (typeof error === "function") error(s());
       if ((typeof retry === "function" ? (retry(s()) ? 1 : 0) : retry--) <= 0) {
-        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
         return Promise.reject(e);
       }
       const d = typeof delay === "function" ? delay(s()) : delay;
