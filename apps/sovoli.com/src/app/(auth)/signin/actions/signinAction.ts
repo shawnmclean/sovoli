@@ -19,7 +19,6 @@ export async function signinAction(
   _prevState: State,
   formData: FormData,
 ): Promise<State> {
-  console.log("action called");
   const result = await validator.validate(formData);
 
   if (result.error) {
@@ -31,7 +30,6 @@ export async function signinAction(
   }
 
   try {
-    console.log("signing in", formData);
     return await signIn("resend", {
       redirectTo: result.data.callbackUrl,
       email: result.data.email,
