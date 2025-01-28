@@ -8,7 +8,7 @@ export const SignUpButton = () => {
   const variant = useFeatureFlagVariantKey("signup-clicks-conversions");
   return (
     <Button data-attr="signup" color="primary" href="/signin" as={NextLink}>
-      {variant === "subscribe" ? "Subscribe" : "Sign Up"}
+      {variant === "subscribe" ? "Subscribe" : "Sign In"}
     </Button>
   );
 };
