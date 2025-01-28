@@ -1,6 +1,4 @@
 import { redirect } from "next/navigation";
-import { Divider } from "@sovoli/ui/components/divider";
-import { Link } from "@sovoli/ui/components/link";
 
 import { auth } from "~/core/auth";
 import { SigninForm } from "./components/SigninForm";
