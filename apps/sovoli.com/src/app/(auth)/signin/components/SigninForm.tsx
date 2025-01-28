@@ -19,27 +19,31 @@ export const SigninForm = ({ callbackUrl }: SigninFormProps) => {
   );
 
   return (
-    <Form className="w-full" action={formAction}>
+    <Form
+      className="flex flex-col gap-3"
+      validationBehavior="native"
+      action={formAction}
+    >
       {callbackUrl && (
         <input type="hidden" name="callbackUrl" value={callbackUrl} />
       )}
       <Input
-        placeholder="Email"
+        isRequired
+        label="Email Address"
         name="email"
-        fullWidth
-        size="lg"
+        placeholder="Enter your email"
         type="email"
         variant="bordered"
-        classNames={{
-          input: "font-bold text-3xl",
-        }}
       />
+      <Button
+        className="w-full"
+        color="primary"
+        type="submit"
+        isLoading={pending}
+      >
+        Join
+      </Button>
 
-      <div className="flex gap-2">
-        <Button color="primary" type="submit" isLoading={pending}>
-          Create
-        </Button>
-      </div>
       {state?.status === "error" && (
         <div className="text-red-500">{state.message}</div>
       )}
