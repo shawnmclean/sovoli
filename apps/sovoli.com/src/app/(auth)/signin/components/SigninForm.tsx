@@ -23,6 +23,7 @@ export const SigninForm = ({ callbackUrl }: SigninFormProps) => {
       className="flex flex-col gap-3"
       validationBehavior="native"
       action={formAction}
+      data-attr="signin-submit"
     >
       {callbackUrl && (
         <input type="hidden" name="callbackUrl" value={callbackUrl} />
@@ -40,6 +41,7 @@ export const SigninForm = ({ callbackUrl }: SigninFormProps) => {
         color="primary"
         type="submit"
         isLoading={pending}
+        data-attr="signup"
       >
         Join
       </Button>
