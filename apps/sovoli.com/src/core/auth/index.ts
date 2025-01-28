@@ -6,6 +6,8 @@ import { db, schema } from "@sovoli/db";
 import NextAuth from "next-auth";
 import Resend from "next-auth/providers/resend";
 
+import { getPostHogClient } from "../posthog/posthog";
+
 const adapter = DrizzleAdapter(db, {
   usersTable: schema.User,
   accountsTable: schema.Account,
@@ -31,6 +33,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           ...session.user,
         },
       };
+    },
+  },
+  events: {
+    async createUser(message) {
+      const posthog = getPostHogClient();
+      posthog.capture({
+        distinctId: message.user.id ?? "",
+        event: "User Created",
+        properties: {
+          email: message.user.email,
+        },
+      });
+      await posthog.shutdown();
     },
   },
   session: {
