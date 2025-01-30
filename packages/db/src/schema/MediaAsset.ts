@@ -15,7 +15,7 @@ import { createEnumObject } from "../utils";
 import { Knowledge } from "./Knowledge";
 import { User } from "./User";
 
-const MediaAssetHosts = ["Supabase", "OpenAI"] as const;
+const MediaAssetHosts = ["Supabase", "OpenAI", "Cloudinary"] as const;
 export const MediaAssetHost = createEnumObject(MediaAssetHosts);
 
 export const mediaAssetHostEnum = pgEnum("media_asset_host", MediaAssetHosts);
