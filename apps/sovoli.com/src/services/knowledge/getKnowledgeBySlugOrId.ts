@@ -45,6 +45,9 @@ export class GetKnowledgeBySlugOrId extends BaseService<
           },
         },
         MediaAssets: true,
+        KnowledgeMediaAssets: {
+          with: { MediaAsset: true },
+        },
         Book: true,
       },
       where: and(usernameFilter, privacyFilter, slugFilter),

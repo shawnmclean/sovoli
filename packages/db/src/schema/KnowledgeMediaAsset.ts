@@ -1,3 +1,4 @@
+import type { InferSelectModel } from "drizzle-orm";
 import {
   integer,
   pgEnum,
@@ -8,6 +9,7 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
+import type { SelectMediaAssetSchema } from "./MediaAsset";
 import { createEnumObject } from "../utils";
 import { Knowledge } from "./Knowledge";
 import { MediaAsset } from "./MediaAsset";
@@ -48,3 +50,9 @@ export const KnowledgeMediaAsset = pgTable(
     pk: primaryKey({ columns: [table.knowledgeId, table.mediaAssetId] }),
   }),
 );
+
+export type KnowledgeMediaAsset = InferSelectModel<
+  typeof KnowledgeMediaAsset
+> & {
+  MediaAsset: SelectMediaAssetSchema;
+};

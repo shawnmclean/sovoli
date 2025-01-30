@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@sovoli/ui/components/carousel";
+import { CldImage } from "next-cloudinary";
 
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 import { useKnowledge } from "../context/KnowledgeContext";
@@ -16,31 +17,41 @@ import { useKnowledge } from "../context/KnowledgeContext";
 export function KnowledgeGallery() {
   const knowledge = useKnowledge();
 
-  const images = knowledge.MediaAssets?.map((mediaAsset) => {
-    if (mediaAsset.host === MediaAssetHost.Supabase && mediaAsset.path) {
-      return {
-        src: `${mediaAsset.bucket}/${mediaAsset.path}`,
-        alt: mediaAsset.name ?? `${knowledge.title} image`,
-      };
-    }
-    return null;
-  }).filter((image) => image !== null);
+  const coverAssets = knowledge.KnowledgeMediaAssets?.map(
+    (knowledgeMediaAsset) => {
+      if (knowledgeMediaAsset.placement === "cover") {
+        return knowledgeMediaAsset.MediaAsset;
+      }
 
-  if (!images || images.length < 1) return;
+      return null;
+    },
+  ).filter((image) => image !== null);
+
+  if (!coverAssets || coverAssets.length < 1) return;
 
   return (
     <Carousel className="overflow-hidden rounded-lg">
       <CarouselContent>
-        {images.map((image, i) => (
+        {coverAssets.map((image, i) => (
           <CarouselItem key={i} className="flex items-center justify-center">
             <div className="relative h-[500px] w-[100%]">
-              <Image
-                src={image.src}
-                alt={image.alt || "Image"}
-                className="object-contain"
-                fill
-                loader={supabaseLoader}
-              />
+              {image.host === MediaAssetHost.Supabase && image.path ? (
+                <Image
+                  src={`${image.bucket}/${image.path}`}
+                  alt={image.name ?? `${knowledge.title} image`}
+                  className="object-contain"
+                  fill
+                  loader={supabaseLoader}
+                />
+              ) : (
+                <CldImage
+                  src={image.path ?? ""}
+                  alt={image.name ?? `${knowledge.title} image`}
+                  className="object-contain"
+                  fill
+                  loader={supabaseLoader}
+                />
+              )}
             </div>
           </CarouselItem>
         ))}

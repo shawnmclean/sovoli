@@ -17,6 +17,7 @@ import { z } from "zod";
 import { createEnumObject } from "../utils";
 import { Book, SelectBookSchema } from "./Book";
 import { SelectKnowledgeConnectionSchema } from "./KnowledgeConnection";
+import { KnowledgeMediaAsset } from "./KnowledgeMediaAsset";
 import { SelectMediaAssetSchema } from "./MediaAsset";
 import { SelectUserSchema, User } from "./User";
 
@@ -102,6 +103,7 @@ export type SelectKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema> & {
   SourceConnections?: SelectKnowledgeConnectionSchema[] | null;
   TargetConnections?: SelectKnowledgeConnectionSchema[] | null;
   MediaAssets?: SelectMediaAssetSchema[] | null;
+  KnowledgeMediaAssets?: KnowledgeMediaAsset[] | null;
   Book?: SelectBookSchema | null;
 };
 
