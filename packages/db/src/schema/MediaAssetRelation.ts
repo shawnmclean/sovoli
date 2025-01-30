@@ -1,10 +1,11 @@
 import { relations } from "drizzle-orm";
 
 import { Knowledge } from "./Knowledge";
+import { KnowledgeMediaAsset } from "./KnowledgeMediaAsset";
 import { MediaAsset } from "./MediaAsset";
 import { User } from "./User";
 
-export const MediaAssetRelations = relations(MediaAsset, ({ one }) => ({
+export const MediaAssetRelations = relations(MediaAsset, ({ one, many }) => ({
   Knowledge: one(Knowledge, {
     fields: [MediaAsset.knowledgeId],
     references: [Knowledge.id],
@@ -13,4 +14,5 @@ export const MediaAssetRelations = relations(MediaAsset, ({ one }) => ({
     fields: [MediaAsset.uploadedUserId],
     references: [User.id],
   }),
+  KnowledgeMediaAssets: many(KnowledgeMediaAsset),
 }));
