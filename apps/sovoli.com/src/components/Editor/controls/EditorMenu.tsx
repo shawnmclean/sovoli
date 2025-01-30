@@ -3,6 +3,7 @@ import { ButtonGroup } from "@sovoli/ui/components/button";
 
 import { MenuButtonBlockquote } from "./MenuButtonBlockquote";
 import { MenuButtonBold } from "./MenuButtonBold";
+import { MenuButtonLink } from "./MenuButtonLink";
 import { MenuButtonRedo } from "./MenuButtonRedo";
 import { MenuButtonUndo } from "./MenuButtonUndo";
 import { MenuSelectHeading } from "./MenuSelectHeading";
@@ -24,6 +25,9 @@ export const EditorMenu = ({ editor }: EditorMenuProps) => {
       </ButtonGroup>
       <ButtonGroup variant="light" size="sm">
         <MenuButtonBlockquote editor={editor} />
+      </ButtonGroup>
+      <ButtonGroup>
+        <MenuButtonLink editor={editor} />
       </ButtonGroup>
     </div>
   );

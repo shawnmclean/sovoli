@@ -39,6 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      {/* <script src="https://unpkg.com/react-scan/dist/auto.global.js" async /> */}
       <body>
         <Providers>{children}</Providers>
         <SpeedInsights />

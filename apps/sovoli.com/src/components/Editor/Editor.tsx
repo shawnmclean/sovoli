@@ -7,9 +7,9 @@ import type {
 } from "@tiptap/react";
 import { useEffect, useMemo, useState } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
 
 import { EditorMenu } from "./controls/EditorMenu";
+import { extensions } from "./extensions";
 
 export interface EditorProps extends Partial<EditorOptions> {
   name: string;
@@ -33,8 +33,7 @@ export const Editor = ({ name, defaultValue, ref, ...rest }: EditorProps) => {
 
   const editor = useEditor({
     immediatelyRender: false,
-    shouldRerenderOnTransaction: false,
-    extensions: [StarterKit],
+    extensions: extensions,
     editorProps: {
       attributes: {
         class:
@@ -60,9 +59,9 @@ export const Editor = ({ name, defaultValue, ref, ...rest }: EditorProps) => {
   }
 
   return (
-    <div className="relative h-[500px] w-full overflow-auto flex flex-col items-start gap-3 rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
+    <div className="relative flex h-[500px] w-full flex-col items-start gap-3 overflow-auto rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
       <EditorMenu editor={editor} />
-      <div className="flex-1 w-full overflow-auto p-2">
+      <div className="w-full flex-1 overflow-auto p-2">
         <EditorContent editor={editor} />
       </div>
       <input type="hidden" name={name} value={editorValue} />
