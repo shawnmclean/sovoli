@@ -45,11 +45,10 @@ export function KnowledgeGallery() {
                 />
               ) : (
                 <CldImage
-                  src={image.path ?? ""}
+                  src="2"
                   alt={image.name ?? `${knowledge.title} image`}
                   className="object-contain"
                   fill
-                  loader={supabaseLoader}
                 />
               )}
             </div>
