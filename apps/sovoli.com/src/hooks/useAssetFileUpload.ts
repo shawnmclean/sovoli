@@ -77,7 +77,7 @@ export const useAssetFileUpload = ({
           (await uploadResponse.json()) as CloudinaryUploadResponse;
 
         const uploadedAsset: UploadedAsset = {
-          id: uploadResponseBody.asset_id,
+          id: signedUrlResponseBody.id,
           url: uploadResponseBody.url,
         };
 
