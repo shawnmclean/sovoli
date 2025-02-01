@@ -1,13 +1,15 @@
 import { useCallback, useState } from "react";
 
 export interface UploadedAsset {
-  url: string;
   id: string;
 }
 
 interface UploadResponse extends UploadedAsset {
-  signedUrl: string;
-  path: string;
+  signature: string;
+  timestamp: number;
+  cloudName: string;
+  apiKey: string;
+  folder: string;
 }
 
 export interface UseAssetFileUploadProps {
@@ -36,13 +38,24 @@ export const useAssetFileUpload = ({
         const signedUrlResponseBody =
           (await signedUrlResponse.json()) as UploadResponse;
 
-        const uploadResponse = await fetch(signedUrlResponseBody.signedUrl, {
-          method: "PUT",
-          headers: {
-            "Content-Type": file.type,
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("api_key", signedUrlResponseBody.apiKey);
+        formData.append(
+          "timestamp",
+          signedUrlResponseBody.timestamp.toString(),
+        );
+        formData.append("signature", signedUrlResponseBody.signature);
+        formData.append("public_id", signedUrlResponseBody.id);
+        formData.append("folder", signedUrlResponseBody.folder);
+
+        const uploadResponse = await fetch(
+          `https://api.cloudinary.com/v1_1/${signedUrlResponseBody.cloudName}/auto/upload`,
+          {
+            method: "POST",
+            body: formData,
           },
-          body: file,
-        });
+        );
 
         if (!uploadResponse.ok) {
           throw new Error("Failed to upload file");

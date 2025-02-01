@@ -3,6 +3,7 @@
 import { redirect, unauthorized } from "next/navigation";
 import { withZod } from "@rvf/zod";
 import { db, inArray, schema } from "@sovoli/db";
+import { Knowledge, KnowledgeMediaAssetPlacement } from "@sovoli/db/schema";
 
 import { auth } from "~/core/auth";
 import { slugify } from "~/utils/slugify";
@@ -57,17 +58,14 @@ export async function newNoteAction(
   }
 
   if (result.data.assets) {
-    await db
-      .update(schema.MediaAsset)
-      .set({
+    const knowledgeAssets = result.data.assets.map((asset) => {
+      return {
         knowledgeId: createdKnowledge.id,
-      })
-      .where(
-        inArray(
-          schema.MediaAsset.id,
-          result.data.assets.map((asset) => asset.id),
-        ),
-      );
+        mediaAssetId: asset.id,
+        placement: KnowledgeMediaAssetPlacement.cover,
+      };
+    });
+    await db.insert(schema.KnowledgeMediaAsset).values(knowledgeAssets);
   }
 
   redirect(`/${session.user?.username}/${createdKnowledge.slug}`);
