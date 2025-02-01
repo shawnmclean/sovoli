@@ -3,13 +3,17 @@ import { NextResponse } from "next/server";
 import { createId } from "@paralleldrive/cuid2";
 import { db, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
-import { createClient } from "@supabase/supabase-js";
+import { v2 as cloudinary } from "cloudinary";
 
 import { auth } from "~/core/auth";
 import { env } from "~/env";
 import { createSignedUrlRequestBodySchema } from "./schema";
 
-const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY);
+cloudinary.config({
+  cloud_name: env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: env.CLOUDINARY_API_KEY,
+  api_secret: env.CLOUDINARY_API_SECRET,
+});
 
 export const POST = async (
   req: NextRequest,
@@ -37,24 +41,24 @@ export const POST = async (
           { status: 400 },
         );
       }
-      const newFilename = `${id}.${fileExt}`;
 
-      const { data, error } = await supabase.storage
-        .from(env.SUPABASE_MEDIA_BUCKET)
-        .createSignedUploadUrl(newFilename);
-
-      if (error) {
-        return NextResponse.json({ message: error.message }, { status: 500 });
-      }
+      const timestamp = Math.round(new Date().getTime() / 1000);
+      const signature = cloudinary.utils.api_sign_request(
+        {
+          timestamp: timestamp,
+          public_id: id,
+          folder: env.SUPABASE_MEDIA_BUCKET,
+        },
+        env.CLOUDINARY_API_SECRET,
+      );
 
       const [createdMedia] = await db
         .insert(schema.MediaAsset)
         .values({
           id,
           uploadedUserId: user.id,
-          host: MediaAssetHost.Supabase,
+          host: MediaAssetHost.Cloudinary,
           bucket: env.SUPABASE_MEDIA_BUCKET,
-          path: data.path,
           mimeType: body.type,
         })
         .returning();
@@ -67,10 +71,12 @@ export const POST = async (
       }
 
       return NextResponse.json({
-        signedUrl: data.signedUrl,
+        signature,
+        timestamp,
         id: createdMedia.id,
-        url: `${env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${env.SUPABASE_MEDIA_BUCKET}/${createdMedia.path}`,
-        path: createdMedia.path,
+        cloudName: env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+        apiKey: env.CLOUDINARY_API_KEY,
+        folder: env.SUPABASE_MEDIA_BUCKET,
       });
     } catch (error) {
       return NextResponse.json({ message: error }, { status: 500 });

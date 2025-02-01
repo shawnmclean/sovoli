@@ -10,6 +10,7 @@ export const env = createEnv({
       .default("development"),
     PORT: z.string().optional(),
     VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: z.string().min(1),
   },
   /**
    * Specify your server-side environment variables schema here.
@@ -22,6 +23,8 @@ export const env = createEnv({
     SUPABASE_MEDIA_BUCKET: z.string().min(1),
     SUPABASE_URL: z.string().min(1),
     SUPABASE_ANON_KEY: z.string().min(1),
+    CLOUDINARY_API_SECRET: z.string().min(1),
+    CLOUDINARY_API_KEY: z.string().min(1),
   },
 
   /**
@@ -43,6 +46,8 @@ export const env = createEnv({
     VERCEL_PROJECT_PRODUCTION_URL: process.env.VERCEL_PROJECT_PRODUCTION_URL,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:
+      process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
   },
   skipValidation:
     !!process.env.CI || process.env.npm_lifecycle_event === "lint",

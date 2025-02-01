@@ -45,7 +45,7 @@ export function KnowledgeGallery() {
                 />
               ) : (
                 <CldImage
-                  src={`${image.bucket}/${image.path}`}
+                  src={`${image.bucket}/${image.id}`}
                   alt={image.name ?? `${knowledge.title} image`}
                   className="object-contain"
                   fill

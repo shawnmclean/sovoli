@@ -1,13 +1,23 @@
 import { useCallback, useState } from "react";
 
 export interface UploadedAsset {
-  url: string;
   id: string;
+  url: string;
 }
 
-interface UploadResponse extends UploadedAsset {
-  signedUrl: string;
-  path: string;
+interface SignedUploadResponse {
+  id: string;
+  signature: string;
+  timestamp: number;
+  cloudName: string;
+  apiKey: string;
+  folder: string;
+}
+
+interface CloudinaryUploadResponse {
+  asset_id: string;
+  public_id: string;
+  url: string;
 }
 
 export interface UseAssetFileUploadProps {
@@ -33,20 +43,43 @@ export const useAssetFileUpload = ({
           method: "POST",
           body: JSON.stringify({ fileName: file.name, type: file.type }),
         });
-        const signedUrlResponseBody =
-          (await signedUrlResponse.json()) as UploadResponse;
+        if (!signedUrlResponse.ok) {
+          throw new Error("Failed to get signed url");
+        }
 
-        const uploadResponse = await fetch(signedUrlResponseBody.signedUrl, {
-          method: "PUT",
-          headers: {
-            "Content-Type": file.type,
+        const signedUrlResponseBody =
+          (await signedUrlResponse.json()) as SignedUploadResponse;
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("api_key", signedUrlResponseBody.apiKey);
+        formData.append(
+          "timestamp",
+          signedUrlResponseBody.timestamp.toString(),
+        );
+        formData.append("signature", signedUrlResponseBody.signature);
+        formData.append("public_id", signedUrlResponseBody.id);
+        formData.append("folder", signedUrlResponseBody.folder);
+
+        const uploadResponse = await fetch(
+          `https://api.cloudinary.com/v1_1/${signedUrlResponseBody.cloudName}/auto/upload`,
+          {
+            method: "POST",
+            body: formData,
           },
-          body: file,
-        });
+        );
 
         if (!uploadResponse.ok) {
           throw new Error("Failed to upload file");
         }
+
+        const uploadResponseBody =
+          (await uploadResponse.json()) as CloudinaryUploadResponse;
+
+        const uploadedAsset: UploadedAsset = {
+          id: signedUrlResponseBody.id,
+          url: uploadResponseBody.url,
+        };
 
         setFiles((current) =>
           current.map((f) =>
@@ -54,13 +87,13 @@ export const useAssetFileUpload = ({
               ? {
                   ...f,
                   status: "success",
-                  uploadedAsset: signedUrlResponseBody,
+                  uploadedAsset: uploadedAsset,
                 }
               : f,
           ),
         );
 
-        onFileUploaded(signedUrlResponseBody);
+        onFileUploaded(uploadedAsset);
       } catch (error) {
         console.error("Error uploading file:", error);
         setFiles((current) =>
