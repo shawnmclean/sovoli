@@ -11,7 +11,7 @@ import { createSignedUrlRequestBodySchema } from "./schema";
 
 cloudinary.config({
   cloud_name: env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+  api_key: env.CLOUDINARY_API_KEY,
   api_secret: env.CLOUDINARY_API_SECRET,
 });
 
@@ -75,7 +75,7 @@ export const POST = async (
         timestamp,
         id: createdMedia.id,
         cloudName: env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-        apiKey: env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+        apiKey: env.CLOUDINARY_API_KEY,
         folder: env.SUPABASE_MEDIA_BUCKET,
       });
     } catch (error) {
