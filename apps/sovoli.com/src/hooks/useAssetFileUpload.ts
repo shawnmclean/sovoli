@@ -2,14 +2,22 @@ import { useCallback, useState } from "react";
 
 export interface UploadedAsset {
   id: string;
+  url: string;
 }
 
-interface UploadResponse extends UploadedAsset {
+interface SignedUploadResponse {
+  id: string;
   signature: string;
   timestamp: number;
   cloudName: string;
   apiKey: string;
   folder: string;
+}
+
+interface CloudinaryUploadResponse {
+  asset_id: string;
+  public_id: string;
+  url: string;
 }
 
 export interface UseAssetFileUploadProps {
@@ -35,8 +43,12 @@ export const useAssetFileUpload = ({
           method: "POST",
           body: JSON.stringify({ fileName: file.name, type: file.type }),
         });
+        if (!signedUrlResponse.ok) {
+          throw new Error("Failed to get signed url");
+        }
+
         const signedUrlResponseBody =
-          (await signedUrlResponse.json()) as UploadResponse;
+          (await signedUrlResponse.json()) as SignedUploadResponse;
 
         const formData = new FormData();
         formData.append("file", file);
@@ -61,19 +73,27 @@ export const useAssetFileUpload = ({
           throw new Error("Failed to upload file");
         }
 
+        const uploadResponseBody =
+          (await uploadResponse.json()) as CloudinaryUploadResponse;
+
+        const uploadedAsset: UploadedAsset = {
+          id: uploadResponseBody.asset_id,
+          url: uploadResponseBody.url,
+        };
+
         setFiles((current) =>
           current.map((f) =>
             f.file === file
               ? {
                   ...f,
                   status: "success",
-                  uploadedAsset: signedUrlResponseBody,
+                  uploadedAsset: uploadedAsset,
                 }
               : f,
           ),
         );
 
-        onFileUploaded(signedUrlResponseBody);
+        onFileUploaded(uploadedAsset);
       } catch (error) {
         console.error("Error uploading file:", error);
         setFiles((current) =>
