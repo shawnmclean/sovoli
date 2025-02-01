@@ -2,8 +2,8 @@
 
 import { redirect, unauthorized } from "next/navigation";
 import { withZod } from "@rvf/zod";
-import { db, inArray, schema } from "@sovoli/db";
-import { Knowledge, KnowledgeMediaAssetPlacement } from "@sovoli/db/schema";
+import { db, schema } from "@sovoli/db";
+import { KnowledgeMediaAssetPlacement } from "@sovoli/db/schema";
 
 import { auth } from "~/core/auth";
 import { slugify } from "~/utils/slugify";
