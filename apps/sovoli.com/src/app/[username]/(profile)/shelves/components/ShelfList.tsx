@@ -33,7 +33,7 @@ async function ShelfListItem({ shelf }: { shelf: ShelfItem }) {
     >
       <CardBody className="flex grow">
         <Link href={shelf.url} className="flex h-full w-full">
-          {shelf.MediaAssets[0]?.path ? (
+          {shelf.MediaAssets[0] ? (
             <MediaAssetViewer
               mediaAsset={shelf.MediaAssets[0]}
               className="h-full w-full object-cover"

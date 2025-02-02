@@ -1,12 +1,10 @@
 import type { SelectKnowledgeSchema } from "@sovoli/db/schema";
 import type { Metadata } from "next";
 import { cache } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { MediaAssetHost } from "@sovoli/db/schema";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
 
-import supabaseLoader from "~/loaders/supabaseImageLoader";
+import { MediaAssetViewer } from "~/components/mediaAssets/MediaAssetViewer";
 import { config } from "~/utils/config";
 import { getLatestKnowledges } from "./lib/getLatestKnowledges";
 
@@ -78,24 +76,11 @@ export default async function DashboardPage() {
 }
 
 function KnowledgeImage({ knowledge }: { knowledge: SelectKnowledgeSchema }) {
-  const images = knowledge.MediaAssets?.map((mediaAsset) => {
-    if (mediaAsset.host === MediaAssetHost.Supabase && mediaAsset.path) {
-      return {
-        src: `${mediaAsset.bucket}/${mediaAsset.path}`,
-        alt: mediaAsset.name ?? `${knowledge.title} image`,
-      };
-    }
-    return null;
-  }).filter((image) => image !== null);
-
-  if (images?.[0]) {
+  if (knowledge.MediaAssets?.[0]) {
     return (
-      <Image
-        src={images[0].src}
-        alt={images[0].alt}
+      <MediaAssetViewer
+        mediaAsset={knowledge.MediaAssets[0]}
         className="h-full w-full object-cover"
-        fill
-        loader={supabaseLoader}
       />
     );
   }

@@ -1,3 +1,5 @@
+"use client";
+
 import type { SelectMediaAssetSchema } from "@sovoli/db/schema";
 import Image from "next/image";
 import { MediaAssetHost } from "@sovoli/db/schema";

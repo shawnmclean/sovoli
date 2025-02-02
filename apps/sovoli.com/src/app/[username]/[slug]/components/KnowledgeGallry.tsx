@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import { MediaAssetHost } from "@sovoli/db/schema";
 import {
   Carousel,
   CarouselContent,
@@ -9,10 +7,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@sovoli/ui/components/carousel";
-import { CldImage } from "next-cloudinary";
 
 import { MediaAssetViewer } from "~/components/mediaAssets/MediaAssetViewer";
-import supabaseLoader from "~/loaders/supabaseImageLoader";
 import { useKnowledge } from "../context/KnowledgeContext";
 
 export function KnowledgeGallery() {
