@@ -11,6 +11,7 @@ import {
 } from "@sovoli/ui/components/carousel";
 import { CldImage } from "next-cloudinary";
 
+import { MediaAssetViewer } from "~/components/mediaAssets/MediaAssetViewer";
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 import { useKnowledge } from "../context/KnowledgeContext";
 
@@ -35,22 +36,7 @@ export function KnowledgeGallery() {
         {coverAssets.map((image, i) => (
           <CarouselItem key={i} className="flex items-center justify-center">
             <div className="relative h-[500px] w-[100%]">
-              {image.host === MediaAssetHost.Supabase && image.path ? (
-                <Image
-                  src={`${image.bucket}/${image.path}`}
-                  alt={image.name ?? `${knowledge.title} image`}
-                  className="object-contain"
-                  fill
-                  loader={supabaseLoader}
-                />
-              ) : (
-                <CldImage
-                  src={`${image.bucket}/${image.id}`}
-                  alt={image.name ?? `${knowledge.title} image`}
-                  className="object-contain"
-                  fill
-                />
-              )}
+              <MediaAssetViewer mediaAsset={image} className="object-contain" />
             </div>
           </CarouselItem>
         ))}
