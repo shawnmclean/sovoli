@@ -20,7 +20,7 @@ export interface UploadSignature {
   folder: string;
 }
 
-export const generateUploadSignatures = (count = 1): UploadSignature[] => {
+export const generateUploadSignatures = (count = 2): UploadSignature[] => {
   const timestamp = Math.round(new Date().getTime() / 1000);
 
   const signatures: UploadSignature[] = [];

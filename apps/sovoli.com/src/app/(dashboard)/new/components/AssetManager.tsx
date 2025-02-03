@@ -14,7 +14,7 @@ import { CloudUpload, Trash2Icon } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { tv } from "tailwind-variants";
 
-import type { UploadSignature } from "../lib/generateUploadSignatures";
+import type { UploadSignature } from "../../../../modules/mediaAssets/lib/generateUploadSignatures";
 import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
 import { useAssetFileUpload } from "~/hooks/useAssetFileUpload";
 import supabaseLoader from "~/loaders/supabaseImageLoader";

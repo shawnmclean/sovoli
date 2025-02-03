@@ -16,8 +16,8 @@ import { Spinner } from "@sovoli/ui/components/spinner";
 import { User } from "@sovoli/ui/components/user";
 import { ChevronDownIcon, PlusIcon, Trash2Icon } from "lucide-react";
 
+import type { UploadSignature } from "../../../../modules/mediaAssets/lib/generateUploadSignatures";
 import type { State } from "../actions/newNoteAction";
-import type { UploadSignature } from "../lib/generateUploadSignatures";
 import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
 import { Editor } from "~/components/Editor/Editor";
 import { AssetManager } from "./AssetManager";
