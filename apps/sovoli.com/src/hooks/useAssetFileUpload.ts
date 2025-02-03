@@ -35,30 +35,30 @@ export const useAssetFileUpload = ({
       );
 
       try {
-        const signedUrlResponse = await fetch("/api/assets", {
-          method: "POST",
-          body: JSON.stringify({ fileName: file.name, type: file.type }),
-        });
-        if (!signedUrlResponse.ok) {
-          throw new Error("Failed to get signed url");
-        }
+        let signature = uploadSignatures?.pop();
 
-        const signedUrlResponseBody =
-          (await signedUrlResponse.json()) as UploadSignature;
+        if (!signature) {
+          // get it from action or API?
+          signature = {
+            apiKey: "",
+            cloudName: "",
+            folder: "",
+            id: "",
+            signature: "",
+            timestamp: 12,
+          };
+        }
 
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("api_key", signedUrlResponseBody.apiKey);
-        formData.append(
-          "timestamp",
-          signedUrlResponseBody.timestamp.toString(),
-        );
-        formData.append("signature", signedUrlResponseBody.signature);
-        formData.append("public_id", signedUrlResponseBody.id);
-        formData.append("folder", signedUrlResponseBody.folder);
+        formData.append("api_key", signature.apiKey);
+        formData.append("timestamp", signature.timestamp.toString());
+        formData.append("signature", signature.signature);
+        formData.append("public_id", signature.id);
+        formData.append("folder", signature.folder);
 
         const uploadResponse = await fetch(
-          `https://api.cloudinary.com/v1_1/${signedUrlResponseBody.cloudName}/auto/upload`,
+          `https://api.cloudinary.com/v1_1/${signature.cloudName}/auto/upload`,
           {
             method: "POST",
             body: formData,
@@ -73,7 +73,7 @@ export const useAssetFileUpload = ({
           (await uploadResponse.json()) as CloudinaryUploadResponse;
 
         const uploadedAsset: UploadedAsset = {
-          id: signedUrlResponseBody.id,
+          id: signature.id,
           url: uploadResponseBody.url,
         };
 

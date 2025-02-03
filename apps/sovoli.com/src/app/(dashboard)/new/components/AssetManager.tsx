@@ -66,8 +66,6 @@ export const AssetManager = ({
       "image/png": [],
     },
     onDrop,
-    onDragEnter: () => console.log("drag enter"),
-    onFileDialogOpen: () => console.log("file dialog open"),
   });
 
   return (
