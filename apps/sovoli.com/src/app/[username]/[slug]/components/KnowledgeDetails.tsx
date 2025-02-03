@@ -10,7 +10,7 @@ import { TimeAgo } from "@sovoli/ui/components/time-ago";
 import { useKnowledge } from "../context/KnowledgeContext";
 import { Connections } from "./Connections";
 import { KnowledgeContent } from "./content/KnowledgeContent";
-import { KnowledgeGallery } from "./KnowledgeGallry";
+import { KnowledgeGallery } from "./KnowledgeGallery";
 import { MainReference } from "./MainReference";
 import { KnowledgeTitle } from "./title/KnowledgeTitle";
 
