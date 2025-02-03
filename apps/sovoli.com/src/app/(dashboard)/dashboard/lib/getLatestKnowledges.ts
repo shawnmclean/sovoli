@@ -23,7 +23,11 @@ export const getLatestKnowledges = async ({
 
   return db.query.Knowledge.findMany({
     with: {
-      MediaAssets: true,
+      KnowledgeMediaAssets: {
+        with: {
+          MediaAsset: true,
+        },
+      },
       User: {
         columns: {
           username: true,

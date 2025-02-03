@@ -3,9 +3,13 @@
 import { redirect, unauthorized } from "next/navigation";
 import { withZod } from "@rvf/zod";
 import { db, schema } from "@sovoli/db";
-import { KnowledgeMediaAssetPlacement } from "@sovoli/db/schema";
+import {
+  KnowledgeMediaAssetPlacement,
+  MediaAssetHost,
+} from "@sovoli/db/schema";
 
 import { auth } from "~/core/auth";
+import { env } from "~/env";
 import { slugify } from "~/utils/slugify";
 import { formNewNoteSchema } from "./schemas";
 
@@ -25,6 +29,7 @@ export async function newNoteAction(
   if (!session) {
     unauthorized();
   }
+  console.log(session);
 
   const result = await validator.validate(formData);
 
@@ -58,6 +63,17 @@ export async function newNoteAction(
   }
 
   if (result.data.assets) {
+    const assets = result.data.assets.map((asset) => {
+      return {
+        id: asset.id,
+        uploaderUserId: session.userId,
+        host: MediaAssetHost.Cloudinary,
+        bucket: env.SUPABASE_MEDIA_BUCKET,
+      };
+    });
+
+    await db.insert(schema.MediaAsset).values(assets);
+
     const knowledgeAssets = result.data.assets.map((asset) => {
       return {
         knowledgeId: createdKnowledge.id,

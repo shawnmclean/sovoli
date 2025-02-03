@@ -76,10 +76,10 @@ export default async function DashboardPage() {
 }
 
 function KnowledgeImage({ knowledge }: { knowledge: SelectKnowledgeSchema }) {
-  if (knowledge.MediaAssets?.[0]) {
+  if (knowledge.KnowledgeMediaAssets?.[0]?.MediaAsset) {
     return (
       <MediaAssetViewer
-        mediaAsset={knowledge.MediaAssets[0]}
+        mediaAsset={knowledge.KnowledgeMediaAssets[0].MediaAsset}
         className="h-full w-full object-cover"
       />
     );
