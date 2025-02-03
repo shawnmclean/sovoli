@@ -1,5 +1,3 @@
-"use client";
-
 import type { FileRejection } from "react-dropzone";
 import { useCallback, useState } from "react";
 import Image from "next/image";
@@ -16,10 +14,8 @@ import { CloudUpload, Trash2Icon } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { tv } from "tailwind-variants";
 
-import type {
-  UploadedAsset,
-  UploadSignature,
-} from "~/hooks/useAssetFileUpload";
+import type { UploadSignature } from "../lib/generateUploadSignatures";
+import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
 import { useAssetFileUpload } from "~/hooks/useAssetFileUpload";
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 
