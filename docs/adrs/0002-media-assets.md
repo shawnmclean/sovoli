@@ -34,7 +34,7 @@ We outgrew this very quickly as we needed to support uploading of images before 
 
 - User Profile Photos - Users can upload their profile photos using this system.
 
-- Temporal AI workloads - in some cases we need to analyze an image and extract information from them before they are assigned to a knowledge. This means we need a cleanup mechanism later.
+- Annotations - Temporal AI workloads - in some cases we need to analyze an image and extract information from them before they are assigned to a knowledge. This means we need a cleanup mechanism later.
 
 - AI generated - May need to get images from external systems. Such as existing link, like in the ChatGPT use case.
 
@@ -42,7 +42,33 @@ We outgrew this very quickly as we needed to support uploading of images before 
 
 ### Data Flow
 
+1. Annotations
+
+2. Regular Image Upload
+
+3. Multiple Carousel Image Support
+
+4. Clean Up
+
 #### Uploads
+
+Method: **Compressed Signed Browser Upload**
+
+We will run browser level compression so we can not only decrease the storage space requirement but also to improve the upload time, as in the case of *Annotations*, we need to send the image to the AI model very quickly.
+
+```mermaid
+
+browser page is seeded with signature for uploading asset
+user selects image
+browser compresses and displays preview
+image is uploaded using preloaded signature
+image is uploaded to cloudinary and url returned
+send that url to AI analysis
+
+```
+
+How to handle a set of loaded up signatures for use? Getting new ones when necessary.
+
 
 #### Delete
 
@@ -57,3 +83,9 @@ We outgrew this very quickly as we needed to support uploading of images before 
 
 
 
+
+
+Notes for blog:
+
+- the signature for supabase makes a call to their server, for what?
+- 
