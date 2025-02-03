@@ -1,17 +1,10 @@
 import { useCallback, useState } from "react";
 
+import type { UploadSignature } from "~/app/(dashboard)/new/lib/generateUploadSignatures";
+
 export interface UploadedAsset {
   id: string;
   url: string;
-}
-
-interface SignedUploadResponse {
-  id: string;
-  signature: string;
-  timestamp: number;
-  cloudName: string;
-  apiKey: string;
-  folder: string;
 }
 
 interface CloudinaryUploadResponse {
@@ -22,11 +15,14 @@ interface CloudinaryUploadResponse {
 
 export interface UseAssetFileUploadProps {
   onFileUploaded: (asset: UploadedAsset) => void;
+  uploadSignatures?: UploadSignature[];
 }
 
 export const useAssetFileUpload = ({
   onFileUploaded,
+  uploadSignatures,
 }: UseAssetFileUploadProps) => {
+  console.log(uploadSignatures);
   const [files, setFiles] = useState<FileState[]>([]);
 
   const uploadFile = useCallback(
@@ -48,7 +44,7 @@ export const useAssetFileUpload = ({
         }
 
         const signedUrlResponseBody =
-          (await signedUrlResponse.json()) as SignedUploadResponse;
+          (await signedUrlResponse.json()) as UploadSignature;
 
         const formData = new FormData();
         formData.append("file", file);

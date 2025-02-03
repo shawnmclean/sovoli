@@ -1,3 +1,5 @@
+"use client";
+
 import type { FileRejection } from "react-dropzone";
 import { useCallback, useState } from "react";
 import Image from "next/image";
@@ -14,7 +16,10 @@ import { CloudUpload, Trash2Icon } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { tv } from "tailwind-variants";
 
-import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
+import type {
+  UploadedAsset,
+  UploadSignature,
+} from "~/hooks/useAssetFileUpload";
 import { useAssetFileUpload } from "~/hooks/useAssetFileUpload";
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 
@@ -36,11 +41,17 @@ const dropzoneStyles = tv({
 export interface AssetManagerProps {
   name: string;
   onFileUploaded: (asset: UploadedAsset) => void;
+  uploadSignatures?: UploadSignature[];
 }
 
-export const AssetManager = ({ onFileUploaded, name }: AssetManagerProps) => {
+export const AssetManager = ({
+  onFileUploaded,
+  name,
+  uploadSignatures,
+}: AssetManagerProps) => {
   const { files, addFiles, removeFile } = useAssetFileUpload({
     onFileUploaded,
+    uploadSignatures,
   });
   const [fileRejections, setFileRejections] = useState<FileRejection[]>([]);
 
@@ -59,6 +70,8 @@ export const AssetManager = ({ onFileUploaded, name }: AssetManagerProps) => {
       "image/png": [],
     },
     onDrop,
+    onDragEnter: () => console.log("drag enter"),
+    onFileDialogOpen: () => console.log("file dialog open"),
   });
 
   return (

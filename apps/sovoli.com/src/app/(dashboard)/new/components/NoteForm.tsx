@@ -17,6 +17,7 @@ import { User } from "@sovoli/ui/components/user";
 import { ChevronDownIcon, PlusIcon, Trash2Icon } from "lucide-react";
 
 import type { State } from "../actions/newNoteAction";
+import type { UploadSignature } from "../lib/generateUploadSignatures";
 import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
 import { Editor } from "~/components/Editor/Editor";
 import { AssetManager } from "./AssetManager";
@@ -26,6 +27,7 @@ export interface NoteFormProps {
   description?: string;
   content?: string;
   action: (state: State, formData: FormData) => Promise<State>;
+  uploadSignatures: UploadSignature[];
 }
 
 export const NoteForm = ({
@@ -33,6 +35,7 @@ export const NoteForm = ({
   description,
   content,
   action,
+  uploadSignatures,
 }: NoteFormProps) => {
   const [formTitle, setFormTitle] = useState<string>(title ?? "");
   const [formDescription, setFormDescription] = useState<string>(
@@ -89,7 +92,11 @@ export const NoteForm = ({
 
   return (
     <Form className="w-full" action={formAction}>
-      <AssetManager name="assets" onFileUploaded={onFileUploaded} />
+      <AssetManager
+        name="assets"
+        onFileUploaded={onFileUploaded}
+        uploadSignatures={uploadSignatures}
+      />
 
       {aiLoading && (
         <div className="flex items-center justify-center">
