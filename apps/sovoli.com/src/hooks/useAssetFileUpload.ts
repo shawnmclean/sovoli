@@ -22,7 +22,6 @@ export const useAssetFileUpload = ({
   onFileUploaded,
   uploadSignatures,
 }: UseAssetFileUploadProps) => {
-  console.log(uploadSignatures);
   const [files, setFiles] = useState<FileState[]>([]);
 
   const uploadFile = useCallback(

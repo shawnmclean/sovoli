@@ -54,16 +54,23 @@ We outgrew this very quickly as we needed to support uploading of images before 
 
 Method: **Compressed Signed Browser Upload**
 
+
+
 We will run browser level compression so we can not only decrease the storage space requirement but also to improve the upload time, as in the case of *Annotations*, we need to send the image to the AI model very quickly.
 
-```mermaid
+We'll seed the react hook with a lit of upload signatures that will be used to upload images to cloudinary.
 
-browser page is seeded with signature for uploading asset
-user selects image
-browser compresses and displays preview
-image is uploaded using preloaded signature
-image is uploaded to cloudinary and url returned
-send that url to AI analysis
+```mermaid
+sequenceDiagram
+  SSR ->> Browser: Get list of upload signatures
+  Browser ->> Browser: Compress image & display preview
+  Browser ->> Browser: Check if signatures are available and valid
+  alt Signatures expired or empty
+    Browser ->> API: Request new upload signatures
+    API ->> Browser: Return new upload signatures
+  end
+  Browser ->> Cloudinary: Upload image using signature
+  Cloudinary ->> Browser: Return uploaded image data
 
 ```
 
