@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { Badge } from "@sovoli/ui/components/badge";
 import {
+  NavbarBrand,
   NavbarContent,
   NavbarItem,
   Navbar as NextUINavbar,
 } from "@sovoli/ui/components/navbar";
 
 import { auth } from "~/core/auth";
+import { Logo } from "../Logo/Logo";
 import { NavbarRightProfile } from "./NavbarRightProfile";
 import { NewDropdown } from "./NewDropdown";
 import { SignUpButton } from "./SignUpButton";
@@ -21,20 +23,12 @@ export const Navbar = async ({ AppLinks }: NavbarProps) => {
   return (
     <NextUINavbar maxWidth="full">
       <div className="flex min-w-0 flex-row items-center gap-5">
-        <NavbarItem className="shrink-0">
-          <Link href="/" color="foreground">
-            <Badge
-              color="warning"
-              content="v0"
-              size="sm"
-              title="Unstable Software"
-              placement="bottom-right"
-              variant="faded"
-            >
-              <p className="whitespace-nowrap font-bold text-inherit">Sovoli</p>
-            </Badge>
-          </Link>
-        </NavbarItem>
+        <Link href="/">
+          <NavbarBrand>
+            <Logo />
+            <p className="font-bold text-inherit">Sovoli</p>
+          </NavbarBrand>
+        </Link>
         <NavbarItem className="overflow-hidden">{AppLinks}</NavbarItem>
       </div>
 
