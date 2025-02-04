@@ -20,7 +20,7 @@ import type { UploadSignature } from "../../../../modules/mediaAssets/lib/genera
 import type { State } from "../actions/newNoteAction";
 import type { UploadedAsset } from "~/modules/mediaAssets/hooks/useAssetFileUpload";
 import { Editor } from "~/components/Editor/Editor";
-import { AssetManager } from "./AssetManager";
+import { AssetManager } from "~/modules/mediaAssets/components/AssetManager";
 
 export interface NoteFormProps {
   title?: string;
@@ -94,7 +94,13 @@ export const NoteForm = ({
     <Form className="w-full" action={formAction}>
       <AssetManager
         name="assets"
-        onFileUploaded={onFileUploaded}
+        onChange={async (assets) => {
+          for (const asset of assets) {
+            if (asset.type === "added") {
+              await onFileUploaded(asset.asset);
+            }
+          }
+        }}
         uploadSignatures={uploadSignatures}
       />
 

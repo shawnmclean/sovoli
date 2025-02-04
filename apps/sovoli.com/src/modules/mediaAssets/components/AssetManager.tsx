@@ -14,7 +14,7 @@ import { CloudUpload, Trash2Icon } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { tv } from "tailwind-variants";
 
-import type { UploadSignature } from "../../../../modules/mediaAssets/lib/generateUploadSignatures";
+import type { UploadSignature } from "../lib/generateUploadSignatures";
 import type { UploadedAsset } from "~/modules/mediaAssets/hooks/useAssetFileUpload";
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 import { useAssetFileUpload } from "~/modules/mediaAssets/hooks/useAssetFileUpload";
@@ -34,19 +34,26 @@ const dropzoneStyles = tv({
   },
 });
 
+export type AssetChangeType = "added" | "removed" | "updated";
+export interface AssetChange {
+  type: AssetChangeType;
+  asset: UploadedAsset;
+}
+
 export interface AssetManagerProps {
   name: string;
-  onFileUploaded: (asset: UploadedAsset) => void;
+  onChange: (assets: AssetChange[]) => void;
+  initialAssets?: UploadedAsset[];
   uploadSignatures?: UploadSignature[];
 }
 
 export const AssetManager = ({
-  onFileUploaded,
   name,
   uploadSignatures,
+  onChange,
 }: AssetManagerProps) => {
   const { files, addFiles, removeFile } = useAssetFileUpload({
-    onFileUploaded,
+    onFileUploaded: (asset) => onChange([{ type: "added", asset }]),
     uploadSignatures,
   });
   const [fileRejections, setFileRejections] = useState<FileRejection[]>([]);
