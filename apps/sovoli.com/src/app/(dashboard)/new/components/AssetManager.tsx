@@ -15,9 +15,9 @@ import { useDropzone } from "react-dropzone";
 import { tv } from "tailwind-variants";
 
 import type { UploadSignature } from "../../../../modules/mediaAssets/lib/generateUploadSignatures";
-import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
-import { useAssetFileUpload } from "~/hooks/useAssetFileUpload";
+import type { UploadedAsset } from "~/modules/mediaAssets/hooks/useAssetFileUpload";
 import supabaseLoader from "~/loaders/supabaseImageLoader";
+import { useAssetFileUpload } from "~/modules/mediaAssets/hooks/useAssetFileUpload";
 
 const dropzoneStyles = tv({
   base: "flex flex-col items-center justify-center h-64 w-full border-2 border-dashed rounded-lg",

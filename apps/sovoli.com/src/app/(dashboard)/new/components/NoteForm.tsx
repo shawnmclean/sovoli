@@ -18,7 +18,7 @@ import { ChevronDownIcon, PlusIcon, Trash2Icon } from "lucide-react";
 
 import type { UploadSignature } from "../../../../modules/mediaAssets/lib/generateUploadSignatures";
 import type { State } from "../actions/newNoteAction";
-import type { UploadedAsset } from "~/hooks/useAssetFileUpload";
+import type { UploadedAsset } from "~/modules/mediaAssets/hooks/useAssetFileUpload";
 import { Editor } from "~/components/Editor/Editor";
 import { AssetManager } from "./AssetManager";
 
