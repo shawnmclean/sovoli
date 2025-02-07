@@ -24,7 +24,7 @@ export const Navbar = async ({ AppLinks }: NavbarProps) => {
     <NextUINavbar maxWidth="full">
       <div className="flex min-w-0 flex-row items-center gap-5">
         <Link href="/">
-          <NavbarBrand>
+          <NavbarBrand className="flex items-center gap-1">
             <Logo />
             <p className="font-bold text-inherit">Sovoli</p>
           </NavbarBrand>
