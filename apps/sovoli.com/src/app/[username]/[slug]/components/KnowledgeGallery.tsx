@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@sovoli/ui/components/carousel";
 
-import { MediaAssetViewer } from "~/components/mediaAssets/MediaAssetViewer";
+import { MediaAssetViewer } from "~/modules/mediaAssets/components/MediaAssetViewer";
 import { useKnowledge } from "../context/KnowledgeContext";
 
 export function KnowledgeGallery() {

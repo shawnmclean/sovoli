@@ -3,8 +3,8 @@ import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { LibraryBigIcon } from "lucide-react";
 
 import type { GetKnowledges } from "~/services/knowledge/getKnowledges";
-import { MediaAssetViewer } from "~/components/mediaAssets/MediaAssetViewer";
 import { auth } from "~/core/auth";
+import { MediaAssetViewer } from "~/modules/mediaAssets/components/MediaAssetViewer";
 import { ShelfActions } from "./ShelfActions";
 
 type Shelves = Awaited<ReturnType<GetKnowledges["call"]>>;

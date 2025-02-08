@@ -4,7 +4,7 @@ import { cache } from "react";
 import Link from "next/link";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
 
-import { MediaAssetViewer } from "~/components/mediaAssets/MediaAssetViewer";
+import { MediaAssetViewer } from "~/modules/mediaAssets/components/MediaAssetViewer";
 import { config } from "~/utils/config";
 import { getLatestKnowledges } from "./lib/getLatestKnowledges";
 
