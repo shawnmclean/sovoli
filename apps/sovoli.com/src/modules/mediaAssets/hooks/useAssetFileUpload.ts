@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 
 import type { UploadSignature } from "~/modules/mediaAssets/lib/generateUploadSignatures";
+import { processImage } from "~/core/image/processImage";
 
 // Type Definitions
 export interface UploadedAsset {
@@ -95,8 +96,41 @@ export const useAssetFileUpload = ({
       updateFileStatus(file, "uploading");
 
       try {
+        // Log original file size
+        console.log(
+          `Original file size: ${(file.size / 1024 / 1024).toFixed(2)} MB`,
+        );
+
+        // Process the image before uploading
+        const processedBlob = await processImage(
+          file,
+          80, // quality
+          "auto",
+          "auto",
+          "webp",
+        );
+
+        // Log processed file size and compression ratio
+        const processedSize = processedBlob.size;
+        const compressionRatio = (
+          ((file.size - processedSize) / file.size) *
+          100
+        ).toFixed(1);
+        console.log(
+          `Processed file size: ${(processedSize / 1024 / 1024).toFixed(2)} MB`,
+        );
+        console.log(`Compression reduced file size by ${compressionRatio}%`);
+
+        // Convert Blob to File
+        const processedFile = new File([processedBlob], file.name, {
+          type: processedBlob.type,
+        });
+
         const signature = await getValidSignature();
-        const uploadedAsset = await uploadToCloudinary(file, signature);
+        const uploadedAsset = await uploadToCloudinary(
+          processedFile,
+          signature,
+        );
 
         updateFileStatus(file, "success", uploadedAsset);
         onFileUploaded(uploadedAsset);
