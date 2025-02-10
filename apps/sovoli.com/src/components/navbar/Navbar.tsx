@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Badge } from "@sovoli/ui/components/badge";
 import {
   NavbarBrand,
   NavbarContent,
