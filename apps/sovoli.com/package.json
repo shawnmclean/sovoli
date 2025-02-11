@@ -44,6 +44,8 @@
     "@tiptap/html": "2.10.4",
     "@tiptap/extension-link": "2.11.4",
     "@tiptap/starter-kit": "2.10.4",
+    "@tiptap/extension-task-list": "2.11.5",
+    "@tiptap/extension-task-item": "2.11.5",
     "@trigger.dev/sdk": "3.3.12",
     "@vercel/analytics": "1.4.1",
     "@vercel/otel": "1.10.0",
