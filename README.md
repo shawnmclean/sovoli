@@ -6,7 +6,10 @@ WIP: nothing here to see, pls leave.
 
 #### WebApp
 
-Framework: [Next.js](https://nextjs.org/)
+- Framework: [Next.js](https://nextjs.org/)
+- Media Storage: [Cloudinary](https://cloudinary.com/)
+- Database: [Supabas Postgres](https://supabase.com/)
+- LLM: [OpenAI](https://openai.com/), [Gemini](https://gemini.google.com/)
 
 Some links:
 
