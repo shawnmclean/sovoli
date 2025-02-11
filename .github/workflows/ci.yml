@@ -25,6 +25,8 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
+        env:
+          NPM_CONFIG_TIPTAP_PRO_TOKEN: ${{ secrets.NPM_CONFIG_TIPTAP_PRO_TOKEN }}
 
       - name: 🏗 Cache turbo build setup
         uses: actions/cache@v4
