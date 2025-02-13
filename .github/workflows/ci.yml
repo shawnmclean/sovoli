@@ -23,8 +23,6 @@ jobs:
           fetch-depth: 2
 
       - uses: pnpm/action-setup@v3
-        with:
-          version: 9
 
       - name: 🏗 Cache turbo build setup
         uses: actions/cache@v4
