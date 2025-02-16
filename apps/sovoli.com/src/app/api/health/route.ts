@@ -10,21 +10,19 @@ interface DatabaseHealth {
 
 interface HealthStatus {
   status: "ok" | "error";
+  cold_start: boolean;
+  function_latency_ms: number;
   database: DatabaseHealth;
 }
 
 export async function GET() {
-  // health check for all systems
-  // Systems:
-  // - db
-  // - auth
-  // - storage
-  // - analytics
-  // - database
-  // - AI Gateway (OpenAI, etc)
+  const functionStart = performance.now();
+  const functionUptime = process.uptime(); // Detect if function restarted
 
   const healthStatus: HealthStatus = {
     status: "ok",
+    cold_start: functionUptime < 1, // If uptime is low, it's a cold start
+    function_latency_ms: 0,
     database: {
       status: "unknown",
       latency_ms: null,
@@ -48,6 +46,10 @@ export async function GET() {
     };
     healthStatus.status = "error";
   }
+
+  // Track total function execution time
+  const functionEnd = performance.now();
+  healthStatus.function_latency_ms = Math.round(functionEnd - functionStart);
 
   return Response.json(healthStatus);
 }
