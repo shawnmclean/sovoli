@@ -1,12 +1,12 @@
 import type { Config } from "tailwindcss";
-import nextUIConfig from "@sovoli/ui/tailwind.config";
+import heroUIConfig from "@sovoli/ui/tailwind.config";
 
 export default {
   content: [
-    ...nextUIConfig.content,
+    ...heroUIConfig.content,
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  presets: [nextUIConfig],
+  presets: [heroUIConfig],
 } satisfies Config;

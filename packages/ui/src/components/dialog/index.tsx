@@ -1,1 +1,1 @@
-export * from "@nextui-org/modal";
+export * from "@heroui/modal";

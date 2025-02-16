@@ -1,1 +1,1 @@
-export * from "@nextui-org/navbar";
+export * from "@heroui/navbar";

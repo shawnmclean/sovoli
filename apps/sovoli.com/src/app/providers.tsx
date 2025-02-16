@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { useRouter } from "next/navigation";
-import { NextUIProvider } from "@sovoli/ui/providers";
+import { HeroUIProvider } from "@sovoli/ui/providers";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import posthog from "posthog-js";
@@ -27,11 +27,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <Suspense>
           <PostHogPageView />
         </Suspense>
-        <NextUIProvider navigate={(href) => router.push(href)}>
+        <HeroUIProvider navigate={(href) => router.push(href)}>
           <ThemeProvider attribute="class" defaultTheme="dark">
             {children}
           </ThemeProvider>
-        </NextUIProvider>
+        </HeroUIProvider>
       </PostHogProvider>
     </SessionProvider>
   );

@@ -1,1 +1,1 @@
-export * from "@nextui-org/slider";
+export * from "@heroui/slider";

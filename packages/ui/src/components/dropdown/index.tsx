@@ -1,1 +1,1 @@
-export * from "@nextui-org/dropdown";
+export * from "@heroui/dropdown";

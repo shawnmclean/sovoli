@@ -1,1 +1,1 @@
-export * from "@nextui-org/alert";
+export * from "@heroui/alert";

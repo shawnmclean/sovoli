@@ -1,1 +1,1 @@
-export * from "@nextui-org/breadcrumbs";
+export * from "@heroui/breadcrumbs";

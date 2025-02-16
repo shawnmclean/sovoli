@@ -1,1 +1,1 @@
-export * from "@nextui-org/chip";
+export * from "@heroui/chip";

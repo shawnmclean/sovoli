@@ -1,1 +1,1 @@
-export * from "@nextui-org/button";
+export * from "@heroui/button";

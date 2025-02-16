@@ -1,1 +1,1 @@
-export * from "@nextui-org/tabs";
+export * from "@heroui/tabs";

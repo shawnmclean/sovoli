@@ -1,1 +1,1 @@
-export * from '@nextui-org/divider'
+export * from '@heroui/divider'
