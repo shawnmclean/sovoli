@@ -36,7 +36,7 @@ export class GetUserProfileByUsername extends BaseService<
       },
     });
 
-    // eslint-disable-next-line @typescript-eslint/prefer-optional-chain -- i want to make this check explicit, username will always be defined, this is to please the type checker
+    // eslint-disable-next-line @typescript-eslint/prefer-optional-chain -- i want to make this check explicit, username will always be defined but not set, this is to please the type checker
     if (!user || !user.username)
       return {
         user: null,
