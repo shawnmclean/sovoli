@@ -9,17 +9,21 @@ interface DatabaseHealth {
 }
 
 interface HealthStatus {
+  count: number;
   status: "ok" | "error";
   cold_start: boolean;
   function_latency_ms: number;
   database: DatabaseHealth;
 }
 
+let count = 0;
+
 export async function GET() {
   const functionStart = performance.now();
   const functionUptime = process.uptime(); // Detect if function restarted
 
   const healthStatus: HealthStatus = {
+    count: count++,
     status: "ok",
     cold_start: functionUptime < 1, // If uptime is low, it's a cold start
     function_latency_ms: 0,
