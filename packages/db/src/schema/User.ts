@@ -26,6 +26,7 @@ export const User = pgTable("user", {
   username: varchar("username", { length: 255 }).unique(),
   email: varchar("email", { length: 255 }).notNull().unique(),
   emailVerified: timestamp("email_verified", { mode: "date" }),
+  mediaAssetId: varchar("media_asset_id", { length: 256 }),
   image: text("image"),
 });
 

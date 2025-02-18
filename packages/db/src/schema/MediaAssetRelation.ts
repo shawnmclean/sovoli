@@ -14,5 +14,9 @@ export const MediaAssetRelations = relations(MediaAsset, ({ one, many }) => ({
     fields: [MediaAsset.uploadedUserId],
     references: [User.id],
   }),
+  ProfileImageUser: one(User, {
+    fields: [MediaAsset.id],
+    references: [User.mediaAssetId],
+  }),
   KnowledgeMediaAssets: many(KnowledgeMediaAsset),
 }));
