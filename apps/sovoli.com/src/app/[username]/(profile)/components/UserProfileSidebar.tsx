@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Avatar } from "@sovoli/ui/components/avatar";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
 
+import { MediaAssetAvatar } from "~/modules/mediaAssets/components/MediaAssetAvatar";
 import { useUserProfile } from "../../context/UserProfileContext";
 
 export function UserProfileSidebar() {
@@ -22,12 +22,12 @@ export function UserProfileSidebar() {
             showOutline
             title="Level 1"
           >
-            <Avatar
+            <MediaAssetAvatar
+              mediaAsset={user.image}
               isBordered
               color="warning"
               radius="sm"
               className="h-20 w-20 text-large"
-              src="https://qxvzrmayigmtjhfucogx.supabase.co/storage/v1/object/public/media/profile/mix.webp"
             />
           </Badge>
         </div>

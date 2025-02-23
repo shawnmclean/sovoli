@@ -53,10 +53,7 @@ export function KnowledgeDetails() {
                       placement="bottom-right"
                       title="Level 1 Researcher"
                     >
-                      <Avatar
-                        radius="sm"
-                        src="https://qxvzrmayigmtjhfucogx.supabase.co/storage/v1/object/public/media/profile/mix.webp?t=2024-10-26T02%3A43%3A35.093Z"
-                      />
+                      <Avatar radius="sm" />
                     </Badge>
                   </Link>
                   <div className="flex flex-col gap-1">

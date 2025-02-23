@@ -1,3 +1,4 @@
+import type { SelectMediaAssetSchema } from "@sovoli/db/schema";
 import { eq, schema } from "@sovoli/db";
 
 import { BaseService } from "../baseService";
@@ -6,7 +7,7 @@ export interface UserProfile {
   id: string;
   username: string;
   name: string | null;
-  image: string | null;
+  image: SelectMediaAssetSchema | null;
 }
 
 export interface GetUserProfileByUsernameOptions {
@@ -34,6 +35,9 @@ export class GetUserProfileByUsername extends BaseService<
         name: true,
         image: true,
       },
+      with: {
+        ProfileImage: true,
+      },
     });
 
     // eslint-disable-next-line @typescript-eslint/prefer-optional-chain -- i want to make this check explicit, username will always be defined but not set, this is to please the type checker
@@ -47,7 +51,7 @@ export class GetUserProfileByUsername extends BaseService<
         id: user.id,
         username: user.username,
         name: user.name,
-        image: user.image,
+        image: user.ProfileImage,
       },
     };
   }
