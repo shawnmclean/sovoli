@@ -21,11 +21,11 @@ export const Navbar = async ({ AppLinks }: NavbarProps) => {
 
   return (
     <NextUINavbar maxWidth="full">
-      <div className="flex min-w-0 flex-row items-center gap-5">
+      <div className="flex min-w-0 flex-row items-center gap-2">
         <Link href="/">
           <NavbarBrand className="flex items-center gap-1">
             <Logo />
-            <p className="font-bold text-inherit">Sovoli</p>
+            <p className="hidden font-bold text-inherit md:block">Sovoli</p>
           </NavbarBrand>
         </Link>
         <NavbarItem className="overflow-hidden">{AppLinks}</NavbarItem>

@@ -23,8 +23,8 @@ export function KnowledgeDetails() {
 
   return (
     <div className="flex w-full flex-col">
-      <KnowledgeGallery />
       <KnowledgeTitle />
+      <KnowledgeGallery />
 
       {/* Main Content with 2-Column Layout */}
       <div className="flex justify-center p-6">

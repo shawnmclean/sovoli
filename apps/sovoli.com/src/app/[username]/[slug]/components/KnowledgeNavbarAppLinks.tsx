@@ -18,7 +18,7 @@ export const KnowledgeNavbarAppLinks = ({
         { href: `/${user.username}`, name: user.name ?? user.username },
         {
           href: `/${user.username}/${knowledge.slug}`,
-          name: knowledge.title ?? "knowledge",
+          name: knowledge.type,
         },
       ]}
     />

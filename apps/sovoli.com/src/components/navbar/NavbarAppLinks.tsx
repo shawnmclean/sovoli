@@ -13,10 +13,7 @@ export const NavbarAppLinks = ({ items }: NavbarAppLinksProps) => {
             key={index}
             className="flex min-w-0 items-center text-foreground/50 last:font-bold last:text-foreground"
           >
-            <Link
-              href={item.href}
-              className="min-w-0 p-1 hover:bg-foreground/10"
-            >
+            <Link href={item.href} className="min-w-0 hover:bg-foreground/10">
               <span className="block overflow-hidden text-ellipsis whitespace-nowrap">
                 {item.name}
               </span>
