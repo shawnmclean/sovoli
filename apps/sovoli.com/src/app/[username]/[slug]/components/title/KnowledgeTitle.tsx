@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
+import { Edit2Icon } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import { useKnowledge } from "../../context/KnowledgeContext";
@@ -15,7 +16,7 @@ export function KnowledgeTitle() {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="flex items-center border-b border-divider p-6">
+    <div className="flex items-center px-6 py-2">
       {isEditing ? (
         <TitleUpdateForm
           id={knowledge.id}
@@ -28,16 +29,16 @@ export function KnowledgeTitle() {
         />
       ) : (
         <div className="flex w-full flex-col gap-2 sm:flex-row sm:justify-between">
-          <h1 className="text-2xl font-bold">{title}</h1>
+          <h1 className="text-xl font-bold sm:text-2xl">{title}</h1>
 
           {session?.userId === knowledge.User?.id && (
             <Button
-              variant="bordered"
-              size="sm"
+              isIconOnly
+              variant="light"
+              className="text-default-400"
               onPress={() => setIsEditing(true)}
-              className="w-fit"
             >
-              Edit
+              <Edit2Icon className="h-5 w-5" />
             </Button>
           )}
         </div>
