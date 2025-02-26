@@ -16,7 +16,7 @@ export function KnowledgeTitle() {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="flex items-center px-6 py-2">
+    <div className="flex items-center">
       {isEditing ? (
         <TitleUpdateForm
           id={knowledge.id}

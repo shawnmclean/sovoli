@@ -27,13 +27,22 @@ export function KnowledgeGallery() {
   if (!coverAssets || coverAssets.length < 1) return;
 
   return (
-    <Carousel className="overflow-hidden rounded-lg">
+    <Carousel className="my-2 max-h-[540px] overflow-hidden rounded-lg">
       <CarouselContent>
         {coverAssets.map((image, i) => (
           <CarouselItem key={i} className="flex items-center justify-center">
-            <div className="relative h-[500px] w-[100%]">
-              <MediaAssetViewer mediaAsset={image} className="object-contain" />
-            </div>
+            <figure className="relative aspect-[16/9] w-full">
+              <div className="absolute inset-0 -z-10">
+                <MediaAssetViewer
+                  mediaAsset={image}
+                  className="scale-110 object-cover blur-xl brightness-50"
+                />
+              </div>
+              <MediaAssetViewer
+                mediaAsset={image}
+                className="relative z-10 object-contain"
+              />
+            </figure>
           </CarouselItem>
         ))}
       </CarouselContent>
