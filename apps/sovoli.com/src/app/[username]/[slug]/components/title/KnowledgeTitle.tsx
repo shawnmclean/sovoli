@@ -15,7 +15,7 @@ export function KnowledgeTitle() {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="flex max-w-7xl items-center border-b border-divider p-6">
+    <div className="flex items-center border-b border-divider p-6">
       {isEditing ? (
         <TitleUpdateForm
           id={knowledge.id}
@@ -27,7 +27,7 @@ export function KnowledgeTitle() {
           }}
         />
       ) : (
-        <div className="flex w-full flex-row justify-between">
+        <div className="flex w-full flex-col gap-2 sm:flex-row sm:justify-between">
           <h1 className="text-2xl font-bold">{title}</h1>
 
           {session?.userId === knowledge.User?.id && (
@@ -35,6 +35,7 @@ export function KnowledgeTitle() {
               variant="bordered"
               size="sm"
               onPress={() => setIsEditing(true)}
+              className="w-fit"
             >
               Edit
             </Button>

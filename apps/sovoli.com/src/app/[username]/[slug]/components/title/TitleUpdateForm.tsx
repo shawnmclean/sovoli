@@ -40,7 +40,7 @@ export function TitleUpdateForm({
 
   return (
     <Form
-      className="align-center flex w-full flex-row items-center justify-between"
+      className="align-center flex w-full flex-col justify-between sm:flex-row"
       action={formAction}
     >
       <input type="hidden" name="id" value={id} />
