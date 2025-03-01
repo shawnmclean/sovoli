@@ -7,44 +7,59 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@sovoli/ui/components/carousel";
+import { CldImage } from "next-cloudinary";
 
-import { MediaAssetViewer } from "~/modules/mediaAssets/components/MediaAssetViewer";
 import { useKnowledge } from "../context/KnowledgeContext";
 
 export function KnowledgeGallery() {
   const knowledge = useKnowledge();
 
   const coverAssets = knowledge.KnowledgeMediaAssets?.map(
-    (knowledgeMediaAsset) => {
-      if (knowledgeMediaAsset.placement === "cover") {
-        return knowledgeMediaAsset.MediaAsset;
-      }
-
-      return null;
-    },
+    (knowledgeMediaAsset) =>
+      knowledgeMediaAsset.placement === "cover"
+        ? knowledgeMediaAsset.MediaAsset
+        : null,
   ).filter((image) => image !== null);
 
-  if (!coverAssets || coverAssets.length < 1) return;
+  if (!coverAssets || coverAssets.length < 1) return null; // Prevent errors
 
   return (
-    <Carousel className="my-2 max-h-[540px] overflow-hidden rounded-lg">
-      <CarouselContent>
-        {coverAssets.map((image, i) => (
-          <CarouselItem key={i} className="flex items-center justify-center">
-            <figure className="relative aspect-[16/9] w-full">
-              <div className="absolute inset-0 -z-10">
-                <MediaAssetViewer
-                  mediaAsset={image}
-                  className="scale-110 object-cover blur-xl brightness-50"
+    <Carousel className="flex items-center justify-center overflow-hidden rounded-lg border border-default-200">
+      <CarouselContent className="flex h-full">
+        {coverAssets.map((image, i) => {
+          const width = 4032;
+          const height = 3024;
+
+          return (
+            <CarouselItem
+              key={i}
+              className="flex w-full items-center justify-center"
+            >
+              <figure className="relative flex w-full items-center justify-center overflow-hidden">
+                {/* Background Blur Layer (Ensures It Never Exceeds `figure`) */}
+                <CldImage
+                  src={`${image.bucket}/${image.id}`}
+                  alt="Blurred Background"
+                  width={width}
+                  height={height}
+                  priority
+                  loading="eager"
+                  className="absolute inset-0 w-full scale-[1.4] object-cover opacity-30 blur-xl brightness-50"
                 />
-              </div>
-              <MediaAssetViewer
-                mediaAsset={image}
-                className="relative z-10 object-contain"
-              />
-            </figure>
-          </CarouselItem>
-        ))}
+
+                {/* Foreground Image - Now Fully Contained */}
+                <CldImage
+                  src={`${image.bucket}/${image.id}`}
+                  alt={image.name ?? "Media Asset"}
+                  width={width}
+                  height={height}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                  className="relative h-auto max-h-[60vh] max-w-full object-contain"
+                />
+              </figure>
+            </CarouselItem>
+          );
+        })}
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />
