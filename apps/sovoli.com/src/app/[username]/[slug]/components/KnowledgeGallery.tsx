@@ -42,9 +42,8 @@ export function KnowledgeGallery() {
                   alt="Blurred Background"
                   width={width}
                   height={height}
-                  priority
-                  loading="eager"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                  fetchPriority="high"
+                  sizes="100vw"
                   className="absolute inset-0 w-full scale-[1.4] object-cover opacity-30 blur-xl brightness-50"
                 />
 
@@ -54,9 +53,8 @@ export function KnowledgeGallery() {
                   alt={image.name ?? "Media Asset"}
                   width={width}
                   height={height}
-                  priority
-                  loading="eager"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                  sizes="100vw"
+                  fetchPriority="high"
                   className="relative h-auto max-h-[60vh] max-w-full object-contain"
                 />
               </figure>
