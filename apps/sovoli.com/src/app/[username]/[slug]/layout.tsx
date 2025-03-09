@@ -5,7 +5,7 @@ import { Navbar } from "~/components/navbar/Navbar";
 import { env } from "~/env";
 import { config } from "~/utils/config";
 import { KnowledgeNavbarAppLinks } from "./components/KnowledgeNavbarAppLinks";
-import { KnowledgeSubmenu } from "./components/KnowledgeSubmenu";
+// import { KnowledgeSubmenu } from "./components/KnowledgeSubmenu";
 import { KnowledgeProvider } from "./context/KnowledgeContext";
 import { getKnowledgeBySlugOrId, preload } from "./lib/getKnowledgeBySlugOrId";
 
