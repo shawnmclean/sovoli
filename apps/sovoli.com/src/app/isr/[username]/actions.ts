@@ -7,5 +7,5 @@ export async function invalidateCacheAction(formData: FormData) {
   const username = formData.get("username") as string;
   if (!username) return;
 
-  revalidateTag("posts");
+  revalidateTag("user-profile");
 }
