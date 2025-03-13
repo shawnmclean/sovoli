@@ -19,7 +19,7 @@ export const getUserProfile = cache(async (username: string) => {
 
   if (!user) return null;
 
-  cacheTag(username, user.username);
+  cacheTag("user-profile", user.username);
 
   return {
     id: user.id,
