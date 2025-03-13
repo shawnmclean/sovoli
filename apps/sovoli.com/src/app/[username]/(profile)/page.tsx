@@ -3,8 +3,6 @@ import { cache } from "react";
 import { auth } from "~/core/auth";
 import { GetKnowledges } from "~/services/knowledge/getKnowledges";
 
-export const dynamic = "force-dynamic";
-
 const retrieveKnowledges = cache(
   async (
     username: string,

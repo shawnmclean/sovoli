@@ -3,8 +3,6 @@ import { and, db, eq, schema } from "@sovoli/db";
 
 import { getBaseUrl } from "~/utils/getBaseUrl";
 
-export const dynamic = "force-dynamic";
-
 export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getBaseUrl();
   const originKnowledges = await db.query.Knowledge.findMany({

@@ -5,8 +5,6 @@ import { auth } from "~/core/auth";
 import { GetKnowledges } from "~/services/knowledge/getKnowledges";
 import { ShelfList } from "./components/ShelfList";
 
-export const dynamic = "force-dynamic";
-
 interface Props {
   params: Promise<{ username: string }>;
   searchParams: Promise<{

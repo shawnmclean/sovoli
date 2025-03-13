@@ -5,8 +5,6 @@ import { config } from "~/utils/config";
 
 // import { Image } from "@sovoli/ui/components/image";
 
-export const dynamic = "force-dynamic";
-
 export function generateMetadata(): Metadata {
   return {
     openGraph: {
