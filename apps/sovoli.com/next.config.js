@@ -8,7 +8,6 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 const nextConfig = {
   experimental: {
     authInterrupts: true,
-    dynamicIO: true,
   },
   reactStrictMode: true,
   images: {
