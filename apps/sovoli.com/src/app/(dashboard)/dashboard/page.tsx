@@ -8,6 +8,8 @@ import { MediaAssetViewer } from "~/modules/mediaAssets/components/MediaAssetVie
 import { config } from "~/utils/config";
 import { getLatestKnowledges } from "./lib/getLatestKnowledges";
 
+export const dynamic = "force-dynamic";
+
 const retrieveLatestKnowledges = cache(async () => {
   return await getLatestKnowledges();
 });

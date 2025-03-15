@@ -1,5 +1,7 @@
 import { db, sql } from "@sovoli/db";
 
+export const dynamic = "force-dynamic";
+
 interface DatabaseHealth {
   status: "ok" | "error" | "unknown";
   latency_ms: number | null;
