@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
 
 import "server-only";
 
@@ -9,7 +10,7 @@ export const preload = (username: string, slugOrId: string) => {
   void getKnowledgeBySlugOrId(username, slugOrId);
 };
 
-export const getKnowledgeBySlugOrId = cache(
+const getCachedKnowledgeBySlugOrId = unstable_cache(
   async (username: string, slugOrId: string) => {
     const session = await auth();
 
@@ -25,4 +26,7 @@ export const getKnowledgeBySlugOrId = cache(
 
     return response;
   },
+  ["knowledge"],
 );
+
+export const getKnowledgeBySlugOrId = cache(getCachedKnowledgeBySlugOrId);
