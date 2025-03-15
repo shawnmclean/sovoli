@@ -11,15 +11,13 @@ export const preload = (username: string, slugOrId: string) => {
 };
 
 const getCachedKnowledgeBySlugOrId = unstable_cache(
-  async (username: string, slugOrId: string) => {
-    const session = await auth();
-
+  async (username: string, slugOrId: string, authUserId?: string) => {
     const getKnowledgeBySlugOrId = new GetKnowledgeBySlugOrId();
 
     const response = await getKnowledgeBySlugOrId.call({
       username,
       slugOrId,
-      authUserId: session?.user?.id,
+      authUserId,
     });
 
     if (!response.knowledge) return null;
@@ -29,4 +27,14 @@ const getCachedKnowledgeBySlugOrId = unstable_cache(
   ["knowledge"],
 );
 
-export const getKnowledgeBySlugOrId = cache(getCachedKnowledgeBySlugOrId);
+export const getKnowledgeBySlugOrId = cache(
+  async (username: string, slugOrId: string) => {
+    const session = await auth();
+
+    return await getCachedKnowledgeBySlugOrId(
+      username,
+      slugOrId,
+      session?.user?.id,
+    );
+  },
+);
