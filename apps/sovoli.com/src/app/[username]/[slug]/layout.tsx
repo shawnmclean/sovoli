@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getCldOgImageUrl } from "next-cloudinary";
 
+import { Footer } from "~/components/footer/Footer";
 import { Navbar } from "~/components/navbar/Navbar";
 import { env } from "~/env";
 import { config } from "~/utils/config";
@@ -66,18 +67,21 @@ export default async function Layout({ params, children }: Props) {
   const knowledge = await retreiveKnowledgeBySlug(username, slug);
 
   return (
-    <KnowledgeProvider knowledge={knowledge}>
-      <Navbar AppLinks={<KnowledgeNavbarAppLinks knowledge={knowledge} />} />
+    <div className="flex min-h-screen flex-col">
+      <KnowledgeProvider knowledge={knowledge}>
+        <Navbar AppLinks={<KnowledgeNavbarAppLinks knowledge={knowledge} />} />
 
-      <main>
-        {/* <KnowledgeSubmenu
+        <main className="flex-grow">
+          {/* <KnowledgeSubmenu
           username={knowledge.User?.username ?? ""}
           slug={knowledge.slug ?? ""}
         /> */}
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 md:flex-row">
-          {children}
-        </div>
-      </main>
-    </KnowledgeProvider>
+          <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 md:flex-row">
+            {children}
+          </div>
+        </main>
+        <Footer />
+      </KnowledgeProvider>
+    </div>
   );
 }

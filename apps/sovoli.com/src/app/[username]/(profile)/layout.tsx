@@ -1,3 +1,4 @@
+import { Footer } from "~/components/footer/Footer";
 import { Navbar } from "~/components/navbar/Navbar";
 import { UserProfileNavbarAppLinks } from "./components/UserProfileNavbarAppLinks";
 import { UserProfileSidebar } from "./components/UserProfileSidebar";
@@ -23,6 +24,7 @@ export default function Layout({ children }: Props) {
           <div className="w-full md:w-3/4">{children}</div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
