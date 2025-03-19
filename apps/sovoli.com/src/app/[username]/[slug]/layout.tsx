@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
+import { getCldOgImageUrl } from "next-cloudinary";
 
 import { Navbar } from "~/components/navbar/Navbar";
 import { env } from "~/env";
@@ -26,20 +27,28 @@ const retreiveKnowledgeBySlug = async (username: string, slugOrId: string) => {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username, slug } = await params;
   const knowledge = await retreiveKnowledgeBySlug(username, slug);
-  // Get the image path from the MediaAssets
-  const image = knowledge.MediaAssets?.[0];
 
-  // Construct the URL for the OpenGraph image using the Supabase public storage URL
-  const imageUrl = image
-    ? `${env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${image.bucket}/${image.path}`
-    : undefined;
+  const coverAssets = knowledge.KnowledgeMediaAssets?.map(
+    (knowledgeMediaAsset) =>
+      knowledgeMediaAsset.placement === "cover"
+        ? getCldOgImageUrl({
+            src: `${knowledgeMediaAsset.MediaAsset.bucket}/${knowledgeMediaAsset.MediaAsset.id}`,
+          })
+        : null,
+  ).filter((image) => image !== null);
+
+  const description = knowledge.description?.trim()
+    ? knowledge.description
+    : config.description;
   return {
     title: `${knowledge.title} - ${knowledge.User?.name}`,
+    description: description,
     openGraph: {
       title: `${knowledge.title} - ${knowledge.User?.name}`,
+      description: description,
       url: config.url + "/" + username + "/" + knowledge.slug,
       siteName: config.siteName,
-      images: imageUrl ? [imageUrl] : [],
+      images: coverAssets,
     },
   };
 }
