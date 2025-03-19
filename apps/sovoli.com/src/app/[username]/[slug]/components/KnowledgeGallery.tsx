@@ -24,7 +24,7 @@ export function KnowledgeGallery() {
   if (!coverAssets || coverAssets.length < 1) return null; // Prevent errors
 
   return (
-    <Carousel className="flex items-center justify-center overflow-hidden rounded-lg border border-default-200">
+    <Carousel className="my-2 flex items-center justify-center overflow-hidden rounded-lg border border-default-200">
       <CarouselContent className="flex h-full">
         {coverAssets.map((image, i) => {
           const width = 4032;
