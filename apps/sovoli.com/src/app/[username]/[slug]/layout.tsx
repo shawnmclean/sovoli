@@ -4,7 +4,6 @@ import { getCldOgImageUrl } from "next-cloudinary";
 
 import { Footer } from "~/components/footer/Footer";
 import { Navbar } from "~/components/navbar/Navbar";
-import { env } from "~/env";
 import { config } from "~/utils/config";
 import { KnowledgeNavbarAppLinks } from "./components/KnowledgeNavbarAppLinks";
 // import { KnowledgeSubmenu } from "./components/KnowledgeSubmenu";
