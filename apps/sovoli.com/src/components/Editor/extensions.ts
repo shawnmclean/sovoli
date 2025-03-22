@@ -1,4 +1,3 @@
-import FileHandler from "@tiptap-pro/extension-file-handler";
 import Dropcursor from "@tiptap/extension-dropcursor";
 import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
