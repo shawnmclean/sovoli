@@ -6,7 +6,7 @@ import { processImage } from "~/core/image/processImage";
 import { uploadToCloudinary } from "../lib/uploadToCloudinary";
 
 export interface UseAssetFileUploadProps {
-  onFileUploadChanged: (file: FileState) => void;
+  onFileUploadChanged?: (file: FileState) => void;
   uploadSignatures?: UploadSignature[];
 }
 
@@ -123,7 +123,7 @@ export const useAssetFileUpload = ({
         );
 
         updateFileStatus(file, "success", uploadedAsset);
-        onFileUploadChanged({
+        onFileUploadChanged?.({
           ...fileState,
           file,
           status: "success",
