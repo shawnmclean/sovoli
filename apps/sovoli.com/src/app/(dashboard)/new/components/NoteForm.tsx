@@ -18,7 +18,7 @@ import { ChevronDownIcon, PlusIcon, Trash2Icon } from "lucide-react";
 
 import type { UploadSignature } from "../../../../modules/mediaAssets/lib/generateUploadSignatures";
 import type { State } from "../actions/newNoteAction";
-import type { UploadedAsset } from "~/modules/mediaAssets/hooks/useAssetFileUpload";
+import type { UploadedAsset } from "~/modules/mediaAssets/lib/uploadToCloudinary";
 import { Editor } from "~/components/Editor/Editor";
 import { AssetManager } from "~/modules/mediaAssets/components/AssetManager";
 
@@ -96,7 +96,7 @@ export const NoteForm = ({
         name="assets"
         onChange={async (assets) => {
           for (const asset of assets) {
-            if (asset.type === "added") {
+            if (asset.type === "added" && asset.asset) {
               await onFileUploaded(asset.asset);
             }
           }
