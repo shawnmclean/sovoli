@@ -34,9 +34,8 @@ export const Editor = ({ name, defaultValue, ref, ...rest }: EditorProps) => {
   const [editorValue, setEditorValue] = useState(JSON.stringify(jsonContent));
 
   const { addFiles } = useAssetFileUpload({
-    onFileUploaded: (asset) => {
-      console.log("Asset uploaded:", asset);
-      // editor?.$nodes('image', {src: })
+    onFileUploadChanged: (fileState) => {
+      console.log("Asset changed:", fileState);
     },
   });
 

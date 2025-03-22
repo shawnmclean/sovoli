@@ -15,9 +15,9 @@ import { useDropzone } from "react-dropzone";
 import { tv } from "tailwind-variants";
 
 import type { UploadSignature } from "../lib/generateUploadSignatures";
-import type { UploadedAsset } from "~/modules/mediaAssets/hooks/useAssetFileUpload";
 import supabaseLoader from "~/loaders/supabaseImageLoader";
 import { useAssetFileUpload } from "~/modules/mediaAssets/hooks/useAssetFileUpload";
+import { UploadedAsset } from "../lib/uploadToCloudinary";
 
 const dropzoneStyles = tv({
   base: "flex flex-col items-center justify-center h-64 w-full border-2 border-dashed rounded-lg",
@@ -37,7 +37,7 @@ const dropzoneStyles = tv({
 export type AssetChangeType = "added" | "removed" | "updated";
 export interface AssetChange {
   type: AssetChangeType;
-  asset: UploadedAsset;
+  asset?: UploadedAsset;
 }
 
 export interface AssetManagerProps {
@@ -53,7 +53,13 @@ export const AssetManager = ({
   onChange,
 }: AssetManagerProps) => {
   const { files, addFiles, removeFile } = useAssetFileUpload({
-    onFileUploaded: (asset) => onChange([{ type: "added", asset }]),
+    onFileUploadChanged: (fileState) =>
+      onChange([
+        {
+          type: fileState.status === "success" ? "updated" : "added",
+          asset: fileState.uploadedAsset,
+        },
+      ]),
     uploadSignatures,
   });
   const [fileRejections, setFileRejections] = useState<FileRejection[]>([]);

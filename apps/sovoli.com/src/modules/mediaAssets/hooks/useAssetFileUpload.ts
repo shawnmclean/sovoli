@@ -6,7 +6,7 @@ import { processImage } from "~/core/image/processImage";
 import { uploadToCloudinary } from "../lib/uploadToCloudinary";
 
 export interface UseAssetFileUploadProps {
-  onFileUploaded: (asset: UploadedAsset) => void;
+  onFileUploadChanged: (file: FileState) => void;
   uploadSignatures?: UploadSignature[];
 }
 
@@ -21,7 +21,7 @@ export interface FileState {
 
 // Hook Implementation
 export const useAssetFileUpload = ({
-  onFileUploaded,
+  onFileUploadChanged,
   uploadSignatures: initialUploadSignatures = [],
 }: UseAssetFileUploadProps) => {
   // State for UI updates
@@ -123,13 +123,18 @@ export const useAssetFileUpload = ({
         );
 
         updateFileStatus(file, "success", uploadedAsset);
-        onFileUploaded(uploadedAsset);
+        onFileUploadChanged({
+          ...fileState,
+          file,
+          status: "success",
+          uploadedAsset,
+        });
       } catch (error) {
         console.error("Error uploading file:", error);
         updateFileStatus(file, "error");
       }
     },
-    [getValidSignature, onFileUploaded],
+    [getValidSignature, onFileUploadChanged],
   );
 
   /**
