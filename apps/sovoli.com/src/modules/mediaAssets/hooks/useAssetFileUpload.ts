@@ -1,19 +1,9 @@
 import { useCallback, useRef, useState } from "react";
 
+import type { UploadedAsset } from "../lib/uploadToCloudinary";
 import type { UploadSignature } from "~/modules/mediaAssets/lib/generateUploadSignatures";
 import { processImage } from "~/core/image/processImage";
-
-// Type Definitions
-export interface UploadedAsset {
-  id: string;
-  url: string;
-}
-
-interface CloudinaryUploadResponse {
-  asset_id: string;
-  public_id: string;
-  url: string;
-}
+import { uploadToCloudinary } from "../lib/uploadToCloudinary";
 
 export interface UseAssetFileUploadProps {
   onFileUploaded: (asset: UploadedAsset) => void;
@@ -188,29 +178,3 @@ const createFileState = (file: File): FileState => ({
   preview: URL.createObjectURL(file),
   status: "idle",
 });
-
-/**
- * Uploads a file to Cloudinary with the given signature.
- */
-const uploadToCloudinary = async (
-  file: File,
-  signature: UploadSignature,
-): Promise<UploadedAsset> => {
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("api_key", signature.apiKey);
-  formData.append("timestamp", signature.timestamp.toString());
-  formData.append("signature", signature.signature);
-  formData.append("public_id", signature.id);
-  formData.append("folder", signature.folder);
-
-  const response = await fetch(
-    `https://api.cloudinary.com/v1_1/${signature.cloudName}/auto/upload`,
-    { method: "POST", body: formData },
-  );
-
-  if (!response.ok) throw new Error("Failed to upload file");
-
-  const uploadResponse = (await response.json()) as CloudinaryUploadResponse;
-  return { id: signature.id, url: uploadResponse.url };
-};
