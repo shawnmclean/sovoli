@@ -1,4 +1,4 @@
-import { NoteForm } from "~/modules/notes/components/NoteForm";
+import { KnowledgeEdit } from "./components/KnowledgeEdit";
 
 export interface KnowledgeEditPageProps {
   params: Promise<{
@@ -12,7 +12,7 @@ export default async function KnowledgeEditPage(props: KnowledgeEditPageProps) {
   return (
     <div>
       Edit Page: {params.username}/{params.slug}
-      <NoteForm slugOrId={params.slug} />
+      <KnowledgeEdit />
     </div>
   );
 }

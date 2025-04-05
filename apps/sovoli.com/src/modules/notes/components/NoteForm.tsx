@@ -3,22 +3,22 @@
 import { useActionState } from "react";
 
 import type { State } from "../actions/upsertNoteAction";
-import { upsertNoteAction } from "../actions/upsertNoteAction";
 
 export interface NoteFormProps {
-  slugOrId: string;
+  id: string;
+  action: (state: State, formData: FormData) => Promise<State>;
 }
 
-export const NoteForm = ({ slugOrId }: NoteFormProps) => {
+export const NoteForm = ({ id, action }: NoteFormProps) => {
   const [state, formAction, pending] = useActionState<State, FormData>(
-    upsertNoteAction,
+    action,
     null,
   );
 
   return (
     <div>
       <form action={formAction}>
-        <input type="text" name="title" value={slugOrId} />
+        <input type="text" name="id" value={id} />
         <input type="submit" value="Submit" />
       </form>
       {state?.status === "error" && (
