@@ -1,17 +1,8 @@
 import { KnowledgeEdit } from "./components/KnowledgeEdit";
 
-export interface KnowledgeEditPageProps {
-  params: Promise<{
-    username: string;
-    slug: string;
-  }>;
-}
-
-export default async function KnowledgeEditPage(props: KnowledgeEditPageProps) {
-  const params = await props.params;
+export default function KnowledgeEditPage() {
   return (
-    <div>
-      Edit Page: {params.username}/{params.slug}
+    <div className="mx-auto max-w-7xl p-4">
       <KnowledgeEdit />
     </div>
   );

@@ -75,9 +75,7 @@ export default async function Layout({ params, children }: Props) {
           username={knowledge.User?.username ?? ""}
           slug={knowledge.slug ?? ""}
         /> */}
-          <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 md:flex-row">
-            {children}
-          </div>
+          <div className="mx-auto max-w-7xl">{children}</div>
         </main>
         <Footer />
       </KnowledgeProvider>
