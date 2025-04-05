@@ -8,7 +8,7 @@ import { Form } from "@sovoli/ui/components/form";
 import { Input } from "@sovoli/ui/components/input";
 import { Spinner } from "@sovoli/ui/components/spinner";
 
-import type { State } from "../actions/upsertNoteAction";
+import type { State } from "../actions/createDraftKnowledgeAction.ts";
 import type { UploadSignature } from "~/modules/mediaAssets/lib/generateUploadSignatures";
 import type { UploadedAsset } from "~/modules/mediaAssets/lib/uploadToCloudinary";
 import { Editor } from "~/components/Editor/Editor";
