@@ -1,3 +1,5 @@
+import { NoteForm } from "~/modules/notes/components/NoteForm";
+
 export interface KnowledgeEditPageProps {
   params: Promise<{
     username: string;
@@ -10,6 +12,7 @@ export default async function KnowledgeEditPage(props: KnowledgeEditPageProps) {
   return (
     <div>
       Edit Page: {params.username}/{params.slug}
+      <NoteForm slugOrId={params.slug} />
     </div>
   );
 }
