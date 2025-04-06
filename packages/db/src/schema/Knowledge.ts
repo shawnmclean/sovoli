@@ -52,6 +52,8 @@ export const Knowledge = pgTable(
     // this is true is the knowledge is posted directly and not from a collection
     isOrigin: boolean("is_origin").notNull().default(false),
 
+    isDraft: boolean("is_draft").notNull().default(true),
+
     slug: varchar("slug", { length: 255 }),
     type: knowledgeTypeEnum("type").notNull().default(KnowledgeType.note),
 
