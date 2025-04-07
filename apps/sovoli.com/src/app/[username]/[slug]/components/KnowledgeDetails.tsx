@@ -12,7 +12,6 @@ import { Connections } from "./Connections";
 import { KnowledgeContent } from "./content/KnowledgeContent";
 import { KnowledgeGallery } from "./KnowledgeGallery";
 import { MainReference } from "./MainReference";
-import { KnowledgeTitle } from "./title/KnowledgeTitle";
 
 export function KnowledgeDetails() {
   const knowledge = useKnowledge();
@@ -23,7 +22,10 @@ export function KnowledgeDetails() {
 
   return (
     <div className="flex w-full flex-col px-6">
-      <KnowledgeTitle />
+      <div className="flex items-center gap-2">
+        {knowledge.isDraft && <Chip>Draft</Chip>}
+        <h1 className="text-xl font-bold sm:text-2xl">{knowledge.title}</h1>
+      </div>
       <KnowledgeGallery />
 
       {/* Main Content with 2-Column Layout */}
@@ -68,15 +70,14 @@ export function KnowledgeDetails() {
                         size="sm"
                         variant="dot"
                         title="2 biology, 8 psychology"
+                        color="secondary"
                       >
-                        Mindweaver
+                        Engineer
                       </Chip>
                     </div>
                   </div>
                 </div>
-                <span className="text-sm">
-                  Researching: Ego, Belief Systems
-                </span>
+                <span className="text-sm">Researching: Belief Systems</span>
               </div>
             </section>
 

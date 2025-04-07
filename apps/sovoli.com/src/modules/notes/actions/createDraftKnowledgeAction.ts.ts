@@ -57,6 +57,7 @@ export async function createDraftKnowledgeAction(
       content,
       slug,
       isOrigin: true,
+      isDraft: true,
     })
     .returning();
 
