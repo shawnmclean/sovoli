@@ -12,3 +12,5 @@ export * from "./Import";
 export * from "./ImportRelations";
 export * from "./KnowledgeMediaAsset";
 export * from "./KnowledgeMediaAssetRelation";
+export * from "./Organization";
+export * from "./PublicIdentifer";
