@@ -4,6 +4,8 @@ import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Input } from "@sovoli/ui/components/input";
 
+import { WaitlistForm } from "./WaitlistForm";
+
 export function HeroSection() {
   return (
     <section className="z-20 flex flex-col items-center justify-center gap-6 px-4 py-24 text-center">
@@ -33,33 +35,17 @@ export function HeroSection() {
         </strong>{" "}
         in{" "}
         <span className="inline-flex items-center gap-1 font-medium text-default-600">
-          <Icon icon="emojione:flag-for-guyana" width="14" />
           Guyana
         </span>{" "}
         and{" "}
         <span className="inline-flex items-center gap-1 font-medium text-default-600">
-          <Icon icon="emojione:flag-for-jamaica" width="14" />
           Jamaica
         </span>{" "}
         to evolve how learning is recorded, shared, and continued — from early
         education into adulthood.
       </p>
 
-      {/* Email form */}
-      <form className="flex w-full max-w-md flex-col items-center gap-3 sm:flex-row sm:gap-4">
-        <Input
-          type="email"
-          placeholder="Your email"
-          required
-          className="h-10 w-full text-sm sm:w-[260px]"
-        />
-        <Button
-          type="submit"
-          className="h-10 w-full text-sm font-medium sm:w-[140px]"
-        >
-          Notify Me
-        </Button>
-      </form>
+      <WaitlistForm />
       <p className="mt-12 text-sm text-default-500">
         Built by engineers with global experience in education, cybersecurity,
         and AI <br />— guided by over 40 years of leadership in schools and
