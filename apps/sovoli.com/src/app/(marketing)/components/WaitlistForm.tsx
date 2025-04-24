@@ -35,11 +35,8 @@ export function WaitlistForm() {
         onSubmit={(e) => {
           e.preventDefault();
           const form = e.currentTarget;
-          const data = new FormData(form);
-          const value = data.get(mode);
-          alert(
-            `${mode === "email" ? "Email" : "WhatsApp"} submitted: ${value}`,
-          );
+
+          alert(`${mode === "email" ? "Email" : "WhatsApp"} submitted`);
           form.reset();
         }}
         className="flex w-full flex-col items-center gap-3 sm:flex-row sm:gap-4"
