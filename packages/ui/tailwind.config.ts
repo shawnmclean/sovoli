@@ -27,6 +27,10 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "hero-section-title":
+          "linear-gradient(91deg, #FFF 32.88%, rgba(255, 255, 255, 0.40) 99.12%)",
+      },
       typography: (theme: (arg0: string) => any) => ({
         DEFAULT: {
           css: {

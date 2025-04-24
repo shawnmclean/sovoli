@@ -10,7 +10,8 @@ import { auth } from "~/core/auth";
 import { Logo } from "../Logo/Logo";
 import { NavbarRightProfile } from "./NavbarRightProfile";
 import { NewDropdown } from "./NewDropdown";
-import { SignUpButton } from "./SignUpButton";
+
+// import { SignUpButton } from "./SignUpButton";
 
 export interface NavbarProps {
   AppLinks?: React.ReactNode;
@@ -42,9 +43,7 @@ export const Navbar = async ({ AppLinks }: NavbarProps) => {
         </NavbarContent>
       ) : (
         <NavbarContent justify="end">
-          <NavbarItem>
-            <SignUpButton />
-          </NavbarItem>
+          <NavbarItem>{/* <SignUpButton /> */}</NavbarItem>
         </NavbarContent>
       )}
     </NextUINavbar>

@@ -8,7 +8,9 @@ export default function Layout({ children }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-      <main className="flex-1">{children}</main>
+
+      {children}
+
       <Footer />
     </div>
   );
