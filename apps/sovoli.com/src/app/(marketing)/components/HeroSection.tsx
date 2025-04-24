@@ -1,8 +1,5 @@
 import React from "react";
-import { Icon } from "@iconify/react";
-import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Input } from "@sovoli/ui/components/input";
 
 import { WaitlistForm } from "./WaitlistForm";
 

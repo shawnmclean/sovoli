@@ -8,9 +8,9 @@ export function WaitlistForm() {
   const [mode, setMode] = useState<"whatsapp" | "email">("whatsapp");
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      {/* Segmented Toggle */}
-      <div className="flex justify-center rounded-full border border-default-100 bg-default-50 p-1">
+    <div className="flex w-full max-w-md flex-col items-center gap-6 rounded-xl border border-default-100 p-8 backdrop-blur-md">
+      {/* Toggle Pill Group */}
+      <div className="flex justify-center rounded-full border border-default-100 p-1">
         {["whatsapp", "email"].map((type) => {
           const isActive = mode === type;
           return (
@@ -30,7 +30,7 @@ export function WaitlistForm() {
         })}
       </div>
 
-      {/* Contact Form */}
+      {/* Form */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -42,7 +42,7 @@ export function WaitlistForm() {
           );
           form.reset();
         }}
-        className="flex w-full max-w-md flex-col items-center gap-3 sm:flex-row sm:gap-4"
+        className="flex w-full flex-col items-center gap-3 sm:flex-row sm:gap-4"
       >
         {mode === "email" ? (
           <Input
