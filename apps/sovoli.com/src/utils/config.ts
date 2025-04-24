@@ -1,15 +1,15 @@
 export const config = {
-  title: "Sovoli: The Knowledge Platform",
+  title: "Sovoli: A Lifelong Knowledge System",
   siteName: "Sovoli",
   description:
-    "Sovoli, the platform that helps you easily digitize and organize your books, notes and research materials. Upload photos of your books, let AI recognize and categorize them, and create a digital library that’s searchable and accessible anytime. Perfect for avid readers, researchers, and book collectors looking to manage and explore their personal book collection efficiently.",
+    "Sovoli is a lifelong knowledge system developed in collaboration with private schools. Starting in Guyana and Jamaica, Sovoli helps schools and students record, share, and continue learning across every stage of life — from early education to mastery.",
   url: "https://sovoli.com",
   images: [
     {
       url: "/images/og-image.webp",
       width: 1200,
       height: 630,
-      alt: "Sovoli: The Knowledge Platform",
+      alt: "Sovoli: A Lifelong Knowledge System",
     },
   ],
 };
