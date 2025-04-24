@@ -18,7 +18,7 @@ export function generateMetadata(): Metadata {
 
 export default function LandingPage() {
   return (
-    <main className="container mx-auto flex flex-1 flex-col items-center justify-center overflow-hidden px-8">
+    <main className="container mx-auto flex flex-1 flex-col items-center justify-center overflow-hidden">
       <HeroSection />
     </main>
   );
