@@ -18,6 +18,10 @@ export function WaitlistForm() {
 
   return (
     <div className="flex w-full max-w-md flex-col items-center gap-6 rounded-xl border border-default-100 p-8 backdrop-blur-md">
+      <h2 className="text-center text-2xl font-bold">
+        Start the Compatibility Survey
+      </h2>
+
       {/* Toggle Pill Group */}
       <div className="flex justify-center rounded-full border border-default-100 p-1">
         {["whatsapp", "email"].map((type) => {
@@ -70,7 +74,7 @@ export function WaitlistForm() {
           className="h-10 w-full text-sm font-medium sm:w-[140px]"
           isLoading={isPending}
         >
-          Join Now
+          Start
         </Button>
       </form>
 
