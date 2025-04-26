@@ -17,7 +17,7 @@ export function WaitlistForm() {
   );
 
   return (
-    <div className="flex w-full max-w-md flex-col items-center gap-6 rounded-xl border border-default-100 p-8 backdrop-blur-md">
+    <div className="animate-neonPulse flex w-full max-w-md flex-col items-center gap-6 rounded-xl border-2 border-purple-500 p-8 backdrop-blur-md">
       <h2 className="text-center text-2xl font-bold">
         Start the Compatibility Survey
       </h2>

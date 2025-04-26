@@ -31,6 +31,29 @@ export default {
         "hero-section-title":
           "linear-gradient(91deg, #FFF 32.88%, rgba(255, 255, 255, 0.40) 99.12%)",
       },
+      keyframes: {
+        neonPulse: {
+          "0%, 100%": {
+            boxShadow: `
+              0 0 5px #800080,
+              0 0 10px #ff00ff,
+              0 0 20px #800080,
+              0 0 40px #ff00ff
+            `,
+          },
+          "50%": {
+            boxShadow: `
+              0 0 10px #ff00ff,
+              0 0 20px #800080,
+              0 0 30px #ff00ff,
+              0 0 50px #800080
+            `,
+          },
+        },
+      },
+      animation: {
+        neonPulse: "neonPulse 2s ease-in-out infinite",
+      },
       typography: (theme: (arg0: string) => any) => ({
         DEFAULT: {
           css: {
