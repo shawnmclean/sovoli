@@ -1,11 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useActionState, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 
+import type { State } from "../actions/insertWaitlistContactAction";
+import { insertWaitlistContactAction } from "../actions/insertWaitlistContactAction";
+
+const initialState = null;
+
 export function WaitlistForm() {
   const [mode, setMode] = useState<"whatsapp" | "email">("whatsapp");
+  const [state, formAction, isPending] = useActionState<State, FormData>(
+    insertWaitlistContactAction,
+    initialState,
+  );
 
   return (
     <div className="flex w-full max-w-md flex-col items-center gap-6 rounded-xl border border-default-100 p-8 backdrop-blur-md">
@@ -32,18 +41,12 @@ export function WaitlistForm() {
 
       {/* Form */}
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const form = e.currentTarget;
-
-          alert(`${mode === "email" ? "Email" : "WhatsApp"} submitted`);
-          form.reset();
-        }}
+        action={formAction}
         className="flex w-full flex-col items-center gap-3 sm:flex-row sm:gap-4"
       >
         {mode === "email" ? (
           <Input
-            name="email"
+            name="contactValue"
             type="email"
             placeholder="Your email address"
             required
@@ -51,7 +54,7 @@ export function WaitlistForm() {
           />
         ) : (
           <Input
-            name="whatsapp"
+            name="contactValue"
             type="tel"
             placeholder="Your WhatsApp number"
             required
@@ -59,13 +62,47 @@ export function WaitlistForm() {
           />
         )}
 
+        {/* Hidden Mode Input */}
+        <input type="hidden" name="mode" value={mode} />
+
         <Button
           type="submit"
           className="h-10 w-full text-sm font-medium sm:w-[140px]"
+          disabled={isPending}
         >
-          Notify Me
+          {isPending ? (
+            <span className="flex items-center justify-center gap-2">
+              <svg
+                className="h-4 w-4 animate-spin"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8H4z"
+                />
+              </svg>
+              Submitting...
+            </span>
+          ) : (
+            "Notify Me"
+          )}
         </Button>
       </form>
+
+      {/* Optional Error Display */}
+      {state?.status === "error" && (
+        <div className="mt-4 text-sm text-red-500">{state.message}</div>
+      )}
     </div>
   );
 }
