@@ -26,7 +26,7 @@ export const Navbar = async ({ AppLinks }: NavbarProps) => {
         <Link href="/">
           <NavbarBrand className="flex items-center gap-1">
             <Logo />
-            <p className="hidden font-bold text-inherit md:block">Sovoli</p>
+            <p className="font-bold text-inherit">Sovoli</p>
           </NavbarBrand>
         </Link>
         <NavbarItem className="overflow-hidden">{AppLinks}</NavbarItem>
