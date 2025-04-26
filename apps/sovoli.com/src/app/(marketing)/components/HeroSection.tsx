@@ -5,7 +5,7 @@ import { WaitlistForm } from "./WaitlistForm";
 
 export function HeroSection() {
   return (
-    <section className="z-20 flex flex-col items-center justify-center gap-6 px-4 py-24 text-center">
+    <section className="z-20 flex flex-col items-center justify-center gap-6 px-4 py-10 text-center">
       {/* Stealth label */}
       <Chip
         className="h-9 border border-default-100 bg-default-50 px-[18px] py-2 text-sm font-normal text-default-500"
