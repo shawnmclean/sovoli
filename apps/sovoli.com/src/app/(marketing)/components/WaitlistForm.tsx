@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useActionState, useState } from "react";
+import { Icon } from "@iconify/react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 
@@ -73,6 +74,8 @@ export function WaitlistForm() {
           type="submit"
           className="h-10 w-full text-sm font-medium sm:w-[140px]"
           isLoading={isPending}
+          color="primary"
+          endContent={<Icon icon="heroicons:arrow-right" />}
         >
           Start
         </Button>
