@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useActionState, useState } from "react";
-import { Icon } from "@iconify/react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
+import { ArrowRightIcon, MailIcon, PhoneIcon } from "lucide-react";
 
 import type { State } from "../actions/insertWaitlistContactAction";
 import { insertWaitlistContactAction } from "../actions/insertWaitlistContactAction";
@@ -56,6 +56,7 @@ export function WaitlistForm() {
             placeholder="Your email address"
             required
             className="h-10 w-full text-sm sm:w-[260px]"
+            startContent={<MailIcon className="text-default-400" />}
           />
         ) : (
           <Input
@@ -64,6 +65,7 @@ export function WaitlistForm() {
             placeholder="Your WhatsApp number"
             required
             className="h-10 w-full text-sm sm:w-[260px]"
+            startContent={<PhoneIcon className="text-default-400" />}
           />
         )}
 
@@ -75,7 +77,7 @@ export function WaitlistForm() {
           className="h-10 w-full text-sm font-medium sm:w-[140px]"
           isLoading={isPending}
           color="primary"
-          endContent={<Icon icon="heroicons:arrow-right" />}
+          endContent={<ArrowRightIcon />}
         >
           Start
         </Button>
