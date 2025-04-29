@@ -18,8 +18,8 @@ export function ContactToggleInput({
   const [mode, setMode] = useState<"whatsapp" | "email">(defaultMode);
 
   return (
-    <div className="flex w-full flex-col items-center gap-4">
-      {/* Toggle */}
+    <div className="mx-auto flex w-full max-w-xl flex-col items-center gap-4">
+      {/* Toggle Pill */}
       <div className="flex justify-center rounded-full border border-default-200 p-1">
         {["whatsapp", "email"].map((type) => {
           const isActive = mode === type;
@@ -40,9 +40,15 @@ export function ContactToggleInput({
         })}
       </div>
 
-      {/* Input + Button */}
-      <div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-between">
-        <div className="w-full sm:w-[260px]">
+      {/* Input + Optional Button */}
+      <div
+        className={`flex w-full flex-col items-center gap-3 ${
+          renderAfterInput
+            ? "sm:flex-row sm:justify-between"
+            : "sm:justify-center"
+        }`}
+      >
+        <div className="w-full max-w-sm">
           {mode === "email" ? (
             <Input
               name="contactValue"
@@ -66,7 +72,9 @@ export function ContactToggleInput({
           )}
         </div>
 
-        {renderAfterInput}
+        {renderAfterInput && (
+          <div className="w-full sm:w-auto">{renderAfterInput}</div>
+        )}
       </div>
 
       <input type="hidden" name="mode" value={mode} />
