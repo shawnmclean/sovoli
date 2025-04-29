@@ -1,13 +1,9 @@
-import type { Metadata } from "next";
-
 import { config } from "~/utils/config";
+import { CTASection } from "./components/CTASection";
+import { GallerySection } from "./components/GallerySection";
 import { HeroSection } from "./components/HeroSection";
 
-// import { Image } from "@sovoli/ui/components/image";
-
-export const dynamic = "force-dynamic";
-
-export function generateMetadata(): Metadata {
+export function generateMetadata() {
   return {
     openGraph: {
       url: config.url,
@@ -18,8 +14,16 @@ export function generateMetadata(): Metadata {
 
 export default function LandingPage() {
   return (
-    <main className="container mx-auto flex flex-1 flex-col items-center justify-center overflow-hidden">
+    <main className="mx-auto w-full max-w-screen-lg px-4 pb-16 pt-6">
       <HeroSection />
+      <CTASection />
+      <GallerySection />
+      <div className="mx-auto mt-12 max-w-xl text-center text-sm text-default-500">
+        Built by engineers with global experience in Education, Cybersecurity,
+        and Artificial Intelligence —
+        <br />
+        guided by over 40 years of leadership in schools and teaching.
+      </div>
     </main>
   );
 }
