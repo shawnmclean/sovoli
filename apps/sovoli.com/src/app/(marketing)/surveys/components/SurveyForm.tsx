@@ -2,58 +2,29 @@
 
 import React from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { Checkbox, CheckboxGroup } from "@sovoli/ui/components/checkbox";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Input } from "@sovoli/ui/components/input";
 import { Radio, RadioGroup } from "@sovoli/ui/components/radio";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 
 import { ContactToggleInput } from "../../components/ContactToggleInput";
+import { CheckboxGroupWithOther } from "./CheckboxGroupWithOther";
 import { SurveySection } from "./SurveySection";
 
 interface SurveyFormProps {
   defaultContactMode?: "whatsapp" | "email";
-  defaultContactValue?: string;
+  defaultContactValue: string;
+  formAction?: (formData: FormData) => void | Promise<void>;
 }
 
 export function SurveyForm({
   defaultContactMode = "whatsapp",
   defaultContactValue,
+  formAction,
 }: SurveyFormProps) {
-  const [formData, setFormData] = React.useState({
-    schoolName: "",
-    location: "",
-    enrollment: "",
-    recordSystem: [] as string[],
-    recordSystemOther: "",
-    recordTypes: [] as string[],
-    recordTypesOther: "",
-    challenges: [] as string[],
-    challengesOther: "",
-    frequency: "",
-    openToDigital: "",
-    helpfulFeatures: [] as string[],
-    helpfulFeaturesOther: "",
-    contactInterest: "",
-    contactMethod: "",
-  });
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleCheckboxChange = (field: string, values: string[]) => {
-    setFormData((prev) => ({ ...prev, [field]: values }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Survey submitted successfully!");
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form action={formAction}>
+      {/* Contact Section */}
       <div className="mb-8 flex w-full justify-center rounded-xl border border-default-200 p-4">
         <ContactToggleInput
           defaultMode={defaultContactMode}
@@ -65,210 +36,113 @@ export function SurveyForm({
       <SurveySection number="1" title="School Identity" className="mb-8">
         <div className="w-full space-y-4">
           <Input
+            name="schoolName"
             label="School Name"
             placeholder="Enter your school name"
-            value={formData.schoolName}
-            onValueChange={(value) => handleInputChange("schoolName", value)}
             isRequired
           />
           <Input
+            name="location"
             label="Location (Region/Community)"
             placeholder="Enter your school's location"
-            value={formData.location}
-            onValueChange={(value) => handleInputChange("location", value)}
             isRequired
           />
           <Select
+            name="enrollment"
             label="Approximate number of students enrolled"
             placeholder="Select enrollment range"
-            value={formData.enrollment}
-            onChange={(e) => handleInputChange("enrollment", e.target.value)}
             isRequired
           >
-            <SelectItem key="less-than-100" value="Less than 100">
-              Less than 100
-            </SelectItem>
-            <SelectItem key="100-300" value="100–300">
-              100–300
-            </SelectItem>
-            <SelectItem key="300-600" value="300–600">
-              300–600
-            </SelectItem>
-            <SelectItem key="more-than-600" value="More than 600">
-              More than 600
-            </SelectItem>
+            <SelectItem value="Less than 100">Less than 100</SelectItem>
+            <SelectItem value="100–300">100–300</SelectItem>
+            <SelectItem value="300–600">300–600</SelectItem>
+            <SelectItem value="More than 600">More than 600</SelectItem>
           </Select>
         </div>
       </SurveySection>
 
       <Divider className="my-6" />
 
+      {/* SECTION 2: Current Record System */}
       <SurveySection
         number="2"
         title="Current Record-Keeping System"
         className="mb-8"
       >
         <div className="w-full space-y-6">
-          <CheckboxGroup
+          <CheckboxGroupWithOther
+            name="recordSystem"
             label="How do you currently manage student records?"
-            value={formData.recordSystem}
-            onValueChange={(values) =>
-              handleCheckboxChange("recordSystem", values)
-            }
-            className="w-full"
-          >
-            <div className="flex w-full flex-col gap-2">
-              <Checkbox value="paper" className="w-full">
-                Paper files/folders
-              </Checkbox>
-              <Checkbox value="spreadsheets" className="w-full">
-                Spreadsheets (Excel, Google Sheets)
-              </Checkbox>
-              <Checkbox value="software" className="w-full">
-                School Management Software
-              </Checkbox>
-              <Checkbox value="other" className="w-full">
-                Other
-              </Checkbox>
-            </div>
-          </CheckboxGroup>
+            options={[
+              { label: "Paper files/folders", value: "paper" },
+              {
+                label: "Spreadsheets (Excel, Google Sheets)",
+                value: "spreadsheets",
+              },
+              { label: "School Management Software", value: "software" },
+            ]}
+          />
 
-          {formData.recordSystem.includes("other") && (
-            <Input
-              label="Please specify other record-keeping methods"
-              placeholder="Enter other methods"
-              value={formData.recordSystemOther}
-              onValueChange={(value) =>
-                handleInputChange("recordSystemOther", value)
-              }
-            />
-          )}
-
-          <CheckboxGroup
+          <CheckboxGroupWithOther
+            name="recordTypes"
             label="Which types of records do you actively manage?"
-            value={formData.recordTypes}
-            onValueChange={(values) =>
-              handleCheckboxChange("recordTypes", values)
-            }
-            className="w-full"
-          >
-            <div className="flex w-full flex-col gap-2">
-              <Checkbox value="attendance" className="w-full">
-                Attendance
-              </Checkbox>
-              <Checkbox value="grades" className="w-full">
-                Grades / Report Cards
-              </Checkbox>
-              <Checkbox value="behavior" className="w-full">
-                Behavior / Discipline Notes
-              </Checkbox>
-              <Checkbox value="health" className="w-full">
-                Health / Immunization Records
-              </Checkbox>
-              <Checkbox value="communication" className="w-full">
-                Parent Communication
-              </Checkbox>
-              <Checkbox value="promotions" className="w-full">
-                Promotions and Transfers
-              </Checkbox>
-              <Checkbox value="other" className="w-full">
-                Other
-              </Checkbox>
-            </div>
-          </CheckboxGroup>
-
-          {formData.recordTypes.includes("other") && (
-            <Input
-              label="Please specify other record types"
-              placeholder="Enter other record types"
-              value={formData.recordTypesOther}
-              onValueChange={(value) =>
-                handleInputChange("recordTypesOther", value)
-              }
-            />
-          )}
+            options={[
+              { label: "Attendance", value: "attendance" },
+              { label: "Grades / Report Cards", value: "grades" },
+              { label: "Behavior / Discipline Notes", value: "behavior" },
+              { label: "Health / Immunization Records", value: "health" },
+              { label: "Parent Communication", value: "communication" },
+              { label: "Promotions and Transfers", value: "promotions" },
+            ]}
+          />
         </div>
       </SurveySection>
 
       <Divider className="my-6" />
 
+      {/* SECTION 3: Bottlenecks & Challenges */}
       <SurveySection
         number="3"
         title="Bottlenecks & Challenges"
         className="mb-8"
       >
         <div className="w-full space-y-6">
-          <CheckboxGroup
+          <CheckboxGroupWithOther
+            name="challenges"
             label="What challenges do you face with your current system?"
-            value={formData.challenges}
-            onValueChange={(values) =>
-              handleCheckboxChange("challenges", values)
-            }
-            className="w-full"
-          >
-            <div className="flex w-full flex-col gap-2">
-              <Checkbox value="time-consuming" className="w-full">
-                Time-consuming data entry
-              </Checkbox>
-              <Checkbox value="lost-records" className="w-full">
-                Lost/misplaced records
-              </Checkbox>
-              <Checkbox value="reports" className="w-full">
-                Hard to generate reports
-              </Checkbox>
-              <Checkbox value="attendance" className="w-full">
-                Difficult tracking attendance
-              </Checkbox>
-              <Checkbox value="promotions" className="w-full">
-                Complicated promotions and transfers
-              </Checkbox>
-              <Checkbox value="security" className="w-full">
-                Security/privacy concerns
-              </Checkbox>
-              <Checkbox value="old-records" className="w-full">
-                Accessing old student records is difficult
-              </Checkbox>
-              <Checkbox value="other" className="w-full">
-                Other
-              </Checkbox>
-            </div>
-          </CheckboxGroup>
-
-          {formData.challenges.includes("other") && (
-            <Input
-              label="Please specify other challenges"
-              placeholder="Enter other challenges"
-              value={formData.challengesOther}
-              onValueChange={(value) =>
-                handleInputChange("challengesOther", value)
-              }
-            />
-          )}
+            options={[
+              { label: "Time-consuming data entry", value: "time-consuming" },
+              { label: "Lost/misplaced records", value: "lost-records" },
+              { label: "Hard to generate reports", value: "reports" },
+              { label: "Difficult tracking attendance", value: "attendance" },
+              {
+                label: "Complicated promotions and transfers",
+                value: "promotions",
+              },
+              { label: "Security/privacy concerns", value: "security" },
+              {
+                label: "Accessing old student records is difficult",
+                value: "old-records",
+              },
+            ]}
+          />
 
           <Select
+            name="frequency"
             label="How often do these challenges cause problems?"
             placeholder="Select frequency"
-            value={formData.frequency}
-            onChange={(e) => handleInputChange("frequency", e.target.value)}
           >
-            <SelectItem key="rarely" value="Rarely">
-              Rarely
-            </SelectItem>
-            <SelectItem key="occasionally" value="Occasionally">
-              Occasionally
-            </SelectItem>
-            <SelectItem key="frequently" value="Frequently">
-              Frequently
-            </SelectItem>
-            <SelectItem key="almost-daily" value="Almost daily">
-              Almost daily
-            </SelectItem>
+            <SelectItem value="Rarely">Rarely</SelectItem>
+            <SelectItem value="Occasionally">Occasionally</SelectItem>
+            <SelectItem value="Frequently">Frequently</SelectItem>
+            <SelectItem value="Almost daily">Almost daily</SelectItem>
           </Select>
         </div>
       </SurveySection>
 
       <Divider className="my-6" />
 
+      {/* SECTION 4: Interest in Improvements */}
       <SurveySection
         number="4"
         title="Interest in Improvements"
@@ -276,121 +150,41 @@ export function SurveyForm({
       >
         <div className="w-full space-y-6">
           <RadioGroup
+            name="openToDigital"
             label="Would you be open to exploring a simpler digital system to manage student records?"
-            value={formData.openToDigital}
-            onValueChange={(value) => handleInputChange("openToDigital", value)}
             className="w-full"
           >
-            <div className="flex w-full flex-col gap-2">
-              <Radio value="yes" className="w-full">
-                Yes
-              </Radio>
-              <Radio value="maybe" className="w-full">
-                Maybe
-              </Radio>
-              <Radio value="no" className="w-full">
-                No
-              </Radio>
+            <div className="flex flex-col gap-2">
+              <Radio value="yes">Yes</Radio>
+              <Radio value="maybe">Maybe</Radio>
+              <Radio value="no">No</Radio>
             </div>
           </RadioGroup>
 
-          <CheckboxGroup
+          <CheckboxGroupWithOther
+            name="helpfulFeatures"
             label="Which features would be most helpful to you?"
-            value={formData.helpfulFeatures}
-            onValueChange={(values) =>
-              handleCheckboxChange("helpfulFeatures", values)
-            }
-            className="w-full"
-          >
-            <div className="flex w-full flex-col gap-2">
-              <Checkbox value="mobile-attendance" className="w-full">
-                Mobile-friendly attendance logging
-              </Checkbox>
-              <Checkbox value="grade-entry" className="w-full">
-                Easy grade entry and report generation
-              </Checkbox>
-              <Checkbox value="database" className="w-full">
-                Centralized student database
-              </Checkbox>
-              <Checkbox value="communication" className="w-full">
-                Parent communication tools
-              </Checkbox>
-              <Checkbox value="history" className="w-full">
-                Promotion and transfer history tracking
-              </Checkbox>
-              <Checkbox value="security" className="w-full">
-                Secure storage and privacy
-              </Checkbox>
-              <Checkbox value="other" className="w-full">
-                Other
-              </Checkbox>
-            </div>
-          </CheckboxGroup>
-
-          {formData.helpfulFeatures.includes("other") && (
-            <Input
-              label="Please specify other helpful features"
-              placeholder="Enter other features"
-              value={formData.helpfulFeaturesOther}
-              onValueChange={(value) =>
-                handleInputChange("helpfulFeaturesOther", value)
-              }
-            />
-          )}
+            options={[
+              {
+                label: "Mobile-friendly attendance logging",
+                value: "mobile-attendance",
+              },
+              {
+                label: "Easy grade entry and report generation",
+                value: "grade-entry",
+              },
+              { label: "Centralized student database", value: "database" },
+              { label: "Parent communication tools", value: "communication" },
+              {
+                label: "Promotion and transfer history tracking",
+                value: "history",
+              },
+              { label: "Secure storage and privacy", value: "security" },
+            ]}
+          />
         </div>
       </SurveySection>
 
-      <Divider className="my-6" />
-
-      <SurveySection number="5" title="Optional Follow-up" className="mb-8">
-        <div className="w-full space-y-6">
-          <RadioGroup
-            label="Would you like to be contacted to discuss further collaboration?"
-            value={formData.contactInterest}
-            onValueChange={(value) =>
-              handleInputChange("contactInterest", value)
-            }
-            className="w-full"
-          >
-            <div className="flex w-full flex-col gap-2">
-              <Radio value="yes" className="w-full">
-                Yes
-              </Radio>
-              <Radio value="maybe" className="w-full">
-                Maybe
-              </Radio>
-              <Radio value="no" className="w-full">
-                No
-              </Radio>
-            </div>
-          </RadioGroup>
-
-          {(formData.contactInterest === "yes" ||
-            formData.contactInterest === "maybe") && (
-            <Select
-              label="If yes, best contact method"
-              placeholder="Select contact method"
-              value={formData.contactMethod}
-              onChange={(e) =>
-                handleInputChange("contactMethod", e.target.value)
-              }
-            >
-              <SelectItem key="whatsapp" value="WhatsApp">
-                WhatsApp
-              </SelectItem>
-              <SelectItem key="email" value="Email">
-                Email
-              </SelectItem>
-              <SelectItem key="phone" value="Phone Call">
-                Phone Call
-              </SelectItem>
-              <SelectItem key="other" value="Other">
-                Other
-              </SelectItem>
-            </Select>
-          )}
-        </div>
-      </SurveySection>
       {/* Submit Button */}
       <div className="mt-8 flex justify-center">
         <Button type="submit" color="primary" size="lg" className="px-8">

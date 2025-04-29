@@ -54,7 +54,7 @@ export function WaitlistForm() {
 
       {/* Micro-trust line */}
       <p className="mt-6 text-center text-xs text-default-400">
-        Takes less than 2 minutes. No spam — ever.
+        Takes less than 1 minute.
       </p>
     </div>
   );
