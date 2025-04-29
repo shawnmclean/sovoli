@@ -13,7 +13,7 @@ import { SurveySection } from "./SurveySection";
 
 interface SurveyFormProps {
   defaultContactMode?: "whatsapp" | "email";
-  defaultContactValue: string;
+  defaultContactValue?: string;
   formAction?: (formData: FormData) => void | Promise<void>;
 }
 

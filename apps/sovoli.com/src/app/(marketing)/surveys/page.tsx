@@ -15,7 +15,7 @@ export default async function SurveysPage({
 }) {
   const { contactMode, contactValue } = await searchParams;
   return (
-    <div className="min-h-screen bg-content2 py-8">
+    <div className="min-h-screen bg-content2 py-4">
       <div className="mx-auto max-w-3xl">
         <Card className="shadow-lg">
           <CardBody className="p-6">
