@@ -383,7 +383,7 @@ export function SurveyForm() {
       {/* Submit Button */}
       <div className="mt-8 flex justify-center">
         <Button type="submit" color="primary" size="lg" className="px-8">
-          Submit Survey
+          I'm Finished!
         </Button>
       </div>
     </form>
