@@ -1,52 +1,51 @@
 import React from "react";
-import { Chip } from "@sovoli/ui/components/chip";
 
 import { WaitlistForm } from "./WaitlistForm";
 
 export function HeroSection() {
   return (
-    <section className="z-20 flex flex-col items-center justify-center gap-6 px-4 py-10 text-center">
-      {/* Stealth label */}
-      <Chip
-        className="h-9 border border-default-100 bg-default-50 px-[18px] py-2 text-sm font-normal text-default-500"
-        radius="full"
-        variant="bordered"
-        title="We are not yet ready for public use"
-      >
-        Currently in stealth
-      </Chip>
-
+    <section className="z-20 flex flex-col items-center justify-center gap-6 px-4 py-8 text-center">
       {/* Headline */}
-      <h1 className="text-[clamp(40px,10vw,44px)] font-bold leading-tight tracking-tighter sm:text-[64px]">
+      <h1 className="text-[clamp(32px,8vw,38px)] font-bold leading-tight tracking-tight sm:text-[64px]">
         <span className="bg-hero-section-title bg-clip-text text-transparent">
-          A lifelong knowledge system <br className="hidden sm:block" /> starts
-          here.
+          A lifelong knowledge system <br className="hidden sm:block" />
+          starts here.
         </span>
       </h1>
 
       {/* Description */}
-      <p className="max-w-xl text-base font-normal leading-7 text-default-500 sm:text-lg">
-        Sovoli is being built in collaboration with{" "}
-        <strong className="inline-flex items-center gap-1 font-medium text-default-600">
-          private schools
-        </strong>{" "}
-        in{" "}
-        <span className="inline-flex items-center gap-1 font-medium text-default-600">
-          Guyana
-        </span>{" "}
-        and{" "}
-        <span className="inline-flex items-center gap-1 font-medium text-default-600">
-          Jamaica
-        </span>{" "}
-        to evolve how learning is recorded, shared, and continued — from early
-        education into adulthood.
+      <div className="max-w-2xl space-y-4 text-base leading-relaxed text-default-500 sm:text-lg">
+        <p>
+          We're building Sovoli with{" "}
+          <strong className="font-semibold text-default-600">
+            private schools
+          </strong>{" "}
+          in <strong className="font-semibold text-default-600">Guyana</strong>{" "}
+          and{" "}
+          <strong className="font-semibold text-default-600">Jamaica</strong> to
+          replace paper logbooks and disorganized files with a secure, digital
+          system that grows with the student.
+        </p>
+
+        <p className="font-medium text-default-600">
+          Cut admin work by 70%. Track student growth from nursery to graduation
+          — all in one place.
+        </p>
+      </div>
+
+      {/* Outcome Framing */}
+      <p className="text-sm text-default-500 sm:text-base">
+        Find out if Sovoli’s a fit — and how to join early.
       </p>
 
+      {/* CTA Form */}
       <WaitlistForm />
-      <p className="mt-12 text-sm text-default-500">
+
+      {/* Credibility Footer */}
+      <p className="mt-12 max-w-xl text-sm text-default-500">
         Built by engineers with global experience in Education, Cybersecurity,
-        and Artificial Intelligence <br />— guided by over 40 years of
-        leadership in schools and teaching.
+        and Artificial Intelligence —<br />
+        guided by over 40 years of leadership in schools and teaching.
       </p>
     </section>
   );
