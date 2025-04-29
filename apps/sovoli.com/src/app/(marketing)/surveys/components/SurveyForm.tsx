@@ -11,7 +11,15 @@ import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { ContactToggleInput } from "../../components/ContactToggleInput";
 import { SurveySection } from "./SurveySection";
 
-export function SurveyForm() {
+interface SurveyFormProps {
+  defaultContactMode?: "whatsapp" | "email";
+  defaultContactValue?: string;
+}
+
+export function SurveyForm({
+  defaultContactMode = "whatsapp",
+  defaultContactValue,
+}: SurveyFormProps) {
   const [formData, setFormData] = React.useState({
     schoolName: "",
     location: "",
@@ -47,7 +55,10 @@ export function SurveyForm() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-8 flex w-full justify-center rounded-xl border border-default-200 p-4">
-        <ContactToggleInput defaultMode="whatsapp" defaultValue="" />
+        <ContactToggleInput
+          defaultMode={defaultContactMode}
+          defaultValue={defaultContactValue}
+        />
       </div>
 
       {/* SECTION 1: School Identity */}

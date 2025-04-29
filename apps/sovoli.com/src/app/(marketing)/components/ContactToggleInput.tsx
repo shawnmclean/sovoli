@@ -39,7 +39,6 @@ export function ContactToggleInput({
           );
         })}
       </div>
-
       {/* Input + Optional Button */}
       <div
         className={`flex w-full flex-col items-center gap-3 ${
@@ -76,8 +75,7 @@ export function ContactToggleInput({
           <div className="w-full sm:w-auto">{renderAfterInput}</div>
         )}
       </div>
-
-      <input type="hidden" name="mode" value={mode} />
+      <input type="hidden" name="contactMode" value={mode} />
     </div>
   );
 }

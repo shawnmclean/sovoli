@@ -3,7 +3,17 @@ import { Card, CardBody } from "@sovoli/ui/components/card";
 
 import { SurveyForm } from "./components/SurveyForm";
 
-export default function App() {
+type SearchParams = Promise<{
+  contactMode?: "whatsapp" | "email";
+  contactValue?: string;
+}>;
+
+export default async function SurveysPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const { contactMode, contactValue } = await searchParams;
   return (
     <div className="min-h-screen bg-content2 py-8">
       <div className="mx-auto max-w-3xl">
@@ -18,7 +28,10 @@ export default function App() {
               will help shape a tool built for you and your community.
             </div>
 
-            <SurveyForm />
+            <SurveyForm
+              defaultContactMode={contactMode}
+              defaultContactValue={contactValue}
+            />
           </CardBody>
         </Card>
       </div>

@@ -26,12 +26,12 @@ export async function insertWaitlistContactAction(
     };
   }
 
-  const { mode, contactValue } = result.data;
+  const { contactMode, contactValue } = result.data;
 
   const [contact] = await db
     .insert(schema.WaitlistContacts)
     .values({
-      mode,
+      mode: contactMode,
       contactValue,
     })
     .returning();
@@ -44,5 +44,5 @@ export async function insertWaitlistContactAction(
   }
 
   // 🚀 Perform server-side redirect
-  redirect(`/surveys?mode=${mode}&contactValue=${contactValue}`);
+  redirect(`/surveys?contactMode=${contactMode}&contactValue=${contactValue}`);
 }
