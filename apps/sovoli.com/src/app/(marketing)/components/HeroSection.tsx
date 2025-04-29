@@ -44,9 +44,9 @@ export function HeroSection() {
 
       <WaitlistForm />
       <p className="mt-12 text-sm text-default-500">
-        Built by engineers with global experience in education, cybersecurity,
-        and AI <br />— guided by over 40 years of leadership in schools and
-        teaching.
+        Built by engineers with global experience in Education, Cybersecurity,
+        and Artificial Intelligence <br />— guided by over 40 years of
+        leadership in schools and teaching.
       </p>
     </section>
   );
