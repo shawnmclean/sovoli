@@ -11,8 +11,6 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    loader: "custom",
-    loaderFile: "./src/loaders/supabaseImageLoader.ts",
     dangerouslyAllowSVG: true,
     remotePatterns: [
       {

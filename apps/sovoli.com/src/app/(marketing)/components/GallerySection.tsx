@@ -1,9 +1,14 @@
 "use client";
 
+import Image from "next/image";
+
+import mockupStudentProfile from "./images/mockup-student-profile.png";
+
 const mockups = [
-  { src: "/images/mockup-student-profile.webp", alt: "Student Profile View" },
-  { src: "/images/mockup-attendance.webp", alt: "Attendance Tracking" },
-  { src: "/images/mockup-reports.webp", alt: "Promotion and Reports" },
+  {
+    src: mockupStudentProfile,
+    alt: "Student Profile View",
+  },
 ];
 
 export function GallerySection() {
@@ -18,12 +23,12 @@ export function GallerySection() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-          {mockups.map((mockup) => (
+          {mockups.map((mockup, i) => (
             <div
-              key={mockup.src}
+              key={i}
               className="rounded-xl border border-default-200 p-2 shadow-sm transition-shadow hover:shadow-md"
             >
-              <img
+              <Image
                 src={mockup.src}
                 alt={mockup.alt}
                 className="h-auto w-full rounded-md object-cover"
