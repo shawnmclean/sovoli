@@ -34,7 +34,7 @@ export function CTASection() {
                 color="primary"
                 endContent={<ArrowRightIcon className="h-4 w-4" />}
               >
-                Check Now
+                Proceed
               </Button>
             }
           />

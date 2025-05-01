@@ -22,7 +22,7 @@ export function HeroSection() {
           and{" "}
           <strong className="font-semibold text-default-600">Jamaica</strong> to
           replace paper logbooks and disorganized files with a secure, digital
-          system that grows with the student.
+          system that grows with each student.
         </p>
 
         <p className="font-medium text-default-600">
@@ -33,7 +33,7 @@ export function HeroSection() {
 
       {/* Outcome Framing */}
       <p className="mt-4 text-sm text-default-400 sm:text-base">
-        Find out if Sovoli’s a fit — and how to join early.
+        Find out if Sovoli aligns — and how to join early.
       </p>
     </section>
   );
