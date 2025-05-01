@@ -63,7 +63,7 @@ export function GallerySection() {
       <Modal
         isOpen={isOpen}
         onOpenChange={onClose}
-        size="3xl"
+        size="full"
         placement="center"
       >
         <ModalContent>
