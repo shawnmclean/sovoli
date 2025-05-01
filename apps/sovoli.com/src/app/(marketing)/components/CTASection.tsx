@@ -49,7 +49,7 @@ export function CTASection() {
             {state.message}
           </p>
         )}
-        <p className="mt-4 text-center text-xs text-default-400">
+        <p className="mt-2 text-center text-xs text-default-400">
           Takes less than 1 minute.
         </p>
       </div>
