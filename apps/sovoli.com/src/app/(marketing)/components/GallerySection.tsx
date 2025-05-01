@@ -1,7 +1,8 @@
 "use client";
 
+import type { StaticImageData } from "next/image";
 import React, { useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import {
   Modal,
   ModalBody,
@@ -51,7 +52,7 @@ export function GallerySection() {
               <Image
                 src={mockup.src}
                 alt={mockup.alt}
-                className="h-auto w-full rounded-md object-cover"
+                className="h-auto w-full rounded-md"
                 loading="lazy"
               />
             </button>
@@ -66,15 +67,27 @@ export function GallerySection() {
         size="full"
         placement="center"
       >
-        <ModalContent>
-          <ModalHeader>{selectedImage?.alt}</ModalHeader>
-          <ModalBody>
+        <ModalContent className="bg-black p-0">
+          <ModalHeader className="text-white">{selectedImage?.alt}</ModalHeader>
+          <ModalBody className="p-0">
             {selectedImage && (
-              <Image
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                className="h-auto w-full rounded-lg"
-              />
+              <div
+                className="touch-zoom-pin min-h-screen w-screen touch-pan-y overflow-auto"
+                style={{
+                  WebkitOverflowScrolling: "touch",
+                  touchAction: "pan-x pan-y pinch-zoom",
+                }}
+              >
+                <div className="h-auto w-[120vw]">
+                  <Image
+                    src={selectedImage.src}
+                    alt={selectedImage.alt}
+                    className="h-auto w-full"
+                    priority
+                    unoptimized
+                  />
+                </div>
+              </div>
             )}
           </ModalBody>
         </ModalContent>
