@@ -4,13 +4,23 @@ import type { StaticImageData } from "next/image";
 import React from "react";
 import Image from "next/image";
 
+import mockupAttendance from "./mockup-attendance.png";
 import mockupDashboard from "./mockup-dashboard.png";
+import mockupStudentList from "./mockup-student-list.png";
 import mockupStudentProfile from "./mockup-student-profile.png";
 
 const mockups: { src: StaticImageData; alt: string }[] = [
   {
     src: mockupDashboard,
     alt: "School Dashboard View",
+  },
+  {
+    src: mockupStudentList,
+    alt: "Student List View",
+  },
+  {
+    src: mockupAttendance,
+    alt: "Attendance Tracking View",
   },
   {
     src: mockupStudentProfile,
