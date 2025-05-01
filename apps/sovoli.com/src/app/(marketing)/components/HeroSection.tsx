@@ -20,11 +20,6 @@ export function HeroSection() {
           — replacing scattered books and files with one secure system.
         </p>
       </div>
-
-      {/* Outcome Framing */}
-      <p className="mt-4 text-sm text-default-400 sm:text-base">
-        Find out if Sovoli aligns — and how to step in early.
-      </p>
     </section>
   );
 }

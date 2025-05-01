@@ -19,8 +19,11 @@ export function CTASection() {
       <div className="w-full max-w-md animate-neonPulse rounded-xl border-2 border-purple-500 p-6 shadow-lg backdrop-blur-md">
         <h2 className="mb-4 text-center text-2xl font-bold text-default-900">
           Get early access
-        </h2>
-
+        </h2>{" "}
+        {/* Outcome Framing */}
+        <p className="my-4 text-center text-sm text-default-400 sm:text-base">
+          Find out if Sovoli aligns — and how to step in early.
+        </p>
         <form action={formAction} className="flex flex-col gap-6">
           <ContactToggleInput
             defaultMode="whatsapp"
@@ -38,7 +41,6 @@ export function CTASection() {
             }
           />
         </form>
-
         {state?.status === "error" && (
           <p
             className="mt-4 text-center text-sm font-medium text-red-500"
@@ -47,7 +49,6 @@ export function CTASection() {
             {state.message}
           </p>
         )}
-
         <p className="mt-4 text-center text-xs text-default-400">
           Takes less than 1 minute.
         </p>
@@ -55,9 +56,8 @@ export function CTASection() {
 
       {/* 👇 Pain/Benefit Block Moved Here */}
       <p className="mt-6 max-w-md text-center text-sm text-default-500 sm:text-base">
-        Most admins spend hours pulling records from different places — every
-        week, every term. Sovoli keeps everything in one place — always up to
-        date.
+        Admins spend hours pulling records from different places — every week,
+        every term. Sovoli keeps it all in one place, always up to date.
       </p>
     </section>
   );
