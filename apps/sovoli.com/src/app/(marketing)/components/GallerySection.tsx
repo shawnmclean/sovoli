@@ -1,19 +1,17 @@
 "use client";
 
 import type { StaticImageData } from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  useDisclosure,
-} from "@sovoli/ui/components/dialog";
 
+import mockupDashboard from "./mockup-dashboard.png";
 import mockupStudentProfile from "./mockup-student-profile.png";
 
-const mockups = [
+const mockups: { src: StaticImageData; alt: string }[] = [
+  {
+    src: mockupDashboard,
+    alt: "School Dashboard View",
+  },
   {
     src: mockupStudentProfile,
     alt: "Student Profile View",
@@ -21,17 +19,6 @@ const mockups = [
 ];
 
 export function GallerySection() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedImage, setSelectedImage] = useState<{
-    src: StaticImageData;
-    alt: string;
-  } | null>(null);
-
-  const handleImageClick = (mockup: { src: StaticImageData; alt: string }) => {
-    setSelectedImage(mockup);
-    onOpen();
-  };
-
   return (
     <section className="w-full pt-12">
       <div className="mx-auto max-w-5xl px-2 text-center">
@@ -42,56 +29,25 @@ export function GallerySection() {
           Simple, secure, and built for your daily flow.
         </p>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {mockups.map((mockup, i) => (
-            <button
+            <a
               key={i}
-              onClick={() => handleImageClick(mockup)}
-              className="rounded-xl border border-default-200 p-2 shadow-sm transition-shadow hover:shadow-md focus:outline-none"
+              href={mockup.src.src}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block rounded-xl border border-default-200 p-2 shadow-sm transition-shadow hover:shadow-md"
             >
               <Image
                 src={mockup.src}
                 alt={mockup.alt}
-                className="h-auto w-full rounded-md"
+                className="h-auto w-full rounded-md object-cover"
                 loading="lazy"
               />
-            </button>
+            </a>
           ))}
         </div>
       </div>
-
-      {/* Modal */}
-      <Modal
-        isOpen={isOpen}
-        onOpenChange={onClose}
-        size="full"
-        placement="center"
-      >
-        <ModalContent className="bg-black p-0">
-          <ModalHeader className="text-white">{selectedImage?.alt}</ModalHeader>
-          <ModalBody className="p-0">
-            {selectedImage && (
-              <div
-                className="touch-zoom-pin min-h-screen w-screen touch-pan-y overflow-auto"
-                style={{
-                  WebkitOverflowScrolling: "touch",
-                  touchAction: "pan-x pan-y pinch-zoom",
-                }}
-              >
-                <div className="h-auto w-[120vw]">
-                  <Image
-                    src={selectedImage.src}
-                    alt={selectedImage.alt}
-                    className="h-auto w-full"
-                    priority
-                    unoptimized
-                  />
-                </div>
-              </div>
-            )}
-          </ModalBody>
-        </ModalContent>
-      </Modal>
     </section>
   );
 }
