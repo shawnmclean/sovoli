@@ -33,10 +33,11 @@ export function GallerySection() {
     <section className="w-full pt-12">
       <div className="mx-auto max-w-5xl px-2 text-center">
         <h2 className="mb-2 text-xl font-semibold text-default-900">
-          See how Sovoli transforms school recordkeeping
+          What used to take hours now takes seconds.
         </h2>
         <p className="mb-8 text-default-500">
-          Simple, secure, and built for your daily flow.
+          Pulling records from different books, registers, and binders? Sovoli
+          keeps everything in one place — updated as you go.
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

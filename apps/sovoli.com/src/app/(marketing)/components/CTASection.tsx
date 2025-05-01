@@ -8,7 +8,6 @@ import { insertWaitlistContactAction } from "../actions/insertWaitlistContactAct
 import { ContactToggleInput } from "./ContactToggleInput";
 
 const initialState = null;
-
 export function CTASection() {
   const [state, formAction, isPending] = useActionState(
     insertWaitlistContactAction,
@@ -16,7 +15,7 @@ export function CTASection() {
   );
 
   return (
-    <section className="mt-6 flex justify-center">
+    <section className="mt-6 flex flex-col items-center">
       <div className="w-full max-w-md animate-neonPulse rounded-xl border-2 border-purple-500 p-6 shadow-lg backdrop-blur-md">
         <h2 className="mb-4 text-center text-2xl font-bold text-default-900">
           Get early access
@@ -53,6 +52,13 @@ export function CTASection() {
           Takes less than 1 minute.
         </p>
       </div>
+
+      {/* 👇 Pain/Benefit Block Moved Here */}
+      <p className="mt-6 max-w-md text-center text-sm text-default-500 sm:text-base">
+        Most admins spend hours pulling records from different places — every
+        week, every term. Sovoli keeps everything in one place — always up to
+        date.
+      </p>
     </section>
   );
 }
