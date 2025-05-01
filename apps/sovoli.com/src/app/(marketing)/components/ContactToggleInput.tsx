@@ -55,7 +55,10 @@ export function ContactToggleInput({
               placeholder="Your email address"
               defaultValue={defaultValue}
               required
-              className="h-10 w-full text-base"
+              className="h-10 w-full"
+              classNames={{
+                input: "text-base",
+              }}
               startContent={<MailIcon className="text-default-400" />}
             />
           ) : (
@@ -65,7 +68,10 @@ export function ContactToggleInput({
               placeholder="Your WhatsApp number"
               defaultValue={defaultValue}
               required
-              className="h-10 w-full text-base"
+              className="h-10 w-full"
+              classNames={{
+                input: "text-base",
+              }}
               startContent={<PhoneIcon className="text-default-400" />}
             />
           )}
