@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 
+import { ScrollReset } from "./components/ScrollReset";
 import { SurveyForm } from "./components/SurveyForm";
 
 type SearchParams = Promise<{
@@ -16,6 +17,7 @@ export default async function SurveysPage({
   const { contactMode, contactValue } = await searchParams;
   return (
     <div className="min-h-screen bg-content2 py-4">
+      <ScrollReset />
       <div className="mx-auto max-w-3xl">
         <Card className="shadow-lg">
           <CardBody className="p-6">
