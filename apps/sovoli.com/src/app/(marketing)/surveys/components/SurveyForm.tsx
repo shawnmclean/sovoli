@@ -56,11 +56,12 @@ export function SurveyForm({
             label="Approximate number of students enrolled"
             placeholder="Select enrollment range"
             isRequired
+            defaultSelectedKeys={["100–300"]}
           >
-            <SelectItem value="Less than 100">Less than 100</SelectItem>
-            <SelectItem value="100–300">100–300</SelectItem>
-            <SelectItem value="300–600">300–600</SelectItem>
-            <SelectItem value="More than 600">More than 600</SelectItem>
+            <SelectItem key="Less than 100">Less than 100</SelectItem>
+            <SelectItem key="100–300">100–300</SelectItem>
+            <SelectItem key="300–600">300–600</SelectItem>
+            <SelectItem key="More than 600">More than 600</SelectItem>
           </Select>
         </div>
       </SurveySection>
@@ -134,12 +135,13 @@ export function SurveyForm({
           <Select
             name="frequency"
             label="How often do these challenges cause problems?"
-            placeholder="Select frequency"
+            isRequired
+            defaultSelectedKeys={["Frequently"]}
           >
-            <SelectItem value="Rarely">Rarely</SelectItem>
-            <SelectItem value="Occasionally">Occasionally</SelectItem>
-            <SelectItem value="Frequently">Frequently</SelectItem>
-            <SelectItem value="Almost daily">Almost daily</SelectItem>
+            <SelectItem key="Rarely">Rarely</SelectItem>
+            <SelectItem key="Occasionally">Occasionally</SelectItem>
+            <SelectItem key="Frequently">Frequently</SelectItem>
+            <SelectItem key="Almost daily">Almost daily</SelectItem>
           </Select>
         </div>
       </SurveySection>
