@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Checkbox, CheckboxGroup } from "@sovoli/ui/components/checkbox";
 import { Input } from "@sovoli/ui/components/input";
 
@@ -15,6 +15,8 @@ interface CheckboxGroupWithOtherProps {
   options: Option[];
   otherLabel?: string;
   otherName?: string;
+  defaultValues?: string[];
+  defaultOtherValue?: string;
 }
 
 export function CheckboxGroupWithOther({
@@ -23,8 +25,19 @@ export function CheckboxGroupWithOther({
   options,
   otherLabel = "Please specify other",
   otherName = `${name}Other`,
+  defaultValues = [],
+  defaultOtherValue = "",
 }: CheckboxGroupWithOtherProps) {
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string[]>(defaultValues);
+  const [otherValue, setOtherValue] = useState<string>(defaultOtherValue);
+
+  useEffect(() => {
+    setSelected(defaultValues);
+  }, [defaultValues]);
+
+  useEffect(() => {
+    setOtherValue(defaultOtherValue);
+  }, [defaultOtherValue]);
 
   const handleChange = (values: string[]) => {
     setSelected(values);
@@ -56,7 +69,13 @@ export function CheckboxGroupWithOther({
       </CheckboxGroup>
 
       {selected.includes("other") && (
-        <Input name={otherName} label={otherLabel} placeholder="Enter other" />
+        <Input
+          name={otherName}
+          label={otherLabel}
+          placeholder="Enter other"
+          value={otherValue}
+          onChange={(e) => setOtherValue(e.target.value)}
+        />
       )}
     </div>
   );

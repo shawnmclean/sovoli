@@ -16,7 +16,9 @@ interface SurveyFormProps {
   defaultContactMode?: "whatsapp" | "email";
   defaultContactValue?: string;
 }
+
 const initialState = null;
+
 export function SurveyForm({
   defaultContactMode = "whatsapp",
   defaultContactValue,
@@ -26,17 +28,22 @@ export function SurveyForm({
     initialState,
   );
 
+  const data = state?.data as Record<string, string | string[]> | undefined;
+
   return (
     <form action={formAction}>
-      {/* Contact Section */}
+      <pre>{JSON.stringify(data, null, 2)}</pre>
       <div className="mb-8 flex w-full justify-center rounded-xl border border-default-200 p-4">
         <ContactToggleInput
-          defaultMode={defaultContactMode}
-          defaultValue={defaultContactValue}
+          defaultMode={
+            (data?.contactMethod as "whatsapp" | "email") || defaultContactMode
+          }
+          defaultValue={
+            (data?.contactValue as string) || defaultContactValue || ""
+          }
         />
       </div>
 
-      {/* SECTION 1: School Identity */}
       <SurveySection number="1" title="School Identity" className="mb-8">
         <div className="w-full space-y-4">
           <Input
@@ -44,19 +51,21 @@ export function SurveyForm({
             label="School Name"
             placeholder="Enter your school name"
             isRequired
+            defaultValue={data?.schoolName as string}
           />
           <Input
             name="location"
             label="Location (Region/Community)"
             placeholder="Enter your school's location"
             isRequired
+            defaultValue={data?.location as string}
           />
           <Select
             name="enrollment"
             label="Approximate number of students enrolled"
             placeholder="Select enrollment range"
             isRequired
-            defaultSelectedKeys={["100–300"]}
+            defaultSelectedKeys={[(data?.enrollment as string) || "100–300"]}
           >
             <SelectItem key="Less than 100">Less than 100</SelectItem>
             <SelectItem key="100–300">100–300</SelectItem>
@@ -68,7 +77,6 @@ export function SurveyForm({
 
       <Divider className="my-6" />
 
-      {/* SECTION 2: Current Record System */}
       <SurveySection
         number="2"
         title="Current Record-Keeping System"
@@ -86,6 +94,8 @@ export function SurveyForm({
               },
               { label: "School Management Software", value: "software" },
             ]}
+            defaultValues={(data?.recordSystem as string[]) || []}
+            defaultOtherValue={data?.recordSystemOther as string}
           />
 
           <CheckboxGroupWithOther
@@ -99,13 +109,14 @@ export function SurveyForm({
               { label: "Parent Communication", value: "communication" },
               { label: "Promotions and Transfers", value: "promotions" },
             ]}
+            defaultValues={(data?.recordTypes as string[]) || []}
+            defaultOtherValue={data?.recordTypesOther as string}
           />
         </div>
       </SurveySection>
 
       <Divider className="my-6" />
 
-      {/* SECTION 3: Bottlenecks & Challenges */}
       <SurveySection
         number="3"
         title="Bottlenecks & Challenges"
@@ -130,13 +141,15 @@ export function SurveyForm({
                 value: "old-records",
               },
             ]}
+            defaultValues={(data?.challenges as string[]) || []}
+            defaultOtherValue={data?.challengesOther as string}
           />
 
           <Select
             name="frequency"
             label="How often do these challenges cause problems?"
             isRequired
-            defaultSelectedKeys={["Frequently"]}
+            defaultSelectedKeys={[(data?.frequency as string) || "Frequently"]}
           >
             <SelectItem key="Rarely">Rarely</SelectItem>
             <SelectItem key="Occasionally">Occasionally</SelectItem>
@@ -148,7 +161,6 @@ export function SurveyForm({
 
       <Divider className="my-6" />
 
-      {/* SECTION 4: Interest in Improvements */}
       <SurveySection
         number="4"
         title="Interest in Improvements"
@@ -159,6 +171,7 @@ export function SurveyForm({
             name="openToDigital"
             label="Would you be open to exploring a simpler digital system to manage student records?"
             className="w-full"
+            defaultValue={data?.openToDigital as string}
           >
             <div className="flex flex-col gap-2">
               <Radio value="yes">Yes</Radio>
@@ -187,11 +200,12 @@ export function SurveyForm({
               },
               { label: "Secure storage and privacy", value: "security" },
             ]}
+            defaultValues={(data?.helpfulFeatures as string[]) || []}
+            defaultOtherValue={data?.helpfulFeaturesOther as string}
           />
         </div>
       </SurveySection>
 
-      {/* Submit Button */}
       <div className="mt-8 flex justify-center">
         <Button
           type="submit"

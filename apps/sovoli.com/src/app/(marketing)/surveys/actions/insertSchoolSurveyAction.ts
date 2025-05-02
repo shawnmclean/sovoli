@@ -12,6 +12,7 @@ export type State = {
   status: "error";
   message: string;
   errors?: Record<string, string>;
+  data?: Record<string, unknown>;
 } | null;
 
 export async function insertSchoolSurveyAction(
@@ -21,10 +22,12 @@ export async function insertSchoolSurveyAction(
   const result = await validator.validate(formData);
 
   if (result.error) {
+    const data = Object.fromEntries(formData.entries());
     return {
       status: "error",
       message: "Validation failed",
       errors: result.error.fieldErrors,
+      data,
     };
   }
 
@@ -42,6 +45,5 @@ export async function insertSchoolSurveyAction(
     };
   }
 
-  // ✅ Redirect to confirmation page
   redirect(`/surveys/thank-you?school=${encodeURIComponent(data.schoolName)}`);
 }
