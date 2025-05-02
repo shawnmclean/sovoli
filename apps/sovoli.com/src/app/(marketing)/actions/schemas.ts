@@ -1,5 +1,3 @@
-// /app/(landing)/actions/schemas.ts
-
 import { z } from "zod";
 
 export const formInsertWaitlistContactSchema = z.object({

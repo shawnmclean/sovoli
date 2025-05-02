@@ -29,9 +29,9 @@ export async function insertWaitlistContactAction(
   const { contactMode, contactValue } = result.data;
 
   const [contact] = await db
-    .insert(schema.WaitlistContacts)
+    .insert(schema.WaitlistContact)
     .values({
-      mode: contactMode,
+      contactMode,
       contactValue,
     })
     .returning();

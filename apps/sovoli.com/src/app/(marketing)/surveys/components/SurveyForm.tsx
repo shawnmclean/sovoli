@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useActionState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Input } from "@sovoli/ui/components/input";
@@ -8,20 +8,24 @@ import { Radio, RadioGroup } from "@sovoli/ui/components/radio";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 
 import { ContactToggleInput } from "../../components/ContactToggleInput";
+import { insertSchoolSurveyAction } from "../actions/insertSchoolSurveyAction";
 import { CheckboxGroupWithOther } from "./CheckboxGroupWithOther";
 import { SurveySection } from "./SurveySection";
 
 interface SurveyFormProps {
   defaultContactMode?: "whatsapp" | "email";
   defaultContactValue?: string;
-  formAction?: (formData: FormData) => void | Promise<void>;
 }
-
+const initialState = null;
 export function SurveyForm({
   defaultContactMode = "whatsapp",
   defaultContactValue,
-  formAction,
 }: SurveyFormProps) {
+  const [state, formAction, isPending] = useActionState(
+    insertSchoolSurveyAction,
+    initialState,
+  );
+
   return (
     <form action={formAction}>
       {/* Contact Section */}
@@ -187,10 +191,32 @@ export function SurveyForm({
 
       {/* Submit Button */}
       <div className="mt-8 flex justify-center">
-        <Button type="submit" color="primary" size="lg" className="px-8">
+        <Button
+          type="submit"
+          color="primary"
+          size="lg"
+          className="px-8"
+          isLoading={isPending}
+        >
           I'm Finished!
         </Button>
       </div>
+
+      {state?.status === "error" && (
+        <p
+          className="mt-4 text-center text-sm font-medium text-red-500"
+          role="alert"
+        >
+          {state.message}
+          {state.errors && (
+            <ul className="mt-2 text-sm text-red-500">
+              {Object.entries(state.errors).map(([key, value]) => (
+                <li key={key}>{`${key}: ${value}`}</li>
+              ))}
+            </ul>
+          )}
+        </p>
+      )}
     </form>
   );
 }
