@@ -43,5 +43,5 @@ export async function insertSchoolSurveyAction(
   }
 
   // ✅ Redirect to confirmation page
-  redirect(`/thank-you?school=${encodeURIComponent(data.schoolName)}`);
+  redirect(`/surveys/thank-you?school=${encodeURIComponent(data.schoolName)}`);
 }
