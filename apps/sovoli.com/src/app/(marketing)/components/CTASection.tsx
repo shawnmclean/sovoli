@@ -16,7 +16,7 @@ export function CTASection() {
 
   return (
     <section className="mt-6 flex flex-col items-center">
-      <div className="w-full max-w-md animate-neonPulse rounded-xl border-2 border-purple-500 p-6 shadow-lg backdrop-blur-md">
+      <div className="w-full max-w-xl animate-neonPulse rounded-xl border-2 border-purple-500 p-6 shadow-lg backdrop-blur-md">
         <h2 className="mb-4 text-center text-2xl font-bold text-default-900">
           Get early access
         </h2>{" "}
@@ -55,7 +55,7 @@ export function CTASection() {
       </div>
 
       {/* 👇 Pain/Benefit Block Moved Here */}
-      <p className="mt-6 max-w-md text-center text-sm text-default-500 sm:text-base">
+      <p className="mt-6 max-w-lg text-center text-sm text-default-500 sm:text-base">
         Admins spend hours pulling records from different places — every week,
         every term. Sovoli keeps it all in one place, always up to date.
       </p>
