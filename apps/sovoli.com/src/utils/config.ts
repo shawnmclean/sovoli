@@ -1,3 +1,5 @@
+import { env } from "~/env";
+
 export const config = {
   title: "Sovoli: A Lifelong Knowledge System",
   siteName: "Sovoli",
@@ -12,5 +14,5 @@ export const config = {
       alt: "Sovoli: A Lifelong Knowledge System",
     },
   ],
-  rootDomain: "localhost:3000",
+  rootDomain: env.NODE_ENV === "development" ? "localhost:3000" : "sovoli.com",
 };
