@@ -36,10 +36,10 @@ export function SurveyForm({
       <div className="mb-8 flex w-full justify-center rounded-xl border border-default-200 p-4">
         <ContactToggleInput
           defaultMode={
-            (data?.contactMethod as "whatsapp" | "email") || defaultContactMode
+            data?.contactMethod ?? defaultContactMode
           }
           defaultValue={
-            (data?.contactValue as string) || defaultContactValue || ""
+            (data?.contactValue as string) || defaultContactValue ?? ""
           }
         />
       </div>
