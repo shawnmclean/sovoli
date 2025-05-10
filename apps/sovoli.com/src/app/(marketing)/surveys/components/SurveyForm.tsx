@@ -35,12 +35,8 @@ export function SurveyForm({
       <pre>{JSON.stringify(data, null, 2)}</pre>
       <div className="mb-8 flex w-full justify-center rounded-xl border border-default-200 p-4">
         <ContactToggleInput
-          defaultMode={
-            data?.contactMethod ?? defaultContactMode
-          }
-          defaultValue={
-            (data?.contactValue as string) || defaultContactValue ?? ""
-          }
+          defaultMode={defaultContactMode}
+          defaultValue={defaultContactValue}
         />
       </div>
 
@@ -94,7 +90,6 @@ export function SurveyForm({
               },
               { label: "School Management Software", value: "software" },
             ]}
-            defaultValues={(data?.recordSystem as string[]) || []}
             defaultOtherValue={data?.recordSystemOther as string}
           />
 
@@ -109,7 +104,6 @@ export function SurveyForm({
               { label: "Parent Communication", value: "communication" },
               { label: "Promotions and Transfers", value: "promotions" },
             ]}
-            defaultValues={(data?.recordTypes as string[]) || []}
             defaultOtherValue={data?.recordTypesOther as string}
           />
         </div>
@@ -141,7 +135,6 @@ export function SurveyForm({
                 value: "old-records",
               },
             ]}
-            defaultValues={(data?.challenges as string[]) || []}
             defaultOtherValue={data?.challengesOther as string}
           />
 
@@ -200,7 +193,6 @@ export function SurveyForm({
               },
               { label: "Secure storage and privacy", value: "security" },
             ]}
-            defaultValues={(data?.helpfulFeatures as string[]) || []}
             defaultOtherValue={data?.helpfulFeaturesOther as string}
           />
         </div>
