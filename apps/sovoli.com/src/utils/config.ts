@@ -12,4 +12,5 @@ export const config = {
       alt: "Sovoli: A Lifelong Knowledge System",
     },
   ],
+  rootDomain: "localhost:3000",
 };
