@@ -34,16 +34,7 @@ const navbarBaseStyles = tv({
   },
 });
 
-const menuItems = [
-  "About",
-  "Blog",
-  "Customers",
-  "Pricing",
-  "Enterprise",
-  "Changelog",
-  "Documentation",
-  "Contact Us",
-];
+const menuItems = ["About", "Admissions", "Academics", "Contact"];
 
 export function TenantNavbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
