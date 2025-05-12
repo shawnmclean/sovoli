@@ -168,7 +168,13 @@ export function TenantNavbar() {
 
       <NavbarMenu className="top-[calc(var(--navbar-height)_-_1px)] max-h-fit bg-default-200/50 pb-6 pt-6 shadow-medium backdrop-blur-md backdrop-saturate-150 dark:bg-default-100/50">
         <NavbarMenuItem>
-          <Button fullWidth as={Link} href="/dashboard" variant="faded">
+          <Button
+            fullWidth
+            as={Link}
+            href="/dashboard"
+            variant="faded"
+            onPress={handleCloseMenu}
+          >
             Sign In
           </Button>
         </NavbarMenuItem>
