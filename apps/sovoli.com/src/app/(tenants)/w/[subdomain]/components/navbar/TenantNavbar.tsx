@@ -76,12 +76,14 @@ export function TenantNavbar() {
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarBrand>
-        <div className="rounded-full bg-default-foreground text-background">
-          <AppleIcon size={34} />
-        </div>
-        <span className="ml-2 text-small font-medium text-default-foreground">
-          Modern Academy
-        </span>
+        <Link href="/">
+          <div className="rounded-full bg-default-foreground text-background">
+            <AppleIcon size={34} />
+          </div>
+          <span className="ml-2 text-small font-medium text-default-foreground">
+            Modern Academy
+          </span>
+        </Link>
       </NavbarBrand>
 
       <NavbarContent justify="center">
