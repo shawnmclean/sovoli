@@ -54,10 +54,9 @@ export function middleware(request: NextRequest) {
 
   // If we have a subdomain (either from regular URL or preview deployment)
   if (subdomain) {
-    // For the root path on a subdomain, rewrite to the subdomain page
-    if (pathname === "/") {
-      return NextResponse.rewrite(new URL(`/w/${subdomain}`, request.url));
-    }
+    return NextResponse.rewrite(
+      new URL(`/w/${subdomain}${pathname}`, request.url),
+    );
   }
 
   // On the root domain, allow normal access
