@@ -36,22 +36,21 @@ const navbarBaseStyles = tv({
 });
 
 const navItems = [
-  { label: "Home", href: "/#" },
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   {
     label: "Admissions",
     dropdown: [
-      { label: "Requirements", href: "#requirements" },
+      { label: "Requirements", href: "/admissions/requirements" },
       { label: "Fees", href: "/admissions/fees" },
-      { label: "Apply", href: "#apply" },
+      { label: "Apply", href: "/admissions/apply" },
     ],
   },
   {
     label: "Academics",
     dropdown: [
-      { label: "Programs", href: "#programs" },
-      { label: "Faculty", href: "#faculty" },
-      { label: "Curriculum", href: "#curriculum" },
+      { label: "Programs", href: "/academics/programs" },
+      { label: "Team", href: "/academics/team" },
     ],
   },
   { label: "Contact", href: "/contact" },
@@ -123,6 +122,7 @@ export function TenantNavbar() {
             className="bg-default-foreground font-medium text-background"
             color="secondary"
             variant="flat"
+            href="admissions/apply"
           >
             Apply Now
           </Button>
@@ -157,7 +157,7 @@ export function TenantNavbar() {
             fullWidth
             as={Link}
             className="bg-foreground text-background"
-            href="/#"
+            href="admissions/apply"
           >
             Apply Now
           </Button>
