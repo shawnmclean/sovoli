@@ -20,7 +20,7 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@sovoli/ui/components/navbar";
-import { AppleIcon, ChevronDownIcon, UserIcon } from "lucide-react";
+import { AppleIcon, ChevronDownIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
 const navbarBaseStyles = tv({
@@ -42,7 +42,7 @@ const navItems = [
     label: "Admissions",
     dropdown: [
       { label: "Requirements", href: "#requirements" },
-      { label: "Tuition", href: "#tuition" },
+      { label: "Fees", href: "/admissions/fees" },
       { label: "Apply", href: "#apply" },
     ],
   },
