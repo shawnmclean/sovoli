@@ -15,6 +15,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@heroui/accordion": "2.2.16",
     "@heroui/avatar": "2.2.7",
     "@heroui/alert": "2.2.10",
     "@heroui/badge": "2.2.6",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
 import {
@@ -34,7 +35,27 @@ const navbarBaseStyles = tv({
   },
 });
 
-const menuItems = ["About", "Admissions", "Academics", "Contact"];
+const navItems = [
+  { label: "Home", href: "/#" },
+  { label: "About", href: "/about" },
+  {
+    label: "Admissions",
+    dropdown: [
+      { label: "Requirements", href: "#requirements" },
+      { label: "Tuition", href: "#tuition" },
+      { label: "Apply", href: "#apply" },
+    ],
+  },
+  {
+    label: "Academics",
+    dropdown: [
+      { label: "Programs", href: "#programs" },
+      { label: "Faculty", href: "#faculty" },
+      { label: "Curriculum", href: "#curriculum" },
+    ],
+  },
+  { label: "Contact", href: "/contact" },
+];
 
 export function TenantNavbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -62,85 +83,34 @@ export function TenantNavbar() {
       </NavbarBrand>
 
       <NavbarContent justify="center">
-        <NavbarItem
-          isActive
-          className="data-[active='true']:font-medium[date-active='true']"
-        >
-          <Link
-            aria-current="page"
-            className="text-default-foreground"
-            href="#"
-            size="sm"
-          >
-            Home
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link className="text-default-500" href="#" size="sm">
-            About
-          </Link>
-        </NavbarItem>
-        <Dropdown>
-          <NavbarItem>
-            <DropdownTrigger>
-              <Button
-                disableRipple
-                className="bg-transparent p-0 text-default-500 data-[hover=true]:bg-transparent"
-                endContent={<ChevronDownIcon width={16} />}
-                radius="sm"
-                variant="light"
-              >
-                Admissions
-              </Button>
-            </DropdownTrigger>
+        {navItems.map((item) => (
+          <NavbarItem key={item.label}>
+            {item.dropdown ? (
+              <Dropdown>
+                <DropdownTrigger>
+                  <Button
+                    disableRipple
+                    className="bg-transparent p-0 text-default-500"
+                    endContent={<ChevronDownIcon width={16} />}
+                  >
+                    {item.label}
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu className="w-[200px]">
+                  {item.dropdown.map((subItem) => (
+                    <DropdownItem key={subItem.label} href={subItem.href}>
+                      {subItem.label}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+            ) : (
+              <Link href={item.href} className="text-default-500">
+                {item.label}
+              </Link>
+            )}
           </NavbarItem>
-          <DropdownMenu aria-label="Admissions links" className="w-[200px]">
-            <DropdownItem key="requirements" href="#requirements">
-              Admission Requirements
-            </DropdownItem>
-            <DropdownItem key="tuition" href="#tuition">
-              Tuition and Fees
-            </DropdownItem>
-            <DropdownItem key="apply" href="#apply">
-              How to Apply
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        <Dropdown>
-          <NavbarItem>
-            <DropdownTrigger>
-              <Button
-                disableRipple
-                className="bg-transparent p-0 text-default-500 data-[hover=true]:bg-transparent"
-                endContent={<ChevronDownIcon width={16} />}
-                radius="sm"
-                variant="light"
-              >
-                Academics
-              </Button>
-            </DropdownTrigger>
-          </NavbarItem>
-          <DropdownMenu aria-label="Academics links" className="w-[200px]">
-            <DropdownItem key="programs" href="#programs">
-              Programs
-            </DropdownItem>
-            <DropdownItem key="faculty" href="#faculty">
-              Faculty List
-            </DropdownItem>
-            <DropdownItem key="curriculum" href="#curriculum">
-              Curriculum
-            </DropdownItem>
-            <DropdownItem key="calendar" href="#calendar">
-              Academic Calendar
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-
-        <NavbarItem>
-          <Link className="text-default-500" href="#" size="sm">
-            Contact
-          </Link>
-        </NavbarItem>
+        ))}
       </NavbarContent>
 
       <NavbarContent className="hidden md:flex" justify="end">
@@ -153,60 +123,20 @@ export function TenantNavbar() {
             Apply Now
           </Button>
           {isLoggedIn ? (
-            <Dropdown>
-              <NavbarItem>
-                <DropdownTrigger>
-                  <Button
-                    disableRipple
-                    className="bg-transparent p-0 data-[hover=true]:bg-transparent"
-                    endContent={<ChevronDownIcon width={16} />}
-                    variant="light"
-                  >
-                    <UserIcon width={24} />
-                  </Button>
-                </DropdownTrigger>
-              </NavbarItem>
-              <DropdownMenu aria-label="User Menu" className="w-[200px]">
-                <DropdownItem key="profile" href="#profile">
-                  My Profile
-                </DropdownItem>
-                <DropdownItem key="settings" href="#settings">
-                  Account Settings
-                </DropdownItem>
-                <DropdownItem
-                  key="logout"
-                  href="#logout"
-                  onPress={() => setIsLoggedIn(false)}
-                >
-                  Logout
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+            <Button variant="light" onClick={() => setIsLoggedIn(false)}>
+              Logout
+            </Button>
           ) : (
-            <Button
-              className="text-default-500"
-              variant="light"
-              onPress={() => setIsLoggedIn(true)}
-            >
+            <Button variant="light" onClick={() => setIsLoggedIn(true)}>
               Login
             </Button>
           )}
         </NavbarItem>
       </NavbarContent>
+
       <NavbarMenuToggle className="text-default-400 md:hidden" />
 
-      <NavbarMenu
-        className="top-[calc(var(--navbar-height)_-_1px)] max-h-fit bg-default-200/50 pb-6 pt-6 shadow-medium backdrop-blur-md backdrop-saturate-150 dark:bg-default-100/50"
-        motionProps={{
-          initial: { opacity: 0, y: -20 },
-          animate: { opacity: 1, y: 0 },
-          exit: { opacity: 0, y: -20 },
-          transition: {
-            ease: "easeInOut",
-            duration: 0.2,
-          },
-        }}
-      >
+      <NavbarMenu className="top-[calc(var(--navbar-height)_-_1px)] max-h-fit bg-default-200/50 pb-6 pt-6 shadow-medium backdrop-blur-md backdrop-saturate-150 dark:bg-default-100/50">
         <NavbarMenuItem>
           <Button
             fullWidth
@@ -218,7 +148,7 @@ export function TenantNavbar() {
             Sign In
           </Button>
         </NavbarMenuItem>
-        <NavbarMenuItem className="mb-4">
+        <NavbarMenuItem>
           <Button
             fullWidth
             as={Link}
@@ -227,13 +157,37 @@ export function TenantNavbar() {
           >
             Apply Now
           </Button>
+          <Divider className="mt-4" />
         </NavbarMenuItem>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="mb-2 w-full text-default-500" href="#" size="md">
-              {item}
-            </Link>
-            {index < menuItems.length - 1 && <Divider className="opacity-50" />}
+        {navItems.map((item) => (
+          <NavbarMenuItem key={item.label}>
+            {item.dropdown ? (
+              <Accordion
+                isCompact
+                className="px-0"
+                showDivider
+                itemClasses={{
+                  content: "px-2 border-l-1 border-default-500",
+                  title: "text-default-500",
+                }}
+              >
+                <AccordionItem title={item.label}>
+                  {item.dropdown.map((subItem) => (
+                    <Link
+                      key={subItem.label}
+                      href={subItem.href}
+                      className="block py-2 text-default-500"
+                    >
+                      {subItem.label}
+                    </Link>
+                  ))}
+                </AccordionItem>
+              </Accordion>
+            ) : (
+              <Link href={item.href} className="block py-2 text-default-500">
+                {item.label}
+              </Link>
+            )}
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
