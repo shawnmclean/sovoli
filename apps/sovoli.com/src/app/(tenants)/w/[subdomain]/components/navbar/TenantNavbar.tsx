@@ -20,7 +20,7 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@sovoli/ui/components/navbar";
-import { AppleIcon, ChevronDownIcon } from "lucide-react";
+import { AppleIcon, ChevronDownIcon, UserIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
 const navbarBaseStyles = tv({
@@ -127,9 +127,35 @@ export function TenantNavbar() {
             Apply Now
           </Button>
           {isLoggedIn ? (
-            <Button variant="light" onClick={() => setIsLoggedIn(false)}>
-              Logout
-            </Button>
+            <Dropdown>
+              <NavbarItem>
+                <DropdownTrigger>
+                  <Button
+                    disableRipple
+                    className="bg-transparent p-0 data-[hover=true]:bg-transparent"
+                    endContent={<ChevronDownIcon width={16} />}
+                    variant="light"
+                  >
+                    <UserIcon width={24} />
+                  </Button>
+                </DropdownTrigger>
+              </NavbarItem>
+              <DropdownMenu aria-label="User Menu" className="w-[200px]">
+                <DropdownItem key="profile" href="#profile">
+                  My Profile
+                </DropdownItem>
+                <DropdownItem key="settings" href="#settings">
+                  Account Settings
+                </DropdownItem>
+                <DropdownItem
+                  key="logout"
+                  href="#logout"
+                  onPress={() => setIsLoggedIn(false)}
+                >
+                  Logout
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           ) : (
             <Button variant="light" onClick={() => setIsLoggedIn(true)}>
               Login
