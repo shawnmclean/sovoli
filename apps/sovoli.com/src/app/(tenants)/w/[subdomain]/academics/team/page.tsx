@@ -5,6 +5,7 @@ import { Avatar } from "@sovoli/ui/components/avatar";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import { Divider } from "@sovoli/ui/components/divider";
 import { Input } from "@sovoli/ui/components/input";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { SearchIcon, XIcon } from "lucide-react";
@@ -18,7 +19,7 @@ const facultyData = [
     email: "sarah.johnson@school.edu",
     phone: "(555) 123-4567",
     bio: "Dr. Johnson has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
     courses: [
       {
         id: "ADM101",
@@ -36,7 +37,7 @@ const facultyData = [
     email: "michael.thompson@school.edu",
     phone: "(555) 123-4568",
     bio: "Mr. Thompson oversees student discipline and supports the principal in day-to-day operations.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=2",
     courses: [
       {
         id: "ADM201",
@@ -54,7 +55,7 @@ const facultyData = [
     email: "emily.rodriguez@school.edu",
     phone: "(555) 123-4569",
     bio: "Dr. Rodriguez leads our science department with a passion for innovation and hands-on learning.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=3",
     courses: [
       {
         id: "SCI301",
@@ -78,7 +79,7 @@ const facultyData = [
     email: "james.wilson@school.edu",
     phone: "(555) 123-4570",
     bio: "Mr. Wilson brings 15 years of experience to our mathematics department.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=4",
     courses: [
       {
         id: "MATH401",
@@ -102,7 +103,7 @@ const facultyData = [
     email: "lisa.chen@school.edu",
     phone: "(555) 123-4571",
     bio: "Ms. Chen specializes in American literature and creative writing.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
     courses: [
       {
         id: "ENG201",
@@ -126,7 +127,7 @@ const facultyData = [
     email: "robert.davis@school.edu",
     phone: "(555) 123-4572",
     bio: "Mr. Davis makes history come alive through interactive lessons and field trips.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
     courses: [
       {
         id: "HIST101",
@@ -150,7 +151,7 @@ const facultyData = [
     email: "jennifer.martinez@school.edu",
     phone: "(555) 123-4573",
     bio: "Ms. Martinez specializes in biology and environmental science.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
     courses: [
       {
         id: "SCI101",
@@ -174,7 +175,7 @@ const facultyData = [
     email: "david.kim@school.edu",
     phone: "(555) 123-4574",
     bio: "Mr. Kim teaches algebra and calculus with a focus on real-world applications.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
     courses: [
       {
         id: "MATH101",
@@ -198,7 +199,7 @@ const facultyData = [
     email: "patricia.brown@school.edu",
     phone: "(555) 123-4575",
     bio: "Ms. Brown provides academic and personal counseling to help students succeed.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
     courses: [],
   },
   {
@@ -209,7 +210,7 @@ const facultyData = [
     email: "thomas.garcia@school.edu",
     phone: "(555) 123-4576",
     bio: "Mr. Garcia manages our extensive library collection and helps students with research projects.",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
     courses: [
       {
         id: "LIB101",
@@ -358,123 +359,124 @@ export default function TeamPage() {
   return (
     <div className="container mx-auto max-w-7xl px-6 py-10">
       <div className="mb-10 text-center">
-        <h1 className="text-4xl font-bold tracking-tight">Faculty Directory</h1>
+        <h1 className="text-4xl font-bold tracking-tight">Team Directory</h1>
         <p className="mt-4 text-lg text-default-500">
           Meet our dedicated team of educators and staff members
         </p>
       </div>
 
       {/* Filter section */}
-      <Card className="mb-8">
-        <CardBody>
-          <h2 className="mb-4 text-xl font-semibold">Filter Faculty</h2>
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="space-y-2">
-              <label className="text-small font-medium">Search</label>
-              <Input
-                placeholder="Search by name, email, or bio..."
-                value={searchQuery}
-                onValueChange={setSearchQuery}
-                startContent={<SearchIcon className="text-default-400" />}
-              />
-            </div>
 
-            <div className="space-y-2">
-              <label className="text-small font-medium">Role</label>
-              <Select
-                placeholder="All Roles"
-                selectedKeys={selectedRole ? [selectedRole] : []}
-                onSelectionChange={(keys) => {
-                  const selected = Array.from(keys)[0] as string;
-                  setSelectedRole(selected);
-                }}
-              >
-                {uniqueRoles.map((role) => (
-                  <SelectItem key={role} value={role}>
-                    {role}
-                  </SelectItem>
-                ))}
-              </Select>
-            </div>
+      <div className="grid gap-4 md:grid-cols-3">
+        <div className="space-y-2">
+          <label className="text-small font-medium">Search</label>
+          <Input
+            placeholder="Search by name, email, or bio..."
+            value={searchQuery}
+            onValueChange={setSearchQuery}
+            startContent={<SearchIcon className="text-default-400" />}
+            variant="bordered"
+          />
+        </div>
 
-            <div className="space-y-2">
-              <label className="text-small font-medium">Department</label>
-              <Select
-                placeholder="All Departments"
-                selectedKeys={selectedDepartment ? [selectedDepartment] : []}
-                onSelectionChange={(keys) => {
-                  const selected = Array.from(keys)[0] as string;
-                  setSelectedDepartment(selected);
-                }}
+        <div className="space-y-2">
+          <label className="text-small font-medium">Role</label>
+          <Select
+            placeholder="All Roles"
+            selectedKeys={selectedRole ? [selectedRole] : []}
+            onSelectionChange={(keys) => {
+              const selected = Array.from(keys)[0] as string;
+              setSelectedRole(selected);
+            }}
+            variant="bordered"
+          >
+            {uniqueRoles.map((role) => (
+              <SelectItem key={role} value={role}>
+                {role}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-small font-medium">Department</label>
+          <Select
+            placeholder="All Departments"
+            selectedKeys={selectedDepartment ? [selectedDepartment] : []}
+            onSelectionChange={(keys) => {
+              const selected = Array.from(keys)[0] as string;
+              setSelectedDepartment(selected);
+            }}
+            variant="bordered"
+          >
+            {uniqueDepartments.map((department) => (
+              <SelectItem key={department} value={department}>
+                {department}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
+      </div>
+
+      {hasActiveFilters && (
+        <div className="mt-4 flex items-center gap-2">
+          <div className="flex flex-wrap gap-2">
+            {searchQuery && (
+              <Badge
+                content={
+                  <XIcon
+                    className="h-3 w-3 cursor-pointer"
+                    onClick={() => setSearchQuery("")}
+                  />
+                }
+                variant="flat"
               >
-                {uniqueDepartments.map((department) => (
-                  <SelectItem key={department} value={department}>
-                    {department}
-                  </SelectItem>
-                ))}
-              </Select>
-            </div>
+                Search: {searchQuery}
+              </Badge>
+            )}
+            {selectedRole && (
+              <Badge
+                content={
+                  <XIcon
+                    className="h-3 w-3 cursor-pointer"
+                    onClick={() => setSelectedRole("")}
+                  />
+                }
+                variant="flat"
+              >
+                Role: {selectedRole}
+              </Badge>
+            )}
+            {selectedDepartment && (
+              <Badge
+                content={
+                  <XIcon
+                    className="h-3 w-3 cursor-pointer"
+                    onClick={() => setSelectedDepartment("")}
+                  />
+                }
+                variant="flat"
+              >
+                Department: {selectedDepartment}
+              </Badge>
+            )}
           </div>
-
-          {hasActiveFilters && (
-            <div className="mt-4 flex items-center gap-2">
-              <div className="flex flex-wrap gap-2">
-                {searchQuery && (
-                  <Badge
-                    content={
-                      <XIcon
-                        className="h-3 w-3 cursor-pointer"
-                        onClick={() => setSearchQuery("")}
-                      />
-                    }
-                    variant="flat"
-                  >
-                    Search: {searchQuery}
-                  </Badge>
-                )}
-                {selectedRole && (
-                  <Badge
-                    content={
-                      <XIcon
-                        className="h-3 w-3 cursor-pointer"
-                        onClick={() => setSelectedRole("")}
-                      />
-                    }
-                    variant="flat"
-                  >
-                    Role: {selectedRole}
-                  </Badge>
-                )}
-                {selectedDepartment && (
-                  <Badge
-                    content={
-                      <XIcon
-                        className="h-3 w-3 cursor-pointer"
-                        onClick={() => setSelectedDepartment("")}
-                      />
-                    }
-                    variant="flat"
-                  >
-                    Department: {selectedDepartment}
-                  </Badge>
-                )}
-              </div>
-              <Button variant="light" size="sm" onPress={resetFilters}>
-                Clear All
-              </Button>
-            </div>
-          )}
-        </CardBody>
-      </Card>
+          <Button variant="light" size="sm" onPress={resetFilters}>
+            Clear All
+          </Button>
+        </div>
+      )}
 
       {/* Results section */}
       <div>
-        <div className="mb-4 flex items-center justify-between">
+        <div className="my-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold">
             Results{" "}
             <span className="text-default-500">({filteredFaculty.length})</span>
           </h2>
         </div>
+
+        <Divider className="my-4" />
 
         {Object.keys(groupedFaculty).length > 0 ? (
           Object.entries(groupedFaculty).map(([role, facultyList]) => (
