@@ -13,21 +13,23 @@ import { SearchIcon, XIcon } from "lucide-react";
 const facultyData = [
   {
     id: 1,
-    name: "Dr. Sarah Johnson",
+    name: "Timon Bhagwandin",
     role: "Principal",
     department: "Administration",
     email: "sarah.johnson@school.edu",
     phone: "(555) 123-4567",
-    bio: "Dr. Johnson has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
+    bio: "Timon has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
     image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
-    courses: [
-      {
-        id: "ADM101",
-        name: "School Leadership",
-        schedule: "Mon/Wed 10:00-11:30",
-        room: "Admin 101",
-      },
-    ],
+  },
+  {
+    id: 12,
+    name: "Nessa Bhagwandin",
+    role: "Principal",
+    department: "Administration",
+    email: "sarah.johnson@school.edu",
+    phone: "(555) 123-4567",
+    bio: "Nessa has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
+    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
   },
   {
     id: 2,
@@ -239,7 +241,7 @@ interface FacultyMember {
   phone: string;
   bio: string;
   image: string;
-  courses: {
+  courses?: {
     id: string;
     name: string;
     schedule: string;
@@ -274,7 +276,7 @@ function FacultyCard({ faculty }: { faculty: FacultyMember }) {
             </p>
           </div>
 
-          {faculty.courses.length > 0 ? (
+          {faculty.courses?.length && faculty.courses.length > 0 && (
             <div className="mt-4">
               <h4 className="mb-2 text-small font-medium">Current Classes</h4>
               <div className="space-y-2">
@@ -297,10 +299,6 @@ function FacultyCard({ faculty }: { faculty: FacultyMember }) {
                 ))}
               </div>
             </div>
-          ) : (
-            <div className="mt-4 text-tiny text-default-500">
-              Not currently teaching any classes
-            </div>
           )}
         </div>
       </CardBody>
@@ -320,7 +318,7 @@ export default function TeamPage() {
       faculty.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       faculty.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
       faculty.bio.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      faculty.courses.some(
+      faculty.courses?.some(
         (course) =>
           course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           course.id.toLowerCase().includes(searchQuery.toLowerCase()),
