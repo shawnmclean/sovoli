@@ -61,6 +61,8 @@ export function TenantNavbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleCloseMenu = () => setTimeout(() => setIsMenuOpen(false), 200);
+
   return (
     <Navbar
       maxWidth="xl"
@@ -177,6 +179,7 @@ export function TenantNavbar() {
                       key={subItem.label}
                       href={subItem.href}
                       className="block py-2 text-default-500"
+                      onPress={handleCloseMenu}
                     >
                       {subItem.label}
                     </Link>
@@ -184,7 +187,11 @@ export function TenantNavbar() {
                 </AccordionItem>
               </Accordion>
             ) : (
-              <Link href={item.href} className="block py-2 text-default-500">
+              <Link
+                href={item.href}
+                className="block py-2 text-default-500"
+                onPress={handleCloseMenu}
+              >
                 {item.label}
               </Link>
             )}
