@@ -1,6 +1,9 @@
 import { HeroSection } from "./components/HeroSection";
 import { MetricsSection } from "./components/MetricsSection";
+import { MissionVisionSection } from "./components/MissionVisionSection";
+import { NewsSection } from "./components/NewsSection";
 import { ProgramsSection } from "./components/ProgramsSection";
+import { TeamSection } from "./components/TeamSection";
 
 export default async function SubdomainPage({
   params,
@@ -12,7 +15,10 @@ export default async function SubdomainPage({
     <div>
       <HeroSection />
       <MetricsSection />
+      <MissionVisionSection />
       <ProgramsSection />
+      <TeamSection />
+      <NewsSection />
       Subdomain Page: {subdomain}
     </div>
   );

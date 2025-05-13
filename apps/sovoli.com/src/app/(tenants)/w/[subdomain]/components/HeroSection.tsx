@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Image } from "@sovoli/ui/components/image";
 
@@ -17,15 +18,28 @@ export function HeroSection() {
         <p className="mb-8 max-w-2xl text-center text-lg md:text-xl">
           Join a community dedicated to academic excellence and personal growth
         </p>
-        <Button
-          size="lg"
-          color="primary"
-          variant="solid"
-          radius="sm"
-          className="font-semibold"
-        >
-          Apply Now
-        </Button>
+        <div className="flex flex-row gap-4">
+          <Button
+            size="lg"
+            color="primary"
+            variant="solid"
+            radius="sm"
+            className="font-semibold"
+            as={Link}
+            href="/admissions/apply"
+          >
+            Apply Now
+          </Button>
+          <Button
+            as={Link}
+            href="/admissions/apply"
+            size="lg"
+            radius="sm"
+            className="bg-foreground text-background"
+          >
+            Schedule a Visit
+          </Button>
+        </div>
       </div>
     </section>
   );

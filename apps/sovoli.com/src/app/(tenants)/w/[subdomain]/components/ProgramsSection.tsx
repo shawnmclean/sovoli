@@ -6,7 +6,14 @@ export function ProgramsSection() {
   return (
     <section className="px-4 py-10">
       <div className="mx-auto max-w-7xl">
-        <h2 className="mb-12 text-center text-3xl font-bold">Our Programs</h2>
+        <div className="mb-12 text-center">
+          <h2 className="mb-6 text-center text-3xl font-bold">Our Programs</h2>
+          <p className="mx-auto max-w-2xl text-foreground-500">
+            Our programs are designed to provide a nurturing environment that
+            fosters academic excellence, character development, and lifelong
+            learning.
+          </p>
+        </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[
             {
