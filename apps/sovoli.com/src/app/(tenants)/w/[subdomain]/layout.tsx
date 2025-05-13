@@ -1,3 +1,4 @@
+import { Footer } from "./components/Footer";
 import { TenantNavbar } from "./components/navbar/TenantNavbar";
 
 interface Props {
@@ -9,6 +10,7 @@ export default function Layout({ children }: Props) {
       <TenantNavbar />
 
       {children}
+      <Footer />
     </div>
   );
 }
