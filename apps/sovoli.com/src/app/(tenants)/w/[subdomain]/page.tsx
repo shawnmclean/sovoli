@@ -19,7 +19,9 @@ export default async function SubdomainPage({
       <ProgramsSection />
       <TeamSection />
       <NewsSection />
-      Subdomain Page: {subdomain}
+      <div className="my-4 px-5 text-right text-default-200">
+        Subdomain: {subdomain}
+      </div>
     </div>
   );
 }
