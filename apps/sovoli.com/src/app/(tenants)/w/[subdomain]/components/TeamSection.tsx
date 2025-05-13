@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
@@ -11,6 +11,7 @@ import { membersData } from "../membersData";
 export function TeamSection() {
   const controls = useAnimation();
   const scrollDuration = 80; // Adjust the speed (higher = slower)
+  const touchPauseRef = useRef(false);
 
   // Centralized animation configuration with useMemo
   const scrollConfig = useMemo(
@@ -35,6 +36,16 @@ export function TeamSection() {
   };
 
   const handleMouseLeave = () => {
+    if (!touchPauseRef.current) void controls.start(scrollConfig);
+  };
+
+  const handleTouchStart = () => {
+    touchPauseRef.current = true;
+    void controls.stop();
+  };
+
+  const handleTouchEnd = () => {
+    touchPauseRef.current = false;
     void controls.start(scrollConfig);
   };
 
@@ -48,12 +59,16 @@ export function TeamSection() {
             highest quality education and support for all students.
           </p>
         </div>
-        <div className="flex">
+        <div
+          className="flex"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <motion.div
             className="flex gap-8"
             animate={controls}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
             style={{ display: "flex", width: "auto" }}
           >
             {[...membersData, ...membersData, ...membersData].map(
@@ -61,14 +76,14 @@ export function TeamSection() {
                 <Link
                   href={`/academics/team/${member.id}`}
                   key={index}
-                  className="group flex w-[160px] flex-col items-center" // Adjusted width
+                  className="group flex w-[160px] flex-col items-center"
                 >
                   <Avatar
                     src={member.image}
                     alt={member.name}
                     isBordered
                     color={member.role !== "Teacher" ? "warning" : "default"}
-                    className="h-28 w-28" // Slightly larger avatar
+                    className="h-28 w-28"
                     radius="full"
                   />
                   <div className="mt-3 text-center">
