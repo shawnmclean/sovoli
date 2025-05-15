@@ -14,12 +14,15 @@ import type { MemberData } from "../../membersData";
 import { membersData } from "../../membersData";
 
 // Get unique roles and departments
-const uniqueRoles = Array.from(
-  new Set(membersData.map((faculty) => faculty.role)),
-);
-const uniqueDepartments = Array.from(
-  new Set(membersData.map((faculty) => faculty.department)),
-);
+const uniqueRoles = [
+  ...new Set(membersData.flatMap((faculty) => faculty.roles)),
+].sort((a, b) => {
+  // Sort roles alphabetically to ensure consistent order
+  return a.localeCompare(b);
+});
+const uniqueDepartments = [
+  ...new Set(membersData.flatMap((faculty) => faculty.departments)),
+].sort((a, b) => a.localeCompare(b));
 
 function FacultyCard({ faculty }: { faculty: MemberData }) {
   return (
@@ -33,7 +36,9 @@ function FacultyCard({ faculty }: { faculty: MemberData }) {
         />
         <div>
           <h3 className="text-xl font-semibold">{faculty.name}</h3>
-          <p className="text-small text-default-500">{faculty.department}</p>
+          <p className="text-small text-default-500">
+            {faculty.departments.join(", ")}
+          </p>
         </div>
       </CardHeader>
       <CardBody>
@@ -96,9 +101,11 @@ export default function TeamPage() {
           course.id.toLowerCase().includes(searchQuery.toLowerCase()),
       );
 
-    const matchesRole = selectedRole ? faculty.role === selectedRole : true;
+    const matchesRole = selectedRole
+      ? faculty.roles.includes(selectedRole)
+      : true;
     const matchesDepartment = selectedDepartment
-      ? faculty.department === selectedDepartment
+      ? faculty.departments.includes(selectedDepartment)
       : true;
 
     return matchesSearch && matchesRole && matchesDepartment;
@@ -107,10 +114,13 @@ export default function TeamPage() {
   // Group filtered faculty by role for display
   const groupedFaculty = filteredFaculty.reduce(
     (acc, faculty) => {
-      if (!acc[faculty.role]) {
-        acc[faculty.role] = [];
-      }
-      acc[faculty.role]?.push(faculty);
+      // Handle each role in the roles array
+      faculty.roles.forEach((role) => {
+        if (!acc[role]) {
+          acc[role] = [];
+        }
+        acc[role].push(faculty);
+      });
       return acc;
     },
     {} as Record<string, MemberData[]>,
