@@ -1,6 +1,9 @@
+import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Image } from "@sovoli/ui/components/image";
+
+import { programsData } from "../programsData";
 
 export function ProgramsSection() {
   return (
@@ -14,45 +17,26 @@ export function ProgramsSection() {
             learning.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              title: "Elementary Education",
-              image: "https://img.heroui.chat/image/places?w=600&h=400&u=2",
-              description:
-                "Strong foundational learning in a nurturing environment",
-            },
-            {
-              title: "Middle School",
-              image: "https://img.heroui.chat/image/places?w=600&h=400&u=3",
-              description:
-                "Engaging curriculum fostering critical thinking and creativity",
-            },
-            {
-              title: "High School",
-              image: "https://img.heroui.chat/image/places?w=600&h=400&u=4",
-              description:
-                "College preparatory programs for academic excellence",
-            },
-          ].map((program, index) => (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {programsData.slice(0, 4).map((program, index) => (
             <Card key={index} className="border-none" shadow="sm">
               <CardBody className="p-0">
                 <Image
                   removeWrapper
-                  alt={program.title}
+                  alt={program.name}
                   className="h-48 w-full object-cover"
                   src={program.image}
                 />
                 <div className="p-6">
-                  <h3 className="mb-2 text-xl font-semibold">
-                    {program.title}
-                  </h3>
+                  <h3 className="mb-2 text-xl font-semibold">{program.name}</h3>
                   <p className="text-default-600">{program.description}</p>
                   <Button
                     color="primary"
                     variant="flat"
                     radius="sm"
                     className="mt-4"
+                    as={Link}
+                    href={`/academics/programs/${program.id}`}
                   >
                     Learn More
                   </Button>
@@ -60,6 +44,17 @@ export function ProgramsSection() {
               </CardBody>
             </Card>
           ))}
+        </div>
+        <div className="mt-6 flex items-center justify-center gap-4">
+          <Button
+            color="default"
+            variant="bordered"
+            radius="sm"
+            as={Link}
+            href="/academics/programs"
+          >
+            View All {programsData.length} Programs
+          </Button>
         </div>
       </div>
     </section>

@@ -2,41 +2,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Image } from "@sovoli/ui/components/image";
 
-const programsData = [
-  {
-    title: "Elementary Education",
-    image: "https://img.heroui.chat/image/places?w=600&h=400&u=2",
-    description: "Strong foundational learning in a nurturing environment",
-    curriculum: "Basic literacy, numeracy, science, and social skills.",
-    duration: "6 years",
-    ageGroup: "5-11 years",
-    requirements:
-      "Birth certificate, immunization record, completed application form.",
-  },
-  {
-    title: "Middle School",
-    image: "https://img.heroui.chat/image/places?w=600&h=400&u=3",
-    description:
-      "Engaging curriculum fostering critical thinking and creativity",
-    curriculum:
-      "Mathematics, language arts, science, social studies, arts, and physical education.",
-    duration: "3 years",
-    ageGroup: "12-14 years",
-    requirements:
-      "Completion of Elementary Education, application form, parent/guardian ID.",
-  },
-  {
-    title: "High School",
-    image: "https://img.heroui.chat/image/places?w=600&h=400&u=4",
-    description: "College preparatory programs for academic excellence",
-    curriculum:
-      "Advanced mathematics, sciences, literature, history, vocational courses, and electives.",
-    duration: "4 years",
-    ageGroup: "15-18 years",
-    requirements:
-      "Completion of Middle School, application form, parent/guardian ID.",
-  },
-];
+import { AgeRange, programsData } from "../../programsData";
 
 export default function ProgramsPage() {
   return (
@@ -53,25 +19,35 @@ export default function ProgramsPage() {
               <CardBody className="flex flex-col gap-6 p-4 md:flex-row">
                 <Image
                   removeWrapper
-                  alt={program.title}
+                  alt={program.name}
                   className="h-48 w-full object-cover md:w-1/3"
                   src={program.image}
                 />
                 <div className="flex flex-col space-y-2">
-                  <h3 className="text-xl font-semibold">{program.title}</h3>
+                  <h3 className="text-xl font-semibold">{program.name}</h3>
                   <p className="text-default-600">{program.description}</p>
-                  <p className="text-sm text-default-500">
-                    <strong>Curriculum:</strong> {program.curriculum}
-                  </p>
-                  <p className="text-sm text-default-500">
-                    <strong>Duration:</strong> {program.duration}
-                  </p>
-                  <p className="text-sm text-default-500">
-                    <strong>Age Group:</strong> {program.ageGroup}
-                  </p>
-                  <p className="text-sm text-default-500">
-                    <strong>Requirements:</strong> {program.requirements}
-                  </p>
+
+                  {program.requirements && program.requirements.length > 0 && (
+                    <div className="mt-4 space-y-2">
+                      <h4 className="text-lg font-semibold">Requirements</h4>
+                      <ul className="list-disc space-y-1 pl-5 text-sm text-default-600">
+                        {program.requirements.map((requirement, index) => (
+                          <li key={index}>
+                            {requirement.description && (
+                              <span>{requirement.description}</span>
+                            )}
+                            {requirement.type === "age" &&
+                              requirement.ageRange && (
+                                <span>
+                                  {displayAgeRange(requirement.ageRange)}
+                                </span>
+                              )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
                   <Button
                     color="primary"
                     variant="flat"
@@ -88,4 +64,42 @@ export default function ProgramsPage() {
       </div>
     </section>
   );
+}
+
+// Utility function to display age range cleanly
+function displayAgeRange(ageRange?: AgeRange): string {
+  if (!ageRange) return "";
+
+  const minAgeParts: string[] = [];
+  const maxAgeParts: string[] = [];
+
+  // Build minimum age string
+  if (ageRange.minAgeYears !== undefined && ageRange.minAgeYears > 0) {
+    minAgeParts.push(`${ageRange.minAgeYears} years`);
+  }
+  if (ageRange.minAgeMonths !== undefined && ageRange.minAgeMonths > 0) {
+    minAgeParts.push(`${ageRange.minAgeMonths} months`);
+  }
+
+  // Build maximum age string
+  if (ageRange.maxAgeYears !== undefined && ageRange.maxAgeYears > 0) {
+    maxAgeParts.push(`${ageRange.maxAgeYears} years`);
+  }
+  if (ageRange.maxAgeMonths !== undefined && ageRange.maxAgeMonths > 0) {
+    maxAgeParts.push(`${ageRange.maxAgeMonths} months`);
+  }
+
+  // Combine min and max age into a single display string
+  const minAgeDisplay = minAgeParts.join(" ");
+  const maxAgeDisplay = maxAgeParts.join(" ");
+
+  if (minAgeDisplay && maxAgeDisplay) {
+    return `${minAgeDisplay} - ${maxAgeDisplay}`;
+  } else if (minAgeDisplay) {
+    return minAgeDisplay;
+  } else if (maxAgeDisplay) {
+    return maxAgeDisplay;
+  }
+
+  return "";
 }

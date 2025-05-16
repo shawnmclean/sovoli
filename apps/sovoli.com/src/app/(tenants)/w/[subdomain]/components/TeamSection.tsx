@@ -82,7 +82,6 @@ export function TeamSection() {
                     src={member.image}
                     alt={member.name}
                     isBordered
-                    color={member.role !== "Teacher" ? "warning" : "default"}
                     className="h-28 w-28"
                     radius="full"
                   />
@@ -91,7 +90,7 @@ export function TeamSection() {
                       {member.name}
                     </h3>
                     <p className="max-w-full truncate text-sm text-default-600">
-                      {member.role}
+                      {member.roles[0]}
                     </p>
                   </div>
                 </Link>
