@@ -39,7 +39,7 @@ export const membersData: MemberData[] = [
   {
     id: 2,
     name: "Anita Dhaniram",
-    roles: ["Principal", "Secretary", "Teacher"],
+    roles: ["Secretary", "Teacher"],
     departments: ["Administration", "Faculty"],
     email: "michael.thompson@school.edu",
     phone: "(555) 123-4568",
@@ -55,6 +55,26 @@ export const membersData: MemberData[] = [
     phone: "",
     bio: "",
     image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=3",
+    courses: [
+      {
+        id: "1",
+        name: "Elementary Education",
+        schedule: "8:00 am - 5:00 pm",
+        room: "101",
+      },
+      {
+        id: "2",
+        name: "Elementary Education",
+        schedule: "8:00 am - 5:00 pm",
+        room: "102",
+      },
+      {
+        id: "3",
+        name: "Elementary Education",
+        schedule: "8:00 am - 5:00 pm",
+        room: "103",
+      },
+    ],
   },
   {
     id: 4,
