@@ -36,7 +36,7 @@ export function ProgramsSection() {
                     radius="sm"
                     className="mt-4"
                     as={Link}
-                    href={`/academics/programs/${program.id}`}
+                    href={`/academics/programs/${program.slug}`}
                   >
                     Learn More
                   </Button>

@@ -1,6 +1,7 @@
 export interface ProgramData {
   id: number;
   name: string;
+  slug: string;
   description: string;
   image: string;
   requirements?: Requirement[];
@@ -26,6 +27,7 @@ export const programsData: ProgramData[] = [
   {
     id: 1,
     name: "Pre-Nursery (Play School)",
+    slug: "pre-nursery",
     description: "Strong foundational learning in a nurturing environment",
     image: "https://img.heroui.chat/image/places?w=600&h=400&u=1",
     requirements: [
@@ -43,6 +45,7 @@ export const programsData: ProgramData[] = [
   {
     id: 2,
     name: "Nursery",
+    slug: "nursery",
     description:
       "Engaging curriculum fostering critical thinking and creativity",
     image: "https://img.heroui.chat/image/places?w=600&h=400&u=2",
@@ -61,6 +64,7 @@ export const programsData: ProgramData[] = [
   {
     id: 3,
     name: "Primary",
+    slug: "primary",
     description: "Strong foundational learning in a nurturing environment",
     image: "https://img.heroui.chat/image/places?w=600&h=400&u=3",
     requirements: [
@@ -84,6 +88,7 @@ export const programsData: ProgramData[] = [
   {
     id: 4,
     name: "Secondary",
+    slug: "secondary",
     description:
       "Engaging curriculum fostering critical thinking and creativity",
     image: "https://img.heroui.chat/image/places?w=600&h=400&u=4",
