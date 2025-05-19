@@ -6,7 +6,7 @@ export interface MemberData {
   email: string;
   phone: string;
   bio: string;
-  image: string;
+  image?: string;
   courses?: {
     id: string;
     name: string;
@@ -24,7 +24,6 @@ export const membersData: MemberData[] = [
     email: "sarah.johnson@school.edu",
     phone: "(555) 123-4567",
     bio: "Timon has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
-    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
   },
   {
     id: 12,
@@ -34,7 +33,6 @@ export const membersData: MemberData[] = [
     email: "sarah.johnson@school.edu",
     phone: "(555) 123-4567",
     bio: "Nessa has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
-    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=1",
   },
   {
     id: 2,
@@ -44,7 +42,7 @@ export const membersData: MemberData[] = [
     email: "michael.thompson@school.edu",
     phone: "(555) 123-4568",
     bio: "Mr. Thompson oversees student discipline and supports the principal in day-to-day operations.",
-    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=2",
+    image: "/images/profile/anita.jpeg",
   },
   {
     id: 3,
@@ -54,7 +52,7 @@ export const membersData: MemberData[] = [
     email: "",
     phone: "",
     bio: "",
-    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=3",
+
     courses: [
       {
         id: "1",
@@ -84,7 +82,7 @@ export const membersData: MemberData[] = [
     email: "",
     phone: "",
     bio: "",
-    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=4",
+    image: "/images/profile/jessica.jpeg",
   },
   {
     id: 5,
@@ -94,7 +92,7 @@ export const membersData: MemberData[] = [
     email: "",
     phone: "",
     bio: "",
-    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=5",
+    image: "/images/profile/wonda.jpeg",
   },
   {
     id: 6,
@@ -104,7 +102,7 @@ export const membersData: MemberData[] = [
     email: "",
     phone: "",
     bio: "",
-    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=6",
+    image: "/images/profile/molta.jpeg",
   },
   {
     id: 7,
@@ -114,6 +112,6 @@ export const membersData: MemberData[] = [
     email: "",
     phone: "",
     bio: "",
-    image: "https://img.heroui.chat/image/avatar?w=200&h=200&u=7",
+    image: "/images/profile/samantha.jpeg",
   },
 ];
