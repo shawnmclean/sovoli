@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Image } from "@sovoli/ui/components/image";
 
 import { programsData } from "../programsData";
 
@@ -22,10 +22,11 @@ export function ProgramsSection() {
             <Card key={index} className="border-none" shadow="sm">
               <CardBody className="p-0">
                 <Image
-                  removeWrapper
                   alt={program.name}
-                  className="h-48 w-full object-cover"
                   src={program.image}
+                  width={800}
+                  height={400}
+                  className="h-48 w-full object-cover"
                 />
                 <div className="p-6">
                   <h3 className="mb-2 text-xl font-semibold">{program.name}</h3>

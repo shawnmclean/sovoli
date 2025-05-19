@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Image } from "@sovoli/ui/components/image";
 
 import { programsData } from "../../../programsData";
 import { displayAgeRange } from "../utils";

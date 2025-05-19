@@ -29,7 +29,7 @@ export const programsData: ProgramData[] = [
     name: "Pre-Nursery (Play School)",
     slug: "pre-nursery",
     description: "Strong foundational learning in a nurturing environment",
-    image: "https://img.heroui.chat/image/places?w=600&h=400&u=1",
+    image: "/images/primary.png",
     requirements: [
       {
         type: "age",
@@ -48,7 +48,7 @@ export const programsData: ProgramData[] = [
     slug: "nursery",
     description:
       "Engaging curriculum fostering critical thinking and creativity",
-    image: "https://img.heroui.chat/image/places?w=600&h=400&u=2",
+    image: "/images/primary.png",
     requirements: [
       {
         type: "age",
@@ -66,7 +66,7 @@ export const programsData: ProgramData[] = [
     name: "Primary",
     slug: "primary",
     description: "Strong foundational learning in a nurturing environment",
-    image: "https://img.heroui.chat/image/places?w=600&h=400&u=3",
+    image: "/images/primary.png",
     requirements: [
       {
         type: "age",
@@ -91,7 +91,7 @@ export const programsData: ProgramData[] = [
     slug: "secondary",
     description:
       "Engaging curriculum fostering critical thinking and creativity",
-    image: "https://img.heroui.chat/image/places?w=600&h=400&u=4",
+    image: "/images/primary.png",
     requirements: [
       {
         type: "age",

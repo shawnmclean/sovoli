@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
-import { Image } from "@sovoli/ui/components/image";
 
 import { programsData } from "../../programsData";
 import { displayAgeRange } from "./utils";
@@ -30,10 +30,11 @@ export default function ProgramsPage() {
               className="overflow-hidden shadow-md transition hover:shadow-lg"
             >
               <Image
-                removeWrapper
-                alt={program.name}
-                className="h-48 w-full object-cover"
                 src={program.image}
+                alt={program.name}
+                width={800}
+                height={400}
+                className="rounded-lg object-cover"
               />
               <CardBody className="flex flex-col">
                 <h3 className="text-2xl font-semibold text-primary-800">
