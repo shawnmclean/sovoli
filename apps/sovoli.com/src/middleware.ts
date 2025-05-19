@@ -6,6 +6,17 @@ import { config as webConfig } from "~/utils/config";
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const url = request.url;
+
+  // Skip rewriting for static assets (images, styles, js, etc.)
+  if (
+    pathname.startsWith("/_next/") ||
+    pathname.startsWith("/images/") || // Adjust this to your static asset paths
+    pathname.startsWith("/api/") ||
+    /\.(png|jpg|jpeg|svg|gif|ico|webp|avif|js|css|map|json)$/i.test(pathname)
+  ) {
+    return NextResponse.next();
+  }
+
   let subdomain: string | null | undefined = null;
 
   if (url.includes("localhost") || url.includes("127.0.0.1")) {
