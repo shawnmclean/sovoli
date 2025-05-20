@@ -42,7 +42,6 @@ const navItems = [
     label: "Admissions",
     dropdown: [
       { label: "Requirements", href: "/admissions/requirements" },
-      { label: "Fees", href: "/admissions/fees" },
       { label: "Apply", href: "/admissions/apply" },
     ],
   },
