@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import React from "react";
 import { Card } from "@sovoli/ui/components/card";
 import { Image } from "@sovoli/ui/components/image";
@@ -13,6 +12,10 @@ import {
 } from "lucide-react";
 
 import { Timeline } from "./components/Timeline";
+
+export const metadata: Metadata = {
+  title: "About Us",
+};
 
 export default function AboutPage() {
   return (
