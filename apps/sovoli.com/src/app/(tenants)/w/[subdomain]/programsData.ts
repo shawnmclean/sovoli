@@ -29,7 +29,7 @@ export const programsData: ProgramData[] = [
     name: "Pre-Nursery (Play School)",
     slug: "pre-nursery",
     description: "Strong foundational learning in a nurturing environment",
-    image: "/images/primary.png",
+    image: "/images/programs/pre-nursery.jpg",
     requirements: [
       {
         type: "age",
@@ -48,7 +48,7 @@ export const programsData: ProgramData[] = [
     slug: "nursery",
     description:
       "Engaging curriculum fostering critical thinking and creativity",
-    image: "/images/primary.png",
+    image: "/images/programs/nursery.jpg",
     requirements: [
       {
         type: "age",
@@ -66,7 +66,7 @@ export const programsData: ProgramData[] = [
     name: "Primary",
     slug: "primary",
     description: "Strong foundational learning in a nurturing environment",
-    image: "/images/primary.png",
+    image: "/images/programs/primary.png",
     requirements: [
       {
         type: "age",
@@ -91,7 +91,7 @@ export const programsData: ProgramData[] = [
     slug: "secondary",
     description:
       "Engaging curriculum fostering critical thinking and creativity",
-    image: "/images/primary.png",
+    image: "/images/programs/secondary.jpg",
     requirements: [
       {
         type: "age",

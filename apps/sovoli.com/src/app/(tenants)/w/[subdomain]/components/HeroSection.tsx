@@ -9,7 +9,7 @@ export function HeroSection() {
         removeWrapper
         alt="Modern Academy Campus"
         className="h-full w-full object-cover brightness-50"
-        src="https://img.heroui.chat/image/places?w=1920&h=600&u=1"
+        src="/images/hero.jpg"
       />
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 text-white">
         <h1 className="mb-4 max-w-4xl text-center text-4xl font-bold md:text-5xl">

@@ -34,7 +34,7 @@ export default function ProgramsPage() {
                 alt={program.name}
                 width={800}
                 height={400}
-                className="rounded-lg object-cover"
+                className="h-48 w-full object-cover"
               />
               <CardBody className="flex flex-col">
                 <h3 className="text-2xl font-semibold text-primary-800">
