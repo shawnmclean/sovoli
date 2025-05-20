@@ -12,25 +12,11 @@ export function NewsSection() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[
             {
-              date: "May 12, 2025",
-              title: "New Semester Begins",
+              date: "May 20, 2025",
+              title: "Our New Web Platform Launches!",
               image: "https://img.heroui.chat/image/places?w=600&h=400&u=5",
               description:
-                "Join us for an exciting new academic year starting soon.",
-            },
-            {
-              date: "June 5, 2025",
-              title: "Annual Science Fair",
-              image: "https://img.heroui.chat/image/places?w=600&h=400&u=6",
-              description:
-                "Explore creativity and innovation at our upcoming Science Fair.",
-            },
-            {
-              date: "July 20, 2025",
-              title: "Parent-Teacher Conference",
-              image: "https://img.heroui.chat/image/places?w=600&h=400&u=7",
-              description:
-                "Discuss your child's progress with our dedicated teachers.",
+                "Updates, Students and Parent Portals, and more to come!",
             },
           ].map((news, index) => (
             <Card key={index} className="border-none" shadow="sm">

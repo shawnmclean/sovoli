@@ -3,13 +3,12 @@ import { Link } from "@sovoli/ui/components/link";
 import {
   BookIcon,
   FacebookIcon,
-  InstagramIcon,
-  LinkedinIcon,
   MailIcon,
   MapPinIcon,
   PhoneIcon,
-  TwitterIcon,
 } from "lucide-react";
+
+import { programsData } from "../programsData";
 
 export const Footer = () => {
   return (
@@ -26,17 +25,11 @@ export const Footer = () => {
               innovative education.
             </p>
             <div className="flex gap-4">
-              <Link href="#" aria-label="Facebook">
+              <Link
+                href="https://www.facebook.com/profile.php?id=100063128446623"
+                aria-label="Facebook"
+              >
                 <FacebookIcon className="text-foreground-500 hover:text-primary" />
-              </Link>
-              <Link href="#" aria-label="Twitter">
-                <TwitterIcon className="text-foreground-500 hover:text-primary" />
-              </Link>
-              <Link href="#" aria-label="Instagram">
-                <InstagramIcon className="text-foreground-500 hover:text-primary" />
-              </Link>
-              <Link href="#" aria-label="LinkedIn">
-                <LinkedinIcon className="text-foreground-500 hover:text-primary" />
               </Link>
             </div>
           </div>
@@ -44,36 +37,22 @@ export const Footer = () => {
           <div>
             <h3 className="mb-4 font-semibold">Programs</h3>
             <ul className="space-y-2">
+              {programsData.slice(0, 5).map((program) => (
+                <li key={program.id}>
+                  <Link
+                    className="text-sm text-foreground-500 hover:text-primary"
+                    href={`/academics/programs/${program.slug}`}
+                  >
+                    {program.name}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <Link
                   className="text-sm text-foreground-500 hover:text-primary"
-                  href="#"
+                  href="/academics/programs"
                 >
-                  Elementary School
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-sm text-foreground-500 hover:text-primary"
-                  href="#"
-                >
-                  Middle School
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-sm text-foreground-500 hover:text-primary"
-                  href="#"
-                >
-                  High School
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-sm text-foreground-500 hover:text-primary"
-                  href="#"
-                >
-                  Summer Programs
+                  More...
                 </Link>
               </li>
             </ul>
