@@ -2,7 +2,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Input, Textarea } from "@sovoli/ui/components/input";
 
-export default function ApplyPage() {
+export default function ProgramsApplyPage() {
   return (
     <section className="px-4 py-10">
       <div className="mx-auto max-w-3xl">
