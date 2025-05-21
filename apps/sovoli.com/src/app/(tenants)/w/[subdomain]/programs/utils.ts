@@ -1,4 +1,4 @@
-import type { AgeRange } from "../../programsData";
+import type { AgeRange } from "../programsData";
 
 export function displayAgeRange(ageRange?: AgeRange): string {
   if (!ageRange) return "";

@@ -104,7 +104,7 @@ export function TeamSection() {
             variant="bordered"
             radius="sm"
             as={Link}
-            href="/academics/team"
+            href="/team"
           >
             View All Team Members
           </Button>

@@ -7,8 +7,8 @@ import { Divider } from "@sovoli/ui/components/divider";
 import { Input } from "@sovoli/ui/components/input";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 
-import type { MemberData } from "../../membersData";
-import { membersData } from "../../membersData";
+import type { MemberData } from "../membersData";
+import { membersData } from "../membersData";
 
 const uniqueRoles = [
   ...new Set(membersData.flatMap((faculty) => faculty.roles)),

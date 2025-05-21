@@ -48,8 +48,8 @@ const navItems = [
   {
     label: "Academics",
     dropdown: [
-      { label: "Programs", href: "/academics/programs" },
-      { label: "Team", href: "/academics/team" },
+      { label: "Programs", href: "/programs" },
+      { label: "Team", href: "/team" },
     ],
   },
   { label: "Contact", href: "/contact" },

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 
-import { programsData } from "../../programsData";
+import { programsData } from "../programsData";
 import { displayAgeRange } from "./utils";
 
 export default function ProgramsPage() {
@@ -74,7 +74,7 @@ export default function ProgramsPage() {
                   radius="sm"
                   className="mt-4 self-start"
                   as={Link}
-                  href={`/academics/programs/${program.slug}`}
+                  href={`/programs/${program.slug}`}
                 >
                   Learn More
                 </Button>
