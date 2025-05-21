@@ -107,9 +107,9 @@ function renderRequirement(req: Requirement, index: number) {
   let label = "";
   if (req.type === "document") {
     label = req.name ?? "Required Document";
-  } else if (req.type === "age") {
+  } else if (req.ageRange) {
     const { minAgeYears, minAgeMonths, maxAgeYears, maxAgeMonths } =
-      req.ageRange && {};
+      req.ageRange;
     const ageRange =
       [
         minAgeYears !== undefined ? `${minAgeYears}y` : "",
