@@ -26,13 +26,13 @@ export function HeroSection() {
             radius="sm"
             className="font-semibold"
             as={Link}
-            href="/admissions/apply"
+            href="/programs/apply"
           >
             Apply Now
           </Button>
           <Button
             as={Link}
-            href="/admissions/apply"
+            href="/programs/apply"
             size="lg"
             radius="sm"
             className="bg-foreground text-background"

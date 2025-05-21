@@ -23,6 +23,8 @@ import {
 import { AppleIcon, ChevronDownIcon, UserIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
+import { programsData } from "../../programsData";
+
 const navbarBaseStyles = tv({
   base: "border-default-100 bg-transparent",
   variants: {
@@ -39,17 +41,21 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   {
-    label: "Admissions",
+    label: "Programs",
+
     dropdown: [
-      { label: "Requirements", href: "/admissions/requirements" },
-      { label: "Apply", href: "/admissions/apply" },
+      ...programsData.slice(0, 5).map((program) => ({
+        label: program.name,
+        href: `/programs/${program.slug}`,
+      })),
+      { label: "All Programs...", href: "/programs" },
     ],
   },
   {
-    label: "Academics",
+    label: "Team",
     dropdown: [
-      { label: "Programs", href: "/programs" },
-      { label: "Team", href: "/team" },
+      { label: "Our Team", href: "/team" },
+      { label: "Open Positions", href: "/team/positions" },
     ],
   },
   { label: "Contact", href: "/contact" },
@@ -121,7 +127,8 @@ export function TenantNavbar() {
             className="bg-default-foreground font-medium text-background"
             color="secondary"
             variant="flat"
-            href="admissions/apply"
+            as={Link}
+            href="programs/apply"
           >
             Apply Now
           </Button>
@@ -182,7 +189,7 @@ export function TenantNavbar() {
             fullWidth
             as={Link}
             className="bg-foreground text-background"
-            href="admissions/apply"
+            href="programs/apply"
           >
             Apply Now
           </Button>
