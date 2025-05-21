@@ -58,6 +58,10 @@ const navItems = [
       { label: "Open Positions", href: "/team/positions" },
     ],
   },
+  {
+    label: "Gallery",
+    href: "/gallery",
+  },
   { label: "Contact", href: "/contact" },
 ];
 

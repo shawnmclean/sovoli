@@ -32,7 +32,7 @@ export function HeroSection() {
           </Button>
           <Button
             as={Link}
-            href="/programs/apply"
+            href="/schedule"
             size="lg"
             radius="sm"
             className="bg-foreground text-background"
