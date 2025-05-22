@@ -68,7 +68,8 @@ export const orgWebConfig: OrgWebConfig = {
     sections: [
       {
         type: "hero",
-        layout: "image",
+        layout: "default",
+        variant: "image",
         title: "Empowering Minds, Shaping Futures",
         subtitle:
           "Join a community dedicated to academic excellence and personal growth",
@@ -77,6 +78,24 @@ export const orgWebConfig: OrgWebConfig = {
           { label: "Apply Now", href: "/programs/apply" },
           { label: "Schedule a Visit", href: "/schedule" },
         ],
+      },
+    ],
+  },
+  about: {
+    title: "About Us",
+    subtitle:
+      "Learn more about our vision, mission, and the values that guide us",
+
+    sections: [
+      {
+        type: "hero",
+        layout: "condensed",
+        variant: "image",
+        title: "About Us",
+        subtitle:
+          "Join a community dedicated to academic excellence and personal growth",
+        backgroundImage:
+          "https://img.heroui.chat/image/places?w=1920&h=600&u=2",
       },
     ],
   },

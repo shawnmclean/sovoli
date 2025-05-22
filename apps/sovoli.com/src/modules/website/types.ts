@@ -25,7 +25,8 @@ export interface OrgMeta {
 // Section-level configuration for a rendered page
 export interface PageSection {
   type: "hero" | "metrics" | "cards" | "list" | "collection"; // content presentation type
-  layout?: string; // optional variant name, like "image", "minimal", "grid"
+  layout?: string; // "condensed", "default"
+  variant?: string; // "image"
   title?: string;
   subtitle?: string;
   backgroundImage?: string;
@@ -50,6 +51,7 @@ export interface PageConfig {
 // Org-specific web configuration
 export interface OrgWebConfig {
   home: PageConfig;
+  about: PageConfig;
 
   [key: string]: PageConfig | undefined;
 }

@@ -9,19 +9,17 @@ export interface HeroProps {
 }
 
 export function Hero({ section }: HeroProps) {
-  const variant = section.layout ?? "image";
+  const { variant = "image", layout } = section;
 
   switch (variant) {
-    case "image":
-      return <ImageHero section={section} />;
+    case "default":
+    default:
+      return <ImageHero section={section} layout={layout} />;
 
     // case "minimal":
     //   return <MinimalHero section={section} />;
 
     // case "split":
     //   return <SplitHero section={section} />;
-
-    default:
-      return <ImageHero section={section} />;
   }
 }

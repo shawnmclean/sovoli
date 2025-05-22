@@ -6,12 +6,14 @@ import type { PageSection } from "~/modules/website/types";
 
 export interface ImageHeroProps {
   section: PageSection;
+  layout: string | undefined;
 }
 
-export function ImageHero({ section }: ImageHeroProps) {
+export function ImageHero({ section, layout = "full" }: ImageHeroProps) {
   const { title, subtitle, backgroundImage, actions } = section;
+  const heightClass = layout === "condensed" ? "h-[300px]" : "h-[600px]";
   return (
-    <section className="relative z-0 h-[600px] w-full">
+    <section className={`relative z-0 w-full ${heightClass}`}>
       <Image
         removeWrapper
         alt="Modern Academy Campus"

@@ -11,6 +11,8 @@ import {
   UsersIcon,
 } from "lucide-react";
 
+import { PageAssembler } from "~/modules/website/components/PageAssembler";
+import { orgWebConfig } from "../data";
 import { Timeline } from "./components/Timeline";
 
 export const metadata: Metadata = {
@@ -20,23 +22,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div>
-      <section className="relative z-0 h-[300px] w-full">
-        <Image
-          removeWrapper
-          alt="Modern Academy Campus"
-          className="h-full w-full object-cover brightness-50"
-          src="https://img.heroui.chat/image/places?w=1920&h=600&u=2"
-        />
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 text-white">
-          <h1 className="mb-4 max-w-4xl text-center text-4xl font-bold md:text-5xl">
-            About Us
-          </h1>
-          <p className="mb-8 max-w-2xl text-center text-lg md:text-xl">
-            Join a community dedicated to academic excellence and personal
-            growth
-          </p>
-        </div>
-      </section>
+      <PageAssembler page={orgWebConfig.about} editable={false} />
 
       {/* Main Content Section - Centered and Narrowed */}
 
