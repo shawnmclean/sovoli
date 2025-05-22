@@ -33,9 +33,9 @@ export function ImageHero({ section }: ImageHeroProps) {
               <Button
                 key={i}
                 size="lg"
+                radius="sm"
                 as={Link}
                 href={action.href}
-                variant={i === 0 ? "solid" : "bordered"}
                 color={i === 0 ? "primary" : "default"}
                 className={i !== 0 ? "bg-foreground text-background" : ""}
               >

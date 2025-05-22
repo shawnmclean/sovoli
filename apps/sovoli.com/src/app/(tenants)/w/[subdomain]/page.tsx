@@ -1,5 +1,4 @@
 import { PageAssembler } from "~/modules/website/components/PageAssembler";
-import { HeroSection } from "./components/HeroSection";
 import { MetricsSection } from "./components/MetricsSection";
 import { MissionVisionSection } from "./components/MissionVisionSection";
 import { NewsSection } from "./components/NewsSection";
@@ -16,7 +15,7 @@ export default async function SubdomainPage({
   return (
     <div>
       <PageAssembler page={orgWebConfig.home} editable={false} />
-      <HeroSection />
+
       <MetricsSection />
       <MissionVisionSection />
       <ProgramsSection />
