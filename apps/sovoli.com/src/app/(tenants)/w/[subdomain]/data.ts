@@ -1,14 +1,22 @@
-export interface ContentValue {
-  name: string;
-  icon?: string;
-  body?: string;
-}
+import type {
+  OrgContent,
+  OrgMeta,
+  OrgWebConfig,
+} from "~/modules/website/types";
 
-export interface OrgContent {
-  mission: ContentValue;
-  vision: ContentValue;
-  values: ContentValue[];
-}
+export const orgMeta: OrgMeta = {
+  name: "Modern Academy",
+  slug: "magy",
+  country: "Guyana",
+  city: "Georgetown",
+  address: "123 Main Street",
+  contacts: [
+    {
+      email: "info@magy.academy",
+      phone: "1234567890",
+    },
+  ],
+};
 
 export const orgContent: OrgContent = {
   mission: {
@@ -50,4 +58,26 @@ export const orgContent: OrgContent = {
       body: "We nurture a mindset of growth and continuous curiosity.",
     },
   ],
+};
+
+export const orgWebConfig: OrgWebConfig = {
+  home: {
+    title: "Welcome to Modern Academy",
+    subtitle: "Empowering Minds, Shaping Futures",
+
+    sections: [
+      {
+        type: "hero",
+        layout: "image",
+        title: "Empowering Minds, Shaping Futures",
+        subtitle:
+          "Join a community dedicated to academic excellence and personal growth",
+        backgroundImage: "/images/hero.jpg",
+        actions: [
+          { label: "Apply Now", href: "/programs/apply" },
+          { label: "Schedule a Visit", href: "/schedule" },
+        ],
+      },
+    ],
+  },
 };

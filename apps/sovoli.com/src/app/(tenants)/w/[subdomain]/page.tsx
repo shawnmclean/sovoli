@@ -1,9 +1,11 @@
+import { PageAssembler } from "~/modules/website/components/PageAssembler";
 import { HeroSection } from "./components/HeroSection";
 import { MetricsSection } from "./components/MetricsSection";
 import { MissionVisionSection } from "./components/MissionVisionSection";
 import { NewsSection } from "./components/NewsSection";
 import { ProgramsSection } from "./components/ProgramsSection";
 import { TeamSection } from "./components/TeamSection";
+import { orgWebConfig } from "./data";
 
 export default async function SubdomainPage({
   params,
@@ -13,6 +15,7 @@ export default async function SubdomainPage({
   const { subdomain } = await params;
   return (
     <div>
+      <PageAssembler page={orgWebConfig.home} editable={false} />
       <HeroSection />
       <MetricsSection />
       <MissionVisionSection />
