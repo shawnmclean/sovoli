@@ -8,10 +8,10 @@ interface PageAssemblerProps {
 
 export function PageAssembler({ page, editable = false }: PageAssemblerProps) {
   return (
-    <div>
+    <>
       {page.sections.map((section: PageSection, idx: number) => (
         <SectionRenderer key={idx} section={section} editable={editable} />
       ))}
-    </div>
+    </>
   );
 }

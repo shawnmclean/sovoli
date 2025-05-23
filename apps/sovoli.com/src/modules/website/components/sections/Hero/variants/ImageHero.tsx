@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Image } from "@sovoli/ui/components/image";
+import { tv } from "tailwind-variants";
 
 import type { PageSection } from "~/modules/website/types";
 
@@ -9,11 +10,32 @@ export interface ImageHeroProps {
   layout: string | undefined;
 }
 
-export function ImageHero({ section, layout = "full" }: ImageHeroProps) {
+const hero = tv({
+  slots: {
+    base: "relative z-0 w-full",
+  },
+  variants: {
+    layout: {
+      default: {
+        base: "h-[600px]",
+      },
+      condensed: {
+        base: "h-[300px]",
+      },
+    },
+  },
+  defaultVariants: {
+    layout: "default",
+  },
+});
+
+export function ImageHero({ section, layout = "default" }: ImageHeroProps) {
   const { title, subtitle, backgroundImage, actions } = section;
-  const heightClass = layout === "condensed" ? "h-[300px]" : "h-[600px]";
+
+  const { base } = hero({ layout: layout as "default" | "condensed" });
+
   return (
-    <section className={`relative z-0 w-full ${heightClass}`}>
+    <section className={base()}>
       <Image
         removeWrapper
         alt="Modern Academy Campus"

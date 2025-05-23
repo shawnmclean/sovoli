@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
 import { Card } from "@sovoli/ui/components/card";
-import { Image } from "@sovoli/ui/components/image";
 import {
   AwardIcon,
   EyeIcon,
