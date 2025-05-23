@@ -29,7 +29,7 @@ export function KnowledgeCard({ knowledge }: { knowledge: Knowledge }) {
 
       <CardFooter className="absolute bottom-0 z-10 border-t-1 border-default-600 bg-black/60 backdrop-blur-md dark:border-default-100">
         <div className="flex flex-col">
-          <h4 className="line-clamp-1 text-xl font-medium text-white/90">
+          <h4 className="text-xl font-medium text-white/90">
             {knowledge.title}
           </h4>
           <p className="line-clamp-2 text-tiny text-white/70">
