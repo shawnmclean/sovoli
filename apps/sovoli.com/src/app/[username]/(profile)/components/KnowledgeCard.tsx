@@ -1,10 +1,5 @@
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-} from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
+import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
+import { TimeAgo } from "@sovoli/ui/components/time-ago";
 import { LibraryBigIcon } from "lucide-react";
 
 import type { Knowledge } from "~/services/knowledge/getKnowledges";
@@ -19,12 +14,6 @@ export function KnowledgeCard({ knowledge }: { knowledge: Knowledge }) {
       as="a"
       href={knowledge.url}
     >
-      <CardHeader className="absolute top-1 z-10 flex-col items-start">
-        <Chip className="text-tiny font-bold uppercase text-white/60" size="sm">
-          {knowledge.type}
-        </Chip>
-      </CardHeader>
-
       <CardBody className="overflow-hidden p-0">
         {knowledge.MediaAssets[0] ? (
           <MediaAssetViewer
@@ -45,6 +34,9 @@ export function KnowledgeCard({ knowledge }: { knowledge: Knowledge }) {
           </h4>
           <p className="line-clamp-2 text-tiny text-white/70">
             {knowledge.description}
+          </p>
+          <p className="mt-2 text-tiny text-white/70">
+            <TimeAgo datetime={knowledge.createdAt} />
           </p>
         </div>
       </CardFooter>

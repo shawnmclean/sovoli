@@ -1,5 +1,6 @@
 import { cache } from "react";
 import Link from "next/link";
+import { KnowledgeType } from "@sovoli/db/schema";
 import { Button } from "@sovoli/ui/components/button";
 
 import { auth } from "~/core/auth";
@@ -22,6 +23,7 @@ const retrieveKnowledges = cache(
       username: username,
       page: page,
       pageSize: pageSize,
+      type: KnowledgeType.note,
     });
   },
 );
