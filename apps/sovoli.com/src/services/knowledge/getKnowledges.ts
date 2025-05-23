@@ -1,5 +1,5 @@
 import type { SelectMediaAssetSchema } from "@sovoli/db/schema";
-import { and, count, db, eq, inArray, or, schema, sql } from "@sovoli/db";
+import { and, count, db, desc, eq, inArray, or, schema, sql } from "@sovoli/db";
 import { KnowledgeType } from "@sovoli/db/schema";
 
 import { BaseService } from "../baseService";
@@ -59,12 +59,6 @@ export class GetKnowledges extends BaseService<
     const privacyFilter = getPrivacyFilter(authUserId);
     const feedFilter = getFeedFilter();
     const typeFilter = getByTypeFilter(type);
-
-    console.log("page", page);
-    // print type of page
-    console.log("type of page", typeof page);
-    console.log("pageSize", pageSize);
-    console.log("type of pageSize", typeof pageSize);
 
     const mediaAssetsSubquery = db.$with("media_assets_subquery").as(
       db
@@ -147,6 +141,7 @@ export class GetKnowledges extends BaseService<
         mediaAssetsSubquery,
         eq(mediaAssetsSubquery.knowledgeId, schema.Knowledge.id),
       )
+      .orderBy(desc(schema.Knowledge.createdAt))
       .limit(pageSize)
       .offset((page - 1) * pageSize);
 
