@@ -1,8 +1,8 @@
 import { PageAssembler } from "~/modules/website/components/PageAssembler";
+import { orgWebConfig } from "../data";
 import { NewsSection } from "./components/NewsSection";
 import { ProgramsSection } from "./components/ProgramsSection";
 import { TeamSection } from "./components/TeamSection";
-import { orgWebConfig } from "./data";
 
 export default async function SubdomainPage({
   params,

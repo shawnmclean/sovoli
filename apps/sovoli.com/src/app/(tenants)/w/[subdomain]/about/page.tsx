@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 import { PageAssembler } from "~/modules/website/components/PageAssembler";
-import { orgWebConfig } from "../data";
+import { orgWebConfig } from "../../data";
 import { Timeline } from "./components/Timeline";
 
 export const metadata: Metadata = {
