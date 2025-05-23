@@ -1,6 +1,7 @@
 import type { PageSection } from "~/modules/website/types";
 // import { Cards } from "./sections/Cards/Cards";
 import { Hero } from "./sections/Hero/Hero";
+import { Metrics } from "./sections/Metrics/Metrics";
 
 // import { Metrics } from "./sections/Metrics/Metrics";
 
@@ -14,7 +15,7 @@ type SectionComponent = React.ComponentType<{
 
 export const sectionRegistry: Record<string, SectionComponent> = {
   hero: Hero,
-  //   metrics: Metrics,
+  metrics: Metrics,
   //   cards: Cards,
   // future: team, gallery, news, etc.
 };

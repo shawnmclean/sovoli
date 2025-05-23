@@ -79,6 +79,9 @@ export const orgWebConfig: OrgWebConfig = {
           { label: "Schedule a Visit", href: "/schedule" },
         ],
       },
+      {
+        type: "metrics",
+      },
     ],
   },
   about: {

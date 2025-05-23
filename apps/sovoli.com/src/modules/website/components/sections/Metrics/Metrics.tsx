@@ -10,6 +10,11 @@ import {
   UsersIcon,
 } from "lucide-react";
 
+import type { PageSection } from "~/modules/website/types";
+
+export interface MetricsProps {
+  section: PageSection;
+}
 const metricsData = [
   {
     icon: <CheckCircleIcon className="h-6 w-6 text-primary" />,
@@ -49,7 +54,7 @@ const metricsData = [
   },
 ];
 
-export function MetricsSection() {
+export function Metrics({ section }: MetricsProps) {
   return (
     <section className="px-4 pt-12">
       <div className="mx-auto max-w-7xl">
