@@ -77,7 +77,9 @@ export function KnowledgeDetails() {
                     </div>
                   </div>
                 </div>
-                <span className="text-sm">Researching: Belief Systems</span>
+                <span className="text-sm">
+                  Researching: Ego, Belief Systems
+                </span>
               </div>
             </section>
 
