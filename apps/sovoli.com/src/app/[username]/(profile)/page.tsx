@@ -48,6 +48,13 @@ export default async function KnowledgesPage(props: Props) {
   return (
     <div className="min-h-screen dark:bg-black">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {knowledges.data.length === 0 && (
+          <div className="flex h-full w-full items-center justify-center">
+            <p className="text-center text-2xl font-medium text-white/90">
+              No knowledges found
+            </p>
+          </div>
+        )}
         {knowledges.data.map((knowledge) => (
           <KnowledgeCard key={knowledge.id} knowledge={knowledge} />
         ))}
