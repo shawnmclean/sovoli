@@ -82,6 +82,12 @@ export const orgWebConfig: OrgWebConfig = {
       {
         type: "metrics",
       },
+      {
+        type: "cards",
+        title: "The First Principles",
+        subtitle:
+          "Guiding principles that shape our approach to education and community building",
+      },
     ],
   },
   about: {

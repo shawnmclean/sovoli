@@ -10,18 +10,19 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-export function MissionVisionSection() {
+import type { PageSection } from "~/modules/website/types";
+
+export interface CardsProps {
+  section: PageSection;
+}
+export function Cards({ section }: CardsProps) {
+  const { title, subtitle } = section;
   return (
     <section className="px-4 py-10">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
-          <h2 className="mb-6 text-center text-3xl font-bold">
-            The First Principles
-          </h2>
-          <p className="mx-auto max-w-2xl text-foreground-500">
-            Guiding principles that shape our approach to education and
-            community building
-          </p>
+          <h2 className="mb-6 text-center text-3xl font-bold">{title}</h2>
+          <p className="mx-auto max-w-2xl text-foreground-500">{subtitle}</p>
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <Card
