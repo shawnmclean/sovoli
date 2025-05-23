@@ -4,19 +4,36 @@ import type {
   OrgWebConfig,
 } from "~/modules/website/types";
 
-export const orgMeta: OrgMeta = {
-  name: "Modern Academy",
-  slug: "magy",
-  country: "Guyana",
-  city: "Georgetown",
-  address: "123 Main Street",
-  contacts: [
-    {
-      email: "info@magy.academy",
-      phone: "1234567890",
-    },
-  ],
-};
+export const orgs: OrgMeta[] = [
+  {
+    name: "Modern Academy",
+    description: "The Modern Academy private school",
+    slug: "magy",
+    country: "Guyana",
+    city: "Georgetown",
+    address: "123 Main Street",
+    contacts: [
+      {
+        email: "info@magy.academy",
+        phone: "1234567890",
+      },
+    ],
+  },
+  {
+    name: "Xav Dress",
+    description: "Xav Dress",
+    slug: "xav",
+    country: "Guyana",
+    city: "Georgetown",
+    address: "123 Main Street",
+    contacts: [
+      {
+        email: "info@magy.academy",
+        phone: "1234567890",
+      },
+    ],
+  },
+];
 
 export const orgContent: OrgContent = {
   mission: {

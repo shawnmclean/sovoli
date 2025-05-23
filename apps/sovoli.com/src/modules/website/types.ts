@@ -15,6 +15,7 @@ export interface OrgContent {
 // Structural metadata for an org
 export interface OrgMeta {
   name: string;
+  description: string;
   slug: string;
   country: string;
   city: string;
