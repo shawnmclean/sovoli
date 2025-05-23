@@ -35,13 +35,13 @@ export function UserProfileSidebar() {
           <h1 className="text-2xl font-bold leading-none">{user.name}</h1>
           <div className="flex items-center gap-1">
             <Chip size="sm" variant="dot" title="2 biology, 8 psychology">
-              Mindweaver
+              Engineer
             </Chip>
           </div>
           <span className="text-sm">Researching: Ego, Belief Systems</span>
         </div>
       </div>
-      <div className="flex w-full justify-between gap-2">
+      {/* <div className="flex w-full justify-between gap-2">
         <Button color="primary" className="flex-grow">
           Observe
         </Button>
@@ -61,7 +61,7 @@ export function UserProfileSidebar() {
           <span className="font-bold">0</span>
           <span className="text-gray-500">observing</span>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

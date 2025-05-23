@@ -60,6 +60,12 @@ export class GetKnowledges extends BaseService<
     const feedFilter = getFeedFilter();
     const typeFilter = getByTypeFilter(type);
 
+    console.log("page", page);
+    // print type of page
+    console.log("type of page", typeof page);
+    console.log("pageSize", pageSize);
+    console.log("type of pageSize", typeof pageSize);
+
     const mediaAssetsSubquery = db.$with("media_assets_subquery").as(
       db
         .select({
