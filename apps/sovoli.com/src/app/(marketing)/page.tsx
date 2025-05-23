@@ -20,9 +20,8 @@ export default function LandingPage() {
       <GallerySection />
       <div className="mx-auto mt-12 max-w-xl text-center text-sm text-default-500">
         Built by engineers with global experience in Education, Cybersecurity,
-        and Artificial Intelligence —
-        <br />
-        guided by over 40 years of leadership in schools and teaching.
+        and Artificial Intelligence — guided by over 40 years of leadership in
+        schools and teaching.
       </div>
     </main>
   );
