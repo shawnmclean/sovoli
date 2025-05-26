@@ -40,6 +40,7 @@ export default async function Layout({ children, params }: Props) {
       <TenantNavbar />
 
       {children}
+      {subdomain}
       <Footer />
     </div>
   );

@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import { Badge } from "@sovoli/ui/components/badge";
-import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
 
 import { MediaAssetAvatar } from "~/modules/mediaAssets/components/MediaAssetAvatar";

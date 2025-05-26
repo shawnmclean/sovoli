@@ -10,7 +10,7 @@ import { Metrics } from "./sections/Metrics/Metrics";
 
 type SectionComponent = React.ComponentType<{
   section: PageSection;
-  content?: any[];
+  content?: unknown[];
   editable?: boolean;
 }>;
 

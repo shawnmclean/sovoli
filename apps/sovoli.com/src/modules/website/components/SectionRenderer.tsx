@@ -4,7 +4,7 @@ import { sectionRegistry } from "./SectionRegistry";
 interface SectionRendererProps {
   section: PageSection;
   editable?: boolean;
-  content?: any[];
+  content?: unknown[];
 }
 
 export function SectionRenderer({
