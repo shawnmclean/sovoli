@@ -10,7 +10,7 @@ export function ProgramsSection() {
     <section className="px-4 py-10">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
-          <h2 className="mb-6 text-center text-3xl font-bold">Our Programs</h2>
+          <h2 className="mb-6 text-3xl font-bold">Our Programs</h2>
           <p className="mx-auto max-w-2xl text-foreground-500">
             Our programs are designed to provide a nurturing environment that
             fosters academic excellence, character development, and lifelong

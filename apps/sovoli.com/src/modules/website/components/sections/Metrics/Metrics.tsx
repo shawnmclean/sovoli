@@ -58,6 +58,14 @@ export function Metrics({ section }: MetricsProps) {
   return (
     <section className="px-4 pt-12">
       <div className="mx-auto max-w-7xl">
+        {(section.title ?? section.subtitle) && (
+          <div className="mb-12 text-center">
+            <h2 className="mb-6 text-3xl font-bold">{section.title}</h2>
+            <p className="mx-auto max-w-2xl text-foreground-500">
+              {section.subtitle}
+            </p>
+          </div>
+        )}
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {metricsData.map((metric, index) => (
             <Card
