@@ -21,7 +21,7 @@ export const orgs: OrgMeta[] = [
         url: "/images/og-image.webp",
         width: 1200,
         height: 630,
-        alt: "Sovoli: A Lifelong Knowledge System",
+        alt: "Modern Academy: Best Private School in Guyana",
       },
     ],
     customDomains: ["ma.edu.gy", "www.ma.edu.gy"],
