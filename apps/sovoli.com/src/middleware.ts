@@ -53,7 +53,13 @@ export async function middleware(request: NextRequest) {
         subdomain = parts[0];
       }
     } else if (hostname && rootDomainFormatted) {
-      subdomain = await resolveTenantFromHost(hostname, rootDomainFormatted);
+      const isRootDomain =
+        hostname === rootDomainFormatted ||
+        hostname === `www.${rootDomainFormatted}`;
+
+      if (!isRootDomain) {
+        subdomain = await resolveTenantFromHost(hostname, rootDomainFormatted);
+      }
     }
   }
 
@@ -72,25 +78,17 @@ export async function resolveTenantFromHost(
   hostname: string,
   rootDomain: string,
 ): Promise<string | null> {
-  const rootDomainNormalized = rootDomain.toLowerCase();
-  const hostnameNormalized = hostname.toLowerCase();
+  const isSubdomain =
+    hostname.endsWith(`.${rootDomain}`) &&
+    hostname !== rootDomain &&
+    hostname !== `www.${rootDomain}`;
 
-  const isRootOrSubdomain =
-    hostnameNormalized === rootDomainNormalized ||
-    hostnameNormalized === `www.${rootDomainNormalized}` ||
-    hostnameNormalized.endsWith(`.${rootDomainNormalized}`);
-
-  if (isRootOrSubdomain) {
-    // Root domain or subdomain: extract slug or return null
-    if (hostnameNormalized.endsWith(`.${rootDomainNormalized}`)) {
-      return hostnameNormalized.replace(`.${rootDomainNormalized}`, "");
-    }
-    return null; // Root domain (sovoli.com or www.sovoli.com), no tenant slug
+  if (isSubdomain) {
+    return hostname.replace(`.${rootDomain}`, "");
   }
 
-  // Not root or subdomain: resolve custom domain (e.g. ma.edu.gy)
   const { orgMeta } = await bus.queryProcessor.execute(
-    new GetWebsiteByCustomDomainQuery(hostnameNormalized),
+    new GetWebsiteByCustomDomainQuery(hostname),
   );
 
   return orgMeta?.slug ?? null;
