@@ -14,7 +14,7 @@ export class GetWebsiteByCustomDomainQuery
   constructor(public readonly domain: string) {}
 }
 
-export class GetUserProfileByUsernameQueryHandler
+export class GetWebsiteByCustomDomainQueryHandler
   implements
     QueryHandler<
       GetWebsiteByCustomDomainQuery,

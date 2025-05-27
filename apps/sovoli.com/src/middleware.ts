@@ -68,25 +68,32 @@ export async function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-async function resolveTenantFromHost(hostname: string, rootDomain: string) {
-  const isSubdomain =
-    hostname !== rootDomain &&
-    hostname !== `www.${rootDomain}` &&
-    hostname.endsWith(`.${rootDomain}`);
+export async function resolveTenantFromHost(
+  hostname: string,
+  rootDomain: string,
+): Promise<string | null> {
+  const rootDomainNormalized = rootDomain.toLowerCase();
+  const hostnameNormalized = hostname.toLowerCase();
 
-  if (isSubdomain) {
-    return hostname.replace(`.${rootDomain}`, "");
+  const isRootOrSubdomain =
+    hostnameNormalized === rootDomainNormalized ||
+    hostnameNormalized === `www.${rootDomainNormalized}` ||
+    hostnameNormalized.endsWith(`.${rootDomainNormalized}`);
+
+  if (isRootOrSubdomain) {
+    // Root domain or subdomain: extract slug or return null
+    if (hostnameNormalized.endsWith(`.${rootDomainNormalized}`)) {
+      return hostnameNormalized.replace(`.${rootDomainNormalized}`, "");
+    }
+    return null; // Root domain (sovoli.com or www.sovoli.com), no tenant slug
   }
 
+  // Not root or subdomain: resolve custom domain (e.g. ma.edu.gy)
   const { orgMeta } = await bus.queryProcessor.execute(
-    new GetWebsiteByCustomDomainQuery(hostname),
+    new GetWebsiteByCustomDomainQuery(hostnameNormalized),
   );
 
-  if (orgMeta) {
-    return orgMeta.slug;
-  }
-
-  return null;
+  return orgMeta?.slug ?? null;
 }
 
 export const config = {
