@@ -1,9 +1,11 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
+import { bus } from "~/services/core/bus";
 import { config as webConfig } from "~/utils/config";
+import { GetWebsiteByCustomDomainQuery } from "./modules/website/services/queries/GetWebsiteByCustomDomainQuery";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const url = request.url;
 
@@ -50,16 +52,8 @@ export function middleware(request: NextRequest) {
       if (parts && parts.length > 0) {
         subdomain = parts[0];
       }
-    } else {
-      // Regular subdomain detection
-      const isSubdomain =
-        hostname !== rootDomainFormatted &&
-        hostname !== `www.${rootDomainFormatted}` &&
-        hostname?.endsWith(`.${rootDomainFormatted}`);
-
-      if (isSubdomain) {
-        subdomain = hostname?.replace(`.${rootDomainFormatted}`, "");
-      }
+    } else if (hostname && rootDomainFormatted) {
+      subdomain = await resolveTenantFromHost(hostname, rootDomainFormatted);
     }
   }
 
@@ -72,6 +66,27 @@ export function middleware(request: NextRequest) {
 
   // On the root domain, allow normal access
   return NextResponse.next();
+}
+
+async function resolveTenantFromHost(hostname: string, rootDomain: string) {
+  const isSubdomain =
+    hostname !== rootDomain &&
+    hostname !== `www.${rootDomain}` &&
+    hostname.endsWith(`.${rootDomain}`);
+
+  if (isSubdomain) {
+    return hostname.replace(`.${rootDomain}`, "");
+  }
+
+  const { orgMeta } = await bus.queryProcessor.execute(
+    new GetWebsiteByCustomDomainQuery(hostname),
+  );
+
+  if (orgMeta) {
+    return orgMeta.slug;
+  }
+
+  return null;
 }
 
 export const config = {

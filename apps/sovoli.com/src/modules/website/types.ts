@@ -17,6 +17,7 @@ export interface OrgMeta {
   name: string;
   description: string;
   slug: string;
+  customDomains?: string[];
   country: string;
   city: string;
   address: string;
