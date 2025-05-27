@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { orgs } from "../data";
+import { orgs } from "~/modules/website/data";
 import { Footer } from "./components/Footer";
 import { TenantNavbar } from "./components/navbar/TenantNavbar";
 
@@ -29,6 +29,13 @@ export async function generateMetadata({ params }: Props) {
     description: org.description,
     icons: {
       icon: "/favicon.ico",
+    },
+    openGraph: {
+      title: org.title,
+      description: org.description,
+      url: org.url,
+      siteName: org.name,
+      images: org.images,
     },
   };
 }

@@ -22,6 +22,9 @@ export interface OrgMeta {
   city: string;
   address: string;
   contacts: { email: string; phone: string }[];
+  url: string;
+  title: string;
+  images: { url: string; width: number; height: number; alt: string }[];
 }
 
 // Section-level configuration for a rendered page
