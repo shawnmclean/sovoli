@@ -28,10 +28,6 @@ export class GetUserProfileByUsernameQueryHandler
       orgs.find((org) => org.customDomains?.includes(query.domain)),
     );
 
-    if (!org) {
-      throw new Error(`No organization found for domain: ${query.domain}`);
-    }
-
     return {
       orgMeta: org,
     };
