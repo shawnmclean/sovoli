@@ -1,4 +1,5 @@
 import React from "react";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import { Button } from "@sovoli/ui/components/button";
 import {
@@ -69,14 +70,14 @@ export function ContactMethods() {
           aria-label="WhatsApp"
           title={
             <div className="flex items-center gap-2">
-              <PhoneIncomingIcon className="text-lg" />
+              <SiWhatsapp className="text-lg text-primary" />
               <span>WhatsApp</span>
             </div>
           }
         >
           <div className="space-y-3 px-2">
             <div className="flex items-center gap-3">
-              <PhoneIncomingIcon />
+              <SiWhatsapp className="text-default-500" />
               <div>
                 <p className="font-medium">Admissions Support</p>
                 <a
@@ -92,7 +93,7 @@ export function ContactMethods() {
             </p>
             <Button
               color="success"
-              startContent={<PhoneIncomingIcon />}
+              startContent={<SiWhatsapp />}
               className="mt-2"
               as="a"
               href="https://wa.me/15551234569"

@@ -21,6 +21,7 @@
     "@anatine/zod-openapi": "2.2.6",
     "@auth/core": "0.37.2",
     "@auth/drizzle-adapter": "1.7.4",
+    "@icons-pack/react-simple-icons": "12.9.0",
     "@opentelemetry/api": "1.9.0",
     "@opentelemetry/api-logs": "0.56.0",
     "@opentelemetry/auto-instrumentations-node": "0.54.0",
