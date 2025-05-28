@@ -167,8 +167,8 @@ export function TenantNavbar() {
               </DropdownMenu>
             </Dropdown>
           ) : (
-            <Button variant="light" href="/dashboard" as={Link}>
-              Login
+            <Button variant="light" href="/signin" as={Link}>
+              Sign In
             </Button>
           )}
         </NavbarItem>
@@ -181,7 +181,7 @@ export function TenantNavbar() {
           <Button
             fullWidth
             as={Link}
-            href="/dashboard"
+            href="/signin"
             variant="faded"
             onPress={handleCloseMenu}
           >

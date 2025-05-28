@@ -41,13 +41,13 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function Layout({ children, params }: Props) {
-  const { subdomain } = await params;
+  const { subdomain: _ } = await params;
   return (
     <div className="flex min-h-screen flex-col">
       <TenantNavbar />
 
       {children}
-      {subdomain}
+
       <Footer />
     </div>
   );
