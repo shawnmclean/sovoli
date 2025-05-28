@@ -11,6 +11,7 @@ export async function middleware(request: NextRequest) {
 
   // Skip rewriting for static assets (images, styles, js, etc.)
   if (
+    pathname.startsWith("/ingest/") ||
     pathname.startsWith("/_next/") ||
     pathname.startsWith("/images/") || // Adjust this to your static asset paths
     pathname.startsWith("/api/") ||
