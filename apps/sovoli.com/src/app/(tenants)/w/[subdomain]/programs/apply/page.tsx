@@ -1,11 +1,11 @@
-import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Input } from "@sovoli/ui/components/input";
+import { Divider } from "@sovoli/ui/components/divider";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { CheckCircleIcon, InfoIcon } from "lucide-react";
 
 import type { Requirement } from "../../programsData";
 import { programsData } from "../../programsData";
+import { ApplyCard } from "./components/ApplyCard";
 
 export default function ProgramsApplyPage() {
   return (
@@ -15,37 +15,12 @@ export default function ProgramsApplyPage() {
           Apply to Our Programs
         </h2>
 
-        <form className="mb-8 space-y-6">
-          <Card shadow="sm">
-            <CardBody className="p-6">
-              <div className="space-y-4">
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-foreground">
-                    Phone Number
-                  </label>
-                  <Input
-                    type="tel"
-                    placeholder="Enter your phone number"
-                    variant="bordered"
-                    size="md"
-                    className="w-full"
-                  />
-                </div>
+        <div className="mb-8 space-y-6">
+          <ApplyCard />
+        </div>
 
-                {/* Additional form fields could be added here */}
-              </div>
-            </CardBody>
-          </Card>
+        <Divider className="my-5" />
 
-          <div className="flex justify-center">
-            <Button color="primary" size="lg" className="px-8">
-              Start Application
-            </Button>
-          </div>
-        </form>
-
-        {/* General Requirements */}
-        {/* General Requirements */}
         <div className="space-y-6">
           <Card shadow="sm" className="overflow-visible">
             <CardBody className="p-6">

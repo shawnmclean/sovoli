@@ -1,9 +1,17 @@
 "use client";
 
 import React from "react";
+import { Button } from "@sovoli/ui/components/button";
 
-export function WhatsAppButton() {
-  const groupCode = "J0rpd3MhRsxHZRpL11LnwB";
+interface WhatsAppButtonProps {
+  groupCode?: string;
+  children?: React.ReactNode;
+}
+
+export function WhatsAppButton({
+  groupCode = "J0rpd3MhRsxHZRpL11LnwB",
+  children = "Join Whatspp Group",
+}: WhatsAppButtonProps) {
   const appUrl = `whatsapp://chat?code=${groupCode}`;
   const webUrl = `https://chat.whatsapp.com/${groupCode}`;
 
@@ -18,11 +26,13 @@ export function WhatsAppButton() {
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className="inline-block rounded-full bg-green-600 px-6 py-2 text-white transition hover:bg-green-700"
+    <Button
+      radius="md"
+      size="lg"
+      onPress={handleClick}
+      className="bg-green-600 text-white transition hover:bg-green-700"
     >
-      Join WhatsApp Group
-    </button>
+      {children}
+    </Button>
   );
 }
