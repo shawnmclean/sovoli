@@ -2,27 +2,16 @@ import React from "react";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import { Button } from "@sovoli/ui/components/button";
-import {
-  MailIcon,
-  MapIcon,
-  MapPinIcon,
-  PhoneIcon,
-  PhoneIncomingIcon,
-} from "lucide-react";
+import { MailIcon, MapIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 export function ContactMethods() {
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-medium">Contact Modern Academy</h2>
-      <p className="text-default-500">
-        We're here to help with your application process. Choose your preferred
-        method to contact us.
-      </p>
-
       <Accordion
         variant="splitted"
         selectionMode="multiple"
         defaultExpandedKeys={["whatsapp"]}
+        className="px-0"
       >
         <AccordionItem
           key="phone"

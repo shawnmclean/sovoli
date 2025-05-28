@@ -34,7 +34,7 @@ export function ApplyCard() {
               </div>
             }
           >
-            <div className="p-6">
+            <div className="px-2 py-6">
               <ContactMethods />
             </div>
           </Tab>
@@ -47,7 +47,7 @@ export function ApplyCard() {
               </div>
             }
           >
-            <div className="p-6">Coming Soon</div>
+            <div className="px-2 py-6">Coming Soon</div>
           </Tab>
         </Tabs>
       </CardBody>
