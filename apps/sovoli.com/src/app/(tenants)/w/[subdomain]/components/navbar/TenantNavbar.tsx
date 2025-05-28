@@ -193,7 +193,8 @@ export function TenantNavbar() {
             fullWidth
             as={Link}
             className="bg-foreground text-background"
-            href="programs/apply"
+            href="/programs/apply"
+            onPress={handleCloseMenu}
           >
             Apply Now
           </Button>
