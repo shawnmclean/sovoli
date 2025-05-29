@@ -1,4 +1,5 @@
 import { fileURLToPath } from "url";
+import createMDX from "@next/mdx";
 import createJiti from "jiti";
 
 // Import env files to validate at build time. Use jiti so we can load .ts files in here.
@@ -6,6 +7,10 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  turbopack: {
+    resolveExtensions: [".mdx", ".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
+  },
   experimental: {
     authInterrupts: true,
   },
@@ -67,5 +72,9 @@ const nextConfig = {
   // This is required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
 };
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+});
 
-export default nextConfig;
+// Merge MDX config with Next.js config
+export default withMDX(nextConfig);

@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "prettier": "catalog:",
-    "turbo": "2.4.2"
+    "turbo": "2.5.3"
   },
   "pnpm": {
     "peerDependencyRules": {
