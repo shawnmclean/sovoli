@@ -58,7 +58,7 @@ export const orgWebConfig: OrgWebConfig = {
         backgroundImage: "/images/hero.jpg",
         actions: [
           { label: "Apply Now", href: "/programs/apply" },
-          { label: "Schedule a Visit", href: "/schedule" },
+          { label: "Schedule a Visit", href: "/programs/apply" },
         ],
       },
       {
