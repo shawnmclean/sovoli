@@ -86,25 +86,25 @@ export const Footer = () => {
               <div className="mb-2 flex items-start gap-2">
                 <MapPinIcon className="mt-1 text-foreground-500" />
                 <span className="text-sm text-foreground-500">
-                  Somewhere on main road
+                  Lot 11, Public Road
                   <br />
-                  BV, ECD, Guyana
+                  Mon Repos, ECD, 4, Guyana
                 </span>
               </div>
               <div className="mb-2 flex items-center gap-2">
                 <PhoneIcon className="text-foreground-500" />
                 <Link
                   className="text-sm text-foreground-500 hover:text-primary"
-                  href="tel:+15551234567"
+                  href="tel:+5926271915"
                 >
-                  (555) 123-4567
+                  (+592) 627-1915
                 </Link>
               </div>
               <div className="flex items-center gap-2">
                 <MailIcon className="text-foreground-500" />
                 <Link
                   className="text-sm text-foreground-500 hover:text-primary"
-                  href="mailto:info@horizonacademy.edu"
+                  href="mailto:info@ma.edu.gy"
                 >
                   info@ma.edu.gy
                 </Link>
