@@ -3,7 +3,7 @@ import type { OrgMeta } from "./types";
 export const orgs: OrgMeta[] = [
   {
     name: "Modern Academy",
-    title: "Modern Academy: Best Private School in Guyana",
+    title: "Modern Academy: The Best Private School in Guyana",
     description: "The Modern Academy private school",
     slug: "magy",
     country: "Guyana",

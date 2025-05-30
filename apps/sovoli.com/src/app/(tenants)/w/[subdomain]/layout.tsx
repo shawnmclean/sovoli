@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props) {
   }
   return {
     title: {
-      absolute: org.name,
+      absolute: org.title,
       template: `%s | ${org.name}`,
     },
     description: org.description,
