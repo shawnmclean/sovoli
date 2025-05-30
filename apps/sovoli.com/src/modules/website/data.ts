@@ -4,7 +4,7 @@ export const orgs: OrgMeta[] = [
   {
     name: "Modern Academy",
     title: "Modern Academy: The Best Private School in Guyana",
-    description: "The Modern Academy private school",
+    description: "Modern Academy is the fastest growing private school in Guyana, offering a wide range of programs and excellent teachers.",
     slug: "magy",
     country: "Guyana",
     city: "Georgetown",
