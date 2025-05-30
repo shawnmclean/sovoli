@@ -1,0 +1,65 @@
+---
+title: Email Setup
+description: Configure Google Workspace email accounts for Sovoli-powered school.
+---
+
+# 📧 Email Setup
+
+This guide walks you through setting up email for your school using **Google Workspace for Education**.
+
+> 🔗 [Select the right edition](https://edu.google.com/intl/en_ALL/workspace-for-education/editions/compare-editions/)
+
+---
+
+## 🛠️ Step 1: Sign Up and Create the Organization
+
+- Register school for **Google Workspace for Education**.
+- Use admin@domain.com to create the organization.
+
+admin@domain.com - reserved for Sovoli platform access and emergency recovery.
+
+Should not be used for school communications.
+
+---
+
+## 🛠️ Step 2: Verify Domain Ownership
+
+To activate your Workspace:
+
+1. Follow the instructions to verify your domain ownership.
+2. Add a **TXT record** to the DNS provider (e.g. [Vercel](https://vercel.com)).
+
+
+## 👥 Step 3: Staff Email Accounts
+
+Each staff member should receive a personalized email account.
+
+Naming convention:
+
+```
+firstname@domain.com           → e.g. shawn@ma.edu.gy
+firstname.lastinitial@domain.com → e.g. shawn.m@ma.edu.gy (fallback)
+```
+
+Collect each user's personal backup email for account recovery.
+
+---
+
+## 🛠️ Step 4: Create a Public-Facing Email Group
+
+📬 info@schooldomain.com
+Type: Google Group
+
+Purpose: Receives inquiries from parents, students, and the public.
+
+Managed by: The school (typically Timon, Nessa, or other admins).
+
+Group Configuration:
+
+Add multiple members (e.g. timon@, nessa@).
+
+Allow external senders.
+
+Enable “Send As” permissions if replying from group.
+
+

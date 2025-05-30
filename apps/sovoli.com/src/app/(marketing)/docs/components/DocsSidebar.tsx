@@ -20,7 +20,8 @@ const navigation = [
     icon: LockIcon,
     items: [
       { title: "Internal Documentation", href: "/docs/internal" },
-      { title: "Onboarding", href: '/docs/internal/onboarding'}
+      { title: "Onboarding", href: '/docs/internal/onboarding'},
+      { title: "Email Setup", href: '/docs/internal/onboarding/email'}
     ],
   },
 ];

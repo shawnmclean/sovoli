@@ -1,157 +1,112 @@
 ---
-title: Tenant Onboarding
-description: Step-by-step guide to onboard a new organization on Sovoli.
+title: Tenant Onboarding Process (Internal)
+updated: 2025-05-29
+status: WIP
+tags: ["internal", "onboarding", "repeatable process"]
 ---
 
-# Tenant Onboarding
+# 🛠️ Sovoli Tenant Onboarding (Internal Protocol)
 
-Welcome to the Sovoli onboarding guide. This document walks you through the process of getting a new organization — such as a private school, training institute, or small business — fully set up on the Sovoli platform.
-
----
-
-## 1. Organization Data Collection
-
-The first step is to gather essential organizational details:
-
-- **Name** – Full name of the organization
-- **Description** – A short overview of what they do
-- **Type** – Choose from: `School`, `Training Institute`, `Business`, or `Other`
-- **Logo** – PNG/JPEG, minimum 512x512 recommended
-- **Key Documents** (optional but required for some domains):
-  - Business registration or school approval letter
-  - Staff or team photos (used on the public site)
-  - Any relevant licensing or accreditation documents
-
-This information is used for internal configuration and public site display.
+This is a **manual record** of each step taken to onboard a new tenant into Sovoli. It serves as an operational journal and foundation for future automation.
 
 ---
 
-## 2. Slug Selection (Website Subdomain)
+## 1. 🎯 Purpose
 
-Each tenant selects a **unique slug**, which becomes their Sovoli site URL:
-
-https://[slug].sovoli.com
-
-
-> Slugs should be lowercase, without spaces or special characters.
-
-This subdomain is automatically provisioned and used to serve the organization's public website.
+Document each action required to:
+- Digitize and onboard a private school or organization.
+- Set up web presence, internal tools, and communication infra.
+- Capture essential metadata for later automation.
 
 ---
 
-## 3. Custom Domain Registration
+## 2. 📋 Org Intake & Metadata
 
-Organizations may opt to register or connect a custom domain:
+### ✅ Actions Taken:
+- [ ] Collected org name, type, description, address.
+- [ ] Uploaded logo, banner images.
+- [ ] Captured key contacts (admin, IT support).
 
-- `.edu.gy` – Requires document verification and a manual approval process
-- `.com`, `.org`, `.net`, etc. – Can be auto-registered or mapped via DNS
-
-We assist with:
-
-- DNS record configuration
-- SSL certificate provisioning (via Let's Encrypt)
-- Redirects from Sovoli subdomain to the custom domain
+### 💾 Storage Location:
+`apps/sovoli.com/data/tenants/{slug}/orgMeta.ts`
 
 ---
 
-## 4. Email Creation
+## 3. 📄 Document Collection
 
-Once the domain is active, Sovoli provisions branded email accounts:
+- Business registration
+- Educational certifications (for `.edu.gy`)
+- Staff headshots
+- Legal ownership info (for local compliance)
 
-- `admin@[custom-domain]` (default)
-- Up to 5 additional staff emails (e.g., principal@, admissions@, info@)
-
-Email is managed via Sovoli's email integration and is connected to the contact form, application flow, and notifications.
-
----
-
-## 5. SEO and Search Engine Submission
-
-To improve discoverability, Sovoli automates key SEO tasks:
-
-- Generates and submits a sitemap to Google
-- Adds meta and Open Graph tags to pages
-- Registers the site with **Google Search Console**
-- Sets up **Google Business Profile** (if applicable)
-
-For `.edu.gy` domains, this legitimizes the organization and improves search ranking significantly.
+✅ **Method**: Manually added to `orgDocs` folder under `apps/sovoli.com/data/tenants/{slug}`
 
 ---
 
-## 6. WhatsApp & Communication Channels (Optional)
+## 4. 🌐 Website Setup
 
-To improve communication and engagement:
+### Actions:
+- [ ] Chose slug (e.g. `ma` → `ma.edu.gy`)
+- [ ] Added to `domains.ts` config
+- [ ] Set up basic website scaffold in `apps/sovoli.com/modules/website/pages/{slug}`
 
-- Add a **Join WhatsApp Group** button
-- Configure direct chat links for inquiries
-- Telegram or Signal support coming soon
-
-These buttons can be added to the homepage or contact page.
-
----
-
-## 7. Booking & Application Flow (Optional)
-
-Sovoli supports embedded flows for lead generation:
-
-### Schedule a Visit
-
-- Visitor enters WhatsApp number or email
-- Verifies identity via token
-- Selects date/time from available slots
-- Admin is notified via email or WhatsApp
-
-### Apply Now
-
-- For student/guardian or client intake
-- Uploads documents, selects program
-- Admin receives structured applicant data
+### Domain:
+- Requested `.edu.gy` manually via GTT
+- Verified pointing to Sovoli IP via CNAME
 
 ---
 
-## 8. Team, Program & Services Setup
+## 5. 📧 Email Provisioning
 
-Once the foundation is in place, tenants can configure:
-
-- **Team Members** – Name, title, bio, photo
-- **Programs or Services** – Description, eligibility, price (if applicable)
-- **News & Events** – Optional blog-style updates
-- **Testimonials** – From parents, clients, or students
-
-These populate the public site and are also useful for marketing and trust-building.
+- Admin email (e.g. `admin@ma.edu.gy`)
+- 5 teacher/staff emails provisioned via ...
+- Used forwarding through Cloudflare / custom MX
 
 ---
 
-## 9. SIS & Internal Tools Integration (For Schools)
+## 6. 📈 SEO + Google Submission
 
-Sovoli's Student Information System is activated once the public presence is live:
-
-- Student and guardian profiles
-- Academic records
-- Document uploads
-- Class and cohort assignments
-- Attendance and gradebook features (optional phase)
+- Submitted site via [Google Search Console](https://search.google.com/search-console/about)
+- Added meta tags in `<Head>` component
+- Registered on [Google Business](https://www.google.com/business/)
 
 ---
 
-## 10. Launch and Handover
+## 7. 📆 Scheduling / Application Flow
 
-Once all steps are complete:
-
-- Website goes live
-- Admin access is granted
-- Staff receive documentation or optional training
-- Support channels are opened for troubleshooting
+- `/apply` page routed from `/schedule`
+- Captures parent/student info for enrollment
+- Stored in `orgApplications` under org slug
 
 ---
 
-## Additional Notes
+## 8. 🧠 Lessons / Improvements
 
-- Each step can be customized based on org type
-- You can skip optional phases and revisit later
-- Sovoli will auto-upgrade features as new modules are released
+- Delay domain registration until orgDocs complete
+- Automate slug checks for uniqueness
+- Pre-fill `.edu.gy` forms for orgs to sign manually
 
 ---
 
-For support, contact your Sovoli onboarding advisor or email `support@sovoli.com`.
+## 9. 🗃️ Files & Code Reference
+
+- Org Metadata: `data/tenants/{slug}/orgMeta.ts`
+- Website Content: `modules/website/pages/{slug}`
+- Domain Routing: `utils/domainRouter.ts`
+- Email Config: `configs/email-provisioning.md`
+
+---
+
+## 10. 🔄 Replication Checklist
+
+- [ ] Org metadata filled
+- [ ] Docs uploaded
+- [ ] Domain requested
+- [ ] Emails set up
+- [ ] SEO submitted
+- [ ] Apply page live
+- [ ] Admin trained
+- [ ] Walkthrough complete
+
+---
 
