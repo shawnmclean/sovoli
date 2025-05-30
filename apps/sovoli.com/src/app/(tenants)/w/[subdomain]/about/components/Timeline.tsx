@@ -26,34 +26,28 @@ const TimelineEvent = ({ year, title, description }: TimelineEventProps) => {
 export const Timeline = () => {
   const events = [
     {
-      year: "1985",
+      year: "2020",
       title: "Foundation",
       description:
         "Modern Academy was established with a small campus and 120 students.",
     },
     {
-      year: "1995",
-      title: "Campus Expansion",
+      year: "2020",
+      title: "On-line Classes",
       description:
-        "Expanded our facilities to accommodate growing enrollment and added new programs.",
-    },
-    {
-      year: "2005",
-      title: "Technology Integration",
-      description:
-        "Pioneered the integration of technology in classrooms and launched our digital learning platform.",
-    },
-    {
-      year: "2015",
-      title: "International Recognition",
-      description:
-        "Received international accreditation and established exchange programs with global institutions.",
+        "COVID-19 pandemic forced us to move to online classes.",
     },
     {
       year: "2023",
-      title: "Innovation Center",
+      title: "Accepted PreNursery",
       description:
-        "Opened our state-of-the-art Innovation Center to foster research and entrepreneurship.",
+        "We are now accepting PreNursery students.",
+    },
+    {
+      year: "2025",
+      title: "Launched Our Website",
+      description:
+        "We launched our website to provide information about our school and programs.",
     },
   ];
 

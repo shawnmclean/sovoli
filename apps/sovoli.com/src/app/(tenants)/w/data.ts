@@ -84,7 +84,7 @@ export const orgWebConfig: OrgWebConfig = {
         variant: "image",
         title: "About Us",
         subtitle:
-          "Join a community dedicated to academic excellence and personal growth",
+          "Guyana's Fastest Growing Private Institution",
         backgroundImage:
           "https://img.heroui.chat/image/places?w=1920&h=600&u=2",
       },
