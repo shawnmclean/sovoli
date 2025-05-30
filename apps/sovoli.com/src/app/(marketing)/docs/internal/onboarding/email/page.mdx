@@ -7,11 +7,11 @@ description: Configure Google Workspace email accounts for Sovoli-powered school
 
 This guide walks you through setting up email for your school using **Google Workspace for Education**.
 
-> 🔗 [Select the right edition](https://edu.google.com/intl/en_ALL/workspace-for-education/editions/compare-editions/)
-
 ---
 
 ## 🛠️ Step 1: Sign Up and Create the Organization
+
+> 🔗 [Sign Up](https://workspace.google.com/edu/signup)
 
 - Register school for **Google Workspace for Education**.
 - Use admin@domain.com to create the organization.
@@ -22,13 +22,21 @@ Should not be used for school communications.
 
 ---
 
-## 🛠️ Step 2: Verify Domain Ownership
+## 🛠️ Step 2: Verify Domain Ownership and setup DNS
 
 To activate your Workspace:
 
 1. Follow the instructions to verify your domain ownership.
-2. Add a **TXT record** to the DNS provider (e.g. [Vercel](https://vercel.com)).
+2. Add the given **TXT record** to the DNS provider (e.g. [Vercel](https://vercel.com)).
+3. Add the given **MX record**.
+4. Add the given SPF **TXT record**. eg `v=spf1 include:_spf.google.com ~all`
+5. Add the given DKIM **TXT record**. [https://admin.google.com/ac/appsettings/740348119625](Link)
+6. Add the given DMARC **TXT record**. eg `v=DMARC1; p=none; rua=mailto:postmaster@ma.edu.gy, mailto:dmarc@ma.edu.gy; pct=100; adkim=s; aspf=s`
+7. Add the ARC Auth.
 
+Setup [Postmaster](https://postmaster.google.com/)
+
+See more: [Google Workspace Admin Help](https://support.google.com/a/answer/81126)
 
 ## 👥 Step 3: Staff Email Accounts
 
@@ -43,23 +51,32 @@ firstname.lastinitial@domain.com → e.g. shawn.m@ma.edu.gy (fallback)
 
 Collect each user's personal backup email for account recovery.
 
+## Step 5.1: Setup School Admin Roles
+
+- Add the school admins to the following roles:
+  - Group Admin - to manage the public-facing email group
+  - User Management Admin - to manage user accounts
+
 ---
 
 ## 🛠️ Step 4: Create a Public-Facing Email Group
 
 📬 info@schooldomain.com
+
 Type: Google Group
 
 Purpose: Receives inquiries from parents, students, and the public.
 
-Managed by: The school (typically Timon, Nessa, or other admins).
-
-Group Configuration:
-
-Add multiple members (e.g. timon@, nessa@).
+Managed by: The school admins.
 
 Allow external senders.
 
 Enable “Send As” permissions if replying from group.
 
+---
 
+
+
+## 🛠️ Step 5: Add other metadata
+
+- Add Logo
