@@ -97,7 +97,7 @@ export const Footer = () => {
                   className="text-sm text-foreground-500 hover:text-primary"
                   href="tel:+5926271915"
                 >
-                  (+592) 627-1915
+                  +592 627-1915
                 </Link>
               </div>
               <div className="flex items-center gap-2">

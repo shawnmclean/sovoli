@@ -19,15 +19,16 @@ export default function ContactUsPage() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <MapPinIcon className="h-5 w-5 text-primary" />
-                  <p className="text-sm">123 Main Street, Georgetown, Guyana</p>
+                  <p className="text-sm">Lot 11, Public Road
+                  Mon Repos, ECD, 4, Guyana</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <PhoneIcon className="h-5 w-5 text-primary" />
-                  <p className="text-sm">+592-123-4567</p>
+                  <p className="text-sm">+592 627-1915</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <MailIcon className="h-5 w-5 text-primary" />
-                  <p className="text-sm">info@modernacademy.gy</p>
+                  <p className="text-sm">info@ma.edu.gy</p>
                 </div>
               </div>
             </CardBody>
@@ -42,15 +43,18 @@ export default function ContactUsPage() {
                   type="email"
                   placeholder="Your Email"
                   className="w-full"
+                  isDisabled
                 />
                 <Textarea
                   placeholder="Your Message"
                   className="w-full"
                   rows={5}
+                  isDisabled
                 />
                 <Button
                   type="submit"
                   className="bg-primary px-6 py-2 text-white"
+                  isDisabled
                 >
                   Send Message
                 </Button>
