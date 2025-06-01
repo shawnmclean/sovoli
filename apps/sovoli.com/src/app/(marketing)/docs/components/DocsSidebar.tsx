@@ -1,87 +1,139 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
+import type { LucideIcon } from "lucide-react";
 import { RocketIcon, LockIcon } from "lucide-react";
+import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
+import { Link } from "@sovoli/ui/components/link";
+import { usePathname } from "next/navigation";
 
-const navigation = [
+// -------------------
+// Types
+// -------------------
+
+interface NavNode {
+  title: string;
+  href?: string;
+  icon?: LucideIcon;
+  items?: NavNode[];
+}
+
+interface SidebarItemProps {
+  node: NavNode;
+  pathname: string;
+  depth?: number;
+}
+
+// -------------------
+// Navigation Tree
+// -------------------
+
+const navigation: NavNode[] = [
   {
-    id: "getting-started",
     title: "Getting Started",
     icon: RocketIcon,
-    items: [
-      { title: "Introduction", href: "/docs/" },
-    ],
+    items: [{ title: "Introduction", href: "/docs/" }],
   },
   {
-    id: "internal",
     title: "Internal Docs",
     icon: LockIcon,
+    href: "/docs/internal",
     items: [
-      { title: "Internal Documentation", href: "/docs/internal" },
-      { title: "Onboarding", href: '/docs/internal/onboarding'},
-      { title: "Email Setup", href: '/docs/internal/onboarding/email'}
+      {
+        title: "Onboarding",
+        href: "/docs/internal/onboarding",
+        items: [
+          { title: "Email Setup", href: "/docs/internal/onboarding/email" },
+          { title: "Google Business Setup", href: "/docs/internal/onboarding/google-business" },
+        ],
+      },
     ],
   },
 ];
 
-export function DocsSidebar() {
-  const pathname = usePathname();
+// -------------------
+// Recursive SidebarItem
+// -------------------
+
+function SidebarItem({ node, pathname, depth = 0 }: SidebarItemProps) {
+  const isActive = node.href === pathname;
+  const isExpandable = !!node.items?.length;
+  const isExpanded = node.href && pathname.startsWith(node.href);
+
+  if (!isExpandable) {
+    return (
+      <Link
+        href={node.href ?? "#"}
+              color="foreground"
+        className="py-1.5 flex items-center gap-2 text-sm"
+        underline={isActive ? "always" : "hover"}
+      >
+        {depth === 0 && node.icon && <node.icon className="w-4 h-4" />}
+        {node.title}
+      </Link>
+    );
+  }
 
   return (
-    <aside
-      className={`
-        fixed sm:sticky top-[3.75rem] left-0 z-40 sm:z-0
-        h-[calc(100vh-3.75rem)] w-64 bg-background
-        border-r border-default-200 overflow-y-auto
-      `}
+    <Accordion
+      defaultSelectedKeys={isExpanded ? [node.title] : []}
+      className="px-0 w-full"
+      showDivider={false}
+      isCompact
     >
-      <div className="p-4">
-        <Accordion
-          variant="light"
-          selectionMode="multiple"
-          className="gap-1"
-        >
-          {navigation.map((section) => (
-            <AccordionItem
-              key={section.id}
-              aria-label={section.title}
-              title={
-                <div className="flex items-center gap-2 text-sm font-medium">
-                  <section.icon width={18} />
-                  {section.title}
-                </div>
-              }
-              classNames={{
-                title: "py-1.5",
-                trigger: "py-0",
-                content: "pb-0",
-              }}
+      <AccordionItem
+        key={node.title}
+        textValue={node.title}
+        classNames={{
+          title: "text-sm",
+          content: "pl-4",
+        }}
+        title={
+          node.href ? (
+            <Link
+              href={node.href}
+              color="foreground"
+              className="flex items-center gap-2 text-sm"
+              underline={isActive ? "always" : "hover"}
             >
-              <div className="flex flex-col gap-1 pl-6 py-1">
-                {section.items.map((item) => {
-                  const isActive = pathname === item.href;
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`
-                        px-2 py-1.5 rounded-small text-sm
-                        ${isActive
-                          ? "bg-primary/10 text-primary font-medium"
-                          : "text-foreground hover:bg-default-100"
-                        }
-                      `}
-                    >
-                      {item.title}
-                    </Link>
-                  );
-                })}
-              </div>
-            </AccordionItem>
+              {depth === 0 && node.icon && <node.icon className="w-4 h-4" />}
+              {node.title}
+            </Link>
+          ) : (
+            <span className={`flex items-center gap-2 ${isActive ? "text-primary font-medium" : ""}`}>
+              {depth === 0 && node.icon && <node.icon className="w-4 h-4" />}
+              {node.title}
+            </span>
+          )
+        }
+      >
+        <div className="flex flex-col gap-1 mt-1">
+          {node.items?.map((child) => (
+            <SidebarItem
+              key={child.href ?? child.title}
+              node={child}
+              pathname={pathname}
+              depth={depth + 1}
+            />
           ))}
-        </Accordion>
+        </div>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+
+// -------------------
+// Main Sidebar
+// -------------------
+
+export function DocsSidebar() {
+  const pathname = usePathname()
+
+  return (
+    <aside className="fixed sm:sticky top-[3.75rem] left-0 z-40 sm:z-0 h-[calc(100vh-3.75rem)] w-64 bg-background border-r border-default-200 overflow-y-auto">
+      <div className="p-4 flex flex-col gap-2">
+        {navigation.map((node) => (
+          <SidebarItem key={node.title} node={node} pathname={pathname} depth={0} />
+        ))}
       </div>
     </aside>
   );
