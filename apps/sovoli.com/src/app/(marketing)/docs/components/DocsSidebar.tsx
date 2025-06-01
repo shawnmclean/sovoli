@@ -1,10 +1,10 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { RocketIcon, LockIcon } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import { Link } from "@sovoli/ui/components/link";
-import { usePathname } from "next/navigation";
+import { LockIcon, RocketIcon } from "lucide-react";
 
 // -------------------
 // Types
@@ -43,7 +43,18 @@ const navigation: NavNode[] = [
         href: "/docs/internal/onboarding",
         items: [
           { title: "Email Setup", href: "/docs/internal/onboarding/email" },
-          { title: "Google Business Setup", href: "/docs/internal/onboarding/google-business" },
+          {
+            title: "Google Business Setup",
+            href: "/docs/internal/onboarding/google-business",
+          },
+          {
+            title: "Apple Business Setup",
+            href: "/docs/internal/onboarding/apple-business",
+          },
+          {
+            title: "Bing Business Setup",
+            href: "/docs/internal/onboarding/bing-business",
+          },
         ],
       },
     ],
@@ -63,11 +74,11 @@ function SidebarItem({ node, pathname, depth = 0 }: SidebarItemProps) {
     return (
       <Link
         href={node.href ?? "#"}
-              color="foreground"
-        className="py-1.5 flex items-center gap-2 text-sm"
+        color="foreground"
+        className="flex items-center gap-2 py-1.5 text-sm"
         underline={isActive ? "always" : "hover"}
       >
-        {depth === 0 && node.icon && <node.icon className="w-4 h-4" />}
+        {depth === 0 && node.icon && <node.icon className="h-4 w-4" />}
         {node.title}
       </Link>
     );
@@ -76,7 +87,7 @@ function SidebarItem({ node, pathname, depth = 0 }: SidebarItemProps) {
   return (
     <Accordion
       defaultSelectedKeys={isExpanded ? [node.title] : []}
-      className="px-0 w-full"
+      className="w-full px-0"
       showDivider={false}
       isCompact
     >
@@ -95,18 +106,20 @@ function SidebarItem({ node, pathname, depth = 0 }: SidebarItemProps) {
               className="flex items-center gap-2 text-sm"
               underline={isActive ? "always" : "hover"}
             >
-              {depth === 0 && node.icon && <node.icon className="w-4 h-4" />}
+              {depth === 0 && node.icon && <node.icon className="h-4 w-4" />}
               {node.title}
             </Link>
           ) : (
-            <span className={`flex items-center gap-2 ${isActive ? "text-primary font-medium" : ""}`}>
-              {depth === 0 && node.icon && <node.icon className="w-4 h-4" />}
+            <span
+              className={`flex items-center gap-2 ${isActive ? "font-medium text-primary" : ""}`}
+            >
+              {depth === 0 && node.icon && <node.icon className="h-4 w-4" />}
               {node.title}
             </span>
           )
         }
       >
-        <div className="flex flex-col gap-1 mt-1">
+        <div className="mt-1 flex flex-col gap-1">
           {node.items?.map((child) => (
             <SidebarItem
               key={child.href ?? child.title}
@@ -126,13 +139,18 @@ function SidebarItem({ node, pathname, depth = 0 }: SidebarItemProps) {
 // -------------------
 
 export function DocsSidebar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
-    <aside className="fixed sm:sticky top-[3.75rem] left-0 z-40 sm:z-0 h-[calc(100vh-3.75rem)] w-64 bg-background border-r border-default-200 overflow-y-auto">
-      <div className="p-4 flex flex-col gap-2">
+    <aside className="fixed left-0 top-[3.75rem] z-40 h-[calc(100vh-3.75rem)] w-64 overflow-y-auto border-r border-default-200 bg-background sm:sticky sm:z-0">
+      <div className="flex flex-col gap-2 p-4">
         {navigation.map((node) => (
-          <SidebarItem key={node.title} node={node} pathname={pathname} depth={0} />
+          <SidebarItem
+            key={node.title}
+            node={node}
+            pathname={pathname}
+            depth={0}
+          />
         ))}
       </div>
     </aside>
