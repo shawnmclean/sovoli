@@ -33,6 +33,6 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@10.3.0",
+  "packageManager": "pnpm@10.11.0",
   "prettier": "@sovoli/prettier-config"
 }
