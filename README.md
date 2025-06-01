@@ -4,6 +4,17 @@ WIP: nothing here to see, pls leave.
 
 ### Development
 
+Setup the environment variables:
+
+### Tiptap Pro
+
+```bash
+echo 'export NPM_CONFIG_TIPTAP_PRO_TOKEN={token}' >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+See: https://cloud.tiptap.dev/v1/pro-extensions
+
 #### WebApp
 
 - Framework: [Next.js](https://nextjs.org/)
@@ -14,3 +25,4 @@ WIP: nothing here to see, pls leave.
 Some links:
 
 - Data fetching: use the cache with server-only preload pattern: https://nextjs.org/docs/app/building-your-application/data-fetching/fetching#using-react-cache-and-server-only-with-the-preload-pattern
+
