@@ -364,7 +364,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .join(", ");
   return {
     title: `${pluralize(2, readableCategory)} in ${formattedLocations}`,
-    description: `Explore ${pluralize(2, readableCategory)} located in ${formattedLocations}.`,
+    description: `Explore the best ${pluralize(2, readableCategory)} in ${formattedLocations}.`,
   };
 }
 
