@@ -28,7 +28,11 @@ export const ORGS: Org[] = [
       "secondary-school",
       "pre-school",
     ],
-    location: { country: "guyana" },
+    location: {
+      country: "guyana",
+      city: "mon-repos",
+      state: "mahaica-demerara",
+    },
     phone: "+592 627-1915",
     website: "https://ma.edu.gy",
   },
@@ -456,18 +460,6 @@ function OrganizationCard({ org }: { org: Org }) {
           <div className="flex items-start justify-between">
             <h2 className="text-xl font-semibold">{org.name}</h2>
           </div>
-          <div className="flex gap-1">
-            {org.categories.map((cat) => (
-              <Chip key={cat} size="sm" variant="flat">
-                {CATEGORY_MAP[cat] ?? cat}
-              </Chip>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-2 text-default-500">
-            <MapPinIcon className="h-4 w-4" />
-            <span>{formatLocation(org)}</span>
-          </div>
 
           <div className="mt-1 flex flex-col gap-2">
             {org.phone && (
@@ -487,6 +479,11 @@ function OrganizationCard({ org }: { org: Org }) {
                 </Link>
               </div>
             )}
+
+            <div className="flex items-center gap-2 text-default-500">
+              <MapPinIcon className="h-4 w-4" />
+              <span>{formatLocation(org)}</span>
+            </div>
           </div>
         </div>
       </CardBody>
