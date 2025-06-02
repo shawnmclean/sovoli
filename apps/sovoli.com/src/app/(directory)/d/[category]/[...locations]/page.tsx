@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
 import { Link } from "@sovoli/ui/components/link";
 import { GlobeIcon, MapPinIcon, PhoneIcon, SearchIcon } from "lucide-react";
 
