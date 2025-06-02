@@ -17,7 +17,7 @@ interface Org {
   phone?: string | null;
   website?: string | null;
 }
-export const ORGS: Org[] = [
+const ORGS: Org[] = [
   {
     id: "modern-academy",
     name: "Modern Academy",
