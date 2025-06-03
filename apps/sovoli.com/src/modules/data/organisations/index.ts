@@ -1,5 +1,5 @@
-import { MODERN_ACADEMY_ORG } from "./modernAcademy/org";
-import { MODERN_ACADEMY_WEBSITE } from "./modernAcademy/website";
+import { MODERN_ACADEMY_ORG } from "./magy/org";
+import { MODERN_ACADEMY_WEBSITE } from "./magy/website";
 
 export const ORGS = [
   {
