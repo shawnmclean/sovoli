@@ -3,10 +3,9 @@ import { ORG_DOMAIN, ORG_USERNAME } from "./constants";
 
 export const MODERN_ACADEMY_WEBSITE: Website = {
   siteName: "Modern Academy",
-  title:
-    "Modern Academy – Private Nursery, Primary & Secondary School in Guyana",
+  title: "Private Nursery & Primary School in Guyana - Modern Academy",
   description:
-    "Modern Academy is a leading private school in Mon Repos, Guyana, offering high-quality nursery, primary and secondary education focused on academic excellence and personal growth.",
+    "Modern Academy is a top private and nursery school in Mon Repos Guyana, offering high-quality education from early childhood playschool to secondary level.",
   url: `https://${ORG_DOMAIN}`,
   domain: ORG_DOMAIN,
   images: [
