@@ -8,7 +8,7 @@ export const MODERN_ACADEMY_WEBSITE: OrgWebsite = {
   customDomains: ["ma.edu.gy"],
   images: [
     {
-      url: `/orgs/${ORG_USERNAME}/website/landing/hero.jpg`,
+      url: `/orgs/${ORG_USERNAME}/websites/landing/hero.jpg`,
       width: 1200,
       height: 600,
       alt: "School front",

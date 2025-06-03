@@ -1,4 +1,4 @@
-import type { PageSection } from "~/modules/website/types";
+import type { PageSection } from "~/modules/websites/types";
 import { ImageHero } from "./variants/ImageHero";
 
 // import { MinimalHero } from "./variants/MinimalHero";

@@ -3,7 +3,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { Image } from "@sovoli/ui/components/image";
 import { tv } from "tailwind-variants";
 
-import type { PageSection } from "~/modules/website/types";
+import type { PageSection } from "~/modules/websites/types";
 
 export interface ImageHeroProps {
   section: PageSection;

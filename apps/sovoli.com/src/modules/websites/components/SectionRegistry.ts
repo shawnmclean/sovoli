@@ -1,4 +1,4 @@
-import type { PageSection } from "~/modules/website/types";
+import type { PageSection } from "~/modules/websites/types";
 import { Cards } from "./sections/Cards/Cards";
 // import { Cards } from "./sections/Cards/Cards";
 import { Hero } from "./sections/Hero/Hero";

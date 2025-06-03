@@ -1,4 +1,4 @@
-import type { PageConfig, PageSection } from "~/modules/website/types";
+import type { PageConfig, PageSection } from "~/modules/websites/types";
 import { SectionRenderer } from "./SectionRenderer";
 
 interface PageAssemblerProps {

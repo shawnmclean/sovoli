@@ -14,6 +14,7 @@ This is a **manual record** of each step taken to onboard a new tenant into Sovo
 ## 1. 🎯 Purpose
 
 Document each action required to:
+
 - Digitize and onboard a private school or organization.
 - Set up web presence, internal tools, and communication infra.
 - Capture essential metadata for later automation.
@@ -23,11 +24,13 @@ Document each action required to:
 ## 2. 📋 Org Intake & Metadata
 
 ### ✅ Actions Taken:
+
 - [ ] Collected org name, type, description, address.
 - [ ] Uploaded logo, banner images.
 - [ ] Captured key contacts (admin, IT support).
 
 ### 💾 Storage Location:
+
 `apps/sovoli.com/data/tenants/{slug}/orgMeta.ts`
 
 ---
@@ -46,11 +49,13 @@ Document each action required to:
 ## 4. 🌐 Website Setup
 
 ### Actions:
+
 - [ ] Chose slug (e.g. `ma` → `ma.edu.gy`)
 - [ ] Added to `domains.ts` config
-- [ ] Set up basic website scaffold in `apps/sovoli.com/modules/website/pages/{slug}`
+- [ ] Set up basic website scaffold in `apps/sovoli.com/modules/websites/pages/{slug}`
 
 ### Domain:
+
 - Requested `.edu.gy` manually via GTT
 - Verified pointing to Sovoli IP via CNAME
 
@@ -91,7 +96,7 @@ Document each action required to:
 ## 9. 🗃️ Files & Code Reference
 
 - Org Metadata: `data/tenants/{slug}/orgMeta.ts`
-- Website Content: `modules/website/pages/{slug}`
+- Website Content: `modules/websites/pages/{slug}`
 - Domain Routing: `utils/domainRouter.ts`
 - Email Config: `configs/email-provisioning.md`
 
@@ -109,4 +114,3 @@ Document each action required to:
 - [ ] Walkthrough complete
 
 ---
-

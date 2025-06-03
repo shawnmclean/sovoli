@@ -10,7 +10,7 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-import type { PageSection } from "~/modules/website/types";
+import type { PageSection } from "~/modules/websites/types";
 
 export interface MetricsProps {
   section: PageSection;
