@@ -6,18 +6,18 @@ import { TenantNavbar } from "./components/navbar/TenantNavbar";
 
 export function generateStaticParams() {
   return orgs.map((org) => ({
-    subdomain: org.slug,
+    username: org.slug,
   }));
 }
 
 interface Props {
   children: React.ReactNode;
-  params: Promise<{ subdomain: string }>;
+  params: Promise<{ username: string }>;
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { subdomain } = await params;
-  const org = orgs.find((org) => org.slug === subdomain);
+  const { username } = await params;
+  const org = orgs.find((org) => org.slug === username);
   if (!org) {
     notFound();
   }
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function Layout({ children, params }: Props) {
-  const { subdomain: _ } = await params;
+  const { username: _ } = await params;
   return (
     <div className="flex min-h-screen flex-col">
       <TenantNavbar />

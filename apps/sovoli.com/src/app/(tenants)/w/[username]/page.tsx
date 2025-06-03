@@ -4,12 +4,12 @@ import { NewsSection } from "./components/NewsSection";
 import { ProgramsSection } from "./components/ProgramsSection";
 import { TeamSection } from "./components/TeamSection";
 
-export default async function SubdomainPage({
+export default async function WebsitePage({
   params,
 }: {
-  params: Promise<{ subdomain: string }>;
+  params: Promise<{ username: string }>;
 }) {
-  const { subdomain } = await params;
+  const { username } = await params;
   return (
     <div>
       <PageAssembler page={orgWebConfig.home} editable={false} />
@@ -18,7 +18,7 @@ export default async function SubdomainPage({
       <TeamSection />
       <NewsSection />
       <div className="my-4 px-5 text-right text-default-200">
-        Subdomain: {subdomain}
+        Username: {username}
       </div>
     </div>
   );
