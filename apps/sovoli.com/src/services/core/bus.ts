@@ -1,7 +1,15 @@
 import {
+  GetAllWebsiteUsernamesQuery,
+  GetAllWebsiteUsernamesQueryHandler,
+} from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
+import {
   GetUsernameByDomainQuery,
   GetUsernameByDomainQueryHandler,
 } from "~/modules/websites/services/queries/GetUsernameByDomainQuery";
+import {
+  GetWebsiteByUsernameQuery,
+  GetWebsiteByUsernameQueryHandler,
+} from "~/modules/websites/services/queries/GetWebsiteByUsername";
 import {
   GetUserProfileByUsernameQuery,
   GetUserProfileByUsernameQueryHandler,
@@ -25,6 +33,14 @@ export class Bus {
     this.queryProcessor.register(
       GetUsernameByDomainQuery,
       new GetUsernameByDomainQueryHandler(),
+    );
+    this.queryProcessor.register(
+      GetWebsiteByUsernameQuery,
+      new GetWebsiteByUsernameQueryHandler(),
+    );
+    this.queryProcessor.register(
+      GetAllWebsiteUsernamesQuery,
+      new GetAllWebsiteUsernamesQueryHandler(),
     );
   }
 }

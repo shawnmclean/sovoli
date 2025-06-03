@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
 
-import { orgs } from "~/modules/websites/data";
 import { Footer } from "./components/Footer";
 import { TenantNavbar } from "./components/navbar/TenantNavbar";
+import { getWebsiteByUsername } from "./lib/getWebsiteByUsername";
 
-export function generateStaticParams() {
-  return orgs.map((org) => ({
-    username: org.slug,
-  }));
-}
+const retreiveWebsite = async (username: string) => {
+  const result = await getWebsiteByUsername(username);
+  if (!result) return notFound();
+  return result;
+};
 
 interface Props {
   children: React.ReactNode;
@@ -17,25 +17,23 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
   const { username } = await params;
-  const org = orgs.find((org) => org.slug === username);
-  if (!org) {
-    notFound();
-  }
+  const { website } = await retreiveWebsite(username);
+
   return {
     title: {
-      absolute: org.title,
-      template: `%s | ${org.name}`,
+      absolute: website.title,
+      template: `%s | ${website.siteName}`,
     },
-    description: org.description,
+    description: website.description,
     icons: {
       icon: "/favicon.ico",
     },
     openGraph: {
-      title: org.title,
-      description: org.description,
-      url: org.url,
-      siteName: org.name,
-      images: org.images,
+      title: website.title,
+      description: website.description,
+      url: website.url,
+      siteName: website.siteName,
+      images: website.images,
     },
   };
 }

@@ -1,8 +1,9 @@
-export interface OrgWebsite {
+export interface Website {
+  siteName: string;
   title: string;
   description: string;
   url: string; // Preferred canonical URL
-  domains: string[]; // e.g., ["ma.edu.gy"]
+  domain: string;
   images: {
     url: string;
     width: number;

@@ -1,8 +1,19 @@
 import { PageAssembler } from "~/modules/websites/components/PageAssembler";
+import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
+import { bus } from "~/services/core/bus";
 import { orgWebConfig } from "../data";
 import { NewsSection } from "./components/NewsSection";
 import { ProgramsSection } from "./components/ProgramsSection";
 import { TeamSection } from "./components/TeamSection";
+
+export async function generateStaticParams() {
+  const result = await bus.queryProcessor.execute(
+    new GetAllWebsiteUsernamesQuery(),
+  );
+  return result.usernames.map((username) => ({
+    username,
+  }));
+}
 
 export default async function WebsitePage({
   params,

@@ -1,22 +1,18 @@
 import { ORGS } from "./index";
 
-// Build a mapping: domain → username
 export const DOMAIN_TO_USERNAME = new Map<string, string>();
 
-const seen = new Set<string>();
-
 for (const entry of ORGS) {
-  const { username } = entry.org;
-  const { domains } = entry.website;
+  const username = entry.org.username;
+  const domains = entry.website?.domain ? [entry.website.domain] : [];
 
-  for (const domain of domains) {
-    const key = domain.toLowerCase();
+  for (const rawDomain of domains) {
+    const domain = rawDomain.toLowerCase();
 
-    if (seen.has(key)) {
-      throw new Error(`Duplicate domain detected: ${key}`);
+    if (DOMAIN_TO_USERNAME.has(domain)) {
+      throw new Error(`Domain conflict: "${domain}" is already assigned.`);
     }
 
-    DOMAIN_TO_USERNAME.set(key, username);
-    seen.add(key);
+    DOMAIN_TO_USERNAME.set(domain, username);
   }
 }
