@@ -1,4 +1,4 @@
-import { PageAssembler } from "~/modules/website/components/PageAssembler";
+import { PageAssembler } from "~/modules/websites/components/PageAssembler";
 import { orgWebConfig } from "../data";
 import { NewsSection } from "./components/NewsSection";
 import { ProgramsSection } from "./components/ProgramsSection";

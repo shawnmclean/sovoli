@@ -1,4 +1,4 @@
-import type { OrgContent, OrgWebConfig } from "~/modules/website/types";
+import type { OrgContent, OrgWebConfig } from "~/modules/websites/types";
 
 export const orgContent: OrgContent = {
   mission: {
@@ -83,8 +83,7 @@ export const orgWebConfig: OrgWebConfig = {
         layout: "condensed",
         variant: "image",
         title: "About Us",
-        subtitle:
-          "Guyana's Fastest Growing Private Institution",
+        subtitle: "Guyana's Fastest Growing Private Institution",
         backgroundImage:
           "https://img.heroui.chat/image/places?w=1920&h=600&u=2",
       },

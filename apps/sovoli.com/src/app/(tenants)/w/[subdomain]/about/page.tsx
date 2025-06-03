@@ -10,7 +10,7 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-import { PageAssembler } from "~/modules/website/components/PageAssembler";
+import { PageAssembler } from "~/modules/websites/components/PageAssembler";
 import { orgWebConfig } from "../../data";
 import { Timeline } from "./components/Timeline";
 

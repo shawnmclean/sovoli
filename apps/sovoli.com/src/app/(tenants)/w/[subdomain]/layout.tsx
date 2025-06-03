@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { orgs } from "~/modules/website/data";
+import { orgs } from "~/modules/websites/data";
 import { Footer } from "./components/Footer";
 import { TenantNavbar } from "./components/navbar/TenantNavbar";
 
