@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 import { bus } from "~/services/core/bus";
 import { config as webConfig } from "~/utils/config";
-import { GetWebsiteByCustomDomainQuery } from "./modules/website/services/queries/GetWebsiteByCustomDomainQuery";
+import { GetWebsiteByCustomDomainQuery } from "./modules/websites/services/queries/GetWebsiteByCustomDomainQuery";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

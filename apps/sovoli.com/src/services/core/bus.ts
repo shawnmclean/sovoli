@@ -1,7 +1,7 @@
 import {
   GetWebsiteByCustomDomainQuery,
   GetWebsiteByCustomDomainQueryHandler,
-} from "~/modules/website/services/queries/GetWebsiteByCustomDomainQuery";
+} from "~/modules/websites/services/queries/GetWebsiteByCustomDomainQuery";
 import {
   GetUserProfileByUsernameQuery,
   GetUserProfileByUsernameQueryHandler,
