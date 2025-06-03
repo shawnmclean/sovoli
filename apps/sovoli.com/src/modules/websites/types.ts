@@ -2,7 +2,7 @@ export interface OrgWebsite {
   title: string;
   description: string;
   url: string; // Preferred canonical URL
-  customDomains?: string[]; // e.g., ["ma.edu.gy"]
+  domains: string[]; // e.g., ["ma.edu.gy"]
   images: {
     url: string;
     width: number;

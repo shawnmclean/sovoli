@@ -1,7 +1,7 @@
 import {
-  GetWebsiteByCustomDomainQuery,
-  GetWebsiteByCustomDomainQueryHandler,
-} from "~/modules/websites/services/queries/GetWebsiteByCustomDomainQuery";
+  GetUsernameByDomainQuery,
+  GetUsernameByDomainQueryHandler,
+} from "~/modules/websites/services/queries/GetUsernameByDomainQuery";
 import {
   GetUserProfileByUsernameQuery,
   GetUserProfileByUsernameQueryHandler,
@@ -23,8 +23,8 @@ export class Bus {
       new GetUserProfileByUsernameQueryHandler(),
     );
     this.queryProcessor.register(
-      GetWebsiteByCustomDomainQuery,
-      new GetWebsiteByCustomDomainQueryHandler(),
+      GetUsernameByDomainQuery,
+      new GetUsernameByDomainQueryHandler(),
     );
   }
 }

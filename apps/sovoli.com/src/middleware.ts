@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 import { bus } from "~/services/core/bus";
 import { config as webConfig } from "~/utils/config";
-import { GetWebsiteByCustomDomainQuery } from "./modules/websites/services/queries/GetWebsiteByCustomDomainQuery";
+import { GetUsernameByDomainQuery } from "./modules/websites/services/queries/GetUsernameByDomainQuery";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -88,11 +88,11 @@ export async function resolveTenantFromHost(
     return hostname.replace(`.${rootDomain}`, "");
   }
 
-  const { orgMeta } = await bus.queryProcessor.execute(
-    new GetWebsiteByCustomDomainQuery(hostname),
+  const { username } = await bus.queryProcessor.execute(
+    new GetUsernameByDomainQuery(hostname),
   );
 
-  return orgMeta?.slug ?? null;
+  return username ?? null;
 }
 
 export const config = {
