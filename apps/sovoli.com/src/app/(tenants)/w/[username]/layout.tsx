@@ -2,10 +2,10 @@ import { notFound } from "next/navigation";
 
 import { Footer } from "./components/Footer";
 import { TenantNavbar } from "./components/navbar/TenantNavbar";
-import { getWebsiteByUsername } from "./lib/getWebsiteByUsername";
+import { getOrgInstanceByUsername } from "./lib/getOrgInstanceByUsername";
 
-const retreiveWebsite = async (username: string) => {
-  const result = await getWebsiteByUsername(username);
+const retreiveOrgInstance = async (username: string) => {
+  const result = await getOrgInstanceByUsername(username);
   if (!result) return notFound();
   return result;
 };
@@ -17,7 +17,9 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
   const { username } = await params;
-  const { website } = await retreiveWebsite(username);
+  const {
+    websiteModule: { website },
+  } = await retreiveOrgInstance(username);
 
   return {
     title: {
@@ -40,10 +42,10 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function Layout({ children, params }: Props) {
   const { username } = await params;
-  const { website, org } = await retreiveWebsite(username);
+  const orgInstance = await retreiveOrgInstance(username);
   return (
     <div className="flex min-h-screen flex-col">
-      <TenantNavbar website={website} org={org} />
+      <TenantNavbar orgInstance={orgInstance} />
       {children}
 
       <Footer />

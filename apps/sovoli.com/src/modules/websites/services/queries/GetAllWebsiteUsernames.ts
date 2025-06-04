@@ -15,7 +15,7 @@ export class GetAllWebsiteUsernamesQueryHandler
 {
   async handle(_: GetAllWebsiteUsernamesQuery): Promise<Result> {
     return await Promise.resolve({
-      usernames: ORGS.filter((entry) => entry.website).map(
+      usernames: ORGS.filter((entry) => entry.websiteModule).map(
         (entry) => entry.org.username,
       ),
     });

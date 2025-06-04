@@ -4,7 +4,9 @@ export const DOMAIN_TO_USERNAME = new Map<string, string>();
 
 for (const entry of ORGS) {
   const username = entry.org.username;
-  const domains = entry.website?.domain ? [entry.website.domain] : [];
+  const domains = entry.websiteModule?.website.domain
+    ? [entry.websiteModule.website.domain]
+    : [];
 
   for (const rawDomain of domains) {
     const domain = rawDomain.toLowerCase();

@@ -1,4 +1,8 @@
 import {
+  GetOrgInstanceByUsernameQuery,
+  GetOrgInstanceByUsernameQueryHandler,
+} from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import {
   GetAllWebsiteUsernamesQuery,
   GetAllWebsiteUsernamesQueryHandler,
 } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
@@ -6,10 +10,6 @@ import {
   GetUsernameByDomainQuery,
   GetUsernameByDomainQueryHandler,
 } from "~/modules/websites/services/queries/GetUsernameByDomainQuery";
-import {
-  GetWebsiteByUsernameQuery,
-  GetWebsiteByUsernameQueryHandler,
-} from "~/modules/websites/services/queries/GetWebsiteByUsername";
 import {
   GetUserProfileByUsernameQuery,
   GetUserProfileByUsernameQueryHandler,
@@ -34,13 +34,14 @@ export class Bus {
       GetUsernameByDomainQuery,
       new GetUsernameByDomainQueryHandler(),
     );
-    this.queryProcessor.register(
-      GetWebsiteByUsernameQuery,
-      new GetWebsiteByUsernameQueryHandler(),
-    );
+
     this.queryProcessor.register(
       GetAllWebsiteUsernamesQuery,
       new GetAllWebsiteUsernamesQueryHandler(),
+    );
+    this.queryProcessor.register(
+      GetOrgInstanceByUsernameQuery,
+      new GetOrgInstanceByUsernameQueryHandler(),
     );
   }
 }

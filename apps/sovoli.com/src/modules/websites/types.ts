@@ -1,3 +1,7 @@
+export interface WebsiteModule {
+  website: Website;
+}
+
 export interface Website {
   siteName: string;
   title: string;

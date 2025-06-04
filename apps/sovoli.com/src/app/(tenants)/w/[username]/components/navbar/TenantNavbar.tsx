@@ -24,8 +24,7 @@ import {
 import { ChevronDownIcon, UserIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
-import type { Org } from "~/modules/organisations/types";
-import type { Website } from "~/modules/websites/types";
+import type { OrgInstanceWithWebsite } from "../../lib/types";
 import { programsData } from "../../programsData";
 
 const navbarBaseStyles = tv({
@@ -69,11 +68,15 @@ const navItems = [
 ];
 
 export interface TenantNavbarProps {
-  website: Website;
-  org: Org;
+  orgInstance: OrgInstanceWithWebsite;
 }
 
-export function TenantNavbar({ website, org }: TenantNavbarProps) {
+export function TenantNavbar({
+  orgInstance: {
+    websiteModule: { website },
+    org,
+  },
+}: TenantNavbarProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

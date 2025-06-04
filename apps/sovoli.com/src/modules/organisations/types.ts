@@ -1,3 +1,7 @@
+import type { AcademicModule } from "../academics/types";
+import type { OfferingModule } from "../offerings/types";
+import type { WebsiteModule } from "../websites/types";
+
 // Core operational identity
 export interface Org {
   username: string; // e.g., "modern-academy"
@@ -19,4 +23,11 @@ export interface OrgLocation {
     phone?: string;
   };
   isPrimary?: boolean;
+}
+
+export interface OrgInstance {
+  org: Org;
+  websiteModule: WebsiteModule | null;
+  academicModule: AcademicModule | null;
+  offeringModule: OfferingModule | null;
 }
