@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
+import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
 import {
@@ -20,9 +21,11 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@sovoli/ui/components/navbar";
-import { AppleIcon, ChevronDownIcon, UserIcon } from "lucide-react";
+import { ChevronDownIcon, UserIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
+import type { Org } from "~/modules/organisations/types";
+import type { Website } from "~/modules/websites/types";
 import { programsData } from "../../programsData";
 
 const navbarBaseStyles = tv({
@@ -65,7 +68,12 @@ const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-export function TenantNavbar() {
+export interface TenantNavbarProps {
+  website: Website;
+  org: Org;
+}
+
+export function TenantNavbar({ website, org }: TenantNavbarProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -85,11 +93,10 @@ export function TenantNavbar() {
     >
       <NavbarBrand>
         <Link href="/">
-          <div className="rounded-full bg-default-foreground text-background">
-            <AppleIcon size={34} />
-          </div>
-          <span className="ml-2 text-small font-medium text-default-foreground">
-            Modern Academy
+          <Avatar src={org.logo} name={website.siteName} size="md" />
+
+          <span className="ml-2 hidden text-small font-medium text-default-foreground md:inline">
+            {website.siteName}
           </span>
         </Link>
       </NavbarBrand>

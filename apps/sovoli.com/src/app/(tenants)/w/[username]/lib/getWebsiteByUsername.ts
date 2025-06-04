@@ -17,7 +17,7 @@ const getCachedWebsiteByUsername = unstable_cache(
       new GetWebsiteByUsernameQuery(username),
     );
 
-    if (!website) return null;
+    if (!website || !org) return null;
 
     return {
       org,

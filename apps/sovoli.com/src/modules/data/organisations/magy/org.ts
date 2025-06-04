@@ -4,6 +4,7 @@ import { ORG_USERNAME } from "./constants";
 export const MODERN_ACADEMY_ORG: Org = {
   username: ORG_USERNAME,
   name: "Modern Academy",
+  logo: "/orgs/magy/logo.png",
   claimed: true,
   categories: ["private-school", "nursery-school"],
   locations: [

@@ -39,11 +39,11 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function Layout({ children, params }: Props) {
-  const { username: _ } = await params;
+  const { username } = await params;
+  const { website, org } = await retreiveWebsite(username);
   return (
     <div className="flex min-h-screen flex-col">
-      <TenantNavbar />
-
+      <TenantNavbar website={website} org={org} />
       {children}
 
       <Footer />
