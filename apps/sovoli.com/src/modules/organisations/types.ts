@@ -21,13 +21,7 @@ export interface Contact {
 
 // not supporting linkedin: https://github.com/simple-icons/simple-icons/issues/11236
 export interface SocialLink {
-  platform:
-    | "facebook"
-    | "instagram"
-    | "youtube"
-    | "twitter"
-    | "website"
-    | "other";
+  platform: "facebook" | "instagram" | "youtube" | "x" | "website" | "other";
   label?: string; // Optional UI label e.g. "Follow us on Facebook"
   url: string;
 }

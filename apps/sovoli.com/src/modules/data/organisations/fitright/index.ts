@@ -11,14 +11,22 @@ export const FITRIGHT_ORG_INSTANCE: OrgInstance = {
     categories: ["dressmaking", "alterations", "academic-programs"],
     locations: [
       {
-        key: "georgetown",
-        country: "guyana",
-        city: "georgetown",
-        address: "",
-        contacts: {
-          email: "info@fitrightacademy.com",
-          phone: "",
+        key: "main-location",
+        address: {
+          line1: "Lot 11, Public Road, Mon Repos",
+          city: "Georgetown",
+          country: "Guyana",
         },
+        contacts: [
+          {
+            type: "email",
+            value: "info@fitrightacademy.com",
+          },
+          {
+            type: "phone",
+            value: "+592-627-1915",
+          },
+        ],
         isPrimary: true,
       },
     ],

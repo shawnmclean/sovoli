@@ -2,7 +2,7 @@ import React from "react";
 import {
   SiFacebook,
   SiInstagram,
-  SiTwitter,
+  SiX,
   SiYoutube,
 } from "@icons-pack/react-simple-icons";
 import { Link } from "@sovoli/ui/components/link";
@@ -26,8 +26,8 @@ export const SocialLink = ({ socialLink }: SocialLinkProps) => {
     case "youtube":
       icon = <SiYoutube className="text-foreground-500 hover:text-primary" />;
       break;
-    case "twitter":
-      icon = <SiTwitter className="text-foreground-500 hover:text-primary" />;
+    case "x":
+      icon = <SiX className="text-foreground-500 hover:text-primary" />;
       break;
     case "website":
     case "other":
