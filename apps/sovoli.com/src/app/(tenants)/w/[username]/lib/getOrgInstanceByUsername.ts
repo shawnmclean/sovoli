@@ -26,7 +26,7 @@ const getCachedOrgInstanceByUsername = unstable_cache(
     }
     return orgInstance as OrgInstanceWithWebsite;
   },
-  ["org-instance-by-username"],
+  ["org-instance-by-username1"],
 );
 
 export const getOrgInstanceByUsername = cache(getCachedOrgInstanceByUsername);

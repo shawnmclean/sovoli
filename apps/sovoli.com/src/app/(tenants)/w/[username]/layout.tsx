@@ -48,7 +48,7 @@ export default async function Layout({ children, params }: Props) {
       <TenantNavbar orgInstance={orgInstance} />
       {children}
 
-      <Footer />
+      <Footer orgInstance={orgInstance} />
     </div>
   );
 }

@@ -13,15 +13,34 @@ export const MAGY_ORG_INSTANCE: OrgInstance = {
     categories: ["private-school", "nursery-school"],
     locations: [
       {
-        key: "georgetown",
-        country: "guyana",
-        city: "georgetown",
-        address: "123 Regent Street",
-        contacts: {
-          email: "info@ma.edu.gy",
-          phone: "+592-123-4567",
+        key: "main-campus",
+        address: {
+          line1: "Lot 11, Public Road, Mon Repos",
+          city: "Georgetown",
+          country: "Guyana",
         },
+        coordinates: {
+          lat: 6.807574377222727,
+          lng: -58.053166525904416,
+        },
+        contacts: [
+          {
+            type: "email",
+            value: "info@ma.edu.gy",
+          },
+          { type: "phone", value: "+592-627-1915" },
+        ],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/profile.php?id=100063128446623",
+      },
+      {
+        platform: "other",
+        url: "https://www.instagram.com/modernacademygy",
       },
     ],
   },
