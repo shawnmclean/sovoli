@@ -16,6 +16,7 @@ interface Org {
   };
   phone?: string | null;
   website?: string | null;
+  email?: string | null;
 }
 const ORGS: Org[] = [
   {
@@ -34,6 +35,162 @@ const ORGS: Org[] = [
     },
     phone: "+592 627-1915",
     website: "https://ma.edu.gy",
+    email: null,
+  },
+  {
+    id: "camilles-academy",
+    name: "Camille's Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "diamond",
+    },
+    phone: "+592-261-5027",
+    website: "https://www.camillesacademy.com",
+    email: "eibss2000@gmail.com",
+  },
+  {
+    id: "georgetown-international-academy-gia",
+    name: "Georgetown International Academy (GIA)",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-225-8347",
+    website: "https://giagy.com",
+    email: "admissions@giagy.org",
+  },
+  {
+    id: "marian-academy",
+    name: "Marian Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-226-9045",
+    website: "https://marianacademy.edu.gy",
+    email: "info@marianacademy.edu.gy",
+  },
+  {
+    id: "the-new-guyana-school",
+    name: "The New Guyana School",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-227-2733",
+    website: "https://www.newguyanaschool.com",
+    email: "info@newguyanaschool.com",
+  },
+  {
+    id: "chesed-academy",
+    name: "Chesed Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-650-7584",
+    website: "https://www.chesedacademy.edu.gy",
+    email: "chesedacademguyana@gmail.com",
+  },
+  {
+    id: "standard-christian-academy",
+    name: "Standard Christian Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-642-4913",
+    website: null,
+    email: null,
+  },
+  {
+    id: "met-pride-academy",
+    name: "M.E.T Pride Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-699-7239",
+    website: "https://metpride.com",
+    email: "info@metpride.com",
+  },
+  {
+    id: "ciog-meten-meer-zorg-islamic-academy",
+    name: "CIOG-Meten Meer Zorg Islamic Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+    },
+    phone: "+592-689-5420",
+    website: null,
+    email: null,
+  },
+  {
+    id: "gemsville-academy",
+    name: "Gemsville Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-231-7227",
+    website: "http://gemsville.academy",
+    email: null,
+  },
+  {
+    id: "lovable-friends-academy",
+    name: "Lovable Friends Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-663-0397",
+    website: null,
+    email: null,
+  },
+  {
+    id: "fluency-bilingual-academy",
+    name: "Fluency Bilingual Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-600-6651",
+    website: null,
+    email: null,
+  },
+  {
+    id: "hidden-treasures-academy",
+    name: "Hidden Treasures Academy",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-675-4379",
+    website: null,
+    email: null,
+  },
+  {
+    id: "caribbean-first-class-elementary",
+    name: "Caribbean First Class Elementary",
+    categories: ["private-school"],
+    location: {
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592-231-4164",
+    website: "https://cfces.net",
+    email: "cfc@cfces.net",
   },
   {
     id: "academic-training-centre",
