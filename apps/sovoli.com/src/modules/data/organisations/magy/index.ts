@@ -38,10 +38,6 @@ export const MAGY_ORG_INSTANCE: OrgInstance = {
         platform: "facebook",
         url: "https://www.facebook.com/profile.php?id=100063128446623",
       },
-      {
-        platform: "other",
-        url: "https://www.instagram.com/modernacademygy",
-      },
     ],
   },
   websiteModule: MODERN_ACADEMY_WEBSITE,

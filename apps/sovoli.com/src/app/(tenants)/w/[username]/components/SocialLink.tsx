@@ -35,7 +35,12 @@ export const SocialLink = ({ socialLink }: SocialLinkProps) => {
       icon = <EarthIcon className="text-foreground-500 hover:text-primary" />;
   }
   return (
-    <Link href={socialLink.url} aria-label={socialLink.label}>
+    <Link
+      href={socialLink.url}
+      aria-label={socialLink.label}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {icon}
     </Link>
   );
