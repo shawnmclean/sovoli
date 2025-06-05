@@ -15,7 +15,7 @@ export default [
     },
   },
   {
-    files: ['src/pages/**/*', 'src/app/**/{page,layout,not-found,robots,sitemap,opengraph-image}.tsx', 'src/middleware.ts', 'src/loaders/**/*'],
+    files: ['src/pages/**/*', 'src/app/**/{page,layout,not-found,robots,sitemap,icon,opengraph-image}.tsx', 'src/middleware.ts', 'src/loaders/**/*'],
     rules: {
       'import/no-default-export': 'off',
     },
