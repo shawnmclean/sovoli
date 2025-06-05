@@ -3,9 +3,14 @@ import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 
-import { programsData } from "../programsData";
+import type { OrgInstanceWithWebsite } from "../lib/types";
 
-export function ProgramsSection() {
+export function ProgramsSection({
+  orgInstance,
+}: {
+  orgInstance: OrgInstanceWithWebsite;
+}) {
+  const programs = orgInstance.academicModule?.programs ?? [];
   return (
     <section className="px-4 py-10">
       <div className="mx-auto max-w-7xl">
@@ -18,7 +23,7 @@ export function ProgramsSection() {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {programsData.slice(0, 4).map((program, index) => (
+          {programs.slice(0, 4).map((program, index) => (
             <Card key={index} className="border-none" shadow="sm">
               <CardBody className="p-0">
                 <Image
@@ -29,8 +34,15 @@ export function ProgramsSection() {
                   className="h-48 w-full object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="mb-2 text-xl font-semibold">{program.name}</h3>
-                  <p className="text-default-600">{program.description}</p>
+                  <h3
+                    className="mb-2 text-xl font-semibold line-clamp-2"
+                    title={program.title ?? program.name}
+                  >
+                    {program.title ?? program.name}
+                  </h3>
+                  <p className="text-default-600 line-clamp-3">
+                    {program.description}
+                  </p>
                   <Button
                     color="primary"
                     variant="flat"
@@ -54,7 +66,7 @@ export function ProgramsSection() {
             as={Link}
             href="/academics/programs"
           >
-            View All {programsData.length} Programs
+            View All {programs.length} Programs
           </Button>
         </div>
       </div>

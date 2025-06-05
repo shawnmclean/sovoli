@@ -1,6 +1,7 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
 import { FITRIGHT_ACADEMY_WEBSITE } from "./website";
+import { FITRIGHT_ACADEMIC } from "./academic";
 
 export const FITRIGHT_ORG_INSTANCE: OrgInstance = {
   org: {
@@ -32,6 +33,6 @@ export const FITRIGHT_ORG_INSTANCE: OrgInstance = {
     ],
   },
   websiteModule: FITRIGHT_ACADEMY_WEBSITE,
-  academicModule: null,
+  academicModule: FITRIGHT_ACADEMIC,
   offeringModule: null,
 };

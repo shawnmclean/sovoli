@@ -4,7 +4,8 @@ export const MODERN_ACADEMY_ACADEMIC: AcademicModule = {
   programs: [
     {
       id: 1,
-      name: "Pre-Nursery (Play School)",
+      name: "Pre-Nursery",
+      title: "Pre-Nursery (Play School)",
       slug: "pre-nursery",
       description: "Strong foundational learning in a nurturing environment",
       image: "/images/programs/pre-nursery.jpg",

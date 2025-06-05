@@ -31,7 +31,7 @@ export const FITRIGHT_ACADEMY_WEBSITE: WebsiteModule = {
         },
         {
           key: "offerings",
-          label: "Offerings",
+          label: "Services",
         },
         {
           key: "team",

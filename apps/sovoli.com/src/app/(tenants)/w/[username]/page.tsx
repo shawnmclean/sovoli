@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { PageAssembler } from "~/modules/websites/components/PageAssembler";
 import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
 import { bus } from "~/services/core/bus";
@@ -5,6 +6,14 @@ import { orgWebConfig } from "../data";
 import { NewsSection } from "./components/NewsSection";
 import { ProgramsSection } from "./components/ProgramsSection";
 import { TeamSection } from "./components/TeamSection";
+
+import { getOrgInstanceByUsername } from "./lib/getOrgInstanceByUsername";
+
+const retreiveOrgInstance = async (username: string) => {
+  const result = await getOrgInstanceByUsername(username);
+  if (!result) return notFound();
+  return result;
+};
 
 export async function generateStaticParams() {
   const result = await bus.queryProcessor.execute(
@@ -21,11 +30,13 @@ export default async function WebsitePage({
   params: Promise<{ username: string }>;
 }) {
   const { username } = await params;
+  const orgInstance = await retreiveOrgInstance(username);
+
   return (
     <div>
       <PageAssembler page={orgWebConfig.home} editable={false} />
 
-      <ProgramsSection />
+      <ProgramsSection orgInstance={orgInstance} />
       <TeamSection />
       <NewsSection />
       <div className="my-4 px-5 text-right text-default-200">

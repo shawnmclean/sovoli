@@ -1,6 +1,7 @@
 export interface Program {
   id: number;
   name: string;
+  title?: string;
   slug: string;
   description: string;
   image: string;
