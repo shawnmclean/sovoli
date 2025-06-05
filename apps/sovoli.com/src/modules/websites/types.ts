@@ -2,6 +2,39 @@ export interface WebsiteModule {
   website: Website;
 }
 
+// Navigation item for header
+export interface NavItem {
+  key:
+    | "home"
+    | "about"
+    | "academics"
+    | "offerings"
+    | "team"
+    | "contact"
+    | "gallery";
+  label: string;
+}
+
+// Navigation action (CTA) for header
+export interface NavAction {
+  key: "apply" | "contact" | "schedule";
+  label: string;
+}
+
+// Footer link
+export interface FooterLink {
+  label: string;
+  url: string;
+}
+
+// Footer section
+export interface FooterSection {
+  key: "social" | "academics" | "offerings" | "contact" | "other";
+  title?: string;
+  description?: string;
+  links?: FooterLink[];
+}
+
 export interface Website {
   siteName: string;
   title: string;
@@ -17,34 +50,13 @@ export interface Website {
   header?: {
     layout: "default" | "minimal";
     variant: "default" | "transparent";
-    nav: {
-      key:
-        | "home"
-        | "about"
-        | "academics"
-        | "offerings"
-        | "team"
-        | "contact"
-        | "gallery";
-      label: string;
-    }[];
-    actions?: {
-      key: "apply" | "contact" | "schedule";
-      label: string;
-    }[];
+    nav: NavItem[];
+    actions?: NavAction[];
   };
   footer?: {
     layout: "default" | "minimal";
     variant: "default" | "transparent";
-    sections: {
-      key: "social" | "academics" | "offerings" | "contact";
-      title: string;
-      description: string;
-      links?: {
-        label: string;
-        url: string;
-      }[];
-    }[];
+    sections: FooterSection[];
   };
 }
 

@@ -3,7 +3,15 @@ import { Link } from "@sovoli/ui/components/link";
 import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 import type { OrgInstanceWithWebsite } from "../lib/types";
+import type { FooterLink, FooterSection } from "~/modules/websites/types";
 import { SocialLink } from "./SocialLink";
+
+// Define a Program type (should match your academicModule programs)
+interface Program {
+  id: string;
+  name: string;
+  slug: string;
+}
 
 interface FooterProps {
   orgInstance: OrgInstanceWithWebsite;
@@ -15,73 +23,50 @@ export const Footer = ({ orgInstance }: FooterProps) => {
     academicModule,
   } = orgInstance;
 
-  const programs = academicModule?.programs;
+  const programs = academicModule?.programs as Program[] | undefined;
+  const footerConfig = website.footer;
+  const sections = footerConfig?.sections ?? [];
+
   return (
     <footer className="bg-content2 px-6 py-12">
       <div className="mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          <div>
-            <div className="mb-4 flex items-center">
-              <span className="text-lg font-bold">{website.siteName}</span>
-            </div>
-            <p className="mb-4 text-sm text-foreground-500">
-              Empowering students to reach their full potential through
-              innovative education.
-            </p>
-            <div className="flex gap-4">
-              {orgInstance.org.socialLinks?.map((socialLink) => (
-                <SocialLink socialLink={socialLink} key={socialLink.platform} />
-              ))}
-            </div>
-          </div>
-
-          {programs && (
-            <div>
-              <h3 className="mb-4 font-semibold">Programs</h3>
-              <ul className="space-y-2">
-                {programs.slice(0, 5).map((program) => (
-                  <li key={program.id}>
-                    <Link
-                      className="text-sm text-foreground-500 hover:text-primary"
-                      href={`/academics/programs/${program.slug}`}
-                    >
-                      {program.name}
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <Link
-                    className="text-sm text-foreground-500 hover:text-primary"
-                    href="/academics/programs"
-                  >
-                    More...
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          )}
-          <div>
-            <h3 className="mb-4 font-semibold">Resources</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  className="text-sm text-foreground-500 hover:text-primary"
-                  href="#"
-                >
-                  Account Portal
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-sm text-foreground-500 hover:text-primary"
-                  href="#"
-                >
-                  Academic Calendar
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <FooterContact orgInstance={orgInstance} />
+        <div
+          className={`grid grid-cols-1 gap-8 md:grid-cols-${Math.min(
+            sections.length,
+            4,
+          )}`}
+        >
+          {sections.map((section) => {
+            switch (section.key) {
+              case "social":
+                return (
+                  <FooterSocialSection
+                    orgInstance={orgInstance}
+                    section={section}
+                    key={section.key}
+                  />
+                );
+              case "academics":
+                return (
+                  <FooterAcademicsSection
+                    programs={programs}
+                    section={section}
+                    key={section.key}
+                  />
+                );
+              case "contact":
+                return (
+                  <FooterContactSection
+                    orgInstance={orgInstance}
+                    key={section.key}
+                  />
+                );
+              default:
+                return (
+                  <FooterLinksSection section={section} key={section.key} />
+                );
+            }
+          })}
         </div>
 
         <div className="mt-8 border-t border-divider pt-8 text-center text-sm text-foreground-500">
@@ -95,7 +80,86 @@ export const Footer = ({ orgInstance }: FooterProps) => {
   );
 };
 
-const FooterContact = ({ orgInstance }: FooterProps) => {
+const FooterSocialSection = ({
+  orgInstance,
+  section,
+}: {
+  orgInstance: OrgInstanceWithWebsite;
+  section: FooterSection;
+}) => (
+  <div>
+    <div className="mb-4 flex items-center">
+      <span className="text-lg font-bold">
+        {orgInstance.websiteModule.website.siteName}
+      </span>
+    </div>
+    <p className="mb-4 text-sm text-foreground-500">{section.description}</p>
+    <div className="flex gap-4">
+      {orgInstance.org.socialLinks?.map((socialLink) => (
+        <SocialLink socialLink={socialLink} key={socialLink.platform} />
+      ))}
+    </div>
+  </div>
+);
+
+const FooterAcademicsSection = ({
+  programs,
+  section,
+}: {
+  programs?: Program[];
+  section: FooterSection;
+}) => {
+  return (
+    <div>
+      <h3 className="mb-4 font-semibold">{section.title}</h3>
+      <ul className="space-y-2">
+        {programs?.slice(0, 5).map((program) => (
+          <li key={program.id}>
+            <Link
+              className="text-sm text-foreground-500 hover:text-primary"
+              href={`/academics/programs/${program.slug}`}
+            >
+              {program.name}
+            </Link>
+          </li>
+        ))}
+        <li>
+          <Link
+            className="text-sm text-foreground-500 hover:text-primary"
+            href="/academics/programs"
+          >
+            More...
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+const FooterLinksSection = ({ section }: { section: FooterSection }) => (
+  <div>
+    <h3 className="mb-4 font-semibold">{section.title}</h3>
+    {section.description && (
+      <p className="mb-4 text-sm text-foreground-500">{section.description}</p>
+    )}
+    {section.links && (
+      <ul className="space-y-2">
+        {section.links.map((link: FooterLink) => (
+          <li key={link.label}>
+            <Link
+              className="text-sm text-foreground-500 hover:text-primary"
+              href={link.url}
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+);
+
+const FooterContactSection = ({ orgInstance }: FooterProps) => {
   const {
     org: { locations },
   } = orgInstance;

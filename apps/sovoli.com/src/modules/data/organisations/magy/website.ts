@@ -53,5 +53,39 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
         },
       ],
     },
+    footer: {
+      layout: "default",
+      variant: "default",
+      sections: [
+        {
+          key: "social",
+          title: "Modern Academy",
+          description:
+            "Empowering students to reach their full potential through innovative education.",
+        },
+        {
+          key: "academics",
+          title: "Programs",
+        },
+        {
+          key: "other",
+          title: "Resources",
+          links: [
+            {
+              label: "Account Portal",
+              url: "#",
+            },
+            {
+              label: "Academic Calendar",
+              url: "#",
+            },
+          ],
+        },
+        {
+          key: "contact",
+          title: "Contact",
+        },
+      ],
+    },
   },
 };

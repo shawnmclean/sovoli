@@ -49,5 +49,29 @@ export const FITRIGHT_ACADEMY_WEBSITE: WebsiteModule = {
         },
       ],
     },
+    footer: {
+      layout: "default",
+      variant: "default",
+      sections: [
+        {
+          key: "social",
+          title: "Fit Right Academy",
+          description:
+            "Empowering students to reach their full potential through innovative education.",
+        },
+        {
+          key: "academics",
+          title: "Programs",
+        },
+        {
+          key: "offerings",
+          title: "Offerings",
+        },
+        {
+          key: "contact",
+          title: "Contact",
+        },
+      ],
+    },
   },
 };
