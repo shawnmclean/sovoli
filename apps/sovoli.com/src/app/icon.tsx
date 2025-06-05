@@ -8,6 +8,6 @@ export const size = {
 };
 export const contentType = "image/png";
 
-export function Icon() {
+export default function Icon() {
   return new ImageResponse(<LogoSVG width={32} height={32} />, { ...size });
 }
