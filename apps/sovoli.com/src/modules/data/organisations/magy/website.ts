@@ -17,5 +17,41 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
         alt: "School front",
       },
     ],
+    header: {
+      layout: "default",
+      variant: "default",
+      nav: [
+        {
+          key: "home",
+          label: "Home",
+        },
+        {
+          key: "about",
+          label: "About",
+        },
+        {
+          key: "academics",
+          label: "Programs",
+        },
+        {
+          key: "team",
+          label: "Team",
+        },
+        {
+          key: "gallery",
+          label: "Gallery",
+        },
+        {
+          key: "contact",
+          label: "Contact",
+        },
+      ],
+      actions: [
+        {
+          key: "apply",
+          label: "Apply Now",
+        },
+      ],
+    },
   },
 };

@@ -14,6 +14,38 @@ export interface Website {
     height: number;
     alt: string;
   }[];
+  header?: {
+    layout: "default" | "minimal";
+    variant: "default" | "transparent";
+    nav: {
+      key:
+        | "home"
+        | "about"
+        | "academics"
+        | "offerings"
+        | "team"
+        | "contact"
+        | "gallery";
+      label: string;
+    }[];
+    actions?: {
+      key: "apply" | "contact" | "schedule";
+      label: string;
+    }[];
+  };
+  footer?: {
+    layout: "default" | "minimal";
+    variant: "default" | "transparent";
+    sections: {
+      key: "social" | "academics" | "offerings" | "contact";
+      title: string;
+      description: string;
+      links?: {
+        label: string;
+        url: string;
+      }[];
+    }[];
+  };
 }
 
 // -------

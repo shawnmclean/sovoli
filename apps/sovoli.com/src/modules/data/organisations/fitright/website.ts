@@ -17,5 +17,37 @@ export const FITRIGHT_ACADEMY_WEBSITE: WebsiteModule = {
         alt: "Fit Right Academy front or logo",
       },
     ],
+    header: {
+      layout: "default",
+      variant: "default",
+      nav: [
+        {
+          key: "home",
+          label: "Home",
+        },
+        {
+          key: "academics",
+          label: "Academics",
+        },
+        {
+          key: "offerings",
+          label: "Offerings",
+        },
+        {
+          key: "team",
+          label: "Team",
+        },
+        {
+          key: "contact",
+          label: "Contact",
+        },
+      ],
+      actions: [
+        {
+          key: "apply",
+          label: "Apply Now",
+        },
+      ],
+    },
   },
 };

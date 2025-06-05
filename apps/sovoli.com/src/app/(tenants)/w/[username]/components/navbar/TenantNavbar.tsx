@@ -51,37 +51,85 @@ export function TenantNavbar({
 }: TenantNavbarProps) {
   const programs = academicModule?.programs;
 
-  // Build navItems using programs from props
-  const navItems = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    ...(programs
-      ? [
-          {
-            label: "Programs",
+  const navConfig = website.header?.nav ?? [];
+  const actionsConfig = website.header?.actions ?? [];
+
+  // Map nav keys to hrefs and handle dropdowns
+  const navItems = navConfig
+    .map((item) => {
+      switch (item.key) {
+        case "home":
+          return { label: item.label, href: "/" };
+        case "about":
+          return { label: item.label, href: "/about" };
+        case "academics":
+          return programs?.length
+            ? {
+                label: item.label,
+                dropdown: [
+                  ...programs.slice(0, 5).map((program) => ({
+                    label: program.name,
+                    href: `/academics/programs/${program.slug}`,
+                  })),
+                  { label: "All Programs...", href: "/academics/programs" },
+                ],
+              }
+            : { label: item.label, href: "/academics/programs" };
+        case "team":
+          return {
+            label: item.label,
             dropdown: [
-              ...programs.slice(0, 5).map((program) => ({
-                label: program.name,
-                href: `/academics/programs/${program.slug}`,
-              })),
-              { label: "All Programs...", href: "/academics/programs" },
+              { label: "Our Team", href: "/team" },
+              { label: "Open Positions", href: "/team/positions" },
             ],
-          },
-        ]
-      : []),
-    {
-      label: "Team",
-      dropdown: [
-        { label: "Our Team", href: "/team" },
-        { label: "Open Positions", href: "/team/positions" },
-      ],
-    },
-    {
-      label: "Gallery",
-      href: "/gallery",
-    },
-    { label: "Contact", href: "/contact" },
-  ];
+          };
+        case "offerings":
+          return { label: item.label, href: "/services" };
+        case "gallery":
+          return { label: item.label, href: "/gallery" };
+        case "contact":
+          return { label: item.label, href: "/contact" };
+        default:
+          return { label: item.label, href: "#" };
+      }
+    })
+    .filter(Boolean);
+
+  // Map actions keys to hrefs
+  const actionButtons = actionsConfig
+    .map((action) => {
+      switch (action.key) {
+        case "apply":
+          return {
+            ...action,
+            href: "/programs/apply",
+            color: "secondary",
+            variant: "flat",
+          };
+        case "contact":
+          return {
+            ...action,
+            href: "/contact",
+            color: "primary",
+            variant: "flat",
+          };
+        case "schedule":
+          return {
+            ...action,
+            href: "/schedule",
+            color: "primary",
+            variant: "flat",
+          };
+        default:
+          return {
+            ...action,
+            href: "#",
+            color: "primary",
+            variant: "flat",
+          };
+      }
+    })
+    .filter(Boolean);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -143,15 +191,37 @@ export function TenantNavbar({
 
       <NavbarContent className="hidden md:flex" justify="end">
         <NavbarItem className="ml-2 !flex gap-2">
-          <Button
-            className="bg-default-foreground font-medium text-background"
-            color="secondary"
-            variant="flat"
-            as={Link}
-            href="programs/apply"
-          >
-            Apply Now
-          </Button>
+          {actionButtons.map((btn) => (
+            <Button
+              key={btn.key}
+              className="bg-default-foreground font-medium text-background"
+              color={
+                btn.color as
+                  | "default"
+                  | "secondary"
+                  | "primary"
+                  | "success"
+                  | "warning"
+                  | "danger"
+                  | undefined
+              }
+              variant={
+                btn.variant as
+                  | "flat"
+                  | "shadow"
+                  | "solid"
+                  | "bordered"
+                  | "light"
+                  | "faded"
+                  | "ghost"
+                  | undefined
+              }
+              as={Link}
+              href={btn.href}
+            >
+              {btn.label}
+            </Button>
+          ))}
           {isLoggedIn ? (
             <Dropdown>
               <NavbarItem>
