@@ -3,7 +3,6 @@ import { Link } from "@sovoli/ui/components/link";
 import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 import type { OrgInstanceWithWebsite } from "../lib/types";
-import { programsData } from "../programsData";
 import { SocialLink } from "./SocialLink";
 
 interface FooterProps {
