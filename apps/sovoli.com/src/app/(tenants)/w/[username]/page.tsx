@@ -34,14 +34,18 @@ export default async function WebsitePage({
 
   return (
     <div>
-      <PageAssembler page={orgWebConfig.home} editable={false} />
+      {orgInstance.org.username === "fitright" && (
+        <ProgramsSection orgInstance={orgInstance} />
+      )}
+      {orgInstance.org.username === "magy" && (
+        <>
+          <PageAssembler page={orgWebConfig.home} editable={false} />
 
-      <ProgramsSection orgInstance={orgInstance} />
-      <TeamSection />
-      <NewsSection />
-      <div className="my-4 px-5 text-right text-default-200">
-        Username: {username}
-      </div>
+          <ProgramsSection orgInstance={orgInstance} />
+          <TeamSection />
+          <NewsSection />
+        </>
+      )}
     </div>
   );
 }

@@ -14,7 +14,7 @@ export const FITRIGHT_ORG_INSTANCE: OrgInstance = {
       {
         key: "main-location",
         address: {
-          line1: "Lot 11, Public Road, Mon Repos",
+          line1: "Charlotte Street",
           city: "Georgetown",
           country: "Guyana",
         },
@@ -25,7 +25,7 @@ export const FITRIGHT_ORG_INSTANCE: OrgInstance = {
           },
           {
             type: "phone",
-            value: "+592-627-1915",
+            value: "+1 (386) 279-8247",
           },
         ],
         isPrimary: true,
