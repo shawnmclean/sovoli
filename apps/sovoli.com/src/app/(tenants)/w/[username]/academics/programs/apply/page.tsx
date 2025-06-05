@@ -3,8 +3,8 @@ import { Divider } from "@sovoli/ui/components/divider";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { CheckCircleIcon, InfoIcon } from "lucide-react";
 
-import type { Requirement } from "../../programsData";
-import { programsData } from "../../programsData";
+import type { Requirement } from "../../../programsData";
+import { programsData } from "../../../programsData";
 import { ApplyCard } from "./components/ApplyCard";
 
 export default function ProgramsApplyPage() {

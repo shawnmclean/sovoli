@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { programsData } from "../../programsData";
+import { programsData } from "../../../programsData";
 import { displayAgeRange } from "../utils";
 
 export function generateStaticParams() {

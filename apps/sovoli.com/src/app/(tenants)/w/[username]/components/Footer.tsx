@@ -13,8 +13,10 @@ interface FooterProps {
 export const Footer = ({ orgInstance }: FooterProps) => {
   const {
     websiteModule: { website },
+    academicModule,
   } = orgInstance;
 
+  const programs = academicModule?.programs;
   return (
     <footer className="bg-content2 px-6 py-12">
       <div className="mx-auto max-w-6xl">
@@ -34,30 +36,31 @@ export const Footer = ({ orgInstance }: FooterProps) => {
             </div>
           </div>
 
-          <div>
-            <h3 className="mb-4 font-semibold">Programs</h3>
-            <ul className="space-y-2">
-              {programsData.slice(0, 5).map((program) => (
-                <li key={program.id}>
+          {programs && (
+            <div>
+              <h3 className="mb-4 font-semibold">Programs</h3>
+              <ul className="space-y-2">
+                {programs.slice(0, 5).map((program) => (
+                  <li key={program.id}>
+                    <Link
+                      className="text-sm text-foreground-500 hover:text-primary"
+                      href={`/academics/programs/${program.slug}`}
+                    >
+                      {program.name}
+                    </Link>
+                  </li>
+                ))}
+                <li>
                   <Link
                     className="text-sm text-foreground-500 hover:text-primary"
-                    href={`/academics/programs/${program.slug}`}
+                    href="/academics/programs"
                   >
-                    {program.name}
+                    More...
                   </Link>
                 </li>
-              ))}
-              <li>
-                <Link
-                  className="text-sm text-foreground-500 hover:text-primary"
-                  href="/academics/programs"
-                >
-                  More...
-                </Link>
-              </li>
-            </ul>
-          </div>
-
+              </ul>
+            </div>
+          )}
           <div>
             <h3 className="mb-4 font-semibold">Resources</h3>
             <ul className="space-y-2">

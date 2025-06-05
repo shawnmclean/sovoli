@@ -25,7 +25,6 @@ import { ChevronDownIcon, UserIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
 import type { OrgInstanceWithWebsite } from "../../lib/types";
-import { programsData } from "../../programsData";
 
 const navbarBaseStyles = tv({
   base: "border-default-100 bg-transparent",
@@ -39,34 +38,6 @@ const navbarBaseStyles = tv({
   },
 });
 
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  {
-    label: "Programs",
-
-    dropdown: [
-      ...programsData.slice(0, 5).map((program) => ({
-        label: program.name,
-        href: `/programs/${program.slug}`,
-      })),
-      { label: "All Programs...", href: "/programs" },
-    ],
-  },
-  {
-    label: "Team",
-    dropdown: [
-      { label: "Our Team", href: "/team" },
-      { label: "Open Positions", href: "/team/positions" },
-    ],
-  },
-  {
-    label: "Gallery",
-    href: "/gallery",
-  },
-  { label: "Contact", href: "/contact" },
-];
-
 export interface TenantNavbarProps {
   orgInstance: OrgInstanceWithWebsite;
 }
@@ -75,8 +46,43 @@ export function TenantNavbar({
   orgInstance: {
     websiteModule: { website },
     org,
+    academicModule,
   },
 }: TenantNavbarProps) {
+  const programs = academicModule?.programs;
+
+  // Build navItems using programs from props
+  const navItems = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    ...(programs
+      ? [
+          {
+            label: "Programs",
+            dropdown: [
+              ...programs.slice(0, 5).map((program) => ({
+                label: program.name,
+                href: `/academics/programs/${program.slug}`,
+              })),
+              { label: "All Programs...", href: "/academics/programs" },
+            ],
+          },
+        ]
+      : []),
+    {
+      label: "Team",
+      dropdown: [
+        { label: "Our Team", href: "/team" },
+        { label: "Open Positions", href: "/team/positions" },
+      ],
+    },
+    {
+      label: "Gallery",
+      href: "/gallery",
+    },
+    { label: "Contact", href: "/contact" },
+  ];
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

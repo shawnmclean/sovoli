@@ -37,7 +37,7 @@ export function ProgramsSection() {
                     radius="sm"
                     className="mt-4"
                     as={Link}
-                    href={`/programs/${program.slug}`}
+                    href={`/academics/programs/${program.slug}`}
                   >
                     Learn More
                   </Button>
@@ -52,7 +52,7 @@ export function ProgramsSection() {
             variant="bordered"
             radius="sm"
             as={Link}
-            href="/programs"
+            href="/academics/programs"
           >
             View All {programsData.length} Programs
           </Button>

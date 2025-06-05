@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 
-import { programsData } from "../programsData";
+import { programsData } from "../../programsData";
 import { displayAgeRange } from "./utils";
 
 export default function ProgramsPage() {
