@@ -225,14 +225,6 @@ const ORGS: Org[] = [
     website: null,
   },
   {
-    id: "camilles-academy",
-    name: "Camille's Academy",
-    categories: ["private-school"],
-    location: { country: "guyana", city: "diamond" },
-    phone: "+592-261-5027",
-    website: "https://www.camillesacademy.com",
-  },
-  {
     id: "canadian-school-of-arts-and-science",
     name: "Canadian School of Arts & Science",
     categories: ["private-school"],
@@ -279,14 +271,6 @@ const ORGS: Org[] = [
     location: { country: "guyana" },
     phone: null,
     website: null,
-  },
-  {
-    id: "georgetown-international-academy-gia",
-    name: "Georgetown International Academy (GIA)",
-    categories: ["private-school"],
-    location: { country: "guyana", city: "georgetown" },
-    phone: "+592-225-8347",
-    website: "https://giagy.com",
   },
   {
     id: "georgetown-international-learning-centre---playgroup-and-nursery",
@@ -377,14 +361,6 @@ const ORGS: Org[] = [
     website: null,
   },
   {
-    id: "marian-academy",
-    name: "Marian Academy",
-    categories: ["private-school"],
-    location: { country: "guyana", city: "georgetown" },
-    phone: "+592-226-9045",
-    website: "https://marianacademy.edu.gy",
-  },
-  {
     id: "monar-educational-institute",
     name: "Monar Educational Institute",
     categories: ["private-school"],
@@ -433,14 +409,6 @@ const ORGS: Org[] = [
     website: "https://school.nations.gy",
   },
   {
-    id: "standard-christian-academy",
-    name: "Standard Christian Academy",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
     id: "success-elementary-school",
     name: "Success Elementary School",
     categories: ["private-school"],
@@ -463,14 +431,6 @@ const ORGS: Org[] = [
     location: { country: "guyana" },
     phone: null,
     website: null,
-  },
-  {
-    id: "the-new-guyana-school",
-    name: "The New Guyana School",
-    categories: ["private-school"],
-    location: { country: "guyana", city: "georgetown" },
-    phone: "+592-227-2733",
-    website: "https://www.newguyanaschool.com",
   },
   {
     id: "valmiki-vidyalaya",
