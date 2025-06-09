@@ -27,9 +27,6 @@ export async function generateMetadata({ params }: Props) {
       template: `%s | ${website.siteName}`,
     },
     description: website.description,
-    icons: {
-      icon: "/favicon.ico",
-    },
     openGraph: {
       title: website.title,
       description: website.description,
