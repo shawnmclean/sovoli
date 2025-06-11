@@ -104,6 +104,8 @@ export const config = {
      * 3. /examples (inside /public)
      * 4. all root files inside /public (e.g. /favicon.ico)
      */
+    "/sitemap.xml",
+    "/robots.txt",
     "/((?!api|_next|examples|[\\w-]+\\.\\w+).*)",
   ],
 };
