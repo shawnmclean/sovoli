@@ -1,6 +1,7 @@
 import type { AcademicModule } from "../academics/types";
 import type { OfferingModule } from "../offerings/types";
 import type { WebsiteModule } from "../websites/types";
+import { WorkforceModule } from "../workforce/types";
 
 // Core operational identity
 export interface Org {
@@ -53,4 +54,5 @@ export interface OrgInstance {
   websiteModule: WebsiteModule | null;
   academicModule: AcademicModule | null;
   offeringModule: OfferingModule | null;
+  workforceModule: WorkforceModule | null;
 }

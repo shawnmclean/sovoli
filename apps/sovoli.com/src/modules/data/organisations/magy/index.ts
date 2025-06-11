@@ -2,6 +2,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { MODERN_ACADEMY_ACADEMIC } from "./academic";
 import { ORG_USERNAME } from "./constants";
 import { MODERN_ACADEMY_OFFERINGS } from "./offering";
+import { MODERN_ACADEMY_WORKFORCE } from "./workforce";
 import { MODERN_ACADEMY_WEBSITE } from "./website";
 
 export const MAGY_ORG_INSTANCE: OrgInstance = {
@@ -43,4 +44,5 @@ export const MAGY_ORG_INSTANCE: OrgInstance = {
   websiteModule: MODERN_ACADEMY_WEBSITE,
   academicModule: MODERN_ACADEMY_ACADEMIC,
   offeringModule: MODERN_ACADEMY_OFFERINGS,
+  workforceModule: MODERN_ACADEMY_WORKFORCE,
 };

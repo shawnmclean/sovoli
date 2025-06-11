@@ -35,4 +35,5 @@ export const FITRIGHT_ORG_INSTANCE: OrgInstance = {
   websiteModule: FITRIGHT_ACADEMY_WEBSITE,
   academicModule: FITRIGHT_ACADEMIC,
   offeringModule: null,
+  workforceModule: null,
 };
