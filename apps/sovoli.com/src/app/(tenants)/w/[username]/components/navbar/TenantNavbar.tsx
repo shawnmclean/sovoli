@@ -75,12 +75,12 @@ export function TenantNavbar({
                 ],
               }
             : { label: item.label, href: "/academics/programs" };
-        case "team":
+        case "workforce":
           return {
             label: item.label,
             dropdown: [
-              { label: "Our Team", href: "/team" },
-              { label: "Open Positions", href: "/team/positions" },
+              { label: "Our Team", href: "/workforce/people" },
+              { label: "Open Positions", href: "/workforce/positions" },
             ],
           };
         case "offerings":
@@ -102,7 +102,7 @@ export function TenantNavbar({
         case "apply":
           return {
             ...action,
-            href: "/programs/apply",
+            href: "/academics/apply",
             color: "secondary",
             variant: "flat",
           };
@@ -279,7 +279,7 @@ export function TenantNavbar({
             fullWidth
             as={Link}
             className="bg-foreground text-background"
-            href="/programs/apply"
+            href="/academics/apply"
             onPress={handleCloseMenu}
           >
             Apply Now

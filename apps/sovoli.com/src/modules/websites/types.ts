@@ -9,7 +9,7 @@ export interface NavItem {
     | "about"
     | "academics"
     | "offerings"
-    | "team"
+    | "workforce"
     | "contact"
     | "gallery";
   label: string;

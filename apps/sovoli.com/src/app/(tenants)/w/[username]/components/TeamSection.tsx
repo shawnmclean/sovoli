@@ -74,7 +74,7 @@ export function TeamSection() {
             {[...membersData, ...membersData, ...membersData].map(
               (member, index) => (
                 <Link
-                  href={`/academics/team/${member.id}`}
+                  href={`/workforce/people/${member.id}`}
                   key={index}
                   className="group flex w-[160px] flex-col items-center"
                 >
@@ -104,7 +104,7 @@ export function TeamSection() {
             variant="bordered"
             radius="sm"
             as={Link}
-            href="/team"
+            href="/workforce/people"
           >
             View All Team Members
           </Button>

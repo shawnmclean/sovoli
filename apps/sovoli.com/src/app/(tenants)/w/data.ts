@@ -57,8 +57,8 @@ export const orgWebConfig: OrgWebConfig = {
           "Join a community dedicated to academic excellence and personal growth",
         backgroundImage: "/images/hero.jpg",
         actions: [
-          { label: "Apply Now", href: "/programs/apply" },
-          { label: "Schedule a Visit", href: "/programs/apply" },
+          { label: "Apply Now", href: "/academics/apply" },
+          { label: "Schedule a Visit", href: "/academics/apply" },
         ],
       },
       {

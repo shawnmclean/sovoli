@@ -34,7 +34,7 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
           label: "Programs",
         },
         {
-          key: "team",
+          key: "workforce",
           label: "Team",
         },
         {
