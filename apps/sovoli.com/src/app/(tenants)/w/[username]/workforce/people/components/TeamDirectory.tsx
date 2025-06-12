@@ -52,7 +52,7 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
           <Link
             href={`/workforce/people/${member.slug}`}
             color="foreground"
-            underline="hover"
+            underline="always"
           >
             <h3 className="text-xl font-semibold">{member.name}</h3>
           </Link>
