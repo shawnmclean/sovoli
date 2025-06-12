@@ -8,7 +8,10 @@ import { Input } from "@sovoli/ui/components/input";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 
 import type { OrgInstance } from "~/modules/organisations/types";
-import type { WorkforceMember } from "~/modules/workforce/types";
+import type {
+  OrgRoleAssignment,
+  WorkforceMember,
+} from "~/modules/workforce/types";
 import { Link } from "@sovoli/ui/components/link";
 import { MailIcon, PhoneIcon } from "lucide-react";
 
@@ -24,10 +27,17 @@ function getContact(
   );
 }
 
+function getPrimaryRole(
+  member: WorkforceMember,
+): OrgRoleAssignment | undefined {
+  return (
+    member.roleAssignments.find((r) => r.isPrimary) ?? member.roleAssignments[0] // fallback to first
+  );
+}
+
 function FacultyCard({ member }: { member: WorkforceMember }) {
-  const positionNames = member.roleAssignments
-    .map((r) => r.position.name)
-    .filter((v, i, a) => a.indexOf(v) === i);
+  const primaryRole = getPrimaryRole(member);
+  const displayTitle = primaryRole?.titleOverride ?? primaryRole?.position.name;
 
   return (
     <Card className="overflow-visible">
@@ -46,9 +56,9 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
           >
             <h3 className="text-xl font-semibold">{member.name}</h3>
           </Link>
-          <p className="text-small text-default-500">
-            {positionNames.join(", ")}
-          </p>
+          {displayTitle && (
+            <p className="text-small text-default-500">{displayTitle}</p>
+          )}
         </div>
       </CardHeader>
       <Divider />

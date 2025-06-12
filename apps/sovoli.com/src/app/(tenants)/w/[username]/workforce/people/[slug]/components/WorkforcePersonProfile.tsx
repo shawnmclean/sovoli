@@ -5,7 +5,11 @@ import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import type { WorkforceMember } from "~/modules/workforce/types";
+import type {
+  WorkforceMember,
+  OrgRoleAssignment,
+} from "~/modules/workforce/types";
+import { SubjectAssignments } from "./SubjectAssignments";
 
 interface WorkforcePersonProfileProps {
   member: WorkforceMember;
@@ -17,19 +21,27 @@ function getPublicContact(member: WorkforceMember, type: "email" | "phone") {
   );
 }
 
+function getPrimaryRole(
+  member: WorkforceMember,
+): OrgRoleAssignment | undefined {
+  return (
+    member.roleAssignments.find((r) => r.isPrimary) ?? member.roleAssignments[0]
+  );
+}
+
 export function WorkforcePersonProfile({
   member,
 }: WorkforcePersonProfileProps) {
   const roles = member.roleAssignments;
+  const email = getPublicContact(member, "email");
+  const phone = getPublicContact(member, "phone");
 
-  const positionNames = Array.from(new Set(roles.map((r) => r.position.name)));
+  const primaryRole = getPrimaryRole(member);
+  const displayTitle = primaryRole?.titleOverride ?? primaryRole?.position.name;
 
   const departmentNames = Array.from(
     new Set(roles.map((r) => r.department?.name).filter(Boolean)),
   );
-
-  const email = getPublicContact(member, "email");
-  const phone = getPublicContact(member, "phone");
 
   return (
     <div className="container mx-auto max-w-4xl px-6 py-10">
@@ -54,10 +66,8 @@ export function WorkforcePersonProfile({
           />
           <div>
             <h1 className="text-3xl font-bold tracking-tight">{member.name}</h1>
-            {positionNames.length > 0 && (
-              <p className="text-large text-default-500">
-                {positionNames.join(", ")}
-              </p>
+            {displayTitle && (
+              <p className="text-large text-default-500">{displayTitle}</p>
             )}
             {departmentNames.length > 0 && (
               <p className="text-small text-default-400">
@@ -69,9 +79,9 @@ export function WorkforcePersonProfile({
 
         <Divider />
 
-        <CardBody className="flex flex-col gap-4">
-          <div className="space-y-4">
-            {(email || phone) && (
+        <CardBody className="flex flex-col gap-6">
+          {(email || phone) && (
+            <>
               <div className="grid gap-4 sm:grid-cols-2">
                 {email && (
                   <div>
@@ -100,17 +110,34 @@ export function WorkforcePersonProfile({
                   </div>
                 )}
               </div>
-            )}
-          </div>
+              <Divider />
+            </>
+          )}
 
           {member.bio && (
             <>
-              <Divider />
               <div>
                 <p className="text-default-600">{member.bio}</p>
               </div>
             </>
           )}
+
+          {member.quote && (
+            <>
+              <Divider />
+              <div className="italic text-default-500">"{member.quote}"</div>
+            </>
+          )}
+
+          {member.subjectAssignments &&
+            member.subjectAssignments.length > 0 && (
+              <div>
+                <h3 className="text-medium font-semibold text-default-700 mb-4">
+                  Subjects & Grades Taught
+                </h3>
+                <SubjectAssignments assignments={member.subjectAssignments} />
+              </div>
+            )}
         </CardBody>
       </Card>
     </div>

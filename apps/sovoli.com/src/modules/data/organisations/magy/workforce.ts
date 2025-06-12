@@ -143,12 +143,11 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
       "/images/profile/jessica.jpeg",
       "Jessica nurtures young learners through creative play, phonics, and foundational skills.",
       [
-        { subject: "Phonics", grades: ["Nursery Year 2"] },
-        { subject: "Grammar", grades: ["Nursery Year 2"] },
-        { subject: "Numeracy", grades: ["Nursery Year 2"] },
-        { subject: "Art", grades: ["Nursery Year 2"] },
+        { subject: "Math", grades: ["Nursery Year 2"] },
+        { subject: "English", grades: ["Nursery Year 2"] },
         { subject: "Science", grades: ["Nursery Year 2"] },
         { subject: "Social Studies", grades: ["Nursery Year 2"] },
+        { subject: "Art", grades: ["Nursery Year 2"] },
       ],
     ),
     member(
