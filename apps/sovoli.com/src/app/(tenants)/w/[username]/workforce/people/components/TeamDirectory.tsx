@@ -59,16 +59,10 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
           {displayTitle && (
             <p className="text-small text-default-500">{displayTitle}</p>
           )}
-        </div>
-      </CardHeader>
-      <Divider />
-      <CardBody>
-        <div className="space-y-4">
-          <p className="text-small">{member.bio}</p>
-          <div className="space-y-2 text-small">
+          <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
             {getContact(member, "email") && (
-              <p className="flex items-center gap-2">
-                <MailIcon className="text-default-400" />
+              <p className="flex items-center gap-1 text-xs text-default-500">
+                <MailIcon className="h-3 w-3" />
                 <a
                   href={`mailto:${getContact(member, "email")}`}
                   className="hover:underline"
@@ -78,8 +72,8 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
               </p>
             )}
             {getContact(member, "phone") && (
-              <p className="flex items-center gap-2">
-                <PhoneIcon className="text-default-400" />
+              <p className="flex items-center gap-1 text-xs text-default-500">
+                <PhoneIcon className="h-3 w-3" />
                 <a
                   href={`tel:${getContact(member, "phone")}`}
                   className="hover:underline"
@@ -89,6 +83,20 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
               </p>
             )}
           </div>
+        </div>
+      </CardHeader>
+      <Divider />
+      <CardBody>
+        <div className="space-y-4">
+          {member.quote && (
+            <>
+              <blockquote className="text-small italic text-default-500">
+                "{member.quote}"
+              </blockquote>
+              <Divider />
+            </>
+          )}
+          <p className="text-small line-clamp-3">{member.bio}</p>
         </div>
       </CardBody>
     </Card>

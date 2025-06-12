@@ -1,115 +1,115 @@
-import type {
-  Department,
-  Position,
-  WorkforceModule,
-  WorkforceMember,
-  OrgRoleAssignment,
-  SubjectAssignment,
-} from "~/modules/workforce/types";
-import type { Contact } from "~/modules/core/types";
+import type { WorkforceModule } from "~/modules/workforce/types";
 import { ADMIN, FACULTY, PRINCIPAL, TEACHER, SECRETARY } from "./workforceMeta";
 
-// === Helpers ===
-function contact(
-  type: Contact["type"],
-  value: string,
-  opts?: { label?: string; isPublic?: boolean },
-): Contact {
-  return {
-    type,
-    value,
-    label: opts?.label,
-    isPublic: opts?.isPublic ?? true,
-  };
-}
-
-function assign(
-  position: Position,
-  department: Department,
-  opts?: Partial<OrgRoleAssignment>,
-): OrgRoleAssignment {
-  return {
-    position,
-    department,
-    ...opts,
-  };
-}
-
-function member(
-  id: string,
-  name: string,
-  slug: string,
-  roleAssignments: OrgRoleAssignment[],
-  contacts: Contact[] = [],
-  image?: string,
-  bio?: string,
-  subjectAssignments?: SubjectAssignment[],
-): WorkforceMember & { subjectAssignments?: SubjectAssignment[] } {
-  return {
-    id,
-    slug,
-    name,
-    image,
-    bio,
-    contacts,
-    roleAssignments,
-    subjectAssignments,
-    isPublic: true,
-  };
-}
-
-// === Workforce Data ===
 export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
   departments: [ADMIN, FACULTY],
   positions: [PRINCIPAL, TEACHER, SECRETARY],
   teams: [],
   members: [
-    member(
-      "001",
-      "Joel Bhagwandin",
-      "joel-bhagwandin",
-      [assign(PRINCIPAL, ADMIN, { isPrimary: true })],
-      [
-        contact("email", "joel@ma.edu.gy", { label: "Work", isPublic: true }),
-        contact("phone", "+592 627-1915", { isPublic: true }),
+    {
+      id: "001",
+      name: "Joel Bhagwandin",
+      slug: "joel-bhagwandin",
+      image: undefined,
+      bio: "Joel has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
+      isPublic: true,
+      contacts: [
+        {
+          type: "email",
+          value: "joel@ma.edu.gy",
+          label: "Work",
+          isPublic: true,
+        },
+        {
+          type: "phone",
+          value: "+592 627-1915",
+          isPublic: true,
+        },
       ],
-      undefined,
-      "Joel has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
-    ),
-    member(
-      "002",
-      "Nessa Bhagwandin",
-      "nessa-bhagwandin",
-      [assign(PRINCIPAL, ADMIN, { isPrimary: true }), assign(TEACHER, FACULTY)],
-      [
-        contact("email", "nessa@ma.edu.gy", { isPublic: true }),
-        contact("phone", "+592 751-3788", { isPublic: true }),
+      roleAssignments: [
+        {
+          position: PRINCIPAL,
+          department: ADMIN,
+          isPrimary: true,
+        },
       ],
-      undefined,
-      "Nessa has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
-    ),
-    member(
-      "003",
-      "Anita Dhaniram",
-      "anita-dhaniram",
-      [assign(SECRETARY, ADMIN)],
-      [contact("email", "anita@ma.edu.gy"), contact("phone", "+592 646-4069")],
-      "/images/profile/anita.jpeg",
-      "Anita supports all administrative operations and keeps the school running smoothly.",
-    ),
-    member(
-      "004",
-      "Sir Chabeeraj Francis",
-      "sir-chabeeraj-francis",
-      [
-        assign(TEACHER, FACULTY, {
+    },
+    {
+      id: "002",
+      name: "Nessa Bhagwandin",
+      slug: "nessa-bhagwandin",
+      image: undefined,
+      bio: "Nessa has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
+      isPublic: true,
+      contacts: [
+        {
+          type: "email",
+          value: "nessa@ma.edu.gy",
+          isPublic: true,
+        },
+        {
+          type: "phone",
+          value: "+592 751-3788",
+          isPublic: true,
+        },
+      ],
+      roleAssignments: [
+        {
+          position: PRINCIPAL,
+          department: ADMIN,
+          isPrimary: true,
+        },
+        {
+          position: TEACHER,
+          department: FACULTY,
+        },
+      ],
+    },
+    {
+      id: "003",
+      name: "Anita Dhaniram",
+      slug: "anita-dhaniram",
+      image: "/images/profile/anita.jpeg",
+      bio: "Anita supports all administrative operations and keeps the school running smoothly.",
+      quote:
+        "At Modern Academy, we are like a parent to your child—it’s a home away from home.",
+      isPublic: true,
+      contacts: [
+        {
+          type: "email",
+          value: "anita@ma.edu.gy",
+          isPublic: true,
+        },
+        {
+          type: "phone",
+          value: "+592 646-4069",
+          isPublic: true,
+        },
+      ],
+      roleAssignments: [
+        {
+          position: SECRETARY,
+          department: ADMIN,
+        },
+      ],
+    },
+    {
+      id: "004",
+      name: "Sir Chabeeraj Francis",
+      slug: "sir-chabeeraj-francis",
+      image: "/images/profile/chabeeraj.jpeg",
+      bio: "Sir Chabeeraj believes education is the most powerful tool to transform lives. A medical scholar and university student himself, he draws from both academic and real-world experiences to teach students how knowledge can elevate them beyond perceived limits. His scholarship to China and degree in medicine were earned through perseverance, and now he channels that same drive into guiding students toward academic and personal excellence. With a passion for health education, he hopes to shape planetary wellbeing by starting at the grassroots—our schools.",
+      quote: "Knowledge gained is knowledge shared.",
+      isPublic: true,
+      contacts: [],
+      roleAssignments: [
+        {
+          position: TEACHER,
+          department: FACULTY,
           titleOverride: "Grades 3–6 & Secondary Teacher",
-        }),
+        },
       ],
-      [],
-      "/images/profile/chabeeraj.jpeg",
-      "Sir Chabeeraj brings academic excellence and real-world health awareness to his students.",
-      [
+      subjectAssignments: [
         {
           subject: "English",
           grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
@@ -133,61 +133,94 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
         { subject: "Office Administration", grades: ["Secondary"] },
         { subject: "Geography", grades: ["Secondary"] },
       ],
-    ),
-    member(
-      "005",
-      "Jessica A Gobin",
-      "jessica-a-gobin",
-      [assign(TEACHER, FACULTY, { titleOverride: "Nursery Year 2 Teacher" })],
-      [],
-      "/images/profile/jessica.jpeg",
-      "Jessica nurtures young learners through creative play, phonics, and foundational skills.",
-      [
+    },
+    {
+      id: "005",
+      name: "Jessica A Gobin",
+      slug: "jessica-a-gobin",
+      image: "/images/profile/jessica.jpeg",
+      bio: "Jessica has a natural gift for connecting with children. Previously in office work, she quickly realized her calling was in the classroom, where her calm energy, playful nature, and deep empathy draw children to her. Whether it's singing nursery rhymes, conducting simple science experiments, or guiding early literacy, she makes learning feel like magic. Her connection with kids is mutual—uplifting her spirit as much as she nurtures theirs.",
+      quote:
+        "All kids need is a little help, a little hope and somebody who believes. — Magic Johnson",
+      isPublic: true,
+      contacts: [],
+      roleAssignments: [
+        {
+          position: TEACHER,
+          department: FACULTY,
+          titleOverride: "Nursery Year 2 Teacher",
+        },
+      ],
+      subjectAssignments: [
         { subject: "Math", grades: ["Nursery Year 2"] },
         { subject: "English", grades: ["Nursery Year 2"] },
         { subject: "Science", grades: ["Nursery Year 2"] },
         { subject: "Social Studies", grades: ["Nursery Year 2"] },
         { subject: "Art", grades: ["Nursery Year 2"] },
       ],
-    ),
-    member(
-      "006",
-      "Wonda Baron",
-      "wonda-baron",
-      [assign(TEACHER, FACULTY, { titleOverride: "Grade 1 & 2 Teacher" })],
-      [],
-      "/images/profile/wonda.jpeg",
-      "Wonda is known for her energetic, structured classrooms and child-centered teaching style.",
-      [
+    },
+    {
+      id: "006",
+      name: "Wonda Baron",
+      slug: "wonda-baron",
+      image: "/images/profile/wonda.jpeg",
+      bio: "Wonda has dreamed of being a teacher since childhood and followed that passion with commitment. Though she explored other jobs, her heart always led her back to the classroom. As a mother herself, she brings both structure and warmth to her teaching, using motivational quotes and playful methods to make learning fun. Her students love her—even when she’s strict—and often don’t want her to miss a day. With a keen eye for student progress, she tailors her approach to every learner’s needs and helps lift every child to their full potential.",
+      quote:
+        "Every child learns differently—my role is to meet them where they are and guide them forward.",
+      isPublic: true,
+      contacts: [],
+      roleAssignments: [
+        {
+          position: TEACHER,
+          department: FACULTY,
+          titleOverride: "Grade 1 & 2 Teacher",
+        },
+      ],
+      subjectAssignments: [
         { subject: "Math", grades: ["Grade 1", "Grade 2"] },
         { subject: "English", grades: ["Grade 1", "Grade 2"] },
         { subject: "Science", grades: ["Grade 1", "Grade 2"] },
         { subject: "Social Studies", grades: ["Grade 1", "Grade 2"] },
       ],
-    ),
-    member(
-      "007",
-      "Molta M. McRae",
-      "molta-mcrae",
-      [assign(TEACHER, FACULTY, { titleOverride: "Grade 3 & 4 Teacher" })],
-      [],
-      "/images/profile/molta.jpeg",
-      "Molta brings decades of teaching experience and a deep care for students’ development.",
-      [
+    },
+    {
+      id: "007",
+      name: "Molta M. McRae",
+      slug: "molta-mcrae",
+      image: "/images/profile/molta.jpeg",
+      bio: "With over two decades of teaching experience, Molta has become a trusted mentor to students and parents alike. Her classrooms are rooted in love, discipline, and unwavering care. Understanding the complex realities children face—especially those from single-parent homes—she steps in with compassion and structure, serving as a second parent. Her deep relationships with families allow her to support students holistically and guide them toward emotional and academic success.",
+      quote:
+        "Always be there for your kids. Children require attention—Miss alone cannot do it.",
+      isPublic: true,
+      contacts: [],
+      roleAssignments: [
+        {
+          position: TEACHER,
+          department: FACULTY,
+          titleOverride: "Grade 3 & 4 Teacher",
+        },
+      ],
+      subjectAssignments: [
         { subject: "Math", grades: ["Grade 3", "Grade 4"] },
         { subject: "English", grades: ["Grade 3", "Grade 4"] },
         { subject: "Science", grades: ["Grade 3", "Grade 4"] },
         { subject: "Social Studies", grades: ["Grade 3", "Grade 4"] },
       ],
-    ),
-    member(
-      "008",
-      "Samantha Persaud",
-      "samantha-persaud",
-      [assign(TEACHER, FACULTY)],
-      [],
-      "/images/profile/samantha.jpeg",
-      "Samantha brings a calm and focused presence to every classroom she enters.",
-    ),
+    },
+    {
+      id: "008",
+      name: "Samantha Persaud",
+      slug: "samantha-persaud",
+      image: "/images/profile/samantha.jpeg",
+      bio: "Samantha is a grounded and focused educator whose quiet strength creates a peaceful classroom environment. She believes in nurturing the whole child and leads with a gentle authority that makes her approachable and respected. While her profile is still being fully built, Samantha continues to make a lasting impact through her calm presence and commitment to student success.",
+      isPublic: true,
+      contacts: [],
+      roleAssignments: [
+        {
+          position: TEACHER,
+          department: FACULTY,
+        },
+      ],
+    },
   ],
 };

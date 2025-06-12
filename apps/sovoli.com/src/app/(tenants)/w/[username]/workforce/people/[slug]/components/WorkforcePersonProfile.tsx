@@ -57,14 +57,14 @@ export function WorkforcePersonProfile({
       </div>
 
       <Card className="overflow-visible">
-        <CardHeader className="flex flex-row items-center gap-6 pb-4">
+        <CardHeader className="flex flex-col sm:flex-row items-center gap-6 pb-4">
           <Avatar
             src={member.image}
             name={member.name}
             className="h-24 w-24"
             isBordered
           />
-          <div>
+          <div className="text-center sm:text-left">
             <h1 className="text-3xl font-bold tracking-tight">{member.name}</h1>
             {displayTitle && (
               <p className="text-large text-default-500">{displayTitle}</p>
@@ -73,6 +73,19 @@ export function WorkforcePersonProfile({
               <p className="text-small text-default-400">
                 {departmentNames.join(", ")}
               </p>
+            )}
+            {member.quote && (
+              <div className="mt-4 relative">
+                <span className="absolute -left-2 -top-2 text-4xl text-default-300">
+                  "
+                </span>
+                <p className="text-lg italic text-default-600 pl-4">
+                  {member.quote}
+                </p>
+                <span className="absolute -right-2 -bottom-2 text-4xl text-default-300">
+                  "
+                </span>
+              </div>
             )}
           </div>
         </CardHeader>
@@ -119,13 +132,6 @@ export function WorkforcePersonProfile({
               <div>
                 <p className="text-default-600">{member.bio}</p>
               </div>
-            </>
-          )}
-
-          {member.quote && (
-            <>
-              <Divider />
-              <div className="italic text-default-500">"{member.quote}"</div>
             </>
           )}
 
