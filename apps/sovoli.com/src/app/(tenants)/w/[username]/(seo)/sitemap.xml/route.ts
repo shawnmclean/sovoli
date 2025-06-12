@@ -1,4 +1,6 @@
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
+import type { OrgInstance } from "~/modules/organisations/types";
+import type { WorkforceMember } from "~/modules/workforce/types";
 
 interface SitemapUrl {
   loc: string;
@@ -32,6 +34,28 @@ function generateSitemapXml(urls: SitemapUrl[]): string {
 </urlset>`;
 }
 
+function generateWorkforceSitemapUrls(
+  baseUrl: string,
+  orgInstance: OrgInstance,
+): SitemapUrl[] {
+  const members = orgInstance.workforceModule?.members ?? [];
+
+  return [
+    {
+      loc: `${baseUrl}/workforce/people`,
+      lastmod: new Date().toISOString(),
+      changefreq: "weekly" as const,
+      priority: 1,
+    },
+    ...members.map((member: WorkforceMember) => ({
+      loc: `${baseUrl}/workforce/people/${member.slug}`,
+      lastmod: new Date().toISOString(),
+      changefreq: "weekly" as const,
+      priority: 0.8,
+    })),
+  ];
+}
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ username: string }> },
@@ -63,13 +87,7 @@ export async function GET(
       changefreq: "monthly",
       priority: 0.8,
     },
-    {
-      loc: `${baseUrl}/workforce/people`,
-      lastmod: new Date().toISOString(),
-      changefreq: "weekly",
-      priority: 1,
-    },
-    // Add more URLs based on the website module's pages if needed
+    ...generateWorkforceSitemapUrls(baseUrl, orgInstance),
   ];
 
   const xml = generateSitemapXml(sitemapUrls);
