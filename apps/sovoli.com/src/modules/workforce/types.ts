@@ -1,3 +1,5 @@
+import type { Contact } from "../core/types";
+
 export interface Department {
   name: string;
   slug: string;
@@ -22,18 +24,31 @@ export interface Position {
   url: string;
 }
 
+export interface OrgRoleAssignment {
+  position: Position;
+  department?: Department;
+  team?: Team;
+  startDate?: string;
+  endDate?: string;
+  isPrimary?: boolean;
+  titleOverride?: string;
+  notes?: string;
+}
+
 export interface WorkforceMember {
-  name: string;
+  id: string;
   slug: string;
-  departments: Department[];
-  teams: Team[];
-  positions: Position[];
-  email?: string;
-  phone?: string;
+  name: string;
   image?: string;
   bio?: string;
+  contacts?: Contact[];
+  roleAssignments: OrgRoleAssignment[];
+  isPublic?: boolean;
 }
 
 export interface WorkforceModule {
   members: WorkforceMember[];
+  departments: Department[];
+  teams: Team[];
+  positions: Position[];
 }

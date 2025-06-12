@@ -11,9 +11,26 @@ interface WorkforcePersonProfileProps {
   member: WorkforceMember;
 }
 
+function getPublicContact(member: WorkforceMember, type: "email" | "phone") {
+  return (
+    member.contacts?.find((c) => c.type === type && c.isPublic)?.value ?? ""
+  );
+}
+
 export function WorkforcePersonProfile({
   member,
 }: WorkforcePersonProfileProps) {
+  const roles = member.roleAssignments;
+
+  const positionNames = Array.from(new Set(roles.map((r) => r.position.name)));
+
+  const departmentNames = Array.from(
+    new Set(roles.map((r) => r.department?.name).filter(Boolean)),
+  );
+
+  const email = getPublicContact(member, "email");
+  const phone = getPublicContact(member, "phone");
+
   return (
     <div className="container mx-auto max-w-4xl px-6 py-10">
       <div className="mb-6">
@@ -37,44 +54,62 @@ export function WorkforcePersonProfile({
           />
           <div>
             <h1 className="text-3xl font-bold tracking-tight">{member.name}</h1>
-            <p className="text-large text-default-500">
-              {member.positions.map((position) => position.name).join(", ")}
-            </p>
-            {member.departments.length > 0 && (
+            {positionNames.length > 0 && (
+              <p className="text-large text-default-500">
+                {positionNames.join(", ")}
+              </p>
+            )}
+            {departmentNames.length > 0 && (
               <p className="text-small text-default-400">
-                {member.departments.map((dept) => dept.name).join(", ")}
+                {departmentNames.join(", ")}
               </p>
             )}
           </div>
         </CardHeader>
+
         <Divider />
+
         <CardBody className="flex flex-col gap-4">
           <div className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
-              {member.email && (
-                <div>
-                  <p className="text-small font-medium text-default-500">
-                    Email
-                  </p>
-                  <p className="text-default-600">{member.email}</p>
-                </div>
-              )}
-              {member.phone && (
-                <div>
-                  <p className="text-small font-medium text-default-500">
-                    Phone
-                  </p>
-                  <p className="text-default-600">{member.phone}</p>
-                </div>
-              )}
-            </div>
+            {(email || phone) && (
+              <div className="grid gap-4 sm:grid-cols-2">
+                {email && (
+                  <div>
+                    <p className="text-small font-medium text-default-500">
+                      Email
+                    </p>
+                    <a
+                      href={`mailto:${email}`}
+                      className="text-default-600 hover:underline"
+                    >
+                      {email}
+                    </a>
+                  </div>
+                )}
+                {phone && (
+                  <div>
+                    <p className="text-small font-medium text-default-500">
+                      Phone
+                    </p>
+                    <a
+                      href={`tel:${phone}`}
+                      className="text-default-600 hover:underline"
+                    >
+                      {phone}
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
-          <Divider />
           {member.bio && (
-            <div>
-              <p className="text-default-600">{member.bio}</p>
-            </div>
+            <>
+              <Divider />
+              <div>
+                <p className="text-default-600">{member.bio}</p>
+              </div>
+            </>
           )}
         </CardBody>
       </Card>

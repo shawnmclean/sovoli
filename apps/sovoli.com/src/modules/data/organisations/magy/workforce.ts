@@ -2,8 +2,12 @@ import type {
   Department,
   Position,
   WorkforceModule,
+  WorkforceMember,
+  OrgRoleAssignment,
 } from "~/modules/workforce/types";
+import type { Contact } from "~/modules/core/types";
 
+// === Departments ===
 const ADMIN: Department = {
   name: "Administration",
   slug: "administration",
@@ -22,6 +26,7 @@ const FACULTY: Department = {
   url: "/workforce/departments/faculty",
 };
 
+// === Positions ===
 const PRINCIPAL: Position = {
   name: "Principal",
   slug: "principal",
@@ -47,92 +52,129 @@ const SECRETARY: Position = {
   url: "/workforce/positions/secretary",
 };
 
+// === Helpers ===
+function contact(
+  type: Contact["type"],
+  value: string,
+  opts?: { label?: string; isPublic?: boolean },
+): Contact {
+  return {
+    type,
+    value,
+    label: opts?.label,
+    isPublic: opts?.isPublic ?? true,
+  };
+}
+
+function assign(
+  position: Position,
+  department: Department,
+  opts?: Partial<OrgRoleAssignment>,
+): OrgRoleAssignment {
+  return {
+    position,
+    department,
+    ...opts,
+  };
+}
+
+function member(
+  id: string,
+  name: string,
+  slug: string,
+  roleAssignments: OrgRoleAssignment[],
+  contacts: Contact[] = [],
+  image?: string,
+  bio?: string,
+): WorkforceMember {
+  return {
+    id,
+    slug,
+    name,
+    image,
+    bio,
+    contacts,
+    roleAssignments,
+    isPublic: true,
+  };
+}
+
+// === Workforce Data ===
 export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
+  departments: [ADMIN, FACULTY],
+  positions: [PRINCIPAL, TEACHER, SECRETARY],
+  teams: [],
   members: [
-    {
-      name: "Joel Bhagwandin",
-      slug: "joel-bhagwandin",
-      departments: [ADMIN],
-      teams: [],
-      positions: [PRINCIPAL],
-      email: "sarah.johnson@school.edu",
-      phone: "(555) 123-4567",
-      bio: "Timon has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
-    },
-    {
-      name: "Nessa Bhagwandin",
-      slug: "nessa-bhagwandin",
-      departments: [ADMIN, FACULTY],
-      teams: [],
-      positions: [PRINCIPAL, TEACHER],
-      email: "sarah.johnson@school.edu",
-      phone: "(555) 123-4567",
-      bio: "Nessa has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
-    },
-    {
-      name: "Anita Dhaniram",
-      slug: "anita-dhaniram",
-      departments: [ADMIN],
-      teams: [],
-      positions: [SECRETARY],
-      email: "michael.thompson@school.edu",
-      phone: "(555) 123-4568",
-      bio: "Mr. Thompson oversees student discipline and supports the principal in day-to-day operations.",
-      image: "/images/profile/anita.jpeg",
-    },
-    {
-      name: "Sir Chabeeraj Francis",
-      slug: "sir-chabeeraj-francis",
-      departments: [FACULTY],
-      teams: [],
-      positions: [TEACHER],
-      email: "",
-      phone: "",
-      bio: "",
-    },
-    {
-      name: "Jessica A Gobin",
-      slug: "jessica-a-gobin",
-      departments: [FACULTY],
-      teams: [],
-      positions: [TEACHER],
-      email: "",
-      phone: "",
-      bio: "",
-      image: "/images/profile/jessica.jpeg",
-    },
-    {
-      name: "Wonda Baron",
-      slug: "wonda-baron",
-      departments: [FACULTY],
-      teams: [],
-      positions: [TEACHER],
-      email: "",
-      phone: "",
-      bio: "",
-      image: "/images/profile/wonda.jpeg",
-    },
-    {
-      name: "Molta M. McRae",
-      slug: "molta-mcrae",
-      departments: [FACULTY],
-      teams: [],
-      positions: [TEACHER],
-      email: "",
-      phone: "",
-      bio: "",
-      image: "/images/profile/molta.jpeg",
-    },
-    {
-      name: "Samantha Persaud",
-      slug: "samantha-persaud",
-      departments: [FACULTY],
-      teams: [],
-      positions: [TEACHER],
-      email: "",
-      phone: "",
-      bio: "",
-      image: "/images/profile/samantha.jpeg",
-    },
+    member(
+      "001",
+      "Joel Bhagwandin",
+      "joel-bhagwandin",
+      [assign(PRINCIPAL, ADMIN, { isPrimary: true })],
+      [
+        contact("email", "joel@ma.edu.gy", { label: "Work", isPublic: true }),
+        contact("phone", "(555) 123-4567", { isPublic: false }), // private phone
+      ],
+      undefined,
+      "Timon has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
+    ),
+    member(
+      "002",
+      "Nessa Bhagwandin",
+      "nessa-bhagwandin",
+      [assign(PRINCIPAL, ADMIN, { isPrimary: true }), assign(TEACHER, FACULTY)],
+      [
+        contact("email", "nessa@school.edu", { isPublic: true }),
+        contact("phone", "(555) 123-4567", { isPublic: true }),
+      ],
+      undefined,
+      "Nessa has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
+    ),
+    member(
+      "003",
+      "Anita Dhaniram",
+      "anita-dhaniram",
+      [assign(SECRETARY, ADMIN)],
+      [
+        contact("email", "anita@school.edu"),
+        contact("phone", "(555) 123-4568", { isPublic: true }),
+      ],
+      "/images/profile/anita.jpeg",
+      "Mr. Thompson oversees student discipline and supports the principal in day-to-day operations.",
+    ),
+    member("004", "Sir Chabeeraj Francis", "sir-chabeeraj-francis", [
+      assign(TEACHER, FACULTY),
+    ]),
+    member(
+      "005",
+      "Jessica A Gobin",
+      "jessica-a-gobin",
+      [assign(TEACHER, FACULTY)],
+      [],
+      "/images/profile/jessica.jpeg",
+    ),
+    member(
+      "006",
+      "Wonda Baron",
+      "wonda-baron",
+      [assign(TEACHER, FACULTY)],
+      [],
+      "/images/profile/wonda.jpeg",
+    ),
+    member(
+      "007",
+      "Molta M. McRae",
+      "molta-mcrae",
+      [assign(TEACHER, FACULTY)],
+      [],
+      "/images/profile/molta.jpeg",
+    ),
+    member(
+      "008",
+      "Samantha Persaud",
+      "samantha-persaud",
+      [assign(TEACHER, FACULTY)],
+      [],
+      "/images/profile/samantha.jpeg",
+    ),
   ],
 };

@@ -8,19 +8,27 @@ import { Input } from "@sovoli/ui/components/input";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 
 import type { OrgInstance } from "~/modules/organisations/types";
-import type {
-  Department,
-  Position,
-  WorkforceMember,
-} from "~/modules/workforce/types";
+import type { WorkforceMember } from "~/modules/workforce/types";
 import { Link } from "@sovoli/ui/components/link";
 import { MailIcon, PhoneIcon } from "lucide-react";
 
 interface TeamDirectoryProps {
   orgInstance: OrgInstance;
 }
+function getContact(
+  member: WorkforceMember,
+  type: "email" | "phone",
+): string | null {
+  return (
+    member.contacts?.find((c) => c.type === type && c.isPublic)?.value ?? null
+  );
+}
 
 function FacultyCard({ member }: { member: WorkforceMember }) {
+  const positionNames = member.roleAssignments
+    .map((r) => r.position.name)
+    .filter((v, i, a) => a.indexOf(v) === i);
+
   return (
     <Card className="overflow-visible">
       <CardHeader className="flex flex-row items-center gap-4 pb-2">
@@ -39,7 +47,7 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
             <h3 className="text-xl font-semibold">{member.name}</h3>
           </Link>
           <p className="text-small text-default-500">
-            {member.positions.map((p) => p.name).join(", ")}
+            {positionNames.join(", ")}
           </p>
         </div>
       </CardHeader>
@@ -48,14 +56,28 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
         <div className="space-y-4">
           <p className="text-small">{member.bio}</p>
           <div className="space-y-2 text-small">
-            <p className="flex items-center gap-2">
-              <MailIcon className="text-default-400" />
-              <span>{member.email}</span>
-            </p>
-            <p className="flex items-center gap-2">
-              <PhoneIcon className="text-default-400" />
-              <span>{member.phone}</span>
-            </p>
+            {getContact(member, "email") && (
+              <p className="flex items-center gap-2">
+                <MailIcon className="text-default-400" />
+                <a
+                  href={`mailto:${getContact(member, "email")}`}
+                  className="hover:underline"
+                >
+                  {getContact(member, "email")}
+                </a>
+              </p>
+            )}
+            {getContact(member, "phone") && (
+              <p className="flex items-center gap-2">
+                <PhoneIcon className="text-default-400" />
+                <a
+                  href={`tel:${getContact(member, "phone")}`}
+                  className="hover:underline"
+                >
+                  {getContact(member, "phone")}
+                </a>
+              </p>
+            )}
           </div>
         </div>
       </CardBody>
@@ -77,39 +99,42 @@ export function TeamDirectory({ orgInstance }: TeamDirectoryProps) {
   const uniqueRoles = React.useMemo(() => {
     const roles = new Set<string>();
     members.forEach((member) => {
-      member.positions.forEach((position: Position) => {
-        roles.add(position.name);
+      member.roleAssignments.forEach((assignment) => {
+        roles.add(assignment.position.name);
       });
     });
-    return Array.from(roles).sort((a, b) => a.localeCompare(b));
+    return Array.from(roles).sort();
   }, [members]);
 
   const uniqueDepartments = React.useMemo(() => {
     const departments = new Set<string>();
     members.forEach((member) => {
-      member.departments.forEach((dept: Department) => {
-        departments.add(dept.name);
+      member.roleAssignments.forEach((assignment) => {
+        if (assignment.department) departments.add(assignment.department.name);
       });
     });
-    return Array.from(departments).sort((a, b) => a.localeCompare(b));
+    return Array.from(departments).sort();
   }, [members]);
 
   const filteredMembers = members.filter((member) => {
+    const email = getContact(member, "email");
+    const bio = member.bio ?? "";
+
     const matchesSearch =
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (member.email?.toLowerCase().includes(searchQuery.toLowerCase()) ??
-        false) ||
-      (member.bio?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
+      (email?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
+      bio.toLowerCase().includes(searchQuery.toLowerCase());
+
     const matchesRole = selectedRole
-      ? member.positions.some(
-          (position: Position) => position.name === selectedRole,
-        )
+      ? member.roleAssignments.some((r) => r.position.name === selectedRole)
       : true;
+
     const matchesDepartment = selectedDepartment
-      ? member.departments.some(
-          (dept: Department) => dept.name === selectedDepartment,
+      ? member.roleAssignments.some(
+          (r) => r.department?.name === selectedDepartment,
         )
       : true;
+
     return matchesSearch && matchesRole && matchesDepartment;
   });
 

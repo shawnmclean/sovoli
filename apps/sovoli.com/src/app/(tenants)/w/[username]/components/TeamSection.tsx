@@ -95,8 +95,8 @@ export function TeamSection({ orgInstance }: TeamSectionProps) {
                     {member.name}
                   </h3>
                   <p className="max-w-full truncate text-sm text-default-600">
-                    {member.positions
-                      .map((position) => position.name)
+                    {member.roleAssignments
+                      .map((role) => role.position.name)
                       .join(", ")}
                   </p>
                 </div>

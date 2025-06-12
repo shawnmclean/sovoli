@@ -1,31 +1,8 @@
 import type { AcademicModule } from "../academics/types";
+import type { Contact, SocialLink } from "../core/types";
 import type { OfferingModule } from "../offerings/types";
 import type { WebsiteModule } from "../websites/types";
-import { WorkforceModule } from "../workforce/types";
-
-// Core operational identity
-export interface Org {
-  username: string; // e.g., "modern-academy"
-  name: string; // Human name of the org
-  logo?: string; // Logo URL
-  claimed: boolean; // Claimed or auto-listed
-  categories: string[]; // e.g., ["private-school", "nursery"]
-  locations: OrgLocation[]; // At least 1 location
-  socialLinks?: SocialLink[];
-}
-
-export interface Contact {
-  type: "phone" | "email" | "fax" | "whatsapp" | "website" | "other";
-  label?: string; // e.g. "Main Office", "Admissions WhatsApp"
-  value: string;
-}
-
-// not supporting linkedin: https://github.com/simple-icons/simple-icons/issues/11236
-export interface SocialLink {
-  platform: "facebook" | "instagram" | "youtube" | "x" | "website" | "other";
-  label?: string; // Optional UI label e.g. "Follow us on Facebook"
-  url: string;
-}
+import type { WorkforceModule } from "../workforce/types";
 
 export interface OrgLocation {
   key: string;
@@ -38,15 +15,23 @@ export interface OrgLocation {
     city?: string;
     state?: string;
     postalCode?: string;
-    country: string; // ISO 3166-1 (e.g. "Guyana", "US")
+    country: string;
   };
-
   coordinates?: {
     lat: number;
     lng: number;
   };
-
   contacts: Contact[];
+}
+
+export interface Org {
+  username: string;
+  name: string;
+  logo?: string;
+  claimed: boolean;
+  categories: string[];
+  locations: OrgLocation[];
+  socialLinks?: SocialLink[];
 }
 
 export interface OrgInstance {
