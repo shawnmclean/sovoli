@@ -4,53 +4,10 @@ import type {
   WorkforceModule,
   WorkforceMember,
   OrgRoleAssignment,
+  SubjectAssignment,
 } from "~/modules/workforce/types";
 import type { Contact } from "~/modules/core/types";
-
-// === Departments ===
-const ADMIN: Department = {
-  name: "Administration",
-  slug: "administration",
-  description:
-    "Handles all administrative, financial, and operational tasks of the school.",
-  image: "/images/departments/administration.jpg",
-  url: "/workforce/departments/administration",
-};
-
-const FACULTY: Department = {
-  name: "Faculty",
-  slug: "faculty",
-  description:
-    "The academic team responsible for teaching and curriculum delivery.",
-  image: "/images/departments/faculty.jpg",
-  url: "/workforce/departments/faculty",
-};
-
-// === Positions ===
-const PRINCIPAL: Position = {
-  name: "Principal",
-  slug: "principal",
-  description:
-    "Leads the school and ensures academic and operational excellence.",
-  image: "/images/positions/principal.jpg",
-  url: "/workforce/positions/principal",
-};
-
-const TEACHER: Position = {
-  name: "Teacher",
-  slug: "teacher",
-  description: "Delivers classroom instruction and fosters student growth.",
-  image: "/images/positions/teacher.jpg",
-  url: "/workforce/positions/teacher",
-};
-
-const SECRETARY: Position = {
-  name: "Secretary",
-  slug: "secretary",
-  description: "Supports administrative tasks and maintains school records.",
-  image: "/images/positions/secretary.jpg",
-  url: "/workforce/positions/secretary",
-};
+import { ADMIN, FACULTY, PRINCIPAL, TEACHER, SECRETARY } from "./workforceMeta";
 
 // === Helpers ===
 function contact(
@@ -86,7 +43,8 @@ function member(
   contacts: Contact[] = [],
   image?: string,
   bio?: string,
-): WorkforceMember {
+  subjectAssignments?: SubjectAssignment[],
+): WorkforceMember & { subjectAssignments?: SubjectAssignment[] } {
   return {
     id,
     slug,
@@ -95,6 +53,7 @@ function member(
     bio,
     contacts,
     roleAssignments,
+    subjectAssignments,
     isPublic: true,
   };
 }
@@ -112,10 +71,10 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
       [assign(PRINCIPAL, ADMIN, { isPrimary: true })],
       [
         contact("email", "joel@ma.edu.gy", { label: "Work", isPublic: true }),
-        contact("phone", "(555) 123-4567", { isPublic: false }), // private phone
+        contact("phone", "+592 627-1915", { isPublic: true }),
       ],
       undefined,
-      "Timon has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
+      "Joel has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
     ),
     member(
       "002",
@@ -123,8 +82,8 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
       "nessa-bhagwandin",
       [assign(PRINCIPAL, ADMIN, { isPrimary: true }), assign(TEACHER, FACULTY)],
       [
-        contact("email", "nessa@school.edu", { isPublic: true }),
-        contact("phone", "(555) 123-4567", { isPublic: true }),
+        contact("email", "nessa@ma.edu.gy", { isPublic: true }),
+        contact("phone", "+592 751-3788", { isPublic: true }),
       ],
       undefined,
       "Nessa has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
@@ -134,39 +93,93 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
       "Anita Dhaniram",
       "anita-dhaniram",
       [assign(SECRETARY, ADMIN)],
-      [
-        contact("email", "anita@school.edu"),
-        contact("phone", "(555) 123-4568", { isPublic: true }),
-      ],
+      [contact("email", "anita@ma.edu.gy"), contact("phone", "+592 646-4069")],
       "/images/profile/anita.jpeg",
-      "Mr. Thompson oversees student discipline and supports the principal in day-to-day operations.",
+      "Anita supports all administrative operations and keeps the school running smoothly.",
     ),
-    member("004", "Sir Chabeeraj Francis", "sir-chabeeraj-francis", [
-      assign(TEACHER, FACULTY),
-    ]),
+    member(
+      "004",
+      "Sir Chabeeraj Francis",
+      "sir-chabeeraj-francis",
+      [
+        assign(TEACHER, FACULTY, {
+          titleOverride: "Grades 3–6 & Secondary Teacher",
+        }),
+      ],
+      [],
+      "/images/profile/chabeeraj.jpeg",
+      "Sir Chabeeraj brings academic excellence and real-world health awareness to his students.",
+      [
+        {
+          subject: "English",
+          grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
+        },
+        {
+          subject: "Math",
+          grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
+        },
+        {
+          subject: "Science",
+          grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
+        },
+        {
+          subject: "Social Studies",
+          grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
+        },
+        { subject: "Information Technology", grades: ["Secondary"] },
+        { subject: "Health & Family Life Education", grades: ["Secondary"] },
+        { subject: "Human & Social Biology", grades: ["Secondary"] },
+        { subject: "Principles of Business", grades: ["Secondary"] },
+        { subject: "Office Administration", grades: ["Secondary"] },
+        { subject: "Geography", grades: ["Secondary"] },
+      ],
+    ),
     member(
       "005",
       "Jessica A Gobin",
       "jessica-a-gobin",
-      [assign(TEACHER, FACULTY)],
+      [assign(TEACHER, FACULTY, { titleOverride: "Nursery Year 2 Teacher" })],
       [],
       "/images/profile/jessica.jpeg",
+      "Jessica nurtures young learners through creative play, phonics, and foundational skills.",
+      [
+        { subject: "Phonics", grades: ["Nursery Year 2"] },
+        { subject: "Grammar", grades: ["Nursery Year 2"] },
+        { subject: "Numeracy", grades: ["Nursery Year 2"] },
+        { subject: "Art", grades: ["Nursery Year 2"] },
+        { subject: "Science", grades: ["Nursery Year 2"] },
+        { subject: "Social Studies", grades: ["Nursery Year 2"] },
+      ],
     ),
     member(
       "006",
       "Wonda Baron",
       "wonda-baron",
-      [assign(TEACHER, FACULTY)],
+      [assign(TEACHER, FACULTY, { titleOverride: "Grade 1 & 2 Teacher" })],
       [],
       "/images/profile/wonda.jpeg",
+      "Wonda is known for her energetic, structured classrooms and child-centered teaching style.",
+      [
+        { subject: "Math", grades: ["Grade 1", "Grade 2"] },
+        { subject: "English", grades: ["Grade 1", "Grade 2"] },
+        { subject: "Science", grades: ["Grade 1", "Grade 2"] },
+        { subject: "Social Studies", grades: ["Grade 1", "Grade 2"] },
+      ],
     ),
     member(
       "007",
       "Molta M. McRae",
       "molta-mcrae",
-      [assign(TEACHER, FACULTY)],
+      [assign(TEACHER, FACULTY, { titleOverride: "Grade 3 & 4 Teacher" })],
       [],
       "/images/profile/molta.jpeg",
+      "Molta brings decades of teaching experience and a deep care for students’ development.",
+      [
+        { subject: "Math", grades: ["Grade 3", "Grade 4"] },
+        { subject: "English", grades: ["Grade 3", "Grade 4"] },
+        { subject: "Science", grades: ["Grade 3", "Grade 4"] },
+        { subject: "Social Studies", grades: ["Grade 3", "Grade 4"] },
+      ],
     ),
     member(
       "008",
@@ -175,6 +188,7 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
       [assign(TEACHER, FACULTY)],
       [],
       "/images/profile/samantha.jpeg",
+      "Samantha brings a calm and focused presence to every classroom she enters.",
     ),
   ],
 };

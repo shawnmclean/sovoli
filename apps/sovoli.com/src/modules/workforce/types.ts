@@ -44,6 +44,8 @@ export interface WorkforceMember {
   contacts?: Contact[];
   roleAssignments: OrgRoleAssignment[];
   isPublic?: boolean;
+  quote?: string;
+  subjectAssignments?: SubjectAssignment[];
 }
 
 export interface WorkforceModule {
@@ -51,4 +53,10 @@ export interface WorkforceModule {
   departments: Department[];
   teams: Team[];
   positions: Position[];
+}
+
+// TODO: Move this into academics module later and make better models
+export interface SubjectAssignment {
+  subject: string;
+  grades: string[];
 }
