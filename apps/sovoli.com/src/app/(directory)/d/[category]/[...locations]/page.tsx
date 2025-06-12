@@ -483,7 +483,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .map((loc) => loc.charAt(0).toUpperCase() + loc.slice(1))
     .join(", ");
   return {
-    title: `${pluralize(2, readableCategory)} in ${formattedLocations}`,
+    title: `Top ${pluralize(2, readableCategory)} in ${formattedLocations}`,
     description: `Explore the best ${pluralize(2, readableCategory)} in ${formattedLocations}.`,
   };
 }
@@ -527,7 +527,7 @@ export default async function DirectoryCategoryPage({ params }: Props) {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="mb-8">
         <h1 className="mb-2 text-3xl font-semibold">
-          {pluralize(2, readableCategory)} in {formattedLocations}
+          Top {pluralize(2, readableCategory)} in {formattedLocations}
         </h1>
         <p className="text-default-500">
           Found {matching.length} organization{matching.length !== 1 ? "s" : ""}
