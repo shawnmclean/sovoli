@@ -6,12 +6,18 @@ import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
 import { motion, useAnimation } from "framer-motion";
 
-import { membersData } from "../membersData";
+import type { OrgInstance } from "~/modules/organisations/types";
 
-export function TeamSection() {
+interface TeamSectionProps {
+  orgInstance: OrgInstance;
+}
+
+export function TeamSection({ orgInstance }: TeamSectionProps) {
   const controls = useAnimation();
   const scrollDuration = 80; // Adjust the speed (higher = slower)
   const touchPauseRef = useRef(false);
+
+  const members = orgInstance.workforceModule?.members ?? [];
 
   // Centralized animation configuration with useMemo
   const scrollConfig = useMemo(
@@ -71,31 +77,31 @@ export function TeamSection() {
             animate={controls}
             style={{ display: "flex", width: "auto" }}
           >
-            {[...membersData, ...membersData, ...membersData].map(
-              (member, index) => (
-                <Link
-                  href={`/workforce/people/${member.id}`}
-                  key={index}
-                  className="group flex w-[160px] flex-col items-center"
-                >
-                  <Avatar
-                    src={member.image}
-                    alt={member.name}
-                    isBordered
-                    className="h-28 w-28"
-                    radius="full"
-                  />
-                  <div className="mt-3 text-center">
-                    <h3 className="text-lg font-semibold leading-tight">
-                      {member.name}
-                    </h3>
-                    <p className="max-w-full truncate text-sm text-default-600">
-                      {member.roles[0]}
-                    </p>
-                  </div>
-                </Link>
-              ),
-            )}
+            {[...members, ...members, ...members].map((member, index) => (
+              <Link
+                href={`/workforce/people/${member.slug}`}
+                key={index}
+                className="group flex w-[160px] flex-col items-center"
+              >
+                <Avatar
+                  src={member.image}
+                  alt={member.name}
+                  isBordered
+                  className="h-28 w-28"
+                  radius="full"
+                />
+                <div className="mt-3 text-center">
+                  <h3 className="text-lg font-semibold leading-tight">
+                    {member.name}
+                  </h3>
+                  <p className="max-w-full truncate text-sm text-default-600">
+                    {member.positions
+                      .map((position) => position.name)
+                      .join(", ")}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </motion.div>
         </div>
         <div className="mt-6 flex items-center justify-center gap-4">

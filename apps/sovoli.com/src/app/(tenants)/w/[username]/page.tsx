@@ -42,7 +42,7 @@ export default async function WebsitePage({
           <PageAssembler page={orgWebConfig.home} editable={false} />
 
           <ProgramsSection orgInstance={orgInstance} />
-          <TeamSection />
+          <TeamSection orgInstance={orgInstance} />
           <NewsSection />
         </>
       )}
