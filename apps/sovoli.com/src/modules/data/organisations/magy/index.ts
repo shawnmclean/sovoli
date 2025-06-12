@@ -28,8 +28,9 @@ export const MAGY_ORG_INSTANCE: OrgInstance = {
           {
             type: "email",
             value: "info@ma.edu.gy",
+            isPublic: true,
           },
-          { type: "phone", value: "+592-627-1915" },
+          { type: "phone", value: "+592-627-1915", isPublic: false },
         ],
         isPrimary: true,
       },

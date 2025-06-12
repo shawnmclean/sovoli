@@ -22,10 +22,12 @@ export const FITRIGHT_ORG_INSTANCE: OrgInstance = {
           {
             type: "email",
             value: "info@fitrightacademy.com",
+            isPublic: true,
           },
           {
             type: "phone",
             value: "+1 (386) 279-8247",
+            isPublic: false,
           },
         ],
         isPrimary: true,
