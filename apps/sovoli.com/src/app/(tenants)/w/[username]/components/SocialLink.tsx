@@ -8,7 +8,7 @@ import {
 import { Link } from "@sovoli/ui/components/link";
 import { EarthIcon } from "lucide-react";
 
-import type { SocialLink as SocialLinkType } from "~/modules/organisations/types";
+import type { SocialLink as SocialLinkType } from "~/modules/core/types";
 
 interface SocialLinkProps {
   socialLink: SocialLinkType;

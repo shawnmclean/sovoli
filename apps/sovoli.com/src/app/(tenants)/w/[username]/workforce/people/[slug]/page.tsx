@@ -29,12 +29,12 @@ export async function generateMetadata({
     title: `${member.name} | Team Member`,
     description:
       member.bio ??
-      `Learn more about ${member.name}, ${member.positions.map((p) => p.name).join(", ")} at ${website.siteName}.`,
+      `Learn more about ${member.name}, ${member.roleAssignments.map((p) => p.position.name).join(", ")} at ${website.siteName}.`,
     openGraph: {
       title: `${member.name} | ${website.siteName}`,
       description:
         member.bio ??
-        `Learn more about ${member.name}, ${member.positions.map((p) => p.name).join(", ")} at ${website.siteName}.`,
+        `Learn more about ${member.name}, ${member.roleAssignments.map((p) => p.position.name).join(", ")} at ${website.siteName}.`,
       type: "profile",
     },
   };
