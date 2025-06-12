@@ -13,6 +13,8 @@ import type {
   Position,
   WorkforceMember,
 } from "~/modules/workforce/types";
+import { Link } from "@sovoli/ui/components/link";
+import { MailIcon, PhoneIcon } from "lucide-react";
 
 interface TeamDirectoryProps {
   orgInstance: OrgInstance;
@@ -25,27 +27,34 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
         <Avatar
           src={member.image}
           name={member.name}
-          className="h-16 w-16"
+          className="h-20 w-20"
           isBordered
         />
-        <div>
-          <h3 className="text-xl font-semibold">{member.name}</h3>
+        <div className="flex-grow">
+          <Link
+            href={`/workforce/people/${member.slug}`}
+            color="foreground"
+            underline="hover"
+          >
+            <h3 className="text-xl font-semibold">{member.name}</h3>
+          </Link>
           <p className="text-small text-default-500">
-            {member.positions
-              .map((position: Position) => position.name)
-              .join(", ")}
+            {member.positions.map((p) => p.name).join(", ")}
           </p>
         </div>
       </CardHeader>
+      <Divider />
       <CardBody>
         <div className="space-y-4">
-          <p className="text-small">{member.bio ?? ""}</p>
-          <div className="space-y-1 text-small">
-            <p>
-              <span className="font-medium">Email:</span> {member.email ?? ""}
+          <p className="text-small">{member.bio}</p>
+          <div className="space-y-2 text-small">
+            <p className="flex items-center gap-2">
+              <MailIcon className="text-default-400" />
+              <span>{member.email}</span>
             </p>
-            <p>
-              <span className="font-medium">Phone:</span> {member.phone ?? ""}
+            <p className="flex items-center gap-2">
+              <PhoneIcon className="text-default-400" />
+              <span>{member.phone}</span>
             </p>
           </div>
         </div>
