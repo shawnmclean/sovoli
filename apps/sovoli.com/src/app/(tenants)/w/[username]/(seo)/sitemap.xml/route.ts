@@ -1,13 +1,20 @@
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 
-function generateSitemapXml(
-  urls: {
-    loc: string;
-    lastmod: string;
-    changefreq: string;
-    priority: number;
-  }[],
-): string {
+interface SitemapUrl {
+  loc: string;
+  lastmod: string;
+  changefreq:
+    | "always"
+    | "never"
+    | "hourly"
+    | "daily"
+    | "weekly"
+    | "monthly"
+    | "yearly";
+  priority: number;
+}
+
+function generateSitemapXml(urls: SitemapUrl[]): string {
   const urlset = urls
     .map(
       (url) => `
@@ -37,7 +44,7 @@ export async function GET(
   }
 
   const baseUrl = `https://${orgInstance.websiteModule.website.domain}`;
-  const sitemapUrls = [
+  const sitemapUrls: SitemapUrl[] = [
     {
       loc: baseUrl,
       lastmod: new Date().toISOString(),
@@ -55,6 +62,12 @@ export async function GET(
       lastmod: new Date().toISOString(),
       changefreq: "monthly",
       priority: 0.8,
+    },
+    {
+      loc: `${baseUrl}/workforce/people`,
+      lastmod: new Date().toISOString(),
+      changefreq: "weekly",
+      priority: 1,
     },
     // Add more URLs based on the website module's pages if needed
   ];
