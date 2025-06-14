@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { Button } from "@sovoli/ui/components/button";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 
 import { displayAgeRange } from "../utils";
 import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
@@ -28,10 +31,10 @@ export async function generateMetadata({
   if (!program) return notFound();
 
   return {
-    title: `${program.name} | Program`,
+    title: `${program.title ?? program.name} | Program`,
     description: program.description,
     openGraph: {
-      title: `${program.name} | ${website.siteName}`,
+      title: `${program.title ?? program.name} | ${website.siteName}`,
       description: program.description,
       type: "website",
     },
@@ -54,17 +57,30 @@ export default async function ProgramDetailsPage({
   return (
     <section className="px-4 py-16">
       <div className="mx-auto max-w-5xl space-y-12">
+        <div className="mb-6">
+          <Button
+            as={Link}
+            href="/academics/programs"
+            variant="light"
+            startContent={<ChevronLeft className="h-4 w-4" />}
+          >
+            Back to Programs
+          </Button>
+        </div>
         {/* Program Header */}
         <div className="flex flex-col items-center space-y-4 text-center">
           <Image
             src={program.image}
-            alt={program.name}
+            alt={program.title ?? program.name}
             width={800}
             height={400}
             className="rounded-lg object-cover"
           />
-          <h1 className="text-4xl font-bold text-primary-700">
-            {program.name}
+          <h1
+            className="text-4xl font-bold text-primary-700"
+            title={program.title ?? program.name}
+          >
+            {program.title ?? program.name}
           </h1>
           <p className="max-w-2xl text-lg leading-relaxed text-foreground-600">
             {program.description}
@@ -102,4 +118,3 @@ export default async function ProgramDetailsPage({
     </section>
   );
 }
-

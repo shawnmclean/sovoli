@@ -29,12 +29,7 @@ export async function generateMetadata({
   return {
     title: "Programs",
     description: `Explore our academic programs at ${website.siteName}.`,
-    keywords: [
-      "academic programs",
-      "courses",
-      "education",
-      website.siteName,
-    ],
+    keywords: ["academic programs", "courses", "education", website.siteName],
     openGraph: {
       title: `Programs | ${website.siteName}`,
       description: `Explore our academic programs at ${website.siteName}.`,
@@ -43,9 +38,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProgramsPage({
-  params,
-}: ProgramsPageProps) {
+export default async function ProgramsPage({ params }: ProgramsPageProps) {
   const { username } = await params;
   const orgInstance = await retrieveOrgInstance(username);
   const programs = orgInstance.academicModule?.programs ?? [];
@@ -71,14 +64,17 @@ export default async function ProgramsPage({
             >
               <Image
                 src={program.image}
-                alt={program.name}
+                alt={program.title ?? program.name}
                 width={800}
                 height={400}
                 className="h-48 w-full object-cover"
               />
               <CardBody className="flex flex-col">
-                <h3 className="text-2xl font-semibold text-primary-800">
-                  {program.name}
+                <h3
+                  className="text-2xl font-semibold text-primary-800"
+                  title={program.title ?? program.name}
+                >
+                  {program.title ?? program.name}
                 </h3>
                 <p className="text-base leading-relaxed text-foreground-600">
                   {program.description}
