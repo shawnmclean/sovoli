@@ -31,6 +31,12 @@ export const MAGY_ORG_INSTANCE: OrgInstance = {
             isPublic: true,
           },
           { type: "phone", value: "+592-627-1915", isPublic: false },
+          {
+            type: "whatsapp",
+            value: "+592 627-1915",
+            label: "Joel",
+            isPublic: true,
+          },
         ],
         isPrimary: true,
       },
