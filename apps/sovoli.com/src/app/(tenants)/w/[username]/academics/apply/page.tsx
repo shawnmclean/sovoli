@@ -4,11 +4,11 @@ import { Divider } from "@sovoli/ui/components/divider";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { ArrowDownIcon, CheckCircleIcon, InfoIcon } from "lucide-react";
 
-import type { Requirement } from "../../programsData";
-import { programsData } from "../../programsData";
+import type { ProgramRequirement } from "~/modules/academics/types";
 import { ApplyCard } from "./components/ApplyCard";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import { Link } from "@sovoli/ui/components/link";
+import type { Metadata } from "next";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -19,11 +19,50 @@ const retrieveOrgInstance = async (username: string) => {
 interface ProgramsApplyPageProps {
   params: Promise<{ username: string }>;
 }
+
+export async function generateMetadata({
+  params,
+}: ProgramsApplyPageProps): Promise<Metadata> {
+  const { username } = await params;
+  const {
+    websiteModule: { website },
+  } = await retrieveOrgInstance(username);
+
+  return {
+    title: `Apply to Programs | ${website.siteName}`,
+    description: `Apply to our academic programs at ${website.siteName}. View program requirements and start your application process today.`,
+    keywords: [
+      "apply",
+      "application",
+      "program requirements",
+      "academic programs",
+      "education",
+      website.siteName,
+    ],
+    openGraph: {
+      title: `Apply to Programs | ${website.siteName}`,
+      description: `Apply to our academic programs at ${website.siteName}. View program requirements and start your application process today.`,
+      type: "website",
+      url: `${website.url}/academics/apply`,
+      siteName: website.siteName,
+      images: website.images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Apply to Programs | ${website.siteName}`,
+      description: `Apply to our academic programs at ${website.siteName}. View program requirements and start your application process today.`,
+      images: website.images.map((img) => img.url),
+    },
+  };
+}
+
 export default async function ProgramsApplyPage({
   params,
 }: ProgramsApplyPageProps) {
   const { username } = await params;
   const orgInstance = await retrieveOrgInstance(username);
+  const programs = orgInstance.academicModule?.programs ?? [];
+
   return (
     <section className="my-10 px-4">
       <div className="mx-auto max-w-3xl">
@@ -61,7 +100,7 @@ export default async function ProgramsApplyPage({
           </Card>
 
           {/* Program-Specific Requirements */}
-          {programsData.map((program) => (
+          {programs.map((program) => (
             <Card key={program.id} shadow="sm" className="overflow-visible">
               <CardBody className="p-6">
                 <h3 className="mb-4 text-xl font-semibold text-foreground">
@@ -87,7 +126,7 @@ export default async function ProgramsApplyPage({
   );
 }
 
-const generalRequirements: Requirement[] = [
+const generalRequirements: ProgramRequirement[] = [
   { type: "document", name: "Copy of Birth Certificate" },
   { type: "document", name: "Two Passport-Sized Photographs" },
   { type: "document", name: "Proof of Address" },
@@ -105,7 +144,7 @@ const generalRequirements: Requirement[] = [
   },
 ];
 
-function renderRequirement(req: Requirement, index: number) {
+function renderRequirement(req: ProgramRequirement, index: number) {
   let label = "";
   if (req.type === "document") {
     label = req.name ?? "Required Document";
