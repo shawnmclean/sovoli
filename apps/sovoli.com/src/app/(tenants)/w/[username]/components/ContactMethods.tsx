@@ -103,40 +103,22 @@ export function ContactMethods({ orgInstance }: ContactMethodsProps) {
               </div>
             }
           >
-            <div className="space-y-3 px-2">
+            <div className="space-y-4 px-2">
               {whatsappContacts.map((contact, idx) => (
-                <div key={idx} className="flex items-center gap-3">
-                  <SiWhatsapp className="text-default-500" />
-                  <div>
-                    {contact.label && (
-                      <p className="font-medium">{contact.label}</p>
-                    )}
-                    <Link
-                      href={`https://wa.me/${contact.value.replace(/[^\d]/g, "")}`}
-                      className="text-primary hover:underline"
-                    >
-                      {contact.value}
-                    </Link>
-                  </div>
+                <div key={idx} className="space-y-1">
+                  <Button
+                    color="success"
+                    startContent={<SiWhatsapp />}
+                    as="a"
+                    href={`https://wa.me/${contact.value.replace(/[^\d]/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {`Message ${contact.label ?? contact.value} on WhatsApp`}
+                  </Button>
+                  <p className="text-small text-default-400">{contact.value}</p>
                 </div>
               ))}
-              <p className="mt-2 text-small text-default-400">
-                Quick responses during business hours. Send us a message
-                anytime!
-              </p>
-              {whatsappContacts[0] && (
-                <Button
-                  color="success"
-                  startContent={<SiWhatsapp />}
-                  className="mt-2"
-                  as="a"
-                  href={`https://wa.me/${whatsappContacts[0].value.replace(/[^\d]/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Chat on WhatsApp
-                </Button>
-              )}
             </div>
           </AccordionItem>
         ) : null}
