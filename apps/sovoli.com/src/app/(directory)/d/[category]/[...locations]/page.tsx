@@ -4,6 +4,7 @@ import { Link } from "@sovoli/ui/components/link";
 import { GlobeIcon, MapPinIcon, PhoneIcon, SearchIcon } from "lucide-react";
 
 import { pluralize } from "~/utils/pluralize";
+import { DirectoryViewTabs } from "./DirectoryViewTabs";
 
 interface Org {
   id: string;
@@ -532,6 +533,9 @@ export default async function DirectoryCategoryPage({ params }: Props) {
         <p className="text-default-500">
           Found {matching.length} organization{matching.length !== 1 ? "s" : ""}
         </p>
+        <div className="mt-4">
+          <DirectoryViewTabs />
+        </div>
       </div>
 
       {matching.length === 0 ? (
