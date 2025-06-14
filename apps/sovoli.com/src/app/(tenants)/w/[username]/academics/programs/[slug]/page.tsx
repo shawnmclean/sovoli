@@ -1,23 +1,52 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { programsData } from "../../../programsData";
 import { displayAgeRange } from "../utils";
+import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
+import type { Metadata } from "next";
 
-export function generateStaticParams() {
-  return programsData.map((program) => ({
-    slug: program.slug,
-  }));
+const retrieveOrgInstance = async (username: string) => {
+  const result = await getOrgInstanceByUsername(username);
+  if (!result) return notFound();
+  return result;
+};
+
+interface ProgramDetailsPageProps {
+  params: Promise<{ username: string; slug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ProgramDetailsPageProps): Promise<Metadata> {
+  const { username, slug } = await params;
+  const {
+    websiteModule: { website },
+    academicModule,
+  } = await retrieveOrgInstance(username);
+
+  const program = academicModule?.programs.find((p) => p.slug === slug);
+  if (!program) return notFound();
+
+  return {
+    title: `${program.name} | Program`,
+    description: program.description,
+    openGraph: {
+      title: `${program.name} | ${website.siteName}`,
+      description: program.description,
+      type: "website",
+    },
+  };
 }
 
 export default async function ProgramDetailsPage({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+}: ProgramDetailsPageProps) {
+  const { username, slug } = await params;
 
-  const program = getProgramBySlug(slug);
+  const orgInstance = await retrieveOrgInstance(username);
+  const program = orgInstance.academicModule?.programs.find(
+    (p) => p.slug === slug,
+  );
 
   if (!program) {
     return notFound();
@@ -74,6 +103,3 @@ export default async function ProgramDetailsPage({
   );
 }
 
-function getProgramBySlug(slug: string) {
-  return programsData.find((program) => program.slug === slug);
-}
