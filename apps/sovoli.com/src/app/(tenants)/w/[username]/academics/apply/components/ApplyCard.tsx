@@ -5,9 +5,14 @@ import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 import { PhoneIcon, SendIcon } from "lucide-react";
 
-import { ContactMethods } from "./ContactMethods";
+import { ContactMethods } from "../../../components/ContactMethods";
+import type { OrgInstance } from "~/modules/organisations/types";
 
-export function ApplyCard() {
+interface ApplyCardProps {
+  orgInstance: OrgInstance;
+}
+
+export function ApplyCard({ orgInstance }: ApplyCardProps) {
   const [selected, setSelected] = useState("contact");
   return (
     <Card shadow="sm" className="overflow-visible">
@@ -35,7 +40,7 @@ export function ApplyCard() {
             }
           >
             <div className="px-2 py-6">
-              <ContactMethods />
+              <ContactMethods orgInstance={orgInstance} />
             </div>
           </Tab>
           <Tab

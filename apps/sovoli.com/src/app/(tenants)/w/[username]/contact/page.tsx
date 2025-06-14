@@ -1,9 +1,26 @@
+import { notFound } from "next/navigation";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Input, Textarea } from "@sovoli/ui/components/input";
-import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
-export default function ContactUsPage() {
+import { ContactMethods } from "../components/ContactMethods";
+import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
+
+const retrieveOrgInstance = async (username: string) => {
+  const result = await getOrgInstanceByUsername(username);
+  if (!result) return notFound();
+  return result;
+};
+
+interface ContactUsPageProps {
+  params: Promise<{ username: string }>;
+}
+
+export default async function ContactUsPage({
+  params,
+}: ContactUsPageProps) {
+  const { username } = await params;
+  const orgInstance = await retrieveOrgInstance(username);
   return (
     <section className="px-4 py-10">
       <div className="mx-auto max-w-7xl">
@@ -16,21 +33,7 @@ export default function ContactUsPage() {
                 Feel free to reach out to us through the contact form below or
                 using our contact details.
               </p>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <MapPinIcon className="h-5 w-5 text-primary" />
-                  <p className="text-sm">Lot 11, Public Road
-                  Mon Repos, ECD, 4, Guyana</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <PhoneIcon className="h-5 w-5 text-primary" />
-                  <p className="text-sm">+592 627-1915</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MailIcon className="h-5 w-5 text-primary" />
-                  <p className="text-sm">info@ma.edu.gy</p>
-                </div>
-              </div>
+              <ContactMethods orgInstance={orgInstance} />
             </CardBody>
           </Card>
 

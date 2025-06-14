@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
@@ -6,8 +7,22 @@ import { CheckCircleIcon, InfoIcon } from "lucide-react";
 import type { Requirement } from "../../programsData";
 import { programsData } from "../../programsData";
 import { ApplyCard } from "./components/ApplyCard";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 
-export default function ProgramsApplyPage() {
+const retrieveOrgInstance = async (username: string) => {
+  const result = await getOrgInstanceByUsername(username);
+  if (!result) return notFound();
+  return result;
+};
+
+interface ProgramsApplyPageProps {
+  params: Promise<{ username: string }>;
+}
+export default async function ProgramsApplyPage({
+  params,
+}: ProgramsApplyPageProps) {
+  const { username } = await params;
+  const orgInstance = await retrieveOrgInstance(username);
   return (
     <section className="my-10 px-4">
       <div className="mx-auto max-w-3xl">
@@ -16,7 +31,7 @@ export default function ProgramsApplyPage() {
         </h2>
 
         <div className="mb-8 space-y-6">
-          <ApplyCard />
+          <ApplyCard orgInstance={orgInstance} />
         </div>
 
         <Divider className="my-5" />
