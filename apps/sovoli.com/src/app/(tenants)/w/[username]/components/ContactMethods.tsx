@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
