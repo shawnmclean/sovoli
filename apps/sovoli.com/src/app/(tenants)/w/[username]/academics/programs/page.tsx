@@ -1,15 +1,55 @@
-"use client";
-
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 
-import { programsData } from "../../programsData";
 import { displayAgeRange } from "./utils";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 
-export default function ProgramsPage() {
+const retrieveOrgInstance = async (username: string) => {
+  const result = await getOrgInstanceByUsername(username);
+  if (!result) return notFound();
+  return result;
+};
+
+interface ProgramsPageProps {
+  params: Promise<{ username: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ProgramsPageProps): Promise<Metadata> {
+  const { username } = await params;
+  const {
+    websiteModule: { website },
+  } = await retrieveOrgInstance(username);
+
+  return {
+    title: "Programs",
+    description: `Explore our academic programs at ${website.siteName}.`,
+    keywords: [
+      "academic programs",
+      "courses",
+      "education",
+      website.siteName,
+    ],
+    openGraph: {
+      title: `Programs | ${website.siteName}`,
+      description: `Explore our academic programs at ${website.siteName}.`,
+      type: "website",
+    },
+  };
+}
+
+export default async function ProgramsPage({
+  params,
+}: ProgramsPageProps) {
+  const { username } = await params;
+  const orgInstance = await retrieveOrgInstance(username);
+  const programs = orgInstance.academicModule?.programs ?? [];
+
   return (
     <div>
       {/* Main Content Section */}
@@ -24,7 +64,7 @@ export default function ProgramsPage() {
 
         {/* Programs Listing */}
         <div className="grid gap-8 md:grid-cols-2">
-          {programsData.map((program, index) => (
+          {programs.map((program, index) => (
             <Card
               key={index}
               className="overflow-hidden shadow-md transition hover:shadow-lg"
@@ -74,7 +114,7 @@ export default function ProgramsPage() {
                   radius="sm"
                   className="mt-4 self-start"
                   as={Link}
-                  href={`/programs/${program.slug}`}
+                  href={`/academics/programs/${program.slug}`}
                 >
                   Learn More
                 </Button>
