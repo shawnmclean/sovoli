@@ -15,11 +15,13 @@ export const MAGY_ORG_INSTANCE: OrgInstance = {
     locations: [
       {
         key: "main-campus",
+        label: "Main Campus",
         address: {
           line1: "Lot 11, Public Road, Mon Repos",
           city: "Georgetown",
           country: "Guyana",
         },
+        placeId: "ChIJKbqkI_ftr40RoBB0_9AsWAo",
         coordinates: {
           lat: 6.807574377222727,
           lng: -58.053166525904416,
@@ -30,7 +32,6 @@ export const MAGY_ORG_INSTANCE: OrgInstance = {
             value: "info@ma.edu.gy",
             isPublic: true,
           },
-          { type: "phone", value: "+592-627-1915", isPublic: false },
           {
             type: "phone",
             value: "+592 627-1915",
@@ -49,9 +50,30 @@ export const MAGY_ORG_INSTANCE: OrgInstance = {
             label: "Joel",
             isPublic: true,
           },
+          {
+            type: "whatsapp",
+            value: "+592 751-3788",
+            label: "Nessa",
+            isPublic: true,
+          },
         ],
         isPrimary: true,
       },
+      // {
+      //   key: "secondary-campus",
+      //   address: {
+      //     line1: "Lot 11, Public Road, Mon Repos",
+      //     city: "Georgetown",
+      //     country: "Guyana",
+      //   },
+      //   contacts: [
+      //     {
+      //       type: "email",
+      //       value: "info@ma.edu.gy",
+      //       isPublic: true,
+      //     },
+      //   ],
+      // },
     ],
     socialLinks: [
       {

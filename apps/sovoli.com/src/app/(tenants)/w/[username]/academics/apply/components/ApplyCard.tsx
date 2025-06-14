@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardBody } from "@sovoli/ui/components/card";
+import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 import { PhoneIcon, SendIcon } from "lucide-react";
 
 import { ContactMethods } from "../../../components/ContactMethods";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { Select, SelectItem } from "@sovoli/ui/components/select";
+import { Divider } from "@sovoli/ui/components/divider";
 
 interface ApplyCardProps {
   orgInstance: OrgInstance;
@@ -14,8 +16,38 @@ interface ApplyCardProps {
 
 export function ApplyCard({ orgInstance }: ApplyCardProps) {
   const [selected, setSelected] = useState("contact");
+  const { org } = orgInstance;
+  const locations = org.locations;
+  const [selectedLocationKey, setSelectedLocationKey] = useState<string | null>(
+    locations[0]?.key ?? null,
+  );
+  const selectedLocation = locations.find(
+    (loc) => loc.key === selectedLocationKey,
+  );
+
   return (
     <Card shadow="sm" className="overflow-visible">
+      {locations.length > 1 ? (
+        <>
+          <CardHeader>
+            <Select
+              label="Select Location"
+              selectedKeys={[selectedLocationKey ?? ""]}
+              onSelectionChange={(keys) =>
+                setSelectedLocationKey(keys.currentKey ?? null)
+              }
+              className="max-w-xs"
+            >
+              {locations.map((loc, idx) => (
+                <SelectItem key={loc.key}>
+                  {loc.label ?? `Location ${idx + 1}`}
+                </SelectItem>
+              ))}
+            </Select>
+          </CardHeader>
+          <Divider />
+        </>
+      ) : null}
       <CardBody className="overflow-hidden p-0">
         <Tabs
           aria-label="Application options"
@@ -40,7 +72,9 @@ export function ApplyCard({ orgInstance }: ApplyCardProps) {
             }
           >
             <div className="px-2 py-6">
-              <ContactMethods orgInstance={orgInstance} />
+              {selectedLocation ? (
+                <ContactMethods location={selectedLocation} />
+              ) : null}
             </div>
           </Tab>
           <Tab

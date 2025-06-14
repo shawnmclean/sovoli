@@ -7,54 +7,33 @@ import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
 import { MailIcon, MapIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
-import type { OrgInstance } from "~/modules/organisations/types";
+import type { OrgLocation } from "~/modules/organisations/types";
+import { Divider } from "@sovoli/ui/components/divider";
 
 interface ContactMethodsProps {
-  orgInstance: OrgInstance;
+  location: OrgLocation;
 }
 
-export function ContactMethods({ orgInstance }: ContactMethodsProps) {
-  const { org } = orgInstance;
-
-  const phoneContacts = org.locations.flatMap((loc) =>
-    loc.contacts
-      .filter((c) => c.type === "phone")
-      .map((c) => ({ ...c, location: loc })),
+export function ContactMethods({ location }: ContactMethodsProps) {
+  const phoneContacts = location.contacts.filter((c) => c.type === "phone");
+  const whatsappContacts = location.contacts.filter(
+    (c) => c.type === "whatsapp",
   );
-  const whatsappContacts = org.locations.flatMap((loc) =>
-    loc.contacts
-      .filter((c) => c.type === "whatsapp")
-      .map((c) => ({ ...c, location: loc })),
-  );
-  const emailContacts = org.locations.flatMap((loc) =>
-    loc.contacts
-      .filter((c) => c.type === "email")
-      .map((c) => ({ ...c, location: loc })),
-  );
-
-  const firstLocation = org.locations[0];
+  const emailContacts = location.contacts.filter((c) => c.type === "email");
 
   const defaultExpandedKey = React.useMemo(() => {
     if (whatsappContacts.length > 0) return "whatsapp";
     if (phoneContacts.length > 0) return "phone";
     if (emailContacts.length > 0) return "email";
-    if (org.locations.length > 0) return "address";
-    return undefined;
-  }, [
-    whatsappContacts.length,
-    phoneContacts.length,
-    emailContacts.length,
-    org.locations.length,
-  ]);
+    return "address";
+  }, [whatsappContacts.length, phoneContacts.length, emailContacts.length]);
 
   return (
     <div className="space-y-6">
       <Accordion
         variant="splitted"
         selectionMode="multiple"
-        defaultExpandedKeys={
-          defaultExpandedKey ? [defaultExpandedKey] : undefined
-        }
+        defaultExpandedKeys={[defaultExpandedKey]}
         className="px-0"
       >
         {phoneContacts.length > 0 ? (
@@ -157,61 +136,53 @@ export function ContactMethods({ orgInstance }: ContactMethodsProps) {
             </div>
           </AccordionItem>
         ) : null}
-
-        {org.locations.length > 0 ? (
-          <AccordionItem
-            key="address"
-            aria-label="Physical Addresses"
-            title={
-              <div className="flex items-center gap-2">
-                <MapPinIcon className="text-lg text-primary" />
-                <span>Locations</span>
-              </div>
-            }
-          >
-            <div className="space-y-4 px-2">
-              {org.locations.map((loc, idx) => {
-                const address = [
-                  loc.address.line1,
-                  loc.address.line2,
-                  loc.address.line3,
-                  [loc.address.city, loc.address.state]
-                    .filter(Boolean)
-                    .join(", "),
-                  loc.address.postalCode,
-                  loc.address.country,
-                ]
-                  .filter(Boolean)
-                  .join("\n");
-                return (
-                  <div key={idx} className="space-y-2">
-                    {loc.label && <p className="font-medium">{loc.label}</p>}
-                    <div className="flex items-start gap-3">
-                      <MapPinIcon className="mt-1 text-default-500" />
-                      <address className="not-italic text-default-600 whitespace-pre-line">
-                        {address}
-                      </address>
-                    </div>
-                  </div>
-                );
-              })}
-              {firstLocation?.coordinates ? (
-                <Button
-                  color="primary"
-                  variant="flat"
-                  startContent={<MapIcon />}
-                  as="a"
-                  href={`https://maps.google.com/?q=${firstLocation.coordinates.lat},${firstLocation.coordinates.lng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View on Map
-                </Button>
-              ) : null}
-            </div>
-          </AccordionItem>
-        ) : null}
       </Accordion>
+
+      <Divider className="my-4" />
+
+      {(() => {
+        const addressLines = [
+          location.address.line1,
+          location.address.line2,
+          location.address.line3,
+          [location.address.city, location.address.state]
+            .filter(Boolean)
+            .join(", "),
+          location.address.postalCode,
+          location.address.country,
+        ]
+          .filter(Boolean)
+          .join("\n");
+
+        return (
+          <div className="space-y-2">
+            {location.label && <p className="font-medium">{location.label}</p>}
+            <div className="flex items-start gap-3">
+              <MapPinIcon className="mt-1 text-default-500" />
+              <address className="not-italic text-default-600 whitespace-pre-line">
+                {addressLines}
+              </address>
+            </div>
+            {location.coordinates ? (
+              <Button
+                color="primary"
+                variant="flat"
+                startContent={<MapIcon />}
+                as="a"
+                href={
+                  location.placeId
+                    ? `https://www.google.com/maps/place/?q=place_id:${location.placeId}`
+                    : `https://maps.google.com/?q=${location.coordinates.lat},${location.coordinates.lng}`
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on Map
+              </Button>
+            ) : null}
+          </div>
+        );
+      })()}
     </div>
   );
 }

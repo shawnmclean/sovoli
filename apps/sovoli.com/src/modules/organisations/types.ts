@@ -21,6 +21,7 @@ export interface OrgLocation {
     lat: number;
     lng: number;
   };
+  placeId?: string;
   contacts: Contact[];
 }
 
