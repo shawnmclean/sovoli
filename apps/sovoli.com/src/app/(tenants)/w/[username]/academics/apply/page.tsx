@@ -2,12 +2,13 @@ import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
-import { CheckCircleIcon, InfoIcon } from "lucide-react";
+import { ArrowDownIcon, CheckCircleIcon, InfoIcon } from "lucide-react";
 
 import type { Requirement } from "../../programsData";
 import { programsData } from "../../programsData";
 import { ApplyCard } from "./components/ApplyCard";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
+import { Link } from "@sovoli/ui/components/link";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -30,13 +31,24 @@ export default async function ProgramsApplyPage({
           Apply to Our Programs
         </h2>
 
+        <div className="mb-8 text-center">
+          <Link
+            href="#requirements"
+            color="primary"
+            underline="hover"
+            className="flex items-center justify-center gap-2"
+          >
+            View Requirements <ArrowDownIcon className="w-4 h-4" />
+          </Link>
+        </div>
+
         <div className="mb-8 space-y-6">
           <ApplyCard orgInstance={orgInstance} />
         </div>
 
         <Divider className="my-5" />
 
-        <div className="space-y-6">
+        <div className="space-y-6" id="requirements">
           <Card shadow="sm" className="overflow-visible">
             <CardBody className="p-6">
               <h3 className="mb-4 text-xl font-semibold text-foreground">
