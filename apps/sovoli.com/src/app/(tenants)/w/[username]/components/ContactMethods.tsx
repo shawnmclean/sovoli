@@ -32,12 +32,27 @@ export function ContactMethods({ orgInstance }: ContactMethodsProps) {
 
   const firstLocation = org.locations[0];
 
+  const defaultExpandedKey = React.useMemo(() => {
+    if (whatsappContacts.length > 0) return "whatsapp";
+    if (phoneContacts.length > 0) return "phone";
+    if (emailContacts.length > 0) return "email";
+    if (org.locations.length > 0) return "address";
+    return undefined;
+  }, [
+    whatsappContacts.length,
+    phoneContacts.length,
+    emailContacts.length,
+    org.locations.length,
+  ]);
+
   return (
     <div className="space-y-6">
       <Accordion
         variant="splitted"
         selectionMode="multiple"
-        defaultExpandedKeys={["whatsapp"]}
+        defaultExpandedKeys={
+          defaultExpandedKey ? [defaultExpandedKey] : undefined
+        }
         className="px-0"
       >
         {phoneContacts.length > 0 ? (
@@ -104,7 +119,8 @@ export function ContactMethods({ orgInstance }: ContactMethodsProps) {
                 </div>
               ))}
               <p className="mt-2 text-small text-default-400">
-                Quick responses during business hours. Send us a message anytime!
+                Quick responses during business hours. Send us a message
+                anytime!
               </p>
               {whatsappContacts[0] && (
                 <Button
@@ -175,7 +191,9 @@ export function ContactMethods({ orgInstance }: ContactMethodsProps) {
                   loc.address.line1,
                   loc.address.line2,
                   loc.address.line3,
-                  [loc.address.city, loc.address.state].filter(Boolean).join(", "),
+                  [loc.address.city, loc.address.state]
+                    .filter(Boolean)
+                    .join(", "),
                   loc.address.postalCode,
                   loc.address.country,
                 ]
