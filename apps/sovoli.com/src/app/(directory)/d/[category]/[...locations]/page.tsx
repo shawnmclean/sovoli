@@ -14,6 +14,9 @@ interface Org {
   name: string;
   categories: string[]; // e.g., 'private-school', 'nursery-school'
   location: {
+    line1?: string;
+    line2?: string;
+    line3?: string;
     country: string; // e.g., 'guyana'
     state?: string; // optional, e.g., 'florida'
     city?: string; // optional, e.g., 'georgetown'
@@ -328,7 +331,12 @@ const ORGS: Org[] = [
     id: "jos-el-educational-institute",
     name: "Jos-el Educational Institute",
     categories: ["private-school"],
-    location: { country: "guyana", city: "georgetown" },
+    location: {
+      line1: "120 Laluni and Peter Rose Street",
+      line2: "Queenstown",
+      country: "guyana",
+      city: "georgetown",
+    },
     phone: "+592-226-7868",
     website: "https://joselacademy.org/",
   },
