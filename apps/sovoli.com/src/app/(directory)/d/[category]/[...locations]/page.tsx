@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
+import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
 import { GlobeIcon, MapPinIcon, PhoneIcon, SearchIcon } from "lucide-react";
 
@@ -528,8 +529,12 @@ export default async function DirectoryCategoryPage({ params }: Props) {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="mb-8">
         <h1 className="mb-2 text-3xl font-semibold">
-          Top {pluralize(2, readableCategory)} in {formattedLocations}
+          Compare {formattedLocations} {pluralize(2, readableCategory)}
         </h1>
+        <p className="mb-6 max-w-2xl text-default-500">
+          We’re building Guyana’s most trusted school directory. View details,
+          compare offerings, and soon, apply directly.
+        </p>
         <p className="text-default-500">
           Found {matching.length} organization{matching.length !== 1 ? "s" : ""}
         </p>
@@ -557,6 +562,18 @@ export default async function DirectoryCategoryPage({ params }: Props) {
           ))}
         </div>
       )}
+
+      <div className="mt-8 flex justify-center">
+        <Button
+          as="a"
+          href="https://wa.me/5926082743"
+          target="_blank"
+          rel="noopener noreferrer"
+          color="success"
+        >
+          Suggest a School
+        </Button>
+      </div>
     </div>
   );
 }
