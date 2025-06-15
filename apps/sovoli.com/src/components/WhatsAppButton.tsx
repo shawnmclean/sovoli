@@ -4,16 +4,21 @@ import React from "react";
 import { Button } from "@sovoli/ui/components/button";
 
 interface WhatsAppButtonProps {
-  groupCode?: string;
+  phoneNumber: string;
+  message?: string;
   children?: React.ReactNode;
 }
 
 export function WhatsAppButton({
-  groupCode = "J0rpd3MhRsxHZRpL11LnwB",
-  children = "Join Whatspp Group",
+  phoneNumber,
+  message,
+  children = "Message on WhatsApp",
 }: WhatsAppButtonProps) {
-  const appUrl = `whatsapp://chat?code=${groupCode}`;
-  const webUrl = `https://chat.whatsapp.com/${groupCode}`;
+  // Remove any non-numeric characters from the phone number
+  const cleanNumber = phoneNumber.replace(/\D/g, "");
+  const encodedMessage = message ? encodeURIComponent(message) : "";
+  const appUrl = `whatsapp://send?phone=${cleanNumber}${message ? `&text=${encodedMessage}` : ""}`;
+  const webUrl = `https://wa.me/${cleanNumber}${message ? `?text=${encodedMessage}` : ""}`;
 
   const handleClick = () => {
     // Attempt to open WhatsApp app

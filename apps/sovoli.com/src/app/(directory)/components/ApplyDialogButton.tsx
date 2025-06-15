@@ -9,6 +9,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@sovoli/ui/components/dialog";
+import { WhatsAppButton } from "~/components/WhatsAppButton";
 
 interface ApplyDialogButtonProps {
   orgName: string;
@@ -27,22 +28,20 @@ export function ApplyDialogButton({ orgName }: ApplyDialogButtonProps) {
           {(close) => (
             <>
               <ModalHeader>Apply to {orgName}</ModalHeader>
-              <ModalBody>Applications are coming soon.</ModalBody>
+              <ModalBody>
+                Send us a WhatsApp message and we will package and forward your
+                application to the school of your choice.
+              </ModalBody>
               <ModalFooter>
                 <Button variant="light" onPress={close}>
                   Close
                 </Button>
-                <Button
-                  as="a"
-                  href={`https://wa.me/5926082743?text=${encodeURIComponent(
-                    `Applying to ${orgName}`,
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  color="success"
+                <WhatsAppButton
+                  phoneNumber="+5926082743"
+                  message={`Applying to ${orgName}`}
                 >
-                  WhatsApp Us
-                </Button>
+                  Message Us
+                </WhatsAppButton>
               </ModalFooter>
             </>
           )}

@@ -11,19 +11,19 @@ import mockupStudentProfile from "./mockup-student-profile.png";
 
 const mockups: { src: StaticImageData; alt: string }[] = [
   {
-    src: mockupDashboard as StaticImageData,
+    src: mockupDashboard,
     alt: "School Dashboard View",
   },
   {
-    src: mockupStudentList as StaticImageData,
+    src: mockupStudentList,
     alt: "Student List View",
   },
   {
-    src: mockupAttendance as StaticImageData,
+    src: mockupAttendance,
     alt: "Attendance Tracking View",
   },
   {
-    src: mockupStudentProfile as StaticImageData,
+    src: mockupStudentProfile,
     alt: "Student Profile View",
   },
 ];

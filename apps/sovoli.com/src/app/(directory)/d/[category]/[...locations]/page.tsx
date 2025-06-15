@@ -7,6 +7,7 @@ import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 import { pluralize } from "~/utils/pluralize";
 import { DirectoryViewTabs } from "./DirectoryViewTabs";
+import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 
 interface Org {
   id: string;
@@ -630,18 +631,7 @@ function OrganizationCard({ org }: { org: Org }) {
         </div>
       </CardBody>
       <CardFooter>
-        <Button
-          as="a"
-          href={`https://wa.me/5926082743?text=${encodeURIComponent(
-            `Applying to ${org.name}`,
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          color="primary"
-          fullWidth
-        >
-          Apply
-        </Button>
+        <ApplyDialogButton orgName={org.name} />
       </CardFooter>
     </Card>
   );
