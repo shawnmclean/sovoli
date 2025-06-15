@@ -2,13 +2,7 @@ import type { Metadata } from "next";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
-import {
-  GlobeIcon,
-  MapPinIcon,
-  PhoneIcon,
-  SearchIcon,
-  MessageCircleIcon,
-} from "lucide-react";
+import { GlobeIcon, MapPinIcon, PhoneIcon, SearchIcon } from "lucide-react";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 import { pluralize } from "~/utils/pluralize";
@@ -535,7 +529,7 @@ export default async function DirectoryCategoryPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="mb-8">
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="mb-2 text-3xl font-semibold">
               Compare {formattedLocations} {pluralize(2, readableCategory)}
@@ -555,7 +549,7 @@ export default async function DirectoryCategoryPage({ params }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             color="success"
-            className="flex items-center gap-2"
+            className="flex w-full items-center justify-center gap-2 sm:w-auto"
           >
             <SiWhatsapp className="h-5 w-5" />
             Suggest a School
