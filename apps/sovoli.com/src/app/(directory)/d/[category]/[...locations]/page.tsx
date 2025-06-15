@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
-import { GlobeIcon, MapPinIcon, PhoneIcon, SearchIcon } from "lucide-react";
+import {
+  GlobeIcon,
+  MapPinIcon,
+  PhoneIcon,
+  SearchIcon,
+  MessageCircleIcon,
+} from "lucide-react";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 import { pluralize } from "~/utils/pluralize";
 import { DirectoryViewTabs } from "./DirectoryViewTabs";
@@ -356,7 +363,7 @@ const ORGS: Org[] = [
   },
   {
     id: "maes-schools",
-    name: "Mae’s Schools",
+    name: "Mae's Schools",
     categories: ["private-school"],
     location: { country: "guyana" },
     phone: null,
@@ -528,16 +535,32 @@ export default async function DirectoryCategoryPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="mb-8">
-        <h1 className="mb-2 text-3xl font-semibold">
-          Compare {formattedLocations} {pluralize(2, readableCategory)}
-        </h1>
-        <p className="mb-6 max-w-2xl text-default-500">
-          We’re building Guyana’s most trusted school directory. View details,
-          compare offerings, and soon, apply directly.
-        </p>
-        <p className="text-default-500">
-          Found {matching.length} organization{matching.length !== 1 ? "s" : ""}
-        </p>
+        <div className="flex items-start justify-between">
+          <div>
+            <h1 className="mb-2 text-3xl font-semibold">
+              Compare {formattedLocations} {pluralize(2, readableCategory)}
+            </h1>
+            <p className="mb-6 max-w-2xl text-default-500">
+              We're building Guyana's most trusted school directory. View
+              details, compare offerings, and soon, apply directly.
+            </p>
+            <p className="text-default-500">
+              Found {matching.length} organization
+              {matching.length !== 1 ? "s" : ""}
+            </p>
+          </div>
+          <Button
+            as="a"
+            href="https://wa.me/5926082743"
+            target="_blank"
+            rel="noopener noreferrer"
+            color="success"
+            className="flex items-center gap-2"
+          >
+            <SiWhatsapp className="h-5 w-5" />
+            Suggest a School
+          </Button>
+        </div>
         <div className="mt-4">
           <DirectoryViewTabs />
         </div>
@@ -562,18 +585,6 @@ export default async function DirectoryCategoryPage({ params }: Props) {
           ))}
         </div>
       )}
-
-      <div className="mt-8 flex justify-center">
-        <Button
-          as="a"
-          href="https://wa.me/5926082743"
-          target="_blank"
-          rel="noopener noreferrer"
-          color="success"
-        >
-          Suggest a School
-        </Button>
-      </div>
     </div>
   );
 }
