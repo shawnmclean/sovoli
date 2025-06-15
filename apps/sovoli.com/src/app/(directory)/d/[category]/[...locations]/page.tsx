@@ -152,6 +152,20 @@ const ORGS: Org[] = [
     email: null,
   },
   {
+    id: "dominion-schools",
+    name: "Dominion Schools",
+    categories: ["private-school"],
+    location: {
+      line1: "Lot 112 Regent Road",
+      line2: "Bourda",
+      country: "guyana",
+      city: "georgetown",
+    },
+    phone: "+592 622-9382",
+    website: "https://www.facebook.com/profile.php?id=61566083309964",
+    email: "dominionschoolsoffice@gmail.com",
+  },
+  {
     id: "lovable-friends-academy",
     name: "Lovable Friends Academy",
     categories: ["private-school"],
