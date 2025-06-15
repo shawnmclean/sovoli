@@ -532,7 +532,7 @@ export default async function DirectoryCategoryPage({ params }: Props) {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="mb-2 text-3xl font-semibold">
-              Compare {formattedLocations} {pluralize(2, readableCategory)}
+              Top {pluralize(2, readableCategory)} in {formattedLocations}
             </h1>
             <p className="mb-6 max-w-2xl text-default-500">
               We're building Guyana's most trusted school directory. View
