@@ -629,7 +629,20 @@ function OrganizationCard({ org }: { org: Org }) {
           </div>
         </div>
       </CardBody>
-      <CardFooter></CardFooter>
+      <CardFooter>
+        <Button
+          as="a"
+          href={`https://wa.me/5926082743?text=${encodeURIComponent(
+            `Applying to ${org.name}`,
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          color="primary"
+          fullWidth
+        >
+          Apply
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
