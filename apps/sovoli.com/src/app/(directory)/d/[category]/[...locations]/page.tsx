@@ -324,12 +324,12 @@ const ORGS: Org[] = [
     website: null,
   },
   {
-    id: "josel-education-institute",
-    name: "Josel Education Institute",
+    id: "jos-el-educational-institute",
+    name: "Jos-el Educational Institute",
     categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
+    location: { country: "guyana", city: "georgetown" },
+    phone: "+592-226-7868",
+    website: "https://joselacademy.org/",
   },
   {
     id: "la-première-academy",
