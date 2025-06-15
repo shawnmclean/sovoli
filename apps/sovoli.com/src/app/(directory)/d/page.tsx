@@ -2,6 +2,7 @@ import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
 import { GlobeIcon, MapPinIcon, PhoneIcon } from "lucide-react";
+import { ApplyDialogButton } from "../components/ApplyDialogButton";
 
 interface Org {
   id: string;
@@ -78,18 +79,7 @@ function OrganizationCard({ org }: { org: Org }) {
         </div>
       </CardBody>
       <CardFooter>
-        <Button
-          as="a"
-          href={`https://wa.me/5926082743?text=${encodeURIComponent(
-            `Applying to ${org.name}`,
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          color="primary"
-          fullWidth
-        >
-          Apply
-        </Button>
+        <ApplyDialogButton orgName={org.name} />
       </CardFooter>
     </Card>
   );
