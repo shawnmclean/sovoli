@@ -28,7 +28,7 @@ export default async function ThankYouPage({
           We’ll be in touch soon to discuss next steps.
         </p>
 
-        <WhatsAppButton />
+        <WhatsAppButton phoneNumber="+5926082743" />
       </div>
     </main>
   );
