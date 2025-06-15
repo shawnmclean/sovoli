@@ -44,7 +44,13 @@ export function ApplyDialogButton({ orgName }: ApplyDialogButtonProps) {
 
   return (
     <>
-      <Button color="primary" fullWidth onPress={onOpen}>
+      <Button
+        color="primary"
+        fullWidth
+        onPress={onOpen}
+        data-attr="apply-dialog-open"
+        data-school={orgName}
+      >
         Apply
       </Button>
       <Modal
