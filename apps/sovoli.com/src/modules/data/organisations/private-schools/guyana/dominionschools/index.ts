@@ -5,8 +5,24 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Dominion Schools",
-    claimed: false,
     categories: ["private-school"],
+    isVerified: true,
+    internalCRM: {
+      people: [
+        {
+          name: "Dominion Schools",
+          notes:
+            "User reached out during first ad run to directory list to get their school added.",
+          contacts: [
+            {
+              type: "phone",
+              value: "+592 622-9382",
+              isPublic: false,
+            },
+          ],
+        },
+      ],
+    },
     locations: [
       {
         key: "main",

@@ -5,7 +5,6 @@ export const CHESED_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Chesed Academy",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

@@ -5,7 +5,6 @@ export const APEX_EDUCATION_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Apex Education",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

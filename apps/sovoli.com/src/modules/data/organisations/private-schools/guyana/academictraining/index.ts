@@ -5,7 +5,6 @@ export const ACADEMIC_TRAINING_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Academic Training Centre",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

@@ -8,7 +8,6 @@ export const FITRIGHT_ORG_INSTANCE: OrgInstance = {
     username: ORG_USERNAME,
     name: "Fit Right Academy",
     logo: "/orgs/fitright/logo.png",
-    claimed: true,
     categories: ["dressmaking", "alterations", "academic-programs"],
     locations: [
       {

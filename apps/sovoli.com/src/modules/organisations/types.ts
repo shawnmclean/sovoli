@@ -8,6 +8,7 @@ import type { WorkforceModule } from "../workforce/types";
 export interface Person {
   name: string;
   contacts: Contact[];
+  notes?: string;
 }
 
 export interface Address {

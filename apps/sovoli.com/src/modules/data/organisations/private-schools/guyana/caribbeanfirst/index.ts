@@ -5,7 +5,6 @@ export const CARIBBEAN_FIRST_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Caribbean First Class Elementary",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

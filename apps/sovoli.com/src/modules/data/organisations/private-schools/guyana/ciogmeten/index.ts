@@ -5,7 +5,6 @@ export const CIOGMETEN_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "CIOG-Meten Meer Zorg Islamic Academy",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

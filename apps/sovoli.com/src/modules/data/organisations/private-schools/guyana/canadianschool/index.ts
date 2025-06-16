@@ -5,7 +5,6 @@ export const CANADIAN_SCHOOL_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Canadian School of Arts & Science",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

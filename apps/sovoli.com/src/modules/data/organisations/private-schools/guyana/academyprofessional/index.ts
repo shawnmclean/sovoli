@@ -5,7 +5,6 @@ export const ACADEMY_PROFESSIONAL_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Academy of Professional Studies - APS",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {
