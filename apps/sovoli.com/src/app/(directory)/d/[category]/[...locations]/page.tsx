@@ -22,7 +22,10 @@ const CATEGORY_MAP: Record<string, string> = {
 
 interface Props {
   params: Promise<{ category: string; locations: string[] }>;
-  searchParams: { page?: string; pageSize?: string };
+  searchParams: Promise<{
+    page: string | undefined;
+    pageSize: string | undefined;
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -91,14 +94,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Top ${pluralize(2, readableCategory)} in ${formattedLocations}`,
     description: `Explore the best ${pluralize(2, readableCategory)} in ${formattedLocations}.`,
   };
-}
-
-interface Props {
-  params: Promise<{ category: string; locations: string[] }>;
-  searchParams: Promise<{
-    page: string | undefined;
-    pageSize: string | undefined;
-  }>;
 }
 
 export default async function DirectoryCategoryPage(props: Props) {
