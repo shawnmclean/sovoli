@@ -1,2 +1,2 @@
-export const ORG_USERNAME = "lfa";
-export const ORG_DOMAIN = "lfa.sovoli.com";
+export const ORG_USERNAME = "lovablefriends";
+export const ORG_DOMAIN = "lovablefriendsgy.sovoli.com";
