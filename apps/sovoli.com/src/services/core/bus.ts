@@ -15,6 +15,10 @@ import {
   GetUserProfileByUsernameQueryHandler,
 } from "../users/queries/GetUserProfileByUsernameQuery";
 import { QueryProcessor } from "./QueryProcessor";
+import {
+  GetAllCategoryAddressesQuery,
+  GetAllCategoryAddressesQueryHandler,
+} from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
 
 export class Bus {
   public readonly queryProcessor: QueryProcessor;
@@ -42,6 +46,10 @@ export class Bus {
     this.queryProcessor.register(
       GetOrgInstanceByUsernameQuery,
       new GetOrgInstanceByUsernameQueryHandler(),
+    );
+    this.queryProcessor.register(
+      GetAllCategoryAddressesQuery,
+      new GetAllCategoryAddressesQueryHandler(),
     );
   }
 }

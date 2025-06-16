@@ -4,19 +4,21 @@ import type { OfferingModule } from "../offerings/types";
 import type { WebsiteModule } from "../websites/types";
 import type { WorkforceModule } from "../workforce/types";
 
+export interface Address {
+  line1?: string;
+  line2?: string;
+  line3?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country: string;
+}
+
 export interface OrgLocation {
   key: string;
   label?: string;
   isPrimary?: boolean;
-  address: {
-    line1?: string;
-    line2?: string;
-    line3?: string;
-    city?: string;
-    state?: string;
-    postalCode?: string;
-    country: string;
-  };
+  address: Address;
   coordinates?: {
     lat: number;
     lng: number;
