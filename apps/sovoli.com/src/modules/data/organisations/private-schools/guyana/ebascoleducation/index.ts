@@ -5,7 +5,6 @@ export const EBASCOL_EDUCATION_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Ebascol Education Centre",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

@@ -4,8 +4,7 @@ import { ORG_USERNAME } from "./constants";
 export const GLOBAL_TECHNOLOGY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "Global Technology Inc.",
-    claimed: false,
+    name: "Global Technology",
     categories: ["private-school"],
     locations: [
       {

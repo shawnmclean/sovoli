@@ -5,7 +5,6 @@ export const GENESIS_EARLY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Genesis Early Childhood Centre",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

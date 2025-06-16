@@ -5,7 +5,6 @@ export const SCHOOL_BRILLIANT_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "School of Brilliant Beginnings",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

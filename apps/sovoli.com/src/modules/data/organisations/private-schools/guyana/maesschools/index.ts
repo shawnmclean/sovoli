@@ -5,7 +5,6 @@ export const MAES_SCHOOLS_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Mae's Schools",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

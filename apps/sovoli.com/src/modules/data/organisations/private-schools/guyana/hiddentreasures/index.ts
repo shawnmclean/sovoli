@@ -5,7 +5,6 @@ export const HIDDEN_TREASURES_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Hidden Treasures Academy",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

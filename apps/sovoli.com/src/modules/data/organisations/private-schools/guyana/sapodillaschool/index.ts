@@ -5,7 +5,6 @@ export const SAPODILLA_SCHOOL_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Sapodilla School of Excellence",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

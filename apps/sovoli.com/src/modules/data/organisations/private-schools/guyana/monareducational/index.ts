@@ -5,7 +5,6 @@ export const MONAR_EDUCATIONAL_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Monar Educational Institute",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

@@ -5,7 +5,6 @@ export const LOVABLE_FRIENDS_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Lovable Friends Academy",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

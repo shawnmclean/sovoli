@@ -5,7 +5,6 @@ export const NEW_LIFE_MINISTRIES_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "New Life Ministries School",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

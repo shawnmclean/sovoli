@@ -5,7 +5,6 @@ export const QAYYIM_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Qayyim Academy",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

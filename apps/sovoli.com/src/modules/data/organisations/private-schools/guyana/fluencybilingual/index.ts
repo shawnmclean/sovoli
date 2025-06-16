@@ -5,7 +5,6 @@ export const FLUENCY_BILINGUAL_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Fluency Bilingual Academy",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

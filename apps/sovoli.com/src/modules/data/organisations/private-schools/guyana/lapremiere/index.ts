@@ -5,7 +5,6 @@ export const LA_PREMIERE_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "La Première Academy",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

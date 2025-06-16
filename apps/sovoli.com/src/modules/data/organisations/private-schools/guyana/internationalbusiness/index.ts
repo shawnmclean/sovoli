@@ -5,7 +5,6 @@ export const INTERNATIONAL_BUSINESS_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "International Business College",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

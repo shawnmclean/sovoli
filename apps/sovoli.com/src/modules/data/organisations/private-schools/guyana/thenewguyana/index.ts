@@ -5,7 +5,6 @@ export const THE_NEW_GUYANA_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "The New Guyana School",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {
