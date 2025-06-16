@@ -225,7 +225,7 @@ function OrganizationCard({ org }: { org: OrgInstance }) {
       <CardBody>
         <div className="flex flex-col gap-3">
           <div className="flex items-start justify-between">
-            <Link href={`/org/${org.org.username}`}>
+            <Link href={`/orgs/${org.org.username}`}>
               <h2 className="text-xl font-semibold">{org.org.name}</h2>
             </Link>
           </div>
