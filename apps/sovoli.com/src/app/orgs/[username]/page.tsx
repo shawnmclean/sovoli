@@ -31,7 +31,7 @@ export default async function OrgProfilePage({
 
   return (
     <div>
-      <h1>{orgInstance.org.name}</h1>
+      <h1>{orgInstance.org.isVerified ? "Verified" : "Unverified"}</h1>
     </div>
   );
 }

@@ -44,8 +44,8 @@ export default async function Layout({ children, params }: Props) {
   const orgInstance = await retreiveOrgInstance(username);
   return (
     <div className="flex min-h-screen flex-col">
+      <h1>{orgInstance.org.name}</h1>
       {children}
-      <pre>{JSON.stringify(orgInstance, null, 2)}</pre>
     </div>
   );
 }
