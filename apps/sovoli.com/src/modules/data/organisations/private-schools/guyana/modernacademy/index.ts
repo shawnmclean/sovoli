@@ -5,7 +5,7 @@ import { MODERN_ACADEMY_OFFERINGS } from "./offering";
 import { MODERN_ACADEMY_WORKFORCE } from "./workforce";
 import { MODERN_ACADEMY_WEBSITE } from "./website";
 
-export const MAGY_ORG_INSTANCE: OrgInstance = {
+export const MODERN_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Modern Academy",

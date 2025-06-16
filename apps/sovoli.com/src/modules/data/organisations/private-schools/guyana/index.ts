@@ -1,5 +1,6 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 // Import all org instances from each tenant
+import { MODERN_ACADEMY_ORG } from "./modernacademy";
 import { ACADEMY_EXCELLENCE_ORG } from "./academyexcellence";
 import { ACADEMY_PROFESSIONAL_ORG } from "./academyprofessional";
 import { ACADEMIC_TRAINING_ORG } from "./academictraining";
@@ -46,6 +47,7 @@ import { VALMIKI_VIDYALAYA_ORG } from "./valmikividyalaya";
 import { XENON_ACADEMY_ORG } from "./xenonacademy";
 
 export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] = [
+  MODERN_ACADEMY_ORG,
   ACADEMY_EXCELLENCE_ORG,
   ACADEMY_PROFESSIONAL_ORG,
   ACADEMIC_TRAINING_ORG,
