@@ -45,6 +45,11 @@ import { THE_GUYANA_EDUCATION_ORG } from "./theguyanaeducation";
 import { THE_NEW_GUYANA_ORG } from "./thenewguyana";
 import { VALMIKI_VIDYALAYA_ORG } from "./valmikividyalaya";
 import { XENON_ACADEMY_ORG } from "./xenonacademy";
+import { CHASE_ACADEMY_ORG } from "./chaseacademy";
+import { FRASERS_EDUCATIONAL_ORG } from "./fraserseducational";
+import { MORGANS_LEARNING_ORG } from "./morganslearning";
+import { PURE_MASTERS_ACADEMY_ORG } from "./puremastersacademy";
+import { SWAMI_PURNANANDA_ORG } from "./swamipurnananda";
 
 export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] = [
   MODERN_ACADEMY_ORG,
@@ -92,4 +97,9 @@ export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] = [
   THE_NEW_GUYANA_ORG,
   VALMIKI_VIDYALAYA_ORG,
   XENON_ACADEMY_ORG,
+  CHASE_ACADEMY_ORG,
+  FRASERS_EDUCATIONAL_ORG,
+  MORGANS_LEARNING_ORG,
+  PURE_MASTERS_ACADEMY_ORG,
+  SWAMI_PURNANANDA_ORG,
 ];
