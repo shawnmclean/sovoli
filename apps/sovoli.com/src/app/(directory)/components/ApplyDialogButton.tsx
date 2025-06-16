@@ -11,7 +11,6 @@ import {
   ModalBody,
   ModalFooter,
 } from "@sovoli/ui/components/dialog";
-import { Card } from "@sovoli/ui/components/card";
 import { CheckCircleIcon, InfoIcon } from "lucide-react";
 import { Divider } from "@sovoli/ui/components/divider";
 import { WhatsAppButton } from "~/components/WhatsAppButton";

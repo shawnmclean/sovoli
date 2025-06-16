@@ -17,7 +17,7 @@ import { z } from "zod";
 import { createEnumObject } from "../utils";
 import { Book, SelectBookSchema } from "./Book";
 import { SelectKnowledgeConnectionSchema } from "./KnowledgeConnection";
-import { KnowledgeMediaAsset } from "./KnowledgeMediaAsset";
+import type { KnowledgeMediaAsset } from "./KnowledgeMediaAsset";
 import { SelectMediaAssetSchema } from "./MediaAsset";
 import { SelectUserSchema, User } from "./User";
 

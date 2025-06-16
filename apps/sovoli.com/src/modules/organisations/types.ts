@@ -9,7 +9,7 @@ export interface OrgLocation {
   label?: string;
   isPrimary?: boolean;
   address: {
-    line1: string;
+    line1?: string;
     line2?: string;
     line3?: string;
     city?: string;
