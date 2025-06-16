@@ -12,6 +12,8 @@ import { bus } from "~/services/core/bus";
 import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
 import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
 import type { Address, OrgInstance } from "~/modules/organisations/types";
+import { Chip } from "@sovoli/ui/components/chip";
+import { Alert } from "@sovoli/ui/components/alert";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",
@@ -124,6 +126,9 @@ export default async function DirectoryCategoryPage(props: Props) {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="mb-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <Alert color="warning" hideIcon>
+            Scoring System under development
+          </Alert>
           <div>
             <h1 className="mb-2 text-3xl font-semibold">
               Top {pluralize(2, readableCategory)} in {formattedLocations}
@@ -131,9 +136,6 @@ export default async function DirectoryCategoryPage(props: Props) {
             <p className="mb-6 max-w-2xl text-default-500">
               We're building Guyana's most trusted school directory. View
               details, compare offerings, and soon, apply directly.
-            </p>
-            <p className="text-default-500">
-              Found {total} {pluralize(total, "organization")}
             </p>
           </div>
           <Button
@@ -148,8 +150,9 @@ export default async function DirectoryCategoryPage(props: Props) {
             Suggest a School
           </Button>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex items-center justify-between">
           <DirectoryViewTabs />
+          <span className="text-default-500 ml-auto">{`(${total})`}</span>
         </div>
       </div>
 
@@ -223,12 +226,9 @@ function OrganizationCard({ org }: { org: OrgInstance }) {
             <Link href={`/orgs/${org.org.username}`}>
               <h2 className="text-xl font-semibold">{org.org.name}</h2>
             </Link>
-            <span
-              className="ml-4 rounded bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-700 border border-primary-200"
-              title="Digital Score"
-            >
+            <Chip title="Scoring System" variant="dot" color="warning">
               Score: {org.scoringModule?.totalScore ?? 0}
-            </span>
+            </Chip>
           </div>
 
           <div className="mt-1 flex flex-col gap-2">
