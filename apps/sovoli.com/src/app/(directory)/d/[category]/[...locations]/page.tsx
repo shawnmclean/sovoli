@@ -13,7 +13,6 @@ import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/q
 import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
 import type { Address, OrgInstance } from "~/modules/organisations/types";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Alert } from "@sovoli/ui/components/alert";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",
@@ -126,29 +125,33 @@ export default async function DirectoryCategoryPage(props: Props) {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="mb-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <Alert color="warning" hideIcon>
-            Scoring System under development
-          </Alert>
           <div>
-            <h1 className="mb-2 text-3xl font-semibold">
-              Top {pluralize(2, readableCategory)} in {formattedLocations}
-            </h1>
+            <div className="flex items-center gap-3 mb-2">
+              <h1 className="text-3xl font-semibold">
+                Top {pluralize(2, readableCategory)} in {formattedLocations}
+              </h1>
+            </div>
             <p className="mb-6 max-w-2xl text-default-500">
               We're building Guyana's most trusted school directory. View
               details, compare offerings, and soon, apply directly.
             </p>
           </div>
-          <Button
-            as="a"
-            href="https://wa.me/5926082743"
-            target="_blank"
-            rel="noopener noreferrer"
-            color="success"
-            className="flex w-full items-center justify-center gap-2 sm:w-auto"
-          >
-            <SiWhatsapp className="h-5 w-5" />
-            Suggest a School
-          </Button>
+          <div className="flex items-center gap-3">
+            <span className="inline-block rounded bg-yellow-100 px-2 py-0.5 text-xs font-semibold text-yellow-800 border border-yellow-300 align-middle">
+              Beta
+            </span>
+            <Button
+              as="a"
+              href="https://wa.me/5926082743"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="success"
+              className="flex w-full items-center justify-center gap-2 sm:w-auto"
+            >
+              <SiWhatsapp className="h-5 w-5" />
+              Suggest a School
+            </Button>
+          </div>
         </div>
         <div className="mt-4 flex items-center justify-between">
           <DirectoryViewTabs />

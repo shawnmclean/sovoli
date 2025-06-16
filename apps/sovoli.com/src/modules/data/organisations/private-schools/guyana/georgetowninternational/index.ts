@@ -4,7 +4,7 @@ import { ORG_USERNAME } from "./constants";
 export const GEORGETOWN_INTERNATIONAL_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "Georgetown International Academy (GIA)",
+    name: "Georgetown International Academy",
     categories: ["private-school"],
     locations: [
       {
