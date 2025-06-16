@@ -13,6 +13,7 @@ const retreiveOrgInstance = async (username: string) => {
 };
 
 export async function generateStaticParams() {
+  //TODO: change query to get all org usernames
   const result = await bus.queryProcessor.execute(
     new GetAllWebsiteUsernamesQuery(),
   );
