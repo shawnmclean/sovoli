@@ -5,7 +5,6 @@ export const LASER_EDGE_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Laser Edge Academic College",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

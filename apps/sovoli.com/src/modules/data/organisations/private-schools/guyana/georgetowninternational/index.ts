@@ -5,7 +5,6 @@ export const GEORGETOWN_INTERNATIONAL_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Georgetown International Academy (GIA)",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

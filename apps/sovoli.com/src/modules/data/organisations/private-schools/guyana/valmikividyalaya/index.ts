@@ -5,7 +5,6 @@ export const VALMIKI_VIDYALAYA_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Valmiki Vidyalaya",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

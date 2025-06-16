@@ -5,7 +5,6 @@ export const GEMSVILLE_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Gemsville Academy",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

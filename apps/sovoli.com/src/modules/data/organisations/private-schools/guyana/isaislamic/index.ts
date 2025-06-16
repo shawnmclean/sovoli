@@ -5,7 +5,6 @@ export const ISA_ISLAMIC_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "ISA Islamic School",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {

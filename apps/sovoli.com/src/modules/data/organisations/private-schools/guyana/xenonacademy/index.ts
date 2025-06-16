@@ -5,7 +5,6 @@ export const XENON_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Xenon Academy",
-    claimed: false,
     categories: ["private-school"],
     locations: [
       {
