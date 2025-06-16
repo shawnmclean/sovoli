@@ -10,7 +10,22 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Modern Academy",
     logo: "/orgs/magy/logo.png",
-    claimed: true,
+    isVerified: true,
+    internalCRM: {
+      people: [
+        {
+          name: "Joel",
+          contacts: [
+            {
+              type: "whatsapp",
+              value: "+592 627-1915",
+              label: "Joel",
+              isPublic: false,
+            },
+          ],
+        },
+      ],
+    },
     categories: ["private-school", "nursery-school"],
     locations: [
       {

@@ -41,14 +41,18 @@ export class GetOrgsByCategoryAndLocationQueryHandler
 
     // Filter by category
     filteredOrgs = filteredOrgs.filter((org) =>
-      org.org.categories.includes(category),
+      org.org.categories.some(
+        (cat) => cat.toLowerCase() === category.toLowerCase(),
+      ),
     );
 
     // Filter by country first
     if (country) {
       filteredOrgs = filteredOrgs.filter((org) =>
         org.org.locations.some(
-          (location) => location.address.country === country,
+          (location) =>
+            location.address.country &&
+            location.address.country.toLowerCase() === country.toLowerCase(),
         ),
       );
     }
@@ -56,13 +60,23 @@ export class GetOrgsByCategoryAndLocationQueryHandler
     // Filter by state or city
     if (stateOrCity) {
       filteredOrgs = filteredOrgs.filter((org) =>
-        org.org.locations.some(
-          (location) =>
-            location.address.state === stateOrCity ||
-            location.address.city === stateOrCity,
-        ),
+        org.org.locations.some((location) => {
+          const state = location.address.state
+            ? location.address.state.toLowerCase()
+            : "";
+          const city = location.address.city
+            ? location.address.city.toLowerCase()
+            : "";
+          const target = stateOrCity.toLowerCase();
+          return state === target || city === target;
+        }),
       );
     }
+
+    // order by score
+    filteredOrgs = filteredOrgs.sort(
+      (a, b) => b.scoringModule.totalScore - a.scoringModule.totalScore,
+    );
 
     const total = filteredOrgs.length;
     const start = (page - 1) * pageSize;

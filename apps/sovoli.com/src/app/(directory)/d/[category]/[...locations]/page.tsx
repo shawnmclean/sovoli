@@ -223,6 +223,12 @@ function OrganizationCard({ org }: { org: OrgInstance }) {
             <Link href={`/orgs/${org.org.username}`}>
               <h2 className="text-xl font-semibold">{org.org.name}</h2>
             </Link>
+            <span
+              className="ml-4 rounded bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-700 border border-primary-200"
+              title="Digital Score"
+            >
+              Score: {org.scoringModule?.totalScore ?? 0}
+            </span>
           </div>
 
           <div className="mt-1 flex flex-col gap-2">
