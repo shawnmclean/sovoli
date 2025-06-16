@@ -19,6 +19,10 @@ import {
   GetAllCategoryAddressesQuery,
   GetAllCategoryAddressesQueryHandler,
 } from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
+import {
+  GetOrgsByCategoryAndLocationQuery,
+  GetOrgsByCategoryAndLocationQueryHandler,
+} from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
 
 export class Bus {
   public readonly queryProcessor: QueryProcessor;
@@ -50,6 +54,10 @@ export class Bus {
     this.queryProcessor.register(
       GetAllCategoryAddressesQuery,
       new GetAllCategoryAddressesQueryHandler(),
+    );
+    this.queryProcessor.register(
+      GetOrgsByCategoryAndLocationQuery,
+      new GetOrgsByCategoryAndLocationQueryHandler(),
     );
   }
 }

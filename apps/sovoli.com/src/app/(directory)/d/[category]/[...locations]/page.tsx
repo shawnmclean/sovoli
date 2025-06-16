@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
-import { GlobeIcon, MapPinIcon, PhoneIcon, SearchIcon } from "lucide-react";
+import { MapPinIcon, SearchIcon } from "lucide-react";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 import { pluralize } from "~/utils/pluralize";
@@ -10,473 +10,8 @@ import { DirectoryViewTabs } from "./DirectoryViewTabs";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 import { bus } from "~/services/core/bus";
 import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
-
-interface Org {
-  id: string;
-  name: string;
-  categories: string[]; // e.g., 'private-school', 'nursery-school'
-  location: {
-    line1?: string;
-    line2?: string;
-    line3?: string;
-    country: string; // e.g., 'guyana'
-    state?: string; // optional, e.g., 'florida'
-    city?: string; // optional, e.g., 'georgetown'
-  };
-  phone?: string | null;
-  website?: string | null;
-  email?: string | null;
-}
-const ORGS: Org[] = [
-  {
-    id: "modern-academy",
-    name: "Modern Academy",
-    categories: [
-      "private-school",
-      "nursery-school",
-      "secondary-school",
-      "pre-school",
-    ],
-    location: {
-      country: "guyana",
-      city: "mon-repos",
-      state: "mahaica-demerara",
-    },
-    phone: "+592 627-1915",
-    website: "https://ma.edu.gy",
-    email: null,
-  },
-  {
-    id: "camilles-academy",
-    name: "Camille's Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "diamond",
-    },
-    phone: "+592-261-5027",
-    website: "https://www.camillesacademy.com",
-    email: "eibss2000@gmail.com",
-  },
-  {
-    id: "georgetown-international-academy-gia",
-    name: "Georgetown International Academy (GIA)",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-225-8347",
-    website: "https://giagy.com",
-    email: "admissions@giagy.org",
-  },
-  {
-    id: "marian-academy",
-    name: "Marian Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-226-9045",
-    website: "https://marianacademy.edu.gy",
-    email: "info@marianacademy.edu.gy",
-  },
-  {
-    id: "the-new-guyana-school",
-    name: "The New Guyana School",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-227-2733",
-    website: "https://www.newguyanaschool.com",
-    email: "info@newguyanaschool.com",
-  },
-  {
-    id: "chesed-academy",
-    name: "Chesed Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-650-7584",
-    website: "https://www.chesedacademy.edu.gy",
-    email: "chesedacademguyana@gmail.com",
-  },
-  {
-    id: "standard-christian-academy",
-    name: "Standard Christian Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-642-4913",
-    website: null,
-    email: null,
-  },
-  {
-    id: "met-pride-academy",
-    name: "M.E.T Pride Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-699-7239",
-    website: "https://metpride.com",
-    email: "info@metpride.com",
-  },
-  {
-    id: "ciog-meten-meer-zorg-islamic-academy",
-    name: "CIOG-Meten Meer Zorg Islamic Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-    },
-    phone: "+592-689-5420",
-    website: null,
-    email: null,
-  },
-  {
-    id: "gemsville-academy",
-    name: "Gemsville Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-231-7227",
-    website: "http://gemsville.academy",
-    email: null,
-  },
-  {
-    id: "dominion-schools",
-    name: "Dominion Schools",
-    categories: ["private-school"],
-    location: {
-      line1: "Lot 112 Regent Road",
-      line2: "Bourda",
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592 622-9382",
-    website: "https://www.facebook.com/profile.php?id=61566083309964",
-    email: "dominionschoolsoffice@gmail.com",
-  },
-  {
-    id: "lovable-friends-academy",
-    name: "Lovable Friends Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-663-0397",
-    website: null,
-    email: null,
-  },
-  {
-    id: "fluency-bilingual-academy",
-    name: "Fluency Bilingual Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-600-6651",
-    website: null,
-    email: null,
-  },
-  {
-    id: "hidden-treasures-academy",
-    name: "Hidden Treasures Academy",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-675-4379",
-    website: null,
-    email: null,
-  },
-  {
-    id: "caribbean-first-class-elementary",
-    name: "Caribbean First Class Elementary",
-    categories: ["private-school"],
-    location: {
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-231-4164",
-    website: "https://cfces.net",
-    email: "cfc@cfces.net",
-  },
-  {
-    id: "academic-training-centre",
-    name: "Academic Training Centre",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "academy-of-excellence",
-    name: "Academy of Excellence",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "academy-of-professional-studies---aps",
-    name: "Academy of Professional Studies - APS",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "apex-education",
-    name: "Apex Education",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "canadian-school-of-arts-and-science",
-    name: "Canadian School of Arts & Science",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "concord-academy",
-    name: "Concord Academy",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "ebascol-education-centre",
-    name: "Ebascol Education Centre",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "edenhaven",
-    name: "Edenhaven",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "garden-city-academy",
-    name: "Garden City Academy",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "genesis-early-childhood-centre",
-    name: "Genesis Early Childhood Centre",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "georgetown-international-learning-centre---playgroup-and-nursery",
-    name: "Georgetown International Learning Centre - Playgroup and Nursery",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "global-technology-inc",
-    name: "Global Technology Inc.",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "green-acres-primary-school",
-    name: "Green Acres Primary School",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "green-acres-school",
-    name: "Green Acres School",
-    categories: ["private-school"],
-    location: { country: "guyana", city: "georgetown" },
-    phone: "+592-225-3583",
-    website: null,
-  },
-  {
-    id: "isa-islamic-school",
-    name: "ISA Islamic School",
-    categories: ["private-school"],
-    location: { country: "guyana", city: "georgetown" },
-    phone: "+592-226-0973",
-    website: "https://isaislamicschool.com",
-  },
-  {
-    id: "international-business-college",
-    name: "International Business College",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "jos-el-educational-institute",
-    name: "Jos-el Educational Institute",
-    categories: ["private-school"],
-    location: {
-      line1: "120 Laluni and Peter Rose Street",
-      line2: "Queenstown",
-      country: "guyana",
-      city: "georgetown",
-    },
-    phone: "+592-226-7868",
-    website: "https://joselacademy.org/",
-  },
-  {
-    id: "la-première-academy",
-    name: "La Première Academy",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "laser-edge-academic-college",
-    name: "Laser Edge Academic College",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "leslyns-academy",
-    name: "Leslyn's Academy",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "maes-schools",
-    name: "Mae's Schools",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "monar-educational-institute",
-    name: "Monar Educational Institute",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "new-life-ministries-school",
-    name: "New Life Ministries School",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "qayyim-academy",
-    name: "Qayyim Academy",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "sapodilla-school-of-excellence",
-    name: "Sapodilla School of Excellence",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "school-of-brilliant-beginnings",
-    name: "School of Brilliant Beginnings",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "school-of-the-nations",
-    name: "School of the Nations",
-    categories: ["private-school"],
-    location: { country: "guyana", city: "georgetown" },
-    phone: "+592-225-4516",
-    website: "https://school.nations.gy",
-  },
-  {
-    id: "success-elementary-school",
-    name: "Success Elementary School",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "the-business-school",
-    name: "The Business School",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "the-guyana-education-trust-college",
-    name: "The Guyana Education Trust College",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "valmiki-vidyalaya",
-    name: "Valmiki Vidyalaya",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-  {
-    id: "xenon-academy",
-    name: "Xenon Academy",
-    categories: ["private-school"],
-    location: { country: "guyana" },
-    phone: null,
-    website: null,
-  },
-];
+import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
+import type { Address, OrgInstance } from "~/modules/organisations/types";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",
@@ -487,6 +22,7 @@ const CATEGORY_MAP: Record<string, string> = {
 
 interface Props {
   params: Promise<{ category: string; locations: string[] }>;
+  searchParams: { page?: string; pageSize?: string };
 }
 
 export async function generateStaticParams() {
@@ -526,6 +62,25 @@ export async function generateStaticParams() {
   return paths;
 }
 
+const retreiveOrgsByCategoryAndLocation = async (
+  category: string,
+  country?: string,
+  stateOrCity?: string,
+  page = 1,
+  pageSize = 30,
+) => {
+  const result = await bus.queryProcessor.execute(
+    new GetOrgsByCategoryAndLocationQuery({
+      category,
+      country,
+      stateOrCity,
+      page,
+      pageSize,
+    }),
+  );
+  return result;
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, locations } = await params;
   const readableCategory = CATEGORY_MAP[category] ?? category;
@@ -538,40 +93,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function matches(org: Org, category: string, locations: string[]): boolean {
-  if (!org.categories.includes(category)) return false;
-
-  const { country, state, city } = org.location;
-
-  if (locations.length === 1) {
-    return locations[0] === country;
-  }
-
-  if (locations.length === 2) {
-    return (
-      locations[0] === country &&
-      (state === locations[1] || city === locations[1])
-    );
-  }
-
-  if (locations.length === 3) {
-    return (
-      locations[0] === country &&
-      locations[1] === state &&
-      locations[2] === city
-    );
-  }
-
-  return false;
+interface Props {
+  params: Promise<{ category: string; locations: string[] }>;
+  searchParams: Promise<{
+    page: string | undefined;
+    pageSize: string | undefined;
+  }>;
 }
 
-export default async function DirectoryCategoryPage({ params }: Props) {
-  const { category, locations } = await params;
-  const matching = ORGS.filter((org) => matches(org, category, locations));
+export default async function DirectoryCategoryPage(props: Props) {
+  const { category, locations } = await props.params;
+  const searchParams = await props.searchParams;
+
+  const page = parseInt(searchParams.page ?? "1");
+  const pageSize = parseInt(searchParams.pageSize ?? "30");
+
+  const country = locations[0];
+  const stateOrCity = locations[1];
+
+  const { orgs, total } = await retreiveOrgsByCategoryAndLocation(
+    category,
+    country,
+    stateOrCity,
+    page,
+    pageSize,
+  );
   const readableCategory = CATEGORY_MAP[category] ?? category;
   const formattedLocations = locations
     .map((loc) => loc.charAt(0).toUpperCase() + loc.slice(1))
     .join(", ");
+
+  const totalPages = Math.ceil(total / pageSize);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
@@ -586,8 +138,7 @@ export default async function DirectoryCategoryPage({ params }: Props) {
               details, compare offerings, and soon, apply directly.
             </p>
             <p className="text-default-500">
-              Found {matching.length} organization
-              {matching.length !== 1 ? "s" : ""}
+              Found {total} {pluralize(total, "organization")}
             </p>
           </div>
           <Button
@@ -607,7 +158,7 @@ export default async function DirectoryCategoryPage({ params }: Props) {
         </div>
       </div>
 
-      {matching.length === 0 ? (
+      {total === 0 ? (
         <Card>
           <CardBody className="flex flex-col items-center justify-center py-12">
             <SearchIcon className="mb-4 h-12 w-12 text-default-400" />
@@ -620,64 +171,75 @@ export default async function DirectoryCategoryPage({ params }: Props) {
           </CardBody>
         </Card>
       ) : (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {matching.map((org) => (
-            <OrganizationCard key={org.id} org={org} />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {orgs.map((org) => (
+              <OrganizationCard key={org.org.username} org={org} />
+            ))}
+          </div>
+          {totalPages > 1 && (
+            <div className="mt-8 flex justify-center">
+              <nav className="flex items-center gap-2" aria-label="Pagination">
+                {Array.from({ length: totalPages }, (_, i) => {
+                  const pageNum = i + 1;
+                  const isActive = pageNum === page;
+                  const href = `?page=${pageNum}&pageSize=${pageSize}`;
+                  return (
+                    <Link
+                      key={pageNum}
+                      href={href}
+                      aria-current={isActive ? "page" : undefined}
+                      className={`px-3 py-1 rounded-md border text-sm font-medium ${
+                        isActive
+                          ? "bg-primary-600 text-white border-primary-600"
+                          : "bg-white text-default-700 border-default-200 hover:bg-default-100"
+                      }`}
+                    >
+                      {pageNum}
+                    </Link>
+                  );
+                })}
+              </nav>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
 }
 
-function formatLocation(org: Org): string {
+function formatAddress(address: Address): string {
   const parts = [];
-  if (org.location.city) parts.push(org.location.city);
-  if (org.location.state) parts.push(org.location.state);
-  parts.push(org.location.country);
+  if (address.city) parts.push(address.city);
+  if (address.state) parts.push(address.state);
+  parts.push(address.country);
 
   return parts
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(", ");
 }
 
-function OrganizationCard({ org }: { org: Org }) {
+function OrganizationCard({ org }: { org: OrgInstance }) {
   return (
     <Card className="overflow-visible">
       <CardBody>
         <div className="flex flex-col gap-3">
           <div className="flex items-start justify-between">
-            <h2 className="text-xl font-semibold">{org.name}</h2>
+            <h2 className="text-xl font-semibold">{org.org.name}</h2>
           </div>
 
           <div className="mt-1 flex flex-col gap-2">
-            {org.phone && (
-              <div className="flex items-center gap-2">
-                <PhoneIcon className="h-4 w-4 text-default-500" />
-                <Link href={`tel:${org.phone}`} color="foreground">
-                  {org.phone}
-                </Link>
+            {org.org.locations[0]?.address && (
+              <div className="flex items-center gap-2 text-default-500">
+                <MapPinIcon className="h-4 w-4" />
+                <span>{formatAddress(org.org.locations[0]?.address)}</span>
               </div>
             )}
-
-            {org.website && (
-              <div className="flex items-center gap-2">
-                <GlobeIcon className="h-4 w-4 text-default-500" />
-                <Link href={org.website} isExternal showAnchorIcon>
-                  Visit Website
-                </Link>
-              </div>
-            )}
-
-            <div className="flex items-center gap-2 text-default-500">
-              <MapPinIcon className="h-4 w-4" />
-              <span>{formatLocation(org)}</span>
-            </div>
           </div>
         </div>
       </CardBody>
       <CardFooter>
-        <ApplyDialogButton orgName={org.name} />
+        <ApplyDialogButton orgName={org.org.name} />
       </CardFooter>
     </Card>
   );
