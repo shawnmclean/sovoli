@@ -4,12 +4,13 @@ import { Link } from "@sovoli/ui/components/link";
 import { SearchIcon } from "lucide-react";
 
 import { pluralize } from "~/utils/pluralize";
-import { DirectoryViewTabs } from "./DirectoryViewTabs";
+import { DirectoryViewTabs } from "../../components/DirectoryViewTabs";
 import { bus } from "~/services/core/bus";
 import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
 import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
 import { OrgListItem } from "../../components/OrgListItem";
 import { Chip } from "@sovoli/ui/components/chip";
+import { Search } from "../../components/Search";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",
@@ -118,9 +119,32 @@ export default async function DirectoryCategoryPage(props: Props) {
 
   const totalPages = Math.ceil(total / pageSize);
 
+  const uniqueLocations = Array.from(
+    new Set(
+      orgs
+        .map((org) => org.org.locations[0]?.address.city?.toLowerCase())
+        .filter(
+          (city): city is string => typeof city === "string" && city.length > 0,
+        ),
+    ),
+  );
+
+  const uniquePrograms = Array.from(
+    new Set(
+      orgs
+        .map((org) =>
+          org.academicModule?.programs.map((program) =>
+            program.name.toLowerCase(),
+          ),
+        )
+        .flat()
+        .filter((program): program is string => typeof program === "string"),
+    ),
+  );
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6">
-      <div className="mb-8">
+      <div className="mb-4">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-1">
@@ -145,7 +169,10 @@ export default async function DirectoryCategoryPage(props: Props) {
           <DirectoryViewTabs />
         </div>
       </div>
-
+      <Search
+        uniqueLocations={uniqueLocations}
+        uniquePrograms={uniquePrograms}
+      />
       {total === 0 ? (
         <Card>
           <CardBody className="flex flex-col items-center justify-center py-12">
