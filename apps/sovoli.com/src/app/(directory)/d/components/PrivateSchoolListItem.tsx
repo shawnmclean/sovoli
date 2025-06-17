@@ -9,7 +9,7 @@ import type {
 import type { Program } from "~/modules/academics/types";
 import { Chip } from "@sovoli/ui/components/chip";
 import { ArrowRightIcon, CheckCircleIcon } from "lucide-react";
-import { Badge } from "@sovoli/ui/components/badge";
+
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 
 interface PrivateSchoolListItemProps {
@@ -17,8 +17,9 @@ interface PrivateSchoolListItemProps {
 }
 
 export function PrivateSchoolListItem({
-  orgInstance: { org, scoringModule, academicModule },
+  orgInstance,
 }: PrivateSchoolListItemProps) {
+  const { org, scoringModule, academicModule } = orgInstance;
   // Map orgInstance to the School interface used in SovoliCard
   const school = {
     logo: org.logo,
@@ -32,11 +33,6 @@ export function PrivateSchoolListItem({
     website: org.socialLinks?.find((link) => link.platform === "website")?.url,
     verified: org.isVerified ?? false,
     slug: org.username,
-  };
-
-  const truncatePrograms = (programs: string[]) => {
-    if (programs.length <= 5) return programs.join(" · ");
-    return `${programs.slice(0, 5).join(" · ")} +${programs.length - 5} more`;
   };
 
   return (
@@ -61,74 +57,97 @@ export function PrivateSchoolListItem({
           </div>
         </div>
 
-        <p className="text-xs text-default-500">
-          Programs: {truncatePrograms(school.programs)}
-        </p>
+        <ProgramList programs={school.programs} />
 
         {/* Scoring Section */}
-        <div className="mt-2 p-3 bg-default-100 rounded-lg">
-          <div className="flex items-center mb-2 gap-2">
-            <span className="font-semibold text-sm">
-              Score: {school.score.total}
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-1">
-            {["digitalScore", "academicScore"].map((key) => {
-              const labelMap: Record<string, string> = {
-                digitalScore: "Digital",
-                academicScore: "Academics",
-              };
-              const label = labelMap[key] ?? key;
-              const dim = scoringModule?.[key as keyof typeof scoringModule] as
-                | ScoringDimension
-                | undefined;
-              const score = dim?.score ?? 0;
-              const maxScore = dim?.maxScore ?? 0;
-              const percent = maxScore ? (score / maxScore) * 100 : 0;
-              const color =
-                percent >= 80
-                  ? "success"
-                  : percent >= 50
-                    ? "warning"
-                    : "default";
-              return (
-                <Chip
-                  key={key}
-                  size="sm"
-                  color={color}
-                  variant="flat"
-                  className="text-xs flex items-center gap-1"
-                >
-                  <span>{label}: </span>
-                  <span>{score}</span>
-                  <span className="text-[10px] text-default-400">/</span>
-                  <span>{maxScore}</span>
-                </Chip>
-              );
-            })}
-          </div>
-        </div>
+        <ScoringSection orgInstance={orgInstance} />
       </CardBody>
 
-      <CardFooter className="border-t border-default-200">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full space-y-2 sm:space-y-0">
-          <p className="text-xs text-default-500 text-center sm:text-left">
-            {school.verified
-              ? "Apply or Learn More"
-              : "Apply or Claim this School"}
-          </p>
-          <Button
-            color="primary"
-            as="a"
-            href={`/orgs/${school.slug}`}
-            size="sm"
-            endContent={<ArrowRightIcon className="w-4 h-4" />}
-            className="w-full sm:w-auto"
-          >
-            Explore
-          </Button>
-        </div>
+      <CardFooter className="border-t border-default-200 flex justify-end">
+        <Button
+          color={school.verified ? "primary" : "default"}
+          as="a"
+          href={`/orgs/${school.slug}`}
+          size="sm"
+          endContent={<ArrowRightIcon className="w-4 h-4" />}
+          className="w-full sm:w-auto"
+        >
+          {school.verified
+            ? "Explore Programs and Apply"
+            : "Claim and Edit this School"}
+        </Button>
       </CardFooter>
     </Card>
   );
 }
+
+const ProgramList = ({ programs }: { programs: string[] }) => {
+  const maxVisible = 3;
+  const visiblePrograms = programs.slice(0, maxVisible);
+  const remaining = programs.length - maxVisible;
+
+  return (
+    <div className="flex items-center text-xs text-default-500">
+      <p className="whitespace-nowrap overflow-hidden text-ellipsis">
+        Programs: {visiblePrograms.join(" · ")}
+      </p>
+      {remaining > 0 && (
+        <span className="ml-1 shrink-0 text-primary-600 font-medium">
+          · +{remaining} more
+        </span>
+      )}
+    </div>
+  );
+};
+
+const ScoringSection = ({ orgInstance }: { orgInstance: OrgInstance }) => {
+  const { scoringModule, org } = orgInstance;
+  return (
+    <div className="mt-2 p-3 bg-default-100 rounded-lg">
+      <div className="flex items-center mb-2 gap-2">
+        <span className="font-semibold text-sm">
+          Score: {scoringModule?.totalScore ?? 0}
+        </span>
+      </div>
+      <div className="flex flex-wrap gap-1">
+        {["digitalScore", "academicScore"].map((key) => {
+          const labelMap: Record<string, string> = {
+            digitalScore: "Digital",
+            academicScore: "Academics",
+          };
+          const label = labelMap[key] ?? key;
+          const dim = scoringModule?.[key as keyof typeof scoringModule] as
+            | ScoringDimension
+            | undefined;
+          const score = dim?.score ?? 0;
+          const maxScore = dim?.maxScore ?? 0;
+          const percent = maxScore ? (score / maxScore) * 100 : 0;
+          const color =
+            percent >= 80 ? "success" : percent >= 50 ? "warning" : "default";
+          return (
+            <Chip
+              key={key}
+              size="sm"
+              color={color}
+              variant="flat"
+              className="text-xs flex items-center gap-1"
+            >
+              <span>{label}: </span>
+              <span>{score}</span>
+              <span className="text-[10px] text-default-400">/</span>
+              <span>{maxScore}</span>
+            </Chip>
+          );
+        })}
+        {!org.isVerified && (
+          <Chip size="sm" color="warning" variant="flat">
+            <span>Unclaimed: </span>
+            <span>0</span>
+            <span className="text-[10px] text-default-400">/</span>
+            <span>10</span>
+          </Chip>
+        )}
+      </div>
+    </div>
+  );
+};
