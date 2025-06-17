@@ -117,9 +117,19 @@ export function Search({ uniqueLocations, uniquePrograms }: SearchProps) {
       </div>
 
       {showAlert && (
-        <Alert variant="bordered" color="warning" className="mt-4">
-          Filters Coming Soon!
-        </Alert>
+        <Alert
+          variant="bordered"
+          color="warning"
+          className="mt-4"
+          isClosable
+          description="Filters Coming Soon!"
+          onClose={() => {
+            setIsExpanded(false);
+            setSearchTerm("");
+            setSelectedLocation("");
+            setSelectedPrograms([]);
+          }}
+        />
       )}
     </div>
   );
