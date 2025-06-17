@@ -1,14 +1,16 @@
 import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Link } from "@sovoli/ui/components/link";
-import { Chip } from "@sovoli/ui/components/chip";
-import { GlobeIcon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@sovoli/ui/components/button";
+
 import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
 import { bus } from "~/services/core/bus";
 
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { ContactMethods } from "../../(tenants)/w/[username]/components/ContactMethods";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
+import { WhatsAppButton } from "~/components/WhatsAppButton";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -34,56 +36,56 @@ export default async function OrgProfilePage({
   params: Promise<{ username: string }>;
 }) {
   const { username } = await params;
-  const orgInstance = await retreiveOrgInstance(username);
-
-  const websiteUrl =
-    orgInstance.websiteModule?.website.url ??
-    orgInstance.org.socialLinks?.find((l) => l.platform === "website")?.url ??
-    null;
+  const { org, academicModule } = await retreiveOrgInstance(username);
 
   return (
-    <section className="px-4 py-10">
-      <div className="mx-auto max-w-7xl space-y-8">
-        <div className="space-y-4">
-          <ApplyDialogButton orgName={orgInstance.org.name} />
+    <div className="space-y-8">
+      {/* Contact Information Section */}
+      <section className="flex flex-col gap-4">
+        <ApplyDialogButton orgName={org.name} />
+        {!org.isVerified ? (
+          <WhatsAppButton
+            phoneNumber="+5926082743"
+            message={`Hello, I'd like to claim and edit the profile for ${org.name}.`}
+          >
+            Claim and Edit
+          </WhatsAppButton>
+        ) : null}
+      </section>
 
-          {websiteUrl && (
-            <div className="flex items-center gap-2">
-              <GlobeIcon className="h-5 w-5 text-default-500" />
-              <Link href={websiteUrl} isExternal showAnchorIcon>
-                Visit Website
-              </Link>
-            </div>
-          )}
+      {/* Programs Section */}
+      {academicModule?.programs && academicModule.programs.length > 0 && (
+        <section className="px-4 py-4">
+          <h2 className="mb-6 text-2xl font-bold">Programs</h2>
 
-          {orgInstance.org.categories.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {orgInstance.org.categories.map((category) => (
-                <Chip key={category} size="sm" variant="dot">
-                  {category}
-                </Chip>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {orgInstance.org.locations.length > 0 ? (
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {orgInstance.org.locations.map((location, index) => (
-              <Card key={location.key} className="p-6">
-                <CardBody>
-                  <h3 className="mb-4 text-xl font-semibold">
-                    {location.label ?? `Location ${index + 1}`}
-                  </h3>
-                  <ContactMethods location={location} />
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {academicModule.programs.slice(0, 4).map((program, index) => (
+              <Card key={index} className="border-none" shadow="sm">
+                <CardBody className="p-0">
+                  <Image
+                    alt={program.name}
+                    src={program.image}
+                    width={800}
+                    height={400}
+                    className="h-48 w-full object-cover"
+                  />
+                  <div className="p-6">
+                    <h3
+                      className="mb-2 text-xl font-semibold line-clamp-2"
+                      title={program.title ?? program.name}
+                    >
+                      {program.title ?? program.name}
+                    </h3>
+                    <p className="text-default-600 line-clamp-3">
+                      {program.description}
+                    </p>
+                  </div>
                 </CardBody>
               </Card>
             ))}
           </div>
-        ) : (
-          <p className="text-default-600">No contact information available.</p>
-        )}
-      </div>
-    </section>
+        </section>
+      )}
+    </div>
   );
 }

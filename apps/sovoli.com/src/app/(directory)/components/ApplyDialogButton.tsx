@@ -50,7 +50,7 @@ export function ApplyDialogButton({ orgName }: ApplyDialogButtonProps) {
         data-attr="apply-dialog-open"
         data-school={orgName}
       >
-        Apply
+        Apply to School Now
       </Button>
       <Modal
         isOpen={isOpen}

@@ -1,8 +1,13 @@
 import { notFound } from "next/navigation";
-
+import { Navbar } from "~/components/navbar/Navbar";
+import { Footer } from "~/components/footer/Footer";
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { Alert } from "@sovoli/ui/components/alert";
+import { Avatar } from "@sovoli/ui/components/avatar";
+import { CheckCircleIcon, GlobeIcon, PhoneIcon, MailIcon } from "lucide-react";
+import { Tooltip } from "@sovoli/ui/components/tooltip";
+import { Link } from "@sovoli/ui/components/link";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -43,15 +48,106 @@ export async function generateMetadata({ params }: Props) {
 export default async function Layout({ children, params }: Props) {
   const { username } = await params;
   const orgInstance = await retreiveOrgInstance(username);
+
+  const websiteUrl =
+    orgInstance.websiteModule?.website.url ??
+    orgInstance.org.socialLinks?.find((l) => l.platform === "website")?.url ??
+    null;
+
+  const primaryLocation = orgInstance.org.locations[0];
+  const phone = primaryLocation?.contacts.find(
+    (c) => c.type === "phone",
+  )?.value;
+  const email = primaryLocation?.contacts.find(
+    (c) => c.type === "email",
+  )?.value;
+
   return (
     <div className="flex min-h-screen flex-col">
-      <div className="flex items-center gap-3 mb-2">
+      <Navbar />
+      <div className="flex items-center gap-3 p-4">
         <Alert color="warning">System under development</Alert>
       </div>
-      <div className="flex flex-col gap-3 mb-2">
-        <h1 className="text-3xl font-bold">{orgInstance.org.name}</h1>
-        {children}
-      </div>
+      <main className="flex-1">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
+          <div className="w-full md:w-1/3">
+            <div className="flex items-center gap-4 mb-6">
+              <Avatar
+                src={orgInstance.org.logo}
+                name={orgInstance.org.name}
+                size="lg"
+                className="h-20 w-20"
+              />
+              <div className="flex-grow">
+                <div className="flex items-center gap-2">
+                  <h1 className="text-2xl font-bold line-clamp-2">
+                    {orgInstance.org.name}
+                  </h1>
+                  {orgInstance.org.isVerified && (
+                    <Tooltip content="This organization has been verified by Sovoli">
+                      <CheckCircleIcon className="w-5 h-5 text-success shrink-0" />
+                    </Tooltip>
+                  )}
+                </div>
+                {orgInstance.org.locations[0]?.address.city && (
+                  <p className="text-sm text-default-500 capitalize mt-1">
+                    {orgInstance.org.locations[0].address.city}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Contact Section */}
+            <div className="mb-6 flex flex-col gap-2">
+              <div className="flex flex-wrap gap-4">
+                {websiteUrl && (
+                  <Link
+                    href={websiteUrl}
+                    isExternal
+                    className="flex items-center gap-2 text-default-600 hover:text-primary-500"
+                  >
+                    <GlobeIcon className="h-4 w-4" />
+                    <span className="text-sm">{websiteUrl}</span>
+                  </Link>
+                )}
+                {phone && (
+                  <Link
+                    href={`tel:${phone}`}
+                    className="flex items-center gap-2 text-default-600 hover:text-primary-500"
+                  >
+                    <PhoneIcon className="h-4 w-4" />
+                    <span className="text-sm">{phone}</span>
+                  </Link>
+                )}
+                {email && (
+                  <Link
+                    href={`mailto:${email}`}
+                    className="flex items-center gap-2 text-default-600 hover:text-primary-500"
+                  >
+                    <MailIcon className="h-4 w-4" />
+                    <span className="text-sm">{email}</span>
+                  </Link>
+                )}
+              </div>
+
+              {orgInstance.org.categories.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {orgInstance.org.categories.map((category) => (
+                    <span
+                      key={category}
+                      className="rounded-full bg-default-100 px-3 py-1 text-sm"
+                    >
+                      {category}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="w-full md:w-2/3">{children}</div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
