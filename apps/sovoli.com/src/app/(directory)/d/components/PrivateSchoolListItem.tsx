@@ -1,12 +1,9 @@
 import React from "react";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
-import { Chip } from "@sovoli/ui/components/chip";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { Program } from "~/modules/academics/types";
-import { Badge } from "@sovoli/ui/components/badge";
-import { CheckCheckIcon, StarIcon } from "lucide-react";
+import type { Program } from "~/modules/academics/types";
 
 interface PrivateSchoolListItemProps {
   orgInstance: OrgInstance;
@@ -31,8 +28,8 @@ export function PrivateSchoolListItem({
   };
 
   const truncatePrograms = (programs: string[]) => {
-    if (programs.length <= 3) return programs.join(" · ");
-    return `${programs.slice(0, 3).join(" · ")} +${programs.length - 3} more`;
+    if (programs.length <= 5) return programs.join(" · ");
+    return `${programs.slice(0, 5).join(" · ")} +${programs.length - 5} more`;
   };
 
   return (
