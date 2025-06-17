@@ -19,32 +19,18 @@ interface PrivateSchoolListItemProps {
 export function PrivateSchoolListItem({
   orgInstance,
 }: PrivateSchoolListItemProps) {
-  const { org, scoringModule, academicModule } = orgInstance;
-  // Map orgInstance to the School interface used in SovoliCard
-  const school = {
-    logo: org.logo,
-    name: org.name,
-    location: { city: org.locations[0]?.address.city ?? "Unknown" },
-    score: { total: scoringModule?.totalScore ?? 0 },
-    programs: (academicModule?.programs ?? []).map((p: Program) => p.name),
-    distance: 0, // Not available, hardcoded
-    tuition: "N/A", // Not available, hardcoded
-    specialty: undefined, // Not available
-    website: org.socialLinks?.find((link) => link.platform === "website")?.url,
-    verified: org.isVerified ?? false,
-    slug: org.username,
-  };
+  const { org, academicModule } = orgInstance;
 
   return (
     <Card className="w-full">
       <CardBody className="gap-2">
         <div className="flex items-center gap-3">
-          <Avatar src={school.logo} name={school.name} size="md" />
+          <Avatar src={org.logo} name={org.name} size="md" />
 
           <div className="flex-grow">
             <div className="flex items-center gap-1">
-              <h2 className="text-md font-bold line-clamp-2">{school.name}</h2>
-              {school.verified && (
+              <h2 className="text-md font-bold line-clamp-2">{org.name}</h2>
+              {org.isVerified && (
                 <Tooltip content="This school has been verified by Sovoli">
                   <CheckCircleIcon className="w-4 h-4 text-success shrink-0" />
                 </Tooltip>
@@ -52,12 +38,12 @@ export function PrivateSchoolListItem({
             </div>
 
             <p className="text-xs text-default-500 capitalize">
-              {school.location.city}
+              {org.locations[0]?.address.city}
             </p>
           </div>
         </div>
 
-        <ProgramList programs={school.programs} />
+        <ProgramList programs={academicModule?.programs ?? []} />
 
         {/* Scoring Section */}
         <ScoringSection orgInstance={orgInstance} />
@@ -65,14 +51,14 @@ export function PrivateSchoolListItem({
 
       <CardFooter className="border-t border-default-200 flex justify-end">
         <Button
-          color={school.verified ? "primary" : "default"}
+          color={org.isVerified ? "primary" : "default"}
           as="a"
-          href={`/orgs/${school.slug}`}
+          href={`/orgs/${org.username}`}
           size="sm"
           endContent={<ArrowRightIcon className="w-4 h-4" />}
           className="w-full sm:w-auto"
         >
-          {school.verified
+          {org.isVerified
             ? "Explore Programs and Apply"
             : "Claim and Edit this School"}
         </Button>
@@ -81,7 +67,7 @@ export function PrivateSchoolListItem({
   );
 }
 
-const ProgramList = ({ programs }: { programs: string[] }) => {
+const ProgramList = ({ programs }: { programs: Program[] }) => {
   const maxVisible = 3;
   const visiblePrograms = programs.slice(0, maxVisible);
   const remaining = programs.length - maxVisible;
@@ -89,7 +75,7 @@ const ProgramList = ({ programs }: { programs: string[] }) => {
   return (
     <div className="flex items-center text-xs text-default-500">
       <p className="whitespace-nowrap overflow-hidden text-ellipsis">
-        Programs: {visiblePrograms.join(" · ")}
+        Programs: {visiblePrograms.map((p) => p.name).join(" · ")}
       </p>
       {remaining > 0 && (
         <span className="ml-1 shrink-0 text-primary-600 font-medium">
