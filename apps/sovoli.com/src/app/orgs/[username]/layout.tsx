@@ -4,9 +4,16 @@ import { Footer } from "~/components/footer/Footer";
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { Avatar } from "@sovoli/ui/components/avatar";
-import { CheckCircleIcon, GlobeIcon, PhoneIcon, MailIcon } from "lucide-react";
+import {
+  CheckCircleIcon,
+  GlobeIcon,
+  PhoneIcon,
+  MailIcon,
+  ArrowLeftIcon,
+} from "lucide-react";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { Link } from "@sovoli/ui/components/link";
+import { Button } from "@sovoli/ui/components/button";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -65,6 +72,17 @@ export default async function Layout({ children, params }: Props) {
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="flex-1">
+        <div className="w-full md:w-1/3">
+          <Button
+            as="a"
+            href={`/d/${orgInstance.org.categories[0]?.toLowerCase()}/${primaryLocation?.address.country.toLowerCase()}`}
+            variant="light"
+            startContent={<ArrowLeftIcon className="w-4 h-4" />}
+            size="sm"
+          >
+            Directory
+          </Button>
+        </div>
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
           <div className="w-full md:w-1/3">
             <div className="flex items-center gap-4 mb-6">
@@ -129,12 +147,14 @@ export default async function Layout({ children, params }: Props) {
               {orgInstance.org.categories.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {orgInstance.org.categories.map((category) => (
-                    <span
+                    <Link
                       key={category}
+                      color="foreground"
                       className="rounded-full bg-default-100 px-3 py-1 text-sm"
+                      href={`/d/${category.toLowerCase()}/${primaryLocation?.address.country.toLowerCase()}`}
                     >
                       {category}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               )}
