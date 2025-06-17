@@ -13,6 +13,7 @@ import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/q
 import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
 import type { Address, OrgInstance } from "~/modules/organisations/types";
 import { Chip } from "@sovoli/ui/components/chip";
+import { OrgListItem } from "../../components/OrgListItem";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",
@@ -174,8 +175,11 @@ export default async function DirectoryCategoryPage(props: Props) {
       ) : (
         <>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {orgs.map((org) => (
-              <OrganizationCard key={org.org.username} org={org} />
+            {orgs.map((orgInstance) => (
+              <OrgListItem
+                key={orgInstance.org.username}
+                orgInstance={orgInstance}
+              />
             ))}
           </div>
           {totalPages > 1 && (

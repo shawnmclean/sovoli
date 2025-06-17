@@ -49,7 +49,7 @@ export default async function Layout({ children, params }: Props) {
         <Alert color="warning">System under development</Alert>
       </div>
       <div className="flex flex-col gap-3 mb-2">
-        <h1>{orgInstance.org.name}</h1>
+        <h1 className="text-3xl font-bold">{orgInstance.org.name}</h1>
         {children}
       </div>
     </div>

@@ -8,6 +8,7 @@ import { bus } from "~/services/core/bus";
 
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { ContactMethods } from "../../(tenants)/w/[username]/components/ContactMethods";
+import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -44,7 +45,7 @@ export default async function OrgProfilePage({
     <section className="px-4 py-10">
       <div className="mx-auto max-w-7xl space-y-8">
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold">{orgInstance.org.name}</h1>
+          <ApplyDialogButton orgName={orgInstance.org.name} />
 
           {websiteUrl && (
             <div className="flex items-center gap-2">

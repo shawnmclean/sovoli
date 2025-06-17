@@ -6,7 +6,7 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Dominion Schools",
     categories: ["private-school"],
-    isVerified: true,
+    isVerified: false,
     internalCRM: {
       people: [
         {
