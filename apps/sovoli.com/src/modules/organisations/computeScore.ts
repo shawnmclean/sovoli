@@ -5,7 +5,7 @@ import type {
   ScoringDimensionConfig,
 } from "~/modules/organisations/types";
 
-import { digitalScoreConfig } from "./scoring";
+import { academicScoreConfig, digitalScoreConfig } from "./scoring";
 
 function computeScoringDimension(
   config: ScoringDimensionConfig,
@@ -38,7 +38,7 @@ function computeScoringDimension(
 
 export function computeOrgScore(instance: OrgInstance): ScoringModule {
   const digitalScore = computeScoringDimension(digitalScoreConfig, instance);
-
+  const academicScore = computeScoringDimension(academicScoreConfig, instance);
   const totalScore = Math.round(
     (digitalScore.score / digitalScore.maxScore) * digitalScore.weight * 100,
   );
@@ -46,5 +46,6 @@ export function computeOrgScore(instance: OrgInstance): ScoringModule {
   return {
     totalScore,
     digitalScore,
+    academicScore,
   };
 }
