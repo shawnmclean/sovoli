@@ -50,7 +50,9 @@ export function PrivateSchoolListItem({
           {/* </Badge> */}
           <div className="flex-grow">
             <h2 className="text-md font-bold line-clamp-1">{school.name}</h2>
-            <p className="text-xs text-default-500">{school.location.city}</p>
+            <p className="text-xs text-default-500 capitalize">
+              {school.location.city}
+            </p>
           </div>
         </div>
 
