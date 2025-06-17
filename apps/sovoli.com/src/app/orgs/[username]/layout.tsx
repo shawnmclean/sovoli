@@ -3,7 +3,6 @@ import { Navbar } from "~/components/navbar/Navbar";
 import { Footer } from "~/components/footer/Footer";
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-import { Alert } from "@sovoli/ui/components/alert";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { CheckCircleIcon, GlobeIcon, PhoneIcon, MailIcon } from "lucide-react";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
@@ -65,9 +64,6 @@ export default async function Layout({ children, params }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-      <div className="flex items-center gap-3 p-4">
-        <Alert color="warning">System under development</Alert>
-      </div>
       <main className="flex-1">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
           <div className="w-full md:w-1/3">

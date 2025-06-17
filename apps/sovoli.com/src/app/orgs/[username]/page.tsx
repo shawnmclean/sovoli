@@ -1,14 +1,12 @@
 import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@sovoli/ui/components/button";
 
 import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
 import { bus } from "~/services/core/bus";
 
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-import { ContactMethods } from "../../(tenants)/w/[username]/components/ContactMethods";
+
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 import { WhatsAppButton } from "~/components/WhatsAppButton";
 
