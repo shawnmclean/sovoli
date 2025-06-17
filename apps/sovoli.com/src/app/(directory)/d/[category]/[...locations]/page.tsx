@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
-import { Button } from "@sovoli/ui/components/button";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-import { MapPinIcon, SearchIcon } from "lucide-react";
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { SearchIcon } from "lucide-react";
 
 import { pluralize } from "~/utils/pluralize";
 import { DirectoryViewTabs } from "./DirectoryViewTabs";
-import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 import { bus } from "~/services/core/bus";
 import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
 import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
-import type { Address, OrgInstance } from "~/modules/organisations/types";
-import { Chip } from "@sovoli/ui/components/chip";
 import { OrgListItem } from "../../components/OrgListItem";
+import { Chip } from "@sovoli/ui/components/chip";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",
@@ -72,7 +68,7 @@ const retreiveOrgsByCategoryAndLocation = async (
   country?: string,
   stateOrCity?: string,
   page = 1,
-  pageSize = 30,
+  pageSize = 20,
 ) => {
   const result = await bus.queryProcessor.execute(
     new GetOrgsByCategoryAndLocationQuery({
@@ -103,7 +99,7 @@ export default async function DirectoryCategoryPage(props: Props) {
   const searchParams = await props.searchParams;
 
   const page = parseInt(searchParams.page ?? "1");
-  const pageSize = parseInt(searchParams.pageSize ?? "30");
+  const pageSize = parseInt(searchParams.pageSize ?? "20");
 
   const country = locations[0];
   const stateOrCity = locations[1];
@@ -123,40 +119,30 @@ export default async function DirectoryCategoryPage(props: Props) {
   const totalPages = Math.ceil(total / pageSize);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+    <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6">
       <div className="mb-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-3xl font-semibold">
+            <div className="flex flex-wrap items-center gap-2 mb-1">
+              <h1 className="text-2xl font-semibold leading-tight">
                 Top {pluralize(2, readableCategory)} in {formattedLocations}
               </h1>
             </div>
-            <p className="mb-6 max-w-2xl text-default-500">
-              We're building Guyana's most trusted school directory. View
-              details, compare offerings, and soon, apply directly.
+
+            <p className="max-w-2xl text-default-500">
+              Browse programs, compare schools, and apply — all through one
+              trusted platform.
             </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="inline-block rounded bg-yellow-100 px-2 py-0.5 text-xs font-semibold text-yellow-800 border border-yellow-300 align-middle">
-              Beta
-            </span>
-            <Button
-              as="a"
-              href="https://wa.me/5926082743"
-              target="_blank"
-              rel="noopener noreferrer"
-              color="success"
-              className="flex w-full items-center justify-center gap-2 sm:w-auto"
-            >
-              <SiWhatsapp className="h-5 w-5" />
-              Suggest a School
-            </Button>
           </div>
         </div>
         <div className="mt-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Chip color="warning" size="sm" className="mt-0.5">
+              Beta
+            </Chip>
+            <span className="text-default-500">{`${total} results`}</span>
+          </div>
           <DirectoryViewTabs />
-          <span className="text-default-500 ml-auto">{`(${total})`}</span>
         </div>
       </div>
 
@@ -210,47 +196,5 @@ export default async function DirectoryCategoryPage(props: Props) {
         </>
       )}
     </div>
-  );
-}
-
-function formatAddress(address: Address): string {
-  const parts = [];
-  if (address.city) parts.push(address.city);
-  if (address.state) parts.push(address.state);
-  parts.push(address.country);
-
-  return parts
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(", ");
-}
-
-function OrganizationCard({ org }: { org: OrgInstance }) {
-  return (
-    <Card className="overflow-visible">
-      <CardBody>
-        <div className="flex flex-col gap-3">
-          <div className="flex items-start justify-between">
-            <Link href={`/orgs/${org.org.username}`}>
-              <h2 className="text-xl font-semibold">{org.org.name}</h2>
-            </Link>
-            <Chip title="Scoring System" variant="dot" color="warning">
-              Score: {org.scoringModule?.totalScore ?? 0}
-            </Chip>
-          </div>
-
-          <div className="mt-1 flex flex-col gap-2">
-            {org.org.locations[0]?.address && (
-              <div className="flex items-center gap-2 text-default-500">
-                <MapPinIcon className="h-4 w-4" />
-                <span>{formatAddress(org.org.locations[0]?.address)}</span>
-              </div>
-            )}
-          </div>
-        </div>
-      </CardBody>
-      <CardFooter>
-        <ApplyDialogButton orgName={org.org.name} />
-      </CardFooter>
-    </Card>
   );
 }

@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Tabs, Tab } from '@sovoli/ui/components/tabs';
+import { useState } from "react";
+import { Tabs, Tab } from "@sovoli/ui/components/tabs";
+import { ListIcon, MapIcon } from "lucide-react";
 
 export function DirectoryViewTabs() {
-  const [selected, setSelected] = useState('list');
+  const [selected, setSelected] = useState("list");
 
   const handleChange = (key: React.Key) => {
-    if (key === 'map') {
-      alert('Map coming soon');
+    if (key === "map") {
+      alert("Map coming soon");
       return;
     }
     setSelected(key as string);
@@ -17,18 +18,33 @@ export function DirectoryViewTabs() {
   return (
     <Tabs
       aria-label="View options"
-      variant="underlined"
+      variant="bordered"
       selectedKey={selected}
       onSelectionChange={handleChange}
+      size="sm"
       classNames={{
-        tabList: 'gap-6 w-full relative rounded-none p-0 border-b border-divider',
-        cursor: 'w-full',
-        tab: 'max-w-fit px-0 h-12',
+        tab: "px-2 py-1 text-xs",
+        tabContent: "gap-0.5",
       }}
     >
-      <Tab key="list" title="List" />
-      <Tab key="map" title="Map" />
+      <Tab
+        key="list"
+        title={
+          <div className="flex items-center gap-1">
+            <ListIcon className="w-4 h-4" />
+            List
+          </div>
+        }
+      />
+      <Tab
+        key="map"
+        title={
+          <div className="flex items-center gap-1">
+            <MapIcon className="w-4 h-4" />
+            Map
+          </div>
+        }
+      />
     </Tabs>
   );
 }
-

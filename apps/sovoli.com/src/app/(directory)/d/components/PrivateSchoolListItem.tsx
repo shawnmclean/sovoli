@@ -8,7 +8,9 @@ import type {
 } from "~/modules/organisations/types";
 import type { Program } from "~/modules/academics/types";
 import { Chip } from "@sovoli/ui/components/chip";
-import { StarIcon } from "lucide-react";
+import { ArrowRightIcon, CheckCircleIcon } from "lucide-react";
+import { Badge } from "@sovoli/ui/components/badge";
+import { Tooltip } from "@sovoli/ui/components/tooltip";
 
 interface PrivateSchoolListItemProps {
   orgInstance: OrgInstance;
@@ -41,15 +43,18 @@ export function PrivateSchoolListItem({
     <Card className="w-full">
       <CardBody className="gap-2">
         <div className="flex items-center gap-3">
-          {/* <Badge
-            isOneChar
-            color={school.verified ? "success" : "default"}
-            content={school.verified ? <StarIcon className="w-4 h-4" /> : null}
-          > */}
           <Avatar src={school.logo} name={school.name} size="md" />
-          {/* </Badge> */}
+
           <div className="flex-grow">
-            <h2 className="text-md font-bold line-clamp-1">{school.name}</h2>
+            <div className="flex items-center gap-1">
+              <h2 className="text-md font-bold line-clamp-2">{school.name}</h2>
+              {school.verified && (
+                <Tooltip content="This school has been verified by Sovoli">
+                  <CheckCircleIcon className="w-4 h-4 text-success shrink-0" />
+                </Tooltip>
+              )}
+            </div>
+
             <p className="text-xs text-default-500 capitalize">
               {school.location.city}
             </p>
@@ -70,8 +75,8 @@ export function PrivateSchoolListItem({
           <div className="flex flex-wrap gap-1">
             {["digitalScore", "academicScore"].map((key) => {
               const labelMap: Record<string, string> = {
-                digitalScore: "Digital Readiness",
-                academicScore: "Academic Strength",
+                digitalScore: "Digital",
+                academicScore: "Academics",
               };
               const label = labelMap[key] ?? key;
               const dim = scoringModule?.[key as keyof typeof scoringModule] as
@@ -105,16 +110,24 @@ export function PrivateSchoolListItem({
         </div>
       </CardBody>
 
-      <CardFooter>
-        <Button
-          color="primary"
-          as="a"
-          href={`/orgs/${school.slug}`}
-          fullWidth
-          size="sm"
-        >
-          View Profile
-        </Button>
+      <CardFooter className="border-t border-default-200">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full space-y-2 sm:space-y-0">
+          <p className="text-xs text-default-500 text-center sm:text-left">
+            {school.verified
+              ? "Apply or Learn More"
+              : "Apply or Claim this School"}
+          </p>
+          <Button
+            color="primary"
+            as="a"
+            href={`/orgs/${school.slug}`}
+            size="sm"
+            endContent={<ArrowRightIcon className="w-4 h-4" />}
+            className="w-full sm:w-auto"
+          >
+            Explore
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );
