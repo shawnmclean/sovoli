@@ -32,8 +32,8 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
         key: "main-campus",
         label: "Main Campus",
         address: {
-          line1: "Lot 11, Public Road, Mon Repos",
-          city: "Georgetown",
+          line1: "Lot 11, Public Road",
+          city: "Mon Repos",
           country: "Guyana",
         },
         placeId: "ChIJKbqkI_ftr40RoBB0_9AsWAo",
