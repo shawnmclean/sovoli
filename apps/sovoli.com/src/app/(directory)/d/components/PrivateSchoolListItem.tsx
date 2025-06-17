@@ -9,6 +9,7 @@ import type {
 import type { Program } from "~/modules/academics/types";
 import { Chip } from "@sovoli/ui/components/chip";
 import { ArrowRightIcon, CheckCircleIcon } from "lucide-react";
+import { Link } from "@sovoli/ui/components/link";
 
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 
@@ -24,24 +25,26 @@ export function PrivateSchoolListItem({
   return (
     <Card className="w-full">
       <CardBody className="gap-2">
-        <div className="flex items-center gap-3">
-          <Avatar src={org.logo} name={org.name} size="md" />
+        <Link href={`/orgs/${org.username}`} color="foreground">
+          <div className="flex items-center gap-3">
+            <Avatar src={org.logo} name={org.name} size="md" />
 
-          <div className="flex-grow">
-            <div className="flex items-center gap-1">
-              <h2 className="text-md font-bold line-clamp-2">{org.name}</h2>
-              {org.isVerified && (
-                <Tooltip content="This school has been verified by Sovoli">
-                  <CheckCircleIcon className="w-4 h-4 text-success shrink-0" />
-                </Tooltip>
-              )}
+            <div className="flex-grow">
+              <div className="flex items-center gap-1">
+                <h2 className="text-md font-bold line-clamp-2">{org.name}</h2>
+                {org.isVerified && (
+                  <Tooltip content="This school has been verified by Sovoli">
+                    <CheckCircleIcon className="w-4 h-4 text-success shrink-0" />
+                  </Tooltip>
+                )}
+              </div>
+
+              <p className="text-xs text-default-500 capitalize">
+                {org.locations[0]?.address.city}
+              </p>
             </div>
-
-            <p className="text-xs text-default-500 capitalize">
-              {org.locations[0]?.address.city}
-            </p>
           </div>
-        </div>
+        </Link>
 
         <ProgramList programs={academicModule?.programs ?? []} />
 
