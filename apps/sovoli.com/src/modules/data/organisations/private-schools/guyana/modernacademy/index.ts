@@ -9,7 +9,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Modern Academy",
-    logo: "/orgs/magy/logo.png",
+    logo: "/orgs/magy/logo.webp",
     isVerified: true,
     internalCRM: {
       people: [
