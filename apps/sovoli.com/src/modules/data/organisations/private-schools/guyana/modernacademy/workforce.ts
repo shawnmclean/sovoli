@@ -116,7 +116,6 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
       id: "004",
       name: "Sir Chabeeraj Francis",
       slug: "sir-chabeeraj-francis",
-      image: "/images/profile/chabeeraj.jpeg",
       bio: "Sir Chabeeraj believes education is the most powerful tool to transform lives. A medical scholar and university student himself, he draws from both academic and real-world experiences to teach students how knowledge can elevate them beyond perceived limits. His scholarship to China and degree in medicine were earned through perseverance, and now he channels that same drive into guiding students toward academic and personal excellence. With a passion for health education, he hopes to shape planetary wellbeing by starting at the grassroots—our schools.",
       quote: "Knowledge gained is knowledge shared.",
       isPublic: true,
