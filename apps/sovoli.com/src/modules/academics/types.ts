@@ -4,7 +4,7 @@ export interface Program {
   title?: string;
   slug: string;
   description: string;
-  image: string;
+  image?: string;
   requirements?: ProgramRequirement[];
 }
 
