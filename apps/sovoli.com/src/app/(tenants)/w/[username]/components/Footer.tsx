@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@sovoli/ui/components/link";
-import { LinkIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
+import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 import type { OrgInstanceWithWebsite } from "../lib/types";
 import type { FooterLink, FooterSection } from "~/modules/websites/types";
@@ -73,8 +73,7 @@ export const Footer = ({ orgInstance }: FooterProps) => {
         <div className="mt-8 border-t border-divider pt-8 text-sm text-foreground-500">
           <div className="flex items-center justify-between">
             <p>
-              &copy; {new Date().getFullYear()} {website.siteName}. All rights
-              reserved.
+              &copy; {new Date().getFullYear()} {website.siteName}.
             </p>
             <NetworkBadge referer={orgInstance.org.username} />
           </div>
