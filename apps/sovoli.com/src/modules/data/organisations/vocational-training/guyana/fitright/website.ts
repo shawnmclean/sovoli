@@ -12,7 +12,7 @@ const HOME_PAGE: PageConfig = {
       variant: "image",
       title: "Master the Art of Dressmaking and Design",
       subtitle:
-        "Learn tailoring, fashion design, and professional alterations in a modern, hands-on academy.",
+        "Fit Right offers premium tailoring services and hands-on vocational training in fashion design and alterations.",
       backgroundImage:
         "/orgs/vocational-training/guyana/fitright/website/home/hero.webp",
       actions: [
@@ -22,6 +22,9 @@ const HOME_PAGE: PageConfig = {
     },
     {
       type: "programs",
+      title: "Our Programs",
+      subtitle:
+        "Explore our comprehensive range of programs designed to equip you with the skills and knowledge to excel in the fashion and tailoring industry.",
     },
   ],
 };
