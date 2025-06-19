@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "@sovoli/ui/components/link";
-import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
+import { LinkIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 import type { OrgInstanceWithWebsite } from "../lib/types";
 import type { FooterLink, FooterSection } from "~/modules/websites/types";
 import { SocialLink } from "./SocialLink";
+import { LogoSVG } from "~/components/Logo/LogoSVG";
 
 // Define a Program type (should match your academicModule programs)
 interface Program {
@@ -69,11 +70,14 @@ export const Footer = ({ orgInstance }: FooterProps) => {
           })}
         </div>
 
-        <div className="mt-8 border-t border-divider pt-8 text-center text-sm text-foreground-500">
-          <p>
-            &copy; {new Date().getFullYear()} {website.siteName}. All rights
-            reserved.
-          </p>
+        <div className="mt-8 border-t border-divider pt-8 text-sm text-foreground-500">
+          <div className="flex items-center justify-between">
+            <p>
+              &copy; {new Date().getFullYear()} {website.siteName}. All rights
+              reserved.
+            </p>
+            <NetworkBadge referer={orgInstance.org.username} />
+          </div>
         </div>
       </div>
     </footer>
@@ -226,3 +230,27 @@ const FooterContactSection = ({ orgInstance }: FooterProps) => {
     </div>
   );
 };
+
+interface NetworkBadgeProps {
+  referer: string;
+}
+
+function NetworkBadge({ referer }: NetworkBadgeProps) {
+  const referralUrl = `https://www.sovoli.com/referral?ref=${referer}`;
+
+  return (
+    <Link
+      href={referralUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group inline-flex items-center gap-1 text-foreground-400 hover:text-foreground-600 transition-colors whitespace-nowrap"
+    >
+      <span>Powered by</span>
+      <LogoSVG
+        width={18}
+        height={18}
+        className="grayscale group-hover:grayscale-0 transition duration-300"
+      />
+    </Link>
+  );
+}

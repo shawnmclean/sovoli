@@ -3,9 +3,11 @@ import React from "react";
 export const LogoSVG = ({
   width = 32,
   height = 32,
+  className,
 }: {
   width?: number;
   height?: number;
+  className?: string;
 }) => (
   <svg
     width={width}
@@ -14,6 +16,7 @@ export const LogoSVG = ({
     xmlns="http://www.w3.org/2000/svg"
     role="img"
     aria-label="Sovoli Logo"
+    className={className}
   >
     <defs>
       <linearGradient
