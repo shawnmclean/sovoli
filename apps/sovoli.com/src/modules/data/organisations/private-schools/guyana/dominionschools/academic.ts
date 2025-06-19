@@ -8,6 +8,7 @@ export const DOMINION_SCHOOLS_ACADEMIC: AcademicModule = {
       slug: "nursery",
       description:
         "Engaging curriculum fostering critical thinking and creativity",
+      image: "/orgs/defaults/programs/nursery.webp",
       requirements: [
         {
           type: "age",
@@ -25,6 +26,7 @@ export const DOMINION_SCHOOLS_ACADEMIC: AcademicModule = {
       name: "Primary",
       slug: "primary",
       description: "Strong foundational learning in a nurturing environment",
+      image: "/orgs/defaults/programs/primary.webp",
       requirements: [
         {
           type: "age",

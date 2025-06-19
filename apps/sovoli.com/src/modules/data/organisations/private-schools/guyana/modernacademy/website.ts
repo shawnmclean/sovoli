@@ -32,7 +32,8 @@ const HOME_PAGE: PageConfig = {
       title: "Empowering Minds, Shaping Futures",
       subtitle:
         "Join a community dedicated to academic excellence and personal growth",
-      backgroundImage: "/images/hero.jpg",
+      backgroundImage:
+        "/orgs/private-schools/guyana/modernacademy/website/home/hero.webp",
       actions: [
         { label: "Apply Now", href: "/academics/apply" },
         { label: "Schedule a Visit", href: "/academics/apply" },
