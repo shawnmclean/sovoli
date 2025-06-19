@@ -3,11 +3,11 @@ import { ORG_USERNAME } from "./constants";
 import { FITRIGHT_ACADEMY_WEBSITE } from "./website";
 import { FITRIGHT_ACADEMIC } from "./academic";
 
-export const FITRIGHT_ORG_INSTANCE: OrgInstance = {
+export const FITRIGHT_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Fit Right Academy",
-    logo: "/orgs/fitright/logo.png",
+    logo: "/orgs/vocational-training/guyana/fitright/logo.png",
     categories: ["dressmaking", "alterations", "academic-programs"],
     locations: [
       {

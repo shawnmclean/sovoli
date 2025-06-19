@@ -11,17 +11,30 @@ import {
 } from "lucide-react";
 
 import { PageAssembler } from "~/modules/websites/components/PageAssembler";
-import { orgWebConfig } from "../../data";
 import { Timeline } from "./components/Timeline";
+import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
+import { notFound } from "next/navigation";
+
+const retreiveOrgInstance = async (username: string) => {
+  const result = await getOrgInstanceByUsername(username);
+  if (!result) return notFound();
+  return result;
+};
 
 export const metadata: Metadata = {
   title: "About Us",
 };
 
-export default function AboutPage() {
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}) {
+  const { username } = await params;
+  const orgInstance = await retreiveOrgInstance(username);
   return (
     <div>
-      <PageAssembler page={orgWebConfig.about} editable={false} />
+      <PageAssembler pageName="about" orgInstance={orgInstance} />
 
       {/* Main Content Section - Centered and Narrowed */}
 

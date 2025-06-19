@@ -1,5 +1,30 @@
-import type { WebsiteModule } from "~/modules/websites/types";
+import type { PageConfig, WebsiteModule } from "~/modules/websites/types";
 import { ORG_DOMAIN, ORG_USERNAME } from "./constants";
+
+const HOME_PAGE: PageConfig = {
+  name: "home",
+  title: "Welcome to Fit Right Academy",
+  subtitle: "Where craft meets excellence in fashion and education.",
+  sections: [
+    {
+      type: "hero",
+      layout: "default",
+      variant: "image",
+      title: "Master the Art of Dressmaking and Design",
+      subtitle:
+        "Learn tailoring, fashion design, and professional alterations in a modern, hands-on academy.",
+      backgroundImage:
+        "/orgs/vocational-training/guyana/fitright/website/home/hero.webp",
+      actions: [
+        { label: "Apply Now", href: "/academics/apply" },
+        { label: "Schedule a Visit", href: "/academics/apply" },
+      ],
+    },
+    {
+      type: "programs",
+    },
+  ],
+};
 
 export const FITRIGHT_ACADEMY_WEBSITE: WebsiteModule = {
   website: {
@@ -73,5 +98,6 @@ export const FITRIGHT_ACADEMY_WEBSITE: WebsiteModule = {
         },
       ],
     },
+    pages: [HOME_PAGE],
   },
 };

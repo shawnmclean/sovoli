@@ -58,6 +58,7 @@ export interface Website {
     variant: "default" | "transparent";
     sections: FooterSection[];
   };
+  pages: PageConfig[];
 }
 
 // -------
@@ -93,7 +94,14 @@ export interface OrgMeta {
 
 // Section-level configuration for a rendered page
 export interface PageSection {
-  type: "hero" | "metrics" | "cards" | "list" | "collection"; // content presentation type
+  type:
+    | "hero"
+    | "metrics"
+    | "cards"
+    | "list"
+    | "collection"
+    | "programs"
+    | "team"; // content presentation type
   layout?: string; // "condensed", "default"
   variant?: string; // "image"
   title?: string;
@@ -112,15 +120,8 @@ export interface PageSection {
 
 // Represents a full page configuration for one public-facing page
 export interface PageConfig {
+  name: "home" | "about";
   title?: string;
   subtitle?: string;
   sections: PageSection[];
-}
-
-// Org-specific web configuration
-export interface OrgWebConfig {
-  home: PageConfig;
-  about: PageConfig;
-
-  [key: string]: PageConfig | undefined;
 }

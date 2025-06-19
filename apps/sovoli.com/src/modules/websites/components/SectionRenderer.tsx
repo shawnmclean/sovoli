@@ -1,19 +1,19 @@
 import type { PageSection } from "~/modules/websites/types";
 import { sectionRegistry } from "./SectionRegistry";
+import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 
 interface SectionRendererProps {
   section: PageSection;
   editable?: boolean;
-  content?: unknown[];
+  orgInstance: OrgInstanceWithWebsite;
 }
 
 export function SectionRenderer({
   section,
-  editable = false,
-  content,
+  orgInstance,
 }: SectionRendererProps) {
   const Component = sectionRegistry[section.type];
   if (!Component) return null;
 
-  return <Component section={section} content={content} editable={editable} />;
+  return <Component section={section} orgInstance={orgInstance} />;
 }

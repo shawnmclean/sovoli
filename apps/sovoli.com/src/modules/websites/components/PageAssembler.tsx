@@ -1,16 +1,28 @@
-import type { PageConfig, PageSection } from "~/modules/websites/types";
+import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import { SectionRenderer } from "./SectionRenderer";
 
 interface PageAssemblerProps {
-  page: PageConfig;
-  editable?: boolean;
+  pageName: string;
+  orgInstance: OrgInstanceWithWebsite;
 }
 
-export function PageAssembler({ page, editable = false }: PageAssemblerProps) {
+export function PageAssembler({ pageName, orgInstance }: PageAssemblerProps) {
+  const page = orgInstance.websiteModule.website.pages.find(
+    (page) => page.name === pageName,
+  );
+
+  if (!page) {
+    return null;
+  }
+
   return (
     <>
-      {page.sections.map((section: PageSection, idx: number) => (
-        <SectionRenderer key={idx} section={section} editable={editable} />
+      {page.sections.map((section, idx) => (
+        <SectionRenderer
+          key={idx}
+          section={section}
+          orgInstance={orgInstance}
+        />
       ))}
     </>
   );

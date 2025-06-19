@@ -58,6 +58,10 @@ export interface OrgInstance {
   scoringModule?: ScoringModule;
 }
 
+export type OrgInstanceWithWebsite = Omit<OrgInstance, "websiteModule"> & {
+  websiteModule: WebsiteModule;
+};
+
 // -- scoring module
 
 export interface ScoringModule {

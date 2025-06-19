@@ -1,5 +1,66 @@
-import type { WebsiteModule } from "~/modules/websites/types";
+import type { PageConfig, WebsiteModule } from "~/modules/websites/types";
 import { ORG_DOMAIN, ORG_USERNAME } from "./constants";
+
+const ABOUT_PAGE: PageConfig = {
+  name: "about",
+  title: "About Us",
+  subtitle:
+    "Learn more about our vision, mission, and the values that guide us",
+
+  sections: [
+    {
+      type: "hero",
+      layout: "condensed",
+      variant: "image",
+      title: "About Us",
+      subtitle: "Guyana's Fastest Growing Private Institution",
+      backgroundImage: "https://img.heroui.chat/image/places?w=1920&h=600&u=2",
+    },
+  ],
+};
+
+const HOME_PAGE: PageConfig = {
+  name: "home",
+  title: "Welcome to Modern Academy",
+  subtitle: "Empowering Minds, Shaping Futures",
+
+  sections: [
+    {
+      type: "hero",
+      layout: "default",
+      variant: "image",
+      title: "Empowering Minds, Shaping Futures",
+      subtitle:
+        "Join a community dedicated to academic excellence and personal growth",
+      backgroundImage: "/images/hero.jpg",
+      actions: [
+        { label: "Apply Now", href: "/academics/apply" },
+        { label: "Schedule a Visit", href: "/academics/apply" },
+      ],
+    },
+    {
+      type: "metrics",
+    },
+    {
+      type: "programs",
+      title: "Our Programs",
+      subtitle:
+        "Our programs are designed to provide a nurturing environment that fosters academic excellence, character development, and lifelong learning.",
+    },
+    {
+      type: "team",
+      title: "Meet Our Team",
+      subtitle:
+        "Our dedicated faculty and staff are committed to providing the highest quality education and support for all students.",
+    },
+    {
+      type: "cards",
+      title: "The First Principles",
+      subtitle:
+        "Guiding principles that shape our approach to education and community building",
+    },
+  ],
+};
 
 export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
   website: {
@@ -87,5 +148,6 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
         },
       ],
     },
+    pages: [HOME_PAGE, ABOUT_PAGE],
   },
 };
