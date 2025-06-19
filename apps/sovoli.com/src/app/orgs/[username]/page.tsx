@@ -62,7 +62,7 @@ export default async function OrgProfilePage({
                 <CardBody className="p-0">
                   <Image
                     alt={program.name}
-                    src={program.image}
+                    src={program.image ?? "/images/programs/default.jpg"}
                     width={800}
                     height={400}
                     className="h-48 w-full object-cover"
