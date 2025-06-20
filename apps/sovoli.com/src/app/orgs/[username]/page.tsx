@@ -128,7 +128,7 @@ export default async function OrgProfilePage({
       </div>
 
       {academicModule?.programs && academicModule.programs.length > 0 && (
-        <section className="px-4 py-4">
+        <section className="px-4">
           <h2 className="mb-6 text-2xl font-bold">Programs</h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">

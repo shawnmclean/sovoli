@@ -21,20 +21,8 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
     >
       <Tab
         key={`/orgs/${orgInstance.org.username}`}
-        title="Overview"
+        title="About"
         href={`/orgs/${orgInstance.org.username}`}
-      />
-      <Tab
-        key={`/orgs/${orgInstance.org.username}/programs`}
-        title={
-          <div className="flex items-center space-x-2">
-            <span>Programs</span>
-            <Chip size="sm" variant="flat">
-              {orgInstance.academicModule?.programs.length ?? 0}
-            </Chip>
-          </div>
-        }
-        href={`/orgs/${orgInstance.org.username}/programs`}
       />
       <Tab
         key={`/orgs/${orgInstance.org.username}/scores`}
@@ -47,6 +35,35 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
           </div>
         }
         href={`/orgs/${orgInstance.org.username}/scores`}
+      />
+      <Tab
+        key={`/orgs/${orgInstance.org.username}/jobs`}
+        title={
+          <div className="flex items-center space-x-2">
+            <span>Jobs</span>
+            <Chip
+              size="sm"
+              variant="solid"
+              color="primary"
+              className="font-bold shadow-md animate-pulse"
+            >
+              2
+            </Chip>
+          </div>
+        }
+        href={`/orgs/${orgInstance.org.username}/jobs`}
+      />
+      <Tab
+        key={`/orgs/${orgInstance.org.username}/programs`}
+        title={
+          <div className="flex items-center space-x-2">
+            <span>Programs</span>
+            <Chip size="sm" variant="flat">
+              {orgInstance.academicModule?.programs.length ?? 0}
+            </Chip>
+          </div>
+        }
+        href={`/orgs/${orgInstance.org.username}/programs`}
       />
     </Tabs>
   );
