@@ -235,7 +235,7 @@ interface NetworkBadgeProps {
 }
 
 function NetworkBadge({ referer }: NetworkBadgeProps) {
-  const referralUrl = `https://www.sovoli.com/referral?ref=${referer}`;
+  const referralUrl = `https://www.sovoli.com?ref=${referer}`;
 
   return (
     <Link
