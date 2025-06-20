@@ -26,7 +26,14 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
       />
       <Tab
         key={`/orgs/${orgInstance.org.username}/programs`}
-        title="Programs"
+        title={
+          <div className="flex items-center space-x-2">
+            <span>Programs</span>
+            <Chip size="sm" variant="flat">
+              {orgInstance.academicModule?.programs.length ?? 0}
+            </Chip>
+          </div>
+        }
         href={`/orgs/${orgInstance.org.username}/programs`}
       />
       <Tab
