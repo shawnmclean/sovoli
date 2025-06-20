@@ -9,7 +9,6 @@ import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/
 
 import { Link } from "@sovoli/ui/components/link";
 import { GlobeIcon, PhoneIcon, MailIcon, MapPinIcon } from "lucide-react";
-import { Divider } from "@sovoli/ui/components/divider";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(

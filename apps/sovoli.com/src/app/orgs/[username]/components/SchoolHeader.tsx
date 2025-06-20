@@ -13,12 +13,14 @@ import { Tooltip } from "@sovoli/ui/components/tooltip";
 import {
   CheckCircleIcon,
   EllipsisVerticalIcon,
-  Link,
   NotebookPenIcon,
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 // import { WhatsAppButton } from "~/components/WhatsAppButton";
-import type { OrgInstance } from "~/modules/organisations/types";
+import type {
+  OrgInstance,
+  ScoringDimension,
+} from "~/modules/organisations/types";
 
 export interface SchoolHeaderProps {
   orgInstance: OrgInstance;
@@ -56,24 +58,11 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
                 </Tooltip>
               )}
             </div>
-            {orgInstance.org.locations[0]?.address.city && (
-              <p className="text-sm text-default-500 capitalize mt-1 truncate w-full">
-                {orgInstance.org.locations[0].address.city},{" "}
-                {orgInstance.org.locations[0].address.country}
-              </p>
-            )}
+            <ScoringChips
+              scoringModule={orgInstance.scoringModule}
+              isVerified={orgInstance.org.isVerified ?? false}
+            />
           </div>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          {!orgInstance.org.isVerified && (
-            <Chip size="sm" color="warning" variant="flat">
-              <span>Unclaimed: </span>
-              <span>0</span>
-              <span className="text-[10px] text-default-400">/</span>
-              <span>10</span>
-            </Chip>
-          )}
         </div>
 
         <div className="flex items-center gap-2">
@@ -111,3 +100,53 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
     </div>
   );
 }
+
+const ScoringChips = ({
+  scoringModule,
+  isVerified,
+}: {
+  scoringModule: OrgInstance["scoringModule"];
+  isVerified: boolean;
+}) => (
+  <div className="flex flex-wrap gap-1 mt-2">
+    <Chip size="sm" color="default" variant="solid" title="Total Score">
+      Score: {scoringModule?.totalScore ?? 0}
+    </Chip>
+    {["digitalScore"].map((key) => {
+      const labelMap: Record<string, string> = {
+        digitalScore: "Digital",
+      };
+      const label = labelMap[key] ?? key;
+      const dim = scoringModule?.[key as keyof typeof scoringModule] as
+        | ScoringDimension
+        | undefined;
+      const score = dim?.score ?? 0;
+      const maxScore = dim?.maxScore ?? 0;
+      const percent = maxScore ? (score / maxScore) * 100 : 0;
+      const color =
+        percent >= 80 ? "success" : percent >= 50 ? "warning" : "default";
+      return (
+        <Chip
+          key={key}
+          size="sm"
+          color={color}
+          variant="flat"
+          className="text-xs flex items-center gap-1"
+        >
+          <span>{label}: </span>
+          <span>{score}</span>
+          <span className="text-[10px] text-default-400">/</span>
+          <span>{maxScore}</span>
+        </Chip>
+      );
+    })}
+    {!isVerified && (
+      <Chip size="sm" color="warning" variant="flat">
+        <span>Unclaimed: </span>
+        <span>0</span>
+        <span className="text-[10px] text-default-400">/</span>
+        <span>10</span>
+      </Chip>
+    )}
+  </div>
+);

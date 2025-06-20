@@ -89,6 +89,54 @@ const ProgramList = ({ programs }: { programs: Program[] }) => {
   );
 };
 
+const ScoringChips = ({
+  scoringModule,
+  isVerified,
+}: {
+  scoringModule: OrgInstance["scoringModule"];
+  isVerified: boolean;
+}) => (
+  <div className="flex flex-wrap gap-1">
+    {["digitalScore", "academicScore"].map((key) => {
+      const labelMap: Record<string, string> = {
+        digitalScore: "Digital",
+        academicScore: "Academics",
+      };
+      const label = labelMap[key] ?? key;
+      const dim = scoringModule?.[key as keyof typeof scoringModule] as
+        | ScoringDimension
+        | undefined;
+      const score = dim?.score ?? 0;
+      const maxScore = dim?.maxScore ?? 0;
+      const percent = maxScore ? (score / maxScore) * 100 : 0;
+      const color =
+        percent >= 80 ? "success" : percent >= 50 ? "warning" : "default";
+      return (
+        <Chip
+          key={key}
+          size="sm"
+          color={color}
+          variant="flat"
+          className="text-xs flex items-center gap-1"
+        >
+          <span>{label}: </span>
+          <span>{score}</span>
+          <span className="text-[10px] text-default-400">/</span>
+          <span>{maxScore}</span>
+        </Chip>
+      );
+    })}
+    {!isVerified && (
+      <Chip size="sm" color="warning" variant="flat">
+        <span>Unclaimed: </span>
+        <span>0</span>
+        <span className="text-[10px] text-default-400">/</span>
+        <span>10</span>
+      </Chip>
+    )}
+  </div>
+);
+
 const ScoringSection = ({ orgInstance }: { orgInstance: OrgInstance }) => {
   const { scoringModule, org } = orgInstance;
   return (
@@ -98,45 +146,10 @@ const ScoringSection = ({ orgInstance }: { orgInstance: OrgInstance }) => {
           Score: {scoringModule?.totalScore ?? 0}
         </span>
       </div>
-      <div className="flex flex-wrap gap-1">
-        {["digitalScore", "academicScore"].map((key) => {
-          const labelMap: Record<string, string> = {
-            digitalScore: "Digital",
-            academicScore: "Academics",
-          };
-          const label = labelMap[key] ?? key;
-          const dim = scoringModule?.[key as keyof typeof scoringModule] as
-            | ScoringDimension
-            | undefined;
-          const score = dim?.score ?? 0;
-          const maxScore = dim?.maxScore ?? 0;
-          const percent = maxScore ? (score / maxScore) * 100 : 0;
-          const color =
-            percent >= 80 ? "success" : percent >= 50 ? "warning" : "default";
-          return (
-            <Chip
-              key={key}
-              size="sm"
-              color={color}
-              variant="flat"
-              className="text-xs flex items-center gap-1"
-            >
-              <span>{label}: </span>
-              <span>{score}</span>
-              <span className="text-[10px] text-default-400">/</span>
-              <span>{maxScore}</span>
-            </Chip>
-          );
-        })}
-        {!org.isVerified && (
-          <Chip size="sm" color="warning" variant="flat">
-            <span>Unclaimed: </span>
-            <span>0</span>
-            <span className="text-[10px] text-default-400">/</span>
-            <span>10</span>
-          </Chip>
-        )}
-      </div>
+      <ScoringChips
+        scoringModule={scoringModule}
+        isVerified={org.isVerified ?? false}
+      />
     </div>
   );
 };
