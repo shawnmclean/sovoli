@@ -7,8 +7,9 @@ import { bus } from "~/services/core/bus";
 
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 
-import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
-import { WhatsAppButton } from "~/components/WhatsAppButton";
+import { Link } from "@sovoli/ui/components/link";
+import { GlobeIcon, PhoneIcon, MailIcon } from "lucide-react";
+import { Divider } from "@sovoli/ui/components/divider";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -34,24 +35,81 @@ export default async function OrgProfilePage({
   params: Promise<{ username: string }>;
 }) {
   const { username } = await params;
-  const { org, academicModule } = await retreiveOrgInstance(username);
+  const orgInstance = await retreiveOrgInstance(username);
+  const { academicModule } = orgInstance;
+
+  const websiteUrl =
+    orgInstance.websiteModule?.website.url ??
+    orgInstance.org.socialLinks?.find((l) => l.platform === "website")?.url ??
+    null;
+
+  const primaryLocation = orgInstance.org.locations[0];
+  const phone = primaryLocation?.contacts.find(
+    (c) => c.type === "phone",
+  )?.value;
+  const email = primaryLocation?.contacts.find(
+    (c) => c.type === "email",
+  )?.value;
 
   return (
     <div className="space-y-8">
-      {/* Contact Information Section */}
-      <section className="flex flex-col gap-4">
-        <ApplyDialogButton orgName={org.name} />
-        {!org.isVerified ? (
-          <WhatsAppButton
-            phoneNumber="+5926082743"
-            message={`Hello, I'd like to claim and edit the profile for ${org.name}.`}
-          >
-            Claim and Edit
-          </WhatsAppButton>
-        ) : null}
-      </section>
+      <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
+        <div className="flex flex-col md:flex-row justify-between gap-4">
+          {/* Contact Section */}
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
+              {websiteUrl && (
+                <Link
+                  href={websiteUrl}
+                  isExternal
+                  className="flex items-center gap-2 text-default-600 hover:text-primary-500"
+                >
+                  <GlobeIcon className="text-base" />
+                  <span className="text-sm">{websiteUrl}</span>
+                </Link>
+              )}
+              {phone && (
+                <Link
+                  href={`tel:${phone}`}
+                  className="flex items-center gap-2 text-default-600 hover:text-primary-500"
+                >
+                  <PhoneIcon className="text-base" />
+                  <span className="text-sm">{phone}</span>
+                </Link>
+              )}
+              {email && (
+                <Link
+                  href={`mailto:${email}`}
+                  className="flex items-center gap-2 text-default-600 hover:text-primary-500"
+                >
+                  <MailIcon className="text-base" />
+                  <span className="text-sm">{email}</span>
+                </Link>
+              )}
+            </div>
+          </div>
 
-      {/* Programs Section */}
+          {/* Categories Section */}
+          {orgInstance.org.categories.length > 0 && (
+            <div className="flex flex-col gap-2">
+              <h3 className="text-lg font-semibold mb-2">Categories</h3>
+              <div className="flex flex-wrap gap-2">
+                {orgInstance.org.categories.map((category) => (
+                  <Link
+                    key={category}
+                    color="foreground"
+                    className="rounded-full bg-default-100 px-3 py-1 text-sm"
+                    href={`/d/${category.toLowerCase()}/${primaryLocation?.address.country.toLowerCase()}`}
+                  >
+                    {category}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
       {academicModule?.programs && academicModule.programs.length > 0 && (
         <section className="px-4 py-4">
           <h2 className="mb-6 text-2xl font-bold">Programs</h2>

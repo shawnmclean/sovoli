@@ -29,6 +29,7 @@ export class GetOrgInstanceByUsernameQueryHandler
     return {
       orgInstance: {
         org: entry.org,
+        scoringModule: entry.scoringModule,
         websiteModule: entry.websiteModule ?? null,
         academicModule: entry.academicModule ?? null,
         offeringModule: entry.offeringModule ?? null,

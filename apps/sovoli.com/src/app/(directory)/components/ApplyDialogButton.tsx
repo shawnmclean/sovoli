@@ -18,9 +18,13 @@ import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 interface ApplyDialogButtonProps {
   orgName: string;
+  children?: React.ReactNode;
 }
 
-export function ApplyDialogButton({ orgName }: ApplyDialogButtonProps) {
+export function ApplyDialogButton({
+  orgName,
+  children,
+}: ApplyDialogButtonProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const documentList = [
@@ -50,7 +54,7 @@ export function ApplyDialogButton({ orgName }: ApplyDialogButtonProps) {
         data-attr="apply-dialog-open"
         data-school={orgName}
       >
-        Apply to School Now
+        {children ?? "Apply to School Now"}
       </Button>
       <Modal
         isOpen={isOpen}
