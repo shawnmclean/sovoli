@@ -8,7 +8,7 @@ import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 
 import { Link } from "@sovoli/ui/components/link";
-import { GlobeIcon, PhoneIcon, MailIcon } from "lucide-react";
+import { GlobeIcon, PhoneIcon, MailIcon, MapPinIcon } from "lucide-react";
 import { Divider } from "@sovoli/ui/components/divider";
 
 const retreiveOrgInstance = async (username: string) => {
@@ -85,6 +85,23 @@ export default async function OrgProfilePage({
                   <MailIcon className="text-base" />
                   <span className="text-sm">{email}</span>
                 </Link>
+              )}
+              {primaryLocation?.address && (
+                <div className="flex items-center gap-2 text-default-600">
+                  <MapPinIcon className="text-base" />
+                  <span className="text-sm">
+                    {[
+                      primaryLocation.address.line1,
+                      primaryLocation.address.line2,
+                      primaryLocation.address.city,
+                      primaryLocation.address.state,
+                      primaryLocation.address.postalCode,
+                      primaryLocation.address.country,
+                    ]
+                      .filter(Boolean)
+                      .join(", ")}
+                  </span>
+                </div>
               )}
             </div>
           </div>
