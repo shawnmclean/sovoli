@@ -97,10 +97,9 @@ const ScoringChips = ({
   isVerified: boolean;
 }) => (
   <div className="flex flex-wrap gap-1">
-    {["digitalScore", "academicScore"].map((key) => {
+    {["digitalScore"].map((key) => {
       const labelMap: Record<string, string> = {
         digitalScore: "Digital",
-        academicScore: "Academics",
       };
       const label = labelMap[key] ?? key;
       const dim = scoringModule?.[key as keyof typeof scoringModule] as
@@ -118,6 +117,7 @@ const ScoringChips = ({
           color={color}
           variant="flat"
           className="text-xs flex items-center gap-1"
+          title="All scores are computed based on publicly available information"
         >
           <span>{label}: </span>
           <span>{score}</span>
