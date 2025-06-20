@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-import { SearchIcon } from "lucide-react";
+import { SearchIcon, ArrowLeftIcon } from "lucide-react";
+import { Button } from "@sovoli/ui/components/button";
 
 import { pluralize } from "~/utils/pluralize";
 import { DirectoryViewTabs } from "../../components/DirectoryViewTabs";
@@ -144,6 +145,21 @@ export default async function DirectoryCategoryPage(props: Props) {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6">
+      {/* Back Button - only show if there's a second location */}
+      {locations.length > 1 && (
+        <div className="mb-4">
+          <Button
+            as={Link}
+            href={`/d/${category}/${locations[0]}`}
+            variant="light"
+            startContent={<ArrowLeftIcon className="w-4 h-4" />}
+            size="sm"
+          >
+            Back
+          </Button>
+        </div>
+      )}
+
       <div className="mb-4">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>

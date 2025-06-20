@@ -1,17 +1,17 @@
 import { env } from "~/env";
 
 export const config = {
-  title: "Sovoli: A Lifelong Knowledge System",
+  title: "Sovoli: Guyana’s #1 Private School Directory",
   siteName: "Sovoli",
   description:
-    "Sovoli is a lifelong knowledge system developed in collaboration with private schools. Starting in Guyana and Jamaica, Sovoli helps schools and students record, share, and continue learning across every stage of life — from early education to mastery.",
+    "Sovoli helps parents in Guyana discover, compare, and apply to private schools — all in one place. Each school has a verified profile, digital readiness score, and clear application options. We’re starting in Guyana with plans to expand soon.",
   url: "https://sovoli.com",
   images: [
     {
-      url: "/images/og-image.webp",
+      url: "/images/og.webp",
       width: 1200,
       height: 630,
-      alt: "Sovoli: A Lifelong Knowledge System",
+      alt: "Sovoli: Guyana’s #1 Private School Directory",
     },
   ],
   rootDomain: env.NODE_ENV === "development" ? "localhost:3000" : "sovoli.com",
