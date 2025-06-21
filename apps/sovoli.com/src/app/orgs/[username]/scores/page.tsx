@@ -97,40 +97,34 @@ export default async function ScoresPage({
   // Define score categories
   const scoreCategories: ScoreCategory[] = [
     {
-      title: "Transparency",
+      title: "Trust & Visibility",
       description:
-        "How well this school shares information about pricing, staff, and curriculum",
+        "How easily parents can find, trust, and contact this school.",
       icon: ShieldIcon,
       items: [
         {
           label: "Verified Organization",
           score: orgInstance.org.isVerified ? 10 : 0,
           maxScore: 10,
-          description: "Organization has been verified by Sovoli",
+          description:
+            "Verified by Sovoli with submitted business registration.",
           achieved: !!orgInstance.org.isVerified,
         },
         {
-          label: "Has Website",
-          score: websiteUrl ? 5 : 0,
-          maxScore: 5,
-          description: "School has an online presence",
+          label: "Website Present",
+          score: websiteUrl ? 10 : 0,
+          maxScore: 10,
+          description: "Official school website for parents to visit.",
           achieved: !!websiteUrl,
           link: websiteUrl,
         },
         {
-          label: "Website Managed by Sovoli",
-          score: orgInstance.websiteModule ? 5 : 0,
-          maxScore: 5,
-          description: "Professional website management",
-          achieved: !!orgInstance.websiteModule,
+          label: "Google Business Profile",
+          score: orgInstance.org.locations.some((l) => l.placeId) ? 10 : 0,
+          maxScore: 10,
+          description: "Found on Google Maps with a verified listing.",
+          achieved: !!orgInstance.org.locations.some((l) => l.placeId),
         },
-      ],
-    },
-    {
-      title: "Findability",
-      description: "How easy it is to find this school online",
-      icon: SearchIcon,
-      items: [
         {
           label: "Facebook Page Linked",
           score: orgInstance.org.socialLinks?.some(
@@ -139,16 +133,26 @@ export default async function ScoresPage({
             ? 5
             : 0,
           maxScore: 5,
-          description: "Active social media presence",
+          description: "Active Facebook presence for updates and outreach.",
           achieved: !!orgInstance.org.socialLinks?.some(
             (l) => l.platform === "facebook",
           ),
         },
         {
-          label: "Valid Email Address",
+          label: "WhatsApp Available",
+          score: whatsapp ? 5 : 0,
+          maxScore: 5,
+          description: "Direct messaging for fast parent communication.",
+          achieved: !!whatsapp,
+          link: whatsapp
+            ? `https://wa.me/${whatsapp.replace(/\D/g, "")}`
+            : null,
+        },
+        {
+          label: "Email Contact Present",
           score: email ? 5 : 0,
           maxScore: 5,
-          description: "Professional email communication",
+          description: "Reachable via professional email.",
           achieved: !!email,
           link: email ? `mailto:${email}` : null,
         },
@@ -156,57 +160,54 @@ export default async function ScoresPage({
           label: "Phone Number Present",
           score: phone ? 5 : 0,
           maxScore: 5,
-          description: "Direct contact available",
+          description: "Reachable via direct phone call.",
           achieved: !!phone,
           link: phone ? `tel:${phone}` : null,
         },
         {
-          label: "WhatsApp Available",
-          score: whatsapp ? 5 : 0,
+          label: ".edu.gy Domain (Private School)",
+          score: hasEduDomain ? 5 : 0,
           maxScore: 5,
-          description: "Modern messaging option",
-          achieved: !!whatsapp,
-          link: whatsapp
-            ? `https://wa.me/${whatsapp.replace(/\D/g, "")}`
-            : null,
-        },
-      ],
-    },
-    {
-      title: "Seriousness",
-      description:
-        "Professional indicators like educational domains and emails",
-      icon: GraduationCapIcon,
-      items: [
-        {
-          label: "Has .edu.gy Domain (Private School)",
-          score: hasEduDomain ? 10 : 0,
-          maxScore: 10,
-          description: "Official educational domain",
+          description: "Trusted educational domain name.",
           achieved: !!hasEduDomain,
           note: "Only applies to private schools",
         },
         {
-          label: "Has Educational Email Domain",
+          label: "Educational Email Domain",
           score: hasEduEmail ? 5 : 0,
           maxScore: 5,
-          description: "Professional educational email",
+          description: "Email uses .edu or .edu.gy for professional contact.",
           achieved: !!hasEduEmail,
         },
       ],
     },
     {
-      title: "Enrollment",
-      description: "Online enrollment and application capabilities",
+      title: "Programs & Parent Experience",
+      description:
+        "Clarity of academic offerings and readiness to support parents digitally.",
       icon: UsersIcon,
       items: [
         {
-          label: "Has Academic Programs",
+          label: "Academic Programs Listed",
           score: hasPrograms ? 10 : 0,
           maxScore: 10,
-          description: "Clear program offerings",
+          description: "Shows available programs by grade level or subject.",
           achieved: !!hasPrograms,
           count: orgInstance.academicModule?.programs.length ?? 0,
+        },
+        {
+          label: "Mobile-Friendly Website",
+          score: websiteUrl ? 10 : 0, // for now just double-score if website exists
+          maxScore: 10,
+          description: "Website is accessible and usable on mobile devices.",
+          achieved: !!websiteUrl,
+        },
+        {
+          label: "Basic Contact on Homepage",
+          score: email || phone || whatsapp ? 5 : 0,
+          maxScore: 5,
+          description: "Essential contacts are easy to find.",
+          achieved: !!(email ?? phone ?? whatsapp),
         },
       ],
     },

@@ -19,12 +19,6 @@ export const digitalScoreConfig: ScoringDimensionConfig = {
         org.socialLinks?.some((l) => l.platform === "website") ? 5 : 0,
     },
     {
-      key: "managedBySovoli",
-      label: "Website Managed by Sovoli",
-      maxScore: 5,
-      compute: ({ websiteModule }) => (websiteModule ? 5 : 0),
-    },
-    {
       key: "hasEduDomain",
       label: "Has .edu.gy Domain (Private School)",
       maxScore: 10,
