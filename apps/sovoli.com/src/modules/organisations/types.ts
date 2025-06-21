@@ -1,6 +1,7 @@
 import type { AcademicModule } from "../academics/types";
 import type { Contact, SocialLink } from "../core/types";
 import type { OfferingModule } from "../offerings/types";
+import type { ScoringModule } from "../scoring/types";
 import type { WebsiteModule } from "../websites/types";
 import type { WorkforceModule } from "../workforce/types";
 
@@ -18,7 +19,7 @@ export interface Address {
   city?: string;
   state?: string;
   postalCode?: string;
-  country: string;
+  countryCode: string;
 }
 
 export interface OrgLocation {
@@ -63,43 +64,3 @@ export type OrgInstanceWithWebsite = Omit<OrgInstance, "websiteModule"> & {
 };
 
 // -- scoring module
-
-export interface ScoringModule {
-  totalScore: number; // normalized 0–100 or similar
-  digitalScore?: ScoringDimension;
-  academicScore?: ScoringDimension;
-  workforceScore?: ScoringDimension;
-  offeringScore?: ScoringDimension;
-  websiteScore?: ScoringDimension;
-  metadataScore?: ScoringDimension;
-}
-
-export interface ScoringDimension {
-  score: number;
-  maxScore: number;
-  weight: number; // used during totalScore calc
-  breakdown: Record<
-    string,
-    {
-      label: string;
-      score: number;
-      maxScore: number;
-      note?: string;
-    }
-  >;
-}
-
-export interface OrgScoreRule {
-  key: string;
-  label: string;
-  maxScore: number;
-  compute: (ctx: OrgInstance) => number;
-  note?: string;
-}
-
-export interface ScoringDimensionConfig {
-  key: string;
-  label: string;
-  weight: number;
-  rules: OrgScoreRule[];
-}
