@@ -56,7 +56,7 @@ export interface OrgInstance {
   academicModule: AcademicModule | null;
   offeringModule: OfferingModule | null;
   workforceModule: WorkforceModule | null;
-  scoringModule?: ScoringModule;
+  scoringModule: ScoringModule;
 }
 
 export type OrgInstanceWithWebsite = Omit<OrgInstance, "websiteModule"> & {

@@ -2,16 +2,13 @@ import React from "react";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Avatar } from "@sovoli/ui/components/avatar";
-import type {
-  OrgInstance,
-  ScoringDimension,
-} from "~/modules/organisations/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import type { Program } from "~/modules/academics/types";
-import { Chip } from "@sovoli/ui/components/chip";
-import { ArrowRightIcon, CheckCircleIcon } from "lucide-react";
+import { ArrowRightIcon, CheckCircleIcon, Info } from "lucide-react";
 import { Link } from "@sovoli/ui/components/link";
-
 import { Tooltip } from "@sovoli/ui/components/tooltip";
+import { ruleSets } from "~/modules/scoring/ruleSets";
+import { ScoringProgress } from "~/modules/scoring/components/ScoringProgress";
 
 interface PrivateSchoolListItemProps {
   orgInstance: OrgInstance;
@@ -89,67 +86,35 @@ const ProgramList = ({ programs }: { programs: Program[] }) => {
   );
 };
 
-const ScoringChips = ({
-  scoringModule,
-  isVerified,
-}: {
-  scoringModule: OrgInstance["scoringModule"];
-  isVerified: boolean;
-}) => (
-  <div className="flex flex-wrap gap-1">
-    {["digitalScore"].map((key) => {
-      const labelMap: Record<string, string> = {
-        digitalScore: "Digital",
-      };
-      const label = labelMap[key] ?? key;
-      const dim = scoringModule?.[key as keyof typeof scoringModule] as
-        | ScoringDimension
-        | undefined;
-      const score = dim?.score ?? 0;
-      const maxScore = dim?.maxScore ?? 0;
-      const percent = maxScore ? (score / maxScore) * 100 : 0;
-      const color =
-        percent >= 80 ? "success" : percent >= 50 ? "warning" : "default";
-      return (
-        <Chip
-          key={key}
-          size="sm"
-          color={color}
-          variant="flat"
-          className="text-xs flex items-center gap-1"
-          title="All scores are computed based on publicly available information"
-        >
-          <span>{label}: </span>
-          <span>{score}</span>
-          <span className="text-[10px] text-default-400">/</span>
-          <span>{maxScore}</span>
-        </Chip>
-      );
-    })}
-    {!isVerified && (
-      <Chip size="sm" color="warning" variant="flat">
-        <span>Unclaimed: </span>
-        <span>0</span>
-        <span className="text-[10px] text-default-400">/</span>
-        <span>10</span>
-      </Chip>
-    )}
-  </div>
-);
-
 const ScoringSection = ({ orgInstance }: { orgInstance: OrgInstance }) => {
   const { scoringModule, org } = orgInstance;
+  const ruleSet = ruleSets[org.categories[0] ?? "private-school"];
+  if (!ruleSet) return null;
+
+  const totalScore = scoringModule.result.scoreSummary.totalScore;
+  const maxScore = scoringModule.result.scoreSummary.maxScore;
+
+  const scoreOutOf10 = maxScore
+    ? Math.round((totalScore / maxScore) * 10 * 10) / 10
+    : 0;
+
   return (
     <div className="mt-2 p-3 bg-default-100 rounded-lg">
-      <div className="flex items-center mb-2 gap-2">
+      <div className="flex items-center mb-2 gap-2 justify-between">
         <span className="font-semibold text-sm">
-          Score: {scoringModule?.result.scoreSummary.totalScore ?? 0}
+          Score: {scoreOutOf10} / 10
         </span>
+        <Tooltip content="View detailed scoring breakdown">
+          <Link
+            href={`/orgs/${org.username}/scores`}
+            color="foreground"
+            className="w-6 h-6 min-w-6"
+          >
+            <Info className="w-4 h-4" />
+          </Link>
+        </Tooltip>
       </div>
-      <ScoringChips
-        scoringModule={scoringModule}
-        isVerified={org.isVerified ?? false}
-      />
+      <ScoringProgress scoringModule={scoringModule} ruleSet={ruleSet} />
     </div>
   );
 };

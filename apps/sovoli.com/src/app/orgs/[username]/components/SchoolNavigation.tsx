@@ -11,6 +11,16 @@ export interface SchoolNavigationProps {
 
 export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
   const pathname = usePathname();
+
+  const scoreOutOf10 = orgInstance.scoringModule.result.scoreSummary.totalScore
+    ? Math.round(
+        (orgInstance.scoringModule.result.scoreSummary.totalScore /
+          orgInstance.scoringModule.result.scoreSummary.maxScore) *
+          10 *
+          10,
+      ) / 10
+    : 0;
+
   return (
     <Tabs
       aria-label="Navigation"
@@ -30,7 +40,7 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
           <div className="flex items-center space-x-2">
             <span>Scores</span>
             <Chip size="sm" variant="flat">
-              {orgInstance.scoringModule?.totalScore ?? 0}
+              {scoreOutOf10}
             </Chip>
           </div>
         }

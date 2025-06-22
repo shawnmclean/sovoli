@@ -42,6 +42,7 @@
     "@heroui/theme": "2.4.6",
     "@heroui/user": "2.2.7",
     "@heroui/radio": "2.3.18",
+    "@heroui/progress": "2.2.18",
     "date-fns": "4.1.0",
     "embla-carousel-react": "8.5.1",
     "framer-motion": "11.15.0",
