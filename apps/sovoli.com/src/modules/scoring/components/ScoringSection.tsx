@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { Info } from "lucide-react";

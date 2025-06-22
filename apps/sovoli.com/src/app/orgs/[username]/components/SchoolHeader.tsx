@@ -2,7 +2,6 @@
 
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
-import { Chip } from "@sovoli/ui/components/chip";
 import {
   Dropdown,
   DropdownItem,

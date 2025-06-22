@@ -9,6 +9,7 @@ import { MailIcon, MapIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 import type { OrgLocation } from "~/modules/organisations/types";
 import { Divider } from "@sovoli/ui/components/divider";
+import { countryCodeToName } from "~/utils/countryUtils";
 
 interface ContactMethodsProps {
   location: OrgLocation;
@@ -149,7 +150,7 @@ export function ContactMethods({ location }: ContactMethodsProps) {
             .filter(Boolean)
             .join(", "),
           location.address.postalCode,
-          location.address.country,
+          countryCodeToName(location.address.countryCode),
         ]
           .filter(Boolean)
           .join("\n");

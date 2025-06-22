@@ -7,10 +7,8 @@ import {
   XCircleIcon,
   InfoIcon,
   ExternalLinkIcon,
-  GraduationCapIcon,
   UsersIcon,
   ShieldIcon,
-  SearchIcon,
 } from "lucide-react";
 
 import { bus } from "~/services/core/bus";
