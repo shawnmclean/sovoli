@@ -7,25 +7,24 @@ export interface ScoringModule {
 
 export interface OrgScoringResult {
   categories: Record<string, OrgCategoryScore>;
-  totalScore: number; // sum of all category-weighted scores
+  totalScore: number;
   maxScore: number;
 }
 
 export interface OrgCategoryScore {
-  category: string; // e.g., "private-school"
+  category: string;
   totalScore: number;
   maxScore: number;
-  groups: Record<string, ScoredGroup>; // e.g., "trust", "communication"
+  groups: Record<string, ScoredGroup>;
 }
 
 export interface ScoredGroup {
   key: string;
   label: string;
-  icon: string;
   score: number;
   maxScore: number;
   weight: number;
-  breakdown: Record<string, ScoredRule>; // ruleKey → score + note
+  breakdown: Record<string, ScoredRule>; // ruleKey → computed result
 }
 
 export interface ScoredRule {
@@ -35,36 +34,59 @@ export interface ScoredRule {
   note?: string;
 }
 
-// -- Internal Scoring Systems --
+// #region -- Internal logic-only rule execution --
 
+export type OrgScoreComputeFn = (ctx: OrgInstance) => Promise<ScoringResult>;
+
+export interface OrgScoreRule {
+  key: string;
+  maxScore: number;
+  compute: OrgScoreComputeFn;
+}
+
+// Scoring result returned by the compute engine per rule
 export interface ScoringResult {
   score: number;
   note?: string;
 }
 
-export type OrgScoreComputeFn = (ctx: OrgInstance) => Promise<ScoringResult>;
-export interface OrgScoreRule {
-  key: string;
-  label: string;
-  maxScore: number;
-  compute: OrgScoreComputeFn;
+// #endregion
 
-  adminDescription?: string | string[];
-  consumerDescription?: string | string[];
+// #region -- Rule presentation --
+
+export type ViewAudience =
+  | "admin"
+  | "parent"
+  | "student"
+  | "ngo"
+  | "government";
+
+export interface RulePresentation {
+  key: RuleKey;
+  defaultLabel: string;
+  audienceViews?: Partial<Record<ViewAudience, AudienceMessage>>;
 }
 
+export interface AudienceMessage {
+  label?: string;
+  description?: string | string[];
+  priority?: "low" | "medium" | "high";
+  hidden?: boolean;
+}
+
+// #endregion
 export interface OrgRuleGroup {
   key: string;
   label: string;
-
   weight: number;
   rules: RuleKey[];
 
-  adminDescription?: string | string[];
-  consumerDescription?: string | string[];
+  descriptions?: Partial<Record<ViewAudience, string | string[]>>;
+  visibility?: Partial<Record<ViewAudience, boolean>>;
 }
 
 export interface CategoryRuleSet {
   category: string; // e.g. "private-school"
   groups: OrgRuleGroup[];
+  ruleMetadata: Partial<Record<RuleKey, RulePresentation>>;
 }

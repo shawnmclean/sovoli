@@ -2,7 +2,6 @@ import type { OrgScoreRule } from "../types";
 
 export const hasGoogleProfile: OrgScoreRule = {
   key: "hasGoogleProfile",
-  label: "Google Profile Linked",
   maxScore: 5,
   compute: ({ org }) =>
     Promise.resolve({

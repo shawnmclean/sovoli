@@ -2,7 +2,6 @@ import type { OrgScoreRule } from "../types";
 
 export const hasAcademicPrograms: OrgScoreRule = {
   key: "hasAcademicPrograms",
-  label: "Has Academic Programs Listed",
   maxScore: 10,
   compute: ({ academicModule }) =>
     Promise.resolve({

@@ -2,7 +2,6 @@ import type { OrgScoreRule } from "../types";
 
 export const hasEmail: OrgScoreRule = {
   key: "hasEmail",
-  label: "Valid Email Address",
   maxScore: 5,
   compute: ({ org }) =>
     Promise.resolve({

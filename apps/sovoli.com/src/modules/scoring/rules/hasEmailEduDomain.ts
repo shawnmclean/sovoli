@@ -3,15 +3,7 @@ import type { OrgScoreRule } from "../types";
 
 export const hasEmailEduDomain: OrgScoreRule = {
   key: "hasEmailEduDomain",
-  label: "Has Education Email Domain Matching Country",
   maxScore: 10,
-
-  consumerDescription:
-    "An education-specific email domain (like .edu.gy) shows that the school operates within its country’s formal education system.",
-
-  adminDescription:
-    "Use a professional email with your country’s education domain (e.g. example@school.edu.gy) to increase credibility and match Sovoli's verified formats.",
-
   compute: ({ org }) => {
     const primary = org.locations.find((l) => l.isPrimary) ?? org.locations[0];
     const emails = org.locations

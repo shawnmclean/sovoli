@@ -2,7 +2,6 @@ import type { OrgScoreRule } from "../types";
 
 export const hasFacebook: OrgScoreRule = {
   key: "hasFacebook",
-  label: "Facebook Page Linked",
   maxScore: 5,
   compute: ({ org }) =>
     Promise.resolve({
