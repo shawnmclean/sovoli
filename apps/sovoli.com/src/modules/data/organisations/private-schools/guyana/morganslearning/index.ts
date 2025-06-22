@@ -13,7 +13,7 @@ export const MORGANS_LEARNING_ORG: OrgInstance = {
           line1: "46 Durban Street",
           line2: "Lodge",
           city: "georgetown",
-          country: "guyana",
+          countryCode: "GY",
         },
         contacts: [
           { type: "email", value: "info@morganslearning.com", isPublic: true },

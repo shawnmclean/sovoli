@@ -9,7 +9,7 @@ export const GREEN_ACRES_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { country: "guyana" },
+        address: { countryCode: "GY" },
         contacts: [],
         isPrimary: true,
       },

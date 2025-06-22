@@ -13,7 +13,7 @@ export const CHASE_ACADEMY_ORG: OrgInstance = {
           line1: "120-121 Parade Street",
           line2: "Kingston",
           city: "georgetown",
-          country: "guyana",
+          countryCode: "GY",
         },
         contacts: [
           { type: "email", value: "info@chaseacademy.org.gy", isPublic: true },

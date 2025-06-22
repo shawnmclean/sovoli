@@ -9,7 +9,7 @@ export const NEW_LIFE_MINISTRIES_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { country: "guyana" },
+        address: { countryCode: "GY" },
         contacts: [],
         isPrimary: true,
       },

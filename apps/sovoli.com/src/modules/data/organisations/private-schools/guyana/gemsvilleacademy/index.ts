@@ -9,7 +9,7 @@ export const GEMSVILLE_ACADEMY_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", country: "guyana" },
+        address: { city: "georgetown", countryCode: "GY" },
         contacts: [{ type: "phone", value: "+592-231-7227", isPublic: true }],
         isPrimary: true,
       },

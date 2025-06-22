@@ -9,7 +9,7 @@ export const LASER_EDGE_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { country: "guyana" },
+        address: { countryCode: "GY" },
         contacts: [],
         isPrimary: true,
       },

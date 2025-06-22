@@ -13,7 +13,7 @@ export const SWAMI_PURNANANDA_ORG: OrgInstance = {
           line1: "Ashram Compound",
           line2: "Cove and John",
           city: "cove and john",
-          country: "guyana",
+          countryCode: "GY",
         },
         coordinates: { lat: 6.80579, lng: -58.16071 },
         contacts: [

@@ -10,7 +10,7 @@ export const CAMILLES_ACADEMY_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "diamond", country: "guyana" },
+        address: { city: "diamond", countryCode: "GY" },
         contacts: [{ type: "phone", value: "+592-261-5027", isPublic: true }],
         isPrimary: true,
       },

@@ -9,7 +9,7 @@ export const THE_NEW_GUYANA_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", country: "guyana" },
+        address: { city: "georgetown", countryCode: "GY" },
         contacts: [{ type: "phone", value: "+592-227-2733", isPublic: true }],
         isPrimary: true,
       },

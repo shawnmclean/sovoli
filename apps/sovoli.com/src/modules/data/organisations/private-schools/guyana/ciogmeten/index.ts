@@ -9,7 +9,7 @@ export const CIOGMETEN_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { country: "guyana" },
+        address: { countryCode: "GY" },
         contacts: [{ type: "phone", value: "+592-689-5420", isPublic: true }],
         isPrimary: true,
       },

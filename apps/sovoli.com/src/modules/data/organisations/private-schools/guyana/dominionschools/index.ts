@@ -37,7 +37,7 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
           line1: "Lot 112 Regent Road",
           line2: "Bourda",
           city: "georgetown",
-          country: "guyana",
+          countryCode: "GY",
         },
         contacts: [
           { type: "phone", value: "+592 622-9382", isPublic: true },

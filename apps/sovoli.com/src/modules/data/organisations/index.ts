@@ -1,7 +1,7 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 
 import { PRIVATE_SCHOOLS } from "./private-schools";
-import { computeOrgScore } from "~/modules/organisations/computeScore";
+import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 import { VOCATIONAL_TRAINING } from "./vocational-training";
 // Add more imports as you implement more orgs
 
@@ -11,7 +11,9 @@ const orgs: OrgInstance[] = [
   // Add more org instances as you implement them
 ];
 
-export const ORGS = orgs.map((org) => ({
-  ...org,
-  scoringModule: computeOrgScore(org),
-}));
+export const ORGS = await Promise.all(
+  orgs.map(async (org) => ({
+    ...org,
+    scoringModule: await computeOrgScoring(org),
+  })),
+);

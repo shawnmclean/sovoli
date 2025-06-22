@@ -13,7 +13,7 @@ export const JOSEL_EDUCATIONAL_ORG: OrgInstance = {
           line1: "120 Laluni and Peter Rose Street",
           line2: "Queenstown",
           city: "georgetown",
-          country: "guyana",
+          countryCode: "GY",
         },
         contacts: [{ type: "phone", value: "+592-226-7868", isPublic: true }],
         isPrimary: true,

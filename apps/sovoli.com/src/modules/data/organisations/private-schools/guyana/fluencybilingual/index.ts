@@ -9,7 +9,7 @@ export const FLUENCY_BILINGUAL_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", country: "guyana" },
+        address: { city: "georgetown", countryCode: "GY" },
         contacts: [{ type: "phone", value: "+592-600-6651", isPublic: true }],
         isPrimary: true,
       },

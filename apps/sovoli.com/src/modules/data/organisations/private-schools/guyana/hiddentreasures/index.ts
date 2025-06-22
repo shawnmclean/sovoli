@@ -9,7 +9,7 @@ export const HIDDEN_TREASURES_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", country: "guyana" },
+        address: { city: "georgetown", countryCode: "GY" },
         contacts: [{ type: "phone", value: "+592-675-4379", isPublic: true }],
         isPrimary: true,
       },

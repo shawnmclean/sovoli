@@ -13,7 +13,7 @@ export const PURE_MASTERS_ACADEMY_ORG: OrgInstance = {
           line1: "501 Cane View Avenue",
           line2: "South Ruimveldt Gardens",
           city: "georgetown",
-          country: "guyana",
+          countryCode: "GY",
         },
         contacts: [
           { type: "phone", value: "+592-218-1850", isPublic: true },

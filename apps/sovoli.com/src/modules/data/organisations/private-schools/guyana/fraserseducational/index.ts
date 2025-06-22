@@ -13,7 +13,7 @@ export const FRASERS_EDUCATIONAL_ORG: OrgInstance = {
           line1: "High & Young Streets",
           line2: "Kingston",
           city: "georgetown",
-          country: "guyana",
+          countryCode: "GY",
         },
         contacts: [
           { type: "phone", value: "+592-232-0207", isPublic: true },

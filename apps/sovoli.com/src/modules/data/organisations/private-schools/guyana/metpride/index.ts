@@ -9,7 +9,7 @@ export const MET_PRIDE_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", country: "guyana" },
+        address: { city: "georgetown", countryCode: "GY" },
         contacts: [{ type: "phone", value: "+592-699-7239", isPublic: true }],
         isPrimary: true,
       },

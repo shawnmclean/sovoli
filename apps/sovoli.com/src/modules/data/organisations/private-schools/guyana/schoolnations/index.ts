@@ -9,7 +9,7 @@ export const SCHOOL_NATIONS_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", country: "guyana" },
+        address: { city: "georgetown", countryCode: "GY" },
         contacts: [{ type: "phone", value: "+592-225-4516", isPublic: true }],
         isPrimary: true,
       },

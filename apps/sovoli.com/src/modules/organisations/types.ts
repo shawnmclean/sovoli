@@ -39,7 +39,7 @@ export interface Org {
   username: string;
   name: string;
   logo?: string;
-  categories: string[];
+  categories: OrgCategoryKeys[];
   locations: OrgLocation[];
   socialLinks?: SocialLink[];
 
@@ -63,4 +63,7 @@ export type OrgInstanceWithWebsite = Omit<OrgInstance, "websiteModule"> & {
   websiteModule: WebsiteModule;
 };
 
-// -- scoring module
+export type OrgCategoryKeys =
+  | "private-school"
+  | "nursery-school"
+  | "vocation-school";

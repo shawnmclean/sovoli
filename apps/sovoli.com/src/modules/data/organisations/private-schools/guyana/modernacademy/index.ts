@@ -34,7 +34,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
         address: {
           line1: "Lot 11, Public Road",
           city: "Mon Repos",
-          country: "Guyana",
+          countryCode: "GY",
         },
         placeId: "ChIJKbqkI_ftr40RoBB0_9AsWAo",
         coordinates: {
@@ -79,7 +79,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
       //   address: {
       //     line1: "Lot 11, Public Road, Mon Repos",
       //     city: "Georgetown",
-      //     country: "Guyana",
+      //     countryCode: "GY",
       //   },
       //   contacts: [
       //     {

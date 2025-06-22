@@ -1,4 +1,4 @@
-import type { OrgInstance } from "../organisations/types";
+import type { OrgCategoryKeys, OrgInstance } from "../organisations/types";
 import type { RuleKey } from "./rules";
 
 export interface ScoringModule {
@@ -6,29 +6,10 @@ export interface ScoringModule {
 }
 
 export interface OrgScoringResult {
-  categories: Record<string, OrgCategoryScore>;
-  totalScore: number;
-  maxScore: number;
-}
-
-export interface OrgCategoryScore {
-  category: string;
-  totalScore: number;
-  maxScore: number;
-  groups: Record<string, ScoredGroup>;
-}
-
-export interface ScoredGroup {
-  key: string;
-  label: string;
-  score: number;
-  maxScore: number;
-  weight: number;
-  breakdown: Record<string, ScoredRule>; // ruleKey → computed result
+  ruleScores: Partial<Record<RuleKey, ScoredRule>>;
 }
 
 export interface ScoredRule {
-  label: string;
   score: number;
   maxScore: number;
   note?: string;
@@ -86,7 +67,7 @@ export interface OrgRuleGroup {
 }
 
 export interface CategoryRuleSet {
-  category: string; // e.g. "private-school"
+  category: OrgCategoryKeys;
   groups: OrgRuleGroup[];
   ruleMetadata: Partial<Record<RuleKey, RulePresentation>>;
 }
