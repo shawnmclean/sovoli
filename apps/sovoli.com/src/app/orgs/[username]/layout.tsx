@@ -7,6 +7,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { SchoolHeader } from "./components/SchoolHeader";
 import { SchoolNavigation } from "./components/SchoolNavigation";
 import { Link } from "@sovoli/ui/components/link";
+import { countryCodeToName } from "~/utils/countryUtils";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -56,7 +57,7 @@ export default async function Layout({ children, params }: Props) {
         <div className="w-full md:w-1/3">
           <Button
             as={Link}
-            href={`/d/${orgInstance.org.categories[0]?.toLowerCase()}/${primaryLocation?.address.country.toLowerCase()}`}
+            href={`/d/${orgInstance.org.categories[0]?.toLowerCase()}/${countryCodeToName(primaryLocation?.address.countryCode ?? "")}`}
             variant="light"
             startContent={<ArrowLeftIcon className="w-4 h-4" />}
             size="sm"

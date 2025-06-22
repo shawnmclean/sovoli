@@ -7,12 +7,25 @@ export interface ScoringModule {
 
 export interface OrgScoringResult {
   ruleScores: Partial<Record<RuleKey, ScoredRule>>;
+  scoreSummary: ScoreSummary;
 }
 
 export interface ScoredRule {
   score: number;
   maxScore: number;
   note?: string;
+}
+
+export interface ScoreSummary {
+  totalScore: number;
+  maxScore: number;
+  groupScores: Record<string, GroupScore>;
+}
+
+export interface GroupScore {
+  groupKey: string;
+  score: number;
+  maxScore: number;
 }
 
 // #region -- Internal logic-only rule execution --

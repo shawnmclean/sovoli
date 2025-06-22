@@ -143,7 +143,7 @@ const ScoringSection = ({ orgInstance }: { orgInstance: OrgInstance }) => {
     <div className="mt-2 p-3 bg-default-100 rounded-lg">
       <div className="flex items-center mb-2 gap-2">
         <span className="font-semibold text-sm">
-          Score: {scoringModule?.totalScore ?? 0}
+          Score: {scoringModule?.result.scoreSummary.totalScore ?? 0}
         </span>
       </div>
       <ScoringChips

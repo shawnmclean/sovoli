@@ -9,6 +9,7 @@ import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/
 
 import { Link } from "@sovoli/ui/components/link";
 import { GlobeIcon, PhoneIcon, MailIcon, MapPinIcon } from "lucide-react";
+import { countryCodeToName } from "~/utils/countryUtils";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -95,7 +96,7 @@ export default async function OrgProfilePage({
                       primaryLocation.address.city,
                       primaryLocation.address.state,
                       primaryLocation.address.postalCode,
-                      primaryLocation.address.country,
+                      countryCodeToName(primaryLocation.address.countryCode),
                     ]
                       .filter(Boolean)
                       .join(", ")}
@@ -115,7 +116,7 @@ export default async function OrgProfilePage({
                     key={category}
                     color="foreground"
                     className="rounded-full bg-default-100 px-3 py-1 text-sm"
-                    href={`/d/${category.toLowerCase()}/${primaryLocation?.address.country.toLowerCase()}`}
+                    href={`/d/${category.toLowerCase()}/${countryCodeToName(primaryLocation?.address.countryCode ?? "")}`}
                   >
                     {category}
                   </Link>

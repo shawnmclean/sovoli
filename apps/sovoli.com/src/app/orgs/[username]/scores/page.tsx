@@ -15,7 +15,7 @@ import {
 
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-import { computeOrgScore } from "~/modules/organisations/computeScore";
+import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 
 // Define types for better type safety
 interface ScoreItem {
@@ -51,11 +51,10 @@ export default async function ScoresPage({
 }) {
   const { username } = await params;
   const orgInstance = await retrieveOrgInstance(username);
-  const scoringModule = computeOrgScore(orgInstance);
-  const { digitalScore } = scoringModule;
+  const scoringModule = await computeOrgScoring(orgInstance);
+  const { result } = scoringModule;
 
-  const totalScore = digitalScore?.score ?? 0;
-  const maxScore = digitalScore?.maxScore ?? 0;
+  const { totalScore, maxScore } = result.scoreSummary;
   const percentage =
     maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
 

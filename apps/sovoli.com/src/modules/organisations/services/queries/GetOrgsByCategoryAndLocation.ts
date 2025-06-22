@@ -5,7 +5,7 @@ import type { QueryHandler } from "~/services/core/QueryHandler";
 
 export interface GetOrgsByCategoryAndLocationQueryParams {
   category: string;
-  country?: string;
+  countryCode?: string;
   stateOrCity?: string;
   page?: number;
   pageSize?: number;
@@ -31,7 +31,7 @@ export class GetOrgsByCategoryAndLocationQueryHandler
   handle(query: GetOrgsByCategoryAndLocationQuery): Promise<Result> {
     const {
       category,
-      country,
+      countryCode: country,
       stateOrCity,
       page = 1,
       pageSize = 10,
@@ -51,8 +51,9 @@ export class GetOrgsByCategoryAndLocationQueryHandler
       filteredOrgs = filteredOrgs.filter((org) =>
         org.org.locations.some(
           (location) =>
-            location.address.country &&
-            location.address.country.toLowerCase() === country.toLowerCase(),
+            location.address.countryCode &&
+            location.address.countryCode.toLowerCase() ===
+              country.toLowerCase(),
         ),
       );
     }
@@ -75,7 +76,9 @@ export class GetOrgsByCategoryAndLocationQueryHandler
 
     // order by score
     filteredOrgs = filteredOrgs.sort(
-      (a, b) => b.scoringModule.totalScore - a.scoringModule.totalScore,
+      (a, b) =>
+        b.scoringModule.result.scoreSummary.totalScore -
+        a.scoringModule.result.scoreSummary.totalScore,
     );
 
     const total = filteredOrgs.length;

@@ -15,7 +15,7 @@ export const FITRIGHT_ORG: OrgInstance = {
         address: {
           line1: "Charlotte Street",
           city: "Georgetown",
-          country: "Guyana",
+          countryCode: "GY",
         },
         contacts: [
           {

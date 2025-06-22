@@ -17,10 +17,7 @@ import {
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 // import { WhatsAppButton } from "~/components/WhatsAppButton";
-import type {
-  OrgInstance,
-  ScoringDimension,
-} from "~/modules/organisations/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface SchoolHeaderProps {
   orgInstance: OrgInstance;
@@ -110,7 +107,7 @@ const ScoringChips = ({
 }) => (
   <div className="flex flex-wrap gap-1 mt-2">
     <Chip size="sm" color="default" variant="solid" title="Total Score">
-      Score: {scoringModule?.totalScore ?? 0}
+      Score: {scoringModule?.result.scoreSummary.totalScore ?? 0}
     </Chip>
     {["digitalScore"].map((key) => {
       const labelMap: Record<string, string> = {
