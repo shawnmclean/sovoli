@@ -6,7 +6,11 @@ export function TrendingSection() {
   // Get trending schools (top 6 by score)
   const allSchools = ORGS.filter((org) =>
     org.org.categories.includes("private-school"),
-  ).sort((a, b) => b.scoringModule.totalScore - a.scoringModule.totalScore);
+  ).sort(
+    (a, b) =>
+      b.scoringModule.result.scoreSummary.totalScore -
+      a.scoringModule.result.scoreSummary.totalScore,
+  );
 
   // Always include the top school
   const topSchool = allSchools[0];
