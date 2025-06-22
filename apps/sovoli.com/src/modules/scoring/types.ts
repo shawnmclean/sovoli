@@ -1,4 +1,5 @@
 import type { OrgInstance } from "../organisations/types";
+import { RuleKey } from "./rules";
 
 export interface ScoringModule {
   totalScore: number;
@@ -39,4 +40,24 @@ export interface ScoringDimensionConfig {
   label: string; // Human-readable label
   weight: number; // Weight for totalScore
   rules: Record<string, OrgScoreRule>; // Keyed by rule key
+}
+
+export interface OrgUxGroup<TRuleKey extends string = string> {
+  key: string;
+  label: string;
+  icon: string;
+  rules: TRuleKey[];
+}
+
+export interface OrgRuleGroup {
+  key: string;
+  label: string;
+  icon: string;
+  weight: number;
+  rules: RuleKey[];
+}
+
+export interface CategoryRuleSet {
+  category: string; // e.g. "private-school"
+  groups: OrgRuleGroup[];
 }

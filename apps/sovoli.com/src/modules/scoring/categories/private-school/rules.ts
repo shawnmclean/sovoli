@@ -3,7 +3,7 @@ import { matchCountrySuffix } from "../../lib/matchCountryDomain";
 import type { OrgScoreRule } from "../../types";
 import { sharedRules } from "../shared/rules";
 
-export const privateSchoolRules: Record<string, OrgScoreRule> = {
+export const privateSchoolRules = {
   // Shared rules reused
   verified: getRule(sharedRules, "verified"),
   hasWebsite: getRule(sharedRules, "hasWebsite"),
@@ -80,4 +80,19 @@ export const privateSchoolRules: Record<string, OrgScoreRule> = {
       });
     },
   },
-};
+  hasAcademicPrograms: {
+    key: "hasAcademicPrograms",
+    label: "Has Academic Programs Listed",
+    maxScore: 10,
+    compute: ({ academicModule }) =>
+      Promise.resolve({
+        score: (academicModule?.programs.length ?? 0) > 0 ? 10 : 0,
+        note:
+          (academicModule?.programs.length ?? 0) > 0
+            ? "Academic programs are listed"
+            : "Academic programs are not listed",
+      }),
+  },
+} satisfies Record<string, OrgScoreRule>;
+
+export type PrivateSchoolRuleKey = keyof typeof privateSchoolRules;
