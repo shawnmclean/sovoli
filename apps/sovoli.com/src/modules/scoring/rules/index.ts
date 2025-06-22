@@ -1,4 +1,4 @@
-import { verified } from "./verfied";
+import { verified } from "./verified";
 import { hasWebsite } from "./hasWebsite";
 import { hasFacebook } from "./hasFacebook";
 import { hasEmail } from "./hasEmail";

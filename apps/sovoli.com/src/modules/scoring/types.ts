@@ -1,25 +1,41 @@
 import type { OrgInstance } from "../organisations/types";
-import { RuleKey } from "./rules";
+import type { RuleKey } from "./rules";
 
 export interface ScoringModule {
-  totalScore: number;
-  dimensions: Record<string, ScoringDimensionResult>;
+  result: OrgScoringResult;
 }
 
-export interface ScoringDimensionResult {
+export interface OrgScoringResult {
+  categories: Record<string, OrgCategoryScore>;
+  totalScore: number; // sum of all category-weighted scores
+  maxScore: number;
+}
+
+export interface OrgCategoryScore {
+  category: string; // e.g., "private-school"
+  totalScore: number;
+  maxScore: number;
+  groups: Record<string, ScoredGroup>; // e.g., "trust", "communication"
+}
+
+export interface ScoredGroup {
+  key: string;
+  label: string;
+  icon: string;
   score: number;
   maxScore: number;
   weight: number;
-  breakdown: Record<
-    string,
-    {
-      label: string;
-      score: number;
-      maxScore: number;
-      note?: string;
-    }
-  >;
+  breakdown: Record<string, ScoredRule>; // ruleKey → score + note
 }
+
+export interface ScoredRule {
+  label: string;
+  score: number;
+  maxScore: number;
+  note?: string;
+}
+
+// -- Internal Scoring Systems --
 
 export interface ScoringResult {
   score: number;
@@ -32,29 +48,20 @@ export interface OrgScoreRule {
   label: string;
   maxScore: number;
   compute: OrgScoreComputeFn;
-  note?: string;
-}
 
-export interface ScoringDimensionConfig {
-  key: string; // e.g., "digitalScore"
-  label: string; // Human-readable label
-  weight: number; // Weight for totalScore
-  rules: Record<string, OrgScoreRule>; // Keyed by rule key
-}
-
-export interface OrgUxGroup<TRuleKey extends string = string> {
-  key: string;
-  label: string;
-  icon: string;
-  rules: TRuleKey[];
+  adminDescription?: string | string[];
+  consumerDescription?: string | string[];
 }
 
 export interface OrgRuleGroup {
   key: string;
   label: string;
-  icon: string;
+
   weight: number;
   rules: RuleKey[];
+
+  adminDescription?: string | string[];
+  consumerDescription?: string | string[];
 }
 
 export interface CategoryRuleSet {

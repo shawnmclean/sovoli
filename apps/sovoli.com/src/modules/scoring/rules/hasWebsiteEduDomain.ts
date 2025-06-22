@@ -5,7 +5,13 @@ export const hasWebsiteEduDomain: OrgScoreRule = {
   key: "hasWebsiteEduDomain",
   label: "Has Education Domain Matching Country",
   maxScore: 10,
-  note: "Checks domain suffix against country-specific education domains",
+  consumerDescription:
+    "Schools that use country-specific education domains (like .edu.gy) are more easily recognized by parents, grant providers, and institutions as trusted, official entities.",
+  adminDescription: [
+    "Register your school's website with a country-specific education domain (e.g., .edu.gy, .edu.jm).",
+    "This boosts search visibility and helps Sovoli validate your institution.",
+    "It also improves your eligibility for loans, grants, and scholarship directories.",
+  ],
   compute: ({ org }) => {
     const primary = org.locations.find((l) => l.isPrimary) ?? org.locations[0];
     const websiteUrl = org.socialLinks?.find(
@@ -27,8 +33,8 @@ export const hasWebsiteEduDomain: OrgScoreRule = {
     return Promise.resolve({
       score: matched ? 10 : 0,
       note: matched
-        ? `Website domain is valid.`
-        : `Schools in ${primary.address.countryCode} should use a domain like: ${expected.join(", ")}.`,
+        ? "Website domain matches country’s education domain standards."
+        : `Website domain does not match expected format. Use a domain like: ${expected.join(", ")}.`,
     });
   },
 };
