@@ -1,20 +1,19 @@
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Link } from "@sovoli/ui/components/link";
-import { ORGS } from "~/modules/data/organisations";
+import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
+import { bus } from "~/services/core/bus";
 
-export function TrendingSection() {
-  // Get trending schools (top 6 by score)
-  const allSchools = ORGS.filter((org) =>
-    org.org.categories.includes("private-school"),
-  ).sort(
-    (a, b) =>
-      b.scoringModule.result.scoreSummary.totalScore -
-      a.scoringModule.result.scoreSummary.totalScore,
+export async function TrendingSection() {
+  const { orgs } = await bus.queryProcessor.execute(
+    new GetOrgsByCategoryAndLocationQuery({
+      category: "private-school",
+      countryCode: "GY",
+    }),
   );
 
   // Always include the top school
-  const topSchool = allSchools[0];
-  const otherSchools = allSchools.slice(1);
+  const topSchool = orgs[0];
+  const otherSchools = orgs.slice(1);
 
   // Randomize the remaining schools and take 3 more
   const randomizedOthers = otherSchools
