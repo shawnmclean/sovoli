@@ -18,7 +18,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
       ],
       descriptions: {
         admin:
-          "Improving trust signals — such as verification and online presence — helps parents feel confident before contacting your school.",
+          "Boost parent confidence by verifying your school and showing you're easy to find online. Simple steps like adding a logo or Google listing can greatly increase trust.",
         parent:
           "These checks help you know if the school is officially recognized and easy to find or verify online.",
       },
@@ -42,7 +42,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
       rules: ["hasPhone", "hasEmail", "hasWhatsapp"],
       descriptions: {
         admin:
-          "Providing valid phone, email, and WhatsApp contact options helps parents reach out easily and builds credibility.",
+          "Make it easy for parents to reach you. Add phone, email, and WhatsApp — even one contact helps build trust and makes enrollment easier.",
         parent:
           "These are ways you can directly reach the school to ask questions or schedule a visit.",
       },
@@ -60,8 +60,8 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         },
         admin: {
           description: [
-            "Submit your business registration document to complete verification.",
-            "Verified schools are eligible for grants and financial programs.",
+            "Send a copy of your registration.",
+            "Verification unlocks access to grants and increases parent trust.",
           ],
         },
       },
@@ -87,7 +87,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         },
         admin: {
           description:
-            "Create or claim your Google Business listing to increase visibility.",
+            "This puts your school on Google Maps — free and fast. Parents search here first.",
         },
       },
     },
@@ -184,11 +184,8 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
             "Shows the school has an online presence with a website.",
         },
         admin: {
-          description: [
-            "Add a website with your own domain (e.g., .edu.gy).",
-            "Improves trust and search engine visibility.",
-            "Some banks requires a website to be eligible for loans.",
-          ],
+          description:
+            "Even a simple website helps you rank on Google and show professionalism.",
         },
       },
     },

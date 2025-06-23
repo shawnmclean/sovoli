@@ -195,7 +195,9 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
                                 ))}
                               </ul>
                             ) : (
-                              adminDescription
+                              <ul className="list-disc list-inside mt-1">
+                                <li>{adminDescription}</li>
+                              </ul>
                             )}
                           </div>
                         )}
@@ -212,7 +214,7 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
         <CardHeader>
           <h2 className="text-lg font-semibold flex items-center gap-2">
             <LightbulbIcon className="text-warning" />
-            Recommendations
+            Quick Improvements
           </h2>
         </CardHeader>
         <CardBody>
@@ -247,11 +249,15 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
                       <AlertCircleIcon className="text-warning mt-1 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-sm">{label}</p>
-                        <p className="text-xs text-default-600">
-                          {Array.isArray(description)
-                            ? description.join(" ")
-                            : description}
-                        </p>
+                        <ul className="text-xs text-default-600 list-disc pl-5">
+                          {Array.isArray(description) ? (
+                            description.map((desc, idx) => (
+                              <li key={idx}>{desc}</li>
+                            ))
+                          ) : (
+                            <li>{description}</li>
+                          )}
+                        </ul>
                       </div>
                     </div>
                   );

@@ -16,6 +16,7 @@ import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/
 import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 import { ScoringBreakdown } from "~/modules/scoring/components/ScoringBreakdown";
 import { ruleSets } from "~/modules/scoring/ruleSets";
+import { WhatsAppButton } from "~/components/WhatsAppButton";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -42,6 +43,15 @@ export default async function ScoresPage({
   return (
     <div className="space-y-4 p-2 sm:p-4 max-w-4xl mx-auto">
       <ScoringBreakdown scoringModule={scoringModule} ruleSet={ruleSet} />
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
+        <span className="text-sm text-default-500">Need help?</span>
+        <WhatsAppButton
+          phoneNumber="+5926082743"
+          message={`Hello, I'd like to claim and edit the profile for ${org.name}.`}
+        >
+          Message Us on WhatsApp!
+        </WhatsAppButton>
+      </div>
     </div>
   );
 }
