@@ -1,14 +1,22 @@
+"use client";
+
+import React from "react";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
+
+import { Progress } from "@sovoli/ui/components/progress";
+import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
+
 import {
   CheckCircleIcon,
   XCircleIcon,
-  InfoIcon,
+  LightbulbIcon,
+  AlertCircleIcon,
   ShieldIcon,
   UsersIcon,
   MessageCircleIcon,
+  InfoIcon,
 } from "lucide-react";
-import type { CategoryRuleSet, ScoringModule } from "../types";
+import type { CategoryRuleSet, ScoringModule, ViewAudience } from "../types";
 
 export interface ScoringBreakdownProps {
   scoringModule: ScoringModule;
@@ -29,11 +37,11 @@ const getGroupIcon = (groupKey: string) => {
   }
 };
 
-export const ScoringBreakdown = ({
+export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
   scoringModule,
   ruleSet,
   audience = "admin",
-}: ScoringBreakdownProps) => {
+}) => {
   const { result } = scoringModule;
   const { ruleScores, scoreSummary } = result;
   const { totalScore, maxScore, groupScores } = scoreSummary;
@@ -41,213 +49,174 @@ export const ScoringBreakdown = ({
     maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
 
   return (
-    <div className="space-y-4">
-      {/* Overall Score Section */}
-      <Card className="border-none shadow-lg">
-        <CardHeader className="pb-3 px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div className="flex-1">
-              <h1 className="text-xl sm:text-2xl font-bold text-default-900">
-                Digital Readiness Score
-              </h1>
-              <p className="text-sm sm:text-base text-default-600 mt-1">
-                How well this organization meets digital presence standards
-              </p>
-            </div>
-            <div className="text-center sm:text-right">
-              <div className="text-2xl sm:text-3xl font-bold text-primary">
-                {totalScore}/{maxScore}
-              </div>
-              <div className="text-xs sm:text-sm text-default-500">
-                {percentage}% Complete
-              </div>
-            </div>
-          </div>
+    <div className="space-y-4 p-4">
+      <Card>
+        <CardHeader className="pb-0">
+          <h1 className="text-xl font-bold">Digital Readiness Score</h1>
         </CardHeader>
-        <CardBody className="px-4 sm:px-6 pt-0">
-          {/* Progress Bar */}
-          <div className="w-full bg-default-200 rounded-full h-2 sm:h-3 mb-4">
-            <div
-              className="bg-primary h-2 sm:h-3 rounded-full transition-all duration-500"
-              style={{ width: `${percentage}%` }}
-            />
+        <CardBody>
+          <div className="flex justify-between items-center mb-2">
+            <p className="text-sm text-default-600">Overall Progress</p>
+            <p className="text-lg font-semibold">{percentage}%</p>
           </div>
-
-          {/* Score Summary by Groups */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-            {ruleSet.groups.map((group) => {
-              const groupScore = groupScores[group.key];
-              const groupPercentage =
-                groupScore?.maxScore && groupScore.maxScore > 0
-                  ? Math.round((groupScore.score / groupScore.maxScore) * 100)
-                  : 0;
-              const Icon = getGroupIcon(group.key);
-
-              return (
-                <div key={group.key} className="text-center">
-                  <div className="flex items-center justify-center mb-1 sm:mb-2">
-                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                  </div>
-                  <div className="text-sm sm:text-lg font-semibold">
-                    {groupScore?.score ?? 0}/{groupScore?.maxScore ?? 0}
-                  </div>
-                  <div className="text-xs sm:text-sm text-default-500">
-                    {group.label}
-                  </div>
-                  <div className="text-xs text-default-400">
-                    {groupPercentage}%
-                  </div>
-                </div>
-              );
-            })}
+          <Progress value={percentage} className="mb-4" />
+          <div className="flex justify-between text-sm">
+            <span>
+              Score: {totalScore}/{maxScore}
+            </span>
+            <span>{percentage}% Complete</span>
           </div>
         </CardBody>
       </Card>
 
-      {/* Detailed Groups */}
-      <div className="space-y-4">
+      <Accordion>
         {ruleSet.groups.map((group) => {
           const groupScore = groupScores[group.key];
           const groupPercentage =
             groupScore?.maxScore && groupScore.maxScore > 0
               ? Math.round((groupScore.score / groupScore.maxScore) * 100)
               : 0;
-          const Icon = getGroupIcon(group.key);
+          const GroupIcon = getGroupIcon(group.key);
           const groupDescription =
-            group.descriptions?.[audience] ??
-            group.descriptions?.admin ??
-            "This group contains rules that contribute to your overall score.";
+            group.descriptions?.[audience as ViewAudience];
 
           return (
-            <Card key={group.key} className="border-none shadow-md">
-              <CardHeader className="pb-3 px-4 sm:px-6">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="p-1.5 sm:p-2 bg-primary-100 rounded-lg">
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+            <AccordionItem
+              key={group.key}
+              aria-label={group.label}
+              title={
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-2">
+                    <GroupIcon className="text-primary" />
+                    <span>{group.label}</span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h2 className="text-lg sm:text-xl font-semibold truncate">
-                      {group.label}
-                    </h2>
-                    <p className="text-xs sm:text-sm text-default-600">
-                      {Array.isArray(groupDescription)
-                        ? groupDescription.join(" ")
-                        : groupDescription}
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm sm:text-base font-semibold">
+                  <div className="text-sm">
+                    <span className="font-semibold">
                       {groupScore?.score ?? 0}/{groupScore?.maxScore ?? 0}
-                    </div>
-                    <div className="text-xs text-default-500">
-                      {groupPercentage}%
-                    </div>
+                    </span>
+                    <span className="text-default-400 ml-2">
+                      ({groupPercentage}%)
+                    </span>
                   </div>
                 </div>
-              </CardHeader>
-              <CardBody className="px-4 sm:px-6 pt-0">
-                <div className="space-y-3">
-                  {group.rules.map((ruleKey) => {
-                    const scoredRule = ruleScores[ruleKey];
-                    const ruleMetadata = ruleSet.ruleMetadata[ruleKey];
-                    const audienceView =
-                      ruleMetadata?.audienceViews?.[audience];
-
-                    if (!ruleMetadata) return null;
-
-                    const label =
-                      audienceView?.label ?? ruleMetadata.defaultLabel;
-                    const description =
-                      audienceView?.description ??
-                      (audience === "admin"
-                        ? "This rule contributes to your overall score."
-                        : "This helps evaluate the organization's digital presence.");
-
-                    const achieved = scoredRule ? scoredRule.score > 0 : false;
-                    const score = scoredRule?.score ?? 0;
-                    const maxScore = scoredRule?.maxScore ?? 0;
-
-                    return (
-                      <div
-                        key={ruleKey}
-                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 bg-default-50 rounded-lg gap-3"
-                      >
-                        <div className="flex items-start gap-2 sm:gap-3 flex-1 min-w-0">
-                          <div className="flex-shrink-0 mt-0.5">
-                            {achieved ? (
-                              <CheckCircleIcon className="w-4 h-4 sm:w-5 sm:h-5 text-success" />
-                            ) : (
-                              <XCircleIcon className="w-4 h-4 sm:w-5 sm:h-5 text-default-400" />
-                            )}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-1 sm:gap-2 mb-1">
-                              <span className="font-medium text-sm sm:text-base truncate">
-                                {label}
-                              </span>
-                              {scoredRule?.note && (
-                                <Chip size="sm" variant="flat" color="warning">
-                                  {scoredRule.note}
-                                </Chip>
-                              )}
-                            </div>
-                            <p className="text-xs sm:text-sm text-default-600">
-                              {Array.isArray(description)
-                                ? description.join(" ")
-                                : description}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3">
-                          <div className="text-right">
-                            <div className="font-semibold text-sm sm:text-base">
-                              {score}/{maxScore}
-                            </div>
-                            <div className="text-xs text-default-500">
-                              {maxScore > 0
-                                ? Math.round((score / maxScore) * 100)
-                                : 0}
-                              %
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </CardBody>
-            </Card>
-          );
-        })}
-      </div>
-
-      {/* Recommendations */}
-      <Card className="border-none shadow-md bg-warning-50">
-        <CardHeader className="pb-3 px-4 sm:px-6">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <InfoIcon className="w-5 h-5 sm:w-6 sm:h-6 text-warning" />
-            <h2 className="text-lg sm:text-xl font-semibold">
-              Recommendations
-            </h2>
-          </div>
-        </CardHeader>
-        <CardBody className="px-4 sm:px-6 pt-0">
-          <div className="space-y-3">
-            {ruleSet.groups
-              .map((group) => {
-                const groupScore = groupScores[group.key];
-                const groupPercentage =
-                  groupScore?.maxScore && groupScore.maxScore > 0
-                    ? Math.round((groupScore.score / groupScore.maxScore) * 100)
-                    : 0;
-
-                // Only show recommendations for groups that are less than 100% complete
-                if (groupPercentage >= 100) return null;
-
-                return group.rules.map((ruleKey) => {
+              }
+            >
+              {groupDescription && (
+                <p className="text-sm text-default-600 mb-3">
+                  {Array.isArray(groupDescription)
+                    ? groupDescription.join(" ")
+                    : groupDescription}
+                </p>
+              )}
+              <div className="space-y-3">
+                {group.rules.map((ruleKey) => {
                   const scoredRule = ruleScores[ruleKey];
                   const ruleMetadata = ruleSet.ruleMetadata[ruleKey];
-                  const audienceView = ruleMetadata?.audienceViews?.[audience];
+                  const audienceView =
+                    ruleMetadata?.audienceViews?.[audience as ViewAudience];
+
+                  if (!ruleMetadata) return null;
+
+                  const label =
+                    audienceView?.label ?? ruleMetadata.defaultLabel;
+
+                  const adminDescription =
+                    ruleMetadata.audienceViews?.admin?.description ?? undefined;
+
+                  const score = scoredRule?.score ?? 0;
+                  const maxScore = scoredRule?.maxScore ?? 0;
+                  const percent =
+                    maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
+
+                  let state: "achieved" | "failed" | "warn";
+                  if (score === maxScore && maxScore > 0) {
+                    state = "achieved";
+                  } else if (score === 0) {
+                    state = "failed";
+                  } else {
+                    state = "warn";
+                  }
+
+                  // Choose icon based on state
+                  let IconComponent: React.ComponentType<{
+                    className?: string;
+                  }>;
+                  let iconColor = "text-default-400";
+                  if (state === "achieved") {
+                    IconComponent = CheckCircleIcon;
+                    iconColor = "text-success";
+                  } else if (state === "warn") {
+                    IconComponent = CheckCircleIcon;
+                    iconColor = "text-warning";
+                  } else {
+                    IconComponent = XCircleIcon;
+                    iconColor = "text-default-400";
+                  }
+
+                  return (
+                    <Card key={ruleKey} className="p-3">
+                      <div className="flex items-center gap-2 mb-2">
+                        <IconComponent className={iconColor} />
+                        <span className="font-medium text-sm">{label}</span>
+                      </div>
+                      <Progress
+                        value={maxScore > 0 ? (score / maxScore) * 100 : 0}
+                        label={`${score}/${maxScore} (${percent}%)`}
+                        className="w-full mb-2"
+                        size="sm"
+                      />
+                      <div className="text-xs text-default-600 mb-1">
+                        {ruleMetadata.audienceViews?.parent?.description}
+                      </div>
+                      {state !== "achieved" &&
+                        audience === "admin" &&
+                        adminDescription && (
+                          <div className="bg-default-100 rounded p-2 mt-2 text-xs text-default-700">
+                            <span className="font-semibold">Resolution:</span>{" "}
+                            {Array.isArray(adminDescription) ? (
+                              <ul className="list-disc list-inside mt-1">
+                                {adminDescription.map((desc, idx) => (
+                                  <li key={idx}>{desc}</li>
+                                ))}
+                              </ul>
+                            ) : (
+                              adminDescription
+                            )}
+                          </div>
+                        )}
+                    </Card>
+                  );
+                })}
+              </div>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
+
+      <Card className="bg-warning-50">
+        <CardHeader>
+          <h2 className="text-lg font-semibold flex items-center gap-2">
+            <LightbulbIcon className="text-warning" />
+            Recommendations
+          </h2>
+        </CardHeader>
+        <CardBody>
+          <div className="space-y-3">
+            {ruleSet.groups.flatMap((group) => {
+              const groupScore = groupScores[group.key];
+              const groupPercentage =
+                groupScore?.maxScore && groupScore.maxScore > 0
+                  ? Math.round((groupScore.score / groupScore.maxScore) * 100)
+                  : 0;
+
+              if (groupPercentage >= 100) return [];
+
+              return group.rules
+                .map((ruleKey) => {
+                  const scoredRule = ruleScores[ruleKey];
+                  const ruleMetadata = ruleSet.ruleMetadata[ruleKey];
+                  const audienceView =
+                    ruleMetadata?.audienceViews?.[audience as ViewAudience];
 
                   if (!ruleMetadata || !scoredRule || scoredRule.score > 0)
                     return null;
@@ -259,16 +228,11 @@ export const ScoringBreakdown = ({
                     "This would improve your overall score.";
 
                   return (
-                    <div
-                      key={ruleKey}
-                      className="flex items-start gap-2 sm:gap-3"
-                    >
-                      <CheckCircleIcon className="w-4 h-4 sm:w-5 sm:h-5 text-warning mt-0.5 flex-shrink-0" />
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-sm sm:text-base">
-                          {label}
-                        </p>
-                        <p className="text-xs sm:text-sm text-default-600">
+                    <div key={ruleKey} className="flex items-start gap-2">
+                      <AlertCircleIcon className="text-warning mt-1 flex-shrink-0" />
+                      <div>
+                        <p className="font-medium text-sm">{label}</p>
+                        <p className="text-xs text-default-600">
                           {Array.isArray(description)
                             ? description.join(" ")
                             : description}
@@ -276,10 +240,9 @@ export const ScoringBreakdown = ({
                       </div>
                     </div>
                   );
-                });
-              })
-              .flat()
-              .filter(Boolean)}
+                })
+                .filter(Boolean);
+            })}
           </div>
         </CardBody>
       </Card>
