@@ -21,6 +21,9 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
       ) / 10
     : 0;
 
+  // eslint-disable-next-line prefer-const
+  let jobsCount = 0;
+
   return (
     <Tabs
       aria-label="Navigation"
@@ -51,17 +54,19 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
         title={
           <div className="flex items-center space-x-2">
             <span>Jobs</span>
-            <Chip
-              size="sm"
-              variant="solid"
-              color="primary"
-              className="font-bold shadow-md animate-pulse"
-            >
-              2
-            </Chip>
+            {jobsCount > 0 ? (
+              <Chip
+                size="sm"
+                variant="solid"
+                color="primary"
+                className="font-bold shadow-md animate-pulse"
+              >
+                {jobsCount}
+              </Chip>
+            ) : null}
           </div>
         }
-        href={`/orgs/${orgInstance.org.username}/jobs`}
+        // href={`/orgs/${orgInstance.org.username}/jobs`}
       />
       <Tab
         key={`/orgs/${orgInstance.org.username}/programs`}
@@ -73,7 +78,13 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
             </Chip>
           </div>
         }
-        href={`/orgs/${orgInstance.org.username}/programs`}
+        // href={`/orgs/${orgInstance.org.username}/programs`}
+      />
+
+      <Tab
+        key={`/orgs/${orgInstance.org.username}/logs`}
+        title="Logs"
+        href={`/orgs/${orgInstance.org.username}/logs`}
       />
     </Tabs>
   );

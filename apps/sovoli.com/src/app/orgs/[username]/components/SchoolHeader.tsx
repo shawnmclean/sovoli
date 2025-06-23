@@ -2,6 +2,8 @@
 
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
+import { Chip } from "@sovoli/ui/components/chip";
+import { Divider } from "@sovoli/ui/components/divider";
 import {
   Dropdown,
   DropdownItem,
@@ -12,13 +14,12 @@ import { Tooltip } from "@sovoli/ui/components/tooltip";
 import {
   CheckCircleIcon,
   EllipsisVerticalIcon,
+  AlertCircleIcon,
   NotebookPenIcon,
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 // import { WhatsAppButton } from "~/components/WhatsAppButton";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { ScoringChips } from "~/modules/scoring/components/ScoringChips";
-import { ruleSets } from "~/modules/scoring/ruleSets";
 
 export interface SchoolHeaderProps {
   orgInstance: OrgInstance;
@@ -43,35 +44,72 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
               name={orgInstance.org.name}
               size="lg"
               className="h-20 w-20"
+              fallback={
+                <span className="text-xs text-default-500">
+                  Logo Not Available
+                </span>
+              }
             />
           </div>
           <div className="flex flex-col items-center sm:items-start flex-1 min-w-0">
-            <div className="flex items-center justify-center sm:justify-start w-full gap-2">
-              <h1 className="font-bold text-2xl leading-tight truncate">
+            <div className="flex items-center gap-2 w-full sm:justify-start justify-center">
+              <h1 className="font-bold text-2xl truncate">
                 {orgInstance.org.name}
               </h1>
-              {orgInstance.org.isVerified && (
-                <Tooltip content="This organization has been verified by Sovoli">
-                  <CheckCircleIcon className="w-5 h-5 text-success" />
+            </div>
+            <div className="flex items-center gap-2 my-2">
+              <span className="text-sm text-default-500">
+                Score:{" "}
+                {orgInstance.scoringModule
+                  ? (
+                      (orgInstance.scoringModule.result.scoreSummary
+                        .totalScore /
+                        orgInstance.scoringModule.result.scoreSummary
+                          .maxScore) *
+                      10
+                    ).toFixed(1)
+                  : "-"}
+              </span>
+
+              {orgInstance.org.isVerified ? (
+                <Tooltip
+                  content={
+                    <span>This is currently claimed by the organization.</span>
+                  }
+                >
+                  <Chip
+                    color="success"
+                    size="sm"
+                    variant="flat"
+                    className="text-xs gap-1"
+                    startContent={<CheckCircleIcon className="w-4 h-4" />}
+                  >
+                    Claimed
+                  </Chip>
+                </Tooltip>
+              ) : (
+                <Tooltip
+                  content={
+                    <span>
+                      This is currently unclaimed. All information is provided
+                      by Sovoli.
+                      <Divider />
+                      Claim and edit this profile to add more information.
+                    </span>
+                  }
+                >
+                  <Chip
+                    color="warning"
+                    size="sm"
+                    variant="flat"
+                    className="text-xs gap-1"
+                    startContent={<AlertCircleIcon className="w-4 h-4" />}
+                  >
+                    Unclaimed
+                  </Chip>
                 </Tooltip>
               )}
             </div>
-            {(() => {
-              // Import ruleSets from the correct location at the top of your file:
-              // import { ruleSets } from "~/modules/scoring/rules";
-              if (!orgInstance.scoringModule) return null;
-              const category =
-                orgInstance.org.categories[0] ?? "private-school";
-              const ruleSet = ruleSets[category];
-              if (!ruleSet) return null;
-              return (
-                <ScoringChips
-                  type="slim"
-                  scoringModule={orgInstance.scoringModule}
-                  ruleSet={ruleSet}
-                />
-              );
-            })()}
           </div>
         </div>
 
@@ -80,7 +118,14 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
             <ApplyDialogButton orgName={orgInstance.org.name}>
               Apply
             </ApplyDialogButton>
-            <Button fullWidth>Schedule Visit</Button>
+            <Button
+              fullWidth
+              onPress={() => {
+                console.log("Schedule Visit coming soon");
+              }}
+            >
+              Schedule Visit
+            </Button>
           </div>
           <Dropdown>
             <DropdownTrigger>
@@ -97,14 +142,6 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-          {/* {!orgInstance.org.isVerified ? (
-            <WhatsAppButton
-              phoneNumber="+5926082743"
-              message={`Hello, I'd like to claim and edit the profile for ${orgInstance.org.name}.`}
-            >
-              Claim and Edit
-            </WhatsAppButton>
-          ) : null} */}
         </div>
       </div>
     </div>
