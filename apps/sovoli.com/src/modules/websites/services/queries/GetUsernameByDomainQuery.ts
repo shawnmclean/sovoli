@@ -1,6 +1,6 @@
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
-import { DOMAIN_TO_USERNAME } from "~/modules/data/organisations/domainMap";
+import { DOMAIN_TO_USERNAME } from "~/modules/data/organisations";
 
 export class GetUsernameByDomainQuery implements Query<{ username?: string }> {
   resultType?: { username?: string };
