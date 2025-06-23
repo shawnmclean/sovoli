@@ -2,6 +2,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
 import { ORGS } from "~/modules/data/organisations";
+import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 
 interface Result {
   orgInstance: OrgInstance | null;
@@ -26,10 +27,12 @@ export class GetOrgInstanceByUsernameQueryHandler
 
     if (!entry) return { orgInstance: null };
 
+    const scoringModule = await computeOrgScoring(entry);
+
     return {
       orgInstance: {
         org: entry.org,
-        scoringModule: entry.scoringModule,
+        scoringModule,
         websiteModule: entry.websiteModule ?? null,
         academicModule: entry.academicModule ?? null,
         offeringModule: entry.offeringModule ?? null,

@@ -2,6 +2,7 @@ import { ORGS } from "~/modules/data/organisations";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
+import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 
 export interface GetOrgsByCategoryAndLocationQueryParams {
   category: string;
@@ -28,7 +29,7 @@ export class GetOrgsByCategoryAndLocationQuery implements Query<Result> {
 export class GetOrgsByCategoryAndLocationQueryHandler
   implements QueryHandler<GetOrgsByCategoryAndLocationQuery, Result>
 {
-  handle(query: GetOrgsByCategoryAndLocationQuery): Promise<Result> {
+  async handle(query: GetOrgsByCategoryAndLocationQuery): Promise<Result> {
     const {
       category,
       countryCode: country,
@@ -74,22 +75,29 @@ export class GetOrgsByCategoryAndLocationQueryHandler
       );
     }
 
-    // order by score
-    filteredOrgs = filteredOrgs.sort(
-      (a, b) =>
-        (b.scoringModule?.result.scoreSummary.totalScore ?? 0) -
-        (a.scoringModule?.result.scoreSummary.totalScore ?? 0),
+    const orgsWithScoring = await Promise.all(
+      filteredOrgs.map(async (org) => ({
+        ...org,
+        scoringModule: await computeOrgScoring(org),
+      })),
     );
 
-    const total = filteredOrgs.length;
-    const start = (page - 1) * pageSize;
-    const paginatedOrgs = filteredOrgs.slice(start, start + pageSize);
+    // order by score
+    const sortedOrgs = orgsWithScoring.sort(
+      (a, b) =>
+        b.scoringModule.result.scoreSummary.totalScore -
+        a.scoringModule.result.scoreSummary.totalScore,
+    );
 
-    return Promise.resolve({
+    const total = sortedOrgs.length;
+    const start = (page - 1) * pageSize;
+    const paginatedOrgs = sortedOrgs.slice(start, start + pageSize);
+
+    return {
       orgs: paginatedOrgs,
       total,
       page,
       pageSize,
-    });
+    };
   }
 }
