@@ -8,9 +8,11 @@ import { hasGoogleProfile } from "./hasGoogleProfile";
 import { hasWebsiteEduDomain } from "./hasWebsiteEduDomain";
 import { hasEmailEduDomain } from "./hasEmailEduDomain";
 import { hasAcademicPrograms } from "./hasAcademicPrograms";
+import { hasLogo } from "./hasLogo";
 
 export const rules = {
   verified,
+  hasLogo,
   hasWebsite,
   hasFacebook,
   hasEmail,

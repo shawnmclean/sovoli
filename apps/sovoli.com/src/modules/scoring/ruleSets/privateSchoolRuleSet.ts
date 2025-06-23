@@ -10,6 +10,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
       weight: 2,
       rules: [
         "verified",
+        "hasLogo",
         "hasGoogleProfile",
         "hasWebsiteEduDomain",
         "hasEmailEduDomain",
@@ -63,6 +64,18 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
             "Submit your business registration document to complete verification.",
             "Verified schools are eligible for grants and financial programs.",
           ],
+        },
+      },
+    },
+    hasLogo: {
+      key: "hasLogo",
+      defaultLabel: "Logo Available",
+      audienceViews: {
+        parent: {
+          description: "Shows the school has a logo.",
+        },
+        admin: {
+          description: "Add a logo to improve your online visibility.",
         },
       },
     },

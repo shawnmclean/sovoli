@@ -165,9 +165,24 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
                         className="w-full mb-2"
                         size="sm"
                       />
-                      <div className="text-xs text-default-600 mb-1">
-                        {ruleMetadata.audienceViews?.parent?.description}
-                      </div>
+                      {(() => {
+                        const parentDescription =
+                          ruleMetadata.audienceViews?.parent?.description;
+                        if (Array.isArray(parentDescription)) {
+                          return (
+                            <ul className="list-disc list-inside text-xs text-default-600 mb-1">
+                              {parentDescription.map((desc, idx) => (
+                                <li key={idx}>{desc}</li>
+                              ))}
+                            </ul>
+                          );
+                        }
+                        return (
+                          <div className="text-xs text-default-600 mb-1">
+                            {parentDescription}
+                          </div>
+                        );
+                      })()}
                       {state !== "achieved" &&
                         audience === "admin" &&
                         adminDescription && (
