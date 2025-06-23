@@ -95,6 +95,10 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
         platform: "facebook",
         url: "https://www.facebook.com/profile.php?id=100063128446623",
       },
+      {
+        platform: "website",
+        url: "https://www.ma.edu.gy",
+      },
     ],
   },
   websiteModule: MODERN_ACADEMY_WEBSITE,

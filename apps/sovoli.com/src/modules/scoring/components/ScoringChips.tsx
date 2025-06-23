@@ -52,7 +52,7 @@ export const ScoringChips = ({
               <span>{label.split("&")[0]?.trim() ?? ""}</span>
             )}
             <span className="text-[10px]">
-              {maxScore} / {score}
+              {score} / {maxScore}
             </span>
           </Chip>
         );
