@@ -77,8 +77,8 @@ export class GetOrgsByCategoryAndLocationQueryHandler
     // order by score
     filteredOrgs = filteredOrgs.sort(
       (a, b) =>
-        b.scoringModule.result.scoreSummary.totalScore -
-        a.scoringModule.result.scoreSummary.totalScore,
+        (b.scoringModule?.result.scoreSummary.totalScore ?? 0) -
+        (a.scoringModule?.result.scoreSummary.totalScore ?? 0),
     );
 
     const total = filteredOrgs.length;
