@@ -11,9 +11,10 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
       rules: [
         "verified",
         "hasLogo",
-        "hasGoogleProfile",
         "hasWebsiteEduDomain",
         "hasEmailEduDomain",
+        "hasGoogleProfile",
+        "hasWebsite",
       ],
       descriptions: {
         admin:
@@ -54,10 +55,8 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
       defaultLabel: "Verified Organization",
       audienceViews: {
         parent: {
-          description: [
-            "Indicates the school is officially recognized.",
-            "Improves trust with parents, banks, and NGOs.",
-          ],
+          description:
+            "Indicates the school is officially recognized by the government.",
         },
         admin: {
           description: [
@@ -103,7 +102,8 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         admin: {
           description: [
             "Use a website with your country's .edu domain (e.g., .edu.gy).",
-            "Improves trust, SEO, and eligibility for aid or financial support.",
+            "An .edu domain is a sign of legitimacy and trust.",
+            "Some banks and funds require a .edu domain to be eligible for loans.",
           ],
         },
       },
@@ -184,7 +184,11 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
             "Shows the school has an online presence with a website.",
         },
         admin: {
-          description: "Add a website link to improve your online visibility.",
+          description: [
+            "Add a website with your own domain (e.g., .edu.gy).",
+            "Improves trust and search engine visibility.",
+            "Some banks requires a website to be eligible for loans.",
+          ],
         },
       },
     },
