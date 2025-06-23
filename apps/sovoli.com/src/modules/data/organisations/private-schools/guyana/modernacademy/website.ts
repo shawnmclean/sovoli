@@ -39,9 +39,9 @@ const HOME_PAGE: PageConfig = {
         { label: "Schedule a Visit", href: "/academics/apply" },
       ],
     },
-    {
-      type: "metrics",
-    },
+    // {
+    //   type: "metrics",
+    // },
     {
       type: "programs",
       title: "Our Programs",
