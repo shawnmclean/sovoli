@@ -1,10 +1,9 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-// import { bus } from "~/services/core/bus";
+import { bus } from "~/services/core/bus";
 import { config as webConfig } from "~/utils/config";
-import { ORGS } from "./modules/data/organisations";
-// import { GetUsernameByDomainQuery } from "./modules/websites/services/queries/GetUsernameByDomainQuery";
+import { GetUsernameByDomainQuery } from "./modules/websites/services/queries/GetUsernameByDomainQuery";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -89,18 +88,11 @@ export async function resolveTenantFromHost(
     return hostname.replace(`.${rootDomain}`, "");
   }
 
-  console.log("hostname", hostname);
+  const { username } = await bus.queryProcessor.execute(
+    new GetUsernameByDomainQuery(hostname),
+  );
 
-  // const { username } = await bus.queryProcessor.execute(
-  //   new GetUsernameByDomainQuery(hostname),
-  // );
-
-  const orgs = ORGS.map((org) => org.org.username);
-
-  console.log("orgs", orgs);
-
-  // return username ?? null;
-  return await Promise.resolve(hostname === "ma.edu.gy" ? "magy" : null);
+  return username ?? null;
 }
 
 export const config = {
