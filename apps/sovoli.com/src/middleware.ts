@@ -1,9 +1,9 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-import { bus } from "~/services/core/bus";
+// import { bus } from "~/services/core/bus";
 import { config as webConfig } from "~/utils/config";
-import { GetUsernameByDomainQuery } from "./modules/websites/services/queries/GetUsernameByDomainQuery";
+// import { GetUsernameByDomainQuery } from "./modules/websites/services/queries/GetUsernameByDomainQuery";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -88,11 +88,12 @@ export async function resolveTenantFromHost(
     return hostname.replace(`.${rootDomain}`, "");
   }
 
-  const { username } = await bus.queryProcessor.execute(
-    new GetUsernameByDomainQuery(hostname),
-  );
+  // const { username } = await bus.queryProcessor.execute(
+  //   new GetUsernameByDomainQuery(hostname),
+  // );
 
-  return username ?? null;
+  // return username ?? null;
+  return await Promise.resolve("magy");
 }
 
 export const config = {
