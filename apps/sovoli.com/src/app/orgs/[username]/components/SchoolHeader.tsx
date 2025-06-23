@@ -53,8 +53,11 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
           </div>
           <div className="flex flex-col items-center sm:items-start flex-1 min-w-0">
             <div className="flex items-center gap-2 w-full sm:justify-start justify-center">
-              <h1 className="font-bold text-2xl truncate">
+              <h1 className="font-bold text-2xl truncate flex items-center gap-2">
                 {orgInstance.org.name}
+                {orgInstance.org.isVerified && (
+                  <CheckCircleIcon className="w-5 h-5 text-success" />
+                )}
               </h1>
             </div>
             <div className="flex items-center gap-2 my-2">
