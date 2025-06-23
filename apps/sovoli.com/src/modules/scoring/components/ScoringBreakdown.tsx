@@ -78,7 +78,7 @@ export const ScoringBreakdown = ({
             {ruleSet.groups.map((group) => {
               const groupScore = groupScores[group.key];
               const groupPercentage =
-                groupScore?.maxScore > 0
+                groupScore?.maxScore && groupScore.maxScore > 0
                   ? Math.round((groupScore.score / groupScore.maxScore) * 100)
                   : 0;
               const Icon = getGroupIcon(group.key);
@@ -109,7 +109,7 @@ export const ScoringBreakdown = ({
         {ruleSet.groups.map((group) => {
           const groupScore = groupScores[group.key];
           const groupPercentage =
-            groupScore?.maxScore > 0
+            groupScore?.maxScore && groupScore.maxScore > 0
               ? Math.round((groupScore.score / groupScore.maxScore) * 100)
               : 0;
           const Icon = getGroupIcon(group.key);
@@ -237,7 +237,7 @@ export const ScoringBreakdown = ({
               .map((group) => {
                 const groupScore = groupScores[group.key];
                 const groupPercentage =
-                  groupScore?.maxScore > 0
+                  groupScore?.maxScore && groupScore.maxScore > 0
                     ? Math.round((groupScore.score / groupScore.maxScore) * 100)
                     : 0;
 
