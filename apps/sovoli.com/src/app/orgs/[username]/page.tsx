@@ -10,6 +10,7 @@ import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/
 import { Link } from "@sovoli/ui/components/link";
 import { GlobeIcon, PhoneIcon, MailIcon, MapPinIcon } from "lucide-react";
 import { countryCodeToName } from "~/utils/countryUtils";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -50,6 +51,9 @@ export default async function OrgProfilePage({
   const email = primaryLocation?.contacts.find(
     (c) => c.type === "email",
   )?.value;
+  const whatsapp = primaryLocation?.contacts.find(
+    (c) => c.type === "whatsapp",
+  )?.value;
 
   return (
     <div className="space-y-8">
@@ -75,6 +79,15 @@ export default async function OrgProfilePage({
                 >
                   <PhoneIcon className="text-base" />
                   <span className="text-sm">{phone}</span>
+                </Link>
+              )}
+              {whatsapp && (
+                <Link
+                  href={`https://wa.me/${whatsapp}`}
+                  className="flex items-center gap-2 text-default-600 hover:text-primary-500"
+                >
+                  <SiWhatsapp className="text-base" />
+                  <span className="text-sm">{whatsapp}</span>
                 </Link>
               )}
               {email && (

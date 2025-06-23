@@ -6,7 +6,7 @@ export const hasPhone: OrgScoreRule = {
   compute: ({ org }) =>
     Promise.resolve({
       score: org.locations.some((loc) =>
-        loc.contacts.some((c) => c.type === "phone"),
+        loc.contacts.some((c) => c.type === "phone" || c.type === "whatsapp"),
       )
         ? 5
         : 0,

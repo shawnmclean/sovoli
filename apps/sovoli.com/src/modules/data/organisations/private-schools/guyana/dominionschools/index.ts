@@ -16,7 +16,7 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
             "User reached out during first ad run to directory list to get their school added.",
           contacts: [
             {
-              type: "phone",
+              type: "whatsapp",
               value: "+592 622-9382",
               isPublic: false,
             },
@@ -40,7 +40,7 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
           countryCode: "GY",
         },
         contacts: [
-          { type: "phone", value: "+592 622-9382", isPublic: true },
+          { type: "whatsapp", value: "+592 622-9382", isPublic: true },
           {
             type: "email",
             value: "dominionschoolsoffice@gmail.com",
