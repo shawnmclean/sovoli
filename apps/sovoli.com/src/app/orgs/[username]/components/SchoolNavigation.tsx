@@ -12,7 +12,7 @@ export interface SchoolNavigationProps {
 export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
   const pathname = usePathname();
 
-  const scoreOutOf10 = orgInstance.scoringModule.result.scoreSummary.totalScore
+  const scoreOutOf10 = orgInstance.scoringModule?.result.scoreSummary.totalScore
     ? Math.round(
         (orgInstance.scoringModule.result.scoreSummary.totalScore /
           orgInstance.scoringModule.result.scoreSummary.maxScore) *

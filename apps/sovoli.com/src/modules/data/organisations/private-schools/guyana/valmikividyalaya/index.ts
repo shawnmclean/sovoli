@@ -19,4 +19,5 @@ export const VALMIKI_VIDYALAYA_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

@@ -24,4 +24,5 @@ export const JOSEL_EDUCATIONAL_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

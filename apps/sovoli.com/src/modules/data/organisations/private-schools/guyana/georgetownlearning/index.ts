@@ -19,4 +19,5 @@ export const GEORGETOWN_LEARNING_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

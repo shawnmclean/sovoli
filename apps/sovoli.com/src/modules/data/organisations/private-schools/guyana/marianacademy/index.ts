@@ -38,4 +38,5 @@ export const MARIAN_ACADEMY_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

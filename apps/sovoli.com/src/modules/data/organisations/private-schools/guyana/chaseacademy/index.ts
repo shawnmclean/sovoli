@@ -49,4 +49,5 @@ export const CHASE_ACADEMY_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

@@ -19,4 +19,5 @@ export const GARDEN_CITY_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

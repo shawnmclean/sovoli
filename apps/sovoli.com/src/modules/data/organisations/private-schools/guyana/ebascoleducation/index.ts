@@ -19,4 +19,5 @@ export const EBASCOL_EDUCATION_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

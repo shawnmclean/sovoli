@@ -8,7 +8,7 @@ export const FITRIGHT_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Fit Right Academy",
     logo: "/orgs/vocational-training/guyana/fitright/logo.png",
-    categories: ["dressmaking", "alterations", "academic-programs"],
+    categories: ["vocational-school"],
     locations: [
       {
         key: "main-location",
@@ -37,4 +37,5 @@ export const FITRIGHT_ORG: OrgInstance = {
   academicModule: FITRIGHT_ACADEMIC,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

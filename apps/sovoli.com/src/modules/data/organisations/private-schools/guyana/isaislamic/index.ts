@@ -19,4 +19,5 @@ export const ISA_ISLAMIC_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

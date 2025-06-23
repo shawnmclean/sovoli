@@ -59,6 +59,7 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
             {(() => {
               // Import ruleSets from the correct location at the top of your file:
               // import { ruleSets } from "~/modules/scoring/rules";
+              if (!orgInstance.scoringModule) return null;
               const category =
                 orgInstance.org.categories[0] ?? "private-school";
               const ruleSet = ruleSets[category];

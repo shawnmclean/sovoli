@@ -19,4 +19,5 @@ export const ACADEMIC_TRAINING_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

@@ -19,4 +19,5 @@ export const MET_PRIDE_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

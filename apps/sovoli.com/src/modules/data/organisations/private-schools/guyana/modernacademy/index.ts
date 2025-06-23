@@ -101,4 +101,5 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
   academicModule: MODERN_ACADEMY_ACADEMIC,
   offeringModule: MODERN_ACADEMY_OFFERINGS,
   workforceModule: MODERN_ACADEMY_WORKFORCE,
+  scoringModule: null,
 };

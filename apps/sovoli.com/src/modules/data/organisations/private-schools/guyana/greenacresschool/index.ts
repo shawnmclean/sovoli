@@ -19,4 +19,5 @@ export const GREEN_ACRES_SCHOOL_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

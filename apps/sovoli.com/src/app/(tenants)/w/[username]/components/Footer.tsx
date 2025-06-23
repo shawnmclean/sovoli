@@ -6,6 +6,7 @@ import type { OrgInstanceWithWebsite } from "../lib/types";
 import type { FooterLink, FooterSection } from "~/modules/websites/types";
 import { SocialLink } from "./SocialLink";
 import { LogoSVG } from "~/components/Logo/LogoSVG";
+import { countryCodeToName } from "~/utils/countryUtils";
 
 // Define a Program type (should match your academicModule programs)
 interface Program {
@@ -179,7 +180,7 @@ const FooterContactSection = ({ orgInstance }: FooterProps) => {
           .filter(Boolean)
           .join(", "),
         primaryLocation.address.postalCode,
-        primaryLocation.address.country,
+        countryCodeToName(primaryLocation.address.countryCode),
       ]
         .filter(Boolean)
         .join("\n")

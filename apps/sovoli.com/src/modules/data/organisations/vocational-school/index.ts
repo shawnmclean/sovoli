@@ -1,0 +1,3 @@
+import { VOCATIONAL_SCHOOLS_GUYANA } from "./guyana";
+
+export const VOCATIONAL_SCHOOLS = [...VOCATIONAL_SCHOOLS_GUYANA];

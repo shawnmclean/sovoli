@@ -55,4 +55,5 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
   academicModule: DOMINION_SCHOOLS_ACADEMIC,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

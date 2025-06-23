@@ -33,4 +33,5 @@ export const FRASERS_EDUCATIONAL_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

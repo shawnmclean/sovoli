@@ -19,4 +19,5 @@ export const GLOBAL_TECHNOLOGY_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

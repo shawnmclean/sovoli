@@ -19,4 +19,5 @@ export const LA_PREMIERE_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

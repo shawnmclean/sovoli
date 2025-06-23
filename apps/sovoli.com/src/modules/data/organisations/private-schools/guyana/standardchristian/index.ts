@@ -19,4 +19,5 @@ export const STANDARD_CHRISTIAN_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

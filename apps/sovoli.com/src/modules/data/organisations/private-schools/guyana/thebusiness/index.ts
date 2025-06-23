@@ -19,4 +19,5 @@ export const THE_BUSINESS_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

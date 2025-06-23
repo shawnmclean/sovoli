@@ -19,4 +19,5 @@ export const FLUENCY_BILINGUAL_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

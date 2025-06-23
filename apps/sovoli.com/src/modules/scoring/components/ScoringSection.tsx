@@ -12,6 +12,9 @@ interface ScoringSectionProps {
 
 export const ScoringSection = ({ orgInstance }: ScoringSectionProps) => {
   const { scoringModule, org } = orgInstance;
+
+  if (!scoringModule) return null;
+
   const ruleSet = ruleSets[org.categories[0] ?? "private-school"];
   if (!ruleSet) return null;
 

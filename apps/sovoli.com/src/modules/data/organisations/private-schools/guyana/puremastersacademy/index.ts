@@ -34,4 +34,5 @@ export const PURE_MASTERS_ACADEMY_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };

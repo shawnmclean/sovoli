@@ -19,4 +19,5 @@ export const HIDDEN_TREASURES_ORG: OrgInstance = {
   academicModule: null,
   offeringModule: null,
   workforceModule: null,
+  scoringModule: null,
 };
