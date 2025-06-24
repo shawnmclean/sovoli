@@ -73,10 +73,10 @@ export type OrgCategoryKeys =
 // #region Tech Stack
 export type TechCategory =
   | "website"
+  | "enrollment"
   | "sis"
   | "lms"
   | "parentPortal"
-  | "enrollment"
   | "billing"
   | "messaging"
   | "hr"
@@ -86,17 +86,32 @@ export type TechCategory =
   | "analytics"
   | "compliance";
 
+/*
+  Platform Type
+  - manual: the school handles the work manually
+  - integrated: the school uses an integrated system
+  - external: the school uses an external system
+  */
+export type PlatformType = "manual" | "integrated" | "external";
+
 export interface PlatformInfo {
   name: string;
   vendor?: string;
   url?: string;
-  type?: "plugin" | "external" | "custom" | "integrated";
+  type?: PlatformType;
   notes?: string;
 }
 
-export type OrgTechStack = Partial<
-  Record<TechCategory, PlatformInfo | PlatformInfo[]>
+export interface EnrollmentPlatform extends PlatformInfo {
+  method: "manual" | "whatsapp" | "external-form" | "integrated";
+  formUrl?: string;
+}
+
+export type OrgTechStack = Omit<
+  Partial<Record<TechCategory, PlatformInfo | PlatformInfo[]>>,
+  "enrollment"
 > & {
+  enrollment?: EnrollmentPlatform;
   notes?: string;
 };
 

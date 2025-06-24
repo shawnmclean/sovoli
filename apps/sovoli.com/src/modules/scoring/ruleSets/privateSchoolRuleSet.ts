@@ -39,7 +39,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
       key: "communication",
       label: "Communication",
       weight: 1,
-      rules: ["hasPhone", "hasEmail", "hasWhatsapp"],
+      rules: ["hasPhone", "hasEmail", "hasWhatsapp", "hasParentPortal"],
       descriptions: {
         admin:
           "Make it easy for parents to reach you. Add phone, email, and WhatsApp — even one contact helps build trust and makes enrollment easier.",
@@ -50,8 +50,8 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
     {
       key: "enrollment",
       label: "Enrollment Experience",
-      weight: 1,
-      rules: ["hasFees"],
+      weight: 2,
+      rules: ["hasFees", "enrollmentMethod"],
       descriptions: {
         admin:
           "A smooth enrollment process makes it easy for parents to join your school. This includes clear fee structures and a user-friendly application process.",
@@ -212,6 +212,45 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         admin: {
           description:
             "Add a Facebook page link to improve social media presence.",
+        },
+      },
+    },
+    enrollmentMethod: {
+      key: "enrollmentMethod",
+      defaultLabel: "Enrollment Method",
+      audienceViews: {
+        parent: {
+          description: "Shows the school has a parent portal.",
+        },
+        admin: {
+          description:
+            "Add an enrollment method to improve communication with parents.",
+        },
+      },
+    },
+    hasFees: {
+      key: "hasFees",
+      defaultLabel: "Fees Available",
+      audienceViews: {
+        parent: {
+          description: "Shows the school has fees.",
+        },
+        admin: {
+          description:
+            "Add fees to improve enrollment and financial transparency.",
+        },
+      },
+    },
+    hasParentPortal: {
+      key: "hasParentPortal",
+      defaultLabel: "Parent Portal Available",
+      audienceViews: {
+        parent: {
+          description: "Shows the school has a parent portal.",
+        },
+        admin: {
+          description:
+            "Add a parent portal to improve communication with parents.",
         },
       },
     },
