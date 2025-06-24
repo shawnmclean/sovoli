@@ -47,6 +47,18 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
           "These are ways you can directly reach the school to ask questions or schedule a visit.",
       },
     },
+    {
+      key: "enrollment",
+      label: "Enrollment Experience",
+      weight: 1,
+      rules: ["hasFees"],
+      descriptions: {
+        admin:
+          "A smooth enrollment process makes it easy for parents to join your school. This includes clear fee structures and a user-friendly application process.",
+        parent:
+          "This shows if the school has a clear and easy enrollment process.",
+      },
+    },
   ],
 
   ruleMetadata: {

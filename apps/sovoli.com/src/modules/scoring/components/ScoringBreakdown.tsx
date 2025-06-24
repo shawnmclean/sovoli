@@ -15,6 +15,7 @@ import {
   UsersIcon,
   MessageCircleIcon,
   InfoIcon,
+  ShoppingBagIcon,
 } from "lucide-react";
 import type { CategoryRuleSet, ScoringModule, ViewAudience } from "../types";
 
@@ -32,6 +33,8 @@ const getGroupIcon = (groupKey: string) => {
       return UsersIcon;
     case "communication":
       return MessageCircleIcon;
+    case "enrollment":
+      return ShoppingBagIcon;
     default:
       return InfoIcon;
   }

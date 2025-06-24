@@ -9,6 +9,7 @@ import { hasWebsiteEduDomain } from "./hasWebsiteEduDomain";
 import { hasEmailEduDomain } from "./hasEmailEduDomain";
 import { hasAcademicPrograms } from "./hasAcademicPrograms";
 import { hasLogo } from "./hasLogo";
+import { hasFees } from "./hasFees";
 
 export const rules = {
   verified,
@@ -22,6 +23,7 @@ export const rules = {
   hasWebsiteEduDomain,
   hasEmailEduDomain,
   hasAcademicPrograms,
+  hasFees,
 };
 
 export type RuleKey = keyof typeof rules;
