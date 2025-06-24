@@ -4,7 +4,7 @@ import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ScoringSection } from "~/modules/scoring/components/ScoringSection";
 import { BarChartIcon, BookOpenIcon } from "lucide-react";
-import { Program } from "~/modules/academics/types";
+import { AgeRange, Program } from "~/modules/academics/types";
 
 export interface OrgListItemBreakdownProps {
   orgInstance: OrgInstance;
@@ -58,8 +58,8 @@ const ProgramList = ({ programs }: { programs: Program[] }) => {
   const formatAgeRange = (ageRange?: AgeRange) => {
     if (!ageRange) return null;
 
-    const minAge = ageRange.minAgeYears || 0;
-    const maxAge = ageRange.maxAgeYears || 0;
+    const minAge = ageRange.minAgeYears ?? 0;
+    const maxAge = ageRange.maxAgeYears ?? 0;
 
     if (minAge === maxAge) {
       return `${minAge} years`;
