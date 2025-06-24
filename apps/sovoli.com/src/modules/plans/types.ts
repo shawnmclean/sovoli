@@ -6,8 +6,8 @@ export type Currency = "GYD" | "USD";
 export interface PlanDefinition {
   key: PlanKey;
   title: string;
-  subtitle: string;
-  description: string;
+  subtitle?: string;
+  description?: string;
 
   onboardingNode?: string;
 

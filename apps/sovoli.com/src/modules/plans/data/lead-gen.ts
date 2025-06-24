@@ -3,9 +3,6 @@ import type { PlanDefinition } from "../types";
 export const leadGenPlan: PlanDefinition = {
   key: "lead-gen",
   title: "Lead Generation Package",
-  subtitle: "Attract more parents with a strong online profile.",
-  description:
-    "We help you get verified, set up your Google profile, and make your school easy to discover online.",
 
   pricing: {
     oneTime: {

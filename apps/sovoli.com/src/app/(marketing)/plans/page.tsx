@@ -22,7 +22,7 @@ export default function PricingPage() {
     <main className="mx-auto w-full max-w-screen-lg px-4 pb-16 pt-2">
       <HeroSection
         title="Elevate Your School"
-        subtitle="Choose the plan that fits your needs and watch your school's visibility soar"
+        subtitle="Attract more parents with a verified, visible online presence."
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <Plans plans={plans} ruleSet={ruleSet} />
