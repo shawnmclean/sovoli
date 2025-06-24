@@ -1,4 +1,3 @@
-// Refactored ScoringBreakdown.tsx to match new RuleMetadata structure
 "use client";
 
 import React from "react";
@@ -45,10 +44,10 @@ const getGroupIcon = (groupKey: string) => {
   }
 };
 
-export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
+export function ScoringBreakdown({
   scoringModule,
   ruleSet,
-}) => {
+}: ScoringBreakdownProps) {
   const { result } = scoringModule;
   const { ruleScores, scoreSummary } = result;
   const { totalScore, maxScore, groupScores } = scoreSummary;
@@ -311,4 +310,4 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
       </Accordion>
     </div>
   );
-};
+}

@@ -1,17 +1,39 @@
 import type { RuleKey } from "../scoring/rules";
 
 export type PlanKey = "lead-gen" | "enrollment" | "sis";
+export type Currency = "GYD" | "USD";
 
 export interface PlanDefinition {
   key: PlanKey;
   title: string;
   subtitle: string;
   description: string;
-  includedRules: RuleKey[];
-  includedFeatures: string[]; // optional, like "school website", "parent portal", etc.
+
+  onboardingNode?: string;
+
+  offers: Partial<
+    Record<
+      string,
+      {
+        label: string;
+        pitch?: string;
+        ctaLabel?: string;
+        covers: RuleKey[];
+        optional?: {
+          pricing: Record<Currency, number>;
+          description?: string;
+        };
+      }
+    >
+  >;
+
   pricing?: {
-    monthly: number;
-    yearly: number;
+    oneTime: Record<Currency, number>; // Mandatory setup cost
+    yearly: Record<Currency, number>; // Recurring annual fee
+    note?: string;
   };
-  isDefault?: boolean; // If one plan is auto-assigned
+  discount?: {
+    oneTime: Record<Currency, number>;
+    message?: string; // Optional display message
+  };
 }
