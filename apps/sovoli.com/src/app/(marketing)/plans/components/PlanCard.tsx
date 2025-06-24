@@ -13,6 +13,7 @@ import { CheckIcon } from "lucide-react";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { DualCurrencyPrice } from "./DualCurrencyPrice";
 import type { PlanDefinition } from "~/modules/plans/types";
+import { pluralize } from "~/utils/pluralize";
 
 interface PlanCardProps {
   plan: PlanDefinition;
@@ -67,6 +68,10 @@ export function PlanCard({
   const totalOneTimeUSD = oneTimeBaseUSD + optionalTotalUSD;
   const totalOneTimeGYD = oneTimeBaseGYD + optionalTotalGYD;
 
+  // Count selected add-ons
+  const selectedAddOnCount =
+    Object.values(selectedOptionals).filter(Boolean).length;
+
   return (
     <Card className="overflow-visible flex flex-col">
       <CardHeader className="flex flex-col items-start gap-2 pb-3">
@@ -116,6 +121,9 @@ export function PlanCard({
             gydPrice={yearlyPriceGYD}
           />
         </div>
+        {plan.onboardingNode && (
+          <p className="text-xs text-warning-600">{plan.onboardingNode}</p>
+        )}
       </CardHeader>
 
       {showDetails && (
@@ -170,14 +178,30 @@ export function PlanCard({
                           isSelected={!!selectedOptionals[offerKey]}
                           onValueChange={() => toggleOptional(offerKey)}
                         />
-                        {offer.label}
-                        <span className="text-xs text-success-600 ml-1">
-                          +{" "}
-                          <DualCurrencyPrice
-                            usdPrice={usdPrice}
-                            gydPrice={gydPrice}
-                          />
-                        </span>
+                        <div className="flex flex-col text-sm">
+                          <span className="font-medium">{offer.label}</span>
+
+                          {offer.pitch && (
+                            <span className="text-xs text-default-500 italic mt-1">
+                              {offer.pitch}
+                            </span>
+                          )}
+
+                          <div className="flex items-center gap-3 mt-1 flex-wrap">
+                            {offer.ctaLabel && (
+                              <span className="text-xs text-success-600 font-medium">
+                                {offer.ctaLabel}
+                              </span>
+                            )}
+                            <span className="text-xs text-success-600 font-semibold">
+                              +{" "}
+                              <DualCurrencyPrice
+                                usdPrice={usdPrice}
+                                gydPrice={gydPrice}
+                              />
+                            </span>
+                          </div>
+                        </div>
                       </label>
                     );
                   })}
@@ -189,9 +213,37 @@ export function PlanCard({
       )}
 
       <CardFooter className="flex flex-col items-start pt-4 gap-2">
-        {plan.onboardingNode && (
-          <p className="text-xs text-warning-600">{plan.onboardingNode}</p>
-        )}
+        {/* You're Paying Section */}
+        <div className="w-full p-3 bg-default-50 rounded-lg border border-default-200">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-default-700">
+              You're Paying:
+            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-lg font-semibold">
+                <DualCurrencyPrice
+                  usdPrice={
+                    plan.discount
+                      ? plan.discount.oneTime.USD + optionalTotalUSD
+                      : totalOneTimeUSD
+                  }
+                  gydPrice={
+                    plan.discount
+                      ? plan.discount.oneTime.GYD + optionalTotalGYD
+                      : totalOneTimeGYD
+                  }
+                />
+              </span>
+              {selectedAddOnCount > 0 && (
+                <span className="text-xs text-success-600">
+                  ({selectedAddOnCount}{" "}
+                  {pluralize(selectedAddOnCount, "add-on", "add-ons")} selected)
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
         <Button
           color="primary"
           variant="solid"

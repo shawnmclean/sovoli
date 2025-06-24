@@ -22,7 +22,7 @@ export const leadGenPlan: PlanDefinition = {
     },
     message: "Special offer for first 2 schools",
   },
-  onboardingNode: "Only 5 schools will be onboarded per month.",
+  onboardingNode: "4/5 spots left this month.",
 
   offers: {
     autoVerify: {
@@ -49,9 +49,9 @@ export const leadGenPlan: PlanDefinition = {
       covers: ["hasEmail", "hasEmailEduDomain"],
     },
     registration: {
-      label: "Sovoli Verified",
+      label: "Need Help Getting Verified?",
       pitch:
-        "No registration documents? We'll assist you in registering your school through the appropriate local channels.",
+        "If you don’t have registration documents, we’ll assist you with the process through the proper local channels so you can still get verified.",
       ctaLabel: "Register School",
       covers: ["verified"],
       optional: {
