@@ -3,7 +3,6 @@ import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import type { OrgInstance } from "~/modules/organisations/types";
-import type { Program } from "~/modules/academics/types";
 import { ArrowRightIcon, CheckCircleIcon } from "lucide-react";
 import { Link } from "@sovoli/ui/components/link";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
@@ -17,7 +16,7 @@ interface PrivateSchoolListItemProps {
 export function PrivateSchoolListItem({
   orgInstance,
 }: PrivateSchoolListItemProps) {
-  const { org, academicModule } = orgInstance;
+  const { org } = orgInstance;
 
   return (
     <Card className="w-full">
@@ -43,9 +42,9 @@ export function PrivateSchoolListItem({
           </div>
         </Link>
 
-        <ProgramList programs={academicModule?.programs ?? []} />
-
-        <OrgListItemBreakdown orgInstance={orgInstance} />
+        <div className="my-1">
+          <OrgListItemBreakdown orgInstance={orgInstance} />
+        </div>
       </CardBody>
 
       <CardFooter className="border-t border-default-200 flex justify-end">
@@ -65,22 +64,3 @@ export function PrivateSchoolListItem({
     </Card>
   );
 }
-
-const ProgramList = ({ programs }: { programs: Program[] }) => {
-  const maxVisible = 3;
-  const visiblePrograms = programs.slice(0, maxVisible);
-  const remaining = programs.length - maxVisible;
-
-  return (
-    <div className="flex items-center text-xs text-default-500">
-      <p className="whitespace-nowrap overflow-hidden text-ellipsis">
-        Programs: {visiblePrograms.map((p) => p.name).join(" · ")}
-      </p>
-      {remaining > 0 && (
-        <span className="ml-1 shrink-0 text-primary-600 font-medium">
-          · +{remaining} more
-        </span>
-      )}
-    </div>
-  );
-};
