@@ -59,7 +59,7 @@ export function CTASection() {
           endContent={<ArrowRightIcon className="h-4 w-4" />}
           href={path}
         >
-          Explore Schools
+          Explore 50+ Schools
         </Button>
       </div>
     </section>

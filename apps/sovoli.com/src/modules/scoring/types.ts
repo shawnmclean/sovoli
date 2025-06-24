@@ -1,4 +1,5 @@
 import type { OrgCategoryKeys, OrgInstance } from "../organisations/types";
+import type { PlanKey } from "../plans/types";
 import type { RuleKey } from "./rules";
 
 export interface ScoringModule {
@@ -48,8 +49,6 @@ export interface ScoringResult {
 
 // #region -- Rule presentation --
 
-export type SovoliPlanKey = "lead-gen" | "enrollment" | "sis";
-
 export interface RuleMetadata {
   key: RuleKey;
   label: string;
@@ -64,7 +63,7 @@ export interface RuleMetadata {
   learnMoreUrl?: string;
 
   // Sovoli package linkage
-  includedInPlan: SovoliPlanKey[];
+  includedInPlan: PlanKey[];
 }
 
 // #endregion
