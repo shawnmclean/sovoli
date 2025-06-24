@@ -16,7 +16,7 @@ export function generateMetadata() {
 export default function LandingPage() {
   return (
     <main className="mx-auto w-full max-w-screen-lg px-4 pb-16 pt-6">
-      <HeroSection />
+      <HeroSection title="Find Private Schools in Guyana" />
       <CTASection />
       <TrendingSection />
       <SchoolAdminSection />
