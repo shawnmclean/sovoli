@@ -9,7 +9,7 @@ import {
 } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Button } from "@sovoli/ui/components/button";
-import { CheckIcon } from "lucide-react";
+import { CheckIcon, RocketIcon } from "lucide-react";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { DualCurrencyPrice } from "./DualCurrencyPrice";
 import type { PlanDefinition } from "~/modules/plans/types";
@@ -68,6 +68,15 @@ export function PlanCard({
   const totalOneTimeUSD = oneTimeBaseUSD + optionalTotalUSD;
   const totalOneTimeGYD = oneTimeBaseGYD + optionalTotalGYD;
 
+  // Calculate discounted prices
+  const discountPercentage = plan.discount?.percentage ?? 0;
+  const discountedBaseUSD = oneTimeBaseUSD * (1 - discountPercentage / 100);
+  const discountedBaseGYD = oneTimeBaseGYD * (1 - discountPercentage / 100);
+
+  // Add optional add-ons to discounted base price
+  const discountedUSD = discountedBaseUSD + optionalTotalUSD;
+  const discountedGYD = discountedBaseGYD + optionalTotalGYD;
+
   // Count selected add-ons
   const selectedAddOnCount =
     Object.values(selectedOptionals).filter(Boolean).length;
@@ -91,29 +100,46 @@ export function PlanCard({
             </button>
           )}
         </div>
+
+        {/* Discount Badge */}
+        {plan.discount && (
+          <div className="bg-success-50 border border-success-200 rounded-lg px-3 py-1">
+            <div className="flex items-center gap-2">
+              <span className="text-success-700 font-semibold text-sm">
+                {discountPercentage}% OFF
+              </span>
+              {plan.discount.message && (
+                <span className="text-success-600 text-xs">
+                  • {plan.discount.message}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="text-xl font-medium mt-1">
           {plan.discount ? (
-            <span className="text-success-600">
-              <DualCurrencyPrice
-                usdPrice={plan.discount.oneTime.USD + optionalTotalUSD}
-                gydPrice={plan.discount.oneTime.GYD + optionalTotalGYD}
-              />
-            </span>
+            <>
+              <span className="text-success-600">
+                <DualCurrencyPrice
+                  usdPrice={discountedUSD}
+                  gydPrice={discountedGYD}
+                />
+              </span>
+              <div className="text-default-400 line-through text-sm mt-1">
+                <DualCurrencyPrice
+                  usdPrice={totalOneTimeUSD}
+                  gydPrice={totalOneTimeGYD}
+                />
+              </div>
+            </>
           ) : (
             <DualCurrencyPrice
               usdPrice={totalOneTimeUSD}
               gydPrice={totalOneTimeGYD}
             />
           )}
-          {plan.discount && (
-            <span className="text-default-400 line-through ml-2 text-sm">
-              <DualCurrencyPrice usdPrice={totalOneTimeUSD} />
-            </span>
-          )}
         </div>
-        {plan.discount?.message && (
-          <p className="text-xs text-success-700">{plan.discount.message}</p>
-        )}
         <div className="text-sm">
           Annual:{" "}
           <DualCurrencyPrice
@@ -122,7 +148,14 @@ export function PlanCard({
           />
         </div>
         {plan.onboardingNode && (
-          <p className="text-xs text-warning-600">{plan.onboardingNode}</p>
+          <div className="mt-3 p-3 bg-warning-50 border border-warning-200 rounded-lg animate-pulse">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-warning-500 rounded-full animate-bounce"></div>
+              <p className="text-warning-700 text-sm font-medium">
+                {plan.onboardingNode}
+              </p>
+            </div>
+          </div>
         )}
       </CardHeader>
 
@@ -172,9 +205,14 @@ export function PlanCard({
                     return (
                       <label
                         key={offerKey}
-                        className="flex items-center gap-2 rounded-xl px-3 py-1 text-sm cursor-pointer"
+                        className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm cursor-pointer transition-colors ${
+                          selectedOptionals[offerKey]
+                            ? "bg-success-50 border border-success-200"
+                            : "hover:bg-default-50 border border-transparent"
+                        }`}
                       >
                         <Checkbox
+                          color="success"
                           isSelected={!!selectedOptionals[offerKey]}
                           onValueChange={() => toggleOptional(offerKey)}
                         />
@@ -222,16 +260,8 @@ export function PlanCard({
             <div className="flex items-center gap-2">
               <span className="text-lg font-semibold">
                 <DualCurrencyPrice
-                  usdPrice={
-                    plan.discount
-                      ? plan.discount.oneTime.USD + optionalTotalUSD
-                      : totalOneTimeUSD
-                  }
-                  gydPrice={
-                    plan.discount
-                      ? plan.discount.oneTime.GYD + optionalTotalGYD
-                      : totalOneTimeGYD
-                  }
+                  usdPrice={plan.discount ? discountedUSD : totalOneTimeUSD}
+                  gydPrice={plan.discount ? discountedGYD : totalOneTimeGYD}
                 />
               </span>
               {selectedAddOnCount > 0 && (
@@ -249,8 +279,9 @@ export function PlanCard({
           variant="solid"
           size="lg"
           className="w-full mt-2"
+          endContent={<RocketIcon className="w-4 h-4" />}
         >
-          Contact Us
+          Launch My School
         </Button>
         {plan.pricing?.note && (
           <p className="text-xs text-default-500">{plan.pricing.note}</p>

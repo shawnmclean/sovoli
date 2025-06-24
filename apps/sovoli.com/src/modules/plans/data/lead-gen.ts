@@ -6,8 +6,8 @@ export const leadGenPlan: PlanDefinition = {
 
   pricing: {
     oneTime: {
-      GYD: 75000,
-      USD: 375,
+      GYD: 80000,
+      USD: 400,
     },
     yearly: {
       GYD: 40000,
@@ -16,10 +16,7 @@ export const leadGenPlan: PlanDefinition = {
     note: "Yearly covers domain renewal, email support, website maintenance, and hosting.",
   },
   discount: {
-    oneTime: {
-      GYD: 40000,
-      USD: 200,
-    },
+    percentage: 50,
     message: "Special offer for first 2 schools",
   },
   onboardingNode: "4/5 spots left this month.",

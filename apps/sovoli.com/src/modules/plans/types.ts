@@ -33,7 +33,7 @@ export interface PlanDefinition {
     note?: string;
   };
   discount?: {
-    oneTime: Record<Currency, number>;
-    message?: string; // Optional display message
+    percentage: number;
+    message?: string;
   };
 }
