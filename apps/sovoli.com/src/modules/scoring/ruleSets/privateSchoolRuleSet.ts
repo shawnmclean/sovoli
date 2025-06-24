@@ -5,58 +5,70 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
 
   groups: [
     {
-      key: "trust",
-      label: "Trust & Safety",
+      key: "visibility",
+      label: "Visibility & Trust",
       weight: 2,
       rules: [
         "verified",
         "hasLogo",
+        "hasWebsite",
         "hasWebsiteEduDomain",
         "hasEmailEduDomain",
         "hasGoogleProfile",
-        "hasWebsite",
       ],
       descriptions: {
         admin:
-          "Boost parent confidence by verifying your school and showing you're easy to find online. Simple steps like adding a logo or Google listing can greatly increase trust.",
+          "Increase your school's credibility and discoverability with a verified profile, branded logo, and official domains.",
         parent:
-          "These checks help you know if the school is officially recognized and easy to find or verify online.",
+          "These signals help you know if the school is officially recognized, findable online, and professionally managed.",
       },
     },
     {
-      key: "curriculum",
-      label: "Learning & Curriculum",
+      key: "transparency",
+      label: "Transparency of Information",
       weight: 2,
-      rules: ["hasAcademicPrograms"],
+      rules: ["hasFees", "hasTeachers", "hasAcademicPrograms"],
       descriptions: {
         admin:
-          "Listing your academic programs clearly demonstrates your school's educational offerings.",
+          "Publishing fee structures, staff, student numbers, and academic programs builds parent trust and reduces inbound questions.",
         parent:
-          "This shows if the school offers well-defined academic programs for your child's development.",
+          "This tells you what the school costs, who teaches, how many students attend, and what is taught.",
       },
     },
     {
       key: "communication",
-      label: "Communication",
-      weight: 1,
+      label: "Communication & Parent Support",
+      weight: 1.5,
       rules: ["hasPhone", "hasEmail", "hasWhatsapp", "hasParentPortal"],
       descriptions: {
         admin:
-          "Make it easy for parents to reach you. Add phone, email, and WhatsApp — even one contact helps build trust and makes enrollment easier.",
+          "Strong communication channels and parent portals improve engagement and reduce confusion.",
         parent:
-          "These are ways you can directly reach the school to ask questions or schedule a visit.",
+          "Lets you know how you'll get updates, speak with staff, and access school information.",
       },
     },
     {
       key: "enrollment",
       label: "Enrollment Experience",
-      weight: 2,
-      rules: ["hasFees", "enrollmentMethod"],
+      weight: 1.5,
+      rules: ["enrollmentMethod"],
       descriptions: {
         admin:
-          "A smooth enrollment process makes it easy for parents to join your school. This includes clear fee structures and a user-friendly application process.",
+          "A smooth enrollment experience makes it easier to attract and retain families. Add clear instructions and timelines.",
         parent:
-          "This shows if the school has a clear and easy enrollment process.",
+          "Tells you how to apply, what the process is like, and whether it's simple or frustrating.",
+      },
+    },
+    {
+      key: "systems",
+      label: "Digital Infrastructure",
+      weight: 1,
+      rules: [],
+      descriptions: {
+        admin:
+          "Shows your level of digital maturity across operations like student records, billing, transport, and more.",
+        parent:
+          "Indicates whether the school uses modern systems for safety, academics, and administration.",
       },
     },
   ],
@@ -251,6 +263,18 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         admin: {
           description:
             "Add a parent portal to improve communication with parents.",
+        },
+      },
+    },
+    hasTeachers: {
+      key: "hasTeachers",
+      defaultLabel: "Teachers Listed",
+      audienceViews: {
+        parent: {
+          description: "Shows the school has teachers listed.",
+        },
+        admin: {
+          description: "Add teachers to improve communication with parents.",
         },
       },
     },

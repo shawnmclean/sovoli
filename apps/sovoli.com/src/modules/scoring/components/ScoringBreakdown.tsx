@@ -11,11 +11,12 @@ import {
   XCircleIcon,
   LightbulbIcon,
   AlertCircleIcon,
-  ShieldIcon,
-  UsersIcon,
   MessageCircleIcon,
   InfoIcon,
-  ShoppingBagIcon,
+  ShieldCheckIcon,
+  BarChartIcon,
+  FileTextIcon,
+  ServerCogIcon,
 } from "lucide-react";
 import type { CategoryRuleSet, ScoringModule, ViewAudience } from "../types";
 
@@ -27,14 +28,16 @@ export interface ScoringBreakdownProps {
 
 const getGroupIcon = (groupKey: string) => {
   switch (groupKey) {
-    case "trust":
-      return ShieldIcon;
-    case "curriculum":
-      return UsersIcon;
+    case "visibility":
+      return ShieldCheckIcon;
+    case "transparency":
+      return BarChartIcon;
     case "communication":
       return MessageCircleIcon;
     case "enrollment":
-      return ShoppingBagIcon;
+      return FileTextIcon;
+    case "systems":
+      return ServerCogIcon;
     default:
       return InfoIcon;
   }

@@ -12,6 +12,7 @@ import { hasLogo } from "./hasLogo";
 import { hasFees } from "./hasFees";
 import { enrollmentMethod } from "./enrollmentMethod";
 import { hasParentPortal } from "./hasParentPortal";
+import { hasTeachers } from "./hasTeachers";
 
 export const rules = {
   verified,
@@ -28,6 +29,7 @@ export const rules = {
   hasFees,
   enrollmentMethod,
   hasParentPortal,
+  hasTeachers,
 };
 
 export type RuleKey = keyof typeof rules;
