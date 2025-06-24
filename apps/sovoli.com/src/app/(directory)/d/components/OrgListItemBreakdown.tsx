@@ -5,6 +5,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { ScoringSection } from "~/modules/scoring/components/ScoringSection";
 import { BarChartIcon, BookOpenIcon } from "lucide-react";
 import { AgeRange, Program } from "~/modules/academics/types";
+import { Chip } from "@sovoli/ui/components/chip";
 
 export interface OrgListItemBreakdownProps {
   orgInstance: OrgInstance;
@@ -31,7 +32,13 @@ export function OrgListItemBreakdown({
         title={
           <div className="flex items-center justify-between w-full text-sm">
             <span>Scoring</span>
-            <span>{scoreOutOf10} / 10</span>
+            <Chip
+              color={scoreOutOf10 >= 7 ? "success" : "warning"}
+              size="sm"
+              variant="light"
+            >
+              {scoreOutOf10}
+            </Chip>
           </div>
         }
       >
@@ -44,7 +51,9 @@ export function OrgListItemBreakdown({
         title={
           <div className="flex items-center justify-between w-full text-sm">
             <span>Programs</span>
-            <span>{academicModule?.programs.length ?? 0}</span>
+            <Chip color="default" size="sm" variant="light">
+              {academicModule?.programs.length ?? 0}
+            </Chip>
           </div>
         }
       >
