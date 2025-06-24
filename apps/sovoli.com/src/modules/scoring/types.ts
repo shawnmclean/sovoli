@@ -48,39 +48,37 @@ export interface ScoringResult {
 
 // #region -- Rule presentation --
 
-export type ViewAudience =
-  | "admin"
-  | "parent"
-  | "student"
-  | "ngo"
-  | "government";
+export type SovoliPlanKey = "lead-gen" | "enrollment" | "sis";
 
-export interface RulePresentation {
+export interface RuleMetadata {
   key: RuleKey;
-  defaultLabel: string;
-  audienceViews?: Partial<Record<ViewAudience, AudienceMessage>>;
-}
+  label: string;
+  description: string;
 
-export interface AudienceMessage {
-  label?: string;
-  description?: string | string[];
+  // Operational logic
+  reasons: string[]; // Why this rule matters (for trust, operations, etc.)
+  actions: string[]; // What the admin needs to do
+  requirements: string[]; // What must be submitted or configured to satisfy the rule
+  effort: "low" | "medium" | "high";
   priority?: "low" | "medium" | "high";
-  hidden?: boolean;
+  learnMoreUrl?: string;
+
+  // Sovoli package linkage
+  includedInPlan: SovoliPlanKey[];
 }
 
 // #endregion
+
 export interface OrgRuleGroup {
   key: string;
   label: string;
   weight: number;
   rules: RuleKey[];
-
-  descriptions?: Partial<Record<ViewAudience, string | string[]>>;
-  visibility?: Partial<Record<ViewAudience, boolean>>;
+  description?: string;
 }
 
 export interface CategoryRuleSet {
   category: OrgCategoryKeys;
   groups: OrgRuleGroup[];
-  ruleMetadata: Partial<Record<RuleKey, RulePresentation>>;
+  ruleMetadata: Partial<Record<RuleKey, RuleMetadata>>;
 }

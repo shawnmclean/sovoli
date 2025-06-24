@@ -1,11 +1,10 @@
+// Refactored ScoringBreakdown.tsx to match new RuleMetadata structure
 "use client";
 
 import React from "react";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-
 import { Progress } from "@sovoli/ui/components/progress";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
-
 import {
   CheckCircleIcon,
   XCircleIcon,
@@ -18,12 +17,11 @@ import {
   FileTextIcon,
   ServerCogIcon,
 } from "lucide-react";
-import type { CategoryRuleSet, ScoringModule, ViewAudience } from "../types";
+import type { CategoryRuleSet, ScoringModule } from "../types";
 
 export interface ScoringBreakdownProps {
   scoringModule: ScoringModule;
   ruleSet: CategoryRuleSet;
-  audience?: "admin" | "parent";
 }
 
 const getGroupIcon = (groupKey: string) => {
@@ -46,7 +44,6 @@ const getGroupIcon = (groupKey: string) => {
 export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
   scoringModule,
   ruleSet,
-  audience = "admin",
 }) => {
   const { result } = scoringModule;
   const { ruleScores, scoreSummary } = result;
@@ -83,8 +80,6 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
               ? Math.round((groupScore.score / groupScore.maxScore) * 100)
               : 0;
           const GroupIcon = getGroupIcon(group.key);
-          const groupDescription =
-            group.descriptions?.[audience as ViewAudience];
 
           return (
             <AccordionItem
@@ -107,46 +102,28 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
                 </div>
               }
             >
-              {groupDescription && (
+              {group.description && (
                 <p className="text-sm text-default-600 mb-3">
-                  {Array.isArray(groupDescription)
-                    ? groupDescription.join(" ")
-                    : groupDescription}
+                  {group.description}
                 </p>
               )}
               <div className="space-y-3">
                 {group.rules.map((ruleKey) => {
                   const scoredRule = ruleScores[ruleKey];
                   const ruleMetadata = ruleSet.ruleMetadata[ruleKey];
-                  const audienceView =
-                    ruleMetadata?.audienceViews?.[audience as ViewAudience];
 
                   if (!ruleMetadata) return null;
-
-                  const label =
-                    audienceView?.label ?? ruleMetadata.defaultLabel;
-
-                  const adminDescription =
-                    ruleMetadata.audienceViews?.admin?.description ?? undefined;
 
                   const score = scoredRule?.score ?? 0;
                   const maxScore = scoredRule?.maxScore ?? 0;
                   const percent =
                     maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
 
-                  let state: "achieved" | "failed" | "warn";
-                  if (score === maxScore && maxScore > 0) {
-                    state = "achieved";
-                  } else if (score === 0) {
-                    state = "failed";
-                  } else {
-                    state = "warn";
-                  }
+                  let state: "achieved" | "failed" | "warn" = "failed";
+                  if (score === maxScore && maxScore > 0) state = "achieved";
+                  else if (score > 0) state = "warn";
 
-                  // Choose icon based on state
-                  let IconComponent: React.ComponentType<{
-                    className?: string;
-                  }>;
+                  let IconComponent = XCircleIcon;
                   let iconColor = "text-default-400";
                   if (state === "achieved") {
                     IconComponent = CheckCircleIcon;
@@ -154,16 +131,15 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
                   } else if (state === "warn") {
                     IconComponent = CheckCircleIcon;
                     iconColor = "text-warning";
-                  } else {
-                    IconComponent = XCircleIcon;
-                    iconColor = "text-default-400";
                   }
 
                   return (
                     <Card key={ruleKey} className="p-3">
                       <div className="flex items-center gap-2 mb-2">
                         <IconComponent className={iconColor} />
-                        <span className="font-medium text-sm">{label}</span>
+                        <span className="font-medium text-sm">
+                          {ruleMetadata.label}
+                        </span>
                       </div>
                       <Progress
                         value={maxScore > 0 ? (score / maxScore) * 100 : 0}
@@ -171,42 +147,19 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
                         className="w-full mb-2"
                         size="sm"
                       />
-                      {(() => {
-                        const parentDescription =
-                          ruleMetadata.audienceViews?.parent?.description;
-                        if (Array.isArray(parentDescription)) {
-                          return (
-                            <ul className="list-disc list-inside text-xs text-default-600 mb-1">
-                              {parentDescription.map((desc, idx) => (
-                                <li key={idx}>{desc}</li>
-                              ))}
-                            </ul>
-                          );
-                        }
-                        return (
-                          <div className="text-xs text-default-600 mb-1">
-                            {parentDescription}
-                          </div>
-                        );
-                      })()}
-                      {state !== "achieved" &&
-                        audience === "admin" &&
-                        adminDescription && (
-                          <div className="bg-default-100 rounded p-2 mt-2 text-xs text-default-700">
-                            <span className="font-semibold">Resolution:</span>{" "}
-                            {Array.isArray(adminDescription) ? (
-                              <ul className="list-disc list-inside mt-1">
-                                {adminDescription.map((desc, idx) => (
-                                  <li key={idx}>{desc}</li>
-                                ))}
-                              </ul>
-                            ) : (
-                              <ul className="list-disc list-inside mt-1">
-                                <li>{adminDescription}</li>
-                              </ul>
-                            )}
-                          </div>
-                        )}
+                      <div className="text-xs text-default-600 mb-2">
+                        {ruleMetadata.description}
+                      </div>
+                      {state !== "achieved" && (
+                        <div className="bg-default-100 rounded p-2 mt-2 text-xs text-default-700">
+                          <p className="font-semibold">What to do:</p>
+                          <ul className="list-disc list-inside mt-1">
+                            {ruleMetadata.actions.map((action, idx) => (
+                              <li key={idx}>{action}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </Card>
                   );
                 })}
@@ -215,64 +168,6 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
           );
         })}
       </Accordion>
-
-      <Card className="bg-warning-50">
-        <CardHeader>
-          <h2 className="text-lg font-semibold flex items-center gap-2">
-            <LightbulbIcon className="text-warning" />
-            Quick Improvements
-          </h2>
-        </CardHeader>
-        <CardBody>
-          <div className="space-y-3">
-            {ruleSet.groups.flatMap((group) => {
-              const groupScore = groupScores[group.key];
-              const groupPercentage =
-                groupScore?.maxScore && groupScore.maxScore > 0
-                  ? Math.round((groupScore.score / groupScore.maxScore) * 100)
-                  : 0;
-
-              if (groupPercentage >= 100) return [];
-
-              return group.rules
-                .map((ruleKey) => {
-                  const scoredRule = ruleScores[ruleKey];
-                  const ruleMetadata = ruleSet.ruleMetadata[ruleKey];
-                  const audienceView =
-                    ruleMetadata?.audienceViews?.[audience as ViewAudience];
-
-                  if (!ruleMetadata || !scoredRule || scoredRule.score > 0)
-                    return null;
-
-                  const label =
-                    audienceView?.label ?? ruleMetadata.defaultLabel;
-                  const description =
-                    audienceView?.description ??
-                    "This would improve your overall score.";
-
-                  return (
-                    <div key={ruleKey} className="flex items-start gap-2">
-                      <AlertCircleIcon className="text-warning mt-1 flex-shrink-0" />
-                      <div>
-                        <p className="font-medium text-sm">{label}</p>
-                        <ul className="text-xs text-default-600 list-disc pl-5">
-                          {Array.isArray(description) ? (
-                            description.map((desc, idx) => (
-                              <li key={idx}>{desc}</li>
-                            ))
-                          ) : (
-                            <li>{description}</li>
-                          )}
-                        </ul>
-                      </div>
-                    </div>
-                  );
-                })
-                .filter(Boolean);
-            })}
-          </div>
-        </CardBody>
-      </Card>
     </div>
   );
 };

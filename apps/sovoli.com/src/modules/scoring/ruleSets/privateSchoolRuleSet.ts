@@ -16,267 +16,185 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         "hasEmailEduDomain",
         "hasGoogleProfile",
       ],
-      descriptions: {
-        admin:
-          "Increase your school's credibility and discoverability with a verified profile, branded logo, and official domains.",
-        parent:
-          "These signals help you know if the school is officially recognized, findable online, and professionally managed.",
-      },
+      description:
+        "Increase your school's credibility and discoverability with a verified profile, branded logo, and official domains.",
     },
     {
       key: "transparency",
       label: "Transparency of Information",
       weight: 2,
       rules: ["hasFees", "hasTeachers", "hasAcademicPrograms"],
-      descriptions: {
-        admin:
-          "Publishing fee structures, staff, student numbers, and academic programs builds parent trust and reduces inbound questions.",
-        parent:
-          "This tells you what the school costs, who teaches, how many students attend, and what is taught.",
-      },
+      description:
+        "Publishing fee structures, staff, and academic programs builds parent trust and reduces inbound questions.",
     },
     {
       key: "communication",
       label: "Communication & Parent Support",
       weight: 1.5,
       rules: ["hasPhone", "hasEmail", "hasWhatsapp", "hasParentPortal"],
-      descriptions: {
-        admin:
-          "Strong communication channels and parent portals improve engagement and reduce confusion.",
-        parent:
-          "Lets you know how you'll get updates, speak with staff, and access school information.",
-      },
+      description:
+        "Strong communication channels and parent portals improve engagement and reduce confusion.",
     },
     {
       key: "enrollment",
       label: "Enrollment Experience",
       weight: 1.5,
       rules: ["enrollmentMethod"],
-      descriptions: {
-        admin:
-          "A smooth enrollment experience makes it easier to attract and retain families. Add clear instructions and timelines.",
-        parent:
-          "Tells you how to apply, what the process is like, and whether it's simple or frustrating.",
-      },
+      description:
+        "A smooth enrollment experience makes it easier to attract and retain families. Add clear instructions and timelines.",
     },
     {
       key: "systems",
       label: "Digital Infrastructure",
       weight: 1,
       rules: [],
-      descriptions: {
-        admin:
-          "Shows your level of digital maturity across operations like student records, billing, transport, and more.",
-        parent:
-          "Indicates whether the school uses modern systems for safety, academics, and administration.",
-      },
+      description:
+        "Shows your level of digital maturity across operations like student records, billing, and transport.",
     },
   ],
 
   ruleMetadata: {
     verified: {
       key: "verified",
-      defaultLabel: "Verified Organization",
-      audienceViews: {
-        parent: {
-          description:
-            "Indicates the school is officially recognized by the government.",
-        },
-        admin: {
-          description: [
-            "Send your business registration (PDF or photo). We’ll handle the rest and mark you verified.",
-            "Verification unlocks access to grants and increases parent trust.",
-          ],
-        },
-      },
+      label: "Verified Organization",
+      description:
+        "Indicates the school is officially recognized by the government.",
+      reasons: ["Build trust with parents", "Qualify for grants and programs"],
+      actions: ["Upload government-issued registration PDF or image"],
+      requirements: ["Valid business registration document"],
+      effort: "medium",
+      includedInPlan: ["lead-gen"],
     },
     hasLogo: {
       key: "hasLogo",
-      defaultLabel: "Logo Available",
-      audienceViews: {
-        parent: {
-          description: "Shows the school has a logo.",
-        },
-        admin: {
-          description: "Add a logo to improve your online visibility.",
-        },
-      },
-    },
-    hasGoogleProfile: {
-      key: "hasGoogleProfile",
-      defaultLabel: "Google Business Profile",
-      audienceViews: {
-        parent: {
-          description: "Helps parents find the school easily on Google Maps.",
-        },
-        admin: {
-          description:
-            "This puts your school on Google Maps — free and fast. Parents search here first.",
-        },
-      },
-    },
-    hasWebsiteEduDomain: {
-      key: "hasWebsiteEduDomain",
-      defaultLabel: "Has Education Website Domain",
-      audienceViews: {
-        parent: {
-          description:
-            "Shows the school uses an official education domain tied to the country.",
-        },
-        admin: {
-          description: [
-            "Use a website with your country's .edu domain (e.g., .edu.gy).",
-            "An .edu domain is a sign of legitimacy and trust.",
-            "Some banks and funds require a .edu domain to be eligible for loans.",
-          ],
-        },
-      },
-    },
-    hasEmailEduDomain: {
-      key: "hasEmailEduDomain",
-      defaultLabel: "Has Education Email Domain",
-      audienceViews: {
-        parent: {
-          description:
-            "Signals that the school is using a professional education-based email.",
-        },
-        admin: {
-          description:
-            "Use a school-branded email (e.g., info@school.edu.gy) to look more official and build trust.",
-        },
-      },
-    },
-    hasAcademicPrograms: {
-      key: "hasAcademicPrograms",
-      defaultLabel: "Academic Programs Listed",
-      audienceViews: {
-        parent: {
-          description:
-            "Helps parents understand what levels and subjects are available.",
-        },
-        admin: {
-          description:
-            "List the school's academic programs to better inform prospective families.",
-        },
-      },
-    },
-    hasPhone: {
-      key: "hasPhone",
-      defaultLabel: "Phone Number Available",
-      audienceViews: {
-        parent: {
-          description: "Allows direct voice communication with the school.",
-        },
-        admin: {
-          description:
-            "Add a valid phone number so parents can call your school directly.",
-        },
-      },
-    },
-    hasEmail: {
-      key: "hasEmail",
-      defaultLabel: "Email Address Available",
-      audienceViews: {
-        parent: {
-          description: "Enables direct written communication with the school.",
-        },
-        admin: {
-          description:
-            "Add a valid school email address so parents and institutions can reach you.",
-        },
-      },
-    },
-    hasWhatsapp: {
-      key: "hasWhatsapp",
-      defaultLabel: "WhatsApp Contact Available",
-      audienceViews: {
-        parent: {
-          description: "Lets you message the school easily on WhatsApp.",
-        },
-        admin: {
-          description:
-            "Most parents use WhatsApp first. Just add a number so they can message easily.",
-        },
-      },
+      label: "Logo Available",
+      description: "Shows the school has a logo.",
+      reasons: ["Improves brand recognition", "Boosts visual trust online"],
+      actions: ["Upload a high-quality school logo"],
+      requirements: ["JPEG/PNG format", "Min. 300x300 resolution"],
+      effort: "low",
+      includedInPlan: ["lead-gen"],
     },
     hasWebsite: {
       key: "hasWebsite",
-      defaultLabel: "Website Available",
-      audienceViews: {
-        parent: {
-          description:
-            "Shows the school has an online presence with a website.",
-        },
-        admin: {
-          description:
-            "Parents search online — even a simple site with your contact info builds trust and helps you show up on Google.",
-        },
-      },
+      label: "Website Available",
+      description: "School has a general website.",
+      reasons: ["Improves online visibility", "Central hub for information"],
+      actions: ["Link your existing website or request one"],
+      requirements: ["Live URL"],
+      effort: "medium",
+      includedInPlan: ["lead-gen"],
     },
-    hasFacebook: {
-      key: "hasFacebook",
-      defaultLabel: "Facebook Page Available",
-      audienceViews: {
-        parent: {
-          description:
-            "Indicates the school has a social media presence on Facebook.",
-        },
-        admin: {
-          description:
-            "Add a Facebook page link to improve social media presence.",
-        },
-      },
+    hasWebsiteEduDomain: {
+      key: "hasWebsiteEduDomain",
+      label: ".edu Website Domain",
+      description: "School uses a domain ending in .edu.",
+      reasons: ["Signals legitimacy", "Enables advanced email setups"],
+      actions: ["Switch or purchase .edu domain"],
+      requirements: [".edu.gy domain or equivalent"],
+      effort: "high",
+      includedInPlan: ["lead-gen"],
     },
-    enrollmentMethod: {
-      key: "enrollmentMethod",
-      defaultLabel: "Enrollment Method",
-      audienceViews: {
-        parent: {
-          description: "Shows the school has a parent portal.",
-        },
-        admin: {
-          description:
-            "Add an enrollment method to improve communication with parents.",
-        },
-      },
+    hasEmailEduDomain: {
+      key: "hasEmailEduDomain",
+      label: ".edu Email Address",
+      description: "School uses a domain-matching email.",
+      reasons: ["Looks professional", "Prevents spam filtering"],
+      actions: ["Set up email with your domain"],
+      requirements: ["Working email like info@school.edu.gy"],
+      effort: "medium",
+      includedInPlan: ["lead-gen"],
+    },
+    hasGoogleProfile: {
+      key: "hasGoogleProfile",
+      label: "Google Business Profile",
+      description: "School is listed and findable on Google Maps.",
+      reasons: ["Boosts map visibility", "Improves credibility"],
+      actions: ["Claim or create Google listing"],
+      requirements: ["Google My Business account"],
+      effort: "medium",
+      includedInPlan: ["lead-gen"],
     },
     hasFees: {
       key: "hasFees",
-      defaultLabel: "Fees Available",
-      audienceViews: {
-        parent: {
-          description: "Shows the school has fees.",
-        },
-        admin: {
-          description:
-            "Add fees to improve enrollment and financial transparency.",
-        },
-      },
-    },
-    hasParentPortal: {
-      key: "hasParentPortal",
-      defaultLabel: "Parent Portal Available",
-      audienceViews: {
-        parent: {
-          description: "Shows the school has a parent portal.",
-        },
-        admin: {
-          description:
-            "Add a parent portal to improve communication with parents.",
-        },
-      },
+      label: "Fees Listed",
+      description: "Tuition or fee information is publicly available.",
+      reasons: ["Enables financial planning", "Reduces inquiries"],
+      actions: ["Enter or upload current fee structure"],
+      requirements: ["Fee amount or tier information"],
+      effort: "low",
+      includedInPlan: ["enrollment"],
     },
     hasTeachers: {
       key: "hasTeachers",
-      defaultLabel: "Teachers Listed",
-      audienceViews: {
-        parent: {
-          description: "Shows the school has teachers listed.",
-        },
-        admin: {
-          description: "Add teachers to improve communication with parents.",
-        },
-      },
+      label: "Teachers Listed",
+      description: "Teacher info is available to the public.",
+      reasons: ["Improves transparency", "Shows capacity and expertise"],
+      actions: ["List faculty and subjects taught"],
+      requirements: ["Names and positions of teaching staff"],
+      effort: "medium",
+      includedInPlan: ["enrollment"],
+    },
+    hasAcademicPrograms: {
+      key: "hasAcademicPrograms",
+      label: "Academic Programs",
+      description:
+        "Academic offerings like grade levels or subjects are listed.",
+      reasons: ["Informs parents", "Helps curriculum comparison"],
+      actions: ["Upload academic structure or subjects"],
+      requirements: ["Levels or subjects by age group"],
+      effort: "medium",
+      includedInPlan: ["enrollment"],
+    },
+    hasPhone: {
+      key: "hasPhone",
+      label: "Phone Number",
+      description: "School can be reached by phone.",
+      reasons: ["Direct communication", "Faster problem resolution"],
+      actions: ["Enter a valid phone number"],
+      requirements: ["Working local number"],
+      effort: "low",
+      includedInPlan: ["lead-gen"],
+    },
+    hasEmail: {
+      key: "hasEmail",
+      label: "Email Contact",
+      description: "School can be contacted by email.",
+      reasons: ["Important for formal queries", "Documentation"],
+      actions: ["Enter a school email"],
+      requirements: ["Active email address"],
+      effort: "low",
+      includedInPlan: ["lead-gen"],
+    },
+    hasWhatsapp: {
+      key: "hasWhatsapp",
+      label: "WhatsApp Contact",
+      description: "Parents can message the school via WhatsApp.",
+      reasons: ["Most-used app for communication"],
+      actions: ["Enter a WhatsApp number"],
+      requirements: ["Active WhatsApp number"],
+      effort: "low",
+      includedInPlan: ["lead-gen"],
+    },
+    hasParentPortal: {
+      key: "hasParentPortal",
+      label: "Parent Portal",
+      description: "School uses a digital portal for parent access.",
+      reasons: ["Real-time updates", "Parent involvement"],
+      actions: ["Add details about the portal used"],
+      requirements: ["Platform info or screenshots"],
+      effort: "medium",
+      includedInPlan: ["sis"],
+    },
+    enrollmentMethod: {
+      key: "enrollmentMethod",
+      label: "Enrollment Method",
+      description: "School has a defined enrollment process.",
+      reasons: ["Reduces parent confusion", "Improves conversion"],
+      actions: ["Explain how enrollment works"],
+      requirements: ["Form link, WhatsApp flow, or manual steps"],
+      effort: "medium",
+      includedInPlan: ["enrollment"],
     },
   },
 };
