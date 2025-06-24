@@ -6,6 +6,7 @@ export interface Program {
   description: string;
   image: string;
   requirements?: ProgramRequirement[];
+  feeStructure?: ProgramFeeStructure;
 }
 
 export interface ProgramRequirement {
@@ -23,6 +24,22 @@ export interface AgeRange {
   maxAgeMonths?: number;
 }
 
+export interface ProgramFeeStructure {
+  registrationFee?: number; // Optional if global
+  tuitionFee: number;
+  cycle?: "monthly" | "termly" | "annually" | "per-course"; // Flexible
+  currency?: string; // Optional override
+  notes?: string; // e.g., "Includes books", "Excludes lunch"
+}
+
 export interface AcademicModule {
   programs: Program[];
+
+  // Temporary
+  studentCount?: number;
+  globalRegistrationFee?: {
+    amount: number;
+    currency?: string;
+    notes?: string;
+  };
 }

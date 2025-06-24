@@ -48,6 +48,8 @@ export interface Org {
   internalCRM?: {
     people: Person[];
   };
+
+  techStack?: OrgTechStack;
 }
 
 export interface OrgInstance {
@@ -67,3 +69,35 @@ export type OrgCategoryKeys =
   | "private-school"
   | "nursery-school"
   | "vocational-school";
+
+// #region Tech Stack
+export type TechCategory =
+  | "website"
+  | "sis"
+  | "lms"
+  | "parentPortal"
+  | "enrollment"
+  | "billing"
+  | "messaging"
+  | "hr"
+  | "security"
+  | "transport"
+  | "library"
+  | "analytics"
+  | "compliance";
+
+export interface PlatformInfo {
+  name: string;
+  vendor?: string;
+  url?: string;
+  type?: "plugin" | "external" | "custom" | "integrated";
+  notes?: string;
+}
+
+export type OrgTechStack = Partial<
+  Record<TechCategory, PlatformInfo | PlatformInfo[]>
+> & {
+  notes?: string;
+};
+
+// #endregion

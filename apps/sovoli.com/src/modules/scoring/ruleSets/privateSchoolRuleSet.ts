@@ -60,7 +60,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         },
         admin: {
           description: [
-            "Send a copy of your registration.",
+            "Send your business registration (PDF or photo). We’ll handle the rest and mark you verified.",
             "Verification unlocks access to grants and increases parent trust.",
           ],
         },
@@ -118,7 +118,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         },
         admin: {
           description:
-            "Use an email address with your country's education domain (e.g., .edu.gy).",
+            "Use a school-branded email (e.g., info@school.edu.gy) to look more official and build trust.",
         },
       },
     },
@@ -171,7 +171,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         },
         admin: {
           description:
-            "Add a WhatsApp contact to improve responsiveness to inquiries.",
+            "Most parents use WhatsApp first. Just add a number so they can message easily.",
         },
       },
     },
@@ -185,7 +185,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
         },
         admin: {
           description:
-            "Even a simple website helps you rank on Google and show professionalism.",
+            "Parents search online — even a simple site with your contact info builds trust and helps you show up on Google.",
         },
       },
     },
