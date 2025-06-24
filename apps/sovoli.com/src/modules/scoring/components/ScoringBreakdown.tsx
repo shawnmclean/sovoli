@@ -20,6 +20,7 @@ import {
   AlertTriangleIcon,
 } from "lucide-react";
 import type { CategoryRuleSet, ScoringModule } from "../types";
+import { Alert } from "@sovoli/ui/components/alert";
 
 export interface ScoringBreakdownProps {
   scoringModule: ScoringModule;
@@ -156,86 +157,98 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
                         <Accordion>
                           <AccordionItem
                             aria-label="Improvement Guide"
+                            startContent={
+                              <AlertTriangleIcon className="text-danger w-4 h-4" />
+                            }
                             title={
-                              <div className="flex items-center gap-2">
-                                <AlertTriangleIcon className="text-red-600 w-4 h-4" />
-                                <span className="font-medium text-sm text-red-800">
-                                  How to Improve This Score
-                                </span>
-                              </div>
+                              <span className="font-medium text-sm text-danger">
+                                How to Improve This Score
+                              </span>
                             }
                           >
                             <div className="space-y-3 mt-2">
                               {/* Action Steps Section */}
-                              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                                <div className="flex items-center gap-2 mb-3">
-                                  <PlayIcon className="text-blue-600 w-4 h-4" />
-                                  <h4 className="font-semibold text-blue-900 text-sm">
-                                    Action Steps
-                                  </h4>
-                                </div>
-                                <ul className="space-y-2">
-                                  {ruleMetadata.actions.map((action, idx) => (
-                                    <li
-                                      key={idx}
-                                      className="flex items-start gap-2 text-sm text-blue-800"
-                                    >
-                                      <span className="bg-blue-200 text-blue-700 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">
-                                        {idx + 1}
-                                      </span>
-                                      <span>{action}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-
-                              {/* Requirements Section */}
-                              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                                <div className="flex items-center gap-2 mb-3">
-                                  <ClipboardCheckIcon className="text-amber-600 w-4 h-4" />
-                                  <h4 className="font-semibold text-amber-900 text-sm">
-                                    Requirements
-                                  </h4>
-                                </div>
-                                <ul className="space-y-2">
-                                  {ruleMetadata.requirements.map(
-                                    (requirement, idx) => (
+                              <Alert
+                                variant="solid"
+                                color="primary"
+                                hideIcon
+                                title={
+                                  <div className="flex items-center gap-2">
+                                    <PlayIcon className="w-4 h-4" />
+                                    <span className="font-semibold text-sm">
+                                      Action Steps
+                                    </span>
+                                  </div>
+                                }
+                                description={
+                                  <ul className="space-y-2 mt-2">
+                                    {ruleMetadata.actions.map((action, idx) => (
                                       <li
                                         key={idx}
-                                        className="flex items-start gap-2 text-sm text-amber-800"
+                                        className="flex items-start gap-2 text-sm"
                                       >
-                                        <span className="bg-amber-200 text-amber-700 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">
-                                          ✓
-                                        </span>
-                                        <span>{requirement}</span>
+                                        {idx + 1}. {action}
                                       </li>
-                                    ),
-                                  )}
-                                </ul>
-                              </div>
+                                    ))}
+                                  </ul>
+                                }
+                              />
+
+                              {/* Requirements Section */}
+                              <Alert
+                                variant="solid"
+                                color="warning"
+                                hideIcon
+                                title={
+                                  <div className="flex items-center gap-2">
+                                    <ClipboardCheckIcon className="w-4 h-4" />
+                                    <span className="font-semibold text-sm">
+                                      Requirements
+                                    </span>
+                                  </div>
+                                }
+                                description={
+                                  <ul className="space-y-2 mt-2">
+                                    {ruleMetadata.requirements.map(
+                                      (requirement, idx) => (
+                                        <li
+                                          key={idx}
+                                          className="flex items-start gap-2 text-sm"
+                                        >
+                                          ✓ {requirement}
+                                        </li>
+                                      ),
+                                    )}
+                                  </ul>
+                                }
+                              />
 
                               {/* Why This Matters Section */}
-                              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                                <div className="flex items-center gap-2 mb-3">
-                                  <HelpCircleIcon className="text-purple-600 w-4 h-4" />
-                                  <h4 className="font-semibold text-purple-900 text-sm">
-                                    Why This Matters
-                                  </h4>
-                                </div>
-                                <ul className="space-y-2">
-                                  {ruleMetadata.reasons.map((reason, idx) => (
-                                    <li
-                                      key={idx}
-                                      className="flex items-start gap-2 text-sm text-purple-800"
-                                    >
-                                      <span className="bg-purple-200 text-purple-700 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mt-0.5 flex-shrink-0">
-                                        !
-                                      </span>
-                                      <span>{reason}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
+                              <Alert
+                                variant="solid"
+                                color="secondary"
+                                hideIcon
+                                title={
+                                  <div className="flex items-center gap-2">
+                                    <HelpCircleIcon className="w-4 h-4" />
+                                    <span className="font-semibold text-sm">
+                                      Why This Matters
+                                    </span>
+                                  </div>
+                                }
+                                description={
+                                  <ul className="space-y-2 mt-2">
+                                    {ruleMetadata.reasons.map((reason, idx) => (
+                                      <li
+                                        key={idx}
+                                        className="flex items-start gap-2 text-sm"
+                                      >
+                                        ! {reason}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                }
+                              />
                             </div>
                           </AccordionItem>
                         </Accordion>
