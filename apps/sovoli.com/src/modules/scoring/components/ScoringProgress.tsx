@@ -24,7 +24,7 @@ export const ScoringProgress = ({
   const groupScores = scoringModule.result.scoreSummary.groupScores;
 
   return (
-    <div className="flex justify-between gap-1">
+    <div className="flex flex-col gap-3">
       {ruleSet.groups.map((group) => {
         const scoreData = groupScores[group.key];
         const IconComponent = ICONS[group.key] ?? Shield;
@@ -43,30 +43,34 @@ export const ScoringProgress = ({
           percent >= 80 ? "success" : percent >= 50 ? "warning" : "default";
 
         return (
-          <CircularProgress
+          <div
             key={group.key}
-            value={scoreOutOf10}
-            color={color}
-            title={`${label} – ${scoreOutOf10}/10`}
-            label={
-              <div className="flex items-center gap-1 text-xs">
-                <IconComponent
-                  className={`w-3 h-3 fill-current ${
-                    color === "success"
-                      ? "text-success"
-                      : color === "warning"
-                        ? "text-warning"
-                        : "text-default"
-                  }`}
-                />
-                <span className="text-xs capitalize">{group.key}</span>
-              </div>
-            }
-            showValueLabel
-            size="sm"
-            formatOptions={{ maximumFractionDigits: 1 }}
-            maxValue={10}
-          />
+            className="flex items-center justify-between gap-3 p-2 rounded-lg bg-default-50"
+          >
+            <CircularProgress
+              value={scoreOutOf10}
+              color={color}
+              title={`${label} – ${scoreOutOf10}/10`}
+              showValueLabel
+              size="sm"
+              formatOptions={{ maximumFractionDigits: 1 }}
+              maxValue={10}
+            />
+            <div className="flex items-center gap-2 flex-1">
+              <IconComponent
+                className={`w-4 h-4 ${
+                  color === "success"
+                    ? "text-success"
+                    : color === "warning"
+                      ? "text-warning"
+                      : "text-default"
+                }`}
+              />
+              <span className="text-sm font-medium capitalize">
+                {group.key}
+              </span>
+            </div>
+          </div>
         );
       })}
     </div>
