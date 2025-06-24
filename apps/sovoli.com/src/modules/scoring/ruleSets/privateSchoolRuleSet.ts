@@ -21,7 +21,7 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
     },
     {
       key: "transparency",
-      label: "Transparency of Information",
+      label: "Transparency",
       weight: 2,
       rules: ["hasFees", "hasTeachers", "hasAcademicPrograms"],
       description:

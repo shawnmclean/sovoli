@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import type { CategoryRuleSet, ScoringModule } from "../types";
 import { Alert } from "@sovoli/ui/components/alert";
+import { Chip } from "@sovoli/ui/components/chip";
 
 export interface ScoringBreakdownProps {
   scoringModule: ScoringModule;
@@ -88,174 +89,221 @@ export const ScoringBreakdown: React.FC<ScoringBreakdownProps> = ({
             <AccordionItem
               key={group.key}
               aria-label={group.label}
+              startContent={<GroupIcon className="text-primary" />}
+              subtitle={
+                <>
+                  {groupPercentage < 100 && (
+                    <Chip color="warning" size="sm" variant="light">
+                      ({groupPercentage}%) Needs Attention
+                    </Chip>
+                  )}
+                  {groupPercentage === 100 && (
+                    <Chip color="success" size="sm" variant="light">
+                      ({groupPercentage}%) Complete
+                    </Chip>
+                  )}
+                </>
+              }
               title={
                 <div className="flex items-center justify-between w-full">
-                  <div className="flex items-center gap-2">
-                    <GroupIcon className="text-primary" />
-                    <span>{group.label}</span>
-                  </div>
-                  <div className="text-sm">
-                    <span className="font-semibold">
-                      {groupScore?.score ?? 0}/{groupScore?.maxScore ?? 0}
-                    </span>
-                    <span className="text-default-400 ml-2">
-                      ({groupPercentage}%)
-                    </span>
-                  </div>
+                  {group.label}
                 </div>
               }
             >
+              <div className="text-sm text-default-600 mb-3">
+                {groupScore?.score} points earned out of {groupScore?.maxScore}
+              </div>
               {group.description && (
                 <p className="text-sm text-default-600 mb-3">
                   {group.description}
                 </p>
               )}
               <div className="space-y-3">
-                {group.rules.map((ruleKey) => {
-                  const scoredRule = ruleScores[ruleKey];
-                  const ruleMetadata = ruleSet.ruleMetadata[ruleKey];
+                {group.rules
+                  .map((ruleKey) => {
+                    const scoredRule = ruleScores[ruleKey];
+                    const ruleMetadata = ruleSet.ruleMetadata[ruleKey];
 
-                  if (!ruleMetadata) return null;
+                    if (!ruleMetadata) return null;
 
-                  const score = scoredRule?.score ?? 0;
-                  const maxScore = scoredRule?.maxScore ?? 0;
-                  const percent =
-                    maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
+                    const score = scoredRule?.score ?? 0;
+                    const maxScore = scoredRule?.maxScore ?? 0;
+                    const percent =
+                      maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
 
-                  let state: "achieved" | "failed" | "warn" = "failed";
-                  if (score === maxScore && maxScore > 0) state = "achieved";
-                  else if (score > 0) state = "warn";
+                    return {
+                      ruleKey,
+                      ruleMetadata,
+                      score,
+                      maxScore,
+                      percent,
+                      isComplete: score === maxScore && maxScore > 0,
+                    };
+                  })
+                  .filter(
+                    (item): item is NonNullable<typeof item> => item !== null,
+                  )
+                  .sort((a, b) => {
+                    // Sort incomplete rules first (by lowest score), then complete rules
+                    if (!a.isComplete && !b.isComplete) {
+                      return a.score - b.score; // Lowest score first
+                    }
+                    if (!a.isComplete && b.isComplete) {
+                      return -1; // Incomplete rules first
+                    }
+                    if (a.isComplete && !b.isComplete) {
+                      return 1; // Complete rules last
+                    }
+                    return 0; // Both complete, maintain order
+                  })
+                  .map(
+                    ({
+                      ruleKey,
+                      ruleMetadata,
+                      score,
+                      maxScore,
+                      percent,
+                      isComplete,
+                    }) => {
+                      let state: "achieved" | "failed" | "warn" = "failed";
+                      if (isComplete) state = "achieved";
+                      else if (score > 0) state = "warn";
 
-                  let IconComponent = XCircleIcon;
-                  let iconColor = "text-default-400";
-                  if (state === "achieved") {
-                    IconComponent = CheckCircleIcon;
-                    iconColor = "text-success";
-                  } else if (state === "warn") {
-                    IconComponent = CheckCircleIcon;
-                    iconColor = "text-warning";
-                  }
+                      let IconComponent = XCircleIcon;
+                      let iconColor = "text-default-400";
+                      if (state === "achieved") {
+                        IconComponent = CheckCircleIcon;
+                        iconColor = "text-success";
+                      } else if (state === "warn") {
+                        IconComponent = CheckCircleIcon;
+                        iconColor = "text-warning";
+                      }
 
-                  return (
-                    <Card key={ruleKey} className="p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <IconComponent className={iconColor} />
-                        <span className="font-medium text-sm">
-                          {ruleMetadata.label}
-                        </span>
-                      </div>
-                      <Progress
-                        value={maxScore > 0 ? (score / maxScore) * 100 : 0}
-                        label={`${score}/${maxScore} (${percent}%)`}
-                        className="w-full mb-2"
-                        size="sm"
-                      />
-                      <div className="text-xs text-default-600 mb-2">
-                        {ruleMetadata.description}
-                      </div>
-                      {state !== "achieved" && (
-                        <Accordion>
-                          <AccordionItem
-                            aria-label="Improvement Guide"
-                            startContent={
-                              <AlertTriangleIcon className="text-danger w-4 h-4" />
-                            }
-                            title={
-                              <span className="font-medium text-sm text-danger">
-                                How to Improve This Score
-                              </span>
-                            }
-                          >
-                            <div className="space-y-3 mt-2">
-                              {/* Action Steps Section */}
-                              <Alert
-                                variant="solid"
-                                color="primary"
-                                hideIcon
+                      return (
+                        <Card key={ruleKey} className="p-3">
+                          <div className="flex items-center gap-2 mb-2">
+                            <IconComponent className={iconColor} />
+                            <span className="font-medium text-sm">
+                              {ruleMetadata.label}
+                            </span>
+                          </div>
+                          <Progress
+                            value={maxScore > 0 ? (score / maxScore) * 100 : 0}
+                            label={`${score}/${maxScore} (${percent}%)`}
+                            className="w-full mb-2"
+                            size="sm"
+                          />
+                          <div className="text-xs text-default-600 mb-2">
+                            {ruleMetadata.description}
+                          </div>
+                          {!isComplete && (
+                            <Accordion>
+                              <AccordionItem
+                                aria-label="Improvement Guide"
+                                startContent={
+                                  <AlertTriangleIcon className="text-danger w-4 h-4" />
+                                }
                                 title={
-                                  <div className="flex items-center gap-2">
-                                    <PlayIcon className="w-4 h-4" />
-                                    <span className="font-semibold text-sm">
-                                      Action Steps
-                                    </span>
-                                  </div>
+                                  <span className="font-medium text-sm text-danger">
+                                    Fix This Now
+                                  </span>
                                 }
-                                description={
-                                  <ul className="space-y-2 mt-2">
-                                    {ruleMetadata.actions.map((action, idx) => (
-                                      <li
-                                        key={idx}
-                                        className="flex items-start gap-2 text-sm"
-                                      >
-                                        {idx + 1}. {action}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                }
-                              />
+                              >
+                                <div className="space-y-3 mt-2">
+                                  {/* Action Steps Section */}
+                                  <Alert
+                                    variant="solid"
+                                    color="primary"
+                                    hideIcon
+                                    title={
+                                      <div className="flex items-center gap-2">
+                                        <PlayIcon className="w-4 h-4" />
+                                        <span className="font-semibold text-sm">
+                                          Action Steps
+                                        </span>
+                                      </div>
+                                    }
+                                    description={
+                                      <ul className="space-y-2 mt-2">
+                                        {ruleMetadata.actions.map(
+                                          (action, idx) => (
+                                            <li
+                                              key={idx}
+                                              className="flex items-start gap-2 text-sm"
+                                            >
+                                              {idx + 1}. {action}
+                                            </li>
+                                          ),
+                                        )}
+                                      </ul>
+                                    }
+                                  />
 
-                              {/* Requirements Section */}
-                              <Alert
-                                variant="solid"
-                                color="warning"
-                                hideIcon
-                                title={
-                                  <div className="flex items-center gap-2">
-                                    <ClipboardCheckIcon className="w-4 h-4" />
-                                    <span className="font-semibold text-sm">
-                                      Requirements
-                                    </span>
-                                  </div>
-                                }
-                                description={
-                                  <ul className="space-y-2 mt-2">
-                                    {ruleMetadata.requirements.map(
-                                      (requirement, idx) => (
-                                        <li
-                                          key={idx}
-                                          className="flex items-start gap-2 text-sm"
-                                        >
-                                          ✓ {requirement}
-                                        </li>
-                                      ),
-                                    )}
-                                  </ul>
-                                }
-                              />
+                                  {/* Requirements Section */}
+                                  <Alert
+                                    variant="solid"
+                                    color="warning"
+                                    hideIcon
+                                    title={
+                                      <div className="flex items-center gap-2">
+                                        <ClipboardCheckIcon className="w-4 h-4" />
+                                        <span className="font-semibold text-sm">
+                                          Requirements
+                                        </span>
+                                      </div>
+                                    }
+                                    description={
+                                      <ul className="space-y-2 mt-2">
+                                        {ruleMetadata.requirements.map(
+                                          (requirement, idx) => (
+                                            <li
+                                              key={idx}
+                                              className="flex items-start gap-2 text-sm"
+                                            >
+                                              ✓ {requirement}
+                                            </li>
+                                          ),
+                                        )}
+                                      </ul>
+                                    }
+                                  />
 
-                              {/* Why This Matters Section */}
-                              <Alert
-                                variant="solid"
-                                color="secondary"
-                                hideIcon
-                                title={
-                                  <div className="flex items-center gap-2">
-                                    <HelpCircleIcon className="w-4 h-4" />
-                                    <span className="font-semibold text-sm">
-                                      Why This Matters
-                                    </span>
-                                  </div>
-                                }
-                                description={
-                                  <ul className="space-y-2 mt-2">
-                                    {ruleMetadata.reasons.map((reason, idx) => (
-                                      <li
-                                        key={idx}
-                                        className="flex items-start gap-2 text-sm"
-                                      >
-                                        ! {reason}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                }
-                              />
-                            </div>
-                          </AccordionItem>
-                        </Accordion>
-                      )}
-                    </Card>
-                  );
-                })}
+                                  {/* Why This Matters Section */}
+                                  <Alert
+                                    variant="solid"
+                                    color="secondary"
+                                    hideIcon
+                                    title={
+                                      <div className="flex items-center gap-2">
+                                        <HelpCircleIcon className="w-4 h-4" />
+                                        <span className="font-semibold text-sm">
+                                          Why This Matters
+                                        </span>
+                                      </div>
+                                    }
+                                    description={
+                                      <ul className="space-y-2 mt-2">
+                                        {ruleMetadata.reasons.map(
+                                          (reason, idx) => (
+                                            <li
+                                              key={idx}
+                                              className="flex items-start gap-2 text-sm"
+                                            >
+                                              ! {reason}
+                                            </li>
+                                          ),
+                                        )}
+                                      </ul>
+                                    }
+                                  />
+                                </div>
+                              </AccordionItem>
+                            </Accordion>
+                          )}
+                        </Card>
+                      );
+                    },
+                  )}
               </div>
             </AccordionItem>
           );
