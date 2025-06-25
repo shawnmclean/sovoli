@@ -6,8 +6,9 @@ export interface ScoringModule {
   result: OrgScoringResult;
 }
 
+export type RuleScoreMap = Partial<Record<RuleKey, ScoredRule>>;
 export interface OrgScoringResult {
-  ruleScores: Partial<Record<RuleKey, ScoredRule>>;
+  ruleScores: RuleScoreMap;
   scoreSummary: ScoreSummary;
 }
 

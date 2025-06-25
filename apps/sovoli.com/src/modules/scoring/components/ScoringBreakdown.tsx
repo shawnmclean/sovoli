@@ -12,28 +12,79 @@ import {
   HelpCircleIcon,
   AlertTriangleIcon,
 } from "lucide-react";
-import type { CategoryRuleSet, ScoringModule } from "../types";
+import type { CategoryRuleSet, RuleScoreMap, ScoredRule } from "../types";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Chip } from "@sovoli/ui/components/chip";
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
+import type { RuleKey } from "../rules";
+import { Button } from "@sovoli/ui/components/button";
+import { Link } from "@sovoli/ui/components/link";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface ScoringBreakdownProps {
-  scoringModule: ScoringModule;
+  orgInstance: OrgInstance;
   ruleSet: CategoryRuleSet;
 }
 
 export function ScoringBreakdown({
-  scoringModule,
+  orgInstance,
   ruleSet,
 }: ScoringBreakdownProps) {
-  const { result } = scoringModule;
+  if (!orgInstance.scoringModule) {
+    return null;
+  }
+  const { result } = orgInstance.scoringModule;
+
   const { ruleScores, scoreSummary } = result;
   const { totalScore, maxScore, groupScores } = scoreSummary;
   const percentage =
     maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
 
+  // Extract rules that need attention (incomplete rules)
+  const rulesThatNeedAttention: RuleScoreMap = Object.fromEntries(
+    ruleSet.groups
+      .flatMap((group) => group.rules)
+      .map((ruleKey) => {
+        const scoredRule = ruleScores[ruleKey];
+        const isIncomplete =
+          scoredRule &&
+          scoredRule.maxScore > 0 &&
+          scoredRule.score !== scoredRule.maxScore;
+
+        return isIncomplete ? [ruleKey, scoredRule] : null;
+      })
+      .filter((entry): entry is [RuleKey, ScoredRule] => entry !== null),
+  );
+
   return (
     <div className="space-y-4 p-4">
+      {Object.keys(rulesThatNeedAttention).length > 0 && (
+        <Alert
+          hideIcon
+          variant="faded"
+          color="warning"
+          title={`${Object.keys(rulesThatNeedAttention).length} rules need attention.`}
+        >
+          <div className="flex items-center gap-1 mt-3">
+            <Button
+              size="sm"
+              variant="shadow"
+              color="warning"
+              as={Link}
+              href="/pricing"
+            >
+              View Pricing
+            </Button>
+            <Button
+              className="text-default-500 font-medium underline underline-offset-4"
+              size="sm"
+              variant="light"
+            >
+              I have the info!
+            </Button>
+          </div>
+        </Alert>
+      )}
       <Card>
         <CardHeader className="pb-0">
           <h1 className="text-xl font-bold">Digital Readiness Score</h1>
@@ -52,6 +103,8 @@ export function ScoringBreakdown({
           </div>
         </CardBody>
       </Card>
+
+      {/* Rules that need attention  */}
 
       <Accordion>
         {ruleSet.groups.map((group) => {

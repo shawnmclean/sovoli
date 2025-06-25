@@ -22,9 +22,9 @@ export default async function ScoresPage({
   params: Promise<{ username: string }>;
 }) {
   const { username } = await params;
-  const { scoringModule, org } = await retrieveOrgInstance(username);
+  const orgInstance = await retrieveOrgInstance(username);
 
-  if (!scoringModule) return null;
+  const { org } = orgInstance;
 
   const category = org.categories[0] ?? "private-school";
   const ruleSet = ruleSets[category];
@@ -32,7 +32,7 @@ export default async function ScoresPage({
 
   return (
     <div className="space-y-4 p-2 sm:p-4 max-w-4xl mx-auto">
-      <ScoringBreakdown scoringModule={scoringModule} ruleSet={ruleSet} />
+      <ScoringBreakdown orgInstance={orgInstance} ruleSet={ruleSet} />
       <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
         <span className="text-sm text-default-500">Need help?</span>
         <WhatsAppLink
