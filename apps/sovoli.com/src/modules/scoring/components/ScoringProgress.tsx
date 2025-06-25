@@ -1,15 +1,8 @@
 import React from "react";
 import { CircularProgress } from "@sovoli/ui/components/progress";
 import type { CategoryRuleSet, ScoringModule } from "~/modules/scoring/types";
-import { Shield, BookOpen, Phone, Monitor, Building2 } from "lucide-react";
 
-const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  trust: Shield,
-  curriculum: BookOpen,
-  communication: Phone,
-  digital: Monitor,
-  admin: Building2,
-};
+import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
 export interface ScoringProgressProps {
   type?: "slim" | "full";
@@ -27,7 +20,6 @@ export const ScoringProgress = ({
     <div className="flex flex-col gap-3">
       {ruleSet.groups.map((group) => {
         const scoreData = groupScores[group.key];
-        const IconComponent = ICONS[group.key] ?? Shield;
         const label = group.label;
 
         const score = scoreData?.score ?? 0;
@@ -57,7 +49,8 @@ export const ScoringProgress = ({
               maxValue={10}
             />
             <div className="flex items-center gap-2 flex-1">
-              <IconComponent
+              <OrgRuleGroupIcon
+                groupKey={group.key}
                 className={`w-4 h-4 ${
                   color === "success"
                     ? "text-success"

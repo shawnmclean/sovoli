@@ -7,12 +7,6 @@ import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import {
   CheckCircleIcon,
   XCircleIcon,
-  MessageCircleIcon,
-  InfoIcon,
-  ShieldCheckIcon,
-  BarChartIcon,
-  FileTextIcon,
-  ServerCogIcon,
   PlayIcon,
   ClipboardCheckIcon,
   HelpCircleIcon,
@@ -21,28 +15,12 @@ import {
 import type { CategoryRuleSet, ScoringModule } from "../types";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Chip } from "@sovoli/ui/components/chip";
+import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
 export interface ScoringBreakdownProps {
   scoringModule: ScoringModule;
   ruleSet: CategoryRuleSet;
 }
-
-const getGroupIcon = (groupKey: string) => {
-  switch (groupKey) {
-    case "visibility":
-      return ShieldCheckIcon;
-    case "transparency":
-      return BarChartIcon;
-    case "communication":
-      return MessageCircleIcon;
-    case "enrollment":
-      return FileTextIcon;
-    case "systems":
-      return ServerCogIcon;
-    default:
-      return InfoIcon;
-  }
-};
 
 export function ScoringBreakdown({
   scoringModule,
@@ -82,22 +60,29 @@ export function ScoringBreakdown({
             groupScore?.maxScore && groupScore.maxScore > 0
               ? Math.round((groupScore.score / groupScore.maxScore) * 100)
               : 0;
-          const GroupIcon = getGroupIcon(group.key);
+          const color = groupPercentage === 100 ? "success" : "warning";
 
           return (
             <AccordionItem
               key={group.key}
               aria-label={group.label}
-              startContent={<GroupIcon className="text-primary" />}
+              startContent={
+                <OrgRuleGroupIcon
+                  groupKey={group.key}
+                  className={`${
+                    color === "success" ? "text-success" : "text-warning"
+                  }`}
+                />
+              }
               subtitle={
                 <>
                   {groupPercentage < 100 && (
-                    <Chip color="warning" size="sm" variant="light">
+                    <Chip color={color} size="sm" variant="light">
                       ({groupPercentage}%) Needs Attention
                     </Chip>
                   )}
                   {groupPercentage === 100 && (
-                    <Chip color="success" size="sm" variant="light">
+                    <Chip color={color} size="sm" variant="light">
                       ({groupPercentage}%) Complete
                     </Chip>
                   )}
