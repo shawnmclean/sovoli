@@ -35,6 +35,27 @@ export interface OrgLocation {
   contacts: Contact[];
 }
 
+// #region Verification
+
+export interface OrgVerificationDocument {
+  type: "business_registration" | "tax_id" | "operating_license" | "other";
+  name: string;
+  url: string; // S3 or cloud link
+  uploadedAt: string;
+}
+
+export interface OrgVerification {
+  status: "pending" | "verified" | "rejected";
+  submittedAt: string;
+  verifiedAt?: string;
+  rejectedReason?: string;
+
+  submittedBy: string; // admin ID or email
+  documents: OrgVerificationDocument[];
+}
+
+// #endregion
+
 export interface Org {
   username: string;
   name: string;
@@ -43,10 +64,16 @@ export interface Org {
   locations: OrgLocation[];
   socialLinks?: SocialLink[];
 
-  // internal CRM fields
+  verification?: OrgVerification;
+
   isVerified?: boolean;
+
+  // internal CRM fields
   internalCRM?: {
     people: Person[];
+    claimStatus?: "unclaimed" | "pending" | "claimed";
+    claimedAt?: string;
+    claimedBy?: string;
   };
 
   techStack?: OrgTechStack;

@@ -1,4 +1,3 @@
-import { verified } from "./verified";
 import { hasWebsite } from "./hasWebsite";
 import { hasFacebook } from "./hasFacebook";
 import { hasEmail } from "./hasEmail";
@@ -13,9 +12,11 @@ import { hasFees } from "./hasFees";
 import { enrollmentMethod } from "./enrollmentMethod";
 import { hasParentPortal } from "./hasParentPortal";
 import { hasTeachers } from "./hasTeachers";
+import { isClaimed } from "./isClaimed";
+import { isVerified } from "./isVerified";
 
 export const rules = {
-  verified,
+  isVerified,
   hasLogo,
   hasWebsite,
   hasFacebook,
@@ -30,6 +31,7 @@ export const rules = {
   enrollmentMethod,
   hasParentPortal,
   hasTeachers,
+  isClaimed,
 };
 
 export type RuleKey = keyof typeof rules;

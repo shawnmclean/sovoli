@@ -1,15 +1,13 @@
-import type { CategoryRuleSet } from "../types";
+import type { RuleSet } from "../types";
 
-export const privateSchoolRuleSet: CategoryRuleSet = {
-  category: "private-school",
-
+export const privateSchoolRuleSet: RuleSet = {
   groups: [
     {
       key: "visibility",
       label: "Visibility & Trust",
       weight: 2,
       rules: [
-        "verified",
+        "isVerified",
         "hasLogo",
         "hasWebsite",
         "hasWebsiteEduDomain",
@@ -54,8 +52,8 @@ export const privateSchoolRuleSet: CategoryRuleSet = {
   ],
 
   ruleMetadata: {
-    verified: {
-      key: "verified",
+    isVerified: {
+      key: "isVerified",
       label: "Verified Organization",
       description:
         "Indicates the school is officially recognized by the government.",
