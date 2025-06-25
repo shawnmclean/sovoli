@@ -1,4 +1,4 @@
-import { WhatsAppButton } from "~/components/WhatsAppButton";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 
 type SearchParams = Promise<{
   school?: string;
@@ -28,7 +28,7 @@ export default async function ThankYouPage({
           We’ll be in touch soon to discuss next steps.
         </p>
 
-        <WhatsAppButton phoneNumber="+5926082743" />
+        <WhatsAppLink phoneNumber="+5926082743" />
       </div>
     </main>
   );

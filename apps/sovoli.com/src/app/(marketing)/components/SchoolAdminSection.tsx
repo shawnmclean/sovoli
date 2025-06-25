@@ -1,5 +1,6 @@
-import { WhatsAppButton } from "~/components/WhatsAppButton";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { Button } from "@sovoli/ui/components/button";
 
 export function SchoolAdminSection() {
   return (
@@ -18,13 +19,15 @@ export function SchoolAdminSection() {
 
       {/* CTA Button */}
       <div className="flex justify-center">
-        <WhatsAppButton
+        <WhatsAppLink
           phoneNumber="+5926082743"
           message="Hello, I'm a school administrator and would like to list my school on Sovoli."
+          as={Button}
+          color="success"
         >
           <SiWhatsapp className="mr-2" />
           Get Your School Listed
-        </WhatsAppButton>
+        </WhatsAppLink>
       </div>
     </section>
   );

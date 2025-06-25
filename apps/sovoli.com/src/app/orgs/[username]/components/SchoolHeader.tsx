@@ -18,7 +18,7 @@ import {
   NotebookPenIcon,
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
-// import { WhatsAppButton } from "~/components/WhatsAppButton";
+// import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface SchoolHeaderProps {

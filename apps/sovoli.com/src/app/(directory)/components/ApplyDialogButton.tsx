@@ -13,7 +13,7 @@ import {
 } from "@sovoli/ui/components/dialog";
 import { CheckCircleIcon, InfoIcon } from "lucide-react";
 import { Divider } from "@sovoli/ui/components/divider";
-import { WhatsAppButton } from "~/components/WhatsAppButton";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 interface ApplyDialogButtonProps {
@@ -108,13 +108,13 @@ export function ApplyDialogButton({
                 <Button variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <WhatsAppButton
+                <WhatsAppLink
                   phoneNumber="+5926082743"
                   message={`Hello, I'd like to apply to ${orgName}.`}
                 >
                   <SiWhatsapp className="mr-2" />
                   Message Us
-                </WhatsAppButton>
+                </WhatsAppLink>
               </ModalFooter>
             </>
           )}
