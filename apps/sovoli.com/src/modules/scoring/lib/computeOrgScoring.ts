@@ -127,7 +127,9 @@ export async function computeOrgScoring(
 
   // 1. Gather applicable category rule sets
   const orgCategoryRuleSets: OrgCategoryRuleSet = Object.fromEntries(
-    org.categories.map((cat) => [cat, categoryRuleSets[cat]]),
+    org.categories
+      .filter((cat) => categoryRuleSets[cat]) // Only include categories that have rule sets
+      .map((cat) => [cat, categoryRuleSets[cat]]),
   );
 
   // 2. Gather all unique rule keys (category)

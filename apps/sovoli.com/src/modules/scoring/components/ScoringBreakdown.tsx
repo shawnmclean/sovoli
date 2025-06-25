@@ -12,7 +12,7 @@ import {
   HelpCircleIcon,
   AlertTriangleIcon,
 } from "lucide-react";
-import type { CategoryRuleSet, RuleScoreMap, ScoredRule } from "../types";
+import type { RuleSet, RuleScoreMap, ScoredRule } from "../types";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Chip } from "@sovoli/ui/components/chip";
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
@@ -23,7 +23,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface ScoringBreakdownProps {
   orgInstance: OrgInstance;
-  ruleSet: CategoryRuleSet;
+  ruleSet: RuleSet;
 }
 
 export function ScoringBreakdown({

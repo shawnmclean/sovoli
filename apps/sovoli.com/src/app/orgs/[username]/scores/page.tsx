@@ -3,10 +3,8 @@ import { notFound } from "next/navigation";
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { ScoringBreakdown } from "~/modules/scoring/components/ScoringBreakdown";
-import { ruleSets } from "~/modules/scoring/ruleSets";
+import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { Button } from "@sovoli/ui/components/button";
-import { Link } from "@sovoli/ui/components/link";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -27,7 +25,7 @@ export default async function ScoresPage({
   const { org } = orgInstance;
 
   const category = org.categories[0] ?? "private-school";
-  const ruleSet = ruleSets[category];
+  const ruleSet = categoryRuleSets[category];
   if (!ruleSet) return null;
 
   return (

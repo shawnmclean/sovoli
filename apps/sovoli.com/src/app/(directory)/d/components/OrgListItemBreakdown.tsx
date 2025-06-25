@@ -1,18 +1,23 @@
 "use client";
 
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
-import type { OrgInstance } from "~/modules/organisations/types";
+import type {
+  OrgCategoryKeys,
+  OrgInstance,
+} from "~/modules/organisations/types";
 import { ScoringSection } from "~/modules/scoring/components/ScoringSection";
 import { BarChartIcon, BookOpenIcon } from "lucide-react";
-import { AgeRange, Program } from "~/modules/academics/types";
+import type { AgeRange, Program } from "~/modules/academics/types";
 import { Chip } from "@sovoli/ui/components/chip";
 
 export interface OrgListItemBreakdownProps {
   orgInstance: OrgInstance;
+  category: OrgCategoryKeys;
 }
 
 export function OrgListItemBreakdown({
   orgInstance,
+  category,
 }: OrgListItemBreakdownProps) {
   const { scoringModule, academicModule } = orgInstance;
   // get scoring count out of 10
@@ -42,7 +47,7 @@ export function OrgListItemBreakdown({
           </div>
         }
       >
-        <ScoringSection orgInstance={orgInstance} />
+        <ScoringSection orgInstance={orgInstance} category={category} />
       </AccordionItem>
       <AccordionItem
         key="programs"

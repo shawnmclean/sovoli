@@ -1,20 +1,27 @@
 import React from "react";
 import { Link } from "@sovoli/ui/components/link";
 import { Info } from "lucide-react";
-import type { OrgInstance } from "~/modules/organisations/types";
-import { ruleSets } from "~/modules/scoring/ruleSets";
+import type {
+  OrgCategoryKeys,
+  OrgInstance,
+} from "~/modules/organisations/types";
+import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import { ScoringProgress } from "~/modules/scoring/components/ScoringProgress";
 
 interface ScoringSectionProps {
   orgInstance: OrgInstance;
+  category: OrgCategoryKeys;
 }
 
-export const ScoringSection = ({ orgInstance }: ScoringSectionProps) => {
+export const ScoringSection = ({
+  orgInstance,
+  category,
+}: ScoringSectionProps) => {
   const { scoringModule, org } = orgInstance;
 
   if (!scoringModule) return null;
 
-  const ruleSet = ruleSets[org.categories[0] ?? "private-school"];
+  const ruleSet = categoryRuleSets[category];
   if (!ruleSet) return null;
 
   return (

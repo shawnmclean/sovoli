@@ -1,13 +1,13 @@
 import React from "react";
 import { CircularProgress } from "@sovoli/ui/components/progress";
-import type { CategoryRuleSet, ScoringModule } from "~/modules/scoring/types";
+import type { RuleSet, ScoringModule } from "~/modules/scoring/types";
 
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
 export interface ScoringProgressProps {
   type?: "slim" | "full";
   scoringModule: ScoringModule;
-  ruleSet: CategoryRuleSet;
+  ruleSet: RuleSet;
 }
 
 export const ScoringProgress = ({

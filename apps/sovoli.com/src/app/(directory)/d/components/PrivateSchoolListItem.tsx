@@ -43,7 +43,10 @@ export function PrivateSchoolListItem({
         </Link>
 
         <div className="my-1">
-          <OrgListItemBreakdown orgInstance={orgInstance} />
+          <OrgListItemBreakdown
+            orgInstance={orgInstance}
+            category="private-school"
+          />
         </div>
       </CardBody>
 
