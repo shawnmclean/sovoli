@@ -7,11 +7,10 @@ export interface ScoringModule {
 }
 
 export type RuleScoreMap = Partial<Record<RuleKey, ScoredRule>>;
-export type CategoryScoreMap = Partial<Record<OrgCategoryKeys, ScoreSummary>>;
+
 export interface OrgScoringResult {
   ruleScores: RuleScoreMap;
   scoreSummary: ScoreSummary;
-  categorySummaryScores: CategoryScoreMap;
 }
 
 export interface ScoredRule {

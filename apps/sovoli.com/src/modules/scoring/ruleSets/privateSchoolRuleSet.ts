@@ -7,6 +7,7 @@ export const privateSchoolRuleSet: RuleSet = {
       label: "Visibility & Trust",
       weight: 2,
       rules: [
+        "isClaimed",
         "isVerified",
         "hasLogo",
         "hasWebsite",
@@ -52,6 +53,16 @@ export const privateSchoolRuleSet: RuleSet = {
   ],
 
   ruleMetadata: {
+    isClaimed: {
+      key: "isClaimed",
+      label: "Claimed Organization",
+      description: "Indicates the organization is claimed.",
+      reasons: ["To ensure the organization is legitimate."],
+      actions: ["Submit verification documents."],
+      requirements: ["Submit verification documents."],
+      effort: "low",
+      includedInPlan: [],
+    },
     isVerified: {
       key: "isVerified",
       label: "Verified Organization",
