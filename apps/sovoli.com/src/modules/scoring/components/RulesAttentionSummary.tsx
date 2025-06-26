@@ -108,7 +108,7 @@ export function RulesAttentionSummary({
         </div>
 
         {showDetails && (
-          <div className="mt-4">
+          <div className="mt-4 w-full">
             <ul className="space-y-4">
               {incompleteRules.map(
                 ({ ruleKey: _ruleKey, ruleMetadata, score }, ruleIdx) => (
