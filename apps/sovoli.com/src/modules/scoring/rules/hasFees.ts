@@ -1,8 +1,9 @@
 import type { OrgScoreRule } from "../types";
 
+const MAX_SCORE = 30;
 export const hasFees: OrgScoreRule = {
   key: "hasFees",
-  maxScore: 10,
+  maxScore: MAX_SCORE,
   compute: ({ academicModule }) => {
     // Count how many programs exist
     const programs = academicModule?.programs ?? [];
@@ -22,7 +23,7 @@ export const hasFees: OrgScoreRule = {
         typeof program.feeStructure.tuitionFee === "number",
     ).length;
 
-    const score = Math.round((programsWithFee / totalPrograms) * 10);
+    const score = Math.round((programsWithFee / totalPrograms) * MAX_SCORE);
 
     return Promise.resolve({
       score,

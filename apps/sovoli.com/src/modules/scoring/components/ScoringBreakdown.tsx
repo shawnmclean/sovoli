@@ -17,9 +17,8 @@ import { Alert } from "@sovoli/ui/components/alert";
 import { Chip } from "@sovoli/ui/components/chip";
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 import type { RuleKey } from "../rules";
-import { Button } from "@sovoli/ui/components/button";
-import { Link } from "@sovoli/ui/components/link";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { RulesAttentionSummary } from "./RulesAttentionSummary";
 
 export interface ScoringBreakdownProps {
   orgInstance: OrgInstance;
@@ -58,33 +57,10 @@ export function ScoringBreakdown({
 
   return (
     <div className="space-y-4 p-4">
-      {Object.keys(rulesThatNeedAttention).length > 0 && (
-        <Alert
-          hideIcon
-          variant="faded"
-          color="warning"
-          title={`${Object.keys(rulesThatNeedAttention).length} rules need attention.`}
-        >
-          <div className="flex items-center gap-1 mt-3">
-            <Button
-              size="sm"
-              variant="shadow"
-              color="warning"
-              as={Link}
-              href="/pricing"
-            >
-              View Pricing
-            </Button>
-            <Button
-              className="text-default-500 font-medium underline underline-offset-4"
-              size="sm"
-              variant="light"
-            >
-              I have the info!
-            </Button>
-          </div>
-        </Alert>
-      )}
+      <RulesAttentionSummary
+        rulesScore={rulesThatNeedAttention}
+        ruleSet={ruleSet}
+      />
       <Card>
         <CardHeader className="pb-0">
           <h1 className="text-xl font-bold">Digital Readiness Score</h1>
