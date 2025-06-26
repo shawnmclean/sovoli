@@ -1,7 +1,7 @@
 import React from "react";
 import { Plans } from "./components/Plans";
 import { plans } from "~/modules/plans/data";
-import { ruleSets } from "~/modules/scoring/ruleSets";
+import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import type { Metadata } from "next";
 import { HeroSection } from "../components/HeroSection";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function PricingPage() {
-  const ruleSet = ruleSets["private-school"];
+  const ruleSet = categoryRuleSets["private-school"];
 
   if (!ruleSet) {
     return <div>No rule set found</div>;

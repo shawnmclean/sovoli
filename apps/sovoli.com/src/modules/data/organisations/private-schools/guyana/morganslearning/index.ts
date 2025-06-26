@@ -10,17 +10,16 @@ export const MORGANS_LEARNING_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "46 Durban Street",
+          line1: "45 North Joseph Pollydore Street",
           line2: "Lodge",
-          city: "georgetown",
+          city: "Georgetown",
           countryCode: "GY",
         },
         contacts: [
           { type: "email", value: "info@morganslearning.com", isPublic: true },
-          { type: "phone", value: "+592-226-6844", isPublic: true },
+          { type: "phone", value: "+592-225-6844", isPublic: true },
           { type: "phone", value: "+592-226-6845", isPublic: true },
-          { type: "phone", value: "+592-608-4745", isPublic: true },
-          { type: "phone", value: "+592-608-4742", isPublic: true },
+          { type: "phone", value: "+592-645-5056", isPublic: true },
         ],
         isPrimary: true,
       },

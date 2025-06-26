@@ -18,7 +18,7 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
             {
               type: "whatsapp",
               value: "+592 622-9382",
-              isPublic: false,
+              isPublic: true,
             },
           ],
         },
@@ -34,9 +34,9 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "Lot 112 Regent Road",
+          line1: "112 Regent Street",
           line2: "Bourda",
-          city: "georgetown",
+          city: "Georgetown",
           countryCode: "GY",
         },
         contacts: [
