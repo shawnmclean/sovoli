@@ -40,8 +40,9 @@ export interface OrgLocation {
 export interface OrgVerificationDocument {
   type: "business_registration" | "tax_id" | "operating_license" | "other";
   name: string;
-  url: string; // S3 or cloud link
+  url?: string;
   uploadedAt: string;
+  notes?: string;
 }
 
 export interface OrgVerification {
@@ -52,6 +53,8 @@ export interface OrgVerification {
 
   submittedBy: string; // admin ID or email
   documents: OrgVerificationDocument[];
+
+  notes?: string;
 }
 
 // #endregion
