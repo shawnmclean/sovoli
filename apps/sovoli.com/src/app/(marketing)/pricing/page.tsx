@@ -6,12 +6,18 @@ import type { Metadata } from "next";
 import { HeroSection } from "../components/HeroSection";
 
 export const metadata: Metadata = {
-  title: "Plans",
+  title: "Pricing Plans",
   description:
     "Choose the plan that fits your needs and watch your school's visibility soar",
 };
 
-export default function PricingPage() {
+export default async function PricingPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ org: string }>;
+}) {
+  const { org } = await searchParams;
+
   const ruleSet = categoryRuleSets["private-school"];
 
   if (!ruleSet) {
@@ -25,7 +31,7 @@ export default function PricingPage() {
         subtitle="Parents are searching. Make sure they find your school."
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Plans plans={plans} ruleSet={ruleSet} />
+        <Plans plans={plans} ruleSet={ruleSet} orgUsername={org} />
       </div>
     </main>
   );

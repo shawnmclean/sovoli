@@ -9,9 +9,10 @@ import { PlanCard } from "./PlanCard";
 interface PlansProps {
   plans: PlanDefinition[];
   ruleSet: RuleSet;
+  orgUsername?: string;
 }
 
-export function Plans({ plans, ruleSet: _ruleSet }: PlansProps) {
+export function Plans({ plans, ruleSet: _ruleSet, orgUsername }: PlansProps) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   const toggleExpand = (planKey: string) => {
@@ -33,6 +34,7 @@ export function Plans({ plans, ruleSet: _ruleSet }: PlansProps) {
             showDetails={showDetails}
             onToggleDetails={() => toggleExpand(plan.key)}
             isPrimary={idx === 0}
+            orgUsername={orgUsername}
           />
         );
       })}
