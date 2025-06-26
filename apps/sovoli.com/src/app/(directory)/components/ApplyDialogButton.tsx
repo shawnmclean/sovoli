@@ -14,7 +14,6 @@ import {
 import { CheckCircleIcon, InfoIcon } from "lucide-react";
 import { Divider } from "@sovoli/ui/components/divider";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 interface ApplyDialogButtonProps {
   orgName: string;
@@ -67,18 +66,9 @@ export function ApplyDialogButton({
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                <h2 className="text-2xl font-semibold">Apply to {orgName}</h2>
+                <h2 className="text-2xl font-semibold">Requirements</h2>
               </ModalHeader>
               <ModalBody>
-                <p className="text-sm text-primary-700">
-                  Sovoli helps parents like you apply directly to top private
-                  schools. We make the process easier by packaging your
-                  documents and forwarding them to the school for review.
-                </p>
-
-                <h3 className="text-lg font-semibold mb-2">
-                  What you'll need to send via WhatsApp:
-                </h3>
                 <ul className="space-y-2 mb-4">
                   {documentList.map((item, index) => (
                     <li key={index} className="flex items-start">
@@ -97,24 +87,18 @@ export function ApplyDialogButton({
                     </li>
                   ))}
                 </ul>
-
-                <p className="text-sm text-warning-700">
-                  We'll confirm your documents and submit them to the school. If
-                  they aren't currently accepting, we'll notify you about
-                  similar schools nearby.
-                </p>
               </ModalBody>
               <ModalFooter>
                 <Button variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <WhatsAppLink
-                  phoneNumber="+5926082743"
+                <Button
+                  color="primary"
+                  as={WhatsAppLink}
                   message={`Hello, I'd like to apply to ${orgName}.`}
                 >
-                  <SiWhatsapp className="mr-2" />
-                  Message Us
-                </WhatsAppLink>
+                  Begin Application
+                </Button>
               </ModalFooter>
             </>
           )}

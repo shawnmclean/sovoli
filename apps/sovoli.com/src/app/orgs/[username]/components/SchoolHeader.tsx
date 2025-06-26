@@ -18,6 +18,7 @@ import {
   NotebookPenIcon,
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 // import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgInstance } from "~/modules/organisations/types";
 
@@ -121,14 +122,15 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
             <ApplyDialogButton orgName={orgInstance.org.name}>
               Apply
             </ApplyDialogButton>
-            <Button
-              fullWidth
-              onPress={() => {
-                console.log("Schedule Visit coming soon");
-              }}
-            >
-              Schedule Visit
-            </Button>
+            {!orgInstance.org.isVerified && (
+              <Button
+                color="warning"
+                as={WhatsAppLink}
+                message={`Hello, I'm the admin of ${orgInstance.org.name}. I'd like to claim this profile.`}
+              >
+                Claim
+              </Button>
+            )}
           </div>
           <Dropdown>
             <DropdownTrigger>
@@ -137,11 +139,14 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
               </Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="Dropdown menu with icons" variant="faded">
-              <DropdownItem
-                key="edit"
-                startContent={<NotebookPenIcon className={iconClasses} />}
-              >
-                Edit Profile
+              <DropdownItem key="schedule-visit">
+                <Button
+                  fullWidth
+                  as={WhatsAppLink}
+                  message={`Hello, I'm interested in scheduling a visit to ${orgInstance.org.name}`}
+                >
+                  Schedule Visit
+                </Button>
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>

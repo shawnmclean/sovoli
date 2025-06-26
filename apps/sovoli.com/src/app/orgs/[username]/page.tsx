@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
+import { Alert } from "@sovoli/ui/components/alert";
+import { Button } from "@sovoli/ui/components/button";
 import Image from "next/image";
 
 import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
@@ -11,6 +13,7 @@ import { Link } from "@sovoli/ui/components/link";
 import { GlobeIcon, PhoneIcon, MailIcon, MapPinIcon } from "lucide-react";
 import { countryCodeToName } from "~/utils/countryUtils";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -56,7 +59,50 @@ export default async function OrgProfilePage({
   )?.value;
 
   return (
-    <div className="space-y-8">
+    <div>
+      {/* Admin Claim Alert */}
+      {!orgInstance.org.isVerified && (
+        <div className="mx-auto max-w-7xl px-2">
+          <Alert
+            variant="faded"
+            color="warning"
+            isClosable
+            title={
+              <span className="text-base font-semibold">
+                Are you the admin?
+              </span>
+            }
+            description={
+              <>
+                <span>Claim this school to update it and rank up!</span>
+                <div className="flex items-center gap-4 mt-4">
+                  <Button
+                    as={WhatsAppLink}
+                    message={`Hello, I'm the admin of ${orgInstance.org.name}. I'd like to claim this profile.`}
+                    size="sm"
+                    color="warning"
+                    variant="shadow"
+                    className="text-sm"
+                  >
+                    Claim
+                  </Button>
+                  <Link
+                    href={`/orgs/${username}/scores`}
+                    color="warning"
+                    className="text-sm underline underline-offset-2"
+                    isExternal={false}
+                  >
+                    See required information
+                  </Link>
+                </div>
+              </>
+            }
+            hideIcon
+            className="w-full"
+          />
+        </div>
+      )}
+
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
         <div className="flex flex-col md:flex-row justify-between gap-4">
           {/* Contact Section */}
