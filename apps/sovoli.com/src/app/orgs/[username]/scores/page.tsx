@@ -34,7 +34,6 @@ export default async function ScoresPage({
       <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
         <span className="text-sm text-default-500">Need help?</span>
         <WhatsAppLink
-          phoneNumber="+5926082743"
           message={`Hello, I'd help with the scoring for ${org.name}.`}
           color="success"
         >

@@ -6,6 +6,10 @@ export const config = {
   description:
     "Sovoli helps parents in Guyana discover, compare, and apply to private schools — all in one place. Each school has a verified profile, digital readiness score, and clear application options. We’re starting in Guyana with plans to expand soon.",
   url: "https://sovoli.com",
+  contact: {
+    whatsapp: "+5926082743",
+    email: "info@sovoli.com",
+  },
   images: [
     {
       url: "/images/og.webp",

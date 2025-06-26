@@ -19,6 +19,7 @@ import type { RuleKey } from "../rules";
 import { pluralize } from "~/utils/pluralize";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 
 export interface RulesAttentionSummaryProps {
   rulesScore: RuleScoreMap;
@@ -50,10 +51,6 @@ export function RulesAttentionSummary({
     .filter((item): item is NonNullable<typeof item> => item !== null);
 
   const incompleteRulesCount = incompleteRules.length;
-  const incompleteCoveredByPlanRules = incompleteRules.filter(
-    ({ ruleMetadata }) => ruleMetadata.includedInPlan.length > 0,
-  );
-  const incompleteCoveredByPlanRulesCount = incompleteCoveredByPlanRules.length;
 
   const totalScoreBoost = incompleteRules
     .filter(({ ruleMetadata }) => ruleMetadata.includedInPlan.length > 0)
@@ -168,6 +165,8 @@ export function RulesAttentionSummary({
 
             <div className="flex flex-col items-center gap-3 mt-3">
               <Button
+                as={WhatsAppLink}
+                message={`Hello, I'm interested in submitting missing info for ${orgUsername}`}
                 size="sm"
                 variant="light"
                 className="text-default-600 underline underline-offset-4"
