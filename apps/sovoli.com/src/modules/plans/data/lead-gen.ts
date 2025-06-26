@@ -50,7 +50,7 @@ export const leadGenPlan: PlanDefinition = {
       pitch:
         "If you don’t have registration documents, we’ll assist you with the process through the proper local channels so you can still get verified.",
       ctaLabel: "Register School",
-      covers: ["verified"],
+      covers: ["isVerified"],
       optional: {
         pricing: {
           GYD: 20000,
