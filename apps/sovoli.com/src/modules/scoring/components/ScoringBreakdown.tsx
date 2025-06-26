@@ -60,6 +60,7 @@ export function ScoringBreakdown({
       <RulesAttentionSummary
         rulesScore={rulesThatNeedAttention}
         ruleSet={ruleSet}
+        orgUsername={orgInstance.org.username}
       />
       <Card>
         <CardHeader className="pb-0">

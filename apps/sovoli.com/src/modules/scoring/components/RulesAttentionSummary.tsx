@@ -11,6 +11,7 @@ import {
   ClipboardListIcon,
   ShieldCheckIcon,
   AlertTriangleIcon,
+  RocketIcon,
 } from "lucide-react";
 
 import type { RuleScoreMap, RuleSet } from "../types";
@@ -22,11 +23,13 @@ import { Tooltip } from "@sovoli/ui/components/tooltip";
 export interface RulesAttentionSummaryProps {
   rulesScore: RuleScoreMap;
   ruleSet: RuleSet;
+  orgUsername: string;
 }
 
 export function RulesAttentionSummary({
   rulesScore,
   ruleSet,
+  orgUsername,
 }: RulesAttentionSummaryProps) {
   const [showDetails, setShowDetails] = useState(false);
 
@@ -125,7 +128,9 @@ export function RulesAttentionSummary({
                       <div className="flex items-center gap-2">
                         {ruleMetadata.includedInPlan.length > 0 && (
                           <Tooltip content="Sovoli can help you with this.">
-                            <WrenchIcon className="w-3.5 h-3.5 text-warning-600" />
+                            <div className="p-1 bg-secondary-100 rounded-full shadow-sm border border-secondary-300">
+                              <WrenchIcon className="w-3.5 h-3.5 text-secondary-700" />
+                            </div>
                           </Tooltip>
                         )}
                         <span className="text-xs text-warning-600 font-semibold">
@@ -173,26 +178,33 @@ export function RulesAttentionSummary({
               {incompleteRules.some(
                 ({ ruleMetadata }) => ruleMetadata.includedInPlan.length > 0,
               ) && (
-                <div className="flex flex-col items-center gap-2 pt-2 border-t border-default-200 w-full">
-                  <div className="text-sm font-medium text-warning-600 flex items-center gap-1">
-                    <WrenchIcon className="text-warning-600" />
-                    Total score boost: +{totalScoreBoost}
+                <div className="flex flex-col items-center gap-3 pt-4 border-t border-default-200 w-full">
+                  <div className="flex items-center gap-2 text-sm font-medium text-secondary-600">
+                    <div className="p-1 bg-secondary-100 rounded-full shadow-sm border border-secondary-300">
+                      <WrenchIcon className="w-4 h-4 text-secondary-700" />
+                    </div>
+                    Total score boost:{" "}
+                    <span className="font-bold">+{totalScoreBoost}</span>
                   </div>
+
                   <Button
                     size="sm"
                     variant="shadow"
-                    color="warning"
+                    color="secondary"
                     as={Link}
-                    href="/pricing"
+                    href={`/pricing?org=${orgUsername}`}
+                    className="rounded-md px-4 py-1.5 font-semibold text-sm"
+                    endContent={<RocketIcon className="w-4 h-4" />}
                   >
-                    View Pricing
+                    View Growth Plan
                   </Button>
 
-                  <p className="text-xs text-default-500 text-center flex gap-1">
-                    Don't have these {incompleteCoveredByPlanRulesCount}{" "}
-                    {pluralize(incompleteCoveredByPlanRulesCount, "item")}? We
-                    can help with these items if your school doesn't have them
-                    yet.
+                  <p className="text-xs text-default-500 text-center leading-snug px-4">
+                    Missing items are costing you students.
+                    <br />
+                    <span className="text-secondary-500 font-medium">
+                      We'll build them for you — and get parents to your school.
+                    </span>
                   </p>
                 </div>
               )}

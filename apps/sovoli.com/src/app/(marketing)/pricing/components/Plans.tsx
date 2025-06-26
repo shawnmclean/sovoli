@@ -2,13 +2,13 @@
 "use client";
 
 import React, { useState } from "react";
-import type { CategoryRuleSet } from "~/modules/scoring/types";
+import type { RuleSet } from "~/modules/scoring/types";
 import type { PlanDefinition } from "~/modules/plans/types";
 import { PlanCard } from "./PlanCard";
 
 interface PlansProps {
   plans: PlanDefinition[];
-  ruleSet: CategoryRuleSet;
+  ruleSet: RuleSet;
 }
 
 export function Plans({ plans, ruleSet: _ruleSet }: PlansProps) {
