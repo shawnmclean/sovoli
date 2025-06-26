@@ -132,6 +132,8 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Enter or upload current fee structure"],
       requirements: ["Fee amount or tier information"],
       effort: "low",
+      priority: "high",
+      priorityReason: "Parents really want this.",
       includedInPlan: [],
     },
     hasTeachers: {

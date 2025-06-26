@@ -62,6 +62,7 @@ export interface RuleMetadata {
   requirements: string[]; // What must be submitted or configured to satisfy the rule
   effort: "low" | "medium" | "high";
   priority?: "low" | "medium" | "high";
+  priorityReason?: string;
   learnMoreUrl?: string;
 
   // Sovoli package linkage

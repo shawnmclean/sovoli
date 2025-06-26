@@ -10,6 +10,7 @@ import {
   WrenchIcon,
   ClipboardListIcon,
   ShieldCheckIcon,
+  AlertTriangleIcon,
 } from "lucide-react";
 
 import type { RuleScoreMap, RuleSet } from "../types";
@@ -33,12 +34,14 @@ export function RulesAttentionSummary({
 
   const incompleteRules = Object.entries(rulesScore)
     .map(([ruleKey]) => {
-      const ruleMetadata = ruleSet.ruleMetadata[ruleKey as RuleKey];
+      const typedRuleKey = ruleKey as RuleKey;
+      const ruleMetadata = ruleSet.ruleMetadata[typedRuleKey];
       if (!ruleMetadata) return null;
 
       return {
-        ruleKey: ruleKey as RuleKey,
+        ruleKey: typedRuleKey,
         ruleMetadata,
+        score: rulesScore[typedRuleKey]?.maxScore ?? 0,
       };
     })
     .filter((item): item is NonNullable<typeof item> => item !== null);
@@ -49,22 +52,9 @@ export function RulesAttentionSummary({
   );
   const incompleteCoveredByPlanRulesCount = incompleteCoveredByPlanRules.length;
 
-  const groupedRequirements = incompleteRules.map(
-    ({ ruleKey, ruleMetadata }) => {
-      const scoredRule = rulesScore[ruleKey];
-      return {
-        ruleKey,
-        ruleName: ruleMetadata.label,
-        requirements: ruleMetadata.requirements,
-        isCoveredByPlan: ruleMetadata.includedInPlan.length > 0,
-        score: scoredRule?.maxScore ?? 0,
-      };
-    },
-  );
-
-  const totalScoreBoost = groupedRequirements
-    .filter((r) => r.isCoveredByPlan)
-    .reduce((sum, r) => sum + r.score, 0);
+  const totalScoreBoost = incompleteRules
+    .filter(({ ruleMetadata }) => ruleMetadata.includedInPlan.length > 0)
+    .reduce((sum, { score }) => sum + score, 0);
 
   return (
     <div className="space-y-3">
@@ -117,20 +107,23 @@ export function RulesAttentionSummary({
         {showDetails && (
           <div className="mt-4">
             <ul className="space-y-4">
-              {groupedRequirements.map(
-                (
-                  { ruleName, requirements, isCoveredByPlan, score },
-                  ruleIdx,
-                ) => (
+              {incompleteRules.map(
+                ({ ruleKey: _ruleKey, ruleMetadata, score }, ruleIdx) => (
                   <li
                     key={ruleIdx}
-                    className="pb-3 border-b border-default-200"
+                    className={`pb-3 border-b border-default-200 ${
+                      ruleMetadata.priority === "high"
+                        ? "bg-warning-50 border-warning-200 rounded-lg p-3 -mx-3"
+                        : ""
+                    }`}
                   >
                     <div className="flex items-center justify-between text-sm font-medium text-default-900">
-                      <span>{ruleName}</span>
+                      <div className="flex items-center gap-2">
+                        {ruleMetadata.label}
+                      </div>
 
                       <div className="flex items-center gap-2">
-                        {isCoveredByPlan && (
+                        {ruleMetadata.includedInPlan.length > 0 && (
                           <Tooltip content="Sovoli can help you with this.">
                             <WrenchIcon className="w-3.5 h-3.5 text-warning-600" />
                           </Tooltip>
@@ -142,7 +135,7 @@ export function RulesAttentionSummary({
                     </div>
 
                     <ul className="mt-1 space-y-1">
-                      {requirements.map((requirement, reqIdx) => (
+                      {ruleMetadata.requirements.map((requirement, reqIdx) => (
                         <li
                           key={reqIdx}
                           className="text-sm text-default-700 leading-snug"
@@ -151,6 +144,18 @@ export function RulesAttentionSummary({
                         </li>
                       ))}
                     </ul>
+
+                    {ruleMetadata.priority === "high" && (
+                      <div className="mt-2 p-2 bg-warning-100 border border-warning-200 rounded-md">
+                        <p className="text-xs text-warning-800 font-medium flex items-center gap-1">
+                          <AlertTriangleIcon className="w-3 h-3" />
+                          Priority
+                        </p>
+                        <p className="text-xs text-warning-700 mt-1">
+                          {ruleMetadata.priorityReason}
+                        </p>
+                      </div>
+                    )}
                   </li>
                 ),
               )}
@@ -165,7 +170,9 @@ export function RulesAttentionSummary({
                 Submit Missing Info
               </Button>
 
-              {groupedRequirements.some((r) => r.isCoveredByPlan) && (
+              {incompleteRules.some(
+                ({ ruleMetadata }) => ruleMetadata.includedInPlan.length > 0,
+              ) && (
                 <div className="flex flex-col items-center gap-2 pt-2 border-t border-default-200 w-full">
                   <div className="text-sm font-medium text-warning-600 flex items-center gap-1">
                     <WrenchIcon className="text-warning-600" />
@@ -193,7 +200,7 @@ export function RulesAttentionSummary({
           </div>
         )}
 
-        {showDetails && groupedRequirements.length > 5 && (
+        {showDetails && incompleteRules.length > 5 && (
           <div className="flex justify-between items-center mt-3">
             <Button
               size="sm"
