@@ -15,7 +15,6 @@ import {
   CheckCircleIcon,
   EllipsisVerticalIcon,
   AlertCircleIcon,
-  NotebookPenIcon,
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
