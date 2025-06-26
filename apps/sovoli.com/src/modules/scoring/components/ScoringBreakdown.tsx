@@ -12,13 +12,12 @@ import {
   HelpCircleIcon,
   AlertTriangleIcon,
 } from "lucide-react";
-import type { RuleSet, RuleScoreMap, ScoredRule } from "../types";
+import type { RuleSet } from "../types";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Chip } from "@sovoli/ui/components/chip";
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
-import type { RuleKey } from "../rules";
+
 import type { OrgInstance } from "~/modules/organisations/types";
-import { RulesAttentionSummary } from "./RulesAttentionSummary";
 
 export interface ScoringBreakdownProps {
   orgInstance: OrgInstance;
@@ -39,29 +38,8 @@ export function ScoringBreakdown({
   const percentage =
     maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
 
-  // Extract rules that need attention (incomplete rules)
-  const rulesThatNeedAttention: RuleScoreMap = Object.fromEntries(
-    ruleSet.groups
-      .flatMap((group) => group.rules)
-      .map((ruleKey) => {
-        const scoredRule = ruleScores[ruleKey];
-        const isIncomplete =
-          scoredRule &&
-          scoredRule.maxScore > 0 &&
-          scoredRule.score !== scoredRule.maxScore;
-
-        return isIncomplete ? [ruleKey, scoredRule] : null;
-      })
-      .filter((entry): entry is [RuleKey, ScoredRule] => entry !== null),
-  );
-
   return (
     <div className="space-y-4 p-4">
-      <RulesAttentionSummary
-        rulesScore={rulesThatNeedAttention}
-        ruleSet={ruleSet}
-        orgUsername={orgInstance.org.username}
-      />
       <Card>
         <CardHeader className="pb-0">
           <h1 className="text-xl font-bold">Digital Readiness Score</h1>

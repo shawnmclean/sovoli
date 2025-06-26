@@ -8,6 +8,9 @@ import { SchoolHeader } from "./components/SchoolHeader";
 import { SchoolNavigation } from "./components/SchoolNavigation";
 import { Link } from "@sovoli/ui/components/link";
 import { countryCodeToName } from "~/utils/countryUtils";
+import { RulesAttentionSummary } from "~/modules/scoring/components/RulesAttentionSummary";
+import { categoryRuleSets } from "~/modules/scoring/ruleSets";
+import type { ScoredRule } from "~/modules/scoring/types";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -51,6 +54,31 @@ export default async function Layout({ children, params }: Props) {
 
   const primaryLocation = orgInstance.org.locations[0];
 
+  // Get the rule set for the org's category
+  const category = orgInstance.org.categories[0] ?? "private-school";
+  const ruleSet = categoryRuleSets[category];
+
+  // Extract rules that need attention (incomplete rules)
+  const rulesThatNeedAttention = orgInstance.scoringModule
+    ? Object.fromEntries(
+        ruleSet?.groups
+          .flatMap((group) => group.rules)
+          .reduce<[string, ScoredRule][]>((acc, ruleKey) => {
+            const scoredRule =
+              orgInstance.scoringModule?.result.ruleScores[ruleKey];
+            const isIncomplete =
+              scoredRule &&
+              scoredRule.maxScore > 0 &&
+              scoredRule.score !== scoredRule.maxScore;
+
+            if (isIncomplete) {
+              acc.push([ruleKey, scoredRule]);
+            }
+            return acc;
+          }, []) ?? [],
+      )
+    : {};
+
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-grow">
@@ -68,6 +96,16 @@ export default async function Layout({ children, params }: Props) {
         <SchoolHeader orgInstance={orgInstance} />
 
         <SchoolNavigation orgInstance={orgInstance} />
+
+        {ruleSet && orgInstance.scoringModule && (
+          <div className="w-full md:w-2/3 px-4">
+            <RulesAttentionSummary
+              rulesScore={rulesThatNeedAttention}
+              ruleSet={ruleSet}
+              orgUsername={orgInstance.org.username}
+            />
+          </div>
+        )}
 
         <div className="w-full md:w-2/3">{children}</div>
       </main>
