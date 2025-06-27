@@ -18,7 +18,6 @@ import type { RuleScoreMap, RuleSet } from "../types";
 import type { RuleKey } from "../rules";
 import { pluralize } from "~/utils/pluralize";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
@@ -158,13 +157,6 @@ export function RulesAttentionSummary({
                             </div>
 
                             <div className="flex items-center gap-2">
-                              {ruleMetadata.includedInPlan.length > 0 && (
-                                <Tooltip content="Sovoli can help you with this.">
-                                  <div className="p-1 bg-secondary-100 rounded-full shadow-sm border border-secondary-300">
-                                    <WrenchIcon className="w-3.5 h-3.5 text-secondary-700" />
-                                  </div>
-                                </Tooltip>
-                              )}
                               <span className="text-xs text-warning-600 font-semibold">
                                 +{score}
                               </span>
@@ -217,6 +209,37 @@ export function RulesAttentionSummary({
                               ),
                             )}
                           </ul>
+
+                          {ruleMetadata.includedInPlan.length > 0 && (
+                            <div className="mt-2">
+                              <Link href={`/pricing?org=${orgUsername}`}>
+                                <Chip
+                                  size="sm"
+                                  variant="light"
+                                  color="secondary"
+                                  className="text-xs font-medium gap-1"
+                                  startContent={
+                                    <WrenchIcon className="w-3 h-3 text-secondary-700" />
+                                  }
+                                >
+                                  {(() => {
+                                    const messages = [
+                                      "Need help setting this up? We got you.",
+                                      "No time? Sovoli will handle it.",
+                                      "Not sure where to start? We’ll guide you.",
+                                      "Don't have this? We can help!",
+                                      "Wah dis? Mek wi help yuh!",
+                                    ];
+                                    return messages[
+                                      Math.floor(
+                                        Math.random() * messages.length,
+                                      )
+                                    ];
+                                  })()}
+                                </Chip>
+                              </Link>
+                            </div>
+                          )}
 
                           {ruleMetadata.priority === "high" && (
                             <div className="mt-2 p-2 bg-warning-100 border border-warning-200 rounded-md">
@@ -273,10 +296,11 @@ export function RulesAttentionSummary({
                   </Button>
 
                   <p className="text-xs text-default-500 text-center leading-snug px-4">
-                    Missing items are costing you students.
+                    These missing pieces are holding you back.
                     <br />
                     <span className="text-secondary-500 font-medium">
-                      We'll build them for you — and get parents to your school.
+                      Let us build them — and bring families directly to your
+                      school.
                     </span>
                   </p>
                 </div>
