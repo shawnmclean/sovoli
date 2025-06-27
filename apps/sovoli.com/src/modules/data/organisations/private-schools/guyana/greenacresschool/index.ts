@@ -1,5 +1,6 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
+import { GREEN_ACRES_SCHOOL_ACADEMIC } from "./academic";
 
 export const GREEN_ACRES_SCHOOL_ORG: OrgInstance = {
   org: {
@@ -29,7 +30,7 @@ export const GREEN_ACRES_SCHOOL_ORG: OrgInstance = {
     ],
   },
   websiteModule: null,
-  academicModule: null,
+  academicModule: GREEN_ACRES_SCHOOL_ACADEMIC,
   offeringModule: null,
   workforceModule: null,
   scoringModule: null,

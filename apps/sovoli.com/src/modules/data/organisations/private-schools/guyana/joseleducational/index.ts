@@ -1,5 +1,6 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
+import { JOSEL_EDUCATIONAL_ACADEMIC } from "./academic";
 
 export const JOSEL_EDUCATIONAL_ORG: OrgInstance = {
   org: {
@@ -24,7 +25,7 @@ export const JOSEL_EDUCATIONAL_ORG: OrgInstance = {
     ],
   },
   websiteModule: null,
-  academicModule: null,
+  academicModule: JOSEL_EDUCATIONAL_ACADEMIC,
   offeringModule: null,
   workforceModule: null,
   scoringModule: null,
