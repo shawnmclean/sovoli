@@ -11,11 +11,13 @@ export const MARIAN_ACADEMY_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "Carifesta Avenue, Thomas Lands",
+          line1: "Carifesta Avenue",
+          line2: "Thomas Lands",
           city: "Georgetown",
           countryCode: "GY",
         },
         contacts: [
+          { type: "phone", value: "+592-226-9044", isPublic: true },
           { type: "phone", value: "+592-226-9045", isPublic: true },
           { type: "email", value: "info@marianacademy.edu.gy", isPublic: true },
         ],

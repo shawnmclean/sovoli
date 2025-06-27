@@ -37,7 +37,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
               type: "whatsapp",
               value: "+592 627-1915",
               label: "Joel",
-              isPublic: false,
+              isPublic: true,
             },
           ],
         },

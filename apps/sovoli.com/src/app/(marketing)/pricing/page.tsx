@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "Choose the plan that fits your needs and watch your school's visibility soar",
 };
 
+
 export default async function PricingPage({
   searchParams,
 }: {

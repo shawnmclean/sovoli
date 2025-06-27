@@ -10,12 +10,15 @@ export const JOSEL_EDUCATIONAL_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "120 Laluni and Peter Rose Street",
+          line1: "120 Peter Rose Street",
           line2: "Queenstown",
-          city: "georgetown",
+          city: "Georgetown",
           countryCode: "GY",
         },
-        contacts: [{ type: "phone", value: "+592-226-7868", isPublic: true }],
+        contacts: [
+          { type: "phone", value: "+592-226-7835", isPublic: true },
+          { type: "email", value: "joseleducation@yahoo.com", isPublic: true },
+        ],
         isPrimary: true,
       },
     ],
