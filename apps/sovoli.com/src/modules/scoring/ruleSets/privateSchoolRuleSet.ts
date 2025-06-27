@@ -71,7 +71,7 @@ export const privateSchoolRuleSet: RuleSet = {
         "School name and contact info",
         {
           label: "Proof of affiliation",
-          description: "One of the following:",
+          description: "Submit one of the following:",
           items: [
             "A message from school's phone or WhatsApp",
             "A photo of school ID or badge",
@@ -87,50 +87,93 @@ export const privateSchoolRuleSet: RuleSet = {
       key: "isVerified",
       label: "Verified Organization",
       description:
-        "Indicates the school is officially recognized by the government.",
-      reasons: ["Build trust with parents", "Qualify for grants and programs"],
-      actions: ["Upload government-issued registration PDF or image"],
-      requirements: ["Valid business registration document"],
+        "This school is officially registered with a government or recognized body.",
+      reasons: [
+        "Builds trust with parents and partners.",
+        "Qualifies your school for listings and programs.",
+      ],
+      actions: ["Upload a valid registration document."],
+      requirements: [
+        {
+          label: "Proof of registration",
+          description: "Submit one of the following:",
+          items: [
+            "Ministry of Education certificate",
+            "Business registration document",
+            "Letter from an official authority",
+          ],
+        },
+      ],
+
       effort: "medium",
       includedInPlan: ["lead-gen"],
     },
     hasLogo: {
       key: "hasLogo",
-      label: "Logo Available",
-      description: "Shows the school has a logo.",
-      reasons: ["Improves brand recognition", "Boosts visual trust online"],
-      actions: ["Upload a high-quality school logo"],
-      requirements: ["JPEG/PNG format", "Min. 300x300 resolution"],
+      label: "School Logo",
+      description:
+        "The school has a visible logo for branding and recognition.",
+      reasons: [
+        "Easier for parents to recognize your school.",
+        "Boosts credibility with consistent branding.",
+      ],
+      actions: ["Upload a clean, recognizable logo."],
+      requirements: [
+        {
+          label: "Logo file",
+          description: "Use a clean image with minimum size:",
+          items: ["JPEG or PNG format", "At least 300×300 pixels"],
+        },
+      ],
       effort: "low",
       includedInPlan: ["lead-gen"],
     },
     hasWebsite: {
       key: "hasWebsite",
-      label: "Website Available",
-      description: "School has a general website.",
-      reasons: ["Improves online visibility", "Central hub for information"],
-      actions: ["Link your existing website or request one"],
-      requirements: ["Live URL"],
+      label: "School Website",
+      description: "The school has a working website.",
+      reasons: [
+        "Improves search visibility",
+        "Provides a central place for parents to learn more",
+      ],
+      actions: ["Link your existing website", "Or request a Sovoli-built site"],
+      requirements: ["Working website URL"],
       effort: "medium",
       includedInPlan: ["lead-gen"],
     },
     hasWebsiteEduDomain: {
       key: "hasWebsiteEduDomain",
-      label: ".edu Website Domain",
-      description: "School uses a domain ending in .edu.",
-      reasons: ["Signals legitimacy", "Enables advanced email setups"],
-      actions: ["Switch or purchase .edu domain"],
-      requirements: [".edu.gy domain or equivalent"],
+      label: "Education Domain (.edu.gy)",
+      description:
+        "School uses a government-approved domain (e.g. .edu.gy) for recognition and credibility.",
+      reasons: [
+        "Signals official status",
+        "Improves search ranking",
+        "Banks and other institutions will trust your school",
+      ],
+      actions: [
+        "Link your existing .edu.gy website",
+        "Or request a Sovoli-built site",
+      ],
+      requirements: ["Website URL ending in .edu.gy"],
       effort: "high",
       includedInPlan: ["lead-gen"],
     },
     hasEmailEduDomain: {
       key: "hasEmailEduDomain",
-      label: ".edu Email Address",
-      description: "School uses a domain-matching email.",
-      reasons: ["Looks professional", "Prevents spam filtering"],
-      actions: ["Set up email with your domain"],
-      requirements: ["Working email like info@school.edu.gy"],
+      label: "Education Email Address",
+      description:
+        "School has a working email tied to its education domain (e.g. .edu.gy).",
+      reasons: [
+        "Looks professional to parents",
+        "Reduces chance of emails being marked as spam",
+        "Banks and other institutions will trust your school",
+      ],
+      actions: [
+        "Use an email ending in .edu.gy",
+        "Or request help setting one up",
+      ],
+      requirements: ["Email like info@school.edu.gy"],
       effort: "medium",
       includedInPlan: ["lead-gen"],
     },
