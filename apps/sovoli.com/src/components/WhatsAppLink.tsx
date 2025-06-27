@@ -16,30 +16,30 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
     {
       phoneNumber = config.contact.whatsapp,
       message,
-      fallback = true,
+      // fallback = true,
       ...rest
     },
     ref,
   ) => {
     const cleanNumber = phoneNumber.replace(/\D/g, "");
     const encodedMessage = message ? encodeURIComponent(message) : "";
-    const appUrl = `whatsapp://send?phone=${cleanNumber}${message ? `&text=${encodedMessage}` : ""}`;
+    // const appUrl = `whatsapp://send?phone=${cleanNumber}${message ? `&text=${encodedMessage}` : ""}`;
     const webUrl = `https://wa.me/${cleanNumber}${message ? `?text=${encodedMessage}` : ""}`;
 
-    const onPress = () => {
-      window.location.href = appUrl;
+    // const onPress = () => {
+    //   window.location.href = appUrl;
 
-      if (fallback) {
-        setTimeout(() => {
-          window.open(webUrl, "_blank");
-        }, 1000);
-      }
-    };
+    //   if (fallback) {
+    //     setTimeout(() => {
+    //       window.open(webUrl, "_blank");
+    //     }, 1000);
+    //   }
+    // };
 
     const { Component, children, getLinkProps } = useLink({
       ...rest,
-      href: appUrl,
-      onPress: onPress,
+      href: webUrl,
+      // onPress: onPress,
       ref,
     });
 
