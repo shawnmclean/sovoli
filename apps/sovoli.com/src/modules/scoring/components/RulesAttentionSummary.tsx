@@ -20,6 +20,7 @@ import { pluralize } from "~/utils/pluralize";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
 export interface RulesAttentionSummaryProps {
   rulesScore: RuleScoreMap;
@@ -46,6 +47,22 @@ export function RulesAttentionSummary({
         ruleKey: typedRuleKey,
         ruleMetadata,
         score: rulesScore[typedRuleKey]?.maxScore ?? 0,
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => item !== null);
+
+  // Group incomplete rules by their groups
+  const groupedIncompleteRules = ruleSet.groups
+    .map((group) => {
+      const groupRules = incompleteRules.filter((rule) =>
+        group.rules.includes(rule.ruleKey),
+      );
+
+      if (groupRules.length === 0) return null;
+
+      return {
+        group,
+        rules: groupRules,
       };
     })
     .filter((item): item is NonNullable<typeof item> => item !== null);
@@ -106,92 +123,119 @@ export function RulesAttentionSummary({
 
         {showDetails && (
           <div className="mt-4 w-full">
-            <ul className="space-y-4">
-              {incompleteRules.map(
-                ({ ruleKey: _ruleKey, ruleMetadata, score }, ruleIdx) => (
-                  <li
-                    key={ruleIdx}
-                    className={`pb-3 border-b border-default-200 ${
-                      ruleMetadata.priority === "high"
-                        ? "bg-warning-50 border-warning-200 rounded-lg p-3 -mx-3"
-                        : ""
-                    }`}
-                  >
-                    <div className="flex items-center justify-between text-sm font-medium text-default-900">
-                      <div className="flex items-center gap-2">
-                        {ruleMetadata.label}
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        {ruleMetadata.includedInPlan.length > 0 && (
-                          <Tooltip content="Sovoli can help you with this.">
-                            <div className="p-1 bg-secondary-100 rounded-full shadow-sm border border-secondary-300">
-                              <WrenchIcon className="w-3.5 h-3.5 text-secondary-700" />
-                            </div>
-                          </Tooltip>
-                        )}
-                        <span className="text-xs text-warning-600 font-semibold">
-                          +{score}
-                        </span>
-                      </div>
+            <div className="space-y-6">
+              {groupedIncompleteRules.map(({ group, rules: groupRules }) => (
+                <div key={group.key} className="space-y-3">
+                  {/* Group Badge with Horizontal Line */}
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 h-px bg-default-200"></div>
+                    <div className="flex items-center gap-2 px-3 py-1 bg-default-50 border border-default-200 rounded-full">
+                      <OrgRuleGroupIcon
+                        groupKey={group.key}
+                        className="w-4 h-4 text-warning-600"
+                      />
+                      <span className="text-xs font-medium text-default-700">
+                        {group.label}
+                      </span>
                     </div>
+                    <div className="flex-1 h-px bg-default-200"></div>
+                  </div>
 
-                    <ul className="mt-1 space-y-1">
-                      {ruleMetadata.requirements.map((requirement, reqIdx) => (
+                  <ul className="space-y-4">
+                    {groupRules.map(
+                      ({ ruleKey: _ruleKey, ruleMetadata, score }, ruleIdx) => (
                         <li
-                          key={reqIdx}
-                          className="text-sm text-default-700 leading-snug"
+                          key={ruleIdx}
+                          className={`pb-3 border-b border-default-200 ${
+                            ruleMetadata.priority === "high"
+                              ? "bg-warning-50 border-warning-200 rounded-lg p-3 -mx-3"
+                              : ""
+                          }`}
                         >
-                          {typeof requirement === "string" ? (
-                            <div className="flex items-start gap-2">
-                              <span className="mt-0.5">✓</span>
-                              <span>{requirement}</span>
+                          <div className="flex items-center justify-between text-sm font-medium text-default-900">
+                            <div className="flex items-center gap-2">
+                              {ruleMetadata.label}
                             </div>
-                          ) : (
-                            <div className="space-y-1">
-                              <div className="flex items-start gap-2">
-                                <span className="mt-0.5">✓</span>
-                                <span className="font-medium">
-                                  {requirement.label}
-                                </span>
-                              </div>
-                              {requirement.description && (
-                                <div className="pl-6 text-xs italic">
-                                  {requirement.description}
-                                </div>
+
+                            <div className="flex items-center gap-2">
+                              {ruleMetadata.includedInPlan.length > 0 && (
+                                <Tooltip content="Sovoli can help you with this.">
+                                  <div className="p-1 bg-secondary-100 rounded-full shadow-sm border border-secondary-300">
+                                    <WrenchIcon className="w-3.5 h-3.5 text-secondary-700" />
+                                  </div>
+                                </Tooltip>
                               )}
-                              <ul className="pl-6 space-y-1">
-                                {requirement.items.map((item, itemIdx) => (
-                                  <li
-                                    key={itemIdx}
-                                    className="flex items-start gap-2"
-                                  >
-                                    <span className="text-xs mt-1">•</span>
-                                    <span>{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
+                              <span className="text-xs text-warning-600 font-semibold">
+                                +{score}
+                              </span>
+                            </div>
+                          </div>
+
+                          <ul className="mt-1 space-y-1">
+                            {ruleMetadata.requirements.map(
+                              (requirement, reqIdx) => (
+                                <li
+                                  key={reqIdx}
+                                  className="text-sm text-default-700 leading-snug"
+                                >
+                                  {typeof requirement === "string" ? (
+                                    <div className="flex items-start gap-2">
+                                      <span className="mt-0.5">✓</span>
+                                      <span>{requirement}</span>
+                                    </div>
+                                  ) : (
+                                    <div className="space-y-1">
+                                      <div className="flex items-start gap-2">
+                                        <span className="mt-0.5">✓</span>
+                                        <span className="font-medium">
+                                          {requirement.label}
+                                        </span>
+                                      </div>
+                                      {requirement.description && (
+                                        <div className="pl-6 text-xs italic">
+                                          {requirement.description}
+                                        </div>
+                                      )}
+                                      <ul className="pl-6 space-y-1">
+                                        {requirement.items.map(
+                                          (item, itemIdx) => (
+                                            <li
+                                              key={itemIdx}
+                                              className="flex items-start gap-2"
+                                            >
+                                              <span className="text-xs mt-1">
+                                                •
+                                              </span>
+                                              <span>{item}</span>
+                                            </li>
+                                          ),
+                                        )}
+                                      </ul>
+                                    </div>
+                                  )}
+                                </li>
+                              ),
+                            )}
+                          </ul>
+
+                          {ruleMetadata.priority === "high" && (
+                            <div className="mt-2 p-2 bg-warning-100 border border-warning-200 rounded-md">
+                              <p className="text-xs text-warning-800 font-medium flex items-center gap-1">
+                                <AlertTriangleIcon className="w-3 h-3" />
+                                Priority
+                              </p>
+                              <p className="text-xs text-warning-700 mt-1">
+                                {ruleMetadata.priorityReason}
+                              </p>
                             </div>
                           )}
                         </li>
-                      ))}
-                    </ul>
-
-                    {ruleMetadata.priority === "high" && (
-                      <div className="mt-2 p-2 bg-warning-100 border border-warning-200 rounded-md">
-                        <p className="text-xs text-warning-800 font-medium flex items-center gap-1">
-                          <AlertTriangleIcon className="w-3 h-3" />
-                          Priority
-                        </p>
-                        <p className="text-xs text-warning-700 mt-1">
-                          {ruleMetadata.priorityReason}
-                        </p>
-                      </div>
+                      ),
                     )}
-                  </li>
-                ),
-              )}
-            </ul>
+                  </ul>
+                </div>
+              ))}
+            </div>
 
             <div className="flex flex-col items-center gap-3 mt-3">
               <Button

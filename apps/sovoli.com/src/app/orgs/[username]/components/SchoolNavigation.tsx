@@ -38,6 +38,18 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
         href={`/orgs/${orgInstance.org.username}`}
       />
       <Tab
+        key={`/orgs/${orgInstance.org.username}/programs`}
+        title={
+          <div className="flex items-center space-x-2">
+            <span>Programs</span>
+            <Chip size="sm" variant="flat">
+              {orgInstance.academicModule?.programs.length ?? 0}
+            </Chip>
+          </div>
+        }
+        // href={`/orgs/${orgInstance.org.username}/programs`}
+      />
+      <Tab
         key={`/orgs/${orgInstance.org.username}/scores`}
         title={
           <div className="flex items-center space-x-2">
@@ -49,6 +61,7 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
         }
         href={`/orgs/${orgInstance.org.username}/scores`}
       />
+
       <Tab
         key={`/orgs/${orgInstance.org.username}/jobs`}
         title={
@@ -68,19 +81,6 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
         }
         // href={`/orgs/${orgInstance.org.username}/jobs`}
       />
-      <Tab
-        key={`/orgs/${orgInstance.org.username}/programs`}
-        title={
-          <div className="flex items-center space-x-2">
-            <span>Programs</span>
-            <Chip size="sm" variant="flat">
-              {orgInstance.academicModule?.programs.length ?? 0}
-            </Chip>
-          </div>
-        }
-        // href={`/orgs/${orgInstance.org.username}/programs`}
-      />
-
       <Tab
         key={`/orgs/${orgInstance.org.username}/logs`}
         title="Logs"

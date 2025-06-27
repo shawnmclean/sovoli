@@ -3,36 +3,43 @@ import type { RuleSet } from "../types";
 export const privateSchoolRuleSet: RuleSet = {
   groups: [
     {
-      key: "visibility",
-      label: "Visibility & Trust",
+      key: "safety",
+      label: "Safety & Legitimacy",
       weight: 2,
       rules: [
         "isClaimed",
         "isVerified",
         "hasLogo",
-        "hasWebsite",
         "hasWebsiteEduDomain",
         "hasEmailEduDomain",
         "hasGoogleProfile",
       ],
       description:
-        "Increase your school's credibility and discoverability with a verified profile, branded logo, and official domains.",
-    },
-    {
-      key: "transparency",
-      label: "Transparency",
-      weight: 2,
-      rules: ["hasFees", "hasTeachers", "hasAcademicPrograms"],
-      description:
-        "Publishing fee structures, staff, and academic programs builds parent trust and reduces inbound questions.",
+        "Signals that your school is recognized, official, and publicly trusted.",
     },
     {
       key: "communication",
-      label: "Communication & Parent Support",
-      weight: 1.5,
+      label: "Communication & Support",
+      weight: 2,
       rules: ["hasPhone", "hasEmail", "hasWhatsapp", "hasParentPortal"],
       description:
-        "Strong communication channels and parent portals improve engagement and reduce confusion.",
+        "Helps parents reach your school, ask questions, and stay informed.",
+    },
+    {
+      key: "digital",
+      label: "Online Presence & Tools",
+      weight: 1.5,
+      rules: ["hasWebsite", "hasParentPortal"],
+      description:
+        "Shows how prepared your school is to operate online and provide digital access for families.",
+    },
+    {
+      key: "transparency",
+      label: "Fees & Academic Info",
+      weight: 2,
+      rules: ["hasFees", "hasTeachers", "hasAcademicPrograms"],
+      description:
+        "Gives parents the details they need to compare schools and make informed decisions.",
     },
     {
       key: "enrollment",
@@ -40,15 +47,7 @@ export const privateSchoolRuleSet: RuleSet = {
       weight: 1.5,
       rules: ["enrollmentMethod"],
       description:
-        "A smooth enrollment experience makes it easier to attract and retain families. Add clear instructions and timelines.",
-    },
-    {
-      key: "systems",
-      label: "Digital Infrastructure",
-      weight: 1,
-      rules: [],
-      description:
-        "Shows your level of digital maturity across operations like student records, billing, and transport.",
+        "Clear enrollment steps make it easier for parents to join your school.",
     },
   ],
 
@@ -159,6 +158,16 @@ export const privateSchoolRuleSet: RuleSet = {
       effort: "high",
       includedInPlan: ["lead-gen"],
     },
+    hasEmail: {
+      key: "hasEmail",
+      label: "Email Contact",
+      description: "School can be contacted by email.",
+      reasons: ["Important for formal queries", "Documentation"],
+      actions: ["Enter a school email"],
+      requirements: ["Active email address"],
+      effort: "low",
+      includedInPlan: ["lead-gen"],
+    },
     hasEmailEduDomain: {
       key: "hasEmailEduDomain",
       label: "Education Email Address",
@@ -229,16 +238,6 @@ export const privateSchoolRuleSet: RuleSet = {
       requirements: ["Working local number"],
       effort: "low",
       includedInPlan: [],
-    },
-    hasEmail: {
-      key: "hasEmail",
-      label: "Email Contact",
-      description: "School can be contacted by email.",
-      reasons: ["Important for formal queries", "Documentation"],
-      actions: ["Enter a school email"],
-      requirements: ["Active email address"],
-      effort: "low",
-      includedInPlan: ["lead-gen"],
     },
     hasWhatsapp: {
       key: "hasWhatsapp",

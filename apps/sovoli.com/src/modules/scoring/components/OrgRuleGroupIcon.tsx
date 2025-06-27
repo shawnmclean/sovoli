@@ -1,19 +1,19 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  ShieldCheckIcon,
-  BarChartIcon,
-  MessageCircleIcon,
-  FileTextIcon,
-  ServerCogIcon,
-  InfoIcon,
+  ShieldCheckIcon, // 🛡️ Safety & Legitimacy
+  MessageCircleIcon, // 💬 Communication
+  GlobeIcon, // 🖥️ Digital Readiness
+  BarChartIcon, // 📊 Transparency
+  FileTextIcon, // 📄 Enrollment Experience
+  InfoIcon, // ℹ️ Fallback
 } from "lucide-react";
 
 export const groupIconMap: Record<string, LucideIcon> = {
-  visibility: ShieldCheckIcon,
-  transparency: BarChartIcon,
+  safety: ShieldCheckIcon,
   communication: MessageCircleIcon,
+  digital: GlobeIcon,
+  transparency: BarChartIcon,
   enrollment: FileTextIcon,
-  systems: ServerCogIcon,
 } as const;
 
 export interface OrgRuleGroupIconProps {

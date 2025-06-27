@@ -41,20 +41,24 @@ export function ScoringBreakdown({
   return (
     <div className="space-y-4 p-4">
       <Card>
-        <CardHeader className="pb-0">
-          <h1 className="text-xl font-bold">Digital Readiness Score</h1>
-        </CardHeader>
-        <CardBody>
-          <div className="flex justify-between items-center mb-2">
-            <p className="text-sm text-default-600">Overall Progress</p>
-            <p className="text-lg font-semibold">{percentage}%</p>
+        <CardHeader>
+          <div className="flex flex-col space-y-1">
+            <h1 className="text-xl font-bold">School Readiness Overview</h1>
+            <p className="text-sm text-default-600">
+              Based on Sovoli’s visibility, communication, and operational
+              benchmarks.
+            </p>
           </div>
-          <Progress value={percentage} className="mb-4" />
-          <div className="flex justify-between text-sm">
-            <span>
-              Score: {totalScore}/{maxScore}
-            </span>
+        </CardHeader>
+        <CardBody className="space-y-3">
+          <div className="flex justify-between text-sm text-default-600">
+            <span>Overall Progress</span>
             <span>{percentage}% Complete</span>
+          </div>
+          <Progress value={percentage} />
+          <div className="flex justify-between text-sm font-medium text-default-700">
+            <span>Points Earned: {totalScore}</span>
+            <span>Total Possible: {maxScore}</span>
           </div>
         </CardBody>
       </Card>
