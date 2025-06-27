@@ -55,11 +55,31 @@ export const privateSchoolRuleSet: RuleSet = {
   ruleMetadata: {
     isClaimed: {
       key: "isClaimed",
-      label: "Claimed Organization",
-      description: "Indicates the school has reached out.",
-      reasons: ["To ensure the information is accurate and approved."],
-      actions: ["Administration can contact us to claim the school."],
-      requirements: ["Name, email, and phone number."],
+      label: "Claimed Profile",
+      description:
+        "This school has confirmed its information and manages its page directly.",
+      reasons: [
+        "Take control of your school’s page on Sovoli.",
+        "Update contact info, fees, staff, and programs.",
+        "Show parents and partners you're active.",
+      ],
+
+      actions: ["Submit a claim request with verification."],
+
+      requirements: [
+        "Your full name and job title",
+        "School name and contact info",
+        {
+          label: "Proof of affiliation",
+          description: "One of the following:",
+          items: [
+            "A message from school's phone or WhatsApp",
+            "A photo of school ID or badge",
+            "A letter on school letterhead",
+            "An email from a school domain (e.g. @school.edu.gy)",
+          ],
+        },
+      ],
       effort: "low",
       includedInPlan: [],
     },

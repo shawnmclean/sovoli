@@ -142,7 +142,37 @@ export function RulesAttentionSummary({
                           key={reqIdx}
                           className="text-sm text-default-700 leading-snug"
                         >
-                          • {requirement}
+                          {typeof requirement === "string" ? (
+                            <div className="flex items-start gap-2">
+                              <span className="mt-0.5">✓</span>
+                              <span>{requirement}</span>
+                            </div>
+                          ) : (
+                            <div className="space-y-1">
+                              <div className="flex items-start gap-2">
+                                <span className="mt-0.5">✓</span>
+                                <span className="font-medium">
+                                  {requirement.label}
+                                </span>
+                              </div>
+                              {requirement.description && (
+                                <div className="pl-6 text-xs italic">
+                                  {requirement.description}
+                                </div>
+                              )}
+                              <ul className="pl-6 space-y-1">
+                                {requirement.items.map((item, itemIdx) => (
+                                  <li
+                                    key={itemIdx}
+                                    className="flex items-start gap-2"
+                                  >
+                                    <span className="text-xs mt-1">•</span>
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </li>
                       ))}
                     </ul>

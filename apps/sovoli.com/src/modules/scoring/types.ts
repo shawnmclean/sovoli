@@ -59,7 +59,14 @@ export interface RuleMetadata {
   // Operational logic
   reasons: string[]; // Why this rule matters (for trust, operations, etc.)
   actions: string[]; // What the admin needs to do
-  requirements: string[]; // What must be submitted or configured to satisfy the rule
+  requirements: (
+    | string
+    | {
+        label: string;
+        description?: string;
+        items: string[];
+      }
+  )[];
   effort: "low" | "medium" | "high";
   priority?: "low" | "medium" | "high";
   priorityReason?: string;

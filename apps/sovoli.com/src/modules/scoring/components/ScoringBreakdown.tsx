@@ -234,7 +234,7 @@ export function ScoringBreakdown({
                                   {/* Requirements Section */}
                                   <Alert
                                     variant="solid"
-                                    color="warning"
+                                    color="secondary"
                                     hideIcon
                                     title={
                                       <div className="flex items-center gap-2">
@@ -245,14 +245,49 @@ export function ScoringBreakdown({
                                       </div>
                                     }
                                     description={
-                                      <ul className="space-y-2 mt-2">
+                                      <ul className="mt-2 space-y-3 text-sm">
                                         {ruleMetadata.requirements.map(
-                                          (requirement, idx) => (
-                                            <li
-                                              key={idx}
-                                              className="flex items-start gap-2 text-sm"
-                                            >
-                                              ✓ {requirement}
+                                          (req, idx) => (
+                                            <li key={idx} className="space-y-2">
+                                              {typeof req === "string" ? (
+                                                <div className="flex items-start gap-2">
+                                                  <span className="mt-0.5">
+                                                    ✓
+                                                  </span>
+                                                  <span>{req}</span>
+                                                </div>
+                                              ) : (
+                                                <div className="space-y-2">
+                                                  <div className="flex items-start gap-2">
+                                                    <span className="mt-0.5">
+                                                      ✓
+                                                    </span>
+                                                    <span className="font-medium">
+                                                      {req.label}
+                                                    </span>
+                                                  </div>
+                                                  {req.description && (
+                                                    <div className="pl-6 text-xs italic">
+                                                      {req.description}
+                                                    </div>
+                                                  )}
+                                                  <ul className="pl-6 space-y-1">
+                                                    {req.items.map(
+                                                      (item, itemIdx) => (
+                                                        <li
+                                                          key={itemIdx}
+                                                          className="flex items-start gap-2"
+                                                        >
+                                                          <span className="text-xs mt-1">
+                                                            •
+                                                          </span>
+                                                          <span>{item}</span>
+                                                        </li>
+                                                      ),
+                                                    )}
+                                                  </ul>
+                                                </div>
+                                              )}
                                             </li>
                                           ),
                                         )}
@@ -263,7 +298,7 @@ export function ScoringBreakdown({
                                   {/* Why This Matters Section */}
                                   <Alert
                                     variant="solid"
-                                    color="secondary"
+                                    color="warning"
                                     hideIcon
                                     title={
                                       <div className="flex items-center gap-2">
