@@ -7,11 +7,10 @@ export interface ScoringModule {
 }
 
 export type RuleScoreMap = Partial<Record<RuleKey, ScoredRule>>;
-export type CategoryScoreMap = Partial<Record<OrgCategoryKeys, ScoreSummary>>;
+
 export interface OrgScoringResult {
   ruleScores: RuleScoreMap;
   scoreSummary: ScoreSummary;
-  categorySummaryScores: CategoryScoreMap;
 }
 
 export interface ScoredRule {
@@ -63,6 +62,7 @@ export interface RuleMetadata {
   requirements: string[]; // What must be submitted or configured to satisfy the rule
   effort: "low" | "medium" | "high";
   priority?: "low" | "medium" | "high";
+  priorityReason?: string;
   learnMoreUrl?: string;
 
   // Sovoli package linkage

@@ -7,6 +7,7 @@ export const privateSchoolRuleSet: RuleSet = {
       label: "Visibility & Trust",
       weight: 2,
       rules: [
+        "isClaimed",
         "isVerified",
         "hasLogo",
         "hasWebsite",
@@ -52,6 +53,16 @@ export const privateSchoolRuleSet: RuleSet = {
   ],
 
   ruleMetadata: {
+    isClaimed: {
+      key: "isClaimed",
+      label: "Claimed Organization",
+      description: "Indicates the school has reached out.",
+      reasons: ["To ensure the information is accurate and approved."],
+      actions: ["Administration can contact us to claim the school."],
+      requirements: ["Name, email, and phone number."],
+      effort: "low",
+      includedInPlan: [],
+    },
     isVerified: {
       key: "isVerified",
       label: "Verified Organization",
@@ -121,7 +132,9 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Enter or upload current fee structure"],
       requirements: ["Fee amount or tier information"],
       effort: "low",
-      includedInPlan: ["enrollment"],
+      priority: "high",
+      priorityReason: "Parents really want this.",
+      includedInPlan: [],
     },
     hasTeachers: {
       key: "hasTeachers",
@@ -131,7 +144,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["List faculty and subjects taught"],
       requirements: ["Names and positions of teaching staff"],
       effort: "medium",
-      includedInPlan: ["enrollment"],
+      includedInPlan: [],
     },
     hasAcademicPrograms: {
       key: "hasAcademicPrograms",
@@ -142,7 +155,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Upload academic structure or subjects"],
       requirements: ["Levels or subjects by age group"],
       effort: "medium",
-      includedInPlan: ["enrollment"],
+      includedInPlan: [],
     },
     hasPhone: {
       key: "hasPhone",
@@ -152,7 +165,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Enter a valid phone number"],
       requirements: ["Working local number"],
       effort: "low",
-      includedInPlan: ["lead-gen"],
+      includedInPlan: [],
     },
     hasEmail: {
       key: "hasEmail",
@@ -172,7 +185,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Enter a WhatsApp number"],
       requirements: ["Active WhatsApp number"],
       effort: "low",
-      includedInPlan: ["lead-gen"],
+      includedInPlan: [],
     },
     hasParentPortal: {
       key: "hasParentPortal",
@@ -182,7 +195,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Add details about the portal used"],
       requirements: ["Platform info or screenshots"],
       effort: "medium",
-      includedInPlan: ["sis"],
+      includedInPlan: [],
     },
     enrollmentMethod: {
       key: "enrollmentMethod",
@@ -192,7 +205,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Explain how enrollment works"],
       requirements: ["Form link, WhatsApp flow, or manual steps"],
       effort: "medium",
-      includedInPlan: ["enrollment"],
+      includedInPlan: [],
     },
   },
 };

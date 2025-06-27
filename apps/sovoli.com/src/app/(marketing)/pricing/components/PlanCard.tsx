@@ -14,12 +14,14 @@ import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { DualCurrencyPrice } from "./DualCurrencyPrice";
 import type { PlanDefinition } from "~/modules/plans/types";
 import { pluralize } from "~/utils/pluralize";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 
 interface PlanCardProps {
   plan: PlanDefinition;
   showDetails: boolean;
   onToggleDetails?: () => void;
   isPrimary?: boolean;
+  orgUsername?: string;
 }
 
 export function PlanCard({
@@ -27,6 +29,7 @@ export function PlanCard({
   showDetails,
   onToggleDetails,
   isPrimary = false,
+  orgUsername,
 }: PlanCardProps) {
   const [selectedOptionals, setSelectedOptionals] = useState<
     Record<string, boolean>
@@ -80,6 +83,17 @@ export function PlanCard({
   // Count selected add-ons
   const selectedAddOnCount =
     Object.values(selectedOptionals).filter(Boolean).length;
+
+  // Get selected add-on labels
+  const selectedAddOnLabels = optional
+    .filter(([offerKey]) => selectedOptionals[offerKey])
+    .map(([_, offer]) => offer.label);
+
+  // Create WhatsApp message
+  const whatsappMessage =
+    selectedAddOnLabels.length > 0
+      ? `Hello, I'm interested in the ${plan.key} plan with these add-ons: ${selectedAddOnLabels.join(", ")}${orgUsername ? ` for ${orgUsername}` : ""}`
+      : `Hello, I'm interested in the ${plan.key} plan${orgUsername ? ` for ${orgUsername}` : ""}`;
 
   return (
     <Card className="overflow-visible flex flex-col">
@@ -275,6 +289,8 @@ export function PlanCard({
         </div>
 
         <Button
+          as={WhatsAppLink}
+          message={whatsappMessage}
           color="primary"
           variant="solid"
           size="lg"

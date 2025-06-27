@@ -56,7 +56,7 @@ export default async function OrgProfilePage({
   )?.value;
 
   return (
-    <div className="space-y-8">
+    <div>
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
         <div className="flex flex-col md:flex-row justify-between gap-4">
           {/* Contact Section */}

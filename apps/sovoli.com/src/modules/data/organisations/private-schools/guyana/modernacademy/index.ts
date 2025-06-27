@@ -11,7 +11,24 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
     name: "Modern Academy",
     logo: "/orgs/magy/logo.webp",
     isVerified: true,
+    verification: {
+      status: "verified",
+      submittedBy: "Nessa",
+      submittedAt: "2025-05-24",
+      notes: "Went to location and saw the original registration.",
+      documents: [
+        {
+          type: "business_registration",
+          name: "Modern Academy Certificate of Registration",
+          uploadedAt: "2025-05-24",
+          notes: "Captured by photo (in google photos)",
+        },
+      ],
+    },
     internalCRM: {
+      claimStatus: "claimed",
+      claimedBy: "Joel",
+      claimedAt: "2025-05-20",
       people: [
         {
           name: "Joel",
