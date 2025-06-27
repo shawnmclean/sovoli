@@ -39,6 +39,7 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
     const { Component, children, getLinkProps } = useLink({
       ...rest,
       href: webUrl,
+      target: "_blank",
       // onPress: onPress,
       ref,
     });
