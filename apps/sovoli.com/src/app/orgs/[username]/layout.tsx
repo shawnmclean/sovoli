@@ -11,6 +11,7 @@ import { countryCodeToName } from "~/utils/countryUtils";
 import { RulesAttentionSummary } from "~/modules/scoring/components/RulesAttentionSummary";
 import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import type { ScoredRule } from "~/modules/scoring/types";
+import { config } from "~/utils/config";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -31,8 +32,8 @@ export async function generateMetadata({ params }: Props) {
 
   return {
     title: {
-      absolute: orgInstance.org.name,
-      template: `%s | ${orgInstance.org.name}`,
+      absolute: `${orgInstance.org.name} | ${config.siteName}`,
+      template: `%s | ${orgInstance.org.name} | ${config.siteName}`,
     },
     description: `Profile page for ${orgInstance.org.name}`,
     icons: {
