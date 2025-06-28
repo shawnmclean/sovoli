@@ -3,7 +3,7 @@ import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { ArrowRightIcon, CheckCircleIcon } from "lucide-react";
+import { ArrowRightIcon, BadgeCheckIcon } from "lucide-react";
 import { Link } from "@sovoli/ui/components/link";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 
@@ -30,7 +30,7 @@ export function PrivateSchoolListItem({
                 <h2 className="text-md font-bold line-clamp-2">{org.name}</h2>
                 {org.isVerified && (
                   <Tooltip content="This school has been verified by Sovoli">
-                    <CheckCircleIcon className="w-4 h-4 text-success shrink-0" />
+                    <BadgeCheckIcon className="text-success" size={16} />
                   </Tooltip>
                 )}
               </div>
