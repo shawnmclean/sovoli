@@ -11,7 +11,7 @@ export async function GET(
     return new Response("Not Found", { status: 404 });
   }
 
-  const baseUrl = orgInstance.websiteModule.website.url;
+  const baseUrl = `https://${orgInstance.websiteModule.website.domain}`;
 
   const sitemapUrl = `${baseUrl}/sitemap.xml`;
 

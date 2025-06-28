@@ -1,6 +1,7 @@
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { WorkforceMember } from "~/modules/workforce/types";
+import type { Program } from "~/modules/academics/types";
 
 interface SitemapUrl {
   loc: string;
@@ -56,6 +57,34 @@ function generateWorkforceSitemapUrls(
   ];
 }
 
+function generateAcademicsSitemapUrls(
+  baseUrl: string,
+  orgInstance: OrgInstance,
+): SitemapUrl[] {
+  const programs = orgInstance.academicModule?.programs ?? [];
+
+  return [
+    {
+      loc: `${baseUrl}/academics/apply`,
+      lastmod: new Date().toISOString(),
+      changefreq: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      loc: `${baseUrl}/academics/programs`,
+      lastmod: new Date().toISOString(),
+      changefreq: "weekly" as const,
+      priority: 0.9,
+    },
+    ...programs.map((program: Program) => ({
+      loc: `${baseUrl}/academics/programs/${program.slug}`,
+      lastmod: new Date().toISOString(),
+      changefreq: "weekly" as const,
+      priority: 0.8,
+    })),
+  ];
+}
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ username: string }> },
@@ -88,6 +117,7 @@ export async function GET(
       priority: 0.8,
     },
     ...generateWorkforceSitemapUrls(baseUrl, orgInstance),
+    ...generateAcademicsSitemapUrls(baseUrl, orgInstance),
   ];
 
   const xml = generateSitemapXml(sitemapUrls);
