@@ -1,11 +1,12 @@
 import React from "react";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
-import { Button } from "@sovoli/ui/components/button";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { ArrowRightIcon, BadgeCheckIcon } from "lucide-react";
+import { BadgeCheckIcon, HeartIcon, EyeIcon } from "lucide-react";
 import { Link } from "@sovoli/ui/components/link";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
+import { Button } from "@sovoli/ui/components/button";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 
 import { OrgListItemBreakdown } from "./OrgListItemBreakdown";
 
@@ -50,19 +51,25 @@ export function PrivateSchoolListItem({
         </div>
       </CardBody>
 
-      <CardFooter className="border-t border-default-200 flex justify-end">
+      <CardFooter className="border-t border-default-200 flex items-center justify-between px-3 py-2 gap-3">
+        {/* Like Button */}
         <Button
-          color={org.isVerified ? "primary" : "default"}
-          as="a"
-          href={`/orgs/${org.username}`}
-          size="sm"
-          endContent={<ArrowRightIcon className="w-4 h-4" />}
-          className="w-full sm:w-auto"
+          as={WhatsAppLink}
+          variant="flat"
+          color="primary"
+          radius="md"
+          className="flex-1 flex items-center justify-center gap-1 font-medium"
+          message={`I'd like add ${org.name} to my favorites`}
+          startContent={<HeartIcon size={16} fill="currentColor" />}
         >
-          {org.isVerified
-            ? "Explore Programs and Apply"
-            : "Claim and Edit this School"}
+          Add to favorites
         </Button>
+
+        {/* View Count */}
+        <div className="flex flex-col items-center gap-0 text-default-400 text-xs flex-shrink-0 leading-none">
+          <EyeIcon size={16} />
+          <span>&lt;10</span>
+        </div>
       </CardFooter>
     </Card>
   );
