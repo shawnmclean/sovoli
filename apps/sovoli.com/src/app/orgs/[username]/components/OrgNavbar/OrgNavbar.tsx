@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronLeftIcon, ShareIcon, HeartIcon } from "lucide-react";
+import { ChevronLeftIcon, HeartIcon } from "lucide-react";
 import {
   Navbar,
   NavbarContent,
@@ -8,6 +8,7 @@ import {
 import { Button } from "@sovoli/ui/components/button";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { ShareButton } from "./ShareButton";
 
 export interface OrgNavbarProps {
   orgInstance: OrgInstance;
@@ -32,9 +33,10 @@ export function OrgNavbar({ orgInstance }: OrgNavbarProps) {
 
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button variant="flat" isIconOnly radius="full">
-            <ShareIcon />
-          </Button>
+          <ShareButton
+            title={orgInstance.org.name}
+            text={`Check out ${orgInstance.org.name} on Sovoli`}
+          />
         </NavbarItem>
         <NavbarItem>
           <Button
