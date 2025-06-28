@@ -2,16 +2,13 @@ import { notFound } from "next/navigation";
 import { Footer } from "~/components/footer/Footer";
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-import { ArrowLeftIcon } from "lucide-react";
-import { Button } from "@sovoli/ui/components/button";
 import { SchoolHeader } from "./components/SchoolHeader";
 import { SchoolNavigation } from "./components/SchoolNavigation";
-import { Link } from "@sovoli/ui/components/link";
-import { countryCodeToName } from "~/utils/countryUtils";
 import { RulesAttentionSummary } from "~/modules/scoring/components/RulesAttentionSummary";
 import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import type { ScoredRule } from "~/modules/scoring/types";
 import { config } from "~/utils/config";
+import { OrgNavbar } from "./components/OrgNavbar/OrgNavbar";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -53,8 +50,6 @@ export default async function Layout({ children, params }: Props) {
   const { username } = await params;
   const orgInstance = await retreiveOrgInstance(username);
 
-  const primaryLocation = orgInstance.org.locations[0];
-
   // Get the rule set for the org's category
   const category = orgInstance.org.categories[0] ?? "private-school";
   const ruleSet = categoryRuleSets[category];
@@ -82,18 +77,8 @@ export default async function Layout({ children, params }: Props) {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <OrgNavbar orgInstance={orgInstance} />
       <main className="flex-grow">
-        <div className="w-full md:w-1/3">
-          <Button
-            as={Link}
-            href={`/d/${orgInstance.org.categories[0]?.toLowerCase()}/${countryCodeToName(primaryLocation?.address.countryCode ?? "")}`}
-            variant="light"
-            startContent={<ArrowLeftIcon className="w-4 h-4" />}
-            size="sm"
-          >
-            Directory
-          </Button>
-        </div>
         <SchoolHeader orgInstance={orgInstance} />
 
         <SchoolNavigation orgInstance={orgInstance} />
