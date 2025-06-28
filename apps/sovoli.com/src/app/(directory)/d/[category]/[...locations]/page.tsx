@@ -11,7 +11,7 @@ import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/q
 import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
 import { OrgListItem } from "../../components/OrgListItem";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Search } from "../../components/Search";
+
 import { countryCodeToName, countryNameToCode } from "~/utils/countryUtils";
 
 const CATEGORY_MAP: Record<string, string> = {
@@ -120,31 +120,8 @@ export default async function DirectoryCategoryPage(props: Props) {
 
   const totalPages = Math.ceil(total / pageSize);
 
-  const uniqueLocations = Array.from(
-    new Set(
-      orgs
-        .map((org) => org.org.locations[0]?.address.city?.toLowerCase())
-        .filter(
-          (city): city is string => typeof city === "string" && city.length > 0,
-        ),
-    ),
-  );
-
-  const uniquePrograms = Array.from(
-    new Set(
-      orgs
-        .map((org) =>
-          org.academicModule?.programs.map((program) =>
-            program.name.toLowerCase(),
-          ),
-        )
-        .flat()
-        .filter((program): program is string => typeof program === "string"),
-    ),
-  );
-
   return (
-    <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6">
       {/* Back Button - only show if there's a second location */}
       {locations.length > 1 && (
         <div className="mb-4">
@@ -169,7 +146,7 @@ export default async function DirectoryCategoryPage(props: Props) {
               </h1>
             </div>
 
-            <p className="max-w-2xl text-default-500">
+            <p className="max-w-2xl text-default-500 sr-only">
               Browse programs, compare schools, and apply — all through one
               trusted platform.
             </p>
@@ -185,10 +162,6 @@ export default async function DirectoryCategoryPage(props: Props) {
           <DirectoryViewTabs />
         </div>
       </div>
-      <Search
-        uniqueLocations={uniqueLocations}
-        uniquePrograms={uniquePrograms}
-      />
       {total === 0 ? (
         <Card>
           <CardBody className="flex flex-col items-center justify-center py-12">
