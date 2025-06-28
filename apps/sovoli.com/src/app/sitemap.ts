@@ -139,7 +139,7 @@ async function generateDirectoryUrls(
 
     // Country-level directory
     directoryUrls.push({
-      url: `${baseUrl}/d/${categoryAddress.category}/${country}`,
+      url: `${baseUrl}/d/${categoryAddress.category}/${country.toLowerCase()}`,
       lastModified: now,
     });
 

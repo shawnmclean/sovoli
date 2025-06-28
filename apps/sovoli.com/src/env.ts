@@ -11,6 +11,7 @@ export const env = createEnv({
     PORT: z.string().optional(),
     VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: z.string().min(1),
+    NEXT_PUBLIC_ROOT_DOMAIN: z.string().min(1),
   },
   /**
    * Specify your server-side environment variables schema here.
@@ -48,6 +49,7 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:
       process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    NEXT_PUBLIC_ROOT_DOMAIN: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
   },
   skipValidation:
     !!process.env.CI || process.env.npm_lifecycle_event === "lint",
