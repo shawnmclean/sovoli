@@ -9,6 +9,7 @@ import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import type { ScoredRule } from "~/modules/scoring/types";
 import { config } from "~/utils/config";
 import { OrgNavbar } from "./components/OrgNavbar/OrgNavbar";
+import { Alert } from "@sovoli/ui/components/alert";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -78,6 +79,14 @@ export default async function Layout({ children, params }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <OrgNavbar orgInstance={orgInstance} />
+      <Alert
+        className="hidden md:flex"
+        variant="flat"
+        color="warning"
+        title="Website optimized for mobile devices. Use your phone please."
+        description="We're working on a better experience for desktop users."
+      />
+
       <main className="flex-grow">
         <SchoolHeader orgInstance={orgInstance} />
 

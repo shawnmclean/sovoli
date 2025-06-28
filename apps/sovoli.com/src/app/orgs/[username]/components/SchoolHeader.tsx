@@ -12,9 +12,10 @@ import {
 } from "@sovoli/ui/components/dropdown";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import {
-  CheckCircleIcon,
+  BadgeCheckIcon,
   EllipsisVerticalIcon,
   AlertCircleIcon,
+  HeartIcon,
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
@@ -56,7 +57,7 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
               <h1 className="font-bold text-2xl flex items-center gap-2">
                 {orgInstance.org.name}
                 {orgInstance.org.isVerified && (
-                  <CheckCircleIcon className="w-5 h-5 text-success" />
+                  <BadgeCheckIcon className="text-success" size={20} />
                 )}
               </h1>
             </div>
@@ -73,44 +74,40 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
                     ).toFixed(1)
                   : "-"}
               </span>
-
-              {orgInstance.org.isVerified ? (
-                <Tooltip
-                  content={
-                    <span>This is currently claimed by the organization.</span>
-                  }
-                >
-                  <Chip
-                    color="success"
-                    size="sm"
-                    variant="flat"
-                    className="text-xs gap-1"
-                    startContent={<CheckCircleIcon className="w-4 h-4" />}
+              •
+              <Chip
+                color="success"
+                size="sm"
+                variant="light"
+                className="text-xs gap-1 text-default-500"
+                startContent={<HeartIcon size={14} />}
+              >
+                no likes yet
+              </Chip>
+              {!orgInstance.org.isVerified && (
+                <>
+                  •
+                  <Tooltip
+                    content={
+                      <span>
+                        This is currently unclaimed. All information is provided
+                        by Sovoli.
+                        <Divider />
+                        Claim and edit this profile to add more information.
+                      </span>
+                    }
                   >
-                    Claimed
-                  </Chip>
-                </Tooltip>
-              ) : (
-                <Tooltip
-                  content={
-                    <span>
-                      This is currently unclaimed. All information is provided
-                      by Sovoli.
-                      <Divider />
-                      Claim and edit this profile to add more information.
-                    </span>
-                  }
-                >
-                  <Chip
-                    color="warning"
-                    size="sm"
-                    variant="flat"
-                    className="text-xs gap-1"
-                    startContent={<AlertCircleIcon className="w-4 h-4" />}
-                  >
-                    Unclaimed
-                  </Chip>
-                </Tooltip>
+                    <Chip
+                      color="warning"
+                      size="sm"
+                      variant="flat"
+                      className="text-xs gap-1"
+                      startContent={<AlertCircleIcon size={14} />}
+                    >
+                      Unclaimed
+                    </Chip>
+                  </Tooltip>
+                </>
               )}
             </div>
           </div>
