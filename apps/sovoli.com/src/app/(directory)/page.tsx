@@ -1,8 +1,8 @@
 import { config } from "~/utils/config";
-import { CTASection } from "./components/CTASection";
-import { HeroSection } from "./components/HeroSection";
-import { TrendingSection } from "./components/TrendingSection";
-import { SchoolAdminSection } from "./components/SchoolAdminSection";
+import { CTASection } from "../(marketing)/components/CTASection";
+import { HeroSection } from "../(marketing)/components/HeroSection";
+import { TrendingSection } from "../(marketing)/components/TrendingSection";
+import { SchoolAdminSection } from "../(marketing)/components/SchoolAdminSection";
 
 export function generateMetadata() {
   return {
