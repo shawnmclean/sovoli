@@ -17,11 +17,13 @@ import { WhatsAppLink } from "~/components/WhatsAppLink";
 
 interface ApplyDialogButtonProps {
   orgName: string;
+  orgId: string;
   children?: React.ReactNode;
 }
 
 export function ApplyDialogButton({
   orgName,
+  orgId,
   children,
 }: ApplyDialogButtonProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -96,6 +98,12 @@ export function ApplyDialogButton({
                   color="primary"
                   as={WhatsAppLink}
                   message={`Hello, I'd like to apply to ${orgName}.`}
+                  intent="apply_school"
+                  role="parent"
+                  page="details"
+                  orgId={orgId}
+                  orgName={orgName}
+                  funnel="application"
                 >
                   Begin Application
                 </Button>

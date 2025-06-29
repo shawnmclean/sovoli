@@ -115,7 +115,10 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
 
         <div className="flex items-center gap-2">
           <div className="flex flex-1 gap-2">
-            <ApplyDialogButton orgName={orgInstance.org.name}>
+            <ApplyDialogButton
+              orgName={orgInstance.org.name}
+              orgId={orgInstance.org.username}
+            >
               Apply
             </ApplyDialogButton>
             {!orgInstance.org.isVerified && (
