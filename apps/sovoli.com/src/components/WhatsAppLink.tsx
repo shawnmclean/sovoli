@@ -25,7 +25,14 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
     {
       phoneNumber = config.contact.whatsapp,
       message,
+
       // fallback = true,
+      intent,
+      role,
+      page,
+      orgId,
+      orgName,
+      funnel,
       ...rest
     },
     ref,
@@ -38,12 +45,12 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
 
     const onPress = () => {
       posthog.capture("whatsapp_link_clicked", {
-        intent: rest.intent ?? "unknown",
-        role: rest.role ?? "unknown",
-        page: rest.page ?? "unknown",
-        org_id: rest.orgId,
-        org_name: rest.orgName,
-        funnel: rest.funnel ?? "default",
+        intent: intent ?? "unknown",
+        role: role ?? "unknown",
+        page: page ?? "unknown",
+        org_id: orgId,
+        org_name: orgName,
+        funnel: funnel ?? "default",
         source: "sovoli_web",
         cta_schema_version: "v1",
       });
