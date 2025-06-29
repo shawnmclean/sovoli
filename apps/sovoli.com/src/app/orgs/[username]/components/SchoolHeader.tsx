@@ -126,6 +126,12 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
                 color="warning"
                 as={WhatsAppLink}
                 message={`Hello, I'm the admin of ${orgInstance.org.name}. I'd like to claim this profile.`}
+                intent="claim_school"
+                role="admin"
+                page="details"
+                orgId={orgInstance.org.username}
+                orgName={orgInstance.org.name}
+                funnel="admin_claim"
               >
                 Claim
               </Button>

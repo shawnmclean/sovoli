@@ -267,6 +267,12 @@ export function RulesAttentionSummary({
                 size="sm"
                 variant="light"
                 className="text-default-600 underline underline-offset-4"
+                intent="submit_missing_info"
+                role="admin"
+                page="scores"
+                orgId={orgUsername}
+                orgName={orgUsername}
+                funnel="admin_scores"
               >
                 Submit Missing Info
               </Button>

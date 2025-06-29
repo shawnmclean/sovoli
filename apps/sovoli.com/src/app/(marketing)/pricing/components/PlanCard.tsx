@@ -296,6 +296,11 @@ export function PlanCard({
           size="lg"
           className="w-full mt-2"
           endContent={<RocketIcon className="w-4 h-4" />}
+          intent="upgrade_school"
+          role="admin"
+          page="pricing"
+          orgId={orgUsername}
+          funnel="upgrade"
         >
           Launch My School
         </Button>

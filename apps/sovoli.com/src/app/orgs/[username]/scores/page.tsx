@@ -36,6 +36,12 @@ export default async function ScoresPage({
         <WhatsAppLink
           message={`Hello, I'd help with the scoring for ${org.name}.`}
           color="success"
+          intent="submit_missing_info"
+          role="admin"
+          page="scores"
+          orgId={org.username}
+          orgName={org.name}
+          funnel="admin_scores"
         >
           Message Us on WhatsApp!
         </WhatsAppLink>

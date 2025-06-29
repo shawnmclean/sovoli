@@ -45,6 +45,12 @@ export function OrgNavbar({ orgInstance }: OrgNavbarProps) {
             as={WhatsAppLink}
             message={`I'd like to vote for ${orgInstance.org.name}`}
             radius="full"
+            intent="like_school"
+            role="parent"
+            page="details"
+            orgId={orgInstance.org.username}
+            orgName={orgInstance.org.name}
+            funnel="discovery"
           >
             <HeartIcon />
           </Button>

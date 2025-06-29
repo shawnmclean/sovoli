@@ -14,7 +14,7 @@ interface WhatsAppLinkProps extends LinkProps {
   // Tracking props
   intent?: string; // e.g. "like_school", "apply_school", "claim_school"
   role?: "parent" | "admin";
-  page?: "listing" | "details" | "scores" | "pricing";
+  page?: "listing" | "details" | "scores" | "pricing" | "landing";
   orgId?: string;
   orgName?: string;
   funnel?: string; // e.g. "discovery", "conversion"
