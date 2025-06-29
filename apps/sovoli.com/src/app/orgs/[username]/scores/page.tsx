@@ -6,6 +6,9 @@ import { ScoringBreakdown } from "~/modules/scoring/components/ScoringBreakdown"
 import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 
+import { Button } from "@sovoli/ui/components/button";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+
 const retrieveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
     new GetOrgInstanceByUsernameQuery(username),
@@ -33,18 +36,21 @@ export default async function ScoresPage({
       <ScoringBreakdown orgInstance={orgInstance} ruleSet={ruleSet} />
       <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
         <span className="text-sm text-default-500">Need help?</span>
-        <WhatsAppLink
+        <Button
+          as={WhatsAppLink}
           message={`Hello, I'd help with the scoring for ${org.name}.`}
-          color="success"
+          color="primary"
+          variant="solid"
           intent="submit_missing_info"
           role="admin"
           page="scores"
           orgId={org.username}
           orgName={org.name}
           funnel="admin_scores"
+          startContent={<SiWhatsapp size={16} />}
         >
           Message Us on WhatsApp!
-        </WhatsAppLink>
+        </Button>
       </div>
     </div>
   );

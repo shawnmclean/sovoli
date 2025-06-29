@@ -19,15 +19,20 @@ export function SchoolAdminSection() {
 
       {/* CTA Button */}
       <div className="flex justify-center">
-        <WhatsAppLink
-          phoneNumber="+5926082743"
+        <Button
+          as={WhatsAppLink}
           message="Hello, I'm a school administrator and would like to list my school on Sovoli."
-          as={Button}
           color="success"
+          intent="claim_school"
+          role="admin"
+          page="landing"
+          orgId="sovoli"
+          orgName="Sovoli"
+          funnel="admin_claim"
         >
           <SiWhatsapp className="mr-2" />
           Get Your School Listed
-        </WhatsAppLink>
+        </Button>
       </div>
     </section>
   );
