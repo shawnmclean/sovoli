@@ -267,7 +267,7 @@ export function RulesAttentionSummary({
                 size="sm"
                 variant="light"
                 className="text-default-600 underline underline-offset-4"
-                intent="submit_missing_info"
+                intent="Submit Missing Info"
                 role="admin"
                 page="scores"
                 orgId={orgUsername}

@@ -61,7 +61,7 @@ export function PrivateSchoolListItem({
           className="flex-1 flex items-center justify-center gap-1 font-medium"
           message={`I'd like add ${org.name} to my favorites`}
           startContent={<HeartIcon size={16} fill="currentColor" />}
-          intent="like_school"
+          intent="Add to Wishlist"
           role="parent"
           page="listing"
           orgId={org.username}

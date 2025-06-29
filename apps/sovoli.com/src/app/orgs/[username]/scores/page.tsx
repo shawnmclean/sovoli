@@ -41,7 +41,7 @@ export default async function ScoresPage({
           message={`Hello, I'd help with the scoring for ${org.name}.`}
           color="primary"
           variant="solid"
-          intent="submit_missing_info"
+          intent="Submit Missing Info"
           role="admin"
           page="scores"
           orgId={org.username}

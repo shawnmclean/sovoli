@@ -296,7 +296,7 @@ export function PlanCard({
           size="lg"
           className="w-full mt-2"
           endContent={<RocketIcon className="w-4 h-4" />}
-          intent="upgrade_school"
+          intent="Purchase"
           role="admin"
           page="pricing"
           orgId={orgUsername}

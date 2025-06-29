@@ -12,7 +12,12 @@ interface WhatsAppLinkProps extends LinkProps {
   fallback?: boolean;
 
   // Tracking props
-  intent?: string; // e.g. "like_school", "apply_school", "claim_school"
+  intent?:
+    | "Submit Application"
+    | "Submit Missing Info"
+    | "Purchase"
+    | "Add to Wishlist"
+    | "Claim School"; // eg. matches Fb event name
   role?: "parent" | "admin";
   page?: "listing" | "details" | "scores" | "pricing" | "landing";
   orgId?: string;

@@ -23,7 +23,7 @@ export function SchoolAdminSection() {
           as={WhatsAppLink}
           message="Hello, I'm a school administrator and would like to list my school on Sovoli."
           color="success"
-          intent="claim_school"
+          intent="Claim School"
           role="admin"
           page="landing"
           orgId="sovoli"

@@ -98,7 +98,7 @@ export function ApplyDialogButton({
                   color="primary"
                   as={WhatsAppLink}
                   message={`Hello, I'd like to apply to ${orgName}.`}
-                  intent="apply_school"
+                  intent="Submit Application"
                   role="parent"
                   page="details"
                   orgId={orgId}
