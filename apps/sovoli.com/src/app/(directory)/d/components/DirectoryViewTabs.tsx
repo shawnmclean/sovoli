@@ -1,5 +1,6 @@
 "use client";
 
+import type { Key } from "react";
 import { useState } from "react";
 import { Tabs, Tab } from "@sovoli/ui/components/tabs";
 import { ListIcon, MapIcon } from "lucide-react";
@@ -7,7 +8,7 @@ import { ListIcon, MapIcon } from "lucide-react";
 export function DirectoryViewTabs() {
   const [selected, setSelected] = useState("list");
 
-  const handleChange = (key: React.Key) => {
+  const handleChange = (key: Key | null) => {
     if (key === "map") {
       alert("Map coming soon");
       return;
