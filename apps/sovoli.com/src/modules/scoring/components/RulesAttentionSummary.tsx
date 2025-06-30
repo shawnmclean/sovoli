@@ -14,29 +14,59 @@ import {
   RocketIcon,
 } from "lucide-react";
 
-import type { RuleScoreMap, RuleSet } from "../types";
+import type { RuleScoreMap } from "../types";
 import type { RuleKey } from "../rules";
 import { pluralize } from "~/utils/pluralize";
 import { Chip } from "@sovoli/ui/components/chip";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
+import { categoryRuleSets } from "../ruleSets";
+import type { OrgInstance } from "~/modules/organisations/types";
+import type { ScoredRule } from "../types";
 
 export interface RulesAttentionSummaryProps {
-  rulesScore: RuleScoreMap;
-  ruleSet: RuleSet;
-  orgUsername: string;
+  orgInstance: OrgInstance;
 }
 
 export function RulesAttentionSummary({
-  rulesScore,
-  ruleSet,
-  orgUsername,
+  orgInstance,
 }: RulesAttentionSummaryProps) {
   const [showDetails, setShowDetails] = useState(false);
 
-  if (Object.keys(rulesScore).length === 0) return null;
+  // Get the rule set for the org's category
+  const category = orgInstance.org.categories[0] ?? "private-school";
+  const ruleSet = categoryRuleSets[category];
 
-  const incompleteRules = Object.entries(rulesScore)
+  // If no rule set or no scoring module, don't render anything
+  if (!ruleSet || !orgInstance.scoringModule) {
+    return null;
+  }
+
+  // Extract rules that need attention (incomplete rules)
+  const rulesThatNeedAttention: RuleScoreMap = Object.fromEntries(
+    ruleSet.groups
+      .flatMap((group) => group.rules)
+      .reduce<[string, ScoredRule][]>((acc, ruleKey) => {
+        const scoredRule =
+          orgInstance.scoringModule?.result.ruleScores[ruleKey];
+        const isIncomplete =
+          scoredRule &&
+          scoredRule.maxScore > 0 &&
+          scoredRule.score !== scoredRule.maxScore;
+
+        if (isIncomplete) {
+          acc.push([ruleKey, scoredRule]);
+        }
+        return acc;
+      }, []),
+  );
+
+  // If no rules need attention, don't render anything
+  if (Object.keys(rulesThatNeedAttention).length === 0) {
+    return null;
+  }
+
+  const incompleteRules = Object.entries(rulesThatNeedAttention)
     .map(([ruleKey]) => {
       const typedRuleKey = ruleKey as RuleKey;
       const ruleMetadata = ruleSet.ruleMetadata[typedRuleKey];
@@ -45,7 +75,7 @@ export function RulesAttentionSummary({
       return {
         ruleKey: typedRuleKey,
         ruleMetadata,
-        score: rulesScore[typedRuleKey]?.maxScore ?? 0,
+        score: rulesThatNeedAttention[typedRuleKey]?.maxScore ?? 0,
       };
     })
     .filter((item): item is NonNullable<typeof item> => item !== null);
@@ -212,7 +242,9 @@ export function RulesAttentionSummary({
 
                           {ruleMetadata.includedInPlan.length > 0 && (
                             <div className="mt-2">
-                              <Link href={`/pricing?org=${orgUsername}`}>
+                              <Link
+                                href={`/pricing?org=${orgInstance.org.username}`}
+                              >
                                 <Chip
                                   size="sm"
                                   variant="light"
@@ -226,7 +258,7 @@ export function RulesAttentionSummary({
                                     const messages = [
                                       "Need help setting this up? We got you.",
                                       "No time? Sovoli will handle it.",
-                                      "Not sure where to start? We’ll guide you.",
+                                      "Not sure where to start? We'll guide you.",
                                       "Don't have this? We can help!",
                                       "Wah dis? Mek wi help yuh!",
                                     ];
@@ -263,15 +295,15 @@ export function RulesAttentionSummary({
             <div className="flex flex-col items-center gap-3 mt-3">
               <Button
                 as={WhatsAppLink}
-                message={`Hello, I'm interested in submitting missing info for ${orgUsername}`}
+                message={`Hello, I'm interested in submitting missing info for ${orgInstance.org.username}`}
                 size="sm"
                 variant="light"
                 className="text-default-600 underline underline-offset-4"
                 intent="Submit Missing Info"
                 role="admin"
                 page="scores"
-                orgId={orgUsername}
-                orgName={orgUsername}
+                orgId={orgInstance.org.username}
+                orgName={orgInstance.org.username}
                 funnel="admin_scores"
               >
                 Submit Missing Info
@@ -294,7 +326,7 @@ export function RulesAttentionSummary({
                     variant="shadow"
                     color="secondary"
                     as={Link}
-                    href={`/pricing?org=${orgUsername}`}
+                    href={`/pricing?org=${orgInstance.org.username}`}
                     className="rounded-md px-4 py-1.5 font-semibold text-sm"
                     endContent={<RocketIcon className="w-4 h-4" />}
                   >
