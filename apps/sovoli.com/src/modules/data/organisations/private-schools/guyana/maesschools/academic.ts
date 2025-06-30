@@ -45,7 +45,7 @@ export const MAES_SCHOOLS_ACADEMIC: AcademicModule = {
       slug: "secondary",
       description:
         "Engaging curriculum fostering critical thinking and creativity",
-      image: "/images/programs/secondary.jpg",
+      image: "/orgs/defaults/programs/secondary.webp",
       requirements: [
         {
           type: "age",
