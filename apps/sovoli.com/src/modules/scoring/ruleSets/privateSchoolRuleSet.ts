@@ -15,23 +15,33 @@ export const privateSchoolRuleSet: RuleSet = {
         "hasGoogleProfile",
       ],
       description:
-        "Signals that your school is recognized, official, and publicly trusted.",
+        "Confirms the school is real, official, and publicly trusted.",
+      reasons: [
+        "Builds trust with parents and institutions",
+        "Improves school visibility and legitimacy",
+      ],
     },
     {
       key: "communication",
       label: "Communication & Support",
       weight: 1,
       rules: ["hasPhone", "hasEmail", "hasWhatsapp"],
-      description:
-        "Helps parents reach your school, ask questions, and stay informed.",
+      description: "Lets parents contact the school and stay informed easily.",
+      reasons: [
+        "Ensures parents can reach the school",
+        "Reduces dropout from poor communication",
+      ],
     },
     {
       key: "digital",
       label: "Online Presence & Tools",
       weight: 1,
       rules: ["hasWebsite", "hasParentPortal"],
-      description:
-        "Shows how prepared your school is to operate online and provide digital access for families.",
+      description: "Shows if the school is online and offers digital access.",
+      reasons: [
+        "Supports digital operations and remote access",
+        "Boosts credibility and online searchability",
+      ],
     },
     {
       key: "transparency",
@@ -39,15 +49,19 @@ export const privateSchoolRuleSet: RuleSet = {
       weight: 1,
       rules: ["hasFees", "hasTeachers", "hasAcademicPrograms"],
       description:
-        "Gives parents the details they need to compare schools and make informed decisions.",
+        "Shares key info to help parents compare and choose schools.",
+      reasons: [
+        "Informs parent decisions during enrollment",
+        "Improves trust and reduces inbound questions",
+      ],
     },
     {
       key: "enrollment",
       label: "Enrollment Experience",
       weight: 1,
       rules: ["enrollmentMethod"],
-      description:
-        "Clear enrollment steps make it easier for parents to join your school.",
+      description: "Explains how to join the school and start the process.",
+      reasons: ["Simplifies the onboarding process for families"],
     },
   ],
 

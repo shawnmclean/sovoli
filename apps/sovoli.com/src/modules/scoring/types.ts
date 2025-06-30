@@ -83,7 +83,8 @@ export interface OrgRuleGroup {
   label: string;
   weight: number;
   rules: RuleKey[];
-  description?: string;
+  description: string;
+  reasons: string[];
 }
 
 export type OrgCategoryRuleSet = Partial<Record<OrgCategoryKeys, RuleSet>>;

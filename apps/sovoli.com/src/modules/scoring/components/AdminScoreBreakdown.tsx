@@ -12,25 +12,24 @@ import {
   HelpCircleIcon,
   AlertTriangleIcon,
 } from "lucide-react";
-import type { RuleSet } from "../types";
+
 import { Alert } from "@sovoli/ui/components/alert";
 import { Chip } from "@sovoli/ui/components/chip";
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
 import type { OrgInstance } from "~/modules/organisations/types";
+import { categoryRuleSets } from "../ruleSets";
 
-export interface ScoringBreakdownProps {
+export interface AdminScoreBreakdownProps {
   orgInstance: OrgInstance;
-  ruleSet: RuleSet;
 }
 
-export function ScoringBreakdown({
-  orgInstance,
-  ruleSet,
-}: ScoringBreakdownProps) {
-  if (!orgInstance.scoringModule) {
-    return null;
-  }
+export function AdminScoreBreakdown({ orgInstance }: AdminScoreBreakdownProps) {
+  const category = orgInstance.org.categories[0] ?? "private-school";
+  const ruleSet = categoryRuleSets[category];
+
+  if (!ruleSet || !orgInstance.scoringModule) return null;
+
   const { result } = orgInstance.scoringModule;
 
   const { ruleScores, scoreSummary } = result;
@@ -39,7 +38,7 @@ export function ScoringBreakdown({
     maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
 
   return (
-    <div className="space-y-4 p-4">
+    <div className="space-y-4">
       <Card>
         <CardHeader>
           <div className="flex flex-col space-y-1">
