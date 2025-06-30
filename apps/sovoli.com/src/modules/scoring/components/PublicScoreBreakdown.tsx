@@ -82,14 +82,10 @@ export function PublicScoreBreakdown({
                 </div>
               }
             >
-              <div className="text-sm text-default-600 mb-3">
-                {groupScore?.score} points earned out of {groupScore?.maxScore}
-              </div>
-              {group.description && (
-                <p className="text-sm text-default-600 mb-3">
-                  {group.description}
-                </p>
-              )}
+              <p className="text-sm text-default-600 mb-3">
+                {group.description}
+              </p>
+
               <div className="space-y-3">
                 {group.rules
                   .map((ruleKey) => {
@@ -159,154 +155,9 @@ export function PublicScoreBreakdown({
                               {ruleMetadata.label}
                             </span>
                           </div>
-                          <Progress
-                            value={maxScore > 0 ? (score / maxScore) * 100 : 0}
-                            label={`${score}/${maxScore} (${percent}%)`}
-                            className="w-full mb-2"
-                            size="sm"
-                          />
                           <div className="text-xs text-default-600 mb-2">
                             {ruleMetadata.description}
                           </div>
-                          {!isComplete && (
-                            <Accordion>
-                              <AccordionItem
-                                aria-label="Improvement Guide"
-                                startContent={
-                                  <AlertTriangleIcon className="text-danger w-4 h-4" />
-                                }
-                                title={
-                                  <span className="font-medium text-sm text-danger">
-                                    Fix This Now
-                                  </span>
-                                }
-                              >
-                                <div className="space-y-3 mt-2">
-                                  {/* Action Steps Section */}
-                                  <Alert
-                                    variant="solid"
-                                    color="primary"
-                                    hideIcon
-                                    title={
-                                      <div className="flex items-center gap-2">
-                                        <PlayIcon className="w-4 h-4" />
-                                        <span className="font-semibold text-sm">
-                                          Action Steps
-                                        </span>
-                                      </div>
-                                    }
-                                    description={
-                                      <ul className="space-y-2 mt-2">
-                                        {ruleMetadata.actions.map(
-                                          (action, idx) => (
-                                            <li
-                                              key={idx}
-                                              className="flex items-start gap-2 text-sm"
-                                            >
-                                              {idx + 1}. {action}
-                                            </li>
-                                          ),
-                                        )}
-                                      </ul>
-                                    }
-                                  />
-
-                                  {/* Requirements Section */}
-                                  <Alert
-                                    variant="solid"
-                                    color="secondary"
-                                    hideIcon
-                                    title={
-                                      <div className="flex items-center gap-2">
-                                        <ClipboardCheckIcon className="w-4 h-4" />
-                                        <span className="font-semibold text-sm">
-                                          Requirements
-                                        </span>
-                                      </div>
-                                    }
-                                    description={
-                                      <ul className="mt-2 space-y-3 text-sm">
-                                        {ruleMetadata.requirements.map(
-                                          (req, idx) => (
-                                            <li key={idx} className="space-y-2">
-                                              {typeof req === "string" ? (
-                                                <div className="flex items-start gap-2">
-                                                  <span className="mt-0.5">
-                                                    ✓
-                                                  </span>
-                                                  <span>{req}</span>
-                                                </div>
-                                              ) : (
-                                                <div className="space-y-2">
-                                                  <div className="flex items-start gap-2">
-                                                    <span className="mt-0.5">
-                                                      ✓
-                                                    </span>
-                                                    <span className="font-medium">
-                                                      {req.label}
-                                                    </span>
-                                                  </div>
-                                                  {req.description && (
-                                                    <div className="pl-6 text-xs italic">
-                                                      {req.description}
-                                                    </div>
-                                                  )}
-                                                  <ul className="pl-6 space-y-1">
-                                                    {req.items.map(
-                                                      (item, itemIdx) => (
-                                                        <li
-                                                          key={itemIdx}
-                                                          className="flex items-start gap-2"
-                                                        >
-                                                          <span className="text-xs mt-1">
-                                                            •
-                                                          </span>
-                                                          <span>{item}</span>
-                                                        </li>
-                                                      ),
-                                                    )}
-                                                  </ul>
-                                                </div>
-                                              )}
-                                            </li>
-                                          ),
-                                        )}
-                                      </ul>
-                                    }
-                                  />
-
-                                  {/* Why This Matters Section */}
-                                  <Alert
-                                    variant="solid"
-                                    color="warning"
-                                    hideIcon
-                                    title={
-                                      <div className="flex items-center gap-2">
-                                        <HelpCircleIcon className="w-4 h-4" />
-                                        <span className="font-semibold text-sm">
-                                          Why This Matters
-                                        </span>
-                                      </div>
-                                    }
-                                    description={
-                                      <ul className="space-y-2 mt-2">
-                                        {ruleMetadata.reasons.map(
-                                          (reason, idx) => (
-                                            <li
-                                              key={idx}
-                                              className="flex items-start gap-2 text-sm"
-                                            >
-                                              ! {reason}
-                                            </li>
-                                          ),
-                                        )}
-                                      </ul>
-                                    }
-                                  />
-                                </div>
-                              </AccordionItem>
-                            </Accordion>
-                          )}
                         </Card>
                       );
                     },
