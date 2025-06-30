@@ -39,8 +39,7 @@ export default async function OrgClaimPage({
   const { org } = orgInstance;
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 p-4 md:flex-row">
-      <h1>Admin</h1>
+    <div className="mx-auto flex max-w-7xl flex-col gap-4 p-4">
       <RulesAttentionSummary orgInstance={orgInstance} />
 
       <AdminScoreBreakdown orgInstance={orgInstance} />

@@ -42,22 +42,21 @@ export function AdminScoreBreakdown({ orgInstance }: AdminScoreBreakdownProps) {
       <Card>
         <CardHeader>
           <div className="flex flex-col space-y-1">
-            <h1 className="text-xl font-bold">School Readiness Overview</h1>
-            <p className="text-sm text-default-600">
-              Based on Sovoli’s visibility, communication, and operational
-              benchmarks.
+            <h1 className="text-base font-bold">Readiness Overview</h1>
+            <p className="text-xs text-default-600">
+              Based on Sovoli's visibility and info benchmarks
             </p>
           </div>
         </CardHeader>
         <CardBody className="space-y-3">
-          <div className="flex justify-between text-sm text-default-600">
-            <span>Overall Progress</span>
-            <span>{percentage}% Complete</span>
+          <div className="flex justify-between text-xs text-default-500">
+            <span>Progress</span>
+            <span>{percentage}%</span>
           </div>
           <Progress value={percentage} />
-          <div className="flex justify-between text-sm font-medium text-default-700">
-            <span>Points Earned: {totalScore}</span>
-            <span>Total Possible: {maxScore}</span>
+          <div className="flex justify-between text-xs font-medium text-default-700">
+            <span>{totalScore} points earned</span>
+            <span>{maxScore} total</span>
           </div>
         </CardBody>
       </Card>
@@ -85,35 +84,58 @@ export function AdminScoreBreakdown({ orgInstance }: AdminScoreBreakdownProps) {
                   }`}
                 />
               }
-              subtitle={
-                <>
-                  {groupPercentage < 100 && (
-                    <Chip color={color} size="sm" variant="light">
-                      ({groupPercentage}%) Needs Attention
-                    </Chip>
-                  )}
-                  {groupPercentage === 100 && (
-                    <Chip color={color} size="sm" variant="light">
-                      ({groupPercentage}%) Complete
-                    </Chip>
-                  )}
-                </>
-              }
               title={
                 <div className="flex items-center justify-between w-full">
                   {group.label}
                 </div>
               }
+              subtitle={
+                <Chip
+                  color={color}
+                  size="sm"
+                  variant="light"
+                  startContent={
+                    groupPercentage === 100 ? (
+                      <CheckCircleIcon size={12} />
+                    ) : (
+                      <AlertTriangleIcon size={12} />
+                    )
+                  }
+                >
+                  {groupScore?.score} of {groupScore?.maxScore}
+                </Chip>
+              }
             >
-              <div className="text-sm text-default-600 mb-3">
-                {groupScore?.score} points earned out of {groupScore?.maxScore}
-              </div>
-              {group.description && (
-                <p className="text-sm text-default-600 mb-3">
+              <div className="space-y-4">
+                <p className="text-sm text-default-600 leading-relaxed">
                   {group.description}
                 </p>
-              )}
-              <div className="space-y-3">
+
+                {/* Group Reasons */}
+                {group.reasons.length > 0 && (
+                  <div className="bg-warning-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-sm text-warning-800 mb-3 flex items-center gap-2">
+                      <HelpCircleIcon className="w-4 h-4" />
+                      Why this matters
+                    </h4>
+                    <div className="space-y-2">
+                      {group.reasons.map((reason, index) => (
+                        <div
+                          key={reason}
+                          className="flex items-start gap-2 text-sm text-warning-700"
+                        >
+                          <span className="text-warning-500 font-medium mt-0.5">
+                            {index + 1}.
+                          </span>
+                          <span className="leading-relaxed">{reason}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="space-y-3 mt-6">
                 {group.rules
                   .map((ruleKey) => {
                     const scoredRule = ruleScores[ruleKey];

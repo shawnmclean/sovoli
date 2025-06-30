@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { Progress } from "@sovoli/ui/components/progress";
+import { Card } from "@sovoli/ui/components/card";
+import { CircularProgress, Progress } from "@sovoli/ui/components/progress";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
+import { Button } from "@sovoli/ui/components/button";
 import {
   CheckCircleIcon,
   XCircleIcon,
@@ -14,7 +15,6 @@ import {
 } from "lucide-react";
 
 import { Alert } from "@sovoli/ui/components/alert";
-import { Chip } from "@sovoli/ui/components/chip";
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -35,34 +35,22 @@ export function PublicScoreBreakdown({
   const { result } = orgInstance.scoringModule;
 
   const { ruleScores, scoreSummary } = result;
-  const { totalScore, maxScore, groupScores } = scoreSummary;
-  const percentage =
-    maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
+  const { groupScores } = scoreSummary;
 
   return (
     <div className="space-y-4 p-4">
-      <Card>
-        <CardHeader>
-          <div className="flex flex-col space-y-1">
-            <h1 className="text-xl font-bold">School Readiness Overview</h1>
-            <p className="text-sm text-default-600">
-              Based on Sovoli’s visibility, communication, and operational
-              benchmarks.
-            </p>
-          </div>
-        </CardHeader>
-        <CardBody className="space-y-3">
-          <div className="flex justify-between text-sm text-default-600">
-            <span>Overall Progress</span>
-            <span>{percentage}% Complete</span>
-          </div>
-          <Progress value={percentage} />
-          <div className="flex justify-between text-sm font-medium text-default-700">
-            <span>Points Earned: {totalScore}</span>
-            <span>Total Possible: {maxScore}</span>
-          </div>
-        </CardBody>
-      </Card>
+      {/* Admin Alert */}
+      <Alert
+        hideIcon
+        variant="faded"
+        color="default"
+        title="Are you the admin?"
+        endContent={
+          <Button size="sm" variant="flat" color="default">
+            Improve
+          </Button>
+        }
+      />
 
       {/* Rules that need attention  */}
 
@@ -74,35 +62,37 @@ export function PublicScoreBreakdown({
               ? Math.round((groupScore.score / groupScore.maxScore) * 100)
               : 0;
           const color = groupPercentage === 100 ? "success" : "warning";
+          const isIncomplete = groupPercentage < 100;
+
+          const scoreOutOf10 = groupScore?.maxScore
+            ? Math.round((groupScore.score / groupScore.maxScore) * 10 * 10) /
+              10
+            : 0;
 
           return (
             <AccordionItem
               key={group.key}
               aria-label={group.label}
+              data-incomplete={isIncomplete}
               startContent={
-                <OrgRuleGroupIcon
-                  groupKey={group.key}
-                  className={`${
-                    color === "success" ? "text-success" : "text-warning"
-                  }`}
+                <CircularProgress
+                  value={scoreOutOf10}
+                  color={color}
+                  title={`${group.label} – ${scoreOutOf10}/10`}
+                  showValueLabel
+                  size="sm"
+                  formatOptions={{ maximumFractionDigits: 1 }}
+                  maxValue={10}
                 />
               }
-              subtitle={
-                <>
-                  {groupPercentage < 100 && (
-                    <Chip color={color} size="sm" variant="light">
-                      ({groupPercentage}%) Needs Attention
-                    </Chip>
-                  )}
-                  {groupPercentage === 100 && (
-                    <Chip color={color} size="sm" variant="light">
-                      ({groupPercentage}%) Complete
-                    </Chip>
-                  )}
-                </>
-              }
               title={
-                <div className="flex items-center justify-between w-full">
+                <div className="flex items-center w-full gap-2">
+                  <OrgRuleGroupIcon
+                    groupKey={group.key}
+                    className={`${
+                      color === "success" ? "text-success" : "text-warning"
+                    }`}
+                  />
                   {group.label}
                 </div>
               }
