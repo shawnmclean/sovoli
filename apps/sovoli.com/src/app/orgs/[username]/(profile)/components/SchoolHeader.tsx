@@ -10,6 +10,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@sovoli/ui/components/dropdown";
+import { Link } from "@sovoli/ui/components/link";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import {
   BadgeCheckIcon,
@@ -124,14 +125,8 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
             {!orgInstance.org.isVerified && (
               <Button
                 color="warning"
-                as={WhatsAppLink}
-                message={`Hello, I'm the admin of ${orgInstance.org.name}. I'd like to claim this profile.`}
-                intent="Claim School"
-                role="admin"
-                page="details"
-                orgId={orgInstance.org.username}
-                orgName={orgInstance.org.name}
-                funnel="admin_claim"
+                as={Link}
+                href={`/orgs/${orgInstance.org.username}/admin`}
               >
                 Claim
               </Button>

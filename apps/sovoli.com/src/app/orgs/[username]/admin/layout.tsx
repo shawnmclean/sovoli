@@ -2,12 +2,10 @@ import { notFound } from "next/navigation";
 import { Footer } from "~/components/footer/Footer";
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-import { SchoolHeader } from "./components/SchoolHeader";
-import { SchoolNavigation } from "./components/SchoolNavigation";
-import { RulesAttentionSummary } from "~/modules/scoring/components/RulesAttentionSummary";
 import { config } from "~/utils/config";
-import { OrgNavbar } from "./components/OrgNavbar/OrgNavbar";
 import { Alert } from "@sovoli/ui/components/alert";
+import { Navbar } from "~/components/navbar/Navbar";
+import { AdminSchoolHeader } from "./components/AdminSchoolHeader";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -31,7 +29,7 @@ export async function generateMetadata({ params }: Props) {
       absolute: `${orgInstance.org.name} | ${config.siteName}`,
       template: `%s | ${orgInstance.org.name} | ${config.siteName}`,
     },
-    description: `Profile page for ${orgInstance.org.name}`,
+    description: `Admin page for ${orgInstance.org.name}`,
     icons: {
       icon: "/favicon.ico",
     },
@@ -51,7 +49,7 @@ export default async function Layout({ children, params }: Props) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <OrgNavbar orgInstance={orgInstance} />
+      <Navbar />
       <Alert
         className="hidden md:flex"
         variant="flat"
@@ -61,13 +59,7 @@ export default async function Layout({ children, params }: Props) {
       />
 
       <main className="flex-grow">
-        <SchoolHeader orgInstance={orgInstance} />
-
-        <SchoolNavigation orgInstance={orgInstance} />
-
-        <div className="w-full md:w-2/3 px-4">
-          <RulesAttentionSummary orgInstance={orgInstance} />
-        </div>
+        <AdminSchoolHeader orgInstance={orgInstance} />
 
         <div className="w-full md:w-2/3">{children}</div>
       </main>
