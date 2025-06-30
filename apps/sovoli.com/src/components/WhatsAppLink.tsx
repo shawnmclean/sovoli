@@ -17,7 +17,8 @@ interface WhatsAppLinkProps extends LinkProps {
     | "Submit Missing Info"
     | "Purchase"
     | "Add to Wishlist"
-    | "Claim School"; // eg. matches Fb event name
+    | "Claim School"
+    | "Request Data"; // eg. matches Fb event name
   role?: "parent" | "admin";
   page?: "listing" | "details" | "scores" | "pricing" | "landing";
   orgId?: string;

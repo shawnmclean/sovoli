@@ -1,11 +1,12 @@
 import { env } from "~/env";
+import { getBaseUrl } from "./getBaseUrl";
 
 export const config = {
   title: "Sovoli: Guyana’s #1 Private School Directory",
   siteName: "Sovoli",
   description:
     "Sovoli helps parents in Guyana discover, compare, and apply to private schools — all in one place. Each school has a verified profile, digital readiness score, and clear application options. We’re starting in Guyana with plans to expand soon.",
-  url: "https://sovoli.com",
+  url: getBaseUrl(),
   contact: {
     whatsapp: "+5926082743",
     email: "info@sovoli.com",
