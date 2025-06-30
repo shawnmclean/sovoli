@@ -9,6 +9,8 @@ import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { Button } from "@sovoli/ui/components/button";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { PublicScoreBreakdown } from "~/modules/scoring/components/PublicScoreBreakdown";
+import { Alert } from "@sovoli/ui/components/alert";
+import { Link } from "@sovoli/ui/components/link";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -35,6 +37,24 @@ export default async function ScoresPage({
   return (
     <div className="space-y-4 p-2 sm:p-4 max-w-4xl mx-auto">
       <PublicScoreBreakdown orgInstance={orgInstance} />
+
+      <Alert
+        hideIcon
+        variant="faded"
+        color="default"
+        title="Are you the admin?"
+        endContent={
+          <Button
+            as={Link}
+            href={`/orgs/${org.username}/admin`}
+            size="sm"
+            variant="flat"
+            color="default"
+          >
+            Improve
+          </Button>
+        }
+      />
     </div>
   );
 }

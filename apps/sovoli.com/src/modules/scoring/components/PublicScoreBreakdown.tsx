@@ -4,7 +4,7 @@ import React from "react";
 import { Card } from "@sovoli/ui/components/card";
 import { CircularProgress, Progress } from "@sovoli/ui/components/progress";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
-import { Button } from "@sovoli/ui/components/button";
+
 import {
   CheckCircleIcon,
   XCircleIcon,
@@ -38,22 +38,7 @@ export function PublicScoreBreakdown({
   const { groupScores } = scoreSummary;
 
   return (
-    <div className="space-y-4 p-4">
-      {/* Admin Alert */}
-      <Alert
-        hideIcon
-        variant="faded"
-        color="default"
-        title="Are you the admin?"
-        endContent={
-          <Button size="sm" variant="flat" color="default">
-            Improve
-          </Button>
-        }
-      />
-
-      {/* Rules that need attention  */}
-
+    <div className="space-y-4">
       <Accordion>
         {ruleSet.groups.map((group) => {
           const groupScore = groupScores[group.key];
