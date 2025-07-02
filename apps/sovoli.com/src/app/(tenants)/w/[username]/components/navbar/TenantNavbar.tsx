@@ -68,7 +68,10 @@ export function TenantNavbar({
                 label: item.label,
                 dropdown: [
                   ...programs.slice(0, 5).map((program) => ({
-                    label: program.name,
+                    label:
+                      program.name ??
+                      program.standardProgramVersion?.program.name ??
+                      "",
                     href: `/academics/programs/${program.slug}`,
                   })),
                   { label: "All Programs...", href: "/academics/programs" },

@@ -7,13 +7,7 @@ import type { FooterLink, FooterSection } from "~/modules/websites/types";
 import { SocialLink } from "./SocialLink";
 import { LogoSVG } from "~/components/Logo/LogoSVG";
 import { countryCodeToName } from "~/utils/countryUtils";
-
-// Define a Program type (should match your academicModule programs)
-interface Program {
-  id: string;
-  name: string;
-  slug: string;
-}
+import { OrgProgram } from "~/modules/academics/types";
 
 interface FooterProps {
   orgInstance: OrgInstanceWithWebsite;
@@ -25,7 +19,7 @@ export const Footer = ({ orgInstance }: FooterProps) => {
     academicModule,
   } = orgInstance;
 
-  const programs = academicModule?.programs as Program[] | undefined;
+  const programs = academicModule?.programs;
   const footerConfig = website.footer;
   const sections = footerConfig?.sections ?? [];
 
@@ -110,7 +104,7 @@ const FooterAcademicsSection = ({
   programs,
   section,
 }: {
-  programs?: Program[];
+  programs?: OrgProgram[];
   section: FooterSection;
 }) => {
   return (
@@ -118,12 +112,14 @@ const FooterAcademicsSection = ({
       <h3 className="mb-4 font-semibold">{section.title}</h3>
       <ul className="space-y-2">
         {programs?.slice(0, 5).map((program) => (
-          <li key={program.id}>
+          <li key={program.slug}>
             <Link
               className="text-sm text-foreground-500 hover:text-primary"
               href={`/academics/programs/${program.slug}`}
             >
-              {program.name}
+              {program.name ??
+                program.standardProgramVersion?.program.name ??
+                ""}
             </Link>
           </li>
         ))}

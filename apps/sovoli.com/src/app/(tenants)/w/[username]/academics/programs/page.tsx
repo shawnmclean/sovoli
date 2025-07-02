@@ -63,8 +63,16 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
               className="overflow-hidden shadow-md transition hover:shadow-lg"
             >
               <Image
-                src={program.image}
-                alt={program.title ?? program.name}
+                src={
+                  program.image ??
+                  program.standardProgramVersion?.program.image ??
+                  ""
+                }
+                alt={
+                  program.name ??
+                  program.standardProgramVersion?.program.name ??
+                  ""
+                }
                 width={800}
                 height={400}
                 className="h-48 w-full object-cover"
@@ -72,9 +80,15 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
               <CardBody className="flex flex-col">
                 <h3
                   className="text-2xl font-semibold text-primary-800"
-                  title={program.title ?? program.name}
+                  title={
+                    program.name ??
+                    program.standardProgramVersion?.program.name ??
+                    ""
+                  }
                 >
-                  {program.title ?? program.name}
+                  {program.name ??
+                    program.standardProgramVersion?.program.name ??
+                    ""}
                 </h3>
                 <p className="text-base leading-relaxed text-foreground-600">
                   {program.description}

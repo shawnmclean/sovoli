@@ -27,8 +27,16 @@ export function Programs({ section, orgInstance }: ProgramsProps) {
             <Card key={index} className="border-none" shadow="sm">
               <CardBody className="p-0">
                 <Image
-                  alt={program.name}
-                  src={program.image}
+                  alt={
+                    program.name ??
+                    program.standardProgramVersion?.program.name ??
+                    ""
+                  }
+                  src={
+                    program.image ??
+                    program.standardProgramVersion?.program.image ??
+                    ""
+                  }
                   width={800}
                   height={400}
                   className="h-48 w-full object-cover"
@@ -36,9 +44,15 @@ export function Programs({ section, orgInstance }: ProgramsProps) {
                 <div className="p-6">
                   <h3
                     className="mb-2 text-xl font-semibold line-clamp-2"
-                    title={program.title ?? program.name}
+                    title={
+                      program.name ??
+                      program.standardProgramVersion?.program.name ??
+                      ""
+                    }
                   >
-                    {program.title ?? program.name}
+                    {program.name ??
+                      program.standardProgramVersion?.program.name ??
+                      ""}
                   </h3>
                   <p className="text-default-600 line-clamp-3">
                     {program.description}

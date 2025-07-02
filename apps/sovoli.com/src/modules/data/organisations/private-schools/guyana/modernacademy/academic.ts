@@ -14,26 +14,30 @@ import {
 // #region programs
 
 export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
-  standardProgramVersion: GY_NURSERY_V1,
   slug: "pre-nursery",
-  image: "/orgs/private-schools/guyana/modernacademy/pre-nursery.webp",
+  name: "Pre-Nursery (Playschool)",
+  description: "Strong foundational learning in a nurturing environment",
+  image: "/orgs/private-schools/guyana/modernacademy/programs/pre-nursery.webp",
 };
 export const MAGY_NURSERY_PROGRAM: OrgProgram = {
   standardProgramVersion: GY_NURSERY_V1,
   slug: "nursery",
-  image: "/orgs/private-schools/guyana/modernacademy/nursery.webp",
+  description: "Engaging curriculum fostering critical thinking and creativity",
+  image: "/orgs/private-schools/guyana/modernacademy/programs/nursery.webp",
 };
 
 export const MAGY_PRIMARY_PROGRAM: OrgProgram = {
   standardProgramVersion: GY_PRIMARY_V1,
   slug: "primary",
-  image: "/orgs/private-schools/guyana/modernacademy/primary.webp",
+  description: "Strong foundational learning in a nurturing environment",
+  image: "/orgs/private-schools/guyana/modernacademy/programs/primary.webp",
 };
 
 export const MAGY_SECONDARY_PROGRAM: OrgProgram = {
   standardProgramVersion: GY_SECONDARY_V1,
   slug: "secondary",
-  image: "/orgs/private-schools/guyana/modernacademy/secondary.webp",
+  description: "Engaging curriculum fostering critical thinking and creativity",
+  image: "/orgs/private-schools/guyana/modernacademy/programs/secondary.webp",
 };
 
 // #endregion
