@@ -1,41 +1,18 @@
 import type { AcademicModule } from "~/modules/academics/types";
+import {
+  GY_PRIMARY_V1,
+  GY_SECONDARY_V1,
+} from "~/modules/data/academics/guyana/programs";
 
 export const JOSEL_EDUCATIONAL_ACADEMIC: AcademicModule = {
   programs: [
     {
-      id: 1,
-      name: "Primary",
+      standardProgramVersion: GY_PRIMARY_V1,
       slug: "primary",
-      description: "Strong foundational learning in a nurturing environment",
-      image: "/orgs/defaults/programs/primary.webp",
-      requirements: [
-        {
-          type: "age",
-          ageRange: {
-            minAgeYears: 5,
-            minAgeMonths: 0,
-            maxAgeYears: 12,
-            maxAgeMonths: 0,
-          },
-        },
-      ],
     },
     {
-      id: 2,
-      name: "Secondary",
+      standardProgramVersion: GY_SECONDARY_V1,
       slug: "secondary",
-      description:
-        "Engaging curriculum fostering critical thinking and creativity",
-      image: "/orgs/defaults/programs/secondary.webp",
-      requirements: [
-        {
-          type: "age",
-          ageRange: {
-            minAgeYears: 12,
-            minAgeMonths: 0,
-          },
-        },
-      ],
     },
   ],
 };

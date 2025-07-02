@@ -1,43 +1,18 @@
 import type { AcademicModule } from "~/modules/academics/types";
+import {
+  GY_NURSERY_V1,
+  GY_PRIMARY_V1,
+} from "~/modules/data/academics/guyana/programs";
 
 export const DOMINION_SCHOOLS_ACADEMIC: AcademicModule = {
   programs: [
     {
-      id: 1,
-      name: "Nursery",
+      standardProgramVersion: GY_NURSERY_V1,
       slug: "nursery",
-      description:
-        "Engaging curriculum fostering critical thinking and creativity",
-      image: "/orgs/defaults/programs/nursery.webp",
-      requirements: [
-        {
-          type: "age",
-          ageRange: {
-            minAgeYears: 3,
-            minAgeMonths: 3,
-            maxAgeYears: 5,
-            maxAgeMonths: 6,
-          },
-        },
-      ],
     },
     {
-      id: 2,
-      name: "Primary",
+      standardProgramVersion: GY_PRIMARY_V1,
       slug: "primary",
-      description: "Strong foundational learning in a nurturing environment",
-      image: "/orgs/defaults/programs/primary.webp",
-      requirements: [
-        {
-          type: "age",
-          ageRange: {
-            minAgeYears: 5,
-            minAgeMonths: 0,
-            maxAgeYears: 12,
-            maxAgeMonths: 0,
-          },
-        },
-      ],
     },
   ],
 };

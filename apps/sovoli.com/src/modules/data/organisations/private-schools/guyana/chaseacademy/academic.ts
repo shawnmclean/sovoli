@@ -1,13 +1,11 @@
 import type { AcademicModule } from "~/modules/academics/types";
+import { GY_SECONDARY_V1 } from "~/modules/data/academics/guyana/programs";
 
 export const CHASE_ACADEMY_ACADEMIC: AcademicModule = {
   programs: [
     {
-      id: 1,
-      name: "Secondary",
+      standardProgramVersion: GY_SECONDARY_V1,
       slug: "secondary",
-      description:
-        "Engaging curriculum fostering critical thinking and creativity",
       image: "/orgs/defaults/programs/secondary.webp",
       requirements: [
         {
@@ -20,6 +18,5 @@ export const CHASE_ACADEMY_ACADEMIC: AcademicModule = {
       ],
     },
   ],
-  _programs: [],
   programCycles: [],
 };

@@ -155,10 +155,8 @@ export interface OrgProgramCycle {
 // #endregion
 
 export interface AcademicModule {
-  programs: Program[];
-
   // swap to this after we move to OrgProgram
-  _programs?: OrgProgram[];
+  programs: OrgProgram[];
   programCycles?: OrgProgramCycle[];
 
   // Temporary
