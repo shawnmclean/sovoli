@@ -57,4 +57,6 @@ export const MARIAN_ACADEMY_ACADEMIC: AcademicModule = {
       ],
     },
   ],
+  _programs: [],
+  programCycles: [],
 };

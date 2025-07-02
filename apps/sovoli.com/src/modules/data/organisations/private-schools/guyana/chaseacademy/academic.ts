@@ -20,4 +20,6 @@ export const CHASE_ACADEMY_ACADEMIC: AcademicModule = {
       ],
     },
   ],
+  _programs: [],
+  programCycles: [],
 };

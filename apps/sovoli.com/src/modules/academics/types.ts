@@ -138,6 +138,11 @@ export interface OrgProgramCycle {
   orgProgram: OrgProgram;
   academicCycle: OrgAcademicCycle;
 
+  registrationPeriod?: {
+    startDate: string;
+    endDate: string;
+  };
+
   feeStructure: ProgramFeeStructure;
 
   /**
@@ -153,8 +158,8 @@ export interface AcademicModule {
   programs: Program[];
 
   // swap to this after we move to OrgProgram
-  _programs: OrgProgram[];
-  programCycles: OrgProgramCycle[];
+  _programs?: OrgProgram[];
+  programCycles?: OrgProgramCycle[];
 
   // Temporary
   studentCount?: number;

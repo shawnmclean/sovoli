@@ -57,4 +57,6 @@ export const SCHOOL_NATIONS_ACADEMIC: AcademicModule = {
       ],
     },
   ],
+  _programs: [],
+  programCycles: [],
 };

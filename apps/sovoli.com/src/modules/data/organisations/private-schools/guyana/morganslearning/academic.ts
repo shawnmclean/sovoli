@@ -21,4 +21,6 @@ export const MORGANS_LEARNING_ACADEMIC: AcademicModule = {
       ],
     },
   ],
+  _programs: [],
+  programCycles: [],
 };
