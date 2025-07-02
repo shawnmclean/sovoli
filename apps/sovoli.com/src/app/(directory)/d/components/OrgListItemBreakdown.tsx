@@ -7,7 +7,7 @@ import type {
 } from "~/modules/organisations/types";
 import { ScoringSection } from "~/modules/scoring/components/ScoringSection";
 import { BarChartIcon, BookOpenIcon } from "lucide-react";
-import type { AgeRange, Program } from "~/modules/academics/types";
+import type { AgeRange, OrgProgram } from "~/modules/academics/types";
 import { Chip } from "@sovoli/ui/components/chip";
 
 export interface OrgListItemBreakdownProps {
@@ -68,7 +68,7 @@ export function OrgListItemBreakdown({
   );
 }
 
-const ProgramList = ({ programs }: { programs: Program[] }) => {
+const ProgramList = ({ programs }: { programs: OrgProgram[] }) => {
   const formatAgeRange = (ageRange?: AgeRange) => {
     if (!ageRange) return null;
 
@@ -88,7 +88,7 @@ const ProgramList = ({ programs }: { programs: Program[] }) => {
     return null;
   };
 
-  const getAgeRequirement = (program: Program) => {
+  const getAgeRequirement = (program: OrgProgram) => {
     const ageRequirement = program.requirements?.find(
       (req) => req.type === "age",
     );
@@ -103,12 +103,14 @@ const ProgramList = ({ programs }: { programs: Program[] }) => {
 
         return (
           <div
-            key={program.id}
+            key={program.slug}
             className="flex items-center justify-between p-2 rounded-lg bg-default-50"
           >
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-default-900 truncate">
-                {program.name}
+                {program.name ??
+                  program.standardProgramVersion?.program.name ??
+                  ""}
               </p>
               {formattedAge && (
                 <p className="text-xs text-default-500">Age: {formattedAge}</p>

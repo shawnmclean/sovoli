@@ -7,7 +7,7 @@ import type { FooterLink, FooterSection } from "~/modules/websites/types";
 import { SocialLink } from "./SocialLink";
 import { LogoSVG } from "~/components/Logo/LogoSVG";
 import { countryCodeToName } from "~/utils/countryUtils";
-import { OrgProgram } from "~/modules/academics/types";
+import type { OrgProgram } from "~/modules/academics/types";
 
 interface FooterProps {
   orgInstance: OrgInstanceWithWebsite;
