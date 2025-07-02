@@ -47,7 +47,7 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
             </Chip>
           </div>
         }
-        // href={`/orgs/${orgInstance.org.username}/programs`}
+        href={`/orgs/${orgInstance.org.username}/programs`}
       />
       <Tab
         key={`/orgs/${orgInstance.org.username}/scores`}
