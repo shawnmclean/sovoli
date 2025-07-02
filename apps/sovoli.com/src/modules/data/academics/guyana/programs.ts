@@ -13,11 +13,12 @@ export const GY_NURSERY_PROGRAM: StandardProgram = {
     "Early childhood education program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
+  image: "/orgs/defaults/programs/nursery.webp",
 };
 
 export const GY_NURSERY_V1: StandardProgramVersion = {
   id: "gy-nursery-v1",
-  programId: "gy-nursery",
+  program: GY_NURSERY_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
   requirements: [
@@ -45,7 +46,7 @@ export const GY_PRIMARY_ASSESSMENT_NGSA: ProgramAssessment = {
 
 export const GY_PRIMARY_ASSESSMENT_NGSA_V1: ProgramAssessmentVersion = {
   id: "ngsa-v1",
-  assessmentId: "ngsa",
+  assessment: GY_PRIMARY_ASSESSMENT_NGSA,
   version: 1,
   effectiveFrom: "2023-01-01",
 };
@@ -57,10 +58,11 @@ export const GY_PRIMARY_PROGRAM: StandardProgram = {
     "Primary education program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
+  image: "/orgs/defaults/programs/primary.webp",
 };
 export const GY_PRIMARY_V1: StandardProgramVersion = {
   id: "gy-primary-v1",
-  programId: "gy-primary",
+  program: GY_PRIMARY_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
   requirements: [
@@ -76,5 +78,22 @@ export const GY_PRIMARY_V1: StandardProgramVersion = {
 // #endregion
 
 // #region secondary
+
+export const GY_SECONDARY_PROGRAM: StandardProgram = {
+  id: "gy-secondary",
+  name: "Secondary",
+  description:
+    "Secondary education program under the Ministry of Education, Guyana",
+  country: "GY",
+  authority: "MoE-GY",
+  image: "/orgs/defaults/programs/secondary.webp",
+};
+
+export const GY_SECONDARY_V1: StandardProgramVersion = {
+  id: "gy-secondary-v1",
+  program: GY_SECONDARY_PROGRAM,
+  version: 1,
+  effectiveFrom: "2023-01-01",
+};
 
 // #endregion

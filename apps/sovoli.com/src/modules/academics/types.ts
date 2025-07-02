@@ -1,4 +1,4 @@
-import type { CountryCode } from "../core/types";
+import type { AmountByCurrency, CountryCode } from "../core/types";
 
 // #region cycles
 
@@ -16,8 +16,8 @@ export interface GlobalAcademicCycle {
 
 export interface OrgAcademicCycle {
   id: string; // "magy-2025-t1"
-  orgId: string; // "magy"
-  globalCycleId?: GlobalAcademicCycleId;
+  globalCycle?: GlobalAcademicCycle;
+
   customLabel?: string; // override: "Easter Term 2025"
   startDate?: string; // optional override
   endDate?: string;
@@ -34,6 +34,8 @@ export interface StandardProgram {
   name: string; // "Nursery"
   description: string;
 
+  image?: string;
+
   country?: CountryCode;
   authority?: AcademicAuthority;
 }
@@ -45,7 +47,7 @@ export type StandardProgramVersionId =
 
 export interface StandardProgramVersion {
   id: StandardProgramVersionId; // "gy-primary-v1"
-  programId: StandardProgramId;
+  program: StandardProgram;
   version: number;
 
   label?: string;
@@ -58,10 +60,7 @@ export interface StandardProgramVersion {
   assessments?: ProgramAssessmentVersion[];
 }
 export interface OrgProgram {
-  id: string; // e.g., "magy-nursery"
-  orgId: string; // "magy"
-
-  standardProgramVersionId?: StandardProgramVersionId;
+  standardProgramVersion?: StandardProgramVersion;
 
   name?: string; // "Nursery" (can override)
   slug: string; // "nursery"
@@ -117,25 +116,27 @@ export interface ProgramAssessment {
 
 export interface ProgramAssessmentVersion {
   id: string; // "ngsa-v1"
-  assessmentId: ProgramAssessmentId; // "ngsa"
+  assessment: ProgramAssessment;
   version: number;
 
   effectiveFrom: string;
   effectiveTo?: string;
 }
 
+export type BillingCycle = "monthly" | "termly" | "annually" | "per-course";
+
 export interface ProgramFeeStructure {
-  registrationFee?: number; // Optional if global
-  tuitionFee: number;
-  cycle?: "monthly" | "termly" | "annually" | "per-course"; // Flexible
-  currency?: string; // Optional override
+  registrationFee: AmountByCurrency; // One-time fee
+  tuitionFee: AmountByCurrency; // Required recurring or per-course fee
+  billingCycle?: BillingCycle; // Frequency of tuition payments
+
   notes?: string; // e.g., "Includes books", "Excludes lunch"
 }
 
 export interface OrgProgramCycle {
   id: string; // e.g., "magy-nursery-2025-t1"
-  orgProgramId: string; // "magy-nursery"
-  academicCycleId: string; // e.g., "magy-2025-t1"
+  orgProgram: OrgProgram;
+  academicCycle: OrgAcademicCycle;
 
   feeStructure: ProgramFeeStructure;
 
@@ -158,8 +159,7 @@ export interface AcademicModule {
   // Temporary
   studentCount?: number;
   globalRegistrationFee?: {
-    amount: number;
-    currency?: string;
+    amount: AmountByCurrency;
     notes?: string;
   };
 }

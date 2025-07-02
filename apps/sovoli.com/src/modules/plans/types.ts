@@ -1,7 +1,7 @@
+import type { AmountByCurrency } from "../core/types";
 import type { RuleKey } from "../scoring/rules";
 
 export type PlanKey = "lead-gen" | "enrollment" | "sis";
-export type Currency = "GYD" | "USD";
 
 export interface PlanDefinition {
   key: PlanKey;
@@ -20,7 +20,7 @@ export interface PlanDefinition {
         ctaLabel?: string;
         covers: RuleKey[];
         optional?: {
-          pricing: Record<Currency, number>;
+          pricing: AmountByCurrency;
           description?: string;
         };
       }
@@ -28,8 +28,8 @@ export interface PlanDefinition {
   >;
 
   pricing?: {
-    oneTime: Record<Currency, number>; // Mandatory setup cost
-    yearly: Record<Currency, number>; // Recurring annual fee
+    oneTime: AmountByCurrency; // Mandatory setup cost
+    yearly: AmountByCurrency; // Recurring annual fee
     note?: string;
   };
   discount?: {

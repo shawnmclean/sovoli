@@ -12,3 +12,6 @@ export interface SocialLink {
 }
 
 export type CountryCode = "GY";
+
+export type CurrencyCode = "GYD" | "USD";
+export type AmountByCurrency = Partial<Record<CurrencyCode, number>>;
