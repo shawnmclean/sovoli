@@ -1,6 +1,7 @@
 "use client";
 
 import { Avatar } from "@sovoli/ui/components/avatar";
+import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
@@ -17,19 +18,69 @@ import {
   EllipsisVerticalIcon,
   AlertCircleIcon,
   HeartIcon,
+  DollarSignIcon,
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
-// import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface SchoolHeaderProps {
   orgInstance: OrgInstance;
 }
 
+// Utility function to format currency amounts (e.g., 2000 -> "2k", 15000 -> "15k")
+function formatCurrencyAmount(amount: number): string {
+  if (amount >= 1000) {
+    return `${(amount / 1000).toFixed(0)}k`;
+  }
+  return amount.toString();
+}
+
+// Utility function to compute fee range from program cycles
+function computeFeeRange(orgInstance: OrgInstance): string {
+  const programCycles = orgInstance.academicModule?.programCycles ?? [];
+
+  if (programCycles.length === 0) {
+    return "NA";
+  }
+
+  // Extract all GYD tuition fees from program cycles
+  const gydFees: number[] = [];
+
+  for (const cycle of programCycles) {
+    const feeStructure = cycle.feeStructure;
+    if (feeStructure?.tuitionFee.GYD && feeStructure.tuitionFee.GYD > 0) {
+      gydFees.push(feeStructure.tuitionFee.GYD);
+    }
+  }
+
+  if (gydFees.length === 0) {
+    return "NA";
+  }
+
+  const minFee = Math.min(...gydFees);
+  const maxFee = Math.max(...gydFees);
+
+  if (minFee === maxFee) {
+    return formatCurrencyAmount(minFee);
+  }
+
+  return `${formatCurrencyAmount(minFee)}-${formatCurrencyAmount(maxFee)}`;
+}
+
 export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
+
+  const score = orgInstance.scoringModule
+    ? (
+        (orgInstance.scoringModule.result.scoreSummary.totalScore /
+          orgInstance.scoringModule.result.scoreSummary.maxScore) *
+        10
+      ).toFixed(1)
+    : null;
+
+  const feeRange = computeFeeRange(orgInstance);
 
   return (
     <div className="w-full md:w-1/3 p-4">
@@ -41,17 +92,26 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
           "
         >
           <div className="flex justify-center sm:justify-start sm:flex-shrink-0">
-            <Avatar
-              src={orgInstance.org.logo}
-              name={orgInstance.org.name}
-              size="lg"
-              className="h-20 w-20"
-              fallback={
-                <span className="text-xs text-default-500">
-                  Logo Not Available
-                </span>
-              }
-            />
+            <Badge
+              color="secondary"
+              variant="solid"
+              content={score}
+              size="sm"
+              placement="bottom-right"
+              shape="circle"
+            >
+              <Avatar
+                src={orgInstance.org.logo}
+                name={orgInstance.org.name}
+                size="lg"
+                className="h-20 w-20"
+                fallback={
+                  <span className="text-xs text-default-500">
+                    Logo Not Available
+                  </span>
+                }
+              />
+            </Badge>
           </div>
           <div className="flex flex-col items-center sm:items-start flex-1 min-w-0">
             <div className="flex items-center gap-2 w-full sm:justify-start justify-center">
@@ -63,21 +123,18 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
               </h1>
             </div>
             <div className="flex items-center gap-2 my-2">
-              <span className="text-sm text-default-500">
-                Score:{" "}
-                {orgInstance.scoringModule
-                  ? (
-                      (orgInstance.scoringModule.result.scoreSummary
-                        .totalScore /
-                        orgInstance.scoringModule.result.scoreSummary
-                          .maxScore) *
-                      10
-                    ).toFixed(1)
-                  : "-"}
-              </span>
+              <Chip
+                color="default"
+                size="sm"
+                variant="light"
+                className="text-xs gap-1 text-default-500"
+                startContent={<DollarSignIcon size={14} />}
+              >
+                {feeRange}
+              </Chip>
               •
               <Chip
-                color="success"
+                color="default"
                 size="sm"
                 variant="light"
                 className="text-xs gap-1 text-default-500"
