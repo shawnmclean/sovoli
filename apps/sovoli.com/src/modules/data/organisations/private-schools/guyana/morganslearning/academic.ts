@@ -1,26 +1,14 @@
 import type { AcademicModule } from "~/modules/academics/types";
+import { GY_SECONDARY_V1 } from "~/modules/data/academics/guyana/programs";
 
 // Morgan's Learning Centre also offers exam prep and online classes
 export const MORGANS_LEARNING_ACADEMIC: AcademicModule = {
   programs: [
     {
-      id: 1,
-      name: "Secondary",
+      standardProgramVersion: GY_SECONDARY_V1,
       slug: "secondary",
-      description:
-        "Engaging curriculum fostering critical thinking and creativity",
-      image: "/orgs/defaults/programs/secondary.webp",
-      requirements: [
-        {
-          type: "age",
-          ageRange: {
-            minAgeYears: 12,
-            minAgeMonths: 0,
-          },
-        },
-      ],
     },
   ],
-  _programs: [],
+
   programCycles: [],
 };
