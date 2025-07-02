@@ -60,11 +60,7 @@ export const MAGY_PRE_NURSERY_2025_T1: OrgProgramCycle = {
   id: "magy-pre-nursery-2025-t1",
   orgProgram: MAGY_PRE_NURSERY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
-  feeStructure: {
-    tuitionFee: { GYD: 15000 },
-    registrationFee: { GYD: 5000 },
-    billingCycle: "termly",
-  },
+
   computedRequirements: [
     ...(MAGY_PRE_NURSERY_PROGRAM.standardProgramVersion?.requirements ?? []),
   ],
@@ -74,11 +70,7 @@ export const MAGY_NURSERY_2025_T1: OrgProgramCycle = {
   id: "magy-nursery-2025-t1",
   orgProgram: MAGY_NURSERY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
-  feeStructure: {
-    tuitionFee: { GYD: 15000 },
-    registrationFee: { GYD: 5000 },
-    billingCycle: "termly",
-  },
+
   computedRequirements: [
     ...(MAGY_NURSERY_PROGRAM.standardProgramVersion?.requirements ?? []),
   ],
@@ -88,11 +80,7 @@ export const MAGY_PRIMARY_2025_T1: OrgProgramCycle = {
   id: "magy-primary-2025-t1",
   orgProgram: MAGY_PRIMARY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
-  feeStructure: {
-    tuitionFee: { GYD: 15000 },
-    registrationFee: { GYD: 5000 },
-    billingCycle: "termly",
-  },
+
   computedRequirements: [
     ...(MAGY_PRIMARY_PROGRAM.standardProgramVersion?.requirements ?? []),
   ],
@@ -102,11 +90,7 @@ export const MAGY_SECONDARY_2025_T1: OrgProgramCycle = {
   id: "magy-secondary-2025-t1",
   orgProgram: MAGY_SECONDARY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
-  feeStructure: {
-    tuitionFee: { GYD: 15000 },
-    registrationFee: { GYD: 5000 },
-    billingCycle: "termly",
-  },
+
   computedRequirements: [
     ...(MAGY_SECONDARY_PROGRAM.standardProgramVersion?.requirements ?? []),
   ],

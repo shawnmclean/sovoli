@@ -16,6 +16,7 @@ import {
 const DOMINION_SCHOOL_BREAK_PROGRAM: OrgProgram = {
   name: "School Break Program",
   slug: "school-break",
+  description: "Join us for Enriching Experiences and Educational Fun!",
   requirements: [
     {
       type: "age",
