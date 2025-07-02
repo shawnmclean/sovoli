@@ -114,7 +114,7 @@ export interface ProgramAssessmentVersion {
 export type BillingCycle = "monthly" | "termly" | "annually" | "per-course";
 
 export interface ProgramFeeStructure {
-  registrationFee: AmountByCurrency; // One-time fee
+  registrationFee?: AmountByCurrency; // One-time fee
   tuitionFee: AmountByCurrency; // Required recurring or per-course fee
   billingCycle: BillingCycle; // Frequency of tuition payments
 
