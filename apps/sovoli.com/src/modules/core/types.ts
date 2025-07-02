@@ -10,3 +10,5 @@ export interface SocialLink {
   label?: string;
   url: string;
 }
+
+export type CountryCode = "GY";
