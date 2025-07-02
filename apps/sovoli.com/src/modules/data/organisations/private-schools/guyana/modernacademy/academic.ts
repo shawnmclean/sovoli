@@ -1,4 +1,7 @@
-import type { AcademicModule } from "~/modules/academics/types";
+import type {
+  AcademicModule,
+  OrgProgramCycle,
+} from "~/modules/academics/types";
 
 export const MODERN_ACADEMY_ACADEMIC: AcademicModule = {
   programs: [
@@ -86,6 +89,32 @@ export const MODERN_ACADEMY_ACADEMIC: AcademicModule = {
             "A valid certificate issued by the school's Middle School Department.",
         },
       ],
+    },
+  ],
+  _programs: [],
+  programCycles: [],
+};
+
+export const MAGY_NURSERY_2025_T1: OrgProgramCycle = {
+  id: "magy-nursery-2025-t1",
+  orgProgramId: "magy-nursery",
+  academicCycleId: "magy-2025-t1",
+  feeStructure: {
+    tuitionFee: 15000,
+    registrationFee: 5000,
+    cycle: "termly",
+    currency: "GYD",
+    notes: "Includes workbook and snacks",
+  },
+  computedRequirements: [
+    {
+      type: "age",
+      ageRange: { minAgeYears: 3, maxAgeYears: 5 },
+      description: "Child must be 3–5 years old by September 1",
+    },
+    {
+      type: "document",
+      name: "Birth Certificate",
     },
   ],
 };

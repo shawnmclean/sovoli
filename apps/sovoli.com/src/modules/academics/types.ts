@@ -14,9 +14,10 @@ export interface GlobalAcademicCycle {
   academicYear: string; // "2025"
 }
 
-export interface AcademicCycle {
+export interface OrgAcademicCycle {
   id: string; // "magy-2025-t1"
-  globalCycleId?: GlobalAcademicCycleId; // points to "guyana-2025-t1"
+  orgId: string; // "magy"
+  globalCycleId?: GlobalAcademicCycleId;
   customLabel?: string; // override: "Easter Term 2025"
   startDate?: string; // optional override
   endDate?: string;
@@ -37,8 +38,13 @@ export interface StandardProgram {
   authority?: AcademicAuthority;
 }
 
+export type StandardProgramVersionId =
+  | "gy-nursery-v1"
+  | "gy-primary-v1"
+  | "gy-secondary-v1";
+
 export interface StandardProgramVersion {
-  id: string; // "gy-primary-v1"
+  id: StandardProgramVersionId; // "gy-primary-v1"
   programId: StandardProgramId;
   version: number;
 
@@ -51,7 +57,23 @@ export interface StandardProgramVersion {
   requirements?: ProgramRequirement[];
   assessments?: ProgramAssessmentVersion[];
 }
+export interface OrgProgram {
+  id: string; // e.g., "magy-nursery"
+  orgId: string; // "magy"
 
+  standardProgramVersionId?: StandardProgramVersionId;
+
+  name?: string; // "Nursery" (can override)
+  slug: string; // "nursery"
+  description?: string; // Custom or default
+  image?: string;
+
+  // Optional local overrides
+  requirements?: ProgramRequirement[];
+  notes?: string;
+}
+
+// TODO: remove in favour of OrgProgram
 export interface Program {
   id: number;
   name: string;
@@ -110,16 +132,28 @@ export interface ProgramFeeStructure {
   notes?: string; // e.g., "Includes books", "Excludes lunch"
 }
 
-export interface ProgramCycle {
-  schoolCycleId: string; // links to "magy-2025-t1"
+export interface OrgProgramCycle {
+  id: string; // e.g., "magy-nursery-2025-t1"
+  orgProgramId: string; // "magy-nursery"
+  academicCycleId: string; // e.g., "magy-2025-t1"
+
   feeStructure: ProgramFeeStructure;
-  resolvedRequirements: ProgramRequirement[];
+
+  /**
+   * Computed requirements at time of cycle, this is frozen at creation time.
+   */
+  computedRequirements: ProgramRequirement[];
+  notes?: string;
 }
 
 // #endregion
 
 export interface AcademicModule {
   programs: Program[];
+
+  // swap to this after we move to OrgProgram
+  _programs: OrgProgram[];
+  programCycles: OrgProgramCycle[];
 
   // Temporary
   studentCount?: number;
