@@ -72,18 +72,6 @@ export interface OrgProgram {
   notes?: string;
 }
 
-// TODO: remove in favour of OrgProgram
-export interface Program {
-  id: number;
-  name: string;
-  title?: string;
-  slug: string;
-  description: string;
-  image: string;
-  requirements?: ProgramRequirement[];
-  feeStructure?: ProgramFeeStructure;
-}
-
 export type ProgramRequirement = AgeRequirement | DocumentRequirement;
 
 // Age Range Model (Precise Age Control)
@@ -128,7 +116,7 @@ export type BillingCycle = "monthly" | "termly" | "annually" | "per-course";
 export interface ProgramFeeStructure {
   registrationFee: AmountByCurrency; // One-time fee
   tuitionFee: AmountByCurrency; // Required recurring or per-course fee
-  billingCycle?: BillingCycle; // Frequency of tuition payments
+  billingCycle: BillingCycle; // Frequency of tuition payments
 
   notes?: string; // e.g., "Includes books", "Excludes lunch"
 }
@@ -143,7 +131,7 @@ export interface OrgProgramCycle {
     endDate: string;
   };
 
-  feeStructure: ProgramFeeStructure;
+  feeStructure?: ProgramFeeStructure;
 
   /**
    * Computed requirements at time of cycle, this is frozen at creation time.
@@ -161,8 +149,4 @@ export interface AcademicModule {
 
   // Temporary
   studentCount?: number;
-  globalRegistrationFee?: {
-    amount: AmountByCurrency;
-    notes?: string;
-  };
 }

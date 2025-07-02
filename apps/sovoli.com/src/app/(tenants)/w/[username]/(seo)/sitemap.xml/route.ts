@@ -1,7 +1,7 @@
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { WorkforceMember } from "~/modules/workforce/types";
-import type { Program } from "~/modules/academics/types";
+import type { OrgProgram } from "~/modules/academics/types";
 
 interface SitemapUrl {
   loc: string;
@@ -76,7 +76,7 @@ function generateAcademicsSitemapUrls(
       changefreq: "weekly" as const,
       priority: 0.9,
     },
-    ...programs.map((program: Program) => ({
+    ...programs.map((program: OrgProgram) => ({
       loc: `${baseUrl}/academics/programs/${program.slug}`,
       lastmod: new Date().toISOString(),
       changefreq: "weekly" as const,

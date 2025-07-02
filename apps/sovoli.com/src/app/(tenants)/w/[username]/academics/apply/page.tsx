@@ -101,7 +101,7 @@ export default async function ProgramsApplyPage({
 
           {/* Program-Specific Requirements */}
           {programs.map((program) => (
-            <Card key={program.id} shadow="sm" className="overflow-visible">
+            <Card key={program.slug} shadow="sm" className="overflow-visible">
               <CardBody className="p-6">
                 <h3 className="mb-4 text-xl font-semibold text-foreground">
                   {program.name} Requirements
@@ -147,7 +147,7 @@ const generalRequirements: ProgramRequirement[] = [
 function renderRequirement(req: ProgramRequirement, index: number) {
   let label = "";
   if (req.type === "document") {
-    label = req.name ?? "Required Document";
+    label = req.name;
   } else if (req.ageRange) {
     const { minAgeYears, minAgeMonths, maxAgeYears, maxAgeMonths } =
       req.ageRange;
