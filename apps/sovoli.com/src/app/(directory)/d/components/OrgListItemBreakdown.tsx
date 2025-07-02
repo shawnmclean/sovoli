@@ -7,7 +7,11 @@ import type {
 } from "~/modules/organisations/types";
 import { ScoringSection } from "~/modules/scoring/components/ScoringSection";
 import { BarChartIcon, BookOpenIcon } from "lucide-react";
-import type { AgeRange, OrgProgram } from "~/modules/academics/types";
+import type {
+  AgeRange,
+  OrgProgram,
+  OrgProgramCycle,
+} from "~/modules/academics/types";
 import { Chip } from "@sovoli/ui/components/chip";
 
 export interface OrgListItemBreakdownProps {
@@ -62,13 +66,22 @@ export function OrgListItemBreakdown({
           </div>
         }
       >
-        <ProgramList programs={academicModule?.programs ?? []} />
+        <ProgramList
+          programs={academicModule?.programs ?? []}
+          programCycles={academicModule?.programCycles ?? []}
+        />
       </AccordionItem>
     </Accordion>
   );
 }
 
-const ProgramList = ({ programs }: { programs: OrgProgram[] }) => {
+const ProgramList = ({
+  programs,
+  programCycles,
+}: {
+  programs: OrgProgram[];
+  programCycles: OrgProgramCycle[];
+}) => {
   const formatAgeRange = (ageRange?: AgeRange) => {
     if (!ageRange) return null;
 
@@ -89,10 +102,90 @@ const ProgramList = ({ programs }: { programs: OrgProgram[] }) => {
   };
 
   const getAgeRequirement = (program: OrgProgram) => {
-    const ageRequirement = program.requirements?.find(
-      (req) => req.type === "age",
-    );
+    const ageRequirement =
+      program.requirements?.find((req) => req.type === "age") ??
+      program.standardProgramVersion?.requirements?.find(
+        (req) => req.type === "age",
+      );
     return ageRequirement?.ageRange;
+  };
+
+  const getProgramPricing = (program: OrgProgram) => {
+    // Find program cycles that match this program
+    const matchingCycles = programCycles.filter(
+      (cycle) => cycle.orgProgram.slug === program.slug,
+    );
+
+    if (matchingCycles.length === 0) return null;
+
+    // Get all tuition fees from matching cycles
+    const tuitionFees: number[] = [];
+    const registrationFees: number[] = [];
+
+    matchingCycles.forEach((cycle) => {
+      const tuitionFee = cycle.feeStructure?.tuitionFee.GYD;
+      if (tuitionFee !== undefined && tuitionFee > 0) {
+        tuitionFees.push(tuitionFee);
+      }
+      const registrationFee = cycle.feeStructure?.registrationFee?.GYD;
+      if (registrationFee !== undefined && registrationFee > 0) {
+        registrationFees.push(registrationFee);
+      }
+    });
+
+    return {
+      tuitionFees,
+      registrationFees,
+      billingCycle: matchingCycles[0]?.feeStructure?.billingCycle,
+    };
+  };
+
+  const formatCurrencyAmount = (amount: number): string => {
+    if (amount >= 1000) {
+      return `${(amount / 1000).toFixed(0)}k`;
+    }
+    return amount.toString();
+  };
+
+  const formatPricing = (pricing: ReturnType<typeof getProgramPricing>) => {
+    if (!pricing) return null;
+
+    const parts: string[] = [];
+
+    // Format tuition fees
+    if (pricing.tuitionFees.length > 0) {
+      const minTuition = Math.min(...pricing.tuitionFees);
+      const maxTuition = Math.max(...pricing.tuitionFees);
+
+      if (minTuition === maxTuition) {
+        parts.push(`Tuition: GYD ${formatCurrencyAmount(minTuition)}`);
+      } else {
+        parts.push(
+          `Tuition: GYD ${formatCurrencyAmount(minTuition)}-${formatCurrencyAmount(maxTuition)}`,
+        );
+      }
+    }
+
+    // Format registration fees
+    if (pricing.registrationFees.length > 0) {
+      const minReg = Math.min(...pricing.registrationFees);
+      const maxReg = Math.max(...pricing.registrationFees);
+
+      if (minReg === maxReg) {
+        parts.push(`Reg: GYD ${formatCurrencyAmount(minReg)}`);
+      } else {
+        parts.push(
+          `Reg: GYD ${formatCurrencyAmount(minReg)}-${formatCurrencyAmount(maxReg)}`,
+        );
+      }
+    }
+
+    // Add billing cycle if available
+    if (pricing.billingCycle) {
+      parts.push(`(${pricing.billingCycle})`);
+    }
+
+    return parts.join(" • ");
   };
 
   return (
@@ -100,6 +193,8 @@ const ProgramList = ({ programs }: { programs: OrgProgram[] }) => {
       {programs.map((program) => {
         const ageRange = getAgeRequirement(program);
         const formattedAge = formatAgeRange(ageRange);
+        const pricing = getProgramPricing(program);
+        const formattedPricing = formatPricing(pricing);
 
         return (
           <div
@@ -112,9 +207,16 @@ const ProgramList = ({ programs }: { programs: OrgProgram[] }) => {
                   program.standardProgramVersion?.program.name ??
                   ""}
               </p>
-              {formattedAge && (
-                <p className="text-xs text-default-500">Age: {formattedAge}</p>
-              )}
+              <div className="flex flex-col gap-1 mt-1">
+                {formattedAge && (
+                  <p className="text-xs text-default-500">
+                    Age: {formattedAge}
+                  </p>
+                )}
+                {formattedPricing && (
+                  <p className="text-xs text-default-500">{formattedPricing}</p>
+                )}
+              </div>
             </div>
           </div>
         );
