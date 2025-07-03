@@ -9,9 +9,7 @@ export interface EnrollmentFlierProps {
 }
 
 export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
-  const { org, academicModule } = orgInstance;
-
-  const currentCycle = academicModule?.programCycles?.[0];
+  const { org } = orgInstance;
 
   return (
     <div className="w-full h-full bg-white font-sans flex flex-col">
@@ -38,18 +36,45 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
         </div>
       </div>
 
-      {/* Row 3: Logo and School Info */}
-      <div className="flex flex-col items-center text-center px-8 py-6">
-        {org.logo && (
-          <Image
-            src={org.logo}
-            alt="School Logo"
-            className="h-16 mb-2 object-contain"
-          />
-        )}
-        <h1 className="text-4xl font-bold text-blue-900">{org.name}</h1>
-        <div className=" text-blue-900 text-xl font-medium mt-2">
-          "Inspiring Everyday"
+      {/* Row 3: Logo and School Info - Two Columns */}
+      <div className="px-16 py-4">
+        <div className="grid grid-cols-2 gap-8 items-center">
+          {/* Left Column: Bullet List */}
+          <div className="space-y-3 text-xl">
+            <ul className="space-y-2">
+              <li className="flex items-center text-blue-800">
+                <span className="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
+                Safe Environment
+              </li>
+              <li className="flex items-center text-blue-800">
+                <span className="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
+                Experienced Teachers
+              </li>
+              <li className="flex items-center text-blue-800">
+                <span className="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
+                Low Class Size
+              </li>
+              <li className="flex items-center text-blue-800">
+                <span className="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
+                Tours / Culture
+              </li>
+            </ul>
+          </div>
+
+          {/* Right Column: School Info */}
+          <div className="flex flex-col items-center text-center">
+            {org.logo && (
+              <Image
+                src={org.logo}
+                alt="School Logo"
+                className="h-16 mb-2 object-contain"
+              />
+            )}
+            <h1 className="text-4xl font-bold text-blue-900">{org.name}</h1>
+            <div className="text-blue-900 text-xl font-medium mt-2">
+              "Inspiring Everyday"
+            </div>
+          </div>
         </div>
       </div>
 
@@ -93,7 +118,7 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
           {/* WhatsApp Block */}
           <div className="flex-1 flex flex-col items-center text-center bg-blue-900 px-4 py-6 rounded-tr-[48px]">
             <div className="mb-3">
-              <div className="w-40 h-40 bg-white rounded-xl flex items-center justify-center p-2">
+              <div className="w-36 h-36 bg-white rounded-xl flex items-center justify-center p-2">
                 <QRCode value="https://wa.me/5926271915" />
               </div>
             </div>
@@ -131,10 +156,8 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <Globe className="w-5 h-5 text-white mr-2" />
-              <span className="text-white font-semibold text-lg">
-                ma.edu.gy
-              </span>
+              <Globe className="w-6 h-6 text-white mr-2" />
+              <span className="text-white font-bold text-xl">ma.edu.gy</span>
             </div>
           </div>
         </div>
