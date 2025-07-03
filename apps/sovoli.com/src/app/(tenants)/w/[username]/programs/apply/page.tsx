@@ -43,7 +43,7 @@ export async function generateMetadata({
       title: `Apply to Programs | ${website.siteName}`,
       description: `Apply to our academic programs at ${website.siteName}. View program requirements and start your application process today.`,
       type: "website",
-      url: `${website.url}/academics/apply`,
+      url: `${website.url}/programs/apply`,
       siteName: website.siteName,
       images: website.images,
     },

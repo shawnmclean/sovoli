@@ -5,7 +5,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
 import { displayAgeRange } from "../utils";
-import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import type { Metadata } from "next";
 
 const retrieveOrgInstance = async (username: string) => {
@@ -60,7 +60,7 @@ export default async function ProgramDetailsPage({
         <div className="mb-6">
           <Button
             as={Link}
-            href="/academics/programs"
+            href="/programs"
             variant="light"
             startContent={<ChevronLeft className="h-4 w-4" />}
           >

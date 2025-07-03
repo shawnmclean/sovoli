@@ -115,7 +115,7 @@ const FooterAcademicsSection = ({
           <li key={program.slug}>
             <Link
               className="text-sm text-foreground-500 hover:text-primary"
-              href={`/academics/programs/${program.slug}`}
+              href={`/programs/${program.slug}`}
             >
               {program.name ??
                 program.standardProgramVersion?.program.name ??
@@ -126,7 +126,7 @@ const FooterAcademicsSection = ({
         <li>
           <Link
             className="text-sm text-foreground-500 hover:text-primary"
-            href="/academics/programs"
+            href="/programs"
           >
             More...
           </Link>

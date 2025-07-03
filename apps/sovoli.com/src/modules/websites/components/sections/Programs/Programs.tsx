@@ -63,7 +63,7 @@ export function Programs({ section, orgInstance }: ProgramsProps) {
                     radius="sm"
                     className="mt-4"
                     as={Link}
-                    href={`/academics/programs/${program.slug}`}
+                    href={`/programs/${program.slug}`}
                   >
                     Learn More
                   </Button>
@@ -78,7 +78,7 @@ export function Programs({ section, orgInstance }: ProgramsProps) {
             variant="bordered"
             radius="sm"
             as={Link}
-            href="/academics/programs"
+            href="/programs"
           >
             View All {programs.length} Programs
           </Button>

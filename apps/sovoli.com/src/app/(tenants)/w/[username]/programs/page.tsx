@@ -6,7 +6,7 @@ import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { displayAgeRange } from "./utils";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
+import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -124,7 +124,7 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
                   radius="sm"
                   className="mt-4 self-start"
                   as={Link}
-                  href={`/academics/programs/${program.slug}`}
+                  href={`/programs/${program.slug}`}
                 >
                   Learn More
                 </Button>

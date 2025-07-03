@@ -65,19 +65,19 @@ function generateAcademicsSitemapUrls(
 
   return [
     {
-      loc: `${baseUrl}/academics/apply`,
+      loc: `${baseUrl}/programs/apply`,
       lastmod: new Date().toISOString(),
       changefreq: "weekly" as const,
       priority: 0.9,
     },
     {
-      loc: `${baseUrl}/academics/programs`,
+      loc: `${baseUrl}/programs`,
       lastmod: new Date().toISOString(),
       changefreq: "weekly" as const,
       priority: 0.9,
     },
     ...programs.map((program: OrgProgram) => ({
-      loc: `${baseUrl}/academics/programs/${program.slug}`,
+      loc: `${baseUrl}/programs/${program.slug}`,
       lastmod: new Date().toISOString(),
       changefreq: "weekly" as const,
       priority: 0.8,

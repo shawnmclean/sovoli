@@ -72,12 +72,12 @@ export function TenantNavbar({
                       program.name ??
                       program.standardProgramVersion?.program.name ??
                       "",
-                    href: `/academics/programs/${program.slug}`,
+                    href: `/programs/${program.slug}`,
                   })),
-                  { label: "All Programs...", href: "/academics/programs" },
+                  { label: "All Programs...", href: "/programs" },
                 ],
               }
-            : { label: item.label, href: "/academics/programs" };
+            : { label: item.label, href: "/programs" };
         case "workforce":
           return {
             label: item.label,
@@ -105,7 +105,7 @@ export function TenantNavbar({
         case "apply":
           return {
             ...action,
-            href: "/academics/apply",
+            href: "/programs/apply",
             color: "secondary",
             variant: "flat",
           };
@@ -282,7 +282,7 @@ export function TenantNavbar({
             fullWidth
             as={Link}
             className="bg-foreground text-background"
-            href="/academics/apply"
+            href="/programs/apply"
             onPress={handleCloseMenu}
           >
             Apply Now

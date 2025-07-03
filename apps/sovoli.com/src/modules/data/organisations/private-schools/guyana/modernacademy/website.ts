@@ -35,8 +35,8 @@ const HOME_PAGE: PageConfig = {
       backgroundImage:
         "/orgs/private-schools/guyana/modernacademy/website/home/hero.webp",
       actions: [
-        { label: "Apply Now", href: "/academics/apply" },
-        { label: "Schedule a Visit", href: "/academics/apply" },
+        { label: "Apply Now", href: "/programs/apply" },
+        { label: "Schedule a Visit", href: "/programs/apply" },
       ],
     },
     // {
