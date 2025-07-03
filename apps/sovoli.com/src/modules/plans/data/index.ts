@@ -1,8 +1,8 @@
 import type { PlanDefinition } from "../types";
-import { leadGenPlan } from "./lead-gen";
+import { growthPlan } from "./growth";
 
 export const plans: PlanDefinition[] = [
-  leadGenPlan,
+  growthPlan,
   {
     key: "enrollment",
     title: "Enrollment Package",

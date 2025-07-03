@@ -119,7 +119,7 @@ export const privateSchoolRuleSet: RuleSet = {
       ],
 
       effort: "medium",
-      includedInPlan: ["lead-gen"],
+      includedInPlan: ["growth"],
     },
     hasLogo: {
       key: "hasLogo",
@@ -139,7 +139,7 @@ export const privateSchoolRuleSet: RuleSet = {
         },
       ],
       effort: "low",
-      includedInPlan: ["lead-gen"],
+      includedInPlan: ["growth"],
     },
     hasWebsiteEduDomain: {
       key: "hasWebsiteEduDomain",
@@ -157,7 +157,7 @@ export const privateSchoolRuleSet: RuleSet = {
       ],
       requirements: ["Website URL ending in .edu.gy"],
       effort: "high",
-      includedInPlan: ["lead-gen"],
+      includedInPlan: ["growth"],
     },
     hasEmailEduDomain: {
       key: "hasEmailEduDomain",
@@ -172,7 +172,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Use an email ending in .edu.gy"],
       requirements: ["Email like info@school.edu.gy"],
       effort: "medium",
-      includedInPlan: ["lead-gen"],
+      includedInPlan: ["growth"],
     },
     hasGoogleProfile: {
       key: "hasGoogleProfile",
@@ -182,7 +182,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Claim or create a Google Business Profile"],
       requirements: ["Live Google listing URL"],
       effort: "medium",
-      includedInPlan: ["lead-gen"],
+      includedInPlan: ["growth"],
     },
     hasPhone: {
       key: "hasPhone",
@@ -202,7 +202,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Add an active school email"],
       requirements: ["Working email address"],
       effort: "low",
-      includedInPlan: ["lead-gen"],
+      includedInPlan: ["growth"],
     },
     hasWhatsapp: {
       key: "hasWhatsapp",
@@ -225,7 +225,7 @@ export const privateSchoolRuleSet: RuleSet = {
       actions: ["Link your existing website", "Or request a Sovoli-built site"],
       requirements: ["Working website URL"],
       effort: "medium",
-      includedInPlan: ["lead-gen"],
+      includedInPlan: ["growth"],
     },
     hasParentPortal: {
       key: "hasParentPortal",

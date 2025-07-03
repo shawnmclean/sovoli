@@ -1,7 +1,7 @@
 import type { AmountByCurrency } from "../core/types";
 import type { RuleKey } from "../scoring/rules";
 
-export type PlanKey = "lead-gen" | "enrollment" | "sis";
+export type PlanKey = "growth" | "enrollment" | "sis";
 
 export interface PlanDefinition {
   key: PlanKey;
