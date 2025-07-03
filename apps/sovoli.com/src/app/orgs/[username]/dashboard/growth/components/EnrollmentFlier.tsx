@@ -133,6 +133,12 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
                 +592 751 3788
               </span>
             </div>
+            <div className="flex items-center justify-center">
+              <SiWhatsapp className="w-6 h-6 text-white mr-2" />
+              <span className="text-white font-semibold text-xl">
+                +592 646 4069
+              </span>
+            </div>
           </div>
 
           {/* Center CTA + Address Dome */}
