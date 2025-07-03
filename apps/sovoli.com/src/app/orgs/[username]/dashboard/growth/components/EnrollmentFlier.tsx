@@ -29,7 +29,7 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
 
   return (
     <div className="absolute inset-0 w-full h-full bg-white">
-      {/* Header Section - positioned absolutely */}
+      {/* Header Section */}
       <div
         className="absolute top-0 left-0 right-0 flex flex-col items-center justify-center px-8"
         style={{ height: 140 }}
@@ -46,7 +46,7 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
         </p>
       </div>
 
-      {/* Contact/Info Row - positioned absolutely */}
+      {/* Contact/Info Row */}
       <div
         className="absolute left-8 right-8 flex flex-row justify-between items-stretch gap-6"
         style={{ top: 150, height: 130 }}
@@ -90,7 +90,7 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
         </div>
       </div>
 
-      {/* Program Information Section - positioned absolutely */}
+      {/* Program Information Section */}
       <div
         className="absolute left-8 right-8 flex flex-col gap-4"
         style={{ top: 300 }}
@@ -123,7 +123,7 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
         </div>
       </div>
 
-      {/* Footer Section - positioned absolutely at bottom */}
+      {/* Footer Section */}
       <div
         className="absolute bottom-8 left-8 right-8 text-center"
         style={{ height: 80 }}
