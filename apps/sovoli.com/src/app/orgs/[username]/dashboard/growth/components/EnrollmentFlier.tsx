@@ -2,6 +2,7 @@ import { Image } from "@sovoli/ui/components/image";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Globe } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
+import QRCode from "react-qr-code";
 
 export interface EnrollmentFlierProps {
   orgInstance: OrgInstance;
@@ -10,18 +11,6 @@ export interface EnrollmentFlierProps {
 export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
   const { org, academicModule } = orgInstance;
 
-  const primaryLocation =
-    org.locations.find((loc) => loc.isPrimary) ?? org.locations[0];
-  const primaryContact =
-    primaryLocation?.contacts.find((c) => c.type === "whatsapp") ??
-    primaryLocation?.contacts.find((c) => c.type === "phone") ??
-    primaryLocation?.contacts.find((c) => c.type === "email");
-
-  const crmContact =
-    org.internalCRM?.people[0]?.contacts.find((c) => c.type === "whatsapp") ??
-    org.internalCRM?.people[0]?.contacts.find((c) => c.type === "phone");
-
-  const contactToUse = crmContact ?? primaryContact;
   const currentCycle = academicModule?.programCycles?.[0];
 
   return (
@@ -100,15 +89,14 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
         {/* WhatsApp */}
         <div className="flex-1 flex flex-col items-center text-center bg-blue-900 p-4 rounded-tr-xl">
           <div className="mb-2 flex items-center justify-center">
-            <div className="w-32 h-32 bg-white rounded-lg flex items-center justify-center mb-2">
-              {/* Replace with actual QR code */}
-              <span className="text-blue-900 font-bold text-lg">[QR]</span>
+            <div className="w-36 h-36 bg-white rounded-lg flex items-center justify-center p-2">
+              <QRCode value="wa.me/5926271915" />
             </div>
           </div>
           <div className="flex items-center justify-center">
             <SiWhatsapp className="w-5 h-5 text-white mr-2" />
             <span className="text-white font-semibold text-lg">
-              +592 622-9382
+              +592 627-1915
             </span>
           </div>
         </div>
@@ -127,9 +115,8 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
         {/* Website */}
         <div className="flex-1 flex flex-col items-center text-center bg-blue-900 p-4 rounded-tl-xl">
           <div className="mb-2 flex items-center justify-center">
-            <div className="w-32 h-32 bg-white rounded-lg flex items-center justify-center mb-2">
-              {/* Replace with actual QR code */}
-              <span className="text-blue-900 font-bold text-lg">[QR]</span>
+            <div className="w-36 h-36 bg-white rounded-lg flex items-center justify-center p-2">
+              <QRCode value="ma.edu.gy/programs?r=ef" />
             </div>
           </div>
           <div className="flex items-center justify-center">
