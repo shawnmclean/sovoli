@@ -1,5 +1,4 @@
 import type { OrgInstance } from "~/modules/organisations/types";
-import { Image } from "@sovoli/ui/components/image";
 
 export interface EnrollmentFlierProps {
   orgInstance: OrgInstance;
@@ -27,209 +26,117 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
 
   // Get current program cycle (assuming we want to show the first available)
   const currentProgramCycle = academicModule?.programCycles?.[0];
-  const program = currentProgramCycle?.orgProgram;
-
-  // Format dates
-  const formatDateRange = (startDate?: string, endDate?: string) => {
-    if (!startDate || !endDate) return "TBD";
-    try {
-      const startDateObj = new Date(startDate);
-      const endDateObj = new Date(endDate);
-      const start = startDateObj.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-      });
-      const end = endDateObj.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      });
-      return `${start} – ${end}`;
-    } catch {
-      return `${startDate} – ${endDate}`;
-    }
-  };
 
   return (
-    <>
-      {/* Header Banner */}
-      <div className="bg-gradient-to-br from-blue-800 to-blue-600 p-8 text-center text-white relative print:p-6">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="10" cy="10" r="1" fill="currentColor" />
-            <circle cx="90" cy="20" r="1.5" fill="currentColor" />
-            <circle cx="30" cy="80" r="1" fill="currentColor" />
-            <circle cx="70" cy="70" r="1.2" fill="currentColor" />
-          </svg>
-        </div>
-
-        <h1 className="text-5xl font-extrabold mb-2 text-shadow-lg relative z-10 print:text-4xl">
+    <div className="absolute inset-0 w-full h-full bg-white">
+      {/* Header Section - positioned absolutely */}
+      <div
+        className="absolute top-0 left-0 right-0 flex flex-col items-center justify-center px-8"
+        style={{ height: 140 }}
+      >
+        <h1 className="text-5xl font-extrabold text-blue-900 mb-2 text-center leading-tight">
           {org.name}
         </h1>
-        <div className="bg-white/15 px-5 py-2 rounded-full inline-block text-xl font-medium mb-2 relative z-10 print:text-lg">
+        <div className="bg-blue-100 text-blue-900 px-6 py-2 rounded-full text-xl font-medium mb-2 text-center">
           Now Enrolling for{" "}
           {currentProgramCycle?.academicCycle.customLabel ?? "Term 1, 2025"}
         </div>
-        <p className="text-lg opacity-90 font-normal relative z-10 print:text-base">
+        <p className="text-lg text-blue-800 opacity-90 font-normal text-center">
           A safe, nurturing environment for your child's early years
         </p>
       </div>
 
-      <div className="p-8 print:p-6">
-        {/* Main Image Card */}
-        <div className="bg-slate-50 border-2 border-slate-200 rounded-xl p-5 mb-6 shadow-sm print:mb-4">
-          <div className="w-full h-48 bg-gradient-to-br from-slate-200 to-slate-300 rounded-lg flex items-center justify-center text-slate-600 text-lg font-medium border-2 border-dashed border-slate-400 print:h-32">
-            {program?.image ? (
-              <Image
-                src={program.image}
-                alt={`${program.name} program`}
-                className="w-full h-full object-cover rounded-lg"
-              />
-            ) : (
-              "[Classroom Image Placeholder]"
-            )}
+      {/* Contact/Info Row - positioned absolutely */}
+      <div
+        className="absolute left-8 right-8 flex flex-row justify-between items-stretch gap-6"
+        style={{ top: 150, height: 130 }}
+      >
+        {/* WhatsApp Card */}
+        <div className="flex-1 bg-white rounded-2xl border-2 border-blue-200 flex flex-col items-center justify-center px-4 py-3 shadow-sm">
+          <div className="w-16 h-16 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg flex items-center justify-center text-blue-700 text-xs mb-2">
+            [QR: WhatsApp]
+          </div>
+          <div className="text-blue-800 font-bold text-lg mb-1">Message Us</div>
+          <div className="text-blue-700 text-sm mb-1">WhatsApp</div>
+          <div className="text-blue-900 font-medium text-base">
+            {contactToUse?.value ?? "+592 622-9382"}
           </div>
         </div>
-
-        {/* Program Details Card */}
-        {program && (
-          <div className="bg-white border-2 border-blue-800 rounded-xl p-6 mb-6 shadow-md relative print:mb-4 print:p-4">
-            {/* Top accent bar */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-800 to-blue-500 rounded-t-xl"></div>
-
-            <h2 className="text-3xl font-bold text-blue-800 mb-4 flex items-center gap-3 print:text-2xl">
-              <span className="text-2xl print:text-xl">🎓</span>
-              {program.name ?? "Nursery Program"}
-            </h2>
-
-            <div className="grid grid-cols-2 gap-4 mb-4 print:gap-3">
-              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800 print:p-2">
-                <strong className="text-blue-800 font-semibold block mb-1 print:text-sm">
-                  📅 Term Dates
-                </strong>
-                <span className="text-slate-600 text-sm print:text-xs">
-                  {formatDateRange(
-                    currentProgramCycle.academicCycle.startDate,
-                    currentProgramCycle.academicCycle.endDate,
-                  )}
-                </span>
-              </div>
-
-              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800 print:p-2">
-                <strong className="text-blue-800 font-semibold block mb-1 print:text-sm">
-                  👶 Age Group
-                </strong>
-                <span className="text-slate-600 text-sm print:text-xs">
-                  {currentProgramCycle.computedRequirements.find(
-                    (req) => req.type === "age",
-                  )?.description ?? "3–5 years"}
-                </span>
-              </div>
-
-              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800 print:p-2">
-                <strong className="text-blue-800 font-semibold block mb-1 print:text-sm">
-                  💰 Tuition
-                </strong>
-                <span className="text-slate-600 text-sm print:text-xs">
-                  {currentProgramCycle.feeStructure?.tuitionFee.GYD
-                    ? `GYD $${currentProgramCycle.feeStructure.tuitionFee.GYD.toLocaleString()} / term`
-                    : "Contact for pricing"}
-                </span>
-              </div>
-
-              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800 print:p-2">
-                <strong className="text-blue-800 font-semibold block mb-1 print:text-sm">
-                  ⏰ Class Hours
-                </strong>
-                <span className="text-slate-600 text-sm print:text-xs">
-                  8:00 AM - 3:00 PM
-                </span>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-emerald-600 to-emerald-500 text-white p-3 rounded-lg font-semibold text-center shadow-md print:p-2 print:text-sm">
-              ✔️ Limited spots available — secure your child's seat now!
-            </div>
+        {/* Visit Us Card */}
+        <div className="flex-1 bg-white rounded-2xl border-2 border-blue-200 flex flex-col items-center justify-center px-4 py-3 shadow-sm">
+          <div className="text-2xl mb-1">📍</div>
+          <div className="text-blue-800 font-bold text-lg mb-1">Visit Us</div>
+          <div className="text-blue-900 text-base mb-1 text-center">
+            {primaryLocation?.address.line1 ?? "112 Regent Street"}
+            <br />
+            {primaryLocation?.address.city ?? "Georgetown"}
           </div>
-        )}
-
-        {/* Call to Action Card */}
-        <div className="bg-gradient-to-br from-blue-800 to-blue-500 text-white p-6 rounded-xl text-center mb-6 shadow-lg print:mb-4 print:p-4">
-          <p className="text-2xl font-bold mb-2 print:text-xl">
-            📲 Ready to Enroll?
-          </p>
-          <p className="text-lg opacity-90 print:text-base">
-            Scan a QR code below to chat or explore programs
-          </p>
-        </div>
-
-        {/* Contact Section */}
-        <div className="grid grid-cols-3 gap-5 mb-6 print:gap-3 print:mb-4">
-          {/* WhatsApp Card */}
-          <div className="bg-white border-2 border-slate-200 rounded-xl p-5 text-center shadow-sm hover:border-blue-800 hover:shadow-md transition-all print:p-3 print:shadow-none">
-            <div className="w-24 h-24 bg-slate-100 mx-auto mb-3 rounded-lg flex items-center justify-center text-slate-600 text-xs text-center leading-tight border-2 border-dashed border-slate-300 print:w-16 print:h-16">
-              [QR: WhatsApp]
-            </div>
-            <h3 className="text-lg font-semibold text-blue-800 mb-2 print:text-base">
-              Message Us
-            </h3>
-            <p className="text-sm text-slate-600 mb-1 print:text-xs">
-              WhatsApp
-            </p>
-            <p className="text-blue-800 font-medium print:text-sm">
-              {contactToUse?.value ?? "+592 627 1915"}
-            </p>
-          </div>
-
-          {/* Location Card */}
-          <div className="bg-slate-50 border-2 border-blue-800 rounded-xl p-5 text-center print:p-3">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3 print:text-lg">
-              📍 Visit Us
-            </h3>
-            {primaryLocation?.address && (
-              <>
-                <p className="text-slate-700 mb-1 print:text-sm">
-                  {primaryLocation.address.line1}
-                </p>
-                <p className="text-slate-700 mb-1 print:text-sm">
-                  {primaryLocation.address.city}
-                </p>
-                <p className="text-slate-500 italic text-sm mt-2 print:text-xs">
-                  Opposite Medicare Pharmacy
-                </p>
-              </>
-            )}
-          </div>
-
-          {/* Website Card */}
-          <div className="bg-white border-2 border-slate-200 rounded-xl p-5 text-center shadow-sm hover:border-blue-800 hover:shadow-md transition-all print:p-3 print:shadow-none">
-            <div className="w-24 h-24 bg-slate-100 mx-auto mb-3 rounded-lg flex items-center justify-center text-slate-600 text-xs text-center leading-tight border-2 border-dashed border-slate-300 print:w-16 print:h-16">
-              [QR: Website]
-            </div>
-            <h3 className="text-lg font-semibold text-blue-800 mb-2 print:text-base">
-              Visit Website
-            </h3>
-            <p className="text-sm text-slate-600 mb-1 print:text-xs">
-              Online Info
-            </p>
-            <p className="text-blue-800 font-medium print:text-sm">
-              {org.username}.sovoli.com
-            </p>
+          <div className="italic text-blue-500 text-xs text-center">
+            Opposite Medicare Pharmacy
           </div>
         </div>
-
-        {/* Footer Card */}
-        <div className="bg-blue-800 text-white p-4 rounded-lg text-center text-sm font-medium print:p-3 print:text-xs">
-          {org.isVerified
-            ? "✅ Verified Private School on Sovoli.com"
-            : "Private School on Sovoli.com"}
+        {/* Website Card */}
+        <div className="flex-1 bg-white rounded-2xl border-2 border-blue-200 flex flex-col items-center justify-center px-4 py-3 shadow-sm">
+          <div className="w-16 h-16 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg flex items-center justify-center text-blue-700 text-xs mb-2">
+            [QR: Website]
+          </div>
+          <div className="text-blue-800 font-bold text-lg mb-1">
+            Visit Website
+          </div>
+          <div className="text-blue-700 text-sm mb-1">Online Info</div>
+          <div className="text-blue-900 font-medium text-base truncate max-w-[120px]">
+            {org.username}.sovoli.com
+          </div>
         </div>
       </div>
-    </>
+
+      {/* Program Information Section - positioned absolutely */}
+      <div
+        className="absolute left-8 right-8 flex flex-col gap-4"
+        style={{ top: 300 }}
+      >
+        <h2 className="text-3xl font-bold text-blue-900 text-center mb-4">
+          Our Programs
+        </h2>
+
+        {/* Programs Grid */}
+        <div className="grid grid-cols-2 gap-4">
+          {/* Nursery Program */}
+          <div className="bg-blue-50 rounded-xl p-4 border-2 border-blue-200">
+            <h3 className="text-xl font-bold text-blue-900 mb-2">Nursery</h3>
+            <p className="text-blue-800 text-sm mb-2">
+              Ages 3-4 years • Early learning foundation
+            </p>
+            <div className="text-blue-700 font-semibold">$150/month</div>
+          </div>
+
+          {/* Pre-Nursery Program */}
+          <div className="bg-blue-50 rounded-xl p-4 border-2 border-blue-200">
+            <h3 className="text-xl font-bold text-blue-900 mb-2">
+              Pre-Nursery
+            </h3>
+            <p className="text-blue-800 text-sm mb-2">
+              Ages 2-3 years • Play-based learning
+            </p>
+            <div className="text-blue-700 font-semibold">$120/month</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Section - positioned absolutely at bottom */}
+      <div
+        className="absolute bottom-8 left-8 right-8 text-center"
+        style={{ height: 80 }}
+      >
+        <div className="bg-blue-100 rounded-xl p-4 border-2 border-blue-200">
+          <p className="text-blue-900 font-semibold text-lg mb-1">
+            Limited Spaces Available
+          </p>
+          <p className="text-blue-700 text-sm">
+            Contact us today to secure your child's place
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
