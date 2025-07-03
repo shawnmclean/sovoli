@@ -101,8 +101,9 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
           </div>
         </div>
         {/* Location */}
-        <div className="flex-1 flex flex-col items-center text-center bg-blue-900 p-4">
-          <div className="text-white text-xl leading-tight">
+        <div className="flex-1 flex flex-col items-center text-center bg-blue-900 pb-4">
+          <div className="bg-white rounded-b-full pb-8 w-full" />
+          <div className="text-white text-xl leading-tight pt-4">
             Lot 11, Public Road
             <br />
             Mon Repos, ECD
