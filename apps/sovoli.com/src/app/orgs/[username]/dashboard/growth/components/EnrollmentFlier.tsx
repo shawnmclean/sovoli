@@ -27,8 +27,8 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
       <div className="px-8 py-8 flex justify-center">
         <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-purple-800 rounded-2xl p-3 w-full relative">
           {/* Limited Space Badge */}
-          <div className="absolute -top-2 -right-2 z-50">
-            <div className="bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg transform rotate-12 font-bold text-xl">
+          <div className="absolute -right-6 z-50">
+            <div className="bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg transform rotate-12 font-bold text-2xl">
               Limited Space Available!
             </div>
           </div>
@@ -66,10 +66,10 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
               key={p.title}
               className="bg-blue-50 border border-blue-200 rounded-xl p-4 shadow-sm"
             >
-              <h3 className="text-xl font-bold text-blue-900 mb-1">
+              <h3 className="text-2xl font-bold text-blue-900 mb-1">
                 {p.title}
               </h3>
-              <p className="text-sm text-blue-700">{p.age}</p>
+              <p className="text-xl text-blue-700">{p.age}</p>
             </div>
           ))}
         </div>
@@ -153,7 +153,7 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
                 Mon Repos, ECD
                 <br />
                 <span className="text-blue-400 text-lg font-normal italic">
-                  (Opposite Medicare Pharmacy)
+                  (Opposite GBTI Bank)
                 </span>
               </div>
             </div>
