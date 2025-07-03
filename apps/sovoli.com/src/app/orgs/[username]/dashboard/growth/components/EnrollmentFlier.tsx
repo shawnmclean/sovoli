@@ -51,9 +51,9 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
   };
 
   return (
-    <div className="w-[794px] h-[1123px] bg-white border-3 border-blue-800 rounded-xl shadow-lg mx-auto relative overflow-hidden print:w-[8.5in] print:h-[11in] print:shadow-none print:rounded-none print:border-0">
+    <>
       {/* Header Banner */}
-      <div className="bg-gradient-to-br from-blue-800 to-blue-600 p-8 text-center text-white relative">
+      <div className="bg-gradient-to-br from-blue-800 to-blue-600 p-8 text-center text-white relative print:p-6">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <svg
@@ -68,22 +68,22 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
           </svg>
         </div>
 
-        <h1 className="text-5xl font-extrabold mb-2 text-shadow-lg relative z-10">
+        <h1 className="text-5xl font-extrabold mb-2 text-shadow-lg relative z-10 print:text-4xl">
           {org.name}
         </h1>
-        <div className="bg-white/15 px-5 py-2 rounded-full inline-block text-xl font-medium mb-2 relative z-10">
+        <div className="bg-white/15 px-5 py-2 rounded-full inline-block text-xl font-medium mb-2 relative z-10 print:text-lg">
           Now Enrolling for{" "}
           {currentProgramCycle?.academicCycle.customLabel ?? "Term 1, 2025"}
         </div>
-        <p className="text-lg opacity-90 font-normal relative z-10">
+        <p className="text-lg opacity-90 font-normal relative z-10 print:text-base">
           A safe, nurturing environment for your child's early years
         </p>
       </div>
 
-      <div className="p-8">
+      <div className="p-8 print:p-6">
         {/* Main Image Card */}
-        <div className="bg-slate-50 border-2 border-slate-200 rounded-xl p-5 mb-6 shadow-sm">
-          <div className="w-full h-48 bg-gradient-to-br from-slate-200 to-slate-300 rounded-lg flex items-center justify-center text-slate-600 text-lg font-medium border-2 border-dashed border-slate-400">
+        <div className="bg-slate-50 border-2 border-slate-200 rounded-xl p-5 mb-6 shadow-sm print:mb-4">
+          <div className="w-full h-48 bg-gradient-to-br from-slate-200 to-slate-300 rounded-lg flex items-center justify-center text-slate-600 text-lg font-medium border-2 border-dashed border-slate-400 print:h-32">
             {program?.image ? (
               <Image
                 src={program.image}
@@ -98,21 +98,21 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
 
         {/* Program Details Card */}
         {program && (
-          <div className="bg-white border-2 border-blue-800 rounded-xl p-6 mb-6 shadow-md relative">
+          <div className="bg-white border-2 border-blue-800 rounded-xl p-6 mb-6 shadow-md relative print:mb-4 print:p-4">
             {/* Top accent bar */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-800 to-blue-500 rounded-t-xl"></div>
 
-            <h2 className="text-3xl font-bold text-blue-800 mb-4 flex items-center gap-3">
-              <span className="text-2xl">🎓</span>
+            <h2 className="text-3xl font-bold text-blue-800 mb-4 flex items-center gap-3 print:text-2xl">
+              <span className="text-2xl print:text-xl">🎓</span>
               {program.name ?? "Nursery Program"}
             </h2>
 
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800">
-                <strong className="text-blue-800 font-semibold block mb-1">
+            <div className="grid grid-cols-2 gap-4 mb-4 print:gap-3">
+              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800 print:p-2">
+                <strong className="text-blue-800 font-semibold block mb-1 print:text-sm">
                   📅 Term Dates
                 </strong>
-                <span className="text-slate-600 text-sm">
+                <span className="text-slate-600 text-sm print:text-xs">
                   {formatDateRange(
                     currentProgramCycle.academicCycle.startDate,
                     currentProgramCycle.academicCycle.endDate,
@@ -120,82 +120,86 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
                 </span>
               </div>
 
-              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800">
-                <strong className="text-blue-800 font-semibold block mb-1">
+              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800 print:p-2">
+                <strong className="text-blue-800 font-semibold block mb-1 print:text-sm">
                   👶 Age Group
                 </strong>
-                <span className="text-slate-600 text-sm">
+                <span className="text-slate-600 text-sm print:text-xs">
                   {currentProgramCycle.computedRequirements.find(
                     (req) => req.type === "age",
                   )?.description ?? "3–5 years"}
                 </span>
               </div>
 
-              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800">
-                <strong className="text-blue-800 font-semibold block mb-1">
+              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800 print:p-2">
+                <strong className="text-blue-800 font-semibold block mb-1 print:text-sm">
                   💰 Tuition
                 </strong>
-                <span className="text-slate-600 text-sm">
+                <span className="text-slate-600 text-sm print:text-xs">
                   {currentProgramCycle.feeStructure?.tuitionFee.GYD
                     ? `GYD $${currentProgramCycle.feeStructure.tuitionFee.GYD.toLocaleString()} / term`
                     : "Contact for pricing"}
                 </span>
               </div>
 
-              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800">
-                <strong className="text-blue-800 font-semibold block mb-1">
+              <div className="bg-slate-100 p-3 rounded-lg border-l-4 border-blue-800 print:p-2">
+                <strong className="text-blue-800 font-semibold block mb-1 print:text-sm">
                   ⏰ Class Hours
                 </strong>
-                <span className="text-slate-600 text-sm">
+                <span className="text-slate-600 text-sm print:text-xs">
                   8:00 AM - 3:00 PM
                 </span>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-emerald-600 to-emerald-500 text-white p-3 rounded-lg font-semibold text-center shadow-md">
+            <div className="bg-gradient-to-br from-emerald-600 to-emerald-500 text-white p-3 rounded-lg font-semibold text-center shadow-md print:p-2 print:text-sm">
               ✔️ Limited spots available — secure your child's seat now!
             </div>
           </div>
         )}
 
         {/* Call to Action Card */}
-        <div className="bg-gradient-to-br from-blue-800 to-blue-500 text-white p-6 rounded-xl text-center mb-6 shadow-lg">
-          <p className="text-2xl font-bold mb-2">📲 Ready to Enroll?</p>
-          <p className="text-lg opacity-90">
+        <div className="bg-gradient-to-br from-blue-800 to-blue-500 text-white p-6 rounded-xl text-center mb-6 shadow-lg print:mb-4 print:p-4">
+          <p className="text-2xl font-bold mb-2 print:text-xl">
+            📲 Ready to Enroll?
+          </p>
+          <p className="text-lg opacity-90 print:text-base">
             Scan a QR code below to chat or explore programs
           </p>
         </div>
 
         {/* Contact Section */}
-        <div className="grid grid-cols-3 gap-5 mb-6">
+        <div className="grid grid-cols-3 gap-5 mb-6 print:gap-3 print:mb-4">
           {/* WhatsApp Card */}
-          <div className="bg-white border-2 border-slate-200 rounded-xl p-5 text-center shadow-sm hover:border-blue-800 hover:shadow-md transition-all">
-            <div className="w-24 h-24 bg-slate-100 mx-auto mb-3 rounded-lg flex items-center justify-center text-slate-600 text-xs text-center leading-tight border-2 border-dashed border-slate-300">
+          <div className="bg-white border-2 border-slate-200 rounded-xl p-5 text-center shadow-sm hover:border-blue-800 hover:shadow-md transition-all print:p-3 print:shadow-none">
+            <div className="w-24 h-24 bg-slate-100 mx-auto mb-3 rounded-lg flex items-center justify-center text-slate-600 text-xs text-center leading-tight border-2 border-dashed border-slate-300 print:w-16 print:h-16">
               [QR: WhatsApp]
             </div>
-            <h3 className="text-lg font-semibold text-blue-800 mb-2">
+            <h3 className="text-lg font-semibold text-blue-800 mb-2 print:text-base">
               Message Us
             </h3>
-            <p className="text-sm text-slate-600 mb-1">WhatsApp</p>
-            <p className="text-blue-800 font-medium">
+            <p className="text-sm text-slate-600 mb-1 print:text-xs">
+              WhatsApp
+            </p>
+            <p className="text-blue-800 font-medium print:text-sm">
               {contactToUse?.value ?? "+592 627 1915"}
             </p>
           </div>
 
           {/* Location Card */}
-          <div className="bg-slate-50 border-2 border-blue-800 rounded-xl p-5 text-center">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+          <div className="bg-slate-50 border-2 border-blue-800 rounded-xl p-5 text-center print:p-3">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3 print:text-lg">
               📍 Visit Us
             </h3>
             {primaryLocation?.address && (
               <>
-                <p className="text-slate-700 mb-1">
+                <p className="text-slate-700 mb-1 print:text-sm">
                   {primaryLocation.address.line1}
                 </p>
-                <p className="text-slate-700 mb-1">
+                <p className="text-slate-700 mb-1 print:text-sm">
                   {primaryLocation.address.city}
                 </p>
-                <p className="text-slate-500 italic text-sm mt-2">
+                <p className="text-slate-500 italic text-sm mt-2 print:text-xs">
                   Opposite Medicare Pharmacy
                 </p>
               </>
@@ -203,27 +207,29 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
           </div>
 
           {/* Website Card */}
-          <div className="bg-white border-2 border-slate-200 rounded-xl p-5 text-center shadow-sm hover:border-blue-800 hover:shadow-md transition-all">
-            <div className="w-24 h-24 bg-slate-100 mx-auto mb-3 rounded-lg flex items-center justify-center text-slate-600 text-xs text-center leading-tight border-2 border-dashed border-slate-300">
+          <div className="bg-white border-2 border-slate-200 rounded-xl p-5 text-center shadow-sm hover:border-blue-800 hover:shadow-md transition-all print:p-3 print:shadow-none">
+            <div className="w-24 h-24 bg-slate-100 mx-auto mb-3 rounded-lg flex items-center justify-center text-slate-600 text-xs text-center leading-tight border-2 border-dashed border-slate-300 print:w-16 print:h-16">
               [QR: Website]
             </div>
-            <h3 className="text-lg font-semibold text-blue-800 mb-2">
+            <h3 className="text-lg font-semibold text-blue-800 mb-2 print:text-base">
               Visit Website
             </h3>
-            <p className="text-sm text-slate-600 mb-1">Online Info</p>
-            <p className="text-blue-800 font-medium">
+            <p className="text-sm text-slate-600 mb-1 print:text-xs">
+              Online Info
+            </p>
+            <p className="text-blue-800 font-medium print:text-sm">
               {org.username}.sovoli.com
             </p>
           </div>
         </div>
 
         {/* Footer Card */}
-        <div className="bg-blue-800 text-white p-4 rounded-lg text-center text-sm font-medium">
+        <div className="bg-blue-800 text-white p-4 rounded-lg text-center text-sm font-medium print:p-3 print:text-xs">
           {org.isVerified
             ? "✅ Verified Private School on Sovoli.com"
             : "Private School on Sovoli.com"}
         </div>
       </div>
-    </div>
+    </>
   );
 }

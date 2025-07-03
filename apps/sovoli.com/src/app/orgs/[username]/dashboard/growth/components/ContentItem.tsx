@@ -26,17 +26,29 @@ export function ContentItem({ orgInstance }: ContentItemProps) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Modal Title
+                <h2 className="text-lg font-semibold">Enrollment Flier</h2>
+                <p className="text-sm text-gray-600">
+                  Pinch and zoom to view details
+                </p>
               </ModalHeader>
-              <ModalBody>
-                <EnrollmentFlier orgInstance={orgInstance} />
+              <ModalBody className="p-0">
+                {/* Container with pinch and zoom support */}
+                <div className="w-full h-full bg-gray-100 p-4 print:p-0 print:bg-white">
+                  {/* Mobile container with pinch and zoom */}
+                  <div className="w-full h-full overflow-auto">
+                    {/* A4 Flier Container - starts at container size, allows zoom */}
+                    <div className="w-full max-w-full h-auto bg-white border-3 border-blue-800 rounded-xl shadow-lg mx-auto relative overflow-hidden print:w-[210mm] print:h-[297mm] print:shadow-none print:rounded-none print:border-0 print:mx-0 print:max-w-none">
+                      <EnrollmentFlier orgInstance={orgInstance} />
+                    </div>
+                  </div>
+                </div>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
                 <Button color="primary" onPress={onClose}>
-                  Action
+                  Print
                 </Button>
               </ModalFooter>
             </>
