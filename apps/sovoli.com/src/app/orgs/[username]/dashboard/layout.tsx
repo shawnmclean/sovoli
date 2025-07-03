@@ -6,6 +6,7 @@ import { config } from "~/utils/config";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Navbar } from "~/components/navbar/Navbar";
 import { AdminSchoolHeader } from "./components/AdminSchoolHeader";
+import { AdminSchoolNavigation } from "./components/AdminSchoolNavigation";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -60,6 +61,8 @@ export default async function Layout({ children, params }: Props) {
 
       <main className="flex-grow">
         <AdminSchoolHeader orgInstance={orgInstance} />
+
+        <AdminSchoolNavigation orgInstance={orgInstance} />
 
         <div className="w-full md:w-2/3">{children}</div>
       </main>
