@@ -1,3 +1,6 @@
+import { Image } from "@sovoli/ui/components/image";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { Globe } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface EnrollmentFlierProps {
@@ -7,134 +10,132 @@ export interface EnrollmentFlierProps {
 export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
   const { org, academicModule } = orgInstance;
 
-  // Get primary location
   const primaryLocation =
     org.locations.find((loc) => loc.isPrimary) ?? org.locations[0];
-
-  // Get primary contact (WhatsApp preferred, then phone, then email)
   const primaryContact =
     primaryLocation?.contacts.find((c) => c.type === "whatsapp") ??
     primaryLocation?.contacts.find((c) => c.type === "phone") ??
     primaryLocation?.contacts.find((c) => c.type === "email");
 
-  // Get internal CRM contact if available
   const crmContact =
     org.internalCRM?.people[0]?.contacts.find((c) => c.type === "whatsapp") ??
     org.internalCRM?.people[0]?.contacts.find((c) => c.type === "phone");
 
   const contactToUse = crmContact ?? primaryContact;
-
-  // Get current program cycle (assuming we want to show the first available)
-  const currentProgramCycle = academicModule?.programCycles?.[0];
+  const currentCycle = academicModule?.programCycles?.[0];
 
   return (
-    <div className="absolute inset-0 w-full h-full bg-white">
-      {/* Header Section */}
+    <div className="absolute inset-0 w-full h-full bg-white overflow-hidden font-sans">
+      {/* Zone A: Header */}
       <div
-        className="absolute top-0 left-0 right-0 flex flex-col items-center justify-center px-8"
+        className="absolute top-0 left-0 right-0 flex flex-col items-center text-center px-8"
         style={{ height: 140 }}
       >
-        <h1 className="text-5xl font-extrabold text-blue-900 mb-2 text-center leading-tight">
-          {org.name}
-        </h1>
-        <div className="bg-blue-100 text-blue-900 px-6 py-2 rounded-full text-xl font-medium mb-2 text-center">
-          Now Enrolling for{" "}
-          {currentProgramCycle?.academicCycle.customLabel ?? "Term 1, 2025"}
+        {org.logo && (
+          <Image
+            src={org.logo}
+            alt="School Logo"
+            className="h-16 mb-2 object-contain"
+          />
+        )}
+        <h1 className="text-4xl font-bold text-blue-900">{org.name}</h1>
+        <div className="bg-blue-100 text-blue-900 px-6 py-2 rounded-full text-lg font-medium mt-2">
+          Applications Now Open –{" "}
+          {currentCycle?.academicCycle.customLabel ?? "September 2025"}
         </div>
-        <p className="text-lg text-blue-800 opacity-90 font-normal text-center">
-          A safe, nurturing environment for your child's early years
-        </p>
       </div>
 
-      {/* Contact/Info Row */}
+      {/* Zone B: Hero Image */}
       <div
-        className="absolute left-8 right-8 flex flex-row justify-between items-stretch gap-6"
-        style={{ top: 150, height: 130 }}
+        className="absolute left-0 right-0"
+        style={{ top: 140, height: 180 }}
       >
-        {/* WhatsApp Card */}
-        <div className="flex-1 bg-white rounded-2xl border-2 border-blue-200 flex flex-col items-center justify-center px-4 py-3 shadow-sm">
-          <div className="w-16 h-16 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg flex items-center justify-center text-blue-700 text-xs mb-2">
-            [QR: WhatsApp]
+        <div
+          className="w-full h-full bg-cover bg-center"
+          style={{
+            backgroundImage: `url("/orgs/private-schools/guyana/modernacademy/programs/pre-nursery.webp")`,
+          }}
+        />
+      </div>
+
+      {/* Zone C: Program List */}
+      <div className="absolute left-8 right-8" style={{ top: 330 }}>
+        <div className="grid grid-cols-4 gap-4 text-center">
+          {[
+            {
+              title: "Pre-Nursery",
+              age: "Ages 2–3",
+            },
+            {
+              title: "Nursery",
+              age: "Ages 3–5",
+            },
+            {
+              title: "Primary",
+              age: "Grades 1–6",
+            },
+            {
+              title: "Secondary",
+              age: "Forms 1–5",
+            },
+          ].map((p) => (
+            <div
+              key={p.title}
+              className="bg-blue-50 border border-blue-200 rounded-xl p-4 shadow-sm"
+            >
+              <h3 className="text-xl font-bold text-blue-900 mb-1">
+                {p.title}
+              </h3>
+              <p className="text-sm text-blue-700">{p.age}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Zone E: CTA Footer */}
+      <div
+        className="absolute left-0 right-0 flex justify-between items-end"
+        style={{ bottom: 0 }}
+      >
+        {/* WhatsApp */}
+        <div className="flex-1 flex flex-col items-center text-center bg-blue-900 p-4 rounded-tr-xl">
+          <div className="mb-2 flex items-center justify-center">
+            <div className="w-32 h-32 bg-white rounded-lg flex items-center justify-center mb-2">
+              {/* Replace with actual QR code */}
+              <span className="text-blue-900 font-bold text-lg">[QR]</span>
+            </div>
           </div>
-          <div className="text-blue-800 font-bold text-lg mb-1">Message Us</div>
-          <div className="text-blue-700 text-sm mb-1">WhatsApp</div>
-          <div className="text-blue-900 font-medium text-base">
-            {contactToUse?.value ?? "+592 622-9382"}
+          <div className="flex items-center justify-center">
+            <SiWhatsapp className="w-5 h-5 text-white mr-2" />
+            <span className="text-white font-semibold text-lg">
+              +592 622-9382
+            </span>
           </div>
         </div>
-        {/* Visit Us Card */}
-        <div className="flex-1 bg-white rounded-2xl border-2 border-blue-200 flex flex-col items-center justify-center px-4 py-3 shadow-sm">
-          <div className="text-2xl mb-1">📍</div>
-          <div className="text-blue-800 font-bold text-lg mb-1">Visit Us</div>
-          <div className="text-blue-900 text-base mb-1 text-center">
-            {primaryLocation?.address.line1 ?? "112 Regent Street"}
+        {/* Location */}
+        <div className="flex-1 flex flex-col items-center text-center bg-blue-900 p-4">
+          <div className="text-white text-xl leading-tight">
+            Lot 11, Public Road
             <br />
-            {primaryLocation?.address.city ?? "Georgetown"}
-          </div>
-          <div className="italic text-blue-500 text-xs text-center">
-            Opposite Medicare Pharmacy
-          </div>
-        </div>
-        {/* Website Card */}
-        <div className="flex-1 bg-white rounded-2xl border-2 border-blue-200 flex flex-col items-center justify-center px-4 py-3 shadow-sm">
-          <div className="w-16 h-16 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg flex items-center justify-center text-blue-700 text-xs mb-2">
-            [QR: Website]
-          </div>
-          <div className="text-blue-800 font-bold text-lg mb-1">
-            Visit Website
-          </div>
-          <div className="text-blue-700 text-sm mb-1">Online Info</div>
-          <div className="text-blue-900 font-medium text-base truncate max-w-[120px]">
-            {org.username}.sovoli.com
+            Mon Repos, ECD
+            <br />
+            <span className="text-blue-200 text-lg">
+              (Opposite Medicare Pharmacy)
+            </span>
           </div>
         </div>
-      </div>
-
-      {/* Program Information Section */}
-      <div
-        className="absolute left-8 right-8 flex flex-col gap-4"
-        style={{ top: 300 }}
-      >
-        <h2 className="text-3xl font-bold text-blue-900 text-center mb-4">
-          Our Programs
-        </h2>
-
-        {/* Programs Grid */}
-        <div className="grid grid-cols-2 gap-4">
-          {/* Nursery Program */}
-          <div className="bg-blue-50 rounded-xl p-4 border-2 border-blue-200">
-            <h3 className="text-xl font-bold text-blue-900 mb-2">Nursery</h3>
-            <p className="text-blue-800 text-sm mb-2">
-              Ages 3-4 years • Early learning foundation
-            </p>
-            <div className="text-blue-700 font-semibold">$150/month</div>
+        {/* Website */}
+        <div className="flex-1 flex flex-col items-center text-center bg-blue-900 p-4 rounded-tl-xl">
+          <div className="mb-2 flex items-center justify-center">
+            <div className="w-32 h-32 bg-white rounded-lg flex items-center justify-center mb-2">
+              {/* Replace with actual QR code */}
+              <span className="text-blue-900 font-bold text-lg">[QR]</span>
+            </div>
           </div>
-
-          {/* Pre-Nursery Program */}
-          <div className="bg-blue-50 rounded-xl p-4 border-2 border-blue-200">
-            <h3 className="text-xl font-bold text-blue-900 mb-2">
-              Pre-Nursery
-            </h3>
-            <p className="text-blue-800 text-sm mb-2">
-              Ages 2-3 years • Play-based learning
-            </p>
-            <div className="text-blue-700 font-semibold">$120/month</div>
+          <div className="flex items-center justify-center">
+            <Globe className="w-5 h-5 text-white mr-2" />
+            <span className="text-white font-semibold text-lg">ma.edu.gy</span>
           </div>
-        </div>
-      </div>
-
-      {/* Footer Section */}
-      <div
-        className="absolute bottom-8 left-8 right-8 text-center"
-        style={{ height: 80 }}
-      >
-        <div className="bg-blue-100 rounded-xl p-4 border-2 border-blue-200">
-          <p className="text-blue-900 font-semibold text-lg mb-1">
-            Limited Spaces Available
-          </p>
-          <p className="text-blue-700 text-sm">
-            Contact us today to secure your child's place
-          </p>
         </div>
       </div>
     </div>
