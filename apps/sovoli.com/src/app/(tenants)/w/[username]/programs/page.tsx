@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 
@@ -7,6 +6,8 @@ import { displayAgeRange } from "./utils";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { Chip } from "@sovoli/ui/components/chip";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -117,16 +118,24 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
                   </div>
                 )}
               </CardBody>
-              <CardFooter>
+              <CardFooter className="flex items-center justify-between">
+                <Chip color="warning" variant="light" radius="sm">
+                  Pricing Updates Soon
+                </Chip>
                 <Button
+                  as={WhatsAppLink}
+                  phoneNumber={
+                    orgInstance.org.locations
+                      .find((location) => location.isPrimary)
+                      ?.contacts.find((contact) => contact.type === "whatsapp")
+                      ?.value
+                  }
+                  message={`Hi, I'm interested in ${program.name}`}
                   color="primary"
                   variant="solid"
                   radius="sm"
-                  className="mt-4 self-start"
-                  as={Link}
-                  href={`/programs/${program.slug}`}
                 >
-                  Learn More
+                  Apply Now
                 </Button>
               </CardFooter>
             </Card>
