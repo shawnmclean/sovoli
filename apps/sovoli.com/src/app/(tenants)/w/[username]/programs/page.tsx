@@ -9,6 +9,7 @@ import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { Chip } from "@sovoli/ui/components/chip";
 import { HeroSection } from "./components/HeroSection";
+import { ChevronDownIcon } from "lucide-react";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -48,6 +49,13 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
   return (
     <div className="container mx-auto max-w-6xl space-y-16 px-6 py-4">
       <HeroSection orgInstance={orgInstance} />
+      <div className="flex justify-center mt-[-2rem] md:mt-[-1rem]">
+        <p className="text-sm text-white/70 animate-bounce flex items-center gap-2">
+          <ChevronDownIcon className="w-4 h-4" />
+          View Programs Below
+        </p>
+      </div>
+
       {/* Programs Listing */}
       <div className="grid gap-8 md:grid-cols-2">
         {programs.map((program, index) => (
