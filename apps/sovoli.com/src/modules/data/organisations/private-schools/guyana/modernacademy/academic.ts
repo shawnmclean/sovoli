@@ -18,6 +18,14 @@ export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
   name: "Pre-Nursery (Playschool)",
   description: "Strong foundational learning in a nurturing environment",
   image: "/orgs/private-schools/guyana/modernacademy/programs/pre-nursery.webp",
+  requirements: [
+    {
+      type: "age",
+      ageRange: {
+        minAgeYears: 2,
+      },
+    },
+  ],
 };
 export const MAGY_NURSERY_PROGRAM: OrgProgram = {
   standardProgramVersion: GY_NURSERY_V1,
@@ -62,6 +70,7 @@ export const MAGY_PRE_NURSERY_2025_T1: OrgProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
 
   computedRequirements: [
+    ...(MAGY_PRE_NURSERY_PROGRAM.requirements ?? []),
     ...(MAGY_PRE_NURSERY_PROGRAM.standardProgramVersion?.requirements ?? []),
   ],
 };
@@ -72,6 +81,7 @@ export const MAGY_NURSERY_2025_T1: OrgProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
 
   computedRequirements: [
+    ...(MAGY_NURSERY_PROGRAM.requirements ?? []),
     ...(MAGY_NURSERY_PROGRAM.standardProgramVersion?.requirements ?? []),
   ],
 };
@@ -82,6 +92,7 @@ export const MAGY_PRIMARY_2025_T1: OrgProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
 
   computedRequirements: [
+    ...(MAGY_PRIMARY_PROGRAM.requirements ?? []),
     ...(MAGY_PRIMARY_PROGRAM.standardProgramVersion?.requirements ?? []),
   ],
 };
@@ -92,6 +103,7 @@ export const MAGY_SECONDARY_2025_T1: OrgProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
 
   computedRequirements: [
+    ...(MAGY_SECONDARY_PROGRAM.requirements ?? []),
     ...(MAGY_SECONDARY_PROGRAM.standardProgramVersion?.requirements ?? []),
   ],
 };
