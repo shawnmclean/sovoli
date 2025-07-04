@@ -2,7 +2,6 @@ import { Image } from "@sovoli/ui/components/image";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Globe, RocketIcon, Bell, CheckCircle } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
-import QRCode from "react-qr-code";
 
 export interface EnrollmentSocialProps {
   orgInstance: OrgInstance;
@@ -36,7 +35,7 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
-            padding: "1.5rem",
+            padding: "3rem",
             backgroundColor: "#1e3a8a",
             WebkitPrintColorAdjust: "exact",
             printColorAdjust: "exact",
@@ -46,33 +45,54 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
             style={{
               backgroundColor: "white",
               borderRadius: "9999px",
-              padding: "0.5rem 1.5rem",
+              padding: "1rem 3rem",
             }}
           >
             <h1
               style={{
-                fontSize: "2.4rem",
+                fontSize: "4.5rem",
                 fontWeight: "700",
                 color: "#1e3a8a",
                 display: "flex",
                 alignItems: "center",
-                gap: "0.7rem",
+                gap: "1.2rem",
                 margin: 0,
               }}
             >
               <Bell
-                style={{ width: "2.5rem", height: "2.5rem", flexShrink: 0 }}
+                style={{
+                  width: "5rem",
+                  height: "5rem",
+                  flexShrink: 0,
+                  color: "#fbbf24",
+                  filter:
+                    "drop-shadow(0 0 16px #fbbf24) drop-shadow(0 0 8px #f59e42)",
+                }}
               />
               SEPTEMBER APPLICATIONS OPEN
             </h1>
           </div>
         </div>
 
+        <div
+          style={{
+            backgroundColor: "#fef08a",
+            color: "#1e3a8a",
+            padding: "1.2rem 2rem",
+            borderRadius: "1rem",
+            fontSize: "2rem",
+            fontWeight: "700",
+            textAlign: "center",
+          }}
+        >
+          💡 Get fee breakdowns & enrollment discounts at <u>ma.edu.gy</u>
+        </div>
+
         {/* Row 2: Hero Image */}
         <div
           style={{
             marginTop: "1rem",
-            padding: "1rem",
+            padding: "2rem",
             display: "flex",
             justifyContent: "center",
           }}
@@ -81,8 +101,8 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
             style={{
               background:
                 "linear-gradient(to right, #1e3a8a, #1e40af, #7c3aed)",
-              borderRadius: "0.75rem",
-              padding: "0.5rem",
+              borderRadius: "1.5rem",
+              padding: "1rem",
               width: "100%",
               position: "relative",
               WebkitPrintColorAdjust: "exact",
@@ -93,7 +113,7 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
             <div
               style={{
                 position: "absolute",
-                right: "-1rem",
+                right: "-2rem",
                 zIndex: 50,
               }}
             >
@@ -101,12 +121,12 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                 style={{
                   backgroundColor: "#dc2626",
                   color: "white",
-                  padding: "0.3rem 1rem",
-                  borderRadius: "0.5rem",
+                  padding: "0.6rem 2rem",
+                  borderRadius: "1rem",
                   boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
                   transform: "rotate(12deg)",
                   fontWeight: "700",
-                  fontSize: "1.4rem",
+                  fontSize: "2.2rem",
                   WebkitPrintColorAdjust: "exact",
                   printColorAdjust: "exact",
                 }}
@@ -117,13 +137,14 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
             <Image
               src="/orgs/private-schools/guyana/modernacademy/programs/pre-nursery.webp"
               alt="School Programs"
-              width={800}
-              height={250}
+              width={1350}
+              height={400}
               style={{
                 width: "100%",
+                height: "400px",
                 objectFit: "cover",
                 objectPosition: "top",
-                borderRadius: "0.5rem",
+                borderRadius: "1rem",
               }}
             />
           </div>
@@ -131,14 +152,14 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
 
         <div
           style={{
-            padding: "1.2rem 2rem 0.7rem 2rem",
+            padding: "1rem 3rem 1.5rem 3rem",
           }}
         >
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "1.3rem",
+              gap: "2.2rem",
               textAlign: "center",
             }}
           >
@@ -164,27 +185,27 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                 key={p.title}
                 style={{
                   backgroundColor: "#f3f7fd",
-                  border: "2px solid #bfdbfe",
-                  borderRadius: "1.1rem",
-                  padding: "1.2rem 0.7rem",
-                  boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.07)",
+                  border: "3px solid #bfdbfe",
+                  borderRadius: "2rem",
+                  padding: "2.2rem 1.2rem",
+                  boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.1)",
                   WebkitPrintColorAdjust: "exact",
                   printColorAdjust: "exact",
                 }}
               >
                 <h3
                   style={{
-                    fontSize: "1.5rem",
+                    fontSize: "2.8rem",
                     fontWeight: "800",
                     color: "#1e3a8a",
-                    margin: "0 0 0.3rem 0",
+                    margin: "0 0 0.7rem 0",
                   }}
                 >
                   {p.title}
                 </h3>
                 <p
                   style={{
-                    fontSize: "1.15rem",
+                    fontSize: "1.7rem",
                     color: "#1d4ed8",
                     margin: 0,
                   }}
@@ -198,14 +219,14 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
 
         <div
           style={{
-            padding: "0.7rem 2.5rem 0.2rem 2.5rem",
+            padding: "2.5rem 5rem 0.7rem 5rem",
           }}
         >
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "1.2fr 1fr",
-              gap: "1.2rem",
+              gap: "2.2rem",
               alignItems: "center",
             }}
           >
@@ -214,15 +235,15 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "0.6rem",
-                fontSize: "1.25rem",
+                gap: "1.2rem",
+                fontSize: "2.5rem",
               }}
             >
               <ul
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: "0.3rem",
+                  gap: "0.7rem",
                   margin: 0,
                   padding: 0,
                   listStyle: "none",
@@ -237,10 +258,10 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                 >
                   <CheckCircle
                     style={{
-                      width: "1.5rem",
-                      height: "1.5rem",
+                      width: "3rem",
+                      height: "3rem",
                       color: "#16a34a",
-                      marginRight: "0.7rem",
+                      marginRight: "1.2rem",
                       flexShrink: 0,
                     }}
                   />
@@ -255,10 +276,10 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                 >
                   <CheckCircle
                     style={{
-                      width: "1.5rem",
-                      height: "1.5rem",
+                      width: "3rem",
+                      height: "3rem",
                       color: "#16a34a",
-                      marginRight: "0.7rem",
+                      marginRight: "1.2rem",
                       flexShrink: 0,
                     }}
                   />
@@ -273,10 +294,10 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                 >
                   <CheckCircle
                     style={{
-                      width: "1.5rem",
-                      height: "1.5rem",
+                      width: "3rem",
+                      height: "3rem",
                       color: "#16a34a",
-                      marginRight: "0.7rem",
+                      marginRight: "1.2rem",
                       flexShrink: 0,
                     }}
                   />
@@ -291,10 +312,10 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                 >
                   <CheckCircle
                     style={{
-                      width: "1.5rem",
-                      height: "1.5rem",
+                      width: "3rem",
+                      height: "3rem",
                       color: "#16a34a",
-                      marginRight: "0.7rem",
+                      marginRight: "1.2rem",
                       flexShrink: 0,
                     }}
                   />
@@ -317,15 +338,15 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                   src={org.logo}
                   alt="School Logo"
                   style={{
-                    height: "4rem",
-                    marginBottom: "0.1rem",
+                    height: "7rem",
+                    marginBottom: "0.3rem",
                     objectFit: "contain",
                   }}
                 />
               )}
               <h1
                 style={{
-                  fontSize: "2rem",
+                  fontSize: "3.5rem",
                   fontWeight: "700",
                   color: "#1e3a8a",
                   margin: 0,
@@ -336,9 +357,9 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
               <div
                 style={{
                   color: "#1e3a8a",
-                  fontSize: "1.2rem",
+                  fontSize: "2.5rem",
                   fontWeight: "500",
-                  marginTop: "0.2rem",
+                  marginTop: "0.4rem",
                 }}
               >
                 "Inspiring Everyday"
@@ -360,120 +381,127 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "flex-end",
+              alignItems: "stretch",
+              gap: "2rem",
             }}
           >
-            {/* WhatsApp Block */}
+            {/* Left Section: Contact + Website */}
             <div
               style={{
-                flex: 1,
+                flex: 2,
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
+                gap: "1rem",
                 backgroundColor: "#1e3a8a",
-                padding: "2rem 1.5rem",
-                borderTopRightRadius: "2.2rem",
-                gap: "0.5rem",
-                WebkitPrintColorAdjust: "exact",
-                printColorAdjust: "exact",
+                borderTopRightRadius: "3.2rem",
               }}
             >
+              {/* WhatsApp */}
               <div
                 style={{
-                  marginBottom: "0.7rem",
+                  flex: 1,
+                  padding: "3.5rem 2.5rem",
                   color: "white",
-                  fontSize: "1.5rem",
-                  fontWeight: "700",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  gap: "1.2rem",
                 }}
               >
-                Message Us
+                <div style={{ fontSize: "2.5rem", fontWeight: "700" }}>
+                  Message Us
+                </div>
+
+                {["+592 627 1915", "+592 751 3788", "+592 646 4069"].map(
+                  (num, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "2rem",
+                        fontWeight: "600",
+                      }}
+                    >
+                      <SiWhatsapp
+                        style={{
+                          width: "2.7rem",
+                          height: "2.7rem",
+                          color: "white",
+                          marginRight: "0.7rem",
+                        }}
+                      />
+                      {num}
+                    </div>
+                  ),
+                )}
               </div>
+
+              {/* Website */}
               <div
                 style={{
+                  flex: 1,
+                  backgroundColor: "#2563eb", // brighter blue than #1e3a8a
+                  padding: "3.5rem 2.5rem",
+                  borderTopLeftRadius: "3.2rem",
+                  color: "white",
                   display: "flex",
+                  flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
+                  textAlign: "center",
+                  gap: "1.2rem",
+                  boxShadow: "0 0 25px rgba(0, 123, 255, 0.4)",
                 }}
               >
-                <SiWhatsapp
+                <div
                   style={{
-                    width: "2rem",
-                    height: "2rem",
-                    color: "white",
-                    marginRight: "0.5rem",
-                  }}
-                />
-                <span
-                  style={{
-                    color: "white",
-                    fontWeight: "600",
-                    fontSize: "1.3rem",
+                    fontSize: "2.8rem",
+                    fontWeight: "800",
+                    letterSpacing: "0.01em",
+                    marginBottom: "1rem",
+                    color: "#ffffff",
+                    textShadow: "0 1px 2px rgba(0,0,0,0.2)",
                   }}
                 >
-                  +592 627 1915
-                </span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <SiWhatsapp
+                  View Pricing & Discounts
+                </div>
+
+                <div
                   style={{
-                    width: "2rem",
-                    height: "2rem",
-                    color: "white",
-                    marginRight: "0.5rem",
-                  }}
-                />
-                <span
-                  style={{
-                    color: "white",
-                    fontWeight: "600",
-                    fontSize: "1.3rem",
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: "2.2rem",
+                    fontWeight: "800",
+                    backgroundColor: "#ffffff",
+                    color: "#1e3a8a",
+                    padding: "1rem 2.2rem",
+                    borderRadius: "9999px",
+                    boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
                   }}
                 >
-                  +592 751 3788
-                </span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <SiWhatsapp
-                  style={{
-                    width: "2rem",
-                    height: "2rem",
-                    color: "white",
-                    marginRight: "0.5rem",
-                  }}
-                />
-                <span
-                  style={{
-                    color: "white",
-                    fontWeight: "600",
-                    fontSize: "1.3rem",
-                  }}
-                >
-                  +592 646 4069
-                </span>
+                  <Globe
+                    style={{
+                      width: "2.5rem",
+                      height: "2.5rem",
+                      color: "#1e3a8a",
+                      marginRight: "0.8rem",
+                    }}
+                  />
+                  ma.edu.gy
+                </div>
               </div>
             </div>
 
-            {/* Center CTA + Address Dome */}
+            {/* Right Section: Register + Address */}
             <div
               style={{
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
                 justifyContent: "flex-end",
+                alignItems: "center",
                 textAlign: "center",
                 position: "relative",
                 zIndex: 10,
@@ -485,39 +513,18 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                   backgroundColor: "white",
                   borderTopLeftRadius: "50%",
                   borderTopRightRadius: "50%",
-                  paddingTop: "1.2rem",
-                  paddingBottom: "1.5rem",
+                  paddingTop: "2.2rem",
+                  paddingBottom: "2.5rem",
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.08)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
                 }}
               >
                 <div
                   style={{
-                    backgroundColor: "#991b1b",
-                    color: "white",
-                    fontSize: "1.5rem",
-                    fontWeight: "700",
-                    borderRadius: "9999px",
-                    padding: "0.5rem 1.1rem",
-                    marginBottom: "2rem",
-                    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    WebkitPrintColorAdjust: "exact",
-                    printColorAdjust: "exact",
-                  }}
-                >
-                  <RocketIcon style={{ width: "1.5rem", height: "1.5rem" }} />{" "}
-                  Register Now!
-                </div>
-                <div
-                  style={{
                     color: "#1e3a8a",
-                    fontSize: "1.5rem",
+                    fontSize: "2.2rem",
                     fontWeight: "500",
                   }}
                 >
@@ -528,7 +535,7 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                   <span
                     style={{
                       color: "#60a5fa",
-                      fontSize: "1.4rem",
+                      fontSize: "2rem",
                       fontWeight: "400",
                       fontStyle: "italic",
                     }}
@@ -536,64 +543,24 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                     (Opposite GBTI Bank)
                   </span>
                 </div>
-              </div>
-            </div>
-
-            {/* Website Block */}
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                backgroundColor: "#1e3a8a",
-                padding: "2rem 1.5rem",
-                borderTopLeftRadius: "2.2rem",
-                WebkitPrintColorAdjust: "exact",
-                printColorAdjust: "exact",
-              }}
-            >
-              <div style={{ marginBottom: "0.7rem" }}>
                 <div
                   style={{
-                    backgroundColor: "white",
-                    borderRadius: "0.7rem",
+                    backgroundColor: "#991b1b",
+                    color: "white",
+                    fontSize: "3rem",
+                    fontWeight: "700",
+                    borderRadius: "9999px",
+                    padding: "1rem 2.2rem",
+                    marginTop: "2.5rem",
+                    boxShadow: "0 6px 10px -1px rgba(0, 0, 0, 0.2)",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    padding: "0.5rem",
+                    gap: "1rem",
                   }}
                 >
-                  <QRCode value="https://ma.edu.gy/programs?r=ef" size={160} />
+                  <RocketIcon style={{ width: "3rem", height: "3rem" }} />
+                  Register Now!
                 </div>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: "0.5rem",
-                }}
-              >
-                <Globe
-                  style={{
-                    width: "2rem",
-                    height: "2rem",
-                    color: "white",
-                    marginRight: "0.5rem",
-                  }}
-                />
-                <span
-                  style={{
-                    color: "white",
-                    fontWeight: "800",
-                    fontSize: "1.5rem",
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  ma.edu.gy
-                </span>
               </div>
             </div>
           </div>

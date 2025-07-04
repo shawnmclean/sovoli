@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { bus } from "~/services/core/bus";
-import { ContentConfig, ContentItem } from "./components/ContentItem";
+import type { ContentConfig } from "./components/ContentItem";
+import { ContentItem } from "./components/ContentItem";
 import { EnrollmentFlier } from "./components/EnrollmentFlier";
 import { EnrollmentSocial } from "./components/EnrollmentSocial";
 
@@ -15,13 +16,13 @@ const retreiveOrgInstance = async (username: string) => {
 
 const contentSizes = {
   standardPrint: {
-    type: "print" as const,
+    type: "print",
     name: "Standard Letter",
     width: 816, // 8.5 inches at 96 DPI
     height: 1056, // 11 inches at 96 DPI
   },
   facebookPortrait: {
-    type: "social" as const,
+    type: "social",
     name: "Facebook Portrait",
     width: 1440,
     height: 1800,
