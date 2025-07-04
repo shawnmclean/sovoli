@@ -1,6 +1,7 @@
 import { Link } from "@sovoli/ui/components/link";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { env } from "~/env";
+import { ThemeSwitch } from "../ThemeSwitch";
 
 export const Footer = () => {
   return (
@@ -15,18 +16,21 @@ export const Footer = () => {
               Deployed too early.
             </Tooltip>
           </div>
-          <div className="flex gap-6">
-            <Link href="/about" color="foreground" underline="hover" size="sm">
-              About
-            </Link>
-            <Link
-              href="/privacy"
-              color="foreground"
-              underline="hover"
-              size="sm"
-            >
-              Privacy
-            </Link>
+          <div className="flex items-center gap-4">
+            <ThemeSwitch />
+            <div className="flex gap-6">
+              <Link href="/about" color="foreground" underline="hover" size="sm">
+                About
+              </Link>
+              <Link
+                href="/privacy"
+                color="foreground"
+                underline="hover"
+                size="sm"
+              >
+                Privacy
+              </Link>
+            </div>
           </div>
         </div>
       </div>
