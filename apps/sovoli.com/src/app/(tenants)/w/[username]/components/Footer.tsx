@@ -6,6 +6,7 @@ import type { OrgInstanceWithWebsite } from "../lib/types";
 import type { FooterLink, FooterSection } from "~/modules/websites/types";
 import { SocialLink } from "./SocialLink";
 import { LogoSVG } from "~/components/Logo/LogoSVG";
+import { ThemeSwitch } from "~/components/ThemeSwitch";
 import { countryCodeToName } from "~/utils/countryUtils";
 import type { OrgProgram } from "~/modules/academics/types";
 
@@ -70,7 +71,10 @@ export const Footer = ({ orgInstance }: FooterProps) => {
             <p>
               &copy; {new Date().getFullYear()} {website.siteName}.
             </p>
-            <NetworkBadge referer={orgInstance.org.username} />
+            <div className="flex items-center gap-4">
+              <ThemeSwitch />
+              <NetworkBadge referer={orgInstance.org.username} />
+            </div>
           </div>
         </div>
       </div>
