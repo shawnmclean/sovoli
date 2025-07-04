@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { bus } from "~/services/core/bus";
-import { ContentItem } from "./components/ContentItem";
+import { ContentConfig, ContentItem } from "./components/ContentItem";
+import { EnrollmentFlier } from "./components/EnrollmentFlier";
+import { EnrollmentSocial } from "./components/EnrollmentSocial";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -10,6 +12,22 @@ const retreiveOrgInstance = async (username: string) => {
   if (!result.orgInstance) return notFound();
   return result.orgInstance;
 };
+
+const contentSizes = {
+  standardPrint: {
+    type: "print" as const,
+    name: "Standard Letter",
+    width: 816, // 8.5 inches at 96 DPI
+    height: 1056, // 11 inches at 96 DPI
+  },
+  facebookPortrait: {
+    type: "social" as const,
+    name: "Facebook Portrait",
+    width: 1440,
+    height: 1800,
+  },
+} satisfies Record<string, ContentConfig>;
+
 export default async function GrowthPage({
   params,
 }: {
@@ -20,7 +38,12 @@ export default async function GrowthPage({
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-4 p-4">
-      <ContentItem orgInstance={orgInstance} />
+      <ContentItem config={contentSizes.standardPrint}>
+        <EnrollmentFlier orgInstance={orgInstance} />
+      </ContentItem>
+      <ContentItem config={contentSizes.facebookPortrait}>
+        <EnrollmentSocial orgInstance={orgInstance} />
+      </ContentItem>
     </div>
   );
 }

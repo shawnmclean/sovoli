@@ -9,19 +9,26 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@sovoli/ui/components/dialog";
-import type { OrgInstance } from "~/modules/organisations/types";
-import { EnrollmentFlier } from "./EnrollmentFlier";
 import type { SliderValue } from "@sovoli/ui/components/slider";
 import { Slider } from "@sovoli/ui/components/slider";
 import { useState, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { PrinterIcon } from "lucide-react";
 
-export interface ContentItemProps {
-  orgInstance: OrgInstance;
+export type ContentType = "print" | "social";
+export interface ContentConfig {
+  type: ContentType;
+  name: string;
+  width: number;
+  height: number;
 }
 
-export function ContentItem({ orgInstance }: ContentItemProps) {
+export interface ContentItemProps {
+  config: ContentConfig;
+  children: React.ReactNode;
+}
+
+export function ContentItem({ config, children }: ContentItemProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [zoomLevel, setZoomLevel] = useState<SliderValue>(29);
   const printRef = useRef<HTMLDivElement>(null);
@@ -52,15 +59,16 @@ export function ContentItem({ orgInstance }: ContentItemProps) {
 
   return (
     <div>
-      <Button onPress={onOpen}>Enrollment Open</Button>
+      <Button onPress={onOpen}>{config.name}</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="full">
         <ModalContent className="flex flex-col h-screen max-h-screen">
           {() => (
             <>
               <ModalHeader className="flex flex-col gap-1 flex-shrink-0">
-                <h2 className="text-lg font-semibold">Enrollment Flier</h2>
+                <h2 className="text-lg font-semibold">{config.name}</h2>
                 <p className="text-sm text-gray-600">
-                  Use the slider to zoom in and out
+                  {config.name} - {config.type} ({config.width}px x{" "}
+                  {config.height}px)
                 </p>
               </ModalHeader>
               <ModalBody className="p-2 flex-1 overflow-hidden">
@@ -76,14 +84,14 @@ export function ContentItem({ orgInstance }: ContentItemProps) {
                     ref={printRef}
                     className="relative bg-white border border-gray-300 rounded-lg shadow-lg flex-shrink-0 enrollment-flier-container"
                     style={{
-                      width: "816px", // 8.5 inches at 96 DPI
-                      height: "1056px", // 11 inches at 96 DPI
+                      width: `${config.width}px`,
+                      height: `${config.height}px`,
                       transform: `scale(${scale})`,
                       transformOrigin: "center center",
                       transition: "transform 0.2s ease-out",
                     }}
                   >
-                    <EnrollmentFlier orgInstance={orgInstance} />
+                    {children}
                   </div>
                 </div>
               </ModalBody>
