@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { Chip } from "@sovoli/ui/components/chip";
+import { HeroSection } from "./components/HeroSection";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -45,102 +46,91 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
   const programs = orgInstance.academicModule?.programs ?? [];
 
   return (
-    <div>
-      {/* Main Content Section */}
-      <div className="container mx-auto max-w-6xl space-y-16 px-6 py-16">
-        {/* Introduction Section */}
-        <div className="mx-auto max-w-3xl space-y-4 text-center">
-          <h1 className="text-4xl font-semibold">Our Programs</h1>
-          <p className="text-lg leading-relaxed text-foreground-600">
-            Explore our programs below to find the best fit.
-          </p>
-        </div>
-
-        {/* Programs Listing */}
-        <div className="grid gap-8 md:grid-cols-2">
-          {programs.map((program, index) => (
-            <Card
-              key={index}
-              className="overflow-hidden shadow-md transition hover:shadow-lg"
-            >
-              <Image
-                src={
-                  program.image ??
-                  program.standardProgramVersion?.program.image ??
-                  ""
-                }
-                alt={
+    <div className="container mx-auto max-w-6xl space-y-16 px-6 py-4">
+      <HeroSection orgInstance={orgInstance} />
+      {/* Programs Listing */}
+      <div className="grid gap-8 md:grid-cols-2">
+        {programs.map((program, index) => (
+          <Card
+            key={index}
+            className="overflow-hidden shadow-md transition hover:shadow-lg"
+          >
+            <Image
+              src={
+                program.image ??
+                program.standardProgramVersion?.program.image ??
+                ""
+              }
+              alt={
+                program.name ??
+                program.standardProgramVersion?.program.name ??
+                ""
+              }
+              width={800}
+              height={400}
+              className="h-48 w-full object-cover"
+            />
+            <CardBody className="flex flex-col">
+              <h3
+                className="text-2xl font-semibold text-primary-800"
+                title={
                   program.name ??
                   program.standardProgramVersion?.program.name ??
                   ""
                 }
-                width={800}
-                height={400}
-                className="h-48 w-full object-cover"
-              />
-              <CardBody className="flex flex-col">
-                <h3
-                  className="text-2xl font-semibold text-primary-800"
-                  title={
-                    program.name ??
-                    program.standardProgramVersion?.program.name ??
-                    ""
-                  }
-                >
-                  {program.name ??
-                    program.standardProgramVersion?.program.name ??
-                    ""}
-                </h3>
-                <p className="text-base leading-relaxed text-foreground-600">
-                  {program.description}
-                </p>
+              >
+                {program.name ??
+                  program.standardProgramVersion?.program.name ??
+                  ""}
+              </h3>
+              <p className="text-base leading-relaxed text-foreground-600">
+                {program.description}
+              </p>
 
-                {program.requirements && program.requirements.length > 0 && (
-                  <div className="mt-4 space-y-2">
-                    <h4 className="text-lg font-semibold text-primary-700">
-                      Requirements
-                    </h4>
-                    <ul className="list-disc space-y-1 pl-5 text-sm text-default-600">
-                      {program.requirements.map((requirement, index) => (
-                        <li key={index}>
-                          {requirement.description && (
-                            <span>{requirement.description}</span>
-                          )}
-                          {requirement.type === "age" &&
-                            requirement.ageRange && (
-                              <span className="italic text-gray-600">
-                                {displayAgeRange(requirement.ageRange)}
-                              </span>
-                            )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </CardBody>
-              <CardFooter className="flex items-center justify-between">
-                <Chip color="warning" variant="light" radius="sm">
-                  Pricing Updates Soon
-                </Chip>
-                <Button
-                  as={WhatsAppLink}
-                  phoneNumber={
-                    orgInstance.org.locations
-                      .find((location) => location.isPrimary)
-                      ?.contacts.find((contact) => contact.type === "whatsapp")
-                      ?.value
-                  }
-                  message={`Hi, I'm interested in ${program.name}`}
-                  color="primary"
-                  variant="solid"
-                  radius="sm"
-                >
-                  Apply Now
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+              {program.requirements && program.requirements.length > 0 && (
+                <div className="mt-4 space-y-2">
+                  <h4 className="text-lg font-semibold text-primary-700">
+                    Requirements
+                  </h4>
+                  <ul className="list-disc space-y-1 pl-5 text-sm text-default-600">
+                    {program.requirements.map((requirement, index) => (
+                      <li key={index}>
+                        {requirement.description && (
+                          <span>{requirement.description}</span>
+                        )}
+                        {requirement.type === "age" && requirement.ageRange && (
+                          <span className="italic text-gray-600">
+                            {displayAgeRange(requirement.ageRange)}
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </CardBody>
+            <CardFooter className="flex items-center justify-between">
+              <Chip color="warning" variant="light" radius="sm">
+                Pricing Updates Soon
+              </Chip>
+              <Button
+                as={WhatsAppLink}
+                phoneNumber={
+                  orgInstance.org.locations
+                    .find((location) => location.isPrimary)
+                    ?.contacts.find((contact) => contact.type === "whatsapp")
+                    ?.value
+                }
+                message={`Hi, I'm interested in ${program.name}`}
+                color="primary"
+                variant="solid"
+                radius="sm"
+              >
+                Apply Now
+              </Button>
+            </CardFooter>
+          </Card>
+        ))}
       </div>
     </div>
   );
