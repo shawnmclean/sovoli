@@ -105,7 +105,7 @@ export function TenantNavbar({
         case "apply":
           return {
             ...action,
-            href: "/programs/apply",
+            href: "/programs",
             color: "secondary",
             variant: "flat",
           };
