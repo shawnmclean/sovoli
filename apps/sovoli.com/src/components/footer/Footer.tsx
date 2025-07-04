@@ -6,7 +6,7 @@ export const Footer = () => {
       <div className="mx-auto max-w-5xl">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="text-sm text-default-600">
-            © 2028 Sovoli. Deployed too early.
+            © {new Date().getFullYear() + 2} Sovoli. Deployed too early.
           </div>
           <div className="flex gap-6">
             <Link href="/about" color="foreground" underline="hover" size="sm">
