@@ -146,9 +146,39 @@ export function PlanCard({
           </div>
         )}
 
+        {/* Discounted pricing with slashed original */}
         <div className="text-xl font-medium mt-1">
-          <DualCurrencyPrice usdPrice={totalUSD} gydPrice={totalGYD} />
+          <span className="text-success-600">
+            <DualCurrencyPrice usdPrice={totalUSD} gydPrice={totalGYD} />
+          </span>
         </div>
+
+        {plan.discounts && plan.discounts.length > 0 && (
+          <div className="text-default-400 line-through text-sm mt-1">
+            <DualCurrencyPrice
+              usdPrice={
+                baseItems.reduce(
+                  (sum, item) => sum + (item.amount.USD ?? 0),
+                  0,
+                ) +
+                optionalItems.reduce((sum, item) => {
+                  if (!selectedOptionals[item.id]) return sum;
+                  return sum + (item.amount.USD ?? 0);
+                }, 0)
+              }
+              gydPrice={
+                baseItems.reduce(
+                  (sum, item) => sum + (item.amount.GYD ?? 0),
+                  0,
+                ) +
+                optionalItems.reduce((sum, item) => {
+                  if (!selectedOptionals[item.id]) return sum;
+                  return sum + (item.amount.GYD ?? 0);
+                }, 0)
+              }
+            />
+          </div>
+        )}
 
         {plan.onboardingNode && (
           <div className="mt-3 p-3 bg-warning-50 border border-warning-200 rounded-lg animate-pulse">
