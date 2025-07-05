@@ -109,11 +109,18 @@ export function ApplyCard({ orgInstance }: ApplyCardProps) {
       />
 
       {currentStep === "guardian" && (
-        <GuardianForm onNext={handleGuardianNext} />
+        <GuardianForm
+          onNext={handleGuardianNext}
+          initialData={formData.guardians}
+        />
       )}
 
       {currentStep === "children" && (
-        <ChildrenForm onNext={handleChildrenNext} onBack={handleBack} />
+        <ChildrenForm
+          onNext={handleChildrenNext}
+          onBack={handleBack}
+          initialData={formData.children}
+        />
       )}
     </div>
   );

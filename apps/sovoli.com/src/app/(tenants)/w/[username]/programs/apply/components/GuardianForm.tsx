@@ -21,34 +21,41 @@ interface GuardianData {
 
 interface GuardianFormProps {
   onNext: (data: { primary: GuardianData; secondary?: GuardianData }) => void;
+  initialData?: { primary: GuardianData; secondary?: GuardianData };
 }
 
-export function GuardianForm({ onNext }: GuardianFormProps) {
-  const [primaryGuardian, setPrimaryGuardian] = useState<GuardianData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    relationship: "",
-  });
+export function GuardianForm({ onNext, initialData }: GuardianFormProps) {
+  const [primaryGuardian, setPrimaryGuardian] = useState<GuardianData>(
+    initialData?.primary ?? {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      address: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      relationship: "",
+    },
+  );
 
-  const [secondaryGuardian, setSecondaryGuardian] = useState<GuardianData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    relationship: "",
-  });
+  const [secondaryGuardian, setSecondaryGuardian] = useState<GuardianData>(
+    initialData?.secondary ?? {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      address: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      relationship: "",
+    },
+  );
 
-  const [includeSecondary, setIncludeSecondary] = useState(false);
+  const [includeSecondary, setIncludeSecondary] = useState(
+    !!initialData?.secondary,
+  );
   const [sameAsPrimary, setSameAsPrimary] = useState(false);
 
   const handlePrimaryChange = (field: keyof GuardianData, value: string) => {

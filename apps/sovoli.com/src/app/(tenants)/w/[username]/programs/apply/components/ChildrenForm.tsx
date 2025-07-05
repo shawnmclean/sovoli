@@ -22,21 +22,30 @@ interface ChildData {
 interface ChildrenFormProps {
   onNext: (data: ChildData[]) => void;
   onBack: () => void;
+  initialData?: ChildData[];
 }
 
-export function ChildrenForm({ onNext, onBack }: ChildrenFormProps) {
-  const [children, setChildren] = useState<ChildData[]>([
-    {
-      firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      gender: "",
-      grade: "",
-      previousSchool: "",
-      medicalConditions: "",
-      allergies: "",
-    },
-  ]);
+export function ChildrenForm({
+  onNext,
+  onBack,
+  initialData,
+}: ChildrenFormProps) {
+  const [children, setChildren] = useState<ChildData[]>(
+    initialData && initialData.length > 0
+      ? initialData
+      : [
+          {
+            firstName: "",
+            lastName: "",
+            dateOfBirth: "",
+            gender: "",
+            grade: "",
+            previousSchool: "",
+            medicalConditions: "",
+            allergies: "",
+          },
+        ],
+  );
 
   const addChild = () => {
     setChildren([
