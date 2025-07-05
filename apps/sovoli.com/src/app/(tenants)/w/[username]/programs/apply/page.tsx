@@ -62,31 +62,10 @@ export default async function ProgramsApplyPage({
   const orgInstance = await retrieveOrgInstance(username);
 
   return (
-    <section className="my-10 px-4">
-      <div className="mx-auto max-w-3xl">
-        <Alert color="warning">Work in Progress</Alert>
-        <h2 className="mb-8 text-center text-3xl font-bold text-foreground">
-          Apply to Our Programs
-        </h2>
-        <div className="mb-8 text-center">
-          <Link
-            href="#requirements"
-            color="primary"
-            underline="hover"
-            className="flex items-center justify-center gap-2"
-          >
-            View Requirements <ArrowDownIcon className="w-4 h-4" />
-          </Link>
-        </div>
+    <div className="container mx-auto max-w-6xl px-6 py-4">
+      <Alert color="warning">Work in Progress</Alert>
 
-        <div className="mb-8 space-y-6">
-          <ApplyCard orgInstance={orgInstance} />
-        </div>
-
-        <Divider className="my-5" />
-
-        <Requirements />
-      </div>
-    </section>
+      <ApplyCard orgInstance={orgInstance} />
+    </div>
   );
 }

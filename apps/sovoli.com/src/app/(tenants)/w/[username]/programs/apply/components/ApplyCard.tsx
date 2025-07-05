@@ -107,46 +107,42 @@ export function ApplyCard({ orgInstance }: ApplyCardProps) {
   };
 
   return (
-    <Card shadow="sm" className="overflow-visible">
-      <CardBody className="overflow-hidden p-6">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6 text-center text-foreground">
-            School Enrollment Application
-          </h2>
+    <div>
+      <h2 className="text-2xl font-semibold mb-6 text-center text-foreground">
+        School Enrollment Application
+      </h2>
 
-          <Progress
-            aria-label="Application Progress"
-            value={getProgressValue()}
-            className="mb-6"
-            color="primary"
-          />
+      <Progress
+        aria-label="Application Progress"
+        value={getProgressValue()}
+        className="mb-6"
+        color="primary"
+      />
 
-          <div className="flex justify-between mb-6 text-sm text-foreground-500">
-            <span
-              className={
-                currentStep === "guardian" ? "font-semibold text-primary" : ""
-              }
-            >
-              Guardian Information
-            </span>
-            <span
-              className={
-                currentStep === "children" ? "font-semibold text-primary" : ""
-              }
-            >
-              Children Information
-            </span>
-          </div>
+      <div className="flex justify-between mb-6 text-sm text-foreground-500">
+        <span
+          className={
+            currentStep === "guardian" ? "font-semibold text-primary" : ""
+          }
+        >
+          Guardian Information
+        </span>
+        <span
+          className={
+            currentStep === "children" ? "font-semibold text-primary" : ""
+          }
+        >
+          Children Information
+        </span>
+      </div>
 
-          {currentStep === "guardian" && (
-            <GuardianForm onNext={handleGuardianNext} />
-          )}
+      {currentStep === "guardian" && (
+        <GuardianForm onNext={handleGuardianNext} />
+      )}
 
-          {currentStep === "children" && (
-            <ChildrenForm onNext={handleChildrenNext} onBack={handleBack} />
-          )}
-        </div>
-      </CardBody>
-    </Card>
+      {currentStep === "children" && (
+        <ChildrenForm onNext={handleChildrenNext} onBack={handleBack} />
+      )}
+    </div>
   );
 }
