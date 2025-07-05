@@ -1,10 +1,10 @@
-import {
+import type {
   BillingCycle,
   Discount,
   PricingItem,
   TargetType,
 } from "../core/economics/types";
-import type { AmountByCurrency, CountryCode } from "../core/types";
+import type { CountryCode } from "../core/types";
 
 // #region cycles
 
