@@ -1,10 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Progress } from "@sovoli/ui/components/progress";
-import { Button } from "@sovoli/ui/components/button";
-import { ArrowLeftIcon } from "lucide-react";
+import { Stepper } from "@sovoli/ui/components/stepper";
 
 import { GuardianForm } from "./GuardianForm";
 import { ChildrenForm } from "./ChildrenForm";
@@ -95,46 +92,21 @@ export function ApplyCard({ orgInstance }: ApplyCardProps) {
     alert("Application submitted successfully!");
   };
 
-  const getProgressValue = () => {
-    switch (currentStep) {
-      case "guardian":
-        return 50;
-      case "children":
-        return 100;
-      default:
-        return 0;
-    }
-  };
+  const steps = [{ label: "Guardian" }, { label: "Children" }];
+  const currentStepIndex = currentStep === "guardian" ? 0 : 1;
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-6 text-center text-foreground">
-        School Enrollment Application
-      </h2>
-
-      <Progress
-        aria-label="Application Progress"
-        value={getProgressValue()}
-        className="mb-6"
-        color="primary"
+      <Stepper
+        steps={steps}
+        currentStep={currentStepIndex}
+        onStepClick={(idx) => {
+          if (idx < currentStepIndex) {
+            setCurrentStep("guardian");
+          }
+        }}
+        className="my-4"
       />
-
-      <div className="flex justify-between mb-6 text-sm text-foreground-500">
-        <span
-          className={
-            currentStep === "guardian" ? "font-semibold text-primary" : ""
-          }
-        >
-          Guardian Information
-        </span>
-        <span
-          className={
-            currentStep === "children" ? "font-semibold text-primary" : ""
-          }
-        >
-          Children Information
-        </span>
-      </div>
 
       {currentStep === "guardian" && (
         <GuardianForm onNext={handleGuardianNext} />
