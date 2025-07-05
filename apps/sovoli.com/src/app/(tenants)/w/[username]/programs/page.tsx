@@ -1,13 +1,6 @@
-import Image from "next/image";
-import { Button } from "@sovoli/ui/components/button";
-import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
-
-import { displayAgeRange } from "./utils";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { Chip } from "@sovoli/ui/components/chip";
 import { HeroSection } from "./components/HeroSection";
 import { ChevronDownIcon } from "lucide-react";
 import { ProgramCard } from "./components/ProgramCard";
