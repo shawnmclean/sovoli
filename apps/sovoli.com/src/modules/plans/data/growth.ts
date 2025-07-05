@@ -3,25 +3,9 @@ import type { PlanDefinition } from "../types";
 export const growthPlan: PlanDefinition = {
   key: "growth",
   title: "Growth Package",
-
-  pricing: {
-    oneTime: {
-      GYD: 80000,
-      USD: 400,
-    },
-    yearly: {
-      GYD: 40000,
-      USD: 200,
-    },
-    note: "Yearly covers domain renewal, email support, website maintenance, and hosting.",
-  },
-  discount: {
-    percentage: 50,
-    message: "Special offer for first 2 schools",
-  },
   onboardingNode: "4/5 spots left this month.",
 
-  offers: {
+  features: {
     autoVerify: {
       label: "Verification Badge",
       covers: [],
@@ -48,27 +32,73 @@ export const growthPlan: PlanDefinition = {
     registration: {
       label: "Need Help Getting Verified?",
       pitch:
-        "If you don’t have registration documents, we’ll assist you with the process through the proper local channels so you can still get verified.",
+        "If you don’t have registration documents, we’ll assist you with the process through the proper local channels.",
       ctaLabel: "Register School",
       covers: ["isVerified"],
-      optional: {
-        pricing: {
-          GYD: 20000,
-          USD: 100,
-        },
-      },
     },
     logo: {
       label: "Logo Design",
       pitch: "No logo? We’ll create a custom one for your brand.",
       ctaLabel: "Design Logo",
       covers: ["hasLogo"],
-      optional: {
-        pricing: {
-          GYD: 5000,
-          USD: 25,
-        },
-      },
     },
   },
+
+  pricingItems: [
+    {
+      id: "setup",
+      label: "Setup Fee",
+      billingCycle: "one-time",
+      amount: {
+        GYD: 80000,
+        USD: 400,
+      },
+      appliesTo: ["plan"],
+      notes: "Covers website, email, domain, and business profile setup.",
+    },
+    {
+      id: "annual-maintenance",
+      label: "Annual Maintenance",
+      billingCycle: "annually",
+      amount: {
+        GYD: 40000,
+        USD: 200,
+      },
+      appliesTo: ["plan"],
+      notes: "Includes domain renewal, email support, hosting, and updates.",
+    },
+    {
+      id: "optional-registration-assist",
+      label: "Registration Assistance",
+      billingCycle: "one-time",
+      amount: {
+        GYD: 20000,
+        USD: 100,
+      },
+      optional: true,
+      appliesTo: ["addon"],
+    },
+    {
+      id: "optional-logo",
+      label: "Logo Design",
+      billingCycle: "one-time",
+      amount: {
+        GYD: 5000,
+        USD: 25,
+      },
+      optional: true,
+      appliesTo: ["addon"],
+    },
+  ],
+
+  discounts: [
+    {
+      id: "early-growth-offer",
+      type: "percentage",
+      value: 50,
+      message: "Special offer for first 2 schools",
+      validUntil: "2025-09-01",
+      appliesTo: ["setup", "annual-maintenance"],
+    },
+  ],
 };

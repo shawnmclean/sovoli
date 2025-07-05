@@ -1,39 +1,37 @@
-import type { AmountByCurrency } from "../core/types";
-import type { RuleKey } from "../scoring/rules";
+import type { RuleKey } from "~/modules/scoring/rules";
+import type { PricingItem, Discount } from "~/modules/core/economics/types";
 
 export type PlanKey = "growth" | "enrollment" | "sis";
+
+export interface PlanFeature {
+  label: string;
+  pitch?: string;
+  ctaLabel?: string;
+  covers: RuleKey[];
+}
 
 export interface PlanDefinition {
   key: PlanKey;
   title: string;
   subtitle?: string;
   description?: string;
-
   onboardingNode?: string;
 
-  offers: Partial<
-    Record<
-      string,
-      {
-        label: string;
-        pitch?: string;
-        ctaLabel?: string;
-        covers: RuleKey[];
-        optional?: {
-          pricing: AmountByCurrency;
-          description?: string;
-        };
-      }
-    >
-  >;
+  /**
+   * Core feature descriptions, separate from pricing logic.
+   * Keyed by string (e.g., "googleProfile", "email", etc.)
+   */
+  features: Record<string, PlanFeature>;
 
-  pricing?: {
-    oneTime: AmountByCurrency; // Mandatory setup cost
-    yearly: AmountByCurrency; // Recurring annual fee
-    note?: string;
-  };
-  discount?: {
-    percentage: number;
-    message?: string;
-  };
+  /**
+   * One or more pricing components for this plan.
+   * All amounts, billing cycles, and discount rules are here.
+   */
+  pricingItems: PricingItem[];
+
+  /**
+   * Optional global discounts (e.g., 20% off the whole plan)
+   * Use pricingItem-specific discounts inside PricingItem instead.
+   */
+  discounts?: Discount[];
 }
