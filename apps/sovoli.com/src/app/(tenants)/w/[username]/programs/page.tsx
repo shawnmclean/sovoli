@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 import { HeroSection } from "./components/HeroSection";
 import { ChevronDownIcon } from "lucide-react";
-import { ProgramCard } from "./components/ProgramCard";
+import { ProgramsSection } from "./components/ProgramsSection";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -38,7 +38,6 @@ export async function generateMetadata({
 export default async function ProgramsPage({ params }: ProgramsPageProps) {
   const { username } = await params;
   const orgInstance = await retrieveOrgInstance(username);
-  const programs = orgInstance.academicModule?.programs ?? [];
 
   return (
     <div className="container mx-auto max-w-6xl space-y-16 px-6 py-4">
@@ -51,15 +50,7 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
       </div>
 
       {/* Programs Listing */}
-      <div className="grid gap-8 md:grid-cols-2">
-        {programs.map((program, index) => (
-          <ProgramCard
-            key={index}
-            orgInstance={orgInstance}
-            program={program}
-          />
-        ))}
-      </div>
+      <ProgramsSection orgInstance={orgInstance} />
     </div>
   );
 }

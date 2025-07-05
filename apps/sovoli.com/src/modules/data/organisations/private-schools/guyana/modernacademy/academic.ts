@@ -75,7 +75,6 @@ const registrationFee: AcademicPricingItem = {
       id: "early-bird",
       label: "Early Bird",
       value: 100,
-      appliesTo: ["registration"],
       type: "percentage",
       validUntil: "2025-08-15",
     },
