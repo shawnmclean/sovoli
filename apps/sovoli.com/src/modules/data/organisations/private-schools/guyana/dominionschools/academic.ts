@@ -55,8 +55,17 @@ const DOMINION_SCHOOL_PROGRAM_CYCLE_2025_SUMMER: OrgProgramCycle = {
   orgProgram: DOMINION_SCHOOL_BREAK_PROGRAM,
   academicCycle: DOMINION_SCHOOL_ACADEMIC_CYCLE_2025_SUMMER,
   feeStructure: {
-    tuitionFee: { GYD: 18000 },
-    billingCycle: "termly",
+    fees: [
+      {
+        id: "tuition",
+        label: "Tuition",
+        billingCycle: "termly",
+        amount: {
+          GYD: 18000,
+        },
+        appliesTo: ["program"],
+      },
+    ],
   },
   computedRequirements: [...(DOMINION_SCHOOL_BREAK_PROGRAM.requirements ?? [])],
 };
@@ -66,9 +75,22 @@ const DOMINION_SCHOOL_PROGRAM_CYCLE_2025_T1: OrgProgramCycle = {
   orgProgram: DOMINION_SCHOOL_NURSERY_PROGRAM,
   academicCycle: DOMINON_SCHOOL_ACADEMIC_CYCLE_2025_T1,
   feeStructure: {
-    tuitionFee: { GYD: 60000 },
-    registrationFee: { GYD: 5000 },
-    billingCycle: "termly",
+    fees: [
+      {
+        id: "tuition",
+        label: "Tuition",
+        billingCycle: "termly",
+        amount: { GYD: 60000 },
+        appliesTo: ["program"],
+      },
+      {
+        id: "registration",
+        label: "Registration",
+        billingCycle: "one-time",
+        amount: { GYD: 5000 },
+        appliesTo: ["application"],
+      },
+    ],
   },
   computedRequirements: [
     ...(DOMINION_SCHOOL_NURSERY_PROGRAM.standardProgramVersion?.requirements ??

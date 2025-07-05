@@ -1,3 +1,9 @@
+import {
+  BillingCycle,
+  Discount,
+  PricingItem,
+  TargetType,
+} from "../core/economics/types";
 import type { AmountByCurrency, CountryCode } from "../core/types";
 
 // #region cycles
@@ -111,12 +117,16 @@ export interface ProgramAssessmentVersion {
   effectiveTo?: string;
 }
 
-export type BillingCycle = "monthly" | "termly" | "annually" | "per-course";
+export type AcademicBillingCycle = BillingCycle | "termly";
+export type AcademicTargetType = TargetType | "program" | "application";
+type AcademicPricingItem = Omit<PricingItem, "billingCycle" | "appliesTo"> & {
+  billingCycle: AcademicBillingCycle;
+  appliesTo: AcademicTargetType[];
+};
 
 export interface ProgramFeeStructure {
-  registrationFee?: AmountByCurrency; // One-time fee
-  tuitionFee: AmountByCurrency; // Required recurring or per-course fee
-  billingCycle: BillingCycle; // Frequency of tuition payments
+  fees: AcademicPricingItem[];
+  discounts?: Discount[];
 
   notes?: string; // e.g., "Includes books", "Excludes lunch"
 }

@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+
 import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface SchoolHeaderProps {
@@ -36,21 +37,24 @@ function formatCurrencyAmount(amount: number): string {
   return amount.toString();
 }
 
-// Utility function to compute fee range from program cycles
-function computeFeeRange(orgInstance: OrgInstance): string {
+export function computeFeeRange(orgInstance: OrgInstance): string {
   const programCycles = orgInstance.academicModule?.programCycles ?? [];
 
   if (programCycles.length === 0) {
     return "NA";
   }
 
-  // Extract all GYD tuition fees from program cycles
   const gydFees: number[] = [];
 
   for (const cycle of programCycles) {
-    const feeStructure = cycle.feeStructure;
-    if (feeStructure?.tuitionFee.GYD && feeStructure.tuitionFee.GYD > 0) {
-      gydFees.push(feeStructure.tuitionFee.GYD);
+    const feeItems = cycle.feeStructure?.fees ?? [];
+
+    for (const fee of feeItems) {
+      const amount = fee.amount.GYD;
+
+      if (fee.appliesTo.includes("program") && amount && amount > 0) {
+        gydFees.push(amount);
+      }
     }
   }
 
@@ -58,14 +62,12 @@ function computeFeeRange(orgInstance: OrgInstance): string {
     return "NA";
   }
 
-  const minFee = Math.min(...gydFees);
-  const maxFee = Math.max(...gydFees);
+  const min = Math.min(...gydFees);
+  const max = Math.max(...gydFees);
 
-  if (minFee === maxFee) {
-    return formatCurrencyAmount(minFee);
-  }
-
-  return `${formatCurrencyAmount(minFee)}-${formatCurrencyAmount(maxFee)}`;
+  return min === max
+    ? formatCurrencyAmount(min)
+    : `${formatCurrencyAmount(min)}-${formatCurrencyAmount(max)}`;
 }
 
 export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {

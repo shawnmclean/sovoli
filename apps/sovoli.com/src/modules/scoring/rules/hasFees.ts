@@ -15,10 +15,17 @@ export const hasFees: OrgScoreRule = {
       });
     }
 
-    // Count how many programs have a fee structure (tuitionFee is required in the model)
-    const programsWithFee = programCycles.filter(
-      (cycle) => cycle.feeStructure,
-    ).length;
+    // Count how many programs have a fee structure with amounts greater than 0
+    const programsWithFee = programCycles.filter((cycle) => {
+      const fees = cycle.feeStructure?.fees ?? [];
+      return (
+        fees.length > 0 &&
+        fees.some((fee) => {
+          const amounts = Object.values(fee.amount);
+          return amounts.some((amount) => amount > 0);
+        })
+      );
+    }).length;
 
     const score = Math.round(
       (programsWithFee / totalProgramCycles) * MAX_SCORE,
