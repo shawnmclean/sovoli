@@ -282,7 +282,7 @@ export function TenantNavbar({
             fullWidth
             as={Link}
             className="bg-foreground text-background"
-            href="/programs/apply"
+            href="/programs"
             onPress={handleCloseMenu}
           >
             Apply Now
