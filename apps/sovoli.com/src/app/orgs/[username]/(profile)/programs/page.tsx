@@ -1,11 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import {
-  CalendarIcon,
-  DollarSignIcon,
-  ClockIcon,
-  UserIcon,
-} from "lucide-react";
+import { CalendarIcon, ClockIcon, UserIcon } from "lucide-react";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
 import { bus } from "~/services/core/bus";
@@ -20,17 +15,6 @@ const retreiveOrgInstance = async (username: string) => {
   );
   if (!result.orgInstance) return notFound();
   return result.orgInstance;
-};
-
-// Helper function to format currency
-const formatCurrency = (amount: number, currency: string) => {
-  const formatter = new Intl.NumberFormat("en-GY", {
-    style: "currency",
-    currency: currency,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-  return formatter.format(amount);
 };
 
 // Helper function to format date
@@ -227,56 +211,6 @@ export default async function ProgramsPage({
                     </CardHeader>
 
                     <CardBody className="space-y-6">
-                      {/* Pricing Information */}
-                      {nextCycle?.feeStructure && (
-                        <div className="space-y-3">
-                          <h3 className="flex items-center gap-2 text-lg font-semibold text-foreground">
-                            <DollarSignIcon className="h-5 w-5 text-success" />
-                            Pricing
-                          </h3>
-                          <div className="grid gap-2 sm:grid-cols-2">
-                            {nextCycle.feeStructure.registrationFee && (
-                              <div className="rounded-lg bg-default-100 p-3">
-                                <p className="text-sm font-medium text-foreground-600">
-                                  Registration Fee
-                                </p>
-                                <p className="text-lg font-bold text-foreground">
-                                  {Object.entries(
-                                    nextCycle.feeStructure.registrationFee,
-                                  )
-                                    .map(([currency, amount]) =>
-                                      formatCurrency(amount, currency),
-                                    )
-                                    .join(" / ")}
-                                </p>
-                              </div>
-                            )}
-                            <div className="rounded-lg bg-default-100 p-3">
-                              <p className="text-sm font-medium text-foreground-600">
-                                Tuition Fee
-                              </p>
-                              <p className="text-lg font-bold text-foreground">
-                                {Object.entries(
-                                  nextCycle.feeStructure.tuitionFee,
-                                )
-                                  .map(([currency, amount]) =>
-                                    formatCurrency(amount, currency),
-                                  )
-                                  .join(" / ")}
-                              </p>
-                              <p className="text-xs text-foreground-500 capitalize">
-                                Billed {nextCycle.feeStructure.billingCycle}
-                              </p>
-                            </div>
-                          </div>
-                          {nextCycle.feeStructure.notes && (
-                            <p className="text-sm text-foreground-600 italic">
-                              {nextCycle.feeStructure.notes}
-                            </p>
-                          )}
-                        </div>
-                      )}
-
                       {/* Cycle Information */}
                       <div className="space-y-3">
                         <h3 className="flex items-center gap-2 text-lg font-semibold text-foreground">
