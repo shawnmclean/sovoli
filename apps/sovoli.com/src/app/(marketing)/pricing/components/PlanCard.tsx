@@ -15,7 +15,7 @@ import { DualCurrencyPrice } from "./DualCurrencyPrice";
 import type { PlanDefinition } from "~/modules/plans/types";
 import { pluralize } from "~/utils/pluralize";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { PricingItem } from "~/modules/core/economics/types";
+import type { PricingItem } from "~/modules/core/economics/types";
 
 interface PlanCardProps {
   plan: PlanDefinition;
@@ -43,9 +43,17 @@ export function PlanCard({
     }));
   };
 
-  // Split pricing items
+  // Split pricing items by billing cycle
   const baseItems = plan.pricingItems.filter((item) => !item.optional);
   const optionalItems = plan.pricingItems.filter((item) => item.optional);
+
+  // Group base items by billing cycle
+  const oneTimeItems = baseItems.filter(
+    (item) => item.billingCycle === "one-time",
+  );
+  const annualItems = baseItems.filter(
+    (item) => item.billingCycle === "annually",
+  );
 
   // Apply active discounts
   const getDiscountedAmount = (
@@ -81,23 +89,18 @@ export function PlanCard({
     return base;
   };
 
-  // Compute totals
-  const calculateTotal = (currency: "USD" | "GYD") => {
-    const baseTotal = baseItems.reduce(
+  // Compute totals by billing cycle
+  const calculateTotal = (currency: "USD" | "GYD", items: PricingItem[]) => {
+    return items.reduce(
       (sum, item) => sum + getDiscountedAmount(item, currency),
       0,
     );
-
-    const optionalTotal = optionalItems.reduce((sum, item) => {
-      if (!selectedOptionals[item.id]) return sum;
-      return sum + getDiscountedAmount(item, currency);
-    }, 0);
-
-    return baseTotal + optionalTotal;
   };
 
-  const totalUSD = calculateTotal("USD");
-  const totalGYD = calculateTotal("GYD");
+  const oneTimeUSD = calculateTotal("USD", oneTimeItems);
+  const oneTimeGYD = calculateTotal("GYD", oneTimeItems);
+  const annualUSD = calculateTotal("USD", annualItems);
+  const annualGYD = calculateTotal("GYD", annualItems);
 
   const selectedAddOnCount =
     Object.values(selectedOptionals).filter(Boolean).length;
@@ -146,13 +149,14 @@ export function PlanCard({
           </div>
         )}
 
-        {/* Discounted pricing with slashed original */}
+        {/* Main pricing - one-time fee */}
         <div className="text-xl font-medium mt-1">
           <span className="text-success-600">
-            <DualCurrencyPrice usdPrice={totalUSD} gydPrice={totalGYD} />
+            <DualCurrencyPrice usdPrice={oneTimeUSD} gydPrice={oneTimeGYD} />
           </span>
         </div>
 
+        {/* Original pricing for discount comparison */}
         {plan.discounts && plan.discounts.length > 0 && (
           <div className="text-default-400 line-through text-sm mt-1">
             <DualCurrencyPrice
@@ -275,7 +279,10 @@ export function PlanCard({
             </span>
             <div className="flex items-center gap-2">
               <span className="text-lg font-semibold">
-                <DualCurrencyPrice usdPrice={totalUSD} gydPrice={totalGYD} />
+                <DualCurrencyPrice
+                  usdPrice={oneTimeUSD}
+                  gydPrice={oneTimeGYD}
+                />
               </span>
               {selectedAddOnCount > 0 && (
                 <span className="text-xs text-success-600">
@@ -303,6 +310,33 @@ export function PlanCard({
         >
           Launch My School
         </Button>
+
+        {/* Annual maintenance fee */}
+        {(annualUSD > 0 || annualGYD > 0) && (
+          <div className="w-full p-3 bg-default-50 rounded-lg border border-default-200 mt-2">
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col">
+                <span className="text-sm font-medium text-default-700">
+                  {
+                    plan.pricingItems.find(
+                      (item) => item.id === "annual-maintenance",
+                    )?.label
+                  }
+                </span>
+                <span className="text-xs text-default-500">
+                  {
+                    plan.pricingItems.find(
+                      (item) => item.id === "annual-maintenance",
+                    )?.notes
+                  }
+                </span>
+              </div>
+              <span className="text-sm font-semibold text-default-700">
+                <DualCurrencyPrice usdPrice={annualUSD} gydPrice={annualGYD} />
+              </span>
+            </div>
+          </div>
+        )}
       </CardFooter>
     </Card>
   );

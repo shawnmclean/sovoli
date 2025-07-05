@@ -98,7 +98,7 @@ export const growthPlan: PlanDefinition = {
       value: 50,
       message: "Special offer for first 2 schools",
       validUntil: "2025-09-01",
-      appliesTo: ["setup", "annual-maintenance"],
+      appliesTo: ["setup"],
     },
   ],
 };
