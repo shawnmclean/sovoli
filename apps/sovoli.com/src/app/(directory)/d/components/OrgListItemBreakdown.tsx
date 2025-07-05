@@ -123,14 +123,14 @@ const ProgramList = ({
     const registrationFees: number[] = [];
 
     matchingCycles.forEach((cycle) => {
-      const tuitionFee = cycle.feeStructure?.fees.find((fee) =>
-        fee.appliesTo.includes("program"),
+      const tuitionFee = cycle.pricingPackage.pricingItems.find(
+        (item) => item.purpose === "tuition",
       )?.amount.GYD;
       if (tuitionFee !== undefined && tuitionFee > 0) {
         tuitionFees.push(tuitionFee);
       }
-      const registrationFee = cycle.feeStructure?.fees.find((fee) =>
-        fee.appliesTo.includes("application"),
+      const registrationFee = cycle.pricingPackage.pricingItems.find(
+        (item) => item.purpose === "registration",
       )?.amount.GYD;
       if (registrationFee !== undefined && registrationFee > 0) {
         registrationFees.push(registrationFee);
@@ -140,7 +140,8 @@ const ProgramList = ({
     return {
       tuitionFees,
       registrationFees,
-      billingCycle: matchingCycles[0]?.feeStructure?.fees[0]?.billingCycle,
+      billingCycle:
+        matchingCycles[0]?.pricingPackage.pricingItems[0]?.billingCycle,
     };
   };
 

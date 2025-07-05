@@ -47,12 +47,12 @@ export function computeFeeRange(orgInstance: OrgInstance): string {
   const gydFees: number[] = [];
 
   for (const cycle of programCycles) {
-    const feeItems = cycle.feeStructure?.fees ?? [];
+    const feeItems = cycle.pricingPackage.pricingItems;
 
     for (const fee of feeItems) {
       const amount = fee.amount.GYD;
 
-      if (fee.appliesTo.includes("program") && amount && amount > 0) {
+      if (fee.purpose === "tuition" && amount && amount > 0) {
         gydFees.push(amount);
       }
     }

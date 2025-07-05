@@ -56,7 +56,7 @@ export function PlanCard({
     (item) => item.billingCycle === "one-time",
   );
   const annualItems = baseItems.filter(
-    (item) => item.billingCycle === "annually",
+    (item) => item.billingCycle === "annual",
   );
 
   // Apply active discounts

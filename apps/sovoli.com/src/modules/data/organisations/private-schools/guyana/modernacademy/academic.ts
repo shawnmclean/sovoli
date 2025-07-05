@@ -68,6 +68,7 @@ const registrationFee: PricingItem = {
   id: "registration",
   label: "Registration",
   billingCycle: "one-time",
+  purpose: "registration",
   amount: { GYD: 5000 },
 };
 const pricingPackage: PricingPackage = {

@@ -60,6 +60,7 @@ const DOMINION_SCHOOL_PROGRAM_CYCLE_2025_SUMMER: OrgProgramCycle = {
         id: "tuition",
         label: "Tuition",
         billingCycle: "term",
+        purpose: "tuition",
         amount: {
           GYD: 18000,
         },
@@ -79,12 +80,14 @@ const DOMINION_SCHOOL_PROGRAM_CYCLE_2025_T1: OrgProgramCycle = {
         id: "tuition",
         label: "Tuition",
         billingCycle: "term",
+        purpose: "tuition",
         amount: { GYD: 60000 },
       },
       {
         id: "registration",
         label: "Registration",
         billingCycle: "one-time",
+        purpose: "registration",
         amount: { GYD: 5000 },
       },
     ],

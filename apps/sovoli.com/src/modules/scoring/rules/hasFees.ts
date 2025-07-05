@@ -17,12 +17,12 @@ export const hasFees: OrgScoreRule = {
 
     // Count how many programs have a fee structure with amounts greater than 0
     const programsWithFee = programCycles.filter((cycle) => {
-      const fees = cycle.feeStructure?.fees ?? [];
+      const fees = cycle.pricingPackage.pricingItems;
       return (
         fees.length > 0 &&
         fees.some((fee) => {
           return (
-            fee.appliesTo.includes("program") &&
+            fee.purpose === "tuition" &&
             Object.values(fee.amount).some((amount) => amount > 0)
           );
         })

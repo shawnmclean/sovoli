@@ -2,6 +2,7 @@ export type CurrencyCode = "GYD" | "USD";
 export type AmountByCurrency = Partial<Record<CurrencyCode, number>>;
 
 export type BillingCycle = "one-time" | "annual" | "term";
+export type PricingItemPurpose = "registration" | "tuition";
 
 export interface Discount {
   id: string;
@@ -22,6 +23,7 @@ export interface PricingItem {
   description?: string;
   billingCycle: BillingCycle;
   amount: AmountByCurrency;
+  purpose?: PricingItemPurpose;
   optional?: boolean;
   notes?: string;
 }
