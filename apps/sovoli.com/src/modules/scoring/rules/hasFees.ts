@@ -21,8 +21,10 @@ export const hasFees: OrgScoreRule = {
       return (
         fees.length > 0 &&
         fees.some((fee) => {
-          const amounts = Object.values(fee.amount);
-          return amounts.some((amount) => amount > 0);
+          return (
+            fee.appliesTo.includes("program") &&
+            Object.values(fee.amount).some((amount) => amount > 0)
+          );
         })
       );
     }).length;

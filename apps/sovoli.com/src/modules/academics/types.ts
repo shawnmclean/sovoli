@@ -119,7 +119,10 @@ export interface ProgramAssessmentVersion {
 
 export type AcademicBillingCycle = BillingCycle | "termly";
 export type AcademicTargetType = TargetType | "program" | "application";
-type AcademicPricingItem = Omit<PricingItem, "billingCycle" | "appliesTo"> & {
+export type AcademicPricingItem = Omit<
+  PricingItem,
+  "billingCycle" | "appliesTo"
+> & {
   billingCycle: AcademicBillingCycle;
   appliesTo: AcademicTargetType[];
 };

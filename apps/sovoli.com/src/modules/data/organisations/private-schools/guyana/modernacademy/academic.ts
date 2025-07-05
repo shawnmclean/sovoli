@@ -1,5 +1,6 @@
 import type {
   AcademicModule,
+  AcademicPricingItem,
   OrgAcademicCycle,
   OrgProgram,
   OrgProgramCycle,
@@ -63,11 +64,31 @@ export const MAGY_ACADEMIC_CYCLE_2025_T1: OrgAcademicCycle = {
 // #endregion
 
 // #region program cycles
+const registrationFee: AcademicPricingItem = {
+  id: "registration",
+  label: "Registration",
+  billingCycle: "one-time",
+  amount: { GYD: 5000 },
+  appliesTo: ["application"],
+  discounts: [
+    {
+      id: "early-bird",
+      label: "Early Bird",
+      value: 100,
+      appliesTo: ["registration"],
+      type: "percentage",
+      validUntil: "2025-08-15",
+    },
+  ],
+};
 
 export const MAGY_PRE_NURSERY_2025_T1: OrgProgramCycle = {
   id: "magy-pre-nursery-2025-t1",
   orgProgram: MAGY_PRE_NURSERY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
+  feeStructure: {
+    fees: [registrationFee],
+  },
 
   computedRequirements: [
     ...(MAGY_PRE_NURSERY_PROGRAM.requirements ?? []),
@@ -79,7 +100,9 @@ export const MAGY_NURSERY_2025_T1: OrgProgramCycle = {
   id: "magy-nursery-2025-t1",
   orgProgram: MAGY_NURSERY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
-
+  feeStructure: {
+    fees: [registrationFee],
+  },
   computedRequirements: [
     ...(MAGY_NURSERY_PROGRAM.requirements ?? []),
     ...(MAGY_NURSERY_PROGRAM.standardProgramVersion?.requirements ?? []),
@@ -91,6 +114,10 @@ export const MAGY_PRIMARY_2025_T1: OrgProgramCycle = {
   orgProgram: MAGY_PRIMARY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
 
+  feeStructure: {
+    fees: [registrationFee],
+  },
+
   computedRequirements: [
     ...(MAGY_PRIMARY_PROGRAM.requirements ?? []),
     ...(MAGY_PRIMARY_PROGRAM.standardProgramVersion?.requirements ?? []),
@@ -101,6 +128,10 @@ export const MAGY_SECONDARY_2025_T1: OrgProgramCycle = {
   id: "magy-secondary-2025-t1",
   orgProgram: MAGY_SECONDARY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
+
+  feeStructure: {
+    fees: [registrationFee],
+  },
 
   computedRequirements: [
     ...(MAGY_SECONDARY_PROGRAM.requirements ?? []),
