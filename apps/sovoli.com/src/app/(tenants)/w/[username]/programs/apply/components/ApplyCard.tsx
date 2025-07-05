@@ -1,94 +1,151 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { Tab, Tabs } from "@sovoli/ui/components/tabs";
-import { PhoneIcon, SendIcon } from "lucide-react";
+import { Card, CardBody } from "@sovoli/ui/components/card";
+import { Progress } from "@sovoli/ui/components/progress";
+import { Button } from "@sovoli/ui/components/button";
+import { ArrowLeftIcon } from "lucide-react";
 
-import { ContactMethods } from "../../../components/ContactMethods";
+import { GuardianForm } from "./GuardianForm";
+import { ChildrenForm } from "./ChildrenForm";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { Select, SelectItem } from "@sovoli/ui/components/select";
-import { Divider } from "@sovoli/ui/components/divider";
 
 interface ApplyCardProps {
   orgInstance: OrgInstance;
 }
 
+type FormStep = "guardian" | "children";
+
+interface GuardianData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  relationship: string;
+}
+
+interface ChildData {
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  gender: string;
+  grade: string;
+  previousSchool?: string;
+  medicalConditions?: string;
+  allergies?: string;
+}
+
+interface FormData {
+  guardians: {
+    primary: GuardianData;
+    secondary?: GuardianData;
+  };
+  children: ChildData[];
+}
+
 export function ApplyCard({ orgInstance }: ApplyCardProps) {
-  const [selected, setSelected] = useState("contact");
-  const { org } = orgInstance;
-  const locations = org.locations;
-  const [selectedLocationKey, setSelectedLocationKey] = useState<string | null>(
-    locations[0]?.key ?? null,
-  );
-  const selectedLocation = locations.find(
-    (loc) => loc.key === selectedLocationKey,
-  );
+  const [currentStep, setCurrentStep] = useState<FormStep>("guardian");
+  const [formData, setFormData] = useState<FormData>({
+    guardians: {
+      primary: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        relationship: "",
+      },
+    },
+    children: [],
+  });
+
+  const handleGuardianNext = (guardianData: {
+    primary: GuardianData;
+    secondary?: GuardianData;
+  }) => {
+    setFormData((prev) => ({
+      ...prev,
+      guardians: guardianData,
+    }));
+    setCurrentStep("children");
+  };
+
+  const handleChildrenNext = (childrenData: ChildData[]) => {
+    setFormData((prev) => ({
+      ...prev,
+      children: childrenData,
+    }));
+    handleSubmit();
+  };
+
+  const handleBack = () => {
+    setCurrentStep("guardian");
+  };
+
+  const handleSubmit = () => {
+    console.log(`Form submitted to ${orgInstance.org.name}:`, formData);
+    // Here you would typically send the data to your backend
+    alert("Application submitted successfully!");
+  };
+
+  const getProgressValue = () => {
+    switch (currentStep) {
+      case "guardian":
+        return 50;
+      case "children":
+        return 100;
+      default:
+        return 0;
+    }
+  };
 
   return (
     <Card shadow="sm" className="overflow-visible">
-      {locations.length > 1 ? (
-        <>
-          <CardHeader>
-            <Select
-              label="Select Location"
-              selectedKeys={[selectedLocationKey ?? ""]}
-              onSelectionChange={(keys) =>
-                setSelectedLocationKey(keys.currentKey ?? null)
+      <CardBody className="overflow-hidden p-6">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-6 text-center text-foreground">
+            School Enrollment Application
+          </h2>
+
+          <Progress
+            aria-label="Application Progress"
+            value={getProgressValue()}
+            className="mb-6"
+            color="primary"
+          />
+
+          <div className="flex justify-between mb-6 text-sm text-foreground-500">
+            <span
+              className={
+                currentStep === "guardian" ? "font-semibold text-primary" : ""
               }
-              className="max-w-xs"
             >
-              {locations.map((loc, idx) => (
-                <SelectItem key={loc.key}>
-                  {loc.label ?? `Location ${idx + 1}`}
-                </SelectItem>
-              ))}
-            </Select>
-          </CardHeader>
-          <Divider />
-        </>
-      ) : null}
-      <CardBody className="overflow-hidden p-0">
-        <Tabs
-          aria-label="Application options"
-          selectedKey={selected}
-          onSelectionChange={(key) => setSelected(key as string)}
-          classNames={{
-            base: "w-full",
-            tabList: "bg-default-50 p-0",
-            tab: "h-12",
-            tabContent: "group-data-[selected=true]:text-primary",
-          }}
-          variant="underlined"
-          color="primary"
-        >
-          <Tab
-            key="contact"
-            title={
-              <div className="flex items-center gap-2">
-                <PhoneIcon className="text-lg" />
-                <span>Contact Us</span>
-              </div>
-            }
-          >
-            <div className="px-2 py-6">
-              {selectedLocation ? (
-                <ContactMethods location={selectedLocation} />
-              ) : null}
-            </div>
-          </Tab>
-          <Tab
-            key="apply"
-            title={
-              <div className="flex items-center gap-2">
-                <SendIcon className="text-lg" />
-                <span>Apply Online</span>
-              </div>
-            }
-          >
-            <div className="px-2 py-6">Coming Soon</div>
-          </Tab>
-        </Tabs>
+              Guardian Information
+            </span>
+            <span
+              className={
+                currentStep === "children" ? "font-semibold text-primary" : ""
+              }
+            >
+              Children Information
+            </span>
+          </div>
+
+          {currentStep === "guardian" && (
+            <GuardianForm onNext={handleGuardianNext} />
+          )}
+
+          {currentStep === "children" && (
+            <ChildrenForm onNext={handleChildrenNext} onBack={handleBack} />
+          )}
+        </div>
       </CardBody>
     </Card>
   );
