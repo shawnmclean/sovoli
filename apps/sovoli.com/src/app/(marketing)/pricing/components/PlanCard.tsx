@@ -67,27 +67,17 @@ export function PlanCard({
     const base = item.amount[currency] ?? 0;
     const now = new Date().toISOString();
 
+    // Check for item-specific discounts first
     const activeDiscount = plan.pricingPackage.discounts?.find(
       (d) =>
         d.type === "percentage" &&
+        d.appliesTo.includes(item.id) &&
         (!d.validFrom || d.validFrom <= now) &&
         (!d.validUntil || d.validUntil >= now),
     );
 
     if (activeDiscount) {
       return base * (1 - activeDiscount.value / 100);
-    }
-
-    // Fallback to global plan-level discount
-    const globalDiscount = plan.pricingPackage.discounts?.[0];
-    if (
-      globalDiscount &&
-      globalDiscount.type === "percentage" &&
-      (!globalDiscount.validFrom || globalDiscount.validFrom <= now) &&
-      (!globalDiscount.validUntil || globalDiscount.validUntil >= now) &&
-      globalDiscount.appliesTo.includes(item.id)
-    ) {
-      return base * (1 - globalDiscount.value / 100);
     }
 
     return base;
@@ -138,21 +128,31 @@ export function PlanCard({
         </div>
 
         {/* Discount Badge */}
-        {plan.pricingPackage.discounts &&
-          plan.pricingPackage.discounts.length > 0 && (
+        {(() => {
+          const now = new Date().toISOString();
+          const setupDiscount = plan.pricingPackage.discounts?.find(
+            (d) =>
+              d.type === "percentage" &&
+              d.appliesTo.includes("setup") &&
+              (!d.validFrom || d.validFrom <= now) &&
+              (!d.validUntil || d.validUntil >= now),
+          );
+
+          return setupDiscount ? (
             <div className="bg-success-50 border border-success-200 rounded-lg px-3 py-1">
               <div className="flex items-center gap-2">
                 <span className="text-success-700 font-semibold text-sm">
-                  {plan.pricingPackage.discounts[0]?.value}% OFF
+                  {setupDiscount.value}% OFF
                 </span>
-                {plan.pricingPackage.discounts[0]?.message && (
+                {setupDiscount.message && (
                   <span className="text-success-600 text-xs">
-                    • {plan.pricingPackage.discounts[0].message}
+                    • {setupDiscount.message}
                   </span>
                 )}
               </div>
             </div>
-          )}
+          ) : null;
+        })()}
 
         {/* Main pricing - one-time fee */}
         <div className="text-xl font-medium mt-1">
@@ -162,33 +162,35 @@ export function PlanCard({
         </div>
 
         {/* Original pricing for discount comparison */}
-        {plan.pricingPackage.discounts &&
-          plan.pricingPackage.discounts.length > 0 && (
+        {(() => {
+          const now = new Date().toISOString();
+          const setupDiscount = plan.pricingPackage.discounts?.find(
+            (d) =>
+              d.type === "percentage" &&
+              d.appliesTo.includes("setup") &&
+              (!d.validFrom || d.validFrom <= now) &&
+              (!d.validUntil || d.validUntil >= now),
+          );
+
+          if (!setupDiscount) return null;
+
+          // Calculate original setup fee (without discount)
+          const originalSetupUSD =
+            plan.pricingPackage.pricingItems.find((item) => item.id === "setup")
+              ?.amount.USD ?? 0;
+          const originalSetupGYD =
+            plan.pricingPackage.pricingItems.find((item) => item.id === "setup")
+              ?.amount.GYD ?? 0;
+
+          return (
             <div className="text-default-400 line-through text-sm mt-1">
               <DualCurrencyPrice
-                usdPrice={
-                  baseItems.reduce(
-                    (sum, item) => sum + (item.amount.USD ?? 0),
-                    0,
-                  ) +
-                  optionalItems.reduce((sum, item) => {
-                    if (!selectedOptionals[item.id]) return sum;
-                    return sum + (item.amount.USD ?? 0);
-                  }, 0)
-                }
-                gydPrice={
-                  baseItems.reduce(
-                    (sum, item) => sum + (item.amount.GYD ?? 0),
-                    0,
-                  ) +
-                  optionalItems.reduce((sum, item) => {
-                    if (!selectedOptionals[item.id]) return sum;
-                    return sum + (item.amount.GYD ?? 0);
-                  }, 0)
-                }
+                usdPrice={originalSetupUSD}
+                gydPrice={originalSetupGYD}
               />
             </div>
-          )}
+          );
+        })()}
 
         {plan.onboardingNode && (
           <div className="mt-3 p-3 bg-warning-50 border border-warning-200 rounded-lg animate-pulse">
