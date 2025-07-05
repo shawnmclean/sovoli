@@ -10,7 +10,9 @@ export const plans: PlanDefinition[] = [
     description:
       "We create an enrollment form, connect it to WhatsApp or email, and help parents complete applications easily.",
     features: {},
-    pricingItems: [],
+    pricingPackage: {
+      pricingItems: [],
+    },
   },
   {
     key: "sis",
@@ -19,6 +21,8 @@ export const plans: PlanDefinition[] = [
     description:
       "We help you digitize attendance, grades, student records, and parent communication with a secure portal.",
     features: {},
-    pricingItems: [],
+    pricingPackage: {
+      pricingItems: [],
+    },
   },
 ];

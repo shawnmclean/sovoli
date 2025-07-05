@@ -16,6 +16,9 @@ export interface Discount {
   validUntil: string;
   appliesTo: string[]; // list of PricingItem ids or keys
   isActive?: boolean;
+
+  appliesForPeriods?: number;
+  billingCycleMatch?: BillingCycle;
 }
 
 export interface PricingItem {
@@ -26,6 +29,11 @@ export interface PricingItem {
   amount: AmountByCurrency;
   appliesTo: TargetType[];
   optional?: boolean;
+  notes?: string;
+}
+
+export interface PricingPackage {
+  pricingItems: PricingItem[];
   discounts?: Discount[];
   notes?: string;
 }

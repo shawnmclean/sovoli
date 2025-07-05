@@ -44,61 +44,63 @@ export const growthPlan: PlanDefinition = {
     },
   },
 
-  pricingItems: [
-    {
-      id: "setup",
-      label: "Setup Fee",
-      billingCycle: "one-time",
-      amount: {
-        GYD: 80000,
-        USD: 400,
+  pricingPackage: {
+    pricingItems: [
+      {
+        id: "setup",
+        label: "Setup Fee",
+        billingCycle: "one-time",
+        amount: {
+          GYD: 80000,
+          USD: 400,
+        },
+        appliesTo: ["plan"],
+        notes: "Covers website, email, domain, and business profile setup.",
       },
-      appliesTo: ["plan"],
-      notes: "Covers website, email, domain, and business profile setup.",
-    },
-    {
-      id: "annual-maintenance",
-      label: "Annual Maintenance",
-      billingCycle: "annually",
-      amount: {
-        GYD: 40000,
-        USD: 200,
+      {
+        id: "annual-maintenance",
+        label: "Annual Maintenance",
+        billingCycle: "annually",
+        amount: {
+          GYD: 40000,
+          USD: 200,
+        },
+        appliesTo: ["plan"],
+        notes: "Includes domain renewal, email support, hosting, and updates.",
       },
-      appliesTo: ["plan"],
-      notes: "Includes domain renewal, email support, hosting, and updates.",
-    },
-    {
-      id: "optional-registration-assist",
-      label: "Registration Assistance",
-      billingCycle: "one-time",
-      amount: {
-        GYD: 20000,
-        USD: 100,
+      {
+        id: "optional-registration-assist",
+        label: "Registration Assistance",
+        billingCycle: "one-time",
+        amount: {
+          GYD: 20000,
+          USD: 100,
+        },
+        optional: true,
+        appliesTo: ["addon"],
       },
-      optional: true,
-      appliesTo: ["addon"],
-    },
-    {
-      id: "optional-logo",
-      label: "Logo Design",
-      billingCycle: "one-time",
-      amount: {
-        GYD: 5000,
-        USD: 25,
+      {
+        id: "optional-logo",
+        label: "Logo Design",
+        billingCycle: "one-time",
+        amount: {
+          GYD: 5000,
+          USD: 25,
+        },
+        optional: true,
+        appliesTo: ["addon"],
       },
-      optional: true,
-      appliesTo: ["addon"],
-    },
-  ],
+    ],
 
-  discounts: [
-    {
-      id: "early-growth-offer",
-      type: "percentage",
-      value: 50,
-      message: "Special offer for first 2 schools",
-      validUntil: "2025-09-01",
-      appliesTo: ["setup"],
-    },
-  ],
+    discounts: [
+      {
+        id: "early-growth-offer",
+        type: "percentage",
+        value: 50,
+        message: "Special offer for first 2 schools",
+        validUntil: "2025-09-01",
+        appliesTo: ["setup"],
+      },
+    ],
+  },
 };

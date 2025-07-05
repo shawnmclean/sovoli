@@ -1,5 +1,5 @@
 import type { RuleKey } from "~/modules/scoring/rules";
-import type { PricingItem, Discount } from "~/modules/core/economics/types";
+import type { PricingPackage } from "~/modules/core/economics/types";
 
 export type PlanKey = "growth" | "enrollment" | "sis";
 
@@ -23,15 +23,5 @@ export interface PlanDefinition {
    */
   features: Record<string, PlanFeature>;
 
-  /**
-   * One or more pricing components for this plan.
-   * All amounts, billing cycles, and discount rules are here.
-   */
-  pricingItems: PricingItem[];
-
-  /**
-   * Optional global discounts (e.g., 20% off the whole plan)
-   * Use pricingItem-specific discounts inside PricingItem instead.
-   */
-  discounts?: Discount[];
+  pricingPackage: PricingPackage;
 }
