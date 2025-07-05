@@ -54,18 +54,16 @@ export const growthPlan: PlanDefinition = {
           GYD: 80000,
           USD: 400,
         },
-        appliesTo: ["plan"],
         notes: "Covers website, email, domain, and business profile setup.",
       },
       {
         id: "annual-maintenance",
         label: "Annual Maintenance",
-        billingCycle: "annually",
+        billingCycle: "annual",
         amount: {
           GYD: 40000,
           USD: 200,
         },
-        appliesTo: ["plan"],
         notes: "Includes domain renewal, email support, hosting, and updates.",
       },
       {
@@ -77,7 +75,6 @@ export const growthPlan: PlanDefinition = {
           USD: 100,
         },
         optional: true,
-        appliesTo: ["addon"],
       },
       {
         id: "optional-logo",
@@ -88,7 +85,6 @@ export const growthPlan: PlanDefinition = {
           USD: 25,
         },
         optional: true,
-        appliesTo: ["addon"],
       },
     ],
 

@@ -2,6 +2,7 @@ import type {
   BillingCycle,
   Discount,
   PricingItem,
+  PricingPackage,
   TargetType,
 } from "../core/economics/types";
 import type { CountryCode } from "../core/types";
@@ -117,23 +118,6 @@ export interface ProgramAssessmentVersion {
   effectiveTo?: string;
 }
 
-export type AcademicBillingCycle = BillingCycle | "termly";
-export type AcademicTargetType = TargetType | "program" | "application";
-export type AcademicPricingItem = Omit<
-  PricingItem,
-  "billingCycle" | "appliesTo"
-> & {
-  billingCycle: AcademicBillingCycle;
-  appliesTo: AcademicTargetType[];
-};
-
-export interface ProgramFeeStructure {
-  fees: AcademicPricingItem[];
-  discounts?: Discount[];
-
-  notes?: string; // e.g., "Includes books", "Excludes lunch"
-}
-
 export interface OrgProgramCycle {
   id: string; // e.g., "magy-nursery-2025-t1"
   orgProgram: OrgProgram;
@@ -144,7 +128,7 @@ export interface OrgProgramCycle {
     endDate: string;
   };
 
-  feeStructure?: ProgramFeeStructure;
+  pricingPackage: PricingPackage;
 
   /**
    * Computed requirements at time of cycle, this is frozen at creation time.

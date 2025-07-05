@@ -44,8 +44,12 @@ export function PlanCard({
   };
 
   // Split pricing items by billing cycle
-  const baseItems = plan.pricingItems.filter((item) => !item.optional);
-  const optionalItems = plan.pricingItems.filter((item) => item.optional);
+  const baseItems = plan.pricingPackage.pricingItems.filter(
+    (item) => !item.optional,
+  );
+  const optionalItems = plan.pricingPackage.pricingItems.filter(
+    (item) => item.optional,
+  );
 
   // Group base items by billing cycle
   const oneTimeItems = baseItems.filter(
@@ -63,7 +67,7 @@ export function PlanCard({
     const base = item.amount[currency] ?? 0;
     const now = new Date().toISOString();
 
-    const activeDiscount = item.discounts?.find(
+    const activeDiscount = plan.pricingPackage.discounts?.find(
       (d) =>
         d.type === "percentage" &&
         (!d.validFrom || d.validFrom <= now) &&
@@ -75,7 +79,7 @@ export function PlanCard({
     }
 
     // Fallback to global plan-level discount
-    const globalDiscount = plan.discounts?.[0];
+    const globalDiscount = plan.pricingPackage.discounts?.[0];
     if (
       globalDiscount &&
       globalDiscount.type === "percentage" &&
@@ -134,20 +138,21 @@ export function PlanCard({
         </div>
 
         {/* Discount Badge */}
-        {plan.discounts && plan.discounts.length > 0 && (
-          <div className="bg-success-50 border border-success-200 rounded-lg px-3 py-1">
-            <div className="flex items-center gap-2">
-              <span className="text-success-700 font-semibold text-sm">
-                {plan.discounts[0]?.value}% OFF
-              </span>
-              {plan.discounts[0]?.message && (
-                <span className="text-success-600 text-xs">
-                  • {plan.discounts[0].message}
+        {plan.pricingPackage.discounts &&
+          plan.pricingPackage.discounts.length > 0 && (
+            <div className="bg-success-50 border border-success-200 rounded-lg px-3 py-1">
+              <div className="flex items-center gap-2">
+                <span className="text-success-700 font-semibold text-sm">
+                  {plan.pricingPackage.discounts[0]?.value}% OFF
                 </span>
-              )}
+                {plan.pricingPackage.discounts[0]?.message && (
+                  <span className="text-success-600 text-xs">
+                    • {plan.pricingPackage.discounts[0].message}
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         {/* Main pricing - one-time fee */}
         <div className="text-xl font-medium mt-1">
@@ -157,32 +162,33 @@ export function PlanCard({
         </div>
 
         {/* Original pricing for discount comparison */}
-        {plan.discounts && plan.discounts.length > 0 && (
-          <div className="text-default-400 line-through text-sm mt-1">
-            <DualCurrencyPrice
-              usdPrice={
-                baseItems.reduce(
-                  (sum, item) => sum + (item.amount.USD ?? 0),
-                  0,
-                ) +
-                optionalItems.reduce((sum, item) => {
-                  if (!selectedOptionals[item.id]) return sum;
-                  return sum + (item.amount.USD ?? 0);
-                }, 0)
-              }
-              gydPrice={
-                baseItems.reduce(
-                  (sum, item) => sum + (item.amount.GYD ?? 0),
-                  0,
-                ) +
-                optionalItems.reduce((sum, item) => {
-                  if (!selectedOptionals[item.id]) return sum;
-                  return sum + (item.amount.GYD ?? 0);
-                }, 0)
-              }
-            />
-          </div>
-        )}
+        {plan.pricingPackage.discounts &&
+          plan.pricingPackage.discounts.length > 0 && (
+            <div className="text-default-400 line-through text-sm mt-1">
+              <DualCurrencyPrice
+                usdPrice={
+                  baseItems.reduce(
+                    (sum, item) => sum + (item.amount.USD ?? 0),
+                    0,
+                  ) +
+                  optionalItems.reduce((sum, item) => {
+                    if (!selectedOptionals[item.id]) return sum;
+                    return sum + (item.amount.USD ?? 0);
+                  }, 0)
+                }
+                gydPrice={
+                  baseItems.reduce(
+                    (sum, item) => sum + (item.amount.GYD ?? 0),
+                    0,
+                  ) +
+                  optionalItems.reduce((sum, item) => {
+                    if (!selectedOptionals[item.id]) return sum;
+                    return sum + (item.amount.GYD ?? 0);
+                  }, 0)
+                }
+              />
+            </div>
+          )}
 
         {plan.onboardingNode && (
           <div className="mt-3 p-3 bg-warning-50 border border-warning-200 rounded-lg animate-pulse">
@@ -318,14 +324,14 @@ export function PlanCard({
               <div className="flex flex-col">
                 <span className="text-sm font-medium text-default-700">
                   {
-                    plan.pricingItems.find(
+                    plan.pricingPackage.pricingItems.find(
                       (item) => item.id === "annual-maintenance",
                     )?.label
                   }
                 </span>
                 <span className="text-xs text-default-500">
                   {
-                    plan.pricingItems.find(
+                    plan.pricingPackage.pricingItems.find(
                       (item) => item.id === "annual-maintenance",
                     )?.notes
                   }

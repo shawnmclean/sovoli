@@ -1,9 +1,7 @@
 export type CurrencyCode = "GYD" | "USD";
 export type AmountByCurrency = Partial<Record<CurrencyCode, number>>;
 
-export type BillingCycle = "one-time" | "monthly" | "annually";
-
-export type TargetType = "plan" | "addon" | "event";
+export type BillingCycle = "one-time" | "annual" | "term";
 
 export interface Discount {
   id: string;
@@ -16,9 +14,6 @@ export interface Discount {
   validUntil: string;
   appliesTo: string[]; // list of PricingItem ids or keys
   isActive?: boolean;
-
-  appliesForPeriods?: number;
-  billingCycleMatch?: BillingCycle;
 }
 
 export interface PricingItem {
@@ -27,7 +22,6 @@ export interface PricingItem {
   description?: string;
   billingCycle: BillingCycle;
   amount: AmountByCurrency;
-  appliesTo: TargetType[];
   optional?: boolean;
   notes?: string;
 }

@@ -54,16 +54,15 @@ const DOMINION_SCHOOL_PROGRAM_CYCLE_2025_SUMMER: OrgProgramCycle = {
   id: "dom-2025-summer-nursery",
   orgProgram: DOMINION_SCHOOL_BREAK_PROGRAM,
   academicCycle: DOMINION_SCHOOL_ACADEMIC_CYCLE_2025_SUMMER,
-  feeStructure: {
-    fees: [
+  pricingPackage: {
+    pricingItems: [
       {
         id: "tuition",
         label: "Tuition",
-        billingCycle: "termly",
+        billingCycle: "term",
         amount: {
           GYD: 18000,
         },
-        appliesTo: ["program"],
       },
     ],
   },
@@ -74,21 +73,19 @@ const DOMINION_SCHOOL_PROGRAM_CYCLE_2025_T1: OrgProgramCycle = {
   id: "dom-2025-t1-nursery",
   orgProgram: DOMINION_SCHOOL_NURSERY_PROGRAM,
   academicCycle: DOMINON_SCHOOL_ACADEMIC_CYCLE_2025_T1,
-  feeStructure: {
-    fees: [
+  pricingPackage: {
+    pricingItems: [
       {
         id: "tuition",
         label: "Tuition",
-        billingCycle: "termly",
+        billingCycle: "term",
         amount: { GYD: 60000 },
-        appliesTo: ["program"],
       },
       {
         id: "registration",
         label: "Registration",
         billingCycle: "one-time",
         amount: { GYD: 5000 },
-        appliesTo: ["application"],
       },
     ],
   },
