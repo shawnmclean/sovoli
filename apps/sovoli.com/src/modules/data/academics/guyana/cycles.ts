@@ -2,10 +2,10 @@ import type { GlobalAcademicCycle } from "~/modules/academics/types";
 
 export const GY_CYCLE_2025_T1: GlobalAcademicCycle = {
   id: "gy-2025-t1",
-  label: "Term 1 2025",
+  label: "September 2025",
   country: "GY",
-  startDate: "2025-01-01",
-  endDate: "2025-03-31",
+  startDate: "2025-09-02",
+  endDate: "2025-12-02",
   type: "term",
   standardCycleKey: "T1",
   academicYear: "2025",
