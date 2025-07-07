@@ -1,6 +1,6 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ProgramCard } from "./ProgramCard";
-import { OrgProgramCycle } from "~/modules/academics/types";
+import type { OrgProgramCycle } from "~/modules/academics/types";
 import { ProgramCycleCard } from "./ProgramCycleCard";
 
 export interface ProgramsSectionProps {
