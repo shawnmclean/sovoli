@@ -25,9 +25,9 @@ const formatBillingCycle = (billingCycle: string): string => {
     case "one-time":
       return "One-time payment";
     case "annual":
-      return "Per year";
+      return "/ year";
     case "term":
-      return "Per term";
+      return "/ term";
     default:
       return billingCycle;
   }
@@ -72,19 +72,21 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
     <div>
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-lg font-semibold">{item.label}</h2>
-        {item.billingCycle !== "one-time" && (
-          <p className="text-xs text-foreground-400">
-            {formatBillingCycle(item.billingCycle)}
-          </p>
-        )}
       </div>
       {hasDiscount ? (
         <>
           <div className="flex items-center justify-between bg-content2 p-3 rounded-lg">
             <div>
-              <p className="text-xl font-bold text-success">
-                GYD {gydDiscounted.toLocaleString()}
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-xl font-bold text-success">
+                  GYD {gydDiscounted.toLocaleString()}
+                </p>
+                {item.billingCycle !== "one-time" && (
+                  <p className="text-xs text-foreground-400">
+                    {formatBillingCycle(item.billingCycle)}
+                  </p>
+                )}
+              </div>
               <p className="text-sm text-foreground-500 line-through">
                 GYD {gydOriginal?.toLocaleString()}
               </p>
@@ -105,9 +107,16 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
           </div>
         </>
       ) : (
-        <p className="text-3xl font-bold text-primary">
-          GYD {gydOriginal?.toLocaleString()}
-        </p>
+        <div className="flex items-center gap-2">
+          <p className="text-3xl font-bold text-primary">
+            GYD {gydOriginal?.toLocaleString()}
+          </p>
+          {item.billingCycle !== "one-time" && (
+            <p className="text-xs text-foreground-400">
+              {formatBillingCycle(item.billingCycle)}
+            </p>
+          )}
+        </div>
       )}
     </div>
   );
