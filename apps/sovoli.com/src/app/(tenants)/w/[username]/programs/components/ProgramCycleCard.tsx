@@ -186,7 +186,7 @@ export function ProgramCycleCard({
         >
           Apply Now
         </Button>
-        <Divider />
+        <Divider className="my-2" />
         <Link
           href={`/programs/${program.slug}`}
           color="foreground"

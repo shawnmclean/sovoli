@@ -20,6 +20,19 @@ const daysUntil = (dateString: string): string => {
   return `${diffDays} days`;
 };
 
+const formatBillingCycle = (billingCycle: string): string => {
+  switch (billingCycle) {
+    case "one-time":
+      return "One-time payment";
+    case "annual":
+      return "Per year";
+    case "term":
+      return "Per term";
+    default:
+      return billingCycle;
+  }
+};
+
 export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
   pricingPackage,
   pricingItemId,
@@ -57,7 +70,14 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
 
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-2">{item.label}</h2>
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="text-lg font-semibold">{item.label}</h2>
+        {item.billingCycle !== "one-time" && (
+          <p className="text-xs text-foreground-400">
+            {formatBillingCycle(item.billingCycle)}
+          </p>
+        )}
+      </div>
       {hasDiscount ? (
         <>
           <div className="flex items-center justify-between bg-content2 p-3 rounded-lg">
