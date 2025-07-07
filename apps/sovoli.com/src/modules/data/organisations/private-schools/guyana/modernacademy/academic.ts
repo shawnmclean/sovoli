@@ -4,11 +4,7 @@ import type {
   OrgProgram,
   OrgProgramCycle,
 } from "~/modules/academics/types";
-import type {
-  Discount,
-  PricingItem,
-  PricingPackage,
-} from "~/modules/core/economics/types";
+import type { Discount, PricingItem } from "~/modules/core/economics/types";
 import { GY_CYCLE_2025_T1 } from "~/modules/data/academics/guyana/cycles";
 import {
   GY_NURSERY_V1,
@@ -76,6 +72,7 @@ const registrationFee: PricingItem = {
 const registrationDiscount: Discount = {
   id: "early-bird",
   label: "Early Bird",
+  message: "Early Bird discount",
   value: 100,
   type: "percentage",
   appliesTo: ["registration"],

@@ -20,10 +20,6 @@ export function ProgramCard({ orgInstance, program }: ProgramCardProps) {
     .find((l) => l.isPrimary)
     ?.contacts.find((c) => c.type === "whatsapp")?.value;
 
-  // 🧪 Dummy data (replace with actual program.feeStructure fields later)
-  const registrationFee = { original: 5000, discounted: 3000 };
-  const termFee = { original: 25000, discounted: 20000 };
-
   const ageReq =
     program.requirements?.find((r) => r.type === "age") ??
     program.standardProgramVersion?.requirements?.find((r) => r.type === "age");
