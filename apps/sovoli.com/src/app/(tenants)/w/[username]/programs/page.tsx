@@ -4,7 +4,6 @@ import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 import { HeroSection } from "./components/HeroSection";
 import { ChevronDownIcon } from "lucide-react";
 import { ProgramsSection } from "./components/ProgramsSection";
-import { Alert } from "@sovoli/ui/components/alert";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
