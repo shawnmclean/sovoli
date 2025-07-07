@@ -51,6 +51,12 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
 
       {/* Programs Listing */}
       <ProgramsSection orgInstance={orgInstance} />
+
+      <div>
+        <h2 className="text-lg font-semibold mb-2">Payment Options</h2>
+        <p className="text-foreground-500">Monthly payment plans available</p>
+        <p className="text-foreground-500">MMG coming soon!</p>
+      </div>
     </div>
   );
 }

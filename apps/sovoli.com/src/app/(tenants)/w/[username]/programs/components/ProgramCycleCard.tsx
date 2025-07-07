@@ -169,12 +169,6 @@ export function ProgramCycleCard({
             <span className="font-medium">Note:</span> {cycle.notes}
           </div>
         )}
-
-        {/* <div>
-          <h2 className="text-lg font-semibold mb-2">Payment Options</h2>
-          <p className="text-foreground-500">Monthly payment plans available</p>
-          <p className="text-foreground-500">MMG coming soon!</p>
-        </div> */}
       </CardBody>
 
       {/* 🚨 Footer */}
