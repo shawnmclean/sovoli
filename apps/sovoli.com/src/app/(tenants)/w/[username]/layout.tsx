@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props) {
   } = await retreiveOrgInstance(username);
 
   return {
+    metadataBase: new URL(website.url),
     title: {
       absolute: website.title,
       template: `%s | ${website.siteName}`,
