@@ -73,7 +73,7 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
     domain: ORG_DOMAIN,
     images: [
       {
-        url: `/orgs/${ORG_USERNAME}/websites/landing/hero.jpg`,
+        url: "/orgs/private-schools/guyana/modernacademy/website/home/hero.webp",
         width: 1200,
         height: 600,
         alt: "School front",
