@@ -1,11 +1,7 @@
 import { notFound } from "next/navigation";
-import { Divider } from "@sovoli/ui/components/divider";
-import { ArrowDownIcon } from "lucide-react";
 
 import { ApplyCard } from "./components/ApplyCard";
-import { Requirements } from "./components/Requirements";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
-import { Link } from "@sovoli/ui/components/link";
 import type { Metadata } from "next";
 import { Alert } from "@sovoli/ui/components/alert";
 

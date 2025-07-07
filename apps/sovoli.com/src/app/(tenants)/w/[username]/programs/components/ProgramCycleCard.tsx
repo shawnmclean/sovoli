@@ -5,7 +5,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
+
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgProgramCycle } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -13,13 +13,7 @@ import { Image } from "@sovoli/ui/components/image";
 import { differenceInDays, format, startOfDay } from "date-fns";
 import { ProgramPriceCard } from "./ProgramPriceCard";
 import { Divider } from "@sovoli/ui/components/divider";
-import {
-  CalendarIcon,
-  ClockIcon,
-  Icon,
-  InfoIcon,
-  SendIcon,
-} from "lucide-react";
+import { CalendarIcon, ClockIcon, InfoIcon, SendIcon } from "lucide-react";
 import { Link } from "@sovoli/ui/components/link";
 
 export interface ProgramCycleCardProps {
