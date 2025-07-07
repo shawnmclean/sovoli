@@ -31,16 +31,8 @@ export async function generateMetadata({
       title: `Programs | ${website.siteName}`,
       description: `Explore our academic programs at ${website.siteName}.`,
       type: "website",
-      url: website.url,
+      url: `${website.url}/programs`,
       siteName: website.siteName,
-      images: [
-        {
-          url: `/programs/opengraph-image`,
-          width: 1200,
-          height: 630,
-          alt: `Programs at ${website.siteName}`,
-        },
-      ],
     },
   };
 }

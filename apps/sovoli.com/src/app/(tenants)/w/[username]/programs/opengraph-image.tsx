@@ -81,13 +81,9 @@ export default async function OpenGraphImage({ params }: Props) {
     );
   }
 
-  const {
-    websiteModule: { website },
-    academicModule,
-  } = orgInstance;
+  const { org, academicModule } = orgInstance;
 
   const programs = academicModule?.programs ?? [];
-  const programCycles = academicModule?.programCycles ?? [];
 
   // Get program names and requirements
   const programList = programs
@@ -115,27 +111,6 @@ export default async function OpenGraphImage({ params }: Props) {
     })
     .filter((p) => p.name);
 
-  // Get cycle information
-  const _cycleList = programCycles
-    .map((cycle) => {
-      const programName =
-        cycle.orgProgram.name ??
-        cycle.orgProgram.standardProgramVersion?.program.name ??
-        "";
-      const cycleLabel =
-        cycle.academicCycle.customLabel ??
-        cycle.academicCycle.globalCycle?.label ??
-        cycle.academicCycle.globalCycle?.standardCycleKey ??
-        "";
-
-      return {
-        name: programName,
-        cycle: cycleLabel,
-        hasRegistration: !!cycle.registrationPeriod,
-      };
-    })
-    .filter((c) => c.name);
-
   return new ImageResponse(
     (
       <div
@@ -148,150 +123,271 @@ export default async function OpenGraphImage({ params }: Props) {
           color: "#fff",
           fontFamily: "system-ui, sans-serif",
           padding: "40px",
+          position: "relative",
         }}
       >
-        {/* Header */}
+        {/* Top: Org Logo and Name */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginBottom: "2rem",
+            marginBottom: "40px",
           }}
         >
           <div
             style={{
-              width: 60,
-              height: 60,
+              width: "60px",
+              height: "60px",
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #800080 0%, #ff00ff 100%)",
+              background: "rgba(255, 255, 255, 0.2)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              border: "3px solid #fff",
               marginRight: "20px",
+              border: "2px solid rgba(255, 255, 255, 0.3)",
             }}
           >
             <span
               style={{
                 color: "#fff",
-                fontSize: 30,
+                fontSize: "24px",
                 fontWeight: "bold",
-                fontFamily:
-                  "SignPainter, 'Brush Script MT', cursive, sans-serif",
               }}
             >
-              S
+              {org.name.charAt(0)}
             </span>
           </div>
-          <h1
+          <h2
             style={{
-              fontSize: 80,
+              fontSize: "32px",
               fontWeight: "bold",
               margin: 0,
             }}
           >
-            Programs
-          </h1>
+            {org.name}
+          </h2>
         </div>
 
-        {/* Organization Name */}
-        <p
-          style={{
-            fontSize: 24,
-            margin: "0 0 2rem 0",
-            textAlign: "center",
-            opacity: 0.9,
-          }}
-        >
-          {website.siteName}
-        </p>
-
-        {/* Programs List */}
+        {/* Middle: Main Content */}
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            gap: "12px",
             flex: 1,
-            overflow: "hidden",
+            gap: "40px",
+            alignItems: "flex-start",
           }}
         >
-          {programList.slice(0, 4).map((program, index) => (
+          {/* Left: Programs Section */}
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {/* Big "Our Programs" heading */}
+            <h1
+              style={{
+                fontSize: "64px",
+                fontWeight: "bold",
+                margin: "0 0 30px 0",
+                textAlign: "left",
+              }}
+            >
+              Our Programs
+            </h1>
+
+            {/* Programs List */}
             <div
-              key={index}
               style={{
                 display: "flex",
-                alignItems: "center",
-                background: "rgba(255, 255, 255, 0.1)",
-                padding: "12px 16px",
-                borderRadius: "8px",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
+                flexDirection: "column",
+                gap: "16px",
               }}
             >
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: "#fff",
-                  marginRight: "12px",
-                  flexShrink: 0,
-                }}
-              />
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  flex: 1,
-                }}
-              >
-                <span
+              {programList.slice(0, 4).map((program, index) => (
+                <div
+                  key={index}
                   style={{
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    marginBottom: "4px",
+                    display: "flex",
+                    alignItems: "center",
+                    background: "rgba(255, 255, 255, 0.1)",
+                    padding: "16px 20px",
+                    borderRadius: "12px",
+                    border: "1px solid rgba(255, 255, 255, 0.2)",
                   }}
                 >
-                  {program.name}
-                </span>
-                {program.ageReq && (
-                  <span
+                  <div
                     style={{
-                      fontSize: "14px",
-                      opacity: 0.8,
+                      width: "12px",
+                      height: "12px",
+                      borderRadius: "50%",
+                      background: "#fff",
+                      marginRight: "16px",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      flex: 1,
                     }}
                   >
-                    {program.ageReq}
-                  </span>
-                )}
-                {program.documents && (
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      opacity: 0.7,
-                      marginTop: "2px",
-                    }}
-                  >
-                    Documents: {program.documents}
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
+                    <span
+                      style={{
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        marginBottom: "6px",
+                      }}
+                    >
+                      {program.name}
+                    </span>
+                    {program.ageReq && (
+                      <span
+                        style={{
+                          fontSize: "16px",
+                          opacity: 0.8,
+                        }}
+                      >
+                        {program.ageReq}
+                      </span>
+                    )}
+                    {program.documents && (
+                      <span
+                        style={{
+                          fontSize: "14px",
+                          opacity: 0.7,
+                          marginTop: "4px",
+                        }}
+                      >
+                        Documents: {program.documents}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
 
-          {programList.length > 4 && (
+              {programList.length > 4 && (
+                <div
+                  style={{
+                    textAlign: "left",
+                    fontSize: "18px",
+                    opacity: 0.8,
+                    marginTop: "12px",
+                  }}
+                >
+                  +{programList.length - 4} more programs
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Right: Apply Now Button */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              minWidth: "200px",
+            }}
+          >
             <div
               style={{
-                textAlign: "center",
-                fontSize: "16px",
-                opacity: 0.8,
-                marginTop: "8px",
+                background: "#fff",
+                color: "#800080",
+                padding: "20px 30px",
+                borderRadius: "16px",
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
+                border: "2px solid rgba(255, 255, 255, 0.3)",
               }}
             >
-              +{programList.length - 4} more programs
+              <span
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "bold",
+                }}
+              >
+                Apply Now
+              </span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
             </div>
-          )}
+          </div>
+        </div>
+
+        {/* Bottom: Sovoli Logo */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "40px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              opacity: 0.8,
+            }}
+          >
+            <span
+              style={{
+                fontSize: "16px",
+                fontWeight: "500",
+              }}
+            ></span>
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #800080 0%, #ff00ff 100%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                border: "2px solid rgba(255, 255, 255, 0.3)",
+              }}
+            >
+              <span
+                style={{
+                  color: "#fff",
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  fontFamily:
+                    "SignPainter, 'Brush Script MT', cursive, sans-serif",
+                }}
+              >
+                S
+              </span>
+            </div>
+            <span
+              style={{
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              Sovoli
+            </span>
+          </div>
         </div>
       </div>
     ),
