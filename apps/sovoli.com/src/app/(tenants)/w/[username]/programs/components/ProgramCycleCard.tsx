@@ -13,7 +13,14 @@ import { Image } from "@sovoli/ui/components/image";
 import { differenceInDays, format, startOfDay } from "date-fns";
 import { ProgramPriceCard } from "./ProgramPriceCard";
 import { Divider } from "@sovoli/ui/components/divider";
-import { CalendarIcon, ClockIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  ClockIcon,
+  Icon,
+  InfoIcon,
+  SendIcon,
+} from "lucide-react";
+import { Link } from "@sovoli/ui/components/link";
 
 export interface ProgramCycleCardProps {
   orgInstance: OrgInstance;
@@ -167,24 +174,34 @@ export function ProgramCycleCard({
       </CardBody>
 
       {/* 🚨 Footer */}
-      <CardFooter className="flex items-center justify-between pt-4">
-        <Chip color="warning" variant="light" radius="sm">
-          Payment plans available
-        </Chip>
-
+      <CardFooter className="flex flex-col items-center gap-2">
         <Button
           as={WhatsAppLink}
           phoneNumber={whatsapp}
           message={`Hi, I'm interested in ${programName} for ${cycleLabel}`}
+          fullWidth
           color="primary"
           variant="solid"
           radius="sm"
-          size="sm"
+          size="lg"
+          startContent={<SendIcon />}
         >
           Apply Now
         </Button>
+        <Divider />
+        <Link
+          href={`/programs/${program.slug}`}
+          color="foreground"
+          size="sm"
+          className="flex items-center gap-1"
+        >
+          <InfoIcon className="text-base" />
+          View Details
+        </Link>
+        <p className="text-center text-small text-foreground-500 mt-1">
+          See schedule, daily activities, and what your child will learn
+        </p>
       </CardFooter>
-      {/* Registration price below the button, smaller */}
     </Card>
   );
 }

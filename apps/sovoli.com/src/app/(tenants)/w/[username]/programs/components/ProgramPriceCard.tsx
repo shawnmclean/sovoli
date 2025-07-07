@@ -7,6 +7,19 @@ interface ProgramPriceCardProps {
   pricingItemId: string;
 }
 
+const daysUntil = (dateString: string): string => {
+  if (!dateString) return "";
+
+  const targetDate = new Date(dateString);
+  const now = new Date();
+  const diffTime = targetDate.getTime() - now.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffDays <= 0) return "Expired";
+  if (diffDays === 1) return "1 day";
+  return `${diffDays} days`;
+};
+
 export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
   pricingPackage,
   pricingItemId,
@@ -60,9 +73,16 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
               {discount?.value}% OFF
             </Chip>
           </div>
-          <p className="text-sm text-foreground-500 mt-2">
-            Early Bird discount applied
-          </p>
+          <div className="flex justify-between items-center mt-2">
+            <p className="text-sm text-foreground-500">
+              {discount?.message ?? "Discount applied"}
+            </p>
+            {discount?.validUntil && (
+              <p className="text-sm font-medium text-danger">
+                Ends in {daysUntil(discount.validUntil)}
+              </p>
+            )}
+          </div>
         </>
       ) : (
         <p className="text-3xl font-bold text-primary">
