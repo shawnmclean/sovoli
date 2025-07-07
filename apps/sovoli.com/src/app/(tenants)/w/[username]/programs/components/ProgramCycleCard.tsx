@@ -290,7 +290,7 @@ export function ProgramCycleCard({
       {/* 🚨 Footer */}
       <CardFooter className="flex items-center justify-between pt-4">
         <Chip color="warning" variant="light" radius="sm">
-          Tuition Fees Coming Soon
+          Payment plans available
         </Chip>
 
         <Button

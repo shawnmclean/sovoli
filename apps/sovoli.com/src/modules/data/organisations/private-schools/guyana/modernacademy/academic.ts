@@ -5,6 +5,7 @@ import type {
   OrgProgramCycle,
 } from "~/modules/academics/types";
 import type {
+  Discount,
   PricingItem,
   PricingPackage,
 } from "~/modules/core/economics/types";
@@ -69,20 +70,16 @@ const registrationFee: PricingItem = {
   label: "Registration",
   billingCycle: "one-time",
   purpose: "registration",
-  amount: { GYD: 5000 },
+  amount: { GYD: 6000 },
 };
-const pricingPackage: PricingPackage = {
-  pricingItems: [registrationFee],
-  discounts: [
-    {
-      id: "early-bird",
-      label: "Early Bird",
-      value: 100,
-      type: "percentage",
-      appliesTo: ["registration"],
-      validUntil: "2025-08-15",
-    },
-  ],
+
+const registrationDiscount: Discount = {
+  id: "early-bird",
+  label: "Early Bird",
+  value: 100,
+  type: "percentage",
+  appliesTo: ["registration"],
+  validUntil: "2025-08-15",
 };
 
 const registrationPeriod2025T1 = {
@@ -94,7 +91,19 @@ export const MAGY_PRE_NURSERY_2025_T1: OrgProgramCycle = {
   id: "magy-pre-nursery-2025-t1",
   orgProgram: MAGY_PRE_NURSERY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
-  pricingPackage,
+  pricingPackage: {
+    discounts: [registrationDiscount],
+    pricingItems: [
+      registrationFee,
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 68000 },
+      },
+    ],
+  },
   registrationPeriod: registrationPeriod2025T1,
 
   computedRequirements: [
@@ -107,7 +116,19 @@ export const MAGY_NURSERY_2025_T1: OrgProgramCycle = {
   id: "magy-nursery-2025-t1",
   orgProgram: MAGY_NURSERY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
-  pricingPackage,
+  pricingPackage: {
+    discounts: [registrationDiscount],
+    pricingItems: [
+      registrationFee,
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 60000 },
+      },
+    ],
+  },
   registrationPeriod: registrationPeriod2025T1,
   computedRequirements: [
     ...(MAGY_NURSERY_PROGRAM.requirements ?? []),
@@ -120,7 +141,19 @@ export const MAGY_PRIMARY_2025_T1: OrgProgramCycle = {
   orgProgram: MAGY_PRIMARY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   registrationPeriod: registrationPeriod2025T1,
-  pricingPackage,
+  pricingPackage: {
+    discounts: [registrationDiscount],
+    pricingItems: [
+      registrationFee,
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 60000 },
+      },
+    ],
+  },
 
   computedRequirements: [
     ...(MAGY_PRIMARY_PROGRAM.requirements ?? []),
@@ -133,7 +166,19 @@ export const MAGY_SECONDARY_2025_T1: OrgProgramCycle = {
   orgProgram: MAGY_SECONDARY_PROGRAM,
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   registrationPeriod: registrationPeriod2025T1,
-  pricingPackage,
+  pricingPackage: {
+    discounts: [registrationDiscount],
+    pricingItems: [
+      registrationFee,
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 60000 },
+      },
+    ],
+  },
 
   computedRequirements: [
     ...(MAGY_SECONDARY_PROGRAM.requirements ?? []),
