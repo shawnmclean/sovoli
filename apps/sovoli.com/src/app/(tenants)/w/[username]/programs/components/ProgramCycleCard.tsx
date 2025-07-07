@@ -13,6 +13,7 @@ import { Image } from "@sovoli/ui/components/image";
 import { differenceInDays, format, startOfDay } from "date-fns";
 import { ProgramPriceCard } from "./ProgramPriceCard";
 import { Divider } from "@sovoli/ui/components/divider";
+import { CalendarIcon, ClockIcon } from "lucide-react";
 
 export interface ProgramCycleCardProps {
   orgInstance: OrgInstance;
@@ -123,40 +124,44 @@ export function ProgramCycleCard({
       <Divider />
       <CardBody className="flex flex-col gap-6">
         {/* 💰 Fees */}
-        <div className="space-y-3">
-          {tuitionItem && (
-            <ProgramPriceCard
-              pricingPackage={cycle.pricingPackage}
-              pricingItemId={tuitionItem.id}
-              size="md"
-            />
-          )}
-        </div>
 
-        {/* 📝 Notes */}
-        {cycle.notes && (
-          <div className="text-sm text-muted-foreground bg-muted-50 p-2 rounded">
-            <span className="font-medium">Note:</span> {cycle.notes}
-          </div>
+        {tuitionItem && (
+          <ProgramPriceCard
+            pricingPackage={cycle.pricingPackage}
+            pricingItemId={tuitionItem.id}
+          />
         )}
 
-        {/* 📅 Cycle Dates */}
-        {startDate && endDate && (
-          <div className="text-sm text-muted-foreground pt-2 border-t border-default-200">
-            <div className="flex justify-between">
-              <span>📅 {cycleLabel}</span>
+        <div>
+          <h2 className="text-lg font-semibold mb-2">Program Details</h2>
+          {startDate && endDate && (
+            <div className="flex items-center gap-2 text-foreground-500">
+              <CalendarIcon className="text-xl" />
               <span>
                 {format(new Date(startDate), "MMM d")} -{" "}
                 {format(new Date(endDate), "MMM d, yyyy")}
               </span>
             </div>
-          </div>
+          )}
+          {formatRegistrationDeadline() && (
+            <div className="flex items-center gap-2 text-foreground-500 mt-2">
+              <ClockIcon className="text-xl" />
+              <span>{formatRegistrationDeadline()}</span>
+            </div>
+          )}
+        </div>
+
+        {registrationItem && (
+          <ProgramPriceCard
+            pricingPackage={cycle.pricingPackage}
+            pricingItemId={registrationItem.id}
+          />
         )}
 
-        {/* ⏰ Registration Deadline */}
-        {formatRegistrationDeadline() && (
-          <div className="text-sm text-warning-600 pt-1">
-            <span>⏰ {formatRegistrationDeadline()}</span>
+        {/* 📝 Notes */}
+        {cycle.notes && (
+          <div className="text-sm text-muted-foreground bg-muted-50 p-2 rounded">
+            <span className="font-medium">Note:</span> {cycle.notes}
           </div>
         )}
       </CardBody>
@@ -180,15 +185,6 @@ export function ProgramCycleCard({
         </Button>
       </CardFooter>
       {/* Registration price below the button, smaller */}
-      {registrationItem && (
-        <div className="px-4 pb-4">
-          <ProgramPriceCard
-            pricingPackage={cycle.pricingPackage}
-            pricingItemId={registrationItem.id}
-            size="sm"
-          />
-        </div>
-      )}
     </Card>
   );
 }
