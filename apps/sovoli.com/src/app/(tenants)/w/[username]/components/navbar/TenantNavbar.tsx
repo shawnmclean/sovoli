@@ -155,7 +155,7 @@ export function TenantNavbar({
         <Link href="/">
           <Avatar src={org.logo} name={website.siteName} size="md" />
 
-          <span className="ml-2 hidden text-small font-medium text-default-foreground md:inline">
+          <span className="ml-2 text-small font-medium text-default-foreground">
             {website.siteName}
           </span>
         </Link>
