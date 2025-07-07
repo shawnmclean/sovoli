@@ -4,6 +4,7 @@ import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 import { HeroSection } from "./components/HeroSection";
 import { ChevronDownIcon } from "lucide-react";
 import { ProgramsSection } from "./components/ProgramsSection";
+import { Alert } from "@sovoli/ui/components/alert";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -40,7 +41,7 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
   const orgInstance = await retrieveOrgInstance(username);
 
   return (
-    <div className="container mx-auto max-w-6xl space-y-16 px-6 py-4">
+    <div className="container mx-auto max-w-6xl space-y-14 px-6 py-4">
       <HeroSection orgInstance={orgInstance} />
       <div className="flex justify-center mt-[-2rem] md:mt-[-1rem]">
         <p className="text-sm text-white/70 animate-bounce flex items-center gap-2">
@@ -51,12 +52,6 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
 
       {/* Programs Listing */}
       <ProgramsSection orgInstance={orgInstance} />
-
-      <div>
-        <h2 className="text-lg font-semibold mb-2">Payment Options</h2>
-        <p className="text-foreground-500">Monthly payment plans available</p>
-        <p className="text-foreground-500">MMG coming soon!</p>
-      </div>
     </div>
   );
 }
