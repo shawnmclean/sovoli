@@ -154,13 +154,6 @@ export function ProgramCycleCard({
 
       {/* Footer Actions */}
       <CardFooter className="flex flex-col items-center gap-3 pt-0">
-        {program.isPopular && (
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warning-200 text-warning-900 text-sm font-semibold shadow-sm">
-            🔥 Popular – {program.slug === "pre-nursery" ? "8" : "12"} seats
-            left
-          </div>
-        )}
-
         <Button
           as={WhatsAppLink}
           phoneNumber={whatsapp}
@@ -168,11 +161,18 @@ export function ProgramCycleCard({
           fullWidth
           color="primary"
           variant="solid"
-          radius="sm"
+          radius="md"
           size="lg"
           startContent={<SendIcon />}
         >
-          Apply Now
+          Secure Your Spot{" "}
+          {program.isPopular && (
+            <span>
+              - 🔥{" "}
+              <strong>{program.slug === "pre-nursery" ? "8" : "12"}</strong>{" "}
+              left
+            </span>
+          )}
         </Button>
 
         <Button
@@ -180,16 +180,16 @@ export function ProgramCycleCard({
           href={`/programs/${program.slug}`}
           fullWidth
           color="default"
-          variant="light"
-          radius="sm"
+          variant="bordered"
+          radius="md"
           size="md"
           startContent={<InfoIcon />}
         >
-          View Details
+          View Program Details
         </Button>
 
-        <p className="mt-1 text-xs text-foreground-500 text-center">
-          Schedule &middot; Activities &middot; What your child will learn
+        <p className="text-xs text-foreground-500 text-center">
+          Activities &middot; Books &middot; What your child will learn
         </p>
       </CardFooter>
     </Card>

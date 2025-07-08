@@ -52,29 +52,39 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
   return (
     <div>
       {showDiscount ? (
-        <div className="relative bg-content2 rounded-lg p-3 space-y-1">
+        <div className="relative bg-content2 rounded-lg p-3 pt-6">
           <span className="absolute -top-2 left-3 bg-content2 border border-foreground-200 px-3 py-0.5 rounded-full text-xs text-foreground-700 font-medium shadow uppercase">
             {item.label}
           </span>
-          <div className="flex items-center justify-between gap-2 mb-2">
+          <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold text-success">
-                {isFree ? "FREE" : `GYD ${discounted.toLocaleString()}`}
+                {isFree ? (
+                  <span className="bg-success/10 text-success px-2 py-1 rounded-full">
+                    FREE
+                  </span>
+                ) : (
+                  `GYD ${discounted.toLocaleString()}`
+                )}
               </span>
-              <span className="text-xs font-semibold bg-success/10 text-success px-2 py-0.5 rounded-full">
-                {isFree
-                  ? `Save ${original.toLocaleString()}`
-                  : `${discount.value}% OFF`}
-              </span>
+              {isFree ? (
+                <span className="text-xs font-semibold text-success">
+                  Save {original.toLocaleString()}
+                </span>
+              ) : (
+                <span className="text-xs font-semibold bg-success/10 text-success px-2 py-0.5 rounded-full">
+                  {discount.value}% OFF
+                </span>
+              )}
             </div>
             {discount.validUntil && (
-              <span className="text-sm text-danger font-bold">
+              <span className="text-sm text-danger font-bold ml-auto">
                 Ends in {daysUntil(discount.validUntil)}
               </span>
             )}
           </div>
           {!isFree && (
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center justify-between gap-2 mt-2">
               <span className="text-sm text-foreground-500 line-through">
                 GYD {original.toLocaleString()}
               </span>
