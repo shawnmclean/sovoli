@@ -20,6 +20,8 @@ import {
   InfoIcon,
   SendIcon,
   UserIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
 } from "lucide-react";
 import { differenceInDays, format, startOfDay, parseISO } from "date-fns";
 
@@ -93,6 +95,15 @@ export function ProgramCycleCard({
             className="w-full h-full object-cover"
             removeWrapper
           />
+
+          {/* Carousel Navigation Buttons */}
+          <button className="absolute left-2 top-1/3 -translate-y-1/2 w-8 h-8 bg-background/50 hover:bg-background/70 backdrop-blur rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg z-10">
+            <ChevronLeftIcon className="w-4 h-4 text-foreground" />
+          </button>
+          <button className="absolute right-2 top-1/3 -translate-y-1/2 w-8 h-8 bg-background/50 hover:bg-background/70 backdrop-blur rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg z-10">
+            <ChevronRightIcon className="w-4 h-4 text-foreground" />
+          </button>
+
           <div className="absolute inset-x-0 bottom-0 bg-background/70 backdrop-blur py-2 px-4 z-10">
             <h2 className="text-lg font-bold text-foreground">{programName}</h2>
             {program.tagline && (
