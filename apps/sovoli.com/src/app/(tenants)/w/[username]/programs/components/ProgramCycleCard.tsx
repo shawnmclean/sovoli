@@ -13,7 +13,13 @@ import { Image } from "@sovoli/ui/components/image";
 import { differenceInDays, format, startOfDay } from "date-fns";
 import { ProgramPriceCard } from "./ProgramPriceCard";
 import { Divider } from "@sovoli/ui/components/divider";
-import { CalendarIcon, ClockIcon, InfoIcon, SendIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  ClockIcon,
+  InfoIcon,
+  SendIcon,
+  UserIcon,
+} from "lucide-react";
 import { Link } from "@sovoli/ui/components/link";
 
 export interface ProgramCycleCardProps {
@@ -112,9 +118,9 @@ export function ProgramCycleCard({
               <h2 className="text-xl font-bold text-foreground">
                 {programName}
               </h2>
-              {ageReq?.ageRange && (
-                <p className="text-foreground-700 text-sm mt-1">
-                  {formatAgeRange(ageReq.ageRange)}
+              {program.tagline && (
+                <p className="text-foreground-500 text-sm mt-1">
+                  {program.tagline}
                 </p>
               )}
             </div>
@@ -124,38 +130,49 @@ export function ProgramCycleCard({
 
       <Divider />
       <CardBody className="flex flex-col gap-4">
-        {tuitionItem && (
-          <ProgramPriceCard
-            pricingPackage={cycle.pricingPackage}
-            pricingItemId={tuitionItem.id}
-          />
-        )}
-
-        <div>
-          <h2 className="text-lg font-semibold mb-2">Program Details</h2>
-          {startDate && endDate && (
-            <div className="flex items-center gap-2 text-foreground-500">
-              <CalendarIcon className="text-xl" />
-              <span>
-                {format(new Date(startDate), "MMM d")} -{" "}
-                {format(new Date(endDate), "MMM d, yyyy")}
-              </span>
-            </div>
+        <div className="border-b border-foreground-200 pb-4 gap-2 flex flex-col">
+          {tuitionItem && (
+            <ProgramPriceCard
+              pricingPackage={cycle.pricingPackage}
+              pricingItemId={tuitionItem.id}
+            />
           )}
-          {formatRegistrationDeadline() && (
-            <div className="flex items-center gap-2 text-foreground-500 mt-2">
-              <ClockIcon className="text-xl" />
-              <span>{formatRegistrationDeadline()}</span>
-            </div>
+
+          {registrationItem && (
+            <ProgramPriceCard
+              size="md"
+              pricingPackage={cycle.pricingPackage}
+              pricingItemId={registrationItem.id}
+            />
           )}
         </div>
+        <div>
+          <h2 className="text-lg font-semibold mb-2">Program Details</h2>
 
-        {registrationItem && (
-          <ProgramPriceCard
-            pricingPackage={cycle.pricingPackage}
-            pricingItemId={registrationItem.id}
-          />
-        )}
+          <div className="flex flex-col gap-2">
+            {ageReq?.ageRange && (
+              <div className="flex items-center gap-2 text-foreground-500">
+                <UserIcon className="text-xl" />
+                <span>{formatAgeRange(ageReq.ageRange)}</span>
+              </div>
+            )}
+            {startDate && endDate && (
+              <div className="flex items-center gap-2 text-foreground-500">
+                <CalendarIcon className="text-xl" />
+                <span>
+                  {format(new Date(startDate), "MMM d")} -{" "}
+                  {format(new Date(endDate), "MMM d, yyyy")}
+                </span>
+              </div>
+            )}
+            {formatRegistrationDeadline() && (
+              <div className="flex items-center gap-2 text-foreground-500">
+                <ClockIcon className="text-xl" />
+                <span>{formatRegistrationDeadline()}</span>
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* 📝 Notes */}
         {cycle.notes && (
@@ -167,6 +184,11 @@ export function ProgramCycleCard({
 
       {/* 🚨 Footer */}
       <CardFooter className="flex flex-col items-center gap-2">
+        {program.isPopular && (
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm font-medium">
+            🔥 Popular – 10 seats left
+          </div>
+        )}
         <Button
           as={WhatsAppLink}
           phoneNumber={whatsapp}
@@ -181,17 +203,20 @@ export function ProgramCycleCard({
           Apply Now
         </Button>
         <Divider className="my-2" />
-        <Link
+        <Button
+          startContent={<InfoIcon />}
+          as={Link}
+          fullWidth
           href={`/programs/${program.slug}`}
-          color="foreground"
-          size="sm"
-          className="flex items-center gap-1"
+          color="default"
+          variant="light"
+          radius="sm"
+          size="md"
         >
-          <InfoIcon className="text-base" />
           View Details
-        </Link>
-        <p className="text-center text-small text-foreground-500 mt-1">
-          See schedule, daily activities, and what your child will learn
+        </Button>
+        <p className="text-center text-xs text-foreground-500 mt-1">
+          Schedule · Activities · What your child will learn
         </p>
       </CardFooter>
     </Card>

@@ -17,6 +17,7 @@ import {
 export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
   slug: "pre-nursery",
   name: "Pre-Nursery (Playschool)",
+  tagline: "Build social & motor skills early",
   description: "Strong foundational learning in a nurturing environment",
   image: "/orgs/private-schools/guyana/modernacademy/programs/pre-nursery.webp",
   requirements: [
@@ -27,12 +28,14 @@ export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
       },
     },
   ],
+  isPopular: true,
 };
 export const MAGY_NURSERY_PROGRAM: OrgProgram = {
   standardProgramVersion: GY_NURSERY_V1,
   slug: "nursery",
   description: "Engaging curriculum fostering critical thinking and creativity",
   image: "/orgs/private-schools/guyana/modernacademy/programs/nursery.webp",
+  isPopular: true,
 };
 
 export const MAGY_PRIMARY_PROGRAM: OrgProgram = {
@@ -76,12 +79,12 @@ const registrationDiscount: Discount = {
   value: 100,
   type: "percentage",
   appliesTo: ["registration"],
-  validUntil: "2025-08-15",
+  validUntil: "2025-07-18",
 };
 
 const registrationPeriod2025T1 = {
   startDate: "2025-07-01",
-  endDate: "2025-08-31",
+  endDate: "2025-08-15",
 };
 
 export const MAGY_PRE_NURSERY_2025_T1: OrgProgramCycle = {

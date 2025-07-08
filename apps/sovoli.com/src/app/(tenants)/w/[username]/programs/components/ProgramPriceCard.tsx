@@ -5,6 +5,7 @@ import { Chip } from "@sovoli/ui/components/chip";
 interface ProgramPriceCardProps {
   pricingPackage: PricingPackage;
   pricingItemId: string;
+  size?: "sm" | "md" | "lg";
 }
 
 const daysUntil = (dateString: string): string => {
@@ -36,6 +37,7 @@ const formatBillingCycle = (billingCycle: string): string => {
 export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
   pricingPackage,
   pricingItemId,
+  size = "lg",
 }) => {
   const item = pricingPackage.pricingItems.find(
     (i) => i.id === pricingItemId || i.purpose === pricingItemId,
@@ -71,10 +73,24 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <h2 className="text-lg font-semibold">{item.label}</h2>
+        <h2 className={`text-${size} font-semibold`}>{item.label}</h2>
+        {discount?.message && (
+          <p className="text-xs text-foreground-400">({discount.message})</p>
+        )}
       </div>
       {hasDiscount ? (
         <>
+          {/* Savings and urgency message */}
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-success font-semibold text-base">
+              Save GYD {((gydOriginal ?? 0) - gydDiscounted).toLocaleString()}
+            </span>
+            {discount?.validUntil && (
+              <span className="text-danger font-medium text-base">
+                – Ends in {daysUntil(discount.validUntil)}
+              </span>
+            )}
+          </div>
           <div className="flex items-center justify-between bg-content2 p-3 rounded-lg">
             <div>
               <div className="flex items-center gap-2">
@@ -94,16 +110,6 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
             <Chip color="success" variant="flat">
               {discount?.value}% OFF
             </Chip>
-          </div>
-          <div className="flex justify-between items-center mt-2">
-            <p className="text-sm text-foreground-500">
-              {discount?.message ?? "Discount applied"}
-            </p>
-            {discount?.validUntil && (
-              <p className="text-sm font-medium text-danger">
-                Ends in {daysUntil(discount.validUntil)}
-              </p>
-            )}
           </div>
         </>
       ) : (

@@ -64,6 +64,7 @@ export interface OrgProgram {
   standardProgramVersion?: StandardProgramVersion;
 
   name?: string; // "Nursery" (can override)
+  tagline?: string;
   slug: string; // "nursery"
   description?: string; // Custom or default
   image?: string;
@@ -71,6 +72,7 @@ export interface OrgProgram {
   // Optional local overrides
   requirements?: ProgramRequirement[];
   notes?: string;
+  isPopular?: boolean;
 }
 
 export type ProgramRequirement = AgeRequirement | DocumentRequirement;

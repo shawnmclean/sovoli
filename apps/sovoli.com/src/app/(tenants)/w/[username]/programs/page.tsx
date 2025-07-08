@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 import { HeroSection } from "./components/HeroSection";
-import { ChevronDownIcon } from "lucide-react";
 import { ProgramsSection } from "./components/ProgramsSection";
 
 const retrieveOrgInstance = async (username: string) => {
@@ -52,12 +51,6 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
   return (
     <div className="container mx-auto max-w-6xl space-y-14 px-6 py-4">
       <HeroSection orgInstance={orgInstance} />
-      <div className="flex justify-center mt-[-2rem] md:mt-[-1rem]">
-        <p className="text-sm text-white/70 animate-bounce flex items-center gap-2">
-          <ChevronDownIcon className="w-4 h-4" />
-          View Programs Below
-        </p>
-      </div>
 
       {/* Programs Listing */}
       <ProgramsSection orgInstance={orgInstance} />
