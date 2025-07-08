@@ -47,6 +47,7 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
     : original;
   const saved = original - discounted;
   const showDiscount = discount && saved > 0;
+  const isFree = discount && discount.value === 100;
 
   return (
     <div>
@@ -55,24 +56,30 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
           <span className="absolute -top-2 left-3 bg-content2 border border-foreground-200 px-3 py-0.5 rounded-full text-xs text-foreground-700 font-medium shadow uppercase">
             {item.label}
           </span>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xl font-bold text-success">
-              GYD {discounted.toLocaleString()}
-            </span>
-            <span className="text-xs font-semibold bg-success/10 text-success px-2 py-0.5 rounded-full">
-              {discount.value}% OFF
-            </span>
-          </div>
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-sm text-foreground-500 line-through">
-              GYD {original.toLocaleString()}
-            </span>
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-bold text-success">
+                {isFree ? "FREE" : `GYD ${discounted.toLocaleString()}`}
+              </span>
+              <span className="text-xs font-semibold bg-success/10 text-success px-2 py-0.5 rounded-full">
+                {isFree
+                  ? `Save ${original.toLocaleString()}`
+                  : `${discount.value}% OFF`}
+              </span>
+            </div>
             {discount.validUntil && (
               <span className="text-sm text-danger font-bold">
                 Ends in {daysUntil(discount.validUntil)}
               </span>
             )}
           </div>
+          {!isFree && (
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-sm text-foreground-500 line-through">
+                GYD {original.toLocaleString()}
+              </span>
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex items-center gap-2">
