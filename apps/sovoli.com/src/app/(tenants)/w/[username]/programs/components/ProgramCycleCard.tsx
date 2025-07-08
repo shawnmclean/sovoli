@@ -186,7 +186,8 @@ export function ProgramCycleCard({
       <CardFooter className="flex flex-col items-center gap-2">
         {program.isPopular && (
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm font-medium">
-            🔥 Popular – 10 seats left
+            🔥 Popular – {program.slug === "pre-nursery" ? "8" : "12"} seats
+            left
           </div>
         )}
         <Button
