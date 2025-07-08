@@ -189,7 +189,7 @@ export function ProgramCycleCard({
         </Button>
 
         <p className="text-xs text-foreground-500 text-center">
-          Activities &middot; Books &middot; What your child will learn
+          📸 Real Classrooms &middot; 📚 Books &middot; 📖 Learning
         </p>
       </CardFooter>
     </Card>
