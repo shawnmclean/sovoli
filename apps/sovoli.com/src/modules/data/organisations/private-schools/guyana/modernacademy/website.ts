@@ -1,5 +1,5 @@
 import type { PageConfig, WebsiteModule } from "~/modules/websites/types";
-import { ORG_DOMAIN, ORG_USERNAME } from "./constants";
+import { ORG_DOMAIN } from "./constants";
 
 const ABOUT_PAGE: PageConfig = {
   name: "about",
