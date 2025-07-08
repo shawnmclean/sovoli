@@ -4,6 +4,7 @@ import type { OrgProgramCycle } from "~/modules/academics/types";
 import { ProgramCycleCard } from "./ProgramCycleCard";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Check } from "lucide-react";
+import { parseISO } from "date-fns";
 
 export interface ProgramsSectionProps {
   orgInstance: OrgInstance;
@@ -110,11 +111,11 @@ export function ProgramsSection({ orgInstance }: ProgramsSectionProps) {
 function isRegistrationOpen(cycle: OrgProgramCycle, now = new Date()) {
   const period = cycle.registrationPeriod;
   if (!period) return false;
-  return new Date(period.startDate) <= now && now <= new Date(period.endDate);
+  return parseISO(period.startDate) <= now && now <= parseISO(period.endDate);
 }
 
 function isRegistrationUpcoming(cycle: OrgProgramCycle, now = new Date()) {
   const period = cycle.registrationPeriod;
   if (!period) return false;
-  return now < new Date(period.startDate);
+  return now < parseISO(period.startDate);
 }

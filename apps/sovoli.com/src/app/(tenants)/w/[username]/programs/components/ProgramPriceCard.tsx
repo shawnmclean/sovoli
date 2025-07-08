@@ -1,5 +1,6 @@
 import React from "react";
 import type { PricingPackage } from "~/modules/core/economics/types";
+import { parseISO } from "date-fns";
 
 interface ProgramPriceCardProps {
   pricingPackage: PricingPackage;
@@ -17,7 +18,7 @@ const formatCycle = (cycle: string) => {
 
 const daysUntil = (dateString?: string) => {
   if (!dateString) return "";
-  const ms = new Date(dateString).getTime() - Date.now();
+  const ms = parseISO(dateString).getTime() - Date.now();
   const days = Math.ceil(ms / 86400000);
   return days <= 0 ? "Expired" : days === 1 ? "1 day" : `${days} days`;
 };

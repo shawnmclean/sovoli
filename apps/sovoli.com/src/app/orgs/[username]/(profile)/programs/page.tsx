@@ -8,6 +8,7 @@ import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
+import { parseISO } from "date-fns";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -19,7 +20,7 @@ const retreiveOrgInstance = async (username: string) => {
 
 // Helper function to format date
 const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
+  const date = parseISO(dateString);
   return date.toLocaleDateString("en-GY", {
     year: "numeric",
     month: "long",
@@ -32,15 +33,15 @@ const getCurrentDate = () => new Date();
 
 // Helper function to check if date is in the future
 const isDateInFuture = (dateString: string) => {
-  const date = new Date(dateString);
+  const date = parseISO(dateString);
   return date > getCurrentDate();
 };
 
 // Helper function to get cycle status
 const getCycleStatus = (startDate: string, endDate: string) => {
   const now = getCurrentDate();
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  const start = parseISO(startDate);
+  const end = parseISO(endDate);
 
   if (now < start) return "upcoming";
   if (now >= start && now <= end) return "current";
@@ -146,7 +147,7 @@ export default async function ProgramsPage({
                   b.academicCycle.startDate ??
                   b.academicCycle.globalCycle?.startDate ??
                   "";
-                return new Date(aStart).getTime() - new Date(bStart).getTime();
+                return parseISO(aStart).getTime() - parseISO(bStart).getTime();
               })[0];
 
             // Get the current cycle

@@ -21,7 +21,7 @@ import {
   SendIcon,
   UserIcon,
 } from "lucide-react";
-import { differenceInDays, format, startOfDay } from "date-fns";
+import { differenceInDays, format, startOfDay, parseISO } from "date-fns";
 
 export interface ProgramCycleCardProps {
   orgInstance: OrgInstance;
@@ -68,7 +68,7 @@ export function ProgramCycleCard({
 
   const formatRegistrationDeadline = () => {
     if (!cycle.registrationPeriod?.endDate) return null;
-    const end = new Date(cycle.registrationPeriod.endDate);
+    const end = parseISO(cycle.registrationPeriod.endDate);
     const now = startOfDay(new Date());
     const days = differenceInDays(end, now);
     if (days < 0) return "Registration closed";
@@ -138,8 +138,8 @@ export function ProgramCycleCard({
             <div className="flex items-center gap-2">
               <CalendarIcon className="w-4 h-4" />
               <span>
-                {format(new Date(startDate), "MMM d")}–
-                {format(new Date(endDate), "MMM d, yyyy")}
+                {format(parseISO(startDate), "MMM d")}–
+                {format(parseISO(endDate), "MMM d, yyyy")}
               </span>
             </div>
           )}
