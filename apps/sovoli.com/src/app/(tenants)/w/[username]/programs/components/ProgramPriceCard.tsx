@@ -6,6 +6,7 @@ interface ProgramPriceCardProps {
   pricingPackage: PricingPackage;
   pricingItemId: string;
   size?: "sm" | "md" | "lg";
+  showHeader?: boolean;
 }
 
 const daysUntil = (dateString: string): string => {
@@ -38,6 +39,7 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
   pricingPackage,
   pricingItemId,
   size = "lg",
+  showHeader = true,
 }) => {
   const item = pricingPackage.pricingItems.find(
     (i) => i.id === pricingItemId || i.purpose === pricingItemId,
@@ -72,12 +74,14 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-2">
-        <h2 className={`text-${size} font-semibold`}>{item.label}</h2>
-        {discount?.message && (
-          <p className="text-xs text-foreground-400">({discount.message})</p>
-        )}
-      </div>
+      {showHeader && (
+        <div className="flex items-center justify-between mb-2">
+          <h2 className={`text-${size} font-semibold`}>{item.label}</h2>
+          {discount?.message && (
+            <p className="text-xs text-foreground-400">({discount.message})</p>
+          )}
+        </div>
+      )}
       {hasDiscount ? (
         <>
           {/* Savings and urgency message */}
@@ -92,7 +96,7 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
             )}
           </div>
           <div className="flex items-center justify-between bg-content2 p-3 rounded-lg">
-            <div>
+            <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <p className="text-xl font-bold text-success">
                   GYD {gydDiscounted.toLocaleString()}

@@ -16,42 +16,40 @@ export function HeroSection({ orgInstance }: HeroSectionProps) {
     {
       icon: "📅",
       text: "Limited Spots Available",
-      className: "bg-warning text-warning-foreground",
+      className: "bg-warning text-warning-foreground animate-pulse",
     },
     {
       icon: "💸",
       text: "Discounts Available",
-      className: "bg-green-100 text-green-800",
+      className: "bg-success-300 text-success-900",
     },
   ];
 
   return (
-    <section className="w-full bg-background text-foreground py-8 md:py-14 px-4 text-center">
-      {/* Heading */}
+    <section className="w-full bg-background text-foreground px-4 py-10 md:py-16 text-center">
+      {/* Headline & Subtext */}
       <div className="max-w-xl mx-auto space-y-4 mb-8">
         <h1 className="text-3xl md:text-5xl font-bold leading-tight">
           Affordable, Caring Education for Ages 2–16
         </h1>
-
         <p className="text-base md:text-lg text-muted-foreground">
           Find the perfect program for your child's growth and success.
         </p>
-
         <p className="text-sm text-muted-foreground">
-          ✅ Trusted by 120+ families across Guyana
+          ✅ Trusted by 120+ families near Mon Repos, Guyana
         </p>
       </div>
 
       {/* Notices */}
-      <div className="flex flex-col items-center gap-2 mb-8">
-        {notices.map((notice, idx) => (
+      <div className="flex flex-col items-center gap-2 mb-10">
+        {notices.map(({ icon, text, className }, i) => (
           <div
-            key={idx}
-            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-semibold text-sm shadow-sm animate-pulse ${notice.className}`}
-            aria-label={notice.text}
+            key={i}
+            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-semibold text-sm shadow-sm ${className}`}
+            aria-label={text}
           >
-            <span>{notice.icon}</span>
-            <span>{notice.text}</span>
+            <span>{icon}</span>
+            <span>{text}</span>
           </div>
         ))}
       </div>
@@ -78,9 +76,9 @@ export function HeroSection({ orgInstance }: HeroSectionProps) {
         </Button>
       </div>
 
-      {/* Scroll Hint */}
+      {/* Scroll Indicator */}
       <div className="flex justify-center">
-        <p className="text-sm text-muted-foreground animate-bounce flex items-center gap-1">
+        <p className="text-sm text-muted-foreground flex items-center gap-1 animate-bounce">
           <ChevronDownIcon className="w-4 h-4" />
           View Programs Below
         </p>

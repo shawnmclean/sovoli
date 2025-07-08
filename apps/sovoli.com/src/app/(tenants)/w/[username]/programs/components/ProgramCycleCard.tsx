@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@sovoli/ui/components/button";
 import {
   Card,
@@ -5,14 +7,13 @@ import {
   CardFooter,
   CardHeader,
 } from "@sovoli/ui/components/card";
-
+import { Divider } from "@sovoli/ui/components/divider";
+import { Link } from "@sovoli/ui/components/link";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { Image } from "@sovoli/ui/components/image";
+import { ProgramPriceCard } from "./ProgramPriceCard";
 import type { OrgProgramCycle } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { Image } from "@sovoli/ui/components/image";
-import { differenceInDays, format, startOfDay } from "date-fns";
-import { ProgramPriceCard } from "./ProgramPriceCard";
-import { Divider } from "@sovoli/ui/components/divider";
 import {
   CalendarIcon,
   ClockIcon,
@@ -20,7 +21,7 @@ import {
   SendIcon,
   UserIcon,
 } from "lucide-react";
-import { Link } from "@sovoli/ui/components/link";
+import { differenceInDays, format, startOfDay } from "date-fns";
 
 export interface ProgramCycleCardProps {
   orgInstance: OrgInstance;
@@ -39,18 +40,14 @@ export function ProgramCycleCard({
     .find((l) => l.isPrimary)
     ?.contacts.find((c) => c.type === "whatsapp")?.value;
 
-  // Get cycle information
   const cycleLabel =
-    cycle.academicCycle.customLabel ??
-    cycle.academicCycle.globalCycle?.label ??
-    "Academic Cycle";
+    cycle.academicCycle.customLabel ?? cycle.academicCycle.globalCycle?.label;
 
   const startDate =
     cycle.academicCycle.startDate ?? cycle.academicCycle.globalCycle?.startDate;
   const endDate =
     cycle.academicCycle.endDate ?? cycle.academicCycle.globalCycle?.endDate;
 
-  // Get pricing information
   const registrationItem = cycle.pricingPackage.pricingItems.find(
     (item) => item.purpose === "registration",
   );
@@ -58,51 +55,34 @@ export function ProgramCycleCard({
     (item) => item.purpose === "tuition",
   );
 
-  // Remove unused getDiscountedAmount function
-
-  // Get age requirements
   const ageReq = cycle.computedRequirements.find((r) => r.type === "age");
-
-  // Format age range display
-  const formatAgeRange = (ageRange: {
+  const formatAgeRange = (range: {
     minAgeYears?: number;
     maxAgeYears?: number;
   }) => {
-    const minAge = ageRange.minAgeYears ?? 0;
-    const maxAge = ageRange.maxAgeYears;
-
-    if (maxAge) {
-      return `Ages ${minAge}-${maxAge} years`;
-    } else {
-      return `${minAge} years and up`;
-    }
+    const min = range.minAgeYears ?? 0;
+    return range.maxAgeYears
+      ? `Ages ${min}-${range.maxAgeYears} years`
+      : `${min} years and up`;
   };
 
-  // Format registration deadline
   const formatRegistrationDeadline = () => {
     if (!cycle.registrationPeriod?.endDate) return null;
-
-    const endDate = new Date(cycle.registrationPeriod.endDate);
+    const end = new Date(cycle.registrationPeriod.endDate);
     const now = startOfDay(new Date());
-    const daysLeft = differenceInDays(endDate, now);
-
-    if (daysLeft < 0) {
-      return "Registration closed";
-    } else if (daysLeft === 0) {
-      return "Registration closes today";
-    } else if (daysLeft === 1) {
-      return "Registration closes tomorrow";
-    } else if (daysLeft <= 7) {
-      return `Registration closes in ${daysLeft} days`;
-    } else {
-      return `Registration closes ${format(endDate, "MMM d, yyyy")}`;
-    }
+    const days = differenceInDays(end, now);
+    if (days < 0) return "Registration closed";
+    if (days === 0) return "Registration closes today";
+    if (days === 1) return "Registration closes tomorrow";
+    if (days <= 7) return `Registration closes in ${days} days`;
+    return `Registration closes ${format(end, "MMM d, yyyy")}`;
   };
 
   return (
-    <Card className="overflow-hidden shadow-md transition hover:shadow-lg">
-      <CardHeader className="flex flex-col gap-2 p-0">
-        <div className="relative w-full h-48 overflow-hidden">
+    <Card className="overflow-hidden shadow transition hover:shadow-lg">
+      {/* Header Image + Title */}
+      <CardHeader className="p-0">
+        <div className="relative w-full h-48">
           <Image
             src={
               program.image ??
@@ -113,31 +93,30 @@ export function ProgramCycleCard({
             className="w-full h-full object-cover"
             removeWrapper
           />
-          <div className="absolute bottom-0 left-0 right-0 px-0 pb-0 z-10">
-            <div className="bg-black/60 backdrop-blur-sm px-4 py-3 flex flex-col gap-1">
-              <h2 className="text-xl font-bold text-foreground">
-                {programName}
-              </h2>
-              {program.tagline && (
-                <p className="text-foreground-500 text-sm mt-1">
-                  {program.tagline}
-                </p>
-              )}
-            </div>
+          <div className="absolute inset-x-0 bottom-0 bg-background/70 backdrop-blur py-2 px-4 z-10">
+            <h2 className="text-lg font-bold text-foreground">{programName}</h2>
+            {program.tagline && (
+              <p className="text-sm text-foreground-500 mt-1">
+                {program.tagline}
+              </p>
+            )}
           </div>
         </div>
       </CardHeader>
 
       <Divider />
-      <CardBody className="flex flex-col gap-4">
-        <div className="border-b border-foreground-200 pb-4 gap-2 flex flex-col">
+
+      {/* Body */}
+      <CardBody className="flex flex-col gap-4 pb-4">
+        {/* Pricing */}
+        <div className="flex flex-col gap-3">
           {tuitionItem && (
             <ProgramPriceCard
               pricingPackage={cycle.pricingPackage}
               pricingItemId={tuitionItem.id}
+              showHeader={false}
             />
           )}
-
           {registrationItem && (
             <ProgramPriceCard
               size="md"
@@ -146,60 +125,46 @@ export function ProgramCycleCard({
             />
           )}
         </div>
-        <div>
-          <h2 className="text-lg font-semibold mb-2">Program Details</h2>
 
-          <div className="flex flex-col gap-2">
-            {ageReq?.ageRange && (
-              <div className="flex items-center gap-2 text-foreground-500">
-                <UserIcon className="text-xl" />
-                <span>{formatAgeRange(ageReq.ageRange)}</span>
-              </div>
-            )}
-            {startDate && endDate && (
-              <div className="flex items-center gap-2 text-foreground-500">
-                <CalendarIcon className="text-xl" />
-                <span>
-                  {format(new Date(startDate), "MMM d")} -{" "}
-                  {format(new Date(endDate), "MMM d, yyyy")}
-                </span>
-              </div>
-            )}
-            {formatRegistrationDeadline() && (
-              <div className="flex items-center gap-2 text-foreground-500">
-                <ClockIcon className="text-xl" />
-                <span>{formatRegistrationDeadline()}</span>
-              </div>
-            )}
-          </div>
+        {/* Essential Details */}
+        <div className="flex flex-col gap-2 text-sm text-foreground-500">
+          {ageReq?.ageRange && (
+            <div className="flex items-center gap-2">
+              <UserIcon className="w-4 h-4" />
+              <span>{formatAgeRange(ageReq.ageRange)}</span>
+            </div>
+          )}
+          {startDate && endDate && (
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="w-4 h-4" />
+              <span>
+                {format(new Date(startDate), "MMM d")}–
+                {format(new Date(endDate), "MMM d, yyyy")}
+              </span>
+            </div>
+          )}
+          {formatRegistrationDeadline() && (
+            <div className="flex items-center gap-2 font-semibold text-destructive">
+              <ClockIcon className="w-4 h-4" />
+              <span>{formatRegistrationDeadline()}</span>
+            </div>
+          )}
         </div>
-
-        {/* 📝 Notes */}
-        {cycle.notes && (
-          <div className="text-sm text-muted-foreground bg-muted-50 p-2 rounded">
-            <span className="font-medium">Note:</span> {cycle.notes}
-          </div>
-        )}
       </CardBody>
 
-      {/* 🚨 Footer */}
-      <CardFooter className="flex flex-col items-center gap-2">
+      {/* Footer Actions */}
+      <CardFooter className="flex flex-col items-center gap-3 pt-0">
         {program.isPopular && (
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm font-medium">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warning-200 text-warning-900 text-sm font-semibold shadow-sm">
             🔥 Popular – {program.slug === "pre-nursery" ? "8" : "12"} seats
             left
           </div>
         )}
+
         <Button
           as={WhatsAppLink}
           phoneNumber={whatsapp}
-          intent="Submit Application"
-          role="parent"
-          page="programs"
-          orgId={orgInstance.org.username}
-          orgName={orgInstance.org.name}
-          funnel={program.slug}
-          message={`Hi, I'm interested in ${programName} for ${cycleLabel}`}
+          message={`Hi, I'm interested in ${programName} (${cycleLabel}).`}
           fullWidth
           color="primary"
           variant="solid"
@@ -209,21 +174,22 @@ export function ProgramCycleCard({
         >
           Apply Now
         </Button>
-        <Divider className="my-2" />
+
         <Button
-          startContent={<InfoIcon />}
           as={Link}
-          fullWidth
           href={`/programs/${program.slug}`}
+          fullWidth
           color="default"
           variant="light"
           radius="sm"
           size="md"
+          startContent={<InfoIcon />}
         >
           View Details
         </Button>
-        <p className="text-center text-xs text-foreground-500 mt-1">
-          Schedule · Activities · What your child will learn
+
+        <p className="mt-1 text-xs text-foreground-500 text-center">
+          Schedule &middot; Activities &middot; What your child will learn
         </p>
       </CardFooter>
     </Card>
