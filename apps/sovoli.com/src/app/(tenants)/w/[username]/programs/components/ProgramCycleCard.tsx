@@ -109,7 +109,7 @@ export function ProgramCycleCard({
       {/* Body */}
       <CardBody className="flex flex-col gap-4 pb-4">
         {/* Pricing */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-6">
           {tuitionItem && (
             <ProgramPriceCard
               pricingPackage={cycle.pricingPackage}
