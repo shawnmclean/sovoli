@@ -61,6 +61,11 @@ export function HeroSection({ orgInstance }: HeroSectionProps) {
         <Button
           as={WhatsAppLink}
           phoneNumber={whatsappNumber}
+          intent="Submit Application"
+          role="parent"
+          page="programs"
+          orgId={orgInstance.org.username}
+          orgName={orgInstance.org.name}
           message="Hi, I'm interested in applying for one of your programs."
           color="primary"
           variant="solid"

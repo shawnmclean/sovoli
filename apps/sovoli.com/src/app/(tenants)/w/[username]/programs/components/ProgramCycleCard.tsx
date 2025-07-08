@@ -193,6 +193,12 @@ export function ProgramCycleCard({
         <Button
           as={WhatsAppLink}
           phoneNumber={whatsapp}
+          intent="Submit Application"
+          role="parent"
+          page="programs"
+          orgId={orgInstance.org.username}
+          orgName={orgInstance.org.name}
+          funnel={program.slug}
           message={`Hi, I'm interested in ${programName} for ${cycleLabel}`}
           fullWidth
           color="primary"

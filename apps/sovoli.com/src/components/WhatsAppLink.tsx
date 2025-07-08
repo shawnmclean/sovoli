@@ -20,7 +20,7 @@ interface WhatsAppLinkProps extends LinkProps {
     | "Claim School"
     | "Request Data"; // eg. matches Fb event name
   role?: "parent" | "admin";
-  page?: "listing" | "details" | "scores" | "pricing" | "landing";
+  page?: "listing" | "details" | "scores" | "pricing" | "landing" | "programs";
   orgId?: string;
   orgName?: string;
   funnel?: string; // e.g. "discovery", "conversion"
