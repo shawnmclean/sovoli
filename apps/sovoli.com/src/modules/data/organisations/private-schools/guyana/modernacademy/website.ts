@@ -134,6 +134,10 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
           title: "Resources",
           links: [
             {
+              label: "📸 Photo Gallery",
+              url: "/gallery",
+            },
+            {
               label: "Account Portal",
               url: "#",
             },
