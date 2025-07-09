@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { PageAssembler } from "~/modules/websites/components/PageAssembler";
 import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
 import { bus } from "~/services/core/bus";
 
