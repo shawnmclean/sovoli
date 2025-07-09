@@ -122,7 +122,8 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
         <div className="flex flex-1 justify-end gap-2">
           <Button
             as={Link}
-            href="/gallery"
+            href="https://www.facebook.com/profile.php?id=100063128446623&sk=photos"
+            target="_blank"
             variant="light"
             color="default"
             size="sm"
