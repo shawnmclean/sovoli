@@ -25,7 +25,7 @@ export const Footer = ({ orgInstance }: FooterProps) => {
   const sections = footerConfig?.sections ?? [];
 
   return (
-    <footer className="bg-content2 px-6 py-12">
+    <footer className="bg-content2 px-6 py-12 pb-20 md:pb-12">
       <div className="mx-auto max-w-6xl">
         <div
           className={`grid grid-cols-1 gap-8 md:grid-cols-${Math.min(
