@@ -153,6 +153,7 @@ const FooterLinksSection = ({ section }: { section: FooterSection }) => (
             <Link
               className="text-sm text-foreground-500 hover:text-primary"
               href={link.url}
+              target={link.target}
             >
               {link.label}
             </Link>

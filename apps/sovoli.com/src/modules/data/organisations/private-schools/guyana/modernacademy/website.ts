@@ -135,7 +135,8 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
           links: [
             {
               label: "📸 Photo Gallery",
-              url: "/gallery",
+              url: "https://www.facebook.com/profile.php?id=100063128446623&sk=photos",
+              target: "_blank",
             },
             {
               label: "Account Portal",
