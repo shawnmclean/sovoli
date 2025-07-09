@@ -25,6 +25,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
       type: "age",
       ageRange: {
         minAgeYears: 2,
+        maxAgeYears: 3,
       },
     },
   ],
