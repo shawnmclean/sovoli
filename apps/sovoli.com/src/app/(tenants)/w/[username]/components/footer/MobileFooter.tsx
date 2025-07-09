@@ -34,8 +34,9 @@ const footerButton = tv({
     isSelected: {
       true: {
         base: "border-t-2 border-primary-500",
+        icon: "text-primary-500",
+        text: "text-primary-500",
       },
-      false: {},
     },
   },
   defaultVariants: {
