@@ -61,7 +61,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
   const pathname = usePathname();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const isHome = pathname === "/";
+  const isHome = pathname === "/" || pathname === "";
   const isPrograms = pathname === "/programs";
   const isGallery = pathname === "/gallery";
   const isMore = pathname === "/more";
