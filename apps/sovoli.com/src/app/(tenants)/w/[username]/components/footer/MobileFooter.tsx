@@ -61,7 +61,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
   const pathname = usePathname();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const isHome = pathname === "/" || pathname === "";
+  const isHome = pathname === "/";
   const isPrograms = pathname === "/programs";
   const isGallery = pathname === "/gallery";
   const isMore = pathname === "/more";
@@ -78,7 +78,6 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
 
   return (
     <footer className="fixed bottom-0 left-0 right-0 bg-content1 shadow-lg pb-2 px-2 md:hidden z-40">
-      {JSON.stringify(pathname)}
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-1 justify-start gap-2">
           <Button
