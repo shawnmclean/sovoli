@@ -1,5 +1,6 @@
 "use client";
 
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
@@ -14,7 +15,6 @@ import {
   HomeIcon,
   ImageIcon,
   MenuIcon,
-  SendIcon,
   PhoneIcon,
   UsersIcon,
   BriefcaseIcon,
@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { tv } from "tailwind-variants";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgInstance } from "~/modules/organisations/types";
 
 const footerButton = tv({
@@ -56,7 +57,7 @@ export interface MobileFooterProps {
   orgInstance: OrgInstance;
 }
 
-export function MobileFooter({ orgInstance: _orgInstance }: MobileFooterProps) {
+export function MobileFooter({ orgInstance }: MobileFooterProps) {
   const pathname = usePathname();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -70,6 +71,10 @@ export function MobileFooter({ orgInstance: _orgInstance }: MobileFooterProps) {
   const galleryButtonClasses = footerButton({ isSelected: isGallery });
   const moreButtonClasses = footerButton({ isSelected: isMore });
   const drawerButtonClasses = drawerButton();
+
+  const whatsappNumber = orgInstance.org.locations
+    .find((location) => location.isPrimary)
+    ?.contacts.find((contact) => contact.type === "whatsapp")?.value;
 
   return (
     <footer className="fixed bottom-0 left-0 right-0 bg-content1 shadow-lg pb-2 px-2 md:hidden z-40">
@@ -100,8 +105,10 @@ export function MobileFooter({ orgInstance: _orgInstance }: MobileFooterProps) {
         </div>
         <div className="flex justify-center">
           <Button
-            as={Link}
-            href="/apply"
+            as={WhatsAppLink}
+            phoneNumber={whatsappNumber}
+            message={`Hi, I'm interested in your programs.`}
+            page="mobile-footer"
             variant="shadow"
             color="primary"
             isIconOnly
@@ -109,7 +116,7 @@ export function MobileFooter({ orgInstance: _orgInstance }: MobileFooterProps) {
             className="-mt-8 mx-4"
             size="lg"
           >
-            <SendIcon className="text-xl" />
+            <SiWhatsapp className="text-xl" />
           </Button>
         </div>
         <div className="flex flex-1 justify-end gap-2">
