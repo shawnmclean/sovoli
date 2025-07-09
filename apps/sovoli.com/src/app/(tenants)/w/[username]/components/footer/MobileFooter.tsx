@@ -21,6 +21,7 @@ import {
   InfoIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { tv } from "tailwind-variants";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -60,11 +61,16 @@ export interface MobileFooterProps {
 export function MobileFooter({ orgInstance }: MobileFooterProps) {
   const pathname = usePathname();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [isMounted, setIsMounted] = useState(false);
 
-  const isHome = pathname === "/" || pathname === "";
-  const isPrograms = pathname === "/programs";
-  const isGallery = pathname === "/gallery";
-  const isMore = pathname === "/more";
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const isHome = isMounted && (pathname === "/" || pathname === "");
+  const isPrograms = isMounted && pathname === "/programs";
+  const isGallery = isMounted && pathname === "/gallery";
+  const isMore = isMounted && pathname === "/more";
 
   const footerButtonClasses = footerButton({ isSelected: isHome });
   const programsButtonClasses = footerButton({ isSelected: isPrograms });
