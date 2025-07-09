@@ -39,7 +39,7 @@ export function MobileFooter({ orgInstance: _orgInstance }: MobileFooterProps) {
   const isMore = pathname === "/more";
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-content1 shadow-lg pb-2 px-2 md:hidden">
+    <footer className="fixed bottom-0 left-0 right-0 bg-content1 shadow-lg pb-2 px-2 md:hidden z-40">
       <div className="flex justify-center items-center w-full gap-1">
         <Button
           as={Link}
