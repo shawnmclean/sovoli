@@ -27,6 +27,7 @@
     "@heroui/chip": "2.2.18",
     "@heroui/divider": "2.2.15",
     "@heroui/dropdown": "2.3.22",
+    "@heroui/drawer": "2.2.19",
     "@heroui/image": "2.2.6",
     "@heroui/input": "2.4.10",
     "@heroui/form": "2.1.9",
