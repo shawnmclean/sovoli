@@ -92,14 +92,26 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
           )}
         </div>
       ) : (
-        <div className="flex items-center gap-2">
-          <p className="text-3xl font-bold text-primary">
-            GYD {original.toLocaleString()}
-          </p>
-          {item.billingCycle !== "one-time" && (
-            <p className="text-xs text-foreground-400">
-              {formatCycle(item.billingCycle)}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-baseline gap-2">
+            <p className="text-2xl font-bold text-primary">
+              GYD {original.toLocaleString()}
             </p>
+            {item.billingCycle !== "one-time" && (
+              <p className="text-sm text-foreground-500">
+                {formatCycle(item.billingCycle)}
+              </p>
+            )}
+          </div>
+          {item.billingCycle === "term" && (
+            <div className="flex flex-col gap-1">
+              <p className="text-sm text-foreground-600">
+                GYD {Math.round(original / 4).toLocaleString()} per month
+              </p>
+              <p className="text-xs text-foreground-400 italic">
+                Flexible payment options & family discounts available
+              </p>
+            </div>
           )}
         </div>
       )}
