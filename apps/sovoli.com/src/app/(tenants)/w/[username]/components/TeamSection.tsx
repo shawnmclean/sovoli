@@ -56,9 +56,9 @@ export function TeamSection({ orgInstance }: TeamSectionProps) {
   };
 
   return (
-    <section className="bg-background3 px-4 py-12">
+    <section className="bg-background2 py-12">
       <div className="relative mx-auto max-w-7xl overflow-hidden">
-        <div className="mb-12 text-center">
+        <div className="mb-12 text-center px-4">
           <h2 className="mb-6 text-3xl font-bold">Meet Our Team</h2>
           <p className="mx-auto max-w-2xl text-default-600">
             Our dedicated faculty and staff are committed to providing the
