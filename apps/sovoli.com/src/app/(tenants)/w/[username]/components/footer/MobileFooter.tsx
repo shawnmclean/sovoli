@@ -62,14 +62,13 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const isHome = pathname === "/" || pathname === "";
-  const isPrograms = pathname === "/programs";
-  const isGallery = pathname === "/gallery";
-  const isMore = pathname === "/more";
+  const isPrograms = pathname.startsWith("/programs");
+  const isGallery = pathname.startsWith("/gallery");
 
   const footerButtonClasses = footerButton({ isSelected: isHome });
   const programsButtonClasses = footerButton({ isSelected: isPrograms });
   const galleryButtonClasses = footerButton({ isSelected: isGallery });
-  const moreButtonClasses = footerButton({ isSelected: isMore });
+  const moreButtonClasses = footerButton();
   const drawerButtonClasses = drawerButton();
 
   const whatsappNumber = orgInstance.org.locations
