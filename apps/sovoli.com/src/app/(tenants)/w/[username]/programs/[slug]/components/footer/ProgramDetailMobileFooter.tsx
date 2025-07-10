@@ -29,12 +29,8 @@ export function ProgramDetailMobileFooter({
       <div className="flex w-full items-center justify-between py-3 gap-4">
         {/* Left side - Program info badge */}
         <div className="flex flex-1 items-center">
-          <Badge
-            variant="flat"
-            color="primary"
-            className="flex items-center gap-1.5 px-3 py-2"
-          >
-            <span className="text-sm font-medium">Limited Spots</span>
+          <Badge variant="flat" color="primary">
+            Limited Spots
           </Badge>
         </div>
 

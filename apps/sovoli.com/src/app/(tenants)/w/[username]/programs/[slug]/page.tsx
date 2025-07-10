@@ -174,22 +174,22 @@ export default async function ProgramDetailsPage({
   const formattedAddress = formatAddress(primaryLocation?.address);
 
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-6">
-      {/* Hero Section */}
-      <div className="mb-8">
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-50 to-secondary-50">
-          <div className="relative h-64 md:h-80">
-            <Image
-              src={programImage}
-              alt={programName}
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-          </div>
+    <>
+      {/* Edge-to-edge top image with 16:9 aspect ratio */}
+      <div className="w-full aspect-video relative">
+        <Image
+          src={programImage}
+          alt="Program background"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-6">
+      <div className="container mx-auto max-w-6xl px-4 py-6">
+        {/* Hero Section */}
+        <div className="mb-8">
+          <div className="rounded-2xl bg-gradient-to-br from-primary-50 to-secondary-50 p-8">
             <div className="flex flex-wrap items-center gap-2 mb-3">
               {program.isPopular && (
                 <Badge color="warning" variant="flat" size="sm">
@@ -219,510 +219,520 @@ export default async function ProgramDetailsPage({
             </p>
           </div>
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Main Content */}
-        <div className="lg:col-span-2 space-y-8">
-          {/* Program Highlights */}
-          <Card className="overflow-hidden">
-            <CardHeader className="pb-4">
-              <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                <StarIcon className="h-6 w-6 text-primary" />
-                Program Highlights
-              </h2>
-            </CardHeader>
-            <CardBody className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <GraduationCapIcon className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">
-                      Academic Excellence
-                    </h3>
-                    <p className="text-sm text-foreground-600">
-                      Comprehensive curriculum designed to foster critical
-                      thinking and creativity
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
-                    <UsersIcon className="h-5 w-5 text-secondary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">
-                      Small Class Sizes
-                    </h3>
-                    <p className="text-sm text-foreground-600">
-                      Personalized attention with optimal teacher-student ratios
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 bg-success-100 rounded-lg flex items-center justify-center">
-                    <BookOpenIcon className="h-5 w-5 text-success" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">
-                      Modern Resources
-                    </h3>
-                    <p className="text-sm text-foreground-600">
-                      State-of-the-art facilities and learning materials
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 bg-warning-100 rounded-lg flex items-center justify-center">
-                    <ClockIcon className="h-5 w-5 text-warning" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">
-                      Flexible Scheduling
-                    </h3>
-                    <p className="text-sm text-foreground-600">
-                      Multiple cycles and convenient registration periods
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </CardBody>
-          </Card>
-
-          {/* Academic Cycles */}
-          {programCycles.length > 0 && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Program Highlights */}
             <Card className="overflow-hidden">
               <CardHeader className="pb-4">
                 <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                  <CalendarIcon className="h-6 w-6 text-primary" />
-                  Academic Cycles
+                  <StarIcon className="h-6 w-6 text-primary" />
+                  Program Highlights
                 </h2>
               </CardHeader>
               <CardBody className="space-y-6">
-                {nextCycle && (
-                  <div className="rounded-lg bg-success-50 border border-success-200 p-6">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Badge color="success" variant="flat" size="sm">
-                        Next Cycle
-                      </Badge>
-                      <span className="text-sm font-medium text-success-900">
-                        {nextCycle.academicCycle.customLabel ??
-                          nextCycle.academicCycle.globalCycle?.label ??
-                          "Upcoming Cycle"}
-                      </span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                      <GraduationCapIcon className="h-5 w-5 text-primary" />
                     </div>
-
-                    <div className="grid gap-4 md:grid-cols-2">
-                      <div>
-                        <p className="text-sm text-foreground-600 mb-1">
-                          Start Date
-                        </p>
-                        <p className="font-medium text-foreground">
-                          {formatDate(
-                            nextCycle.academicCycle.startDate ??
-                              nextCycle.academicCycle.globalCycle?.startDate ??
-                              "",
-                          )}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-foreground-600 mb-1">
-                          End Date
-                        </p>
-                        <p className="font-medium text-foreground">
-                          {formatDate(
-                            nextCycle.academicCycle.endDate ??
-                              nextCycle.academicCycle.globalCycle?.endDate ??
-                              "",
-                          )}
-                        </p>
-                      </div>
-                    </div>
-
-                    {nextCycle.registrationPeriod && (
-                      <div className="mt-4 pt-4 border-t border-success-200">
-                        <div className="flex items-center gap-2 mb-2">
-                          <ClockIcon className="h-4 w-4 text-success" />
-                          <span className="text-sm font-medium text-success-900">
-                            Registration Period
-                          </span>
-                        </div>
-                        <div className="grid gap-4 md:grid-cols-2">
-                          <div>
-                            <p className="text-sm text-foreground-600 mb-1">
-                              Opens
-                            </p>
-                            <p className="font-medium text-foreground">
-                              {formatDate(
-                                nextCycle.registrationPeriod.startDate,
-                              )}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-sm text-foreground-600 mb-1">
-                              Closes
-                            </p>
-                            <p className="font-medium text-foreground">
-                              {formatDate(nextCycle.registrationPeriod.endDate)}
-                            </p>
-                          </div>
-                        </div>
-
-                        {nextCycle.registrationPeriod.endDate && (
-                          <div className="mt-3 p-3 bg-warning-50 rounded-lg border border-warning-200">
-                            <p className="text-sm font-semibold text-warning-700">
-                              ⏰{" "}
-                              {formatRegistrationDeadline(
-                                nextCycle.registrationPeriod.endDate,
-                              )}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {currentCycle && (
-                  <div className="rounded-lg bg-primary-50 border border-primary-200 p-6">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Badge color="primary" variant="flat" size="sm">
-                        Current Cycle
-                      </Badge>
-                      <span className="text-sm font-medium text-primary-900">
-                        {currentCycle.academicCycle.customLabel ??
-                          currentCycle.academicCycle.globalCycle?.label ??
-                          "Current Cycle"}
-                      </span>
-                    </div>
-
-                    <div className="grid gap-4 md:grid-cols-2">
-                      <div>
-                        <p className="text-sm text-foreground-600 mb-1">
-                          Start Date
-                        </p>
-                        <p className="font-medium text-foreground">
-                          {formatDate(
-                            currentCycle.academicCycle.startDate ??
-                              currentCycle.academicCycle.globalCycle
-                                ?.startDate ??
-                              "",
-                          )}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-foreground-600 mb-1">
-                          End Date
-                        </p>
-                        <p className="font-medium text-foreground">
-                          {formatDate(
-                            currentCycle.academicCycle.endDate ??
-                              currentCycle.academicCycle.globalCycle?.endDate ??
-                              "",
-                          )}
-                        </p>
-                      </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">
+                        Academic Excellence
+                      </h3>
+                      <p className="text-sm text-foreground-600">
+                        Comprehensive curriculum designed to foster critical
+                        thinking and creativity
+                      </p>
                     </div>
                   </div>
-                )}
+
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                      <UsersIcon className="h-5 w-5 text-secondary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">
+                        Small Class Sizes
+                      </h3>
+                      <p className="text-sm text-foreground-600">
+                        Personalized attention with optimal teacher-student
+                        ratios
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-success-100 rounded-lg flex items-center justify-center">
+                      <BookOpenIcon className="h-5 w-5 text-success" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">
+                        Modern Resources
+                      </h3>
+                      <p className="text-sm text-foreground-600">
+                        State-of-the-art facilities and learning materials
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-warning-100 rounded-lg flex items-center justify-center">
+                      <ClockIcon className="h-5 w-5 text-warning" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">
+                        Flexible Scheduling
+                      </h3>
+                      <p className="text-sm text-foreground-600">
+                        Multiple cycles and convenient registration periods
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </CardBody>
             </Card>
-          )}
 
-          {/* Pricing Information */}
-          {programCycles.length > 0 && (
-            <Card className="overflow-hidden">
-              <CardHeader className="pb-4">
-                <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                  <span className="text-2xl">💰</span>
-                  Pricing & Fees
-                </h2>
-              </CardHeader>
-              <CardBody className="space-y-6">
-                {nextCycle && (
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Badge color="success" variant="flat" size="sm">
-                        Next Cycle Pricing
-                      </Badge>
-                      <span className="text-sm font-medium text-success-900">
-                        {nextCycle.academicCycle.customLabel ??
-                          nextCycle.academicCycle.globalCycle?.label ??
-                          "Upcoming Cycle"}
-                      </span>
-                    </div>
+            {/* Academic Cycles */}
+            {programCycles.length > 0 && (
+              <Card className="overflow-hidden">
+                <CardHeader className="pb-4">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    <CalendarIcon className="h-6 w-6 text-primary" />
+                    Academic Cycles
+                  </h2>
+                </CardHeader>
+                <CardBody className="space-y-6">
+                  {nextCycle && (
+                    <div className="rounded-lg bg-success-50 border border-success-200 p-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge color="success" variant="flat" size="sm">
+                          Next Cycle
+                        </Badge>
+                        <span className="text-sm font-medium text-success-900">
+                          {nextCycle.academicCycle.customLabel ??
+                            nextCycle.academicCycle.globalCycle?.label ??
+                            "Upcoming Cycle"}
+                        </span>
+                      </div>
 
-                    <div className="grid gap-4 md:grid-cols-2">
-                      {nextCycle.pricingPackage.pricingItems
-                        .filter((item) => item.purpose === "registration")
-                        .map((item) => (
-                          <div key={item.id} className="space-y-2">
-                            <h4 className="font-semibold text-foreground">
-                              Registration Fee
-                            </h4>
-                            <ProgramPriceCard
-                              pricingPackage={nextCycle.pricingPackage}
-                              pricingItemId={item.id}
-                            />
-                          </div>
-                        ))}
-
-                      {nextCycle.pricingPackage.pricingItems
-                        .filter((item) => item.purpose === "tuition")
-                        .map((item) => (
-                          <div key={item.id} className="space-y-2">
-                            <h4 className="font-semibold text-foreground">
-                              Tuition Fee
-                            </h4>
-                            <ProgramPriceCard
-                              pricingPackage={nextCycle.pricingPackage}
-                              pricingItemId={item.id}
-                            />
-                          </div>
-                        ))}
-                    </div>
-
-                    <div className="mt-4 p-4 bg-default-50 rounded-lg">
-                      <h4 className="font-semibold text-foreground mb-2">
-                        💡 Payment Options
-                      </h4>
-                      <ul className="text-sm text-foreground-600 space-y-1">
-                        <li>• Flexible payment plans available</li>
-                        <li>• Family discounts for multiple children</li>
-                        <li>• Early bird discounts for early registration</li>
-                        <li>• Sibling discounts available</li>
-                      </ul>
-                    </div>
-                  </div>
-                )}
-
-                {currentCycle && (
-                  <div className="space-y-4 pt-6 border-t border-default-200">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Badge color="primary" variant="flat" size="sm">
-                        Current Cycle Pricing
-                      </Badge>
-                      <span className="text-sm font-medium text-primary-900">
-                        {currentCycle.academicCycle.customLabel ??
-                          currentCycle.academicCycle.globalCycle?.label ??
-                          "Current Cycle"}
-                      </span>
-                    </div>
-
-                    <div className="grid gap-4 md:grid-cols-2">
-                      {currentCycle.pricingPackage.pricingItems
-                        .filter((item) => item.purpose === "registration")
-                        .map((item) => (
-                          <div key={item.id} className="space-y-2">
-                            <h4 className="font-semibold text-foreground">
-                              Registration Fee
-                            </h4>
-                            <ProgramPriceCard
-                              pricingPackage={currentCycle.pricingPackage}
-                              pricingItemId={item.id}
-                            />
-                          </div>
-                        ))}
-
-                      {currentCycle.pricingPackage.pricingItems
-                        .filter((item) => item.purpose === "tuition")
-                        .map((item) => (
-                          <div key={item.id} className="space-y-2">
-                            <h4 className="font-semibold text-foreground">
-                              Tuition Fee
-                            </h4>
-                            <ProgramPriceCard
-                              pricingPackage={currentCycle.pricingPackage}
-                              pricingItemId={item.id}
-                            />
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-                )}
-              </CardBody>
-            </Card>
-          )}
-
-          {/* Requirements */}
-          {((program.requirements?.length ?? 0) > 0 ||
-            (program.standardProgramVersion?.requirements?.length ?? 0) >
-              0) && (
-            <Card className="overflow-hidden">
-              <CardHeader className="pb-4">
-                <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                  <UserIcon className="h-6 w-6 text-primary" />
-                  Requirements
-                </h2>
-              </CardHeader>
-              <CardBody>
-                <div className="space-y-4">
-                  {(
-                    program.requirements ??
-                    program.standardProgramVersion?.requirements ??
-                    []
-                  ).map((requirement, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 p-4 bg-default-50 rounded-lg"
-                    >
-                      <Chip color="secondary" variant="flat" size="sm">
-                        {requirement.type === "age" ? "Age" : "Document"}
-                      </Chip>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-foreground mb-1">
-                          {requirement.description ?? requirement.name}
-                        </p>
-                        {requirement.type === "age" && requirement.ageRange && (
-                          <p className="text-xs text-foreground-500">
-                            {displayAgeRange(requirement.ageRange)}
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <div>
+                          <p className="text-sm text-foreground-600 mb-1">
+                            Start Date
                           </p>
-                        )}
+                          <p className="font-medium text-foreground">
+                            {formatDate(
+                              nextCycle.academicCycle.startDate ??
+                                nextCycle.academicCycle.globalCycle
+                                  ?.startDate ??
+                                "",
+                            )}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-foreground-600 mb-1">
+                            End Date
+                          </p>
+                          <p className="font-medium text-foreground">
+                            {formatDate(
+                              nextCycle.academicCycle.endDate ??
+                                nextCycle.academicCycle.globalCycle?.endDate ??
+                                "",
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {nextCycle.registrationPeriod && (
+                        <div className="mt-4 pt-4 border-t border-success-200">
+                          <div className="flex items-center gap-2 mb-2">
+                            <ClockIcon className="h-4 w-4 text-success" />
+                            <span className="text-sm font-medium text-success-900">
+                              Registration Period
+                            </span>
+                          </div>
+                          <div className="grid gap-4 md:grid-cols-2">
+                            <div>
+                              <p className="text-sm text-foreground-600 mb-1">
+                                Opens
+                              </p>
+                              <p className="font-medium text-foreground">
+                                {formatDate(
+                                  nextCycle.registrationPeriod.startDate,
+                                )}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-sm text-foreground-600 mb-1">
+                                Closes
+                              </p>
+                              <p className="font-medium text-foreground">
+                                {formatDate(
+                                  nextCycle.registrationPeriod.endDate,
+                                )}
+                              </p>
+                            </div>
+                          </div>
+
+                          {nextCycle.registrationPeriod.endDate && (
+                            <div className="mt-3 p-3 bg-warning-50 rounded-lg border border-warning-200">
+                              <p className="text-sm font-semibold text-warning-700">
+                                ⏰{" "}
+                                {formatRegistrationDeadline(
+                                  nextCycle.registrationPeriod.endDate,
+                                )}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {currentCycle && (
+                    <div className="rounded-lg bg-primary-50 border border-primary-200 p-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge color="primary" variant="flat" size="sm">
+                          Current Cycle
+                        </Badge>
+                        <span className="text-sm font-medium text-primary-900">
+                          {currentCycle.academicCycle.customLabel ??
+                            currentCycle.academicCycle.globalCycle?.label ??
+                            "Current Cycle"}
+                        </span>
+                      </div>
+
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <div>
+                          <p className="text-sm text-foreground-600 mb-1">
+                            Start Date
+                          </p>
+                          <p className="font-medium text-foreground">
+                            {formatDate(
+                              currentCycle.academicCycle.startDate ??
+                                currentCycle.academicCycle.globalCycle
+                                  ?.startDate ??
+                                "",
+                            )}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-foreground-600 mb-1">
+                            End Date
+                          </p>
+                          <p className="font-medium text-foreground">
+                            {formatDate(
+                              currentCycle.academicCycle.endDate ??
+                                currentCycle.academicCycle.globalCycle
+                                  ?.endDate ??
+                                "",
+                            )}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </CardBody>
-            </Card>
-          )}
+                  )}
+                </CardBody>
+              </Card>
+            )}
 
-          {/* Program Description */}
-          {programDescription && (
+            {/* Pricing Information */}
+            {programCycles.length > 0 && (
+              <Card className="overflow-hidden">
+                <CardHeader className="pb-4">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    <span className="text-2xl">💰</span>
+                    Pricing & Fees
+                  </h2>
+                </CardHeader>
+                <CardBody className="space-y-6">
+                  {nextCycle && (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge color="success" variant="flat" size="sm">
+                          Next Cycle Pricing
+                        </Badge>
+                        <span className="text-sm font-medium text-success-900">
+                          {nextCycle.academicCycle.customLabel ??
+                            nextCycle.academicCycle.globalCycle?.label ??
+                            "Upcoming Cycle"}
+                        </span>
+                      </div>
+
+                      <div className="grid gap-4 md:grid-cols-2">
+                        {nextCycle.pricingPackage.pricingItems
+                          .filter((item) => item.purpose === "registration")
+                          .map((item) => (
+                            <div key={item.id} className="space-y-2">
+                              <h4 className="font-semibold text-foreground">
+                                Registration Fee
+                              </h4>
+                              <ProgramPriceCard
+                                pricingPackage={nextCycle.pricingPackage}
+                                pricingItemId={item.id}
+                              />
+                            </div>
+                          ))}
+
+                        {nextCycle.pricingPackage.pricingItems
+                          .filter((item) => item.purpose === "tuition")
+                          .map((item) => (
+                            <div key={item.id} className="space-y-2">
+                              <h4 className="font-semibold text-foreground">
+                                Tuition Fee
+                              </h4>
+                              <ProgramPriceCard
+                                pricingPackage={nextCycle.pricingPackage}
+                                pricingItemId={item.id}
+                              />
+                            </div>
+                          ))}
+                      </div>
+
+                      <div className="mt-4 p-4 bg-default-50 rounded-lg">
+                        <h4 className="font-semibold text-foreground mb-2">
+                          💡 Payment Options
+                        </h4>
+                        <ul className="text-sm text-foreground-600 space-y-1">
+                          <li>• Flexible payment plans available</li>
+                          <li>• Family discounts for multiple children</li>
+                          <li>• Early bird discounts for early registration</li>
+                          <li>• Sibling discounts available</li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+
+                  {currentCycle && (
+                    <div className="space-y-4 pt-6 border-t border-default-200">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge color="primary" variant="flat" size="sm">
+                          Current Cycle Pricing
+                        </Badge>
+                        <span className="text-sm font-medium text-primary-900">
+                          {currentCycle.academicCycle.customLabel ??
+                            currentCycle.academicCycle.globalCycle?.label ??
+                            "Current Cycle"}
+                        </span>
+                      </div>
+
+                      <div className="grid gap-4 md:grid-cols-2">
+                        {currentCycle.pricingPackage.pricingItems
+                          .filter((item) => item.purpose === "registration")
+                          .map((item) => (
+                            <div key={item.id} className="space-y-2">
+                              <h4 className="font-semibold text-foreground">
+                                Registration Fee
+                              </h4>
+                              <ProgramPriceCard
+                                pricingPackage={currentCycle.pricingPackage}
+                                pricingItemId={item.id}
+                              />
+                            </div>
+                          ))}
+
+                        {currentCycle.pricingPackage.pricingItems
+                          .filter((item) => item.purpose === "tuition")
+                          .map((item) => (
+                            <div key={item.id} className="space-y-2">
+                              <h4 className="font-semibold text-foreground">
+                                Tuition Fee
+                              </h4>
+                              <ProgramPriceCard
+                                pricingPackage={currentCycle.pricingPackage}
+                                pricingItemId={item.id}
+                              />
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                  )}
+                </CardBody>
+              </Card>
+            )}
+
+            {/* Requirements */}
+            {((program.requirements?.length ?? 0) > 0 ||
+              (program.standardProgramVersion?.requirements?.length ?? 0) >
+                0) && (
+              <Card className="overflow-hidden">
+                <CardHeader className="pb-4">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    <UserIcon className="h-6 w-6 text-primary" />
+                    Requirements
+                  </h2>
+                </CardHeader>
+                <CardBody>
+                  <div className="space-y-4">
+                    {(
+                      program.requirements ??
+                      program.standardProgramVersion?.requirements ??
+                      []
+                    ).map((requirement, index) => (
+                      <div
+                        key={index}
+                        className="flex items-start gap-3 p-4 bg-default-50 rounded-lg"
+                      >
+                        <Chip color="secondary" variant="flat" size="sm">
+                          {requirement.type === "age" ? "Age" : "Document"}
+                        </Chip>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-foreground mb-1">
+                            {requirement.description ?? requirement.name}
+                          </p>
+                          {requirement.type === "age" &&
+                            requirement.ageRange && (
+                              <p className="text-xs text-foreground-500">
+                                {displayAgeRange(requirement.ageRange)}
+                              </p>
+                            )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardBody>
+              </Card>
+            )}
+
+            {/* Program Description */}
+            {programDescription && (
+              <Card className="overflow-hidden">
+                <CardHeader className="pb-4">
+                  <h2 className="text-2xl font-bold text-foreground">
+                    About This Program
+                  </h2>
+                </CardHeader>
+                <CardBody>
+                  <div className="prose prose-sm max-w-none text-foreground-700">
+                    <p className="leading-relaxed">{programDescription}</p>
+                  </div>
+                </CardBody>
+              </Card>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Quick Actions */}
             <Card className="overflow-hidden">
               <CardHeader className="pb-4">
-                <h2 className="text-2xl font-bold text-foreground">
-                  About This Program
-                </h2>
+                <h3 className="text-lg font-bold text-foreground">
+                  Take Action
+                </h3>
               </CardHeader>
-              <CardBody>
-                <div className="prose prose-sm max-w-none text-foreground-700">
-                  <p className="leading-relaxed">{programDescription}</p>
+              <CardBody className="space-y-4">
+                {nextCycle && (
+                  <Button
+                    as={WhatsAppLink}
+                    phoneNumber={whatsapp}
+                    message={`Hi, I'm interested in ${programName} (${nextCycle.academicCycle.customLabel ?? nextCycle.academicCycle.globalCycle?.label ?? "upcoming cycle"}). Can you help me with registration and payment options?`}
+                    fullWidth
+                    color="primary"
+                    variant="solid"
+                    size="lg"
+                    startContent={<SendIcon />}
+                  >
+                    Start Registration{" "}
+                    {program.isPopular && (
+                      <span>
+                        - 🔥{" "}
+                        <strong>
+                          {program.slug === "pre-nursery" ? "8" : "12"}
+                        </strong>{" "}
+                        spots left
+                      </span>
+                    )}
+                  </Button>
+                )}
+
+                <Button
+                  as={Link}
+                  href="/programs"
+                  fullWidth
+                  color="default"
+                  variant="bordered"
+                  size="md"
+                  startContent={<InfoIcon />}
+                >
+                  View All Programs
+                </Button>
+
+                <div className="text-center">
+                  <p className="text-xs text-foreground-500">
+                    📸 Real Classrooms &middot; 📚 Books &middot; 📖 Learning
+                  </p>
                 </div>
               </CardBody>
             </Card>
-          )}
-        </div>
 
-        {/* Sidebar */}
-        <div className="space-y-6">
-          {/* Quick Actions */}
-          <Card className="overflow-hidden">
-            <CardHeader className="pb-4">
-              <h3 className="text-lg font-bold text-foreground">Take Action</h3>
-            </CardHeader>
-            <CardBody className="space-y-4">
-              {nextCycle && (
-                <Button
-                  as={WhatsAppLink}
-                  phoneNumber={whatsapp}
-                  message={`Hi, I'm interested in ${programName} (${nextCycle.academicCycle.customLabel ?? nextCycle.academicCycle.globalCycle?.label ?? "upcoming cycle"}). Can you help me with registration and payment options?`}
-                  fullWidth
-                  color="primary"
-                  variant="solid"
-                  size="lg"
-                  startContent={<SendIcon />}
-                >
-                  Start Registration{" "}
-                  {program.isPopular && (
-                    <span>
-                      - 🔥{" "}
-                      <strong>
-                        {program.slug === "pre-nursery" ? "8" : "12"}
-                      </strong>{" "}
-                      spots left
+            {/* Contact Information */}
+            <Card className="overflow-hidden">
+              <CardHeader className="pb-4">
+                <h3 className="text-lg font-bold text-foreground">
+                  Contact Us
+                </h3>
+              </CardHeader>
+              <CardBody className="space-y-4">
+                {phone && (
+                  <div className="flex items-center gap-3">
+                    <PhoneIcon className="h-4 w-4 text-primary" />
+                    <span className="text-sm text-foreground-700">{phone}</span>
+                  </div>
+                )}
+
+                {email && (
+                  <div className="flex items-center gap-3">
+                    <MailIcon className="h-4 w-4 text-primary" />
+                    <span className="text-sm text-foreground-700">{email}</span>
+                  </div>
+                )}
+
+                {formattedAddress && (
+                  <div className="flex items-start gap-3">
+                    <MapPinIcon className="h-4 w-4 text-primary mt-0.5" />
+                    <span className="text-sm text-foreground-700">
+                      {formattedAddress}
                     </span>
-                  )}
-                </Button>
-              )}
-
-              <Button
-                as={Link}
-                href="/programs"
-                fullWidth
-                color="default"
-                variant="bordered"
-                size="md"
-                startContent={<InfoIcon />}
-              >
-                View All Programs
-              </Button>
-
-              <div className="text-center">
-                <p className="text-xs text-foreground-500">
-                  📸 Real Classrooms &middot; 📚 Books &middot; 📖 Learning
-                </p>
-              </div>
-            </CardBody>
-          </Card>
-
-          {/* Contact Information */}
-          <Card className="overflow-hidden">
-            <CardHeader className="pb-4">
-              <h3 className="text-lg font-bold text-foreground">Contact Us</h3>
-            </CardHeader>
-            <CardBody className="space-y-4">
-              {phone && (
-                <div className="flex items-center gap-3">
-                  <PhoneIcon className="h-4 w-4 text-primary" />
-                  <span className="text-sm text-foreground-700">{phone}</span>
-                </div>
-              )}
-
-              {email && (
-                <div className="flex items-center gap-3">
-                  <MailIcon className="h-4 w-4 text-primary" />
-                  <span className="text-sm text-foreground-700">{email}</span>
-                </div>
-              )}
-
-              {formattedAddress && (
-                <div className="flex items-start gap-3">
-                  <MapPinIcon className="h-4 w-4 text-primary mt-0.5" />
-                  <span className="text-sm text-foreground-700">
-                    {formattedAddress}
-                  </span>
-                </div>
-              )}
-            </CardBody>
-          </Card>
-
-          {/* Program Stats */}
-          <Card className="overflow-hidden">
-            <CardHeader className="pb-4">
-              <h3 className="text-lg font-bold text-foreground">
-                Program Overview
-              </h3>
-            </CardHeader>
-            <CardBody className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-3 bg-primary-50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">
-                    {programCycles.length}
                   </div>
-                  <div className="text-xs text-foreground-600">
-                    Available Cycles
+                )}
+              </CardBody>
+            </Card>
+
+            {/* Program Stats */}
+            <Card className="overflow-hidden">
+              <CardHeader className="pb-4">
+                <h3 className="text-lg font-bold text-foreground">
+                  Program Overview
+                </h3>
+              </CardHeader>
+              <CardBody className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center p-3 bg-primary-50 rounded-lg">
+                    <div className="text-2xl font-bold text-primary">
+                      {programCycles.length}
+                    </div>
+                    <div className="text-xs text-foreground-600">
+                      Available Cycles
+                    </div>
+                  </div>
+                  <div className="text-center p-3 bg-secondary-50 rounded-lg">
+                    <div className="text-2xl font-bold text-secondary">
+                      {program.requirements?.length ??
+                        program.standardProgramVersion?.requirements?.length ??
+                        0}
+                    </div>
+                    <div className="text-xs text-foreground-600">
+                      Requirements
+                    </div>
                   </div>
                 </div>
-                <div className="text-center p-3 bg-secondary-50 rounded-lg">
-                  <div className="text-2xl font-bold text-secondary">
-                    {program.requirements?.length ??
-                      program.standardProgramVersion?.requirements?.length ??
-                      0}
-                  </div>
-                  <div className="text-xs text-foreground-600">
-                    Requirements
-                  </div>
-                </div>
-              </div>
-            </CardBody>
-          </Card>
+              </CardBody>
+            </Card>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

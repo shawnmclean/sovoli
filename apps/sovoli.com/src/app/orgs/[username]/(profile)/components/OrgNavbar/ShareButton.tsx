@@ -8,9 +8,24 @@ interface ShareButtonProps {
   title: string;
   text?: string;
   url?: string;
+  className?: string;
+  variant?:
+    | "solid"
+    | "bordered"
+    | "light"
+    | "flat"
+    | "faded"
+    | "shadow"
+    | "ghost";
 }
 
-export function ShareButton({ title, text, url }: ShareButtonProps) {
+export function ShareButton({
+  title,
+  text,
+  url,
+  className,
+  variant = "flat",
+}: ShareButtonProps) {
   const [isSharing, setIsSharing] = useState(false);
 
   const handleShare = async () => {
@@ -42,11 +57,12 @@ export function ShareButton({ title, text, url }: ShareButtonProps) {
 
   return (
     <Button
-      variant="flat"
+      variant={variant}
       isIconOnly
       radius="full"
       onPress={handleShare}
       isLoading={isSharing}
+      className={className}
     >
       <ShareIcon />
     </Button>

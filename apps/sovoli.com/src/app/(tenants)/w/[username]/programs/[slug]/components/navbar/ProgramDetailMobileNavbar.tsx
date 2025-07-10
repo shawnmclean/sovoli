@@ -28,13 +28,17 @@ export function ProgramDetailNavbar({
     ?.contacts.find((contact) => contact.type === "whatsapp")?.value;
 
   return (
-    <Navbar maxWidth="full">
+    <Navbar
+      maxWidth="full"
+      position="static"
+      className="bg-transparent border-none backdrop-blur-none absolute top-0 left-0 right-0 z-10"
+    >
       <NavbarContent justify="start">
         <NavbarItem>
           <Button
             as={Link}
             href="/programs"
-            variant="flat"
+            variant="solid"
             isIconOnly
             radius="full"
           >
@@ -46,13 +50,14 @@ export function ProgramDetailNavbar({
       <NavbarContent justify="end">
         <NavbarItem>
           <ShareButton
+            variant="solid"
             title={programName}
             text={`Check out ${programName} on ${orgInstance.org.name}`}
           />
         </NavbarItem>
         <NavbarItem>
           <Button
-            variant="flat"
+            variant="solid"
             isIconOnly
             as={WhatsAppLink}
             phoneNumber={whatsappNumber}
