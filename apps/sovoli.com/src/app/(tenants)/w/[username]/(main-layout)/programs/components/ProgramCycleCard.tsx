@@ -126,7 +126,7 @@ export function ProgramCycleCard({
           {/* Term Info */}
           <div className="flex items-center gap-2">
             <ClockIcon className="w-4 h-4" />
-            <span className="font-medium text-xs">{formatTermInfo()}</span>
+            <span className="font-medium">{formatTermInfo()}</span>
           </div>
         </div>
       </CardBody>

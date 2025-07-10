@@ -17,7 +17,7 @@ import {
 export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
   slug: "pre-nursery",
   name: "Pre-Nursery (Playschool)",
-  tagline: "Build social & motor skills early",
+  tagline: "Play, explore, and grow together",
   description: "Strong foundational learning in a nurturing environment",
   image: "/orgs/private-schools/guyana/modernacademy/programs/pre-nursery.webp",
   requirements: [
@@ -34,6 +34,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
 export const MAGY_NURSERY_PROGRAM: OrgProgram = {
   standardProgramVersion: GY_NURSERY_V1,
   slug: "nursery",
+  tagline: "Learn, talk, count, play",
   description: "Engaging curriculum fostering critical thinking and creativity",
   image: "/orgs/private-schools/guyana/modernacademy/programs/nursery.webp",
   isPopular: true,
@@ -42,6 +43,7 @@ export const MAGY_NURSERY_PROGRAM: OrgProgram = {
 export const MAGY_PRIMARY_PROGRAM: OrgProgram = {
   standardProgramVersion: GY_PRIMARY_V1,
   slug: "primary",
+  tagline: "Science-led. Built for real learning",
   description: "Strong foundational learning in a nurturing environment",
   image: "/orgs/private-schools/guyana/modernacademy/programs/primary.webp",
 };
@@ -49,6 +51,7 @@ export const MAGY_PRIMARY_PROGRAM: OrgProgram = {
 export const MAGY_SECONDARY_PROGRAM: OrgProgram = {
   standardProgramVersion: GY_SECONDARY_V1,
   slug: "secondary",
+  tagline: "Guided by med scholars. Built for results.",
   description: "Engaging curriculum fostering critical thinking and creativity",
   image: "/orgs/private-schools/guyana/modernacademy/programs/secondary.webp",
 };
