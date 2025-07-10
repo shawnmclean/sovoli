@@ -1,11 +1,13 @@
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
+import { Link } from "@sovoli/ui/components/link";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { displayAgeRange } from "../utils";
 import { Image } from "@sovoli/ui/components/image";
+import { InfoIcon, SendIcon } from "lucide-react";
 
 export interface ProgramCardProps {
   orgInstance: OrgInstance;
@@ -45,6 +47,7 @@ export function ProgramCard({ orgInstance, program }: ProgramCardProps) {
           </h3>
           <p className="text-base leading-relaxed text-foreground-600">
             {program.description ??
+              program.standardProgramVersion?.program.description ??
               "A great learning foundation in a nurturing space."}
           </p>
         </div>
@@ -55,42 +58,35 @@ export function ProgramCard({ orgInstance, program }: ProgramCardProps) {
             Ages {displayAgeRange(ageReq.ageRange)}
           </Chip>
         )}
-
-        {/* 💰 Fees */}
-        <div className="space-y-1 text-sm">
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Registration:</span>
-            <span>
-              <span className="line-through text-red-400 mr-1">GYD NA</span>
-              <span className="font-semibold text-white">GYD NA</span>
-            </span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Per Term:</span>
-            <span>
-              <span className="line-through text-red-400 mr-1">GYD NA</span>
-              <span className="font-semibold text-white">GYD NA</span>
-            </span>
-          </div>
-        </div>
       </CardBody>
 
       {/* 🚨 Footer */}
-      <CardFooter className="flex items-center justify-between pt-4">
-        <Chip color="warning" variant="light" radius="sm">
-          Pricing Coming Soon
-        </Chip>
+      <CardFooter className="flex flex-col items-center gap-3 pt-4">
+        <Button
+          as={Link}
+          href={`/programs/${program.slug}`}
+          fullWidth
+          color="primary"
+          variant="solid"
+          radius="md"
+          size="lg"
+          startContent={<InfoIcon />}
+        >
+          View Program Details
+        </Button>
 
         <Button
           as={WhatsAppLink}
           phoneNumber={whatsapp}
-          message={`Hi, I'm interested in ${programName}`}
-          color="primary"
-          variant="solid"
-          radius="sm"
-          size="sm"
+          message={`Hi, I'm interested in ${programName}. Can you tell me more about pricing and availability?`}
+          fullWidth
+          color="default"
+          variant="bordered"
+          radius="md"
+          size="md"
+          startContent={<SendIcon />}
         >
-          Apply Now
+          Ask About Pricing
         </Button>
       </CardFooter>
     </Card>

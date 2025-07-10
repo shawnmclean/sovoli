@@ -11,7 +11,6 @@ import { Divider } from "@sovoli/ui/components/divider";
 import { Link } from "@sovoli/ui/components/link";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { Image } from "@sovoli/ui/components/image";
-import { ProgramPriceCard } from "./ProgramPriceCard";
 import type { OrgProgramCycle } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import {
@@ -49,13 +48,6 @@ export function ProgramCycleCard({
     cycle.academicCycle.startDate ?? cycle.academicCycle.globalCycle?.startDate;
   const endDate =
     cycle.academicCycle.endDate ?? cycle.academicCycle.globalCycle?.endDate;
-
-  const registrationItem = cycle.pricingPackage.pricingItems.find(
-    (item) => item.purpose === "registration",
-  );
-  const tuitionItem = cycle.pricingPackage.pricingItems.find(
-    (item) => item.purpose === "tuition",
-  );
 
   const ageReq = cycle.computedRequirements.find((r) => r.type === "age");
   const formatAgeRange = (range: {
@@ -119,24 +111,6 @@ export function ProgramCycleCard({
 
       {/* Body */}
       <CardBody className="flex flex-col gap-4 pb-4">
-        {/* Pricing */}
-        <div className="flex flex-col gap-6">
-          {tuitionItem && (
-            <ProgramPriceCard
-              pricingPackage={cycle.pricingPackage}
-              pricingItemId={tuitionItem.id}
-              showHeader={false}
-            />
-          )}
-          {registrationItem && (
-            <ProgramPriceCard
-              size="md"
-              pricingPackage={cycle.pricingPackage}
-              pricingItemId={registrationItem.id}
-            />
-          )}
-        </div>
-
         {/* Essential Details */}
         <div className="flex flex-col gap-2 text-sm text-foreground-500">
           {ageReq?.ageRange && (
@@ -161,42 +135,44 @@ export function ProgramCycleCard({
             </div>
           )}
         </div>
+
+        {/* Program Description */}
+        <div className="text-sm text-foreground-600">
+          <p>
+            {program.description ??
+              program.standardProgramVersion?.program.description ??
+              "A comprehensive learning experience designed to foster growth and development."}
+          </p>
+        </div>
       </CardBody>
 
       {/* Footer Actions */}
       <CardFooter className="flex flex-col items-center gap-3 pt-0">
         <Button
-          as={WhatsAppLink}
-          phoneNumber={whatsapp}
-          message={`Hi, I'm interested in ${programName} (${cycleLabel}).`}
+          as={Link}
+          href={`/programs/${program.slug}`}
           fullWidth
           color="primary"
           variant="solid"
           radius="md"
           size="lg"
-          startContent={<SendIcon />}
+          startContent={<InfoIcon />}
         >
-          Secure Your Spot{" "}
-          {program.isPopular && (
-            <span>
-              - 🔥{" "}
-              <strong>{program.slug === "pre-nursery" ? "8" : "12"}</strong>{" "}
-              left
-            </span>
-          )}
+          View Program Details
         </Button>
 
         <Button
-          as={Link}
-          href={`/programs/${program.slug}`}
+          as={WhatsAppLink}
+          phoneNumber={whatsapp}
+          message={`Hi, I'm interested in ${programName} (${cycleLabel}). Can you tell me more about pricing and availability?`}
           fullWidth
           color="default"
           variant="bordered"
           radius="md"
           size="md"
-          startContent={<InfoIcon />}
+          startContent={<SendIcon />}
         >
-          View Program Details
+          Ask About Pricing
         </Button>
 
         <p className="text-xs text-foreground-500 text-center">

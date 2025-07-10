@@ -26,6 +26,7 @@ import { differenceInDays, format, startOfDay, parseISO } from "date-fns";
 import { displayAgeRange } from "../utils";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import type { Metadata } from "next";
+import { ProgramPriceCard } from "../components/ProgramPriceCard";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -501,6 +502,121 @@ export default async function ProgramDetailsPage({
               </Card>
             )}
 
+            {/* Pricing Information */}
+            {programCycles.length > 0 && (
+              <Card className="overflow-hidden">
+                <CardHeader className="pb-4">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    <span className="text-2xl">💰</span>
+                    Pricing & Fees
+                  </h2>
+                </CardHeader>
+                <CardBody className="space-y-6">
+                  {nextCycle && (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge color="success" variant="flat" size="sm">
+                          Next Cycle Pricing
+                        </Badge>
+                        <span className="text-sm font-medium text-success-900">
+                          {nextCycle.academicCycle.customLabel ??
+                            nextCycle.academicCycle.globalCycle?.label ??
+                            "Upcoming Cycle"}
+                        </span>
+                      </div>
+
+                      <div className="grid gap-4 md:grid-cols-2">
+                        {nextCycle.pricingPackage.pricingItems
+                          .filter((item) => item.purpose === "registration")
+                          .map((item) => (
+                            <div key={item.id} className="space-y-2">
+                              <h4 className="font-semibold text-foreground">
+                                Registration Fee
+                              </h4>
+                              <ProgramPriceCard
+                                pricingPackage={nextCycle.pricingPackage}
+                                pricingItemId={item.id}
+                              />
+                            </div>
+                          ))}
+
+                        {nextCycle.pricingPackage.pricingItems
+                          .filter((item) => item.purpose === "tuition")
+                          .map((item) => (
+                            <div key={item.id} className="space-y-2">
+                              <h4 className="font-semibold text-foreground">
+                                Tuition Fee
+                              </h4>
+                              <ProgramPriceCard
+                                pricingPackage={nextCycle.pricingPackage}
+                                pricingItemId={item.id}
+                              />
+                            </div>
+                          ))}
+                      </div>
+
+                      <div className="mt-4 p-4 bg-default-50 rounded-lg">
+                        <h4 className="font-semibold text-foreground mb-2">
+                          💡 Payment Options
+                        </h4>
+                        <ul className="text-sm text-foreground-600 space-y-1">
+                          <li>• Flexible payment plans available</li>
+                          <li>• Family discounts for multiple children</li>
+                          <li>• Early bird discounts for early registration</li>
+                          <li>• Sibling discounts available</li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+
+                  {currentCycle && (
+                    <div className="space-y-4 pt-6 border-t border-default-200">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge color="primary" variant="flat" size="sm">
+                          Current Cycle Pricing
+                        </Badge>
+                        <span className="text-sm font-medium text-primary-900">
+                          {currentCycle.academicCycle.customLabel ??
+                            currentCycle.academicCycle.globalCycle?.label ??
+                            "Current Cycle"}
+                        </span>
+                      </div>
+
+                      <div className="grid gap-4 md:grid-cols-2">
+                        {currentCycle.pricingPackage.pricingItems
+                          .filter((item) => item.purpose === "registration")
+                          .map((item) => (
+                            <div key={item.id} className="space-y-2">
+                              <h4 className="font-semibold text-foreground">
+                                Registration Fee
+                              </h4>
+                              <ProgramPriceCard
+                                pricingPackage={currentCycle.pricingPackage}
+                                pricingItemId={item.id}
+                              />
+                            </div>
+                          ))}
+
+                        {currentCycle.pricingPackage.pricingItems
+                          .filter((item) => item.purpose === "tuition")
+                          .map((item) => (
+                            <div key={item.id} className="space-y-2">
+                              <h4 className="font-semibold text-foreground">
+                                Tuition Fee
+                              </h4>
+                              <ProgramPriceCard
+                                pricingPackage={currentCycle.pricingPackage}
+                                pricingItemId={item.id}
+                              />
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                  )}
+                </CardBody>
+              </Card>
+            )}
+
             {/* Requirements */}
             {((program.requirements?.length ?? 0) > 0 ||
               (program.standardProgramVersion?.requirements?.length ?? 0) >
@@ -567,7 +683,7 @@ export default async function ProgramDetailsPage({
             <Card className="overflow-hidden">
               <CardHeader className="pb-4">
                 <h3 className="text-lg font-bold text-foreground">
-                  Get Started
+                  Take Action
                 </h3>
               </CardHeader>
               <CardBody className="space-y-4">
@@ -575,21 +691,21 @@ export default async function ProgramDetailsPage({
                   <Button
                     as={WhatsAppLink}
                     phoneNumber={whatsapp}
-                    message={`Hi, I'm interested in ${programName} (${nextCycle.academicCycle.customLabel ?? nextCycle.academicCycle.globalCycle?.label ?? "upcoming cycle"}).`}
+                    message={`Hi, I'm interested in ${programName} (${nextCycle.academicCycle.customLabel ?? nextCycle.academicCycle.globalCycle?.label ?? "upcoming cycle"}). Can you help me with registration and payment options?`}
                     fullWidth
                     color="primary"
                     variant="solid"
                     size="lg"
                     startContent={<SendIcon />}
                   >
-                    Secure Your Spot{" "}
+                    Start Registration{" "}
                     {program.isPopular && (
                       <span>
                         - 🔥{" "}
                         <strong>
                           {program.slug === "pre-nursery" ? "8" : "12"}
                         </strong>{" "}
-                        left
+                        spots left
                       </span>
                     )}
                   </Button>
