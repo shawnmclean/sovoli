@@ -2,7 +2,7 @@
 
 import { Button } from "@sovoli/ui/components/button";
 import { Badge } from "@sovoli/ui/components/badge";
-import { SendIcon, ClockIcon } from "lucide-react";
+
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 
 import type { OrgProgram } from "~/modules/academics/types";

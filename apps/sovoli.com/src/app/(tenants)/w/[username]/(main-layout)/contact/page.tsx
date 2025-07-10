@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 
-import { ContactMethods } from "../components/ContactMethods";
-import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
+import { ContactMethods } from "../../components/ContactMethods";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
