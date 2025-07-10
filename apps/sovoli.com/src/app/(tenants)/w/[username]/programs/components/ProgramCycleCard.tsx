@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@sovoli/ui/components/button";
 import {
   Card,
   CardBody,
@@ -19,7 +18,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "lucide-react";
-import { differenceInDays, format, startOfDay, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 export interface ProgramCycleCardProps {
   orgInstance: OrgInstance;
@@ -45,20 +44,27 @@ export function ProgramCycleCard({
       : `${min} years and up`;
   };
 
-  const formatRegistrationDeadline = () => {
-    if (!cycle.registrationPeriod?.endDate) return null;
+  const formatTermInfo = () => {
+    const termLabel =
+      cycle.academicCycle.customLabel ??
+      cycle.academicCycle.globalCycle?.label ??
+      "Academic Term";
+
+    if (!cycle.registrationPeriod?.endDate) {
+      return `Join the ${termLabel}`;
+    }
+
     const end = parseISO(cycle.registrationPeriod.endDate);
-    const now = startOfDay(new Date());
-    const days = differenceInDays(end, now);
-    if (days < 0) return "Registration closed";
-    if (days === 0) return "Registration closes today";
-    if (days === 1) return "Registration closes tomorrow";
-    if (days <= 7) return `Registration closes in ${days} days`;
-    return `Registration closes ${format(end, "MMM d, yyyy")}`;
+    const deadline = format(end, "MMM d");
+    return `${termLabel} term - Apply by ${deadline}`;
   };
 
   return (
-    <Card className="overflow-hidden shadow transition hover:shadow-lg">
+    <Card
+      as={Link}
+      href={`/programs/${program.slug}`}
+      className="overflow-hidden shadow transition hover:shadow-lg cursor-pointer group"
+    >
       {/* Header Image */}
       <CardHeader className="p-0 relative">
         <div className="relative w-full h-52">
@@ -110,45 +116,27 @@ export function ProgramCycleCard({
 
         {/* Essential Details */}
         <div className="flex flex-col gap-2 text-sm text-foreground-500">
-          {/* Term Date and Age Range */}
-          <div className="flex items-center justify-between">
+          {/* Age Range */}
+          {ageReq?.ageRange && (
             <div className="flex items-center gap-2">
-              <ClockIcon className="w-4 h-4" />
-              <span>
-                {cycle.academicCycle.customLabel ??
-                  cycle.academicCycle.globalCycle?.label ??
-                  "Academic Term"}
-              </span>
-            </div>
-            {ageReq?.ageRange && (
-              <div className="flex items-center gap-1 text-xs">
-                <UserIcon className="w-3 h-3" />
-                <span>{formatAgeRange(ageReq.ageRange)}</span>
-              </div>
-            )}
-          </div>
-          {formatRegistrationDeadline() && (
-            <div className="flex items-center gap-2 font-semibold text-destructive">
-              <ClockIcon className="w-4 h-4" />
-              <span>{formatRegistrationDeadline()}</span>
+              <UserIcon className="w-4 h-4" />
+              <span>{formatAgeRange(ageReq.ageRange)}</span>
             </div>
           )}
+          {/* Term Info */}
+          <div className="flex items-center gap-2">
+            <ClockIcon className="w-4 h-4" />
+            <span className="font-medium text-xs">{formatTermInfo()}</span>
+          </div>
         </div>
       </CardBody>
 
       {/* Footer Actions */}
       <CardFooter className="flex flex-col items-center gap-3 pt-0">
-        <Button
-          as={Link}
-          href={`/programs/${program.slug}`}
-          fullWidth
-          color="primary"
-          variant="solid"
-          radius="md"
-          startContent={<ArrowRightIcon className="w-5 h-5" />}
-        >
-          Learn More
-        </Button>
+        <div className="flex items-center gap-1 text-sm text-foreground-500 group-hover:text-foreground transition-colors">
+          <span>Learn more</span>
+          <ArrowRightIcon className="w-4 h-4" />
+        </div>
       </CardFooter>
     </Card>
   );
