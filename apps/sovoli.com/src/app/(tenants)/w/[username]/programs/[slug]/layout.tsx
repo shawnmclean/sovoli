@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { Footer } from "../../components/footer/Footer";
-import { MobileFooter } from "../../components/footer/MobileFooter";
 
-import { ProgramDetailNavbar } from "./components/Navbar/ProgramDetailNavbar";
+import { ProgramDetailNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
+import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -70,7 +70,7 @@ export default async function Layout({ children, params }: Props) {
       {children}
 
       <Footer orgInstance={orgInstance} />
-      <MobileFooter orgInstance={orgInstance} />
+      <ProgramDetailMobileFooter orgInstance={orgInstance} program={program} />
     </div>
   );
 }
