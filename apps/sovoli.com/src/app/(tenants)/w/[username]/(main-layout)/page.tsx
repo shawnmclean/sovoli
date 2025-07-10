@@ -2,10 +2,10 @@ import { notFound } from "next/navigation";
 import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
 import { bus } from "~/services/core/bus";
 
-import { getOrgInstanceByUsername } from "./lib/getOrgInstanceByUsername";
+import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 import { HeroSection } from "./programs/components/HeroSection";
 import { ProgramsSection } from "./programs/components/ProgramsSection";
-import { TeamSection } from "./components/TeamSection";
+import { TeamSection } from "../components/TeamSection";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);

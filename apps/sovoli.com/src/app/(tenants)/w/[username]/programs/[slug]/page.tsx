@@ -23,10 +23,11 @@ import {
 } from "lucide-react";
 import { differenceInDays, format, startOfDay, parseISO } from "date-fns";
 
-import { displayAgeRange } from "../utils";
-import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import type { Metadata } from "next";
-import { ProgramPriceCard } from "../components/ProgramPriceCard";
+import { ProgramPriceCard } from "../../(main-layout)/programs/components/ProgramPriceCard";
+import { displayAgeRange } from "../../(main-layout)/programs/utils";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
+import { ProgramDetailNavbar } from "./components/Navbar/ProgramDetailNavbar";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -220,20 +221,7 @@ export default async function ProgramDetailsPage({
 
   return (
     <div className="min-h-screen bg-default-50">
-      {/* Navigation Header */}
-      <div className="bg-background shadow-sm sticky top-0 z-40">
-        <div className="container mx-auto max-w-6xl px-4 py-4">
-          <Button
-            as={Link}
-            href="/programs"
-            variant="light"
-            startContent={<ChevronLeft className="h-4 w-4" />}
-            size="sm"
-          >
-            Back to Programs
-          </Button>
-        </div>
-      </div>
+      <ProgramDetailNavbar orgInstance={orgInstance} program={program} />
 
       <div className="container mx-auto max-w-6xl px-4 py-6">
         {/* Hero Section */}

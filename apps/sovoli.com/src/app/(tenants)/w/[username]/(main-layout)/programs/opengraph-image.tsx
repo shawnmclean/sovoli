@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import type { DocumentRequirement } from "~/modules/academics/types";
 
 export const size = {

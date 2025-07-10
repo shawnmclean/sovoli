@@ -12,7 +12,7 @@ import {
 
 import { PageAssembler } from "~/modules/websites/components/PageAssembler";
 import { Timeline } from "./components/Timeline";
-import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import { notFound } from "next/navigation";
 
 const retreiveOrgInstance = async (username: string) => {

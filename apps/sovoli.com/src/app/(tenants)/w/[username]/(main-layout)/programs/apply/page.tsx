@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { ApplyCard } from "./components/ApplyCard";
-import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
+import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
 import type { Metadata } from "next";
 import { Alert } from "@sovoli/ui/components/alert";
 
