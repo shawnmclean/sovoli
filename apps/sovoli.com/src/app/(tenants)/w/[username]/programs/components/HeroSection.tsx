@@ -1,17 +1,12 @@
-import { Button } from "@sovoli/ui/components/button";
-import { ChevronDownIcon, ClipboardEditIcon } from "lucide-react";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { ChevronDownIcon } from "lucide-react";
+
 import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface HeroSectionProps {
   orgInstance: OrgInstance;
 }
 
-export function HeroSection({ orgInstance }: HeroSectionProps) {
-  const whatsappNumber = orgInstance.org.locations
-    .find((location) => location.isPrimary)
-    ?.contacts.find((contact) => contact.type === "whatsapp")?.value;
-
+export function HeroSection({ orgInstance: _orgInstance }: HeroSectionProps) {
   const notices = [
     {
       icon: "📅",
@@ -52,28 +47,6 @@ export function HeroSection({ orgInstance }: HeroSectionProps) {
             <span>{text}</span>
           </div>
         ))}
-      </div>
-
-      {/* CTA */}
-      <div className="flex justify-center mb-12">
-        <Button
-          as={WhatsAppLink}
-          phoneNumber={whatsappNumber}
-          intent="Submit Application"
-          role="parent"
-          page="programs"
-          orgId={orgInstance.org.username}
-          orgName={orgInstance.org.name}
-          message="Hi, I'm interested in applying for one of your programs."
-          color="primary"
-          variant="solid"
-          radius="md"
-          size="lg"
-          className="px-6 py-3 text-base font-semibold"
-          startContent={<ClipboardEditIcon />}
-        >
-          Apply Now
-        </Button>
       </div>
 
       {/* Scroll Indicator */}

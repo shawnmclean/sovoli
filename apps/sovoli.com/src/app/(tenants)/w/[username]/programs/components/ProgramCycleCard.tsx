@@ -9,15 +9,12 @@ import {
 } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Link } from "@sovoli/ui/components/link";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { Image } from "@sovoli/ui/components/image";
 import type { OrgProgramCycle } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import {
-  CalendarIcon,
   ClockIcon,
-  InfoIcon,
-  SendIcon,
+  ArrowRightIcon,
   UserIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -30,24 +27,12 @@ export interface ProgramCycleCardProps {
 }
 
 export function ProgramCycleCard({
-  orgInstance,
+  orgInstance: _orgInstance,
   cycle,
 }: ProgramCycleCardProps) {
   const program = cycle.orgProgram;
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "";
-
-  const whatsapp = orgInstance.org.locations
-    .find((l) => l.isPrimary)
-    ?.contacts.find((c) => c.type === "whatsapp")?.value;
-
-  const cycleLabel =
-    cycle.academicCycle.customLabel ?? cycle.academicCycle.globalCycle?.label;
-
-  const startDate =
-    cycle.academicCycle.startDate ?? cycle.academicCycle.globalCycle?.startDate;
-  const endDate =
-    cycle.academicCycle.endDate ?? cycle.academicCycle.globalCycle?.endDate;
 
   const ageReq = cycle.computedRequirements.find((r) => r.type === "age");
   const formatAgeRange = (range: {
@@ -74,9 +59,9 @@ export function ProgramCycleCard({
 
   return (
     <Card className="overflow-hidden shadow transition hover:shadow-lg">
-      {/* Header Image + Title */}
-      <CardHeader className="p-0">
-        <div className="relative w-full h-48">
+      {/* Header Image */}
+      <CardHeader className="p-0 relative">
+        <div className="relative w-full h-52">
           <Image
             src={
               program.image ??
@@ -88,22 +73,24 @@ export function ProgramCycleCard({
             removeWrapper
           />
 
+          {/* Popular Badge */}
+          {program.isPopular && (
+            <div className="absolute top-3 left-3 z-20">
+              <div className="bg-background/60 backdrop-blur-sm border border-foreground/20 rounded-full px-3 py-1.5 shadow-lg">
+                <span className="text-xs font-medium text-foreground flex items-center gap-1">
+                  🔥 Popular
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* Carousel Navigation Buttons */}
-          <button className="absolute left-2 top-1/3 -translate-y-1/2 w-8 h-8 bg-background/50 hover:bg-background/70 backdrop-blur rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg z-10">
+          <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-background/50 hover:bg-background/70 backdrop-blur rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg z-10">
             <ChevronLeftIcon className="w-4 h-4 text-foreground" />
           </button>
-          <button className="absolute right-2 top-1/3 -translate-y-1/2 w-8 h-8 bg-background/50 hover:bg-background/70 backdrop-blur rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg z-10">
+          <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-background/50 hover:bg-background/70 backdrop-blur rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg z-10">
             <ChevronRightIcon className="w-4 h-4 text-foreground" />
           </button>
-
-          <div className="absolute inset-x-0 bottom-0 bg-background/70 backdrop-blur py-2 px-4 z-10">
-            <h2 className="text-lg font-bold text-foreground">{programName}</h2>
-            {program.tagline && (
-              <p className="text-sm text-foreground-500 mt-1">
-                {program.tagline}
-              </p>
-            )}
-          </div>
         </div>
       </CardHeader>
 
@@ -111,21 +98,22 @@ export function ProgramCycleCard({
 
       {/* Body */}
       <CardBody className="flex flex-col gap-4 pb-4">
+        {/* Program Title */}
+        <div>
+          <h2 className="text-xl font-bold text-foreground mb-1">
+            {programName}
+          </h2>
+          {program.tagline && (
+            <p className="text-sm text-foreground-500">{program.tagline}</p>
+          )}
+        </div>
+
         {/* Essential Details */}
         <div className="flex flex-col gap-2 text-sm text-foreground-500">
           {ageReq?.ageRange && (
             <div className="flex items-center gap-2">
               <UserIcon className="w-4 h-4" />
               <span>{formatAgeRange(ageReq.ageRange)}</span>
-            </div>
-          )}
-          {startDate && endDate && (
-            <div className="flex items-center gap-2">
-              <CalendarIcon className="w-4 h-4" />
-              <span>
-                {format(parseISO(startDate), "MMM d")}–
-                {format(parseISO(endDate), "MMM d, yyyy")}
-              </span>
             </div>
           )}
           {formatRegistrationDeadline() && (
@@ -155,29 +143,10 @@ export function ProgramCycleCard({
           color="primary"
           variant="solid"
           radius="md"
-          size="lg"
-          startContent={<InfoIcon />}
+          startContent={<ArrowRightIcon className="w-5 h-5" />}
         >
-          View Program Details
+          Learn More
         </Button>
-
-        <Button
-          as={WhatsAppLink}
-          phoneNumber={whatsapp}
-          message={`Hi, I'm interested in ${programName} (${cycleLabel}). Can you tell me more about pricing and availability?`}
-          fullWidth
-          color="default"
-          variant="bordered"
-          radius="md"
-          size="md"
-          startContent={<SendIcon />}
-        >
-          Ask About Pricing
-        </Button>
-
-        <p className="text-xs text-foreground-500 text-center">
-          📸 Real Classrooms &middot; 📚 Books &middot; 📖 Learning
-        </p>
       </CardFooter>
     </Card>
   );

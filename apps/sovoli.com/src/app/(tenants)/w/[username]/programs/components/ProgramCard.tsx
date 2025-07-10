@@ -2,25 +2,24 @@ import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Link } from "@sovoli/ui/components/link";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { Badge } from "@sovoli/ui/components/badge";
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { displayAgeRange } from "../utils";
 import { Image } from "@sovoli/ui/components/image";
-import { InfoIcon, SendIcon } from "lucide-react";
+import { ArrowRightIcon, UserIcon } from "lucide-react";
 
 export interface ProgramCardProps {
   orgInstance: OrgInstance;
   program: OrgProgram;
 }
 
-export function ProgramCard({ orgInstance, program }: ProgramCardProps) {
+export function ProgramCard({
+  orgInstance: _orgInstance,
+  program,
+}: ProgramCardProps) {
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "";
-
-  const whatsapp = orgInstance.org.locations
-    .find((l) => l.isPrimary)
-    ?.contacts.find((c) => c.type === "whatsapp")?.value;
 
   const ageReq =
     program.requirements?.find((r) => r.type === "age") ??
@@ -29,20 +28,31 @@ export function ProgramCard({ orgInstance, program }: ProgramCardProps) {
   return (
     <Card className="overflow-hidden shadow-md transition hover:shadow-lg">
       {/* 🖼️ Image */}
-      <Image
-        src={
-          program.image ?? program.standardProgramVersion?.program.image ?? ""
-        }
-        alt={programName}
-        width={800}
-        height={150}
-        className="h-48 w-full object-cover"
-      />
+      <div className="relative">
+        <Image
+          src={
+            program.image ?? program.standardProgramVersion?.program.image ?? ""
+          }
+          alt={programName}
+          width={800}
+          height={150}
+          className="h-52 w-full object-cover"
+        />
+
+        {/* Popular Badge */}
+        {program.isPopular && (
+          <div className="absolute top-3 left-3 z-20">
+            <Badge color="warning" variant="flat" size="sm">
+              🔥 Popular
+            </Badge>
+          </div>
+        )}
+      </div>
 
       <CardBody className="flex flex-col space-y-3">
         {/* 📛 Title + Description */}
         <div>
-          <h3 className="text-2xl font-semibold text-primary-800">
+          <h3 className="text-xl font-semibold text-primary-800">
             {programName}
           </h3>
           <p className="text-base leading-relaxed text-foreground-600">
@@ -54,9 +64,12 @@ export function ProgramCard({ orgInstance, program }: ProgramCardProps) {
 
         {/* 🎯 Age Range */}
         {ageReq?.ageRange && (
-          <Chip color="default" variant="dot">
-            Ages {displayAgeRange(ageReq.ageRange)}
-          </Chip>
+          <div className="flex items-center gap-2">
+            <UserIcon className="w-4 h-4 text-foreground-500" />
+            <Chip color="default" variant="dot">
+              Ages {displayAgeRange(ageReq.ageRange)}
+            </Chip>
+          </div>
         )}
       </CardBody>
 
@@ -70,24 +83,14 @@ export function ProgramCard({ orgInstance, program }: ProgramCardProps) {
           variant="solid"
           radius="md"
           size="lg"
-          startContent={<InfoIcon />}
+          startContent={<ArrowRightIcon className="w-5 h-5" />}
         >
-          View Program Details
+          Learn More
         </Button>
 
-        <Button
-          as={WhatsAppLink}
-          phoneNumber={whatsapp}
-          message={`Hi, I'm interested in ${programName}. Can you tell me more about pricing and availability?`}
-          fullWidth
-          color="default"
-          variant="bordered"
-          radius="md"
-          size="md"
-          startContent={<SendIcon />}
-        >
-          Ask About Pricing
-        </Button>
+        <p className="text-xs text-foreground-500 text-center">
+          📸 Real Classrooms &middot; 📚 Books &middot; 📖 Learning
+        </p>
       </CardFooter>
     </Card>
   );
