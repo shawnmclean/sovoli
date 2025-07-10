@@ -110,27 +110,29 @@ export function ProgramCycleCard({
 
         {/* Essential Details */}
         <div className="flex flex-col gap-2 text-sm text-foreground-500">
-          {ageReq?.ageRange && (
+          {/* Term Date and Age Range */}
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <UserIcon className="w-4 h-4" />
-              <span>{formatAgeRange(ageReq.ageRange)}</span>
+              <ClockIcon className="w-4 h-4" />
+              <span>
+                {cycle.academicCycle.customLabel ??
+                  cycle.academicCycle.globalCycle?.label ??
+                  "Academic Term"}
+              </span>
             </div>
-          )}
+            {ageReq?.ageRange && (
+              <div className="flex items-center gap-1 text-xs">
+                <UserIcon className="w-3 h-3" />
+                <span>{formatAgeRange(ageReq.ageRange)}</span>
+              </div>
+            )}
+          </div>
           {formatRegistrationDeadline() && (
             <div className="flex items-center gap-2 font-semibold text-destructive">
               <ClockIcon className="w-4 h-4" />
               <span>{formatRegistrationDeadline()}</span>
             </div>
           )}
-        </div>
-
-        {/* Program Description */}
-        <div className="text-sm text-foreground-600">
-          <p>
-            {program.description ??
-              program.standardProgramVersion?.program.description ??
-              "A comprehensive learning experience designed to foster growth and development."}
-          </p>
         </div>
       </CardBody>
 
