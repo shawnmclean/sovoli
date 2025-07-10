@@ -300,7 +300,7 @@ export default async function ProgramDetailsPage({
                 <CardHeader className="pb-4">
                   <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
                     <CalendarIcon className="h-6 w-6 text-primary" />
-                    Academic Cycles
+                    Term Information
                   </h2>
                 </CardHeader>
                 <CardBody className="space-y-6">
@@ -375,17 +375,6 @@ export default async function ProgramDetailsPage({
                               </p>
                             </div>
                           </div>
-
-                          {nextCycle.registrationPeriod.endDate && (
-                            <div className="mt-3 p-3 bg-warning-50 rounded-lg border border-warning-200">
-                              <p className="text-sm font-semibold text-warning-700">
-                                ⏰{" "}
-                                {formatRegistrationDeadline(
-                                  nextCycle.registrationPeriod.endDate,
-                                )}
-                              </p>
-                            </div>
-                          )}
                         </div>
                       )}
                     </div>
@@ -450,57 +439,28 @@ export default async function ProgramDetailsPage({
                 <CardBody className="space-y-6">
                   {nextCycle && (
                     <div className="space-y-4">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Badge color="success" variant="flat" size="sm">
-                          Next Cycle Pricing
-                        </Badge>
-                        <span className="text-sm font-medium text-success-900">
-                          {nextCycle.academicCycle.customLabel ??
-                            nextCycle.academicCycle.globalCycle?.label ??
-                            "Upcoming Cycle"}
-                        </span>
-                      </div>
-
-                      <div className="grid gap-4 md:grid-cols-2">
-                        {nextCycle.pricingPackage.pricingItems
-                          .filter((item) => item.purpose === "registration")
-                          .map((item) => (
-                            <div key={item.id} className="space-y-2">
-                              <h4 className="font-semibold text-foreground">
-                                Registration Fee
-                              </h4>
-                              <ProgramPriceCard
-                                pricingPackage={nextCycle.pricingPackage}
-                                pricingItemId={item.id}
-                              />
-                            </div>
-                          ))}
-
+                      <div className="grid gap-6 md:grid-cols-2">
                         {nextCycle.pricingPackage.pricingItems
                           .filter((item) => item.purpose === "tuition")
                           .map((item) => (
                             <div key={item.id} className="space-y-2">
-                              <h4 className="font-semibold text-foreground">
-                                Tuition Fee
-                              </h4>
                               <ProgramPriceCard
                                 pricingPackage={nextCycle.pricingPackage}
                                 pricingItemId={item.id}
                               />
                             </div>
                           ))}
-                      </div>
 
-                      <div className="mt-4 p-4 bg-default-50 rounded-lg">
-                        <h4 className="font-semibold text-foreground mb-2">
-                          💡 Payment Options
-                        </h4>
-                        <ul className="text-sm text-foreground-600 space-y-1">
-                          <li>• Flexible payment plans available</li>
-                          <li>• Family discounts for multiple children</li>
-                          <li>• Early bird discounts for early registration</li>
-                          <li>• Sibling discounts available</li>
-                        </ul>
+                        {nextCycle.pricingPackage.pricingItems
+                          .filter((item) => item.purpose === "registration")
+                          .map((item) => (
+                            <div key={item.id} className="space-y-2">
+                              <ProgramPriceCard
+                                pricingPackage={nextCycle.pricingPackage}
+                                pricingItemId={item.id}
+                              />
+                            </div>
+                          ))}
                       </div>
                     </div>
                   )}
@@ -596,21 +556,21 @@ export default async function ProgramDetailsPage({
               </Card>
             )}
 
-            {/* Program Description */}
-            {programDescription && (
-              <Card className="overflow-hidden">
-                <CardHeader className="pb-4">
-                  <h2 className="text-2xl font-bold text-foreground">
-                    About This Program
-                  </h2>
-                </CardHeader>
-                <CardBody>
-                  <div className="prose prose-sm max-w-none text-foreground-700">
-                    <p className="leading-relaxed">{programDescription}</p>
-                  </div>
-                </CardBody>
-              </Card>
-            )}
+            <Card className="overflow-hidden">
+              <CardHeader className="pb-4">
+                <h2 className="text-xl font-bold text-foreground">
+                  Your Teachers
+                </h2>
+              </CardHeader>
+              <CardBody>
+                <div className="prose prose-sm max-w-none text-foreground-700">
+                  Teachers for this program will be added soon.
+                  <Link href={`/workforce/people`}>
+                    View all our staff here
+                  </Link>
+                </div>
+              </CardBody>
+            </Card>
           </div>
 
           {/* Sidebar */}
@@ -618,116 +578,23 @@ export default async function ProgramDetailsPage({
             {/* Quick Actions */}
             <Card className="overflow-hidden">
               <CardHeader className="pb-4">
-                <h3 className="text-lg font-bold text-foreground">
-                  Take Action
+                <h3 className="text-xl font-bold text-foreground">
+                  Your School
                 </h3>
               </CardHeader>
               <CardBody className="space-y-4">
-                {nextCycle && (
-                  <Button
-                    as={WhatsAppLink}
-                    phoneNumber={whatsapp}
-                    message={`Hi, I'm interested in ${programName} (${nextCycle.academicCycle.customLabel ?? nextCycle.academicCycle.globalCycle?.label ?? "upcoming cycle"}). Can you help me with registration and payment options?`}
-                    fullWidth
-                    color="primary"
-                    variant="solid"
-                    size="lg"
-                    startContent={<SendIcon />}
-                  >
-                    Start Registration{" "}
-                    {program.isPopular && (
-                      <span>
-                        - 🔥{" "}
-                        <strong>
-                          {program.slug === "pre-nursery" ? "8" : "12"}
-                        </strong>{" "}
-                        spots left
-                      </span>
-                    )}
-                  </Button>
-                )}
-
+                Facilities and other information coming soon.
                 <Button
-                  as={Link}
-                  href="/programs"
+                  as={WhatsAppLink}
+                  phoneNumber={whatsapp}
+                  message={`Hi, I'm interested in ${programName}`}
                   fullWidth
-                  color="default"
-                  variant="bordered"
-                  size="md"
-                  startContent={<InfoIcon />}
+                  color="primary"
+                  variant="solid"
+                  size="lg"
                 >
-                  View All Programs
+                  Message Us
                 </Button>
-
-                <div className="text-center">
-                  <p className="text-xs text-foreground-500">
-                    📸 Real Classrooms &middot; 📚 Books &middot; 📖 Learning
-                  </p>
-                </div>
-              </CardBody>
-            </Card>
-
-            {/* Contact Information */}
-            <Card className="overflow-hidden">
-              <CardHeader className="pb-4">
-                <h3 className="text-lg font-bold text-foreground">
-                  Contact Us
-                </h3>
-              </CardHeader>
-              <CardBody className="space-y-4">
-                {phone && (
-                  <div className="flex items-center gap-3">
-                    <PhoneIcon className="h-4 w-4 text-primary" />
-                    <span className="text-sm text-foreground-700">{phone}</span>
-                  </div>
-                )}
-
-                {email && (
-                  <div className="flex items-center gap-3">
-                    <MailIcon className="h-4 w-4 text-primary" />
-                    <span className="text-sm text-foreground-700">{email}</span>
-                  </div>
-                )}
-
-                {formattedAddress && (
-                  <div className="flex items-start gap-3">
-                    <MapPinIcon className="h-4 w-4 text-primary mt-0.5" />
-                    <span className="text-sm text-foreground-700">
-                      {formattedAddress}
-                    </span>
-                  </div>
-                )}
-              </CardBody>
-            </Card>
-
-            {/* Program Stats */}
-            <Card className="overflow-hidden">
-              <CardHeader className="pb-4">
-                <h3 className="text-lg font-bold text-foreground">
-                  Program Overview
-                </h3>
-              </CardHeader>
-              <CardBody className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center p-3 bg-primary-50 rounded-lg">
-                    <div className="text-2xl font-bold text-primary">
-                      {programCycles.length}
-                    </div>
-                    <div className="text-xs text-foreground-600">
-                      Available Cycles
-                    </div>
-                  </div>
-                  <div className="text-center p-3 bg-secondary-50 rounded-lg">
-                    <div className="text-2xl font-bold text-secondary">
-                      {program.requirements?.length ??
-                        program.standardProgramVersion?.requirements?.length ??
-                        0}
-                    </div>
-                    <div className="text-xs text-foreground-600">
-                      Requirements
-                    </div>
-                  </div>
-                </div>
               </CardBody>
             </Card>
           </div>
