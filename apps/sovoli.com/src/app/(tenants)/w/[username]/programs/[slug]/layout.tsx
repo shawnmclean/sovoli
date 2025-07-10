@@ -4,6 +4,7 @@ import { Footer } from "../../components/footer/Footer";
 import { ProgramDetailNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
+import { Alert } from "@sovoli/ui/components/alert";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -67,6 +68,13 @@ export default async function Layout({ children, params }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <ProgramDetailNavbar orgInstance={orgInstance} program={program} />
+      <Alert
+        className="hidden md:flex"
+        variant="flat"
+        color="warning"
+        title="Website optimized for mobile devices. Use your phone please."
+        description="We're working on a better experience for desktop users."
+      />
       {children}
 
       <Footer orgInstance={orgInstance} />
