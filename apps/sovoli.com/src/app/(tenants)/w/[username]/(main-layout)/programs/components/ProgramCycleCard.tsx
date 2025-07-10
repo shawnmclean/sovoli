@@ -17,6 +17,7 @@ import {
   UserIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  GraduationCapIcon,
 } from "lucide-react";
 import { format, parseISO } from "date-fns";
 
@@ -121,6 +122,12 @@ export function ProgramCycleCard({
             <div className="flex items-center gap-2">
               <UserIcon className="w-4 h-4" />
               <span>{formatAgeRange(ageReq.ageRange)}</span>
+            </div>
+          )}
+          {program.outcome && (
+            <div className="flex items-center gap-2">
+              <GraduationCapIcon className="w-4 h-4" />
+              <span>{program.outcome}</span>
             </div>
           )}
           {/* Term Info */}

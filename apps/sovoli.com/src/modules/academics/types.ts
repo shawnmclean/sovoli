@@ -65,6 +65,7 @@ export interface OrgProgram {
 
   name?: string; // "Nursery" (can override)
   tagline?: string;
+  outcome?: string;
   slug: string; // "nursery"
   description?: string; // Custom or default
   image?: string;
