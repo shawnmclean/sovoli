@@ -9,12 +9,14 @@ import {
 } from "@sovoli/ui/components/carousel";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export interface ProgramCarouselProps {
+  href: string;
   program: OrgProgram;
 }
 
-export function ProgramCarousel({ program }: ProgramCarouselProps) {
+export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
   const photos = program.photos ?? [];
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
@@ -53,12 +55,14 @@ export function ProgramCarousel({ program }: ProgramCarouselProps) {
           {photos.map((photo, index) => (
             <CarouselItem key={index} className="basis-full pl-0 h-full">
               <div className="w-full h-full aspect-square relative">
-                <Image
-                  src={photo.url}
-                  alt={`Program photo ${index + 1}`}
-                  fill
-                  className="object-cover rounded-lg"
-                />
+                <Link href={href}>
+                  <Image
+                    src={photo.url}
+                    alt={`Program photo ${index + 1}`}
+                    fill
+                    className="object-cover rounded-lg"
+                  />
+                </Link>
               </div>
             </CarouselItem>
           ))}

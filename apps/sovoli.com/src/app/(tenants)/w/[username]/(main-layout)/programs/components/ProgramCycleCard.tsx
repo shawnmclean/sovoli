@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-} from "@sovoli/ui/components/card";
-import { Divider } from "@sovoli/ui/components/divider";
+import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+
 import { Link } from "@sovoli/ui/components/link";
 import type { OrgProgramCycle } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -59,75 +54,73 @@ export function ProgramCycleCard({
   };
 
   return (
-    <Card
-      as={Link}
-      href={`/programs/${program.slug}`}
-      className="overflow-hidden shadow transition hover:shadow-lg cursor-pointer group"
-    >
+    <Card className="overflow-hidden shadow transition hover:shadow-lg cursor-pointer group">
       {/* Header Image */}
       <CardHeader className="p-0 relative">
         <div className="relative w-full min-h-[300px] overflow-hidden">
           <div className="w-full h-full">
-            <ProgramCarousel program={program} />
+            <ProgramCarousel
+              program={program}
+              href={`/programs/${program.slug}`}
+            />
           </div>
 
           {/* Popular Badge */}
           {program.isPopular && (
-            <div className="absolute top-3 left-3 z-20">
+            <Link
+              href={`/programs/${program.slug}`}
+              className="absolute top-3 left-3 z-20"
+            >
               <div className="bg-background/60 backdrop-blur-sm border border-foreground/20 rounded-full px-3 py-1.5 shadow-lg">
                 <span className="text-xs font-medium text-foreground flex items-center gap-1">
                   🔥 Popular
                 </span>
               </div>
-            </div>
+            </Link>
           )}
         </div>
       </CardHeader>
 
-      <Divider />
-
       {/* Body */}
-      <CardBody className="flex flex-col gap-4 pb-4">
-        {/* Program Title */}
-        <div>
-          <h2 className="text-xl font-bold text-foreground mb-1">
-            {programName}
-          </h2>
-          {program.tagline && (
-            <p className="text-sm text-foreground-500">{program.tagline}</p>
-          )}
-        </div>
-
-        {/* Essential Details */}
-        <div className="flex flex-col gap-2 text-sm text-foreground-500">
-          {/* Age Range */}
-          {ageReq?.ageRange && (
+      <CardBody>
+        <Link
+          href={`/programs/${program.slug}`}
+          className="flex flex-col gap-4"
+        >
+          <div className="flex flex-col gap-2 text-sm text-foreground-500">
+            <h2 className="text-xl font-bold text-foreground mb-1">
+              {programName}
+            </h2>
+            {program.tagline && (
+              <p className="text-sm text-foreground-500 mb-1">
+                {program.tagline}
+              </p>
+            )}
+            {/* Age Range */}
+            {ageReq?.ageRange && (
+              <div className="flex items-center gap-2">
+                <UserIcon className="w-4 h-4" />
+                <span>{formatAgeRange(ageReq.ageRange)}</span>
+              </div>
+            )}
+            {program.outcome && (
+              <div className="flex items-center gap-2">
+                <GraduationCapIcon className="w-4 h-4" />
+                <span>{program.outcome}</span>
+              </div>
+            )}
+            {/* Term Info */}
             <div className="flex items-center gap-2">
-              <UserIcon className="w-4 h-4" />
-              <span>{formatAgeRange(ageReq.ageRange)}</span>
+              <ClockIcon className="w-4 h-4" />
+              <span className="font-medium">{formatTermInfo()}</span>
             </div>
-          )}
-          {program.outcome && (
-            <div className="flex items-center gap-2">
-              <GraduationCapIcon className="w-4 h-4" />
-              <span>{program.outcome}</span>
-            </div>
-          )}
-          {/* Term Info */}
-          <div className="flex items-center gap-2">
-            <ClockIcon className="w-4 h-4" />
-            <span className="font-medium">{formatTermInfo()}</span>
           </div>
-        </div>
+          <div className="flex items-center gap-1 text-sm text-foreground-500 group-hover:text-foreground transition-colors">
+            <span>Learn more</span>
+            <ArrowRightIcon className="w-4 h-4" />
+          </div>
+        </Link>
       </CardBody>
-
-      {/* Footer Actions */}
-      <CardFooter className="flex flex-col items-center gap-3 pt-0">
-        <div className="flex items-center gap-1 text-sm text-foreground-500 group-hover:text-foreground transition-colors">
-          <span>Learn more</span>
-          <ArrowRightIcon className="w-4 h-4" />
-        </div>
-      </CardFooter>
     </Card>
   );
 }
