@@ -39,5 +39,33 @@ export function PostHogPageView(): null {
     }
   }, [posthog, session]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let maxScroll = 0;
+    const thresholds = [25, 50, 75, 100];
+    const fired = new Set<number>();
+
+    function handleScroll() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const percent = Math.round((scrollTop / docHeight) * 100);
+
+      if (percent > maxScroll) maxScroll = percent;
+
+      for (const threshold of thresholds) {
+        if (percent >= threshold && !fired.has(threshold)) {
+          posthog.capture("scrolled_percent", {
+            percent: threshold,
+          });
+          fired.add(threshold);
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname, posthog]);
+
   return null;
 }
