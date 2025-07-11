@@ -11,6 +11,12 @@ import {
   GY_PRIMARY_V1,
   GY_SECONDARY_V1,
 } from "~/modules/data/academics/guyana/programs";
+import {
+  NURSERY_PHOTOS,
+  PRE_NURSERY_PHOTOS,
+  PRIMARY_PHOTOS,
+  SECONDARY_PHOTOS,
+} from "./photos";
 
 // #region programs
 
@@ -21,6 +27,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
   outcome: "School Readiness",
   description: "Strong foundational learning in a nurturing environment",
   image: "/orgs/private-schools/guyana/modernacademy/programs/pre-nursery.webp",
+  photos: PRE_NURSERY_PHOTOS,
   requirements: [
     {
       type: "age",
@@ -39,6 +46,7 @@ export const MAGY_NURSERY_PROGRAM: OrgProgram = {
   outcome: "Early Literacy & Numeracy",
   description: "Engaging curriculum fostering critical thinking and creativity",
   image: "/orgs/private-schools/guyana/modernacademy/programs/nursery.webp",
+  photos: NURSERY_PHOTOS,
   isPopular: true,
 };
 
@@ -49,6 +57,7 @@ export const MAGY_PRIMARY_PROGRAM: OrgProgram = {
   outcome: "NGSA (Grade 6 Exam)",
   description: "Strong foundational learning in a nurturing environment",
   image: "/orgs/private-schools/guyana/modernacademy/programs/primary.webp",
+  photos: PRIMARY_PHOTOS,
 };
 
 export const MAGY_SECONDARY_PROGRAM: OrgProgram = {
@@ -58,6 +67,7 @@ export const MAGY_SECONDARY_PROGRAM: OrgProgram = {
   outcome: "CXC, GCE O-Level ",
   description: "Engaging curriculum fostering critical thinking and creativity",
   image: "/orgs/private-schools/guyana/modernacademy/programs/secondary.webp",
+  photos: SECONDARY_PHOTOS,
 };
 
 // #endregion

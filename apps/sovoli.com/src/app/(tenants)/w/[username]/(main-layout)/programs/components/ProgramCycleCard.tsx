@@ -8,18 +8,16 @@ import {
 } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Link } from "@sovoli/ui/components/link";
-import { Image } from "@sovoli/ui/components/image";
 import type { OrgProgramCycle } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import {
   ClockIcon,
   ArrowRightIcon,
   UserIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
   GraduationCapIcon,
 } from "lucide-react";
 import { format, parseISO } from "date-fns";
+import { ProgramCarousel } from "./ProgramCarousel";
 
 export interface ProgramCycleCardProps {
   orgInstance: OrgInstance;
@@ -68,17 +66,10 @@ export function ProgramCycleCard({
     >
       {/* Header Image */}
       <CardHeader className="p-0 relative">
-        <div className="relative w-full h-52">
-          <Image
-            src={
-              program.image ??
-              program.standardProgramVersion?.program.image ??
-              ""
-            }
-            alt={programName}
-            className="w-full h-full object-cover"
-            removeWrapper
-          />
+        <div className="relative w-full min-h-[300px] overflow-hidden">
+          <div className="w-full h-full">
+            <ProgramCarousel program={program} />
+          </div>
 
           {/* Popular Badge */}
           {program.isPopular && (
@@ -90,14 +81,6 @@ export function ProgramCycleCard({
               </div>
             </div>
           )}
-
-          {/* Carousel Navigation Buttons */}
-          <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-background/50 hover:bg-background/70 backdrop-blur rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg z-10">
-            <ChevronLeftIcon className="w-4 h-4 text-foreground" />
-          </button>
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-background/50 hover:bg-background/70 backdrop-blur rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg z-10">
-            <ChevronRightIcon className="w-4 h-4 text-foreground" />
-          </button>
         </div>
       </CardHeader>
 

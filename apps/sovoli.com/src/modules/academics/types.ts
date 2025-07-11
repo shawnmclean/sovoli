@@ -68,12 +68,32 @@ export interface OrgProgram {
   outcome?: string;
   slug: string; // "nursery"
   description?: string; // Custom or default
+  // TODO: remove when we migrate to photos
   image?: string;
+  photos?: Photo[];
 
   // Optional local overrides
   requirements?: ProgramRequirement[];
   notes?: string;
   isPopular?: boolean;
+}
+
+// TODO: move to core or photos module
+export interface Photo {
+  category:
+    | "environment"
+    | "classroom"
+    | "activities"
+    | "events"
+    | "awards"
+    | "default";
+  url: string;
+  caption?: string;
+  alt?: string;
+
+  // TODO: for when we move the photos to cloudinary
+  width?: number;
+  height?: number;
 }
 
 export type ProgramRequirement = AgeRequirement | DocumentRequirement;
