@@ -334,92 +334,6 @@ export default async function ProgramDetailsPage({
               </Card>
             )}
 
-            {/* Pricing Information */}
-            {programCycles.length > 0 && (
-              <Card className="overflow-hidden">
-                <CardHeader className="pb-4">
-                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                    <span className="text-2xl">💰</span>
-                    Pricing & Fees
-                  </h2>
-                </CardHeader>
-                <CardBody className="space-y-6">
-                  {nextCycle && (
-                    <div className="space-y-4">
-                      <div className="grid gap-6 md:grid-cols-2">
-                        {nextCycle.pricingPackage.pricingItems
-                          .filter((item) => item.purpose === "tuition")
-                          .map((item) => (
-                            <div key={item.id} className="space-y-2">
-                              <ProgramPriceCard
-                                pricingPackage={nextCycle.pricingPackage}
-                                pricingItemId={item.id}
-                              />
-                            </div>
-                          ))}
-
-                        {nextCycle.pricingPackage.pricingItems
-                          .filter((item) => item.purpose === "registration")
-                          .map((item) => (
-                            <div key={item.id} className="space-y-2">
-                              <ProgramPriceCard
-                                pricingPackage={nextCycle.pricingPackage}
-                                pricingItemId={item.id}
-                              />
-                            </div>
-                          ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {currentCycle && (
-                    <div className="space-y-4 pt-6 border-t border-default-200">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Badge color="primary" variant="flat" size="sm">
-                          Current Cycle Pricing
-                        </Badge>
-                        <span className="text-sm font-medium text-primary-900">
-                          {currentCycle.academicCycle.customLabel ??
-                            currentCycle.academicCycle.globalCycle?.label ??
-                            "Current Cycle"}
-                        </span>
-                      </div>
-
-                      <div className="grid gap-4 md:grid-cols-2">
-                        {currentCycle.pricingPackage.pricingItems
-                          .filter((item) => item.purpose === "registration")
-                          .map((item) => (
-                            <div key={item.id} className="space-y-2">
-                              <h4 className="font-semibold text-foreground">
-                                Registration Fee
-                              </h4>
-                              <ProgramPriceCard
-                                pricingPackage={currentCycle.pricingPackage}
-                                pricingItemId={item.id}
-                              />
-                            </div>
-                          ))}
-
-                        {currentCycle.pricingPackage.pricingItems
-                          .filter((item) => item.purpose === "tuition")
-                          .map((item) => (
-                            <div key={item.id} className="space-y-2">
-                              <h4 className="font-semibold text-foreground">
-                                Tuition Fee
-                              </h4>
-                              <ProgramPriceCard
-                                pricingPackage={currentCycle.pricingPackage}
-                                pricingItemId={item.id}
-                              />
-                            </div>
-                          ))}
-                      </div>
-                    </div>
-                  )}
-                </CardBody>
-              </Card>
-            )}
-
             {/* Requirements */}
             {((program.requirements?.length ?? 0) > 0 ||
               (program.standardProgramVersion?.requirements?.length ?? 0) >
@@ -505,6 +419,92 @@ export default async function ProgramDetailsPage({
               </CardBody>
             </Card>
           </div>
+
+          {/* Pricing Information */}
+          {programCycles.length > 0 && (
+            <Card className="overflow-hidden">
+              <CardHeader className="pb-4">
+                <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                  <span className="text-2xl">💰</span>
+                  Pricing & Fees
+                </h2>
+              </CardHeader>
+              <CardBody className="space-y-6">
+                {nextCycle && (
+                  <div className="space-y-4">
+                    <div className="grid gap-6 md:grid-cols-2">
+                      {nextCycle.pricingPackage.pricingItems
+                        .filter((item) => item.purpose === "tuition")
+                        .map((item) => (
+                          <div key={item.id} className="space-y-2">
+                            <ProgramPriceCard
+                              pricingPackage={nextCycle.pricingPackage}
+                              pricingItemId={item.id}
+                            />
+                          </div>
+                        ))}
+
+                      {nextCycle.pricingPackage.pricingItems
+                        .filter((item) => item.purpose === "registration")
+                        .map((item) => (
+                          <div key={item.id} className="space-y-2">
+                            <ProgramPriceCard
+                              pricingPackage={nextCycle.pricingPackage}
+                              pricingItemId={item.id}
+                            />
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )}
+
+                {currentCycle && (
+                  <div className="space-y-4 pt-6 border-t border-default-200">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Badge color="primary" variant="flat" size="sm">
+                        Current Cycle Pricing
+                      </Badge>
+                      <span className="text-sm font-medium text-primary-900">
+                        {currentCycle.academicCycle.customLabel ??
+                          currentCycle.academicCycle.globalCycle?.label ??
+                          "Current Cycle"}
+                      </span>
+                    </div>
+
+                    <div className="grid gap-4 md:grid-cols-2">
+                      {currentCycle.pricingPackage.pricingItems
+                        .filter((item) => item.purpose === "registration")
+                        .map((item) => (
+                          <div key={item.id} className="space-y-2">
+                            <h4 className="font-semibold text-foreground">
+                              Registration Fee
+                            </h4>
+                            <ProgramPriceCard
+                              pricingPackage={currentCycle.pricingPackage}
+                              pricingItemId={item.id}
+                            />
+                          </div>
+                        ))}
+
+                      {currentCycle.pricingPackage.pricingItems
+                        .filter((item) => item.purpose === "tuition")
+                        .map((item) => (
+                          <div key={item.id} className="space-y-2">
+                            <h4 className="font-semibold text-foreground">
+                              Tuition Fee
+                            </h4>
+                            <ProgramPriceCard
+                              pricingPackage={currentCycle.pricingPackage}
+                              pricingItemId={item.id}
+                            />
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )}
+              </CardBody>
+            </Card>
+          )}
         </div>
       </div>
     </>
