@@ -21,6 +21,7 @@ import { ProgramPriceCard } from "../../(main-layout)/programs/components/Progra
 import { displayAgeRange } from "../../(main-layout)/programs/utils";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
+import { ProgramHero } from "./components/ProgramHero";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -80,9 +81,6 @@ export default async function ProgramDetailsPage({
     program.description ??
     program.standardProgramVersion?.program.description ??
     "";
-  const programImage =
-    program.image ?? program.standardProgramVersion?.program.image ?? "";
-  const programTagline = "";
 
   // Get cycles for this program
   const programCycles =
@@ -130,41 +128,9 @@ export default async function ProgramDetailsPage({
   return (
     <>
       <ProgramGalleryCarousel program={program} />
+      <ProgramHero orgInstance={orgInstance} program={program} />
 
       <div className="container mx-auto max-w-6xl px-4 py-6">
-        {/* Hero Section */}
-        <div className="mb-8">
-          <div className="rounded-2xl bg-gradient-to-br from-primary-50 to-secondary-50 p-8">
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              {program.isPopular && (
-                <Badge color="warning" variant="flat" size="sm">
-                  🔥 Popular Choice
-                </Badge>
-              )}
-              {nextCycle && (
-                <Badge color="success" variant="flat" size="sm">
-                  Enrolling Now
-                </Badge>
-              )}
-              {currentCycle && (
-                <Badge color="primary" variant="flat" size="sm">
-                  Currently Running
-                </Badge>
-              )}
-            </div>
-
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-              {programName}
-            </h1>
-
-            <p className="text-lg text-foreground-600 mb-4">{programTagline}</p>
-
-            <p className="text-foreground-700 leading-relaxed max-w-3xl">
-              {programDescription}
-            </p>
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
