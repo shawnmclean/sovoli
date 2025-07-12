@@ -10,17 +10,12 @@ import {
   CalendarIcon,
   ClockIcon,
   UserIcon,
-  SendIcon,
-  InfoIcon,
-  MapPinIcon,
-  PhoneIcon,
-  MailIcon,
   StarIcon,
   UsersIcon,
   BookOpenIcon,
   GraduationCapIcon,
 } from "lucide-react";
-import { differenceInDays, format, startOfDay, parseISO } from "date-fns";
+import { parseISO } from "date-fns";
 
 import { ProgramPriceCard } from "../../(main-layout)/programs/components/ProgramPriceCard";
 import { displayAgeRange } from "../../(main-layout)/programs/utils";
@@ -66,18 +61,6 @@ const getCycleStatus = (startDate: string, endDate: string) => {
   if (now < start) return "upcoming";
   if (now >= start && now <= end) return "current";
   return "completed";
-};
-
-// Helper function to format registration deadline
-const formatRegistrationDeadline = (endDate: string) => {
-  const end = parseISO(endDate);
-  const now = startOfDay(new Date());
-  const days = differenceInDays(end, now);
-  if (days < 0) return "Registration closed";
-  if (days === 0) return "Registration closes today";
-  if (days === 1) return "Registration closes tomorrow";
-  if (days <= 7) return `Registration closes in ${days} days`;
-  return `Registration closes ${format(end, "MMM d, yyyy")}`;
 };
 
 export default async function ProgramDetailsPage({
@@ -142,36 +125,6 @@ export default async function ProgramDetailsPage({
   const whatsapp = primaryLocation?.contacts.find(
     (c) => c.type === "whatsapp",
   )?.value;
-  const phone = primaryLocation?.contacts.find(
-    (c) => c.type === "phone",
-  )?.value;
-  const email = primaryLocation?.contacts.find(
-    (c) => c.type === "email",
-  )?.value;
-
-  // Format address properly
-  const formatAddress = (
-    address:
-      | {
-          line1?: string;
-          line2?: string;
-          city?: string;
-          state?: string;
-          countryCode?: string;
-        }
-      | null
-      | undefined,
-  ) => {
-    if (!address) return null;
-    const parts = [];
-    if (address.line1) parts.push(address.line1);
-    if (address.line2) parts.push(address.line2);
-    if (address.city) parts.push(address.city);
-    if (address.state) parts.push(address.state);
-    if (address.countryCode) parts.push(address.countryCode);
-    return parts.join(", ");
-  };
-  const formattedAddress = formatAddress(primaryLocation?.address);
 
   return (
     <>
