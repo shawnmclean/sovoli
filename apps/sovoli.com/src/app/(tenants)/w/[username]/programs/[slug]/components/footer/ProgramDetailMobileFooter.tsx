@@ -108,7 +108,7 @@ export function ProgramDetailMobileFooter({
     return (
       <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
         <div className="flex w-full items-center justify-between py-3 gap-4">
-          <div className="flex flex-1 items-center">Not Available</div>
+          <div className="flex flex-1 items-center">July 20 - 10AM</div>
           <div className="flex-shrink-0">
             <Button
               as={WhatsAppLink}
