@@ -3,6 +3,18 @@ import type { AcademicModule } from "~/modules/academics/types";
 export const FITRIGHT_ACADEMIC: AcademicModule = {
   programs: [
     {
+      name: "Intro to Sewing: Make Your Own Bag",
+      slug: "sew-your-own-bag",
+      description:
+        "A hands-on introduction to sewing for complete beginners. In just one day, you’ll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
+      photos: [
+        {
+          category: "default",
+          url: "/orgs/vocational-training/guyana/fitright/photos/1.webp",
+        },
+      ],
+    },
+    {
       name: "Elementary Sewing",
 
       slug: "elementary-sewing",
