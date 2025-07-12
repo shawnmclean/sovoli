@@ -20,6 +20,7 @@ import { parseISO } from "date-fns";
 import { ProgramPriceCard } from "../../(main-layout)/programs/components/ProgramPriceCard";
 import { displayAgeRange } from "../../(main-layout)/programs/utils";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
+import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -128,16 +129,7 @@ export default async function ProgramDetailsPage({
 
   return (
     <>
-      {/* Edge-to-edge top image with 16:9 aspect ratio */}
-      <div className="w-full aspect-video relative">
-        <Image
-          src={programImage}
-          alt="Program background"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+      <ProgramGalleryCarousel program={program} />
 
       <div className="container mx-auto max-w-6xl px-4 py-6">
         {/* Hero Section */}
