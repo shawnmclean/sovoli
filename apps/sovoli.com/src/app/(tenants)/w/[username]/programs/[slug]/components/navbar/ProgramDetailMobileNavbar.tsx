@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronLeftIcon, HeartIcon } from "lucide-react";
+import { ChevronLeftIcon } from "lucide-react";
 import {
   Navbar,
   NavbarContent,
@@ -7,7 +7,6 @@ import {
 } from "@sovoli/ui/components/navbar";
 import { Button } from "@sovoli/ui/components/button";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
 import type { OrgProgram } from "~/modules/academics/types";
 
@@ -23,16 +22,8 @@ export function ProgramDetailNavbar({
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "";
 
-  const whatsappNumber = orgInstance.org.locations
-    .find((location) => location.isPrimary)
-    ?.contacts.find((contact) => contact.type === "whatsapp")?.value;
-
   return (
-    <Navbar
-      maxWidth="full"
-      position="static"
-      className="bg-transparent border-none backdrop-blur-none absolute top-0 left-0 right-0 z-10"
-    >
+    <Navbar maxWidth="full" position="sticky">
       <NavbarContent justify="start">
         <NavbarItem>
           <Button
@@ -54,24 +45,6 @@ export function ProgramDetailNavbar({
             title={programName}
             text={`Check out ${programName} on ${orgInstance.org.name}`}
           />
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            variant="solid"
-            isIconOnly
-            as={WhatsAppLink}
-            phoneNumber={whatsappNumber}
-            message={`I'd like to add ${programName} to my wishlist`}
-            radius="full"
-            intent="Add to Wishlist"
-            role="parent"
-            page="details"
-            orgId={orgInstance.org.username}
-            orgName={orgInstance.org.name}
-            funnel="discovery"
-          >
-            <HeartIcon />
-          </Button>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
