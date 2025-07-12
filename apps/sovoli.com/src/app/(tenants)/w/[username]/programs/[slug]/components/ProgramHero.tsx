@@ -93,37 +93,6 @@ export const ProgramHero = ({ orgInstance, program }: ProgramHeroProps) => {
               </p>
             )}
 
-            {/* Key Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div className="flex items-center gap-3 p-4 bg-background-100 rounded-xl border border-background-200">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                  <UsersIcon className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-foreground-600">
-                    Age Range
-                  </p>
-                  <p className="text-lg font-semibold text-foreground">
-                    {ageText}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 p-4 bg-background-100 rounded-xl border border-background-200">
-                <div className="flex-shrink-0 w-10 h-10 bg-success-100 rounded-lg flex items-center justify-center">
-                  <StarIcon className="h-5 w-5 text-success" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-foreground-600">
-                    Quality
-                  </p>
-                  <p className="text-lg font-semibold text-foreground">
-                    Excellence
-                  </p>
-                </div>
-              </div>
-            </div>
-
             {/* Trust Indicators */}
             <div className="flex items-center gap-6 pt-6 text-sm text-foreground-500">
               <div className="flex items-center gap-2">
