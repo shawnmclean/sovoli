@@ -17,6 +17,8 @@ interface ShareButtonProps {
     | "faded"
     | "shadow"
     | "ghost";
+  children?: React.ReactNode;
+  isIconOnly?: boolean;
 }
 
 export function ShareButton({
@@ -25,6 +27,8 @@ export function ShareButton({
   url,
   className,
   variant = "flat",
+  children,
+  isIconOnly = true,
 }: ShareButtonProps) {
   const [isSharing, setIsSharing] = useState(false);
 
@@ -58,13 +62,14 @@ export function ShareButton({
   return (
     <Button
       variant={variant}
-      isIconOnly
+      isIconOnly={isIconOnly}
       radius="full"
       onPress={handleShare}
       isLoading={isSharing}
       className={className}
+      startContent={isSharing ? null : <ShareIcon size={18} />}
     >
-      <ShareIcon />
+      {children}
     </Button>
   );
 }
