@@ -13,9 +13,12 @@ import {
   ModalContent,
   ModalBody,
   useDisclosure,
+  ModalHeader,
 } from "@sovoli/ui/components/dialog";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { Button } from "@sovoli/ui/components/button";
+import { ChevronLeftIcon } from "lucide-react";
 
 export interface ProgramGalleryCarouselProps {
   program: OrgProgram;
@@ -86,8 +89,13 @@ export function ProgramGalleryCarousel({
       )}
 
       {/* Full Screen Modal */}
-      <Modal isOpen={isOpen} onOpenChange={onClose} size="full">
-        <ModalContent className="flex flex-col h-screen max-h-screen bg-black/95">
+      <Modal isOpen={isOpen} onOpenChange={onClose} size="full" hideCloseButton>
+        <ModalContent>
+          <ModalHeader>
+            <Button variant="light" isIconOnly radius="full" onPress={onClose}>
+              <ChevronLeftIcon />
+            </Button>
+          </ModalHeader>
           <ModalBody className="p-0 flex-1 overflow-hidden">
             <div className="w-full h-full relative flex items-center justify-center">
               <Image
