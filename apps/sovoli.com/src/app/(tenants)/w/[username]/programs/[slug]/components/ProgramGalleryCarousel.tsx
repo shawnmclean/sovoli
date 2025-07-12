@@ -8,6 +8,12 @@ import {
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
 import { Chip } from "@sovoli/ui/components/chip";
+import {
+  Modal,
+  ModalContent,
+  ModalBody,
+  useDisclosure,
+} from "@sovoli/ui/components/dialog";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -21,6 +27,7 @@ export function ProgramGalleryCarousel({
   const photos = program.photos ?? [];
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     if (!api) {
@@ -36,7 +43,7 @@ export function ProgramGalleryCarousel({
 
   if (photos.length === 0) {
     return (
-      <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center">
+      <div className="w-full h-full bg-gray-100 flex items-center justify-center">
         <p className="text-gray-500 text-sm">No photos available</p>
       </div>
     );
@@ -60,7 +67,8 @@ export function ProgramGalleryCarousel({
                   src={photo.url}
                   alt={`Program photo ${index + 1}`}
                   fill
-                  className="object-cover rounded-lg"
+                  className="object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                  onClick={onOpen}
                 />
               </div>
             </CarouselItem>
@@ -70,12 +78,29 @@ export function ProgramGalleryCarousel({
 
       {/* Counter Indicator */}
       {photos.length > 1 && (
-        <div className="absolute bottom-3 right-3">
+        <div className="absolute bottom-6 right-3">
           <Chip variant="flat" color="default" radius="md">
             {current + 1} / {photos.length}
           </Chip>
         </div>
       )}
+
+      {/* Full Screen Modal */}
+      <Modal isOpen={isOpen} onOpenChange={onClose} size="full">
+        <ModalContent className="flex flex-col h-screen max-h-screen bg-black/95">
+          <ModalBody className="p-0 flex-1 overflow-hidden">
+            <div className="w-full h-full relative flex items-center justify-center">
+              <Image
+                src={photos[current]?.url ?? ""}
+                alt={`Program photo ${current + 1}`}
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </div>
   );
 }
