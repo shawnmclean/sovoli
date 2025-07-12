@@ -85,16 +85,12 @@ export function ProgramCycleCard({
       <CardBody>
         <Link
           href={`/programs/${program.slug}`}
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-4 items-start"
         >
-          <div className="flex flex-col gap-2 text-sm text-foreground-500">
-            <h2 className="text-xl font-bold text-foreground mb-1">
-              {programName}
-            </h2>
+          <div className="flex flex-col gap-2 text-foreground-500 w-full">
+            <h2 className="text-xl font-bold text-foreground">{programName}</h2>
             {program.tagline && (
-              <p className="text-sm text-foreground-500 mb-1">
-                {program.tagline}
-              </p>
+              <p className="text-foreground-500 mb-1">{program.tagline}</p>
             )}
             {/* Age Range */}
             {ageReq?.ageRange && (
@@ -115,9 +111,11 @@ export function ProgramCycleCard({
               <span className="font-medium">{formatTermInfo()}</span>
             </div>
           </div>
-          <div className="flex items-center gap-1 text-sm text-foreground-500 group-hover:text-foreground transition-colors">
-            <span>Learn more</span>
-            <ArrowRightIcon className="w-4 h-4" />
+          <div className="flex w-full justify-end">
+            <div className="flex items-center gap-1 text-sm text-foreground-500 group-hover:text-foreground transition-colors">
+              <span>Learn more</span>
+              <ArrowRightIcon className="w-4 h-4" />
+            </div>
           </div>
         </Link>
       </CardBody>
