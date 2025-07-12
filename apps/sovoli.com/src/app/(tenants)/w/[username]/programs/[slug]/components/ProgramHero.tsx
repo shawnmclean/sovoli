@@ -21,13 +21,6 @@ export const ProgramHero = ({ orgInstance, program }: ProgramHeroProps) => {
     "";
   const orgLogo = org.logo;
 
-  // Extract age requirements if available
-  const ageRequirement = program.requirements?.find(
-    (req) => req.type === "age",
-  );
-  const ageText =
-    ageRequirement?.description ?? ageRequirement?.name ?? "Ages 2-16";
-
   // Get primary location
   const primaryLocation = org.locations.find((loc) => loc.isPrimary);
 

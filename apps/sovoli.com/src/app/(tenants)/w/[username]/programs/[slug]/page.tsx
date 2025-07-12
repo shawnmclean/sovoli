@@ -77,10 +77,6 @@ export default async function ProgramDetailsPage({
 
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "";
-  const programDescription =
-    program.description ??
-    program.standardProgramVersion?.program.description ??
-    "";
 
   // Get cycles for this program
   const programCycles =
