@@ -168,7 +168,7 @@ export function ProgramDetailMobileFooter({
             <Button
               as={Link}
               variant="light"
-              color="primary"
+              color="default"
               className="underline"
               onPress={onOpen}
             >
@@ -183,10 +183,9 @@ export function ProgramDetailMobileFooter({
               phoneNumber={whatsappNumber}
               message={`Hi, I'm interested in the ${programName} program for ${cycleLabel}. Can you provide more details?`}
               page="mobile-footer"
+              intent="Contact"
               variant="shadow"
-              color="primary"
               radius="lg"
-              size="md"
               startContent={<MessageSquareShareIcon size={16} />}
               className={gradientBorderButton()}
             >
@@ -222,7 +221,7 @@ export function ProgramDetailMobileFooter({
       >
         <DrawerContent>
           <DrawerBody className="mt-4">
-            <div className="space-y-4 p-4">
+            <div className="space-y-4 py-4">
               {/* Term Selection */}
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
@@ -238,23 +237,20 @@ export function ProgramDetailMobileFooter({
               </div>
 
               {/* WhatsApp Link */}
-              <div className="pt-4">
+              <div className="pt-4 flex justify-end">
                 <Button
                   as={WhatsAppLink}
                   phoneNumber={whatsappNumber}
                   message={`Hi, I'm interested in the ${programName} program for ${cycleLabel} (${dateRange}). Can you provide more details about enrollment?`}
                   page="mobile-footer"
+                  intent="Contact"
                   variant="shadow"
-                  color="primary"
                   radius="lg"
-                  size="lg"
-                  className={gradientBorderButton({
-                    size: "lg",
-                    fullWidth: true,
-                  })}
+                  className={gradientBorderButton()}
                   onPress={onOpenChange}
+                  startContent={<MessageSquareShareIcon size={16} />}
                 >
-                  Reserve
+                  Chat Now
                 </Button>
               </div>
             </div>

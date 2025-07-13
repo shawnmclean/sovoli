@@ -404,17 +404,6 @@ export default async function ProgramDetailsPage({
               </CardHeader>
               <CardBody className="space-y-4">
                 Facilities and other information coming soon.
-                <Button
-                  as={WhatsAppLink}
-                  phoneNumber={whatsapp}
-                  message={`Hi, I'm interested in ${programName}`}
-                  fullWidth
-                  color="primary"
-                  variant="solid"
-                  size="lg"
-                >
-                  Message Us
-                </Button>
               </CardBody>
             </Card>
           </div>
