@@ -378,13 +378,26 @@ export default async function ProgramDetailsPage({
                   </h3>
                 </CardHeader>
                 <CardBody className="space-y-4">
-                  Curriculum for this program will be added soon.
+                  We're working on adding the curriculum for this program.
                   {(
                     program.levels ??
                     program.standardProgramVersion?.levels ??
                     []
                   ).map((level) => (
-                    <div key={level.id}>{level.label}</div>
+                    <div key={level.id}>
+                      <h4 className="font-semibold text-foreground">
+                        {level.label}
+                      </h4>
+                      <div className="grid gap-4 md:grid-cols-2">
+                        {level.courses?.map((course) => (
+                          <div key={course.id}>
+                            <h5 className="font-semibold text-foreground">
+                              {course.title}
+                            </h5>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </CardBody>
               </Card>

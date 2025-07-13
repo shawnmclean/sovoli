@@ -4,6 +4,7 @@ import type {
   ProgramLevel,
   StandardProgram,
   StandardProgramVersion,
+  Course,
 } from "~/modules/academics/types";
 
 // #region nursery
@@ -59,6 +60,14 @@ export const GY_NURSERY_V1: StandardProgramVersion = {
 
 // #region primary
 
+export const GY_PRIMARY_GRADE_1_COURSES: Course[] = [
+  {
+    id: "gy-primary-grade-1-course-1",
+    subject: { id: "gy-primary-subject-1", name: "English" },
+    title: "English",
+  },
+];
+
 export const GY_PRIMARY_LEVELS: ProgramLevel[] = [
   {
     id: "gy-primary-level-1",
@@ -67,6 +76,7 @@ export const GY_PRIMARY_LEVELS: ProgramLevel[] = [
     label: "Grade 1",
     type: "grade",
     ageRange: { min: 5, max: 6 },
+    courses: GY_PRIMARY_GRADE_1_COURSES,
   },
   {
     id: "gy-primary-level-2",

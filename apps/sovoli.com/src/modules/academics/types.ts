@@ -165,6 +165,19 @@ export interface ProgramLevel {
   label: string; // e.g., "Grade 1", "Form 3", "Year 2", "Beginner"
   type: "grade" | "form" | "year" | "level" | "custom";
   ageRange?: { min: number; max: number };
+
+  courses?: Course[];
+}
+
+export interface Subject {
+  id: string;
+  name: string;
+}
+
+export interface Course {
+  id: string;
+  subject: Subject;
+  title: string;
 }
 
 export interface AcademicModule {
