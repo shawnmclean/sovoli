@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
-import { Button } from "@sovoli/ui/components/button";
+
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Link } from "@sovoli/ui/components/link";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
+
 import {
   CalendarIcon,
   ClockIcon,
@@ -74,9 +74,6 @@ export default async function ProgramDetailsPage({
     slug,
   );
 
-  const programName =
-    program.name ?? program.standardProgramVersion?.program.name ?? "";
-
   // Get cycles for this program
   const programCycles =
     orgInstance.academicModule?.programCycles?.filter(
@@ -115,10 +112,6 @@ export default async function ProgramDetailsPage({
   });
 
   // Get organization contact info
-  const primaryLocation = orgInstance.org.locations.find((l) => l.isPrimary);
-  const whatsapp = primaryLocation?.contacts.find(
-    (c) => c.type === "whatsapp",
-  )?.value;
 
   return (
     <>
