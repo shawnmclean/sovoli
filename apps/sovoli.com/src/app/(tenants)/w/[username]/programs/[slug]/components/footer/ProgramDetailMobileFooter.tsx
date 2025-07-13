@@ -120,9 +120,9 @@ export function ProgramDetailMobileFooter({
               color="primary"
               radius="lg"
               size="md"
-              className="font-semibold px-6"
+              className="font-semibold px-6 border-2 border-transparent [background-image:linear-gradient(hsl(var(--heroui-background)),hsl(var(--heroui-background))),linear-gradient(to_right,rgb(245,65,128),rgb(51,142,247))] [background-origin:border-box] [background-clip:padding-box,border-box] text-foreground"
             >
-              Reserve Now
+              Talk To Us
             </Button>
           </div>
         </div>
@@ -184,9 +184,9 @@ export function ProgramDetailMobileFooter({
               color="primary"
               radius="lg"
               size="md"
-              className="font-semibold px-6"
+              className="font-semibold px-6 border-2 border-transparent [background-image:linear-gradient(hsl(var(--heroui-background)),hsl(var(--heroui-background))),linear-gradient(to_right,rgb(245,65,128),rgb(51,142,247))] [background-origin:border-box] [background-clip:padding-box,border-box] text-foreground"
             >
-              Reserve Now
+              Talk To Us
             </Button>
           </div>
         </div>
@@ -244,7 +244,7 @@ export function ProgramDetailMobileFooter({
                   color="primary"
                   radius="lg"
                   size="lg"
-                  className="font-semibold px-8 w-full"
+                  className="font-semibold px-8 w-full border-2 border-transparent [background-image:linear-gradient(hsl(var(--heroui-background)),hsl(var(--heroui-background))),linear-gradient(to_right,rgb(245,65,128),rgb(51,142,247))] [background-origin:border-box] [background-clip:padding-box,border-box] text-foreground"
                   onPress={onOpenChange}
                 >
                   Reserve
