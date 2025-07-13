@@ -369,6 +369,26 @@ export default async function ProgramDetailsPage({
               </Card>
             )}
 
+            <div className="space-y-6">
+              {/* Quick Actions */}
+              <Card className="overflow-hidden">
+                <CardHeader className="pb-4">
+                  <h3 className="text-xl font-bold text-foreground">
+                    Your Curriculum
+                  </h3>
+                </CardHeader>
+                <CardBody className="space-y-4">
+                  Curriculum for this program will be added soon.
+                  {(
+                    program.levels ??
+                    program.standardProgramVersion?.levels ??
+                    []
+                  ).map((level) => (
+                    <div key={level.id}>{level.label}</div>
+                  ))}
+                </CardBody>
+              </Card>
+            </div>
             <Card className="overflow-hidden">
               <CardHeader className="pb-4">
                 <h2 className="text-xl font-bold text-foreground">

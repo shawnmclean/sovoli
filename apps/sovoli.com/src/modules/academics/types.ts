@@ -59,6 +59,7 @@ export interface StandardProgramVersion {
 
   requirements?: ProgramRequirement[];
   assessments?: ProgramAssessmentVersion[];
+  levels?: ProgramLevel[];
 }
 export interface OrgProgram {
   standardProgramVersion?: StandardProgramVersion;
@@ -76,6 +77,7 @@ export interface OrgProgram {
   requirements?: ProgramRequirement[];
   notes?: string;
   isPopular?: boolean;
+  levels?: ProgramLevel[];
 }
 
 // TODO: move to core or photos module
@@ -155,6 +157,15 @@ export interface OrgProgramCycle {
 }
 
 // #endregion
+
+export interface ProgramLevel {
+  id: string;
+  programId: string;
+  order: number; // 0-based index (e.g., 0 = Pre-Nursery)
+  label: string; // e.g., "Grade 1", "Form 3", "Year 2", "Beginner"
+  type: "grade" | "form" | "year" | "level" | "custom";
+  ageRange?: { min: number; max: number };
+}
 
 export interface AcademicModule {
   // swap to this after we move to OrgProgram

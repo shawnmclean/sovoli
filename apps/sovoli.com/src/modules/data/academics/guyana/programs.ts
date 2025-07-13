@@ -1,11 +1,32 @@
 import type {
   ProgramAssessment,
   ProgramAssessmentVersion,
+  ProgramLevel,
   StandardProgram,
   StandardProgramVersion,
 } from "~/modules/academics/types";
 
 // #region nursery
+
+export const GY_NURSERY_LEVELS: ProgramLevel[] = [
+  {
+    id: "gy-nursery-level-1",
+    programId: "gy-nursery",
+    order: 0,
+    label: "Year 1",
+    type: "year",
+    ageRange: { min: 2, max: 3 },
+  },
+  {
+    id: "gy-nursery-level-2",
+    programId: "gy-nursery",
+    order: 1,
+    label: "Year 2",
+    type: "year",
+    ageRange: { min: 3, max: 4 },
+  },
+];
+
 export const GY_NURSERY_PROGRAM: StandardProgram = {
   id: "gy-nursery",
   name: "Nursery",
@@ -32,10 +53,62 @@ export const GY_NURSERY_V1: StandardProgramVersion = {
       name: "Birth Certificate",
     },
   ],
+  levels: GY_NURSERY_LEVELS,
 };
 // #endregion
 
 // #region primary
+
+export const GY_PRIMARY_LEVELS: ProgramLevel[] = [
+  {
+    id: "gy-primary-level-1",
+    programId: "gy-primary",
+    order: 0,
+    label: "Grade 1",
+    type: "grade",
+    ageRange: { min: 5, max: 6 },
+  },
+  {
+    id: "gy-primary-level-2",
+    programId: "gy-primary",
+    order: 1,
+    label: "Grade 2",
+    type: "grade",
+    ageRange: { min: 6, max: 7 },
+  },
+  {
+    id: "gy-primary-level-3",
+    programId: "gy-primary",
+    order: 2,
+    label: "Grade 3",
+    type: "grade",
+    ageRange: { min: 7, max: 8 },
+  },
+  {
+    id: "gy-primary-level-4",
+    programId: "gy-primary",
+    order: 3,
+    label: "Grade 4",
+    type: "grade",
+    ageRange: { min: 8, max: 9 },
+  },
+  {
+    id: "gy-primary-level-5",
+    programId: "gy-primary",
+    order: 4,
+    label: "Grade 5",
+    type: "grade",
+    ageRange: { min: 9, max: 10 },
+  },
+  {
+    id: "gy-primary-level-6",
+    programId: "gy-primary",
+    order: 5,
+    label: "Grade 6",
+    type: "grade",
+    ageRange: { min: 10, max: 11 },
+  },
+];
 
 export const GY_PRIMARY_ASSESSMENT_NGSA: ProgramAssessment = {
   id: "ngsa",
@@ -73,6 +146,7 @@ export const GY_PRIMARY_V1: StandardProgramVersion = {
     },
   ],
   assessments: [GY_PRIMARY_ASSESSMENT_NGSA_V1],
+  levels: GY_PRIMARY_LEVELS,
 };
 
 // #endregion
