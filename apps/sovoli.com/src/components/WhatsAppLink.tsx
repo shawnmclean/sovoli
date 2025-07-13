@@ -18,7 +18,9 @@ interface WhatsAppLinkProps extends LinkProps {
     | "Purchase"
     | "Add to Wishlist"
     | "Claim School"
-    | "Request Data"; // eg. matches Fb event name
+    | "Request Data"
+    | "CustomEvent"
+    | "Contact"; // eg. matches Fb event name
   role?: "parent" | "admin";
   page?:
     | "listing"
@@ -40,7 +42,7 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
       message,
 
       // fallback = true,
-      intent,
+      intent = "CustomEvent",
       role,
       page,
       orgId,
@@ -58,7 +60,7 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
 
     const onPress = () => {
       posthog.capture("whatsapp_link_clicked", {
-        intent: intent ?? "unknown",
+        intent,
         role: role ?? "unknown",
         page: page ?? "unknown",
         org_id: orgId,

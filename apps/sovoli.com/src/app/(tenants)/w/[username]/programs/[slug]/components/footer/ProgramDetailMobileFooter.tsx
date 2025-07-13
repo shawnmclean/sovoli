@@ -114,6 +114,7 @@ export function ProgramDetailMobileFooter({
               as={WhatsAppLink}
               phoneNumber={whatsappNumber}
               message={`Hi, I'm interested in the ${programName} program. Can you provide more details?`}
+              intent="Contact"
               page="mobile-footer"
               variant="shadow"
               color="primary"
