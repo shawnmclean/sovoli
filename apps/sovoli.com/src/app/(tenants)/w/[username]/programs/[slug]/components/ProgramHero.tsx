@@ -1,7 +1,7 @@
 import { Badge } from "@sovoli/ui/components/badge";
 import { Image } from "@sovoli/ui/components/image";
 import { Divider } from "@sovoli/ui/components/divider";
-import { UsersIcon, StarIcon, MapPinIcon } from "lucide-react";
+import { MapPinIcon } from "lucide-react";
 
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";

@@ -12,7 +12,7 @@ import { Link } from "@sovoli/ui/components/link";
 
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 
-import type { OrgProgram, OrgProgramCycle } from "~/modules/academics/types";
+import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface ProgramDetailMobileFooterProps {
