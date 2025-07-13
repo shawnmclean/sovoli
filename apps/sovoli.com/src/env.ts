@@ -36,6 +36,7 @@ export const env = createEnv({
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
     NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
     NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1),
+    NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().optional(),
   },
 
   /**
@@ -50,6 +51,7 @@ export const env = createEnv({
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:
       process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
     NEXT_PUBLIC_ROOT_DOMAIN: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
+    NEXT_PUBLIC_FACEBOOK_PIXEL_ID: process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID,
   },
   skipValidation:
     !!process.env.CI || process.env.npm_lifecycle_event === "lint",
