@@ -10,7 +10,6 @@ import { PostHogProvider } from "posthog-js/react";
 
 import { env } from "~/env";
 import { PostHogPageView } from "./PostHogPageView";
-import { FacebookPixel } from "./FacebookPixel";
 
 if (typeof window !== "undefined") {
   posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
@@ -27,7 +26,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <PostHogProvider client={posthog}>
         <Suspense>
           <PostHogPageView />
-          <FacebookPixel />
         </Suspense>
         <HeroUIProvider navigate={(href) => router.push(href)}>
           <ThemeProvider attribute="class" defaultTheme="dark">
