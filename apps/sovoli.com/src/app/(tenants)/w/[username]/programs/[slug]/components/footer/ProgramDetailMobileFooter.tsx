@@ -11,9 +11,11 @@ import {
 import { Link } from "@sovoli/ui/components/link";
 
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { gradientBorderButton } from "~/components/GradientBorderButton";
 
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { MessageSquareShareIcon } from "lucide-react";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -120,9 +122,10 @@ export function ProgramDetailMobileFooter({
               color="primary"
               radius="lg"
               size="md"
-              className="font-semibold px-6 border-2 border-transparent [background-image:linear-gradient(hsl(var(--heroui-background)),hsl(var(--heroui-background))),linear-gradient(to_right,rgb(245,65,128),rgb(51,142,247))] [background-origin:border-box] [background-clip:padding-box,border-box] text-foreground"
+              startContent={<MessageSquareShareIcon size={16} />}
+              className={gradientBorderButton()}
             >
-              Talk To Us
+              Chat Now
             </Button>
           </div>
         </div>
@@ -184,9 +187,10 @@ export function ProgramDetailMobileFooter({
               color="primary"
               radius="lg"
               size="md"
-              className="font-semibold px-6 border-2 border-transparent [background-image:linear-gradient(hsl(var(--heroui-background)),hsl(var(--heroui-background))),linear-gradient(to_right,rgb(245,65,128),rgb(51,142,247))] [background-origin:border-box] [background-clip:padding-box,border-box] text-foreground"
+              startContent={<MessageSquareShareIcon size={16} />}
+              className={gradientBorderButton()}
             >
-              Talk To Us
+              Chat Now
             </Button>
           </div>
         </div>
@@ -244,7 +248,10 @@ export function ProgramDetailMobileFooter({
                   color="primary"
                   radius="lg"
                   size="lg"
-                  className="font-semibold px-8 w-full border-2 border-transparent [background-image:linear-gradient(hsl(var(--heroui-background)),hsl(var(--heroui-background))),linear-gradient(to_right,rgb(245,65,128),rgb(51,142,247))] [background-origin:border-box] [background-clip:padding-box,border-box] text-foreground"
+                  className={gradientBorderButton({
+                    size: "lg",
+                    fullWidth: true,
+                  })}
                   onPress={onOpenChange}
                 >
                   Reserve
