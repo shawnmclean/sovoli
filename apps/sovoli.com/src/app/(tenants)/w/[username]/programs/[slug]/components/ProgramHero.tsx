@@ -85,18 +85,6 @@ export const ProgramHero = ({ orgInstance, program }: ProgramHeroProps) => {
                 {programDescription}
               </p>
             )}
-
-            {/* Trust Indicators */}
-            <div className="flex items-center gap-6 pt-6 text-sm text-foreground-500">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span>Limited Spots Available</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-warning rounded-full"></div>
-                <span>Early Bird Discount</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
