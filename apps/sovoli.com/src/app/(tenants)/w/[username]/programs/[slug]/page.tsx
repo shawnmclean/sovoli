@@ -37,11 +37,42 @@ interface ProgramDetailsPageProps {
 // Helper function to format date
 const formatDate = (dateString: string) => {
   const date = parseISO(dateString);
+  const now = new Date();
+  const isThisYear = date.getFullYear() === now.getFullYear();
   return date.toLocaleDateString("en-GY", {
-    year: "numeric",
-    month: "long",
+    year: isThisYear ? undefined : "numeric",
+    month: "short",
     day: "numeric",
   });
+};
+
+// Helper function to format date range compactly
+const formatDateRange = (startDate: string, endDate: string) => {
+  const start = parseISO(startDate);
+  const end = parseISO(endDate);
+  const now = new Date();
+  const isSameDay = start.getTime() === end.getTime();
+  const isSameYear = start.getFullYear() === end.getFullYear();
+  const isThisYear =
+    start.getFullYear() === now.getFullYear() &&
+    end.getFullYear() === now.getFullYear();
+
+  if (isSameDay) {
+    return formatDate(startDate);
+  }
+
+  // If both dates are in the same year and it's this year, omit the year from both
+  if (isSameYear && isThisYear) {
+    return `${start.toLocaleDateString("en-GY", { month: "short", day: "numeric" })} - ${end.toLocaleDateString("en-GY", { month: "short", day: "numeric" })}`;
+  }
+
+  // If both dates are in the same year but not this year, show year only on end
+  if (isSameYear) {
+    return `${start.toLocaleDateString("en-GY", { month: "short", day: "numeric" })} - ${end.toLocaleDateString("en-GY", { month: "short", day: "numeric", year: "numeric" })}`;
+  }
+
+  // If years are different, show full date for both
+  return `${formatDate(startDate)} - ${formatDate(endDate)}`;
 };
 
 // Helper function to get current date
@@ -80,8 +111,8 @@ export default async function ProgramDetailsPage({
       (cycle) => cycle.orgProgram.slug === program.slug,
     ) ?? [];
 
-  // Get the next upcoming cycle
-  const nextCycle = programCycles
+  // Get all future cycles (including next)
+  const futureCycles = programCycles
     .filter((cycle) => {
       const startDate =
         cycle.academicCycle.startDate ??
@@ -98,7 +129,10 @@ export default async function ProgramDetailsPage({
         b.academicCycle.globalCycle?.startDate ??
         "";
       return parseISO(aStart).getTime() - parseISO(bStart).getTime();
-    })[0];
+    });
+
+  // Get the next upcoming cycle (first future cycle)
+  const nextCycle = futureCycles[0];
 
   // Get the current cycle
   const currentCycle = programCycles.find((cycle) => {
@@ -202,88 +236,12 @@ export default async function ProgramDetailsPage({
                     Term Information
                   </h2>
                 </CardHeader>
-                <CardBody className="space-y-6">
-                  {nextCycle && (
-                    <div className="rounded-lg bg-success-50 border border-success-200 p-6">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Badge color="success" variant="flat" size="sm">
-                          Next Cycle
-                        </Badge>
-                        <span className="text-sm font-medium text-success-900">
-                          {nextCycle.academicCycle.customLabel ??
-                            nextCycle.academicCycle.globalCycle?.label ??
-                            "Upcoming Cycle"}
-                        </span>
-                      </div>
-
-                      <div className="grid gap-4 md:grid-cols-2">
-                        <div>
-                          <p className="text-sm text-foreground-600 mb-1">
-                            Start Date
-                          </p>
-                          <p className="font-medium text-foreground">
-                            {formatDate(
-                              nextCycle.academicCycle.startDate ??
-                                nextCycle.academicCycle.globalCycle
-                                  ?.startDate ??
-                                "",
-                            )}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-foreground-600 mb-1">
-                            End Date
-                          </p>
-                          <p className="font-medium text-foreground">
-                            {formatDate(
-                              nextCycle.academicCycle.endDate ??
-                                nextCycle.academicCycle.globalCycle?.endDate ??
-                                "",
-                            )}
-                          </p>
-                        </div>
-                      </div>
-
-                      {nextCycle.registrationPeriod && (
-                        <div className="mt-4 pt-4 border-t border-success-200">
-                          <div className="flex items-center gap-2 mb-2">
-                            <ClockIcon className="h-4 w-4 text-success" />
-                            <span className="text-sm font-medium text-success-900">
-                              Registration Period
-                            </span>
-                          </div>
-                          <div className="grid gap-4 md:grid-cols-2">
-                            <div>
-                              <p className="text-sm text-foreground-600 mb-1">
-                                Opens
-                              </p>
-                              <p className="font-medium text-foreground">
-                                {formatDate(
-                                  nextCycle.registrationPeriod.startDate,
-                                )}
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-sm text-foreground-600 mb-1">
-                                Closes
-                              </p>
-                              <p className="font-medium text-foreground">
-                                {formatDate(
-                                  nextCycle.registrationPeriod.endDate,
-                                )}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
+                <CardBody className="space-y-4">
                   {currentCycle && (
-                    <div className="rounded-lg bg-primary-50 border border-primary-200 p-6">
-                      <div className="flex items-center gap-2 mb-4">
+                    <div className="rounded-lg bg-primary-50 border border-primary-200 p-4">
+                      <div className="flex items-center gap-2 mb-3">
                         <Badge color="primary" variant="flat" size="sm">
-                          Current Cycle
+                          Current
                         </Badge>
                         <span className="text-sm font-medium text-primary-900">
                           {currentCycle.academicCycle.customLabel ??
@@ -292,34 +250,91 @@ export default async function ProgramDetailsPage({
                         </span>
                       </div>
 
-                      <div className="grid gap-4 md:grid-cols-2">
-                        <div>
-                          <p className="text-sm text-foreground-600 mb-1">
-                            Start Date
-                          </p>
-                          <p className="font-medium text-foreground">
-                            {formatDate(
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-foreground-600">
+                            Date:
+                          </span>
+                          <span className="font-medium text-foreground">
+                            {formatDateRange(
                               currentCycle.academicCycle.startDate ??
                                 currentCycle.academicCycle.globalCycle
                                   ?.startDate ??
                                 "",
-                            )}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-foreground-600 mb-1">
-                            End Date
-                          </p>
-                          <p className="font-medium text-foreground">
-                            {formatDate(
                               currentCycle.academicCycle.endDate ??
                                 currentCycle.academicCycle.globalCycle
                                   ?.endDate ??
                                 "",
                             )}
-                          </p>
+                          </span>
                         </div>
                       </div>
+                    </div>
+                  )}
+
+                  {futureCycles.length > 0 && (
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-semibold text-foreground">
+                        Upcoming Cycles
+                      </h3>
+                      {futureCycles.map((cycle, index) => (
+                        <div
+                          key={cycle.id}
+                          className={`rounded-lg border p-4 ${
+                            index === 0
+                              ? "bg-success-50 border-success-200"
+                              : "bg-default-50 border-default-200"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2 mb-3">
+                            <Badge
+                              color={index === 0 ? "success" : "secondary"}
+                              variant="flat"
+                              size="sm"
+                            >
+                              {index === 0 ? "Next" : `Cycle ${index + 1}`}
+                            </Badge>
+                            <span className="text-sm font-medium text-foreground">
+                              {cycle.academicCycle.customLabel ??
+                                cycle.academicCycle.globalCycle?.label ??
+                                "Upcoming Cycle"}
+                            </span>
+                          </div>
+
+                          <div className="space-y-2">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-foreground-600">
+                                Date:
+                              </span>
+                              <span className="font-medium text-foreground">
+                                {formatDateRange(
+                                  cycle.academicCycle.startDate ??
+                                    cycle.academicCycle.globalCycle
+                                      ?.startDate ??
+                                    "",
+                                  cycle.academicCycle.endDate ??
+                                    cycle.academicCycle.globalCycle?.endDate ??
+                                    "",
+                                )}
+                              </span>
+                            </div>
+
+                            {cycle.registrationPeriod && (
+                              <div className="flex justify-between items-center">
+                                <span className="text-sm text-foreground-600">
+                                  Registration:
+                                </span>
+                                <span className="font-medium text-foreground">
+                                  {formatDateRange(
+                                    cycle.registrationPeriod.startDate,
+                                    cycle.registrationPeriod.endDate,
+                                  )}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </CardBody>

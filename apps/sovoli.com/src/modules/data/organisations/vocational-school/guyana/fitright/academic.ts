@@ -46,7 +46,7 @@ const FITRIGHT_BAG_WORKSHOP_PROGRAM: OrgProgram = {
   name: "Intro to Sewing: Make Your Own Bag",
   slug: "sew-your-own-bag",
   description:
-    "A hands-on introduction to sewing for complete beginners. In just one day, you’ll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
+    "A hands-on introduction to sewing for complete beginners. In just one day, you'll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
   photos: [
     {
       category: "default",
@@ -56,13 +56,14 @@ const FITRIGHT_BAG_WORKSHOP_PROGRAM: OrgProgram = {
   levels: [FITRIGHT_BEGINNER_LEVEL],
 };
 
-const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25: OrgProgramCycle = {
-  id: "fr-cycle-july25",
+// Helper function to create a cycle with a specific date
+const createFitrightCycle = (day: number): OrgProgramCycle => ({
+  id: `fr-cycle-july${day}`,
   orgProgram: FITRIGHT_BAG_WORKSHOP_PROGRAM,
   academicCycle: {
-    id: "fr-cycle-july25",
-    startDate: "2025-07-25",
-    endDate: "2025-07-25",
+    id: `fr-cycle-july${day}`,
+    startDate: `2025-07-${day.toString().padStart(2, "0")}`,
+    endDate: `2025-07-${day.toString().padStart(2, "0")}`,
   },
   pricingPackage: {
     discounts: [],
@@ -77,9 +78,18 @@ const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25: OrgProgramCycle = {
     ],
   },
   computedRequirements: [],
-};
+});
+
+// Create cycles for July 25th, 26th, and 27th
+const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25 = createFitrightCycle(25);
+const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY26 = createFitrightCycle(26);
+const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY27 = createFitrightCycle(27);
 
 export const FITRIGHT_ACADEMIC: AcademicModule = {
   programs: [FITRIGHT_BAG_WORKSHOP_PROGRAM],
-  programCycles: [FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25],
+  programCycles: [
+    FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25,
+    FITRIGHT_BAG_WORKSHOP_CYCLE_JULY26,
+    FITRIGHT_BAG_WORKSHOP_CYCLE_JULY27,
+  ],
 };
