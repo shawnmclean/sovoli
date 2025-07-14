@@ -40,7 +40,6 @@ export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
   levels: [
     {
       id: "magy-pre-nursery-level-1",
-      programId: "magy-pre-nursery",
       order: 0,
       label: "Year 1",
       type: "year",

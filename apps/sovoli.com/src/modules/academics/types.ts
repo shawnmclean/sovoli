@@ -160,7 +160,6 @@ export interface OrgProgramCycle {
 
 export interface ProgramLevel {
   id: string;
-  programId: string;
   order: number; // 0-based index (e.g., 0 = Pre-Nursery)
   label: string; // e.g., "Grade 1", "Form 3", "Year 2", "Beginner"
   type: "grade" | "form" | "year" | "level" | "custom";
@@ -178,6 +177,13 @@ export interface Course {
   id: string;
   subject: Subject;
   title: string;
+  description?: string;
+  units?: CourseUnit[];
+}
+
+export interface CourseUnit {
+  title: string;
+  topics: string[];
 }
 
 export interface AcademicModule {

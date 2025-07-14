@@ -71,7 +71,7 @@ export const GY_PRIMARY_GRADE_1_COURSES: Course[] = [
 export const GY_PRIMARY_LEVELS: ProgramLevel[] = [
   {
     id: "gy-primary-level-1",
-    programId: "gy-primary",
+
     order: 0,
     label: "Grade 1",
     type: "grade",
@@ -80,7 +80,6 @@ export const GY_PRIMARY_LEVELS: ProgramLevel[] = [
   },
   {
     id: "gy-primary-level-2",
-    programId: "gy-primary",
     order: 1,
     label: "Grade 2",
     type: "grade",
@@ -88,7 +87,6 @@ export const GY_PRIMARY_LEVELS: ProgramLevel[] = [
   },
   {
     id: "gy-primary-level-3",
-    programId: "gy-primary",
     order: 2,
     label: "Grade 3",
     type: "grade",
@@ -96,7 +94,6 @@ export const GY_PRIMARY_LEVELS: ProgramLevel[] = [
   },
   {
     id: "gy-primary-level-4",
-    programId: "gy-primary",
     order: 3,
     label: "Grade 4",
     type: "grade",
@@ -104,7 +101,6 @@ export const GY_PRIMARY_LEVELS: ProgramLevel[] = [
   },
   {
     id: "gy-primary-level-5",
-    programId: "gy-primary",
     order: 4,
     label: "Grade 5",
     type: "grade",
@@ -112,7 +108,6 @@ export const GY_PRIMARY_LEVELS: ProgramLevel[] = [
   },
   {
     id: "gy-primary-level-6",
-    programId: "gy-primary",
     order: 5,
     label: "Grade 6",
     type: "grade",

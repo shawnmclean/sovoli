@@ -1,50 +1,85 @@
-import type { AcademicModule } from "~/modules/academics/types";
+import type {
+  AcademicModule,
+  OrgProgram,
+  OrgProgramCycle,
+  ProgramLevel,
+} from "~/modules/academics/types";
 
-export const FITRIGHT_ACADEMIC: AcademicModule = {
-  programs: [
+const FITRIGHT_BEGINNER_LEVEL: ProgramLevel = {
+  id: "fr-beginner-level",
+  order: 0,
+  label: "Beginner",
+  type: "level",
+  courses: [
     {
-      name: "Intro to Sewing: Make Your Own Bag",
-      slug: "sew-your-own-bag",
+      id: "fr-beginner-course-1",
+      subject: { id: "fr-beginner-subject-1", name: "Sewing" },
+      title: "Make Your Own Bag",
       description:
-        "A hands-on introduction to sewing for complete beginners. In just one day, you’ll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
-      photos: [
+        "Learn to operate a sewing machine and complete your first project — a fully functional canvas tote bag. Designed for absolute beginners.",
+      units: [
         {
-          category: "default",
-          url: "/orgs/vocational-training/guyana/fitright/photos/1.webp",
+          title: "Machine Control & Pattern Drafting",
+          topics: [
+            "Control sewing machine (speed, stitch length, pedal use)",
+            "Draft pattern of the tote bag",
+            "Select and cut correct fabric on grain",
+            "Sew straight and curved lines on practice material",
+          ],
+        },
+        {
+          title: "Bag Construction & Finishing",
+          topics: [
+            "Sew a patch pocket on bag body",
+            "Insert a zipper into bag opening",
+            "Double fold hemming technique",
+            "Finish raw fabric edges (zigzag or bias tape)",
+            "Final assembly and completion of bag",
+          ],
         },
       ],
     },
-    {
-      name: "Elementary Sewing",
+  ],
+};
 
-      slug: "elementary-sewing",
-      description:
-        "Learn the fundamentals of sewing, including how to use a sewing machine, basic stitching techniques, and pattern cutting. By the end of the course, you'll be able to cut and sew a basic skirt.",
-      image: `/orgs/vocational-training/guyana/fitright/academic/programs/sewing-beginner.jpg`,
-    },
+const FITRIGHT_BAG_WORKSHOP_PROGRAM: OrgProgram = {
+  name: "Intro to Sewing: Make Your Own Bag",
+  slug: "sew-your-own-bag",
+  description:
+    "A hands-on introduction to sewing for complete beginners. In just one day, you’ll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
+  photos: [
     {
-      name: "Intermediate Sewing",
-
-      slug: "intermediate-sewing",
-      description:
-        "Enhance your skills with body measurements, pattern modification, sleeve construction, and working with various fabric types. You'll begin creating personalized garments with improved fit and finish.",
-      image: `/orgs/vocational-training/guyana/fitright/academic/programs/sewing-intermediate.jpg`,
-    },
-    {
-      name: "Advanced Sewing",
-
-      slug: "advanced-sewing",
-      description:
-        "Master full outfit creation including skirts, tops, and dresses. Focus on advanced techniques, finishing, and garment design suitable for personal use or small business. Ideal for those looking to create a portfolio or launch a fashion brand.",
-      image: `/orgs/vocational-training/guyana/fitright/academic/programs/sewing-advanced.jpg`,
-    },
-    {
-      name: "Wedding Dress Masterclass",
-
-      slug: "wedding-dress-masterclass",
-      description:
-        "An advanced, hands-on masterclass focused on the full lifecycle of wedding dress creation. Learn about luxury fabrics, corsetry, structured silhouettes, embellishments, and client consultations. By the end, you’ll craft a fully customized bridal gown.",
-      image: `/orgs/vocational-training/guyana/fitright/academic/programs/wedding-dress.jpg`,
+      category: "default",
+      url: "/orgs/vocational-training/guyana/fitright/photos/1.webp",
     },
   ],
+  levels: [FITRIGHT_BEGINNER_LEVEL],
+};
+
+const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25: OrgProgramCycle = {
+  id: "fr-cycle-july25",
+  orgProgram: FITRIGHT_BAG_WORKSHOP_PROGRAM,
+  academicCycle: {
+    id: "fr-cycle-july25",
+    startDate: "2025-07-25",
+    endDate: "2025-07-25",
+  },
+  pricingPackage: {
+    discounts: [],
+    pricingItems: [
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "one-time",
+        amount: { GYD: 8000 },
+      },
+    ],
+  },
+  computedRequirements: [],
+};
+
+export const FITRIGHT_ACADEMIC: AcademicModule = {
+  programs: [FITRIGHT_BAG_WORKSHOP_PROGRAM],
+  programCycles: [FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25],
 };
