@@ -17,6 +17,7 @@ import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
 import { useProgramSelection } from "../../context/ProgramSelectionContext";
+import { Skeleton } from "@sovoli/ui/components/skeleton";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -47,45 +48,14 @@ export function ProgramDetailMobileFooter({
     .find((l) => l.isPrimary)
     ?.contacts.find((c) => c.type === "whatsapp")?.value;
 
-  // Show loading state while context is initializing
-  if (isLoading) {
-    return (
-      <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
-        <div className="flex w-full items-center justify-between py-3 gap-4">
-          <div className="flex flex-1 items-center">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-              <span className="text-sm text-foreground-600">Loading...</span>
-            </div>
-          </div>
-          <div className="flex-shrink-0">
-            <Button
-              as={WhatsAppLink}
-              phoneNumber={whatsappNumber}
-              message={`Hi, I'm interested in the ${programName} program. Can you provide more details?`}
-              intent="Contact"
-              page="mobile-footer"
-              variant="shadow"
-              color="primary"
-              radius="lg"
-              size="md"
-              startContent={<MessageSquareShareIcon size={16} />}
-              className={gradientBorderButton()}
-            >
-              Chat Now
-            </Button>
-          </div>
-        </div>
-      </footer>
-    );
-  }
-
   // If no cycle is selected, show fallback
   if (!selectedCycle) {
     return (
       <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
         <div className="flex w-full items-center justify-between py-3 gap-4">
-          <div className="flex flex-1 items-center">Select a cycle</div>
+          <Skeleton isLoaded={!isLoading}>
+            <div className="flex flex-1 items-center">Select a cycle</div>
+          </Skeleton>
           <div className="flex-shrink-0">
             <Button
               as={WhatsAppLink}
@@ -140,15 +110,17 @@ export function ProgramDetailMobileFooter({
         <div className="flex w-full items-center justify-between py-3 gap-4">
           {/* Left side - Program info badge */}
           <div className="flex flex-1 items-center">
-            <Button
-              as={Link}
-              variant="light"
-              color="default"
-              className="underline"
-              onPress={onOpen}
-            >
-              {cycleLabel}
-            </Button>
+            <Skeleton isLoaded={!isLoading}>
+              <Button
+                as={Link}
+                variant="light"
+                color="default"
+                className="underline"
+                onPress={onOpen}
+              >
+                {cycleLabel}
+              </Button>
+            </Skeleton>
           </div>
 
           {/* Right side - Reserve button */}

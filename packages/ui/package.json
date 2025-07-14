@@ -39,6 +39,7 @@
     "@heroui/spinner": "2.2.7",
     "@heroui/switch": "2.2.9",
     "@heroui/system": "2.4.18",
+    "@heroui/skeleton": "2.2.14",
     "@heroui/tabs": "2.2.8",
     "@heroui/tooltip": "2.2.16",
     "@heroui/theme": "2.4.17",
