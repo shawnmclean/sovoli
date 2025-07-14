@@ -46,6 +46,61 @@ export function CycleSelector({
     return null;
   }
 
+  // If there's only one cycle, show it without radio selection
+  if (cycles.length === 1 && cycles[0]) {
+    const cycle = cycles[0];
+    const cycleLabel =
+      cycle.academicCycle.customLabel ??
+      cycle.academicCycle.globalCycle?.label ??
+      "Academic Cycle";
+
+    const startDate =
+      cycle.academicCycle.startDate ??
+      cycle.academicCycle.globalCycle?.startDate ??
+      "";
+    const endDate =
+      cycle.academicCycle.endDate ??
+      cycle.academicCycle.globalCycle?.endDate ??
+      "";
+
+    return (
+      <Card className="overflow-hidden">
+        <CardHeader className="pb-4">
+          <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <CalendarIcon className="h-6 w-6 text-primary" />
+            Your Calendar
+          </h2>
+        </CardHeader>
+        <CardBody className="space-y-4">
+          <div className="rounded-xl border border-default-200 bg-default-50 p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-base font-medium">{cycleLabel}</span>
+            </div>
+            <div className="space-y-1 text-sm">
+              <div className="flex justify-between">
+                <span>Date:</span>
+                <span className="font-medium">
+                  {formatDateRange(startDate, endDate)}
+                </span>
+              </div>
+              {cycle.registrationPeriod && (
+                <div className="flex justify-between">
+                  <span>Registration:</span>
+                  <span className="font-medium">
+                    {formatDateRange(
+                      cycle.registrationPeriod.startDate,
+                      cycle.registrationPeriod.endDate,
+                    )}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </CardBody>
+      </Card>
+    );
+  }
+
   return (
     <Card className="overflow-hidden">
       <CardHeader className="pb-4">
@@ -105,19 +160,6 @@ export function CycleSelector({
                   tabIndex={-1}
                 />
                 <div className="flex items-center gap-2 mb-2">
-                  <Badge
-                    color={
-                      isLatest
-                        ? "success"
-                        : isSelected
-                          ? "primary"
-                          : "secondary"
-                    }
-                    variant="flat"
-                    size="sm"
-                  >
-                    {isLatest ? "Latest" : isSelected ? "Selected" : "Cycle"}
-                  </Badge>
                   <span className="text-base font-medium">{cycleLabel}</span>
                 </div>
                 <div className="space-y-1 text-sm">
