@@ -109,6 +109,10 @@ export default async function ProgramDetailsPage({
 
   // Get organization contact info
 
+  // Get the default level for SSR
+  const levels = program.levels ?? program.standardProgramVersion?.levels ?? [];
+  const defaultLevel = levels.length > 0 ? levels[0] : null;
+
   return (
     <ProgramSelectionProvider cycles={programCycles}>
       <ProgramGalleryCarousel program={program} />
@@ -195,7 +199,7 @@ export default async function ProgramDetailsPage({
             )}
 
             {/* Curriculum */}
-            <CurriculumSection program={program} />
+            <CurriculumSection program={program} defaultLevel={defaultLevel} />
 
             {/* Requirements */}
             {((program.requirements?.length ?? 0) > 0 ||

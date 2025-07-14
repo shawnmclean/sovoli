@@ -10,14 +10,18 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import type { OrgProgram } from "~/modules/academics/types";
+import type { OrgProgram, ProgramLevel } from "~/modules/academics/types";
 import { useProgramSelection } from "../context/ProgramSelectionContext";
 
 interface CurriculumSectionProps {
   program: OrgProgram;
+  defaultLevel?: ProgramLevel;
 }
 
-export function CurriculumSection({ program }: CurriculumSectionProps) {
+export function CurriculumSection({
+  program,
+  defaultLevel,
+}: CurriculumSectionProps) {
   const { selectedCycle, selectedLevel, setSelectedLevel } =
     useProgramSelection();
   const levels = useMemo(
@@ -33,6 +37,9 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
       }
     }
   }, [levels, selectedLevel, setSelectedLevel]);
+
+  // Use defaultLevel for SSR, fallback to selectedLevel for client
+  const displayLevel = selectedLevel ?? defaultLevel;
 
   if (levels.length === 0) {
     return null;
@@ -61,7 +68,7 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
           >
             <CarouselContent className="-ml-2">
               {levels.map((level, _levelIndex) => {
-                const isSelected = selectedLevel?.id === level.id;
+                const isSelected = displayLevel?.id === level.id;
 
                 return (
                   <CarouselItem key={level.id} className="pl-2 basis-auto">
@@ -140,23 +147,23 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         )}
 
         {/* Level Content */}
-        {selectedLevel && (
+        {displayLevel && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
                   <span className="text-sm font-semibold text-primary">
-                    {levels.findIndex((l) => l.id === selectedLevel.id) + 1}
+                    {levels.findIndex((l) => l.id === displayLevel.id) + 1}
                   </span>
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-foreground">
-                    {selectedLevel.label}
+                    {displayLevel.label}
                   </h3>
-                  {selectedLevel.ageRange && (
+                  {displayLevel.ageRange && (
                     <p className="text-sm text-foreground-600 mt-1">
-                      Ages {selectedLevel.ageRange.min}-
-                      {selectedLevel.ageRange.max} years
+                      Ages {displayLevel.ageRange.min}-
+                      {displayLevel.ageRange.max} years
                     </p>
                   )}
                 </div>
@@ -166,7 +173,7 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
               {selectedCycle &&
                 (() => {
                   const levelCycle = selectedCycle.levelCycles?.find(
-                    (lc) => lc.level.id === selectedLevel.id,
+                    (lc) => lc.level.id === displayLevel.id,
                   );
 
                   if (
@@ -192,9 +199,9 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                 })()}
             </div>
 
-            {selectedLevel.courses && selectedLevel.courses.length > 0 && (
+            {displayLevel.courses && displayLevel.courses.length > 0 && (
               <div className="space-y-2 sm:space-y-3">
-                {selectedLevel.courses.map((course) => (
+                {displayLevel.courses.map((course) => (
                   <div
                     key={course.id}
                     className="p-3 sm:p-4 bg-default-50 rounded-lg border border-default-200"
