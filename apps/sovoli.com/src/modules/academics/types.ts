@@ -154,9 +154,20 @@ export interface OrgProgramCycle {
    */
   computedRequirements: ProgramRequirement[];
   notes?: string;
+
+  levelCycles?: ProgramLevelCycle[];
 }
 
 // #endregion
+
+export interface ProgramLevelCycle {
+  level: ProgramLevel;
+
+  capacity?: number;
+  enrolled?: number;
+
+  notes?: string;
+}
 
 export interface ProgramLevel {
   id: string;

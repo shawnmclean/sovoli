@@ -6,7 +6,6 @@ import { Chip } from "@sovoli/ui/components/chip";
 import { Link } from "@sovoli/ui/components/link";
 
 import {
-  CalendarIcon,
   ClockIcon,
   UserIcon,
   StarIcon,
@@ -21,6 +20,7 @@ import { displayAgeRange } from "../../(main-layout)/programs/utils";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
 import { ProgramHero } from "./components/ProgramHero";
+import { CycleSelectionWrapper } from "./components/CycleSelectionWrapper";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -33,47 +33,6 @@ const retreiveOrgInstanceWithProgram = async (
 interface ProgramDetailsPageProps {
   params: Promise<{ username: string; slug: string }>;
 }
-
-// Helper function to format date
-const formatDate = (dateString: string) => {
-  const date = parseISO(dateString);
-  const now = new Date();
-  const isThisYear = date.getFullYear() === now.getFullYear();
-  return date.toLocaleDateString("en-GY", {
-    year: isThisYear ? undefined : "numeric",
-    month: "short",
-    day: "numeric",
-  });
-};
-
-// Helper function to format date range compactly
-const formatDateRange = (startDate: string, endDate: string) => {
-  const start = parseISO(startDate);
-  const end = parseISO(endDate);
-  const now = new Date();
-  const isSameDay = start.getTime() === end.getTime();
-  const isSameYear = start.getFullYear() === end.getFullYear();
-  const isThisYear =
-    start.getFullYear() === now.getFullYear() &&
-    end.getFullYear() === now.getFullYear();
-
-  if (isSameDay) {
-    return formatDate(startDate);
-  }
-
-  // If both dates are in the same year and it's this year, omit the year from both
-  if (isSameYear && isThisYear) {
-    return `${start.toLocaleDateString("en-GY", { month: "short", day: "numeric" })} - ${end.toLocaleDateString("en-GY", { month: "short", day: "numeric" })}`;
-  }
-
-  // If both dates are in the same year but not this year, show year only on end
-  if (isSameYear) {
-    return `${start.toLocaleDateString("en-GY", { month: "short", day: "numeric" })} - ${end.toLocaleDateString("en-GY", { month: "short", day: "numeric", year: "numeric" })}`;
-  }
-
-  // If years are different, show full date for both
-  return `${formatDate(startDate)} - ${formatDate(endDate)}`;
-};
 
 // Helper function to get current date
 const getCurrentDate = () => new Date();
@@ -227,118 +186,9 @@ export default async function ProgramDetailsPage({
               </CardBody>
             </Card>
 
-            {/* Academic Cycles */}
+            {/* Cycle Selection */}
             {programCycles.length > 0 && (
-              <Card className="overflow-hidden">
-                <CardHeader className="pb-4">
-                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                    <CalendarIcon className="h-6 w-6 text-primary" />
-                    Term Information
-                  </h2>
-                </CardHeader>
-                <CardBody className="space-y-4">
-                  {currentCycle && (
-                    <div className="rounded-lg bg-primary-50 border border-primary-200 p-4">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Badge color="primary" variant="flat" size="sm">
-                          Current
-                        </Badge>
-                        <span className="text-sm font-medium text-primary-900">
-                          {currentCycle.academicCycle.customLabel ??
-                            currentCycle.academicCycle.globalCycle?.label ??
-                            "Current Cycle"}
-                        </span>
-                      </div>
-
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm text-foreground-600">
-                            Date:
-                          </span>
-                          <span className="font-medium text-foreground">
-                            {formatDateRange(
-                              currentCycle.academicCycle.startDate ??
-                                currentCycle.academicCycle.globalCycle
-                                  ?.startDate ??
-                                "",
-                              currentCycle.academicCycle.endDate ??
-                                currentCycle.academicCycle.globalCycle
-                                  ?.endDate ??
-                                "",
-                            )}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {futureCycles.length > 0 && (
-                    <div className="space-y-3">
-                      <h3 className="text-lg font-semibold text-foreground">
-                        Upcoming Cycles
-                      </h3>
-                      {futureCycles.map((cycle, index) => (
-                        <div
-                          key={cycle.id}
-                          className={`rounded-lg border p-4 ${
-                            index === 0
-                              ? "bg-success-50 border-success-200"
-                              : "bg-default-50 border-default-200"
-                          }`}
-                        >
-                          <div className="flex items-center gap-2 mb-3">
-                            <Badge
-                              color={index === 0 ? "success" : "secondary"}
-                              variant="flat"
-                              size="sm"
-                            >
-                              {index === 0 ? "Next" : `Cycle ${index + 1}`}
-                            </Badge>
-                            <span className="text-sm font-medium text-foreground">
-                              {cycle.academicCycle.customLabel ??
-                                cycle.academicCycle.globalCycle?.label ??
-                                "Upcoming Cycle"}
-                            </span>
-                          </div>
-
-                          <div className="space-y-2">
-                            <div className="flex justify-between items-center">
-                              <span className="text-sm text-foreground-600">
-                                Date:
-                              </span>
-                              <span className="font-medium text-foreground">
-                                {formatDateRange(
-                                  cycle.academicCycle.startDate ??
-                                    cycle.academicCycle.globalCycle
-                                      ?.startDate ??
-                                    "",
-                                  cycle.academicCycle.endDate ??
-                                    cycle.academicCycle.globalCycle?.endDate ??
-                                    "",
-                                )}
-                              </span>
-                            </div>
-
-                            {cycle.registrationPeriod && (
-                              <div className="flex justify-between items-center">
-                                <span className="text-sm text-foreground-600">
-                                  Registration:
-                                </span>
-                                <span className="font-medium text-foreground">
-                                  {formatDateRange(
-                                    cycle.registrationPeriod.startDate,
-                                    cycle.registrationPeriod.endDate,
-                                  )}
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </CardBody>
-              </Card>
+              <CycleSelectionWrapper cycles={programCycles} />
             )}
 
             {/* Requirements */}

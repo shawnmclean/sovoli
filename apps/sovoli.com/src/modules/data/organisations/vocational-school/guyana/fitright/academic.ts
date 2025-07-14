@@ -57,7 +57,10 @@ const FITRIGHT_BAG_WORKSHOP_PROGRAM: OrgProgram = {
 };
 
 // Helper function to create a cycle with a specific date
-const createFitrightCycle = (day: number): OrgProgramCycle => ({
+const createFitrightCycle = (
+  day: number,
+  enrolled: number,
+): OrgProgramCycle => ({
   id: `fr-cycle-july${day}`,
   orgProgram: FITRIGHT_BAG_WORKSHOP_PROGRAM,
   academicCycle: {
@@ -79,12 +82,19 @@ const createFitrightCycle = (day: number): OrgProgramCycle => ({
     ],
   },
   computedRequirements: [],
+  levelCycles: [
+    {
+      level: FITRIGHT_BEGINNER_LEVEL,
+      capacity: 6,
+      enrolled,
+    },
+  ],
 });
 
 // Create cycles for July 25th, 26th, and 27th
-const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25 = createFitrightCycle(25);
-const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY26 = createFitrightCycle(26);
-const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY27 = createFitrightCycle(27);
+const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25 = createFitrightCycle(25, 3);
+const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY26 = createFitrightCycle(26, 0);
+const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY27 = createFitrightCycle(27, 0);
 
 export const FITRIGHT_ACADEMIC: AcademicModule = {
   programs: [FITRIGHT_BAG_WORKSHOP_PROGRAM],
