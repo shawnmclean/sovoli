@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 import type { OrgProgramCycle } from "~/modules/academics/types";
 import type { ProgramSelectionState } from "./types";
+import type { ProgramLevel } from "~/modules/academics/types";
 
 const ProgramSelectionContext = createContext<ProgramSelectionState | null>(
   null,
@@ -21,6 +22,7 @@ export function ProgramSelectionProvider({
   const [selectedCycle, setSelectedCycle] = useState<OrgProgramCycle | null>(
     null,
   );
+  const [selectedLevel, setSelectedLevel] = useState<ProgramLevel | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Set default cycle on mount or when cycles change
@@ -62,6 +64,8 @@ export function ProgramSelectionProvider({
   const value: ProgramSelectionState = {
     selectedCycle,
     setSelectedCycle,
+    selectedLevel,
+    setSelectedLevel,
     isLoading,
   };
 

@@ -39,7 +39,7 @@ export function ProgramDetailMobileFooter({
   program,
 }: ProgramDetailMobileFooterProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { selectedCycle, isLoading } = useProgramSelection();
+  const { selectedCycle, selectedLevel, isLoading } = useProgramSelection();
 
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "";
@@ -115,10 +115,16 @@ export function ProgramDetailMobileFooter({
                 as={Link}
                 variant="light"
                 color="default"
-                className="underline"
                 onPress={onOpen}
               >
-                {cycleLabel}
+                <div className="flex flex-col items-start gap-1">
+                  <span className="underline">{cycleLabel}</span>
+                  {selectedLevel && (
+                    <span className="text-xs text-default-600">
+                      {selectedLevel.label}
+                    </span>
+                  )}
+                </div>
               </Button>
             </Skeleton>
           </div>
@@ -173,6 +179,11 @@ export function ProgramDetailMobileFooter({
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
                   <span className="font-semibold text-lg">{cycleLabel}</span>
+                  {selectedLevel && (
+                    <span className="text-sm text-default-600">
+                      {selectedLevel.label}
+                    </span>
+                  )}
                   <span className="text-sm text-default-600">{dateRange}</span>
                   <span className="text-xs text-default-500">
                     {deadlineText}
