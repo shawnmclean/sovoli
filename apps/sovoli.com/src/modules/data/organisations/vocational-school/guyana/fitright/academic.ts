@@ -62,6 +62,7 @@ const createFitrightCycle = (day: number): OrgProgramCycle => ({
   orgProgram: FITRIGHT_BAG_WORKSHOP_PROGRAM,
   academicCycle: {
     id: `fr-cycle-july${day}`,
+    customLabel: `July ${day} - 10AM - 4PM`,
     startDate: `2025-07-${day.toString().padStart(2, "0")}`,
     endDate: `2025-07-${day.toString().padStart(2, "0")}`,
   },

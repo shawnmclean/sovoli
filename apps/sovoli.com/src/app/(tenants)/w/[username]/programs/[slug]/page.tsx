@@ -457,7 +457,7 @@ export default async function ProgramDetailsPage({
                                           className="bg-default-100 rounded-lg p-2 sm:p-3"
                                         >
                                           <h5 className="font-medium text-foreground text-sm mb-2">
-                                            Unit {unitIndex + 1}: {unit.title}
+                                            {unitIndex + 1}. {unit.title}
                                           </h5>
                                           {unit.topics.length > 0 && (
                                             <ul className="space-y-1">
