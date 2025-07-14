@@ -16,31 +16,12 @@ import { gradientBorderButton } from "~/components/GradientBorderButton";
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
+import { useProgramSelection } from "../../context/ProgramSelectionContext";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
   program: OrgProgram;
 }
-
-// Helper function to get current date
-const getCurrentDate = () => new Date();
-
-// Helper function to check if date is in the future
-const isDateInFuture = (dateString: string) => {
-  const date = parseISO(dateString);
-  return date > getCurrentDate();
-};
-
-// Helper function to get cycle status
-const getCycleStatus = (startDate: string, endDate: string) => {
-  const now = getCurrentDate();
-  const start = parseISO(startDate);
-  const end = parseISO(endDate);
-
-  if (now < start) return "upcoming";
-  if (now >= start && now <= end) return "current";
-  return "completed";
-};
 
 // Helper function to format date
 const formatDate = (dateString: string) => {
@@ -57,6 +38,7 @@ export function ProgramDetailMobileFooter({
   program,
 }: ProgramDetailMobileFooterProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { selectedCycle, isLoading } = useProgramSelection();
 
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "";
@@ -65,52 +47,45 @@ export function ProgramDetailMobileFooter({
     .find((l) => l.isPrimary)
     ?.contacts.find((c) => c.type === "whatsapp")?.value;
 
-  // Get cycles for this program
-  const programCycles =
-    orgInstance.academicModule?.programCycles?.filter(
-      (cycle) => cycle.orgProgram.slug === program.slug,
-    ) ?? [];
-
-  // Get the next upcoming cycle
-  const nextCycle = programCycles
-    .filter((cycle) => {
-      const startDate =
-        cycle.academicCycle.startDate ??
-        cycle.academicCycle.globalCycle?.startDate;
-      return startDate && isDateInFuture(startDate);
-    })
-    .sort((a, b) => {
-      const aStart =
-        a.academicCycle.startDate ??
-        a.academicCycle.globalCycle?.startDate ??
-        "";
-      const bStart =
-        b.academicCycle.startDate ??
-        b.academicCycle.globalCycle?.startDate ??
-        "";
-      return parseISO(aStart).getTime() - parseISO(bStart).getTime();
-    })[0];
-
-  // Get the current cycle
-  const currentCycle = programCycles.find((cycle) => {
-    const startDate =
-      cycle.academicCycle.startDate ??
-      cycle.academicCycle.globalCycle?.startDate;
-    const endDate =
-      cycle.academicCycle.endDate ?? cycle.academicCycle.globalCycle?.endDate;
-    if (!startDate || !endDate) return false;
-    return getCycleStatus(startDate, endDate) === "current";
-  });
-
-  // Use current cycle if available, otherwise use next cycle
-  const activeCycle = currentCycle ?? nextCycle;
-
-  // If no cycles are available, show fallback
-  if (!activeCycle) {
+  // Show loading state while context is initializing
+  if (isLoading) {
     return (
       <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
         <div className="flex w-full items-center justify-between py-3 gap-4">
-          <div className="flex flex-1 items-center">July 20 - 10AM</div>
+          <div className="flex flex-1 items-center">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+              <span className="text-sm text-foreground-600">Loading...</span>
+            </div>
+          </div>
+          <div className="flex-shrink-0">
+            <Button
+              as={WhatsAppLink}
+              phoneNumber={whatsappNumber}
+              message={`Hi, I'm interested in the ${programName} program. Can you provide more details?`}
+              intent="Contact"
+              page="mobile-footer"
+              variant="shadow"
+              color="primary"
+              radius="lg"
+              size="md"
+              startContent={<MessageSquareShareIcon size={16} />}
+              className={gradientBorderButton()}
+            >
+              Chat Now
+            </Button>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
+  // If no cycle is selected, show fallback
+  if (!selectedCycle) {
+    return (
+      <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
+        <div className="flex w-full items-center justify-between py-3 gap-4">
+          <div className="flex flex-1 items-center">Select a cycle</div>
           <div className="flex-shrink-0">
             <Button
               as={WhatsAppLink}
@@ -135,18 +110,18 @@ export function ProgramDetailMobileFooter({
 
   // Get cycle information
   const cycleLabel =
-    activeCycle.academicCycle.customLabel ??
-    activeCycle.academicCycle.globalCycle?.label ??
+    selectedCycle.academicCycle.customLabel ??
+    selectedCycle.academicCycle.globalCycle?.label ??
     "Academic Term";
 
   const startDate =
-    activeCycle.academicCycle.startDate ??
-    activeCycle.academicCycle.globalCycle?.startDate;
+    selectedCycle.academicCycle.startDate ??
+    selectedCycle.academicCycle.globalCycle?.startDate;
   const endDate =
-    activeCycle.academicCycle.endDate ??
-    activeCycle.academicCycle.globalCycle?.endDate;
+    selectedCycle.academicCycle.endDate ??
+    selectedCycle.academicCycle.globalCycle?.endDate;
 
-  const registrationDeadline = activeCycle.registrationPeriod?.endDate;
+  const registrationDeadline = selectedCycle.registrationPeriod?.endDate;
 
   // Format date range
   const dateRange =

@@ -1,27 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import type { OrgProgramCycle } from "~/modules/academics/types";
+import { useProgramSelection } from "../context/ProgramSelectionContext";
 import { CycleSelector } from "./CycleSelector";
+import type { OrgProgramCycle } from "~/modules/academics/types";
 
 interface CycleSelectionWrapperProps {
   cycles: OrgProgramCycle[];
 }
 
 export function CycleSelectionWrapper({ cycles }: CycleSelectionWrapperProps) {
-  const [selectedCycle, setSelectedCycle] = useState<OrgProgramCycle | null>(
-    null,
-  );
-
-  // Set default to the latest cycle
-  useEffect(() => {
-    if (cycles.length > 0 && !selectedCycle) {
-      const latestCycle = cycles[0];
-      if (latestCycle) {
-        setSelectedCycle(latestCycle);
-      }
-    }
-  }, [cycles, selectedCycle]);
+  const { selectedCycle, setSelectedCycle } = useProgramSelection();
 
   const handleCycleChange = (cycle: OrgProgramCycle) => {
     setSelectedCycle(cycle);

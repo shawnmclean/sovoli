@@ -21,6 +21,8 @@ import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
 import { ProgramHero } from "./components/ProgramHero";
 import { CycleSelectionWrapper } from "./components/CycleSelectionWrapper";
+import { ProgramSelectionProvider } from "./context/ProgramSelectionContext";
+import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -107,7 +109,7 @@ export default async function ProgramDetailsPage({
   // Get organization contact info
 
   return (
-    <>
+    <ProgramSelectionProvider cycles={programCycles}>
       <ProgramGalleryCarousel program={program} />
       <ProgramHero orgInstance={orgInstance} program={program} />
 
@@ -458,6 +460,8 @@ export default async function ProgramDetailsPage({
           )}
         </div>
       </div>
-    </>
+
+      <ProgramDetailMobileFooter orgInstance={orgInstance} program={program} />
+    </ProgramSelectionProvider>
   );
 }

@@ -3,7 +3,6 @@ import { Footer } from "../../components/footer/Footer";
 
 import { ProgramDetailNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
-import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { Alert } from "@sovoli/ui/components/alert";
 
 const retreiveOrgInstanceWithProgram = async (
@@ -78,7 +77,6 @@ export default async function Layout({ children, params }: Props) {
       {children}
 
       <Footer orgInstance={orgInstance} />
-      <ProgramDetailMobileFooter orgInstance={orgInstance} program={program} />
     </div>
   );
 }
