@@ -15,7 +15,7 @@ import { useProgramSelection } from "../context/ProgramSelectionContext";
 
 interface CurriculumSectionProps {
   program: OrgProgram;
-  defaultLevel?: ProgramLevel;
+  defaultLevel?: ProgramLevel | null;
 }
 
 export function CurriculumSection({
