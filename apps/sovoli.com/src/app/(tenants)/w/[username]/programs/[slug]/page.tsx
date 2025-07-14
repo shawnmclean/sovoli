@@ -194,6 +194,9 @@ export default async function ProgramDetailsPage({
               <CycleSelectionWrapper cycles={programCycles} />
             )}
 
+            {/* Curriculum */}
+            <CurriculumSection program={program} />
+
             {/* Requirements */}
             {((program.requirements?.length ?? 0) > 0 ||
               (program.standardProgramVersion?.requirements?.length ?? 0) >
@@ -236,9 +239,6 @@ export default async function ProgramDetailsPage({
                 </CardBody>
               </Card>
             )}
-
-            {/* Curriculum */}
-            <CurriculumSection program={program} />
             <Card className="overflow-hidden">
               <CardHeader className="pb-4">
                 <h2 className="text-xl font-bold text-foreground">
