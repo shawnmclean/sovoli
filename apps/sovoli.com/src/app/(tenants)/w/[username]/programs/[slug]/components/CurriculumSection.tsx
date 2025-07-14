@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Badge } from "@sovoli/ui/components/badge";
@@ -24,6 +24,7 @@ export function CurriculumSection({
 }: CurriculumSectionProps) {
   const { selectedCycle, selectedLevel, setSelectedLevel } =
     useProgramSelection();
+  const [isExpanded, setIsExpanded] = useState(false);
   const levels = useMemo(
     () => program.levels ?? program.standardProgramVersion?.levels ?? [],
     [program.levels, program.standardProgramVersion?.levels],
@@ -201,60 +202,74 @@ export function CurriculumSection({
 
             {displayLevel.courses && displayLevel.courses.length > 0 && (
               <div className="space-y-2 sm:space-y-3">
-                {displayLevel.courses.map((course) => (
-                  <div
-                    key={course.id}
-                    className="p-3 sm:p-4 bg-default-50 rounded-lg border border-default-200"
-                  >
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Chip color="secondary" variant="flat" size="sm">
-                          {course.subject.name}
-                        </Chip>
-                      </div>
-                      <h4 className="font-semibold text-foreground mb-2">
-                        {course.title}
-                      </h4>
-                      {course.description && (
-                        <p className="text-sm text-foreground-600 mb-3">
-                          {course.description}
-                        </p>
-                      )}
-                      {course.units && course.units.length > 0 && (
-                        <div className="space-y-2 sm:space-y-3">
-                          <p className="text-xs font-medium text-foreground-500 uppercase tracking-wide">
-                            Course Units
-                          </p>
-                          <div className="space-y-2">
-                            {course.units.map((unit, unitIndex) => (
-                              <div
-                                key={unitIndex}
-                                className="bg-default-100 rounded-lg p-2 sm:p-3"
-                              >
-                                <h5 className="font-medium text-foreground text-sm mb-2">
-                                  {unitIndex + 1}. {unit.title}
-                                </h5>
-                                {unit.topics.length > 0 && (
-                                  <ul className="space-y-1">
-                                    {unit.topics.map((topic, topicIndex) => (
-                                      <li
-                                        key={topicIndex}
-                                        className="text-sm text-foreground-600 flex items-start gap-2"
-                                      >
-                                        <span className="flex-shrink-0 w-1.5 h-1.5 bg-primary rounded-full mt-2"></span>
-                                        {topic}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                )}
-                              </div>
-                            ))}
-                          </div>
+                <div
+                  className={`${!isExpanded ? "max-h-64 overflow-hidden" : ""}`}
+                >
+                  {displayLevel.courses.map((course) => (
+                    <div
+                      key={course.id}
+                      className="p-3 sm:p-4 bg-default-50 rounded-lg border border-default-200"
+                    >
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Chip color="secondary" variant="flat" size="sm">
+                            {course.subject.name}
+                          </Chip>
                         </div>
-                      )}
+                        <h4 className="font-semibold text-foreground mb-2">
+                          {course.title}
+                        </h4>
+                        {course.description && (
+                          <p className="text-sm text-foreground-600 mb-3">
+                            {course.description}
+                          </p>
+                        )}
+                        {course.units && course.units.length > 0 && (
+                          <div className="space-y-2 sm:space-y-3">
+                            <p className="text-xs font-medium text-foreground-500 uppercase tracking-wide">
+                              Course Units
+                            </p>
+                            <div className="space-y-2">
+                              {course.units.map((unit, unitIndex) => (
+                                <div
+                                  key={unitIndex}
+                                  className="bg-default-100 rounded-lg p-2 sm:p-3"
+                                >
+                                  <h5 className="font-medium text-foreground text-sm mb-2">
+                                    {unitIndex + 1}. {unit.title}
+                                  </h5>
+                                  {unit.topics.length > 0 && (
+                                    <ul className="space-y-1">
+                                      {unit.topics.map((topic, topicIndex) => (
+                                        <li
+                                          key={topicIndex}
+                                          className="text-sm text-foreground-600 flex items-start gap-2"
+                                        >
+                                          <span className="flex-shrink-0 w-1.5 h-1.5 bg-primary rounded-full mt-2"></span>
+                                          {topic}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
+                {/* Read more button */}
+                <div className="flex justify-center pt-4">
+                  <button
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="text-primary hover:text-primary-600 font-medium text-sm flex items-center gap-1 transition-colors"
+                  >
+                    {isExpanded ? "Show less" : "Read more..."}
+                  </button>
+                </div>
               </div>
             )}
           </div>
