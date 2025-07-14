@@ -12,7 +12,7 @@ import type {
 export const GY_NURSERY_LEVELS: ProgramLevel[] = [
   {
     id: "gy-nursery-level-1",
-    programId: "gy-nursery",
+
     order: 0,
     label: "Year 1",
     type: "year",
@@ -20,7 +20,7 @@ export const GY_NURSERY_LEVELS: ProgramLevel[] = [
   },
   {
     id: "gy-nursery-level-2",
-    programId: "gy-nursery",
+
     order: 1,
     label: "Year 2",
     type: "year",
