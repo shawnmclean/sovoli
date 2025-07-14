@@ -54,7 +54,7 @@ export function CurriculumSection({
       <CardHeader className="pb-4">
         <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
           <BookOpenIcon className="h-6 w-6 text-primary" />
-          Curriculum Overview
+          Your Curriculum
         </h2>
       </CardHeader>
       <CardBody className="space-y-6">

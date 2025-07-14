@@ -3,6 +3,7 @@ import type {
   OrgAcademicCycle,
   OrgProgram,
   OrgProgramCycle,
+  ProgramLevel,
 } from "~/modules/academics/types";
 import type { Discount, PricingItem } from "~/modules/core/economics/types";
 import { GY_CYCLE_2025_T1 } from "~/modules/data/academics/guyana/cycles";
@@ -17,6 +18,95 @@ import {
   PRIMARY_PHOTOS,
   SECONDARY_PHOTOS,
 } from "./photos";
+
+const MAGY_PRE_NURSERY_LEVEL: ProgramLevel = {
+  id: "magy-pre-nursery",
+  order: 0,
+  label: "Pre-Nursery",
+  type: "year",
+  ageRange: { min: 2, max: 3 },
+  courses: [
+    {
+      id: "magy-pre-nursery-tracing",
+      subject: { id: "pre-sensory", name: "Motor Skills" },
+      title: "Tracing and Fine Motor Control",
+      description:
+        "Develop hand-eye coordination and pre-writing skills using tracing and drawing exercises.",
+      units: [
+        {
+          title: "Line and Shape Tracing",
+          topics: ["Straight lines", "Curves", "Zigzag", "Basic shapes"],
+        },
+      ],
+    },
+    {
+      id: "magy-pre-nursery-storytelling",
+      subject: { id: "pre-language", name: "Language Development" },
+      title: "Storytelling and Oral Expression",
+      units: [
+        {
+          title: "Simple Stories and Role Play",
+          topics: ["Picture storytelling", "Emotion expression", "Narration"],
+        },
+      ],
+    },
+    {
+      id: "magy-pre-nursery-art",
+      subject: { id: "pre-creative", name: "Creative Expression" },
+      title: "Art and Craft",
+      units: [
+        {
+          title: "Sensory Exploration",
+          topics: ["Color mixing", "Hand painting", "Cutting and gluing"],
+        },
+      ],
+    },
+    {
+      id: "magy-pre-nursery-singing",
+      subject: { id: "pre-music", name: "Music & Rhythm" },
+      title: "Singing and Rhythm",
+      units: [
+        {
+          title: "Rhymes and Movement",
+          topics: ["Call-and-response songs", "Body rhythm games"],
+        },
+      ],
+    },
+    {
+      id: "magy-pre-nursery-counting",
+      subject: { id: "pre-numeracy", name: "Numeracy Awareness" },
+      title: "Counting and Early Numbers",
+      units: [
+        {
+          title: "Number Rhymes and Games",
+          topics: ["Count to 5", "Finger counting", "Songs with numbers"],
+        },
+      ],
+    },
+    {
+      id: "magy-pre-nursery-roleplay",
+      subject: { id: "pre-social", name: "Social Play" },
+      title: "Role Playing",
+      units: [
+        {
+          title: "Dress Up and Imaginative Play",
+          topics: ["Shopkeeper", "Doctor", "Family"],
+        },
+      ],
+    },
+    {
+      id: "magy-pre-nursery-colouring",
+      subject: { id: "pre-art", name: "Color Recognition" },
+      title: "Colouring",
+      units: [
+        {
+          title: "Color Inside the Lines",
+          topics: ["Primary colors", "Patterns", "Crayon handling"],
+        },
+      ],
+    },
+  ],
+};
 
 // #region programs
 
@@ -37,15 +127,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: OrgProgram = {
       },
     },
   ],
-  levels: [
-    {
-      id: "magy-pre-nursery-level-1",
-      order: 0,
-      label: "Year 1",
-      type: "year",
-      ageRange: { min: 2, max: 3 },
-    },
-  ],
+  levels: [MAGY_PRE_NURSERY_LEVEL],
   isPopular: true,
 };
 export const MAGY_NURSERY_PROGRAM: OrgProgram = {
@@ -136,6 +218,13 @@ export const MAGY_PRE_NURSERY_2025_T1: OrgProgramCycle = {
   computedRequirements: [
     ...(MAGY_PRE_NURSERY_PROGRAM.requirements ?? []),
     ...(MAGY_PRE_NURSERY_PROGRAM.standardProgramVersion?.requirements ?? []),
+  ],
+  levelCycles: [
+    {
+      level: MAGY_PRE_NURSERY_LEVEL,
+      capacity: 25,
+      enrolled: 14,
+    },
   ],
 };
 

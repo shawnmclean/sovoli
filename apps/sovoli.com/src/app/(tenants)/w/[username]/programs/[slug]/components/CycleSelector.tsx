@@ -51,7 +51,7 @@ export function CycleSelector({
       <CardHeader className="pb-4">
         <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
           <CalendarIcon className="h-6 w-6 text-primary" />
-          Select Academic Cycle
+          Your Calendar
         </h2>
       </CardHeader>
       <CardBody className="space-y-4">
