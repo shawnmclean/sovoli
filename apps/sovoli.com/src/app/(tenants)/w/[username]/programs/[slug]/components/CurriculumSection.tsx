@@ -94,6 +94,32 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                           </div>
                         </div>
                       )}
+                      {/* Enrollment numbers */}
+                      {selectedCycle &&
+                        (() => {
+                          const levelCycle = selectedCycle.levelCycles?.find(
+                            (lc) => lc.level.id === level.id,
+                          );
+
+                          if (
+                            levelCycle &&
+                            (levelCycle.capacity ?? levelCycle.enrolled)
+                          ) {
+                            return (
+                              <div className="text-sm">
+                                <div className="flex justify-between">
+                                  <span>Enrollment:</span>
+                                  <span className="font-medium">
+                                    {levelCycle.enrolled ?? 0}
+                                    {levelCycle.capacity &&
+                                      ` / ${levelCycle.capacity}`}
+                                  </span>
+                                </div>
+                              </div>
+                            );
+                          }
+                          return null;
+                        })()}
                       {/* Custom radio indicator */}
                       <span
                         className={`absolute right-4 top-4 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors
@@ -117,6 +143,25 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         {selectedLevel && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                  <span className="text-sm font-semibold text-primary">
+                    {levels.findIndex((l) => l.id === selectedLevel.id) + 1}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {selectedLevel.label}
+                  </h3>
+                  {selectedLevel.ageRange && (
+                    <p className="text-sm text-foreground-600 mt-1">
+                      Ages {selectedLevel.ageRange.min}-
+                      {selectedLevel.ageRange.max} years
+                    </p>
+                  )}
+                </div>
+              </div>
+
               {/* Enrollment numbers */}
               {selectedCycle &&
                 (() => {
