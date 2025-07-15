@@ -26,6 +26,7 @@ import { CurriculumSection } from "./components/CurriculumSection";
 import { TeachersSection } from "./components/TeachersSection";
 import { LocationSection } from "./components/LocationSection";
 import { LocationFeaturesSection } from "./components/LocationFeaturesSection";
+import { ProgramsSection } from "./components/ProgramsSection";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -356,6 +357,8 @@ export default async function ProgramDetailsPage({
           )}
         </div>
       </div>
+
+      <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
 
       <ProgramDetailMobileFooter orgInstance={orgInstance} program={program} />
     </ProgramSelectionProvider>
