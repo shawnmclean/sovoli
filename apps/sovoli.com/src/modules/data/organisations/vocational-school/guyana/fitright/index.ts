@@ -6,7 +6,7 @@ import { FITRIGHT_ACADEMIC } from "./academic";
 export const FITRIGHT_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "Fit Right Academy",
+    name: "Fit Right",
     logo: "/orgs/vocational-training/guyana/fitright/logo.png",
     categories: ["vocational-school"],
     locations: [
@@ -18,11 +18,6 @@ export const FITRIGHT_ORG: OrgInstance = {
           countryCode: "GY",
         },
         contacts: [
-          {
-            type: "email",
-            value: "info@fitrightacademy.com",
-            isPublic: true,
-          },
           {
             type: "phone",
             value: "+1 (386) 279-8247",
