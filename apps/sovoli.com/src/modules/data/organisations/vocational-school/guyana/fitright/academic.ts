@@ -63,6 +63,7 @@ const createFitrightCycle = (
 ): OrgProgramCycle => ({
   id: `fr-cycle-july${day}`,
   orgProgram: FITRIGHT_BAG_WORKSHOP_PROGRAM,
+  status: "closed",
   academicCycle: {
     id: `fr-cycle-july${day}`,
     customLabel: `July ${day} - 10AM - 4PM`,
@@ -92,7 +93,7 @@ const createFitrightCycle = (
 });
 
 // Create cycles for July 25th, 26th, and 27th
-const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25 = createFitrightCycle(25, 3);
+const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY25 = createFitrightCycle(25, 6);
 const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY26 = createFitrightCycle(26, 0);
 const FITRIGHT_BAG_WORKSHOP_CYCLE_JULY27 = createFitrightCycle(27, 0);
 

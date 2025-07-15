@@ -117,14 +117,18 @@ export function ProgramDetailMobileFooter({
                 color="default"
                 onPress={onOpen}
               >
-                <div className="flex flex-col items-start gap-1">
-                  <span className="underline">{cycleLabel}</span>
-                  {selectedLevel && (
-                    <span className="text-xs text-default-600">
-                      {selectedLevel.label}
-                    </span>
-                  )}
-                </div>
+                {selectedCycle.status === "closed" ? (
+                  <span className="text-default-600">Closed</span>
+                ) : (
+                  <div className="flex flex-col items-start gap-1">
+                    <span className="underline">{cycleLabel}</span>
+                    {selectedLevel && (
+                      <span className="text-xs text-default-600">
+                        {selectedLevel.label}
+                      </span>
+                    )}
+                  </div>
+                )}
               </Button>
             </Skeleton>
           </div>
@@ -175,42 +179,56 @@ export function ProgramDetailMobileFooter({
         <DrawerContent>
           <DrawerBody className="mt-4">
             <div className="space-y-4 py-4">
-              {/* Term Selection */}
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className="font-semibold text-lg">{cycleLabel}</span>
-                  {selectedLevel && (
-                    <span className="text-sm text-default-600">
-                      {selectedLevel.label}
-                    </span>
-                  )}
-                  <span className="text-sm text-default-600">{dateRange}</span>
-                  <span className="text-xs text-default-500">
-                    {deadlineText}
-                  </span>
+              {selectedCycle.status === "closed" ? (
+                <div className="flex items-center justify-between">
+                  <span className="text-default-600">This Cycle is Closed</span>
                 </div>
-                <Button variant="flat" color="default" className="font-medium">
-                  Change
-                </Button>
-              </div>
+              ) : (
+                <>
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-col">
+                      <span className="font-semibold text-lg">
+                        {cycleLabel}
+                      </span>
+                      {selectedLevel && (
+                        <span className="text-sm text-default-600">
+                          {selectedLevel.label}
+                        </span>
+                      )}
+                      <span className="text-sm text-default-600">
+                        {dateRange}
+                      </span>
+                      <span className="text-xs text-default-500">
+                        {deadlineText}
+                      </span>
+                    </div>
+                    <Button
+                      variant="flat"
+                      color="default"
+                      className="font-medium"
+                    >
+                      Change
+                    </Button>
+                  </div>
 
-              {/* WhatsApp Link */}
-              <div className="pt-4 flex justify-end">
-                <Button
-                  as={WhatsAppLink}
-                  phoneNumber={whatsappNumber}
-                  message={`Hi, I'm interested in the ${programName} program for ${cycleLabel} (${dateRange}). Can you provide more details about enrollment?`}
-                  page="mobile-footer"
-                  intent="Contact"
-                  variant="shadow"
-                  radius="lg"
-                  className={gradientBorderButton()}
-                  onPress={onOpenChange}
-                  startContent={<MessageSquareShareIcon size={16} />}
-                >
-                  Chat Now
-                </Button>
-              </div>
+                  <div className="pt-4 flex justify-end">
+                    <Button
+                      as={WhatsAppLink}
+                      phoneNumber={whatsappNumber}
+                      message={`Hi, I'm interested in the ${programName} program for ${cycleLabel} (${dateRange}). Can you provide more details about enrollment?`}
+                      page="mobile-footer"
+                      intent="Contact"
+                      variant="shadow"
+                      radius="lg"
+                      className={gradientBorderButton()}
+                      onPress={onOpenChange}
+                      startContent={<MessageSquareShareIcon size={16} />}
+                    >
+                      Chat Now
+                    </Button>
+                  </div>
+                </>
+              )}
             </div>
           </DrawerBody>
         </DrawerContent>

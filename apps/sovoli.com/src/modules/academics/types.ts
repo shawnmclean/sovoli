@@ -137,6 +137,7 @@ export interface ProgramAssessmentVersion {
   effectiveTo?: string;
 }
 
+export type OrgProgramCycleStatus = "open" | "closed" | "hidden";
 export interface OrgProgramCycle {
   id: string; // e.g., "magy-nursery-2025-t1"
   orgProgram: OrgProgram;
@@ -156,6 +157,8 @@ export interface OrgProgramCycle {
   notes?: string;
 
   levelCycles?: ProgramLevelCycle[];
+
+  status?: OrgProgramCycleStatus;
 }
 
 // #endregion

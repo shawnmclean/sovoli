@@ -94,9 +94,12 @@ export function CycleSelector({
                   </span>
                 </div>
               )}
-              {
-                // Add duration (One Day, One Week, etc)
-              }
+              {cycle.status === "closed" && (
+                <div className="flex justify-between">
+                  <span>Status:</span>
+                  <span className="font-medium">Closed</span>
+                </div>
+              )}
             </div>
           </div>
         </CardBody>
@@ -181,6 +184,12 @@ export function CycleSelector({
                           cycle.registrationPeriod.endDate,
                         )}
                       </span>
+                    </div>
+                  )}
+                  {cycle.status === "closed" && (
+                    <div className="flex justify-between">
+                      <span>Status:</span>
+                      <span className="font-medium">Closed</span>
                     </div>
                   )}
                 </div>
