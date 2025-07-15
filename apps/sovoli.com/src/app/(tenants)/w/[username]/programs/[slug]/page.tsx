@@ -286,10 +286,7 @@ export default async function ProgramDetailsPage({
           {programCycles.length > 0 && (
             <Card className="overflow-hidden">
               <CardHeader className="pb-4">
-                <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                  <span className="text-2xl">💰</span>
-                  Your Cost
-                </h2>
+                <h3 className="text-xl font-bold text-foreground">Your Cost</h3>
               </CardHeader>
               <CardBody className="space-y-6">
                 {nextCycle && (
