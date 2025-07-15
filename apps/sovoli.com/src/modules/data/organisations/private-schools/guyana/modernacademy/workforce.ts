@@ -1,4 +1,7 @@
-import type { WorkforceModule } from "~/modules/workforce/types";
+import type {
+  WorkforceMember,
+  WorkforceModule,
+} from "~/modules/workforce/types";
 import {
   ADMIN,
   FACULTY,
@@ -7,6 +10,32 @@ import {
   SECRETARY,
   DIRECTOR_OF_STUDIES,
 } from "./workforceMeta";
+
+export const JESSICA_GOBIN: WorkforceMember = {
+  id: "005",
+  name: "Jessica A Gobin",
+  slug: "jessica-a-gobin",
+  image: "/images/profile/jessica.jpeg",
+  bio: "Jessica has a natural gift for connecting with children. Previously in office work, she quickly realized her calling was in the classroom, where her calm energy, playful nature, and deep empathy draw children to her. Whether it's singing nursery rhymes, conducting simple science experiments, or guiding early literacy, she makes learning feel like magic. Her connection with kids is mutual—uplifting her spirit as much as she nurtures theirs.",
+  quote:
+    "All kids need is a little help, a little hope and somebody who believes. — Magic Johnson",
+  isPublic: true,
+  contacts: [],
+  roleAssignments: [
+    {
+      position: TEACHER,
+      department: FACULTY,
+      titleOverride: "Nursery Year 2 Teacher",
+    },
+  ],
+  subjectAssignments: [
+    { subject: "Math", grades: ["Nursery Year 2"] },
+    { subject: "English", grades: ["Nursery Year 2"] },
+    { subject: "Science", grades: ["Nursery Year 2"] },
+    { subject: "Social Studies", grades: ["Nursery Year 2"] },
+    { subject: "Art", grades: ["Nursery Year 2"] },
+  ],
+};
 
 export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
   departments: [ADMIN, FACULTY],
@@ -152,31 +181,7 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
         { subject: "Geography", grades: ["Secondary"] },
       ],
     },
-    {
-      id: "005",
-      name: "Jessica A Gobin",
-      slug: "jessica-a-gobin",
-      image: "/images/profile/jessica.jpeg",
-      bio: "Jessica has a natural gift for connecting with children. Previously in office work, she quickly realized her calling was in the classroom, where her calm energy, playful nature, and deep empathy draw children to her. Whether it's singing nursery rhymes, conducting simple science experiments, or guiding early literacy, she makes learning feel like magic. Her connection with kids is mutual—uplifting her spirit as much as she nurtures theirs.",
-      quote:
-        "All kids need is a little help, a little hope and somebody who believes. — Magic Johnson",
-      isPublic: true,
-      contacts: [],
-      roleAssignments: [
-        {
-          position: TEACHER,
-          department: FACULTY,
-          titleOverride: "Nursery Year 2 Teacher",
-        },
-      ],
-      subjectAssignments: [
-        { subject: "Math", grades: ["Nursery Year 2"] },
-        { subject: "English", grades: ["Nursery Year 2"] },
-        { subject: "Science", grades: ["Nursery Year 2"] },
-        { subject: "Social Studies", grades: ["Nursery Year 2"] },
-        { subject: "Art", grades: ["Nursery Year 2"] },
-      ],
-    },
+    JESSICA_GOBIN,
     {
       id: "006",
       name: "Wonda Baron",

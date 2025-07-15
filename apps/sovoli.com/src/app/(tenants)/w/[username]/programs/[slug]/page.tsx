@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Link } from "@sovoli/ui/components/link";
 
 import {
   ClockIcon,
@@ -24,6 +23,7 @@ import { CycleSelectionWrapper } from "./components/CycleSelectionWrapper";
 import { ProgramSelectionProvider } from "./context/ProgramSelectionContext";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { CurriculumSection } from "./components/CurriculumSection";
+import { TeachersSection } from "./components/TeachersSection";
 import { LocationSection } from "./components/LocationSection";
 import { LocationFeaturesSection } from "./components/LocationFeaturesSection";
 
@@ -203,6 +203,13 @@ export default async function ProgramDetailsPage({
             {/* Curriculum */}
             <CurriculumSection program={program} defaultLevel={defaultLevel} />
 
+            {/* Teachers */}
+            <TeachersSection
+              orgInstance={orgInstance}
+              program={program}
+              defaultLevel={defaultLevel}
+            />
+
             {/* Requirements */}
             {((program.requirements?.length ?? 0) > 0 ||
               (program.standardProgramVersion?.requirements?.length ?? 0) >
@@ -245,20 +252,6 @@ export default async function ProgramDetailsPage({
                 </CardBody>
               </Card>
             )}
-            <Card className="overflow-hidden">
-              <CardHeader className="pb-4">
-                <h2 className="text-xl font-bold text-foreground">
-                  Your Teachers
-                </h2>
-              </CardHeader>
-              <CardBody>
-                <div className="prose prose-sm max-w-none text-foreground-700">
-                  <Link href={`/workforce/people`}>
-                    View all our staff here
-                  </Link>
-                </div>
-              </CardBody>
-            </Card>
 
             <LocationFeaturesSection orgInstance={orgInstance} />
 

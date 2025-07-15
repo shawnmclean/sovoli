@@ -18,6 +18,7 @@ import {
   PRIMARY_PHOTOS,
   SECONDARY_PHOTOS,
 } from "./photos";
+import { JESSICA_GOBIN } from "./workforce";
 
 const MAGY_PRE_NURSERY_LEVEL: ProgramLevel = {
   id: "magy-pre-nursery",
@@ -221,6 +222,7 @@ export const MAGY_PRE_NURSERY_2025_T1: OrgProgramCycle = {
   ],
   levelCycles: [
     {
+      teachers: [JESSICA_GOBIN],
       level: MAGY_PRE_NURSERY_LEVEL,
       capacity: 25,
       enrolled: 14,

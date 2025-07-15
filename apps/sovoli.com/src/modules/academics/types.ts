@@ -1,5 +1,6 @@
 import type { PricingPackage } from "../core/economics/types";
 import type { CountryCode } from "../core/types";
+import type { WorkforceMember } from "../workforce/types";
 
 // #region cycles
 
@@ -165,6 +166,8 @@ export interface OrgProgramCycle {
 
 export interface ProgramLevelCycle {
   level: ProgramLevel;
+
+  teachers?: WorkforceMember[];
 
   capacity?: number;
   enrolled?: number;
