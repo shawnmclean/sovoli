@@ -3,7 +3,7 @@ import { MapPinIcon } from "lucide-react";
 
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { Org } from "./Org";
+import { OrgSection } from "./OrgSection";
 
 export interface ProgramHeroProps {
   orgInstance: OrgInstance;
@@ -59,7 +59,7 @@ export const ProgramHero = ({ orgInstance, program }: ProgramHeroProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Organization Component */}
           <div className="space-y-6">
-            <Org orgInstance={orgInstance} />
+            <OrgSection orgInstance={orgInstance} />
 
             {/* Program Description */}
             {programDescription && (

@@ -24,6 +24,7 @@ import { CycleSelectionWrapper } from "./components/CycleSelectionWrapper";
 import { ProgramSelectionProvider } from "./context/ProgramSelectionContext";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { CurriculumSection } from "./components/CurriculumSection";
+import { LocationSection } from "./components/LocationSection";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -270,16 +271,7 @@ export default async function ProgramDetailsPage({
               </CardBody>
             </Card>
 
-            <Card className="overflow-hidden">
-              <CardHeader className="pb-4">
-                <h3 className="text-xl font-bold text-foreground">
-                  Your Location
-                </h3>
-              </CardHeader>
-              <CardBody className="space-y-4">
-                Location/Maps coming soon
-              </CardBody>
-            </Card>
+            <LocationSection orgInstance={orgInstance} />
           </div>
 
           {/* Pricing Information */}

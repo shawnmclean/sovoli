@@ -4,11 +4,11 @@ import { BadgeCheckIcon } from "lucide-react";
 
 import type { OrgInstance } from "~/modules/organisations/types";
 
-export interface OrgProps {
+export interface OrgSectionProps {
   orgInstance: OrgInstance;
 }
 
-export const Org = ({ orgInstance }: OrgProps) => {
+export function OrgSection({ orgInstance }: OrgSectionProps) {
   const org = orgInstance.org;
 
   // Calculate score
@@ -82,4 +82,4 @@ export const Org = ({ orgInstance }: OrgProps) => {
       </div>
     </div>
   );
-};
+}
