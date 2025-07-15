@@ -11,6 +11,8 @@ import {
   GY_NURSERY_V1,
   GY_PRIMARY_V1,
   GY_SECONDARY_V1,
+  GY_NURSERY_LEVELS,
+  GY_PRIMARY_LEVELS,
 } from "~/modules/data/academics/guyana/programs";
 import {
   NURSERY_PHOTOS,
@@ -23,6 +25,7 @@ import {
   SIR_CHABEERAJ_FRANCIS,
   WONDA_BARON,
   MOLTA_MCRAE,
+  SAMANTHA_PERSAUD,
 } from "./workforce";
 
 const MAGY_PRE_NURSERY_LEVEL: ProgramLevel = {
@@ -112,70 +115,6 @@ const MAGY_PRE_NURSERY_LEVEL: ProgramLevel = {
       ],
     },
   ],
-};
-
-const MAGY_NURSERY_LEVEL_1: ProgramLevel = {
-  id: "magy-nursery",
-  order: 1,
-  label: "Nursery",
-  type: "year",
-  ageRange: { min: 3, max: 4 },
-};
-
-const MAGY_NURSERY_LEVEL_2: ProgramLevel = {
-  id: "magy-nursery",
-  order: 2,
-  label: "Nursery",
-  type: "year",
-  ageRange: { min: 4, max: 5 },
-};
-
-const MAGY_PRIMARY_GRADE_1: ProgramLevel = {
-  id: "magy-primary-grade-1",
-  order: 1,
-  label: "Grade 1",
-  type: "year",
-  ageRange: { min: 5, max: 6 },
-};
-
-const MAGY_PRIMARY_GRADE_2: ProgramLevel = {
-  id: "magy-primary-grade-2",
-  order: 2,
-  label: "Grade 2",
-  type: "year",
-  ageRange: { min: 6, max: 7 },
-};
-
-const MAGY_PRIMARY_GRADE_3: ProgramLevel = {
-  id: "magy-primary-grade-3",
-  order: 3,
-  label: "Grade 3",
-  type: "year",
-  ageRange: { min: 7, max: 8 },
-};
-
-const MAGY_PRIMARY_GRADE_4: ProgramLevel = {
-  id: "magy-primary-grade-4",
-  order: 4,
-  label: "Grade 4",
-  type: "year",
-  ageRange: { min: 8, max: 9 },
-};
-
-const MAGY_PRIMARY_GRADE_5: ProgramLevel = {
-  id: "magy-primary-grade-5",
-  order: 5,
-  label: "Grade 5",
-  type: "year",
-  ageRange: { min: 9, max: 10 },
-};
-
-const MAGY_PRIMARY_GRADE_6: ProgramLevel = {
-  id: "magy-primary-grade-6",
-  order: 6,
-  label: "Grade 6",
-  type: "year",
-  ageRange: { min: 10, max: 11 },
 };
 
 // #region programs
@@ -324,14 +263,16 @@ export const MAGY_NURSERY_2025_T1: OrgProgramCycle = {
 
   levelCycles: [
     {
-      teachers: [JESSICA_GOBIN],
-      level: MAGY_NURSERY_LEVEL_1,
+      teachers: [JESSICA_GOBIN, SAMANTHA_PERSAUD],
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      level: GY_NURSERY_LEVELS[0]!,
       capacity: 25,
       enrolled: 15,
     },
     {
-      teachers: [JESSICA_GOBIN],
-      level: MAGY_NURSERY_LEVEL_2,
+      teachers: [JESSICA_GOBIN, SAMANTHA_PERSAUD],
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      level: GY_NURSERY_LEVELS[1]!,
       capacity: 25,
       enrolled: 20,
     },
@@ -364,37 +305,43 @@ export const MAGY_PRIMARY_2025_T1: OrgProgramCycle = {
   levelCycles: [
     {
       teachers: [WONDA_BARON],
-      level: MAGY_PRIMARY_GRADE_1,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      level: GY_PRIMARY_LEVELS[0]!,
       capacity: 25,
       enrolled: 16,
     },
     {
       teachers: [WONDA_BARON],
-      level: MAGY_PRIMARY_GRADE_2,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      level: GY_PRIMARY_LEVELS[1]!,
       capacity: 25,
       enrolled: 19,
     },
     {
       teachers: [MOLTA_MCRAE],
-      level: MAGY_PRIMARY_GRADE_3,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      level: GY_PRIMARY_LEVELS[2]!,
       capacity: 25,
       enrolled: 22,
     },
     {
       teachers: [MOLTA_MCRAE],
-      level: MAGY_PRIMARY_GRADE_4,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      level: GY_PRIMARY_LEVELS[3]!,
       capacity: 25,
       enrolled: 13,
     },
     {
       teachers: [SIR_CHABEERAJ_FRANCIS],
-      level: MAGY_PRIMARY_GRADE_5,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      level: GY_PRIMARY_LEVELS[4]!,
       capacity: 25,
       enrolled: 17,
     },
     {
       teachers: [SIR_CHABEERAJ_FRANCIS],
-      level: MAGY_PRIMARY_GRADE_6,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      level: GY_PRIMARY_LEVELS[5]!,
       capacity: 25,
       enrolled: 21,
     },

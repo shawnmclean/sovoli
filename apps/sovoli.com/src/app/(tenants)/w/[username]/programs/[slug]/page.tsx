@@ -116,8 +116,24 @@ export default async function ProgramDetailsPage({
   const levels = program.levels ?? program.standardProgramVersion?.levels ?? [];
   const defaultLevel = levels.length > 0 ? levels[0] : null;
 
+  // Get the default teacher for SSR
+  const defaultCycle = currentCycle ?? nextCycle;
+  const defaultTeachers =
+    defaultCycle && defaultLevel
+      ? (defaultCycle.levelCycles?.find((lc) => lc.level.id === defaultLevel.id)
+          ?.teachers ?? null)
+      : null;
+
   return (
     <ProgramSelectionProvider cycles={programCycles}>
+      <div className="text-sm text-foreground-500 mt-8">
+        Default Teacher: {defaultTeachers?.map((t) => t.name).join(", ")}
+        <br />
+        Cycle: {defaultCycle?.id}
+        <br />
+        Level: {defaultLevel?.id}
+      </div>
+
       <ProgramGalleryCarousel program={program} />
       <ProgramHero orgInstance={orgInstance} program={program} />
 
@@ -209,6 +225,7 @@ export default async function ProgramDetailsPage({
               orgInstance={orgInstance}
               program={program}
               defaultLevel={defaultLevel}
+              defaultTeachers={defaultTeachers}
             />
 
             {/* Requirements */}

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { RadioGroup } from "@sovoli/ui/components/radio";
 import { Card, CardHeader, CardBody } from "@sovoli/ui/components/card";
-import { Badge } from "@sovoli/ui/components/badge";
 import { CalendarIcon } from "lucide-react";
 import type { OrgProgramCycle } from "~/modules/academics/types";
 import { formatDateRange } from "~/utils/dateUtils";
@@ -121,8 +120,7 @@ export function CycleSelector({
           onValueChange={handleSelectionChange}
           className="space-y-3"
         >
-          {cycles.map((cycle, index) => {
-            const isLatest = index === 0;
+          {cycles.map((cycle, _) => {
             const isSelected = selectedValue === cycle.id;
             const cycleLabel =
               cycle.academicCycle.customLabel ??

@@ -21,6 +21,7 @@ interface TeachersSectionProps {
   orgInstance: OrgInstance;
   program: OrgProgram;
   defaultLevel?: ProgramLevel | null;
+  defaultTeachers?: WorkforceMember[] | null;
 }
 
 function getPrimaryRole(member: WorkforceMember) {
@@ -39,6 +40,7 @@ export function TeachersSection({
   orgInstance: _orgInstance,
   program: _program,
   defaultLevel,
+  defaultTeachers,
 }: TeachersSectionProps) {
   const { selectedCycle, selectedLevel } = useProgramSelection();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -50,14 +52,26 @@ export function TeachersSection({
 
   // Get teachers for the current level and cycle
   const teachers = useMemo(() => {
-    if (!selectedCycle || !displayLevel) return [];
+    // If we have a selected cycle and level, use the dynamic teachers
+    if (selectedCycle && displayLevel) {
+      const levelCycle = selectedCycle.levelCycles?.find(
+        (lc) => lc.level.id === displayLevel.id,
+      );
+      return levelCycle?.teachers ?? [];
+    }
 
-    const levelCycle = selectedCycle.levelCycles?.find(
-      (lc) => lc.level.id === displayLevel.id,
-    );
+    // Otherwise, use defaultTeachers if available
+    return defaultTeachers ?? [];
+  }, [selectedCycle, displayLevel, defaultTeachers]);
 
-    return levelCycle?.teachers ?? [];
-  }, [selectedCycle, displayLevel]);
+  // Set the first teacher as selected when teachers change
+  useMemo(() => {
+    if (teachers.length > 0 && !selectedTeacher) {
+      setSelectedTeacher(teachers[0]);
+    } else if (teachers.length === 0) {
+      setSelectedTeacher(null);
+    }
+  }, [teachers, selectedTeacher]);
 
   const handleTeacherClick = (teacher: WorkforceMember) => {
     setSelectedTeacher(teacher);
