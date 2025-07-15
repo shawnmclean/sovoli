@@ -11,11 +11,147 @@ import {
   DrawerContent,
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@sovoli/ui/components/carousel";
 import { UserIcon, MailIcon, PhoneIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { OrgProgram, ProgramLevel } from "~/modules/academics/types";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import { useProgramSelection } from "../context/ProgramSelectionContext";
+
+// Shared Teacher Details Drawer Component
+interface TeacherDetailsDrawerProps {
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+  selectedTeacher: WorkforceMember | null;
+}
+
+function TeacherDetailsDrawer({
+  isOpen,
+  onOpenChange,
+  selectedTeacher,
+}: TeacherDetailsDrawerProps) {
+  return (
+    <Drawer
+      isOpen={isOpen}
+      size="full"
+      placement="bottom"
+      backdrop="opaque"
+      onOpenChange={onOpenChange}
+      motionProps={{
+        variants: {
+          enter: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.3,
+            },
+          },
+          exit: {
+            y: 100,
+            opacity: 0,
+            transition: {
+              duration: 0.3,
+            },
+          },
+        },
+      }}
+    >
+      <DrawerContent>
+        <DrawerHeader className="border-b border-divider">
+          <h3 className="text-lg font-semibold text-foreground">
+            {selectedTeacher?.name}
+          </h3>
+        </DrawerHeader>
+        <DrawerBody className="mt-4">
+          {selectedTeacher && (
+            <div className="space-y-6">
+              <div className="flex flex-col items-center gap-4">
+                <Avatar
+                  src={selectedTeacher.image}
+                  name={selectedTeacher.name}
+                  className="h-32 w-32"
+                  isBordered
+                />
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold text-foreground">
+                    {selectedTeacher.name}
+                  </h2>
+                  {getPrimaryRole(selectedTeacher) && (
+                    <p className="text-lg text-foreground-600 mt-1">
+                      {getPrimaryRole(selectedTeacher)?.titleOverride ??
+                        getPrimaryRole(selectedTeacher)?.position.name}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {selectedTeacher.quote && (
+                <div className="relative">
+                  <span className="absolute -left-2 -top-2 text-4xl text-default-300">
+                    "
+                  </span>
+                  <p className="text-lg italic text-foreground-600 pl-4">
+                    {selectedTeacher.quote}
+                  </p>
+                  <span className="absolute -right-2 -bottom-2 text-4xl text-default-300">
+                    "
+                  </span>
+                </div>
+              )}
+
+              {selectedTeacher.bio && (
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    About
+                  </h3>
+                  <p className="text-foreground-600">{selectedTeacher.bio}</p>
+                </div>
+              )}
+
+              {/* Contact Information */}
+              {(getPublicContact(selectedTeacher, "email") ||
+                getPublicContact(selectedTeacher, "phone")) && (
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    Contact
+                  </h3>
+                  <div className="space-y-2">
+                    {getPublicContact(selectedTeacher, "email") && (
+                      <div className="flex items-center gap-2">
+                        <MailIcon className="h-4 w-4 text-foreground-500" />
+                        <a
+                          href={`mailto:${getPublicContact(selectedTeacher, "email")}`}
+                          className="text-primary hover:underline"
+                        >
+                          {getPublicContact(selectedTeacher, "email")}
+                        </a>
+                      </div>
+                    )}
+                    {getPublicContact(selectedTeacher, "phone") && (
+                      <div className="flex items-center gap-2">
+                        <PhoneIcon className="h-4 w-4 text-foreground-500" />
+                        <a
+                          href={`tel:${getPublicContact(selectedTeacher, "phone")}`}
+                          className="text-primary hover:underline"
+                        >
+                          {getPublicContact(selectedTeacher, "phone")}
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
+  );
+}
 
 interface TeachersSectionProps {
   orgInstance: OrgInstance;
@@ -67,7 +203,10 @@ export function TeachersSection({
   // Set the first teacher as selected when teachers change
   useMemo(() => {
     if (teachers.length > 0 && !selectedTeacher) {
-      setSelectedTeacher(teachers[0]);
+      const firstTeacher = teachers[0];
+      if (firstTeacher) {
+        setSelectedTeacher(firstTeacher);
+      }
     } else if (teachers.length === 0) {
       setSelectedTeacher(null);
     }
@@ -102,10 +241,6 @@ export function TeachersSection({
   if (teachers.length === 1) {
     const teacher = teachers[0];
     if (!teacher) return null;
-
-    const primaryRole = getPrimaryRole(teacher);
-    const displayTitle =
-      primaryRole?.titleOverride ?? primaryRole?.position.name;
 
     return (
       <>
@@ -160,127 +295,15 @@ export function TeachersSection({
         </Card>
 
         {/* Teacher Details Drawer */}
-        <Drawer
+        <TeacherDetailsDrawer
           isOpen={isOpen}
-          size="full"
-          placement="bottom"
-          backdrop="opaque"
           onOpenChange={onOpenChange}
-          motionProps={{
-            variants: {
-              enter: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.3,
-                },
-              },
-              exit: {
-                y: 100,
-                opacity: 0,
-                transition: {
-                  duration: 0.3,
-                },
-              },
-            },
-          }}
-        >
-          <DrawerContent>
-            <DrawerHeader className="border-b border-divider">
-              <h3 className="text-lg font-semibold text-foreground">
-                {selectedTeacher?.name}
-              </h3>
-            </DrawerHeader>
-            <DrawerBody className="mt-4">
-              {selectedTeacher && (
-                <div className="space-y-6">
-                  <div className="flex flex-col items-center gap-4">
-                    <Avatar
-                      src={selectedTeacher.image}
-                      name={selectedTeacher.name}
-                      className="h-32 w-32"
-                      isBordered
-                    />
-                    <div className="text-center">
-                      <h2 className="text-2xl font-bold text-foreground">
-                        {selectedTeacher.name}
-                      </h2>
-                      {displayTitle && (
-                        <p className="text-lg text-foreground-600 mt-1">
-                          {displayTitle}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {selectedTeacher.quote && (
-                    <div className="relative">
-                      <span className="absolute -left-2 -top-2 text-4xl text-default-300">
-                        "
-                      </span>
-                      <p className="text-lg italic text-foreground-600 pl-4">
-                        {selectedTeacher.quote}
-                      </p>
-                      <span className="absolute -right-2 -bottom-2 text-4xl text-default-300">
-                        "
-                      </span>
-                    </div>
-                  )}
-
-                  {selectedTeacher.bio && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">
-                        About
-                      </h3>
-                      <p className="text-foreground-600">
-                        {selectedTeacher.bio}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Contact Information */}
-                  {(getPublicContact(selectedTeacher, "email") ||
-                    getPublicContact(selectedTeacher, "phone")) && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">
-                        Contact
-                      </h3>
-                      <div className="space-y-2">
-                        {getPublicContact(selectedTeacher, "email") && (
-                          <div className="flex items-center gap-2">
-                            <MailIcon className="h-4 w-4 text-foreground-500" />
-                            <a
-                              href={`mailto:${getPublicContact(selectedTeacher, "email")}`}
-                              className="text-primary hover:underline"
-                            >
-                              {getPublicContact(selectedTeacher, "email")}
-                            </a>
-                          </div>
-                        )}
-                        {getPublicContact(selectedTeacher, "phone") && (
-                          <div className="flex items-center gap-2">
-                            <PhoneIcon className="h-4 w-4 text-foreground-500" />
-                            <a
-                              href={`tel:${getPublicContact(selectedTeacher, "phone")}`}
-                              className="text-primary hover:underline"
-                            >
-                              {getPublicContact(selectedTeacher, "phone")}
-                            </a>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
+          selectedTeacher={selectedTeacher}
+        />
       </>
     );
   }
 
-  // Multiple teachers - show grid
   return (
     <>
       <Card className="overflow-hidden">
@@ -291,162 +314,55 @@ export function TeachersSection({
           </h2>
         </CardHeader>
         <CardBody>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {teachers.map((teacher) => {
-              const primaryRole = getPrimaryRole(teacher);
-              const displayTitle =
-                primaryRole?.titleOverride ?? primaryRole?.position.name;
+          <div className="w-full">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {teachers.map((teacher) => {
+                  return (
+                    <CarouselItem key={teacher.id} className="basis-[200px]">
+                      <div
+                        className="flex flex-col items-center gap-3 p-4 bg-default-50 rounded-lg border border-default-200 hover:border-primary-400 transition-colors cursor-pointer h-full"
+                        onClick={() => handleTeacherClick(teacher)}
+                      >
+                        <Avatar
+                          src={teacher.image}
+                          name={teacher.name}
+                          className="h-16 w-16"
+                          isBordered
+                        />
+                        <div className="text-center flex-1">
+                          <h3 className="font-semibold text-foreground text-sm">
+                            {teacher.name}
+                          </h3>
 
-              return (
-                <div
-                  key={teacher.id}
-                  className="flex flex-col items-center gap-3 p-4 bg-default-50 rounded-lg border border-default-200 hover:border-primary-400 transition-colors cursor-pointer"
-                  onClick={() => handleTeacherClick(teacher)}
-                >
-                  <Avatar
-                    src={teacher.image}
-                    name={teacher.name}
-                    className="h-16 w-16"
-                    isBordered
-                  />
-                  <div className="text-center">
-                    <h3 className="font-semibold text-foreground text-sm">
-                      {teacher.name}
-                    </h3>
-                    {displayTitle && (
-                      <p className="text-xs text-foreground-600 mt-1">
-                        {displayTitle}
-                      </p>
-                    )}
-                    {teacher.quote && (
-                      <p className="text-xs text-foreground-600 mt-2 line-clamp-2">
-                        "{teacher.quote}"
-                      </p>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+                          {teacher.quote && (
+                            <p className="text-xs text-foreground-600 mt-2 line-clamp-2">
+                              "{teacher.quote}"
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+            </Carousel>
           </div>
         </CardBody>
       </Card>
 
       {/* Teacher Details Drawer */}
-      <Drawer
+      <TeacherDetailsDrawer
         isOpen={isOpen}
-        size="full"
-        placement="bottom"
-        backdrop="opaque"
         onOpenChange={onOpenChange}
-        motionProps={{
-          variants: {
-            enter: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-            exit: {
-              y: 100,
-              opacity: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-          },
-        }}
-      >
-        <DrawerContent>
-          <DrawerHeader className="border-b border-divider">
-            <h3 className="text-lg font-semibold text-foreground">
-              {selectedTeacher?.name}
-            </h3>
-          </DrawerHeader>
-          <DrawerBody className="mt-4">
-            {selectedTeacher && (
-              <div className="space-y-6">
-                <div className="flex flex-col items-center gap-4">
-                  <Avatar
-                    src={selectedTeacher.image}
-                    name={selectedTeacher.name}
-                    className="h-32 w-32"
-                    isBordered
-                  />
-                  <div className="text-center">
-                    <h2 className="text-2xl font-bold text-foreground">
-                      {selectedTeacher.name}
-                    </h2>
-                    {getPrimaryRole(selectedTeacher) && (
-                      <p className="text-lg text-foreground-600 mt-1">
-                        {getPrimaryRole(selectedTeacher)?.titleOverride ??
-                          getPrimaryRole(selectedTeacher)?.position.name}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                {selectedTeacher.quote && (
-                  <div className="relative">
-                    <span className="absolute -left-2 -top-2 text-4xl text-default-300">
-                      "
-                    </span>
-                    <p className="text-lg italic text-foreground-600 pl-4">
-                      {selectedTeacher.quote}
-                    </p>
-                    <span className="absolute -right-2 -bottom-2 text-4xl text-default-300">
-                      "
-                    </span>
-                  </div>
-                )}
-
-                {selectedTeacher.bio && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
-                      About
-                    </h3>
-                    <p className="text-foreground-600">{selectedTeacher.bio}</p>
-                  </div>
-                )}
-
-                {/* Contact Information */}
-                {(getPublicContact(selectedTeacher, "email") ||
-                  getPublicContact(selectedTeacher, "phone")) && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
-                      Contact
-                    </h3>
-                    <div className="space-y-2">
-                      {getPublicContact(selectedTeacher, "email") && (
-                        <div className="flex items-center gap-2">
-                          <MailIcon className="h-4 w-4 text-foreground-500" />
-                          <a
-                            href={`mailto:${getPublicContact(selectedTeacher, "email")}`}
-                            className="text-primary hover:underline"
-                          >
-                            {getPublicContact(selectedTeacher, "email")}
-                          </a>
-                        </div>
-                      )}
-                      {getPublicContact(selectedTeacher, "phone") && (
-                        <div className="flex items-center gap-2">
-                          <PhoneIcon className="h-4 w-4 text-foreground-500" />
-                          <a
-                            href={`tel:${getPublicContact(selectedTeacher, "phone")}`}
-                            className="text-primary hover:underline"
-                          >
-                            {getPublicContact(selectedTeacher, "phone")}
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+        selectedTeacher={selectedTeacher}
+      />
     </>
   );
 }

@@ -126,14 +126,6 @@ export default async function ProgramDetailsPage({
 
   return (
     <ProgramSelectionProvider cycles={programCycles}>
-      <div className="text-sm text-foreground-500 mt-8">
-        Default Teacher: {defaultTeachers?.map((t) => t.name).join(", ")}
-        <br />
-        Cycle: {defaultCycle?.id}
-        <br />
-        Level: {defaultLevel?.id}
-      </div>
-
       <ProgramGalleryCarousel program={program} />
       <ProgramHero orgInstance={orgInstance} program={program} />
 
