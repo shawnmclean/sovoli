@@ -1,4 +1,5 @@
 import type { OrgInstance } from "~/modules/organisations/types";
+import { OrgLocationFeature } from "~/modules/organisations/types";
 import { MODERN_ACADEMY_ACADEMIC } from "./academic";
 import { ORG_USERNAME } from "./constants";
 import { MODERN_ACADEMY_OFFERINGS } from "./offering";
@@ -88,6 +89,18 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
           },
         ],
         isPrimary: true,
+        features: [
+          OrgLocationFeature.GATED_PREMISES,
+          OrgLocationFeature.SECURE_DROPOFF,
+          OrgLocationFeature.CONTROLLED_ACCESS,
+          OrgLocationFeature.ONSITE_PARKING,
+          OrgLocationFeature.CLEAN_BATHROOMS,
+          OrgLocationFeature.CHILD_FURNITURE,
+          OrgLocationFeature.DEDICATED_PLAY_AREA,
+          OrgLocationFeature.DAILY_SANITIZATION,
+          OrgLocationFeature.BIRTHDAY_CELEBRATIONS,
+          OrgLocationFeature.FIELD_TRIPS,
+        ],
       },
       // {
       //   key: "secondary-campus",

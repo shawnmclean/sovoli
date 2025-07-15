@@ -46,7 +46,7 @@ export function ProgramDetailNavbar({
             text={`Check out ${programName} on ${orgInstance.org.name}`}
             isIconOnly={false}
           >
-            Send to Myself
+            Share
           </ShareButton>
         </NavbarItem>
       </NavbarContent>

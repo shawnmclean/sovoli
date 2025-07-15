@@ -34,6 +34,8 @@ export interface OrgLocation {
   };
   placeId?: string;
   contacts: Contact[];
+
+  features?: OrgLocationFeature[];
 }
 
 // #region Verification
@@ -163,3 +165,58 @@ export type OrgTechStack = Omit<
 };
 
 // #endregion
+
+export enum OrgLocationFeature {
+  // 🛡 Safety
+  GATED_PREMISES = "gatedPremises",
+  SECURE_DROPOFF = "secureDropoff",
+  CCTV_MONITORING = "cctvMonitoring",
+  EMERGENCY_TRAINING = "emergencyTraining",
+  CONTROLLED_ACCESS = "controlledAccess",
+  FIRE_EXTINGUISHERS = "fireExtinguishers",
+  FIRST_AID_KIT = "firstAidKit",
+
+  // 🚗 Accessibility
+  ONSITE_PARKING = "onsiteParking",
+  DROPOFF_LANE = "dropoffLane",
+  WHEELCHAIR_ACCESSIBLE = "wheelchairAccessible",
+  LANDMARK_LOCATION = "landmarkLocation",
+  PUBLIC_TRANSPORT_NEARBY = "publicTransportNearby",
+
+  // 🧸 Environment
+  AIR_CONDITIONED = "airConditioned",
+  CLEAN_BATHROOMS = "cleanBathrooms",
+  CHILD_FURNITURE = "childFurniture",
+  DEDICATED_PLAY_AREA = "dedicatedPlayArea",
+  READING_CORNER = "readingCorner",
+  LEARNING_STATIONS = "learningStations",
+  NAP_AREA = "napArea",
+
+  // 🍎 Health
+  DAILY_SANITIZATION = "dailySanitization",
+  NUTRITIOUS_MEALS = "nutritiousMeals",
+  PARENT_PROVIDES_MEALS = "parentProvidesMeals",
+  SICK_CHILD_POLICY = "sickChildPolicy",
+  VACCINATION_REQUIRED = "vaccinationRequired",
+  HYGIENE_PRACTICES = "hygienePractices",
+
+  // 🧑‍🏫 Staff
+  CERTIFIED_TEACHERS = "certifiedTeachers",
+  DAILY_UPDATES_TO_PARENTS = "dailyUpdatesToParents",
+  OPEN_DOOR_POLICY = "openDoorPolicy",
+  PARENT_ORIENTATION = "parentOrientation",
+  STAFF_BACKGROUND_CHECKED = "staffBackgroundChecked",
+
+  // 🎉 Culture
+  BIRTHDAY_CELEBRATIONS = "birthdayCelebrations",
+  HOLIDAY_EVENTS = "holidayEvents",
+  PHOTO_CONSENT_POLICY = "photoConsentPolicy",
+  FIELD_TRIPS = "fieldTrips",
+  GRADUATION_CEREMONY = "graduationCeremony",
+
+  // 📸 Media
+  HAS_FRONT_IMAGE = "hasFrontImage",
+  HAS_PLAYGROUND_IMAGE = "hasPlaygroundImage",
+  HAS_CLASSROOM_IMAGE = "hasClassroomImage",
+  HAS_TEACHER_IMAGE = "hasTeacherImage",
+}

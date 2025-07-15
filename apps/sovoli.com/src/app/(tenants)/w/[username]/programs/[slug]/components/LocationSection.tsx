@@ -80,7 +80,7 @@ export function LocationSection({ orgInstance }: LocationSectionProps) {
               </address>
               {primaryLocation.address.landmark && (
                 <p className="text-sm text-default-500 italic mt-1">
-                  ({primaryLocation.address.landmark})
+                  {primaryLocation.address.landmark}
                 </p>
               )}
             </div>

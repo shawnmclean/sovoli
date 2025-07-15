@@ -25,6 +25,7 @@ import { ProgramSelectionProvider } from "./context/ProgramSelectionContext";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { CurriculumSection } from "./components/CurriculumSection";
 import { LocationSection } from "./components/LocationSection";
+import { LocationFeaturesSection } from "./components/LocationFeaturesSection";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -252,7 +253,6 @@ export default async function ProgramDetailsPage({
               </CardHeader>
               <CardBody>
                 <div className="prose prose-sm max-w-none text-foreground-700">
-                  Teachers for this program will be added soon.
                   <Link href={`/workforce/people`}>
                     View all our staff here
                   </Link>
@@ -260,16 +260,7 @@ export default async function ProgramDetailsPage({
               </CardBody>
             </Card>
 
-            <Card className="overflow-hidden">
-              <CardHeader className="pb-4">
-                <h3 className="text-xl font-bold text-foreground">
-                  Your School
-                </h3>
-              </CardHeader>
-              <CardBody className="space-y-4">
-                Facilities and other information coming soon.
-              </CardBody>
-            </Card>
+            <LocationFeaturesSection orgInstance={orgInstance} />
 
             <LocationSection orgInstance={orgInstance} />
           </div>
