@@ -2,7 +2,7 @@ export type CurrencyCode = "GYD" | "USD";
 export type AmountByCurrency = Partial<Record<CurrencyCode, number>>;
 
 export type BillingCycle = "one-time" | "annual" | "term";
-export type PricingItemPurpose = "registration" | "tuition";
+export type PricingItemPurpose = "registration" | "tuition" | "materials";
 
 export interface Discount {
   id: string;

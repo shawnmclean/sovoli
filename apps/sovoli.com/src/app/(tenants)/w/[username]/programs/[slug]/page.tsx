@@ -258,11 +258,7 @@ export default async function ProgramDetailsPage({
                 </div>
               </CardBody>
             </Card>
-          </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Quick Actions */}
             <Card className="overflow-hidden">
               <CardHeader className="pb-4">
                 <h3 className="text-xl font-bold text-foreground">
@@ -273,6 +269,17 @@ export default async function ProgramDetailsPage({
                 Facilities and other information coming soon.
               </CardBody>
             </Card>
+
+            <Card className="overflow-hidden">
+              <CardHeader className="pb-4">
+                <h3 className="text-xl font-bold text-foreground">
+                  Your Location
+                </h3>
+              </CardHeader>
+              <CardBody className="space-y-4">
+                Location/Maps coming soon
+              </CardBody>
+            </Card>
           </div>
 
           {/* Pricing Information */}
@@ -281,7 +288,7 @@ export default async function ProgramDetailsPage({
               <CardHeader className="pb-4">
                 <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
                   <span className="text-2xl">💰</span>
-                  Pricing & Fees
+                  Your Cost
                 </h2>
               </CardHeader>
               <CardBody className="space-y-6">
@@ -307,6 +314,20 @@ export default async function ProgramDetailsPage({
                               pricingPackage={nextCycle.pricingPackage}
                               pricingItemId={item.id}
                             />
+                          </div>
+                        ))}
+
+                      {nextCycle.pricingPackage.pricingItems
+                        .filter((item) => item.purpose === "materials")
+                        .map((item) => (
+                          <div key={item.id} className="space-y-2">
+                            <ProgramPriceCard
+                              pricingPackage={nextCycle.pricingPackage}
+                              pricingItemId={item.id}
+                            />
+                            <p className="text-sm text-foreground-500">
+                              Purpose: {item.purpose}
+                            </p>
                           </div>
                         ))}
                     </div>

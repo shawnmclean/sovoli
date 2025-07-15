@@ -94,6 +94,9 @@ export function CycleSelector({
                   </span>
                 </div>
               )}
+              {
+                // Add duration (One Day, One Week, etc)
+              }
             </div>
           </div>
         </CardBody>

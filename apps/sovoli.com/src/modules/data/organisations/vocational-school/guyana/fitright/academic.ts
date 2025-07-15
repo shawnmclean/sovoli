@@ -74,8 +74,8 @@ const createFitrightCycle = (
     pricingItems: [
       {
         id: "tuition",
-        label: "Tuition",
-        purpose: "tuition",
+        label: "Materials",
+        purpose: "materials",
         billingCycle: "one-time",
         amount: { GYD: 8000 },
       },
