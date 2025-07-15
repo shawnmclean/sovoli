@@ -74,9 +74,16 @@ export function LocationSection({ orgInstance }: LocationSectionProps) {
         <div className="space-y-3">
           <div className="flex items-start gap-3">
             <MapPinIcon className="mt-1 text-default-500 flex-shrink-0" />
-            <address className="not-italic text-default-600 whitespace-pre-line">
-              {addressLines}
-            </address>
+            <div>
+              <address className="not-italic text-default-600 whitespace-pre-line">
+                {addressLines}
+              </address>
+              {primaryLocation.address.landmark && (
+                <p className="text-sm text-default-500 italic mt-1">
+                  ({primaryLocation.address.landmark})
+                </p>
+              )}
+            </div>
           </div>
 
           <Button

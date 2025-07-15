@@ -61,6 +61,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
           line1: "Lot 11, Public Road",
           city: "Mon Repos",
           countryCode: "GY",
+          landmark: "Opposite GBTI Bank",
         },
         placeId: "ChIJKbqkI_ftr40RoBB0_9AsWAo",
         coordinates: {

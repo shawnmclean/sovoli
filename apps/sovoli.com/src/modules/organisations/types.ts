@@ -20,6 +20,7 @@ export interface Address {
   state?: string;
   postalCode?: string;
   countryCode: string;
+  landmark?: string;
 }
 
 export interface OrgLocation {
