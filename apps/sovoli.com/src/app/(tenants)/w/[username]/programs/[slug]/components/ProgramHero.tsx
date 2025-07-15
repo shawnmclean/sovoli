@@ -1,10 +1,9 @@
-import { Badge } from "@sovoli/ui/components/badge";
-import { Image } from "@sovoli/ui/components/image";
 import { Divider } from "@sovoli/ui/components/divider";
 import { MapPinIcon } from "lucide-react";
 
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { Org } from "./Org";
 
 export interface ProgramHeroProps {
   orgInstance: OrgInstance;
@@ -19,7 +18,6 @@ export const ProgramHero = ({ orgInstance, program }: ProgramHeroProps) => {
     program.description ??
     program.standardProgramVersion?.program.description ??
     "";
-  const orgLogo = org.logo;
 
   // Get primary location
   const primaryLocation = org.locations.find((loc) => loc.isPrimary);
@@ -59,25 +57,9 @@ export const ProgramHero = ({ orgInstance, program }: ProgramHeroProps) => {
 
         {/* Bottom Section - Organization and Details */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Content */}
+          {/* Organization Component */}
           <div className="space-y-6">
-            {/* Organization Badge */}
-            <div className="flex items-center gap-3">
-              {orgLogo && (
-                <Image
-                  src={orgLogo}
-                  alt={org.name}
-                  className="h-8 w-8 rounded-lg object-cover"
-                />
-              )}
-              <Badge
-                variant="flat"
-                color="primary"
-                className="text-xs font-medium"
-              >
-                {org.name}
-              </Badge>
-            </div>
+            <Org orgInstance={orgInstance} />
 
             {/* Program Description */}
             {programDescription && (

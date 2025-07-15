@@ -39,10 +39,25 @@ export interface OrgLocation {
 
 export interface OrgVerificationDocument {
   type: "business_registration" | "tax_id" | "operating_license" | "other";
-  name: string;
-  url?: string;
+  name: string; // name of document or registered entity
+  url?: string; // upload/download link
   uploadedAt: string;
+
+  // Document Metadata
+  issuedDate?: string; // from doc (e.g., "2020-02-28")
+  referenceNumber?: string; // e.g. "178271" from certificate
+  issuingAuthority?: string; // e.g., "Office of Registrar of Business Names"
+  issuingJurisdiction?: Jurisdiction; // see below
+
+  // Optional additions
+  expiryDate?: string;
   notes?: string;
+}
+
+export interface Jurisdiction {
+  country: string; // ISO 3166-1 alpha-2, e.g. "GY"
+  stateOrProvince?: string; // e.g. "Demerara-Mahaica" or "California"
+  cityOrRegion?: string; // optional; e.g. "Georgetown"
 }
 
 export interface OrgVerification {
@@ -53,6 +68,7 @@ export interface OrgVerification {
 
   submittedBy: string; // admin ID or email
   documents: OrgVerificationDocument[];
+  incorporationDate?: string;
 
   notes?: string;
 }

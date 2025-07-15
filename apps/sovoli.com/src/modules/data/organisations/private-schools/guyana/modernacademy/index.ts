@@ -15,6 +15,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
       status: "verified",
       submittedBy: "Nessa",
       submittedAt: "2025-05-24",
+      incorporationDate: "2020-02-28",
       notes: "Went to location and saw the original registration.",
       documents: [
         {
@@ -22,6 +23,14 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
           name: "Modern Academy Certificate of Registration",
           uploadedAt: "2025-05-24",
           notes: "Captured by photo (in google photos)",
+          url: "https://photos.app.goo.gl/LBvL5xQ2gT4ssU3Y8",
+          issuedDate: "2020-02-28",
+          expiryDate: "2021-02-25",
+          referenceNumber: "178271",
+          issuingAuthority: "Office of Registrar of Business Names",
+          issuingJurisdiction: {
+            country: "GY",
+          },
         },
       ],
     },
