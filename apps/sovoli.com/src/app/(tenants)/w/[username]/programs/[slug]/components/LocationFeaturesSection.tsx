@@ -214,7 +214,7 @@ export function LocationFeaturesSection({
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground">
-            Where learning happens
+            Your Learning Space
           </h2>
         </CardHeader>
         <CardBody className="space-y-4">
@@ -251,7 +251,7 @@ export function LocationFeaturesSection({
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground">
-            Where learning happens
+            Your Learning Space
           </h2>
         </CardHeader>
         <CardBody className="space-y-2">
@@ -318,7 +318,7 @@ export function LocationFeaturesSection({
         <DrawerContent>
           <DrawerHeader className="border-b border-divider">
             <h3 className="text-lg font-semibold text-foreground">
-              All Location Features
+              All School's Features
             </h3>
           </DrawerHeader>
           <DrawerBody className="mt-4">
