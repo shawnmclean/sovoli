@@ -183,6 +183,7 @@ export interface ProgramLevel {
   ageRange?: { min: number; max: number };
 
   courses?: Course[];
+  activities?: Activity[];
 }
 
 export interface Subject {
@@ -196,6 +197,11 @@ export interface Course {
   title: string;
   description?: string;
   units?: CourseUnit[];
+}
+
+export interface Activity {
+  id: string;
+  title: string;
 }
 
 export interface CourseUnit {

@@ -1,5 +1,6 @@
 import type {
   AcademicModule,
+  Activity,
   OrgAcademicCycle,
   OrgProgram,
   OrgProgramCycle,
@@ -27,6 +28,53 @@ import {
   MOLTA_MCRAE,
   SAMANTHA_PERSAUD,
 } from "./workforce";
+
+const MAGY_NURSERY_DEPT_ACTIVITIES: Activity[] = [
+  {
+    id: "mashramani",
+    title: "Mashramani",
+  },
+  {
+    id: "easter-kite-flying",
+    title: "Easter - Kite Flying",
+  },
+  {
+    id: "sports",
+    title: "Sports",
+  },
+  {
+    id: "phagwah",
+    title: "Phagwah",
+  },
+  {
+    id: "diwali",
+    title: "Diwali",
+  },
+  {
+    id: "christmas",
+    title: "Christmas",
+  },
+  {
+    id: "emancipation",
+    title: "Emancipation",
+  },
+  {
+    id: "singing",
+    title: "Singing",
+  },
+  {
+    id: "dancing",
+    title: "Dancing",
+  },
+  {
+    id: "story-telling",
+    title: "Story Telling",
+  },
+  {
+    id: "role-play",
+    title: "Role Play",
+  },
+];
 
 const MAGY_PRE_NURSERY_LEVEL: ProgramLevel = {
   id: "magy-pre-nursery",
@@ -115,6 +163,7 @@ const MAGY_PRE_NURSERY_LEVEL: ProgramLevel = {
       ],
     },
   ],
+  activities: MAGY_NURSERY_DEPT_ACTIVITIES,
 };
 
 // #region programs
@@ -270,7 +319,7 @@ export const MAGY_NURSERY_2025_T1: OrgProgramCycle = {
       enrolled: 15,
     },
     {
-      teachers: [JESSICA_GOBIN, SAMANTHA_PERSAUD],
+      teachers: [JESSICA_GOBIN],
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       level: GY_NURSERY_LEVELS[1]!,
       capacity: 25,
