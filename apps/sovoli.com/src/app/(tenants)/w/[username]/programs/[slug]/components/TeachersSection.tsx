@@ -223,7 +223,7 @@ export function TeachersSection({
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <UserIcon className="h-6 w-6 text-primary" />
-            Your Teachers
+            Meet Your Teachers
           </h2>
         </CardHeader>
         <CardBody>
@@ -246,10 +246,10 @@ export function TeachersSection({
       <>
         <Card className="overflow-hidden">
           <CardHeader className="pb-4">
-            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-              <UserIcon className="h-6 w-6 text-primary" />
-              Your Teacher
-            </h2>
+          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+            <UserIcon className="h-6 w-6 text-primary" />
+            Meet Your Teacher
+          </h2>
           </CardHeader>
           <CardBody>
             <div className="flex flex-col items-center gap-4">
@@ -310,7 +310,7 @@ export function TeachersSection({
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <UserIcon className="h-6 w-6 text-primary" />
-            Your Teachers
+            Meet Your Teachers
           </h2>
         </CardHeader>
         <CardBody>
