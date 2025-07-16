@@ -96,7 +96,7 @@ export function CurriculumSection({
         <CardHeader className="pb-4">
           <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
             <BookOpenIcon className="h-6 w-6 text-primary" />
-            Your Curriculum
+            What Your Child Will Learn
           </h2>
         </CardHeader>
         <CardBody className="space-y-6">
@@ -246,7 +246,7 @@ export function CurriculumSection({
               <div className="space-y-4">
                 <div>
                   <h4 className="font-medium text-foreground mb-2">
-                    Subjects:
+                    Core Learning Areas:
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {firstFiveSubjects.length > 0 ? (
@@ -273,14 +273,14 @@ export function CurriculumSection({
                       onPress={onSubjectsOpen}
                       className="w-full mt-3"
                     >
-                      See all {subjects.length} subjects breakdown
+                      Explore the full curriculum
                     </Button>
-                  )}
+                 )}
                 </div>
 
                 <div>
                   <h4 className="font-medium text-foreground mb-2">
-                    Activities:
+                    Joyful Activities & Celebrations
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {firstFiveActivities.length > 0 ? (
