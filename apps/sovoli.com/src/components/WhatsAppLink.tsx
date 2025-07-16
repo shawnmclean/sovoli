@@ -4,7 +4,7 @@ import React, { forwardRef } from "react";
 import { useLink } from "@sovoli/ui/hooks";
 import type { LinkProps } from "@sovoli/ui/components/link";
 import { config } from "~/utils/config";
-import { usePostHog } from "posthog-js/react";
+import posthog from "posthog-js";
 
 interface WhatsAppLinkProps extends LinkProps {
   phoneNumber?: string;
@@ -52,7 +52,6 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
     },
     ref,
   ) => {
-    const posthog = usePostHog();
     const cleanNumber = phoneNumber.replace(/\D/g, "");
     const encodedMessage = message ? encodeURIComponent(message) : "";
 
