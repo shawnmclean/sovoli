@@ -42,7 +42,7 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
       message,
 
       // fallback = true,
-      intent = "CustomEvent",
+      intent = "Contact",
       role,
       page,
       orgId,

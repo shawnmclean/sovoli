@@ -12,6 +12,7 @@ import { Link } from "@sovoli/ui/components/link";
 
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { gradientBorderButton } from "~/components/GradientBorderButton";
+import { ReserveForm } from "./ReserveForm";
 
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -39,6 +40,11 @@ export function ProgramDetailMobileFooter({
   program,
 }: ProgramDetailMobileFooterProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isContactOpen,
+    onOpen: onContactOpen,
+    onOpenChange: onContactOpenChange,
+  } = useDisclosure();
   const { selectedCycle, selectedLevel, isLoading } = useProgramSelection();
 
   const programName =
@@ -48,55 +54,134 @@ export function ProgramDetailMobileFooter({
     .find((l) => l.isPrimary)
     ?.contacts.find((c) => c.type === "whatsapp")?.value;
 
+  // Get cycle information for contact drawer
+  const cycleLabel = selectedCycle
+    ? (selectedCycle.academicCycle.customLabel ??
+      selectedCycle.academicCycle.globalCycle?.label ??
+      "Academic Term")
+    : "";
+
+  const startDate = selectedCycle
+    ? (selectedCycle.academicCycle.startDate ??
+      selectedCycle.academicCycle.globalCycle?.startDate)
+    : null;
+  const endDate = selectedCycle
+    ? (selectedCycle.academicCycle.endDate ??
+      selectedCycle.academicCycle.globalCycle?.endDate)
+    : null;
+
+  // Format date range for contact drawer
+  const dateRange =
+    startDate && endDate
+      ? `${formatDate(startDate)} - ${formatDate(endDate)}`
+      : "Dates TBD";
+
+  // Generate WhatsApp message based on whether cycle is selected
+  const getWhatsAppMessage = () => {
+    if (!selectedCycle) {
+      return `Hi, I'm interested in the ${programName} program. Can you provide more details?`;
+    }
+    return `Hi, I'm interested in the ${programName} program for ${cycleLabel} (${dateRange}). Can you provide more details about enrollment?`;
+  };
+
   // If no cycle is selected, show fallback
   if (!selectedCycle) {
     return (
-      <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
-        <div className="flex w-full items-center justify-between py-3 gap-4">
-          <Skeleton isLoaded={!isLoading}>
-            <div className="flex flex-1 items-center">Select a cycle</div>
-          </Skeleton>
-          <div className="flex-shrink-0">
-            <Button
-              as={WhatsAppLink}
-              phoneNumber={whatsappNumber}
-              message={`Hi, I'm interested in the ${programName} program. Can you provide more details?`}
-              intent="Contact"
-              page="mobile-footer"
-              variant="shadow"
-              color="primary"
-              radius="lg"
-              size="md"
-              startContent={<MessageSquareShareIcon size={16} />}
-              className={gradientBorderButton()}
-            >
-              Chat Now
-            </Button>
+      <>
+        <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
+          <div className="flex w-full items-center justify-between py-3 gap-4">
+            <Skeleton isLoaded={!isLoading}>
+              <div className="flex flex-1 items-center">Select a cycle</div>
+            </Skeleton>
+            <div className="flex-shrink-0">
+              <Button
+                variant="shadow"
+                color="primary"
+                radius="lg"
+                size="md"
+                startContent={<MessageSquareShareIcon size={16} />}
+                className={gradientBorderButton()}
+                onPress={onContactOpen}
+              >
+                Chat Now
+              </Button>
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+
+        {/* Contact Us Drawer */}
+        <Drawer
+          isOpen={isContactOpen}
+          placement="bottom"
+          backdrop="opaque"
+          onOpenChange={onContactOpenChange}
+          motionProps={{
+            variants: {
+              enter: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.3,
+                },
+              },
+              exit: {
+                y: 100,
+                opacity: 0,
+                transition: {
+                  duration: 0.3,
+                },
+              },
+            },
+          }}
+        >
+          <DrawerContent>
+            <DrawerBody className="mt-4">
+              <div className="space-y-4 py-4">
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
+                  <p className="text-sm text-default-600 mb-4">
+                    Get in touch with us about the {programName} program
+                  </p>
+                </div>
+
+                <div className="flex justify-center">
+                  <Button
+                    as={WhatsAppLink}
+                    phoneNumber={whatsappNumber}
+                    message={getWhatsAppMessage()}
+                    intent="Contact"
+                    page="mobile-footer"
+                    variant="shadow"
+                    color="primary"
+                    radius="lg"
+                    startContent={<MessageSquareShareIcon size={16} />}
+                    className={gradientBorderButton()}
+                  >
+                    Chat on WhatsApp
+                  </Button>
+                </div>
+              </div>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+      </>
     );
   }
 
-  // Get cycle information
-  const cycleLabel =
-    selectedCycle.academicCycle.customLabel ??
-    selectedCycle.academicCycle.globalCycle?.label ??
-    "Academic Term";
-
-  const startDate =
+  // Get cycle information for program details
+  const startDateForDetails =
     selectedCycle.academicCycle.startDate ??
     selectedCycle.academicCycle.globalCycle?.startDate;
-  const endDate =
+  const endDateForDetails =
     selectedCycle.academicCycle.endDate ??
     selectedCycle.academicCycle.globalCycle?.endDate;
 
   const registrationDeadline = selectedCycle.registrationPeriod?.endDate;
 
-  // Format date range
-  const dateRange =
-    startDate && endDate
-      ? `${formatDate(startDate)} - ${formatDate(endDate)}`
+  // Format date range for program details
+  const dateRangeForDetails =
+    startDateForDetails && endDateForDetails
+      ? `${formatDate(startDateForDetails)} - ${formatDate(endDateForDetails)}`
       : "Dates TBD";
 
   // Format deadline
@@ -136,15 +221,11 @@ export function ProgramDetailMobileFooter({
           {/* Right side - Reserve button */}
           <div className="flex-shrink-0">
             <Button
-              as={WhatsAppLink}
-              phoneNumber={whatsappNumber}
-              message={`Hi, I'm interested in the ${programName} program for ${cycleLabel}. Can you provide more details?`}
-              page="mobile-footer"
-              intent="Contact"
               variant="shadow"
               radius="lg"
               startContent={<MessageSquareShareIcon size={16} />}
               className={gradientBorderButton()}
+              onPress={onContactOpen}
             >
               Chat Now
             </Button>
@@ -152,6 +233,7 @@ export function ProgramDetailMobileFooter({
         </div>
       </footer>
 
+      {/* Program Details Drawer */}
       <Drawer
         isOpen={isOpen}
         placement="bottom"
@@ -196,7 +278,7 @@ export function ProgramDetailMobileFooter({
                         </span>
                       )}
                       <span className="text-sm text-default-600">
-                        {dateRange}
+                        {dateRangeForDetails}
                       </span>
                       <span className="text-xs text-default-500">
                         {deadlineText}
@@ -213,15 +295,10 @@ export function ProgramDetailMobileFooter({
 
                   <div className="pt-4 flex justify-end">
                     <Button
-                      as={WhatsAppLink}
-                      phoneNumber={whatsappNumber}
-                      message={`Hi, I'm interested in the ${programName} program for ${cycleLabel} (${dateRange}). Can you provide more details about enrollment?`}
-                      page="mobile-footer"
-                      intent="Contact"
                       variant="shadow"
                       radius="lg"
                       className={gradientBorderButton()}
-                      onPress={onOpenChange}
+                      onPress={onContactOpen}
                       startContent={<MessageSquareShareIcon size={16} />}
                     >
                       Chat Now
@@ -230,6 +307,44 @@ export function ProgramDetailMobileFooter({
                 </>
               )}
             </div>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+
+      {/* Contact Us Drawer */}
+      <Drawer
+        isOpen={isContactOpen}
+        placement="bottom"
+        backdrop="opaque"
+        size="5xl"
+        onOpenChange={onContactOpenChange}
+        motionProps={{
+          variants: {
+            enter: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.3,
+              },
+            },
+            exit: {
+              y: 100,
+              opacity: 0,
+              transition: {
+                duration: 0.3,
+              },
+            },
+          },
+        }}
+      >
+        <DrawerContent>
+          <DrawerBody className="mt-4">
+            <ReserveForm
+              whatsappNumber={whatsappNumber}
+              onClose={onContactOpenChange}
+              cycle={cycleLabel}
+              level={selectedLevel?.label}
+            />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
