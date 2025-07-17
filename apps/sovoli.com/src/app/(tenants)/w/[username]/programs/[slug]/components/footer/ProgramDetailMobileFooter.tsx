@@ -11,7 +11,7 @@ import {
 import { Link } from "@sovoli/ui/components/link";
 
 import { gradientBorderButton } from "~/components/GradientBorderButton";
-import { ReserveForm } from "./ReserveForm";
+import { ReserveForm } from "../ReserveForm";
 
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -265,7 +265,7 @@ export function ProgramDetailMobileFooter({
         }}
       >
         <DrawerContent>
-          <DrawerBody className="mt-4 flex flex-col max-h-[100dvh] overflow-y-auto">
+          <DrawerBody className="flex flex-col h-[100dvh] min-h-0 flex-1 p-0">
             <ReserveForm
               whatsappNumber={whatsappNumber}
               onClose={onContactOpenChange}
