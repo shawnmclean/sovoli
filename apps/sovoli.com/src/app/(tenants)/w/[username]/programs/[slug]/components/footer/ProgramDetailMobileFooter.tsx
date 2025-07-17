@@ -7,11 +7,11 @@ import {
   Drawer,
   DrawerBody,
   DrawerContent,
+  DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { Link } from "@sovoli/ui/components/link";
 
 import { gradientBorderButton } from "~/components/GradientBorderButton";
-import { ReserveForm } from "../ReserveForm";
 
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -265,6 +265,7 @@ export function ProgramDetailMobileFooter({
         }}
       >
         <DrawerContent>
+          <DrawerHeader>Start a Chat</DrawerHeader>
           <DrawerBody className="p-2">
             <GuidedChatForm
               whatsappNumber={whatsappNumber}
