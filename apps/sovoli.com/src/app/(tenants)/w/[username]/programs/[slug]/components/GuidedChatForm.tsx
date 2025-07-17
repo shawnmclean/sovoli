@@ -85,14 +85,14 @@ export function GuidedChatForm({
           <div className="space-y-4">
             <ChatMessage
               sender="system"
-              message="Welcome! Let's get started."
+              message="👋 Welcome! Let’s get you started."
             />
 
             {/* Step 1: Phone number */}
             {step >= 1 && (
               <ChatMessage
                 sender="system"
-                message="What's your WhatsApp number?"
+                message="📱 What’s your WhatsApp number so we can reach you?"
               />
             )}
             {step >= 2 && phoneNumber && (
@@ -103,7 +103,7 @@ export function GuidedChatForm({
             {step >= 2 && (
               <ChatMessage
                 sender="system"
-                message="How many children do you have?"
+                message="👶 How many children are you enrolling?"
               />
             )}
             {step >= 3 && childCount > 0 && (
@@ -120,28 +120,21 @@ export function GuidedChatForm({
             {/* Step 3: Child ages - show each child's question and answer */}
             {step >= 3 && (
               <>
-                {/* Show all previous child age questions and answers */}
-                {Array.from({ length: currentChildIndex }, (_, index) => (
+                {/* Show all child age questions and answers */}
+                {Array.from({ length: childCount }, (_, index) => (
                   <React.Fragment key={`child-${index}`}>
                     <ChatMessage
                       sender="system"
-                      message={`How old is child ${index + 1}?`}
+                      message={`✅ Got it. How old is child ${index + 1}?`}
                     />
-                    {children[index] && (
+                    {children[index] && children[index] > 0 && (
                       <ChatMessage
                         sender="user"
-                        message={`Child ${index + 1} is ${children[index]} years old.`}
+                        message={`Child #${index + 1} is ${children[index]} years old.`}
                       />
                     )}
                   </React.Fragment>
                 ))}
-                {/* Show current child question if not done */}
-                {currentChildIndex < childCount && (
-                  <ChatMessage
-                    sender="system"
-                    message={`How old is child ${currentChildIndex + 1}?`}
-                  />
-                )}
               </>
             )}
 
@@ -150,7 +143,7 @@ export function GuidedChatForm({
               <>
                 <ChatMessage
                   sender="system"
-                  message="Great! Here's what will be sent to the school's WhatsApp:"
+                  message="🎉 All set! Tap below to send this to our enrollment assistant on WhatsApp."
                 />
                 <ChatMessage sender="user" message={`${previewMessage()}`} />
               </>
@@ -160,7 +153,7 @@ export function GuidedChatForm({
 
         {/* Chat input bar */}
         {step < 4 && (
-          <div className="p-4 border-t border-divider flex items-center gap-2">
+          <div className="p-4 border-t border-divider flex items-center gap-2 bg-background sticky bottom-0">
             <div className="flex-grow">{renderInput()}</div>
             <Button color="primary" onPress={handleContinue} isIconOnly>
               <SendIcon size={16} />

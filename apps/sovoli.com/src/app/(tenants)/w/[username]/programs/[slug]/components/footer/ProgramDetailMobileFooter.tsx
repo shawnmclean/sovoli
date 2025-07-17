@@ -265,7 +265,7 @@ export function ProgramDetailMobileFooter({
         }}
       >
         <DrawerContent>
-          <DrawerHeader>Start a Chat</DrawerHeader>
+          <DrawerHeader>Enrollment Assistant</DrawerHeader>
           <DrawerBody className="p-2">
             <GuidedChatForm
               whatsappNumber={whatsappNumber}
