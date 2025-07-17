@@ -9,7 +9,6 @@ import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { gradientBorderButton } from "~/components/GradientBorderButton";
 import { ChatMessage } from "./ChatMessage";
 import { useGuidedChat } from "./hooks/useGuidedChat";
-import { pluralize } from "~/utils/pluralize";
 import {
   Modal,
   ModalBody,
@@ -34,71 +33,64 @@ export function GuidedChatForm({
   onOpenChange,
 }: GuidedChatFormProps) {
   const {
-    step,
-    phoneNumber,
-    setPhoneNumber,
-    childCount,
-    setChildCount,
-    children,
-    currentChildIndex,
-    previewMessage,
-    handleContinue,
+    messages,
+    currentInput,
+    setCurrentInput,
+    inputType,
+    chatData,
+    handleSendMessage,
+    getCurrentPlaceholder,
+    isInputValid,
     isDone,
-    updateChildAge,
   } = useGuidedChat({ cycle, level });
 
-  const renderInput = () => {
-    if (step === 1) {
-      return (
-        <Input
-          fullWidth
-          type="tel"
-          placeholder="Enter your WhatsApp number"
-          value={phoneNumber}
-          onValueChange={setPhoneNumber}
-          autoFocus
-        />
-      );
-    }
-
-    if (step === 2) {
-      return (
-        <NumberInput
-          min={1}
-          max={10}
-          placeholder="Number of children"
-          value={childCount}
-          onValueChange={setChildCount}
-        />
-      );
-    }
-
-    if (step === 3) {
-      return (
-        <NumberInput
-          min={1}
-          max={18}
-          placeholder={`Enter age for child ${currentChildIndex + 1}`}
-          value={children[currentChildIndex]}
-          onValueChange={(val) => updateChildAge(currentChildIndex, val)}
-        />
-      );
-    }
-
-    return null;
+  // Helper to generate the WhatsApp preview message
+  const previewMessage = () => {
+    const childAges = chatData.children
+      .filter((age) => age && age > 0)
+      .join(", ");
+    const childText = (chatData.childCount ?? 1) === 1 ? "child" : "children";
+    return `I'm applying for "${level ?? "Primary"}" for "${cycle ?? "2024-2025"}". I have ${chatData.childCount} ${childText} ages ${childAges}. Please let me know next steps.`;
   };
 
-  const isContinueDisabled = () => {
-    if (step === 1) {
-      return !phoneNumber || phoneNumber.length < 10;
+  // Render the correct input based on inputType
+  const renderInput = () => {
+    if (inputType === "childCount" || inputType === "childAge") {
+      // Only allow numbers, and pass min/max for validation
+      const min = inputType === "childCount" ? 1 : 1;
+      const max = inputType === "childCount" ? 10 : 16;
+      return (
+        <NumberInput
+          min={min}
+          max={max}
+          placeholder={getCurrentPlaceholder()}
+          value={currentInput ? Number(currentInput) : undefined}
+          onValueChange={(val) => setCurrentInput(val ? String(val) : "")}
+          autoFocus
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && isInputValid()) {
+              handleSendMessage();
+            }
+          }}
+        />
+      );
     }
-    if (step === 2) {
-      return !childCount || childCount < 1;
-    }
-    if (step === 3) {
-      return !children[currentChildIndex] || children[currentChildIndex] <= 0;
-    }
-    return false;
+    // Default to Input for phone
+    return (
+      <Input
+        fullWidth
+        type="tel"
+        placeholder={getCurrentPlaceholder()}
+        value={currentInput}
+        onValueChange={setCurrentInput}
+        autoFocus
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && isInputValid()) {
+            handleSendMessage();
+          }
+        }}
+      />
+    );
   };
 
   return (
@@ -134,99 +126,27 @@ export function GuidedChatForm({
               <div className="flex flex-col h-full">
                 <div className="flex-grow overflow-y-auto p-4 flex flex-col justify-end">
                   <div className="space-y-4">
-                    <ChatMessage
-                      sender="system"
-                      message="👋 Welcome! Let's get you started."
-                    />
-
-                    {/* Step 1: Phone number */}
-                    {step >= 1 && (
+                    {messages.map((msg) => (
                       <ChatMessage
-                        sender="system"
-                        message="📱 What's your WhatsApp number so we can reach you?"
+                        key={msg.id}
+                        sender={msg.sender}
+                        message={msg.message}
                       />
-                    )}
-                    {step >= 2 && phoneNumber && (
-                      <ChatMessage sender="user" message={phoneNumber} />
-                    )}
-
-                    {/* Step 2: Number of children */}
-                    {step >= 2 && (
-                      <ChatMessage
-                        sender="system"
-                        message="👶 How many children are you enrolling?"
-                      />
-                    )}
-                    {step >= 3 && childCount > 0 && (
-                      <ChatMessage
-                        sender="user"
-                        message={`I have ${childCount} ${pluralize(
-                          childCount,
-                          "child",
-                          "children",
-                        )}.`}
-                      />
-                    )}
-
-                    {/* Step 3: Child ages - show each child's question and answer sequentially */}
-                    {step >= 3 && (
-                      <>
-                        {/* Show current child's question */}
-                        <ChatMessage
-                          sender="system"
-                          message={`✅ Got it. How old is child ${currentChildIndex + 1}?`}
-                        />
-                        {/* Show previous children's answers */}
-                        {children
-                          .slice(0, currentChildIndex)
-                          .map((age, index) => (
-                            <React.Fragment key={`previous-child-${index}`}>
-                              {age && age > 0 && (
-                                <ChatMessage
-                                  sender="user"
-                                  message={`Child #${index + 1} is ${age} years old.`}
-                                />
-                              )}
-                            </React.Fragment>
-                          ))}
-                        {/* Show current child's answer if provided */}
-                        {children[currentChildIndex] &&
-                          children[currentChildIndex] > 0 && (
-                            <ChatMessage
-                              sender="user"
-                              message={`Child #${currentChildIndex + 1} is ${children[currentChildIndex]} years old.`}
-                            />
-                          )}
-                      </>
-                    )}
-
-                    {/* Final summary */}
-                    {step === 4 && (
-                      <>
-                        <ChatMessage
-                          sender="system"
-                          message="🎉 All set! Tap below to send this to our enrollment assistant on WhatsApp."
-                        />
-                        <ChatMessage
-                          sender="user"
-                          message={`${previewMessage()}`}
-                        />
-                      </>
-                    )}
+                    ))}
                   </div>
                 </div>
               </div>
             </ModalBody>
             <ModalFooter>
               {/* Chat input bar */}
-              {step < 4 && (
+              {!isDone && (
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-grow">{renderInput()}</div>
                   <Button
                     color="primary"
-                    onPress={handleContinue}
+                    onPress={handleSendMessage}
                     isIconOnly
-                    isDisabled={isContinueDisabled()}
+                    isDisabled={!isInputValid()}
                   >
                     <SendIcon size={16} />
                   </Button>
