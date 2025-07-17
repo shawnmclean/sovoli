@@ -16,11 +16,19 @@ export function useGuidedChat({
 
   const handleContinue = () => {
     if (step === 1) {
+      // Validate phone number
+      if (!phoneNumber || phoneNumber.length < 10) {
+        return;
+      }
       posthog.setPersonProperties({
         phone: phoneNumber,
       });
       setStep(2);
     } else if (step === 2) {
+      // Validate child count
+      if (!childCount || childCount < 1) {
+        return;
+      }
       setChildren(Array(childCount).fill(undefined));
       setCurrentChildIndex(0);
       setStep(3);
@@ -28,8 +36,10 @@ export function useGuidedChat({
       // Only proceed if we have a valid age for the current child
       if (children[currentChildIndex] && children[currentChildIndex] > 0) {
         if (currentChildIndex + 1 < childCount) {
+          // Move to next child
           setCurrentChildIndex(currentChildIndex + 1);
         } else {
+          // All children processed, move to final step
           setStep(4);
         }
       }

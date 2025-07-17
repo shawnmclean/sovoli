@@ -65,6 +65,7 @@ export function GuidedChatForm({
       return (
         <NumberInput
           min={1}
+          max={10}
           placeholder="Number of children"
           value={childCount}
           onValueChange={setChildCount}
@@ -75,8 +76,8 @@ export function GuidedChatForm({
     if (step === 3) {
       return (
         <NumberInput
-          min={2}
-          max={5}
+          min={1}
+          max={18}
           placeholder={`Enter age for child ${currentChildIndex + 1}`}
           value={children[currentChildIndex]}
           onValueChange={(val) => updateChildAge(currentChildIndex, val)}
@@ -85,6 +86,19 @@ export function GuidedChatForm({
     }
 
     return null;
+  };
+
+  const isContinueDisabled = () => {
+    if (step === 1) {
+      return !phoneNumber || phoneNumber.length < 10;
+    }
+    if (step === 2) {
+      return !childCount || childCount < 1;
+    }
+    if (step === 3) {
+      return !children[currentChildIndex] || children[currentChildIndex] <= 0;
+    }
+    return false;
   };
 
   return (
@@ -154,24 +168,35 @@ export function GuidedChatForm({
                       />
                     )}
 
-                    {/* Step 3: Child ages - show each child's question and answer */}
+                    {/* Step 3: Child ages - show each child's question and answer sequentially */}
                     {step >= 3 && (
                       <>
-                        {/* Show all child age questions and answers */}
-                        {Array.from({ length: childCount }, (_, index) => (
-                          <React.Fragment key={`child-${index}`}>
+                        {/* Show current child's question */}
+                        <ChatMessage
+                          sender="system"
+                          message={`✅ Got it. How old is child ${currentChildIndex + 1}?`}
+                        />
+                        {/* Show previous children's answers */}
+                        {children
+                          .slice(0, currentChildIndex)
+                          .map((age, index) => (
+                            <React.Fragment key={`previous-child-${index}`}>
+                              {age && age > 0 && (
+                                <ChatMessage
+                                  sender="user"
+                                  message={`Child #${index + 1} is ${age} years old.`}
+                                />
+                              )}
+                            </React.Fragment>
+                          ))}
+                        {/* Show current child's answer if provided */}
+                        {children[currentChildIndex] &&
+                          children[currentChildIndex] > 0 && (
                             <ChatMessage
-                              sender="system"
-                              message={`✅ Got it. How old is child ${index + 1}?`}
+                              sender="user"
+                              message={`Child #${currentChildIndex + 1} is ${children[currentChildIndex]} years old.`}
                             />
-                            {children[index] && children[index] > 0 && (
-                              <ChatMessage
-                                sender="user"
-                                message={`Child #${index + 1} is ${children[index]} years old.`}
-                              />
-                            )}
-                          </React.Fragment>
-                        ))}
+                          )}
                       </>
                     )}
 
@@ -197,7 +222,12 @@ export function GuidedChatForm({
               {step < 4 && (
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-grow">{renderInput()}</div>
-                  <Button color="primary" onPress={handleContinue} isIconOnly>
+                  <Button
+                    color="primary"
+                    onPress={handleContinue}
+                    isIconOnly
+                    isDisabled={isContinueDisabled()}
+                  >
                     <SendIcon size={16} />
                   </Button>
                 </div>
