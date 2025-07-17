@@ -243,7 +243,8 @@ export function ProgramDetailMobileFooter({
         isOpen={isContactOpen}
         placement="bottom"
         backdrop="opaque"
-        size="5xl"
+        size="full"
+        scrollBehavior="inside"
         onOpenChange={onContactOpenChange}
         motionProps={{
           variants: {
@@ -265,7 +266,7 @@ export function ProgramDetailMobileFooter({
         }}
       >
         <DrawerContent>
-          <DrawerBody className="flex flex-col h-[100dvh] min-h-0 flex-1 p-0">
+          <DrawerBody className="p-2">
             <ReserveForm
               whatsappNumber={whatsappNumber}
               onClose={onContactOpenChange}
