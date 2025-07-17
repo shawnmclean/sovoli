@@ -19,6 +19,7 @@ import { MessageSquareShareIcon } from "lucide-react";
 import { useProgramSelection } from "../../context/ProgramSelectionContext";
 import { Skeleton } from "@sovoli/ui/components/skeleton";
 import posthog from "posthog-js";
+import { GuidedChatForm } from "../GuidedChatForm";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -242,9 +243,7 @@ export function ProgramDetailMobileFooter({
       <Drawer
         isOpen={isContactOpen}
         placement="bottom"
-        backdrop="opaque"
         size="full"
-        scrollBehavior="inside"
         onOpenChange={onContactOpenChange}
         motionProps={{
           variants: {
@@ -267,10 +266,9 @@ export function ProgramDetailMobileFooter({
       >
         <DrawerContent>
           <DrawerBody className="p-2">
-            <ReserveForm
+            <GuidedChatForm
               whatsappNumber={whatsappNumber}
               onClose={onContactOpenChange}
-              program={program}
               cycle={cycleLabel}
               level={selectedLevel?.label}
             />
