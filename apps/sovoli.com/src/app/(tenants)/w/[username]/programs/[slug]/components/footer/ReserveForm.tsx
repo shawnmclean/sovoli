@@ -8,6 +8,7 @@ import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { gradientBorderButton } from "~/components/GradientBorderButton";
 import { MessageSquareShareIcon, PlusIcon, MinusIcon } from "lucide-react";
 import posthog from "posthog-js";
+import type { OrgProgram } from "~/modules/academics/types";
 
 interface Child {
   id: string;
@@ -17,6 +18,7 @@ interface Child {
 interface ReserveFormProps {
   whatsappNumber?: string;
   onClose?: () => void;
+  program: OrgProgram;
   cycle?: string;
   level?: string;
 }

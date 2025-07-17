@@ -10,7 +10,6 @@ import {
 } from "@sovoli/ui/components/drawer";
 import { Link } from "@sovoli/ui/components/link";
 
-import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { gradientBorderButton } from "~/components/GradientBorderButton";
 import { ReserveForm } from "./ReserveForm";
 
@@ -19,6 +18,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
 import { useProgramSelection } from "../../context/ProgramSelectionContext";
 import { Skeleton } from "@sovoli/ui/components/skeleton";
+import posthog from "posthog-js";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -47,9 +47,6 @@ export function ProgramDetailMobileFooter({
   } = useDisclosure();
   const { selectedCycle, selectedLevel, isLoading } = useProgramSelection();
 
-  const programName =
-    program.name ?? program.standardProgramVersion?.program.name ?? "";
-
   const whatsappNumber = orgInstance.org.locations
     .find((l) => l.isPrimary)
     ?.contacts.find((c) => c.type === "whatsapp")?.value;
@@ -61,27 +58,13 @@ export function ProgramDetailMobileFooter({
       "Academic Term")
     : "";
 
-  const startDate = selectedCycle
-    ? (selectedCycle.academicCycle.startDate ??
-      selectedCycle.academicCycle.globalCycle?.startDate)
-    : null;
-  const endDate = selectedCycle
-    ? (selectedCycle.academicCycle.endDate ??
-      selectedCycle.academicCycle.globalCycle?.endDate)
-    : null;
-
-  // Format date range for contact drawer
-  const dateRange =
-    startDate && endDate
-      ? `${formatDate(startDate)} - ${formatDate(endDate)}`
-      : "Dates TBD";
-
-  // Generate WhatsApp message based on whether cycle is selected
-  const getWhatsAppMessage = () => {
-    if (!selectedCycle) {
-      return `Hi, I'm interested in the ${programName} program. Can you provide more details?`;
-    }
-    return `Hi, I'm interested in the ${programName} program for ${cycleLabel} (${dateRange}). Can you provide more details about enrollment?`;
+  const onChatNow = () => {
+    posthog.capture("chat_now_clicked", {
+      program_name: program.name,
+      cycle_label: cycleLabel,
+      level_label: selectedLevel?.label,
+    });
+    onContactOpen();
   };
 
   // If no cycle is selected, show fallback
@@ -101,69 +84,13 @@ export function ProgramDetailMobileFooter({
                 size="md"
                 startContent={<MessageSquareShareIcon size={16} />}
                 className={gradientBorderButton()}
-                onPress={onContactOpen}
+                onPress={onChatNow}
               >
                 Chat Now
               </Button>
             </div>
           </div>
         </footer>
-
-        {/* Contact Us Drawer */}
-        <Drawer
-          isOpen={isContactOpen}
-          placement="bottom"
-          backdrop="opaque"
-          onOpenChange={onContactOpenChange}
-          motionProps={{
-            variants: {
-              enter: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.3,
-                },
-              },
-              exit: {
-                y: 100,
-                opacity: 0,
-                transition: {
-                  duration: 0.3,
-                },
-              },
-            },
-          }}
-        >
-          <DrawerContent>
-            <DrawerBody className="mt-4">
-              <div className="space-y-4 py-4">
-                <div className="text-center">
-                  <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
-                  <p className="text-sm text-default-600 mb-4">
-                    Get in touch with us about the {programName} program
-                  </p>
-                </div>
-
-                <div className="flex justify-center">
-                  <Button
-                    as={WhatsAppLink}
-                    phoneNumber={whatsappNumber}
-                    message={getWhatsAppMessage()}
-                    intent="Contact"
-                    page="mobile-footer"
-                    variant="shadow"
-                    color="primary"
-                    radius="lg"
-                    startContent={<MessageSquareShareIcon size={16} />}
-                    className={gradientBorderButton()}
-                  >
-                    Chat on WhatsApp
-                  </Button>
-                </div>
-              </div>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
       </>
     );
   }
@@ -342,6 +269,7 @@ export function ProgramDetailMobileFooter({
             <ReserveForm
               whatsappNumber={whatsappNumber}
               onClose={onContactOpenChange}
+              program={program}
               cycle={cycleLabel}
               level={selectedLevel?.label}
             />
