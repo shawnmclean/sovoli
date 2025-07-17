@@ -11,6 +11,39 @@ import {
   DIRECTOR_OF_STUDIES,
 } from "./workforceMeta";
 
+export const ANITA_DHANIRAM: WorkforceMember = {
+  id: "003",
+  name: "Anita Dhaniram",
+  slug: "anita-dhaniram",
+  image: "/images/profile/anita.jpeg",
+  bio: "Anita supports all administrative operations and keeps the school running smoothly.",
+  quote:
+    "At Modern Academy, we are like a parent to your child—it's a home away from home.",
+  isPublic: true,
+  contacts: [
+    {
+      type: "email",
+      value: "anita@ma.edu.gy",
+      isPublic: true,
+    },
+    {
+      type: "phone",
+      value: "+592 646-4069",
+      isPublic: true,
+    },
+  ],
+  roleAssignments: [
+    {
+      position: SECRETARY,
+      department: ADMIN,
+    },
+    {
+      position: TEACHER,
+      department: FACULTY,
+    },
+  ],
+};
+
 export const JESSICA_GOBIN: WorkforceMember = {
   id: "005",
   name: "Jessica A Gobin",
@@ -220,34 +253,7 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
         },
       ],
     },
-    {
-      id: "003",
-      name: "Anita Dhaniram",
-      slug: "anita-dhaniram",
-      image: "/images/profile/anita.jpeg",
-      bio: "Anita supports all administrative operations and keeps the school running smoothly.",
-      quote:
-        "At Modern Academy, we are like a parent to your child—it's a home away from home.",
-      isPublic: true,
-      contacts: [
-        {
-          type: "email",
-          value: "anita@ma.edu.gy",
-          isPublic: true,
-        },
-        {
-          type: "phone",
-          value: "+592 646-4069",
-          isPublic: true,
-        },
-      ],
-      roleAssignments: [
-        {
-          position: SECRETARY,
-          department: ADMIN,
-        },
-      ],
-    },
+    ANITA_DHANIRAM,
     SIR_CHABEERAJ_FRANCIS,
     JESSICA_GOBIN,
     WONDA_BARON,

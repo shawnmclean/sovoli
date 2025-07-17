@@ -27,6 +27,7 @@ import {
   WONDA_BARON,
   MOLTA_MCRAE,
   SAMANTHA_PERSAUD,
+  ANITA_DHANIRAM,
 } from "./workforce";
 
 const MAGY_NURSERY_DEPT_ACTIVITIES: Activity[] = [
@@ -279,7 +280,7 @@ export const MAGY_PRE_NURSERY_2025_T1: OrgProgramCycle = {
   ],
   levelCycles: [
     {
-      teachers: [JESSICA_GOBIN],
+      teachers: [ANITA_DHANIRAM],
       level: MAGY_PRE_NURSERY_LEVEL,
       capacity: 25,
       enrolled: 18,
@@ -312,7 +313,7 @@ export const MAGY_NURSERY_2025_T1: OrgProgramCycle = {
 
   levelCycles: [
     {
-      teachers: [JESSICA_GOBIN, SAMANTHA_PERSAUD],
+      teachers: [SAMANTHA_PERSAUD],
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       level: GY_NURSERY_LEVELS[0]!,
       capacity: 25,
