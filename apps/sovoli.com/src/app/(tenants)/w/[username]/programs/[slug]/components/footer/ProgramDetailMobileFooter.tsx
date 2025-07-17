@@ -7,7 +7,6 @@ import {
   Drawer,
   DrawerBody,
   DrawerContent,
-  DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { Link } from "@sovoli/ui/components/link";
 
@@ -240,42 +239,14 @@ export function ProgramDetailMobileFooter({
       </Drawer>
 
       {/* Contact Us Drawer */}
-      <Drawer
+
+      <GuidedChatForm
+        whatsappNumber={whatsappNumber}
         isOpen={isContactOpen}
-        placement="bottom"
-        size="full"
         onOpenChange={onContactOpenChange}
-        motionProps={{
-          variants: {
-            enter: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-            exit: {
-              y: 100,
-              opacity: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-          },
-        }}
-      >
-        <DrawerContent>
-          <DrawerHeader>Enrollment Assistant</DrawerHeader>
-          <DrawerBody className="p-2">
-            <GuidedChatForm
-              whatsappNumber={whatsappNumber}
-              onClose={onContactOpenChange}
-              cycle={cycleLabel}
-              level={selectedLevel?.label}
-            />
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+        cycle={cycleLabel}
+        level={selectedLevel?.label}
+      />
     </>
   );
 }
