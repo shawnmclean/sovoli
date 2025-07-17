@@ -265,7 +265,7 @@ export function ProgramDetailMobileFooter({
         }}
       >
         <DrawerContent>
-          <DrawerBody className="mt-4">
+          <DrawerBody className="mt-4 flex flex-col max-h-[100dvh] overflow-y-auto">
             <ReserveForm
               whatsappNumber={whatsappNumber}
               onClose={onContactOpenChange}

@@ -55,7 +55,7 @@ export function ReserveForm({
   };
 
   return (
-    <div className="flex flex-col h-full px-4 pb-28 pt-6 space-y-6 max-w-md mx-auto">
+    <div className="flex flex-col px-4 pt-6 pb-28 space-y-6">
       {/* Header */}
       <div className="text-center space-y-1">
         <h2 className="text-lg font-semibold text-foreground">
