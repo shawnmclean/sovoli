@@ -9,6 +9,7 @@ import { gradientBorderButton } from "~/components/GradientBorderButton";
 import { MessageSquareShareIcon, PlusIcon, MinusIcon } from "lucide-react";
 import posthog from "posthog-js";
 import type { OrgProgram } from "~/modules/academics/types";
+import { sanitizePhoneNumber } from "~/utils/sanitizePhoneNumber";
 
 interface Child {
   id: string;
@@ -138,7 +139,7 @@ export function ReserveForm({
         className={gradientBorderButton()}
         onPress={() => {
           posthog.setPersonProperties({
-            phone: phoneNumber,
+            phone: sanitizePhoneNumber(phoneNumber, "592"),
             children: children.length,
           });
           onClose?.();
