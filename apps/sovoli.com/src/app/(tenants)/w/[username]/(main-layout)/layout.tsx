@@ -29,7 +29,6 @@ export default async function Layout({ children, params }: Props) {
         variant="flat"
         color="warning"
         title="Website optimized for mobile devices. Use your phone please."
-        description="We're working on a better experience for desktop users."
       />
       {children}
 
