@@ -66,6 +66,7 @@ export function GuidedChatForm({
           placeholder={getCurrentPlaceholder()}
           value={currentInput ? Number(currentInput) : undefined}
           onValueChange={(val) => setCurrentInput(val ? String(val) : "")}
+          autoFocus
           onKeyDown={(e) => {
             if (e.key === "Enter" && isInputValid()) {
               handleSendMessage();
@@ -82,6 +83,7 @@ export function GuidedChatForm({
         placeholder={getCurrentPlaceholder()}
         value={currentInput}
         onValueChange={setCurrentInput}
+        autoFocus
         onKeyDown={(e) => {
           if (e.key === "Enter" && isInputValid()) {
             handleSendMessage();
