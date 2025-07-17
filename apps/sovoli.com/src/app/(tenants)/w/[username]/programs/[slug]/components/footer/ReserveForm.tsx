@@ -67,6 +67,7 @@ export function ReserveForm({
       <Input
         type="tel"
         label="Your WhatsApp Number"
+        autoFocus
         placeholder="592 425 4450"
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
