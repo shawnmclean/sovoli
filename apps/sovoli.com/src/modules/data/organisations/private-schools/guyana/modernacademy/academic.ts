@@ -33,47 +33,47 @@ import {
 const MAGY_NURSERY_DEPT_ACTIVITIES: Activity[] = [
   {
     id: "mashramani",
-    title: "Mashramani",
+    title: "🎭 Mashramani",
   },
   {
     id: "easter-kite-flying",
-    title: "Easter - Kite Flying",
+    title: "🪁 Easter - Kite Flying",
   },
   {
     id: "sports",
-    title: "Sports",
+    title: "⚽ Sports",
   },
   {
     id: "phagwah",
-    title: "Phagwah",
+    title: "🎨 Phagwah",
   },
   {
     id: "diwali",
-    title: "Diwali",
+    title: "🪔 Diwali",
   },
   {
     id: "christmas",
-    title: "Christmas",
+    title: "🎄 Christmas",
   },
   {
     id: "emancipation",
-    title: "Emancipation",
+    title: "🕊️ Emancipation",
   },
   {
     id: "singing",
-    title: "Singing",
+    title: "🎤 Singing",
   },
   {
     id: "dancing",
-    title: "Dancing",
+    title: "💃 Dancing",
   },
   {
     id: "story-telling",
-    title: "Story Telling",
+    title: "📚 Story Telling",
   },
   {
     id: "role-play",
-    title: "Role Play",
+    title: "🎭 Role Play",
   },
 ];
 

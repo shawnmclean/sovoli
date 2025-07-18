@@ -275,7 +275,7 @@ export function CurriculumSection({
                     >
                       Explore the full curriculum
                     </Button>
-                 )}
+                  )}
                 </div>
 
                 <div>
@@ -450,11 +450,8 @@ export function CurriculumSection({
                 {activities.map((activity, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-3 p-3 bg-default-50 rounded-lg"
+                    className="flex items-center p-3 bg-default-50 rounded-lg"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 bg-default-100 rounded-lg flex items-center justify-center">
-                      <BookOpenIcon className="h-4 w-4 text-default-600" />
-                    </div>
                     <span className="text-sm font-medium text-foreground">
                       {activity.title}
                     </span>
