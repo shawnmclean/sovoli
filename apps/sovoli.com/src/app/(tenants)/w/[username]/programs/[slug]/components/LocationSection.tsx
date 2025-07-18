@@ -47,10 +47,10 @@ export function LocationSection({ orgInstance }: LocationSectionProps) {
   // Generate maps URL
   const getMapsUrl = () => {
     if (primaryLocation.placeId) {
-      return `https://www.google.com/maps/place/?q=place_id:${primaryLocation.placeId}`;
+      return `https://www.google.com/maps/search/?api=1&query=${primaryLocation.address.line1}&query_place_id=${primaryLocation.placeId}`;
     }
     if (primaryLocation.coordinates) {
-      return `https://maps.google.com/?q=${primaryLocation.coordinates.lat},${primaryLocation.coordinates.lng}`;
+      return `https://www.google.com/maps/@?api=1&map_action=map&center=${primaryLocation.coordinates.lat},${primaryLocation.coordinates.lng}`;
     }
     // Fallback to address search
     const addressQuery = encodeURIComponent(
@@ -62,7 +62,7 @@ export function LocationSection({ orgInstance }: LocationSectionProps) {
         .filter(Boolean)
         .join(", "),
     );
-    return `https://maps.google.com/?q=${addressQuery}`;
+    return `https://www.google.com/maps/search/?api=1&query=${addressQuery}`;
   };
 
   return (
