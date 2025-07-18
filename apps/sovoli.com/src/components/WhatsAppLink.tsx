@@ -58,16 +58,22 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
     const webUrl = `https://wa.me/${cleanNumber}${message ? `?text=${encodedMessage}` : ""}`;
 
     const onPress = () => {
-      posthog.capture("whatsapp_link_clicked", {
-        intent,
-        role: role ?? "unknown",
-        page: page ?? "unknown",
-        org_id: orgId,
-        org_name: orgName,
-        funnel: funnel ?? "default",
-        source: "sovoli_web",
-        cta_schema_version: "v1",
-      });
+      posthog.capture(
+        "whatsapp_link_clicked",
+        {
+          intent,
+          role: role ?? "unknown",
+          page: page ?? "unknown",
+          org_id: orgId,
+          org_name: orgName,
+          funnel: funnel ?? "default",
+          source: "sovoli_web",
+          cta_schema_version: "v1",
+        },
+        {
+          send_instantly: true,
+        },
+      );
     };
 
     const { Component, children, getLinkProps } = useLink({
