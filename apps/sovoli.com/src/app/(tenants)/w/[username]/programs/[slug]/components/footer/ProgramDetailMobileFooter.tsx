@@ -246,6 +246,7 @@ export function ProgramDetailMobileFooter({
         onOpenChange={onContactOpenChange}
         cycle={cycleLabel}
         level={selectedLevel?.label}
+        program={program.name}
       />
     </>
   );

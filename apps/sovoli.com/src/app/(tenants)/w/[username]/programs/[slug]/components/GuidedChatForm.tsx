@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "@sovoli/ui/components/input";
 import { NumberInput } from "@sovoli/ui/components/number-input";
 import { Button } from "@sovoli/ui/components/button";
@@ -16,11 +16,13 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
+import posthog from "posthog-js";
 
 interface GuidedChatFormProps {
   whatsappNumber?: string;
   cycle?: string;
   level?: string;
+  program?: string;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
 }
@@ -29,6 +31,7 @@ export function GuidedChatForm({
   whatsappNumber,
   cycle,
   level,
+  program,
   isOpen,
   onOpenChange,
 }: GuidedChatFormProps) {
@@ -43,6 +46,24 @@ export function GuidedChatForm({
     isInputValid,
     isDone,
   } = useGuidedChat({ cycle, level });
+
+  // Track chat open/close events
+  useEffect(() => {
+    if (isOpen) {
+      posthog.capture("ChatOpened", {
+        cycle,
+        level,
+        program,
+      });
+    } else {
+      // Track when chat is closed
+      posthog.capture("ChatClosed", {
+        cycle,
+        level,
+        program,
+      });
+    }
+  }, [isOpen, cycle, level, program]);
 
   // Helper to generate the WhatsApp preview message
   const previewMessage = () => {
