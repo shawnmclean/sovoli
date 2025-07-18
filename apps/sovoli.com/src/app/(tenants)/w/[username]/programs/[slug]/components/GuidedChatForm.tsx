@@ -65,6 +65,7 @@ export function GuidedChatForm({
           min={min}
           max={max}
           size="lg"
+          variant="bordered"
           placeholder={getCurrentPlaceholder()}
           value={currentInput ? Number(currentInput) : undefined}
           onValueChange={(val) => setCurrentInput(val ? String(val) : "")}
@@ -83,6 +84,7 @@ export function GuidedChatForm({
         autoFocus
         type="tel"
         size="lg"
+        variant="bordered"
         placeholder={getCurrentPlaceholder()}
         value={currentInput}
         onValueChange={setCurrentInput}
@@ -149,8 +151,9 @@ export function GuidedChatForm({
                     onPress={handleSendMessage}
                     isIconOnly
                     isDisabled={!isInputValid()}
+                    size="lg"
                   >
-                    <SendIcon size={16} />
+                    <SendIcon size={20} />
                   </Button>
                 </div>
               )}
