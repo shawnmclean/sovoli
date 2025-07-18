@@ -15,9 +15,11 @@ interface ChatData {
 }
 
 export function useGuidedChat({
+  program,
   cycle,
   level,
 }: {
+  program?: string;
   cycle?: string;
   level?: string;
 }) {
@@ -68,7 +70,13 @@ export function useGuidedChat({
       const phone = currentInput.trim();
       if (phone.length >= 10) {
         setChatData((prev) => ({ ...prev, phoneNumber: phone }));
-        posthog.setPersonProperties({ phone });
+        posthog.capture("Lead", {
+          program,
+          cycle,
+          level,
+          source: "guided_chat",
+          $set: { phone },
+        });
 
         // Add system response
         addMessage("system", "👶 How many children are you enrolling?");

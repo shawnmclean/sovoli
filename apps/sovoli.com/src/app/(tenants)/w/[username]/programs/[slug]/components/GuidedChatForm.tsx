@@ -45,7 +45,7 @@ export function GuidedChatForm({
     getCurrentPlaceholder,
     isInputValid,
     isDone,
-  } = useGuidedChat({ cycle, level });
+  } = useGuidedChat({ cycle, level, program });
 
   // Track chat open/close events
   useEffect(() => {
