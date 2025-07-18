@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { Badge } from "@sovoli/ui/components/badge";
 import { Chip } from "@sovoli/ui/components/chip";
 
 import {
@@ -14,7 +13,6 @@ import {
 } from "lucide-react";
 import { parseISO } from "date-fns";
 
-import { ProgramPriceCard } from "../../(main-layout)/programs/components/ProgramPriceCard";
 import { displayAgeRange } from "../../(main-layout)/programs/utils";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
@@ -27,6 +25,7 @@ import { TeachersSection } from "./components/TeachersSection";
 import { LocationSection } from "./components/LocationSection";
 import { LocationFeaturesSection } from "./components/LocationFeaturesSection";
 import { ProgramsSection } from "./components/ProgramsSection";
+import { PricingSection } from "./components/PricingSection";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -269,101 +268,10 @@ export default async function ProgramDetailsPage({
           </div>
 
           {/* Pricing Information */}
-          {programCycles.length > 0 && (
-            <Card className="overflow-hidden">
-              <CardHeader className="pb-4">
-                <h3 className="text-xl font-bold text-foreground">Your Cost</h3>
-              </CardHeader>
-              <CardBody className="space-y-6">
-                {nextCycle && (
-                  <div className="space-y-4">
-                    <div className="grid gap-6 md:grid-cols-2">
-                      {nextCycle.pricingPackage.pricingItems
-                        .filter((item) => item.purpose === "tuition")
-                        .map((item) => (
-                          <div key={item.id} className="space-y-2">
-                            <ProgramPriceCard
-                              pricingPackage={nextCycle.pricingPackage}
-                              pricingItemId={item.id}
-                            />
-                          </div>
-                        ))}
-
-                      {nextCycle.pricingPackage.pricingItems
-                        .filter((item) => item.purpose === "registration")
-                        .map((item) => (
-                          <div key={item.id} className="space-y-2">
-                            <ProgramPriceCard
-                              pricingPackage={nextCycle.pricingPackage}
-                              pricingItemId={item.id}
-                            />
-                          </div>
-                        ))}
-
-                      {nextCycle.pricingPackage.pricingItems
-                        .filter((item) => item.purpose === "materials")
-                        .map((item) => (
-                          <div key={item.id} className="space-y-2">
-                            <ProgramPriceCard
-                              pricingPackage={nextCycle.pricingPackage}
-                              pricingItemId={item.id}
-                            />
-                            <p className="text-sm text-foreground-500">
-                              Purpose: {item.purpose}
-                            </p>
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-                )}
-
-                {currentCycle && (
-                  <div className="space-y-4 pt-6 border-t border-default-200">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Badge color="primary" variant="flat" size="sm">
-                        Current Cycle Pricing
-                      </Badge>
-                      <span className="text-sm font-medium text-primary-900">
-                        {currentCycle.academicCycle.customLabel ??
-                          currentCycle.academicCycle.globalCycle?.label ??
-                          "Current Cycle"}
-                      </span>
-                    </div>
-
-                    <div className="grid gap-4 md:grid-cols-2">
-                      {currentCycle.pricingPackage.pricingItems
-                        .filter((item) => item.purpose === "registration")
-                        .map((item) => (
-                          <div key={item.id} className="space-y-2">
-                            <h4 className="font-semibold text-foreground">
-                              Registration Fee
-                            </h4>
-                            <ProgramPriceCard
-                              pricingPackage={currentCycle.pricingPackage}
-                              pricingItemId={item.id}
-                            />
-                          </div>
-                        ))}
-
-                      {currentCycle.pricingPackage.pricingItems
-                        .filter((item) => item.purpose === "tuition")
-                        .map((item) => (
-                          <div key={item.id} className="space-y-2">
-                            <h4 className="font-semibold text-foreground">
-                              Tuition Fee
-                            </h4>
-                            <ProgramPriceCard
-                              pricingPackage={currentCycle.pricingPackage}
-                              pricingItemId={item.id}
-                            />
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-                )}
-              </CardBody>
-            </Card>
-          )}
+          <PricingSection
+            programCycles={programCycles}
+            defaultCycle={currentCycle ?? nextCycle}
+          />
         </div>
       </div>
 
