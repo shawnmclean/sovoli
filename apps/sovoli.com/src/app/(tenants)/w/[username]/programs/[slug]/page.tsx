@@ -26,6 +26,7 @@ import { LocationSection } from "./components/LocationSection";
 import { LocationFeaturesSection } from "./components/LocationFeaturesSection";
 import { ProgramsSection } from "./components/ProgramsSection";
 import { PricingSection } from "./components/PricingSection";
+import { ProgramTracking } from "./components/ProgramTracking";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -125,6 +126,11 @@ export default async function ProgramDetailsPage({
 
   return (
     <ProgramSelectionProvider cycles={programCycles}>
+      <ProgramTracking
+        program={program}
+        defaultCycle={defaultCycle}
+        defaultLevel={defaultLevel}
+      />
       <ProgramGalleryCarousel program={program} />
       <ProgramHero orgInstance={orgInstance} program={program} />
 
