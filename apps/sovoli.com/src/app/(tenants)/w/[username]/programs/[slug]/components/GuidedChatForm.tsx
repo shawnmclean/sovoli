@@ -101,7 +101,6 @@ export function GuidedChatForm({
       isOpen={isOpen}
       size="full"
       onOpenChange={onOpenChange}
-      shouldBlockScroll={false}
       motionProps={{
         variants: {
           enter: {
