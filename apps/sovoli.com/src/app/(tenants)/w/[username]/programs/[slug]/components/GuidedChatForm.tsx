@@ -61,8 +61,10 @@ export function GuidedChatForm({
       const max = inputType === "childCount" ? 10 : 16;
       return (
         <NumberInput
+          autoFocus
           min={min}
           max={max}
+          size="lg"
           placeholder={getCurrentPlaceholder()}
           value={currentInput ? Number(currentInput) : undefined}
           onValueChange={(val) => setCurrentInput(val ? String(val) : "")}
@@ -79,7 +81,9 @@ export function GuidedChatForm({
     return (
       <Input
         fullWidth
+        autoFocus
         type="tel"
+        size="lg"
         placeholder={getCurrentPlaceholder()}
         value={currentInput}
         onValueChange={setCurrentInput}
