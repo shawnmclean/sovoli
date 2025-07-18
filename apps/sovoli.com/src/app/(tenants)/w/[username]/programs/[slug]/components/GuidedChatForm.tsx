@@ -183,9 +183,18 @@ export function GuidedChatForm({
                   as={WhatsAppLink}
                   phoneNumber={whatsappNumber}
                   message={previewMessage()}
-                  intent="Contact"
-                  page="mobile-footer"
-                  color="primary"
+                  event="Contact"
+                  eventProperties={{
+                    program,
+                    cycle,
+                    level,
+                    $set: {
+                      children: chatData.children.map((c) => ({
+                        age: c,
+                        name: `Child ${c}`,
+                      })),
+                    },
+                  }}
                   fullWidth
                   startContent={<MessageSquareIcon size={16} />}
                   className={gradientBorderButton()}

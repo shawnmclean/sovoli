@@ -4,12 +4,15 @@ import React, { forwardRef } from "react";
 import { useLink } from "@sovoli/ui/hooks";
 import type { LinkProps } from "@sovoli/ui/components/link";
 import { config } from "~/utils/config";
+import type { Properties } from "posthog-js";
 import posthog from "posthog-js";
 
 interface WhatsAppLinkProps extends LinkProps {
   phoneNumber?: string;
   message?: string;
   fallback?: boolean;
+  event?: string;
+  eventProperties?: Properties | null;
 
   // Tracking props
   intent?:
@@ -41,13 +44,16 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
       phoneNumber = config.contact.whatsapp,
       message,
 
-      // fallback = true,
+      // old tracking props
       intent = "Contact",
       role,
       page,
       orgId,
       orgName,
       funnel,
+      // Tracking props
+      event,
+      eventProperties,
       ...rest
     },
     ref,
@@ -59,8 +65,8 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
 
     const onPress = () => {
       posthog.capture(
-        "whatsapp_link_clicked",
-        {
+        event ?? "whatsapp_link_clicked",
+        eventProperties ?? {
           intent,
           role: role ?? "unknown",
           page: page ?? "unknown",
