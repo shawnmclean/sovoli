@@ -1,6 +1,5 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
-import { CHASE_ACADEMY_ACADEMIC } from "./academic";
 
 export const CHASE_ACADEMY_ORG: OrgInstance = {
   org: {
@@ -47,7 +46,7 @@ export const CHASE_ACADEMY_ORG: OrgInstance = {
     ],
   },
   websiteModule: null,
-  academicModule: CHASE_ACADEMY_ACADEMIC,
+  academicModule: null,
   offeringModule: null,
   workforceModule: null,
   scoringModule: null,

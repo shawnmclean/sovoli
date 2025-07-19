@@ -2,27 +2,21 @@
 
 import { useEffect } from "react";
 import { usePostHog } from "posthog-js/react";
-import { useProgramSelection } from "../context/ProgramSelectionContext";
+import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 
-import type {
-  OrgProgram,
-  OrgProgramCycle,
-  ProgramLevel,
-} from "~/modules/academics/types";
+import type { ProgramCycle, Program } from "~/modules/academics/types";
 
 interface ProgramTrackingProps {
-  program: OrgProgram;
-  defaultCycle?: OrgProgramCycle | null;
-  defaultLevel?: ProgramLevel | null;
+  program: Program;
+  defaultCycle?: ProgramCycle | null;
 }
 
 export function ProgramTracking({
   program,
   defaultCycle,
-  defaultLevel,
 }: ProgramTrackingProps) {
   const posthog = usePostHog();
-  const { selectedCycle, selectedLevel } = useProgramSelection();
+  const { selectedCycle } = useProgramCycleSelection();
 
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "Program";
@@ -35,14 +29,11 @@ export function ProgramTracking({
       defaultCycle.academicCycle.globalCycle?.label ??
       "Academic Term";
 
-    const defaultLevelLabel = defaultLevel?.label ?? null;
-
     posthog.capture("ViewContent", {
       program: programName,
       cycle: defaultCycleLabel,
-      level: defaultLevelLabel,
     });
-  }, [defaultCycle, defaultLevel, programName, posthog]);
+  }, [defaultCycle, programName, posthog]);
 
   // Track when selections change from defaults
   useEffect(() => {
@@ -53,31 +44,19 @@ export function ProgramTracking({
       selectedCycle.academicCycle.globalCycle?.label ??
       "Academic Term";
 
-    const level = selectedLevel?.label ?? null;
-
     // Only track if different from defaults
     const defaultCycleLabel =
       defaultCycle?.academicCycle.customLabel ??
       defaultCycle?.academicCycle.globalCycle?.label ??
       "Academic Term";
 
-    const defaultLevelLabel = defaultLevel?.label ?? null;
-
-    if (cycle !== defaultCycleLabel || level !== defaultLevelLabel) {
+    if (cycle !== defaultCycleLabel) {
       posthog.capture("ViewContent", {
         program: programName,
         cycle,
-        level,
       });
     }
-  }, [
-    selectedCycle,
-    selectedLevel,
-    defaultCycle,
-    defaultLevel,
-    programName,
-    posthog,
-  ]);
+  }, [selectedCycle, defaultCycle, programName, posthog]);
 
   return null; // This component doesn't render anything
 }

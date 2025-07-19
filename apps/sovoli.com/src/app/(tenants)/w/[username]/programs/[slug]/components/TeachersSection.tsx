@@ -17,10 +17,8 @@ import {
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
 import { UserIcon, MailIcon, PhoneIcon } from "lucide-react";
-import type { OrgInstance } from "~/modules/organisations/types";
-import type { OrgProgram, ProgramLevel } from "~/modules/academics/types";
 import type { WorkforceMember } from "~/modules/workforce/types";
-import { useProgramSelection } from "../context/ProgramSelectionContext";
+import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 
 // Shared Teacher Details Drawer Component
 interface TeacherDetailsDrawerProps {
@@ -154,9 +152,6 @@ function TeacherDetailsDrawer({
 }
 
 interface TeachersSectionProps {
-  orgInstance: OrgInstance;
-  program: OrgProgram;
-  defaultLevel?: ProgramLevel | null;
   defaultTeachers?: WorkforceMember[] | null;
 }
 
@@ -172,33 +167,22 @@ function getPublicContact(member: WorkforceMember, type: "email" | "phone") {
   );
 }
 
-export function TeachersSection({
-  orgInstance: _orgInstance,
-  program: _program,
-  defaultLevel,
-  defaultTeachers,
-}: TeachersSectionProps) {
-  const { selectedCycle, selectedLevel } = useProgramSelection();
+export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
+  const { selectedCycle } = useProgramCycleSelection();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedTeacher, setSelectedTeacher] =
     useState<WorkforceMember | null>(null);
 
-  // Use defaultLevel for SSR, fallback to selectedLevel for client
-  const displayLevel = selectedLevel ?? defaultLevel;
-
   // Get teachers for the current level and cycle
   const teachers = useMemo(() => {
-    // If we have a selected cycle and level, use the dynamic teachers
-    if (selectedCycle && displayLevel) {
-      const levelCycle = selectedCycle.levelCycles?.find(
-        (lc) => lc.level.id === displayLevel.id,
-      );
-      return levelCycle?.teachers ?? [];
+    // If we have a selected cycle, use the dynamic teachers
+    if (selectedCycle) {
+      return selectedCycle.teachers ?? [];
     }
 
     // Otherwise, use defaultTeachers if available
     return defaultTeachers ?? [];
-  }, [selectedCycle, displayLevel, defaultTeachers]);
+  }, [selectedCycle, defaultTeachers]);
 
   // Set the first teacher as selected when teachers change
   useMemo(() => {
@@ -246,10 +230,10 @@ export function TeachersSection({
       <>
         <Card className="overflow-hidden">
           <CardHeader className="pb-4">
-          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-            <UserIcon className="h-6 w-6 text-primary" />
-            Meet Your Teacher
-          </h2>
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <UserIcon className="h-6 w-6 text-primary" />
+              Meet Your Teacher
+            </h2>
           </CardHeader>
           <CardBody>
             <div className="flex flex-col items-center gap-4">

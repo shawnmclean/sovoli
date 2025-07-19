@@ -18,7 +18,7 @@ import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
 import { ProgramHero } from "./components/ProgramHero";
 import { CycleSelectionWrapper } from "./components/CycleSelectionWrapper";
-import { ProgramSelectionProvider } from "./context/ProgramSelectionContext";
+import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionContext";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { CurriculumSection } from "./components/CurriculumSection";
 import { TeachersSection } from "./components/TeachersSection";
@@ -27,6 +27,7 @@ import { LocationFeaturesSection } from "./components/LocationFeaturesSection";
 import { ProgramsSection } from "./components/ProgramsSection";
 import { PricingSection } from "./components/PricingSection";
 import { ProgramTracking } from "./components/ProgramTracking";
+import { CycleSection } from "./components/CycleSection";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -70,15 +71,9 @@ export default async function ProgramDetailsPage({
     slug,
   );
 
-  // Get cycles for this program
-  const programCycles =
-    orgInstance.academicModule?.programCycles?.filter(
-      (cycle) => cycle.orgProgram.slug === program.slug,
-    ) ?? [];
-
   // Get all future cycles (including next)
-  const futureCycles = programCycles
-    .filter((cycle) => {
+  const futureCycles = program.cycles
+    ?.filter((cycle) => {
       const startDate =
         cycle.academicCycle.startDate ??
         cycle.academicCycle.globalCycle?.startDate;
@@ -97,10 +92,10 @@ export default async function ProgramDetailsPage({
     });
 
   // Get the next upcoming cycle (first future cycle)
-  const nextCycle = futureCycles[0];
+  const nextCycle = futureCycles?.[0];
 
   // Get the current cycle
-  const currentCycle = programCycles.find((cycle) => {
+  const currentCycle = program.cycles?.find((cycle) => {
     const startDate =
       cycle.academicCycle.startDate ??
       cycle.academicCycle.globalCycle?.startDate;
@@ -112,25 +107,13 @@ export default async function ProgramDetailsPage({
 
   // Get organization contact info
 
-  // Get the default level for SSR
-  const levels = program.levels ?? program.standardProgramVersion?.levels ?? [];
-  const defaultLevel = levels.length > 0 ? levels[0] : null;
-
   // Get the default teacher for SSR
   const defaultCycle = currentCycle ?? nextCycle;
-  const defaultTeachers =
-    defaultCycle && defaultLevel
-      ? (defaultCycle.levelCycles?.find((lc) => lc.level.id === defaultLevel.id)
-          ?.teachers ?? null)
-      : null;
+  const defaultTeachers = defaultCycle?.teachers ?? null;
 
   return (
-    <ProgramSelectionProvider cycles={programCycles}>
-      <ProgramTracking
-        program={program}
-        defaultCycle={defaultCycle}
-        defaultLevel={defaultLevel}
-      />
+    <ProgramCycleSelectionProvider program={program}>
+      <ProgramTracking program={program} defaultCycle={defaultCycle} />
       <ProgramGalleryCarousel program={program} />
       <ProgramHero orgInstance={orgInstance} program={program} />
 
@@ -209,21 +192,13 @@ export default async function ProgramDetailsPage({
               </CardBody>
             </Card>
 
-            {/* Cycle Selection */}
-            {programCycles.length > 0 && (
-              <CycleSelectionWrapper cycles={programCycles} />
-            )}
+            <CycleSection program={program} defaultCycle={defaultCycle} />
 
             {/* Curriculum */}
-            <CurriculumSection program={program} defaultLevel={defaultLevel} />
+            <CurriculumSection program={program} />
 
             {/* Teachers */}
-            <TeachersSection
-              orgInstance={orgInstance}
-              program={program}
-              defaultLevel={defaultLevel}
-              defaultTeachers={defaultTeachers}
-            />
+            <TeachersSection defaultTeachers={defaultTeachers} />
 
             {/* Requirements */}
             {((program.requirements?.length ?? 0) > 0 ||
@@ -274,16 +249,13 @@ export default async function ProgramDetailsPage({
           </div>
 
           {/* Pricing Information */}
-          <PricingSection
-            programCycles={programCycles}
-            defaultCycle={currentCycle ?? nextCycle}
-          />
+          <PricingSection defaultCycle={currentCycle ?? nextCycle} />
         </div>
       </div>
 
       <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
 
       <ProgramDetailMobileFooter orgInstance={orgInstance} program={program} />
-    </ProgramSelectionProvider>
+    </ProgramCycleSelectionProvider>
   );
 }

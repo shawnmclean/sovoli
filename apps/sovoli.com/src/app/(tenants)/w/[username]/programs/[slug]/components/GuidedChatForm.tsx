@@ -21,7 +21,6 @@ import posthog from "posthog-js";
 interface GuidedChatFormProps {
   whatsappNumber?: string;
   cycle?: string;
-  level?: string;
   program?: string;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
@@ -30,7 +29,6 @@ interface GuidedChatFormProps {
 export function GuidedChatForm({
   whatsappNumber,
   cycle,
-  level,
   program,
   isOpen,
   onOpenChange,
@@ -45,25 +43,25 @@ export function GuidedChatForm({
     getCurrentPlaceholder,
     isInputValid,
     isDone,
-  } = useGuidedChat({ cycle, level, program });
+  } = useGuidedChat({ cycle, program });
 
   // Track chat open/close events
   useEffect(() => {
     if (isOpen) {
       posthog.capture("ChatOpened", {
         cycle,
-        level,
+
         program,
       });
     } else {
       // Track when chat is closed
       posthog.capture("ChatClosed", {
         cycle,
-        level,
+
         program,
       });
     }
-  }, [isOpen, cycle, level, program]);
+  }, [isOpen, cycle, program]);
 
   // Helper to generate the WhatsApp preview message
   const previewMessage = () => {
@@ -71,7 +69,7 @@ export function GuidedChatForm({
       .filter((age) => age && age > 0)
       .join(", ");
     const childText = (chatData.childCount ?? 1) === 1 ? "child" : "children";
-    return `I'm applying for "${level ?? "Primary"}" for "${cycle ?? "2024-2025"}". I have ${chatData.childCount} ${childText} ages ${childAges}. Please let me know next steps.`;
+    return `I'm applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". I have ${chatData.childCount} ${childText} ages ${childAges}. Please let me know next steps.`;
   };
 
   // Render the correct input based on inputType
@@ -187,7 +185,6 @@ export function GuidedChatForm({
                   eventProperties={{
                     program,
                     cycle,
-                    level,
                     $set: {
                       children: chatData.children.map((c) => ({
                         age: c,

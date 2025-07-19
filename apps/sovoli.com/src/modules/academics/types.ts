@@ -29,7 +29,27 @@ export interface OrgAcademicCycle {
 
 // #region programs
 
-export type StandardProgramId = "gy-nursery" | "gy-primary" | "gy-secondary";
+type PreNurseryProgramId = "gy-pre-nursery";
+type NurseryProgramId = "gy-nursery-year-1" | "gy-nursery-year-2";
+type PrimaryProgramId =
+  | "gy-primary-grade-1"
+  | "gy-primary-grade-2"
+  | "gy-primary-grade-3"
+  | "gy-primary-grade-4"
+  | "gy-primary-grade-5"
+  | "gy-primary-grade-6";
+type SecondaryProgramId =
+  | "gy-secondary-form-1"
+  | "gy-secondary-form-2"
+  | "gy-secondary-form-3"
+  | "gy-secondary-form-4"
+  | "gy-secondary-form-5"
+  | "gy-secondary-form-6";
+export type StandardProgramId =
+  | PreNurseryProgramId
+  | NurseryProgramId
+  | PrimaryProgramId
+  | SecondaryProgramId;
 export type AcademicAuthority = "MoE-GY";
 export interface StandardProgram {
   id: StandardProgramId;
@@ -42,17 +62,12 @@ export interface StandardProgram {
   authority?: AcademicAuthority;
 }
 
-export type StandardProgramVersionId =
-  | "gy-nursery-v1"
-  | "gy-primary-v1"
-  | "gy-secondary-v1";
-
 export interface StandardProgramVersion {
-  id: StandardProgramVersionId; // "gy-primary-v1"
+  id: string; // "gy-primary-v1"
   program: StandardProgram;
   version: number;
 
-  label?: string;
+  name?: string;
   references?: string[];
 
   effectiveFrom: string;
@@ -60,7 +75,6 @@ export interface StandardProgramVersion {
 
   requirements?: ProgramRequirement[];
   assessments?: ProgramAssessmentVersion[];
-  levels?: ProgramLevel[];
 }
 export interface OrgProgram {
   standardProgramVersion?: StandardProgramVersion;
@@ -78,7 +92,7 @@ export interface OrgProgram {
   requirements?: ProgramRequirement[];
   notes?: string;
   isPopular?: boolean;
-  levels?: ProgramLevel[];
+  levels?: Program[];
 }
 
 // TODO: move to core or photos module
@@ -138,10 +152,9 @@ export interface ProgramAssessmentVersion {
   effectiveTo?: string;
 }
 
-export type OrgProgramCycleStatus = "open" | "closed" | "hidden";
-export interface OrgProgramCycle {
+export type ProgramCycleStatus = "open" | "closed" | "hidden";
+export interface ProgramCycle {
   id: string; // e.g., "magy-nursery-2025-t1"
-  orgProgram: OrgProgram;
   academicCycle: OrgAcademicCycle;
 
   registrationPeriod?: {
@@ -149,41 +162,58 @@ export interface OrgProgramCycle {
     endDate: string;
   };
 
+  teachers?: WorkforceMember[];
+  capacity?: number;
+  enrolled?: number;
+
   pricingPackage: PricingPackage;
 
   /**
    * Computed requirements at time of cycle, this is frozen at creation time.
    */
-  computedRequirements: ProgramRequirement[];
+  // computedRequirements: ProgramRequirement[];
   notes?: string;
 
-  levelCycles?: ProgramLevelCycle[];
-
-  status?: OrgProgramCycleStatus;
+  status?: ProgramCycleStatus;
 }
 
 // #endregion
 
-export interface ProgramLevelCycle {
-  level: ProgramLevel;
-
-  teachers?: WorkforceMember[];
-
-  capacity?: number;
-  enrolled?: number;
-
-  notes?: string;
+export interface ProgramGroup {
+  id: string;
+  label: string;
+  programs: [
+    {
+      program: Program;
+      order: number;
+    },
+  ];
 }
 
-export interface ProgramLevel {
+export interface Program {
   id: string;
-  order: number; // 0-based index (e.g., 0 = Pre-Nursery)
-  label: string; // e.g., "Grade 1", "Form 3", "Year 2", "Beginner"
-  type: "grade" | "form" | "year" | "level" | "custom";
+  slug: string; // e.g., "grade-1", "form-3", "year-2", "beginner"
+  name?: string; // "Nursery" (can override)
   ageRange?: { min: number; max: number };
 
   courses?: Course[];
   activities?: Activity[];
+
+  standardProgramVersion?: StandardProgramVersion;
+
+  tagline?: string;
+  outcome?: string;
+
+  description?: string; // Custom or default
+
+  photos?: Photo[];
+
+  // Optional local overrides
+  requirements?: ProgramRequirement[];
+  notes?: string;
+  isPopular?: boolean;
+
+  cycles?: ProgramCycle[];
 }
 
 export interface Subject {
@@ -210,10 +240,7 @@ export interface CourseUnit {
 }
 
 export interface AcademicModule {
-  // swap to this after we move to OrgProgram
-  programs: OrgProgram[];
-  programCycles?: OrgProgramCycle[];
+  programs: Program[];
 
-  // Temporary
   studentCount?: number;
 }

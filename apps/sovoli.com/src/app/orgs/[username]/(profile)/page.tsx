@@ -37,7 +37,6 @@ export default async function OrgProfilePage({
 }) {
   const { username } = await params;
   const orgInstance = await retreiveOrgInstance(username);
-  const { academicModule } = orgInstance;
 
   const websiteUrl =
     orgInstance.websiteModule?.website.url ??
@@ -139,53 +138,6 @@ export default async function OrgProfilePage({
           )}
         </div>
       </div>
-
-      {academicModule?.programs && academicModule.programs.length > 0 && (
-        <section className="px-4">
-          <h2 className="mb-6 text-2xl font-bold">Programs</h2>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {academicModule.programs.slice(0, 4).map((program, index) => (
-              <Card key={index} className="border-none" shadow="sm">
-                <CardBody className="p-0">
-                  <Image
-                    alt={
-                      program.name ??
-                      program.standardProgramVersion?.program.name ??
-                      ""
-                    }
-                    src={
-                      program.image ??
-                      program.standardProgramVersion?.program.image ??
-                      ""
-                    }
-                    width={800}
-                    height={400}
-                    className="h-48 w-full object-cover"
-                  />
-                  <div className="p-6">
-                    <h3
-                      className="mb-2 text-xl font-semibold line-clamp-2"
-                      title={
-                        program.name ??
-                        program.standardProgramVersion?.program.name ??
-                        ""
-                      }
-                    >
-                      {program.name ??
-                        program.standardProgramVersion?.program.name ??
-                        ""}
-                    </h3>
-                    <p className="text-default-600 line-clamp-3">
-                      {program.description}
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }

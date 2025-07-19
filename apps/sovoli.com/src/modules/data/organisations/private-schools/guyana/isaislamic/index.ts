@@ -1,6 +1,5 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
-import { ISA_ISLAMIC_ACADEMIC } from "./academic";
 
 export const ISA_ISLAMIC_ORG: OrgInstance = {
   org: {
@@ -31,7 +30,7 @@ export const ISA_ISLAMIC_ORG: OrgInstance = {
     ],
   },
   websiteModule: null,
-  academicModule: ISA_ISLAMIC_ACADEMIC,
+  academicModule: null,
   offeringModule: null,
   workforceModule: null,
   scoringModule: null,

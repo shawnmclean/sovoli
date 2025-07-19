@@ -3,7 +3,7 @@ import { Cards } from "./sections/Cards/Cards";
 // import { Cards } from "./sections/Cards/Cards";
 import { Hero } from "./sections/Hero/Hero";
 import { Metrics } from "./sections/Metrics/Metrics";
-import { Programs } from "./sections/Programs/Programs";
+
 import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import { Team } from "./sections/Team/Team";
 
@@ -20,6 +20,6 @@ export const sectionRegistry: Record<string, SectionComponent> = {
   hero: Hero,
   metrics: Metrics,
   cards: Cards,
-  programs: Programs,
+
   team: Team,
 };

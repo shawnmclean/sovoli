@@ -2,34 +2,30 @@
 
 import type { ReactNode } from "react";
 import { createContext, useContext, useState, useEffect } from "react";
-import type { OrgProgramCycle } from "~/modules/academics/types";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 import type { ProgramSelectionState } from "./types";
-import type { ProgramLevel } from "~/modules/academics/types";
 
 const ProgramSelectionContext = createContext<ProgramSelectionState | null>(
   null,
 );
 
-interface ProgramSelectionProviderProps {
+interface ProgramCycleSelectionProviderProps {
   children: ReactNode;
-  cycles: OrgProgramCycle[];
+  program: Program;
 }
 
-export function ProgramSelectionProvider({
+export function ProgramCycleSelectionProvider({
   children,
-  cycles,
-}: ProgramSelectionProviderProps) {
-  const [selectedCycle, setSelectedCycle] = useState<OrgProgramCycle | null>(
-    null,
-  );
-  const [selectedLevel, setSelectedLevel] = useState<ProgramLevel | null>(null);
+  program,
+}: ProgramCycleSelectionProviderProps) {
+  const [selectedCycle, setSelectedCycle] = useState<ProgramCycle | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Set default cycle on mount or when cycles change
   useEffect(() => {
-    if (cycles.length > 0 && !selectedCycle) {
+    if (program.cycles && program.cycles.length > 0 && !selectedCycle) {
       // Find current cycle first, then next cycle, then first available
-      const currentCycle = cycles.find((cycle) => {
+      const currentCycle = program.cycles.find((cycle) => {
         const startDate =
           cycle.academicCycle.startDate ??
           cycle.academicCycle.globalCycle?.startDate;
@@ -44,28 +40,26 @@ export function ProgramSelectionProvider({
         return now >= start && now <= end;
       });
 
-      const nextCycle = cycles.find((cycle) => {
+      const nextCycle = program.cycles.find((cycle) => {
         const startDate =
           cycle.academicCycle.startDate ??
           cycle.academicCycle.globalCycle?.startDate;
         return startDate && new Date(startDate) > new Date();
       });
 
-      const defaultCycle = currentCycle ?? nextCycle ?? cycles[0];
+      const defaultCycle = currentCycle ?? nextCycle ?? program.cycles[0];
       if (defaultCycle) {
         setSelectedCycle(defaultCycle);
       }
       setIsLoading(false);
-    } else if (cycles.length === 0) {
+    } else if (program.cycles && program.cycles.length === 0) {
       setIsLoading(false);
     }
-  }, [cycles, selectedCycle]);
+  }, [program.cycles, selectedCycle]);
 
   const value: ProgramSelectionState = {
     selectedCycle,
     setSelectedCycle,
-    selectedLevel,
-    setSelectedLevel,
     isLoading,
   };
 
@@ -76,11 +70,11 @@ export function ProgramSelectionProvider({
   );
 }
 
-export function useProgramSelection() {
+export function useProgramCycleSelection() {
   const context = useContext(ProgramSelectionContext);
   if (!context) {
     throw new Error(
-      "useProgramSelection must be used within a ProgramSelectionProvider",
+      "useProgramCycleSelection must be used within a ProgramCycleSelectionProvider",
     );
   }
   return context;

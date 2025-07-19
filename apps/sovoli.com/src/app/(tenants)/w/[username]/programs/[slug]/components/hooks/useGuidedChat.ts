@@ -17,11 +17,9 @@ interface ChatData {
 export function useGuidedChat({
   program,
   cycle,
-  level,
 }: {
   program?: string;
   cycle?: string;
-  level?: string;
 }) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -73,7 +71,6 @@ export function useGuidedChat({
         posthog.capture("Lead", {
           program,
           cycle,
-          level,
           source: "guided_chat",
           $set: { phone },
         });
@@ -116,7 +113,7 @@ export function useGuidedChat({
             .join(", ");
           const childText =
             (chatData.childCount ?? 1) === 1 ? "child" : "children";
-          const finalMessage = `I'm applying for "${level ?? "Primary"}" for "${cycle ?? "2024-2025"}". I have ${chatData.childCount} ${childText} ages ${childAges}. Please let me know next steps.`;
+          const finalMessage = `I'm applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". I have ${chatData.childCount} ${childText} ages ${childAges}. Please let me know next steps.`;
 
           addMessage(
             "system",

@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props) {
       images: [
         {
           url:
-            program.image ??
+            program.photos?.[0]?.url ??
             program.standardProgramVersion?.program.image ??
             "",
           width: 1200,

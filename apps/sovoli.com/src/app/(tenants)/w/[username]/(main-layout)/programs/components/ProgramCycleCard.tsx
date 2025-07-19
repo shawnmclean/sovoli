@@ -3,7 +3,7 @@
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 
 import { Link } from "@sovoli/ui/components/link";
-import type { OrgProgramCycle } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import {
   ClockIcon,
@@ -16,18 +16,20 @@ import { ProgramCarousel } from "./ProgramCarousel";
 
 export interface ProgramCycleCardProps {
   orgInstance: OrgInstance;
-  cycle: OrgProgramCycle;
+  program: Program;
 }
 
 export function ProgramCycleCard({
   orgInstance: _orgInstance,
-  cycle,
+  program,
 }: ProgramCycleCardProps) {
-  const program = cycle.orgProgram;
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "";
 
-  const ageReq = cycle.computedRequirements.find((r) => r.type === "age");
+  const requirement =
+    program.requirements ?? program.standardProgramVersion?.requirements;
+  const ageReq = requirement?.find((r) => r.type === "age");
+
   const formatAgeRange = (range: {
     minAgeYears?: number;
     maxAgeYears?: number;
@@ -38,17 +40,19 @@ export function ProgramCycleCard({
       : `${min} years and up`;
   };
 
+  const currentCycle = program.cycles?.[0];
+
   const formatTermInfo = () => {
     const termLabel =
-      cycle.academicCycle.customLabel ??
-      cycle.academicCycle.globalCycle?.label ??
+      currentCycle?.academicCycle.customLabel ??
+      currentCycle?.academicCycle.globalCycle?.label ??
       "Academic Term";
 
-    if (!cycle.registrationPeriod?.endDate) {
+    if (!currentCycle?.registrationPeriod?.endDate) {
       return `Join the ${termLabel}`;
     }
 
-    const end = parseISO(cycle.registrationPeriod.endDate);
+    const end = parseISO(currentCycle.registrationPeriod.endDate);
     const deadline = format(end, "MMM d");
     return `${termLabel} term - Apply by ${deadline}`;
   };

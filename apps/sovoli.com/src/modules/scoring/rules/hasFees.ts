@@ -5,8 +5,8 @@ export const hasFees: OrgScoreRule = {
   key: "hasFees",
   maxScore: MAX_SCORE,
   compute: ({ academicModule }) => {
-    const programCycles = academicModule?.programCycles ?? [];
-    const totalProgramCycles = programCycles.length;
+    const programs = academicModule?.programs ?? [];
+    const totalProgramCycles = programs.length;
 
     if (totalProgramCycles === 0) {
       return Promise.resolve({
@@ -16,8 +16,13 @@ export const hasFees: OrgScoreRule = {
     }
 
     // Count how many programs have a fee structure with amounts greater than 0
-    const programsWithFee = programCycles.filter((cycle) => {
-      const fees = cycle.pricingPackage.pricingItems;
+    const programsWithFee = programs.filter((program) => {
+      const latestCycle = program.cycles?.[0];
+      const fees = latestCycle?.pricingPackage.pricingItems;
+      if (!fees) {
+        return false;
+      }
+
       return (
         fees.length > 0 &&
         fees.some((fee) => {

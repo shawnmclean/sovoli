@@ -15,9 +15,8 @@ import { gradientBorderButton } from "~/components/GradientBorderButton";
 import type { OrgProgram } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
-import { useProgramSelection } from "../../context/ProgramSelectionContext";
+import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import { Skeleton } from "@sovoli/ui/components/skeleton";
-import posthog from "posthog-js";
 import { GuidedChatForm } from "../GuidedChatForm";
 
 export interface ProgramDetailMobileFooterProps {
@@ -45,7 +44,7 @@ export function ProgramDetailMobileFooter({
     onOpen: onContactOpen,
     onOpenChange: onContactOpenChange,
   } = useDisclosure();
-  const { selectedCycle, selectedLevel, isLoading } = useProgramSelection();
+  const { selectedCycle, isLoading } = useProgramCycleSelection();
 
   const whatsappNumber = orgInstance.org.locations
     .find((l) => l.isPrimary)
@@ -57,15 +56,6 @@ export function ProgramDetailMobileFooter({
       selectedCycle.academicCycle.globalCycle?.label ??
       "Academic Term")
     : "";
-
-  const onChatNow = () => {
-    posthog.capture("chat_now_clicked", {
-      program_name: program.name,
-      cycle_label: cycleLabel,
-      level_label: selectedLevel?.label,
-    });
-    onContactOpen();
-  };
 
   // If no cycle is selected, show fallback
   if (!selectedCycle) {
@@ -84,7 +74,7 @@ export function ProgramDetailMobileFooter({
                 size="md"
                 startContent={<MessageSquareShareIcon size={16} />}
                 className={gradientBorderButton()}
-                onPress={onChatNow}
+                onPress={onContactOpen}
               >
                 Chat Now
               </Button>
@@ -134,11 +124,6 @@ export function ProgramDetailMobileFooter({
                 ) : (
                   <div className="flex flex-col items-start gap-1">
                     <span className="underline">{cycleLabel}</span>
-                    {selectedLevel && (
-                      <span className="text-xs text-default-600">
-                        {selectedLevel.label}
-                      </span>
-                    )}
                   </div>
                 )}
               </Button>
@@ -199,11 +184,6 @@ export function ProgramDetailMobileFooter({
                       <span className="font-semibold text-lg">
                         {cycleLabel}
                       </span>
-                      {selectedLevel && (
-                        <span className="text-sm text-default-600">
-                          {selectedLevel.label}
-                        </span>
-                      )}
                       <span className="text-sm text-default-600">
                         {dateRangeForDetails}
                       </span>
@@ -245,7 +225,6 @@ export function ProgramDetailMobileFooter({
         isOpen={isContactOpen}
         onOpenChange={onContactOpenChange}
         cycle={cycleLabel}
-        level={selectedLevel?.label}
         program={program.name}
       />
     </>

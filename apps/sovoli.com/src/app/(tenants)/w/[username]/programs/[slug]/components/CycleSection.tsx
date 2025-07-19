@@ -4,45 +4,94 @@ import { useState, useEffect } from "react";
 import { RadioGroup } from "@sovoli/ui/components/radio";
 import { Card, CardHeader, CardBody } from "@sovoli/ui/components/card";
 import { CalendarIcon } from "lucide-react";
-import type { OrgProgramCycle } from "~/modules/academics/types";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { formatDateRange } from "~/utils/dateUtils";
+import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 
-interface CycleSelectorProps {
-  cycles: OrgProgramCycle[];
-  onCycleChange: (cycle: OrgProgramCycle) => void;
-  selectedCycle?: OrgProgramCycle;
+interface CycleSectionProps {
+  program: Program;
+  defaultCycle?: ProgramCycle;
 }
 
-export function CycleSelector({
-  cycles,
-  onCycleChange,
-  selectedCycle,
-}: CycleSelectorProps) {
+export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
   const [selectedValue, setSelectedValue] = useState<string>("");
+  const { setSelectedCycle, isLoading } = useProgramCycleSelection();
 
-  // Set default to the latest cycle (first in the list)
+  // Set default cycle for SSR and initial selection
   useEffect(() => {
-    if (cycles.length > 0 && !selectedCycle) {
-      const latestCycle = cycles[0];
-      if (latestCycle) {
-        setSelectedValue(latestCycle.id);
-        onCycleChange(latestCycle);
-      }
-    } else if (selectedCycle) {
-      setSelectedValue(selectedCycle.id);
+    if (!program.cycles || program.cycles.length === 0) return;
+
+    // Use provided defaultCycle or find the best default
+    let defaultCycleToUse = defaultCycle;
+
+    if (!defaultCycleToUse) {
+      // Find current cycle first, then next cycle, then first available
+      const currentCycle = program.cycles.find((cycle) => {
+        const startDate =
+          cycle.academicCycle.startDate ??
+          cycle.academicCycle.globalCycle?.startDate;
+        const endDate =
+          cycle.academicCycle.endDate ??
+          cycle.academicCycle.globalCycle?.endDate;
+        if (!startDate || !endDate) return false;
+
+        const now = new Date();
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        return now >= start && now <= end;
+      });
+
+      const nextCycle = program.cycles.find((cycle) => {
+        const startDate =
+          cycle.academicCycle.startDate ??
+          cycle.academicCycle.globalCycle?.startDate;
+        return startDate && new Date(startDate) > new Date();
+      });
+
+      defaultCycleToUse = currentCycle ?? nextCycle ?? program.cycles[0];
     }
-  }, [cycles, selectedCycle, onCycleChange]);
+
+    if (defaultCycleToUse) {
+      setSelectedValue(defaultCycleToUse.id);
+      setSelectedCycle(defaultCycleToUse);
+    }
+  }, [program.cycles, defaultCycle, setSelectedCycle]);
 
   const handleSelectionChange = (value: string) => {
     setSelectedValue(value);
-    const cycle = cycles.find((c) => c.id === value);
+    const cycle = program.cycles?.find((c) => c.id === value);
     if (cycle) {
-      onCycleChange(cycle);
+      setSelectedCycle(cycle);
     }
   };
 
-  if (cycles.length === 0) {
+  if (!program.cycles || program.cycles.length === 0) {
     return null;
+  }
+
+  const cycles = program.cycles;
+
+  // Show loading state while context is initializing
+  if (isLoading) {
+    return (
+      <Card className="overflow-hidden">
+        <CardHeader className="pb-4">
+          <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <CalendarIcon className="h-6 w-6 text-primary" />
+            Your Calendar
+          </h2>
+        </CardHeader>
+        <CardBody className="space-y-4">
+          <div className="rounded-xl border border-default-200 bg-default-50 p-4">
+            <div className="animate-pulse">
+              <div className="h-4 bg-default-200 rounded mb-2"></div>
+              <div className="h-3 bg-default-200 rounded mb-1"></div>
+              <div className="h-3 bg-default-200 rounded"></div>
+            </div>
+          </div>
+        </CardBody>
+      </Card>
+    );
   }
 
   // If there's only one cycle, show it without radio selection

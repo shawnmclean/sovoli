@@ -3,25 +3,21 @@
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 
 import { ProgramPriceCard } from "../../../(main-layout)/programs/components/ProgramPriceCard";
-import { useProgramSelection } from "../context/ProgramSelectionContext";
-import type { OrgProgramCycle } from "~/modules/academics/types";
+import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
+import type { ProgramCycle } from "~/modules/academics/types";
 import type { PricingItem } from "~/modules/core/economics/types";
 
 interface PricingSectionProps {
-  programCycles: OrgProgramCycle[];
-  defaultCycle?: OrgProgramCycle;
+  defaultCycle?: ProgramCycle;
 }
 
-export function PricingSection({
-  programCycles,
-  defaultCycle,
-}: PricingSectionProps) {
-  const { selectedCycle, isLoading } = useProgramSelection();
+export function PricingSection({ defaultCycle }: PricingSectionProps) {
+  const { selectedCycle, isLoading } = useProgramCycleSelection();
 
   // Use selected cycle if available, otherwise fall back to default cycle
   const cycleToUse = selectedCycle ?? defaultCycle;
 
-  if (programCycles.length === 0 || isLoading || !cycleToUse) {
+  if (isLoading || !cycleToUse) {
     return null;
   }
 

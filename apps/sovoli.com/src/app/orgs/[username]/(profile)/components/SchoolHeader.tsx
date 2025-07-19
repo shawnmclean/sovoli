@@ -38,16 +38,20 @@ function formatCurrencyAmount(amount: number): string {
 }
 
 export function computeFeeRange(orgInstance: OrgInstance): string {
-  const programCycles = orgInstance.academicModule?.programCycles ?? [];
+  const programs = orgInstance.academicModule?.programs ?? [];
 
-  if (programCycles.length === 0) {
+  if (programs.length === 0) {
     return "NA";
   }
 
   const gydFees: number[] = [];
 
-  for (const cycle of programCycles) {
-    const feeItems = cycle.pricingPackage.pricingItems;
+  for (const program of programs) {
+    const latestCycle = program.cycles?.[0];
+    const feeItems = latestCycle?.pricingPackage.pricingItems;
+    if (!feeItems) {
+      continue;
+    }
 
     for (const fee of feeItems) {
       const amount = fee.amount.GYD;

@@ -100,7 +100,7 @@ export function ProgramsSection({
                   program.standardProgramVersion?.program.name ??
                   "Program";
                 const programImage =
-                  program.image ??
+                  program.photos?.[0]?.url ??
                   program.standardProgramVersion?.program.image ??
                   "/orgs/defaults/programs/nursery.webp";
 
