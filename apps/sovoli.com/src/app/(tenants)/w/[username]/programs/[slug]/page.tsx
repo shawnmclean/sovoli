@@ -124,7 +124,7 @@ export default async function ProgramDetailsPage({
             {/* Program Highlights */}
             <Card className="overflow-hidden">
               <CardHeader className="pb-4">
-                <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
                   <StarIcon className="h-6 w-6 text-primary" />
                   Program Highlights
                 </h2>
@@ -192,10 +192,10 @@ export default async function ProgramDetailsPage({
               </CardBody>
             </Card>
 
-            <CycleSection program={program} defaultCycle={defaultCycle} />
-
             {/* Curriculum */}
             <CurriculumSection program={program} />
+
+            <CycleSection program={program} defaultCycle={defaultCycle} />
 
             {/* Teachers */}
             <TeachersSection defaultTeachers={defaultTeachers} />
