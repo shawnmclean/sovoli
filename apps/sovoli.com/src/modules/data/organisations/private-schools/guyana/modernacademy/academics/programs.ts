@@ -11,6 +11,7 @@ import {
   MAGY_PRE_NURSERY_2025_T1,
   MAGY_PRIMARY_GRADE_1_2025_T1,
 } from "./cycles";
+import { MAGY_SHARED_TESTIMONIALS } from "./testimonials";
 
 const MAGY_NURSERY_DEPT_ACTIVITIES: Activity[] = [
   {
@@ -152,6 +153,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
   photos: PRE_NURSERY_PHOTOS,
   isPopular: true,
   cycles: [MAGY_PRE_NURSERY_2025_T1],
+  testimonials: MAGY_SHARED_TESTIMONIALS,
 };
 
 // #region programs
@@ -167,6 +169,7 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
   photos: NURSERY_PHOTOS,
   isPopular: true,
   cycles: [MAGY_NURSERY_YEAR_1_2025_T1],
+  testimonials: MAGY_SHARED_TESTIMONIALS,
 };
 
 export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
@@ -179,6 +182,7 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
   photos: NURSERY_PHOTOS,
   isPopular: true,
   cycles: [MAGY_NURSERY_YEAR_2_2025_T1],
+  testimonials: MAGY_SHARED_TESTIMONIALS,
 };
 
 export const MAGY_PRIMARY_GRADE_1_PROGRAM: Program = {
@@ -190,6 +194,7 @@ export const MAGY_PRIMARY_GRADE_1_PROGRAM: Program = {
   standardProgramVersion: GY_PRIMARY_GRADE_1_V1,
   photos: PRIMARY_PHOTOS,
   cycles: [MAGY_PRIMARY_GRADE_1_2025_T1],
+  testimonials: MAGY_SHARED_TESTIMONIALS,
 };
 
 // #endregion

@@ -27,6 +27,7 @@ import { ProgramsSection } from "./components/ProgramsSection";
 import { PricingSection } from "./components/PricingSection";
 import { ProgramTracking } from "./components/ProgramTracking";
 import { CycleSection } from "./components/CycleSection";
+import { ProgramTestimonials } from "./components/ProgramTestimonials";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -245,6 +246,9 @@ export default async function ProgramDetailsPage({
             <LocationFeaturesSection orgInstance={orgInstance} />
 
             <LocationSection orgInstance={orgInstance} />
+
+            {/* Testimonials */}
+            <ProgramTestimonials testimonials={program.testimonials} />
           </div>
 
           {/* Pricing Information */}

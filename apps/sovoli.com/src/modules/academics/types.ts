@@ -194,8 +194,18 @@ export interface Program {
   requirements?: ProgramRequirement[];
   notes?: string;
   isPopular?: boolean;
-
+  testimonials?: ProgramTestimonial[];
   cycles?: ProgramCycle[];
+}
+
+export interface ProgramTestimonial {
+  author: string;
+  content: string;
+  date?: string;
+  rating: number;
+  relation: "Parent" | "Student" | "Guardian";
+  link?: string;
+  source?: "google" | "facebook" | "other";
 }
 
 export interface Subject {
