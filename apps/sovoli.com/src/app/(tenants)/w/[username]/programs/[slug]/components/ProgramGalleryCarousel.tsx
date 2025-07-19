@@ -24,6 +24,76 @@ export interface ProgramGalleryCarouselProps {
   program: OrgProgram;
 }
 
+// Modal Component
+function ProgramGalleryModal({
+  photos,
+  isOpen,
+  onClose,
+  initialIndex = 0,
+}: {
+  photos: { url: string }[];
+  isOpen: boolean;
+  onClose: () => void;
+  initialIndex?: number;
+}) {
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [current, setCurrent] = useState(initialIndex);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  return (
+    <Modal isOpen={isOpen} onOpenChange={onClose} size="full" hideCloseButton>
+      <ModalContent>
+        <ModalHeader className="flex items-center justify-between">
+          <Button variant="light" isIconOnly radius="full" onPress={onClose}>
+            <ChevronLeftIcon />
+          </Button>
+          <span className="text-sm">
+            {current + 1} / {photos.length}
+          </span>
+        </ModalHeader>
+        <ModalBody className="p-0 flex-1 overflow-hidden">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+              startIndex: initialIndex,
+            }}
+            setApi={setApi}
+            className="w-full h-full"
+          >
+            <CarouselContent className="h-full -ml-0">
+              {photos.map((photo, index) => (
+                <CarouselItem key={index} className="basis-full pl-0 h-full">
+                  <div className="w-full h-full relative flex items-center justify-center">
+                    <Image
+                      src={photo.url}
+                      alt={`Program photo ${index + 1}`}
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
+}
+
 export function ProgramGalleryCarousel({
   program,
 }: ProgramGalleryCarouselProps) {
@@ -62,9 +132,9 @@ export function ProgramGalleryCarousel({
         setApi={setApi}
         className="w-full h-full"
       >
-        <CarouselContent className="h-full -ml-0">
+        <CarouselContent className="-ml-0">
           {photos.map((photo, index) => (
-            <CarouselItem key={index} className="basis-full pl-0 h-full">
+            <CarouselItem key={index} className="basis-full pl-0">
               <div className="w-full h-full aspect-square relative">
                 <Image
                   src={photo.url}
@@ -89,26 +159,12 @@ export function ProgramGalleryCarousel({
       )}
 
       {/* Full Screen Modal */}
-      <Modal isOpen={isOpen} onOpenChange={onClose} size="full" hideCloseButton>
-        <ModalContent>
-          <ModalHeader>
-            <Button variant="light" isIconOnly radius="full" onPress={onClose}>
-              <ChevronLeftIcon />
-            </Button>
-          </ModalHeader>
-          <ModalBody className="p-0 flex-1 overflow-hidden">
-            <div className="w-full h-full relative flex items-center justify-center">
-              <Image
-                src={photos[current]?.url ?? ""}
-                alt={`Program photo ${current + 1}`}
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <ProgramGalleryModal
+        photos={photos}
+        isOpen={isOpen}
+        onClose={onClose}
+        initialIndex={current}
+      />
     </div>
   );
 }
