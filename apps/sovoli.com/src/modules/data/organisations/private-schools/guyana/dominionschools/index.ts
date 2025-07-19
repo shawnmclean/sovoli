@@ -50,6 +50,7 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
       },
     ],
   },
+  academicModule: null,
   websiteModule: null,
   offeringModule: null,
   workforceModule: null,
