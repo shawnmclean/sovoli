@@ -8,11 +8,11 @@ import {
 import { Button } from "@sovoli/ui/components/button";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
-import type { OrgProgram } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 
 export interface ProgramDetailNavbarProps {
   orgInstance: OrgInstance;
-  program: OrgProgram;
+  program: Program;
 }
 
 export function ProgramDetailNavbar({

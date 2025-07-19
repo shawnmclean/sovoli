@@ -1,6 +1,6 @@
 "use client";
 
-import type { OrgProgram } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import {
   Carousel,
@@ -57,7 +57,7 @@ const displayAgeRange = (ageRange?: {
 
 export interface ProgramsSectionProps {
   orgInstance: OrgInstance;
-  currentProgram: OrgProgram;
+  currentProgram: Program;
 }
 
 export function ProgramsSection({

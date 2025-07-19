@@ -12,7 +12,7 @@ import { Link } from "@sovoli/ui/components/link";
 
 import { gradientBorderButton } from "~/components/GradientBorderButton";
 
-import type { OrgProgram } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
@@ -21,7 +21,7 @@ import { GuidedChatForm } from "../GuidedChatForm";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
-  program: OrgProgram;
+  program: Program;
 }
 
 // Helper function to format date

@@ -1,6 +1,6 @@
 "use client";
 
-import type { OrgProgram } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
@@ -13,7 +13,7 @@ import Link from "next/link";
 
 export interface ProgramCarouselProps {
   href: string;
-  program: OrgProgram;
+  program: Program;
 }
 
 export function ProgramCarousel({ href, program }: ProgramCarouselProps) {

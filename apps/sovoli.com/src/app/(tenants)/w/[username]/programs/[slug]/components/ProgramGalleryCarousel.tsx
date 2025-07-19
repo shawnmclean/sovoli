@@ -1,6 +1,6 @@
 "use client";
 
-import type { OrgProgram } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
@@ -21,7 +21,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { ChevronLeftIcon } from "lucide-react";
 
 export interface ProgramGalleryCarouselProps {
-  program: OrgProgram;
+  program: Program;
 }
 
 // Modal Component

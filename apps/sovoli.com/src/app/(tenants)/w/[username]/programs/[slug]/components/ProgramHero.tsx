@@ -1,13 +1,13 @@
 import { Divider } from "@sovoli/ui/components/divider";
 import { MapPinIcon } from "lucide-react";
 
-import type { OrgProgram } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { OrgSection } from "./OrgSection";
 
 export interface ProgramHeroProps {
   orgInstance: OrgInstance;
-  program: OrgProgram;
+  program: Program;
 }
 
 export const ProgramHero = ({ orgInstance, program }: ProgramHeroProps) => {

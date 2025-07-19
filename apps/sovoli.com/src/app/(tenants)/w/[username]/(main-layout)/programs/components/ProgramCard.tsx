@@ -3,7 +3,7 @@ import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Link } from "@sovoli/ui/components/link";
 import { Badge } from "@sovoli/ui/components/badge";
-import type { OrgProgram } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { displayAgeRange } from "../utils";
 import { Image } from "@sovoli/ui/components/image";
@@ -11,7 +11,7 @@ import { ArrowRightIcon, UserIcon } from "lucide-react";
 
 export interface ProgramCardProps {
   orgInstance: OrgInstance;
-  program: OrgProgram;
+  program: Program;
 }
 
 export function ProgramCard({
@@ -31,7 +31,9 @@ export function ProgramCard({
       <div className="relative">
         <Image
           src={
-            program.image ?? program.standardProgramVersion?.program.image ?? ""
+            program.photos?.[0]?.url ??
+            program.standardProgramVersion?.program.image ??
+            ""
           }
           alt={programName}
           width={800}

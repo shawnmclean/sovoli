@@ -8,7 +8,7 @@ import { SocialLink } from "../SocialLink";
 import { LogoSVG } from "~/components/Logo/LogoSVG";
 import { ThemeSwitch } from "~/components/ThemeSwitch";
 import { countryCodeToName } from "~/utils/countryUtils";
-import type { OrgProgram } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 
 interface FooterProps {
   orgInstance: OrgInstanceWithWebsite;
@@ -108,7 +108,7 @@ const FooterAcademicsSection = ({
   programs,
   section,
 }: {
-  programs?: OrgProgram[];
+  programs?: Program[];
   section: FooterSection;
 }) => {
   return (

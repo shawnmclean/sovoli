@@ -76,24 +76,6 @@ export interface StandardProgramVersion {
   requirements?: ProgramRequirement[];
   assessments?: ProgramAssessmentVersion[];
 }
-export interface OrgProgram {
-  standardProgramVersion?: StandardProgramVersion;
-
-  name?: string; // "Nursery" (can override)
-  tagline?: string;
-  outcome?: string;
-  slug: string; // "nursery"
-  description?: string; // Custom or default
-  // TODO: remove when we migrate to photos
-  image?: string;
-  photos?: Photo[];
-
-  // Optional local overrides
-  requirements?: ProgramRequirement[];
-  notes?: string;
-  isPopular?: boolean;
-  levels?: Program[];
-}
 
 // TODO: move to core or photos module
 export interface Photo {
