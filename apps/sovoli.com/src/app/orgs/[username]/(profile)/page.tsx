@@ -1,6 +1,4 @@
 import { notFound } from "next/navigation";
-import { Card, CardBody } from "@sovoli/ui/components/card";
-import Image from "next/image";
 
 import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
 import { bus } from "~/services/core/bus";
