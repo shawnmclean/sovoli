@@ -50,33 +50,35 @@ export function GuidedChatForm({
     isDone,
   } = useGuidedChat({ cycle, program });
 
-  // Track modal open to focus input
+  // Focus input when modal opens
   useEffect(() => {
     if (isOpen && inputRef.current && !isDone) {
       setTimeout(() => {
         inputRef.current?.focus();
-      }, 100);
+      }, 150);
     }
 
-    const eventName = isOpen ? "ChatOpened" : "ChatClosed";
-    posthog.capture(eventName, { cycle, program });
-  }, [isOpen, cycle, program, isDone]);
+    posthog.capture(isOpen ? "ChatOpened" : "ChatClosed", {
+      cycle,
+      program,
+    });
+  }, [isOpen, isDone, cycle, program]);
 
-  // Main handler: submit and refocus
   const handleSendMessageWithFocus = () => {
     handleSendMessage();
 
+    // Delay to wait for DOM to update, then refocus input
     setTimeout(() => {
-      if (inputRef.current && !isDone) {
-        inputRef.current.focus();
-
+      const input = inputRef.current;
+      if (input && !isDone) {
+        input.focus();
         if (isIOS) {
-          inputRef.current.click();
-          const length = inputRef.current.value.length;
-          inputRef.current.setSelectionRange(length, length);
+          input.click(); // iOS needs this to show keyboard
+          const length = input.value.length;
+          input.setSelectionRange(length, length);
         }
       }
-    }, 100);
+    }, 100); // iOS performs better with a small delay
   };
 
   const previewMessage = () =>
@@ -150,15 +152,15 @@ export function GuidedChatForm({
               {!isDone ? (
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-grow">{renderInput()}</div>
-                  <Button
-                    color="primary"
-                    onPress={handleSendMessageWithFocus}
-                    isIconOnly
-                    isDisabled={!isInputValid()}
-                    size="lg"
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    className="rounded-full bg-primary text-white p-3"
+                    disabled={!isInputValid()}
+                    onClick={handleSendMessageWithFocus}
                   >
                     <SendIcon size={20} />
-                  </Button>
+                  </button>
                 </div>
               ) : (
                 <Button
