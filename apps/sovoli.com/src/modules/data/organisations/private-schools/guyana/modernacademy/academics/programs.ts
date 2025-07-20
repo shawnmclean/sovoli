@@ -4,7 +4,11 @@ import {
   GY_NURSERY_YEAR_1_V1,
 } from "~/modules/data/academics/guyana/programs";
 import { NURSERY_PHOTOS, PRE_NURSERY_PHOTOS, PRIMARY_PHOTOS } from "../photos";
-import type { Activity, Program } from "~/modules/academics/types";
+import type {
+  Activity,
+  Program,
+  ProgramHighlight,
+} from "~/modules/academics/types";
 import {
   MAGY_NURSERY_YEAR_1_2025_T1,
   MAGY_NURSERY_YEAR_2_2025_T1,
@@ -59,12 +63,32 @@ const MAGY_NURSERY_DEPT_ACTIVITIES: Activity[] = [
     title: "🎭 Role Play",
   },
 ];
-
+const nurseryProgramHighlights: ProgramHighlight[] = [
+  {
+    icon: "palette",
+    label: "Creative Play",
+    description:
+      "Children learn through drawing, movement, storytelling, and games.",
+  },
+  {
+    icon: "shield-check",
+    label: "Safe & Gated Campus",
+    description:
+      "Secure entrance, trained staff, and constant supervision ensure your child’s safety.",
+  },
+  {
+    icon: "users",
+    label: "Small Class Sizes",
+    description:
+      "Every child receives individual care, attention, and guided interaction.",
+  },
+];
 export const MAGY_PRE_NURSERY_PROGRAM: Program = {
   id: "magy-pre-nursery",
   slug: "pre-nursery",
   name: "Pre-Nursery (Playschool)",
   audience: "parent",
+  highlights: nurseryProgramHighlights,
   tagline: "Play, explore, and grow together",
   outcome: "School Readiness",
   description: "Strong foundational learning in a nurturing environment",
@@ -163,6 +187,7 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
   id: "magy-nursery-year-1",
   slug: "nursery-year-1",
   audience: "parent",
+  highlights: nurseryProgramHighlights,
   tagline: "Skills that prepare for primary school",
   outcome: "Early Literacy & Numeracy",
   description: "Engaging curriculum fostering critical thinking and creativity",
@@ -178,6 +203,7 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
   id: "magy-nursery-year-2",
   slug: "nursery-year-2",
   audience: "parent",
+  highlights: nurseryProgramHighlights,
   tagline: "Skills that prepare for primary school",
   outcome: "Early Literacy & Numeracy",
   description: "Engaging curriculum fostering critical thinking and creativity",
@@ -188,10 +214,38 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
   testimonials: MAGY_SHARED_TESTIMONIALS,
 };
 
+export const primaryProgramHighlights: ProgramHighlight[] = [
+  {
+    icon: "graduation-cap",
+    label: "NGSA Ready",
+    description:
+      "Strong foundation in Math, English, Science & Social Studies for high NGSA scores.",
+  },
+  {
+    icon: "book-open",
+    label: "Complete Curriculum",
+    description:
+      "Covers all core subjects with engaging materials and structured assessments.",
+  },
+  {
+    icon: "users",
+    label: "Small Class Sizes",
+    description:
+      "Better focus, participation, and teacher attention per child.",
+  },
+  {
+    icon: "shield-check",
+    label: "Safe Environment",
+    description:
+      "Gated campus, trained staff, and secure classrooms for peace of mind.",
+  },
+];
+
 export const MAGY_PRIMARY_GRADE_1_PROGRAM: Program = {
   id: "magy-primary-grade-1",
   slug: "grade-1",
   audience: "parent",
+  highlights: primaryProgramHighlights,
   tagline: "Science-led. Built for real learning",
   outcome: "NGSA (Grade 6 Exam)",
   description: "Strong foundational learning in a nurturing environment",
