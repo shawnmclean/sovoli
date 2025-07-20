@@ -1,19 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
-
-import {
-  ClockIcon,
-  UserIcon,
-  StarIcon,
-  UsersIcon,
-  BookOpenIcon,
-  GraduationCapIcon,
-} from "lucide-react";
 import { parseISO } from "date-fns";
-
-import { displayAgeRange } from "../../(main-layout)/programs/utils";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
 import { ProgramHero } from "./components/ProgramHero";
@@ -28,6 +15,8 @@ import { PricingSection } from "./components/PricingSection";
 import { ProgramTracking } from "./components/ProgramTracking";
 import { CycleSection } from "./components/CycleSection";
 import { ProgramTestimonials } from "./components/ProgramTestimonials";
+import { RequirementsSection } from "./components/RequirementsSection";
+import { ProgramHighlights } from "./components/ProgramHighlights";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -122,75 +111,7 @@ export default async function ProgramDetailsPage({
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Program Highlights */}
-            <Card className="overflow-hidden">
-              <CardHeader className="pb-4">
-                <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-                  <StarIcon className="h-6 w-6 text-primary" />
-                  Program Highlights
-                </h2>
-              </CardHeader>
-              <CardBody className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                      <GraduationCapIcon className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">
-                        Academic Excellence
-                      </h3>
-                      <p className="text-sm text-foreground-600">
-                        Comprehensive curriculum designed to foster critical
-                        thinking and creativity
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
-                      <UsersIcon className="h-5 w-5 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">
-                        Small Class Sizes
-                      </h3>
-                      <p className="text-sm text-foreground-600">
-                        Personalized attention with optimal teacher-student
-                        ratios
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 bg-success-100 rounded-lg flex items-center justify-center">
-                      <BookOpenIcon className="h-5 w-5 text-success" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">
-                        Modern Resources
-                      </h3>
-                      <p className="text-sm text-foreground-600">
-                        State-of-the-art facilities and learning materials
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 bg-warning-100 rounded-lg flex items-center justify-center">
-                      <ClockIcon className="h-5 w-5 text-warning" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">
-                        Flexible Scheduling
-                      </h3>
-                      <p className="text-sm text-foreground-600">
-                        Multiple cycles and convenient registration periods
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
+            <ProgramHighlights />
 
             {/* Curriculum */}
             <CurriculumSection program={program} />
@@ -201,47 +122,7 @@ export default async function ProgramDetailsPage({
             <TeachersSection defaultTeachers={defaultTeachers} />
 
             {/* Requirements */}
-            {((program.requirements?.length ?? 0) > 0 ||
-              (program.standardProgramVersion?.requirements?.length ?? 0) >
-                0) && (
-              <Card className="overflow-hidden">
-                <CardHeader className="pb-4">
-                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                    <UserIcon className="h-6 w-6 text-primary" />
-                    Requirements
-                  </h2>
-                </CardHeader>
-                <CardBody>
-                  <div className="space-y-4">
-                    {(
-                      program.requirements ??
-                      program.standardProgramVersion?.requirements ??
-                      []
-                    ).map((requirement, index) => (
-                      <div
-                        key={index}
-                        className="flex items-start gap-3 p-4 bg-default-50 rounded-lg"
-                      >
-                        <Chip color="secondary" variant="flat" size="sm">
-                          {requirement.type === "age" ? "Age" : "Document"}
-                        </Chip>
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-foreground mb-1">
-                            {requirement.description ?? requirement.name}
-                          </p>
-                          {requirement.type === "age" &&
-                            requirement.ageRange && (
-                              <p className="text-xs text-foreground-500">
-                                {displayAgeRange(requirement.ageRange)}
-                              </p>
-                            )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardBody>
-              </Card>
-            )}
+            <RequirementsSection program={program} />
 
             <LocationFeaturesSection orgInstance={orgInstance} />
 
