@@ -4,6 +4,7 @@ import { Divider } from "@sovoli/ui/components/divider";
 import { BadgeCheckIcon } from "lucide-react";
 
 import type { OrgInstance } from "~/modules/organisations/types";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 export interface OrgSectionProps {
   orgInstance: OrgInstance;
@@ -30,7 +31,7 @@ export function OrgSection({ orgInstance }: OrgSectionProps) {
   const firstCategory = org.categories[0];
 
   return (
-    <section className="flex flex-col gap-6">
+    <ProgramSectionsWrapper>
       <div className="flex items-center gap-4">
         {/* Logo with Score Badge */}
         <div className="flex-shrink-0">
@@ -83,7 +84,6 @@ export function OrgSection({ orgInstance }: OrgSectionProps) {
           </div>
         </div>
       </div>
-      <Divider className="mx-auto max-w-2xl" />
-    </section>
+    </ProgramSectionsWrapper>
   );
 }

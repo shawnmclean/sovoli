@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { parseISO } from "date-fns";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
-import { ProgramHero } from "./components/ProgramHero";
+import { ProgramHeroSection } from "./components/ProgramHeroSection";
 import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionContext";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { CurriculumSection } from "./components/CurriculumSection";
@@ -107,33 +107,31 @@ export default async function ProgramDetailsPage({
       <ProgramGalleryCarousel program={program} />
 
       <div className="container mx-auto max-w-7xl px-4 py-12 lg:py-16">
-        <div className="space-y-12">
-          <ProgramHero orgInstance={orgInstance} program={program} />
+        <ProgramHeroSection orgInstance={orgInstance} program={program} />
 
-          <OrgSection orgInstance={orgInstance} />
+        <OrgSection orgInstance={orgInstance} />
 
-          <ProgramHighlights program={program} />
+        <ProgramHighlights program={program} />
 
-          <ProgramDescriptionSection program={program} />
+        <ProgramDescriptionSection program={program} />
 
-          <CycleSection program={program} defaultCycle={defaultCycle} />
+        <CycleSection program={program} defaultCycle={defaultCycle} />
 
-          <CurriculumSection program={program} />
+        <CurriculumSection program={program} />
 
-          <TeachersSection defaultTeachers={defaultTeachers} />
+        <TeachersSection defaultTeachers={defaultTeachers} />
 
-          <RequirementsSection program={program} />
+        <RequirementsSection program={program} />
 
-          <LocationFeaturesSection orgInstance={orgInstance} />
+        <LocationFeaturesSection orgInstance={orgInstance} />
 
-          <LocationSection orgInstance={orgInstance} program={program} />
+        <LocationSection orgInstance={orgInstance} program={program} />
 
-          <ProgramTestimonials testimonials={program.testimonials} />
+        <ProgramTestimonials testimonials={program.testimonials} />
 
-          <PricingSection defaultCycle={currentCycle ?? nextCycle} />
+        <PricingSection defaultCycle={currentCycle ?? nextCycle} />
 
-          <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
-        </div>
+        <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
       </div>
 
       <ProgramDetailMobileFooter orgInstance={orgInstance} program={program} />
