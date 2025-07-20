@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Input } from "@sovoli/ui/components/input";
 import { Button } from "@sovoli/ui/components/button";
 import { MessageSquareIcon, SendIcon } from "lucide-react";
@@ -34,7 +34,6 @@ export function GuidedChatForm({
 }: GuidedChatFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Detect iOS
   const isIOS =
     typeof window !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -51,137 +50,61 @@ export function GuidedChatForm({
     isDone,
   } = useGuidedChat({ cycle, program });
 
-  // Track when we need to refocus after sending a message
-  const [shouldRefocus, setShouldRefocus] = useState(false);
-
-  // Track chat open/close events
+  // Track modal open to focus input
   useEffect(() => {
-    if (isOpen) {
-      posthog.capture("ChatOpened", {
-        cycle,
-        program,
-      });
-      // Ensure input is focused when modal opens
+    if (isOpen && inputRef.current && !isDone) {
       setTimeout(() => {
-        if (inputRef.current && !isDone) {
-          inputRef.current.focus();
-        }
+        inputRef.current?.focus();
       }, 100);
-    } else {
-      // Track when chat is closed
-      posthog.capture("ChatClosed", {
-        cycle,
-        program,
-      });
     }
+
+    const eventName = isOpen ? "ChatOpened" : "ChatClosed";
+    posthog.capture(eventName, { cycle, program });
   }, [isOpen, cycle, program, isDone]);
 
-  // Refocus after messages change (re-render)
-  useEffect(() => {
-    if (shouldRefocus && inputRef.current && !isDone) {
-      if (isIOS) {
-        // iOS-specific focus handling
-        inputRef.current.blur();
-        setTimeout(() => {
-          if (inputRef.current) {
-            inputRef.current.focus();
-            inputRef.current.click();
-            const length = inputRef.current.value.length;
-            inputRef.current.setSelectionRange(length, length);
-          }
-        }, 50);
-      } else {
-        // Standard focus handling
-        inputRef.current.focus();
-        const length = inputRef.current.value.length;
-        inputRef.current.setSelectionRange(length, length);
-      }
-      setShouldRefocus(false);
-    }
-  }, [messages, shouldRefocus, isDone, isIOS]);
-
-  // Additional effect to maintain focus on mobile
-  useEffect(() => {
-    if (isOpen && !isDone) {
-      const handleFocus = () => {
-        if (inputRef.current && document.activeElement !== inputRef.current) {
-          inputRef.current.focus();
-        }
-      };
-
-      // Add event listeners to maintain focus
-      document.addEventListener("touchstart", handleFocus);
-      document.addEventListener("click", handleFocus);
-
-      return () => {
-        document.removeEventListener("touchstart", handleFocus);
-        document.removeEventListener("click", handleFocus);
-      };
-    }
-  }, [isOpen, isDone]);
-
-  // iOS-specific keyboard handling
-  useEffect(() => {
-    if (isOpen && !isDone && inputRef.current && isIOS) {
-      // Force focus on iOS when modal opens
-      const timer = setTimeout(() => {
-        if (inputRef.current) {
-          inputRef.current.focus();
-          // Trigger a click to ensure iOS keyboard appears
-          inputRef.current.click();
-          // Additional focus attempt
-          setTimeout(() => {
-            if (inputRef.current) {
-              inputRef.current.focus();
-              inputRef.current.click();
-            }
-          }, 100);
-        }
-      }, 200);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen, isDone, isIOS]);
-
-  // Helper to generate the WhatsApp preview message
-  const previewMessage = () => {
-    return `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". Please let me know next steps.`;
-  };
-
-  // Custom send message handler that maintains focus
+  // Main handler: submit and refocus
   const handleSendMessageWithFocus = () => {
     handleSendMessage();
-    // Set flag to refocus after re-render
-    setShouldRefocus(true);
+
+    setTimeout(() => {
+      if (inputRef.current && !isDone) {
+        inputRef.current.focus();
+
+        if (isIOS) {
+          inputRef.current.click();
+          const length = inputRef.current.value.length;
+          inputRef.current.setSelectionRange(length, length);
+        }
+      }
+    }, 100);
   };
 
-  // Render the correct input based on inputType
-  const renderInput = () => {
-    return (
-      <Input
-        ref={inputRef}
-        fullWidth
-        autoFocus
-        type={inputType === "phone" ? "tel" : "text"}
-        size="lg"
-        variant="bordered"
-        placeholder={getCurrentPlaceholder()}
-        value={currentInput}
-        onValueChange={setCurrentInput}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" && isInputValid()) {
-            handleSendMessageWithFocus();
-          }
-        }}
-        // Mobile-specific attributes to maintain keyboard focus
-        autoComplete={inputType === "phone" ? "tel" : "off"}
-        inputMode={inputType === "phone" ? "tel" : "text"}
-        spellCheck={false}
-        autoCorrect="off"
-        autoCapitalize="off"
-      />
-    );
-  };
+  const previewMessage = () =>
+    `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". Please let me know next steps.`;
+
+  const renderInput = () => (
+    <Input
+      ref={inputRef}
+      fullWidth
+      autoFocus
+      type={inputType === "phone" ? "tel" : "text"}
+      size="lg"
+      variant="bordered"
+      placeholder={getCurrentPlaceholder()}
+      value={currentInput}
+      onValueChange={setCurrentInput}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && isInputValid()) {
+          handleSendMessageWithFocus();
+        }
+      }}
+      autoComplete={inputType === "phone" ? "tel" : "off"}
+      inputMode={inputType === "phone" ? "tel" : "text"}
+      spellCheck={false}
+      autoCorrect="off"
+      autoCapitalize="off"
+    />
+  );
 
   return (
     <Modal
@@ -194,16 +117,12 @@ export function GuidedChatForm({
           enter: {
             opacity: 1,
             y: 0,
-            transition: {
-              duration: 0.3,
-            },
+            transition: { duration: 0.3 },
           },
           exit: {
             y: 100,
             opacity: 0,
-            transition: {
-              duration: 0.3,
-            },
+            transition: { duration: 0.3 },
           },
         },
       }}
@@ -228,8 +147,7 @@ export function GuidedChatForm({
               </div>
             </ModalBody>
             <ModalFooter>
-              {/* Chat input bar */}
-              {!isDone && (
+              {!isDone ? (
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-grow">{renderInput()}</div>
                   <Button
@@ -242,17 +160,13 @@ export function GuidedChatForm({
                     <SendIcon size={20} />
                   </Button>
                 </div>
-              )}
-              {isDone && (
+              ) : (
                 <Button
                   as={WhatsAppLink}
                   phoneNumber={whatsappNumber}
                   message={previewMessage()}
                   event="Contact"
-                  eventProperties={{
-                    program,
-                    cycle,
-                  }}
+                  eventProperties={{ program, cycle }}
                   fullWidth
                   startContent={<MessageSquareIcon size={16} />}
                   className={gradientBorderButton()}
