@@ -16,7 +16,7 @@ import type { ProgramTestimonial } from "~/modules/academics/types";
 import { SiFacebook, SiGoogle } from "@icons-pack/react-simple-icons";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
-interface ProgramTestimonialsProps {
+interface ProgramTestimonialsSectionProps {
   testimonials?: ProgramTestimonial[];
 }
 
@@ -131,9 +131,9 @@ function ShowAllReviewsButton({ count }: { count: number }) {
   );
 }
 
-export function ProgramTestimonials({
+export function ProgramTestimonialsSection({
   testimonials,
-}: ProgramTestimonialsProps) {
+}: ProgramTestimonialsSectionProps) {
   if (!testimonials || testimonials.length === 0) {
     return null;
   }

@@ -14,9 +14,9 @@ import { ProgramsSection } from "./components/ProgramsSection";
 import { PricingSection } from "./components/PricingSection";
 import { ProgramTracking } from "./components/ProgramTracking";
 import { CycleSection } from "./components/CycleSection";
-import { ProgramTestimonials } from "./components/ProgramTestimonials";
+import { ProgramTestimonialsSection } from "./components/ProgramTestimonialsSection";
 import { RequirementsSection } from "./components/RequirementsSection";
-import { ProgramHighlights } from "./components/ProgramHighlights";
+import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
 import { OrgSection } from "./components/OrgSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
 
@@ -111,7 +111,7 @@ export default async function ProgramDetailsPage({
 
         <OrgSection orgInstance={orgInstance} />
 
-        <ProgramHighlights program={program} />
+        <ProgramHighlightsSection program={program} />
 
         <ProgramDescriptionSection program={program} />
 
@@ -127,7 +127,7 @@ export default async function ProgramDetailsPage({
 
         <LocationSection orgInstance={orgInstance} program={program} />
 
-        <ProgramTestimonials testimonials={program.testimonials} />
+        <ProgramTestimonialsSection testimonials={program.testimonials} />
 
         <PricingSection defaultCycle={currentCycle ?? nextCycle} />
 

@@ -21,7 +21,7 @@ import {
 import type { Program } from "~/modules/academics/types";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
-interface ProgramHighlightsProps {
+interface ProgramHighlightsSectionProps {
   program: Program;
 }
 
@@ -46,7 +46,9 @@ export const ProgramHighlightIconMap = {
   "message-circle": MessageCircleIcon,
 };
 
-export function ProgramHighlights({ program }: ProgramHighlightsProps) {
+export function ProgramHighlightsSection({
+  program,
+}: ProgramHighlightsSectionProps) {
   // If no highlights are defined, don't render the component
   if (!program.highlights || program.highlights.length === 0) {
     return null;
