@@ -96,8 +96,6 @@ export default async function ProgramDetailsPage({
     return getCycleStatus(startDate, endDate) === "current";
   });
 
-  // Get organization contact info
-
   // Get the default teacher for SSR
   const defaultCycle = currentCycle ?? nextCycle;
   const defaultTeachers = defaultCycle?.teachers ?? null;
@@ -108,37 +106,34 @@ export default async function ProgramDetailsPage({
 
       <ProgramGalleryCarousel program={program} />
 
-      <div className="container mx-auto max-w-7xl px-4 py-12 lg:py-16 space-y-6">
-        <ProgramHero orgInstance={orgInstance} program={program} />
+      <div className="container mx-auto max-w-7xl px-4 py-12 lg:py-16">
+        <div className="space-y-12">
+          <ProgramHero orgInstance={orgInstance} program={program} />
 
-        <OrgSection orgInstance={orgInstance} />
+          <OrgSection orgInstance={orgInstance} />
 
-        {/* Program Description */}
-        <ProgramDescriptionSection program={program} />
-        {/* Program Highlights */}
-        <ProgramHighlights />
+          <ProgramHighlights program={program} />
 
-        <CycleSection program={program} defaultCycle={defaultCycle} />
-        {/* Curriculum */}
-        <CurriculumSection program={program} />
+          <ProgramDescriptionSection program={program} />
 
-        {/* Teachers */}
-        <TeachersSection defaultTeachers={defaultTeachers} />
+          <CycleSection program={program} defaultCycle={defaultCycle} />
 
-        {/* Requirements */}
-        <RequirementsSection program={program} />
+          <CurriculumSection program={program} />
 
-        <LocationFeaturesSection orgInstance={orgInstance} />
+          <TeachersSection defaultTeachers={defaultTeachers} />
 
-        <LocationSection orgInstance={orgInstance} program={program} />
+          <RequirementsSection program={program} />
 
-        {/* Testimonials */}
-        <ProgramTestimonials testimonials={program.testimonials} />
+          <LocationFeaturesSection orgInstance={orgInstance} />
 
-        {/* Pricing Information */}
-        <PricingSection defaultCycle={currentCycle ?? nextCycle} />
+          <LocationSection orgInstance={orgInstance} program={program} />
 
-        <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
+          <ProgramTestimonials testimonials={program.testimonials} />
+
+          <PricingSection defaultCycle={currentCycle ?? nextCycle} />
+
+          <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
+        </div>
       </div>
 
       <ProgramDetailMobileFooter orgInstance={orgInstance} program={program} />

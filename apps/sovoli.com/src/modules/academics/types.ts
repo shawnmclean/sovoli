@@ -172,12 +172,40 @@ export interface ProgramGroup {
   ];
 }
 
+export type ProgramHighlightIcon =
+  | "graduation-cap" // Strong Foundations, Academic
+  | "users" // Small Class Sizes
+  | "user" // Personal Attention
+  | "book-open" // Learning, Curriculum
+  | "clock" // Flexible Scheduling
+  | "star" // General highlight / excellence
+  | "badge-check" // Certificate, Recognition
+  | "scissors" // Sewing-specific
+  | "shopping-bag" // Make & Take Bag
+  | "hammer" // Hands-on / Vocational
+  | "tool" // Tools Provided
+  | "baby" // Age-specific (e.g. PreNursery)
+  | "palette" // Creativity / Play
+  | "school" // Primary school programs
+  | "shield-check" // Gated / Safe Campus
+  | "map-pin" // Location clarity
+  | "smile" // Fun / Joyful learning
+  | "message-circle"; // Teacher engagement / Chat access
+
+export interface ProgramHighlight {
+  icon: ProgramHighlightIcon;
+  label: string;
+  description: string;
+}
+
 export interface Program {
   id: string;
   slug: string; // e.g., "grade-1", "form-3", "year-2", "beginner"
   name?: string; // "Nursery" (can override)
   ageRange?: { min: number; max: number };
   audience?: "student" | "parent";
+
+  highlights?: ProgramHighlight[];
 
   courses?: Course[];
   activities?: Activity[];

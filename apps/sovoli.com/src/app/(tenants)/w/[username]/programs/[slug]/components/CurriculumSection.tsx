@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
+import { Divider } from "@sovoli/ui/components/divider";
 
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
@@ -55,7 +56,7 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
   const hasMoreActivities = activities.length > 5;
 
   return (
-    <>
+    <section className="flex flex-col gap-6">
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -132,6 +133,8 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
           </div>
         </CardBody>
       </Card>
+
+      <Divider className="mx-auto max-w-2xl" />
 
       {/* Drawer for detailed curriculum */}
       <Drawer
@@ -257,27 +260,32 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         <DrawerContent>
           <DrawerHeader className="border-b border-divider">
             <h3 className="text-lg font-semibold text-foreground">
-              All Activities
+              Activities & Celebrations
             </h3>
           </DrawerHeader>
           <DrawerBody className="mt-4">
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 gap-3">
+            {activities.length > 0 && (
+              <div className="space-y-4">
                 {activities.map((activity, index) => (
                   <div
                     key={index}
-                    className="flex items-center p-3 bg-default-50 rounded-lg"
+                    className="p-3 sm:p-4 bg-default-50 rounded-lg border border-default-200"
                   >
-                    <span className="text-sm font-medium text-foreground">
+                    <h4 className="font-semibold text-foreground mb-2">
                       {activity.title}
-                    </span>
+                    </h4>
+                    {activity.description && (
+                      <p className="text-sm text-foreground-600">
+                        {activity.description}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
-            </div>
+            )}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </>
+    </section>
   );
 }

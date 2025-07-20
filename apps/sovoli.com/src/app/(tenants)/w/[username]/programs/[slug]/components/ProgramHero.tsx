@@ -2,6 +2,7 @@ import { MapPinIcon } from "lucide-react";
 
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { Divider } from "@sovoli/ui/components/divider";
 
 export interface ProgramHeroProps {
   orgInstance: OrgInstance;
@@ -17,9 +18,8 @@ export const ProgramHero = ({ orgInstance, program }: ProgramHeroProps) => {
   const primaryLocation = org.locations.find((loc) => loc.isPrimary);
 
   return (
-    <section className="relative w-full bg-gradient-to-br from-background via-background to-background-50">
-      {/* Top Section - Centered Program Info */}
-      <div className="text-center space-y-6 mb-8">
+    <section className="flex flex-col gap-6">
+      <div className="text-center space-y-6">
         {/* Program Name */}
         <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight tracking-tight">
           <span className="bg-gradient-to-r from-primary to-primary-600 bg-clip-text text-transparent">
@@ -42,6 +42,7 @@ export const ProgramHero = ({ orgInstance, program }: ProgramHeroProps) => {
           </div>
         )}
       </div>
+      <Divider className="mx-auto max-w-2xl" />
     </section>
   );
 };

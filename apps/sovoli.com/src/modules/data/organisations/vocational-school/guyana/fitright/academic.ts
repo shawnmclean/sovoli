@@ -35,6 +35,32 @@ const FITRIGHT_BAG_WORKSHOP_PROGRAM: Program = {
   name: "Intro to Sewing: Make Your Own Bag",
   slug: "sew-your-own-bag",
   audience: "student",
+  highlights: [
+    {
+      icon: "hammer",
+      label: "Hands-On Learning",
+      description:
+        "Use real tools and materials from day one to practice sewing techniques.",
+    },
+    {
+      icon: "shopping-bag",
+      label: "Make & Take Bag",
+      description:
+        "Create your own tote bag during the workshop and take it home.",
+    },
+    {
+      icon: "tool",
+      label: "Tools Provided",
+      description:
+        "We provide sewing machines, scissors, and all fabric — just show up and sew.",
+    },
+    {
+      icon: "users",
+      label: "Small Group",
+      description:
+        "Personal attention and relaxed pace in a small class environment.",
+    },
+  ],
   description:
     "A hands-on introduction to sewing for complete beginners. In just one day, you'll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
   photos: [

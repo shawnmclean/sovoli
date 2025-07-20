@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
+import { Divider } from "@sovoli/ui/components/divider";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
   Drawer,
@@ -211,7 +212,7 @@ export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
     if (!teacher) return null;
 
     return (
-      <>
+      <section className="flex flex-col gap-6">
         <Card className="overflow-hidden">
           <CardHeader className="pb-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -262,18 +263,20 @@ export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
           </CardBody>
         </Card>
 
+        <Divider className="mx-auto max-w-2xl" />
+
         {/* Teacher Details Drawer */}
         <TeacherDetailsDrawer
           isOpen={isOpen}
           onOpenChange={onOpenChange}
           selectedTeacher={selectedTeacher}
         />
-      </>
+      </section>
     );
   }
 
   return (
-    <>
+    <section className="flex flex-col gap-6">
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -325,12 +328,14 @@ export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
         </CardBody>
       </Card>
 
+      <Divider className="mx-auto max-w-2xl" />
+
       {/* Teacher Details Drawer */}
       <TeacherDetailsDrawer
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         selectedTeacher={selectedTeacher}
       />
-    </>
+    </section>
   );
 }
