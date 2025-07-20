@@ -90,7 +90,8 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                   variant="flat"
                   color="default"
                   onPress={onSubjectsOpen}
-                  className="w-full mt-3"
+                  className="mt-3"
+                  fullWidth
                 >
                   Explore the full curriculum
                 </Button>
@@ -114,7 +115,8 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                     variant="flat"
                     color="default"
                     onPress={onActivitiesOpen}
-                    className="w-full mt-3"
+                    className="mt-3"
+                    fullWidth
                   >
                     See all {activities.length} activities
                   </Button>

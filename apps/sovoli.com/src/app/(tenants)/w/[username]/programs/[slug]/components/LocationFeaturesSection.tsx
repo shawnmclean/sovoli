@@ -1,11 +1,5 @@
 "use client";
 
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-} from "@sovoli/ui/components/card";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
@@ -236,13 +230,13 @@ export function LocationFeaturesSection({
 
   return (
     <ProgramSectionsWrapper>
-      <Card className="overflow-hidden">
-        <CardHeader className="pb-4">
+      <div className="overflow-hidden">
+        <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground">
             Your Learning Space
           </h2>
-        </CardHeader>
-        <CardBody className="space-y-2">
+        </div>
+        <div className="space-y-2">
           {/* Show first 5 features */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {firstFiveFeatures.map((feature) => {
@@ -250,7 +244,7 @@ export function LocationFeaturesSection({
               return (
                 <div
                   key={feature}
-                  className="flex items-center gap-3 bg-default-50 rounded-lg"
+                  className="flex items-center gap-3 rounded-lg"
                 >
                   <div className="flex-shrink-0 w-8 h-8 bg-default-100 rounded-lg flex items-center justify-center">
                     <Icon className="h-4 w-4 text-default-600" />
@@ -262,20 +256,15 @@ export function LocationFeaturesSection({
               );
             })}
           </div>
-        </CardBody>
+        </div>
         {hasMoreFeatures && (
-          <CardFooter>
-            <Button
-              variant="flat"
-              color="default"
-              onPress={onOpen}
-              className="w-full"
-            >
+          <div className="pt-4">
+            <Button variant="flat" color="default" onPress={onOpen} fullWidth>
               Show all {allFeatures.length} features
             </Button>
-          </CardFooter>
+          </div>
         )}
-      </Card>
+      </div>
 
       {/* Drawer for all features */}
       <Drawer

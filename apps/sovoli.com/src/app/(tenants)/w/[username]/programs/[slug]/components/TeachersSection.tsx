@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
@@ -20,6 +19,7 @@ import {
 import { UserIcon, MailIcon, PhoneIcon } from "lucide-react";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 // Shared Teacher Details Drawer Component
 interface TeacherDetailsDrawerProps {
@@ -212,58 +212,55 @@ export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
     if (!teacher) return null;
 
     return (
-      <section className="flex flex-col gap-6">
-        <Card className="overflow-hidden">
-          <CardHeader className="pb-4">
-            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-              <UserIcon className="h-6 w-6 text-primary" />
-              Meet Your Teacher
-            </h2>
-          </CardHeader>
-          <CardBody>
-            <div className="flex flex-col items-center gap-4">
-              <Avatar
-                src={teacher.image}
-                name={teacher.name}
-                className="h-24 w-24"
-                isBordered
-              />
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-foreground">
-                  {teacher.name}
-                </h3>
-                {teacher.quote && (
-                  <div className="mt-3 relative">
-                    <span className="absolute -left-2 -top-2 text-2xl text-default-300">
-                      "
-                    </span>
-                    <p className="text-sm italic text-foreground-600 pl-4">
-                      {teacher.quote}
-                    </p>
-                    <span className="absolute -right-2 -bottom-2 text-2xl text-default-300">
-                      "
-                    </span>
-                  </div>
-                )}
-                {teacher.bio && (
-                  <p className="text-sm text-foreground-600 mt-3 line-clamp-2">
-                    {teacher.bio}
+      <ProgramSectionsWrapper>
+        <div className="pb-4">
+          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+            <UserIcon className="h-6 w-6 text-primary" />
+            Meet Your Teacher
+          </h2>
+        </div>
+        <div>
+          <div className="flex flex-col items-center gap-4">
+            <Avatar
+              src={teacher.image}
+              name={teacher.name}
+              className="h-24 w-24"
+              isBordered
+            />
+            <div className="text-center">
+              <h3 className="text-lg font-semibold text-foreground">
+                {teacher.name}
+              </h3>
+              {teacher.quote && (
+                <div className="mt-3 relative">
+                  <span className="absolute -left-2 -top-2 text-2xl text-default-300">
+                    "
+                  </span>
+                  <p className="text-sm italic text-foreground-600 pl-4">
+                    {teacher.quote}
                   </p>
-                )}
-              </div>
-              <Button
-                variant="flat"
-                color="primary"
-                onPress={() => handleTeacherClick(teacher)}
-                className="mt-2"
-              >
-                Learn More
-              </Button>
+                  <span className="absolute -right-2 -bottom-2 text-2xl text-default-300">
+                    "
+                  </span>
+                </div>
+              )}
+              {teacher.bio && (
+                <p className="text-sm text-foreground-600 mt-3 line-clamp-2">
+                  {teacher.bio}
+                </p>
+              )}
             </div>
-          </CardBody>
-        </Card>
-
-        <Divider className="mx-auto max-w-2xl" />
+            <Button
+              variant="flat"
+              color="default"
+              onPress={() => handleTeacherClick(teacher)}
+              className="mt-2"
+              fullWidth
+            >
+              Learn More
+            </Button>
+          </div>
+        </div>
 
         {/* Teacher Details Drawer */}
         <TeacherDetailsDrawer
@@ -271,64 +268,60 @@ export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
           onOpenChange={onOpenChange}
           selectedTeacher={selectedTeacher}
         />
-      </section>
+      </ProgramSectionsWrapper>
     );
   }
 
   return (
-    <section className="flex flex-col gap-6">
-      <Card className="overflow-hidden">
-        <CardHeader className="pb-4">
-          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-            <UserIcon className="h-6 w-6 text-primary" />
-            Meet Your Teachers
-          </h2>
-        </CardHeader>
-        <CardBody>
-          <div className="w-full">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent>
-                {teachers.map((teacher) => {
-                  return (
-                    <CarouselItem key={teacher.id} className="basis-[200px]">
-                      <div
-                        className="flex flex-col items-center gap-3 p-4 bg-default-50 rounded-lg border border-default-200 hover:border-primary-400 transition-colors cursor-pointer h-full"
-                        onClick={() => handleTeacherClick(teacher)}
-                      >
-                        <Avatar
-                          src={teacher.image}
-                          name={teacher.name}
-                          className="h-16 w-16"
-                          isBordered
-                        />
-                        <div className="text-center flex-1">
-                          <h3 className="font-semibold text-foreground text-sm">
-                            {teacher.name}
-                          </h3>
+    <ProgramSectionsWrapper>
+      <div className="pb-4">
+        <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+          <UserIcon className="h-6 w-6 text-primary" />
+          Meet Your Teachers
+        </h2>
+      </div>
+      <div>
+        <div className="w-full">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {teachers.map((teacher) => {
+                return (
+                  <CarouselItem key={teacher.id} className="basis-[200px]">
+                    <div
+                      className="flex flex-col items-center gap-3 p-4 bg-default-50 rounded-lg border border-default-200 hover:border-primary-400 transition-colors cursor-pointer h-full"
+                      onClick={() => handleTeacherClick(teacher)}
+                    >
+                      <Avatar
+                        src={teacher.image}
+                        name={teacher.name}
+                        className="h-16 w-16"
+                        isBordered
+                      />
+                      <div className="text-center flex-1">
+                        <h3 className="font-semibold text-foreground text-sm">
+                          {teacher.name}
+                        </h3>
 
-                          {teacher.quote && (
-                            <p className="text-xs text-foreground-600 mt-2 line-clamp-2">
-                              "{teacher.quote}"
-                            </p>
-                          )}
-                        </div>
+                        {teacher.quote && (
+                          <p className="text-xs text-foreground-600 mt-2 line-clamp-2">
+                            "{teacher.quote}"
+                          </p>
+                        )}
                       </div>
-                    </CarouselItem>
-                  );
-                })}
-              </CarouselContent>
-            </Carousel>
-          </div>
-        </CardBody>
-      </Card>
-
-      <Divider className="mx-auto max-w-2xl" />
+                    </div>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+          </Carousel>
+        </div>
+      </div>
 
       {/* Teacher Details Drawer */}
       <TeacherDetailsDrawer
@@ -336,6 +329,6 @@ export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
         onOpenChange={onOpenChange}
         selectedTeacher={selectedTeacher}
       />
-    </section>
+    </ProgramSectionsWrapper>
   );
 }
