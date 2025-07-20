@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { RadioGroup } from "@sovoli/ui/components/radio";
-import { Card, CardHeader, CardBody } from "@sovoli/ui/components/card";
 import { CalendarIcon } from "lucide-react";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { formatDateRange } from "~/utils/dateUtils";
@@ -76,14 +75,12 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
   if (isLoading) {
     return (
       <ProgramSectionsWrapper>
-        <Card className="overflow-hidden">
-          <CardHeader className="pb-4">
-            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-              <CalendarIcon className="h-6 w-6 text-primary" />
-              Your Calendar
-            </h2>
-          </CardHeader>
-          <CardBody className="space-y-4">
+        <div className="space-y-4">
+          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+            <CalendarIcon className="h-6 w-6 text-primary" />
+            Your Calendar
+          </h2>
+          <div className="space-y-4">
             <div className="rounded-xl border border-default-200 bg-default-50 p-4">
               <div className="animate-pulse">
                 <div className="h-4 bg-default-200 rounded mb-2"></div>
@@ -91,8 +88,8 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
                 <div className="h-3 bg-default-200 rounded"></div>
               </div>
             </div>
-          </CardBody>
-        </Card>
+          </div>
+        </div>
       </ProgramSectionsWrapper>
     );
   }
@@ -116,14 +113,12 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
 
     return (
       <ProgramSectionsWrapper>
-        <Card className="overflow-hidden">
-          <CardHeader className="pb-4">
-            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-              <CalendarIcon className="h-6 w-6 text-primary" />
-              Your Calendar
-            </h2>
-          </CardHeader>
-          <CardBody className="space-y-4">
+        <div className="space-y-4">
+          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+            <CalendarIcon className="h-6 w-6 text-primary" />
+            Your Calendar
+          </h2>
+          <div className="space-y-4">
             <div className="rounded-xl border border-default-200 bg-default-50 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-base font-medium">{cycleLabel}</span>
@@ -154,22 +149,20 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
                 )}
               </div>
             </div>
-          </CardBody>
-        </Card>
+          </div>
+        </div>
       </ProgramSectionsWrapper>
     );
   }
 
   return (
     <ProgramSectionsWrapper>
-      <Card className="overflow-hidden">
-        <CardHeader className="pb-4">
-          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-            <CalendarIcon className="h-6 w-6 text-primary" />
-            Your Calendar
-          </h2>
-        </CardHeader>
-        <CardBody className="space-y-4">
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+          <CalendarIcon className="h-6 w-6 text-primary" />
+          Your Calendar
+        </h2>
+        <div className="space-y-4">
           <RadioGroup
             value={selectedValue}
             onValueChange={handleSelectionChange}
@@ -261,8 +254,8 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
               );
             })}
           </RadioGroup>
-        </CardBody>
-      </Card>
+        </div>
+      </div>
     </ProgramSectionsWrapper>
   );
 }

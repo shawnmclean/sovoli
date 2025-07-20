@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 
 import { Button } from "@sovoli/ui/components/button";
@@ -60,15 +59,15 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
 
   return (
     <ProgramSectionsWrapper>
-      <Card className="overflow-hidden">
-        <CardHeader className="pb-4">
+      <div className="overflow-hidden">
+        <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <BookOpenIcon className="h-6 w-6 text-primary" />
             What {program.audience === "parent" ? "Your Child" : "You"} Will
             Learn
           </h2>
-        </CardHeader>
-        <CardBody className="space-y-6">
+        </div>
+        <div className="space-y-6">
           <div className="space-y-4">
             {subjects.length > 0 && (
               <div>
@@ -123,8 +122,8 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
               </div>
             )}
           </div>
-        </CardBody>
-      </Card>
+        </div>
+      </div>
 
       {/* Drawer for detailed curriculum */}
       <Drawer
