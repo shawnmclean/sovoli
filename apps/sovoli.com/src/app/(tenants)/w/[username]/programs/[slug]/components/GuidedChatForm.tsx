@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input } from "@sovoli/ui/components/input";
 import { Button } from "@sovoli/ui/components/button";
 import { MessageSquareIcon, SendIcon } from "lucide-react";
@@ -34,6 +34,11 @@ export function GuidedChatForm({
 }: GuidedChatFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Detect iOS
+  const isIOS =
+    typeof window !== "undefined" &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent);
+
   const {
     messages,
     currentInput,
@@ -45,6 +50,9 @@ export function GuidedChatForm({
     isInputValid,
     isDone,
   } = useGuidedChat({ cycle, program });
+
+  // Track when we need to refocus after sending a message
+  const [shouldRefocus, setShouldRefocus] = useState(false);
 
   // Track chat open/close events
   useEffect(() => {
@@ -68,6 +76,30 @@ export function GuidedChatForm({
     }
   }, [isOpen, cycle, program, isDone]);
 
+  // Refocus after messages change (re-render)
+  useEffect(() => {
+    if (shouldRefocus && inputRef.current && !isDone) {
+      if (isIOS) {
+        // iOS-specific focus handling
+        inputRef.current.blur();
+        setTimeout(() => {
+          if (inputRef.current) {
+            inputRef.current.focus();
+            inputRef.current.click();
+            const length = inputRef.current.value.length;
+            inputRef.current.setSelectionRange(length, length);
+          }
+        }, 50);
+      } else {
+        // Standard focus handling
+        inputRef.current.focus();
+        const length = inputRef.current.value.length;
+        inputRef.current.setSelectionRange(length, length);
+      }
+      setShouldRefocus(false);
+    }
+  }, [messages, shouldRefocus, isDone, isIOS]);
+
   // Additional effect to maintain focus on mobile
   useEffect(() => {
     if (isOpen && !isDone) {
@@ -88,6 +120,29 @@ export function GuidedChatForm({
     }
   }, [isOpen, isDone]);
 
+  // iOS-specific keyboard handling
+  useEffect(() => {
+    if (isOpen && !isDone && inputRef.current && isIOS) {
+      // Force focus on iOS when modal opens
+      const timer = setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+          // Trigger a click to ensure iOS keyboard appears
+          inputRef.current.click();
+          // Additional focus attempt
+          setTimeout(() => {
+            if (inputRef.current) {
+              inputRef.current.focus();
+              inputRef.current.click();
+            }
+          }, 100);
+        }
+      }, 200);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, isDone, isIOS]);
+
   // Helper to generate the WhatsApp preview message
   const previewMessage = () => {
     return `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". Please let me know next steps.`;
@@ -96,25 +151,8 @@ export function GuidedChatForm({
   // Custom send message handler that maintains focus
   const handleSendMessageWithFocus = () => {
     handleSendMessage();
-    // Refocus the input after sending to keep keyboard open on mobile
-    // Use multiple timeouts to ensure focus is maintained
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.focus();
-        // Ensure cursor is at the end of the input
-        const length = inputRef.current.value.length;
-        inputRef.current.setSelectionRange(length, length);
-      }
-    }, 100);
-
-    // Additional focus attempt with longer delay for mobile
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.focus();
-        const length = inputRef.current.value.length;
-        inputRef.current.setSelectionRange(length, length);
-      }
-    }, 300);
+    // Set flag to refocus after re-render
+    setShouldRefocus(true);
   };
 
   // Render the correct input based on inputType
