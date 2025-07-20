@@ -24,7 +24,7 @@ export function PricingSection({ defaultCycle }: PricingSectionProps) {
   return (
     <Card className="overflow-hidden">
       <CardHeader className="pb-4">
-        <h3 className="text-xl font-bold text-foreground">Your Cost</h3>
+        <h2 className="text-xl font-bold text-foreground">Your Cost</h2>
       </CardHeader>
       <CardBody className="space-y-6">
         <div className="space-y-4">

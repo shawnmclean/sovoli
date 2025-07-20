@@ -17,6 +17,8 @@ import { CycleSection } from "./components/CycleSection";
 import { ProgramTestimonials } from "./components/ProgramTestimonials";
 import { RequirementsSection } from "./components/RequirementsSection";
 import { ProgramHighlights } from "./components/ProgramHighlights";
+import { OrgSection } from "./components/OrgSection";
+import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -103,41 +105,41 @@ export default async function ProgramDetailsPage({
   return (
     <ProgramCycleSelectionProvider program={program}>
       <ProgramTracking program={program} defaultCycle={defaultCycle} />
+
       <ProgramGalleryCarousel program={program} />
-      <ProgramHero orgInstance={orgInstance} program={program} />
 
-      <div className="container mx-auto max-w-6xl px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Program Highlights */}
-            <ProgramHighlights />
+      <div className="container mx-auto max-w-7xl px-4 py-12 lg:py-16 space-y-6">
+        <ProgramHero orgInstance={orgInstance} program={program} />
 
-            {/* Curriculum */}
-            <CurriculumSection program={program} />
+        <OrgSection orgInstance={orgInstance} />
 
-            <CycleSection program={program} defaultCycle={defaultCycle} />
+        {/* Program Description */}
+        <ProgramDescriptionSection program={program} />
+        {/* Program Highlights */}
+        <ProgramHighlights />
 
-            {/* Teachers */}
-            <TeachersSection defaultTeachers={defaultTeachers} />
+        <CycleSection program={program} defaultCycle={defaultCycle} />
+        {/* Curriculum */}
+        <CurriculumSection program={program} />
 
-            {/* Requirements */}
-            <RequirementsSection program={program} />
+        {/* Teachers */}
+        <TeachersSection defaultTeachers={defaultTeachers} />
 
-            <LocationFeaturesSection orgInstance={orgInstance} />
+        {/* Requirements */}
+        <RequirementsSection program={program} />
 
-            <LocationSection orgInstance={orgInstance} program={program} />
+        <LocationFeaturesSection orgInstance={orgInstance} />
 
-            {/* Testimonials */}
-            <ProgramTestimonials testimonials={program.testimonials} />
-          </div>
+        <LocationSection orgInstance={orgInstance} program={program} />
 
-          {/* Pricing Information */}
-          <PricingSection defaultCycle={currentCycle ?? nextCycle} />
-        </div>
+        {/* Testimonials */}
+        <ProgramTestimonials testimonials={program.testimonials} />
+
+        {/* Pricing Information */}
+        <PricingSection defaultCycle={currentCycle ?? nextCycle} />
+
+        <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
       </div>
-
-      <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
 
       <ProgramDetailMobileFooter orgInstance={orgInstance} program={program} />
     </ProgramCycleSelectionProvider>

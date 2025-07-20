@@ -76,75 +76,70 @@ export function ProgramsSection({
   }
 
   return (
-    <section className="py-6">
-      <div className="container mx-auto max-w-4xl px-4">
-        <div className="mb-4">
-          <h2 className="text-xl font-bold text-foreground">Other Programs</h2>
-          <p className="text-sm text-foreground-600">
-            Explore our other educational offerings
-          </p>
-        </div>
+    <section>
+      <div className="mb-4">
+        <h2 className="text-xl font-bold text-foreground">Other Programs</h2>
+        <p className="text-sm text-foreground-600">
+          Explore our other educational offerings
+        </p>
+      </div>
 
-        <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: false,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-4">
-              {otherPrograms.map((program) => {
-                const programName =
-                  program.name ??
-                  program.standardProgramVersion?.program.name ??
-                  "Program";
-                const programImage =
-                  program.photos?.[0]?.url ??
-                  program.standardProgramVersion?.program.image ??
-                  "/orgs/defaults/programs/nursery.webp";
+      <div className="relative">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: false,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {otherPrograms.map((program) => {
+              const programName =
+                program.name ??
+                program.standardProgramVersion?.program.name ??
+                "Program";
+              const programImage =
+                program.photos?.[0]?.url ??
+                program.standardProgramVersion?.program.image ??
+                "/orgs/defaults/programs/nursery.webp";
 
-                // Get age requirement for this program
-                const ageReq =
-                  program.requirements?.find((r) => r.type === "age") ??
-                  program.standardProgramVersion?.requirements?.find(
-                    (r) => r.type === "age",
-                  );
-
-                return (
-                  <CarouselItem
-                    key={program.slug}
-                    className="pl-4 basis-[220px]"
-                  >
-                    <Link href={`/programs/${program.slug}`}>
-                      <Card className="overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                        <div className="relative h-20 w-full">
-                          <Image
-                            src={programImage}
-                            alt={programName}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <CardBody className="p-3">
-                          <h3 className="font-semibold text-foreground text-xs line-clamp-1 mb-2">
-                            {programName}
-                          </h3>
-                          {ageReq?.ageRange && (
-                            <div className="flex items-center gap-1 text-xs text-foreground-500">
-                              <UserIcon className="w-3 h-3 text-foreground-500" />
-                              {displayAgeRange(ageReq.ageRange)}
-                            </div>
-                          )}
-                        </CardBody>
-                      </Card>
-                    </Link>
-                  </CarouselItem>
+              // Get age requirement for this program
+              const ageReq =
+                program.requirements?.find((r) => r.type === "age") ??
+                program.standardProgramVersion?.requirements?.find(
+                  (r) => r.type === "age",
                 );
-              })}
-            </CarouselContent>
-          </Carousel>
-        </div>
+
+              return (
+                <CarouselItem key={program.slug} className="pl-4 basis-[220px]">
+                  <Link href={`/programs/${program.slug}`}>
+                    <Card className="overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                      <div className="relative h-20 w-full">
+                        <Image
+                          src={programImage}
+                          alt={programName}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <CardBody className="p-3">
+                        <h3 className="font-semibold text-foreground text-xs line-clamp-1 mb-2">
+                          {programName}
+                        </h3>
+                        {ageReq?.ageRange && (
+                          <div className="flex items-center gap-1 text-xs text-foreground-500">
+                            <UserIcon className="w-3 h-3 text-foreground-500" />
+                            {displayAgeRange(ageReq.ageRange)}
+                          </div>
+                        )}
+                      </CardBody>
+                    </Card>
+                  </Link>
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );
