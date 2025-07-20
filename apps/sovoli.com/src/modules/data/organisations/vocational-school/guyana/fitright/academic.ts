@@ -7,7 +7,6 @@ import type {
 // Helper function to create a cycle with a specific date
 const createFitrightCycle = (day: number, enrolled: number): ProgramCycle => ({
   id: `fr-cycle-july${day}`,
-  status: "closed",
   academicCycle: {
     id: `fr-cycle-july${day}`,
     customLabel: `July ${day} - 10AM - 4PM`,
