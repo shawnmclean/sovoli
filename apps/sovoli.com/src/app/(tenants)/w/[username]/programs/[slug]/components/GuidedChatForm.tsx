@@ -53,6 +53,12 @@ export function GuidedChatForm({
         cycle,
         program,
       });
+      // Ensure input is focused when modal opens
+      setTimeout(() => {
+        if (inputRef.current && !isDone) {
+          inputRef.current.focus();
+        }
+      }, 100);
     } else {
       // Track when chat is closed
       posthog.capture("ChatClosed", {
@@ -60,7 +66,27 @@ export function GuidedChatForm({
         program,
       });
     }
-  }, [isOpen, cycle, program]);
+  }, [isOpen, cycle, program, isDone]);
+
+  // Additional effect to maintain focus on mobile
+  useEffect(() => {
+    if (isOpen && !isDone) {
+      const handleFocus = () => {
+        if (inputRef.current && document.activeElement !== inputRef.current) {
+          inputRef.current.focus();
+        }
+      };
+
+      // Add event listeners to maintain focus
+      document.addEventListener("touchstart", handleFocus);
+      document.addEventListener("click", handleFocus);
+
+      return () => {
+        document.removeEventListener("touchstart", handleFocus);
+        document.removeEventListener("click", handleFocus);
+      };
+    }
+  }, [isOpen, isDone]);
 
   // Helper to generate the WhatsApp preview message
   const previewMessage = () => {
@@ -71,9 +97,24 @@ export function GuidedChatForm({
   const handleSendMessageWithFocus = () => {
     handleSendMessage();
     // Refocus the input after sending to keep keyboard open on mobile
+    // Use multiple timeouts to ensure focus is maintained
     setTimeout(() => {
-      inputRef.current?.focus();
+      if (inputRef.current) {
+        inputRef.current.focus();
+        // Ensure cursor is at the end of the input
+        const length = inputRef.current.value.length;
+        inputRef.current.setSelectionRange(length, length);
+      }
     }, 100);
+
+    // Additional focus attempt with longer delay for mobile
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+        const length = inputRef.current.value.length;
+        inputRef.current.setSelectionRange(length, length);
+      }
+    }, 300);
   };
 
   // Render the correct input based on inputType
@@ -94,6 +135,12 @@ export function GuidedChatForm({
             handleSendMessageWithFocus();
           }
         }}
+        // Mobile-specific attributes to maintain keyboard focus
+        autoComplete={inputType === "phone" ? "tel" : "off"}
+        inputMode={inputType === "phone" ? "tel" : "text"}
+        spellCheck={false}
+        autoCorrect="off"
+        autoCapitalize="off"
       />
     );
   };
