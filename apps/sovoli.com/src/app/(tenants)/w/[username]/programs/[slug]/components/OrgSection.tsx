@@ -1,6 +1,5 @@
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Badge } from "@sovoli/ui/components/badge";
-import { Divider } from "@sovoli/ui/components/divider";
 import { BadgeCheckIcon } from "lucide-react";
 
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -15,12 +14,13 @@ export function OrgSection({ orgInstance }: OrgSectionProps) {
 
   // Calculate score
   const score = orgInstance.scoringModule
-    ? (
-        (orgInstance.scoringModule.result.scoreSummary.totalScore /
-          orgInstance.scoringModule.result.scoreSummary.maxScore) *
-        10
-      ).toFixed(1)
-    : null;
+    ? (() => {
+        const { totalScore, maxScore } =
+          orgInstance.scoringModule.result.scoreSummary;
+        const rawScore = (totalScore / maxScore) * 10;
+        return isNaN(rawScore) || !isFinite(rawScore) ? 0 : rawScore.toFixed(1);
+      })()
+    : 0;
 
   // Get establishment year from incorporation date
   const establishmentYear = org.verification?.incorporationDate

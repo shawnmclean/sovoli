@@ -52,8 +52,11 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
   // Show first 5 of each
   const firstFiveSubjects = subjects.slice(0, 5);
   const firstFiveActivities = activities.slice(0, 5);
-  const hasMoreSubjects = subjects.length > 5;
   const hasMoreActivities = activities.length > 5;
+
+  if (subjects.length === 0 && activities.length === 0) {
+    return null;
+  }
 
   return (
     <ProgramSectionsWrapper>
@@ -66,15 +69,14 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
           </h2>
         </CardHeader>
         <CardBody className="space-y-6">
-          {/* Simplified Lists */}
           <div className="space-y-4">
-            <div>
-              <h4 className="font-medium text-foreground mb-2">
-                Core Learning Areas:
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {firstFiveSubjects.length > 0 ? (
-                  firstFiveSubjects.map((subject, index) => (
+            {subjects.length > 0 && (
+              <div>
+                <h4 className="font-medium text-foreground mb-2">
+                  Core Learning Areas:
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {firstFiveSubjects.map((subject, index) => (
                     <Chip
                       key={index}
                       color="secondary"
@@ -83,14 +85,8 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                     >
                       {subject}
                     </Chip>
-                  ))
-                ) : (
-                  <span className="text-sm text-foreground-500">
-                    No subjects available
-                  </span>
-                )}
-              </div>
-              {hasMoreSubjects && (
+                  ))}
+                </div>
                 <Button
                   variant="flat"
                   color="default"
@@ -99,37 +95,33 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                 >
                   Explore the full curriculum
                 </Button>
-              )}
-            </div>
+              </div>
+            )}
 
-            <div>
-              <h4 className="font-medium text-foreground mb-2">
-                Joyful Activities & Celebrations
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {firstFiveActivities.length > 0 ? (
-                  firstFiveActivities.map((activity, index) => (
+            {activities.length > 0 && (
+              <div>
+                <h4 className="font-medium text-foreground mb-2">
+                  Joyful Activities & Celebrations
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {firstFiveActivities.map((activity, index) => (
                     <Chip key={index} color="primary" variant="flat" size="sm">
                       {activity.title}
                     </Chip>
-                  ))
-                ) : (
-                  <span className="text-sm text-foreground-500">
-                    No activities available
-                  </span>
+                  ))}
+                </div>
+                {hasMoreActivities && (
+                  <Button
+                    variant="flat"
+                    color="default"
+                    onPress={onActivitiesOpen}
+                    className="w-full mt-3"
+                  >
+                    See all {activities.length} activities
+                  </Button>
                 )}
               </div>
-              {hasMoreActivities && (
-                <Button
-                  variant="flat"
-                  color="default"
-                  onPress={onActivitiesOpen}
-                  className="w-full mt-3"
-                >
-                  See all {activities.length} activities
-                </Button>
-              )}
-            </div>
+            )}
           </div>
         </CardBody>
       </Card>
@@ -202,7 +194,7 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                                 <h5 className="font-medium text-foreground text-sm mb-1">
                                   {unit.title}
                                 </h5>
-                                {unit.topics && unit.topics.length > 0 && (
+                                {unit.topics.length > 0 && (
                                   <ul className="space-y-1">
                                     {unit.topics.map((topic, topicIndex) => (
                                       <li
