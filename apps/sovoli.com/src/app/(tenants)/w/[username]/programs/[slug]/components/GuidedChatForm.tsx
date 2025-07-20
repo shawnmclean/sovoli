@@ -34,10 +34,6 @@ export function GuidedChatForm({
 }: GuidedChatFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const isIOS =
-    typeof window !== "undefined" &&
-    /iPad|iPhone|iPod/.test(navigator.userAgent);
-
   const {
     messages,
     currentInput,
@@ -50,63 +46,57 @@ export function GuidedChatForm({
     isDone,
   } = useGuidedChat({ cycle, program });
 
-  // Focus input when modal opens
+  // Track chat open/close events
   useEffect(() => {
-    if (isOpen && inputRef.current && !isDone) {
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 150);
+    if (isOpen) {
+      posthog.capture("ChatOpened", {
+        cycle,
+        program,
+      });
+    } else {
+      // Track when chat is closed
+      posthog.capture("ChatClosed", {
+        cycle,
+        program,
+      });
     }
+  }, [isOpen, cycle, program]);
 
-    posthog.capture(isOpen ? "ChatOpened" : "ChatClosed", {
-      cycle,
-      program,
-    });
-  }, [isOpen, isDone, cycle, program]);
-
-  const handleSendMessageWithFocus = () => {
-    handleSendMessage();
-
-    // Delay to wait for DOM to update, then refocus input
-    setTimeout(() => {
-      const input = inputRef.current;
-      if (input && !isDone) {
-        input.focus();
-        if (isIOS) {
-          input.click(); // iOS needs this to show keyboard
-          const length = input.value.length;
-          input.setSelectionRange(length, length);
-        }
-      }
-    }, 100); // iOS performs better with a small delay
+  // Helper to generate the WhatsApp preview message
+  const previewMessage = () => {
+    return `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". Please let me know next steps.`;
   };
 
-  const previewMessage = () =>
-    `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". Please let me know next steps.`;
+  // Custom send message handler that maintains focus
+  const handleSendMessageWithFocus = () => {
+    handleSendMessage();
+    // Refocus the input after sending to keep keyboard open on mobile
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
+  };
 
-  const renderInput = () => (
-    <Input
-      ref={inputRef}
-      fullWidth
-      autoFocus
-      type={inputType === "phone" ? "tel" : "text"}
-      size="lg"
-      variant="bordered"
-      placeholder={getCurrentPlaceholder()}
-      value={currentInput}
-      onValueChange={setCurrentInput}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" && isInputValid()) {
-          handleSendMessageWithFocus();
-        }
-      }}
-      autoComplete={inputType === "phone" ? "tel" : "off"}
-      inputMode={inputType === "phone" ? "tel" : "text"}
-      spellCheck={false}
-      autoCorrect="off"
-      autoCapitalize="off"
-    />
-  );
+  // Render the correct input based on inputType
+  const renderInput = () => {
+    return (
+      <Input
+        ref={inputRef}
+        fullWidth
+        autoFocus
+        type={inputType === "phone" ? "tel" : "text"}
+        size="lg"
+        variant="bordered"
+        placeholder={getCurrentPlaceholder()}
+        value={currentInput}
+        onValueChange={setCurrentInput}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && isInputValid()) {
+            handleSendMessageWithFocus();
+          }
+        }}
+      />
+    );
+  };
 
   return (
     <Modal
@@ -119,12 +109,16 @@ export function GuidedChatForm({
           enter: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.3 },
+            transition: {
+              duration: 0.3,
+            },
           },
           exit: {
             y: 100,
             opacity: 0,
-            transition: { duration: 0.3 },
+            transition: {
+              duration: 0.3,
+            },
           },
         },
       }}
@@ -149,26 +143,31 @@ export function GuidedChatForm({
               </div>
             </ModalBody>
             <ModalFooter>
-              {!isDone ? (
+              {/* Chat input bar */}
+              {!isDone && (
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-grow">{renderInput()}</div>
-                  <button
-                    type="button"
-                    tabIndex={-1}
-                    className="rounded-full bg-primary text-white p-3"
-                    disabled={!isInputValid()}
-                    onClick={handleSendMessageWithFocus}
+                  <Button
+                    color="primary"
+                    onPress={handleSendMessageWithFocus}
+                    isIconOnly
+                    isDisabled={!isInputValid()}
+                    size="lg"
                   >
                     <SendIcon size={20} />
-                  </button>
+                  </Button>
                 </div>
-              ) : (
+              )}
+              {isDone && (
                 <Button
                   as={WhatsAppLink}
                   phoneNumber={whatsappNumber}
                   message={previewMessage()}
                   event="Contact"
-                  eventProperties={{ program, cycle }}
+                  eventProperties={{
+                    program,
+                    cycle,
+                  }}
                   fullWidth
                   startContent={<MessageSquareIcon size={16} />}
                   className={gradientBorderButton()}
