@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Input } from "@sovoli/ui/components/input";
 import { Button } from "@sovoli/ui/components/button";
 import { MessageSquareIcon, SendIcon } from "lucide-react";
@@ -32,6 +32,8 @@ export function GuidedChatForm({
   isOpen,
   onOpenChange,
 }: GuidedChatFormProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const {
     messages,
     currentInput,
@@ -65,10 +67,20 @@ export function GuidedChatForm({
     return `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". Please let me know next steps.`;
   };
 
+  // Custom send message handler that maintains focus
+  const handleSendMessageWithFocus = () => {
+    handleSendMessage();
+    // Refocus the input after sending to keep keyboard open on mobile
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
+  };
+
   // Render the correct input based on inputType
   const renderInput = () => {
     return (
       <Input
+        ref={inputRef}
         fullWidth
         autoFocus
         type={inputType === "phone" ? "tel" : "text"}
@@ -79,7 +91,7 @@ export function GuidedChatForm({
         onValueChange={setCurrentInput}
         onKeyDown={(e) => {
           if (e.key === "Enter" && isInputValid()) {
-            handleSendMessage();
+            handleSendMessageWithFocus();
           }
         }}
       />
@@ -137,7 +149,7 @@ export function GuidedChatForm({
                   <div className="flex-grow">{renderInput()}</div>
                   <Button
                     color="primary"
-                    onPress={handleSendMessage}
+                    onPress={handleSendMessageWithFocus}
                     isIconOnly
                     isDisabled={!isInputValid()}
                     size="lg"
