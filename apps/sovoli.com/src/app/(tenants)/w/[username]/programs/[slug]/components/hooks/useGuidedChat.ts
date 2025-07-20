@@ -10,8 +10,8 @@ interface ChatMessage {
 
 interface ChatData {
   phoneNumber?: string;
-  childCount?: number;
-  children: number[];
+  firstName?: string;
+  lastName?: string;
 }
 
 export function useGuidedChat({
@@ -36,16 +36,12 @@ export function useGuidedChat({
     },
   ]);
 
-  const [chatData, setChatData] = useState<ChatData>({
-    childCount: 1,
-    children: [2],
-  });
+  const [chatData, setChatData] = useState<ChatData>({});
 
   const [currentInput, setCurrentInput] = useState("592");
   const [inputType, setInputType] = useState<
-    "phone" | "childCount" | "childAge"
+    "phone" | "firstName" | "lastName"
   >("phone");
-  const [currentChildIndex, setCurrentChildIndex] = useState(0);
 
   const addMessage = (sender: "system" | "user", message: string) => {
     const newMessage: ChatMessage = {
@@ -75,52 +71,44 @@ export function useGuidedChat({
           $set: { phone },
         });
 
-        // Add system response
-        addMessage("system", "👶 How many children are you enrolling?");
-        setInputType("childCount");
-        setCurrentInput("1");
+        // Add system response for first name
+        addMessage("system", "👤 What's your first name?");
+        setInputType("firstName");
+        setCurrentInput("");
       }
-    } else if (inputType === "childCount") {
-      const count = parseInt(currentInput);
-      if (count >= 1 && count <= 10) {
-        setChatData((prev) => ({
-          ...prev,
-          childCount: count,
-          children: Array<number>(count).fill(2),
-        }));
-        setCurrentChildIndex(0);
+    } else if (inputType === "firstName") {
+      const firstName = currentInput.trim();
+      if (firstName.length >= 2) {
+        setChatData((prev) => ({ ...prev, firstName }));
 
-        // Add system response for first child
-        addMessage("system", `✅ Got it. How old is child 1?`);
-        setInputType("childAge");
-        setCurrentInput("2");
+        posthog.setPersonProperties({
+          first_name: firstName,
+          name: firstName,
+        });
+
+        // Add system response for last name
+        addMessage("system", "👤 What's your last name?");
+        setInputType("lastName");
+        setCurrentInput("");
       }
     } else {
-      const age = parseInt(currentInput);
-      if (age >= 1 && age <= 18) {
-        const updatedChildren = [...chatData.children];
-        updatedChildren[currentChildIndex] = age;
-        setChatData((prev) => ({ ...prev, children: updatedChildren }));
+      const lastName = currentInput.trim();
+      if (lastName.length >= 2) {
+        setChatData((prev) => ({ ...prev, lastName }));
 
-        if (currentChildIndex + 1 < Number(chatData.childCount ?? 0)) {
-          // Move to next child
-          setCurrentChildIndex(currentChildIndex + 1);
-          addMessage("system", `How old is child ${currentChildIndex + 2}?`);
-        } else {
-          // All children processed, show final message
-          const childAges = updatedChildren
-            .filter((age) => age && age > 0)
-            .join(", ");
-          const childText =
-            (chatData.childCount ?? 1) === 1 ? "child" : "children";
-          const finalMessage = `I'm applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". I have ${chatData.childCount} ${childText} ages ${childAges}. Please let me know next steps.`;
+        posthog.setPersonProperties({
+          last_name: lastName,
+          name: `${chatData.firstName} ${lastName}`,
+        });
 
-          addMessage(
-            "system",
-            "🎉 All set! Tap below to send this to our enrollment assistant on WhatsApp.",
-          );
-          addMessage("user", finalMessage);
-        }
+        // Show final message
+        const finalMessage = `Hi, I'm ${chatData.firstName} ${lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". Please let me know next steps.`;
+
+        addMessage(
+          "system",
+          "🎉 All set! Tap below to send this to our enrollment assistant on WhatsApp.",
+        );
+        addMessage("user", finalMessage);
         setCurrentInput("");
       }
     }
@@ -130,10 +118,10 @@ export function useGuidedChat({
     switch (inputType) {
       case "phone":
         return "Enter your WhatsApp number";
-      case "childCount":
-        return "Number of children";
-      case "childAge":
-        return `Enter age for child ${currentChildIndex + 1}`;
+      case "firstName":
+        return "Enter your first name";
+      case "lastName":
+        return "Enter your last name";
       default:
         return "";
     }
@@ -144,14 +132,10 @@ export function useGuidedChat({
     switch (inputType) {
       case "phone":
         return currentInput.trim().length >= 10;
-      case "childCount": {
-        const count = parseInt(currentInput);
-        return count >= 1 && count <= 10;
-      }
-      case "childAge": {
-        const age = parseInt(currentInput);
-        return age >= 1 && age <= 18;
-      }
+      case "firstName":
+        return currentInput.trim().length >= 2;
+      case "lastName":
+        return currentInput.trim().length >= 2;
       default:
         return false;
     }

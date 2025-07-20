@@ -2,7 +2,6 @@
 
 import React, { useEffect } from "react";
 import { Input } from "@sovoli/ui/components/input";
-import { NumberInput } from "@sovoli/ui/components/number-input";
 import { Button } from "@sovoli/ui/components/button";
 import { MessageSquareIcon, SendIcon } from "lucide-react";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
@@ -50,14 +49,12 @@ export function GuidedChatForm({
     if (isOpen) {
       posthog.capture("ChatOpened", {
         cycle,
-
         program,
       });
     } else {
       // Track when chat is closed
       posthog.capture("ChatClosed", {
         cycle,
-
         program,
       });
     }
@@ -65,43 +62,16 @@ export function GuidedChatForm({
 
   // Helper to generate the WhatsApp preview message
   const previewMessage = () => {
-    const childAges = chatData.children
-      .filter((age) => age && age > 0)
-      .join(", ");
-    const childText = (chatData.childCount ?? 1) === 1 ? "child" : "children";
-    return `I'm applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". I have ${chatData.childCount} ${childText} ages ${childAges}. Please let me know next steps.`;
+    return `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". Please let me know next steps.`;
   };
 
   // Render the correct input based on inputType
   const renderInput = () => {
-    if (inputType === "childCount" || inputType === "childAge") {
-      // Only allow numbers, and pass min/max for validation
-      const min = inputType === "childCount" ? 1 : 1;
-      const max = inputType === "childCount" ? 10 : 16;
-      return (
-        <NumberInput
-          autoFocus
-          min={min}
-          max={max}
-          size="lg"
-          variant="bordered"
-          placeholder={getCurrentPlaceholder()}
-          value={currentInput ? Number(currentInput) : undefined}
-          onValueChange={(val) => setCurrentInput(val ? String(val) : "")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && isInputValid()) {
-              handleSendMessage();
-            }
-          }}
-        />
-      );
-    }
-    // Default to Input for phone
     return (
       <Input
         fullWidth
         autoFocus
-        type="tel"
+        type={inputType === "phone" ? "tel" : "text"}
         size="lg"
         variant="bordered"
         placeholder={getCurrentPlaceholder()}
@@ -185,12 +155,6 @@ export function GuidedChatForm({
                   eventProperties={{
                     program,
                     cycle,
-                    $set: {
-                      children: chatData.children.map((c) => ({
-                        age: c,
-                        name: `Child ${c}`,
-                      })),
-                    },
                   }}
                   fullWidth
                   startContent={<MessageSquareIcon size={16} />}
