@@ -34,6 +34,7 @@ const FITRIGHT_BAG_WORKSHOP_PROGRAM: Program = {
   id: "fr-bag-workshop",
   name: "Intro to Sewing: Make Your Own Bag",
   slug: "sew-your-own-bag",
+  audience: "student",
   description:
     "A hands-on introduction to sewing for complete beginners. In just one day, you'll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
   photos: [

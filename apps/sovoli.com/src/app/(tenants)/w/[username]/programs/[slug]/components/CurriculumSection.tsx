@@ -60,7 +60,8 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <BookOpenIcon className="h-6 w-6 text-primary" />
-            What Your Child Will Learn
+            What {program.audience === "parent" ? "Your Child" : "You"} Will
+            Learn
           </h2>
         </CardHeader>
         <CardBody className="space-y-6">

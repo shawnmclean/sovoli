@@ -4,12 +4,17 @@ import { MapPinIcon, MapIcon } from "lucide-react";
 
 import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
+import { Program } from "~/modules/academics/types";
 
 interface LocationSectionProps {
   orgInstance: OrgInstance;
+  program: Program;
 }
 
-export function LocationSection({ orgInstance }: LocationSectionProps) {
+export function LocationSection({
+  orgInstance,
+  program,
+}: LocationSectionProps) {
   const { locations } = orgInstance.org;
 
   // Find the primary location
@@ -57,7 +62,10 @@ export function LocationSection({ orgInstance }: LocationSectionProps) {
   return (
     <Card className="overflow-hidden">
       <CardHeader className="pb-4">
-        <h3 className="text-xl font-bold text-foreground">Where you'll be</h3>
+        <h3 className="text-xl font-bold text-foreground">
+          Where {program.audience === "parent" ? "Your Child " : "You "}
+          Will Be
+        </h3>
       </CardHeader>
       <CardBody className="space-y-4">
         <div className="space-y-3">

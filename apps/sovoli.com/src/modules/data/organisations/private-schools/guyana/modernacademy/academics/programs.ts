@@ -64,6 +64,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
   id: "magy-pre-nursery",
   slug: "pre-nursery",
   name: "Pre-Nursery (Playschool)",
+  audience: "parent",
   tagline: "Play, explore, and grow together",
   outcome: "School Readiness",
   description: "Strong foundational learning in a nurturing environment",
@@ -161,6 +162,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
 export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
   id: "magy-nursery-year-1",
   slug: "nursery-year-1",
+  audience: "parent",
   tagline: "Skills that prepare for primary school",
   outcome: "Early Literacy & Numeracy",
   description: "Engaging curriculum fostering critical thinking and creativity",
@@ -175,6 +177,7 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
 export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
   id: "magy-nursery-year-2",
   slug: "nursery-year-2",
+  audience: "parent",
   tagline: "Skills that prepare for primary school",
   outcome: "Early Literacy & Numeracy",
   description: "Engaging curriculum fostering critical thinking and creativity",
@@ -188,6 +191,7 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
 export const MAGY_PRIMARY_GRADE_1_PROGRAM: Program = {
   id: "magy-primary-grade-1",
   slug: "grade-1",
+  audience: "parent",
   tagline: "Science-led. Built for real learning",
   outcome: "NGSA (Grade 6 Exam)",
   description: "Strong foundational learning in a nurturing environment",

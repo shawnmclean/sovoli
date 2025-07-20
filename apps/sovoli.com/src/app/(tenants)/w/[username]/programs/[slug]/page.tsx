@@ -245,7 +245,7 @@ export default async function ProgramDetailsPage({
 
             <LocationFeaturesSection orgInstance={orgInstance} />
 
-            <LocationSection orgInstance={orgInstance} />
+            <LocationSection orgInstance={orgInstance} program={program} />
 
             {/* Testimonials */}
             <ProgramTestimonials testimonials={program.testimonials} />
