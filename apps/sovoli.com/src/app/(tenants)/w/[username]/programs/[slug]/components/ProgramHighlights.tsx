@@ -18,8 +18,8 @@ import {
   SmileIcon,
   MessageCircleIcon,
 } from "lucide-react";
-import { Divider } from "@sovoli/ui/components/divider";
 import type { Program } from "~/modules/academics/types";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface ProgramHighlightsProps {
   program: Program;
@@ -58,7 +58,7 @@ export function ProgramHighlights({ program }: ProgramHighlightsProps) {
   };
 
   return (
-    <section className="flex flex-col gap-6">
+    <ProgramSectionsWrapper>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {program.highlights.map((highlight, index) => {
           const IconComponent = ProgramHighlightIconMap[highlight.icon];
@@ -83,7 +83,6 @@ export function ProgramHighlights({ program }: ProgramHighlightsProps) {
           );
         })}
       </div>
-      <Divider className="mx-auto max-w-2xl" />
-    </section>
+    </ProgramSectionsWrapper>
   );
 }

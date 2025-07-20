@@ -55,6 +55,7 @@ import {
 import type { OrgInstance } from "~/modules/organisations/types";
 import { OrgLocationFeature } from "~/modules/organisations/types";
 import { ORG_LOCATION_FEATURE_GROUPS } from "~/modules/organisations/locationFeatures";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface LocationFeaturesSectionProps {
   orgInstance: OrgInstance;
@@ -234,7 +235,7 @@ export function LocationFeaturesSection({
   );
 
   return (
-    <>
+    <ProgramSectionsWrapper>
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground">
@@ -345,6 +346,6 @@ export function LocationFeaturesSection({
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </>
+    </ProgramSectionsWrapper>
   );
 }

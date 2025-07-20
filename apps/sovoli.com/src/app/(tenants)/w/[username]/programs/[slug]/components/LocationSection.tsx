@@ -4,7 +4,8 @@ import { MapPinIcon, MapIcon } from "lucide-react";
 
 import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
-import { Program } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface LocationSectionProps {
   orgInstance: OrgInstance;
@@ -60,43 +61,45 @@ export function LocationSection({
   };
 
   return (
-    <Card className="overflow-hidden">
-      <CardHeader className="pb-4">
-        <h3 className="text-xl font-bold text-foreground">
-          Where {program.audience === "parent" ? "Your Child " : "You "}
-          Will Be
-        </h3>
-      </CardHeader>
-      <CardBody className="space-y-4">
-        <div className="space-y-3">
-          <div className="flex items-start gap-3">
-            <MapPinIcon className="mt-1 text-default-500 flex-shrink-0" />
-            <div>
-              <address className="not-italic text-default-600 whitespace-pre-line">
-                {addressLines}
-              </address>
-              {primaryLocation.address.landmark && (
-                <p className="text-sm text-default-500 italic mt-1">
-                  {primaryLocation.address.landmark}
-                </p>
-              )}
+    <ProgramSectionsWrapper>
+      <Card className="overflow-hidden">
+        <CardHeader className="pb-4">
+          <h3 className="text-xl font-bold text-foreground">
+            Where {program.audience === "parent" ? "Your Child " : "You "}
+            Will Be
+          </h3>
+        </CardHeader>
+        <CardBody className="space-y-4">
+          <div className="space-y-3">
+            <div className="flex items-start gap-3">
+              <MapPinIcon className="mt-1 text-default-500 flex-shrink-0" />
+              <div>
+                <address className="not-italic text-default-600 whitespace-pre-line">
+                  {addressLines}
+                </address>
+                {primaryLocation.address.landmark && (
+                  <p className="text-sm text-default-500 italic mt-1">
+                    {primaryLocation.address.landmark}
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
 
-          <Button
-            color="primary"
-            variant="flat"
-            startContent={<MapIcon />}
-            as="a"
-            href={getMapsUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3"
-          >
-            View on Map
-          </Button>
-        </div>
-      </CardBody>
-    </Card>
+            <Button
+              color="primary"
+              variant="flat"
+              startContent={<MapIcon />}
+              as="a"
+              href={getMapsUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3"
+            >
+              View on Map
+            </Button>
+          </div>
+        </CardBody>
+      </Card>
+    </ProgramSectionsWrapper>
   );
 }

@@ -1,9 +1,9 @@
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Divider } from "@sovoli/ui/components/divider";
 import { UserIcon } from "lucide-react";
 import { displayAgeRange } from "../../../(main-layout)/programs/utils";
 import type { Program, ProgramRequirement } from "~/modules/academics/types";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface RequirementsSectionProps {
   program: Program;
@@ -18,7 +18,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
   }
 
   return (
-    <section className="flex flex-col gap-6">
+    <ProgramSectionsWrapper>
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -53,7 +53,6 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
           </div>
         </CardBody>
       </Card>
-      <Divider className="mx-auto max-w-2xl" />
-    </section>
+    </ProgramSectionsWrapper>
   );
 }

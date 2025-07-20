@@ -3,7 +3,6 @@
 import { useMemo } from "react";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Divider } from "@sovoli/ui/components/divider";
 
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
@@ -15,6 +14,7 @@ import {
 } from "@sovoli/ui/components/drawer";
 import { BookOpenIcon } from "lucide-react";
 import type { Program } from "~/modules/academics/types";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface CurriculumSectionProps {
   program: Program;
@@ -56,7 +56,7 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
   const hasMoreActivities = activities.length > 5;
 
   return (
-    <section className="flex flex-col gap-6">
+    <ProgramSectionsWrapper>
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -134,8 +134,6 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         </CardBody>
       </Card>
 
-      <Divider className="mx-auto max-w-2xl" />
-
       {/* Drawer for detailed curriculum */}
       <Drawer
         isOpen={isSubjectsOpen}
@@ -199,19 +197,19 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                             {course.units.map((unit, unitIndex) => (
                               <div
                                 key={unitIndex}
-                                className="bg-default-100 rounded-lg p-2 sm:p-3"
+                                className="p-2 sm:p-3 bg-background rounded border border-default-200"
                               >
-                                <h5 className="font-medium text-foreground text-sm mb-2">
-                                  {unitIndex + 1}. {unit.title}
+                                <h5 className="font-medium text-foreground text-sm mb-1">
+                                  {unit.title}
                                 </h5>
-                                {unit.topics.length > 0 && (
+                                {unit.topics && unit.topics.length > 0 && (
                                   <ul className="space-y-1">
                                     {unit.topics.map((topic, topicIndex) => (
                                       <li
                                         key={topicIndex}
-                                        className="text-sm text-foreground-600 flex items-start gap-2"
+                                        className="text-xs text-foreground-600 flex items-start gap-2"
                                       >
-                                        <span className="flex-shrink-0 w-1.5 h-1.5 bg-primary rounded-full mt-2"></span>
+                                        <span className="flex-shrink-0 w-1.5 h-1.5 bg-primary rounded-full mt-1.5"></span>
                                         {topic}
                                       </li>
                                     ))}
@@ -260,7 +258,7 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         <DrawerContent>
           <DrawerHeader className="border-b border-divider">
             <h3 className="text-lg font-semibold text-foreground">
-              Activities & Celebrations
+              All Activities & Celebrations
             </h3>
           </DrawerHeader>
           <DrawerBody className="mt-4">
@@ -274,11 +272,6 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                     <h4 className="font-semibold text-foreground mb-2">
                       {activity.title}
                     </h4>
-                    {activity.description && (
-                      <p className="text-sm text-foreground-600">
-                        {activity.description}
-                      </p>
-                    )}
                   </div>
                 ))}
               </div>
@@ -286,6 +279,6 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </section>
+    </ProgramSectionsWrapper>
   );
 }

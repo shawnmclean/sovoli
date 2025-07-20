@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import type { Program } from "~/modules/academics/types";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface ProgramDescriptionSectionProps {
   program: Program;
@@ -29,28 +30,30 @@ export function ProgramDescriptionSection({
     : programDescription.slice(0, 200) + (shouldShowReadMore ? "..." : "");
 
   return (
-    <section className="space-y-4">
-      <div className="prose prose-sm max-w-none">
-        <p className="text-foreground-600 leading-relaxed">{displayText}</p>
-      </div>
+    <ProgramSectionsWrapper>
+      <div className="space-y-4">
+        <div className="prose prose-sm max-w-none">
+          <p className="text-foreground-600 leading-relaxed">{displayText}</p>
+        </div>
 
-      {shouldShowReadMore && (
-        <Button
-          variant="light"
-          color="primary"
-          size="sm"
-          onPress={() => setIsExpanded(!isExpanded)}
-          endContent={
-            isExpanded ? (
-              <ChevronUpIcon className="h-4 w-4" />
-            ) : (
-              <ChevronDownIcon className="h-4 w-4" />
-            )
-          }
-        >
-          {isExpanded ? "Read less" : "Read more"}
-        </Button>
-      )}
-    </section>
+        {shouldShowReadMore && (
+          <Button
+            variant="light"
+            color="primary"
+            size="sm"
+            onPress={() => setIsExpanded(!isExpanded)}
+            endContent={
+              isExpanded ? (
+                <ChevronUpIcon className="h-4 w-4" />
+              ) : (
+                <ChevronDownIcon className="h-4 w-4" />
+              )
+            }
+          >
+            {isExpanded ? "Read less" : "Read more"}
+          </Button>
+        )}
+      </div>
+    </ProgramSectionsWrapper>
   );
 }

@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import { RadioGroup } from "@sovoli/ui/components/radio";
 import { Card, CardHeader, CardBody } from "@sovoli/ui/components/card";
-import { Divider } from "@sovoli/ui/components/divider";
 import { CalendarIcon } from "lucide-react";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { formatDateRange } from "~/utils/dateUtils";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface CycleSectionProps {
   program: Program;
@@ -75,7 +75,7 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
   // Show loading state while context is initializing
   if (isLoading) {
     return (
-      <section className="flex flex-col gap-6">
+      <ProgramSectionsWrapper>
         <Card className="overflow-hidden">
           <CardHeader className="pb-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -93,8 +93,7 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
             </div>
           </CardBody>
         </Card>
-        <Divider className="mx-auto max-w-2xl" />
-      </section>
+      </ProgramSectionsWrapper>
     );
   }
 
@@ -116,7 +115,7 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
       "";
 
     return (
-      <section className="flex flex-col gap-6">
+      <ProgramSectionsWrapper>
         <Card className="overflow-hidden">
           <CardHeader className="pb-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -157,13 +156,12 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
             </div>
           </CardBody>
         </Card>
-        <Divider className="mx-auto max-w-2xl" />
-      </section>
+      </ProgramSectionsWrapper>
     );
   }
 
   return (
-    <section className="flex flex-col gap-6">
+    <ProgramSectionsWrapper>
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -265,7 +263,6 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
           </RadioGroup>
         </CardBody>
       </Card>
-      <Divider className="mx-auto max-w-2xl" />
-    </section>
+    </ProgramSectionsWrapper>
   );
 }

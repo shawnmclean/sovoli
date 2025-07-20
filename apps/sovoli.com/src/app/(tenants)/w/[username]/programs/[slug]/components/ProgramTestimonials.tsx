@@ -14,6 +14,7 @@ import { format } from "date-fns";
 
 import type { ProgramTestimonial } from "~/modules/academics/types";
 import { SiFacebook, SiGoogle } from "@icons-pack/react-simple-icons";
+import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface ProgramTestimonialsProps {
   testimonials?: ProgramTestimonial[];
@@ -138,39 +139,41 @@ export function ProgramTestimonials({
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-          <QuoteIcon className="h-6 w-6 text-primary" />
-          What Parents Say
-        </h2>
+    <ProgramSectionsWrapper>
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+            <QuoteIcon className="h-6 w-6 text-primary" />
+            What Parents Say
+          </h2>
+        </div>
+
+        {/* Carousel */}
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {testimonials.map((testimonial, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-2 md:pl-4 basis-[85%] md:basis-[45%]"
+              >
+                <TestimonialCard testimonial={testimonial} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+
+        {/* Show All Reviews Button */}
+        {testimonials.length > 2 && (
+          <ShowAllReviewsButton count={testimonials.length} />
+        )}
       </div>
-
-      {/* Carousel */}
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-2 md:-ml-4">
-          {testimonials.map((testimonial, index) => (
-            <CarouselItem
-              key={index}
-              className="pl-2 md:pl-4 basis-[85%] md:basis-[45%]"
-            >
-              <TestimonialCard testimonial={testimonial} />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-
-      {/* Show All Reviews Button */}
-      {testimonials.length > 2 && (
-        <ShowAllReviewsButton count={testimonials.length} />
-      )}
-    </div>
+    </ProgramSectionsWrapper>
   );
 }
