@@ -16,18 +16,7 @@ export function LocationSection({ orgInstance }: LocationSectionProps) {
   const primaryLocation = locations.find((location) => location.isPrimary);
 
   if (!primaryLocation) {
-    return (
-      <Card className="overflow-hidden">
-        <CardHeader className="pb-4">
-          <h3 className="text-xl font-bold text-foreground">Where you'll be</h3>
-        </CardHeader>
-        <CardBody className="space-y-4">
-          <p className="text-foreground-600">
-            Location information not available.
-          </p>
-        </CardBody>
-      </Card>
-    );
+    return null;
   }
 
   // Format address as a string

@@ -210,20 +210,7 @@ export function LocationFeaturesSection({
   const primaryLocation = locations.find((location) => location.isPrimary);
 
   if (!primaryLocation?.features || primaryLocation.features.length === 0) {
-    return (
-      <Card className="overflow-hidden">
-        <CardHeader className="pb-4">
-          <h2 className="text-xl font-bold text-foreground">
-            Your Learning Space
-          </h2>
-        </CardHeader>
-        <CardBody className="space-y-4">
-          <p className="text-foreground-600">
-            Location features information not available.
-          </p>
-        </CardBody>
-      </Card>
-    );
+    return null;
   }
 
   // Get all features

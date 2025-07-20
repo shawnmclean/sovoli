@@ -202,23 +202,7 @@ export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
   };
 
   if (teachers.length === 0) {
-    return (
-      <Card className="overflow-hidden">
-        <CardHeader className="pb-4">
-          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-            <UserIcon className="h-6 w-6 text-primary" />
-            Meet Your Teachers
-          </h2>
-        </CardHeader>
-        <CardBody>
-          <div className="prose prose-sm max-w-none text-foreground-700">
-            <p className="text-center text-foreground-600">
-              Teacher information will be available soon.
-            </p>
-          </div>
-        </CardBody>
-      </Card>
-    );
+    return null;
   }
 
   // If only one teacher, show centered
