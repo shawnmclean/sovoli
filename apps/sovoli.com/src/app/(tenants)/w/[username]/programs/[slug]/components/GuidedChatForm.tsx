@@ -37,8 +37,15 @@ export function GuidedChatForm({
   const [currentInput, setCurrentInput] = useState("592");
   const previousIsOpenRef = useRef<boolean | undefined>(undefined);
 
-  const { messages, chatData, handleSendMessage, getCurrentField, isDone } =
-    useGuidedChat({ cycle, program });
+  const {
+    messages,
+    chatData,
+    handleSendMessage,
+    getCurrentField,
+    isDone,
+    showChoiceButtons,
+    handleAskQuestion,
+  } = useGuidedChat({ cycle, program });
 
   const currentField = getCurrentField();
 
@@ -69,7 +76,13 @@ export function GuidedChatForm({
 
   // Helper to generate the WhatsApp preview message
   const previewMessage = () => {
-    return `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}". Please let me know next steps.`;
+    const baseMessage = `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}".`;
+
+    if (chatData.question) {
+      return `${baseMessage} I have a question: ${chatData.question}.`;
+    }
+
+    return `${baseMessage}`;
   };
 
   // Custom send message handler that maintains focus
@@ -162,7 +175,7 @@ export function GuidedChatForm({
             </ModalBody>
             <ModalFooter>
               {/* Chat input bar */}
-              {!isDone && currentField && (
+              {!isDone && currentField && !showChoiceButtons && (
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-grow">{renderInput()}</div>
                   <Button
@@ -173,6 +186,35 @@ export function GuidedChatForm({
                     size="lg"
                   >
                     <SendIcon size={20} />
+                  </Button>
+                </div>
+              )}
+
+              {/* Choice buttons */}
+              {showChoiceButtons && (
+                <div className="flex gap-2 w-full">
+                  <Button
+                    color="primary"
+                    variant="bordered"
+                    onPress={handleAskQuestion}
+                    fullWidth
+                  >
+                    Question
+                  </Button>
+                  <Button
+                    as={WhatsAppLink}
+                    phoneNumber={whatsappNumber}
+                    message={previewMessage()}
+                    event="Contact"
+                    eventProperties={{
+                      program,
+                      cycle,
+                    }}
+                    fullWidth
+                    className={gradientBorderButton()}
+                    onPress={onClose}
+                  >
+                    Continue
                   </Button>
                 </div>
               )}

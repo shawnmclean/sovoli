@@ -12,10 +12,11 @@ interface ChatData {
   phoneNumber?: string;
   firstName?: string;
   lastName?: string;
+  question?: string;
 }
 
 interface InputField {
-  name: "phone" | "firstName" | "lastName";
+  name: "phone" | "firstName" | "lastName" | "question";
   placeholder: string;
   type: "tel" | "text";
   validation: {
@@ -28,12 +29,12 @@ interface InputField {
 const INPUT_FIELDS: InputField[] = [
   {
     name: "phone",
-    placeholder: "Enter your phone number",
+    placeholder: "Enter your WhatsApp number",
     type: "tel",
     validation: {
       minLength: 10,
     },
-    message: "📱 What's your phone number so we can reach you?",
+    message: "📱 What's your WhatsApp number so we can reach you?",
   },
   {
     name: "firstName",
@@ -53,6 +54,15 @@ const INPUT_FIELDS: InputField[] = [
     },
     message: "👤 What's your last name?",
   },
+  {
+    name: "question",
+    placeholder: "Type your question here...",
+    type: "text",
+    validation: {
+      minLength: 5,
+    },
+    message: "❓ What would you like to know?",
+  },
 ];
 
 export function useGuidedChat({
@@ -66,19 +76,23 @@ export function useGuidedChat({
     {
       id: "welcome",
       sender: "system",
-      message: `👋 Welcome! Let's get you started with applying to ${program ?? "Primary"} for ${cycle ?? "2024-2025"}.`,
+      message: "👋 Welcome! Let's get you started.",
       timestamp: Date.now(),
     },
     {
       id: "phone-question",
       sender: "system",
-      message: INPUT_FIELDS[0]?.message ?? "",
+      message:
+        INPUT_FIELDS[0]?.message ??
+        "📱 What's your WhatsApp number so we can reach you?",
       timestamp: Date.now(),
     },
   ]);
 
   const [chatData, setChatData] = useState<ChatData>({});
   const [currentStep, setCurrentStep] = useState(0);
+  const [showChoiceButtons, setShowChoiceButtons] = useState(false);
+  const [isAskingQuestion, setIsAskingQuestion] = useState(false);
 
   const addMessage = (sender: "system" | "user", message: string) => {
     const newMessage: ChatMessage = {
@@ -125,7 +139,7 @@ export function useGuidedChat({
       // Move to next step
       setCurrentStep(2);
       addMessage("system", INPUT_FIELDS[2]?.message ?? "");
-    } else {
+    } else if (currentField.name === "lastName") {
       const lastName = inputValue.trim();
       setChatData((prev) => ({ ...prev, lastName }));
 
@@ -133,20 +147,45 @@ export function useGuidedChat({
         last_name: lastName,
         name: `${chatData.firstName} ${lastName}`,
       });
+      addMessage(
+        "system",
+        "🎉 All set! Do you have any questions or would you like to continue with your enrollment?",
+      );
+
+      setShowChoiceButtons(true);
+    } else {
+      const question = inputValue.trim();
+      setChatData((prev) => ({ ...prev, question }));
+
+      posthog.capture("Contact", {
+        program,
+        cycle,
+        source: "guided_chat",
+        $set: { question },
+      });
 
       addMessage(
         "system",
-        "🎉 All set! We'll be in touch soon. If you have any questions, please reach out to us on WhatsApp.",
+        "🎉 Perfect! Tap below to send this to our enrollment assistant on WhatsApp.",
       );
+
+      setIsAskingQuestion(false);
     }
   };
 
+  const handleAskQuestion = () => {
+    setIsAskingQuestion(true);
+    setShowChoiceButtons(false);
+    setCurrentStep(3);
+    addMessage("system", INPUT_FIELDS[3]?.message ?? "");
+  };
+
   const getCurrentField = () => {
-    return INPUT_FIELDS[currentStep];
+    return isAskingQuestion ? INPUT_FIELDS[3] : INPUT_FIELDS[currentStep];
   };
 
   const isDone = messages.some(
-    (msg) => msg.sender === "system" && msg.message.includes("🎉 All set!"),
+    (msg) => msg.sender === "system" && msg.message.includes("🎉 Perfect!"),
   );
 
   return {
@@ -155,5 +194,7 @@ export function useGuidedChat({
     handleSendMessage,
     getCurrentField,
     isDone,
+    showChoiceButtons,
+    handleAskQuestion,
   };
 }
