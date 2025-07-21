@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
-import { Divider } from "@sovoli/ui/components/divider";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
   Drawer,
