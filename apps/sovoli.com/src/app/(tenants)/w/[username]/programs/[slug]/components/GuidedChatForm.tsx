@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input } from "@sovoli/ui/components/input";
 import { Button } from "@sovoli/ui/components/button";
-import { MessageSquareIcon, SendIcon } from "lucide-react";
+import { SendIcon } from "lucide-react";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { gradientBorderButton } from "~/components/GradientBorderButton";
 import { ChatMessage } from "./ChatMessage";
@@ -16,6 +16,7 @@ import {
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
 import posthog from "posthog-js";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 interface GuidedChatFormProps {
   whatsappNumber?: string;
@@ -33,32 +34,36 @@ export function GuidedChatForm({
   onOpenChange,
 }: GuidedChatFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [currentInput, setCurrentInput] = useState("592");
+  const previousIsOpenRef = useRef<boolean | undefined>(undefined);
 
-  const {
-    messages,
-    currentInput,
-    setCurrentInput,
-    inputType,
-    chatData,
-    handleSendMessage,
-    getCurrentPlaceholder,
-    isInputValid,
-    isDone,
-  } = useGuidedChat({ cycle, program });
+  const { messages, chatData, handleSendMessage, getCurrentField, isDone } =
+    useGuidedChat({ cycle, program });
+
+  const currentField = getCurrentField();
 
   // Track chat open/close events
   useEffect(() => {
-    if (isOpen) {
-      posthog.capture("ChatOpened", {
-        cycle,
-        program,
-      });
-    } else {
-      // Track when chat is closed
-      posthog.capture("ChatClosed", {
-        cycle,
-        program,
-      });
+    // Skip on initial mount
+    if (previousIsOpenRef.current === undefined) {
+      previousIsOpenRef.current = isOpen;
+      return;
+    }
+
+    // Only fire events when the state actually changes
+    if (previousIsOpenRef.current !== isOpen) {
+      if (isOpen) {
+        posthog.capture("ChatOpened", {
+          cycle,
+          program,
+        });
+      } else {
+        posthog.capture("ChatClosed", {
+          cycle,
+          program,
+        });
+      }
+      previousIsOpenRef.current = isOpen;
     }
   }, [isOpen, cycle, program]);
 
@@ -69,24 +74,37 @@ export function GuidedChatForm({
 
   // Custom send message handler that maintains focus
   const handleSendMessageWithFocus = () => {
-    handleSendMessage();
-    // Refocus the input after sending to keep keyboard open on mobile
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 100);
+    if (!currentField || !isInputValid()) return;
+
+    handleSendMessage(currentInput);
+    setCurrentInput("");
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
-  // Render the correct input based on inputType
+  // Validation function based on current field
+  const isInputValid = () => {
+    if (!currentInput.trim() || !currentField) return false;
+
+    const trimmedInput = currentInput.trim();
+    return trimmedInput.length >= currentField.validation.minLength;
+  };
+
+  // Render the correct input based on current field
   const renderInput = () => {
+    if (!currentField) return null;
+
     return (
       <Input
         ref={inputRef}
         fullWidth
         autoFocus
-        type={inputType === "phone" ? "tel" : "text"}
+        type={currentField.type}
         size="lg"
         variant="bordered"
-        placeholder={getCurrentPlaceholder()}
+        placeholder={currentField.placeholder}
         value={currentInput}
         onValueChange={setCurrentInput}
         onKeyDown={(e) => {
@@ -144,7 +162,7 @@ export function GuidedChatForm({
             </ModalBody>
             <ModalFooter>
               {/* Chat input bar */}
-              {!isDone && (
+              {!isDone && currentField && (
                 <div className="flex items-center gap-2 w-full">
                   <div className="flex-grow">{renderInput()}</div>
                   <Button
@@ -169,11 +187,11 @@ export function GuidedChatForm({
                     cycle,
                   }}
                   fullWidth
-                  startContent={<MessageSquareIcon size={16} />}
+                  startContent={<SiWhatsapp size={16} />}
                   className={gradientBorderButton()}
                   onPress={onClose}
                 >
-                  Send & Start Chat
+                  Start WhatsApp Chat
                 </Button>
               )}
             </ModalFooter>

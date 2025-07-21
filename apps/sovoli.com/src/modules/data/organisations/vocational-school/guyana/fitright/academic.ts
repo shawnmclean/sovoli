@@ -99,9 +99,9 @@ const FITRIGHT_BAG_WORKSHOP_PROGRAM: Program = {
     },
   ],
   cycles: [
-    createFitrightCycle(25, 6),
-    createFitrightCycle(26, 0),
-    createFitrightCycle(27, 0),
+    createFitrightCycle(25, 4),
+    createFitrightCycle(26, 2),
+    createFitrightCycle(27, 1),
   ],
 };
 
