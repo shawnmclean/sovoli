@@ -18,6 +18,7 @@ import { MessageSquareShareIcon } from "lucide-react";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import { Skeleton } from "@sovoli/ui/components/skeleton";
 import { GuidedChatForm } from "../GuidedChatForm";
+import { Input } from "@sovoli/ui/components/input";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -191,15 +192,15 @@ export function ProgramDetailMobileFooter({
                         {deadlineText}
                       </span>
                     </div>
-                    <Button
-                      variant="flat"
-                      color="default"
-                      className="font-medium"
-                    >
-                      Change
-                    </Button>
                   </div>
-
+                  <Input
+                    fullWidth
+                    autoFocus
+                    type="tel"
+                    size="lg"
+                    variant="bordered"
+                    placeholder="Enter your phone number"
+                  />
                   <div className="pt-4 flex justify-end">
                     <Button
                       variant="shadow"
