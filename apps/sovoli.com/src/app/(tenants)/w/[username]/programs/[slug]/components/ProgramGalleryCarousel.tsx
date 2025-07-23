@@ -1,6 +1,6 @@
 "use client";
 
-import type { Program } from "~/modules/academics/types";
+import type { Photo, Program } from "~/modules/academics/types";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
@@ -15,7 +15,7 @@ import {
   useDisclosure,
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { useState, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { ChevronLeftIcon } from "lucide-react";
@@ -31,7 +31,7 @@ function ProgramGalleryModal({
   onClose,
   initialIndex = 0,
 }: {
-  photos: { url: string }[];
+  photos: Photo[];
   isOpen: boolean;
   onClose: () => void;
   initialIndex?: number;
@@ -76,10 +76,11 @@ function ProgramGalleryModal({
               {photos.map((photo, index) => (
                 <CarouselItem key={index} className="basis-full pl-0 h-full">
                   <div className="w-full h-full relative flex items-center justify-center">
-                    <Image
-                      src={photo.url}
+                    <CldImage
+                      src={photo.publicId}
                       alt={`Program photo ${index + 1}`}
-                      fill
+                      width={photo.width}
+                      height={photo.height}
                       className="object-contain"
                       priority
                     />
@@ -136,8 +137,8 @@ export function ProgramGalleryCarousel({
           {photos.map((photo, index) => (
             <CarouselItem key={index} className="basis-full pl-0">
               <div className="w-full h-full aspect-square relative">
-                <Image
-                  src={photo.url}
+                <CldImage
+                  src={photo.publicId}
                   alt={`Program photo ${index + 1}`}
                   fill
                   className="object-cover cursor-pointer hover:opacity-90 transition-opacity"

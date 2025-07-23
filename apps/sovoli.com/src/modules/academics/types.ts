@@ -90,9 +90,16 @@ export interface Photo {
   caption?: string;
   alt?: string;
 
-  // TODO: for when we move the photos to cloudinary
+  // Cloudinary fields (auto-populated on upload)
+  assetId?: string; // Cloudinary asset ID
+  publicId: string; // Cloudinary public ID
   width?: number;
   height?: number;
+  format?: string; // webp, jpg, etc.
+  bytes?: number; // File size
+  version?: number; // Cloudinary version
+
+  uploadedAt?: string;
 }
 
 export type ProgramRequirement = AgeRequirement | DocumentRequirement;

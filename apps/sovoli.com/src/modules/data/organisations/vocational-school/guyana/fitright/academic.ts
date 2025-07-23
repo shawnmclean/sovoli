@@ -62,12 +62,7 @@ const FITRIGHT_BAG_WORKSHOP_PROGRAM: Program = {
   ],
   description:
     "A hands-on introduction to sewing for complete beginners. In just one day, you'll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
-  photos: [
-    {
-      category: "default",
-      url: "/orgs/vocational-training/guyana/fitright/photos/1.webp",
-    },
-  ],
+  photos: [],
   courses: [
     {
       id: "fr-beginner-course-1",

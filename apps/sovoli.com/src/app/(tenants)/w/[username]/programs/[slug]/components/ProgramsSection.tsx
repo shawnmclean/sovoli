@@ -9,9 +9,9 @@ import {
 } from "@sovoli/ui/components/carousel";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-import Image from "next/image";
 import { UserIcon } from "lucide-react";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
+import { CldImage } from "next-cloudinary";
 
 // Helper function to display age range
 const displayAgeRange = (ageRange?: {
@@ -78,9 +78,11 @@ export function ProgramsSection({
 
   return (
     <ProgramSectionsWrapper>
-      <div className="mb-4">
-        <h2 className="text-xl font-bold text-foreground">Other Programs</h2>
-        <p className="text-sm text-foreground-600">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-foreground mb-2">
+          Other Programs
+        </h2>
+        <p className="text-sm text-muted-foreground">
           Explore our other educational offerings
         </p>
       </div>
@@ -99,10 +101,7 @@ export function ProgramsSection({
                 program.name ??
                 program.standardProgramVersion?.program.name ??
                 "Program";
-              const programImage =
-                program.photos?.[0]?.url ??
-                program.standardProgramVersion?.program.image ??
-                "/orgs/defaults/programs/nursery.webp";
+              const programImage = program.photos?.[0];
 
               // Get age requirement for this program
               const ageReq =
@@ -112,25 +111,38 @@ export function ProgramsSection({
                 );
 
               return (
-                <CarouselItem key={program.slug} className="pl-4 basis-[220px]">
+                <CarouselItem key={program.slug} className="pl-4 basis-[280px]">
                   <Link href={`/programs/${program.slug}`}>
-                    <Card className="overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                      <div className="relative h-20 w-full">
-                        <Image
-                          src={programImage}
-                          alt={programName}
-                          fill
-                          className="object-cover"
-                        />
+                    <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card">
+                      <div className="relative h-32 w-full">
+                        {programImage ? (
+                          <>
+                            <CldImage
+                              src={programImage.publicId}
+                              alt={programName}
+                              width={programImage.width}
+                              height={programImage.height}
+                              className="object-cover w-full h-full"
+                            />
+                            {/* Gradient overlay for better text readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                          </>
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                            <div className="text-4xl text-muted-foreground">
+                              📚
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <CardBody className="p-3">
-                        <h3 className="font-semibold text-foreground text-xs line-clamp-1 mb-2">
+                      <CardBody className="p-4">
+                        <h3 className="font-semibold text-foreground text-sm line-clamp-2 mb-2">
                           {programName}
                         </h3>
                         {ageReq?.ageRange && (
-                          <div className="flex items-center gap-1 text-xs text-foreground-500">
-                            <UserIcon className="w-3 h-3 text-foreground-500" />
-                            {displayAgeRange(ageReq.ageRange)}
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <UserIcon className="w-3 h-3 flex-shrink-0" />
+                            <span>{displayAgeRange(ageReq.ageRange)}</span>
                           </div>
                         )}
                       </CardBody>

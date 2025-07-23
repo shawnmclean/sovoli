@@ -7,9 +7,9 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
 
 export interface ProgramCarouselProps {
   href: string;
@@ -56,10 +56,10 @@ export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
             <CarouselItem key={index} className="basis-full pl-0 h-full">
               <div className="w-full h-full aspect-square relative">
                 <Link href={href}>
-                  <Image
-                    src={photo.url}
-                    alt={`Program photo ${index + 1}`}
+                  <CldImage
+                    src={photo.publicId}
                     fill
+                    alt={`Program photo ${index + 1}`}
                     className="object-cover rounded-lg"
                   />
                 </Link>
