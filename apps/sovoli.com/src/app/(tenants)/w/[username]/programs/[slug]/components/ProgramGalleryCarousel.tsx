@@ -125,7 +125,7 @@ export function ProgramGalleryCarousel({
   }
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full max-w-full md:max-w-md mx-auto relative aspect-square">
       <Carousel
         opts={{
           align: "start",
