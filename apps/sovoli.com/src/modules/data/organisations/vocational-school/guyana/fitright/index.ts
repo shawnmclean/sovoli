@@ -17,6 +17,7 @@ export const FITRIGHT_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJMTbWJMjvr40RqnbyaycDRFw",
         contacts: [
           {
             type: "phone",
