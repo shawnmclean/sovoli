@@ -79,8 +79,9 @@ function ProgramGalleryModal({
                     <CldImage
                       src={photo.publicId}
                       alt={`Program photo ${index + 1}`}
-                      width={photo.width}
-                      height={photo.height}
+                      width={800}
+                      height={600}
+                      sizes="100vw"
                       className="object-contain"
                       priority
                     />
@@ -139,10 +140,13 @@ export function ProgramGalleryCarousel({
               <div className="w-full h-full aspect-square relative">
                 <CldImage
                   src={photo.publicId}
+                  priority={index === 0 || index === 1}
                   alt={`Program photo ${index + 1}`}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                   className="object-cover cursor-pointer hover:opacity-90 transition-opacity"
                   onClick={onOpen}
+                  quality={75}
                 />
               </div>
             </CarouselItem>
