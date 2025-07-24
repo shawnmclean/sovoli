@@ -3,6 +3,7 @@ import type {
   ProgramCycle,
   Program,
 } from "~/modules/academics/types";
+import { BAG_WORKSHOP_PHOTOS } from "./photos";
 
 // Helper function to create a cycle with a specific date
 const createFitrightCycle = (day: number, enrolled: number): ProgramCycle => ({
@@ -62,7 +63,7 @@ const FITRIGHT_BAG_WORKSHOP_PROGRAM: Program = {
   ],
   description:
     "A hands-on introduction to sewing for complete beginners. In just one day, you'll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
-  photos: [],
+  photos: BAG_WORKSHOP_PHOTOS,
   courses: [
     {
       id: "fr-beginner-course-1",
