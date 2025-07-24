@@ -145,7 +145,7 @@ export function ProgramGalleryCarousel({
                   width={448}
                   height={448}
                   crop="fill"
-                  sizes="(max-width: 400px) 200px, 600px"
+                  sizes="100vw"
                   quality="auto"
                   loading={index === 0 ? "eager" : "lazy"}
                   className="object-cover cursor-pointer hover:opacity-90 transition-opacity"
