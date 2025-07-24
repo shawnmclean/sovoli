@@ -137,18 +137,19 @@ export function ProgramGalleryCarousel({
         <CarouselContent className="-ml-0">
           {photos.map((photo, index) => (
             <CarouselItem key={index} className="basis-full pl-0">
-              <div className="w-full h-full aspect-square relative">
+              <div className="w-full max-w-md aspect-square mx-auto relative">
                 <CldImage
                   src={photo.publicId}
-                  priority={index === 0 || index === 1}
+                  priority={index === 0}
                   alt={`Program photo ${index + 1}`}
-                  aspectRatio="1:1"
-                  fill
+                  width={448}
+                  height={448}
                   crop="fill"
                   sizes="(max-width: 400px) 200px, 600px"
+                  quality="auto"
+                  loading={index === 0 ? "eager" : "lazy"}
                   className="object-cover cursor-pointer hover:opacity-90 transition-opacity"
                   onClick={onOpen}
-                  quality={75}
                 />
               </div>
             </CarouselItem>
