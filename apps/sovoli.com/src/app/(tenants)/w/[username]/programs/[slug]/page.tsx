@@ -17,7 +17,7 @@ import { CycleSection } from "./components/CycleSection";
 import { ProgramTestimonialsSection } from "./components/ProgramTestimonialsSection";
 import { RequirementsSection } from "./components/RequirementsSection";
 import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
-import { OrgSection } from "./components/OrgSection";
+import { OrgBadgeSection } from "./components/OrgBadgeSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
 
 const retreiveOrgInstanceWithProgram = async (
@@ -109,7 +109,7 @@ export default async function ProgramDetailsPage({
       <div className="container mx-auto max-w-7xl px-4 py-12 lg:py-16">
         <ProgramHeroSection orgInstance={orgInstance} program={program} />
 
-        <OrgSection orgInstance={orgInstance} />
+        <OrgBadgeSection orgInstance={orgInstance} />
 
         <ProgramHighlightsSection program={program} />
 

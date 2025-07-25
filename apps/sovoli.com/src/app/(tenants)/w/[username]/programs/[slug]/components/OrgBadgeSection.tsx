@@ -5,11 +5,11 @@ import { BadgeCheckIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
-export interface OrgSectionProps {
+export interface OrgBadgeSectionProps {
   orgInstance: OrgInstance;
 }
 
-export function OrgSection({ orgInstance }: OrgSectionProps) {
+export function OrgBadgeSection({ orgInstance }: OrgBadgeSectionProps) {
   const org = orgInstance.org;
 
   // Calculate score
