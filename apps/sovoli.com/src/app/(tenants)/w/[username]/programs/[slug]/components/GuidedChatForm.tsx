@@ -15,13 +15,18 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
-import posthog from "posthog-js";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import {
+  trackProgramAnalytics,
+  getProgramName,
+  getCycleLabel,
+} from "../lib/programAnalytics";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 
 interface GuidedChatFormProps {
   whatsappNumber?: string;
-  cycle?: string;
-  program?: string;
+  cycle?: ProgramCycle;
+  program?: Program;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
 }
@@ -45,7 +50,10 @@ export function GuidedChatForm({
     isDone,
     showChoiceButtons,
     handleAskQuestion,
-  } = useGuidedChat({ cycle, program });
+  } = useGuidedChat({
+    cycle,
+    program,
+  });
 
   const currentField = getCurrentField();
 
@@ -59,16 +67,10 @@ export function GuidedChatForm({
 
     // Only fire events when the state actually changes
     if (previousIsOpenRef.current !== isOpen) {
-      if (isOpen) {
-        posthog.capture("ChatOpened", {
-          cycle,
-          program,
-        });
-      } else {
-        posthog.capture("ChatClosed", {
-          cycle,
-          program,
-        });
+      if (isOpen && program) {
+        trackProgramAnalytics("ChatOpened", program, cycle);
+      } else if (program) {
+        trackProgramAnalytics("ChatClosed", program, cycle);
       }
       previousIsOpenRef.current = isOpen;
     }
@@ -76,7 +78,9 @@ export function GuidedChatForm({
 
   // Helper to generate the WhatsApp preview message
   const previewMessage = () => {
-    const baseMessage = `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${program ?? "Primary"}" for "${cycle ?? "2024-2025"}".`;
+    const programName = program ? getProgramName(program) : "Primary";
+    const cycleLabel = cycle ? getCycleLabel(cycle) : "2024-2025";
+    const baseMessage = `Hi, I'm ${chatData.firstName} ${chatData.lastName}. I'm interested in applying for "${programName}" for "${cycleLabel}".`;
 
     if (chatData.question) {
       return `${baseMessage} I have a question: ${chatData.question}.`;
@@ -207,12 +211,17 @@ export function GuidedChatForm({
                     message={previewMessage()}
                     event="Contact"
                     eventProperties={{
-                      program,
-                      cycle,
+                      program: program ? getProgramName(program) : undefined,
+                      cycle: cycle ? getCycleLabel(cycle) : undefined,
                     }}
                     fullWidth
                     className={gradientBorderButton()}
-                    onPress={onClose}
+                    onPress={() => {
+                      if (program) {
+                        trackProgramAnalytics("Contact", program, cycle);
+                      }
+                      onClose();
+                    }}
                   >
                     Continue
                   </Button>
@@ -225,13 +234,18 @@ export function GuidedChatForm({
                   message={previewMessage()}
                   event="Contact"
                   eventProperties={{
-                    program,
-                    cycle,
+                    program: program ? getProgramName(program) : undefined,
+                    cycle: cycle ? getCycleLabel(cycle) : undefined,
                   }}
                   fullWidth
                   startContent={<SiWhatsapp size={16} />}
                   className={gradientBorderButton()}
-                  onPress={onClose}
+                  onPress={() => {
+                    if (program) {
+                      trackProgramAnalytics("Contact", program, cycle);
+                    }
+                    onClose();
+                  }}
                 >
                   Start WhatsApp Chat
                 </Button>

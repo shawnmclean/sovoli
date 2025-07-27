@@ -1,5 +1,9 @@
-import posthog from "posthog-js";
 import { useState } from "react";
+import {
+  trackProgramAnalytics,
+  setPersonProperties,
+} from "../../lib/programAnalytics";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 
 interface ChatMessage {
   id: string;
@@ -69,8 +73,8 @@ export function useGuidedChat({
   program,
   cycle,
 }: {
-  program?: string;
-  cycle?: string;
+  program?: Program;
+  cycle?: ProgramCycle;
 }) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -117,12 +121,10 @@ export function useGuidedChat({
     if (currentField.name === "phone") {
       const phone = inputValue.trim();
       setChatData((prev) => ({ ...prev, phoneNumber: phone }));
-      posthog.capture("Lead", {
-        program,
-        cycle,
-        source: "guided_chat",
-        $set: { phone },
-      });
+
+      if (program) {
+        trackProgramAnalytics("Lead", program, cycle, { $set: { phone } });
+      }
 
       // Move to next step
       setCurrentStep(1);
@@ -131,7 +133,7 @@ export function useGuidedChat({
       const firstName = inputValue.trim();
       setChatData((prev) => ({ ...prev, firstName }));
 
-      posthog.setPersonProperties({
+      setPersonProperties({
         first_name: firstName,
         name: firstName,
       });
@@ -143,10 +145,11 @@ export function useGuidedChat({
       const lastName = inputValue.trim();
       setChatData((prev) => ({ ...prev, lastName }));
 
-      posthog.setPersonProperties({
+      setPersonProperties({
         last_name: lastName,
         name: `${chatData.firstName} ${lastName}`,
       });
+
       addMessage(
         "system",
         "🎉 All set! Do you have any questions or would you like to continue with your enrollment?",
@@ -157,12 +160,9 @@ export function useGuidedChat({
       const question = inputValue.trim();
       setChatData((prev) => ({ ...prev, question }));
 
-      posthog.capture("Contact", {
-        program,
-        cycle,
-        source: "guided_chat",
-        $set: { question },
-      });
+      if (program) {
+        trackProgramAnalytics("Contact", program, cycle);
+      }
 
       addMessage(
         "system",

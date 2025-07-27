@@ -225,8 +225,8 @@ export function ProgramDetailMobileFooter({
         whatsappNumber={whatsappNumber}
         isOpen={isContactOpen}
         onOpenChange={onContactOpenChange}
-        cycle={cycleLabel}
-        program={program.name}
+        cycle={selectedCycle}
+        program={program}
       />
     </>
   );
