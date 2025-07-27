@@ -20,6 +20,7 @@ export function ProgramTracking({
 
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "Program";
+  const programId = program.id;
   // Track initial load with defaults
   useEffect(() => {
     if (!defaultCycle) return;
@@ -30,10 +31,12 @@ export function ProgramTracking({
       "Academic Term";
 
     posthog.capture("ViewContent", {
-      program: programName,
+      content_name: programName,
+      content_type: "product",
+      content_ids: [programId],
       cycle: defaultCycleLabel,
     });
-  }, [defaultCycle, programName, posthog]);
+  }, [defaultCycle, programName, programId, posthog]);
 
   // Track when selections change from defaults
   useEffect(() => {
@@ -52,11 +55,13 @@ export function ProgramTracking({
 
     if (cycle !== defaultCycleLabel) {
       posthog.capture("ViewContent", {
-        program: programName,
-        cycle,
+        content_name: programName,
+        content_type: "product",
+        content_ids: [programId],
+        cycle: defaultCycleLabel,
       });
     }
-  }, [selectedCycle, defaultCycle, programName, posthog]);
+  }, [selectedCycle, defaultCycle, programName, programId, posthog]);
 
   return null; // This component doesn't render anything
 }
