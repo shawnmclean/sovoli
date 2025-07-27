@@ -29,6 +29,11 @@ export interface OrgAcademicCycle {
 
 // #region programs
 
+export interface ProgramGroup {
+  id: "nursery" | "primary" | "secondary";
+  label: string;
+}
+
 type PreNurseryProgramId = "gy-pre-nursery";
 type NurseryProgramId = "gy-nursery-year-1" | "gy-nursery-year-2";
 type PrimaryProgramId =
@@ -53,8 +58,10 @@ export type StandardProgramId =
 export type AcademicAuthority = "MoE-GY";
 export interface StandardProgram {
   id: StandardProgramId;
-  name: string; // "Nursery"
+  name: string;
   description: string;
+
+  group?: ProgramGroup;
 
   image?: string;
 
@@ -168,17 +175,6 @@ export interface ProgramCycle {
 
 // #endregion
 
-export interface ProgramGroup {
-  id: string;
-  label: string;
-  programs: [
-    {
-      program: Program;
-      order: number;
-    },
-  ];
-}
-
 export type ProgramHighlightIcon =
   | "graduation-cap" // Strong Foundations, Academic
   | "users" // Small Class Sizes
@@ -218,6 +214,7 @@ export interface Program {
   activities?: Activity[];
 
   standardProgramVersion?: StandardProgramVersion;
+  group?: ProgramGroup;
 
   tagline?: string;
   outcome?: string;

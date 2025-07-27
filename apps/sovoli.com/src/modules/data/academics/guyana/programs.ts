@@ -4,7 +4,23 @@ import type {
   StandardProgram,
   StandardProgramVersion,
   Course,
+  ProgramGroup,
 } from "~/modules/academics/types";
+
+export const GY_PROGRAM_GROUP_NURSERY: ProgramGroup = {
+  id: "nursery",
+  label: "Nursery",
+};
+
+export const GY_PROGRAM_GROUP_PRIMARY: ProgramGroup = {
+  id: "primary",
+  label: "Primary",
+};
+
+export const GY_PROGRAM_GROUP_SECONDARY: ProgramGroup = {
+  id: "secondary",
+  label: "Secondary",
+};
 
 // #region nursery
 
@@ -16,6 +32,7 @@ export const GY_NURSERY_YEAR_1_PROGRAM: StandardProgram = {
   country: "GY",
   authority: "MoE-GY",
   image: "/orgs/defaults/programs/nursery.webp",
+  group: GY_PROGRAM_GROUP_NURSERY,
 };
 
 export const GY_NURSERY_YEAR_1_V1: StandardProgramVersion = {
@@ -44,6 +61,7 @@ export const GY_NURSERY_YEAR_2_PROGRAM: StandardProgram = {
   country: "GY",
   authority: "MoE-GY",
   image: "/orgs/defaults/programs/nursery.webp",
+  group: GY_PROGRAM_GROUP_NURSERY,
 };
 
 export const GY_NURSERY_YEAR_2_V1: StandardProgramVersion = {
@@ -99,6 +117,7 @@ export const GY_PRIMARY_GRADE_1_PROGRAM: StandardProgram = {
   country: "GY",
   authority: "MoE-GY",
   image: "/orgs/defaults/programs/primary.webp",
+  group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
 export const GY_PRIMARY_GRADE_1_V1: StandardProgramVersion = {
@@ -123,6 +142,7 @@ export const GY_PRIMARY_GRADE_2_PROGRAM: StandardProgram = {
   country: "GY",
   authority: "MoE-GY",
   image: "/orgs/defaults/programs/primary.webp",
+  group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
 export const GY_PRIMARY_GRADE_2_V1: StandardProgramVersion = {
@@ -147,6 +167,7 @@ export const GY_PRIMARY_GRADE_3_PROGRAM: StandardProgram = {
   country: "GY",
   authority: "MoE-GY",
   image: "/orgs/defaults/programs/primary.webp",
+  group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
 export const GY_PRIMARY_GRADE_3_V1: StandardProgramVersion = {
@@ -171,6 +192,7 @@ export const GY_PRIMARY_GRADE_4_PROGRAM: StandardProgram = {
   country: "GY",
   authority: "MoE-GY",
   image: "/orgs/defaults/programs/primary.webp",
+  group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
 export const GY_PRIMARY_GRADE_4_V1: StandardProgramVersion = {
@@ -195,6 +217,7 @@ export const GY_PRIMARY_GRADE_5_PROGRAM: StandardProgram = {
   country: "GY",
   authority: "MoE-GY",
   image: "/orgs/defaults/programs/primary.webp",
+  group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
 export const GY_PRIMARY_GRADE_5_V1: StandardProgramVersion = {
@@ -219,6 +242,7 @@ export const GY_PRIMARY_GRADE_6_PROGRAM: StandardProgram = {
   country: "GY",
   authority: "MoE-GY",
   image: "/orgs/defaults/programs/primary.webp",
+  group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
 export const GY_PRIMARY_GRADE_6_V1: StandardProgramVersion = {
