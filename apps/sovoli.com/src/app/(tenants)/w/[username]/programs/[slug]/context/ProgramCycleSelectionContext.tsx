@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import type { ProgramSelectionState } from "./types";
 
@@ -12,17 +12,25 @@ const ProgramSelectionContext = createContext<ProgramSelectionState | null>(
 interface ProgramCycleSelectionProviderProps {
   children: ReactNode;
   program: Program;
+  defaultCycle?: ProgramCycle;
 }
 
 export function ProgramCycleSelectionProvider({
   children,
   program,
+  defaultCycle,
 }: ProgramCycleSelectionProviderProps) {
-  const [selectedCycle, setSelectedCycle] = useState<ProgramCycle | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [selectedCycle, setSelectedCycle] = useState<ProgramCycle | null>(
+    defaultCycle ?? null,
+  );
+  const [isLoading, setIsLoading] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(!!defaultCycle);
+  const isInitializing = useRef(true);
 
-  // Set default cycle on mount or when cycles change
+  // Set default cycle on mount if not provided via props
   useEffect(() => {
+    if (isInitialized) return; // Already initialized with defaultCycle
+
     if (program.cycles && program.cycles.length > 0 && !selectedCycle) {
       // Find current cycle first, then next cycle, then first available
       const currentCycle = program.cycles.find((cycle) => {
@@ -47,20 +55,42 @@ export function ProgramCycleSelectionProvider({
         return startDate && new Date(startDate) > new Date();
       });
 
-      const defaultCycle = currentCycle ?? nextCycle ?? program.cycles[0];
-      if (defaultCycle) {
-        setSelectedCycle(defaultCycle);
+      const fallbackCycle = currentCycle ?? nextCycle ?? program.cycles[0];
+      if (fallbackCycle) {
+        setSelectedCycle(fallbackCycle);
       }
-      setIsLoading(false);
+      setIsInitialized(true);
     } else if (program.cycles && program.cycles.length === 0) {
-      setIsLoading(false);
+      setIsInitialized(true);
     }
-  }, [program.cycles, selectedCycle]);
+  }, [program.cycles, selectedCycle, isInitialized]);
+
+  // Mark initialization as complete after a brief delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      isInitializing.current = false;
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Wrapper for setSelectedCycle that shows loading during user-initiated changes
+  const setSelectedCycleWithLoading = (cycle: ProgramCycle | null) => {
+    if (cycle !== selectedCycle) {
+      // Only show loading if this is not during initialization
+      if (!isInitializing.current) {
+        setIsLoading(true);
+        // Clear loading after a brief delay to show the transition
+        setTimeout(() => setIsLoading(false), 300);
+      }
+      setSelectedCycle(cycle);
+    }
+  };
 
   const value: ProgramSelectionState = {
     selectedCycle,
-    setSelectedCycle,
+    setSelectedCycle: setSelectedCycleWithLoading,
     isLoading,
+    isInitialized,
   };
 
   return (

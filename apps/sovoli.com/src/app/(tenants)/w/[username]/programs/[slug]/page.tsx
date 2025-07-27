@@ -101,7 +101,10 @@ export default async function ProgramDetailsPage({
   const defaultTeachers = defaultCycle?.teachers ?? null;
 
   return (
-    <ProgramCycleSelectionProvider program={program}>
+    <ProgramCycleSelectionProvider
+      program={program}
+      defaultCycle={defaultCycle}
+    >
       <ProgramTracking program={program} defaultCycle={defaultCycle} />
 
       <ProgramGalleryCarousel program={program} />

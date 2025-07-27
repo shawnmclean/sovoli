@@ -13,12 +13,14 @@ interface PricingSectionProps {
 }
 
 export function PricingSection({ defaultCycle }: PricingSectionProps) {
-  const { selectedCycle, isLoading } = useProgramCycleSelection();
+  const { selectedCycle, isLoading, isInitialized } =
+    useProgramCycleSelection();
 
   // Use selected cycle if available, otherwise fall back to default cycle
   const cycleToUse = selectedCycle ?? defaultCycle;
 
-  if (isLoading || !cycleToUse) {
+  // Only show loading during user-initiated changes, not during initial render
+  if ((isLoading && isInitialized) || !cycleToUse) {
     return null;
   }
 

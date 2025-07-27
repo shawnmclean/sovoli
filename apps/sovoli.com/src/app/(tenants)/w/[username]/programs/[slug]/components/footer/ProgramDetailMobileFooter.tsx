@@ -45,7 +45,8 @@ export function ProgramDetailMobileFooter({
     onOpen: onContactOpen,
     onOpenChange: onContactOpenChange,
   } = useDisclosure();
-  const { selectedCycle, isLoading } = useProgramCycleSelection();
+  const { selectedCycle, isLoading, isInitialized } =
+    useProgramCycleSelection();
 
   const whatsappNumber = orgInstance.org.locations
     .find((l) => l.isPrimary)
@@ -64,7 +65,7 @@ export function ProgramDetailMobileFooter({
       <>
         <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
           <div className="flex w-full items-center justify-between py-3 gap-4">
-            <Skeleton isLoaded={!isLoading}>
+            <Skeleton isLoaded={!(isLoading && isInitialized)}>
               <div className="flex flex-1 items-center">Select a cycle</div>
             </Skeleton>
             <div className="flex-shrink-0">
@@ -113,7 +114,7 @@ export function ProgramDetailMobileFooter({
         <div className="flex w-full items-center justify-between py-3 gap-4">
           {/* Left side - Program info badge */}
           <div className="flex flex-1 items-center">
-            <Skeleton isLoaded={!isLoading}>
+            <Skeleton isLoaded={!(isLoading && isInitialized)}>
               <Button
                 as={Link}
                 variant="light"

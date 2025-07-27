@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import type { RadioProps } from "@sovoli/ui/components/radio";
 import { RadioGroup, Radio } from "@sovoli/ui/components/radio";
 import { CalendarIcon } from "lucide-react";
@@ -39,8 +39,7 @@ const CycleRadio = ({
 };
 
 export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
-  const [selectedValue, setSelectedValue] = useState<string>("");
-  const { setSelectedCycle, isLoading } = useProgramCycleSelection();
+  const { selectedCycle, setSelectedCycle } = useProgramCycleSelection();
 
   // Set default cycle for SSR and initial selection
   useEffect(() => {
@@ -76,14 +75,13 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
       defaultCycleToUse = currentCycle ?? nextCycle ?? program.cycles[0];
     }
 
-    if (defaultCycleToUse) {
-      setSelectedValue(defaultCycleToUse.id);
+    if (defaultCycleToUse && !selectedCycle) {
+      // Set the cycle in context without triggering loading state
       setSelectedCycle(defaultCycleToUse);
     }
-  }, [program.cycles, defaultCycle, setSelectedCycle]);
+  }, [program.cycles, defaultCycle, setSelectedCycle, selectedCycle]);
 
   const handleSelectionChange = (value: string) => {
-    setSelectedValue(value);
     const cycle = program.cycles?.find((c) => c.id === value);
     if (cycle) {
       setSelectedCycle(cycle);
@@ -95,29 +93,6 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
   }
 
   const cycles = program.cycles;
-
-  // Show loading state while context is initializing
-  if (isLoading) {
-    return (
-      <ProgramSectionsWrapper>
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-            <CalendarIcon className="h-6 w-6 text-primary" />
-            Your Calendar
-          </h2>
-          <div className="space-y-4">
-            <div className="rounded-xl border border-default-200 bg-default-50 p-4">
-              <div className="animate-pulse">
-                <div className="h-4 bg-default-200 rounded mb-2"></div>
-                <div className="h-3 bg-default-200 rounded mb-1"></div>
-                <div className="h-3 bg-default-200 rounded"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ProgramSectionsWrapper>
-    );
-  }
 
   // If there's only one cycle, show it without radio selection
   if (cycles.length === 1 && cycles[0]) {
@@ -205,7 +180,7 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
         </h2>
         <div className="space-y-4">
           <RadioGroup
-            value={selectedValue}
+            value={selectedCycle?.id ?? ""}
             onValueChange={handleSelectionChange}
             classNames={{
               wrapper: "space-y-3",
