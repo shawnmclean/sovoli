@@ -32,13 +32,18 @@ interface ProgramDetailsPageProps {
   params: Promise<{ username: string; slug: string }>;
 }
 
-// Helper function to get current date
-const getCurrentDate = () => new Date();
+// Helper function to get current date (start of day in local timezone)
+const getCurrentDate = () => {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+};
 
-// Helper function to check if date is in the future
+// Helper function to check if date is in the future (inclusive of today)
 const isDateInFuture = (dateString: string) => {
   const date = parseISO(dateString);
-  return date > getCurrentDate();
+  const currentDate = getCurrentDate();
+  // Consider dates starting from today as "future" for cycle selection
+  return date >= currentDate;
 };
 
 // Helper function to get cycle status
