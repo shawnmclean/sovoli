@@ -112,7 +112,7 @@ export const trackProgramAnalytics = (
   const cycleLabel = analyticsData.cycleLabel;
 
   posthog.capture(event, {
-    content_category: analyticsData.program.group?.label ?? "Program",
+    content_category: analyticsData.program.group?.name ?? "Program",
     content_name: `${programName} - ${cycleLabel}`,
     content_type: "product",
     content_ids: [analyticsData.cycle?.id],
