@@ -10,7 +10,7 @@ const retreiveOrgInstanceWithProgram = async (
   slug: string,
 ) => {
   const result = await getOrgInstanceWithProgram(username, slug);
-  if (!result) return notFound();
+  if (!result?.program && !result?.group) return notFound();
   return result;
 };
 
@@ -26,13 +26,18 @@ export async function generateMetadata({ params }: Props) {
       websiteModule: { website },
     },
     program,
+    group,
   } = await retreiveOrgInstanceWithProgram(username, slug);
 
   const programName =
-    program.name ?? program.standardProgramVersion?.program.name ?? "";
+    program?.name ??
+    program?.standardProgramVersion?.program.name ??
+    group?.name ??
+    "";
   const programDescription =
-    program.description ??
-    program.standardProgramVersion?.program.description ??
+    program?.description ??
+    program?.standardProgramVersion?.program.description ??
+    group?.description ??
     "";
 
   return {
@@ -45,8 +50,10 @@ export async function generateMetadata({ params }: Props) {
       images: [
         {
           url:
-            program.photos?.[0]?.url ??
-            program.standardProgramVersion?.program.image ??
+            program?.photos?.[0]?.url ??
+            program?.standardProgramVersion?.program.image ??
+            group?.programs?.[0]?.photos?.[0]?.url ??
+            group?.programs?.[0]?.standardProgramVersion?.program.image ??
             "",
           width: 1200,
           height: 630,
@@ -59,14 +66,18 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function Layout({ children, params }: Props) {
   const { username, slug } = await params;
-  const { orgInstance, program } = await retreiveOrgInstanceWithProgram(
+  const { orgInstance, program, group } = await retreiveOrgInstanceWithProgram(
     username,
     slug,
   );
 
   return (
     <div className="flex min-h-screen flex-col">
-      <ProgramDetailNavbar orgInstance={orgInstance} program={program} />
+      <ProgramDetailNavbar
+        orgInstance={orgInstance}
+        program={program}
+        group={group}
+      />
       <Alert
         className="hidden md:flex"
         variant="flat"

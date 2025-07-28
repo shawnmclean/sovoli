@@ -31,7 +31,11 @@ export interface OrgAcademicCycle {
 
 export interface ProgramGroup {
   id: "nursery" | "primary" | "secondary";
-  label: string;
+  slug: string;
+  name: string;
+  description?: string;
+
+  programs?: Program[];
 }
 
 type PreNurseryProgramId = "gy-pre-nursery";

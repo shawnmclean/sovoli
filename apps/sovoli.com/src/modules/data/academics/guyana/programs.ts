@@ -9,17 +9,23 @@ import type {
 
 export const GY_PROGRAM_GROUP_NURSERY: ProgramGroup = {
   id: "nursery",
-  label: "Nursery",
+  slug: "nursery",
+  name: "Nursery",
+  description: "Nursery programs under the Ministry of Education, Guyana",
 };
 
 export const GY_PROGRAM_GROUP_PRIMARY: ProgramGroup = {
   id: "primary",
-  label: "Primary",
+  slug: "primary",
+  name: "Primary",
+  description: "Primary programs under the Ministry of Education, Guyana",
 };
 
 export const GY_PROGRAM_GROUP_SECONDARY: ProgramGroup = {
   id: "secondary",
-  label: "Secondary",
+  slug: "secondary",
+  name: "Secondary",
+  description: "Secondary programs under the Ministry of Education, Guyana",
 };
 
 // #region nursery

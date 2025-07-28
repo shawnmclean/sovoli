@@ -8,19 +8,24 @@ import {
 import { Button } from "@sovoli/ui/components/button";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
-import type { Program } from "~/modules/academics/types";
+import type { Program, ProgramGroup } from "~/modules/academics/types";
 
 export interface ProgramDetailNavbarProps {
   orgInstance: OrgInstance;
-  program: Program;
+  program?: Program;
+  group?: ProgramGroup;
 }
 
 export function ProgramDetailNavbar({
   orgInstance,
   program,
+  group,
 }: ProgramDetailNavbarProps) {
   const programName =
-    program.name ?? program.standardProgramVersion?.program.name ?? "";
+    program?.name ??
+    program?.standardProgramVersion?.program.name ??
+    group?.name ??
+    "";
 
   return (
     <Navbar maxWidth="full" position="sticky">

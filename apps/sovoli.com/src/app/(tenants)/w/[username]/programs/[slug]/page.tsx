@@ -19,13 +19,14 @@ import { RequirementsSection } from "./components/RequirementsSection";
 import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
 import { OrgBadgeSection } from "./components/OrgBadgeSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
+import { ProgramCard } from "../../(main-layout)/programs/components/ProgramCard";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
   slug: string,
 ) => {
   const result = await getOrgInstanceWithProgram(username, slug);
-  if (!result) return notFound();
+  if (!result?.program && !result?.group) return notFound();
   return result;
 };
 interface ProgramDetailsPageProps {
@@ -62,87 +63,109 @@ export default async function ProgramDetailsPage({
 }: ProgramDetailsPageProps) {
   const { username, slug } = await params;
 
-  const { orgInstance, program } = await retreiveOrgInstanceWithProgram(
+  const { orgInstance, program, group } = await retreiveOrgInstanceWithProgram(
     username,
     slug,
   );
+  if (program) {
+    // Get all future cycles (including next)
+    const futureCycles = program.cycles
+      ?.filter((cycle) => {
+        const startDate =
+          cycle.academicCycle.startDate ??
+          cycle.academicCycle.globalCycle?.startDate;
+        return startDate && isDateInFuture(startDate);
+      })
+      .sort((a, b) => {
+        const aStart =
+          a.academicCycle.startDate ??
+          a.academicCycle.globalCycle?.startDate ??
+          "";
+        const bStart =
+          b.academicCycle.startDate ??
+          b.academicCycle.globalCycle?.startDate ??
+          "";
+        return parseISO(aStart).getTime() - parseISO(bStart).getTime();
+      });
 
-  // Get all future cycles (including next)
-  const futureCycles = program.cycles
-    ?.filter((cycle) => {
+    // Get the next upcoming cycle (first future cycle)
+    const nextCycle = futureCycles?.[0];
+
+    // Get the current cycle
+    const currentCycle = program.cycles?.find((cycle) => {
       const startDate =
         cycle.academicCycle.startDate ??
         cycle.academicCycle.globalCycle?.startDate;
-      return startDate && isDateInFuture(startDate);
-    })
-    .sort((a, b) => {
-      const aStart =
-        a.academicCycle.startDate ??
-        a.academicCycle.globalCycle?.startDate ??
-        "";
-      const bStart =
-        b.academicCycle.startDate ??
-        b.academicCycle.globalCycle?.startDate ??
-        "";
-      return parseISO(aStart).getTime() - parseISO(bStart).getTime();
+      const endDate =
+        cycle.academicCycle.endDate ?? cycle.academicCycle.globalCycle?.endDate;
+      if (!startDate || !endDate) return false;
+      return getCycleStatus(startDate, endDate) === "current";
     });
 
-  // Get the next upcoming cycle (first future cycle)
-  const nextCycle = futureCycles?.[0];
+    // Get the default teacher for SSR
+    const defaultCycle = currentCycle ?? nextCycle;
+    const defaultTeachers = defaultCycle?.teachers ?? null;
 
-  // Get the current cycle
-  const currentCycle = program.cycles?.find((cycle) => {
-    const startDate =
-      cycle.academicCycle.startDate ??
-      cycle.academicCycle.globalCycle?.startDate;
-    const endDate =
-      cycle.academicCycle.endDate ?? cycle.academicCycle.globalCycle?.endDate;
-    if (!startDate || !endDate) return false;
-    return getCycleStatus(startDate, endDate) === "current";
-  });
+    return (
+      <ProgramCycleSelectionProvider
+        program={program}
+        defaultCycle={defaultCycle}
+      >
+        <ProgramTracking program={program} defaultCycle={defaultCycle} />
 
-  // Get the default teacher for SSR
-  const defaultCycle = currentCycle ?? nextCycle;
-  const defaultTeachers = defaultCycle?.teachers ?? null;
+        <ProgramGalleryCarousel program={program} />
 
-  return (
-    <ProgramCycleSelectionProvider
-      program={program}
-      defaultCycle={defaultCycle}
-    >
-      <ProgramTracking program={program} defaultCycle={defaultCycle} />
+        <div className="container mx-auto max-w-7xl px-4 py-12 lg:py-16">
+          <ProgramHeroSection orgInstance={orgInstance} program={program} />
 
-      <ProgramGalleryCarousel program={program} />
+          <OrgBadgeSection orgInstance={orgInstance} />
 
-      <div className="container mx-auto max-w-7xl px-4 py-12 lg:py-16">
-        <ProgramHeroSection orgInstance={orgInstance} program={program} />
+          <ProgramHighlightsSection program={program} />
 
-        <OrgBadgeSection orgInstance={orgInstance} />
+          <ProgramDescriptionSection program={program} />
 
-        <ProgramHighlightsSection program={program} />
+          <CycleSection program={program} defaultCycle={defaultCycle} />
 
-        <ProgramDescriptionSection program={program} />
+          <CurriculumSection program={program} />
 
-        <CycleSection program={program} defaultCycle={defaultCycle} />
+          <TeachersSection defaultTeachers={defaultTeachers} />
 
-        <CurriculumSection program={program} />
+          <RequirementsSection program={program} />
 
-        <TeachersSection defaultTeachers={defaultTeachers} />
+          <LocationFeaturesSection orgInstance={orgInstance} />
 
-        <RequirementsSection program={program} />
+          <LocationSection orgInstance={orgInstance} program={program} />
 
-        <LocationFeaturesSection orgInstance={orgInstance} />
+          <ProgramTestimonialsSection testimonials={program.testimonials} />
 
-        <LocationSection orgInstance={orgInstance} program={program} />
+          <PricingSection defaultCycle={currentCycle ?? nextCycle} />
 
-        <ProgramTestimonialsSection testimonials={program.testimonials} />
+          <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
+        </div>
 
-        <PricingSection defaultCycle={currentCycle ?? nextCycle} />
+        <ProgramDetailMobileFooter
+          orgInstance={orgInstance}
+          program={program}
+        />
+      </ProgramCycleSelectionProvider>
+    );
+  }
 
-        <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
+  if (group) {
+    return (
+      <div>
+        <h1>{group.name}</h1>
+        <p>{group.description}</p>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {group.programs?.map((program) => (
+            <ProgramCard
+              key={program.id}
+              program={program}
+              orgInstance={orgInstance}
+            />
+          ))}
+        </div>
       </div>
-
-      <ProgramDetailMobileFooter orgInstance={orgInstance} program={program} />
-    </ProgramCycleSelectionProvider>
-  );
+    );
+  }
 }
