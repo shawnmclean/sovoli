@@ -202,6 +202,7 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
   isPopular: true,
   cycles: [MAGY_NURSERY_YEAR_1_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,
+  activities: MAGY_NURSERY_DEPT_ACTIVITIES,
 };
 
 export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
@@ -217,6 +218,7 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
   isPopular: true,
   cycles: [MAGY_NURSERY_YEAR_2_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,
+  activities: MAGY_NURSERY_DEPT_ACTIVITIES,
 };
 
 export const primaryProgramHighlights: ProgramHighlight[] = [
