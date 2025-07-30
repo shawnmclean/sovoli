@@ -49,9 +49,10 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
   }, [program]);
 
   // Show first 5 of each
-  const firstFiveSubjects = subjects.slice(0, 5);
-  const firstFiveActivities = activities.slice(0, 5);
-  const hasMoreActivities = activities.length > 5;
+  const firstFiveSubjects = subjects.slice(0, 6);
+  const firstFiveActivities = activities.slice(0, 6);
+  const hasMoreSubjects = subjects.length > 6;
+  const hasMoreActivities = activities.length > 6;
 
   if (subjects.length === 0 && activities.length === 0) {
     return null;
@@ -85,6 +86,11 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                       {subject}
                     </Chip>
                   ))}
+                  {hasMoreSubjects && (
+                    <Chip color="secondary" variant="flat" size="sm">
+                      +{subjects.length - 6} more
+                    </Chip>
+                  )}
                 </div>
                 <Button
                   variant="flat"
@@ -109,6 +115,11 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                       {activity.title}
                     </Chip>
                   ))}
+                  {hasMoreActivities && (
+                    <Chip color="primary" variant="flat" size="sm">
+                      +{activities.length - 6} more
+                    </Chip>
+                  )}
                 </div>
                 {hasMoreActivities && (
                   <Button
