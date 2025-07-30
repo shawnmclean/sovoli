@@ -49,8 +49,8 @@ export const GY_NURSERY_YEAR_1_V1: StandardProgramVersion = {
   requirements: [
     {
       type: "age",
-      description: "Child must be 3–5 years old by September 1st",
-      ageRange: { minAgeYears: 3, maxAgeYears: 5 },
+      description: "Child must be 3 years 9 months years old by September 1st",
+      ageRange: { minAgeYears: 3, maxAgeYears: 4 },
     },
     {
       type: "document",
@@ -78,8 +78,8 @@ export const GY_NURSERY_YEAR_2_V1: StandardProgramVersion = {
   requirements: [
     {
       type: "age",
-      description: "Child must be 3–5 years old by September 1st",
-      ageRange: { minAgeYears: 3, maxAgeYears: 5 },
+      description: "Child must be 4 years 9 months old by September 1st",
+      ageRange: { minAgeYears: 4, maxAgeYears: 5 },
     },
     {
       type: "document",

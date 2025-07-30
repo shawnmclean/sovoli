@@ -3,7 +3,12 @@ import {
   GY_PRIMARY_GRADE_1_V1,
   GY_NURSERY_YEAR_1_V1,
 } from "~/modules/data/academics/guyana/programs";
-import { NURSERY_PHOTOS, PRE_NURSERY_PHOTOS, PRIMARY_PHOTOS } from "../photos";
+import {
+  NURSERY_YEAR_1_PHOTOS,
+  NURSERY_YEAR_2_PHOTOS,
+  PRE_NURSERY_PHOTOS,
+  PRIMARY_PHOTOS,
+} from "../photos";
 import type {
   Activity,
   Program,
@@ -193,7 +198,7 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
   description: "Engaging curriculum fostering critical thinking and creativity",
   standardProgramVersion: GY_NURSERY_YEAR_1_V1,
 
-  photos: NURSERY_PHOTOS,
+  photos: NURSERY_YEAR_1_PHOTOS,
   isPopular: true,
   cycles: [MAGY_NURSERY_YEAR_1_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,
@@ -208,7 +213,7 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
   outcome: "Early Literacy & Numeracy",
   description: "Engaging curriculum fostering critical thinking and creativity",
   standardProgramVersion: GY_NURSERY_YEAR_2_V1,
-  photos: NURSERY_PHOTOS,
+  photos: NURSERY_YEAR_2_PHOTOS,
   isPopular: true,
   cycles: [MAGY_NURSERY_YEAR_2_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,
