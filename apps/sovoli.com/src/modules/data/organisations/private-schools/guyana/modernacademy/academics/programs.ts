@@ -346,6 +346,192 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
   cycles: [MAGY_NURSERY_YEAR_2_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,
   activities: MAGY_NURSERY_DEPT_ACTIVITIES,
+  courses: [
+    {
+      id: "magy-nursery2-phonics",
+      subject: { id: "language-phonics", name: "Phonics" },
+      title: "Phonics and Blending",
+      units: [
+        {
+          title: "Blends and Digraphs",
+          topics: ["sh, ch, th sounds", "Blending simple words", "Sight words"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-reading",
+      subject: { id: "language-reading", name: "Reading" },
+      title: "Reading and Comprehension",
+      units: [
+        {
+          title: "Short Stories and Sentences",
+          topics: [
+            "Reading aloud",
+            "Picture comprehension",
+            "Word recognition",
+          ],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-poetry",
+      subject: { id: "language-poetry", name: "Poetry" },
+      title: "Poetry and Rhymes",
+      units: [
+        {
+          title: "Memorization and Recital",
+          topics: ["Simple poems", "Action rhymes", "Reciting with expression"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-grammar",
+      subject: { id: "language-grammar", name: "Grammar" },
+      title: "Basic Grammar",
+      units: [
+        {
+          title: "Sentence Building",
+          topics: ["Nouns and verbs", "Pronouns", "Simple sentence rules"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-spelling",
+      subject: { id: "language-spelling", name: "Spelling" },
+      title: "Spelling and Word Lists",
+      units: [
+        {
+          title: "Weekly Spelling Practice",
+          topics: ["Word families", "High-frequency words"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-math",
+      subject: { id: "numeracy", name: "Mathematics" },
+      title: "Numbers and Early Operations",
+      units: [
+        {
+          title: "Addition and Subtraction",
+          topics: [
+            "Numbers 1–20",
+            "Counting by 2s and 5s",
+            "Shapes and patterns",
+          ],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-socialstudies",
+      subject: { id: "social-studies", name: "Social Studies" },
+      title: "Understanding My World",
+      units: [
+        {
+          title: "Community and Culture",
+          topics: ["Local traditions", "People who help us", "Festivals"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-science",
+      subject: { id: "early-science", name: "Science" },
+      title: "Exploring Science",
+      units: [
+        {
+          title: "Basic Experiments",
+          topics: ["States of matter", "Seasons", "Animal groups"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-writing",
+      subject: { id: "language-writing", name: "Writing" },
+      title: "Creative and Structured Writing",
+      units: [
+        {
+          title: "Sentence Formation",
+          topics: ["Writing simple stories", "Describing pictures"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-art",
+      subject: { id: "creative-art", name: "Art" },
+      title: "Art and Drawing",
+      units: [
+        {
+          title: "Creative Projects",
+          topics: ["Sketching", "Color blending", "Free expression"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-numeracy",
+      subject: { id: "numeracy-awareness", name: "Numeracy" },
+      title: "Practical Numeracy",
+      units: [
+        {
+          title: "Everyday Numbers",
+          topics: ["Counting money", "Simple measurement"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-literacy",
+      subject: { id: "language-literacy", name: "Literacy" },
+      title: "Language and Vocabulary",
+      units: [
+        {
+          title: "Building Vocabulary",
+          topics: ["Synonyms", "Opposites", "New words"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-discussion",
+      subject: { id: "social-communication", name: "Class Discussion" },
+      title: "Interactive Class Discussion",
+      units: [
+        {
+          title: "Group Conversations",
+          topics: ["Show and tell", "Answering questions", "Sharing ideas"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-storytime",
+      subject: { id: "language-oral", name: "Story Time" },
+      title: "Listening and Retelling",
+      units: [
+        {
+          title: "Comprehension Through Stories",
+          topics: ["Moral stories", "Sequencing events", "Character recall"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-colouring",
+      subject: { id: "visual-art", name: "Colouring" },
+      title: "Colouring Skills",
+      units: [
+        {
+          title: "Advanced Colouring",
+          topics: ["Shading", "Pattern coloring", "Creative color use"],
+        },
+      ],
+    },
+    {
+      id: "magy-nursery2-craft",
+      subject: { id: "creative-craft", name: "Art and Craft" },
+      title: "Craft and Hands-On Projects",
+      units: [
+        {
+          title: "Advanced Craft",
+          topics: ["Origami basics", "Clay modeling", "Holiday crafts"],
+        },
+      ],
+    },
+  ],
 };
 
 export const primaryProgramHighlights: ProgramHighlight[] = [
