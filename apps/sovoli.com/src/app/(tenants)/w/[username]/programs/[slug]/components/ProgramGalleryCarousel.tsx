@@ -160,7 +160,7 @@ export function ProgramGalleryCarousel({
       {/* Counter Indicator */}
       {photos.length > 1 && (
         <div className="absolute bottom-6 right-3">
-          <Chip variant="flat" color="default" radius="md">
+          <Chip variant="flat" color="default" radius="md" size="sm">
             {current + 1} / {photos.length}
           </Chip>
         </div>

@@ -28,7 +28,15 @@ export function ProgramDetailNavbar({
     "";
 
   return (
-    <Navbar maxWidth="full" position="sticky">
+    <Navbar
+      maxWidth="full"
+      className="absolute top-0 left-0 right-0 bg-transparent"
+      isBordered={false}
+      isBlurred={false}
+      classNames={{
+        wrapper: "px-4",
+      }}
+    >
       <NavbarContent justify="start">
         <NavbarItem>
           <Button
