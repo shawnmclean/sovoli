@@ -36,12 +36,13 @@ export const ProgramHeroSection = ({
   return (
     <ProgramSectionsWrapper className="text-center">
       {/* Program Name */}
-      <h1 className="text-3xl leading-tight tracking-tight my-4">
+      <h1 className="text-2xl leading-tight tracking-tight my-4">
         {programName}
       </h1>
 
       <p className="text-sm text-foreground-500 max-w-3xl mx-auto">
-        {ageReq?.ageRange && formatAgeRange(ageReq.ageRange)}
+        {ageReq?.ageRange && `${formatAgeRange(ageReq.ageRange)} ·`} Secure ·
+        Qualified Teachers
       </p>
 
       {/* Primary Location */}
@@ -53,6 +54,11 @@ export const ProgramHeroSection = ({
           </span>
         </div>
       )}
+
+      <p className="text-sm text-muted-foreground mt-4">
+        ✅ Trusted by 200+{" "}
+        {program.audience === "parent" ? "parents" : "students"}
+      </p>
     </ProgramSectionsWrapper>
   );
 };
