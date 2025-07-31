@@ -166,7 +166,7 @@ export default async function ProgramDetailsPage({
                 {group.description}
               </p>
               <p className="text-sm text-muted-foreground">
-                ✅ Trusted by 120+ families near Mon Repos, Guyana
+                ✅ Trusted by 200+ families near Mon Repos, Guyana
               </p>
             </div>
 
