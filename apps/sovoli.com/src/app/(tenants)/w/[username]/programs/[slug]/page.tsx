@@ -116,7 +116,7 @@ export default async function ProgramDetailsPage({
 
         <ProgramGalleryCarousel program={program} />
 
-        <div className="container mx-auto max-w-7xl px-4 py-12 lg:py-16">
+        <div className="container mx-auto max-w-7xl px-4">
           <ProgramHeroSection orgInstance={orgInstance} program={program} />
 
           <OrgBadgeSection orgInstance={orgInstance} />
