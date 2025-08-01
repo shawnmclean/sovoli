@@ -30,13 +30,13 @@ const createFitrightDateRangeCycle = (
   level: string,
   startDate: string,
   endDate: string,
-  capacity = 12,
+  capacity = 10,
   enrolled = 0,
 ): ProgramCycle => ({
   id: `fr-${level.toLowerCase()}-sewing-${startDate.split("-")[1]}-${startDate.split("-")[2]}`,
   academicCycle: {
     id: `fr-${level.toLowerCase()}-sewing-${startDate.split("-")[1]}-${startDate.split("-")[2]}`,
-    customLabel: `${level} ${startDate.split("-")[1]}/${startDate.split("-")[2]} - ${endDate.split("-")[1]}/${endDate.split("-")[2]}`,
+    customLabel: `${level}`,
     startDate,
     endDate,
   },
@@ -77,10 +77,28 @@ export const FITRIGHT_BAG_WORKSHOP_JULY_27: ProgramCycle = createFitrightCycle(
 );
 
 export const FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025: ProgramCycle =
-  createFitrightDateRangeCycle("Elementary", "2025-09-15", "2025-10-03");
+  createFitrightDateRangeCycle(
+    "Elementary Sewing - Sept 2025",
+    "2025-09-15",
+    "2025-10-03",
+    10,
+    2,
+  );
 
 export const FITRIGHT_INTERMEDIATE_SEWING_OCTOBER_2025: ProgramCycle =
-  createFitrightDateRangeCycle("Intermediate", "2025-10-06", "2025-10-31");
+  createFitrightDateRangeCycle(
+    "Intermediate Sewing - Oct 2025",
+    "2025-10-06",
+    "2025-10-31",
+    10,
+    2,
+  );
 
 export const FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025: ProgramCycle =
-  createFitrightDateRangeCycle("Advanced", "2025-11-03", "2025-11-28");
+  createFitrightDateRangeCycle(
+    "Advanced Sewing - Nov 2025",
+    "2025-11-03",
+    "2025-11-28",
+    10,
+    2,
+  );
