@@ -168,12 +168,10 @@ export default async function ProgramDetailsPage({
         {/* Programs Grid */}
         <div className="container mx-auto max-w-7xl px-4 py-12">
           <div className="mb-8 text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Available Programs
-            </h2>
-            <p className="text-muted-foreground">
-              Explore all programs in this group
-            </p>
+            <h1 className="text-2xl font-bold text-foreground mb-4">
+              {group.name}
+            </h1>
+            <p className="text-muted-foreground">{group.description}</p>
           </div>
 
           {group.programs && group.programs.length > 0 ? (
