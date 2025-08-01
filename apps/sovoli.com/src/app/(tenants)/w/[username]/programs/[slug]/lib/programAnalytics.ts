@@ -1,4 +1,8 @@
-import type { ProgramCycle, Program } from "~/modules/academics/types";
+import type {
+  ProgramCycle,
+  Program,
+  ProgramGroup,
+} from "~/modules/academics/types";
 import posthog from "posthog-js";
 
 interface PricingData {
@@ -111,6 +115,7 @@ export const trackProgramAnalytics = (
   const programName = analyticsData.programName;
   const cycleLabel = analyticsData.cycleLabel;
 
+  // https://developers.facebook.com/docs/meta-pixel/implementation/conversion-tracking#custom-events
   posthog.capture(event, {
     content_category: analyticsData.program.group?.name ?? "Program",
     content_name: `${programName} - ${cycleLabel}`,
@@ -119,6 +124,18 @@ export const trackProgramAnalytics = (
     value: analyticsData.primaryPricing?.amount ?? 0,
     currency: analyticsData.primaryCurrency ?? "GYD",
     ...additionalData,
+  });
+};
+
+export const trackProgramGroupAnalytics = (
+  event: "ViewContent",
+  group: ProgramGroup,
+) => {
+  posthog.capture(event, {
+    content_category: "Program Group",
+    content_name: group.name,
+    content_type: "product_group",
+    content_ids: [group.id],
   });
 };
 

@@ -21,6 +21,7 @@ import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection"
 import { OrgBadgeSection } from "./components/OrgBadgeSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
 import { ProgramCycleCard } from "../../(main-layout)/programs/components/ProgramCycleCard";
+import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -155,6 +156,8 @@ export default async function ProgramDetailsPage({
   if (group) {
     return (
       <div className="min-h-screen bg-background">
+        <ProgramGroupTracking group={group} />
+
         {/* Hero Section */}
         <section className="w-full bg-card text-foreground px-4 py-12 md:py-20 text-center">
           <div className="container mx-auto max-w-4xl">
