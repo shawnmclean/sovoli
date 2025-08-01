@@ -111,21 +111,24 @@ export function ProgramDetailMobileFooter({
   return (
     <>
       <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
-        <div className="flex w-full items-center justify-between py-3 gap-4">
+        <div className="flex w-full items-start py-3 gap-4">
           {/* Left side - Program info badge */}
-          <div className="flex flex-1 items-center">
+          <div className="flex flex-1 items-center min-w-0">
             <Skeleton isLoaded={!(isLoading && isInitialized)}>
               <Button
                 as={Link}
                 variant="light"
                 color="default"
                 onPress={onOpen}
+                className="text-left h-auto p-2 min-w-0"
               >
                 {selectedCycle.status === "closed" ? (
                   <span className="text-default-600">Closed</span>
                 ) : (
-                  <div className="flex flex-col items-start gap-1">
-                    <span className="underline">{cycleLabel}</span>
+                  <div className="flex flex-col items-start gap-1 min-w-0 w-full">
+                    <span className="underline break-words whitespace-normal text-left">
+                      {cycleLabel}
+                    </span>
                   </div>
                 )}
               </Button>
@@ -133,7 +136,7 @@ export function ProgramDetailMobileFooter({
           </div>
 
           {/* Right side - Reserve button */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 self-center">
             <Button
               variant="shadow"
               radius="lg"
