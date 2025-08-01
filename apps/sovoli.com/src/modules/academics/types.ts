@@ -30,7 +30,7 @@ export interface OrgAcademicCycle {
 // #region programs
 
 export interface ProgramGroup {
-  id: "nursery" | "primary" | "secondary";
+  id: string;
   slug: string;
   name: string;
   description?: string;

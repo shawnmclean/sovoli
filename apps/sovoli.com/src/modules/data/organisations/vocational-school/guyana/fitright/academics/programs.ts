@@ -1,9 +1,16 @@
-import type { Program, ProgramHighlight } from "~/modules/academics/types";
+import type {
+  Program,
+  ProgramGroup,
+  ProgramHighlight,
+} from "~/modules/academics/types";
 import { BAG_WORKSHOP_PHOTOS } from "../photos";
 import {
+  FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025,
   FITRIGHT_BAG_WORKSHOP_JULY_25,
   FITRIGHT_BAG_WORKSHOP_JULY_26,
   FITRIGHT_BAG_WORKSHOP_JULY_27,
+  FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025,
+  FITRIGHT_INTERMEDIATE_SEWING_OCTOBER_2025,
 } from "./cycles";
 
 const bagWorkshopHighlights: ProgramHighlight[] = [
@@ -77,4 +84,41 @@ export const FITRIGHT_BAG_WORKSHOP_PROGRAM: Program = {
     FITRIGHT_BAG_WORKSHOP_JULY_26,
     FITRIGHT_BAG_WORKSHOP_JULY_27,
   ],
+};
+
+export const FITRIGHT_SEWING_PROGRAM_GROUP: ProgramGroup = {
+  id: "sewing",
+  slug: "sewing",
+  name: "Sewing",
+  description: "Elementary to Advanced Sewing Programs",
+};
+
+export const FITRIGHT_ELEMENTARY_SEWING_PROGRAM: Program = {
+  id: "fr-elementary-sewing",
+  name: "Elementary Sewing",
+  slug: "elementary-sewing",
+  audience: "student",
+  photos: BAG_WORKSHOP_PHOTOS,
+  group: FITRIGHT_SEWING_PROGRAM_GROUP,
+  cycles: [FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025],
+};
+
+export const FITRIGHT_INTERMEDIATE_SEWING_PROGRAM: Program = {
+  id: "fr-intermediate-sewing",
+  name: "Intermediate Sewing",
+  slug: "intermediate-sewing",
+  audience: "student",
+  photos: BAG_WORKSHOP_PHOTOS,
+  group: FITRIGHT_SEWING_PROGRAM_GROUP,
+  cycles: [FITRIGHT_INTERMEDIATE_SEWING_OCTOBER_2025],
+};
+
+export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
+  id: "fr-advanced-sewing",
+  name: "Advanced Sewing",
+  slug: "advanced-sewing",
+  audience: "student",
+  photos: BAG_WORKSHOP_PHOTOS,
+  group: FITRIGHT_SEWING_PROGRAM_GROUP,
+  cycles: [FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025],
 };

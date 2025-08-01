@@ -25,6 +25,44 @@ const createFitrightCycle = (day: number, enrolled: number): ProgramCycle => ({
   enrolled,
 });
 
+// Helper function to create a cycle with date range
+const createFitrightDateRangeCycle = (
+  level: string,
+  startDate: string,
+  endDate: string,
+  capacity = 12,
+  enrolled = 0,
+): ProgramCycle => ({
+  id: `fr-${level.toLowerCase()}-sewing-${startDate.split("-")[1]}-${startDate.split("-")[2]}`,
+  academicCycle: {
+    id: `fr-${level.toLowerCase()}-sewing-${startDate.split("-")[1]}-${startDate.split("-")[2]}`,
+    customLabel: `${level} ${startDate.split("-")[1]}/${startDate.split("-")[2]} - ${endDate.split("-")[1]}/${endDate.split("-")[2]}`,
+    startDate,
+    endDate,
+  },
+  pricingPackage: {
+    discounts: [],
+    pricingItems: [
+      {
+        id: "registration",
+        label: "Registration",
+        purpose: "registration",
+        billingCycle: "one-time",
+        amount: { GYD: 5000 },
+      },
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 60000 },
+      },
+    ],
+  },
+  capacity,
+  enrolled,
+});
+
 export const FITRIGHT_BAG_WORKSHOP_JULY_25: ProgramCycle = createFitrightCycle(
   25,
   4,
@@ -37,3 +75,12 @@ export const FITRIGHT_BAG_WORKSHOP_JULY_27: ProgramCycle = createFitrightCycle(
   27,
   1,
 );
+
+export const FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025: ProgramCycle =
+  createFitrightDateRangeCycle("Elementary", "2025-09-15", "2025-10-03");
+
+export const FITRIGHT_INTERMEDIATE_SEWING_OCTOBER_2025: ProgramCycle =
+  createFitrightDateRangeCycle("Intermediate", "2025-10-06", "2025-10-31");
+
+export const FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025: ProgramCycle =
+  createFitrightDateRangeCycle("Advanced", "2025-11-03", "2025-11-28");
