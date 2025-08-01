@@ -99,7 +99,7 @@ export const FITRIGHT_ELEMENTARY_SEWING_PROGRAM: Program = {
   slug: "elementary-sewing",
   audience: "student",
   photos: BAG_WORKSHOP_PHOTOS,
-  group: FITRIGHT_SEWING_PROGRAM_GROUP,
+  group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 1 },
   cycles: [FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025],
 };
 
@@ -109,7 +109,7 @@ export const FITRIGHT_INTERMEDIATE_SEWING_PROGRAM: Program = {
   slug: "intermediate-sewing",
   audience: "student",
   photos: BAG_WORKSHOP_PHOTOS,
-  group: FITRIGHT_SEWING_PROGRAM_GROUP,
+  group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 2 },
   cycles: [FITRIGHT_INTERMEDIATE_SEWING_OCTOBER_2025],
 };
 
@@ -119,6 +119,6 @@ export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
   slug: "advanced-sewing",
   audience: "student",
   photos: BAG_WORKSHOP_PHOTOS,
-  group: FITRIGHT_SEWING_PROGRAM_GROUP,
+  group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 3 },
   cycles: [FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025],
 };

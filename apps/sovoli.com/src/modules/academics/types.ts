@@ -218,7 +218,7 @@ export interface Program {
   activities?: Activity[];
 
   standardProgramVersion?: StandardProgramVersion;
-  group?: ProgramGroup;
+  group?: ProgramGroup & { order?: number };
 
   tagline?: string;
   outcome?: string;

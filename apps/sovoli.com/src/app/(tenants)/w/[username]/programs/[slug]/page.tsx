@@ -22,6 +22,7 @@ import { OrgBadgeSection } from "./components/OrgBadgeSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
 import { ProgramCycleCard } from "../../(main-layout)/programs/components/ProgramCycleCard";
 import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
+import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -141,6 +142,8 @@ export default async function ProgramDetailsPage({
           <ProgramTestimonialsSection testimonials={program.testimonials} />
 
           <PricingSection defaultCycle={currentCycle ?? nextCycle} />
+
+          <ProgramsInGroupSection orgInstance={orgInstance} program={program} />
 
           <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
         </div>
