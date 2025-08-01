@@ -23,6 +23,7 @@ import { ProgramDescriptionSection } from "./components/ProgramDescriptionSectio
 import { ProgramCycleCard } from "../../(main-layout)/programs/components/ProgramCycleCard";
 import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
+import { Divider } from "@sovoli/ui/components/divider";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -128,6 +129,19 @@ export default async function ProgramDetailsPage({
         <ProgramGalleryCarousel program={programToUse} />
 
         <div className="container mx-auto max-w-7xl px-4">
+          {group && (
+            <div className="mb-8 text-center py-4">
+              <h1 className="text-2xl font-bold text-foreground mb-4">
+                Group: {group.name}
+              </h1>
+              <p className="text-muted-foreground">{group.description}</p>
+              <p className="text-muted-foreground text-sm mt-2">
+                There are {group.programs?.length} programs in this group.
+              </p>
+              <Divider className="mt-4" />
+            </div>
+          )}
+
           <ProgramHeroSection
             orgInstance={orgInstance}
             program={programToUse}
