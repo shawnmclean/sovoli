@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { parseISO } from "date-fns";
-import { ChevronDownIcon } from "lucide-react";
+
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
 import { ProgramHeroSection } from "./components/ProgramHeroSection";
@@ -157,50 +157,13 @@ export default async function ProgramDetailsPage({
   }
 
   if (group) {
+    const firstProgram = group.programs?.[0];
+
     return (
       <div className="min-h-screen bg-background">
         <ProgramGroupTracking group={group} />
 
-        {/* Hero Section */}
-        <section className="w-full bg-card text-foreground px-4 py-12 md:py-20 text-center">
-          <div className="container mx-auto max-w-4xl">
-            <div className="max-w-xl mx-auto space-y-4 mb-8">
-              <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-                {group.name}
-              </h1>
-              <p className="text-base md:text-lg text-muted-foreground">
-                {group.description}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                ✅ Trusted by 200+ families near Mon Repos, Guyana
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center gap-2 mb-10">
-              <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-semibold text-sm shadow-sm bg-warning text-warning-foreground animate-pulse`}
-                aria-label="Limited Spots Available"
-              >
-                <span>📅</span>
-                <span>Limited Spots Available</span>
-              </div>
-              <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-semibold text-sm shadow-sm bg-success-300 text-success-900`}
-                aria-label="Discounts Available"
-              >
-                <span>💸</span>
-                <span>Discounts Available</span>
-              </div>
-            </div>
-
-            <div className="flex justify-center">
-              <p className="text-sm text-muted-foreground flex items-center gap-1 animate-bounce">
-                <ChevronDownIcon className="w-4 h-4" />
-                View Programs Below
-              </p>
-            </div>
-          </div>
-        </section>
+        {firstProgram && <ProgramGalleryCarousel program={firstProgram} />}
 
         {/* Programs Grid */}
         <div className="container mx-auto max-w-7xl px-4 py-12">
@@ -208,17 +171,28 @@ export default async function ProgramDetailsPage({
             <h2 className="text-2xl font-bold text-foreground mb-4">
               Available Programs
             </h2>
+            <p className="text-muted-foreground">
+              Explore all programs in this group
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {group.programs?.map((program) => (
-              <ProgramCycleCard
-                key={program.id}
-                program={program}
-                orgInstance={orgInstance}
-              />
-            ))}
-          </div>
+          {group.programs && group.programs.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {group.programs.map((program) => (
+                <ProgramCycleCard
+                  key={program.id}
+                  program={program}
+                  orgInstance={orgInstance}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">
+                No programs available in this group.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     );
