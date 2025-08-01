@@ -70,9 +70,17 @@ export default async function ProgramDetailsPage({
     username,
     slug,
   );
-  if (program) {
+
+  let programToUse = program;
+
+  // if group, then take the first program and use that.
+  if (group?.programs?.[0]) {
+    programToUse = group.programs[0];
+  }
+
+  if (programToUse) {
     // Get all future cycles (including next)
-    const futureCycles = program.cycles
+    const futureCycles = programToUse.cycles
       ?.filter((cycle) => {
         const startDate =
           cycle.academicCycle.startDate ??
@@ -95,7 +103,7 @@ export default async function ProgramDetailsPage({
     const nextCycle = futureCycles?.[0];
 
     // Get the current cycle
-    const currentCycle = program.cycles?.find((cycle) => {
+    const currentCycle = programToUse.cycles?.find((cycle) => {
       const startDate =
         cycle.academicCycle.startDate ??
         cycle.academicCycle.globalCycle?.startDate;
@@ -111,59 +119,67 @@ export default async function ProgramDetailsPage({
 
     return (
       <ProgramCycleSelectionProvider
-        program={program}
+        program={programToUse}
         defaultCycle={defaultCycle}
       >
-        <ProgramTracking program={program} defaultCycle={defaultCycle} />
+        {group && <ProgramGroupTracking group={group} />}
+        <ProgramTracking program={programToUse} defaultCycle={defaultCycle} />
 
-        <ProgramGalleryCarousel program={program} />
+        <ProgramGalleryCarousel program={programToUse} />
 
         <div className="container mx-auto max-w-7xl px-4">
-          <ProgramHeroSection orgInstance={orgInstance} program={program} />
+          <ProgramHeroSection
+            orgInstance={orgInstance}
+            program={programToUse}
+          />
 
           <OrgBadgeSection orgInstance={orgInstance} />
 
-          <ProgramHighlightsSection program={program} />
+          <ProgramHighlightsSection program={programToUse} />
 
-          <ProgramDescriptionSection program={program} />
+          <ProgramDescriptionSection program={programToUse} />
 
-          <CycleSection program={program} defaultCycle={defaultCycle} />
+          <CycleSection program={programToUse} defaultCycle={defaultCycle} />
 
-          <CurriculumSection program={program} />
+          <CurriculumSection program={programToUse} />
 
           <TeachersSection defaultTeachers={defaultTeachers} />
 
-          <RequirementsSection program={program} />
+          <RequirementsSection program={programToUse} />
 
           <LocationFeaturesSection orgInstance={orgInstance} />
 
-          <LocationSection orgInstance={orgInstance} program={program} />
+          <LocationSection orgInstance={orgInstance} program={programToUse} />
 
-          <ProgramTestimonialsSection testimonials={program.testimonials} />
+          <ProgramTestimonialsSection
+            testimonials={programToUse.testimonials}
+          />
 
           <PricingSection defaultCycle={currentCycle ?? nextCycle} />
 
-          <ProgramsInGroupSection orgInstance={orgInstance} program={program} />
+          <ProgramsInGroupSection
+            orgInstance={orgInstance}
+            program={programToUse}
+          />
 
-          <ProgramsSection orgInstance={orgInstance} currentProgram={program} />
+          <ProgramsSection
+            orgInstance={orgInstance}
+            currentProgram={programToUse}
+          />
         </div>
 
         <ProgramDetailMobileFooter
           orgInstance={orgInstance}
-          program={program}
+          program={programToUse}
         />
       </ProgramCycleSelectionProvider>
     );
   }
 
   if (group) {
-    const firstProgram = group.programs?.[0];
-
     return (
       <div className="min-h-screen bg-background">
         <ProgramGroupTracking group={group} />
-
-        {firstProgram && <ProgramGalleryCarousel program={firstProgram} />}
 
         {/* Programs Grid */}
         <div className="container mx-auto max-w-7xl px-4 py-12">
@@ -174,23 +190,11 @@ export default async function ProgramDetailsPage({
             <p className="text-muted-foreground">{group.description}</p>
           </div>
 
-          {group.programs && group.programs.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {group.programs.map((program) => (
-                <ProgramCycleCard
-                  key={program.id}
-                  program={program}
-                  orgInstance={orgInstance}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">
-                No programs available in this group.
-              </p>
-            </div>
-          )}
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">
+              No programs available in this group.
+            </p>
+          </div>
         </div>
       </div>
     );
