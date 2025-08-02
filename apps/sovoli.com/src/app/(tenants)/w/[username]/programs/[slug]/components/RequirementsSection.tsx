@@ -125,12 +125,14 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
     return null;
   }
 
+  const programName =
+    program.name ?? program.standardProgramVersion?.program.name ?? "";
+
   return (
     <ProgramSectionsWrapper onClick={onRequirementsOpen}>
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-            <PackageIcon className="h-6 w-6 text-primary" />
             What to Bring
           </h2>
         </div>
@@ -212,7 +214,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
         <DrawerContent>
           <DrawerHeader className="border-b border-divider">
             <h3 className="text-lg font-semibold text-foreground">
-              Complete Requirements List
+              {programName} List
             </h3>
           </DrawerHeader>
           <DrawerBody className="mt-4">
