@@ -20,7 +20,7 @@ import { RequirementsSection } from "./components/RequirementsSection";
 import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
 import { OrgBadgeSection } from "./components/OrgBadgeSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
-import { ProgramCycleCard } from "../../(main-layout)/programs/components/ProgramCycleCard";
+
 import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
 import { Divider } from "@sovoli/ui/components/divider";
@@ -159,8 +159,6 @@ export default async function ProgramDetailsPage({
 
           <TeachersSection defaultTeachers={defaultTeachers} />
 
-          <RequirementsSection program={programToUse} />
-
           <LocationFeaturesSection orgInstance={orgInstance} />
 
           <LocationSection orgInstance={orgInstance} program={programToUse} />
@@ -176,6 +174,7 @@ export default async function ProgramDetailsPage({
             program={programToUse}
           />
 
+          <RequirementsSection program={programToUse} />
           <ProgramsSection
             orgInstance={orgInstance}
             currentProgram={programToUse}

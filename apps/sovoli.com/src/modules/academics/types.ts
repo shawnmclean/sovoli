@@ -84,8 +84,9 @@ export interface StandardProgramVersion {
   effectiveFrom: string;
   effectiveTo?: string;
 
-  requirements?: ProgramRequirement[];
+  admission?: AdmissionPolicy;
   assessments?: ProgramAssessmentVersion[];
+  requirements?: RequirementList[];
 }
 
 // TODO: move to core or photos module
@@ -113,7 +114,13 @@ export interface Photo {
   uploadedAt?: string;
 }
 
-export type ProgramRequirement = AgeRequirement | DocumentRequirement;
+export interface AdmissionPolicy {
+  id: string; // "magy-nursery-y1-admissions"
+  eligibility: EligibilityRule[]; // who can enroll
+  documents: AdmissionDocumentRule[];
+  notes?: string; // e.g., "Age as of first day of Term 1"
+}
+export type EligibilityRule = AgeEligibility;
 
 // Age Range Model (Precise Age Control)
 export interface AgeRange {
@@ -122,17 +129,108 @@ export interface AgeRange {
   maxAgeYears?: number;
   maxAgeMonths?: number;
 }
-export interface AgeRequirement {
+export interface AgeEligibility {
   type: "age";
   description?: string;
   ageRange?: AgeRange;
   name?: string;
 }
 
-export interface DocumentRequirement {
+export interface AdmissionDocumentRule {
   type: "document";
-  name: string;
-  description?: string;
+  name: string; // "Birth Certificate"
+  description?: string; // "Original + 1 photocopy"
+  requirement: "required" | "optional" | "conditional";
+  conditionNote?: string; // "If transferring from another school"
+}
+
+export interface RequirementList {
+  name: string; // "Nursery Year 1 — Books"
+  category: "booklist" | "materials" | "hygiene" | "uniform" | "other";
+  audience?: "parent" | "student"; // UI hint
+  appliesTo?: {
+    // where this list lives
+    programId?: string; // e.g., "gy-nursery-year-1"
+    programCycleId?: string; // e.g., "magy-nursery-year-1-2025-t1"
+  };
+  effectiveFrom?: string;
+  effectiveTo?: string;
+  notes?: string; // list-level notes
+  items: RequirementListItem[];
+}
+
+export type RequirementListItem =
+  | BookItem
+  | SupplyItem
+  | HygieneItem
+  | UniformItem;
+
+export interface BaseItem {
+  type: string;
+  isOptional?: boolean;
+  quantity?: number; // default 1
+  unit?:
+    | "each"
+    | "pack"
+    | "set"
+    | "sheet"
+    | "bottle"
+    | "box"
+    | "roll"
+    | "other";
+  notes?: string; // free-form clarifications
+  source?: "bring" | "buy-at-school" | "either";
+  vendorUrl?: string; // optional external link
+  skuId?: string; // pointer to a central Catalog (if you add one later)
+}
+
+/** Books & workbooks */
+export interface BookItem extends BaseItem {
+  type: "book";
+  title: string; // "Animal Friends Level A Reader"
+  series?: string; // "Animal Friends"
+  level?: string; // "Level A"
+  kind?: "reader" | "workbook" | "textbook" | "exercise" | "other";
+  publisher?: string;
+  edition?: string;
+  isbn?: string;
+}
+
+/** General supplies / stationery / learning aids / craft */
+export interface SupplyItem extends BaseItem {
+  type: "supply";
+  name: string; // "Fat Pencil", "Pack of Letters"
+  category?: "stationery" | "craft" | "learning-aid" | "general";
+}
+
+/** Hygiene / cleaning items */
+export interface HygieneItem extends BaseItem {
+  type: "hygiene";
+  name: string; // "Hand Sanitizer"
+}
+
+/** Uniform pieces with pictures/specs */
+export interface UniformItem extends BaseItem {
+  type: "uniform";
+  piece:
+    | "shirt"
+    | "pants"
+    | "skirt"
+    | "dress"
+    | "belt"
+    | "shoes"
+    | "socks"
+    | "pe-top"
+    | "pe-bottom"
+    | "sweater"
+    | "other";
+  activity?: "regular" | "PE" | "formal" | "other";
+  gender?: "unisex" | "boy" | "girl";
+  color?: string; // "blue", "#0a57ff"
+  material?: string; // "cotton/poly blend"
+  spec?: string; // "Light blue shirt with school crest left chest"
+  photos?: Photo[]; // reuse your existing Photo type
+  sizeGuideUrl?: string; // link to size chart
 }
 
 export type ProgramAssessmentId = "ngsa";
@@ -228,7 +326,8 @@ export interface Program {
   photos?: Photo[];
 
   // Optional local overrides
-  requirements?: ProgramRequirement[];
+  admission?: AdmissionPolicy;
+  requirements?: RequirementList[];
   notes?: string;
   isPopular?: boolean;
   testimonials?: ProgramTestimonial[];

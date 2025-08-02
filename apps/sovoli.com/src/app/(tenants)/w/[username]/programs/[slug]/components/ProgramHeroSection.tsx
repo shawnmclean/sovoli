@@ -19,9 +19,10 @@ export const ProgramHeroSection = ({
   // Get primary location
   const primaryLocation = org.locations.find((loc) => loc.isPrimary);
 
-  const requirement =
-    program.requirements ?? program.standardProgramVersion?.requirements;
-  const ageReq = requirement?.find((r) => r.type === "age");
+  const admission =
+    program.admission ?? program.standardProgramVersion?.admission;
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const ageReq = admission?.eligibility.find((r) => r.type === "age");
 
   const formatAgeRange = (range: {
     minAgeYears?: number;

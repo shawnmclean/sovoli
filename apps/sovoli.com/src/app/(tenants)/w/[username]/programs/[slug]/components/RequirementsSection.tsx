@@ -1,12 +1,49 @@
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
-import { UserIcon } from "lucide-react";
-import { displayAgeRange } from "../../../(main-layout)/programs/utils";
-import type { Program, ProgramRequirement } from "~/modules/academics/types";
+import {
+  UserIcon,
+  PackageIcon,
+  BookOpenIcon,
+  DropletsIcon,
+  ShirtIcon,
+} from "lucide-react";
+import type { Program, RequirementList } from "~/modules/academics/types";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface RequirementsSectionProps {
   program: Program;
+}
+
+function getCategoryIcon(category: string) {
+  switch (category) {
+    case "booklist":
+      return <BookOpenIcon className="h-4 w-4" />;
+    case "materials":
+      return <PackageIcon className="h-4 w-4" />;
+    case "hygiene":
+      return <DropletsIcon className="h-4 w-4" />;
+    case "uniform":
+      return <ShirtIcon className="h-4 w-4" />;
+    default:
+      return <PackageIcon className="h-4 w-4" />;
+  }
+}
+
+function getCategoryLabel(category: string) {
+  switch (category) {
+    case "booklist":
+      return "Books";
+    case "materials":
+      return "Supplies";
+    case "hygiene":
+      return "Hygiene";
+    case "uniform":
+      return "Uniform";
+    case "fees":
+      return "Fees";
+    default:
+      return "Other";
+  }
 }
 
 export function RequirementsSection({ program }: RequirementsSectionProps) {
@@ -27,29 +64,47 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
           </h2>
         </CardHeader>
         <CardBody>
-          <div className="space-y-4">
-            {requirements.map(
-              (requirement: ProgramRequirement, index: number) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-3 p-4 bg-default-50 rounded-lg"
-                >
-                  <Chip color="secondary" variant="flat" size="sm">
-                    {requirement.type === "age" ? "Age" : "Document"}
-                  </Chip>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-foreground mb-1">
-                      {requirement.description ?? requirement.name}
-                    </p>
-                    {requirement.type === "age" && requirement.ageRange && (
-                      <p className="text-xs text-foreground-500">
-                        {displayAgeRange(requirement.ageRange)}
-                      </p>
-                    )}
-                  </div>
+          <div className="space-y-6">
+            {requirements.map((requirement: RequirementList, index: number) => (
+              <div key={index} className="space-y-3">
+                <div className="flex items-center gap-2">
+                  {getCategoryIcon(requirement.category)}
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {requirement.name}
+                  </h3>
                 </div>
-              ),
-            )}
+
+                {requirement.notes && (
+                  <p className="text-sm text-foreground-500">
+                    {requirement.notes}
+                  </p>
+                )}
+
+                <div className="grid gap-2">
+                  {requirement.items.map((item, itemIndex) => (
+                    <div
+                      key={itemIndex}
+                      className="flex items-center gap-3 p-3 bg-default-50 rounded-lg"
+                    >
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-foreground">
+                          {item.type === "book"
+                            ? item.title
+                            : item.type === "uniform"
+                              ? item.piece
+                              : item.name}
+                        </p>
+                        {item.notes && (
+                          <p className="text-xs text-foreground-500 mt-1">
+                            {item.notes}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </CardBody>
       </Card>

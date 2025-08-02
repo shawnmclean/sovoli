@@ -184,6 +184,101 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
   isPopular: true,
   cycles: [MAGY_PRE_NURSERY_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,
+  requirements: [
+    {
+      name: "Supplies",
+      category: "materials",
+      audience: "parent",
+      items: [
+        {
+          type: "supply",
+          name: "Crayola Crayons (Fat)",
+          category: "stationery",
+          quantity: 1,
+          unit: "pack",
+        },
+        {
+          type: "supply",
+          name: "Crayola Play Dough",
+          category: "craft",
+          quantity: 1,
+          unit: "pack",
+        },
+        {
+          type: "supply",
+          name: "Coloring Book (letters & numbers)",
+          category: "learning-aid",
+          quantity: 1,
+          unit: "each",
+        },
+        {
+          type: "supply",
+          name: "Art Book",
+          category: "learning-aid",
+          quantity: 1,
+          unit: "each",
+        },
+        {
+          type: "supply",
+          name: "Building Blocks",
+          category: "learning-aid",
+          quantity: 1,
+          unit: "set",
+        },
+        {
+          type: "supply",
+          name: "Paint Set",
+          category: "craft",
+          quantity: 1,
+          unit: "set",
+        },
+        {
+          type: "supply",
+          name: "Card Board Sheet",
+          category: "craft",
+          quantity: 2,
+          unit: "sheet",
+        },
+        {
+          type: "supply",
+          name: "Glue",
+          category: "craft",
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          type: "hygiene",
+          name: "Detergent",
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          type: "hygiene",
+          name: "Hand Sanitizer",
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          type: "hygiene",
+          name: "Paper Towel",
+          quantity: 1,
+          unit: "roll",
+        },
+        {
+          type: "hygiene",
+          name: "Liquid Soap",
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          type: "hygiene",
+          name: "Toilet Paper",
+          quantity: 1,
+          unit: "roll",
+        },
+      ],
+    },
+  ],
 };
 
 // #region programs

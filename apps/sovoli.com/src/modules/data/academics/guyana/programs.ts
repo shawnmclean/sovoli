@@ -46,17 +46,24 @@ export const GY_NURSERY_YEAR_1_V1: StandardProgramVersion = {
   program: GY_NURSERY_YEAR_1_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
-  requirements: [
-    {
-      type: "age",
-      description: "Child must be 3 years 9 months years old by September 1st",
-      ageRange: { minAgeYears: 3, maxAgeYears: 4 },
-    },
-    {
-      type: "document",
-      name: "Birth Certificate",
-    },
-  ],
+  admission: {
+    id: "gy-nursery-year-1-admission",
+    eligibility: [
+      {
+        type: "age",
+        description:
+          "Child must be 3 years 9 months years old by September 1st",
+        ageRange: { minAgeYears: 3, maxAgeYears: 4 },
+      },
+    ],
+    documents: [
+      {
+        type: "document",
+        name: "Birth Certificate",
+        requirement: "required",
+      },
+    ],
+  },
 };
 
 export const GY_NURSERY_YEAR_2_PROGRAM: StandardProgram = {
@@ -75,17 +82,23 @@ export const GY_NURSERY_YEAR_2_V1: StandardProgramVersion = {
   program: GY_NURSERY_YEAR_2_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
-  requirements: [
-    {
-      type: "age",
-      description: "Child must be 4 years 9 months old by September 1st",
-      ageRange: { minAgeYears: 4, maxAgeYears: 5 },
-    },
-    {
-      type: "document",
-      name: "Birth Certificate",
-    },
-  ],
+  admission: {
+    id: "gy-nursery-year-2-admission",
+    eligibility: [
+      {
+        type: "age",
+        description: "Child must be 4 years 9 months old by September 1st",
+        ageRange: { minAgeYears: 4, maxAgeYears: 5 },
+      },
+    ],
+    documents: [
+      {
+        type: "document",
+        name: "Birth Certificate",
+        requirement: "required",
+      },
+    ],
+  },
 };
 
 // #endregion
@@ -131,13 +144,17 @@ export const GY_PRIMARY_GRADE_1_V1: StandardProgramVersion = {
   program: GY_PRIMARY_GRADE_1_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
-  requirements: [
-    {
-      type: "age",
-      description: "Child must be 5–6 years old by September 1st",
-      ageRange: { minAgeYears: 5, maxAgeYears: 6 },
-    },
-  ],
+  admission: {
+    id: "gy-primary-grade-1-admission",
+    eligibility: [
+      {
+        type: "age",
+        description: "Child must be 5–6 years old by September 1st",
+        ageRange: { minAgeYears: 5, maxAgeYears: 6 },
+      },
+    ],
+    documents: [],
+  },
 };
 
 export const GY_PRIMARY_GRADE_2_PROGRAM: StandardProgram = {
@@ -156,13 +173,17 @@ export const GY_PRIMARY_GRADE_2_V1: StandardProgramVersion = {
   program: GY_PRIMARY_GRADE_2_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
-  requirements: [
-    {
-      type: "age",
-      description: "Child must be 6–7 years old by September 1st",
-      ageRange: { minAgeYears: 6, maxAgeYears: 7 },
-    },
-  ],
+  admission: {
+    id: "gy-primary-grade-2-admission",
+    eligibility: [
+      {
+        type: "age",
+        description: "Child must be 6–7 years old by September 1st",
+        ageRange: { minAgeYears: 6, maxAgeYears: 7 },
+      },
+    ],
+    documents: [],
+  },
 };
 
 export const GY_PRIMARY_GRADE_3_PROGRAM: StandardProgram = {
@@ -181,13 +202,17 @@ export const GY_PRIMARY_GRADE_3_V1: StandardProgramVersion = {
   program: GY_PRIMARY_GRADE_3_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
-  requirements: [
-    {
-      type: "age",
-      description: "Child must be 7–8 years old by September 1st",
-      ageRange: { minAgeYears: 7, maxAgeYears: 8 },
-    },
-  ],
+  admission: {
+    id: "gy-primary-grade-3-admission",
+    eligibility: [
+      {
+        type: "age",
+        description: "Child must be 7–8 years old by September 1st",
+        ageRange: { minAgeYears: 7, maxAgeYears: 8 },
+      },
+    ],
+    documents: [],
+  },
 };
 
 export const GY_PRIMARY_GRADE_4_PROGRAM: StandardProgram = {
@@ -206,13 +231,17 @@ export const GY_PRIMARY_GRADE_4_V1: StandardProgramVersion = {
   program: GY_PRIMARY_GRADE_4_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
-  requirements: [
-    {
-      type: "age",
-      description: "Child must be 8–9 years old by September 1st",
-      ageRange: { minAgeYears: 8, maxAgeYears: 9 },
-    },
-  ],
+  admission: {
+    id: "gy-primary-grade-4-admission",
+    eligibility: [
+      {
+        type: "age",
+        description: "Child must be 8–9 years old by September 1st",
+        ageRange: { minAgeYears: 8, maxAgeYears: 9 },
+      },
+    ],
+    documents: [],
+  },
 };
 
 export const GY_PRIMARY_GRADE_5_PROGRAM: StandardProgram = {
@@ -231,13 +260,17 @@ export const GY_PRIMARY_GRADE_5_V1: StandardProgramVersion = {
   program: GY_PRIMARY_GRADE_5_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
-  requirements: [
-    {
-      type: "age",
-      description: "Child must be 9–10 years old by September 1st",
-      ageRange: { minAgeYears: 9, maxAgeYears: 10 },
-    },
-  ],
+  admission: {
+    id: "gy-primary-grade-5-admission",
+    eligibility: [
+      {
+        type: "age",
+        description: "Child must be 9–10 years old by September 1st",
+        ageRange: { minAgeYears: 9, maxAgeYears: 10 },
+      },
+    ],
+    documents: [],
+  },
 };
 
 export const GY_PRIMARY_GRADE_6_PROGRAM: StandardProgram = {
@@ -256,12 +289,16 @@ export const GY_PRIMARY_GRADE_6_V1: StandardProgramVersion = {
   program: GY_PRIMARY_GRADE_6_PROGRAM,
   version: 1,
   effectiveFrom: "2023-01-01",
-  requirements: [
-    {
-      type: "age",
-      description: "Child must be 10–11 years old by September 1st",
-      ageRange: { minAgeYears: 10, maxAgeYears: 11 },
-    },
-  ],
+  admission: {
+    id: "gy-primary-grade-6-admission",
+    eligibility: [
+      {
+        type: "age",
+        description: "Child must be 10–11 years old by September 1st",
+        ageRange: { minAgeYears: 10, maxAgeYears: 11 },
+      },
+    ],
+    documents: [],
+  },
   assessments: [GY_PRIMARY_ASSESSMENT_NGSA_V1],
 };
