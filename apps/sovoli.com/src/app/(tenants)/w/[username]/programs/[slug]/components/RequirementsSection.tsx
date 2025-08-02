@@ -56,58 +56,57 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
 
   return (
     <ProgramSectionsWrapper>
-      <Card className="overflow-hidden">
-        <CardHeader className="pb-4">
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-            <UserIcon className="h-6 w-6 text-primary" />
             Requirements
           </h2>
-        </CardHeader>
-        <CardBody>
-          <div className="space-y-6">
-            {requirements.map((requirement: RequirementList, index: number) => (
-              <div key={index} className="space-y-3">
-                <div className="flex items-center gap-2">
-                  {getCategoryIcon(requirement.category)}
-                  <h3 className="text-lg font-semibold text-foreground">
-                    {requirement.name}
-                  </h3>
-                </div>
+        </div>
 
-                {requirement.notes && (
-                  <p className="text-sm text-foreground-500">
-                    {requirement.notes}
-                  </p>
-                )}
-
-                <div className="grid gap-2">
-                  {requirement.items.map((item, itemIndex) => (
-                    <div
-                      key={itemIndex}
-                      className="flex items-center gap-3 p-3 bg-default-50 rounded-lg"
-                    >
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-foreground">
-                          {item.type === "book"
-                            ? item.title
-                            : item.type === "uniform"
-                              ? item.piece
-                              : item.name}
-                        </p>
-                        {item.notes && (
-                          <p className="text-xs text-foreground-500 mt-1">
-                            {item.notes}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+        <div className="space-y-6">
+          {requirements.map((requirement: RequirementList, index: number) => (
+            <div key={index} className="space-y-3">
+              <div className="flex items-center gap-2">
+                {getCategoryIcon(requirement.category)}
+                <h3 className="text-lg font-semibold text-foreground">
+                  {requirement.name}
+                </h3>
               </div>
-            ))}
-          </div>
-        </CardBody>
-      </Card>
+
+              {requirement.notes && (
+                <p className="text-sm text-foreground-500">
+                  {requirement.notes}
+                </p>
+              )}
+
+              <div className="grid gap-2">
+                {requirement.items.map((item, itemIndex) => (
+                  <div
+                    key={itemIndex}
+                    className="flex items-center gap-3 p-3 bg-default-50 rounded-lg"
+                  >
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-foreground">
+                        {item.type === "book"
+                          ? item.title
+                          : item.type === "uniform"
+                            ? item.piece
+                            : item.name}
+                      </p>
+                      {item.notes && (
+                        <p className="text-xs text-foreground-500 mt-1">
+                          {item.notes}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </ProgramSectionsWrapper>
   );
 }

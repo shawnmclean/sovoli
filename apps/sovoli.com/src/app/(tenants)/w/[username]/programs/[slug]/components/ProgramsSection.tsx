@@ -14,46 +14,14 @@ import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 import { CldImage } from "next-cloudinary";
 
 // Helper function to display age range
-const displayAgeRange = (ageRange?: {
+const formatAgeRange = (range: {
   minAgeYears?: number;
   maxAgeYears?: number;
-  minAgeMonths?: number;
-  maxAgeMonths?: number;
-}): string => {
-  if (!ageRange) return "";
-
-  const minAgeParts: string[] = [];
-  const maxAgeParts: string[] = [];
-
-  // Build minimum age string
-  if (ageRange.minAgeYears !== undefined && ageRange.minAgeYears > 0) {
-    minAgeParts.push(`${ageRange.minAgeYears} years`);
-  }
-  if (ageRange.minAgeMonths !== undefined && ageRange.minAgeMonths > 0) {
-    minAgeParts.push(`${ageRange.minAgeMonths} months`);
-  }
-
-  // Build maximum age string
-  if (ageRange.maxAgeYears !== undefined && ageRange.maxAgeYears > 0) {
-    maxAgeParts.push(`${ageRange.maxAgeYears} years`);
-  }
-  if (ageRange.maxAgeMonths !== undefined && ageRange.maxAgeMonths > 0) {
-    maxAgeParts.push(`${ageRange.maxAgeMonths} months`);
-  }
-
-  // Combine min and max age into a single display string
-  const minAgeDisplay = minAgeParts.join(" ");
-  const maxAgeDisplay = maxAgeParts.join(" ");
-
-  if (minAgeDisplay && maxAgeDisplay) {
-    return `${minAgeDisplay} - ${maxAgeDisplay}`;
-  } else if (minAgeDisplay) {
-    return minAgeDisplay;
-  } else if (maxAgeDisplay) {
-    return maxAgeDisplay;
-  }
-
-  return "";
+}) => {
+  const min = range.minAgeYears ?? 0;
+  return range.maxAgeYears
+    ? `Ages ${min}-${range.maxAgeYears}`
+    : `Ages ${min} and up`;
 };
 
 export interface ProgramsSectionProps {
@@ -104,11 +72,13 @@ export function ProgramsSection({
               const programImage = program.photos?.[0];
 
               // Get age requirement for this program
-              const ageReq =
-                program.requirements?.find((r) => r.type === "age") ??
-                program.standardProgramVersion?.requirements?.find(
-                  (r) => r.type === "age",
-                );
+              const admission =
+                program.admission ?? program.standardProgramVersion?.admission;
+              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+              const ageReq = admission?.eligibility.find(
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                (r) => r.type === "age",
+              );
 
               return (
                 <CarouselItem key={program.slug} className="pl-4 basis-[280px]">
@@ -142,7 +112,7 @@ export function ProgramsSection({
                         {ageReq?.ageRange && (
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
                             <UserIcon className="w-3 h-3 flex-shrink-0" />
-                            <span>{displayAgeRange(ageReq.ageRange)}</span>
+                            <span>{formatAgeRange(ageReq.ageRange)}</span>
                           </div>
                         )}
                       </CardBody>

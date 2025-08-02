@@ -26,9 +26,10 @@ export function ProgramCycleCard({
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "";
 
-  const requirement =
-    program.requirements ?? program.standardProgramVersion?.requirements;
-  const ageReq = requirement?.find((r) => r.type === "age");
+  const admission =
+    program.admission ?? program.standardProgramVersion?.admission;
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const ageReq = admission?.eligibility.find((r) => r.type === "age");
 
   const formatAgeRange = (range: {
     minAgeYears?: number;
@@ -36,8 +37,8 @@ export function ProgramCycleCard({
   }) => {
     const min = range.minAgeYears ?? 0;
     return range.maxAgeYears
-      ? `Ages ${min}-${range.maxAgeYears} years`
-      : `${min} years and up`;
+      ? `Ages ${min}-${range.maxAgeYears}`
+      : `Ages ${min} and up`;
   };
 
   const currentCycle = program.cycles?.[0];

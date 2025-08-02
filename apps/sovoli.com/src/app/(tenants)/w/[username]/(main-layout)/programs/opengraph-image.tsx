@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
-import type { DocumentRequirement } from "~/modules/academics/types";
 
 export const size = {
   width: 1200,
@@ -90,23 +89,29 @@ export default async function OpenGraphImage({ params }: Props) {
     .map((program) => {
       const programName =
         program.name ?? program.standardProgramVersion?.program.name ?? "";
-      const requirements =
-        program.requirements ??
-        program.standardProgramVersion?.requirements ??
-        [];
-      const ageRequirement = requirements.find((r) => r.type === "age");
-      const documentRequirements = requirements.filter(
-        (r) => r.type === "document",
+      const admission =
+        program.admission ?? program.standardProgramVersion?.admission;
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      const ageRequirement = admission?.eligibility.find(
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        (r) => r.type === "age",
       );
+
+      const formatAgeRange = (range: {
+        minAgeYears?: number;
+        maxAgeYears?: number;
+      }) => {
+        const min = range.minAgeYears ?? 0;
+        return range.maxAgeYears
+          ? `Ages ${min}-${range.maxAgeYears}`
+          : `Ages ${min} and up`;
+      };
 
       return {
         name: programName,
         ageReq: ageRequirement?.ageRange
-          ? `Ages ${ageRequirement.ageRange.minAgeYears ?? 0}-${ageRequirement.ageRange.maxAgeYears ?? ""} years`
+          ? formatAgeRange(ageRequirement.ageRange)
           : null,
-        documents: documentRequirements
-          .map((r: DocumentRequirement) => r.name)
-          .join(", "),
       };
     })
     .filter((p) => p.name);
@@ -252,17 +257,6 @@ export default async function OpenGraphImage({ params }: Props) {
                         }}
                       >
                         {program.ageReq}
-                      </span>
-                    )}
-                    {program.documents && (
-                      <span
-                        style={{
-                          fontSize: "14px",
-                          opacity: 0.7,
-                          marginTop: "4px",
-                        }}
-                      >
-                        Documents: {program.documents}
                       </span>
                     )}
                   </div>

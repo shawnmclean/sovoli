@@ -21,9 +21,10 @@ export function ProgramCard({
   const programName =
     program.name ?? program.standardProgramVersion?.program.name ?? "";
 
-  const ageReq =
-    program.requirements?.find((r) => r.type === "age") ??
-    program.standardProgramVersion?.requirements?.find((r) => r.type === "age");
+  const admission =
+    program.admission ?? program.standardProgramVersion?.admission;
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const ageReq = admission?.eligibility.find((r) => r.type === "age");
 
   return (
     <Card className="overflow-hidden shadow-md transition hover:shadow-lg">
