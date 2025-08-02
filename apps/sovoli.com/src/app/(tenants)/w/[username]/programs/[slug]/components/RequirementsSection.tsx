@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Button } from "@sovoli/ui/components/button";
+
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
   Drawer,
@@ -156,7 +156,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
             {/* Summary items */}
             <div className="space-y-2">
               {summaryItems.map(({ item }, index) => (
-                <div key={index} className="flex items-center gap-2 ml-2">
+                <div key={index} className="flex items-center gap-2">
                   <div className="flex-1">
                     <p className="text-sm font-medium text-foreground">
                       {item.quantity &&
@@ -178,9 +178,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
               ))}
             </div>
 
-            <Button variant="light" color="default" className="mt-3" fullWidth>
-              Show More
-            </Button>
+            <div className="mt-3 underline">Show More</div>
           </div>
         </div>
       </div>
