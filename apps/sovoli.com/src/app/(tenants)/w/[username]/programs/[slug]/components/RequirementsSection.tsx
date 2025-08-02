@@ -125,7 +125,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
   }
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper onClick={onRequirementsOpen}>
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -155,7 +155,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
             {/* Summary items */}
             <div className="space-y-2">
               {summaryItems.map(({ item }, index) => (
-                <div key={index} className="flex items-center gap-2 ml-2">
+                <div key={index} className="flex items-center gap-2">
                   <div className="flex-1">
                     <p className="text-sm font-medium text-foreground">
                       {item.type === "book"
@@ -174,15 +174,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
               ))}
             </div>
 
-            <Button
-              variant="flat"
-              color="default"
-              onPress={onRequirementsOpen}
-              className="mt-3"
-              fullWidth
-            >
-              View Details
-            </Button>
+            <div className="mt-3 underline">Show More</div>
           </div>
         </div>
       </div>
