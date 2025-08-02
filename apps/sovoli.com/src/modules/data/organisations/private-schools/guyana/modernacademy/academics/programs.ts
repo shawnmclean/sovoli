@@ -97,7 +97,6 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
   tagline: "Play, explore, and grow together",
   outcome: "School Readiness",
   description: "Strong foundational learning in a nurturing environment",
-  ageRange: { min: 2, max: 3 },
   courses: [
     {
       id: "magy-pre-nursery-tracing",
@@ -184,6 +183,22 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
   isPopular: true,
   cycles: [MAGY_PRE_NURSERY_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,
+  admission: {
+    id: "magy-pre-nursery-admission",
+    eligibility: [
+      {
+        type: "age",
+        ageRange: { minAgeYears: 2, maxAgeYears: 3 },
+      },
+    ],
+    documents: [
+      {
+        type: "document",
+        name: "Birth Certificate",
+        requirement: "required",
+      },
+    ],
+  },
   requirements: [
     {
       name: "Supplies",

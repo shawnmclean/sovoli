@@ -307,7 +307,6 @@ export interface Program {
   id: string;
   slug: string; // e.g., "grade-1", "form-3", "year-2", "beginner"
   name?: string; // "Nursery" (can override)
-  ageRange?: { min: number; max: number };
   audience?: "student" | "parent";
 
   highlights?: ProgramHighlight[];
