@@ -239,7 +239,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
                       {requirement.items.map((item, itemIndex) => (
                         <div
                           key={itemIndex}
-                          className="flex items-center gap-3 p-3 bg-default-50 rounded-lg"
+                          className="flex items-center px-2 py-1 bg-default-50 rounded-lg"
                         >
                           <div className="flex-1">
                             <p className="text-sm font-medium text-foreground">
