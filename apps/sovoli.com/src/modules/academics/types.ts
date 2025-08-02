@@ -146,15 +146,8 @@ export interface AdmissionDocumentRule {
 
 export interface RequirementList {
   name: string; // "Nursery Year 1 — Books"
-  category: "booklist" | "materials" | "hygiene" | "uniform" | "other";
+  category: "booklist" | "materials" | "uniform" | "other";
   audience?: "parent" | "student"; // UI hint
-  appliesTo?: {
-    // where this list lives
-    programId?: string; // e.g., "gy-nursery-year-1"
-    programCycleId?: string; // e.g., "magy-nursery-year-1-2025-t1"
-  };
-  effectiveFrom?: string;
-  effectiveTo?: string;
   notes?: string; // list-level notes
   items: RequirementListItem[];
 }

@@ -113,12 +113,12 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
 
     requirementsByCategory.forEach((data, category) => {
       const categoryLabel = getCategoryLabel(category);
-      data.items.slice(0, 3).forEach((item) => {
+      data.items.slice(0, 2).forEach((item) => {
         items.push({ category, item, categoryLabel });
       });
     });
 
-    return items.slice(0, 6); // Show max 6 items in summary
+    return items.slice(0, 4); // Show max 6 items in summary
   }, [requirementsByCategory]);
 
   if (requirements.length === 0) {
