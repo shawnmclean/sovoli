@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   GY_NURSERY_YEAR_2_V1,
   GY_PRIMARY_GRADE_1_V1,
@@ -21,6 +22,7 @@ import {
   MAGY_PRIMARY_GRADE_1_2025_T1,
 } from "./cycles";
 import { MAGY_SHARED_TESTIMONIALS } from "./testimonials";
+import { findItemById } from "~/modules/data/items";
 
 const MAGY_NURSERY_DEPT_ACTIVITIES: Activity[] = [
   {
@@ -206,9 +208,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
       audience: "parent",
       items: [
         {
-          type: "book",
-          title: "Coloring Book (Letters & Numbers)",
-          kind: "exercise",
+          item: findItemById("book-coloring-letters-numbers")!,
         },
       ],
     },
@@ -218,48 +218,36 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
       audience: "parent",
       items: [
         {
-          type: "supply",
-          name: "Crayola Crayons (Fat)",
-          category: "stationery",
+          item: findItemById("supply-crayola-crayons-fat")!,
         },
-        { type: "supply", name: "Crayola Play Dough", category: "craft" },
-        { type: "supply", name: "Art Book", category: "stationery" },
-        { type: "supply", name: "Building Blocks", category: "learning-aid" },
-        { type: "supply", name: "Paint Set", category: "craft" },
+        { item: findItemById("supply-crayola-play-dough")! },
+        { item: findItemById("supply-art-book")! },
+        { item: findItemById("supply-building-blocks")! },
+        { item: findItemById("supply-paint-set")! },
         {
-          type: "supply",
-          name: "Card Board Sheet",
+          item: findItemById("supply-card-board-sheet")!,
           quantity: 2,
           unit: "sheet",
-          category: "craft",
         },
-        { type: "supply", name: "Glue", category: "craft" },
-        { type: "supply", name: "Detergent", category: "general" },
+        { item: findItemById("supply-glue")! },
+        { item: findItemById("supply-detergent")! },
         {
-          type: "supply",
-          name: "Hand Sanitizer",
+          item: findItemById("supply-hand-sanitizer")!,
           unit: "bottle",
-          category: "general",
         },
         {
-          type: "supply",
-          name: "Paper Towel",
+          item: findItemById("supply-paper-towel")!,
           quantity: 1,
           unit: "roll",
-          category: "general",
         },
         {
-          type: "supply",
-          name: "Liquid Soap",
+          item: findItemById("supply-liquid-soap")!,
           unit: "bottle",
-          category: "general",
         },
         {
-          type: "supply",
-          name: "Toilet Paper",
+          item: findItemById("supply-toilet-paper")!,
           quantity: 1,
           unit: "roll",
-          category: "general",
         },
       ],
     },
@@ -417,37 +405,20 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
       audience: "parent",
       items: [
         {
-          type: "book",
-          title: "Animal Friends Level A Reader",
-          series: "Animal Friends",
-          level: "Level A",
-          kind: "reader",
+          item: findItemById("book-animal-friends-level-a-reader")!,
         },
         {
-          type: "book",
-          title: "Animal Friends Level A Workbook",
-          series: "Animal Friends",
-          level: "Level A",
-          kind: "workbook",
+          item: findItemById("book-animal-friends-level-a-workbook")!,
         },
-        { type: "book", title: "Big and Easy Coloring Book", kind: "exercise" },
+        { item: findItemById("book-big-easy-coloring")! },
         {
-          type: "book",
-          title: "Roraima Readers Nursery Year 1 Literacy",
-          series: "Roraima Readers",
-          kind: "textbook",
+          item: findItemById("book-roraima-nursery-year-1-literacy")!,
         },
         {
-          type: "book",
-          title: "Roraima Readers Nursery Year 1 Numeracy",
-          series: "Roraima Readers",
-          kind: "textbook",
+          item: findItemById("book-roraima-nursery-year-1-numeracy")!,
         },
         {
-          type: "book",
-          title: "Roraima Reader Workbook 1 (Writing Skills)",
-          series: "Roraima Readers",
-          kind: "workbook",
+          item: findItemById("book-roraima-workbook-1-writing")!,
         },
       ],
     },
@@ -456,46 +427,35 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
       category: "materials",
       audience: "parent",
       items: [
-        { type: "supply", name: "Fat Pencil", category: "stationery" },
+        { item: findItemById("supply-fat-pencil")! },
         {
-          type: "supply",
-          name: "Single Line Book",
+          item: findItemById("supply-single-line-book")!,
           quantity: 2,
-          category: "stationery",
         },
         {
-          type: "supply",
-          name: "Art Book",
+          item: findItemById("supply-art-book")!,
           quantity: 1,
-          category: "stationery",
         },
-        { type: "supply", name: "Pack of Letters", category: "learning-aid" },
-        { type: "supply", name: "Pack of Numbers", category: "learning-aid" },
+        { item: findItemById("supply-pack-letters")! },
+        { item: findItemById("supply-pack-numbers")! },
         {
-          type: "supply",
-          name: "Sheet Card Boards",
+          item: findItemById("supply-sheet-card-boards")!,
           quantity: 2,
           unit: "sheet",
-          category: "craft",
         },
         {
-          type: "supply",
-          name: "Pack Blocks",
+          item: findItemById("supply-pack-blocks")!,
           quantity: 1,
           unit: "pack",
-          category: "learning-aid",
         },
         {
-          type: "supply",
-          name: "Paint Set",
+          item: findItemById("supply-paint-set")!,
           notes: "Crayola",
           quantity: 1,
           unit: "set",
-          category: "craft",
         },
         {
-          type: "hygiene",
-          name: "Hand Sanitizer",
+          item: findItemById("supply-hand-sanitizer")!,
           quantity: 1,
           unit: "bottle",
         },
@@ -710,22 +670,14 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
       category: "booklist",
       audience: "parent",
       items: [
-        { type: "book", title: "Animal Readers", kind: "reader" },
+        { item: findItemById("book-animal-readers")! },
         {
-          type: "book",
-          title: "Roraima Reader Numeracy Workbook (Book 2)",
-          series: "Roraima Readers",
-          level: "Book 2",
-          kind: "workbook",
+          item: findItemById("book-roraima-numeracy-workbook-book-2")!,
         },
         {
-          type: "book",
-          title: "Roraima Reader Literacy Nursery Year 2",
-          series: "Roraima Readers",
-          level: "Nursery Year 2",
-          kind: "textbook",
+          item: findItemById("book-roraima-literacy-nursery-year-2")!,
         },
-        { type: "book", title: "Coloring Book", kind: "exercise" }, // treated as an exercise book
+        { item: findItemById("book-coloring-book")! }, // treated as an exercise book
       ],
     },
     {
@@ -733,77 +685,57 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
       category: "materials",
       audience: "parent",
       items: [
-        { type: "supply", name: "Crayola Crayons", category: "stationery" },
+        { item: findItemById("supply-crayola-crayons")! },
         {
-          type: "supply",
-          name: "Art Book",
+          item: findItemById("supply-art-book")!,
           quantity: 1,
-          category: "stationery",
         }, // drawing pad / sketch book
         {
-          type: "supply",
-          name: "Fine Line Book",
+          item: findItemById("supply-fine-line-book")!,
           quantity: 1,
-          category: "stationery",
         }, // copybook with fine ruling
         {
-          type: "supply",
-          name: "4 Line Book",
+          item: findItemById("supply-4-line-book")!,
           quantity: 1,
-          category: "stationery",
         }, // early-writing copybook
         {
-          type: "supply",
-          name: "Pencils",
+          item: findItemById("supply-pencils")!,
           quantity: 2,
           unit: "each",
-          category: "stationery",
         },
         {
-          type: "supply",
-          name: "Sheet Card Board",
+          item: findItemById("supply-sheet-card-board")!,
           quantity: 2,
           unit: "sheet",
-          category: "craft",
         },
         {
-          type: "supply",
-          name: "Pack Blocks",
+          item: findItemById("supply-pack-blocks")!,
           quantity: 1,
           unit: "pack",
-          category: "learning-aid",
         },
         {
-          type: "supply",
-          name: "Paint Set",
+          item: findItemById("supply-paint-set")!,
           notes: "Crayola",
           quantity: 1,
           unit: "set",
-          category: "craft",
         },
-        { type: "supply", name: "Soap", quantity: 1, category: "general" }, // unit unspecified on sheet
-        { type: "supply", name: "Detergent", quantity: 1, category: "general" }, // unit unspecified on sheet
+        { item: findItemById("supply-soap")!, quantity: 1 }, // unit unspecified on sheet
+        { item: findItemById("supply-detergent")!, quantity: 1 }, // unit unspecified on sheet
         {
-          type: "supply",
-          name: "Hand Sanitizer",
+          item: findItemById("supply-hand-sanitizer")!,
           quantity: 1,
           unit: "bottle",
-          category: "general",
         },
         {
-          type: "supply",
-          name: "Bounty Tissue",
+          item: findItemById("supply-bounty-tissue")!,
           quantity: 1,
           unit: "roll",
-          category: "general",
           notes: "brand: Bounty",
         },
         {
-          type: "supply",
-          name: "Toilet Paper",
+          item: findItemById("supply-toilet-paper")!,
           quantity: 1,
           unit: "roll",
-          category: "general",
         },
       ],
     },

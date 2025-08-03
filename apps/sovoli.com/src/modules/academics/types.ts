@@ -1,4 +1,6 @@
 import type { PricingPackage } from "../core/economics/types";
+import type { Item } from "../core/items/types";
+import type { Photo } from "../core/photos/types";
 import type { CountryCode } from "../core/types";
 import type { WorkforceMember } from "../workforce/types";
 
@@ -89,31 +91,6 @@ export interface StandardProgramVersion {
   requirements?: RequirementList[];
 }
 
-// TODO: move to core or photos module
-export interface Photo {
-  category:
-    | "environment"
-    | "classroom"
-    | "activities"
-    | "events"
-    | "awards"
-    | "default";
-  url: string;
-  caption?: string;
-  alt?: string;
-
-  // Cloudinary fields (auto-populated on upload)
-  assetId?: string; // Cloudinary asset ID
-  publicId: string; // Cloudinary public ID
-  width?: number;
-  height?: number;
-  format?: string; // webp, jpg, etc.
-  bytes?: number; // File size
-  version?: number; // Cloudinary version
-
-  uploadedAt?: string;
-}
-
 export interface AdmissionPolicy {
   id: string; // "magy-nursery-y1-admissions"
   eligibility: EligibilityRule[]; // who can enroll
@@ -149,81 +126,16 @@ export interface RequirementList {
   category: "booklist" | "materials" | "uniform" | "other";
   audience?: "parent" | "student"; // UI hint
   notes?: string; // list-level notes
-  items: RequirementListItem[];
+  items: RequirementListEntry[];
 }
 
-export type RequirementListItem =
-  | BookItem
-  | SupplyItem
-  | HygieneItem
-  | UniformItem;
-
-export interface BaseItem {
-  type: string;
+export interface RequirementListEntry {
+  item: Item; // central Item (global definition)
+  quantity?: number; // default: 1
+  unit?: string; // e.g., "pack", "set", etc.
   isOptional?: boolean;
-  quantity?: number; // default 1
-  unit?:
-    | "each"
-    | "pack"
-    | "set"
-    | "sheet"
-    | "bottle"
-    | "box"
-    | "roll"
-    | "other";
-  notes?: string; // free-form clarifications
   source?: "bring" | "buy-at-school" | "either";
-  vendorUrl?: string; // optional external link
-  skuId?: string; // pointer to a central Catalog (if you add one later)
-}
-
-/** Books & workbooks */
-export interface BookItem extends BaseItem {
-  type: "book";
-  title: string; // "Animal Friends Level A Reader"
-  series?: string; // "Animal Friends"
-  level?: string; // "Level A"
-  kind?: "reader" | "workbook" | "textbook" | "exercise" | "other";
-  publisher?: string;
-  edition?: string;
-  isbn?: string;
-}
-
-/** General supplies / stationery / learning aids / craft */
-export interface SupplyItem extends BaseItem {
-  type: "supply";
-  name: string; // "Fat Pencil", "Pack of Letters"
-  category?: "stationery" | "craft" | "learning-aid" | "general";
-}
-
-/** Hygiene / cleaning items */
-export interface HygieneItem extends BaseItem {
-  type: "hygiene";
-  name: string; // "Hand Sanitizer"
-}
-
-/** Uniform pieces with pictures/specs */
-export interface UniformItem extends BaseItem {
-  type: "uniform";
-  piece:
-    | "shirt"
-    | "pants"
-    | "skirt"
-    | "dress"
-    | "belt"
-    | "shoes"
-    | "socks"
-    | "pe-top"
-    | "pe-bottom"
-    | "sweater"
-    | "other";
-  activity?: "regular" | "PE" | "formal" | "other";
-  gender?: "unisex" | "boy" | "girl";
-  color?: string; // "blue", "#0a57ff"
-  material?: string; // "cotton/poly blend"
-  spec?: string; // "Light blue shirt with school crest left chest"
-  photos?: Photo[]; // reuse your existing Photo type
-  sizeGuideUrl?: string; // link to size chart
+  notes?: string; // clarifications (e.g., "Label with name", "Plastic only")
 }
 
 export type ProgramAssessmentId = "ngsa";

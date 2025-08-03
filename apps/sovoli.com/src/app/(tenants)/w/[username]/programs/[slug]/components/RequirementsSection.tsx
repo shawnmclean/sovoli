@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import type { Program, RequirementList } from "~/modules/academics/types";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
+import type { Item } from "~/modules/core/items/types";
 
 interface RequirementsSectionProps {
   program: Program;
@@ -56,12 +57,10 @@ function getCategoryLabel(category: string) {
 }
 
 interface RequirementItem {
-  type: string;
-  title?: string;
-  piece?: string;
-  name?: string;
-  notes?: string;
+  item: Item;
   quantity?: number;
+  unit?: string;
+  notes?: string;
 }
 
 interface CategoryData {
@@ -164,11 +163,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
                       {item.quantity &&
                         item.quantity > 1 &&
                         `${item.quantity}x `}
-                      {item.type === "book"
-                        ? item.title
-                        : item.type === "uniform"
-                          ? item.piece
-                          : item.name}
+                      {item.item.name}
                     </p>
                     {item.notes && (
                       <p className="text-xs text-foreground-500 mt-1">
@@ -246,11 +241,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
                               {item.quantity &&
                                 item.quantity > 1 &&
                                 `${item.quantity}x `}
-                              {item.type === "book"
-                                ? item.title
-                                : item.type === "uniform"
-                                  ? item.piece
-                                  : item.name}
+                              {item.item.name}
                             </p>
                             {item.notes && (
                               <p className="text-xs text-foreground-500 mt-1">
