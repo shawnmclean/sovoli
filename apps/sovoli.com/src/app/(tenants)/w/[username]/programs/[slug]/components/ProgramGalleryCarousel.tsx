@@ -1,6 +1,6 @@
 "use client";
 
-import type { Photo, Program } from "~/modules/academics/types";
+import type { Program } from "~/modules/academics/types";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
@@ -19,6 +19,7 @@ import { CldImage } from "next-cloudinary";
 import { useState, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { ChevronLeftIcon } from "lucide-react";
+import type { Photo } from "~/modules/core/photos/types";
 
 export interface ProgramGalleryCarouselProps {
   program: Program;
