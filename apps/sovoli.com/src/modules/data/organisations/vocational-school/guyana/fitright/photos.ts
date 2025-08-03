@@ -1,4 +1,4 @@
-import type { Photo } from "~/modules/academics/types";
+import type { Photo } from "~/modules/core/photos/types";
 
 const FITRIGHT_BAG_WORKSHOP_PHOTOS: Photo[] = [
   {
