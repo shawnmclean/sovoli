@@ -24,6 +24,7 @@ import { ProgramDescriptionSection } from "./components/ProgramDescriptionSectio
 import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
 import { Divider } from "@sovoli/ui/components/divider";
+import { OrgHighlightsSection } from "./components/OrgHighlightsSection";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -166,6 +167,7 @@ export default async function ProgramDetailsPage({
           <ProgramTestimonialsSection
             testimonials={programToUse.testimonials}
           />
+          <OrgHighlightsSection orgInstance={orgInstance} />
 
           <PricingSection defaultCycle={currentCycle ?? nextCycle} />
 
