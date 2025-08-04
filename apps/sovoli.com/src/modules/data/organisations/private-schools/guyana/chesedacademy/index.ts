@@ -9,7 +9,16 @@ export const CHESED_ACADEMY_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", countryCode: "GY" },
+        address: {
+          line1: "145 Fifth St",
+          city: "Georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJCWxqfb7vr40RV1MobA5514I",
+        coordinates: {
+          lat: 6.8116026,
+          lng: -58.1531682,
+        },
         contacts: [{ type: "phone", value: "+592-650-7584", isPublic: true }],
         isPrimary: true,
       },

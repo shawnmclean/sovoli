@@ -9,7 +9,16 @@ export const APEX_EDUCATION_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
+        address: {
+          line1: "RW95+QW4",
+          city: "Georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJRSkgg7rtr40RkOmXRc1sNBk",
+        coordinates: {
+          lat: 6.8203095,
+          lng: -58.0895078,
+        },
         contacts: [],
         isPrimary: true,
       },

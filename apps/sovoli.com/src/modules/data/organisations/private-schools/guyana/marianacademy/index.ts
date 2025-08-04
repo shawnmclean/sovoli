@@ -16,6 +16,11 @@ export const MARIAN_ACADEMY_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJ56xGfhDvr40Rm2ZnIABICMw",
+        coordinates: {
+          lat: 6.8221625,
+          lng: -58.1553697,
+        },
         contacts: [
           { type: "phone", value: "+592-226-9044", isPublic: true },
           { type: "phone", value: "+592-226-9045", isPublic: true },

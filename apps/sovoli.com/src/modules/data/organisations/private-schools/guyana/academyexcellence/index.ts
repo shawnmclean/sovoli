@@ -9,7 +9,16 @@ export const ACADEMY_EXCELLENCE_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
+        address: {
+          line1: "VP6J+22V",
+          city: "Cornelia Ida",
+          countryCode: "GY",
+        },
+        placeId: "ChIJlSUlKWXnr40R7Q6ZUCJHwsM",
+        coordinates: {
+          lat: 6.8601078,
+          lng: -58.2699551,
+        },
         contacts: [],
         isPrimary: true,
       },
