@@ -215,7 +215,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
               variant="light" 
               isIconOnly 
               radius="full" 
-              onPress={() => onRequirementsOpenChange(false)}
+              onPress={onRequirementsOpenChange}
             >
               <ChevronLeftIcon />
             </Button>
