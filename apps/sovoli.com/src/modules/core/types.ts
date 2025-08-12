@@ -3,6 +3,7 @@ export interface Contact {
   label?: string;
   value: string;
   isPublic: boolean;
+  primary?: boolean;
 }
 
 export interface SocialLink {

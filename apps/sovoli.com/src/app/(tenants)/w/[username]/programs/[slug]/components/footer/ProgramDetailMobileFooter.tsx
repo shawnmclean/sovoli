@@ -19,6 +19,7 @@ import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionCon
 import { Skeleton } from "@sovoli/ui/components/skeleton";
 import { GuidedChatForm } from "../GuidedChatForm";
 import { Input } from "@sovoli/ui/components/input";
+import { getWhatsAppContact } from "~/utils/whatsappUtils";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -48,9 +49,7 @@ export function ProgramDetailMobileFooter({
   const { selectedCycle, isLoading, isInitialized } =
     useProgramCycleSelection();
 
-  const whatsappNumber = orgInstance.org.locations
-    .find((l) => l.isPrimary)
-    ?.contacts.find((c) => c.type === "whatsapp")?.value;
+  const whatsappNumber = getWhatsAppContact(orgInstance);
 
   // Get cycle information for contact drawer
   const cycleLabel = selectedCycle

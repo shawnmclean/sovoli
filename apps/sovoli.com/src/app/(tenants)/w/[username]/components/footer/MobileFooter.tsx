@@ -24,6 +24,7 @@ import { usePathname } from "next/navigation";
 import { tv } from "tailwind-variants";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { getWhatsAppContact } from "~/utils/whatsappUtils";
 
 const footerButton = tv({
   slots: {
@@ -71,9 +72,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
   const moreButtonClasses = footerButton();
   const drawerButtonClasses = drawerButton();
 
-  const whatsappNumber = orgInstance.org.locations
-    .find((location) => location.isPrimary)
-    ?.contacts.find((contact) => contact.type === "whatsapp")?.value;
+  const whatsappNumber = getWhatsAppContact(orgInstance);
 
   return (
     <footer className="fixed bottom-0 left-0 right-0 bg-content1 shadow-lg pb-2 px-2 md:hidden z-40">
