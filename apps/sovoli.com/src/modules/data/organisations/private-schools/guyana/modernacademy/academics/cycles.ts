@@ -1,8 +1,13 @@
 import { GY_CYCLE_2025_T1 } from "~/modules/data/academics/guyana/cycles";
 import type { OrgAcademicCycle, ProgramCycle } from "~/modules/academics/types";
-import type { PricingItem } from "~/modules/core/economics/types";
-import type { Discount } from "~/modules/core/economics/types";
-import { ANITA_DHANIRAM, SAMANTHA_PERSAUD, WONDA_BARON, MOLTA_MCRAE, SIR_CHABEERAJ_FRANCIS } from "../workforce";
+import type { Discount, PricingItem } from "~/modules/core/economics/types";
+import {
+  ANITA_DHANIRAM,
+  MOLTA_MCRAE,
+  SAMANTHA_PERSAUD,
+  SIR_CHABEERAJ_FRANCIS,
+  WONDA_BARON,
+} from "../workforce";
 // #region academic cycles
 
 export const MAGY_ACADEMIC_CYCLE_2025_T1: OrgAcademicCycle = {

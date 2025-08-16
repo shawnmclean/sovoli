@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
+  GY_NURSERY_YEAR_1_V1,
   GY_NURSERY_YEAR_2_V1,
   GY_PRIMARY_GRADE_1_V1,
   GY_PRIMARY_GRADE_2_V1,
@@ -7,7 +8,6 @@ import {
   GY_PRIMARY_GRADE_4_V1,
   GY_PRIMARY_GRADE_5_V1,
   GY_PRIMARY_GRADE_6_V1,
-  GY_NURSERY_YEAR_1_V1,
 } from "~/modules/data/academics/guyana/programs";
 import {
   NURSERY_YEAR_1_PHOTOS,
