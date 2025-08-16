@@ -1,5 +1,5 @@
 import type { AcademicModule } from "~/modules/academics/types";
-import { MAGY_PRIMARY_GRADE_1_PROGRAM } from "./academics/programs";
+import { MAGY_PRIMARY_GRADE_1_PROGRAM, MAGY_PRIMARY_GRADE_2_PROGRAM, MAGY_PRIMARY_GRADE_3_PROGRAM, MAGY_PRIMARY_GRADE_4_PROGRAM, MAGY_PRIMARY_GRADE_5_PROGRAM, MAGY_PRIMARY_GRADE_6_PROGRAM } from "./academics/programs";
 import { MAGY_PRE_NURSERY_PROGRAM } from "./academics/programs";
 import { MAGY_NURSERY_YEAR_1_PROGRAM } from "./academics/programs";
 import { MAGY_NURSERY_YEAR_2_PROGRAM } from "./academics/programs";
@@ -11,5 +11,10 @@ export const MODERN_ACADEMY_ACADEMIC: AcademicModule = {
     MAGY_NURSERY_YEAR_1_PROGRAM,
     MAGY_NURSERY_YEAR_2_PROGRAM,
     MAGY_PRIMARY_GRADE_1_PROGRAM,
+    MAGY_PRIMARY_GRADE_2_PROGRAM,
+    MAGY_PRIMARY_GRADE_3_PROGRAM,
+    MAGY_PRIMARY_GRADE_4_PROGRAM,
+    MAGY_PRIMARY_GRADE_5_PROGRAM,
+    MAGY_PRIMARY_GRADE_6_PROGRAM,
   ],
 };

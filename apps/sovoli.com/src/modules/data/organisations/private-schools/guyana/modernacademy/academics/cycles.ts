@@ -2,7 +2,7 @@ import { GY_CYCLE_2025_T1 } from "~/modules/data/academics/guyana/cycles";
 import type { OrgAcademicCycle, ProgramCycle } from "~/modules/academics/types";
 import type { PricingItem } from "~/modules/core/economics/types";
 import type { Discount } from "~/modules/core/economics/types";
-import { ANITA_DHANIRAM, SAMANTHA_PERSAUD, WONDA_BARON } from "../workforce";
+import { ANITA_DHANIRAM, SAMANTHA_PERSAUD, WONDA_BARON, MOLTA_MCRAE, SIR_CHABEERAJ_FRANCIS } from "../workforce";
 // #region academic cycles
 
 export const MAGY_ACADEMIC_CYCLE_2025_T1: OrgAcademicCycle = {
@@ -124,6 +124,121 @@ export const MAGY_PRIMARY_GRADE_1_2025_T1: ProgramCycle = {
   },
 
   teachers: [WONDA_BARON],
+  capacity: 25,
+  enrolled: 15,
+};
+
+export const MAGY_PRIMARY_GRADE_2_2025_T1: ProgramCycle = {
+  id: "magy-primary-grade-2-2025-t1",
+  academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
+  registrationPeriod: registrationPeriod2025T1,
+  pricingPackage: {
+    discounts: [registrationDiscount],
+    pricingItems: [
+      registrationFee,
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 60000 },
+      },
+    ],
+  },
+
+  teachers: [WONDA_BARON],
+  capacity: 25,
+  enrolled: 15,
+};
+
+export const MAGY_PRIMARY_GRADE_3_2025_T1: ProgramCycle = {
+  id: "magy-primary-grade-3-2025-t1",
+  academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
+  registrationPeriod: registrationPeriod2025T1,
+  pricingPackage: {
+    discounts: [registrationDiscount],
+    pricingItems: [
+      registrationFee,
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 60000 },
+      },
+    ],
+  },
+
+  teachers: [MOLTA_MCRAE],
+  capacity: 25,
+  enrolled: 15,
+};
+
+export const MAGY_PRIMARY_GRADE_4_2025_T1: ProgramCycle = {
+  id: "magy-primary-grade-4-2025-t1",
+  academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
+  registrationPeriod: registrationPeriod2025T1,
+  pricingPackage: {
+    discounts: [registrationDiscount],
+    pricingItems: [
+      registrationFee,
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 60000 },
+      },
+    ],
+  },
+
+  teachers: [MOLTA_MCRAE],
+  capacity: 25,
+  enrolled: 15,
+};
+
+export const MAGY_PRIMARY_GRADE_5_2025_T1: ProgramCycle = {
+  id: "magy-primary-grade-5-2025-t1",
+  academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
+  registrationPeriod: registrationPeriod2025T1,
+  pricingPackage: {
+    discounts: [registrationDiscount],
+    pricingItems: [
+      registrationFee,
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 60000 },
+      },
+    ],
+  },
+
+  teachers: [SIR_CHABEERAJ_FRANCIS],
+  capacity: 25,
+  enrolled: 15,
+};
+
+export const MAGY_PRIMARY_GRADE_6_2025_T1: ProgramCycle = {
+  id: "magy-primary-grade-6-2025-t1",
+  academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
+  registrationPeriod: registrationPeriod2025T1,
+  pricingPackage: {
+    discounts: [registrationDiscount],
+    pricingItems: [
+      registrationFee,
+      {
+        id: "tuition",
+        label: "Tuition",
+        purpose: "tuition",
+        billingCycle: "term",
+        amount: { GYD: 60000 },
+      },
+    ],
+  },
+
+  teachers: [SIR_CHABEERAJ_FRANCIS],
   capacity: 25,
   enrolled: 15,
 };
