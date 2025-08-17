@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
-
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
@@ -25,13 +24,8 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
     onOpen: onSubjectsOpen,
     onOpenChange: onSubjectsOpenChange,
   } = useDisclosure();
-  const {
-    isOpen: isActivitiesOpen,
-    onOpen: onActivitiesOpen,
-    onOpenChange: onActivitiesOpenChange,
-  } = useDisclosure();
 
-  // Extract unique subjects and activities from the current level
+  // Extract unique subjects from the current level
   const subjects = useMemo(() => {
     const courses = program.courses;
     if (!courses) return [];
@@ -44,17 +38,11 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
     return Array.from(uniqueSubjects);
   }, [program]);
 
-  const activities = useMemo(() => {
-    return program.activities ?? [];
-  }, [program]);
-
-  // Show first 5 of each
-  const firstFiveSubjects = subjects.slice(0, 6);
-  const firstFiveActivities = activities.slice(0, 6);
+  // Show first 6 subjects
+  const firstSixSubjects = subjects.slice(0, 6);
   const hasMoreSubjects = subjects.length > 6;
-  const hasMoreActivities = activities.length > 6;
 
-  if (subjects.length === 0 && activities.length === 0) {
+  if (subjects.length === 0) {
     return null;
   }
 
@@ -68,72 +56,29 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
             Learn
           </h2>
         </div>
-        <div className="space-y-6">
-          <div className="space-y-4">
-            {subjects.length > 0 && (
-              <div>
-                <h4 className="font-medium text-foreground mb-2">
-                  Core Learning Areas:
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {firstFiveSubjects.map((subject, index) => (
-                    <Chip
-                      key={index}
-                      color="secondary"
-                      variant="flat"
-                      size="sm"
-                    >
-                      {subject}
-                    </Chip>
-                  ))}
-                  {hasMoreSubjects && (
-                    <Chip color="secondary" variant="flat" size="sm">
-                      +{subjects.length - 6} more
-                    </Chip>
-                  )}
-                </div>
-                <Button
-                  variant="flat"
-                  color="default"
-                  onPress={onSubjectsOpen}
-                  className="mt-3"
-                  fullWidth
-                >
-                  Explore the full curriculum
-                </Button>
-              </div>
-            )}
-
-            {activities.length > 0 && (
-              <div>
-                <h4 className="font-medium text-foreground mb-2">
-                  Joyful Activities & Celebrations
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {firstFiveActivities.map((activity, index) => (
-                    <Chip key={index} color="primary" variant="flat" size="sm">
-                      {activity.title}
-                    </Chip>
-                  ))}
-                  {hasMoreActivities && (
-                    <Chip color="primary" variant="flat" size="sm">
-                      +{activities.length - 6} more
-                    </Chip>
-                  )}
-                </div>
-                {hasMoreActivities && (
-                  <Button
-                    variant="flat"
-                    color="default"
-                    onPress={onActivitiesOpen}
-                    className="mt-3"
-                    fullWidth
-                  >
-                    See all {activities.length} activities
-                  </Button>
-                )}
-              </div>
-            )}
+        <div className="space-y-4">
+          <div>
+            <div className="flex flex-wrap gap-2">
+              {firstSixSubjects.map((subject, index) => (
+                <Chip key={index} color="secondary" variant="flat" size="sm">
+                  {subject}
+                </Chip>
+              ))}
+              {hasMoreSubjects && (
+                <Chip color="secondary" variant="flat" size="sm">
+                  +{subjects.length - 6} more
+                </Chip>
+              )}
+            </div>
+            <Button
+              variant="flat"
+              color="default"
+              onPress={onSubjectsOpen}
+              className="mt-3"
+              fullWidth
+            >
+              Explore the full curriculum
+            </Button>
           </div>
         </div>
       </div>
@@ -226,58 +171,6 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
                         </div>
                       )}
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-
-      {/* Drawer for activities */}
-      <Drawer
-        isOpen={isActivitiesOpen}
-        size="full"
-        placement="bottom"
-        backdrop="opaque"
-        onOpenChange={onActivitiesOpenChange}
-        hideCloseButton
-        motionProps={{
-          variants: {
-            enter: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-            exit: {
-              y: 100,
-              opacity: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-          },
-        }}
-      >
-        <DrawerContent>
-          <DrawerHeader
-            title="All Activities & Celebrations"
-            showBackButton
-            onBackPress={onActivitiesOpenChange}
-          />
-          <DrawerBody className="mt-4">
-            {activities.length > 0 && (
-              <div className="space-y-4">
-                {activities.map((activity, index) => (
-                  <div
-                    key={index}
-                    className="p-3 sm:p-4 bg-default-50 rounded-lg border border-default-200"
-                  >
-                    <h4 className="font-semibold text-foreground mb-2">
-                      {activity.title}
-                    </h4>
                   </div>
                 ))}
               </div>

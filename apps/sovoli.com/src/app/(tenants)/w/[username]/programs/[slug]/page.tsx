@@ -8,6 +8,7 @@ import { ProgramHeroSection } from "./components/ProgramHeroSection";
 import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionContext";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { CurriculumSection } from "./components/CurriculumSection";
+import { ActivitiesSection } from "./components/ActivitiesSection";
 import { TeachersSection } from "./components/TeachersSection";
 import { LocationSection } from "./components/LocationSection";
 import { LocationFeaturesSection } from "./components/LocationFeaturesSection";
@@ -143,6 +144,8 @@ export default async function ProgramDetailsPage({
           <CycleSection program={programToUse} defaultCycle={defaultCycle} />
 
           <CurriculumSection program={programToUse} />
+
+          <ActivitiesSection program={programToUse} />
 
           <TeachersSection defaultTeachers={defaultTeachers} />
 
