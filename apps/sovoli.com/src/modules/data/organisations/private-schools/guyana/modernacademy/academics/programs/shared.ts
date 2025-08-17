@@ -47,6 +47,53 @@ export const MAGY_NURSERY_DEPT_ACTIVITIES: Activity[] = [
   },
 ];
 
+export const MAGY_PRIMARY_DEPT_ACTIVITIES: Activity[] = [
+  {
+    id: "mashramani",
+    title: "🎭 Mashramani",
+  },
+  {
+    id: "easter-kite-flying",
+    title: "🪁 Easter - Kite Flying",
+  },
+  {
+    id: "sports",
+    title: "⚽ Sports",
+  },
+  {
+    id: "phagwah",
+    title: "🎨 Phagwah",
+  },
+  {
+    id: "diwali",
+    title: "🪔 Diwali",
+  },
+  {
+    id: "christmas",
+    title: "🎄 Christmas",
+  },
+  {
+    id: "emancipation",
+    title: "🕊️ Emancipation",
+  },
+  {
+    id: "story-telling",
+    title: "📚 Story Telling",
+  },
+  {
+    id: "class-presentation",
+    title: "🎤 Class Presentation",
+  },
+  {
+    id: "spelling-bee",
+    title: "🐝 Spelling B",
+  },
+  {
+    id: "games",
+    title: "🎮 Games",
+  },
+];
+
 export const nurseryProgramHighlights: ProgramHighlight[] = [
   {
     icon: "palette",
