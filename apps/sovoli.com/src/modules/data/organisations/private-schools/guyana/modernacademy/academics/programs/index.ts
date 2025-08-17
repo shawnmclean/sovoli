@@ -1,0 +1,11 @@
+export { MAGY_PRE_NURSERY_PROGRAM } from "./pre-nursery";
+export { MAGY_NURSERY_YEAR_1_PROGRAM } from "./nursery-year-1";
+export { MAGY_NURSERY_YEAR_2_PROGRAM } from "./nursery-year-2";
+export {
+  MAGY_PRIMARY_GRADE_1_PROGRAM,
+  MAGY_PRIMARY_GRADE_2_PROGRAM,
+  MAGY_PRIMARY_GRADE_3_PROGRAM,
+  MAGY_PRIMARY_GRADE_4_PROGRAM,
+  MAGY_PRIMARY_GRADE_5_PROGRAM,
+  MAGY_PRIMARY_GRADE_6_PROGRAM,
+} from "./primary-grades";
