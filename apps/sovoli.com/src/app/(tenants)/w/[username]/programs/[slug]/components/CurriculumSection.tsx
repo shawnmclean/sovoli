@@ -47,7 +47,7 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
   }
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper program={program}>
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">

@@ -128,7 +128,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
     program.name ?? program.standardProgramVersion?.program.name ?? "";
 
   return (
-    <ProgramSectionsWrapper onClick={onRequirementsOpen}>
+    <ProgramSectionsWrapper onClick={onRequirementsOpen} program={program}>
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">

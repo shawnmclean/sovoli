@@ -14,13 +14,16 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { BadgeCheckIcon, GiftIcon, AwardIcon } from "lucide-react";
+import type { Program } from "~/modules/academics/types";
 
 interface OrgHighlightsSectionProps {
   orgInstance: OrgInstance;
+  program: Program;
 }
 
 export function OrgHighlightsSection({
   orgInstance,
+  program,
 }: OrgHighlightsSectionProps) {
   const {
     isOpen: isOrgOpen,
@@ -50,7 +53,7 @@ export function OrgHighlightsSection({
   }
 
   return (
-    <ProgramSectionsWrapper onClick={onOrgOpen}>
+    <ProgramSectionsWrapper onClick={onOrgOpen} program={program}>
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">

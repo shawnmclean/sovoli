@@ -19,6 +19,7 @@ import { UserIcon, MailIcon, PhoneIcon } from "lucide-react";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
+import type { Program } from "~/modules/academics/types";
 
 // Shared Teacher Details Drawer Component
 interface TeacherDetailsDrawerProps {
@@ -154,6 +155,7 @@ function TeacherDetailsDrawer({
 
 interface TeachersSectionProps {
   defaultTeachers?: WorkforceMember[] | null;
+  program: Program;
 }
 
 function getPrimaryRole(member: WorkforceMember) {
@@ -168,7 +170,10 @@ function getPublicContact(member: WorkforceMember, type: "email" | "phone") {
   );
 }
 
-export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
+export function TeachersSection({
+  defaultTeachers,
+  program,
+}: TeachersSectionProps) {
   const { selectedCycle } = useProgramCycleSelection();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedTeacher, setSelectedTeacher] =
@@ -212,7 +217,7 @@ export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
     if (!teacher) return null;
 
     return (
-      <ProgramSectionsWrapper>
+      <ProgramSectionsWrapper program={program}>
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <UserIcon className="h-6 w-6 text-primary" />
@@ -273,7 +278,7 @@ export function TeachersSection({ defaultTeachers }: TeachersSectionProps) {
   }
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper program={program}>
       <div className="pb-4">
         <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
           <UserIcon className="h-6 w-6 text-primary" />

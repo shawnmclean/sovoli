@@ -135,7 +135,7 @@ export default async function ProgramDetailsPage({
             program={programToUse}
           />
 
-          <OrgBadgeSection orgInstance={orgInstance} />
+          <OrgBadgeSection orgInstance={orgInstance} program={programToUse} />
 
           <ProgramHighlightsSection program={programToUse} />
 
@@ -147,18 +147,31 @@ export default async function ProgramDetailsPage({
 
           <ActivitiesSection program={programToUse} />
 
-          <TeachersSection defaultTeachers={defaultTeachers} />
+          <TeachersSection
+            defaultTeachers={defaultTeachers}
+            program={programToUse}
+          />
 
-          <LocationFeaturesSection orgInstance={orgInstance} />
+          <LocationFeaturesSection
+            orgInstance={orgInstance}
+            program={programToUse}
+          />
 
           <LocationSection orgInstance={orgInstance} program={programToUse} />
 
           <ProgramTestimonialsSection
             testimonials={programToUse.testimonials}
+            program={programToUse}
           />
-          <OrgHighlightsSection orgInstance={orgInstance} />
+          <OrgHighlightsSection
+            orgInstance={orgInstance}
+            program={programToUse}
+          />
 
-          <PricingSection defaultCycle={currentCycle ?? nextCycle} />
+          <PricingSection
+            defaultCycle={currentCycle ?? nextCycle}
+            program={programToUse}
+          />
 
           <ProgramsInGroupSection
             orgInstance={orgInstance}

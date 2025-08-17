@@ -15,9 +15,11 @@ import { format } from "date-fns";
 import type { ProgramTestimonial } from "~/modules/academics/types";
 import { SiFacebook, SiGoogle } from "@icons-pack/react-simple-icons";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
+import type { Program } from "~/modules/academics/types";
 
 interface ProgramTestimonialsSectionProps {
   testimonials?: ProgramTestimonial[];
+  program: Program;
 }
 
 // Star Rating Component
@@ -133,13 +135,14 @@ function ShowAllReviewsButton({ count }: { count: number }) {
 
 export function ProgramTestimonialsSection({
   testimonials,
+  program,
 }: ProgramTestimonialsSectionProps) {
   if (!testimonials || testimonials.length === 0) {
     return null;
   }
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper program={program}>
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">

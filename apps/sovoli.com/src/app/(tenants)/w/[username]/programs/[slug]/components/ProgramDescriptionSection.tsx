@@ -30,7 +30,7 @@ export function ProgramDescriptionSection({
     : programDescription.slice(0, 200) + (shouldShowReadMore ? "..." : "");
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper program={program}>
       <div className="space-y-4">
         <div className="prose prose-sm max-w-none">
           <p className="text-foreground-600 leading-relaxed">{displayText}</p>

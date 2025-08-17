@@ -4,12 +4,17 @@ import { BadgeCheckIcon } from "lucide-react";
 
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
+import type { Program } from "~/modules/academics/types";
 
 export interface OrgBadgeSectionProps {
   orgInstance: OrgInstance;
+  program: Program;
 }
 
-export function OrgBadgeSection({ orgInstance }: OrgBadgeSectionProps) {
+export function OrgBadgeSection({
+  orgInstance,
+  program,
+}: OrgBadgeSectionProps) {
   const org = orgInstance.org;
 
   // Calculate score
@@ -31,7 +36,7 @@ export function OrgBadgeSection({ orgInstance }: OrgBadgeSectionProps) {
   const firstCategory = org.categories[0];
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper program={program}>
       <div className="flex items-center gap-4">
         {/* Logo with Score Badge */}
         <div className="flex-shrink-0">

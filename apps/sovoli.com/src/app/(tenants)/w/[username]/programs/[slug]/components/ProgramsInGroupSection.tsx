@@ -36,7 +36,7 @@ export const ProgramsInGroupSection = ({
   }
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper program={program}>
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">

@@ -50,9 +50,11 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { OrgLocationFeature } from "~/modules/organisations/types";
 import { ORG_LOCATION_FEATURE_GROUPS } from "~/modules/organisations/locationFeatures";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
+import type { Program } from "~/modules/academics/types";
 
 interface LocationFeaturesSectionProps {
   orgInstance: OrgInstance;
+  program: Program;
 }
 
 // Icon mapping for location features
@@ -197,6 +199,7 @@ const GROUP_COLORS: Record<
 
 export function LocationFeaturesSection({
   orgInstance,
+  program,
 }: LocationFeaturesSectionProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { locations } = orgInstance.org;
@@ -229,7 +232,7 @@ export function LocationFeaturesSection({
   );
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper program={program}>
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground">

@@ -112,7 +112,7 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
       "";
 
     return (
-      <ProgramSectionsWrapper>
+      <ProgramSectionsWrapper program={program}>
         <div className="space-y-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <CalendarIcon className="h-6 w-6 text-primary" />
@@ -172,7 +172,7 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
   }
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper program={program}>
       <div className="space-y-4">
         <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
           <CalendarIcon className="h-6 w-6 text-primary" />

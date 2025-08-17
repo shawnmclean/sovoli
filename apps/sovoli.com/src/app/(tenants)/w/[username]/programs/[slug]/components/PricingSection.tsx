@@ -7,12 +7,14 @@ import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContex
 import type { ProgramCycle } from "~/modules/academics/types";
 import type { PricingItem } from "~/modules/core/economics/types";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
+import type { Program } from "~/modules/academics/types";
 
 interface PricingSectionProps {
   defaultCycle?: ProgramCycle;
+  program: Program;
 }
 
-export function PricingSection({ defaultCycle }: PricingSectionProps) {
+export function PricingSection({ defaultCycle, program }: PricingSectionProps) {
   const { selectedCycle, isLoading, isInitialized } =
     useProgramCycleSelection();
 
@@ -25,7 +27,7 @@ export function PricingSection({ defaultCycle }: PricingSectionProps) {
   }
 
   return (
-    <ProgramSectionsWrapper>
+    <ProgramSectionsWrapper program={program}>
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground">Your Cost</h2>
