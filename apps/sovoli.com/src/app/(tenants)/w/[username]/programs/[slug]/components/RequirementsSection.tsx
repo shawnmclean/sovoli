@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Button } from "@sovoli/ui/components/button";
 
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
@@ -16,7 +15,6 @@ import {
   BookOpenIcon,
   DropletsIcon,
   ShirtIcon,
-  ChevronLeftIcon,
 } from "lucide-react";
 import type { Program, RequirementList } from "~/modules/academics/types";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
@@ -210,20 +208,11 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
         }}
       >
         <DrawerContent>
-          <DrawerHeader className="border-b border-divider flex items-center justify-between">
-            <Button 
-              variant="light" 
-              isIconOnly 
-              radius="full" 
-              onPress={onRequirementsOpenChange}
-            >
-              <ChevronLeftIcon />
-            </Button>
-            <h3 className="text-lg font-semibold text-foreground">
-              {programName} List
-            </h3>
-            <div className="w-10" />
-          </DrawerHeader>
+          <DrawerHeader
+            title={`${programName} List`}
+            showBackButton
+            onBackPress={onRequirementsOpenChange}
+          />
           <DrawerBody className="mt-4">
             <div className="space-y-6">
               {requirements.map(
