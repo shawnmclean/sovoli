@@ -15,7 +15,7 @@ interface ProgramSectionsWrapperProps {
   children: React.ReactNode;
   program: Program;
   className?: string;
-  onClick?: () => void;
+  sectionClickable?: boolean;
   detailedView?: React.ReactNode;
   detailedViewTrigger?: (onOpen: () => void) => React.ReactNode;
   detailedViewTitle?: string;
@@ -25,12 +25,23 @@ export function ProgramSectionsWrapper({
   children,
   program,
   className,
-  onClick,
+  sectionClickable = false,
   detailedView,
   detailedViewTrigger,
   detailedViewTitle,
 }: ProgramSectionsWrapperProps) {
   const { isOpen: isDetailedViewOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const handleSectionClick = () => {
+    if (sectionClickable && detailedView) {
+      posthog.capture("program_section_expanded", {
+        program_id: program.id,
+        section_title: detailedViewTitle ?? "Unknown",
+        section_type: "detailed_view",
+      });
+      onOpen();
+    }
+  };
 
   const handleTriggerClick = () => {
     posthog.capture("program_section_expanded", {
@@ -48,8 +59,12 @@ export function ProgramSectionsWrapper({
   return (
     <section
       className={className}
-      onClick={onClick}
-      style={onClick ? { cursor: "pointer" } : undefined}
+      onClick={
+        sectionClickable && detailedView ? handleSectionClick : undefined
+      }
+      style={
+        sectionClickable && detailedView ? { cursor: "pointer" } : undefined
+      }
     >
       {children}
 

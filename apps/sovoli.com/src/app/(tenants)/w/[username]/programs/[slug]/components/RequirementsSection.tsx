@@ -3,13 +3,6 @@
 import { useMemo } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
 
-import { useDisclosure } from "@sovoli/ui/components/dialog";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerHeader,
-} from "@sovoli/ui/components/drawer";
 import {
   PackageIcon,
   BookOpenIcon,
@@ -69,12 +62,6 @@ interface CategoryData {
 }
 
 export function RequirementsSection({ program }: RequirementsSectionProps) {
-  const {
-    isOpen: isRequirementsOpen,
-    onOpen: onRequirementsOpen,
-    onOpenChange: onRequirementsOpenChange,
-  } = useDisclosure();
-
   const requirements = useMemo(
     () =>
       program.requirements ??
@@ -128,7 +115,44 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
     program.name ?? program.standardProgramVersion?.program.name ?? "";
 
   return (
-    <ProgramSectionsWrapper onClick={onRequirementsOpen} program={program}>
+    <ProgramSectionsWrapper
+      program={program}
+      sectionClickable={true}
+      detailedView={
+        <div className="space-y-6">
+          {requirements.map((requirement: RequirementList, index: number) => (
+            <div key={index} className="space-y-3">
+              <div className="flex items-center gap-2">
+                {getCategoryIcon(requirement.category)}
+                <h3 className="text-lg font-semibold text-foreground">
+                  {requirement.name}
+                </h3>
+              </div>
+              <div className="space-y-2">
+                {requirement.items.map((item, itemIndex) => (
+                  <div key={itemIndex} className="flex items-center gap-2">
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-foreground">
+                        {item.quantity &&
+                          item.quantity > 1 &&
+                          `${item.quantity}x `}
+                        {item.item.name}
+                      </p>
+                      {item.notes && (
+                        <p className="text-xs text-foreground-500 mt-1">
+                          {item.notes}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      }
+      detailedViewTitle={`${programName} List`}
+    >
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -179,87 +203,6 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
           </div>
         </div>
       </div>
-
-      {/* Drawer for detailed requirements */}
-      <Drawer
-        isOpen={isRequirementsOpen}
-        size="full"
-        placement="bottom"
-        backdrop="opaque"
-        onOpenChange={onRequirementsOpenChange}
-        hideCloseButton
-        motionProps={{
-          variants: {
-            enter: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-            exit: {
-              y: 100,
-              opacity: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-          },
-        }}
-      >
-        <DrawerContent>
-          <DrawerHeader
-            title={`${programName} List`}
-            showBackButton
-            onBackPress={onRequirementsOpenChange}
-          />
-          <DrawerBody className="mt-4">
-            <div className="space-y-6">
-              {requirements.map(
-                (requirement: RequirementList, index: number) => (
-                  <div key={index} className="space-y-3">
-                    <div className="flex items-center gap-2">
-                      {getCategoryIcon(requirement.category)}
-                      <h3 className="text-lg font-semibold text-foreground">
-                        {requirement.name}
-                      </h3>
-                    </div>
-
-                    {requirement.notes && (
-                      <p className="text-sm text-foreground-500">
-                        {requirement.notes}
-                      </p>
-                    )}
-
-                    <div className="grid gap-2">
-                      {requirement.items.map((item, itemIndex) => (
-                        <div
-                          key={itemIndex}
-                          className="flex items-center px-2 py-1 bg-default-50 rounded-lg"
-                        >
-                          <div className="flex-1">
-                            <p className="text-sm font-medium text-foreground">
-                              {item.quantity &&
-                                item.quantity > 1 &&
-                                `${item.quantity}x `}
-                              {item.item.name}
-                            </p>
-                            {item.notes && (
-                              <p className="text-xs text-foreground-500 mt-1">
-                                {item.notes}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ),
-              )}
-            </div>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
     </ProgramSectionsWrapper>
   );
 }

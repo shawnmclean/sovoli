@@ -1,13 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { useDisclosure } from "@sovoli/ui/components/dialog";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerHeader,
-} from "@sovoli/ui/components/drawer";
 
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -25,12 +18,6 @@ export function OrgHighlightsSection({
   orgInstance,
   program,
 }: OrgHighlightsSectionProps) {
-  const {
-    isOpen: isOrgOpen,
-    onOpen: onOrgOpen,
-    onOpenChange: onOrgOpenChange,
-  } = useDisclosure();
-
   const org = orgInstance.org;
 
   const highlights = useMemo(
@@ -48,12 +35,32 @@ export function OrgHighlightsSection({
     ],
     [],
   );
+
   if (org.username !== "magy") {
     return null;
   }
 
+  const detailedView = (
+    <div className="space-y-4">
+      {highlights.map((h, i) => (
+        <div key={i} className="flex items-start gap-4">
+          <div className="pt-1">{h.icon}</div>
+          <div>
+            <div className="text-sm font-semibold">{h.title}</div>
+            <div className="text-sm text-muted-foreground">{h.description}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
-    <ProgramSectionsWrapper onClick={onOrgOpen} program={program}>
+    <ProgramSectionsWrapper
+      program={program}
+      detailedView={detailedView}
+      detailedViewTitle="School Highlights & Sponsors"
+      sectionClickable={true}
+    >
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -104,59 +111,9 @@ export function OrgHighlightsSection({
             ))}
           </div>
 
-          <div className="mt-3 underline">Learn More</div>
+          <div className="mt-3 underline text-muted-foreground">Learn More</div>
         </div>
       </div>
-
-      {/* Drawer for extended details */}
-      <Drawer
-        isOpen={isOrgOpen}
-        size="full"
-        placement="bottom"
-        backdrop="opaque"
-        onOpenChange={onOrgOpenChange}
-        motionProps={{
-          variants: {
-            enter: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-            exit: {
-              y: 100,
-              opacity: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-          },
-        }}
-      >
-        <DrawerContent>
-          <DrawerHeader className="border-b border-divider">
-            <h3 className="text-lg font-semibold text-foreground">
-              School Highlights & Sponsors
-            </h3>
-          </DrawerHeader>
-          <DrawerBody className="mt-4">
-            <div className="space-y-4">
-              {highlights.map((h, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <div className="pt-1">{h.icon}</div>
-                  <div>
-                    <div className="text-sm font-semibold">{h.title}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {h.description}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
     </ProgramSectionsWrapper>
   );
 }
