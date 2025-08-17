@@ -27,7 +27,7 @@ export function PricingSection({ defaultCycle, program }: PricingSectionProps) {
   }
 
   return (
-    <ProgramSectionsWrapper program={program}>
+    <ProgramSectionsWrapper program={program} section="pricing">
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground">Your Cost</h2>

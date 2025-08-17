@@ -45,7 +45,7 @@ export function ProgramsSection({
   }
 
   return (
-    <ProgramSectionsWrapper program={currentProgram}>
+    <ProgramSectionsWrapper program={currentProgram} section="programs">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-foreground mb-2">
           Other Programs

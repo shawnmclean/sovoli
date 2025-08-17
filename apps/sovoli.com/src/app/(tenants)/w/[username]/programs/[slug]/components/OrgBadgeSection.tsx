@@ -36,7 +36,7 @@ export function OrgBadgeSection({
   const firstCategory = org.categories[0];
 
   return (
-    <ProgramSectionsWrapper program={program}>
+    <ProgramSectionsWrapper program={program} section="org_badge">
       <div className="flex items-center gap-4">
         {/* Logo with Score Badge */}
         <div className="flex-shrink-0">

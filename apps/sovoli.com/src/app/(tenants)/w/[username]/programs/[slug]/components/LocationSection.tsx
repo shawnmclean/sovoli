@@ -61,7 +61,7 @@ export function LocationSection({
   };
 
   return (
-    <ProgramSectionsWrapper program={program}>
+    <ProgramSectionsWrapper program={program} section="location">
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h3 className="text-xl font-bold text-foreground">

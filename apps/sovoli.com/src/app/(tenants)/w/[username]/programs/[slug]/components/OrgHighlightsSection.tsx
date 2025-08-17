@@ -57,9 +57,10 @@ export function OrgHighlightsSection({
   return (
     <ProgramSectionsWrapper
       program={program}
+      section="org_highlights"
       detailedView={detailedView}
-      detailedViewTitle="School Highlights & Sponsors"
       sectionClickable={true}
+      detailedViewTitle="All Organization Highlights"
     >
       <div className="overflow-hidden">
         <div className="pb-4">

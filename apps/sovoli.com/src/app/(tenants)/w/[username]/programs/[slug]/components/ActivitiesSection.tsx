@@ -57,6 +57,7 @@ export function ActivitiesSection({ program }: ActivitiesSectionProps) {
   return (
     <ProgramSectionsWrapper
       program={program}
+      section="activities"
       detailedView={detailedView}
       detailedViewTrigger={detailedViewTrigger}
       detailedViewTitle="All Activities & Celebrations"

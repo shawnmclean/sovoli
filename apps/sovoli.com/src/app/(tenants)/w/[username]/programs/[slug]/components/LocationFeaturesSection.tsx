@@ -232,7 +232,7 @@ export function LocationFeaturesSection({
   );
 
   return (
-    <ProgramSectionsWrapper program={program}>
+    <ProgramSectionsWrapper program={program} section="location_features">
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground">

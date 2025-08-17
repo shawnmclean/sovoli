@@ -217,7 +217,7 @@ export function TeachersSection({
     if (!teacher) return null;
 
     return (
-      <ProgramSectionsWrapper program={program}>
+      <ProgramSectionsWrapper program={program} section="teachers">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <UserIcon className="h-6 w-6 text-primary" />
@@ -278,7 +278,7 @@ export function TeachersSection({
   }
 
   return (
-    <ProgramSectionsWrapper program={program}>
+    <ProgramSectionsWrapper program={program} section="teacher_highlights">
       <div className="pb-4">
         <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
           <UserIcon className="h-6 w-6 text-primary" />

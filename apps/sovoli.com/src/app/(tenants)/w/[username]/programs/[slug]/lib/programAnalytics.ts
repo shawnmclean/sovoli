@@ -106,7 +106,13 @@ const prepareProgramAnalytics = (
 
 // Single analytics function that components can call
 export const trackProgramAnalytics = (
-  event: "ViewContent" | "ChatOpened" | "ChatClosed" | "Contact" | "Lead",
+  event:
+    | "ViewContent"
+    | "SectionOpened"
+    | "ChatOpened"
+    | "ChatClosed"
+    | "Contact"
+    | "Lead",
   program: Program,
   cycle?: ProgramCycle | null,
   additionalData?: Record<string, unknown>,

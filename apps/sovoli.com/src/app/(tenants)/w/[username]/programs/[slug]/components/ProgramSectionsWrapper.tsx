@@ -8,12 +8,14 @@ import {
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { Divider } from "@sovoli/ui/components/divider";
-import posthog from "posthog-js";
-import type { Program } from "~/modules/academics/types";
+import { trackProgramAnalytics } from "../lib/programAnalytics";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 
 interface ProgramSectionsWrapperProps {
   children: React.ReactNode;
+  section: string;
   program: Program;
+  cycle?: ProgramCycle;
   className?: string;
   sectionClickable?: boolean;
   detailedView?: React.ReactNode;
@@ -24,6 +26,8 @@ interface ProgramSectionsWrapperProps {
 export function ProgramSectionsWrapper({
   children,
   program,
+  section,
+  cycle,
   className,
   sectionClickable = false,
   detailedView,
@@ -32,51 +36,37 @@ export function ProgramSectionsWrapper({
 }: ProgramSectionsWrapperProps) {
   const { isOpen: isDetailedViewOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const handleSectionClick = () => {
-    if (sectionClickable && detailedView) {
-      posthog.capture("program_section_expanded", {
-        program_id: program.id,
-        section_title: detailedViewTitle ?? "Unknown",
-        section_type: "detailed_view",
-      });
-      onOpen();
-    }
-  };
+  const handleOpenDetailedView = () => {
+    if (!detailedView) return;
 
-  const handleTriggerClick = () => {
-    posthog.capture("program_section_expanded", {
-      program_id: program.id,
-      section_title: detailedViewTitle ?? "Unknown",
-      section_type: "detailed_view",
+    trackProgramAnalytics("SectionOpened", program, cycle, {
+      section: section,
     });
     onOpen();
   };
 
-  const handleBackPress = () => {
-    onOpenChange();
-  };
+  const shouldShowDetailedView = Boolean(detailedView);
+  const isSectionClickable = sectionClickable && shouldShowDetailedView;
 
   return (
     <section
       className={className}
-      onClick={
-        sectionClickable && detailedView ? handleSectionClick : undefined
-      }
-      style={
-        sectionClickable && detailedView ? { cursor: "pointer" } : undefined
-      }
+      onClick={isSectionClickable ? handleOpenDetailedView : undefined}
+      style={isSectionClickable ? { cursor: "pointer" } : undefined}
     >
       {children}
 
       {/* Render the trigger if provided */}
       {detailedViewTrigger && (
-        <div className="mt-4">{detailedViewTrigger(handleTriggerClick)}</div>
+        <div className="mt-4">
+          {detailedViewTrigger(handleOpenDetailedView)}
+        </div>
       )}
 
       <Divider className="mx-auto max-w-2xl my-6" />
 
       {/* Drawer for detailed view */}
-      {detailedView && (
+      {shouldShowDetailedView && (
         <Drawer
           isOpen={isDetailedViewOpen}
           size="full"
@@ -107,7 +97,7 @@ export function ProgramSectionsWrapper({
             <DrawerHeader
               title={detailedViewTitle ?? "Details"}
               showBackButton
-              onBackPress={handleBackPress}
+              onBackPress={onOpenChange}
             />
             <DrawerBody className="mt-4">{detailedView}</DrawerBody>
           </DrawerContent>

@@ -142,7 +142,7 @@ export function ProgramTestimonialsSection({
   }
 
   return (
-    <ProgramSectionsWrapper program={program}>
+    <ProgramSectionsWrapper program={program} section="program_testimonials">
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">

@@ -35,7 +35,11 @@ export const ProgramHeroSection = ({
   };
 
   return (
-    <ProgramSectionsWrapper className="text-center" program={program}>
+    <ProgramSectionsWrapper
+      className="text-center"
+      program={program}
+      section="program_hero"
+    >
       {/* Program Name */}
       <h1 className="text-2xl leading-tight tracking-tight my-4">
         {programName}
