@@ -57,10 +57,8 @@ export function ProgramDetailNavbar({
             variant="solid"
             title={programName}
             text={`Check out ${programName} on ${orgInstance.org.name}`}
-            isIconOnly={false}
-          >
-            Share
-          </ShareButton>
+            isIconOnly
+          />
         </NavbarItem>
       </NavbarContent>
     </Navbar>
