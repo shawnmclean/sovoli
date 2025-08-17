@@ -39,6 +39,7 @@ function TeacherDetailsDrawer({
       placement="bottom"
       backdrop="opaque"
       onOpenChange={onOpenChange}
+      hideCloseButton
       motionProps={{
         variants: {
           enter: {
@@ -59,11 +60,11 @@ function TeacherDetailsDrawer({
       }}
     >
       <DrawerContent>
-        <DrawerHeader className="border-b border-divider">
-          <h3 className="text-lg font-semibold text-foreground">
-            {selectedTeacher?.name}
-          </h3>
-        </DrawerHeader>
+        <DrawerHeader
+          title={selectedTeacher?.name}
+          showBackButton
+          onBackPress={() => onOpenChange(false)}
+        />
         <DrawerBody className="mt-4">
           {selectedTeacher && (
             <div className="space-y-6">

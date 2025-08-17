@@ -145,6 +145,7 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         placement="bottom"
         backdrop="opaque"
         onOpenChange={onSubjectsOpenChange}
+        hideCloseButton
         motionProps={{
           variants: {
             enter: {
@@ -165,11 +166,11 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         }}
       >
         <DrawerContent>
-          <DrawerHeader className="border-b border-divider">
-            <h3 className="text-lg font-semibold text-foreground">
-              Curriculum Breakdown
-            </h3>
-          </DrawerHeader>
+          <DrawerHeader
+            title="Curriculum Breakdown"
+            showBackButton
+            onBackPress={onSubjectsOpenChange}
+          />
           <DrawerBody className="mt-4">
             {program.courses && program.courses.length > 0 && (
               <div className="space-y-4">
@@ -240,6 +241,7 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         placement="bottom"
         backdrop="opaque"
         onOpenChange={onActivitiesOpenChange}
+        hideCloseButton
         motionProps={{
           variants: {
             enter: {
@@ -260,11 +262,11 @@ export function CurriculumSection({ program }: CurriculumSectionProps) {
         }}
       >
         <DrawerContent>
-          <DrawerHeader className="border-b border-divider">
-            <h3 className="text-lg font-semibold text-foreground">
-              All Activities & Celebrations
-            </h3>
-          </DrawerHeader>
+          <DrawerHeader
+            title="All Activities & Celebrations"
+            showBackButton
+            onBackPress={onActivitiesOpenChange}
+          />
           <DrawerBody className="mt-4">
             {activities.length > 0 && (
               <div className="space-y-4">

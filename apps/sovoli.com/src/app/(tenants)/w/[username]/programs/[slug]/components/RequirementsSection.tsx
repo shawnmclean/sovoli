@@ -187,6 +187,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
         placement="bottom"
         backdrop="opaque"
         onOpenChange={onRequirementsOpenChange}
+        hideCloseButton
         motionProps={{
           variants: {
             enter: {
@@ -207,11 +208,11 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
         }}
       >
         <DrawerContent>
-          <DrawerHeader className="border-b border-divider">
-            <h3 className="text-lg font-semibold text-foreground">
-              {programName} List
-            </h3>
-          </DrawerHeader>
+          <DrawerHeader
+            title={`${programName} List`}
+            showBackButton
+            onBackPress={onRequirementsOpenChange}
+          />
           <DrawerBody className="mt-4">
             <div className="space-y-6">
               {requirements.map(

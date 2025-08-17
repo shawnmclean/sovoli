@@ -273,6 +273,7 @@ export function LocationFeaturesSection({
         placement="bottom"
         backdrop="opaque"
         onOpenChange={onOpenChange}
+        hideCloseButton
         motionProps={{
           variants: {
             enter: {
@@ -293,11 +294,11 @@ export function LocationFeaturesSection({
         }}
       >
         <DrawerContent>
-          <DrawerHeader className="border-b border-divider">
-            <h3 className="text-lg font-semibold text-foreground">
-              All School's Features
-            </h3>
-          </DrawerHeader>
+          <DrawerHeader
+            title="All School's Features"
+            showBackButton
+            onBackPress={onOpenChange}
+          />
           <DrawerBody className="mt-4">
             <div className="space-y-6">
               {Object.entries(groupedFeatures).map(([groupKey, features]) => (
