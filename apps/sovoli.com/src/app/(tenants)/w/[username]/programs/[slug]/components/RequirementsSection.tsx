@@ -118,6 +118,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
     <ProgramSectionsWrapper
       program={program}
       section="requirements"
+      sectionClickable
       detailedView={
         <div className="space-y-6">
           {requirements.map((requirement: RequirementList, index: number) => (
