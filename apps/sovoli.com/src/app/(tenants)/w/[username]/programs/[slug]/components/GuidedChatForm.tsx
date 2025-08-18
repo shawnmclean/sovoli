@@ -22,6 +22,7 @@ import {
   getCycleLabel,
 } from "../lib/programAnalytics";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
+import { UsersIcon, GraduationCapIcon } from "lucide-react";
 
 interface GuidedChatFormProps {
   whatsappNumber?: string;
@@ -49,7 +50,6 @@ export function GuidedChatForm({
     getCurrentField,
     isDone,
     showChoiceButtons,
-    handleAskQuestion,
   } = useGuidedChat({
     cycle,
     program,
@@ -196,34 +196,41 @@ export function GuidedChatForm({
 
               {/* Choice buttons */}
               {showChoiceButtons && (
-                <div className="flex gap-2 w-full">
+                <div className="flex flex-col gap-2 w-full">
                   <Button
                     color="primary"
-                    variant="bordered"
-                    onPress={handleAskQuestion}
-                    fullWidth
-                  >
-                    Question
-                  </Button>
-                  <Button
                     as={WhatsAppLink}
                     phoneNumber={whatsappNumber}
                     message={previewMessage()}
-                    event="Contact"
-                    eventProperties={{
-                      program: program ? getProgramName(program) : undefined,
-                      cycle: cycle ? getCycleLabel(cycle) : undefined,
-                    }}
                     fullWidth
-                    className={gradientBorderButton()}
                     onPress={() => {
                       if (program) {
-                        trackProgramAnalytics("Contact", program, cycle);
+                        trackProgramAnalytics("Lead", program, cycle);
+                      }
+                      onClose();
+                    }}
+                    startContent={<UsersIcon size={16} />}
+                  >
+                    {program?.audience === "student"
+                      ? "Student"
+                      : "I'm a Parent / Guardian"}
+                  </Button>
+                  <Button
+                    color="primary"
+                    variant="flat"
+                    as={WhatsAppLink}
+                    phoneNumber={whatsappNumber}
+                    message="Hi! I'm seeking a job!"
+                    fullWidth
+                    startContent={<GraduationCapIcon size={16} />}
+                    onPress={() => {
+                      if (program) {
+                        trackProgramAnalytics("Lead", program, cycle);
                       }
                       onClose();
                     }}
                   >
-                    Continue
+                    I'm seeking a job
                   </Button>
                 </div>
               )}

@@ -122,9 +122,9 @@ export function useGuidedChat({
       const phone = inputValue.trim();
       setChatData((prev) => ({ ...prev, phoneNumber: phone }));
 
-      if (program) {
-        trackProgramAnalytics("Lead", program, cycle, { $set: { phone } });
-      }
+      setPersonProperties({
+        phone: phone,
+      });
 
       // Move to next step
       setCurrentStep(1);
@@ -150,10 +150,7 @@ export function useGuidedChat({
         name: `${chatData.firstName} ${lastName}`,
       });
 
-      addMessage(
-        "system",
-        "🎉 All set! Do you have any questions or would you like to continue with your enrollment?",
-      );
+      addMessage("system", "🎉 Which of the following best describes you?");
 
       setShowChoiceButtons(true);
     } else {
