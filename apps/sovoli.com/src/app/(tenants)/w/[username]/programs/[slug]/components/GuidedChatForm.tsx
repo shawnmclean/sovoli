@@ -20,6 +20,7 @@ import {
   trackProgramAnalytics,
   getProgramName,
   getCycleLabel,
+  setPersonProperties,
 } from "../lib/programAnalytics";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { UsersIcon, GraduationCapIcon } from "lucide-react";
@@ -205,7 +206,14 @@ export function GuidedChatForm({
                     fullWidth
                     onPress={() => {
                       if (program) {
-                        trackProgramAnalytics("Lead", program, cycle);
+                        trackProgramAnalytics("Lead", program, cycle, {
+                          $set: {
+                            role:
+                              program.audience === "student"
+                                ? "student"
+                                : "parent",
+                          },
+                        });
                       }
                       onClose();
                     }}
@@ -224,9 +232,9 @@ export function GuidedChatForm({
                     fullWidth
                     startContent={<GraduationCapIcon size={16} />}
                     onPress={() => {
-                      if (program) {
-                        trackProgramAnalytics("Lead", program, cycle);
-                      }
+                      setPersonProperties({
+                        role: "job_seeker",
+                      });
                       onClose();
                     }}
                   >

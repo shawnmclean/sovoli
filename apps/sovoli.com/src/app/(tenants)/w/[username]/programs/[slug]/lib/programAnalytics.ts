@@ -151,6 +151,7 @@ export const setPersonProperties = (properties: {
   last_name?: string;
   name?: string;
   phone?: string;
+  role?: "student" | "parent" | "job_seeker";
 }) => {
   posthog.setPersonProperties(properties);
 };
