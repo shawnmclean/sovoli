@@ -11,6 +11,7 @@ import {
 import { Link } from "@sovoli/ui/components/link";
 
 import { gradientBorderButton } from "~/components/GradientBorderButton";
+import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
 
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
@@ -18,7 +19,6 @@ import { MessageSquareShareIcon } from "lucide-react";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import { Skeleton } from "@sovoli/ui/components/skeleton";
 import { GuidedChatForm } from "../GuidedChatForm";
-import { Input } from "@sovoli/ui/components/input";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
 
 export interface ProgramDetailMobileFooterProps {
@@ -196,25 +196,19 @@ export function ProgramDetailMobileFooter({
                       </span>
                     </div>
                   </div>
-                  <Input
-                    fullWidth
-                    autoFocus
-                    type="tel"
-                    size="lg"
-                    variant="bordered"
-                    placeholder="Enter your phone number"
+
+                  <WhatsAppOTPForm
+                    onSuccess={() => {
+                      // Close drawer on success after a short delay
+                      setTimeout(() => {
+                        onOpenChange(false);
+                      }, 2000);
+                    }}
+                    onError={(message) => {
+                      // Handle error if needed
+                      console.error("WhatsApp form error:", message);
+                    }}
                   />
-                  <div className="pt-4 flex justify-end">
-                    <Button
-                      variant="shadow"
-                      radius="lg"
-                      className={gradientBorderButton()}
-                      onPress={onContactOpen}
-                      startContent={<MessageSquareShareIcon size={16} />}
-                    >
-                      Chat Now
-                    </Button>
-                  </div>
                 </>
               )}
             </div>
