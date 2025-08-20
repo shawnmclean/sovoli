@@ -201,7 +201,7 @@ export function ProgramDetailMobileFooter({
                     onSuccess={() => {
                       // Close drawer on success after a short delay
                       setTimeout(() => {
-                        onOpenChange(false);
+                        onOpenChange();
                       }, 2000);
                     }}
                     onError={(message) => {
