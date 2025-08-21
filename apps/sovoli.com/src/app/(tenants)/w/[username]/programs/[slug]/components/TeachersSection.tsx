@@ -15,7 +15,14 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { UserIcon, MailIcon, PhoneIcon, GraduationCapIcon } from "lucide-react";
+import {
+  UserIcon,
+  MailIcon,
+  PhoneIcon,
+  GraduationCapIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from "lucide-react";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
@@ -33,6 +40,8 @@ function TeacherDetailsDrawer({
   onOpenChange,
   selectedTeacher,
 }: TeacherDetailsDrawerProps) {
+  const [isBioExpanded, setIsBioExpanded] = useState(false);
+
   return (
     <Drawer
       isOpen={isOpen}
@@ -108,7 +117,29 @@ function TeacherDetailsDrawer({
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     About
                   </h3>
-                  <p className="text-foreground-600">{selectedTeacher.bio}</p>
+                  <div className="text-foreground-600">
+                    <p className={isBioExpanded ? "" : "line-clamp-3"}>
+                      {selectedTeacher.bio}
+                    </p>
+                    {selectedTeacher.bio.length > 150 && (
+                      <button
+                        onClick={() => setIsBioExpanded(!isBioExpanded)}
+                        className="flex items-center gap-1 hover:underline mt-2 text-sm font-medium"
+                      >
+                        {isBioExpanded ? (
+                          <>
+                            <ChevronUpIcon className="h-4 w-4" />
+                            Show Less
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDownIcon className="h-4 w-4" />
+                            Read More
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
                 </div>
               )}
 
