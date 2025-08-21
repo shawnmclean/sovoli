@@ -124,7 +124,7 @@ function TeacherDetailsDrawer({
                     {selectedTeacher.bio.length > 150 && (
                       <button
                         onClick={() => setIsBioExpanded(!isBioExpanded)}
-                        className="flex items-center gap-1 hover:underline mt-2 text-sm font-medium"
+                        className="flex items-center gap-1 hover:underline mt-2 text-sm font-bold"
                       >
                         {isBioExpanded ? (
                           <>
