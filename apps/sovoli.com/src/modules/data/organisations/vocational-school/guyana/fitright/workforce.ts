@@ -54,6 +54,29 @@ export const XAVRINE_DORNELLAS: WorkforceMember = {
       grades: ["Elementary", "Intermediate", "Advanced"],
     },
   ],
+  education: [
+    {
+      level: "Bachelor of Science",
+      field: "Production Management Clothing Designing",
+      institution: "Fashion Institute of Technology (FIT)",
+      location: "New York, USA",
+    },
+    {
+      level: "Associate Degree",
+      field: "Dressmaking Technology",
+      institution: "Fashion Institute of Technology (FIT)",
+      location: "New York, USA",
+    },
+    {
+      level: "Diploma",
+      field: "Fashion Merchandising",
+      institution: "ICS",
+    },
+    {
+      level: "Certificate",
+      field: "Dressmaking & Pattern Making",
+    },
+  ],
 };
 
 export const FITRIGHT_WORKFORCE: WorkforceModule = {

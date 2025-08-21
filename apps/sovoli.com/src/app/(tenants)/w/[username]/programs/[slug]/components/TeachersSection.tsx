@@ -15,7 +15,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { UserIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { UserIcon, MailIcon, PhoneIcon, GraduationCapIcon } from "lucide-react";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
@@ -145,6 +145,50 @@ function TeacherDetailsDrawer({
                   </div>
                 </div>
               )}
+
+              {/* Education Section */}
+              {selectedTeacher.education &&
+                selectedTeacher.education.length > 0 && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
+                      <GraduationCapIcon className="h-4 w-4 text-primary" />
+                      Education
+                    </h3>
+                    <div className="space-y-2">
+                      {selectedTeacher.education.map((edu, index) => (
+                        <div key={index} className="text-sm">
+                          <div className="font-medium text-foreground">
+                            {edu.level}
+                            {edu.honors && (
+                              <span className="ml-2 text-xs text-yellow-600">
+                                ({edu.honors})
+                              </span>
+                            )}
+                          </div>
+                          {edu.field && (
+                            <div className="text-foreground-600">
+                              {edu.field}
+                            </div>
+                          )}
+                          {edu.institution && (
+                            <div className="text-foreground-500 text-xs">
+                              {edu.institution}
+                              {edu.location && `, ${edu.location}`}
+                              {(edu.startDate ?? edu.endDate) && (
+                                <span className="ml-2">
+                                  •{" "}
+                                  {edu.startDate && edu.endDate
+                                    ? `${edu.startDate} - ${edu.endDate}`
+                                    : (edu.startDate ?? edu.endDate)}
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
             </div>
           )}
         </DrawerBody>

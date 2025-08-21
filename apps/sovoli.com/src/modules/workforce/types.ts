@@ -35,6 +35,18 @@ export interface OrgRoleAssignment {
   notes?: string;
 }
 
+export interface Education {
+  level: string; // e.g., "Bachelor of Science", "Associate Degree", "Certificate", "Diploma"
+  field: string; // e.g., "Production Management Clothing Designing", "Fashion Merchandising"
+  institution?: string; // e.g., "Fashion Institute of Technology, New York"
+  startDate?: string; // optional for timelines
+  endDate?: string; // optional for timelines
+  location?: string; // e.g., "New York, USA"
+  honors?: string; // e.g., "Summa Cum Laude", "Distinction"
+  notes?: string; // free text field for context
+  url?: string; // link to institution or program
+}
+
 export interface WorkforceMember {
   id: string;
   slug: string;
@@ -46,6 +58,7 @@ export interface WorkforceMember {
   isPublic?: boolean;
   quote?: string;
   subjectAssignments?: SubjectAssignment[];
+  education?: Education[];
 }
 
 export interface WorkforceModule {
