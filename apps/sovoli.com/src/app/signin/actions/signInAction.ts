@@ -37,7 +37,7 @@ export async function signInAction(
       {
         method: "POST",
         headers: {
-          Authorization: "Bearer temp",
+          Authorization: "Bearer token",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -45,10 +45,32 @@ export async function signInAction(
           to: cleanNumber,
           type: "template",
           template: {
-            name: "hello_world",
+            name: "otp_template",
             language: {
-              code: "en_US",
+              code: "en",
             },
+            components: [
+              {
+                type: "body",
+                parameters: [
+                  {
+                    type: "text",
+                    text: "123456",
+                  },
+                ],
+              },
+              {
+                type: "button",
+                sub_type: "url",
+                index: "0",
+                parameters: [
+                  {
+                    type: "text",
+                    text: "123456",
+                  },
+                ],
+              },
+            ],
           },
         }),
       },
