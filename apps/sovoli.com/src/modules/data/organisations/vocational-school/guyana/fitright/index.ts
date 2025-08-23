@@ -21,8 +21,8 @@ export const FITRIGHT_ORG: OrgInstance = {
         placeId: "ChIJMTbWJMjvr40RqnbyaycDRFw",
         contacts: [
           {
-            type: "phone",
-            value: "+1 (386) 279-8247",
+            type: "whatsapp",
+            value: "+13862798247",
             isPublic: false,
           },
         ],
