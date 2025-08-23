@@ -6,6 +6,7 @@ import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
 import { findItemById } from "~/modules/data/items";
 import {
   MAGY_NURSERY_DEPT_ACTIVITIES,
+  magyProgramQuickFacts,
   nurseryProgramHighlights,
 } from "./shared";
 
@@ -15,6 +16,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
   name: "Pre-Nursery (Playschool)",
   audience: "parent",
   highlights: nurseryProgramHighlights,
+  quickFacts: magyProgramQuickFacts,
   tagline: "Play, explore, and grow together",
   outcome: "School Readiness",
   description: "Strong foundational learning in a nurturing environment",

@@ -6,6 +6,7 @@ import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
 import {
   primaryProgramHighlights,
   MAGY_PRIMARY_DEPT_ACTIVITIES,
+  magyProgramQuickFacts,
 } from "./shared";
 
 export const MAGY_PRIMARY_GRADE_4_PROGRAM: Program = {
@@ -13,6 +14,7 @@ export const MAGY_PRIMARY_GRADE_4_PROGRAM: Program = {
   slug: "grade-4",
   audience: "parent",
   highlights: primaryProgramHighlights,
+  quickFacts: magyProgramQuickFacts,
   tagline: "Science-led. Built for real learning",
   outcome: "NGSA (Grade 6 Exam)",
   description: "Strong foundational learning in a nurturing environment",

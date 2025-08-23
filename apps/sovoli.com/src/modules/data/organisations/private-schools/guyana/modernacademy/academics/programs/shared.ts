@@ -135,3 +135,9 @@ export const primaryProgramHighlights: ProgramHighlight[] = [
       "Gated campus, trained staff, and secure classrooms for peace of mind.",
   },
 ];
+
+export const magyProgramQuickFacts: string[] = [
+  "{{age}}",
+  "Secure",
+  "Qualified Teachers",
+];

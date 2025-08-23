@@ -46,8 +46,14 @@ export const ProgramHeroSection = ({
       </h1>
 
       <p className="text-sm text-foreground-500 max-w-3xl mx-auto">
-        {ageReq?.ageRange && `${formatAgeRange(ageReq.ageRange)} ·`} Secure ·
-        Qualified Teachers
+        {program.quickFacts?.map((fact) => (
+          <span key={fact}>
+            {fact.replace(
+              "{{age}}",
+              ageReq?.ageRange ? formatAgeRange(ageReq.ageRange) : "",
+            )}
+          </span>
+        ))}
       </p>
 
       {/* Primary Location */}

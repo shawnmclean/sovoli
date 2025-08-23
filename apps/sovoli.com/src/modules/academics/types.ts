@@ -212,6 +212,7 @@ export interface Program {
   id: string;
   slug: string; // e.g., "grade-1", "form-3", "year-2", "beginner"
   name?: string; // "Nursery" (can override)
+  quickFacts?: string[];
   audience?: "student" | "parent";
 
   highlights?: ProgramHighlight[];

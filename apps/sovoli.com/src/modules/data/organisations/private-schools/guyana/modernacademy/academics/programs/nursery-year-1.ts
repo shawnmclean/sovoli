@@ -8,6 +8,7 @@ import { findItemById } from "~/modules/data/items";
 import {
   MAGY_NURSERY_DEPT_ACTIVITIES,
   nurseryProgramHighlights,
+  magyProgramQuickFacts,
 } from "./shared";
 
 export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
@@ -15,6 +16,7 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
   slug: "nursery-year-1",
   audience: "parent",
   highlights: nurseryProgramHighlights,
+  quickFacts: magyProgramQuickFacts,
   tagline: "Skills that prepare for primary school",
   outcome: "Early Literacy & Numeracy",
   description: "Engaging curriculum fostering critical thinking and creativity",

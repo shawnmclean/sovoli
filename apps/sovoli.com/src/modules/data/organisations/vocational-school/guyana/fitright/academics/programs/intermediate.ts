@@ -11,7 +11,15 @@ export const FITRIGHT_INTERMEDIATE_SEWING_PROGRAM: Program = {
   name: "Intermediate Sewing",
   slug: "intermediate-sewing",
   audience: "student",
-  highlights: sewingClassProgramHighlights,
+  highlights: [
+    ...sewingClassProgramHighlights,
+    {
+      icon: "graduation-cap",
+      label: "Make & Take Blouse",
+      description:
+        "Create your own blouse or skirt at the end of the course and take it home.",
+    },
+  ],
   photos: BAG_WORKSHOP_PHOTOS,
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 2 },
   cycles: [FITRIGHT_INTERMEDIATE_SEWING_OCTOBER_2025],

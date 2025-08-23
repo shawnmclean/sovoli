@@ -11,7 +11,15 @@ export const FITRIGHT_ELEMENTARY_SEWING_PROGRAM: Program = {
   name: "Elementary Sewing",
   slug: "elementary-sewing",
   audience: "student",
-  highlights: sewingClassProgramHighlights,
+  highlights: [
+    ...sewingClassProgramHighlights,
+    {
+      icon: "graduation-cap",
+      label: "Make & Take Skirt",
+      description:
+        "Create your own skirt at the end of the course and take it home.",
+    },
+  ],
   photos: BAG_WORKSHOP_PHOTOS,
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 1 },
   cycles: [FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025],

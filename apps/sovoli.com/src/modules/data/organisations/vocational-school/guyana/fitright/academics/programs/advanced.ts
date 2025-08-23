@@ -11,7 +11,15 @@ export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
   name: "Advanced Sewing",
   slug: "advanced-sewing",
   audience: "student",
-  highlights: sewingClassProgramHighlights,
+  highlights: [
+    ...sewingClassProgramHighlights,
+    {
+      icon: "graduation-cap",
+      label: "Make & Take Suit",
+      description:
+        "Create your own pants, dress and top at the end of the course and take it home.",
+    },
+  ],
   photos: BAG_WORKSHOP_PHOTOS,
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 3 },
   cycles: [FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025],
