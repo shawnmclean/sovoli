@@ -14,7 +14,8 @@ export const FITRIGHT_ORG: OrgInstance = {
       {
         key: "main-location",
         address: {
-          line1: "Charlotte Street",
+          line1: "204 Charlotte Street",
+          line2: "Bourda",
           city: "Georgetown",
           countryCode: "GY",
         },
