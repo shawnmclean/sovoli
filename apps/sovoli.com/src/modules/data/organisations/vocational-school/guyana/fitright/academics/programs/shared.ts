@@ -48,3 +48,8 @@ export const FITRIGHT_SEWING_PROGRAM_GROUP: ProgramGroup = {
   name: "Sewing",
   description: "Elementary to Advanced Sewing Programs",
 };
+
+export const fitrightProgramQuickFacts: string[] = [
+  "Certificate Included",
+  "Expert Instructors",
+];

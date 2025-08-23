@@ -46,12 +46,13 @@ export const ProgramHeroSection = ({
       </h1>
 
       <p className="text-sm text-foreground-500 max-w-3xl mx-auto">
-        {program.quickFacts?.map((fact) => (
+        {program.quickFacts?.map((fact, index) => (
           <span key={fact}>
             {fact.replace(
               "{{age}}",
               ageReq?.ageRange ? formatAgeRange(ageReq.ageRange) : "",
             )}
+            {index < (program.quickFacts?.length ?? 0) - 1 && " • "}
           </span>
         ))}
       </p>
