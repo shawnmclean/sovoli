@@ -51,5 +51,5 @@ export const FITRIGHT_SEWING_PROGRAM_GROUP: ProgramGroup = {
 
 export const fitrightProgramQuickFacts: string[] = [
   "Certificate Included",
-  "Expert Instructors",
+  "Expert Instructor",
 ];
