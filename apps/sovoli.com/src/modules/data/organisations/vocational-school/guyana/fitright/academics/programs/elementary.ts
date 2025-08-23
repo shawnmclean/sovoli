@@ -22,6 +22,8 @@ export const FITRIGHT_ELEMENTARY_SEWING_PROGRAM: Program = {
         "Create your own skirt at the end of the course and take it home.",
     },
   ],
+  description:
+    "This is a 6-week program that teaches students how to sew a skirt. It is designed for students who are new to sewing and want to learn the basics of sewing.",
   photos: BAG_WORKSHOP_PHOTOS,
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 1 },
   cycles: [FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025],

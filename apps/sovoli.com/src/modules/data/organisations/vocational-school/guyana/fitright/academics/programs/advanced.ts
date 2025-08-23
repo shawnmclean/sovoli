@@ -22,6 +22,8 @@ export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
         "Create your own pants, dress and top at the end of the course and take it home.",
     },
   ],
+  description:
+    "This is a 6-week program that teaches students how to sew a pants, dress and top. It is designed for students who are new to sewing and want to learn the basics of sewing.",
   photos: BAG_WORKSHOP_PHOTOS,
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 3 },
   cycles: [FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025],
