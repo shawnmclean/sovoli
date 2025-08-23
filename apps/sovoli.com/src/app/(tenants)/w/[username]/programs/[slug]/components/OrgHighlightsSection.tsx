@@ -7,7 +7,6 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { BadgeCheckIcon, GiftIcon, AwardIcon } from "lucide-react";
 import type { Program } from "~/modules/academics/types";
-import { Button } from "@sovoli/ui/components/button";
 import { Badge } from "@sovoli/ui/components/badge";
 
 interface OrgHighlightsSectionProps {
@@ -131,19 +130,6 @@ export function OrgHighlightsSection({
                           )}
                         </div>
 
-                        {doc.url && (
-                          <Button
-                            as="a"
-                            variant="flat"
-                            size="sm"
-                            href={doc.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            fullWidth
-                          >
-                            View Document
-                          </Button>
-                        )}
                       </div>
                     </div>
                   ))}
