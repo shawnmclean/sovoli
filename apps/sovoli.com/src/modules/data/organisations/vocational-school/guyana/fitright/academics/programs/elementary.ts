@@ -1,5 +1,5 @@
 import type { Program } from "~/modules/academics/types";
-import { BAG_WORKSHOP_PHOTOS } from "../../photos";
+import { ELEMENTARY_SEWING_PHOTOS } from "../../photos";
 import {
   FITRIGHT_SEWING_PROGRAM_GROUP,
   fitrightProgramQuickFacts,
@@ -72,7 +72,7 @@ export const FITRIGHT_ELEMENTARY_SEWING_PROGRAM: Program = {
       ],
     },
   ],
-  photos: BAG_WORKSHOP_PHOTOS,
+  photos: ELEMENTARY_SEWING_PHOTOS,
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 1 },
   cycles: [FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025],
 };

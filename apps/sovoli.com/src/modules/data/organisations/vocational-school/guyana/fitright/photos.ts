@@ -27,6 +27,64 @@ const FITRIGHT_BAG_WORKSHOP_PHOTOS: Photo[] = [
   },
 ];
 
+const FITRIGHT_ELEMENTARY_SEWING_PHOTOS: Photo[] = [
+  {
+    category: "default",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126211/o/fitright/programs/elementary-sewing/1.webp",
+    assetId: "4d241cfd99248e1461f2a052c3e4c5ff",
+    publicId: "o/fitright/programs/elementary-sewing/1",
+    width: 4032,
+    height: 3024,
+    format: "webp",
+    bytes: 631388,
+    version: 1756126211,
+  },
+  {
+    category: "default",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126221/o/fitright/programs/elementary-sewing/2.webp",
+    assetId: "21780519efe80c5f7b78415a715b935d",
+    publicId: "o/fitright/programs/elementary-sewing/2",
+    width: 4032,
+    height: 3024,
+    format: "webp",
+    bytes: 711670,
+    version: 1756126221,
+  },
+  {
+    category: "default",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126225/o/fitright/programs/elementary-sewing/3.webp",
+    assetId: "1967b0ed2ccf9868120acdf27eb0a3c1",
+    publicId: "o/fitright/programs/elementary-sewing/3",
+    width: 4032,
+    height: 3024,
+    format: "webp",
+    bytes: 719816,
+    version: 1756126225,
+  },
+  {
+    category: "default",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126234/o/fitright/programs/elementary-sewing/4.webp",
+    assetId: "49dc8a4b01c2db1919c8cfe7611a77ea",
+    publicId: "o/fitright/programs/elementary-sewing/4",
+    width: 4032,
+    height: 3024,
+    format: "webp",
+    bytes: 799872,
+    version: 1756126234,
+  },
+  {
+    category: "default",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126456/o/fitright/programs/elementary-sewing/5.webp",
+    assetId: "b013b8b79de5d1e68b813dae030eb40b",
+    publicId: "o/fitright/programs/elementary-sewing/5",
+    width: 900,
+    height: 1600,
+    format: "webp",
+    bytes: 69778,
+    version: 1756126456,
+  },
+];
+
 // Fisher-Yates shuffle function
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
@@ -43,4 +101,16 @@ function shuffleArray<T>(array: T[]): T[] {
 
 export const BAG_WORKSHOP_PHOTOS: Photo[] = shuffleArray(
   FITRIGHT_BAG_WORKSHOP_PHOTOS,
+);
+
+export const ELEMENTARY_SEWING_PHOTOS: Photo[] = shuffleArray(
+  FITRIGHT_ELEMENTARY_SEWING_PHOTOS,
+);
+
+export const INTEMEDIATE_SEWING_PHOTOS: Photo[] = shuffleArray(
+  FITRIGHT_ELEMENTARY_SEWING_PHOTOS,
+);
+
+export const ADVANCED_SEWING_PHOTOS: Photo[] = shuffleArray(
+  FITRIGHT_ELEMENTARY_SEWING_PHOTOS,
 );

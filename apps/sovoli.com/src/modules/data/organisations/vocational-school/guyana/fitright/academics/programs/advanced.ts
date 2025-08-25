@@ -1,5 +1,5 @@
 import type { Program } from "~/modules/academics/types";
-import { BAG_WORKSHOP_PHOTOS } from "../../photos";
+import { ADVANCED_SEWING_PHOTOS } from "../../photos";
 import {
   FITRIGHT_SEWING_PROGRAM_GROUP,
   fitrightProgramQuickFacts,
@@ -24,7 +24,7 @@ export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
   ],
   description:
     "This is a 6-week program that teaches students how to sew a pants, dress and top. It is designed for students who are new to sewing and want to learn the basics of sewing.",
-  photos: BAG_WORKSHOP_PHOTOS,
+  photos: ADVANCED_SEWING_PHOTOS,
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 3 },
   cycles: [FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025],
 };
