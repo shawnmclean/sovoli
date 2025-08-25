@@ -1,5 +1,5 @@
 import type { ProgramCycle } from "~/modules/academics/types";
-import { XAVRINE_DORNELLAS } from "../workforce";
+import { XAVIRINE_DORNELLAS } from "../workforce";
 
 // Helper function to create a cycle with a specific date
 const createFitrightCycle = (day: number, enrolled: number): ProgramCycle => ({
@@ -22,7 +22,7 @@ const createFitrightCycle = (day: number, enrolled: number): ProgramCycle => ({
       },
     ],
   },
-  teachers: [XAVRINE_DORNELLAS],
+  teachers: [XAVIRINE_DORNELLAS],
   capacity: 6,
   enrolled,
 });
@@ -61,7 +61,7 @@ const createFitrightDateRangeCycle = (
       },
     ],
   },
-  teachers: [XAVRINE_DORNELLAS],
+  teachers: [XAVIRINE_DORNELLAS],
   capacity,
   enrolled,
 });

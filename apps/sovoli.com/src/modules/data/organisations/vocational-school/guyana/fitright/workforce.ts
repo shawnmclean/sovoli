@@ -22,12 +22,12 @@ const FACULTY: Department = {
   url: "/orgs/vocational-training/guyana/fitright/team",
 };
 
-export const XAVRINE_DORNELLAS: WorkforceMember = {
+export const XAVIRINE_DORNELLAS: WorkforceMember = {
   id: "001",
-  name: "Xavrine D'Ornellas",
-  slug: "xavrine-dornellas",
-  image: "/orgs/vocational-training/guyana/fitright/team/xavrine.webp",
-  bio: "Xavrine D'Ornellas is a passionate teacher born in Guyana with over a decade of experience in design, sewing, and teaching. Her passion for design and sewing began at the age of seven when she started designing and sewing clothes for her dolls, and by fourteen, she was making clothes for herself. She worked as a school teacher in Guyana for many years, successfully tutoring students in the art of making their own clothes. Her teaching method, known as the 'Xavie teaching method,' is fun, approachable, and rich with helpful tips and techniques aimed at helping students transform fabric into beautiful, well-fitted garments. She has a very open mind and loves supporting new ideas. Her professional experience includes working in couture tailoring in French Guyana, St Lucia, and New York.",
+  name: "Xavirine D'Ornellas",
+  slug: "xavirine-dornellas",
+  image: "/orgs/vocational-training/guyana/fitright/team/xavirine.webp",
+  bio: "Xavirine D'Ornellas is a passionate teacher born in Guyana with over a decade of experience in design, sewing, and teaching. Her passion for design and sewing began at the age of seven when she started designing and sewing clothes for her dolls, and by fourteen, she was making clothes for herself. She worked as a school teacher in Guyana for many years, successfully tutoring students in the art of making their own clothes. Her teaching method, known as the 'Xavie teaching method,' is fun, approachable, and rich with helpful tips and techniques aimed at helping students transform fabric into beautiful, well-fitted garments. She has a very open mind and loves supporting new ideas. Her professional experience includes working in couture tailoring in French Guyana, St Lucia, and New York.",
   quote:
     "Transform fabric into beautiful, well-fitted garments with fun and approachable techniques.",
   isPublic: true,
@@ -83,5 +83,5 @@ export const FITRIGHT_WORKFORCE: WorkforceModule = {
   departments: [FACULTY],
   positions: [INSTRUCTOR],
   teams: [],
-  members: [XAVRINE_DORNELLAS],
+  members: [XAVIRINE_DORNELLAS],
 };
