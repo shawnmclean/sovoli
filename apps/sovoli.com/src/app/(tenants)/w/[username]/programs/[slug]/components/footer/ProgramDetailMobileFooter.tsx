@@ -197,7 +197,7 @@ export function ProgramDetailMobileFooter({
                     </div>
                   </div>
 
-                  <WhatsAppOTPForm
+                  {/* <WhatsAppOTPForm
                     onSuccess={() => {
                       // Close drawer on success after a short delay
                       setTimeout(() => {
@@ -208,7 +208,7 @@ export function ProgramDetailMobileFooter({
                       // Handle error if needed
                       console.error("WhatsApp form error:", message);
                     }}
-                  />
+                  /> */}
                 </>
               )}
             </div>
