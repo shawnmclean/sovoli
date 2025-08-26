@@ -91,7 +91,6 @@ export default async function OpenGraphImage({ params }: Props) {
         program.name ?? program.standardProgramVersion?.program.name ?? "";
       const admission =
         program.admission ?? program.standardProgramVersion?.admission;
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       const ageRequirement = admission?.eligibility.find(
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         (r) => r.type === "age",

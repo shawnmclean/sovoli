@@ -74,7 +74,6 @@ export function ProgramsSection({
               // Get age requirement for this program
               const admission =
                 program.admission ?? program.standardProgramVersion?.admission;
-              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
               const ageReq = admission?.eligibility.find(
                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                 (r) => r.type === "age",

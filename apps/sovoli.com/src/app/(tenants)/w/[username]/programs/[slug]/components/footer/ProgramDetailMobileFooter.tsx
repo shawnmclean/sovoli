@@ -11,7 +11,6 @@ import {
 import { Link } from "@sovoli/ui/components/link";
 
 import { gradientBorderButton } from "~/components/GradientBorderButton";
-import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
 
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
