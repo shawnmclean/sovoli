@@ -83,7 +83,7 @@ export const FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025: ProgramCycle =
   createFitrightDateRangeCycle(
     "Elementary Sewing - Sept 2025",
     "2025-09-15",
-    "2025-10-03",
+    "2025-10-10",
     10,
     2,
   );
@@ -91,15 +91,15 @@ export const FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025: ProgramCycle =
 export const FITRIGHT_INTERMEDIATE_SEWING_OCTOBER_2025: ProgramCycle =
   createFitrightDateRangeCycle(
     "Intermediate Sewing - Oct 2025",
-    "2025-10-06",
-    "2025-10-31",
+    "2025-10-13",
+    "2025-11-07",
     10,
     2,
   );
 
 export const FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025: ProgramCycle =
   createFitrightDateRangeCycle(
-    "Advanced Sewing - Nov 2025",
+    "Advanced Sewing - TBA",
     "2025-11-03",
     "2025-11-28",
     10,

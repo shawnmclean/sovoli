@@ -2,7 +2,6 @@ import {
   parseISO,
   format,
   differenceInDays,
-  differenceInWeeks,
   differenceInMonths,
 } from "date-fns";
 
@@ -18,7 +17,7 @@ export const calculateDuration = (startDate: string, endDate: string) => {
   const end = parseISO(endDate);
 
   const days = differenceInDays(end, start);
-  const weeks = differenceInWeeks(end, start);
+  const weeks = Math.ceil(days / 7);
   const months = differenceInMonths(end, start);
 
   if (months >= 1) {

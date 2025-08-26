@@ -73,5 +73,5 @@ export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
   ],
   photos: ADVANCED_SEWING_PHOTOS,
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 3 },
-  cycles: [FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025],
+  cycles: [],
 };
