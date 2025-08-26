@@ -4,6 +4,7 @@ import {
   FITRIGHT_SEWING_PROGRAM_GROUP,
   fitrightProgramQuickFacts,
   sewingClassProgramHighlights,
+  fitrightProgramRequirements,
 } from "./shared";
 
 export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
@@ -70,6 +71,7 @@ export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
       ],
     },
   ],
+  requirements: fitrightProgramRequirements,
   photos: ADVANCED_SEWING_PHOTOS,
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 3 },
   cycles: [],

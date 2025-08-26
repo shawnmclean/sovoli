@@ -1,4 +1,10 @@
-import type { ProgramGroup, ProgramHighlight } from "~/modules/academics/types";
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import type {
+  ProgramGroup,
+  ProgramHighlight,
+  RequirementList,
+} from "~/modules/academics/types";
+import { findItemById } from "~/modules/data/items";
 
 export const sewingClassProgramHighlights: ProgramHighlight[] = [
   {
@@ -52,4 +58,41 @@ export const FITRIGHT_SEWING_PROGRAM_GROUP: ProgramGroup = {
 export const fitrightProgramQuickFacts: string[] = [
   "Certificate Included",
   "Expert Instructor",
+];
+
+export const fitrightProgramRequirements: RequirementList[] = [
+  {
+    name: "You Would Need",
+    category: "materials",
+    audience: "student",
+    items: [
+      { item: findItemById("supply-seamstress-scissors")! },
+      { item: findItemById("supply-sewing-pins")! },
+      { item: findItemById("supply-pin-cushion")! },
+      { item: findItemById("supply-tape-measure")! },
+    ],
+  },
+  {
+    name: "Rulers",
+    category: "materials",
+    audience: "student",
+    items: [
+      { item: findItemById("supply-straight-ruler")! },
+      { item: findItemById("supply-french-curve")! },
+      { item: findItemById("supply-tailors-chalk-blue")! },
+      { item: findItemById("supply-tailors-chalk-red")! },
+    ],
+  },
+  {
+    name: "Universal",
+    category: "materials",
+    audience: "student",
+    items: [
+      { item: findItemById("supply-machine-needles-14")! },
+      { item: findItemById("supply-hand-needle")! },
+      { item: findItemById("supply-drafting-paper")! },
+      { item: findItemById("supply-pencils")! },
+      { item: findItemById("supply-erasers")! },
+    ],
+  },
 ];
