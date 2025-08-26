@@ -56,7 +56,7 @@ const createFitrightDateRangeCycle = (
         id: "tuition",
         label: "Tuition",
         purpose: "tuition",
-        billingCycle: "one-time",
+        billingCycle: "program",
         amount: { GYD: 65000 },
       },
     ],

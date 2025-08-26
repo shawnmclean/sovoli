@@ -102,6 +102,9 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
                 {formatCycle(item.billingCycle)}
               </p>
             )}
+            {item.billingCycle === "one-time" && (
+              <p className="text-sm text-foreground-500">/one-time</p>
+            )}
           </div>
           {item.billingCycle === "term" && (
             <div className="flex flex-col gap-1">
