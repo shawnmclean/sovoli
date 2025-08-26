@@ -5,7 +5,6 @@ import {
   fitrightProgramQuickFacts,
   sewingClassProgramHighlights,
 } from "./shared";
-import { FITRIGHT_ADVANCED_SEWING_NOVEMBER_2025 } from "../cycles";
 
 export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
   id: "fr-advanced-sewing",
@@ -23,7 +22,7 @@ export const FITRIGHT_ADVANCED_SEWING_PROGRAM: Program = {
     },
   ],
   description:
-    "This is a 3-week program that teaches students how to sew a pants, dress and top. It is designed for students who are new to sewing and want to learn the basics of sewing.",
+    "This is a 4-week program that teaches students how to sew a pants, dress and top. It is designed for students who are new to sewing and want to learn the basics of sewing.",
   courses: [
     {
       id: "fr-intermediate-sewing-course-0",
