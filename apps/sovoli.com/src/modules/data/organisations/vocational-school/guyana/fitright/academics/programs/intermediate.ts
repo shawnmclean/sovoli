@@ -24,60 +24,85 @@ export const FITRIGHT_INTERMEDIATE_SEWING_PROGRAM: Program = {
   ],
   description:
     "This is a 4-week program that teaches students how to sew a blouse. It is designed for students who are new to sewing and want to learn the basics of sewing.",
-  courses: [
+  whatYouWillLearn: [
     {
-      id: "fr-intermediate-sewing-course-0",
-      subject: { id: "measurements", name: "Body Measurements" },
-      title: "Upper Body Measurements",
-      units: [
+      heading: "Body Measurements & Fitting",
+      items: [
         {
-          title: "Upper Body Measurements",
-          topics: ["Upper Body Measurements"],
+          id: "upper-body-measurements",
+          title: "Take upper body measurements",
+          blurb:
+            "Learn to measure bust, waist, shoulder width, and arm length for proper blouse fitting.",
+          tag: "Foundations",
         },
       ],
     },
     {
-      id: "fr-intermediate-sewing-course-1",
-      subject: { id: "sleeves", name: "Sleeves" },
-      title: "Sleeves",
-      units: [
+      heading: "Sleeve Construction",
+      items: [
         {
-          title: "Sleeves",
-          topics: ["Sleeves"],
+          id: "sleeve-basics",
+          title: "Understand sleeve construction",
+          blurb:
+            "Learn sleeve types, armhole fitting, and sleeve attachment techniques.",
+        },
+        {
+          id: "sleeve-patterns",
+          title: "Draft and fit sleeve patterns",
+          blurb:
+            "Create sleeve patterns that fit properly with the armhole and body.",
         },
       ],
     },
     {
-      id: "fr-intermediate-sewing-course-2",
-      subject: { id: "collars", name: "Collars" },
-      title: "Collars",
-      units: [
+      heading: "Collar Techniques",
+      items: [
         {
-          title: "Collars",
-          topics: ["Collars"],
+          id: "collar-types",
+          title: "Work with different collar styles",
+          blurb:
+            "Learn to construct various collar types including flat and stand-up collars.",
+        },
+        {
+          id: "collar-attachment",
+          title: "Attach collars professionally",
+          blurb:
+            "Master the techniques for clean, professional collar attachment.",
         },
       ],
     },
     {
-      id: "fr-intermediate-sewing-course-3",
-      subject: { id: "facings", name: "Facings" },
-      title: "Facings",
-      units: [
+      heading: "Facings & Finishing",
+      items: [
         {
-          title: "Facings",
-          topics: ["Facings"],
+          id: "facing-techniques",
+          title: "Apply facings correctly",
+          blurb:
+            "Learn to cut, sew, and attach facings for clean garment edges.",
+        },
+        {
+          id: "professional-finishing",
+          title: "Achieve professional finishes",
+          blurb:
+            "Master techniques for clean edges, proper pressing, and final touches.",
         },
       ],
     },
-    // measure
     {
-      id: "fr-intermediate-sewing-course-2",
-      subject: { id: "blouse", name: "Blouse/Shirt" },
-      title: "Blouse",
-      units: [
+      heading: "Blouse Construction",
+      items: [
         {
-          title: "Make a Blouse/Shirt",
-          topics: ["Blouse"],
+          id: "blouse-pattern",
+          title: "Create blouse pattern",
+          blurb:
+            "Draft a complete blouse pattern incorporating all learned techniques.",
+        },
+        {
+          id: "complete-blouse",
+          title: "Construct a complete blouse",
+          blurb:
+            "Build a professional blouse with sleeves, collar, facings, and proper finishing.",
+          tag: "Capstone",
         },
       ],
     },
