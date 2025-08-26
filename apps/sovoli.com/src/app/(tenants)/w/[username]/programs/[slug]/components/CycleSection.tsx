@@ -6,7 +6,7 @@ import { RadioGroup, Radio } from "@sovoli/ui/components/radio";
 import { CalendarIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
-import { formatDateRange } from "~/utils/dateUtils";
+import { formatDateRange, calculateDuration } from "~/utils/dateUtils";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
@@ -127,7 +127,8 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
                 <div className="flex justify-between">
                   <span>Date:</span>
                   <span className="font-medium">
-                    {formatDateRange(startDate, endDate)}
+                    {formatDateRange(startDate, endDate)}{" "}
+                    <strong>({calculateDuration(startDate, endDate)})</strong>
                   </span>
                 </div>
                 {cycle.registrationPeriod && (
@@ -138,6 +139,13 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
                         cycle.registrationPeriod.startDate,
                         cycle.registrationPeriod.endDate,
                       )}
+                      <strong>
+                        (
+                        {calculateDuration(
+                          cycle.registrationPeriod.startDate,
+                          cycle.registrationPeriod.endDate,
+                        )}
+                      </strong>
                     </span>
                   </div>
                 )}
@@ -206,7 +214,8 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
                   <div className="flex justify-between">
                     <span>Date:</span>
                     <span className="font-medium">
-                      {formatDateRange(startDate, endDate)}
+                      {formatDateRange(startDate, endDate)}{" "}
+                      <strong>({calculateDuration(startDate, endDate)})</strong>
                     </span>
                   </div>
                   {cycle.registrationPeriod && (
@@ -216,7 +225,15 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
                         {formatDateRange(
                           cycle.registrationPeriod.startDate,
                           cycle.registrationPeriod.endDate,
-                        )}
+                        )}{" "}
+                        <strong>
+                          (
+                          {calculateDuration(
+                            cycle.registrationPeriod.startDate,
+                            cycle.registrationPeriod.endDate,
+                          )}
+                          )
+                        </strong>
                       </span>
                     </div>
                   )}

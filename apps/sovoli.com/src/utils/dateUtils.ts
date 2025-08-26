@@ -1,9 +1,33 @@
-import { parseISO, format } from "date-fns";
+import {
+  parseISO,
+  format,
+  differenceInDays,
+  differenceInWeeks,
+  differenceInMonths,
+} from "date-fns";
 
 // Helper function to format a single date
 export const formatDate = (dateString: string) => {
   const date = parseISO(dateString);
   return format(date, "MMM d, yyyy");
+};
+
+// Helper function to calculate and format duration between two dates
+export const calculateDuration = (startDate: string, endDate: string) => {
+  const start = parseISO(startDate);
+  const end = parseISO(endDate);
+
+  const days = differenceInDays(end, start);
+  const weeks = differenceInWeeks(end, start);
+  const months = differenceInMonths(end, start);
+
+  if (months >= 1) {
+    return `${months} month${months !== 1 ? "s" : ""}`;
+  } else if (weeks >= 1) {
+    return `${weeks} week${weeks !== 1 ? "s" : ""}`;
+  } else {
+    return `${days} day${days !== 1 ? "s" : ""}`;
+  }
 };
 
 // Helper function to format date range compactly

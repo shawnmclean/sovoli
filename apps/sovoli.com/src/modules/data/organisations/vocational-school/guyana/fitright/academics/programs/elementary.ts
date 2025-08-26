@@ -23,7 +23,7 @@ export const FITRIGHT_ELEMENTARY_SEWING_PROGRAM: Program = {
     },
   ],
   description:
-    "This is a 6-week program that teaches students how to sew a skirt. It is designed for students who are new to sewing and want to learn the basics of sewing.",
+    "This is a 3-week program that teaches students how to sew a skirt. It is designed for students who are new to sewing and want to learn the basics of sewing.",
   courses: [
     {
       id: "fr-elementary-sewing-course-0",
