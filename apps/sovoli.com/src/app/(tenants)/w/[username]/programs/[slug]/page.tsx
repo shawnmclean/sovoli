@@ -141,11 +141,10 @@ export default async function ProgramDetailsPage({
 
           <ProgramDescriptionSection program={programToUse} />
 
-          <CycleSection program={programToUse} defaultCycle={defaultCycle} />
-
           <CurriculumSection program={programToUse} />
-
           <ActivitiesSection program={programToUse} />
+
+          <CycleSection program={programToUse} defaultCycle={defaultCycle} />
 
           <TeachersSection
             defaultTeachers={defaultTeachers}
