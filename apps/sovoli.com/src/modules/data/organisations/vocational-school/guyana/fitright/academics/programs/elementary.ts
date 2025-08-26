@@ -24,50 +24,69 @@ export const FITRIGHT_ELEMENTARY_SEWING_PROGRAM: Program = {
   ],
   description:
     "This is a 4-week program that teaches students how to sew a skirt. It is designed for students who are new to sewing and want to learn the basics of sewing.",
-  courses: [
+  whatYouWillLearn: [
     {
-      id: "fr-elementary-sewing-course-0",
-      subject: { id: "seams", name: "Seams" },
-      title: "Seams",
-      units: [
+      heading: "Seams",
+      items: [
         {
-          title: "Seams",
-          topics: ["Seams"],
+          id: "basic-seams",
+          title: "Master basic seam techniques",
+          blurb:
+            "Learn to sew straight seams with consistent seam allowance and proper finishing.",
+          tag: "Foundations",
         },
       ],
     },
     {
-      id: "fr-elementary-sewing-course-1",
-      subject: { id: "fabric", name: "Fabric" },
-      title: "Fabric",
-      units: [
+      heading: "Fabric & Materials",
+      items: [
         {
-          title: "Fabric",
-          topics: ["Fabric", "Grain lines", "Thread"],
+          id: "fabric-selection",
+          title: "Choose appropriate fabrics",
+          blurb:
+            "Understand different fabric types and select the right material for your project.",
+        },
+        {
+          id: "grain-lines",
+          title: "Work with grain lines",
+          blurb:
+            "Identify and respect fabric grain to ensure proper fit and drape.",
+        },
+        {
+          id: "thread-basics",
+          title: "Thread selection and care",
+          blurb:
+            "Select the right thread type and learn proper threading techniques.",
         },
       ],
     },
-    // measure
     {
-      id: "fr-elementary-sewing-course-2",
-      subject: { id: "measurements", name: "Measurements" },
-      title: "Measurements",
-      units: [
+      heading: "Measurements & Fitting",
+      items: [
         {
-          title: "Measurements",
-          topics: ["Measurements"],
+          id: "body-measurements",
+          title: "Take accurate body measurements",
+          blurb:
+            "Learn to measure waist, hip, and length for proper garment fitting.",
+          tag: "Hands-on",
         },
       ],
     },
-    // cutting
     {
-      id: "fr-elementary-sewing-course-3",
-      subject: { id: "cutting", name: "Cutting" },
-      title: "Cutting",
-      units: [
+      heading: "Cutting & Construction",
+      items: [
         {
-          title: "Cutting",
-          topics: ["Cutting"],
+          id: "pattern-cutting",
+          title: "Cut fabric accurately",
+          blurb:
+            "Cut pattern pieces with precision and proper grain alignment.",
+        },
+        {
+          id: "skirt-construction",
+          title: "Construct a complete skirt",
+          blurb:
+            "Build a wearable skirt with darts, zipper, waistband, and hem finishing.",
+          tag: "Capstone",
         },
       ],
     },

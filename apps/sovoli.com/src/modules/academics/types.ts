@@ -237,6 +237,20 @@ export interface Program {
   isPopular?: boolean;
   testimonials?: ProgramTestimonial[];
   cycles?: ProgramCycle[];
+
+  whatYouWillLearn?: ProgramWYLGroup[];
+}
+
+export interface ProgramWYLItem {
+  id: string; // stable within the program page (slug-like)
+  title: string; // short, parent-facing
+  blurb: string; // one-line promise / outcome
+  tag?: string; // optional pill, e.g., "Hands-on", "Foundations"
+}
+
+export interface ProgramWYLGroup {
+  heading: string; // e.g., "Mathematics", "English", "Sewing"
+  items: ProgramWYLItem[];
 }
 
 export interface ProgramTestimonial {
