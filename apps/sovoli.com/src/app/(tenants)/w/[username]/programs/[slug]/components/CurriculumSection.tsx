@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
-import { BookOpenIcon } from "lucide-react";
+import { BookOpenIcon, CheckIcon } from "lucide-react";
 import type { Program } from "~/modules/academics/types";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 import { Button } from "@sovoli/ui/components/button";
@@ -199,7 +199,7 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
       fullWidth
       onPress={onOpen}
     >
-      Explore what you'll learn
+      Explore curriculum
     </Button>
   );
 
@@ -221,18 +221,20 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
         </div>
         <div className="space-y-4">
           <div>
-            <div className="flex flex-wrap gap-2">
-              {firstSixItems.map((item) => (
-                <Chip key={item.id} color="secondary" variant="flat" size="sm">
-                  {item.title}
-                </Chip>
+            <ul className="space-y-2">
+              {program.whatYouWillLearn.map((group) => (
+                <li
+                  key={group.heading}
+                  className="text-sm text-foreground flex items-start gap-2"
+                >
+                  <CheckIcon className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                  <span>
+                    <span className="font-bold">{group.heading}</span> -{" "}
+                    {group.items[0]?.title}
+                  </span>
+                </li>
               ))}
-              {hasMoreItems && (
-                <Chip color="secondary" variant="flat" size="sm">
-                  +{allLearningItems.length - 6} more
-                </Chip>
-              )}
-            </div>
+            </ul>
           </div>
         </div>
       </div>
