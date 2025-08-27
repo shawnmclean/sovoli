@@ -21,6 +21,7 @@ import { GuidedChatForm } from "../GuidedChatForm";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
 import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
 import { Divider } from "@sovoli/ui/components/divider";
+import { Alert } from "@sovoli/ui/components/alert";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -153,6 +154,7 @@ export function ProgramDetailMobileFooter({
       {/* Program Details Drawer */}
       <Drawer
         isOpen={isOpen}
+        size="4xl"
         placement="bottom"
         backdrop="opaque"
         onOpenChange={onOpenChange}
@@ -198,7 +200,7 @@ export function ProgramDetailMobileFooter({
                     </div>
                   </div>
                   <Divider />
-                  <h2>Test purposes only:</h2>
+                  <Alert color="warning">Test purposes only:</Alert>
                   <WhatsAppOTPForm
                     onSuccess={() => {
                       // Close drawer on success after a short delay
