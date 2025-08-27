@@ -13,7 +13,7 @@ import {
   DropdownItem,
 } from "@sovoli/ui/components/dropdown";
 import { ChevronDownIcon } from "lucide-react";
-import Flag from "react-country-icons";
+import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
 
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";
@@ -21,6 +21,25 @@ type CountryCode = "US" | "GB" | "GY" | "JM";
 export interface WhatsAppOTPFormProps {
   onSuccess?: () => void;
   onError?: (message: string) => void;
+}
+
+// Flag component that maps country codes to flag components
+function Flag({
+  code,
+  height,
+}: {
+  code: CountryCode;
+  height: string | number;
+}) {
+  const flagComponents = {
+    US: US,
+    GB: GB,
+    GY: GY,
+    JM: JM,
+  };
+
+  const FlagComponent = flagComponents[code];
+  return <FlagComponent height={height} />;
 }
 
 export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
@@ -99,7 +118,7 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
                 variant="bordered"
                 className="w-full h-[50px] justify-between"
                 startContent={
-                  <Flag country={selectedCountry.countryCode} size={20} />
+                  <Flag code={selectedCountry.countryCode} height="16" />
                 }
                 endContent={
                   <ChevronDownIcon className="text-default-500" size={16} />
@@ -125,9 +144,7 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
                 <DropdownItem
                   key={country.code}
                   description={country.name}
-                  startContent={
-                    <Flag country={country.countryCode} size={20} />
-                  }
+                  startContent={<Flag code={country.countryCode} height="16" />}
                 >
                   {country.code}
                 </DropdownItem>

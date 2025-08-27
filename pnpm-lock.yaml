@@ -186,6 +186,9 @@ importers:
       cloudinary:
         specifier: 2.5.1
         version: 2.5.1
+      country-flag-icons:
+        specifier: 1.5.19
+        version: 1.5.19
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -231,9 +234,6 @@ importers:
       react:
         specifier: 'catalog:'
         version: 19.0.0
-      react-country-icons:
-        specifier: 1.1.7
-        version: 1.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-dom:
         specifier: 'catalog:'
         version: 19.0.0(react@19.0.0)
@@ -4414,6 +4414,9 @@ packages:
   core-js@3.43.0:
     resolution: {integrity: sha512-N6wEbTTZSYOY2rYAn85CuvWWkCK6QweMn7/4Nr3w+gDBeBhk/x4EJeY6FPo4QzDoJZxVTv8U7CMvgWk6pOHHqA==}
 
+  country-flag-icons@1.5.19:
+    resolution: {integrity: sha512-D/ZkRyj+ywJC6b2IrAN3/tpbReMUqmuRLlcKFoY/o0+EPQN9Ev/e8tV+D3+9scvu/tarxwLErNwS73C3yzxs/g==}
+
   crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
 
@@ -6339,12 +6342,6 @@ packages:
 
   rc9@2.1.2:
     resolution: {integrity: sha512-btXCnMmRIBINM2LDZoEmOogIZU7Qe7zn4BpomSKZ/ykbLObuBdvG+mFq11DL6fjH1DRwHhrlgtYWG96bJiC7Cg==}
-
-  react-country-icons@1.1.7:
-    resolution: {integrity: sha512-LPMHPi2U07cRwVbENovsdX7WWk5LkHmo8I+PHjDvwW1++Ly1EG+zZyCe8JY+6DFLOS4AV9YKxZ6QsUEAaZUV4Q==}
-    peerDependencies:
-      react: ^19.0.0
-      react-dom: ^19.0.0
 
   react-dom@19.0.0:
     resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
@@ -11943,6 +11940,8 @@ snapshots:
 
   core-js@3.43.0: {}
 
+  country-flag-icons@1.5.19: {}
+
   crelt@1.0.6: {}
 
   cronstrue@2.59.0: {}
@@ -14240,11 +14239,6 @@ snapshots:
     dependencies:
       defu: 6.1.4
       destr: 2.0.5
-
-  react-country-icons@1.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
-    dependencies:
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
 
   react-dom@19.0.0(react@19.0.0):
     dependencies:

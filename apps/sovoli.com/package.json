@@ -76,7 +76,7 @@
     "posthog-node": "5.5.1",
     "raf": "3.4.1",
     "react": "catalog:",
-    "react-country-icons": "1.1.7",
+    "country-flag-icons": "1.5.19",
     "react-dom": "catalog:",
     "react-dropzone": "14.3.5",
     "react-easy-crop": "5.2.0",
