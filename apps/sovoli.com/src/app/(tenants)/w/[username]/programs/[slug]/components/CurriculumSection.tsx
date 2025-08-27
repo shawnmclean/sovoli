@@ -152,13 +152,6 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
     return null;
   }
 
-  // Show first 6 learning items across all groups
-  const allLearningItems = program.whatYouWillLearn.flatMap(
-    (group) => group.items,
-  );
-  const firstSixItems = allLearningItems.slice(0, 6);
-  const hasMoreItems = allLearningItems.length > 6;
-
   const detailedView = (
     <div className="space-y-6">
       {program.whatYouWillLearn.map((group, groupIndex) => (
@@ -221,17 +214,22 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
         </div>
         <div className="space-y-4">
           <div>
-            <ul className="space-y-2">
+            <ul className="space-y-4">
               {program.whatYouWillLearn.map((group) => (
-                <li
-                  key={group.heading}
-                  className="text-sm text-foreground flex items-start gap-2"
-                >
-                  <CheckIcon className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                  <span>
-                    <span className="font-bold">{group.heading}</span> -{" "}
-                    {group.items[0]?.title}
-                  </span>
+                <li key={group.heading} className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <CheckIcon className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span className="font-bold text-foreground">
+                      {group.heading}
+                    </span>
+                  </div>
+                  <ul className="ml-6 space-y-1">
+                    {group.items.map((item) => (
+                      <li key={item.id} className="text-sm text-foreground-600">
+                        • {item.title}
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>
