@@ -19,6 +19,8 @@ import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionCon
 import { Skeleton } from "@sovoli/ui/components/skeleton";
 import { GuidedChatForm } from "../GuidedChatForm";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
+import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
+import { Divider } from "@sovoli/ui/components/divider";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -195,19 +197,22 @@ export function ProgramDetailMobileFooter({
                       </span>
                     </div>
                   </div>
-
-                  {/* <WhatsAppOTPForm
+                  <Divider />
+                  <h2>Test purposes only:</h2>
+                  <WhatsAppOTPForm
                     onSuccess={() => {
                       // Close drawer on success after a short delay
                       setTimeout(() => {
                         onOpenChange();
                       }, 2000);
                     }}
-                    onError={(message) => {
-                      // Handle error if needed
-                      console.error("WhatsApp form error:", message);
+                    onError={() => {
+                      // Close drawer on success after a short delay
+                      setTimeout(() => {
+                        onOpenChange();
+                      }, 2000);
                     }}
-                  /> */}
+                  />
                 </>
               )}
             </div>
