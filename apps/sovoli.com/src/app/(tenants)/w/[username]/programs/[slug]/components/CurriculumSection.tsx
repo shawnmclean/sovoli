@@ -192,7 +192,7 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
       fullWidth
       onPress={onOpen}
     >
-      Explore curriculum
+      Explore Curriculum
     </Button>
   );
 
