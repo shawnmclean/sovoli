@@ -185,6 +185,29 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
         </div>
       )}
 
+      {/* Terms and Privacy Notice */}
+      <div className="text-center text-xs text-default-500">
+        By pressing continue, you agree to Sovoli's{" "}
+        <a
+          href="https://sovoli.com/terms"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline"
+        >
+          Terms
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://sovoli.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline"
+        >
+          Privacy
+        </a>
+        .
+      </div>
+
       <Button
         type="submit"
         variant="solid"
