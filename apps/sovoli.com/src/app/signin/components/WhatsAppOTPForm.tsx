@@ -83,7 +83,8 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
 
     try {
       const formData = new FormData();
-      formData.append("phone", phone.trim());
+      const fullPhoneNumber = `${selectedCountry.code}${phone.trim()}`;
+      formData.append("phone", fullPhoneNumber);
 
       const result = await signInAction(null, formData);
       setState(result);
@@ -110,50 +111,8 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="flex flex-col gap-2">
-        <div className="flex flex-col gap-2">
-          <label className="text-small font-medium">Country Code</label>
-          <Dropdown isDisabled={isSubmitting}>
-            <DropdownTrigger>
-              <Button
-                variant="bordered"
-                className="w-full h-[50px] justify-between"
-                startContent={
-                  <Flag code={selectedCountry.countryCode} height="16" />
-                }
-                endContent={
-                  <ChevronDownIcon className="text-default-500" size={16} />
-                }
-              >
-                {selectedCountry.code} - {selectedCountry.name}
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu
-              aria-label="Country Codes"
-              className="max-h-[300px]"
-              selectionMode="single"
-              selectedKeys={[selectedCountry.code]}
-              onSelectionChange={(keys) => {
-                const selectedKey = Array.from(keys)[0] as string;
-                const country = countryCodes.find(
-                  (c) => c.code === selectedKey,
-                );
-                if (country) setSelectedCountry(country);
-              }}
-            >
-              {countryCodes.map((country) => (
-                <DropdownItem
-                  key={country.code}
-                  description={country.name}
-                  startContent={<Flag code={country.countryCode} height="16" />}
-                >
-                  {country.code}
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          </Dropdown>
-        </div>{" "}
-        <div className="flex flex-col gap-2">
-          <label className="text-small font-medium">Phone Number</label>
+        <label className="text-small font-medium">Phone Number</label>
+        <div className="relative">
           <Input
             name="phone"
             value={phone}
@@ -167,11 +126,47 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
             isRequired
             isDisabled={isSubmitting}
             startContent={
-              <div className="pointer-events-none flex items-center">
-                <span className="text-default-400 text-small">
-                  {selectedCountry.code}
-                </span>
-              </div>
+              <Dropdown isDisabled={isSubmitting}>
+                <DropdownTrigger>
+                  <Button
+                    variant="light"
+                    className="h-full min-w-[100px] border-r border-divider rounded-r-none pl-0 gap-1"
+                    startContent={
+                      <Flag code={selectedCountry.countryCode} height={18} />
+                    }
+                    endContent={
+                      <ChevronDownIcon className="text-default-500" size={16} />
+                    }
+                  >
+                    {selectedCountry.code}
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu
+                  aria-label="Country Codes"
+                  className="max-h-[300px]"
+                  selectionMode="single"
+                  selectedKeys={[selectedCountry.code]}
+                  onSelectionChange={(keys) => {
+                    const selectedKey = Array.from(keys)[0] as string;
+                    const country = countryCodes.find(
+                      (c) => c.code === selectedKey,
+                    );
+                    if (country) setSelectedCountry(country);
+                  }}
+                >
+                  {countryCodes.map((country) => (
+                    <DropdownItem
+                      key={country.code}
+                      description={country.name}
+                      startContent={
+                        <Flag code={country.countryCode} height={20} />
+                      }
+                    >
+                      {country.code}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
             }
           />
         </div>
