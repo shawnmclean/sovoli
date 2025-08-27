@@ -62,37 +62,30 @@ export const fitrightProgramQuickFacts: string[] = [
 
 export const fitrightProgramRequirements: RequirementList[] = [
   {
-    name: "You Would Need",
+    name: "Tools",
     category: "materials",
     audience: "student",
     items: [
       { item: findItemById("supply-seamstress-scissors")! },
-      { item: findItemById("supply-sewing-pins")! },
       { item: findItemById("supply-pin-cushion")! },
       { item: findItemById("supply-tape-measure")! },
-    ],
-  },
-  {
-    name: "Rulers",
-    category: "materials",
-    audience: "student",
-    items: [
       { item: findItemById("supply-straight-ruler")! },
       { item: findItemById("supply-french-curve")! },
-      { item: findItemById("supply-tailors-chalk-blue")! },
-      { item: findItemById("supply-tailors-chalk-red")! },
     ],
   },
   {
-    name: "Universal",
+    name: "Supplies",
     category: "materials",
     audience: "student",
     items: [
       { item: findItemById("supply-machine-needles-14")! },
+      { item: findItemById("supply-sewing-pins")! },
       { item: findItemById("supply-hand-needle")! },
       { item: findItemById("supply-drafting-paper")! },
       { item: findItemById("supply-pencils")! },
       { item: findItemById("supply-erasers")! },
+      { item: findItemById("supply-tailors-chalk-blue")! },
+      { item: findItemById("supply-tailors-chalk-red")! },
     ],
   },
 ];

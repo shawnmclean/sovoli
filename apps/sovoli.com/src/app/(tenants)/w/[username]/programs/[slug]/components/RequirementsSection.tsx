@@ -99,7 +99,7 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
 
     requirementsByCategory.forEach((data, category) => {
       const categoryLabel = getCategoryLabel(category);
-      data.items.slice(0, 2).forEach((item) => {
+      data.items.slice(0, 3).forEach((item) => {
         items.push({ category, item, categoryLabel });
       });
     });
