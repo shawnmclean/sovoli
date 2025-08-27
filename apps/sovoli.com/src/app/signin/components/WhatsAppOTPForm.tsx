@@ -4,9 +4,19 @@ import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 
-import { gradientBorderButton } from "~/components/GradientBorderButton";
 import { signInAction } from "../actions/signInAction";
 import type { State } from "../actions/signInAction";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@sovoli/ui/components/dropdown";
+import { ChevronDownIcon } from "lucide-react";
+import Flag from "react-country-icons";
+
+// Define the country code type with only the countries we need
+type CountryCode = "US" | "GB" | "GY" | "JM";
 
 export interface WhatsAppOTPFormProps {
   onSuccess?: () => void;
@@ -15,8 +25,28 @@ export interface WhatsAppOTPFormProps {
 
 export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
   const [phone, setPhone] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState<{
+    code: string;
+    name: string;
+    countryCode: CountryCode;
+  }>({
+    code: "+592",
+    name: "Guyana",
+    countryCode: "GY",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [state, setState] = useState<State>(null);
+
+  const countryCodes: {
+    code: string;
+    name: string;
+    countryCode: CountryCode;
+  }[] = [
+    { code: "+1", name: "United States", countryCode: "US" },
+    { code: "+44", name: "United Kingdom", countryCode: "GB" },
+    { code: "+592", name: "Guyana", countryCode: "GY" },
+    { code: "+876", name: "Jamaica", countryCode: "JM" },
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,19 +90,75 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <Input
-        name="phone"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        fullWidth
-        autoFocus
-        type="tel"
-        size="lg"
-        variant="bordered"
-        placeholder="Enter your phone number"
-        isRequired
-        isDisabled={isSubmitting}
-      />
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
+          <label className="text-small font-medium">Country Code</label>
+          <Dropdown isDisabled={isSubmitting}>
+            <DropdownTrigger>
+              <Button
+                variant="bordered"
+                className="w-full h-[50px] justify-between"
+                startContent={
+                  <Flag country={selectedCountry.countryCode} size={20} />
+                }
+                endContent={
+                  <ChevronDownIcon className="text-default-500" size={16} />
+                }
+              >
+                {selectedCountry.code} - {selectedCountry.name}
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="Country Codes"
+              className="max-h-[300px]"
+              selectionMode="single"
+              selectedKeys={[selectedCountry.code]}
+              onSelectionChange={(keys) => {
+                const selectedKey = Array.from(keys)[0] as string;
+                const country = countryCodes.find(
+                  (c) => c.code === selectedKey,
+                );
+                if (country) setSelectedCountry(country);
+              }}
+            >
+              {countryCodes.map((country) => (
+                <DropdownItem
+                  key={country.code}
+                  description={country.name}
+                  startContent={
+                    <Flag country={country.countryCode} size={20} />
+                  }
+                >
+                  {country.code}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+        </div>{" "}
+        <div className="flex flex-col gap-2">
+          <label className="text-small font-medium">Phone Number</label>
+          <Input
+            name="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            fullWidth
+            autoFocus
+            type="tel"
+            size="lg"
+            variant="bordered"
+            placeholder="Enter phone number"
+            isRequired
+            isDisabled={isSubmitting}
+            startContent={
+              <div className="pointer-events-none flex items-center">
+                <span className="text-default-400 text-small">
+                  {selectedCountry.code}
+                </span>
+              </div>
+            }
+          />
+        </div>
+      </div>
 
       {/* Action state messages */}
       {state && (
@@ -87,18 +173,17 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
         </div>
       )}
 
-      <div className="pt-4 flex justify-end">
-        <Button
-          type="submit"
-          variant="shadow"
-          radius="lg"
-          className={gradientBorderButton()}
-          isLoading={isSubmitting}
-          isDisabled={isSubmitting}
-        >
-          {isSubmitting ? "Sending..." : "Send WhatsApp Message"}
-        </Button>
-      </div>
+      <Button
+        type="submit"
+        variant="solid"
+        color="primary"
+        radius="lg"
+        fullWidth
+        isLoading={isSubmitting}
+        isDisabled={isSubmitting}
+      >
+        {isSubmitting ? "Sending..." : "Continue"}
+      </Button>
     </form>
   );
 }
