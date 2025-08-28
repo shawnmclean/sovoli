@@ -8,7 +8,7 @@ import {
   DrawerBody,
   DrawerContent,
 } from "@sovoli/ui/components/drawer";
-import { Link } from "@sovoli/ui/components/link";
+// import { Link } from "@sovoli/ui/components/link";
 
 import { gradientBorderButton } from "~/components/GradientBorderButton";
 
@@ -17,11 +17,11 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import { Skeleton } from "@sovoli/ui/components/skeleton";
-import { GuidedChatForm } from "../GuidedChatForm";
+// import { GuidedChatForm } from "../GuidedChatForm";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
-import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
+// import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
 import { Divider } from "@sovoli/ui/components/divider";
-import { Alert } from "@sovoli/ui/components/alert";
+// import { Alert } from "@sovoli/ui/components/alert";
 import { LeadsForm } from "../LeadsForm";
 
 export interface ProgramDetailMobileFooterProps {
@@ -44,11 +44,11 @@ export function ProgramDetailMobileFooter({
   program,
 }: ProgramDetailMobileFooterProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const {
-    isOpen: isContactOpen,
-    onOpen: onContactOpen,
-    onOpenChange: onContactOpenChange,
-  } = useDisclosure();
+  // const {
+  //   isOpen: isContactOpen,
+  //   onOpen: onContactOpen,
+  //   onOpenChange: onContactOpenChange,
+  // } = useDisclosure();
   const { selectedCycle, isLoading, isInitialized } =
     useProgramCycleSelection();
 
@@ -78,7 +78,7 @@ export function ProgramDetailMobileFooter({
                 size="md"
                 startContent={<MessageSquareShareIcon size={16} />}
                 className={gradientBorderButton()}
-                onPress={onContactOpen}
+                onPress={onOpen}
               >
                 Chat Now
               </Button>
@@ -115,7 +115,7 @@ export function ProgramDetailMobileFooter({
       <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
         <div className="flex w-full items-start py-3 gap-4">
           {/* Left side - Program info badge */}
-          <div className="flex flex-1 items-center min-w-0">
+          {/* <div className="flex flex-1 items-center min-w-0">
             <Skeleton isLoaded={!(isLoading && isInitialized)}>
               <Button
                 as={Link}
@@ -135,27 +135,26 @@ export function ProgramDetailMobileFooter({
                 )}
               </Button>
             </Skeleton>
-          </div>
+          </div> */}
 
           {/* Right side - Reserve button */}
-          <div className="flex-shrink-0 self-center">
-            <Button
-              variant="shadow"
-              radius="lg"
-              startContent={<MessageSquareShareIcon size={16} />}
-              className={gradientBorderButton()}
-              onPress={onContactOpen}
-            >
-              Chat Now
-            </Button>
-          </div>
+          <Button
+            variant="shadow"
+            radius="lg"
+            fullWidth
+            startContent={<MessageSquareShareIcon size={16} />}
+            className={gradientBorderButton()}
+            onPress={onOpen}
+          >
+            Chat Now
+          </Button>
         </div>
       </footer>
 
       {/* Program Details Drawer */}
       <Drawer
         isOpen={isOpen}
-        size="4xl"
+        size="5xl"
         placement="bottom"
         backdrop="opaque"
         onOpenChange={onOpenChange}
@@ -201,7 +200,6 @@ export function ProgramDetailMobileFooter({
                     </div>
                   </div>
                   <Divider />
-                  <Alert color="warning">Test purposes only:</Alert>
                   <LeadsForm
                     onSuccess={() => {
                       onOpenChange();
@@ -211,6 +209,7 @@ export function ProgramDetailMobileFooter({
                     }}
                     cycle={selectedCycle}
                     program={program}
+                    whatsappNumber={whatsappNumber}
                   />
                 </>
               )}
@@ -221,13 +220,13 @@ export function ProgramDetailMobileFooter({
 
       {/* Contact Us Drawer */}
 
-      <GuidedChatForm
+      {/* <GuidedChatForm
         whatsappNumber={whatsappNumber}
         isOpen={isContactOpen}
         onOpenChange={onContactOpenChange}
         cycle={selectedCycle}
         program={program}
-      />
+      /> */}
     </>
   );
 }
