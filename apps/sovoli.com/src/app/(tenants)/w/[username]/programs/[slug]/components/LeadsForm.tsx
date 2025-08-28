@@ -110,7 +110,7 @@ export function LeadsForm({
           color="primary"
           as={WhatsAppLink}
           phoneNumber={whatsappNumber}
-          message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${program.name}.`}
+          message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${program.name ?? program.standardProgramVersion?.program.name}.`}
           fullWidth
           onPress={() => {
             trackProgramAnalytics("Lead", program, cycle, {
