@@ -86,7 +86,9 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
       // For now, we'll simulate a successful submission
       await new Promise((resolve) => setTimeout(resolve, 100));
 
-      onSuccess?.(phone);
+      // Combine country code and phone number
+      const fullPhoneNumber = selectedCountry.code + phone;
+      onSuccess?.(fullPhoneNumber);
       // Reset form on success
       setPhone("");
     } catch {
