@@ -157,9 +157,7 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
                     if (country) {
                       setSelectedCountry(country);
                       // Focus the phone input after country selection
-                      setTimeout(() => {
-                        phoneInputRef.current?.focus();
-                      }, 100);
+                      phoneInputRef.current?.focus();
                     }
                   }}
                 >
