@@ -209,6 +209,8 @@ export function ProgramDetailMobileFooter({
                     onError={() => {
                       onOpenChange();
                     }}
+                    cycle={selectedCycle}
+                    program={program}
                   />
                 </>
               )}

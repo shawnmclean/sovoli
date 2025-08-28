@@ -29,7 +29,7 @@ export function NamesForm({ onSuccess, onError }: NamesFormProps) {
     try {
       // Here you would typically call an API to save the names
       // For now, we'll simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
       onSuccess?.(firstName, lastName);
       // Reset form on success

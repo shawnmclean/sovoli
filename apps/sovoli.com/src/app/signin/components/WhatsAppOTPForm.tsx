@@ -82,26 +82,15 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
     setState(null);
 
     try {
-      const formData = new FormData();
-      const fullPhoneNumber = `${selectedCountry.code}${phone.trim()}`;
-      formData.append("phone", fullPhoneNumber);
+      // Here you would typically call an API to save the names
+      // For now, we'll simulate a successful submission
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
-      const result = await signInAction(null, formData);
-      setState(result);
-
-      if (result?.status === "success") {
-        onSuccess?.(phone);
-        // Reset form on success
-        setPhone("");
-      } else if (result?.status === "error") {
-        onError?.(result.message);
-      }
+      onSuccess?.(phone);
+      // Reset form on success
+      setPhone("");
     } catch {
       const errorMessage = "An unexpected error occurred. Please try again.";
-      setState({
-        status: "error",
-        message: errorMessage,
-      });
       onError?.(errorMessage);
     } finally {
       setIsSubmitting(false);
