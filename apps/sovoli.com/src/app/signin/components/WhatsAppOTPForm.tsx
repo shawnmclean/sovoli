@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 
@@ -67,8 +67,6 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
     { code: "+876", name: "Jamaica", countryCode: "JM" },
   ];
 
-  const phoneInputRef = useRef<HTMLInputElement>(null);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -116,7 +114,6 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
         <label className="text-small font-medium">Phone Number</label>
         <div className="relative">
           <Input
-            ref={phoneInputRef}
             name="phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -154,11 +151,7 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
                     const country = countryCodes.find(
                       (c) => c.code === selectedKey,
                     );
-                    if (country) {
-                      setSelectedCountry(country);
-                      // Focus the phone input after country selection
-                      phoneInputRef.current?.focus();
-                    }
+                    if (country) setSelectedCountry(country);
                   }}
                 >
                   {countryCodes.map((country) => (
