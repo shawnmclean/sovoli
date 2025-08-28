@@ -62,7 +62,7 @@ export function OrgHighlightsSection({
       {org.isVerified && org.verification && (
         <div className="mt-8 pt-6 border-t border-border">
           <div className="flex items-center gap-2 mb-6">
-            <BadgeCheckIcon size={20} className="text-green-600" />
+            <BadgeCheckIcon size={20} className="text-success" />
             <h3 className="text-lg font-semibold text-foreground">
               Verified Registration Details
             </h3>
@@ -129,7 +129,6 @@ export function OrgHighlightsSection({
                             </div>
                           )}
                         </div>
-
                       </div>
                     </div>
                   ))}
@@ -163,7 +162,7 @@ export function OrgHighlightsSection({
             <Badge
               isOneChar
               color="success"
-              content={<BadgeCheckIcon />}
+              content={<BadgeCheckIcon size={16} className="text-white" />}
               placement="bottom-right"
               shape="circle"
             >
