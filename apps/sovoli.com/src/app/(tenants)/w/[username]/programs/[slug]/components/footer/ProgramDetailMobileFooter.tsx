@@ -22,6 +22,7 @@ import { getWhatsAppContact } from "~/utils/whatsappUtils";
 import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Alert } from "@sovoli/ui/components/alert";
+import { LeadsForm } from "../LeadsForm";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -201,18 +202,12 @@ export function ProgramDetailMobileFooter({
                   </div>
                   <Divider />
                   <Alert color="warning">Test purposes only:</Alert>
-                  <WhatsAppOTPForm
+                  <LeadsForm
                     onSuccess={() => {
-                      // Close drawer on success after a short delay
-                      setTimeout(() => {
-                        onOpenChange();
-                      }, 2000);
+                      onOpenChange();
                     }}
                     onError={() => {
-                      // Close drawer on success after a short delay
-                      setTimeout(() => {
-                        onOpenChange();
-                      }, 2000);
+                      onOpenChange();
                     }}
                   />
                 </>

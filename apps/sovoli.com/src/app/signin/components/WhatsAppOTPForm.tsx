@@ -19,7 +19,7 @@ import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
 type CountryCode = "US" | "GB" | "GY" | "JM";
 
 export interface WhatsAppOTPFormProps {
-  onSuccess?: () => void;
+  onSuccess?: (phone: string) => void;
   onError?: (message: string) => void;
 }
 
@@ -90,7 +90,7 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
       setState(result);
 
       if (result?.status === "success") {
-        onSuccess?.();
+        onSuccess?.(phone);
         // Reset form on success
         setPhone("");
       } else if (result?.status === "error") {
@@ -110,8 +110,11 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="text-left">
+        <h1 className="text-3xl font-bold mb-2">Your phone number?</h1>
+        <p className="text-base">Enter your WhatsApp number.</p>
+      </div>
       <div className="flex flex-col gap-2">
-        <label className="text-small font-medium">Phone Number</label>
         <div className="relative">
           <Input
             name="phone"

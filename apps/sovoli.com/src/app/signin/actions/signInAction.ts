@@ -27,6 +27,12 @@ export async function signInAction(
 
   const { phone } = result.data;
 
+  // short circuit for now until we need to auth
+  return {
+    status: "success",
+    message: "WhatsApp message sent successfully!",
+  };
+
   try {
     // Clean the phone number (remove non-digits)
     const cleanNumber = phone.replace(/\D/g, "");
