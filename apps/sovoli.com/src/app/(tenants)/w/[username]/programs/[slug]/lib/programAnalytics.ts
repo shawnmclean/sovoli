@@ -112,7 +112,9 @@ export const trackProgramAnalytics = (
     | "ChatOpened"
     | "ChatClosed"
     | "Contact"
-    | "Lead",
+    | "Lead"
+    | "LeadPhoneEntered"
+    | "LeadNameEntered",
   program: Program,
   cycle?: ProgramCycle | null,
   additionalData?: Record<string, unknown>,

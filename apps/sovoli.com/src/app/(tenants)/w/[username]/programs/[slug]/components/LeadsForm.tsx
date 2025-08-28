@@ -2,10 +2,7 @@ import { useState } from "react";
 import { NamesForm } from "~/app/signin/components/NamesForm";
 import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
-import {
-  setPersonProperties,
-  trackProgramAnalytics,
-} from "../lib/programAnalytics";
+import { trackProgramAnalytics } from "../lib/programAnalytics";
 import { Button } from "@sovoli/ui/components/button";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { ProgramPriceCard } from "../../../(main-layout)/programs/components/ProgramPriceCard";
@@ -19,7 +16,7 @@ export interface LeadsFormProps {
   }) => void;
   onError?: (message?: string) => void;
   cycle?: ProgramCycle;
-  program?: Program;
+  program: Program;
 }
 
 export function LeadsForm({
@@ -39,8 +36,11 @@ export function LeadsForm({
       <WhatsAppOTPForm
         onSuccess={(phoneNumber) => {
           setPhone(phoneNumber);
-          setPersonProperties({
-            phone: phoneNumber,
+
+          trackProgramAnalytics("LeadPhoneEntered", program, cycle, {
+            $set: {
+              phone: phoneNumber,
+            },
           });
 
           setStep("names");
@@ -57,10 +57,12 @@ export function LeadsForm({
           setFirstName(firstName);
           setLastName(lastName);
 
-          setPersonProperties({
-            first_name: firstName,
-            last_name: lastName,
-            name: `${firstName} ${lastName}`,
+          trackProgramAnalytics("LeadNameEntered", program, cycle, {
+            $set: {
+              first_name: firstName,
+              last_name: lastName,
+              name: `${firstName} ${lastName}`,
+            },
           });
 
           setStep("choice");
@@ -74,7 +76,7 @@ export function LeadsForm({
     return (
       <div>
         {/* Program Information Section */}
-        {program && cycle && (
+        {cycle && (
           <div className="mb-6 p-4 bg-content2 rounded-lg border border-foreground-200">
             <div className="flex flex-col gap-3">
               {/* Pricing Information */}
@@ -108,16 +110,15 @@ export function LeadsForm({
           color="primary"
           as={WhatsAppLink}
           phoneNumber={whatsappNumber}
-          message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${program?.name}.`}
+          message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${program.name}.`}
           fullWidth
           onPress={() => {
-            if (program) {
-              trackProgramAnalytics("Lead", program, cycle, {
-                $set: {
-                  role: program.audience === "student" ? "student" : "parent",
-                },
-              });
-            }
+            trackProgramAnalytics("Lead", program, cycle, {
+              $set: {
+                role: program.audience === "student" ? "student" : "parent",
+              },
+            });
+
             onSuccess?.({ phone, firstName, lastName });
           }}
         >
