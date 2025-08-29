@@ -6,6 +6,7 @@ import { trackProgramAnalytics } from "../lib/programAnalytics";
 import { Button } from "@sovoli/ui/components/button";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { ProgramPriceCard } from "../../../(main-layout)/programs/components/ProgramPriceCard";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 export interface LeadsFormProps {
   whatsappNumber?: string;
@@ -105,25 +106,58 @@ export function LeadsForm({
             </div>
           </div>
         )}
+        <div className="flex flex-col gap-2 w-full">
+          <Button
+            color="primary"
+            as={WhatsAppLink}
+            phoneNumber={whatsappNumber}
+            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in enrolling in ${program.name ?? program.standardProgramVersion?.program.name}.`}
+            fullWidth
+            onPress={() => {
+              trackProgramAnalytics("Lead", program, cycle, {
+                selection: "enroll",
+              });
 
-        <Button
-          color="primary"
-          as={WhatsAppLink}
-          phoneNumber={whatsappNumber}
-          message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${program.name ?? program.standardProgramVersion?.program.name}.`}
-          fullWidth
-          onPress={() => {
-            trackProgramAnalytics("Lead", program, cycle, {
-              $set: {
-                role: program.audience === "student" ? "student" : "parent",
-              },
-            });
+              onSuccess?.({ phone, firstName, lastName });
+            }}
+          >
+            Enroll Now
+          </Button>
+          <Button
+            color="primary"
+            variant="flat"
+            as={WhatsAppLink}
+            phoneNumber={whatsappNumber}
+            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${program.name ?? program.standardProgramVersion?.program.name}. I would like to schedule a visit.`}
+            fullWidth
+            onPress={() => {
+              trackProgramAnalytics("Lead", program, cycle, {
+                selection: "visit",
+              });
 
-            onSuccess?.({ phone, firstName, lastName });
-          }}
-        >
-          Continue to WhatsApp
-        </Button>
+              onSuccess?.({ phone, firstName, lastName });
+            }}
+          >
+            Schedule a Visit
+          </Button>
+          <Button
+            color="default"
+            as={WhatsAppLink}
+            phoneNumber={whatsappNumber}
+            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${program.name ?? program.standardProgramVersion?.program.name}. I would like more information.`}
+            fullWidth
+            onPress={() => {
+              trackProgramAnalytics("Lead", program, cycle, {
+                selection: "more_information",
+              });
+
+              onSuccess?.({ phone, firstName, lastName });
+            }}
+            startContent={<SiWhatsapp size={16} />}
+          >
+            Message Us
+          </Button>
+        </div>
       </div>
     );
   }
