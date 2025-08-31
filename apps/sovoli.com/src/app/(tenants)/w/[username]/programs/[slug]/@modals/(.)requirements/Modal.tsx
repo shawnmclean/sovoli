@@ -13,7 +13,12 @@ export function RequirementsModal({ program }: RequirementsModalProps) {
     <Modal
       isOpen={true}
       onOpenChange={() => {
-        router.back();
+        // use 2 because the first page may be the browser's default page
+        if (history.length <= 2) {
+          router.push(`/programs/${program.slug}`);
+        } else {
+          router.back();
+        }
       }}
       size="full"
     >
