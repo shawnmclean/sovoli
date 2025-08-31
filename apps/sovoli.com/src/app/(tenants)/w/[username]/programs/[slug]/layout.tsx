@@ -26,6 +26,7 @@ import { ProgramDescriptionSection } from "./components/ProgramDescriptionSectio
 import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
 import { OrgHighlightsSection } from "./components/OrgHighlightsSection";
+import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -132,48 +133,62 @@ export default async function Layout({ children, params, modals }: Props) {
     programToUse = group.programs[0];
   }
 
-  let mainContent: React.ReactNode = null;
+  if (!programToUse) {
+    return notFound();
+  }
 
-  if (programToUse) {
-    // Get all future cycles (including next)
-    const futureCycles = programToUse.cycles
-      ?.filter((cycle) => {
-        const startDate =
-          cycle.academicCycle.startDate ??
-          cycle.academicCycle.globalCycle?.startDate;
-        return startDate && isDateInFuture(startDate);
-      })
-      .sort((a, b) => {
-        const aStart =
-          a.academicCycle.startDate ??
-          a.academicCycle.globalCycle?.startDate ??
-          "";
-        const bStart =
-          b.academicCycle.startDate ??
-          b.academicCycle.globalCycle?.startDate ??
-          "";
-        return parseISO(aStart).getTime() - parseISO(bStart).getTime();
-      });
-
-    // Get the next upcoming cycle (first future cycle)
-    const nextCycle = futureCycles?.[0];
-
-    // Get the current cycle
-    const currentCycle = programToUse.cycles?.find((cycle) => {
+  // Get all future cycles (including next)
+  const futureCycles = programToUse.cycles
+    ?.filter((cycle) => {
       const startDate =
         cycle.academicCycle.startDate ??
         cycle.academicCycle.globalCycle?.startDate;
-      const endDate =
-        cycle.academicCycle.endDate ?? cycle.academicCycle.globalCycle?.endDate;
-      if (!startDate || !endDate) return false;
-      return getCycleStatus(startDate, endDate) === "current";
+      return startDate && isDateInFuture(startDate);
+    })
+    .sort((a, b) => {
+      const aStart =
+        a.academicCycle.startDate ??
+        a.academicCycle.globalCycle?.startDate ??
+        "";
+      const bStart =
+        b.academicCycle.startDate ??
+        b.academicCycle.globalCycle?.startDate ??
+        "";
+      return parseISO(aStart).getTime() - parseISO(bStart).getTime();
     });
 
-    // Get the default teacher for SSR
-    const defaultCycle = currentCycle ?? nextCycle;
-    const defaultTeachers = defaultCycle?.teachers ?? null;
+  // Get the next upcoming cycle (first future cycle)
+  const nextCycle = futureCycles?.[0];
 
-    mainContent = (
+  // Get the current cycle
+  const currentCycle = programToUse.cycles?.find((cycle) => {
+    const startDate =
+      cycle.academicCycle.startDate ??
+      cycle.academicCycle.globalCycle?.startDate;
+    const endDate =
+      cycle.academicCycle.endDate ?? cycle.academicCycle.globalCycle?.endDate;
+    if (!startDate || !endDate) return false;
+    return getCycleStatus(startDate, endDate) === "current";
+  });
+
+  // Get the default teacher for SSR
+  const defaultCycle = currentCycle ?? nextCycle;
+  const defaultTeachers = defaultCycle?.teachers ?? null;
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <ProgramDetailNavbar
+        orgInstance={orgInstance}
+        program={program}
+        group={group}
+      />
+      <Alert
+        className="hidden md:flex"
+        variant="flat"
+        color="warning"
+        title="Website optimized for mobile devices. Use your phone please."
+      />
+      <NavigationDrawer program={programToUse}>{modals}</NavigationDrawer>
       <ProgramCycleSelectionProvider
         program={programToUse}
         defaultCycle={defaultCycle}
@@ -243,47 +258,7 @@ export default async function Layout({ children, params, modals }: Props) {
           program={programToUse}
         />
       </ProgramCycleSelectionProvider>
-    );
-  } else if (group) {
-    mainContent = (
-      <div className="min-h-screen bg-background">
-        <ProgramGroupTracking group={group} />
-
-        {/* Programs Grid */}
-        <div className="container mx-auto max-w-7xl px-4 py-12">
-          <div className="mb-8 text-center">
-            <h1 className="text-2xl font-bold text-foreground mb-4">
-              {group.name}
-            </h1>
-            <p className="text-muted-foreground">{group.description}</p>
-          </div>
-
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">
-              No programs available in this group.
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex min-h-screen flex-col">
-      <ProgramDetailNavbar
-        orgInstance={orgInstance}
-        program={program}
-        group={group}
-      />
-      <Alert
-        className="hidden md:flex"
-        variant="flat"
-        color="warning"
-        title="Website optimized for mobile devices. Use your phone please."
-      />
       {children}
-      {modals}
-      {mainContent}
 
       <Footer orgInstance={orgInstance} />
     </div>

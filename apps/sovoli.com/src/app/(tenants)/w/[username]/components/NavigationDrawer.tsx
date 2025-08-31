@@ -5,20 +5,20 @@ import {
   DrawerBody,
   DrawerContent,
 } from "@sovoli/ui/components/drawer";
-import { useRouter } from "next/navigation";
+import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import type { Program } from "~/modules/academics/types";
 
 interface NavigationDrawerProps {
-  parentUrl: string;
+  program: Program;
   children: React.ReactNode;
 }
 
-export function NavigationDrawer({
-  parentUrl,
-  children,
-}: NavigationDrawerProps) {
+export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
   const router = useRouter();
+  const segment = useSelectedLayoutSegment("modals");
   const { isOpen, onClose } = useDisclosure({
-    defaultOpen: true,
+    defaultOpen: segment !== null,
+    isOpen: segment !== null,
   });
 
   return (
@@ -28,7 +28,7 @@ export function NavigationDrawer({
         onClose();
         // use 2 because the first page may be the browser's default page
         if (history.length <= 2) {
-          router.push(parentUrl);
+          router.push(`/programs/${program.slug}`);
         } else {
           router.back();
         }

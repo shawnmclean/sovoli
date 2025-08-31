@@ -1,4 +1,4 @@
-import { NavigationDrawer } from "~/components/NavigationDrawer";
+import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 
 interface Props {
@@ -20,13 +20,11 @@ export default async function RequirementsIntercept({ params }: Props) {
   }
 
   return (
-    <NavigationDrawer parentUrl={`/programs/${slug}`}>
-      <h2>
-        Requirements for{" "}
-        {program.name ??
-          program.standardProgramVersion?.program.name ??
-          "Program"}
-      </h2>
-    </NavigationDrawer>
+    <h2>
+      Requirements for{" "}
+      {program.name ??
+        program.standardProgramVersion?.program.name ??
+        "Program"}
+    </h2>
   );
 }
