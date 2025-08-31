@@ -1,4 +1,3 @@
-import ProgramsPage from "../page";
 import { RequirementsModal } from "../@modals/(.)requirements/Modal";
 import { getOrgInstanceWithProgram } from "../lib/getOrgInstanceWithProgram";
 
@@ -22,7 +21,6 @@ export default async function RequirementsPage({ params }: Props) {
 
   return (
     <>
-      <ProgramsPage params={params} />
       <RequirementsModal program={program} />
     </>
   );

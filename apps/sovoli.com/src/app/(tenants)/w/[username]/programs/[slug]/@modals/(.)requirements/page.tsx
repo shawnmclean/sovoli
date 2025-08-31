@@ -1,6 +1,5 @@
 import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 import { RequirementsModal } from "./Modal";
-import type { Program } from "~/modules/academics/types";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
