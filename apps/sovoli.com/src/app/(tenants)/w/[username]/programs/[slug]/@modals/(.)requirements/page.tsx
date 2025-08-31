@@ -1,5 +1,5 @@
+import { NavigationDrawer } from "~/components/NavigationDrawer";
 import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
-import { RequirementsModal } from "./Modal";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
@@ -13,11 +13,20 @@ export default async function RequirementsIntercept({ params }: Props) {
     return null;
   }
 
-  const program = result.program || result.group?.programs?.[0];
+  const program = result.program ?? result.group?.programs?.[0];
 
   if (!program) {
     return null;
   }
 
-  return <RequirementsModal program={program} />;
+  return (
+    <NavigationDrawer parentUrl={`/programs/${slug}`}>
+      <h2>
+        Requirements for{" "}
+        {program.name ??
+          program.standardProgramVersion?.program.name ??
+          "Program"}
+      </h2>
+    </NavigationDrawer>
+  );
 }

@@ -1,5 +1,5 @@
-import { RequirementsModal } from "../@modals/(.)requirements/Modal";
-import { getOrgInstanceWithProgram } from "../lib/getOrgInstanceWithProgram";
+import { NavigationDrawer } from "~/components/NavigationDrawer";
+import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
@@ -20,8 +20,13 @@ export default async function RequirementsPage({ params }: Props) {
   }
 
   return (
-    <>
-      <RequirementsModal program={program} />
-    </>
+    <NavigationDrawer parentUrl={`/programs/${slug}`}>
+      <h2>
+        Requirements for{" "}
+        {program.name ??
+          program.standardProgramVersion?.program.name ??
+          "Program"}
+      </h2>
+    </NavigationDrawer>
   );
 }
