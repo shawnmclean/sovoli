@@ -17,6 +17,7 @@ const retreiveOrgInstanceWithProgram = async (
 interface Props {
   children: React.ReactNode;
   params: Promise<{ username: string; slug: string }>;
+  modals: React.ReactNode;
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -64,7 +65,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function Layout({ children, params }: Props) {
+export default async function Layout({ children, params, modals }: Props) {
   const { username, slug } = await params;
   const { orgInstance, program, group } = await retreiveOrgInstanceWithProgram(
     username,
@@ -85,6 +86,7 @@ export default async function Layout({ children, params }: Props) {
         title="Website optimized for mobile devices. Use your phone please."
       />
       {children}
+      {modals}
 
       <Footer orgInstance={orgInstance} />
     </div>

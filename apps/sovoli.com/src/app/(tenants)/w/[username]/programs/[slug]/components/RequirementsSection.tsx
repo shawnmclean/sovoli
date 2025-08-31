@@ -12,6 +12,7 @@ import {
 import type { Program, RequirementList } from "~/modules/academics/types";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 import type { Item } from "~/modules/core/items/types";
+import Link from "next/link";
 
 interface RequirementsSectionProps {
   program: Program;
@@ -118,7 +119,6 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
     <ProgramSectionsWrapper
       program={program}
       section="requirements"
-      sectionClickable
       detailedView={
         <div className="space-y-6">
           {requirements.map((requirement: RequirementList, index: number) => (
@@ -200,7 +200,12 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
               ))}
             </div>
 
-            <div className="mt-3 underline">Show More</div>
+            <Link
+              href={`/programs/${program.slug}/requirements`}
+              className="mt-3 underline"
+            >
+              Show More
+            </Link>
           </div>
         </div>
       </div>
