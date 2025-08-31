@@ -1,4 +1,5 @@
 "use client";
+import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
   Drawer,
   DrawerBody,
@@ -16,10 +17,15 @@ export function NavigationDrawer({
   children,
 }: NavigationDrawerProps) {
   const router = useRouter();
+  const { isOpen, onOpenChange } = useDisclosure({
+    defaultOpen: true,
+  });
+
   return (
     <Drawer
-      isOpen={true}
+      isOpen={isOpen}
       onOpenChange={() => {
+        onOpenChange();
         // use 2 because the first page may be the browser's default page
         if (history.length <= 2) {
           router.push(parentUrl);
