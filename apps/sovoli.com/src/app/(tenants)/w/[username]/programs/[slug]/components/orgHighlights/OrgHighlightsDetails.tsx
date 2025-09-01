@@ -22,6 +22,25 @@ export function OrgHighlightsDetails({
       section: "org_highlights",
     });
   }, [program]);
+
+  // Get the latest business_registration document
+  const latestBusinessRegistration = useMemo(() => {
+    if (!org.verification?.documents) return null;
+
+    const businessDocs = org.verification.documents.filter(
+      (doc) => doc.type === "business_registration",
+    );
+
+    if (businessDocs.length === 0) return null;
+
+    // Sort by issuedDate (newest first) and return the latest
+    return businessDocs.sort((a, b) => {
+      const dateA = a.issuedDate ? new Date(a.issuedDate) : new Date(0);
+      const dateB = b.issuedDate ? new Date(b.issuedDate) : new Date(0);
+      return dateB.getTime() - dateA.getTime();
+    })[0];
+  }, [org.verification?.documents]);
+
   const highlights = useMemo(
     () => [
       {
@@ -100,42 +119,56 @@ export function OrgHighlightsDetails({
               )}
             </div>
 
-            {/* Verification Documents */}
-            {org.verification.documents.length > 0 && (
+            {/* Latest Business Registration Document */}
+            {latestBusinessRegistration && (
               <div>
                 <h4 className="text-base font-medium text-foreground mb-4">
-                  Verification Documents
+                  Latest Business Registration
                 </h4>
-                <div className="space-y-3">
-                  {org.verification.documents.map((doc, index) => (
-                    <div
-                      key={index}
-                      className="bg-card border border-border rounded-lg p-4"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                        <div className="flex-1 space-y-2">
-                          {doc.name && (
-                            <div className="text-sm font-medium text-foreground">
-                              {doc.name}
-                            </div>
-                          )}
-
-                          <div className="flex items-center gap-2">
-                            <span>{doc.type.replace("_", " ")}:</span>
-                            {doc.referenceNumber && (
-                              <span>{doc.referenceNumber}</span>
-                            )}
-                          </div>
-
-                          {doc.issuingAuthority && (
-                            <div className="text-xs text-muted-foreground">
-                              Issued by {doc.issuingAuthority}
-                            </div>
-                          )}
+                <div className="bg-card border border-border rounded-lg p-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div className="flex-1 space-y-2">
+                      {latestBusinessRegistration.name && (
+                        <div className="text-sm font-medium text-foreground">
+                          {latestBusinessRegistration.name}
                         </div>
+                      )}
+
+                      <div className="flex items-center gap-2">
+                        <span>Business Registration:</span>
+                        {latestBusinessRegistration.referenceNumber && (
+                          <span>
+                            {latestBusinessRegistration.referenceNumber}
+                          </span>
+                        )}
                       </div>
+
+                      {latestBusinessRegistration.issuingAuthority && (
+                        <div className="text-xs text-muted-foreground">
+                          Issued by{" "}
+                          {latestBusinessRegistration.issuingAuthority}
+                        </div>
+                      )}
+
+                      {latestBusinessRegistration.issuedDate && (
+                        <div className="text-xs text-muted-foreground">
+                          Issued:{" "}
+                          {new Date(
+                            latestBusinessRegistration.issuedDate,
+                          ).toLocaleDateString()}
+                        </div>
+                      )}
+
+                      {latestBusinessRegistration.expiryDate && (
+                        <div className="text-xs text-muted-foreground">
+                          Expires:{" "}
+                          {new Date(
+                            latestBusinessRegistration.expiryDate,
+                          ).toLocaleDateString()}
+                        </div>
+                      )}
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
             )}

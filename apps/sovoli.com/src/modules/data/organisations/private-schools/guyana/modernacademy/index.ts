@@ -21,13 +21,27 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
       documents: [
         {
           type: "business_registration",
-          name: "Modern Academy Certificate of Registration",
+          name: "Modern Academy Certificate of Registration 2020",
           uploadedAt: "2025-05-24",
           notes: "Captured by photo (in google photos)",
           url: "https://photos.app.goo.gl/LBvL5xQ2gT4ssU3Y8",
           issuedDate: "2020-02-28",
           expiryDate: "2021-02-25",
           referenceNumber: "178271",
+          issuingAuthority: "Office of Registrar of Business Names",
+          issuingJurisdiction: {
+            country: "GY",
+          },
+        },
+        {
+          type: "business_registration",
+          name: "Modern Academy Certificate of Registration 2025",
+          uploadedAt: "2025-08-15",
+          notes: "Captured by photo (in google photos)",
+          url: "https://photos.app.goo.gl/k6jKS9i5Arz5QvQFA",
+          issuedDate: "2025-07-03",
+          expiryDate: "2026-07-03",
+          referenceNumber: "265489",
           issuingAuthority: "Office of Registrar of Business Names",
           issuingJurisdiction: {
             country: "GY",
