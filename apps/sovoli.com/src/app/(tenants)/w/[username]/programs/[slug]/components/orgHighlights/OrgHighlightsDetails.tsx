@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { BadgeCheckIcon, GiftIcon, AwardIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Program } from "~/modules/academics/types";
@@ -17,6 +17,11 @@ export function OrgHighlightsDetails({
 }: OrgHighlightsDetailsProps) {
   const org = orgInstance.org;
 
+  useEffect(() => {
+    trackProgramAnalytics("SectionOpened", program, null, {
+      section: "org_highlights",
+    });
+  }, [program]);
   const highlights = useMemo(
     () => [
       {
@@ -38,10 +43,6 @@ export function OrgHighlightsDetails({
     ],
     [org.username],
   );
-
-  trackProgramAnalytics("SectionOpened", program, null, {
-    section: "org_highlights",
-  });
 
   return (
     <div className="space-y-6">

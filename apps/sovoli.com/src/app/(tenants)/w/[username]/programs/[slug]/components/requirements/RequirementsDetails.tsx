@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import type { Program, RequirementList } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
+import { useEffect } from "react";
 
 interface RequirementsDetailsProps {
   program: Program;
@@ -32,13 +33,14 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
   const requirements =
     program.requirements ?? program.standardProgramVersion?.requirements ?? [];
 
+  useEffect(() => {
+    trackProgramAnalytics("SectionOpened", program, null, {
+      section: "requirements",
+    });
+  }, [program]);
   if (requirements.length === 0) {
     return null;
   }
-
-  trackProgramAnalytics("SectionOpened", program, null, {
-    section: "requirements",
-  });
 
   return (
     <div className="space-y-6">
