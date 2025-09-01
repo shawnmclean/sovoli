@@ -25,7 +25,7 @@ import { OrgBadgeSection } from "./components/OrgBadgeSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
 import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
-import { OrgHighlightsSection } from "./components/OrgHighlightsSection";
+import { OrgHighlightsSection } from "./components/orgHighlights/OrgHighlightsSection";
 import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 
 const retreiveOrgInstanceWithProgram = async (
