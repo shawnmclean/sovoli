@@ -4,6 +4,7 @@ import {
   Drawer,
   DrawerBody,
   DrawerContent,
+  DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import type { Program } from "~/modules/academics/types";
@@ -21,19 +22,23 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
     isOpen: segment !== null,
   });
 
+  const handleClose = () => {
+    onClose();
+    if (history.length <= 2) {
+      router.push(`/programs/${program.slug}`);
+    } else {
+      router.back();
+    }
+  };
   return (
     <Drawer
       isOpen={isOpen}
-      onOpenChange={() => {
-        onClose();
-        // use 2 because the first page may be the browser's default page
-        if (history.length <= 2) {
-          router.push(`/programs/${program.slug}`);
-        } else {
-          router.back();
-        }
-      }}
+      onOpenChange={handleClose}
+      onClose={handleClose}
       size="full"
+      placement="bottom"
+      backdrop="opaque"
+      hideCloseButton
       motionProps={{
         variants: {
           enter: {
@@ -54,6 +59,7 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
       }}
     >
       <DrawerContent>
+        <DrawerHeader showBackButton onBackPress={handleClose} />
         <DrawerBody className="mt-4">{children}</DrawerBody>
       </DrawerContent>
     </Drawer>
