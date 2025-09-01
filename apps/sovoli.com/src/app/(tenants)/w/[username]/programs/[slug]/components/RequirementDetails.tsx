@@ -7,7 +7,6 @@ import {
   ShirtIcon,
 } from "lucide-react";
 import type { Program, RequirementList } from "~/modules/academics/types";
-import type { Item } from "~/modules/core/items/types";
 
 interface RequirementDetailsProps {
   program: Program;
@@ -26,13 +25,6 @@ function getCategoryIcon(category: string) {
     default:
       return <PackageIcon className="h-4 w-4" />;
   }
-}
-
-interface RequirementItem {
-  item: Item;
-  quantity?: number;
-  unit?: string;
-  notes?: string;
 }
 
 export function RequirementDetails({ program }: RequirementDetailsProps) {

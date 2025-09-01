@@ -5,7 +5,6 @@ import { Chip } from "@sovoli/ui/components/chip";
 import type { Program, RequirementList } from "~/modules/academics/types";
 import type { Item } from "~/modules/core/items/types";
 import Link from "next/link";
-import { ProgramSectionWrapper } from "./ProgramSectionWrapper";
 
 interface RequirementsSectionProps {
   program: Program;
@@ -91,12 +90,8 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
   }
 
   return (
-    <ProgramSectionWrapper
-      program={program}
-      section="requirements"
-      href={`/programs/${program.slug}/requirements`}
-    >
-      <div className="overflow-hidden">
+    <Link href={`/programs/${program.slug}/requirements`}>
+      <section className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             What to Bring
@@ -142,15 +137,10 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
               ))}
             </div>
 
-            <Link
-              href={`/programs/${program.slug}/requirements`}
-              className="mt-3 underline"
-            >
-              Show More
-            </Link>
+            <div className="mt-3 underline">Show More</div>
           </div>
         </div>
-      </div>
-    </ProgramSectionWrapper>
+      </section>
+    </Link>
   );
 }
