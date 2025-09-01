@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { GY_PRIMARY_GRADE_5_V1 } from "~/modules/data/academics/guyana/programs";
 import { PRIMARY_PHOTOS } from "../../photos";
 import type { Program } from "~/modules/academics/types";
@@ -8,6 +10,7 @@ import {
   MAGY_PRIMARY_DEPT_ACTIVITIES,
   magyProgramQuickFacts,
 } from "./shared";
+import { findItemById } from "~/modules/data/items";
 
 export const MAGY_PRIMARY_GRADE_5_PROGRAM: Program = {
   id: "magy-primary-grade-5",
@@ -264,6 +267,56 @@ export const MAGY_PRIMARY_GRADE_5_PROGRAM: Program = {
             "Creative expression",
             "Art appreciation",
           ],
+        },
+      ],
+    },
+  ],
+  requirements: [
+    {
+      name: "Books",
+      category: "booklist",
+      audience: "parent",
+      items: [
+        {
+          item: findItemById("book-fun-with-language-book-5")!,
+        },
+        {
+          item: findItemById("book-new-junior-english-revised")!,
+        },
+        {
+          item: findItemById("book-new-first-aid-in-english")!,
+        },
+        {
+          item: findItemById("book-lets-do-maths-book-5")!,
+        },
+        {
+          item: findItemById("book-science-around-us-book-5")!,
+        },
+        {
+          item: findItemById("book-social-studies-for-our-children-book-5")!,
+        },
+        {
+          item: findItemById("book-guyana-our-country-our-home")!,
+        },
+        {
+          item: findItemById("book-dictionary-and-thesaurus")!,
+        },
+      ],
+    },
+    {
+      name: "Supplies",
+      category: "materials",
+      audience: "parent",
+      items: [
+        {
+          item: findItemById("supply-exercise-book")!,
+          quantity: 13,
+          unit: "books",
+        },
+        {
+          item: findItemById("supply-drawing-book")!,
+          quantity: 1,
+          unit: "book",
         },
       ],
     },

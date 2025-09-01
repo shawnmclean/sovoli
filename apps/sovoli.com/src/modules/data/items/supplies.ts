@@ -106,6 +106,20 @@ export const SUPPLIES: Item[] = [
     tags: ["learning-aid", "numbers"],
   },
   {
+    id: "supply-exercise-book",
+    name: "Exercise Book",
+    category: "material",
+    tags: ["stationery", "copybook", "exercise"],
+    unitLabel: "book",
+  },
+  {
+    id: "supply-drawing-book",
+    name: "Drawing Book",
+    category: "material",
+    tags: ["stationery", "art-book", "drawing"],
+    unitLabel: "book",
+  },
+  {
     id: "supply-sheet-card-boards",
     name: "Sheet Card Boards",
     category: "material",
