@@ -10,7 +10,7 @@ import { ProgramHeroSection } from "./components/ProgramHeroSection";
 import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionContext";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { CurriculumSection } from "./components/CurriculumSection";
-import { ActivitiesSection } from "./components/ActivitiesSection";
+import { ActivitiesSection } from "./components/activities/ActivitiesSection";
 import { TeachersSection } from "./components/teachers/TeachersSection";
 import { LocationSection } from "./components/LocationSection";
 import { LocationFeaturesSection } from "./components/LocationFeaturesSection";

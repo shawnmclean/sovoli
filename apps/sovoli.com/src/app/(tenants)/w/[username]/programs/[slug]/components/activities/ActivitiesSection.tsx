@@ -5,7 +5,7 @@ import { Chip } from "@sovoli/ui/components/chip";
 import { Button } from "@sovoli/ui/components/button";
 import { PartyPopperIcon } from "lucide-react";
 import type { Program } from "~/modules/academics/types";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
+import Link from "next/link";
 
 interface ActivitiesSectionProps {
   program: Program;
@@ -24,44 +24,8 @@ export function ActivitiesSection({ program }: ActivitiesSectionProps) {
     return null;
   }
 
-  const detailedViewTrigger = hasMoreActivities
-    ? (onOpen: () => void) => (
-        <Button
-          variant="flat"
-          color="default"
-          className="mt-3"
-          fullWidth
-          onPress={onOpen}
-        >
-          See all {activities.length} activities
-        </Button>
-      )
-    : undefined;
-
-  const detailedView =
-    activities.length > 0 ? (
-      <div className="space-y-4">
-        {activities.map((activity, index) => (
-          <div
-            key={index}
-            className="p-3 sm:p-4 bg-default-50 rounded-lg border border-default-200"
-          >
-            <h4 className="font-semibold text-foreground mb-2">
-              {activity.title}
-            </h4>
-          </div>
-        ))}
-      </div>
-    ) : undefined;
-
   return (
-    <ProgramSectionsWrapper
-      program={program}
-      section="activities"
-      detailedView={detailedView}
-      detailedViewTrigger={detailedViewTrigger}
-      detailedViewTitle="All Activities & Celebrations"
-    >
+    <section className="my-6 border-b border-default-200 pb-6">
       <div className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -82,8 +46,22 @@ export function ActivitiesSection({ program }: ActivitiesSectionProps) {
               </Chip>
             )}
           </div>
+          {hasMoreActivities && (
+            <div className="flex justify-center">
+              <Button
+                variant="flat"
+                color="default"
+                className="mt-3"
+                fullWidth
+                href={`/programs/${program.slug}/activities`}
+                as={Link}
+              >
+                See all {activities.length} activities
+              </Button>
+            </div>
+          )}
         </div>
       </div>
-    </ProgramSectionsWrapper>
+    </section>
   );
 }
