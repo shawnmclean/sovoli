@@ -11,7 +11,7 @@ import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionCo
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { CurriculumSection } from "./components/CurriculumSection";
 import { ActivitiesSection } from "./components/ActivitiesSection";
-import { TeachersSection } from "./components/TeachersSection";
+import { TeachersSection } from "./components/teachers/TeachersSection";
 import { LocationSection } from "./components/LocationSection";
 import { LocationFeaturesSection } from "./components/LocationFeaturesSection";
 import { ProgramsSection } from "./components/ProgramsSection";
@@ -188,11 +188,11 @@ export default async function Layout({ children, params, modals }: Props) {
         color="warning"
         title="Website optimized for mobile devices. Use your phone please."
       />
-      <NavigationDrawer program={programToUse}>{modals}</NavigationDrawer>
       <ProgramCycleSelectionProvider
         program={programToUse}
         defaultCycle={defaultCycle}
       >
+        <NavigationDrawer program={programToUse}>{modals}</NavigationDrawer>
         {group && <ProgramGroupTracking group={group} />}
         <ProgramTracking program={programToUse} defaultCycle={defaultCycle} />
 
@@ -257,8 +257,8 @@ export default async function Layout({ children, params, modals }: Props) {
           orgInstance={orgInstance}
           program={programToUse}
         />
+        {children}
       </ProgramCycleSelectionProvider>
-      {children}
 
       <Footer orgInstance={orgInstance} />
     </div>
