@@ -5,6 +5,7 @@ import { Chip } from "@sovoli/ui/components/chip";
 import type { Program, RequirementList } from "~/modules/academics/types";
 import type { Item } from "~/modules/core/items/types";
 import Link from "next/link";
+import { Divider } from "@sovoli/ui/components/divider";
 
 interface RequirementsSectionProps {
   program: Program;
@@ -90,7 +91,10 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
   }
 
   return (
-    <Link href={`/programs/${program.slug}/requirements`}>
+    <Link
+      href={`/programs/${program.slug}/requirements`}
+      className="block my-6 border-b border-default-200 pb-6"
+    >
       <section className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">

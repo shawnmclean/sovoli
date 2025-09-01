@@ -1,6 +1,5 @@
 import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 import { RequirementDetails } from "../../components/RequirementDetails";
-import { trackProgramAnalytics } from "../../lib/programAnalytics";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
@@ -19,10 +18,6 @@ export default async function RequirementsPage({ params }: Props) {
   if (!program) {
     return null;
   }
-
-  trackProgramAnalytics("SectionOpened", program, null, {
-    section: "requirements",
-  });
 
   return <RequirementDetails program={program} />;
 }

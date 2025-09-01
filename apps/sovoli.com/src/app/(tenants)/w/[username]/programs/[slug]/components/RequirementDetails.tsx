@@ -7,6 +7,7 @@ import {
   ShirtIcon,
 } from "lucide-react";
 import type { Program, RequirementList } from "~/modules/academics/types";
+import { trackProgramAnalytics } from "../lib/programAnalytics";
 
 interface RequirementDetailsProps {
   program: Program;
@@ -34,6 +35,10 @@ export function RequirementDetails({ program }: RequirementDetailsProps) {
   if (requirements.length === 0) {
     return null;
   }
+
+  trackProgramAnalytics("SectionOpened", program, null, {
+    section: "requirements",
+  });
 
   return (
     <div className="space-y-6">
