@@ -7,6 +7,7 @@ import {
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import { useEffect, useRef } from "react";
 import type { Program } from "~/modules/academics/types";
 
 interface NavigationDrawerProps {
@@ -18,18 +19,41 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
   const router = useRouter();
   const segment = useSelectedLayoutSegment("modals");
   const { isOpen, onClose } = useDisclosure({
-    defaultOpen: segment !== null,
-    isOpen: segment !== null,
+    isOpen: segment !== "(slot)" && segment !== null,
   });
+
+  // Track if we can go back to the programs details page
+  const canGoBack = useRef(false);
+
+  // Check if we can go back to the programs details page
+  useEffect(() => {
+    if (isOpen && typeof window !== "undefined") {
+      // Check if there's a previous page in history and if it's likely the programs details page
+      const hasHistory = window.history.length > 1;
+      const currentPath = window.location.pathname;
+
+      // If we have history and we're in a modal route, we likely came from the programs details page
+      canGoBack.current =
+        hasHistory && currentPath.includes(`/programs/${program.slug}/`);
+    }
+  }, [isOpen, program.slug]);
 
   const handleClose = () => {
     onClose();
-    if (history.length <= 2) {
-      router.push(`/programs/${program.slug}`);
-    } else {
+
+    // If we can go back and there's history, use back navigation
+    // Otherwise, navigate to the programs details page
+    if (
+      canGoBack.current &&
+      typeof window !== "undefined" &&
+      window.history.length > 1
+    ) {
       router.back();
+    } else {
+      router.push(`/programs/${program.slug}`);
     }
   };
+
   return (
     <Drawer
       isOpen={isOpen}
