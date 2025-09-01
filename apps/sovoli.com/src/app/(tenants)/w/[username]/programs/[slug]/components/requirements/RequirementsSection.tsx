@@ -5,7 +5,6 @@ import { Chip } from "@sovoli/ui/components/chip";
 import type { Program, RequirementList } from "~/modules/academics/types";
 import type { Item } from "~/modules/core/items/types";
 import Link from "next/link";
-import { Divider } from "@sovoli/ui/components/divider";
 
 interface RequirementsSectionProps {
   program: Program;

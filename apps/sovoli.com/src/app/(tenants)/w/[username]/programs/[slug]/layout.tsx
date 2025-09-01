@@ -19,7 +19,7 @@ import { PricingSection } from "./components/PricingSection";
 import { ProgramTracking } from "./components/ProgramTracking";
 import { CycleSection } from "./components/CycleSection";
 import { ProgramTestimonialsSection } from "./components/ProgramTestimonialsSection";
-import { RequirementsSection } from "./components/RequirementsSection";
+import { RequirementsSection } from "./components/requirements/RequirementsSection";
 import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
 import { OrgBadgeSection } from "./components/OrgBadgeSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";

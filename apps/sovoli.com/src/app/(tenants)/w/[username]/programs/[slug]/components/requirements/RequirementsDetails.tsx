@@ -7,9 +7,9 @@ import {
   ShirtIcon,
 } from "lucide-react";
 import type { Program, RequirementList } from "~/modules/academics/types";
-import { trackProgramAnalytics } from "../lib/programAnalytics";
+import { trackProgramAnalytics } from "../../lib/programAnalytics";
 
-interface RequirementDetailsProps {
+interface RequirementsDetailsProps {
   program: Program;
 }
 
@@ -28,7 +28,7 @@ function getCategoryIcon(category: string) {
   }
 }
 
-export function RequirementDetails({ program }: RequirementDetailsProps) {
+export function RequirementsDetails({ program }: RequirementsDetailsProps) {
   const requirements =
     program.requirements ?? program.standardProgramVersion?.requirements ?? [];
 
@@ -42,6 +42,7 @@ export function RequirementDetails({ program }: RequirementDetailsProps) {
 
   return (
     <div className="space-y-6">
+      <h1 className="text-2xl font-semibold text-foreground">What to Bring</h1>
       {requirements.map((requirement: RequirementList, index: number) => (
         <div key={index} className="space-y-3">
           <div className="flex items-center gap-2">

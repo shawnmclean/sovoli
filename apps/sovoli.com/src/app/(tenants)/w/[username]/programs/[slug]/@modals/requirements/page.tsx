@@ -1,5 +1,5 @@
 import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
-import { RequirementDetails } from "../../components/RequirementDetails";
+import { RequirementsDetails } from "../../components/requirements/RequirementsDetails";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
@@ -19,5 +19,5 @@ export default async function RequirementsPage({ params }: Props) {
     return null;
   }
 
-  return <RequirementDetails program={program} />;
+  return <RequirementsDetails program={program} />;
 }
