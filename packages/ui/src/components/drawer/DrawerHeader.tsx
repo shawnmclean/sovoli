@@ -9,7 +9,7 @@ import { ChevronLeftIcon } from "lucide-react";
 
 const drawerHeader = tv({
   slots: {
-    base: "border-b border-divider flex flex-col items-start gap-4 p-4",
+    base: "flex flex-col items-start gap-4 p-4",
     title: "text-lg font-semibold text-foreground",
     backButton: "p-0 w-auto h-auto min-w-0 min-h-0",
   },

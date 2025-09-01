@@ -60,7 +60,7 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
     >
       <DrawerContent>
         <DrawerHeader showBackButton onBackPress={handleClose} />
-        <DrawerBody className="mt-4">{children}</DrawerBody>
+        <DrawerBody>{children}</DrawerBody>
       </DrawerContent>
     </Drawer>
   );
