@@ -4,14 +4,15 @@ import React from "react";
 import { forwardRef } from "@heroui/system";
 import { useDOMRef } from "@heroui/react-utils";
 import { tv } from "tailwind-variants";
-import { Button } from "../button";
 import { ChevronLeftIcon } from "lucide-react";
 
 const drawerHeader = tv({
   slots: {
     base: "flex flex-col items-start gap-4 p-4",
     title: "text-lg font-semibold text-foreground",
-    backButton: "p-0 w-auto h-auto min-w-0 min-h-0",
+    // Complete button styling including expanded hit area and visual appearance
+    backButton:
+      "relative p-0 w-auto h-auto min-w-0 min-h-0 before:absolute before:inset-0 before:-m-3 before:rounded-full before:bg-transparent before:content-[''] before:z-10 bg-transparent border-none cursor-pointer flex items-center justify-center rounded-full text-current",
   },
   variants: {
     size: {
@@ -92,15 +93,14 @@ export const DrawerHeader = forwardRef<"header", DrawerHeaderProps>(
         {...otherProps}
       >
         {showBackButton && onBackPress && (
-          <Button
-            variant="light"
-            isIconOnly
-            radius="full"
-            onPress={onBackPress}
+          <button
+            aria-label="Close"
+            type="button"
+            onClick={onBackPress}
             className={backButton({ className: classNames?.backButton })}
           >
             {backButtonIcon}
-          </Button>
+          </button>
         )}
 
         {title && (
