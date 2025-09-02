@@ -8,7 +8,8 @@ import {
 } from "lucide-react";
 import type { Program, RequirementList } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Button } from "@sovoli/ui/components/button";
 
 interface RequirementsDetailsProps {
   program: Program;
@@ -30,6 +31,8 @@ function getCategoryIcon(category: string) {
 }
 
 export function RequirementsDetails({ program }: RequirementsDetailsProps) {
+  const [showFeedback, setShowFeedback] = useState(false);
+
   const requirements =
     program.requirements ?? program.standardProgramVersion?.requirements ?? [];
 
@@ -41,6 +44,10 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
       section: "requirements",
     });
   }, [program]);
+
+  const handleViewSuppliers = () => {
+    setShowFeedback(true);
+  };
   if (requirements.length === 0) {
     return null;
   }
@@ -77,6 +84,17 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
           </ul>
         </div>
       ))}
+
+      <div className="pt-4">
+        <Button onPress={handleViewSuppliers} variant="bordered">
+          Where to Buy?
+        </Button>
+        {showFeedback && (
+          <p className="mt-2 text-sm text-green-600">
+            Thanks for the feedback, we will add them soon
+          </p>
+        )}
+      </div>
     </div>
   );
 }
