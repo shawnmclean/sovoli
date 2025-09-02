@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { Footer } from "../../components/footer/Footer";
 import { parseISO } from "date-fns";
+import { EducationalOccupationalProgram, WithContext } from "schema-dts";
 
 import { ProgramDetailNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
@@ -173,8 +174,19 @@ export default async function Layout({ children, params, modals }: Props) {
   const defaultCycle = currentCycle ?? nextCycle;
   const defaultTeachers = defaultCycle?.teachers ?? null;
 
+  const programSchema: WithContext<EducationalOccupationalProgram> = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOccupationalProgram",
+    name: programToUse.name,
+    description: programToUse.description,
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(programSchema) }}
+      />
       <ProgramDetailNavbar
         orgInstance={orgInstance}
         program={program}
