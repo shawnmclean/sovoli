@@ -81,7 +81,6 @@ export async function generateMetadata({ params }: Props) {
       websiteModule: { website },
     },
     program,
-    group,
   } = await retreiveOrgInstanceWithProgram(username, slug);
 
   const programName =
@@ -91,7 +90,10 @@ export async function generateMetadata({ params }: Props) {
     program?.standardProgramVersion?.program.description ??
     "";
 
-  const title = `${programName} ${group?.name ? `- ${group.name}` : ""} `;
+  const group =
+    program?.group ?? program?.standardProgramVersion?.program.group;
+
+  const title = `${programName} ${group ? `- ${group.name}` : ""}`;
 
   return {
     title: title,
@@ -105,8 +107,6 @@ export async function generateMetadata({ params }: Props) {
           url:
             program?.photos?.[0]?.url ??
             program?.standardProgramVersion?.program.image ??
-            group?.programs?.[0]?.photos?.[0]?.url ??
-            group?.programs?.[0]?.standardProgramVersion?.program.image ??
             "",
           width: 1200,
           height: 630,
