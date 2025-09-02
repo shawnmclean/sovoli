@@ -130,7 +130,7 @@ export const GY_PRIMARY_GRADE_1_COURSES: Course[] = [
 // Individual Grade Programs following nursery pattern
 export const GY_PRIMARY_GRADE_1_PROGRAM: StandardProgram = {
   id: "gy-primary-grade-1",
-  name: "Primary Grade 1",
+  name: "Grade 1",
   description:
     "Primary education grade 1 program under the Ministry of Education, Guyana",
   country: "GY",
@@ -159,7 +159,7 @@ export const GY_PRIMARY_GRADE_1_V1: StandardProgramVersion = {
 
 export const GY_PRIMARY_GRADE_2_PROGRAM: StandardProgram = {
   id: "gy-primary-grade-2",
-  name: "Primary Grade 2",
+  name: "Grade 2",
   description:
     "Primary education grade 2 program under the Ministry of Education, Guyana",
   country: "GY",
@@ -188,7 +188,7 @@ export const GY_PRIMARY_GRADE_2_V1: StandardProgramVersion = {
 
 export const GY_PRIMARY_GRADE_3_PROGRAM: StandardProgram = {
   id: "gy-primary-grade-3",
-  name: "Primary Grade 3",
+  name: "Grade 3",
   description:
     "Primary education grade 3 program under the Ministry of Education, Guyana",
   country: "GY",
@@ -217,7 +217,7 @@ export const GY_PRIMARY_GRADE_3_V1: StandardProgramVersion = {
 
 export const GY_PRIMARY_GRADE_4_PROGRAM: StandardProgram = {
   id: "gy-primary-grade-4",
-  name: "Primary Grade 4",
+  name: "Grade 4",
   description:
     "Primary education grade 4 program under the Ministry of Education, Guyana",
   country: "GY",
@@ -246,7 +246,7 @@ export const GY_PRIMARY_GRADE_4_V1: StandardProgramVersion = {
 
 export const GY_PRIMARY_GRADE_5_PROGRAM: StandardProgram = {
   id: "gy-primary-grade-5",
-  name: "Primary Grade 5",
+  name: "Grade 5",
   description:
     "Primary education grade 5 program under the Ministry of Education, Guyana",
   country: "GY",
@@ -275,7 +275,7 @@ export const GY_PRIMARY_GRADE_5_V1: StandardProgramVersion = {
 
 export const GY_PRIMARY_GRADE_6_PROGRAM: StandardProgram = {
   id: "gy-primary-grade-6",
-  name: "Primary Grade 6",
+  name: "Grade 6",
   description:
     "Primary education grade 6 program under the Ministry of Education, Guyana",
   country: "GY",

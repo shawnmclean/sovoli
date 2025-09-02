@@ -33,6 +33,9 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
   const requirements =
     program.requirements ?? program.standardProgramVersion?.requirements ?? [];
 
+  const programName =
+    program.name ?? program.standardProgramVersion?.program.name;
+
   useEffect(() => {
     trackProgramAnalytics("SectionOpened", program, null, {
       section: "requirements",
@@ -44,7 +47,9 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-foreground">What to Bring</h1>
+      <h1 className="text-2xl font-semibold text-foreground">
+        What to bring for {programName}
+      </h1>
       {requirements.map((requirement: RequirementList, index: number) => (
         <div key={index} className="space-y-3">
           <div className="flex items-center gap-2">
@@ -53,9 +58,9 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
               {requirement.name}
             </h3>
           </div>
-          <div className="space-y-2">
+          <ul className="space-y-2 list-disc list-inside">
             {requirement.items.map((item, itemIndex) => (
-              <div key={itemIndex} className="flex items-center gap-2">
+              <li key={itemIndex} className="flex items-start gap-2">
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground">
                     {item.quantity && item.quantity > 1 && `${item.quantity}x `}
@@ -67,9 +72,9 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
                     </p>
                   )}
                 </div>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       ))}
     </div>

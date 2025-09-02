@@ -491,4 +491,59 @@ export const BOOKS: Item[] = [
       kind: "textbook",
     },
   },
+  {
+    id: "book-mathematics-made-easy-1",
+    name: "Mathematics Made Easy 1",
+    category: "book",
+    tags: ["textbook", "mathematics", "grade-1"],
+    attributes: {
+      series: "Mathematics Made Easy",
+      level: "Grade 1",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-atlantic-reader-book-1",
+    name: "Atlantic Reader Book 1",
+    category: "book",
+    tags: ["textbook", "reading", "grade-1"],
+    attributes: {
+      series: "Atlantic Reader",
+      level: "Book 1",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-process-of-learning-language-arts-infant-first-year",
+    name: "A Process of Learning Language Arts—Infant's First Year",
+    category: "book",
+    tags: ["textbook", "language-arts", "infant-first-year"],
+    attributes: {
+      series: "A Process of Learning",
+      level: "Infant's First Year",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-process-of-learning-composition-writing-infant-first-year",
+    name: "A Process of Learning Composition Writing—Infant First Year",
+    category: "book",
+    tags: ["textbook", "composition", "infant-first-year"],
+    attributes: {
+      series: "A Process of Learning",
+      level: "Infant First Year",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-fun-with-language-book-1-parts-1-2-3",
+    name: "Fun with Language Book 1, Parts 1, 2, and 3",
+    category: "book",
+    tags: ["textbook", "language", "grade-1"],
+    attributes: {
+      series: "Fun with Language",
+      level: "Grade 1",
+      kind: "textbook",
+    },
+  },
 ];

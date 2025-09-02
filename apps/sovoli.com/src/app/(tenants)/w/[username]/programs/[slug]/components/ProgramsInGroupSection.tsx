@@ -41,7 +41,7 @@ export const ProgramsInGroupSection = ({
         {/* Header */}
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-            Programs in this group
+            All programs in {group.name}
           </h2>
         </div>
 

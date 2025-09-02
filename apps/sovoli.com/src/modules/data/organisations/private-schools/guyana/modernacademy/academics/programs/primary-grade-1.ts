@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { GY_PRIMARY_GRADE_1_V1 } from "~/modules/data/academics/guyana/programs";
 import { PRIMARY_PHOTOS } from "../../photos";
 import type { Program } from "~/modules/academics/types";
@@ -8,6 +10,7 @@ import {
   MAGY_PRIMARY_DEPT_ACTIVITIES,
   magyProgramQuickFacts,
 } from "./shared";
+import { findItemById } from "~/modules/data/items";
 
 export const MAGY_PRIMARY_GRADE_1_PROGRAM: Program = {
   id: "magy-primary-grade-1",
@@ -264,6 +267,61 @@ export const MAGY_PRIMARY_GRADE_1_PROGRAM: Program = {
             "Craft projects",
             "Art appreciation",
           ],
+        },
+      ],
+    },
+  ],
+  requirements: [
+    {
+      name: "Books",
+      category: "booklist",
+      audience: "parent",
+      items: [
+        {
+          item: findItemById("book-mathematics-made-easy-1")!,
+        },
+        {
+          item: findItemById("book-atlantic-reader-book-1")!,
+        },
+        {
+          item: findItemById(
+            "book-process-of-learning-language-arts-infant-first-year",
+          )!,
+        },
+        {
+          item: findItemById(
+            "book-process-of-learning-composition-writing-infant-first-year",
+          )!,
+        },
+        {
+          item: findItemById("book-fun-with-language-book-1-parts-1-2-3")!,
+        },
+      ],
+    },
+    {
+      name: "Supplies",
+      category: "materials",
+      audience: "parent",
+      items: [
+        {
+          item: findItemById("supply-detergent")!,
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          item: findItemById("supply-hand-sanitizer")!,
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          item: findItemById("supply-cardboard")!,
+          quantity: 1,
+          unit: "sheet",
+        },
+        {
+          item: findItemById("supply-tissue-paper-towel")!,
+          quantity: 1,
+          unit: "roll",
         },
       ],
     },
