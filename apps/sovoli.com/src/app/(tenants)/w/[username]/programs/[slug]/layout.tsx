@@ -177,8 +177,10 @@ export default async function Layout({ children, params, modals }: Props) {
   const programSchema: WithContext<EducationalOccupationalProgram> = {
     "@context": "https://schema.org",
     "@type": "EducationalOccupationalProgram",
-    name: programToUse.name,
+    name:
+      programToUse.name ?? programToUse.standardProgramVersion?.program.name,
     description: programToUse.description,
+    hasCourse: [],
   };
 
   return (
