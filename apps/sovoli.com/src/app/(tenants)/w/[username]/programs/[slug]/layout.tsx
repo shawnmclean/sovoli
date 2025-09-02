@@ -85,21 +85,19 @@ export async function generateMetadata({ params }: Props) {
   } = await retreiveOrgInstanceWithProgram(username, slug);
 
   const programName =
-    program?.name ??
-    program?.standardProgramVersion?.program.name ??
-    group?.name ??
-    "";
+    program?.name ?? program?.standardProgramVersion?.program.name ?? "";
   const programDescription =
     program?.description ??
     program?.standardProgramVersion?.program.description ??
-    group?.description ??
     "";
 
+  const title = `${programName} ${group?.name ? `- ${group.name}` : ""} `;
+
   return {
-    title: programName,
+    title: title,
     description: programDescription,
     openGraph: {
-      title: `${programName} | ${website.siteName}`,
+      title: `${title} | ${website.siteName}`,
       description: programDescription,
       type: "website",
       images: [
