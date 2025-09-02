@@ -326,6 +326,26 @@ export const MAGY_PRIMARY_GRADE_4_PROGRAM: Program = {
           quantity: 1,
           unit: "book",
         },
+        {
+          item: findItemById("supply-detergent")!,
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          item: findItemById("supply-hand-sanitizer")!,
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          item: findItemById("supply-cardboard")!,
+          quantity: 1,
+          unit: "sheet",
+        },
+        {
+          item: findItemById("supply-tissue-paper-towel")!,
+          quantity: 1,
+          unit: "roll",
+        },
       ],
     },
   ],

@@ -327,6 +327,31 @@ export const MAGY_PRIMARY_GRADE_3_PROGRAM: Program = {
           unit: "book",
           notes: "Crayola",
         },
+        {
+          item: findItemById("supply-soap")!,
+          quantity: 1,
+          unit: "bar",
+        },
+        {
+          item: findItemById("supply-detergent")!,
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          item: findItemById("supply-hand-sanitizer")!,
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          item: findItemById("supply-bounty-tissue")!,
+          quantity: 1,
+          unit: "roll",
+        },
+        {
+          item: findItemById("supply-toilet-paper")!,
+          quantity: 1,
+          unit: "roll",
+        },
       ],
     },
   ],

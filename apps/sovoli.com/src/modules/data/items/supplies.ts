@@ -260,4 +260,18 @@ export const SUPPLIES: Item[] = [
     category: "material",
     tags: ["stationery", "eraser"],
   },
+  {
+    id: "supply-cardboard",
+    name: "Cardboard",
+    category: "material",
+    tags: ["craft", "cardboard"],
+    unitLabel: "sheet",
+  },
+  {
+    id: "supply-tissue-paper-towel",
+    name: "Tissue/Paper Towel",
+    category: "material",
+    tags: ["general", "tissue", "paper-towel"],
+    unitLabel: "roll",
+  },
 ];
