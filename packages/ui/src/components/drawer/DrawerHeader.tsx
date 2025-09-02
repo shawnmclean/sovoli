@@ -8,8 +8,8 @@ import { ChevronLeftIcon } from "lucide-react";
 
 const drawerHeader = tv({
   slots: {
-    base: "flex flex-col items-start gap-4 p-4",
-    title: "text-lg font-semibold text-foreground",
+    base: "flex flex-row items-center justify-between gap-4 p-4",
+    title: "text-lg font-semibold text-foreground flex-1 text-center",
     // Complete button styling including expanded hit area and visual appearance
     backButton:
       "relative p-0 w-auto h-auto min-w-0 min-h-0 before:absolute before:inset-0 before:-m-3 before:rounded-full before:bg-transparent before:content-[''] before:z-10 bg-transparent border-none cursor-pointer flex items-center justify-center rounded-full text-current",
@@ -59,13 +59,23 @@ export interface DrawerHeaderProps {
     base?: string;
     title?: string;
     backButton?: string;
+    start?: string;
+    end?: string;
   };
   /**
    * Custom back button icon
    */
   backButtonIcon?: React.ReactNode;
   /**
-   * Children to render in the header
+   * Content to render at the start of the header
+   */
+  startContent?: React.ReactNode;
+  /**
+   * Content to render at the end of the header
+   */
+  endContent?: React.ReactNode;
+  /**
+   * Children to render in the header (deprecated, use startContent/endContent instead)
    */
   children?: React.ReactNode;
 }
@@ -79,6 +89,8 @@ export const DrawerHeader = forwardRef<"header", DrawerHeaderProps>(
       size = "md",
       classNames,
       backButtonIcon = <ChevronLeftIcon size={24} />,
+      startContent,
+      endContent,
       children,
       ...otherProps
     } = props;
@@ -86,12 +98,9 @@ export const DrawerHeader = forwardRef<"header", DrawerHeaderProps>(
     const domRef = useDOMRef(ref);
     const { base, title: titleSlot, backButton } = drawerHeader({ size });
 
-    return (
-      <header
-        ref={domRef}
-        className={base({ className: classNames?.base })}
-        {...otherProps}
-      >
+    // Build start content (back button + startContent)
+    const startItems = (
+      <div className={`flex items-center gap-2 ${classNames?.start ?? ""}`}>
         {showBackButton && onBackPress && (
           <button
             aria-label="Close"
@@ -102,6 +111,25 @@ export const DrawerHeader = forwardRef<"header", DrawerHeaderProps>(
             {backButtonIcon}
           </button>
         )}
+        {startContent}
+        {children && !startContent && !endContent && children}
+      </div>
+    );
+
+    // Build end content
+    const endItems = endContent && (
+      <div className={`flex items-center gap-2 ${classNames?.end ?? ""}`}>
+        {endContent}
+      </div>
+    );
+
+    return (
+      <header
+        ref={domRef}
+        className={base({ className: classNames?.base })}
+        {...otherProps}
+      >
+        {startItems}
 
         {title && (
           <h3 className={titleSlot({ className: classNames?.title })}>
@@ -109,7 +137,7 @@ export const DrawerHeader = forwardRef<"header", DrawerHeaderProps>(
           </h3>
         )}
 
-        {children}
+        {endItems}
       </header>
     );
   },

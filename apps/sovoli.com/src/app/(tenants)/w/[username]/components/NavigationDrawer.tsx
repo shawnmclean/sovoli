@@ -13,6 +13,7 @@ import {
 } from "next/navigation";
 import { useEffect, useRef } from "react";
 import type { Program } from "~/modules/academics/types";
+import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
 
 // Simple hook to track the previous path
 function usePreviousPath() {
@@ -51,6 +52,22 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
     }
   };
 
+  // Render appropriate header content based on the current modal segment
+  const renderHeaderContent = () => {
+    switch (segment) {
+      case "requirements":
+        return (
+          <ShareButton
+            title="Share"
+            variant="light"
+            text={`Check out ${program.name} requirements.`}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <Drawer
       isOpen={isOpen}
@@ -80,7 +97,11 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
       }}
     >
       <DrawerContent>
-        <DrawerHeader showBackButton onBackPress={handleClose} />
+        <DrawerHeader
+          showBackButton
+          onBackPress={handleClose}
+          endContent={renderHeaderContent()}
+        />
         <DrawerBody>{children}</DrawerBody>
       </DrawerContent>
     </Drawer>
