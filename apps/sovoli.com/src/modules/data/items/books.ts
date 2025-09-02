@@ -348,4 +348,92 @@ export const BOOKS: Item[] = [
       kind: "reference",
     },
   },
+  {
+    id: "book-fun-with-language-book-4",
+    name: "Fun With Language Book 4",
+    category: "book",
+    tags: ["textbook", "language", "grade-4"],
+    attributes: {
+      series: "Fun With Language",
+      level: "Grade 4",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-lets-do-mathematics-book-4",
+    name: "Let's Do Mathematics Book 4",
+    category: "book",
+    tags: ["textbook", "mathematics", "grade-4"],
+    attributes: {
+      series: "Let's Do Mathematics",
+      level: "Grade 4",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-science-around-us-book-4",
+    name: "Science Around Us Book 4",
+    category: "book",
+    tags: ["textbook", "science", "grade-4"],
+    attributes: {
+      series: "Science Around Us",
+      level: "Grade 4",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-social-studies-for-our-children-book-4",
+    name: "Social Studies for Our Children Book 4",
+    category: "book",
+    tags: ["textbook", "social-studies", "grade-4"],
+    attributes: {
+      series: "Social Studies for Our Children",
+      level: "Grade 4",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-steps-to-common-entrance-book-2",
+    name: "Steps to Common Entrance Book 2",
+    category: "book",
+    tags: ["textbook", "common-entrance", "preparation"],
+    attributes: {
+      series: "Steps to Common Entrance",
+      level: "Book 2",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-word-perfect-spelling-book-4",
+    name: "Word Perfect Spelling Book 4",
+    category: "book",
+    tags: ["textbook", "spelling", "grade-4"],
+    attributes: {
+      series: "Word Perfect Spelling",
+      level: "Grade 4",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-rainbow-readers-book-4",
+    name: "Rainbow Readers Book 4",
+    category: "book",
+    tags: ["textbook", "reading", "grade-4"],
+    attributes: {
+      series: "Rainbow Readers",
+      level: "Grade 4",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-new-nelsons-west-indian-readers-book-3",
+    name: "New Nelson's West Indian Readers Book 3",
+    category: "book",
+    tags: ["textbook", "reading", "west-indian"],
+    attributes: {
+      series: "New Nelson's West Indian Readers",
+      level: "Book 3",
+      kind: "textbook",
+    },
+  },
 ];
