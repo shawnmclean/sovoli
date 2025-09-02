@@ -250,4 +250,102 @@ export const BOOKS: Item[] = [
       kind: "reference",
     },
   },
+  {
+    id: "book-fun-with-language-book-3",
+    name: "Fun With Language Book 3",
+    category: "book",
+    tags: ["textbook", "language", "grade-3"],
+    attributes: {
+      series: "Fun With Language",
+      level: "Grade 3",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-lets-do-mathematics-book-3",
+    name: "Let's Do Mathematics Book 3",
+    category: "book",
+    tags: ["textbook", "mathematics", "grade-3"],
+    attributes: {
+      series: "Let's Do Mathematics",
+      level: "Grade 3",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-science-around-us-book-3",
+    name: "Science Around Us Book 3",
+    category: "book",
+    tags: ["textbook", "science", "grade-3"],
+    attributes: {
+      series: "Science Around Us",
+      level: "Grade 3",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-social-studies-for-our-children-book-3",
+    name: "Social Studies for Our Children Book 3",
+    category: "book",
+    tags: ["textbook", "social-studies", "grade-3"],
+    attributes: {
+      series: "Social Studies for Our Children",
+      level: "Grade 3",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-steps-to-common-entrance-book-1",
+    name: "Steps to Common Entrance Book 1",
+    category: "book",
+    tags: ["textbook", "common-entrance", "preparation"],
+    attributes: {
+      series: "Steps to Common Entrance",
+      level: "Book 1",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-word-perfect-spelling-book-3",
+    name: "Word Perfect Spelling Book 3",
+    category: "book",
+    tags: ["textbook", "spelling", "grade-3"],
+    attributes: {
+      series: "Word Perfect Spelling",
+      level: "Grade 3",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-new-nelsons-west-indian-readers-book-2",
+    name: "New Nelson's West Indian Readers Book 2",
+    category: "book",
+    tags: ["textbook", "reading", "west-indian"],
+    attributes: {
+      series: "New Nelson's West Indian Readers",
+      level: "Book 2",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-rainbow-readers-book-3",
+    name: "Rainbow Readers Book 3",
+    category: "book",
+    tags: ["textbook", "reading", "grade-3"],
+    attributes: {
+      series: "Rainbow Readers",
+      level: "Grade 3",
+      kind: "textbook",
+    },
+  },
+  {
+    id: "book-dictionary-oxford",
+    name: "Dictionary (Oxford)",
+    category: "book",
+    tags: ["reference", "dictionary", "oxford"],
+    attributes: {
+      brand: "Oxford",
+      kind: "reference",
+    },
+  },
 ];

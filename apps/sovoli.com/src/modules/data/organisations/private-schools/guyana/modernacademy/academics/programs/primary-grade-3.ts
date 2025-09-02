@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { GY_PRIMARY_GRADE_3_V1 } from "~/modules/data/academics/guyana/programs";
 import { PRIMARY_PHOTOS } from "../../photos";
 import type { Program } from "~/modules/academics/types";
@@ -8,6 +10,7 @@ import {
   MAGY_PRIMARY_DEPT_ACTIVITIES,
   magyProgramQuickFacts,
 } from "./shared";
+import { findItemById } from "~/modules/data/items";
 
 export const MAGY_PRIMARY_GRADE_3_PROGRAM: Program = {
   id: "magy-primary-grade-3",
@@ -264,6 +267,90 @@ export const MAGY_PRIMARY_GRADE_3_PROGRAM: Program = {
             "Creative expression",
             "Art appreciation",
           ],
+        },
+      ],
+    },
+  ],
+  requirements: [
+    {
+      name: "Books",
+      category: "booklist",
+      audience: "parent",
+      items: [
+        {
+          item: findItemById("book-social-studies-for-our-children-book-3")!,
+        },
+        {
+          item: findItemById("book-science-around-us-book-3")!,
+        },
+        {
+          item: findItemById("book-fun-with-language-book-3")!,
+        },
+        {
+          item: findItemById("book-lets-do-mathematics-book-3")!,
+        },
+        {
+          item: findItemById("book-steps-to-common-entrance-book-1")!,
+        },
+        {
+          item: findItemById("book-word-perfect-spelling-book-3")!,
+        },
+        {
+          item: findItemById("book-new-nelsons-west-indian-readers-book-2")!,
+        },
+        {
+          item: findItemById("book-rainbow-readers-book-3")!,
+        },
+        {
+          item: findItemById("book-dictionary-oxford")!,
+        },
+      ],
+    },
+    {
+      name: "Supplies",
+      category: "materials",
+      audience: "parent",
+      items: [
+        {
+          item: findItemById("supply-exercise-book")!,
+          quantity: 15,
+          unit: "books",
+        },
+        {
+          item: findItemById("supply-double-line-book")!,
+          quantity: 1,
+          unit: "book",
+        },
+        {
+          item: findItemById("supply-art-book")!,
+          quantity: 1,
+          unit: "book",
+          notes: "Crayola",
+        },
+        {
+          item: findItemById("supply-soap")!,
+          quantity: 1,
+          unit: "bar",
+        },
+        {
+          item: findItemById("supply-detergent")!,
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          item: findItemById("supply-hand-sanitizer")!,
+          quantity: 1,
+          unit: "bottle",
+        },
+        {
+          item: findItemById("supply-bounty-tissue")!,
+          quantity: 1,
+          unit: "roll",
+        },
+        {
+          item: findItemById("supply-toilet-paper")!,
+          quantity: 1,
+          unit: "roll",
         },
       ],
     },

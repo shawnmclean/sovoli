@@ -120,6 +120,13 @@ export const SUPPLIES: Item[] = [
     unitLabel: "book",
   },
   {
+    id: "supply-double-line-book",
+    name: "Double Line Book",
+    category: "material",
+    tags: ["stationery", "copybook", "double-line"],
+    unitLabel: "book",
+  },
+  {
     id: "supply-sheet-card-boards",
     name: "Sheet Card Boards",
     category: "material",
@@ -170,7 +177,8 @@ export const SUPPLIES: Item[] = [
     id: "supply-soap",
     name: "Soap",
     category: "material",
-    tags: ["general", "soap"],
+    tags: ["general", "soap", "hygiene"],
+    unitLabel: "bar",
   },
   {
     id: "supply-bounty-tissue",
