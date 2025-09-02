@@ -32,6 +32,7 @@ function getCategoryIcon(category: string) {
 
 export function RequirementsDetails({ program }: RequirementsDetailsProps) {
   const [showFeedback, setShowFeedback] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState(false);
 
   const requirements =
     program.requirements ?? program.standardProgramVersion?.requirements ?? [];
@@ -47,54 +48,74 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
 
   const handleViewSuppliers = () => {
     setShowFeedback(true);
+    setButtonPressed(true);
   };
   if (requirements.length === 0) {
     return null;
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-foreground">
-        What to bring for {programName}
-      </h1>
-      {requirements.map((requirement: RequirementList, index: number) => (
-        <div key={index} className="space-y-3">
-          <div className="flex items-center gap-2">
-            {getCategoryIcon(requirement.category)}
-            <h3 className="text-lg font-semibold text-foreground">
-              {requirement.name}
-            </h3>
-          </div>
-          <ul className="space-y-2 list-disc list-inside">
-            {requirement.items.map((item, itemIndex) => (
-              <li key={itemIndex} className="flex items-start gap-2">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-foreground">
-                    {item.quantity && item.quantity > 1 && `${item.quantity}x `}
-                    {item.item.name}
-                  </p>
-                  {item.notes && (
-                    <p className="text-xs text-foreground-500 mt-1">
-                      {item.notes}
+    <>
+      <div className="space-y-6 pb-20">
+        <h1 className="text-2xl font-semibold text-foreground">
+          What to bring for {programName}
+        </h1>
+        {requirements.map((requirement: RequirementList, index: number) => (
+          <div key={index} className="space-y-3">
+            <div className="flex items-center gap-2">
+              {getCategoryIcon(requirement.category)}
+              <h3 className="text-lg font-semibold text-foreground">
+                {requirement.name}
+              </h3>
+            </div>
+            <ul className="space-y-2 list-disc list-inside">
+              {requirement.items.map((item, itemIndex) => (
+                <li key={itemIndex} className="flex items-start gap-2">
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground">
+                      {item.quantity &&
+                        item.quantity > 1 &&
+                        `${item.quantity}x `}
+                      {item.item.name}
                     </p>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-
-      <div className="pt-4">
-        <Button onPress={handleViewSuppliers} variant="bordered">
-          Where to Buy?
-        </Button>
-        {showFeedback && (
-          <p className="mt-2 text-sm text-green-600">
-            Thanks for the feedback, we will add them soon
-          </p>
-        )}
+                    {item.notes && (
+                      <p className="text-xs text-foreground-500 mt-1">
+                        {item.notes}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-    </div>
+
+      {/* Sticky button at bottom */}
+      {!buttonPressed && (
+        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 z-50">
+          <div className="max-w-4xl mx-auto">
+            <Button
+              onPress={handleViewSuppliers}
+              variant="bordered"
+              className="w-full"
+            >
+              Where to Buy?
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Feedback message */}
+      {showFeedback && (
+        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 z-50">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-sm text-green-600 text-center">
+              Thanks for the feedback, we will add them soon
+            </p>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
