@@ -1,6 +1,5 @@
 "use client";
 
-import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Shield,
