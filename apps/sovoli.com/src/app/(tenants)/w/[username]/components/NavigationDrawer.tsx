@@ -54,7 +54,9 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
 
   // Render appropriate header content based on the current modal segment
   const renderHeaderContent = () => {
+    console.log("segment", segment);
     switch (segment) {
+      case "(.)requirements":
       case "requirements":
         return (
           <ShareButton
