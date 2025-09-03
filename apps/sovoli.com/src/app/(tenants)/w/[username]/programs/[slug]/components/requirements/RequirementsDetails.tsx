@@ -10,7 +10,6 @@ import type { Program, RequirementList } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
 import { useEffect, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import posthog from "posthog-js";
 
 interface RequirementsDetailsProps {
   program: Program;
