@@ -224,9 +224,9 @@ export default function TermsPage() {
               If you have any questions about these Terms of Service, please
               contact us at:
             </p>
-            <div className="mt-2 p-4 bg-gray-50 rounded-lg">
+            <div className="mt-2 p-4 bg-default-50 rounded-lg">
               <p>
-                <strong>Email:</strong> hello@sovoli.com
+                <strong>Email:</strong> hi@sovoli.com
               </p>
               <p>
                 <strong>Website:</strong> https://sovoli.com
