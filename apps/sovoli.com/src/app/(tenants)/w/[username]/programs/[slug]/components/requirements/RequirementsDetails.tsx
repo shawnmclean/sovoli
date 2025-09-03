@@ -10,6 +10,7 @@ import type { Program, RequirementList } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
 import { useEffect, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
+import posthog from "posthog-js";
 
 interface RequirementsDetailsProps {
   program: Program;
@@ -47,6 +48,9 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
   }, [program]);
 
   const handleViewSuppliers = () => {
+    trackProgramAnalytics("ViewSuppliers", program, null, {
+      section: "requirements",
+    });
     setShowFeedback(true);
     setButtonPressed(true);
   };
@@ -91,31 +95,23 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
         ))}
       </div>
 
-      {/* Sticky button at bottom */}
-      {!buttonPressed && (
-        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 z-50">
-          <div className="max-w-4xl mx-auto">
-            <Button
-              onPress={handleViewSuppliers}
-              variant="bordered"
-              className="w-full"
-            >
+      <div className="fixed bottom-0 left-0 right-0 border-t border-divider p-4 z-50">
+        <div className="max-w-4xl mx-auto">
+          {/* Sticky button at bottom */}
+          {!buttonPressed && (
+            <Button onPress={handleViewSuppliers} variant="flat" fullWidth>
               Where to Buy?
             </Button>
-          </div>
-        </div>
-      )}
+          )}
 
-      {/* Feedback message */}
-      {showFeedback && (
-        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 z-50">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-sm text-green-600 text-center">
+          {/* Feedback message */}
+          {showFeedback && (
+            <p className="text-sm text-success text-center">
               Thanks for the feedback, we will add them soon
             </p>
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 }

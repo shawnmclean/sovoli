@@ -114,7 +114,8 @@ export const trackProgramAnalytics = (
     | "Contact"
     | "Lead"
     | "LeadPhoneEntered"
-    | "LeadNameEntered",
+    | "LeadNameEntered"
+    | "ViewSuppliers",
   program: Program,
   cycle?: ProgramCycle | null,
   additionalData?: Record<string, unknown>,
