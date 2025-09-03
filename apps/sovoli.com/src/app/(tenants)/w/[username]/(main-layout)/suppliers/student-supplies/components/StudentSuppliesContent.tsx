@@ -235,8 +235,7 @@ export function StudentSuppliesContent({
               {/* Items List */}
               <div className="space-y-4 pl-4">
                 {items.map((itemWithPrograms, itemIndex) => {
-                  const { item, quantity, unit, notes, programs } =
-                    itemWithPrograms;
+                  const { item, unit, notes, programs } = itemWithPrograms;
                   const totalPrograms =
                     orgInstance.academicModule?.programs.length ?? 0;
                   const allPrograms =
@@ -249,15 +248,19 @@ export function StudentSuppliesContent({
                   return (
                     <div key={itemIndex} className="space-y-2">
                       {/* Item Header */}
-                      <div className="flex items-start gap-2">
-                        <Checkbox
-                          size="sm"
-                          isSelected={isChecked}
-                          onValueChange={(checked) =>
-                            handleItemCheck(itemKey, checked)
-                          }
-                          className="mt-1"
-                        />
+                      <Checkbox
+                        size="sm"
+                        isSelected={isChecked}
+                        onValueChange={(checked) =>
+                          handleItemCheck(itemKey, checked)
+                        }
+                        className="p-2 rounded-lg hover:bg-default-100 transition-colors"
+                        classNames={{
+                          base: "flex items-start gap-2 w-full",
+                          wrapper: "mt-1",
+                          label: "flex-1",
+                        }}
+                      >
                         <div className="flex-1">
                           <div className="flex items-center gap-2 flex-wrap">
                             <span
@@ -310,7 +313,7 @@ export function StudentSuppliesContent({
                             </div>
                           )}
                         </div>
-                      </div>
+                      </Checkbox>
                     </div>
                   );
                 })}
