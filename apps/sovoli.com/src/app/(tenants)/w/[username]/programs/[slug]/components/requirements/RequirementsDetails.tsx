@@ -13,6 +13,13 @@ import { useEffect, useState, useMemo } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Switch } from "@sovoli/ui/components/switch";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+} from "@sovoli/ui/components/drawer";
 
 interface Supplier {
   name: string;
@@ -30,7 +37,8 @@ function generateSupplierData(): Supplier[] {
   for (let i = 0; i < numSuppliers; i++) {
     const randomSupplier =
       SUPPLIERS[Math.floor(Math.random() * SUPPLIERS.length)];
-    const price = Math.floor(Math.random() * 200) + 10; // Random price between $10-$210
+    // Random price between $500-$6000 (GYD pricing)
+    const price = Math.floor(Math.random() * 5500) + 500;
 
     // Avoid duplicate suppliers for the same item
     if (randomSupplier && !suppliers.some((s) => s.name === randomSupplier)) {
@@ -75,6 +83,8 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
     Record<string, Supplier[]>
   >({});
   const [showSuppliers, setShowSuppliers] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [selectedSupplierName, setSelectedSupplierName] = useState("");
 
   const requirements = useMemo(
     () =>
@@ -153,6 +163,11 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
     });
   };
 
+  const handleSupplierNameClick = (supplierName: string) => {
+    setSelectedSupplierName(supplierName);
+    setDrawerOpen(true);
+  };
+
   // Calculate totals
   const calculateTotals = () => {
     let totalPrice = 0;
@@ -224,7 +239,7 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
                 </div>
                 {showSuppliers && (
                   <div className="text-sm text-foreground-500">
-                    GYD {categoryTotal}
+                    GYD {categoryTotal.toLocaleString()}
                   </div>
                 )}
               </div>
@@ -250,23 +265,33 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
                       {showSuppliers ? (
                         suppliers.length > 0 ? (
                           <div className="space-y-1">
-                            {suppliers.map((supplier, supplierIndex) => (
-                              <Checkbox
-                                key={supplierIndex}
-                                isSelected={selectedSupplier === supplier.name}
-                                onValueChange={(isChecked) =>
-                                  handleSupplierSelect(
-                                    itemKey,
-                                    supplier.name,
-                                    isChecked,
-                                  )
-                                }
-                                className="hover:bg-muted/30 rounded p-2 -m-2"
-                              >
-                                <span className="text-sm text-foreground-600">
-                                  ${supplier.price} - {supplier.name}
-                                </span>
-                              </Checkbox>
+                            {suppliers.map((supplier) => (
+                              <div className="flex items-center gap-2 hover:bg-muted/30 rounded p-2 -m-2">
+                                <Checkbox
+                                  isSelected={
+                                    selectedSupplier === supplier.name
+                                  }
+                                  onValueChange={(isChecked) =>
+                                    handleSupplierSelect(
+                                      itemKey,
+                                      supplier.name,
+                                      isChecked,
+                                    )
+                                  }
+                                >
+                                  <span className="text-sm text-foreground-600">
+                                    GYD {supplier.price.toLocaleString()} -
+                                  </span>
+                                </Checkbox>
+                                <button
+                                  onClick={() =>
+                                    handleSupplierNameClick(supplier.name)
+                                  }
+                                  className="truncate max-w-[200px] text-sm text-foreground-600 text-left hover:text-primary-600 border-b border-dotted border-foreground-400 hover:border-primary-600 cursor-pointer"
+                                >
+                                  {supplier.name}
+                                </button>
+                              </div>
                             ))}
                           </div>
                         ) : (
@@ -319,7 +344,7 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
               {showSuppliers && (
                 <div>
                   <div className="text-lg font-semibold text-foreground">
-                    Total GYD {totalPrice}
+                    Total GYD {totalPrice.toLocaleString()}
                   </div>
                   <div className="text-sm text-foreground-600">
                     from {supplierCount} supplier
@@ -349,6 +374,37 @@ export function RequirementsDetails({ program }: RequirementsDetailsProps) {
           )}
         </div>
       </div>
+
+      {/* Supplier Name Drawer */}
+      <Drawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        placement="bottom"
+        size="sm"
+      >
+        <DrawerContent>
+          <DrawerHeader>
+            <h3 className="text-lg font-semibold">Supplier Details</h3>
+          </DrawerHeader>
+          <DrawerBody>
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium text-foreground-600">
+                  Supplier Name
+                </label>
+                <p className="text-base text-foreground">
+                  {selectedSupplierName}
+                </p>
+              </div>
+            </div>
+          </DrawerBody>
+          <DrawerFooter>
+            <Button onPress={() => setDrawerOpen(false)} variant="solid">
+              Close
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 }
