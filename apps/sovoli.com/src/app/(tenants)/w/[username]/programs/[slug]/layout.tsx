@@ -1,7 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { Footer } from "../../components/footer/Footer";
 import { parseISO } from "date-fns";
-import { EducationalOccupationalProgram, WithContext } from "schema-dts";
+import type { EducationalOccupationalProgram, WithContext } from "schema-dts";
 
 import { ProgramDetailNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";

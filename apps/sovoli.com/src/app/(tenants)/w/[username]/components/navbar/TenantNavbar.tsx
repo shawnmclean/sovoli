@@ -92,8 +92,6 @@ export function TenantNavbar({
           };
         case "offerings":
           return { label: item.label, href: "/services" };
-        case "gallery":
-          return { label: item.label, href: "/gallery" };
         case "contact":
           return { label: item.label, href: "/contact" };
         default:

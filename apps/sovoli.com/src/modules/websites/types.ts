@@ -4,14 +4,7 @@ export interface WebsiteModule {
 
 // Navigation item for header
 export interface NavItem {
-  key:
-    | "home"
-    | "about"
-    | "academics"
-    | "offerings"
-    | "workforce"
-    | "contact"
-    | "gallery";
+  key: "home" | "about" | "academics" | "offerings" | "workforce" | "contact";
   label: string;
 }
 

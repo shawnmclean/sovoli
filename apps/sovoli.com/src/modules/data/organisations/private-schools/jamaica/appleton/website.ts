@@ -98,10 +98,6 @@ export const APPLETON_BASIC_SCHOOL_WEBSITE: WebsiteModule = {
           label: "Team",
         },
         {
-          key: "gallery",
-          label: "Gallery",
-        },
-        {
           key: "contact",
           label: "Contact",
         },
@@ -131,11 +127,6 @@ export const APPLETON_BASIC_SCHOOL_WEBSITE: WebsiteModule = {
           key: "other",
           title: "Resources",
           links: [
-            {
-              label: "📸 Photo Gallery",
-              url: "#",
-              target: "_blank",
-            },
             {
               label: "Account Portal",
               url: "#",

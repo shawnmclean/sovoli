@@ -10,6 +10,7 @@ import {
 
 export const APPLETON_NURSERY_YEAR_2_PROGRAM: Program = {
   id: "appleton-nursery-year-2",
+  name: "Nursery Year 2",
   slug: "nursery-year-2",
   audience: "parent",
   highlights: nurseryProgramHighlights,

@@ -100,10 +100,6 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
           label: "Team",
         },
         {
-          key: "gallery",
-          label: "Gallery",
-        },
-        {
           key: "contact",
           label: "Contact",
         },
@@ -133,11 +129,6 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
           key: "other",
           title: "Resources",
           links: [
-            {
-              label: "📸 Photo Gallery",
-              url: "https://www.facebook.com/profile.php?id=100063128446623&sk=photos",
-              target: "_blank",
-            },
             {
               label: "Account Portal",
               url: "#",
