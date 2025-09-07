@@ -1,6 +1,5 @@
 "use client";
 
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
@@ -13,18 +12,17 @@ import { Link } from "@sovoli/ui/components/link";
 import {
   BookOpenIcon,
   HomeIcon,
-  ImageIcon,
   MenuIcon,
   PhoneIcon,
   UsersIcon,
   BriefcaseIcon,
   InfoIcon,
+  ShoppingBagIcon,
+  SquareMousePointerIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { tv } from "tailwind-variants";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { getWhatsAppContact } from "~/utils/whatsappUtils";
 
 const footerButton = tv({
   slots: {
@@ -54,25 +52,46 @@ const drawerButton = tv({
   },
 });
 
+const footerCTAButton = tv({
+  slots: {
+    container: "flex flex-col items-center justify-center -mt-3 mx-4",
+    label: "text-xs mt-1 text-foreground-500",
+  },
+  variants: {
+    isSelected: {
+      true: {
+        label: "text-primary-500",
+      },
+    },
+  },
+  defaultVariants: {
+    isSelected: false,
+  },
+});
+
 export interface MobileFooterProps {
   orgInstance: OrgInstance;
 }
 
-export function MobileFooter({ orgInstance }: MobileFooterProps) {
+// eslint-disable-next-line no-empty-pattern
+export function MobileFooter({}: MobileFooterProps) {
   const pathname = usePathname();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const isHome = pathname === "/" || pathname === "";
-  const isPrograms = pathname.startsWith("/programs");
-  const isGallery = pathname.startsWith("/gallery");
-
-  const footerButtonClasses = footerButton({ isSelected: isHome });
-  const programsButtonClasses = footerButton({ isSelected: isPrograms });
-  const galleryButtonClasses = footerButton({ isSelected: isGallery });
+  const footerButtonClasses = footerButton({
+    isSelected: pathname === "/" || pathname === "",
+  });
+  const programsButtonClasses = footerButton({
+    isSelected: pathname === "/programs",
+  });
+  const teamButtonClasses = footerButton({
+    isSelected: pathname.startsWith("/workforce/people"),
+  });
+  const ctaButtonClasses = footerCTAButton({
+    isSelected: pathname.startsWith("/programs/apply"),
+  });
   const moreButtonClasses = footerButton();
   const drawerButtonClasses = drawerButton();
-
-  const whatsappNumber = getWhatsAppContact(orgInstance);
 
   return (
     <footer className="fixed bottom-0 left-0 right-0 bg-content1 shadow-lg pb-2 px-2 md:hidden z-40">
@@ -102,33 +121,30 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
           </Button>
         </div>
         <div className="flex justify-center">
-          <Button
-            as={WhatsAppLink}
-            phoneNumber={whatsappNumber}
-            message={`Hi, I'm interested in your programs.`}
-            page="mobile-footer"
-            variant="shadow"
-            color="primary"
-            isIconOnly
-            radius="md"
-            className="-mt-8 mx-4"
-            size="lg"
-          >
-            <SiWhatsapp className="text-xl" />
-          </Button>
+          <Link href="/programs/apply" className={ctaButtonClasses.container()}>
+            <Button
+              variant="shadow"
+              color="primary"
+              isIconOnly
+              radius="md"
+              size="lg"
+            >
+              <SquareMousePointerIcon className="text-xl" />
+            </Button>
+            <span className={ctaButtonClasses.label()}>Apply</span>
+          </Link>
         </div>
         <div className="flex flex-1 justify-end gap-2">
           <Button
             as={Link}
-            href="https://www.facebook.com/profile.php?id=100063128446623&sk=photos"
-            target="_blank"
+            href="/workforce/people"
             variant="light"
             color="default"
             size="sm"
-            className={galleryButtonClasses.base()}
+            className={teamButtonClasses.base()}
           >
-            <ImageIcon className={galleryButtonClasses.icon()} />
-            <span className={galleryButtonClasses.text()}>Gallery</span>
+            <UsersIcon className={teamButtonClasses.icon()} />
+            <span className={teamButtonClasses.text()}>Team</span>
           </Button>
           <Button
             onPress={onOpen}
@@ -182,18 +198,6 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                   </Button>
                   <Button
                     as={Link}
-                    href="/workforce/people"
-                    variant="light"
-                    color="default"
-                    size="sm"
-                    className={drawerButtonClasses.base()}
-                    onPress={onOpenChange}
-                  >
-                    <UsersIcon className={drawerButtonClasses.icon()} />
-                    <span className={drawerButtonClasses.text()}>Team</span>
-                  </Button>
-                  <Button
-                    as={Link}
                     href="/workforce/positions"
                     variant="light"
                     color="default"
@@ -215,6 +219,20 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                   >
                     <InfoIcon className={drawerButtonClasses.icon()} />
                     <span className={drawerButtonClasses.text()}>About</span>
+                  </Button>
+                  <Button
+                    as={Link}
+                    href="/suppliers/student-supplies"
+                    variant="light"
+                    color="default"
+                    size="sm"
+                    className={drawerButtonClasses.base()}
+                    onPress={onOpenChange}
+                  >
+                    <ShoppingBagIcon className={drawerButtonClasses.icon()} />
+                    <span className={drawerButtonClasses.text()}>
+                      Suppliers
+                    </span>
                   </Button>
                 </div>
               </DrawerBody>
