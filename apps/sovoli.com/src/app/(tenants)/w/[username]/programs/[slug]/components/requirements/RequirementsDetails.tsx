@@ -480,7 +480,7 @@ export function RequirementsDetails({
       >
         <DrawerContent>
           <DrawerHeader>
-            <h3 className="text-lg font-semibold">Selected Suppliers</h3>
+            <h3 className="text-lg font-semibold">Recommended Suppliers</h3>
           </DrawerHeader>
           <DrawerBody>
             <div className="space-y-6">
@@ -491,18 +491,12 @@ export function RequirementsDetails({
                 >
                   <div className="space-y-3">
                     <div>
-                      <label className="text-sm font-medium text-foreground-600">
-                        Supplier Name
-                      </label>
                       <p className="text-base text-foreground font-medium">
                         {supplier.name}
                       </p>
                     </div>
                     {supplier.org.org.locations.length > 0 && (
                       <div>
-                        <label className="text-sm font-medium text-foreground-600">
-                          Location
-                        </label>
                         <p className="text-base text-foreground">
                           {supplier.org.org.locations[0]?.address.line1 &&
                             `${supplier.org.org.locations[0].address.line1}, `}
@@ -517,9 +511,6 @@ export function RequirementsDetails({
                     {supplier.org.org.locations[0]?.contacts &&
                       supplier.org.org.locations[0].contacts.length > 0 && (
                         <div>
-                          <label className="text-sm font-medium text-foreground-600">
-                            Contact
-                          </label>
                           <div className="space-y-1">
                             {supplier.org.org.locations[0].contacts.map(
                               (contact, contactIndex) => (
