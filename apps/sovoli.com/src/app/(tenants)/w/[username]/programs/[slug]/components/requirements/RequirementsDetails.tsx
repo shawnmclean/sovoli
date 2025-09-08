@@ -556,10 +556,10 @@ export function RequirementsDetails({
                   message={generateWhatsAppMessage()}
                   className="flex-1"
                   intent="Purchase"
-                  page="programs"
+                  page="requirements"
                   orgId={orgInstance.org.username}
                   orgName={orgInstance.org.name}
-                  funnel="conversion"
+                  supplierName={selectedSuppliersForDrawer[0]?.name}
                   startContent={<SiWhatsapp size={16} />}
                 >
                   Get Quote

@@ -32,7 +32,10 @@ interface WhatsAppLinkProps extends LinkProps {
     | "pricing"
     | "landing"
     | "programs"
-    | "mobile-footer";
+    | "mobile-footer"
+    | "requirements";
+  supplierName?: string;
+  supplierId?: string;
   orgId?: string;
   orgName?: string;
   funnel?: string; // e.g. "discovery", "conversion"
@@ -51,6 +54,8 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
       orgId,
       orgName,
       funnel,
+      supplierName,
+      supplierId,
       // Tracking props
       event,
       eventProperties,
@@ -75,6 +80,8 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
           funnel: funnel ?? "default",
           source: "sovoli_web",
           cta_schema_version: "v1",
+          supplier_name: supplierName,
+          supplier_id: supplierId,
         },
         {
           send_instantly: true,
