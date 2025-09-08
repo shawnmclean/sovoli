@@ -17,7 +17,7 @@ export const SUCCESS_ELEMENTARY_ORG: OrgInstance = {
   },
   websiteModule: null,
   academicModule: null,
-  offeringModule: null,
+  serviceModule: null,
   workforceModule: null,
   scoringModule: null,
 };

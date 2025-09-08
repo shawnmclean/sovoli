@@ -152,7 +152,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
   },
   websiteModule: MODERN_ACADEMY_WEBSITE,
   academicModule: MODERN_ACADEMY_ACADEMIC,
-  offeringModule: MODERN_ACADEMY_OFFERINGS,
+  serviceModule: MODERN_ACADEMY_OFFERINGS,
   workforceModule: MODERN_ACADEMY_WORKFORCE,
   scoringModule: null,
 };

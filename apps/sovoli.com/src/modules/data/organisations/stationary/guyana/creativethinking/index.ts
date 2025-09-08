@@ -50,7 +50,7 @@ export const CREATIVE_THINKING_STATIONERY_HUB_ORG: OrgInstance = {
   },
   websiteModule: CREATIVE_THINKING_STATIONERY_HUB_WEBSITE,
   academicModule: null,
-  offeringModule: null,
+  serviceModule: null,
   workforceModule: CREATIVE_THINKING_STATIONERY_HUB_WORKFORCE,
   scoringModule: null,
 };

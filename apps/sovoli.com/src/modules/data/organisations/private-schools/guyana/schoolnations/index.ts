@@ -27,7 +27,7 @@ export const SCHOOL_NATIONS_ORG: OrgInstance = {
   },
   websiteModule: null,
   academicModule: null,
-  offeringModule: null,
+  serviceModule: null,
   workforceModule: null,
   scoringModule: null,
 };

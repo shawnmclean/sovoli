@@ -17,7 +17,7 @@ export const XENON_ACADEMY_ORG: OrgInstance = {
   },
   websiteModule: null,
   academicModule: null,
-  offeringModule: null,
+  serviceModule: null,
   workforceModule: null,
   scoringModule: null,
 };

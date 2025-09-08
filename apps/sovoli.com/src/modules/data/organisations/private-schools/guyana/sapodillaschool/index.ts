@@ -17,7 +17,7 @@ export const SAPODILLA_SCHOOL_ORG: OrgInstance = {
   },
   websiteModule: null,
   academicModule: null,
-  offeringModule: null,
+  serviceModule: null,
   workforceModule: null,
   scoringModule: null,
 };

@@ -30,7 +30,7 @@ export const GREEN_ACRES_SCHOOL_ORG: OrgInstance = {
   },
   websiteModule: null,
   academicModule: null,
-  offeringModule: null,
+  serviceModule: null,
   workforceModule: null,
   scoringModule: null,
 };

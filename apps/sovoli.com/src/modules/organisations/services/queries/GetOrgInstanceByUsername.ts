@@ -35,7 +35,7 @@ export class GetOrgInstanceByUsernameQueryHandler
         scoringModule,
         websiteModule: entry.websiteModule ?? null,
         academicModule: entry.academicModule ?? null,
-        offeringModule: entry.offeringModule ?? null,
+        serviceModule: entry.serviceModule ?? null,
         workforceModule: entry.workforceModule ?? null,
       },
     };

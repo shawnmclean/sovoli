@@ -1,6 +1,6 @@
 import type { AcademicModule } from "../academics/types";
 import type { Contact, SocialLink } from "../core/types";
-import type { OfferingModule } from "../offerings/types";
+import type { ServiceModule } from "../services/types";
 import type { ScoringModule } from "../scoring/types";
 import type { WebsiteModule } from "../websites/types";
 import type { WorkforceModule } from "../workforce/types";
@@ -105,7 +105,7 @@ export interface OrgInstance {
   org: Org;
   websiteModule: WebsiteModule | null;
   academicModule: AcademicModule | null;
-  offeringModule: OfferingModule | null;
+  serviceModule: ServiceModule | null;
   workforceModule: WorkforceModule | null;
   scoringModule: ScoringModule | null;
 }

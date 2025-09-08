@@ -1,5 +1,5 @@
-import type { OfferingModule } from "~/modules/offerings/types";
+import type { ServiceModule } from "~/modules/services/types";
 
-export const MODERN_ACADEMY_OFFERINGS: OfferingModule = {
+export const MODERN_ACADEMY_OFFERINGS: ServiceModule = {
   offerings: [],
 };
