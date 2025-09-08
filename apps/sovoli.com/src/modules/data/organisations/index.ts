@@ -1,10 +1,14 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 
 import { PRIVATE_SCHOOLS } from "./private-schools";
-
+import { STATIONARY_ORGS } from "./stationary";
 import { VOCATIONAL_SCHOOLS } from "./vocational-school";
 
-const orgs: OrgInstance[] = [...PRIVATE_SCHOOLS, ...VOCATIONAL_SCHOOLS];
+const orgs: OrgInstance[] = [
+  ...PRIVATE_SCHOOLS,
+  ...STATIONARY_ORGS,
+  ...VOCATIONAL_SCHOOLS,
+];
 
 export const DOMAIN_TO_USERNAME = new Map<string, string>();
 
