@@ -2,6 +2,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
 import { CREATIVE_THINKING_STATIONERY_HUB_WEBSITE } from "./website";
 import { CREATIVE_THINKING_STATIONERY_HUB_WORKFORCE } from "./workforce";
+import { CREATIVE_THINKING_STATIONERY_HUB_CATALOG } from "./catalog";
 
 export const CREATIVE_THINKING_STATIONERY_HUB_ORG: OrgInstance = {
   org: {
@@ -53,4 +54,5 @@ export const CREATIVE_THINKING_STATIONERY_HUB_ORG: OrgInstance = {
   serviceModule: null,
   workforceModule: CREATIVE_THINKING_STATIONERY_HUB_WORKFORCE,
   scoringModule: null,
+  catalogModule: CREATIVE_THINKING_STATIONERY_HUB_CATALOG,
 };

@@ -1,5 +1,6 @@
 import type { AcademicModule } from "../academics/types";
 import type { Contact, SocialLink } from "../core/types";
+import type { CatalogModule } from "../catalogs/types";
 import type { ServiceModule } from "../services/types";
 import type { ScoringModule } from "../scoring/types";
 import type { WebsiteModule } from "../websites/types";
@@ -108,6 +109,7 @@ export interface OrgInstance {
   serviceModule: ServiceModule | null;
   workforceModule: WorkforceModule | null;
   scoringModule: ScoringModule | null;
+  catalogModule?: CatalogModule | null;
 }
 
 export type OrgInstanceWithWebsite = Omit<OrgInstance, "websiteModule"> & {
