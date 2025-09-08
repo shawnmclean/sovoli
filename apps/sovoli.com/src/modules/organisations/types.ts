@@ -100,6 +100,11 @@ export interface Org {
   };
 
   techStack?: OrgTechStack;
+  supplierRecommendations?: SupplierRecommendation[];
+}
+
+export interface SupplierRecommendation {
+  org: Org;
 }
 
 export interface OrgInstance {

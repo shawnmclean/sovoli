@@ -19,5 +19,7 @@ export default async function RequirementsIntercept({ params }: Props) {
     return null;
   }
 
-  return <RequirementsDetails program={program} />;
+  return (
+    <RequirementsDetails orgInstance={result.orgInstance} program={program} />
+  );
 }

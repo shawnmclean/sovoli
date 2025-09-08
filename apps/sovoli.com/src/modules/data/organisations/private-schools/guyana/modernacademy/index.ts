@@ -5,6 +5,7 @@ import { ORG_USERNAME } from "./constants";
 import { MODERN_ACADEMY_OFFERINGS } from "./offering";
 import { MODERN_ACADEMY_WORKFORCE } from "./workforce";
 import { MODERN_ACADEMY_WEBSITE } from "./website";
+import { CREATIVE_THINKING_STATIONERY_HUB_ORG } from "~/modules/data/organisations/stationary/guyana/creativethinking";
 
 export const MODERN_ACADEMY_ORG: OrgInstance = {
   org: {
@@ -147,6 +148,11 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
       {
         platform: "website",
         url: "https://www.ma.edu.gy",
+      },
+    ],
+    supplierRecommendations: [
+      {
+        org: CREATIVE_THINKING_STATIONERY_HUB_ORG.org,
       },
     ],
   },
