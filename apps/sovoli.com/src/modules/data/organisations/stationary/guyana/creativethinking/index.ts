@@ -33,8 +33,8 @@ export const CREATIVE_THINKING_STATIONERY_HUB_ORG: OrgInstance = {
           "EiBSVzJWK0o4LCBCZXRlcnZlcndhZ3RpbmcsIEd1eWFuYSImOiQKCg0J1g0EFaVAZd0QChoUChIJDeXpD7Htr40RUIFON4T4vHs",
         contacts: [
           {
-            type: "phone",
-            value: "+5926461013",
+            type: "whatsapp",
+            value: "5927284095",
             isPublic: true,
             primary: true,
           },

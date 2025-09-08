@@ -23,6 +23,8 @@ import {
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORGS } from "~/modules/data/organisations";
 import { pluralize } from "~/utils/pluralize";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 
 interface Supplier {
   name: string;
@@ -243,6 +245,69 @@ export function RequirementsDetails({
   };
 
   const { totalPrice, supplierCount } = calculateTotals();
+
+  // Generate WhatsApp message with selected items
+  const generateWhatsAppMessage = () => {
+    const programName =
+      program.name ?? program.standardProgramVersion?.program.name;
+    let message = `Hi! I'm interested in purchasing school supplies for *${orgInstance.org.name} - ${programName}*.\n\n`;
+
+    const itemsBySupplier: Record<
+      string,
+      { item: string; quantity: number }[]
+    > = {};
+
+    requirements.forEach((requirement, reqIndex) => {
+      requirement.items.forEach((item, itemIndex) => {
+        const itemKey = `${reqIndex}-${itemIndex}`;
+        const selectedSupplier = selectedSuppliers[itemKey];
+        if (selectedSupplier) {
+          const suppliers = supplierData[itemKey] ?? [];
+          const supplier = suppliers.find((s) => s.name === selectedSupplier);
+          if (supplier) {
+            if (!itemsBySupplier[supplier.name]) {
+              itemsBySupplier[supplier.name] = [];
+            }
+            itemsBySupplier[supplier.name]?.push({
+              item: item.item.name,
+              quantity: item.quantity ?? 1,
+            });
+          }
+        }
+      });
+    });
+
+    Object.entries(itemsBySupplier).forEach(([_, items]) => {
+      items.forEach(({ item, quantity }) => {
+        message += `• ${quantity}x ${item}\n`;
+      });
+      message += `\n`;
+    });
+
+    message += `Please let me know about availability and pricing. Thank you!`;
+
+    return message;
+  };
+
+  // Get WhatsApp number from the first selected supplier
+  const getWhatsAppNumber = () => {
+    if (selectedSuppliersForDrawer.length === 0) return null;
+
+    const firstSupplier = selectedSuppliersForDrawer[0];
+    if (!firstSupplier) return null;
+
+    const location = firstSupplier.org.org.locations[0];
+
+    if (location?.contacts) {
+      const whatsappContact = location.contacts.find(
+        (contact) => contact.type === "whatsapp",
+      );
+      return whatsappContact?.value ?? null;
+    }
+
+    return null;
+  };
+
   if (requirements.length === 0) {
     return null;
   }
@@ -416,9 +481,6 @@ export function RequirementsDetails({
         <DrawerContent>
           <DrawerHeader>
             <h3 className="text-lg font-semibold">Selected Suppliers</h3>
-            <p className="text-sm text-foreground-600">
-              Contact information for your selected suppliers
-            </p>
           </DrawerHeader>
           <DrawerBody>
             <div className="space-y-6">
@@ -486,9 +548,24 @@ export function RequirementsDetails({
             </div>
           </DrawerBody>
           <DrawerFooter>
-            <Button onPress={() => setDrawerOpen(false)} variant="solid">
-              Close
-            </Button>
+            <div className="flex gap-2">
+              {getWhatsAppNumber() && (
+                <Button
+                  as={WhatsAppLink}
+                  phoneNumber={getWhatsAppNumber() ?? ""}
+                  message={generateWhatsAppMessage()}
+                  className="flex-1"
+                  intent="Purchase"
+                  page="programs"
+                  orgId={orgInstance.org.username}
+                  orgName={orgInstance.org.name}
+                  funnel="conversion"
+                  startContent={<SiWhatsapp size={16} />}
+                >
+                  Get Quote
+                </Button>
+              )}
+            </div>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
