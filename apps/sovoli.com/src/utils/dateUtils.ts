@@ -59,6 +59,40 @@ export const formatDateRange = (startDate: string, endDate: string) => {
   return `${formatDate(startDate)} - ${formatDate(endDate)}`;
 };
 
+// Helper function to format cycle label as date range
+export const formatCycleLabel = (
+  startDate: string | undefined,
+  endDate: string | undefined,
+): string => {
+  if (!startDate || !endDate) return "Academic Cycle";
+
+  const start = parseISO(startDate);
+  const end = parseISO(endDate);
+  const now = new Date();
+  const isSameDay = start.getTime() === end.getTime();
+  const isSameYear = start.getFullYear() === end.getFullYear();
+  const isThisYear =
+    start.getFullYear() === now.getFullYear() &&
+    end.getFullYear() === now.getFullYear();
+
+  if (isSameDay) {
+    return format(start, "MMM d");
+  }
+
+  // If both dates are in the same year and it's this year, omit the year from both
+  if (isSameYear && isThisYear) {
+    return `${start.toLocaleDateString("en-US", { month: "short", day: "numeric" })}-${end.toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
+  }
+
+  // If both dates are in the same year but not this year, show year only on end
+  if (isSameYear) {
+    return `${start.toLocaleDateString("en-US", { month: "short", day: "numeric" })}-${end.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}`;
+  }
+
+  // If years are different, show full date for both
+  return `${format(start, "MMM d")}-${format(end, "MMM d, yyyy")}`;
+};
+
 // Helper function to get current date
 export const getCurrentDate = () => new Date();
 

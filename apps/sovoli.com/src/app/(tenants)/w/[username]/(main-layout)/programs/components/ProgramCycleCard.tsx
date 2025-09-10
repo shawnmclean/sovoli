@@ -12,6 +12,7 @@ import {
   GraduationCapIcon,
 } from "lucide-react";
 import { format, parseISO } from "date-fns";
+import { formatCycleLabel } from "~/utils/dateUtils";
 import { ProgramCarousel } from "./ProgramCarousel";
 
 export interface ProgramCycleCardProps {
@@ -44,10 +45,18 @@ export function ProgramCycleCard({
   const currentCycle = program.cycles?.[0];
 
   const formatTermInfo = () => {
-    const termLabel =
-      currentCycle?.academicCycle.customLabel ??
-      currentCycle?.academicCycle.globalCycle?.label ??
-      "Academic Term";
+    if (!currentCycle) return "Join the Academic Term";
+
+    const startDate =
+      currentCycle.academicCycle.startDate ??
+      currentCycle.academicCycle.globalCycle?.startDate ??
+      "";
+    const endDate =
+      currentCycle.academicCycle.endDate ??
+      currentCycle.academicCycle.globalCycle?.endDate ??
+      "";
+
+    const termLabel = formatCycleLabel(startDate, endDate);
 
     if (!currentCycle?.registrationPeriod?.endDate) {
       return `Join the ${termLabel}`;

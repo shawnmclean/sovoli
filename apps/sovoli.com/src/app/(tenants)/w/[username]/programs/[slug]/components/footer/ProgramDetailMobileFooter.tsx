@@ -1,6 +1,7 @@
 "use client";
 
 import { parseISO } from "date-fns";
+import { formatCycleLabel } from "~/utils/dateUtils";
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
@@ -59,9 +60,17 @@ export function ProgramDetailMobileFooter({
 
   // Get cycle information for contact drawer
   const cycleLabel = selectedCycle
-    ? (selectedCycle.academicCycle.customLabel ??
-      selectedCycle.academicCycle.globalCycle?.label ??
-      "Academic Term")
+    ? (() => {
+        const startDate =
+          selectedCycle.academicCycle.startDate ??
+          selectedCycle.academicCycle.globalCycle?.startDate ??
+          "";
+        const endDate =
+          selectedCycle.academicCycle.endDate ??
+          selectedCycle.academicCycle.globalCycle?.endDate ??
+          "";
+        return formatCycleLabel(startDate, endDate);
+      })()
     : "";
 
   // If no cycle is selected, show fallback

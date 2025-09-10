@@ -6,7 +6,11 @@ import { RadioGroup, Radio } from "@sovoli/ui/components/radio";
 import { CalendarIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
-import { formatDateRange, calculateDuration } from "~/utils/dateUtils";
+import {
+  formatDateRange,
+  calculateDuration,
+  formatCycleLabel,
+} from "~/utils/dateUtils";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
@@ -97,10 +101,6 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
   // If there's only one cycle, show it without radio selection
   if (cycles.length === 1 && cycles[0]) {
     const cycle = cycles[0];
-    const cycleLabel =
-      cycle.academicCycle.customLabel ??
-      cycle.academicCycle.globalCycle?.label ??
-      "Academic Cycle";
 
     const startDate =
       cycle.academicCycle.startDate ??
@@ -110,6 +110,8 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
       cycle.academicCycle.endDate ??
       cycle.academicCycle.globalCycle?.endDate ??
       "";
+
+    const cycleLabel = formatCycleLabel(startDate, endDate);
 
     return (
       <ProgramSectionsWrapper program={program} section="cycle_info">
@@ -195,11 +197,6 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
             }}
           >
             {cycles.map((cycle) => {
-              const cycleLabel =
-                cycle.academicCycle.customLabel ??
-                cycle.academicCycle.globalCycle?.label ??
-                "Academic Cycle";
-
               const startDate =
                 cycle.academicCycle.startDate ??
                 cycle.academicCycle.globalCycle?.startDate ??
@@ -208,6 +205,8 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
                 cycle.academicCycle.endDate ??
                 cycle.academicCycle.globalCycle?.endDate ??
                 "";
+
+              const cycleLabel = formatCycleLabel(startDate, endDate);
 
               const description = (
                 <div className="space-y-1 text-sm">

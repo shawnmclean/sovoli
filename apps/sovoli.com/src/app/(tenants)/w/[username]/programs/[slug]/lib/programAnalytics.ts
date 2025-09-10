@@ -4,6 +4,7 @@ import type {
   ProgramGroup,
 } from "~/modules/academics/types";
 import posthog from "posthog-js";
+import { formatCycleLabel } from "~/utils/dateUtils";
 
 interface PricingData {
   total: { amount: number; currency: string }[];
@@ -66,11 +67,16 @@ const getProgramName = (program: Program) => {
 };
 
 const getCycleLabel = (cycle: ProgramCycle) => {
-  return (
-    cycle.academicCycle.customLabel ??
-    cycle.academicCycle.globalCycle?.label ??
-    "Academic Term"
-  );
+  const startDate =
+    cycle.academicCycle.startDate ??
+    cycle.academicCycle.globalCycle?.startDate ??
+    "";
+  const endDate =
+    cycle.academicCycle.endDate ??
+    cycle.academicCycle.globalCycle?.endDate ??
+    "";
+
+  return formatCycleLabel(startDate, endDate);
 };
 
 // Centralized analytics data preparation

@@ -10,7 +10,8 @@ import {
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import type { ProgramCycle } from "~/modules/academics/types";
 import { ProgramPriceCard } from "~/app/(tenants)/w/[username]/(main-layout)/programs/components/ProgramPriceCard";
-import { PricingItem } from "~/modules/core/economics/types";
+import type { PricingItem } from "~/modules/core/economics/types";
+import { formatCycleLabel } from "~/utils/dateUtils";
 
 export interface PriceButtonProps {
   defaultCycle?: ProgramCycle;
@@ -29,10 +30,14 @@ export function PriceButton({ defaultCycle }: PriceButtonProps) {
     return null;
   }
 
-  const cycleLabel =
-    cycleToUse.academicCycle.customLabel ??
-    cycleToUse.academicCycle.globalCycle?.label ??
-    "Academic Term";
+  const startDate =
+    cycleToUse.academicCycle.startDate ??
+    cycleToUse.academicCycle.globalCycle?.startDate;
+  const endDate =
+    cycleToUse.academicCycle.endDate ??
+    cycleToUse.academicCycle.globalCycle?.endDate;
+
+  const cycleLabel = formatCycleLabel(startDate, endDate);
 
   // Get tuition pricing
   const pricingItem = cycleToUse.pricingPackage.pricingItems.find(
