@@ -113,10 +113,6 @@ export const CREATIVE_THINKING_STATIONERY_HUB_CATALOG: CatalogModule = {
       GYD: 2400,
       USD: 12,
     }),
-    createCatalogItem("book-steps-to-common-entrance-book-2", {
-      GYD: 1800,
-      USD: 9,
-    }),
 
     // Grade 3 Books (only the ones that exist)
     createCatalogItem("book-fun-with-language-book-3", { GYD: 2200, USD: 11 }),
@@ -133,10 +129,6 @@ export const CREATIVE_THINKING_STATIONERY_HUB_CATALOG: CatalogModule = {
     createCatalogItem("book-word-perfect-spelling-book-3", {
       GYD: 1500,
       USD: 7.5,
-    }),
-    createCatalogItem("book-new-nelsons-west-indian-readers-book-3", {
-      GYD: 2000,
-      USD: 10,
     }),
 
     // Grade 4 Books (only the ones that exist)
@@ -155,19 +147,11 @@ export const CREATIVE_THINKING_STATIONERY_HUB_CATALOG: CatalogModule = {
       GYD: 1600,
       USD: 8,
     }),
-    createCatalogItem("book-new-nelsons-west-indian-readers-book-4", {
-      GYD: 2100,
-      USD: 10.5,
-    }),
 
     // Grade 5 Books (only the ones that exist)
     createCatalogItem("book-fun-with-language-book-5", {
       GYD: 2700,
       USD: 13.5,
-    }),
-    createCatalogItem("book-lets-do-mathematics-book-5", {
-      GYD: 2300,
-      USD: 11.5,
     }),
     createCatalogItem("book-social-studies-for-our-children-book-5", {
       GYD: 2100,
@@ -176,10 +160,6 @@ export const CREATIVE_THINKING_STATIONERY_HUB_CATALOG: CatalogModule = {
     createCatalogItem("book-science-around-us-book-5", {
       GYD: 2100,
       USD: 10.5,
-    }),
-    createCatalogItem("book-steps-to-common-entrance-book-3", {
-      GYD: 2000,
-      USD: 10,
     }),
 
     // Grade 6 Books (only the ones that exist)
@@ -198,10 +178,6 @@ export const CREATIVE_THINKING_STATIONERY_HUB_CATALOG: CatalogModule = {
     createCatalogItem("book-guyana-our-country-our-home", {
       GYD: 1800,
       USD: 9,
-    }),
-    createCatalogItem("book-steps-to-common-entrance-book-4", {
-      GYD: 2200,
-      USD: 11,
     }),
 
     // Reference Books
