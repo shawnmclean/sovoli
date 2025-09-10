@@ -268,6 +268,7 @@ export default async function Layout({ children, params, modals }: Props) {
         <ProgramDetailMobileFooter
           orgInstance={orgInstance}
           program={programToUse}
+          defaultCycle={currentCycle ?? nextCycle}
         />
         {children}
       </ProgramCycleSelectionProvider>

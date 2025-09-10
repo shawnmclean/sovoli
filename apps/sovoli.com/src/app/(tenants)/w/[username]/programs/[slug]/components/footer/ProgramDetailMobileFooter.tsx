@@ -12,7 +12,7 @@ import {
 
 import { gradientBorderButton } from "~/components/GradientBorderButton";
 
-import type { Program } from "~/modules/academics/types";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
@@ -28,6 +28,7 @@ import { PriceButton } from "./price/PriceButton";
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
   program: Program;
+  defaultCycle?: ProgramCycle;
 }
 
 // Helper function to format date
@@ -43,6 +44,7 @@ const formatDate = (dateString: string) => {
 export function ProgramDetailMobileFooter({
   orgInstance,
   program,
+  defaultCycle,
 }: ProgramDetailMobileFooterProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   // const {
@@ -116,7 +118,7 @@ export function ProgramDetailMobileFooter({
       <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
         <div className="flex w-full items-center py-3 justify-between">
           {/* Left side - Program info badge */}
-          <PriceButton />
+          <PriceButton defaultCycle={defaultCycle} />
 
           {/* Right side - Reserve button */}
           <Button
