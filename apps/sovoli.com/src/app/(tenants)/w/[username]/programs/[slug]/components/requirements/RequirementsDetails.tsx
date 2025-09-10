@@ -13,6 +13,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Switch } from "@sovoli/ui/components/switch";
+import { Alert } from "@sovoli/ui/components/alert";
 import {
   Drawer,
   DrawerContent,
@@ -95,7 +96,7 @@ export function RequirementsDetails({
   const [supplierData, setSupplierData] = useState<Record<string, Supplier[]>>(
     {},
   );
-  const [showSuppliers, setShowSuppliers] = useState(false);
+  const [showSuppliers, setShowSuppliers] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedSuppliersForDrawer, setSelectedSuppliersForDrawer] = useState<
     Supplier[]
@@ -319,6 +320,21 @@ export function RequirementsDetails({
           What to bring for {programName}
         </h1>
 
+        {/* Toggle for supplier pricing */}
+        <div className="pb-2">
+          <div className="flex items-center justify-end gap-2">
+            <Switch
+              isSelected={showSuppliers}
+              onValueChange={setShowSuppliers}
+              size="sm"
+            >
+              <span className="text-sm text-foreground-600">
+                {showSuppliers ? "Show Price" : "Hide Price"}
+              </span>
+            </Switch>
+          </div>
+        </div>
+
         {requirements.map((requirement: RequirementList, reqIndex: number) => {
           // Calculate category totals
           const categoryTotal = requirement.items.reduce(
@@ -350,11 +366,9 @@ export function RequirementsDetails({
                     {itemCount} {requirement.name}
                   </h3>
                 </div>
-                {showSuppliers && (
-                  <div className="text-sm text-foreground-500">
-                    GYD {categoryTotal.toLocaleString()}
-                  </div>
-                )}
+                <div className="text-sm text-foreground-500">
+                  GYD {categoryTotal.toLocaleString()}
+                </div>
               </div>
 
               <div className="space-y-2">
@@ -415,51 +429,28 @@ export function RequirementsDetails({
             </div>
           );
         })}
-      </div>
+        {/* Info alert about pricing */}
 
-      {/* Toggle for supplier pricing */}
-      <div className="pb-20">
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <Switch
-            isSelected={showSuppliers}
-            onValueChange={setShowSuppliers}
-            size="sm"
-          >
-            <span className="text-sm text-foreground-600">
-              {showSuppliers
-                ? "Hide supplier pricing (demo data)"
-                : "Show supplier pricing (demo data)"}
-            </span>
-          </Switch>
-        </div>
-
-        {showSuppliers && (
-          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
-            <p className="text-sm text-blue-800 dark:text-blue-200">
-              <strong>ℹ️ Supplier Information:</strong> This is demo pricing.
-              Its not real.
-            </p>
-          </div>
-        )}
+        <Alert color="primary" variant="flat" hideIcon>
+          Prices shown are provided by suppliers and are for reference only.
+        </Alert>
       </div>
 
       <div className="fixed bottom-0 left-0 right-0 border-t border-divider p-4 z-50 bg-background/95 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              {showSuppliers && (
-                <div>
-                  <button
-                    onClick={handleShowSupplierDetails}
-                    className="text-lg font-semibold text-foreground hover:text-primary-600 transition-colors cursor-pointer"
-                  >
-                    Total GYD {totalPrice.toLocaleString()}
-                  </button>
-                  <div className="text-sm text-foreground-600">
-                    from {supplierCount} {pluralize(supplierCount, "supplier")}
-                  </div>
+              <div>
+                <button
+                  onClick={handleShowSupplierDetails}
+                  className="text-lg font-semibold text-foreground hover:text-primary-600 transition-colors cursor-pointer"
+                >
+                  Total GYD {totalPrice.toLocaleString()}
+                </button>
+                <div className="text-sm text-foreground-600">
+                  from {supplierCount} {pluralize(supplierCount, "supplier")}
                 </div>
-              )}
+              </div>
             </div>
             <div>
               <Button onPress={handleViewSuppliers} variant="solid">
