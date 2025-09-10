@@ -223,5 +223,35 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
       GYD: 1000,
       USD: 5,
     }),
+
+    // Additional missing books from the price list (from images)
+    createCatalogItem("book-atlantic-reader-book-2", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-roraima-reader-literacy-year-1", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-roraima-reader-literacy-year-2", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-roraima-reader-numeracy-year-1", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-roraima-reader-numeracy-year-2", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-word-perfect-spelling-book-3", {
+      GYD: 500,
+      USD: 2.5,
+    }),
+    createCatalogItem("book-word-perfect-spelling-book-4", {
+      GYD: 500,
+      USD: 2.5,
+    }),
   ].filter((item): item is CatalogItem => item !== null),
 };
