@@ -24,7 +24,7 @@ function createCatalogItem(
 
 export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
   items: [
-    // Art and Creative Supplies (from images)
+    // Art and Creative Supplies
     createCatalogItem("supply-crayola-crayons-fat", { GYD: 1400, USD: 7 }),
     createCatalogItem("supply-crayola-crayons-fine", { GYD: 600, USD: 3 }),
     createCatalogItem("supply-drawing-book", { GYD: 100, USD: 0.5 }),
@@ -32,7 +32,7 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
     createCatalogItem("supply-building-blocks", { GYD: 2000, USD: 10 }),
     createCatalogItem("supply-glue-elmers", { GYD: 440, USD: 2.2 }),
 
-    // Writing and Paper Supplies (from images)
+    // Writing and Paper Supplies
     createCatalogItem("supply-fat-pencil", { GYD: 100, USD: 0.5 }),
     createCatalogItem("supply-pencils-pack-12", { GYD: 340, USD: 1.7 }),
     createCatalogItem("supply-exercise-book-small-fine-line", {
@@ -42,18 +42,18 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
     createCatalogItem("supply-exercise-book-big", { GYD: 300, USD: 1.5 }),
     createCatalogItem("supply-double-line-book", { GYD: 100, USD: 0.5 }),
 
-    // Educational Materials (from images)
+    // Educational Materials
     createCatalogItem("supply-pack-letters-numbers", { GYD: 1200, USD: 6 }),
 
-    // Cardboard and Craft Materials (from images)
+    // Cardboard and Craft Materials
     createCatalogItem("supply-cardboard-lg", { GYD: 140, USD: 0.7 }),
     createCatalogItem("supply-cardboard-sml", { GYD: 40, USD: 0.2 }),
 
-    // Educational Books - Pre-Nursery and Early Learning (from images)
+    // Educational Books - Pre-Nursery and Early Learning
     createCatalogItem("book-123-starters-coloring", { GYD: 680, USD: 3.4 }),
     createCatalogItem("book-big-easy-coloring", { GYD: 580, USD: 2.9 }),
 
-    // Educational Books - Nursery Level (from images)
+    // Educational Books - Nursery Level
     createCatalogItem("book-animal-friends-level-1a-reader", {
       GYD: 240,
       USD: 1.2,
@@ -71,7 +71,7 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
       USD: 1.2,
     }),
 
-    // Educational Books - Primary Level (from images)
+    // Educational Books - Primary Level
     // Grade 1 Books
     createCatalogItem("book-mathematics-made-easy-1", { GYD: 2000, USD: 10 }),
     createCatalogItem("book-atlantic-reader-book-1", { GYD: 1300, USD: 6.5 }),
@@ -90,6 +90,7 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
 
     // Grade 2 Books
     createCatalogItem("book-mathematics-made-easy-2", { GYD: 2000, USD: 10 }),
+    createCatalogItem("book-atlantic-reader-book-2", { GYD: 1000, USD: 5 }),
     createCatalogItem(
       "book-process-of-learning-language-arts-infant-second-year",
       { GYD: 2000, USD: 10 },
@@ -114,14 +115,14 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
       USD: 5,
     }),
     createCatalogItem("book-science-around-us-book-3", { GYD: 1000, USD: 5 }),
-    createCatalogItem("book-rainbow-readers-book-3", { GYD: 1000, USD: 5 }),
+    createCatalogItem("book-rainbow-readers-book-3", { GYD: 1300, USD: 6.5 }),
     createCatalogItem("book-word-perfect-spelling-book-3", {
       GYD: 500,
       USD: 2.5,
     }),
     createCatalogItem("book-nelson-west-indian-readers-book-3", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1200,
+      USD: 6,
     }),
 
     // Grade 4 Books
@@ -131,11 +132,11 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
       USD: 6.5,
     }),
     createCatalogItem("book-social-studies-for-our-children-book-4", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1200,
+      USD: 6,
     }),
-    createCatalogItem("book-science-around-us-book-4", { GYD: 1000, USD: 5 }),
-    createCatalogItem("book-rainbow-readers-book-4", { GYD: 1000, USD: 5 }),
+    createCatalogItem("book-science-around-us-book-4", { GYD: 1200, USD: 6 }),
+    createCatalogItem("book-rainbow-readers-book-4", { GYD: 1300, USD: 6.5 }),
     createCatalogItem("book-word-perfect-spelling-book-4", {
       GYD: 500,
       USD: 2.5,
@@ -146,13 +147,17 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
       GYD: 1200,
       USD: 6,
     }),
+    createCatalogItem("book-lets-do-mathematics-book-5", {
+      GYD: 1300,
+      USD: 6.5,
+    }),
     createCatalogItem("book-social-studies-for-our-children-book-5", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1200,
+      USD: 6,
     }),
     createCatalogItem("book-science-around-us-book-5", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1200,
+      USD: 6,
     }),
 
     // Grade 6 Books
@@ -162,10 +167,10 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
       USD: 6.5,
     }),
     createCatalogItem("book-social-studies-for-our-children-book-6", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1200,
+      USD: 6,
     }),
-    createCatalogItem("book-science-around-us-book-6", { GYD: 1000, USD: 5 }),
+    createCatalogItem("book-science-around-us-book-6", { GYD: 1200, USD: 6 }),
     createCatalogItem("book-new-junior-english-revised", {
       GYD: 1500,
       USD: 7.5,
@@ -176,7 +181,7 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
       USD: 14,
     }),
 
-    // Reference Books (from images)
+    // Reference Books
     createCatalogItem("book-oxford-primary-school-dictionary", {
       GYD: 2500,
       USD: 12.5,
@@ -186,72 +191,42 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
       USD: 15,
     }),
 
-    // Additional books from the price list (from images)
+    // Additional books from the price list
     createCatalogItem("book-nelson-west-indian-readers-book-2", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1200,
+      USD: 6,
     }),
     createCatalogItem("book-roraima-reader-literacy-year-2", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1500,
+      USD: 7.5,
     }),
     createCatalogItem("book-roraima-reader-literacy-year-1", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1200,
+      USD: 6,
     }),
     createCatalogItem("book-roraima-reader-numeracy-year-2", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1500,
+      USD: 7.5,
     }),
     createCatalogItem("book-roraima-reader-numeracy-year-1", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1200,
+      USD: 6,
     }),
     createCatalogItem("book-roraima-reader-writing-skills-book-1-2", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1500,
+      USD: 7.5,
     }),
     createCatalogItem("book-step-to-common-entrance-book-1", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1300,
+      USD: 6.5,
     }),
     createCatalogItem("book-step-to-common-entrance-book-2", {
-      GYD: 1000,
-      USD: 5,
+      GYD: 1300,
+      USD: 6.5,
     }),
     createCatalogItem("book-step-to-common-entrance-book-3", {
-      GYD: 1000,
-      USD: 5,
-    }),
-
-    // Additional missing books from the price list (from images)
-    createCatalogItem("book-atlantic-reader-book-2", {
-      GYD: 1000,
-      USD: 5,
-    }),
-    createCatalogItem("book-roraima-reader-literacy-year-1", {
-      GYD: 1000,
-      USD: 5,
-    }),
-    createCatalogItem("book-roraima-reader-literacy-year-2", {
-      GYD: 1000,
-      USD: 5,
-    }),
-    createCatalogItem("book-roraima-reader-numeracy-year-1", {
-      GYD: 1000,
-      USD: 5,
-    }),
-    createCatalogItem("book-roraima-reader-numeracy-year-2", {
-      GYD: 1000,
-      USD: 5,
-    }),
-    createCatalogItem("book-word-perfect-spelling-book-3", {
-      GYD: 500,
-      USD: 2.5,
-    }),
-    createCatalogItem("book-word-perfect-spelling-book-4", {
-      GYD: 500,
-      USD: 2.5,
+      GYD: 1300,
+      USD: 6.5,
     }),
   ].filter((item): item is CatalogItem => item !== null),
 };
