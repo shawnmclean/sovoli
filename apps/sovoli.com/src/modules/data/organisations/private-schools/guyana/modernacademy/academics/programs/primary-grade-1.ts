@@ -304,6 +304,27 @@ export const MAGY_PRIMARY_GRADE_1_PROGRAM: Program = {
       audience: "parent",
       items: [
         {
+          item: findItemById("supply-exercise-book-big")!,
+          quantity: 15,
+          unit: "books",
+        },
+        {
+          item: findItemById("supply-double-line-book")!,
+          quantity: 1,
+          unit: "book",
+        },
+        {
+          item: findItemById("supply-art-book")!,
+          quantity: 1,
+          unit: "book",
+          notes: "Crayola",
+        },
+        {
+          item: findItemById("supply-soap")!,
+          quantity: 1,
+          unit: "bar",
+        },
+        {
           item: findItemById("supply-detergent")!,
           quantity: 1,
           unit: "bottle",
