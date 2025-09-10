@@ -39,7 +39,7 @@ export function PriceButton(_props: PriceButtonProps) {
         <Button
           variant="light"
           color="default"
-          className="min-h-[4rem] h-auto py-2"
+          className="min-h-[4rem] h-auto"
           onPress={() => {
             // TODO: Implement price button action
           }}
@@ -47,7 +47,7 @@ export function PriceButton(_props: PriceButtonProps) {
           {selectedCycle.status === "closed" ? (
             <span className="text-default-600">Closed</span>
           ) : (
-            <div className="flex flex-col items-start gap-1 min-w-0 w-full">
+            <div className="flex flex-col items-start min-w-0 w-full">
               <span className="text-md font-bold text-primary">
                 GYD {tuitionCost.toLocaleString()}
               </span>
