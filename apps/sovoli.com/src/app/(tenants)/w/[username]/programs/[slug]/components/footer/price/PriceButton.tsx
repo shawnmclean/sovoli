@@ -65,7 +65,7 @@ export function PriceButton({ defaultCycle }: PriceButtonProps) {
           <Button
             variant="light"
             color="default"
-            className="min-h-[4rem] h-auto"
+            className=" h-auto"
             onPress={onOpen}
           >
             {selectedCycle.status === "closed" ? (
