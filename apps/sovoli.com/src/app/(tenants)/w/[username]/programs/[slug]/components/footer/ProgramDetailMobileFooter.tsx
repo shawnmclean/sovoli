@@ -23,6 +23,7 @@ import { getWhatsAppContact } from "~/utils/whatsappUtils";
 import { Divider } from "@sovoli/ui/components/divider";
 // import { Alert } from "@sovoli/ui/components/alert";
 import { LeadsForm } from "../LeadsForm";
+import { PriceButton } from "./price/PriceButton";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -113,35 +114,14 @@ export function ProgramDetailMobileFooter({
   return (
     <>
       <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
-        <div className="flex w-full items-start py-3 gap-4">
+        <div className="flex w-full items-center py-3 justify-between">
           {/* Left side - Program info badge */}
-          {/* <div className="flex flex-1 items-center min-w-0">
-            <Skeleton isLoaded={!(isLoading && isInitialized)}>
-              <Button
-                as={Link}
-                variant="light"
-                color="default"
-                onPress={onOpen}
-                className="text-left h-auto p-2 min-w-0"
-              >
-                {selectedCycle.status === "closed" ? (
-                  <span className="text-default-600">Closed</span>
-                ) : (
-                  <div className="flex flex-col items-start gap-1 min-w-0 w-full">
-                    <span className="underline break-words whitespace-normal text-left">
-                      {cycleLabel}
-                    </span>
-                  </div>
-                )}
-              </Button>
-            </Skeleton>
-          </div> */}
+          <PriceButton />
 
           {/* Right side - Reserve button */}
           <Button
             variant="shadow"
             radius="lg"
-            fullWidth
             startContent={<MessageSquareShareIcon size={16} />}
             className={gradientBorderButton()}
             onPress={onOpen}
@@ -217,16 +197,6 @@ export function ProgramDetailMobileFooter({
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-
-      {/* Contact Us Drawer */}
-
-      {/* <GuidedChatForm
-        whatsappNumber={whatsappNumber}
-        isOpen={isContactOpen}
-        onOpenChange={onContactOpenChange}
-        cycle={selectedCycle}
-        program={program}
-      /> */}
     </>
   );
 }
