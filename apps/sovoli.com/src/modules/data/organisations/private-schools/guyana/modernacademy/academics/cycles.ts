@@ -26,7 +26,7 @@ const registrationFee: PricingItem = {
   amount: { GYD: 6000 },
 };
 
-const registrationDiscount: Discount = {
+const earlyBirdDiscount: Discount = {
   id: "early-bird",
   label: "Early Bird",
   message: "Early Bird discount",
@@ -34,6 +34,16 @@ const registrationDiscount: Discount = {
   type: "percentage",
   appliesTo: ["registration"],
   validUntil: "2025-07-18",
+};
+
+const noRegistrationDiscount: Discount = {
+  id: "no-registration",
+  label: "No Registration",
+  message: "No Registration discount",
+  value: 100,
+  type: "percentage",
+  appliesTo: ["registration"],
+  validUntil: "2025-10-01",
 };
 
 const registrationPeriod2025T1 = {
@@ -45,7 +55,7 @@ export const MAGY_PRE_NURSERY_2025_T1: ProgramCycle = {
   id: "magy-pre-nursery-2025-t1",
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   pricingPackage: {
-    discounts: [registrationDiscount],
+    discounts: [earlyBirdDiscount, noRegistrationDiscount],
     pricingItems: [
       registrationFee,
       {
@@ -68,7 +78,7 @@ export const MAGY_NURSERY_YEAR_1_2025_T1: ProgramCycle = {
   id: "magy-nursery-year-1-2025-t1",
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   pricingPackage: {
-    discounts: [registrationDiscount],
+    discounts: [earlyBirdDiscount, noRegistrationDiscount],
     pricingItems: [
       registrationFee,
       {
@@ -91,7 +101,7 @@ export const MAGY_NURSERY_YEAR_2_2025_T1: ProgramCycle = {
   id: "magy-nursery-year-2-2025-t1",
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   pricingPackage: {
-    discounts: [registrationDiscount],
+    discounts: [earlyBirdDiscount, noRegistrationDiscount],
     pricingItems: [
       registrationFee,
       {
@@ -115,7 +125,7 @@ export const MAGY_PRIMARY_GRADE_1_2025_T1: ProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   registrationPeriod: registrationPeriod2025T1,
   pricingPackage: {
-    discounts: [registrationDiscount],
+    discounts: [earlyBirdDiscount, noRegistrationDiscount],
     pricingItems: [
       registrationFee,
       {
@@ -138,7 +148,7 @@ export const MAGY_PRIMARY_GRADE_2_2025_T1: ProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   registrationPeriod: registrationPeriod2025T1,
   pricingPackage: {
-    discounts: [registrationDiscount],
+    discounts: [earlyBirdDiscount, noRegistrationDiscount],
     pricingItems: [
       registrationFee,
       {
@@ -161,7 +171,7 @@ export const MAGY_PRIMARY_GRADE_3_2025_T1: ProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   registrationPeriod: registrationPeriod2025T1,
   pricingPackage: {
-    discounts: [registrationDiscount],
+    discounts: [earlyBirdDiscount, noRegistrationDiscount],
     pricingItems: [
       registrationFee,
       {
@@ -184,7 +194,7 @@ export const MAGY_PRIMARY_GRADE_4_2025_T1: ProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   registrationPeriod: registrationPeriod2025T1,
   pricingPackage: {
-    discounts: [registrationDiscount],
+    discounts: [earlyBirdDiscount, noRegistrationDiscount],
     pricingItems: [
       registrationFee,
       {
@@ -207,7 +217,7 @@ export const MAGY_PRIMARY_GRADE_5_2025_T1: ProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   registrationPeriod: registrationPeriod2025T1,
   pricingPackage: {
-    discounts: [registrationDiscount],
+    discounts: [earlyBirdDiscount, noRegistrationDiscount],
     pricingItems: [
       registrationFee,
       {
@@ -230,7 +240,7 @@ export const MAGY_PRIMARY_GRADE_6_2025_T1: ProgramCycle = {
   academicCycle: MAGY_ACADEMIC_CYCLE_2025_T1,
   registrationPeriod: registrationPeriod2025T1,
   pricingPackage: {
-    discounts: [registrationDiscount],
+    discounts: [earlyBirdDiscount, noRegistrationDiscount],
     pricingItems: [
       registrationFee,
       {
