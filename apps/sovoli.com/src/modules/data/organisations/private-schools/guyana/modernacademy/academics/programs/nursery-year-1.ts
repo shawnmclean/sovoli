@@ -160,10 +160,16 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
       audience: "parent",
       items: [
         {
-          item: findItemById("book-animal-friends-level-a-reader")!,
+          item: findItemById("book-animal-friends-level-1a-reader")!,
         },
         {
-          item: findItemById("book-animal-friends-level-a-workbook")!,
+          item: findItemById("book-animal-friends-level-1a-workbook-1")!,
+        },
+        {
+          item: findItemById("book-animal-friends-level-1a-workbook-2")!,
+        },
+        {
+          item: findItemById("book-animal-friends-level-1a-workbook-3")!,
         },
         { item: findItemById("book-big-easy-coloring")! },
         {
@@ -191,10 +197,9 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
           item: findItemById("supply-art-book")!,
           quantity: 1,
         },
-        { item: findItemById("supply-pack-letters")! },
-        { item: findItemById("supply-pack-numbers")! },
+        { item: findItemById("supply-pack-letters-numbers")! },
         {
-          item: findItemById("supply-sheet-card-boards")!,
+          item: findItemById("supply-cardboard-lg")!,
           quantity: 2,
           unit: "sheet",
         },
@@ -204,8 +209,7 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
           unit: "pack",
         },
         {
-          item: findItemById("supply-paint-set")!,
-          notes: "Crayola",
+          item: findItemById("supply-crayola-paint-6pcs")!,
           quantity: 1,
           unit: "set",
         },

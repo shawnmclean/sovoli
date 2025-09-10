@@ -314,7 +314,7 @@ export const MAGY_PRIMARY_GRADE_1_PROGRAM: Program = {
           unit: "bottle",
         },
         {
-          item: findItemById("supply-cardboard")!,
+          item: findItemById("supply-cardboard-lg")!,
           quantity: 1,
           unit: "sheet",
         },

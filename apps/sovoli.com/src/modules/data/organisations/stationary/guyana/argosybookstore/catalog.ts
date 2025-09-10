@@ -24,164 +24,204 @@ function createCatalogItem(
 
 export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
   items: [
-    // Art and Creative Supplies
-    createCatalogItem("supply-crayola-crayons-fat", { GYD: 1200, USD: 6 }),
-    createCatalogItem("supply-crayola-crayons", { GYD: 1000, USD: 5 }),
-    createCatalogItem("supply-crayola-play-dough", { GYD: 1800, USD: 9 }),
-    createCatalogItem("supply-art-book", { GYD: 800, USD: 4 }),
-    createCatalogItem("supply-drawing-book", { GYD: 800, USD: 4 }),
-    createCatalogItem("supply-paint-set", { GYD: 1500, USD: 7.5 }),
-    createCatalogItem("supply-building-blocks", { GYD: 2500, USD: 12.5 }),
-    createCatalogItem("supply-pack-blocks", { GYD: 2000, USD: 10 }),
-    createCatalogItem("supply-glue", { GYD: 400, USD: 2 }),
+    // Art and Creative Supplies (from images)
+    createCatalogItem("supply-crayola-crayons-fat", { GYD: 1400, USD: 7 }),
+    createCatalogItem("supply-crayola-crayons-fine", { GYD: 600, USD: 3 }),
+    createCatalogItem("supply-drawing-book", { GYD: 100, USD: 0.5 }),
+    createCatalogItem("supply-crayola-paint-6pcs", { GYD: 1500, USD: 7.5 }),
+    createCatalogItem("supply-building-blocks", { GYD: 2000, USD: 10 }),
+    createCatalogItem("supply-glue-elmers", { GYD: 440, USD: 2.2 }),
 
-    // Writing and Paper Supplies
-    createCatalogItem("supply-fat-pencil", { GYD: 200, USD: 1 }),
-    createCatalogItem("supply-pencils", { GYD: 300, USD: 1.5 }),
-    createCatalogItem("supply-single-line-book", { GYD: 400, USD: 2 }),
-    createCatalogItem("supply-fine-line-book", { GYD: 500, USD: 2.5 }),
-    createCatalogItem("supply-4-line-book", { GYD: 450, USD: 2.25 }),
-    createCatalogItem("supply-exercise-book", { GYD: 600, USD: 3 }),
-    createCatalogItem("supply-double-line-book", { GYD: 600, USD: 3 }),
-
-    // Educational Materials
-    createCatalogItem("supply-pack-letters", { GYD: 1000, USD: 5 }),
-    createCatalogItem("supply-pack-numbers", { GYD: 1000, USD: 5 }),
-
-    // Cardboard and Craft Materials
-    createCatalogItem("supply-card-board-sheet", { GYD: 300, USD: 1.5 }),
-    createCatalogItem("supply-sheet-card-boards", { GYD: 300, USD: 1.5 }),
-    createCatalogItem("supply-sheet-card-board", { GYD: 300, USD: 1.5 }),
-    createCatalogItem("supply-cardboard", { GYD: 300, USD: 1.5 }),
-
-    // Hygiene and Cleaning Supplies
-    createCatalogItem("supply-hand-sanitizer", { GYD: 600, USD: 3 }),
-    createCatalogItem("supply-paper-towel", { GYD: 500, USD: 2.5 }),
-    createCatalogItem("supply-tissue-paper-towel", { GYD: 500, USD: 2.5 }),
-    createCatalogItem("supply-bounty-tissue", { GYD: 800, USD: 4 }),
-    createCatalogItem("supply-liquid-soap", { GYD: 700, USD: 3.5 }),
-    createCatalogItem("supply-soap", { GYD: 400, USD: 2 }),
-    createCatalogItem("supply-detergent", { GYD: 800, USD: 4 }),
-    createCatalogItem("supply-toilet-paper", { GYD: 400, USD: 2 }),
-
-    // Educational Books - Pre-Nursery and Early Learning
-    createCatalogItem("book-coloring-letters-numbers", { GYD: 1200, USD: 6 }),
-    createCatalogItem("book-big-easy-coloring", { GYD: 1000, USD: 5 }),
-    createCatalogItem("book-coloring-book", { GYD: 800, USD: 4 }),
-
-    // Educational Books - Nursery Level
-    createCatalogItem("book-animal-friends-level-a-reader", {
-      GYD: 1500,
-      USD: 7.5,
+    // Writing and Paper Supplies (from images)
+    createCatalogItem("supply-fat-pencil", { GYD: 100, USD: 0.5 }),
+    createCatalogItem("supply-pencils-pack-12", { GYD: 340, USD: 1.7 }),
+    createCatalogItem("supply-exercise-book-small-fine-line", {
+      GYD: 100,
+      USD: 0.5,
     }),
-    createCatalogItem("book-animal-friends-level-a-workbook", {
-      GYD: 1200,
-      USD: 6,
+    createCatalogItem("supply-exercise-book-big", { GYD: 300, USD: 1.5 }),
+    createCatalogItem("supply-double-line-book", { GYD: 100, USD: 0.5 }),
+
+    // Educational Materials (from images)
+    createCatalogItem("supply-pack-letters-numbers", { GYD: 1200, USD: 6 }),
+
+    // Cardboard and Craft Materials (from images)
+    createCatalogItem("supply-cardboard-lg", { GYD: 140, USD: 0.7 }),
+    createCatalogItem("supply-cardboard-sml", { GYD: 40, USD: 0.2 }),
+
+    // Educational Books - Pre-Nursery and Early Learning (from images)
+    createCatalogItem("book-123-starters-coloring", { GYD: 680, USD: 3.4 }),
+    createCatalogItem("book-big-easy-coloring", { GYD: 580, USD: 2.9 }),
+
+    // Educational Books - Nursery Level (from images)
+    createCatalogItem("book-animal-friends-level-1a-reader", {
+      GYD: 240,
+      USD: 1.2,
     }),
-    createCatalogItem("book-animal-readers", { GYD: 1400, USD: 7 }),
-    createCatalogItem("book-roraima-nursery-year-1-literacy", {
-      GYD: 1800,
-      USD: 9,
+    createCatalogItem("book-animal-friends-level-1a-workbook-1", {
+      GYD: 240,
+      USD: 1.2,
     }),
-    createCatalogItem("book-roraima-nursery-year-1-numeracy", {
-      GYD: 1800,
-      USD: 9,
+    createCatalogItem("book-animal-friends-level-1a-workbook-2", {
+      GYD: 240,
+      USD: 1.2,
     }),
-    createCatalogItem("book-roraima-workbook-1-writing", { GYD: 1600, USD: 8 }),
-    createCatalogItem("book-roraima-numeracy-workbook-book-2", {
-      GYD: 1800,
-      USD: 9,
-    }),
-    createCatalogItem("book-roraima-literacy-nursery-year-2", {
-      GYD: 1800,
-      USD: 9,
+    createCatalogItem("book-animal-friends-level-1a-workbook-3", {
+      GYD: 240,
+      USD: 1.2,
     }),
 
-    // Educational Books - Primary Level
-    // Grade 2 Books (only the ones that exist)
+    // Educational Books - Primary Level (from images)
+    // Grade 1 Books
+    createCatalogItem("book-mathematics-made-easy-1", { GYD: 2000, USD: 10 }),
+    createCatalogItem("book-atlantic-reader-book-1", { GYD: 1300, USD: 6.5 }),
+    createCatalogItem(
+      "book-process-of-learning-language-arts-infant-first-year",
+      { GYD: 2000, USD: 10 },
+    ),
+    createCatalogItem(
+      "book-process-of-learning-composition-writing-infant-first-year",
+      { GYD: 1500, USD: 7.5 },
+    ),
+    createCatalogItem("book-fun-with-language-book-1-parts-1-2-3", {
+      GYD: 860,
+      USD: 4.3,
+    }),
+
+    // Grade 2 Books
     createCatalogItem("book-mathematics-made-easy-2", { GYD: 2000, USD: 10 }),
-    createCatalogItem("book-atlantic-reader-book-2", { GYD: 1800, USD: 9 }),
     createCatalogItem(
       "book-process-of-learning-language-arts-infant-second-year",
-      { GYD: 2200, USD: 11 },
+      { GYD: 2000, USD: 10 },
     ),
     createCatalogItem(
       "book-process-of-learning-composition-writing-infant-second-year",
-      { GYD: 2000, USD: 10 },
+      { GYD: 1500, USD: 7.5 },
     ),
     createCatalogItem("book-fun-with-language-book-2-parts-1-2-3", {
-      GYD: 2400,
-      USD: 12,
+      GYD: 860,
+      USD: 4.3,
     }),
 
-    // Grade 3 Books (only the ones that exist)
-    createCatalogItem("book-fun-with-language-book-3", { GYD: 2200, USD: 11 }),
+    // Grade 3 Books
+    createCatalogItem("book-fun-with-language-book-3", { GYD: 1200, USD: 6 }),
     createCatalogItem("book-lets-do-mathematics-book-3", {
-      GYD: 2100,
-      USD: 10.5,
+      GYD: 1300,
+      USD: 6.5,
     }),
     createCatalogItem("book-social-studies-for-our-children-book-3", {
-      GYD: 1900,
-      USD: 9.5,
+      GYD: 1000,
+      USD: 5,
     }),
-    createCatalogItem("book-science-around-us-book-3", { GYD: 1900, USD: 9.5 }),
-    createCatalogItem("book-rainbow-readers-book-3", { GYD: 1900, USD: 9.5 }),
+    createCatalogItem("book-science-around-us-book-3", { GYD: 1000, USD: 5 }),
+    createCatalogItem("book-rainbow-readers-book-3", { GYD: 1000, USD: 5 }),
     createCatalogItem("book-word-perfect-spelling-book-3", {
+      GYD: 500,
+      USD: 2.5,
+    }),
+    createCatalogItem("book-nelson-west-indian-readers-book-3", {
+      GYD: 1000,
+      USD: 5,
+    }),
+
+    // Grade 4 Books
+    createCatalogItem("book-fun-with-language-book-4", { GYD: 1200, USD: 6 }),
+    createCatalogItem("book-lets-do-mathematics-book-4", {
+      GYD: 1300,
+      USD: 6.5,
+    }),
+    createCatalogItem("book-social-studies-for-our-children-book-4", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-science-around-us-book-4", { GYD: 1000, USD: 5 }),
+    createCatalogItem("book-rainbow-readers-book-4", { GYD: 1000, USD: 5 }),
+    createCatalogItem("book-word-perfect-spelling-book-4", {
+      GYD: 500,
+      USD: 2.5,
+    }),
+
+    // Grade 5 Books
+    createCatalogItem("book-fun-with-language-book-5", {
+      GYD: 1200,
+      USD: 6,
+    }),
+    createCatalogItem("book-social-studies-for-our-children-book-5", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-science-around-us-book-5", {
+      GYD: 1000,
+      USD: 5,
+    }),
+
+    // Grade 6 Books
+    createCatalogItem("book-fun-with-language-book-6", { GYD: 1200, USD: 6 }),
+    createCatalogItem("book-lets-do-mathematics-book-6", {
+      GYD: 1300,
+      USD: 6.5,
+    }),
+    createCatalogItem("book-social-studies-for-our-children-book-6", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-science-around-us-book-6", { GYD: 1000, USD: 5 }),
+    createCatalogItem("book-new-junior-english-revised", {
       GYD: 1500,
       USD: 7.5,
     }),
-
-    // Grade 4 Books (only the ones that exist)
-    createCatalogItem("book-fun-with-language-book-4", { GYD: 2600, USD: 13 }),
-    createCatalogItem("book-lets-do-mathematics-book-4", {
-      GYD: 2200,
-      USD: 11,
-    }),
-    createCatalogItem("book-social-studies-for-our-children-book-4", {
-      GYD: 2000,
-      USD: 10,
-    }),
-    createCatalogItem("book-science-around-us-book-4", { GYD: 2000, USD: 10 }),
-    createCatalogItem("book-rainbow-readers-book-4", { GYD: 1800, USD: 9 }),
-    createCatalogItem("book-word-perfect-spelling-book-4", {
-      GYD: 1600,
-      USD: 8,
-    }),
-
-    // Grade 5 Books (only the ones that exist)
-    createCatalogItem("book-fun-with-language-book-5", {
-      GYD: 2700,
-      USD: 13.5,
-    }),
-    createCatalogItem("book-social-studies-for-our-children-book-5", {
-      GYD: 2100,
-      USD: 10.5,
-    }),
-    createCatalogItem("book-science-around-us-book-5", {
-      GYD: 2100,
-      USD: 10.5,
-    }),
-
-    // Grade 6 Books (only the ones that exist)
-    createCatalogItem("book-fun-with-language-book-6", { GYD: 2800, USD: 14 }),
-    createCatalogItem("book-lets-do-mathematics-book-6", {
-      GYD: 2400,
-      USD: 12,
-    }),
-    createCatalogItem("book-social-studies-for-our-children-book-6", {
-      GYD: 2200,
-      USD: 11,
-    }),
-    createCatalogItem("book-science-around-us-book-6", { GYD: 2200, USD: 11 }),
-    createCatalogItem("book-new-junior-english", { GYD: 2400, USD: 12 }),
-    createCatalogItem("book-new-first-aid", { GYD: 2000, USD: 10 }),
+    createCatalogItem("book-new-first-aid-in-english", { GYD: 1400, USD: 7 }),
     createCatalogItem("book-guyana-our-country-our-home", {
-      GYD: 1800,
-      USD: 9,
+      GYD: 2800,
+      USD: 14,
     }),
 
-    // Reference Books
-    createCatalogItem("book-dictionary-oxford", { GYD: 3000, USD: 15 }),
-    createCatalogItem("book-dictionary-and-thesaurus", { GYD: 3200, USD: 16 }),
+    // Reference Books (from images)
+    createCatalogItem("book-oxford-primary-school-dictionary", {
+      GYD: 2500,
+      USD: 12.5,
+    }),
+    createCatalogItem("book-oxford-dictionary-thesaurus", {
+      GYD: 3000,
+      USD: 15,
+    }),
+
+    // Additional books from the price list (from images)
+    createCatalogItem("book-nelson-west-indian-readers-book-2", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-roraima-reader-literacy-year-2", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-roraima-reader-literacy-year-1", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-roraima-reader-numeracy-year-2", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-roraima-reader-numeracy-year-1", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-roraima-reader-writing-skills-book-1-2", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-step-to-common-entrance-book-1", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-step-to-common-entrance-book-2", {
+      GYD: 1000,
+      USD: 5,
+    }),
+    createCatalogItem("book-step-to-common-entrance-book-3", {
+      GYD: 1000,
+      USD: 5,
+    }),
   ].filter((item): item is CatalogItem => item !== null),
 };

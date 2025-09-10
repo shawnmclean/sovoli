@@ -129,7 +129,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
       audience: "parent",
       items: [
         {
-          item: findItemById("book-coloring-letters-numbers")!,
+          item: findItemById("book-123-starters-coloring")!,
         },
       ],
     },
@@ -144,13 +144,13 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
         { item: findItemById("supply-crayola-play-dough")! },
         { item: findItemById("supply-art-book")! },
         { item: findItemById("supply-building-blocks")! },
-        { item: findItemById("supply-paint-set")! },
+        { item: findItemById("supply-crayola-paint-6pcs")! },
         {
-          item: findItemById("supply-card-board-sheet")!,
+          item: findItemById("supply-cardboard-lg")!,
           quantity: 2,
           unit: "sheet",
         },
-        { item: findItemById("supply-glue")! },
+        { item: findItemById("supply-glue-elmers")! },
         { item: findItemById("supply-detergent")! },
         {
           item: findItemById("supply-hand-sanitizer")!,

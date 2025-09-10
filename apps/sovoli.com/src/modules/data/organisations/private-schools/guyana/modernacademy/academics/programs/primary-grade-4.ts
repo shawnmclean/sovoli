@@ -290,7 +290,7 @@ export const MAGY_PRIMARY_GRADE_4_PROGRAM: Program = {
           item: findItemById("book-lets-do-mathematics-book-4")!,
         },
         {
-          item: findItemById("book-steps-to-common-entrance-book-2")!,
+          item: findItemById("book-step-to-common-entrance-book-2")!,
         },
         {
           item: findItemById("book-word-perfect-spelling-book-4")!,
@@ -299,10 +299,10 @@ export const MAGY_PRIMARY_GRADE_4_PROGRAM: Program = {
           item: findItemById("book-rainbow-readers-book-4")!,
         },
         {
-          item: findItemById("book-dictionary-oxford")!,
+          item: findItemById("book-oxford-primary-school-dictionary")!,
         },
         {
-          item: findItemById("book-new-nelsons-west-indian-readers-book-3")!,
+          item: findItemById("book-nelson-west-indian-readers-book-3")!,
         },
       ],
     },
@@ -312,7 +312,7 @@ export const MAGY_PRIMARY_GRADE_4_PROGRAM: Program = {
       audience: "parent",
       items: [
         {
-          item: findItemById("supply-exercise-book")!,
+          item: findItemById("supply-exercise-book-big")!,
           quantity: 15,
           unit: "books",
         },
@@ -337,7 +337,7 @@ export const MAGY_PRIMARY_GRADE_4_PROGRAM: Program = {
           unit: "bottle",
         },
         {
-          item: findItemById("supply-cardboard")!,
+          item: findItemById("supply-cardboard-lg")!,
           quantity: 1,
           unit: "sheet",
         },

@@ -280,10 +280,10 @@ export const MAGY_PRIMARY_GRADE_6_PROGRAM: Program = {
           item: findItemById("book-fun-with-language-book-6")!,
         },
         {
-          item: findItemById("book-new-junior-english")!,
+          item: findItemById("book-new-junior-english-revised")!,
         },
         {
-          item: findItemById("book-new-first-aid")!,
+          item: findItemById("book-new-first-aid-in-english")!,
         },
         {
           item: findItemById("book-lets-do-mathematics-book-6")!,
@@ -298,7 +298,7 @@ export const MAGY_PRIMARY_GRADE_6_PROGRAM: Program = {
           item: findItemById("book-guyana-our-country-our-home")!,
         },
         {
-          item: findItemById("book-dictionary-and-thesaurus")!,
+          item: findItemById("book-oxford-dictionary-thesaurus")!,
         },
       ],
     },
@@ -308,7 +308,7 @@ export const MAGY_PRIMARY_GRADE_6_PROGRAM: Program = {
       audience: "parent",
       items: [
         {
-          item: findItemById("supply-exercise-book")!,
+          item: findItemById("supply-exercise-book-big")!,
           quantity: 13,
           unit: "books",
         },
@@ -323,7 +323,7 @@ export const MAGY_PRIMARY_GRADE_6_PROGRAM: Program = {
           unit: "bottle",
         },
         {
-          item: findItemById("supply-cardboard")!,
+          item: findItemById("supply-cardboard-lg")!,
           quantity: 1,
           unit: "sheet",
         },

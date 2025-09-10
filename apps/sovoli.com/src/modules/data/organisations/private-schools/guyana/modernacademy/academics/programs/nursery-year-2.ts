@@ -218,14 +218,14 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
       category: "booklist",
       audience: "parent",
       items: [
-        { item: findItemById("book-animal-readers")! },
+        { item: findItemById("book-animal-friends-level-1a-reader")! },
         {
           item: findItemById("book-roraima-numeracy-workbook-book-2")!,
         },
         {
           item: findItemById("book-roraima-literacy-nursery-year-2")!,
         },
-        { item: findItemById("book-coloring-book")! }, // treated as an exercise book
+        { item: findItemById("book-big-easy-coloring")! }, // treated as an exercise book
       ],
     },
     {
@@ -233,13 +233,13 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
       category: "materials",
       audience: "parent",
       items: [
-        { item: findItemById("supply-crayola-crayons")! },
+        { item: findItemById("supply-crayola-crayons-fine")! },
         {
           item: findItemById("supply-art-book")!,
           quantity: 1,
         }, // drawing pad / sketch book
         {
-          item: findItemById("supply-fine-line-book")!,
+          item: findItemById("supply-exercise-book-small-fine-line")!,
           quantity: 1,
         }, // copybook with fine ruling
         {
@@ -247,12 +247,12 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
           quantity: 1,
         }, // early-writing copybook
         {
-          item: findItemById("supply-pencils")!,
+          item: findItemById("supply-pencils-pack-12")!,
           quantity: 2,
-          unit: "each",
+          unit: "pack",
         },
         {
-          item: findItemById("supply-sheet-card-board")!,
+          item: findItemById("supply-cardboard-sml")!,
           quantity: 2,
           unit: "sheet",
         },
@@ -262,8 +262,7 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
           unit: "pack",
         },
         {
-          item: findItemById("supply-paint-set")!,
-          notes: "Crayola",
+          item: findItemById("supply-crayola-paint-6pcs")!,
           quantity: 1,
           unit: "set",
         },

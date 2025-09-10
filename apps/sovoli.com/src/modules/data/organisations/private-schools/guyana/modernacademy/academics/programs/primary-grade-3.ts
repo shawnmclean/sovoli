@@ -290,19 +290,19 @@ export const MAGY_PRIMARY_GRADE_3_PROGRAM: Program = {
           item: findItemById("book-lets-do-mathematics-book-3")!,
         },
         {
-          item: findItemById("book-steps-to-common-entrance-book-1")!,
+          item: findItemById("book-step-to-common-entrance-book-1")!,
         },
         {
           item: findItemById("book-word-perfect-spelling-book-3")!,
         },
         {
-          item: findItemById("book-new-nelsons-west-indian-readers-book-2")!,
+          item: findItemById("book-nelson-west-indian-readers-book-2")!,
         },
         {
           item: findItemById("book-rainbow-readers-book-3")!,
         },
         {
-          item: findItemById("book-dictionary-oxford")!,
+          item: findItemById("book-oxford-primary-school-dictionary")!,
         },
       ],
     },
@@ -312,7 +312,7 @@ export const MAGY_PRIMARY_GRADE_3_PROGRAM: Program = {
       audience: "parent",
       items: [
         {
-          item: findItemById("supply-exercise-book")!,
+          item: findItemById("supply-exercise-book-big")!,
           quantity: 15,
           unit: "books",
         },

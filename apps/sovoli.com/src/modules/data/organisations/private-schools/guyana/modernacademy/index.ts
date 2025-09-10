@@ -5,7 +5,8 @@ import { ORG_USERNAME } from "./constants";
 import { MODERN_ACADEMY_OFFERINGS } from "./offering";
 import { MODERN_ACADEMY_WORKFORCE } from "./workforce";
 import { MODERN_ACADEMY_WEBSITE } from "./website";
-import { CREATIVE_THINKING_STATIONERY_HUB_ORG } from "~/modules/data/organisations/stationary/guyana/creativethinking";
+//import { CREATIVE_THINKING_STATIONERY_HUB_ORG } from "~/modules/data/organisations/stationary/guyana/creativethinking";
+import { ARGOSY_BOOK_STORE_ORG } from "~/modules/data/organisations/stationary/guyana/argosybookstore";
 
 export const MODERN_ACADEMY_ORG: OrgInstance = {
   org: {
@@ -151,8 +152,11 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
       },
     ],
     supplierRecommendations: [
+      // {
+      //   org: CREATIVE_THINKING_STATIONERY_HUB_ORG.org,
+      // },
       {
-        org: CREATIVE_THINKING_STATIONERY_HUB_ORG.org,
+        org: ARGOSY_BOOK_STORE_ORG.org,
       },
     ],
   },
