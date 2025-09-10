@@ -58,7 +58,7 @@ export function ProgramCycleCard({
 
     const termLabel = formatCycleLabel(startDate, endDate);
 
-    if (!currentCycle?.registrationPeriod?.endDate) {
+    if (!currentCycle.registrationPeriod?.endDate) {
       return `Join the ${termLabel}`;
     }
 
