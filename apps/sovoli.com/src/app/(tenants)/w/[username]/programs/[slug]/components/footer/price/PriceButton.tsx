@@ -47,11 +47,11 @@ export function PriceButton({ defaultCycle }: PriceButtonProps) {
 
   // Format billing cycle unit
   const formatBillingCycle = (cycle: string) => {
-    if (cycle === "one-time") return "one-time";
-    if (cycle === "annual") return "per year";
-    if (cycle === "term") return "per term";
-    if (cycle === "monthly") return "per month";
-    return `per ${cycle}`;
+    if (cycle === "one-time") return "one-time •";
+    if (cycle === "annual") return "yearly •";
+    if (cycle === "term") return "termly •";
+    if (cycle === "monthly") return "monthly •";
+    return ``;
   };
 
   const billingUnit = pricingItem?.billingCycle
@@ -76,10 +76,7 @@ export function PriceButton({ defaultCycle }: PriceButtonProps) {
                   GYD {tuitionCost.toLocaleString()}
                 </span>
                 <span className="text-xs text-foreground-500">
-                  {billingUnit}
-                </span>
-                <span className="text-xs text-foreground-500">
-                  {cycleLabel}
+                  {billingUnit} {cycleLabel}
                 </span>
               </div>
             )}
