@@ -102,13 +102,21 @@ export function RequirementsDetails({
     Supplier[]
   >([]);
 
-  const requirements = useMemo(
-    () =>
+  const requirements = useMemo(() => {
+    const rawRequirements =
       program.requirements ??
       program.standardProgramVersion?.requirements ??
-      [],
-    [program.requirements, program.standardProgramVersion?.requirements],
-  );
+      [];
+
+    // Filter out items that don't exist in the items database
+    return rawRequirements
+      .map((requirement) => ({
+        ...requirement,
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/prefer-optional-chain
+        items: requirement.items.filter((item) => item.item && item.item.id),
+      }))
+      .filter((requirement) => requirement.items.length > 0);
+  }, [program.requirements, program.standardProgramVersion?.requirements]);
 
   const programName =
     program.name ?? program.standardProgramVersion?.program.name;
