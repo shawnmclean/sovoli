@@ -9,3 +9,7 @@ export {
   MAGY_PRIMARY_GRADE_5_PROGRAM,
   MAGY_PRIMARY_GRADE_6_PROGRAM,
 } from "./primary-grades";
+export {
+  MAGY_SECONDARY_GRADE_7_PROGRAM,
+  MAGY_SECONDARY_GRADE_8_PROGRAM,
+} from "./secondary-grades";
