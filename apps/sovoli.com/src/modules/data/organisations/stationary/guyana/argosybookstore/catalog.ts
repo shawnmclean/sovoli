@@ -28,6 +28,8 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
     createCatalogItem("supply-crayola-crayons-fat", { GYD: 1400, USD: 7 }),
     createCatalogItem("supply-crayola-crayons-fine", { GYD: 600, USD: 3 }),
     createCatalogItem("supply-drawing-book", { GYD: 100, USD: 0.5 }),
+    createCatalogItem("supply-drawing-book-8.5x13", { GYD: 780, USD: 0.5 }),
+    createCatalogItem("supply-drawing-book-8.5x11", { GYD: 300, USD: 0.5 }),
     createCatalogItem("supply-crayola-paint-6pcs", { GYD: 1500, USD: 7.5 }),
     createCatalogItem("supply-building-blocks", { GYD: 2000, USD: 10 }),
     createCatalogItem("supply-glue-elmers", { GYD: 440, USD: 2.2 }),
@@ -90,7 +92,7 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
 
     // Grade 2 Books
     createCatalogItem("book-mathematics-made-easy-2", { GYD: 2000, USD: 10 }),
-    createCatalogItem("book-atlantic-reader-book-2", { GYD: 1000, USD: 5 }),
+    createCatalogItem("book-atlantic-reader-book-2", { GYD: 1300, USD: 5 }),
     createCatalogItem(
       "book-process-of-learning-language-arts-infant-second-year",
       { GYD: 2000, USD: 10 },

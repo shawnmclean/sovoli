@@ -115,6 +115,20 @@ export const SUPPLIES: Item[] = [
     unitLabel: "book",
   },
   {
+    id: "supply-drawing-book-8.5x13",
+    name: "Drawing Book 8 1/2 by 13",
+    category: "material",
+    tags: ["stationery", "art-book", "drawing"],
+    unitLabel: "book",
+  },
+  {
+    id: "supply-drawing-book-8.5x11",
+    name: "Drawing Book 8 1/2 by 11",
+    category: "material",
+    tags: ["stationery", "art-book", "drawing"],
+    unitLabel: "book",
+  },
+  {
     id: "supply-double-line-book",
     name: "Double Line Book",
     category: "material",
