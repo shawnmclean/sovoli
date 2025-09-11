@@ -314,7 +314,7 @@ export const MAGY_PRIMARY_GRADE_2_PROGRAM: Program = {
           unit: "book",
         },
         {
-          item: findItemById("supply-art-book")!,
+          item: findItemById("supply-drawing-book")!,
           quantity: 1,
           unit: "book",
           notes: "Crayola",

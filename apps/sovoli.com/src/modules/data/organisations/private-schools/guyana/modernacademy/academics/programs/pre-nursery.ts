@@ -142,7 +142,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
           item: findItemById("supply-crayola-crayons-fat")!,
         },
         { item: findItemById("supply-crayola-play-dough")! },
-        { item: findItemById("supply-art-book")! },
+        { item: findItemById("supply-drawing-book")! },
         { item: findItemById("supply-building-blocks")! },
         { item: findItemById("supply-crayola-paint-6pcs")! },
         {

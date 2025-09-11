@@ -122,7 +122,7 @@ export const APPLETON_NURSERY_YEAR_1_PROGRAM: Program = {
           quantity: 2,
         },
         {
-          item: findItemById("supply-art-book")!,
+          item: findItemById("supply-drawing-book")!,
           quantity: 1,
         },
         {

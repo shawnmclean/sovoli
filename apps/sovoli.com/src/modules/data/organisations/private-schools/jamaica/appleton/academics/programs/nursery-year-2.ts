@@ -118,7 +118,7 @@ export const APPLETON_NURSERY_YEAR_2_PROGRAM: Program = {
       items: [
         { item: findItemById("supply-crayola-crayons")! },
         {
-          item: findItemById("supply-art-book")!,
+          item: findItemById("supply-drawing-book")!,
           quantity: 1,
         },
         {

@@ -235,7 +235,7 @@ export const MAGY_NURSERY_YEAR_2_PROGRAM: Program = {
       items: [
         { item: findItemById("supply-crayola-crayons-fine")! },
         {
-          item: findItemById("supply-art-book")!,
+          item: findItemById("supply-drawing-book")!,
           quantity: 1,
         }, // drawing pad / sketch book
         {

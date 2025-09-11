@@ -16,12 +16,6 @@ export const SUPPLIES: Item[] = [
     brand: "Crayola",
   },
   {
-    id: "supply-art-book",
-    name: "Art Book",
-    category: "material",
-    tags: ["stationery", "art-book"],
-  },
-  {
     id: "supply-building-blocks",
     name: "Building Blocks",
     category: "material",
