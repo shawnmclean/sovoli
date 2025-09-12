@@ -347,6 +347,7 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
+export const MODERN_ACADEMY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
 export const PRE_NURSERY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
 export const NURSERY_YEAR_1_PHOTOS: Photo[] = shuffleArray(PHOTOS);
 export const NURSERY_YEAR_2_PHOTOS: Photo[] = shuffleArray(PHOTOS);
