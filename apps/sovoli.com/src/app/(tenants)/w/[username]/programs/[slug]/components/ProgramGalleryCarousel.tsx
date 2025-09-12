@@ -167,7 +167,7 @@ export function ProgramGalleryCarousel({
             radius="md"
             size="sm"
             classNames={{
-              base: "bg-default/70",
+              base: "bg-black/50 text-white",
             }}
           >
             {current + 1} / {photos.length}
