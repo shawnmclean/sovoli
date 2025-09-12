@@ -264,4 +264,25 @@ export const SUPPLIES: Item[] = [
     tags: ["general", "tissue", "paper-towel"],
     unitLabel: "roll",
   },
+  {
+    id: "supply-calculator",
+    name: "Calculator",
+    category: "material",
+    tags: ["stationery", "calculator", "math"],
+    unitLabel: "unit",
+  },
+  {
+    id: "supply-protractor",
+    name: "Protractor",
+    category: "material",
+    tags: ["stationery", "protractor", "geometry", "math"],
+    unitLabel: "unit",
+  },
+  {
+    id: "supply-compass",
+    name: "Compass",
+    category: "material",
+    tags: ["stationery", "compass", "geometry", "math"],
+    unitLabel: "unit",
+  },
 ];
