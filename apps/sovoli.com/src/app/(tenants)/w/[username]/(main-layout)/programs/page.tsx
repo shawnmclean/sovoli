@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import { HeroSection } from "./components/HeroSection";
 import { ProgramsSection } from "./components/ProgramsSection";
-import { TeamSection } from "../../components/TeamSection";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -56,8 +55,6 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
 
         <ProgramsSection orgInstance={orgInstance} />
       </div>
-
-      <TeamSection orgInstance={orgInstance} />
     </>
   );
 }
