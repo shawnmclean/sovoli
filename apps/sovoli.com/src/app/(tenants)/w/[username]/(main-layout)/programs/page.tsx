@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
-import { HeroSection } from "./components/HeroSection";
 import { ProgramsSection } from "./components/ProgramsSection";
 
 const retrieveOrgInstance = async (username: string) => {
@@ -45,22 +44,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProgramsPage({
-  params,
-  searchParams,
-}: ProgramsPageProps) {
+export default async function ProgramsPage({ params }: ProgramsPageProps) {
   const { username } = await params;
-  const { age, ageGroup } = await searchParams;
   const orgInstance = await retrieveOrgInstance(username);
 
   return (
     <>
       <div className="container mx-auto max-w-6xl space-y-14 px-6 py-4">
-        <ProgramsSection
-          orgInstance={orgInstance}
-          age={age ? parseInt(age, 10) : undefined}
-          ageGroup={ageGroup}
-        />
+        <ProgramsSection orgInstance={orgInstance} />
       </div>
     </>
   );
