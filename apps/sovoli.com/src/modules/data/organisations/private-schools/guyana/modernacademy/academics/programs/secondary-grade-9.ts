@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import { SECONDARY_PHOTOS, shuffleArray } from "../../photos";
 import type { Program } from "~/modules/academics/types";
 import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
@@ -8,7 +6,6 @@ import {
   MAGY_SECONDARY_DEPT_ACTIVITIES,
   magyProgramQuickFacts,
 } from "./shared";
-import { findItemById } from "~/modules/data/items";
 
 export const MAGY_SECONDARY_GRADE_9_PROGRAM: Program = {
   id: "magy-secondary-grade-9",
@@ -317,104 +314,6 @@ export const MAGY_SECONDARY_GRADE_9_PROGRAM: Program = {
             "Web development",
             "Computer networks and security",
           ],
-        },
-      ],
-    },
-  ],
-  requirements: [
-    {
-      name: "Books",
-      category: "booklist",
-      audience: "parent",
-      items: [
-        {
-          item: findItemById("book-mathematics-made-easy-1")!,
-        },
-        {
-          item: findItemById("book-atlantic-reader-book-1")!,
-        },
-        {
-          item: findItemById(
-            "book-process-of-learning-language-arts-infant-first-year",
-          )!,
-        },
-        {
-          item: findItemById(
-            "book-process-of-learning-composition-writing-infant-first-year",
-          )!,
-        },
-        {
-          item: findItemById("book-fun-with-language-book-1-parts-1-2-3")!,
-        },
-      ],
-    },
-    {
-      name: "Supplies",
-      category: "materials",
-      audience: "parent",
-      items: [
-        {
-          item: findItemById("supply-exercise-book-big")!,
-          quantity: 30,
-          unit: "books",
-        },
-        {
-          item: findItemById("supply-double-line-book")!,
-          quantity: 4,
-          unit: "books",
-        },
-        {
-          item: findItemById("supply-drawing-book")!,
-          quantity: 3,
-          unit: "books",
-          notes: "A4 size",
-        },
-        {
-          item: findItemById("supply-soap")!,
-          quantity: 1,
-          unit: "bar",
-        },
-        {
-          item: findItemById("supply-detergent")!,
-          quantity: 1,
-          unit: "bottle",
-        },
-        {
-          item: findItemById("supply-hand-sanitizer")!,
-          quantity: 1,
-          unit: "bottle",
-        },
-        {
-          item: findItemById("supply-cardboard-lg")!,
-          quantity: 4,
-          unit: "sheets",
-        },
-        {
-          item: findItemById("supply-tissue-paper-towel")!,
-          quantity: 1,
-          unit: "roll",
-        },
-        {
-          item: findItemById("supply-calculator")!,
-          quantity: 1,
-          unit: "calculator",
-          notes: "Scientific calculator",
-        },
-        {
-          item: findItemById("supply-protractor")!,
-          quantity: 1,
-          unit: "protractor",
-        },
-        {
-          item: findItemById("supply-compass")!,
-          quantity: 1,
-          unit: "compass",
-        },
-        {
-          item: findItemById("supply-ruler")!,
-          quantity: 2,
-          unit: "rulers",
-          notes: "30cm ruler",
         },
       ],
     },
