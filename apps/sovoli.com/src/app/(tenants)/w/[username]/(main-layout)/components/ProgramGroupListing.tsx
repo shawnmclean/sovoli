@@ -119,7 +119,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
               }}
               className="w-full"
             >
-              <CarouselContent className="-ml-1">
+              <CarouselContent className="-ml-2">
                 {groupPrograms.map((program) => {
                   const programName =
                     program.name ??
@@ -131,10 +131,13 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
                   return (
                     <CarouselItem
                       key={program.slug}
-                      className="pl-1 basis-[200px]"
+                      className="pl-2 basis-[216px] flex-shrink-0"
                     >
-                      <Link href={`/programs/${program.slug}`}>
-                        <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full">
+                      <Link
+                        href={`/programs/${program.slug}`}
+                        className="block w-full"
+                      >
+                        <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
                           <div className="relative h-28 w-full">
                             {programImage ? (
                               <>
@@ -156,7 +159,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
                               </div>
                             )}
                           </div>
-                          <CardBody className="p-3">
+                          <CardBody className="p-3 flex-1 flex flex-col justify-between">
                             <h3 className="font-semibold text-foreground text-sm line-clamp-2 mb-1">
                               {programName}
                             </h3>
