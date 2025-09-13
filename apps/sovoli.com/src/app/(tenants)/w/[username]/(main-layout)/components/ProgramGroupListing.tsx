@@ -99,7 +99,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-2xl font-bold text-foreground mb-1">Programs</h1>
+      <h1 className="text-2xl font-bold text-foreground mb-1">Your Programs</h1>
       {sortedAgeGroups.map(([ageGroupName, groupPrograms]) => (
         <div key={ageGroupName} className="space-y-4">
           <div>
