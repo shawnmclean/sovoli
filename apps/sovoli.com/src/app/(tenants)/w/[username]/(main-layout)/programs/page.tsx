@@ -51,8 +51,6 @@ export default async function ProgramsPage({ params }: ProgramsPageProps) {
   return (
     <>
       <div className="container mx-auto max-w-6xl space-y-14 px-6 py-4">
-        <HeroSection orgInstance={orgInstance} />
-
         <ProgramsSection orgInstance={orgInstance} />
       </div>
     </>
