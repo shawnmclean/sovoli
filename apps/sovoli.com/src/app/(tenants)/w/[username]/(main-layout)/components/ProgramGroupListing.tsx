@@ -50,11 +50,11 @@ const getAgeGroupName = (ageReq: AgeEligibility | undefined) => {
     return "Infant Programs";
   }
 
-  if (maxAgeYears <= 2) return "Infant Programs";
+  if (maxAgeYears <= 2) return "Infant";
   if (maxAgeYears <= 5) return "Early Childhood";
-  if (maxAgeYears <= 11) return "Primary Programs";
-  if (maxAgeYears <= 17) return "Secondary Programs";
-  return "Adult Programs";
+  if (maxAgeYears <= 11) return "Primary";
+  if (maxAgeYears <= 17) return "Secondary";
+  return "Adult";
 };
 
 // Helper function to get sorting order for age groups
@@ -99,16 +99,13 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
 
   return (
     <div className="space-y-8">
+      <h1 className="text-2xl font-bold text-foreground mb-1">Programs</h1>
       {sortedAgeGroups.map(([ageGroupName, groupPrograms]) => (
         <div key={ageGroupName} className="space-y-4">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-1">
+            <h2 className="text-xl font-bold text-foreground mb-1">
               {ageGroupName}
             </h2>
-            <p className="text-sm text-muted-foreground">
-              {groupPrograms.length} program
-              {groupPrograms.length !== 1 ? "s" : ""} available
-            </p>
           </div>
 
           <div className="relative">

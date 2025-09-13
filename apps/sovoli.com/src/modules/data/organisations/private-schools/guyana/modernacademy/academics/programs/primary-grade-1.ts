@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { GY_PRIMARY_GRADE_1_V1 } from "~/modules/data/academics/guyana/programs";
-import { PRIMARY_PHOTOS } from "../../photos";
+import { PRIMARY_PHOTOS, shuffleArray } from "../../photos";
 import type { Program } from "~/modules/academics/types";
 import { MAGY_PRIMARY_GRADE_1_2025_T1 } from "../cycles";
 import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
@@ -22,7 +22,7 @@ export const MAGY_PRIMARY_GRADE_1_PROGRAM: Program = {
   outcome: "NGSA (Grade 6 Exam)",
   description: "Strong foundational learning in a nurturing environment",
   standardProgramVersion: GY_PRIMARY_GRADE_1_V1,
-  photos: PRIMARY_PHOTOS,
+  photos: shuffleArray(PRIMARY_PHOTOS),
   cycles: [MAGY_PRIMARY_GRADE_1_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,
   activities: MAGY_PRIMARY_DEPT_ACTIVITIES,

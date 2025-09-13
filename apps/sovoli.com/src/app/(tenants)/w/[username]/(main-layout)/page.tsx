@@ -35,7 +35,7 @@ export default async function WebsitePage({
     <>
       <OrgGalleryCarousel orgInstance={orgInstance} />
 
-      <div className="container mx-auto max-w-6xl space-y-14 px-6 py-4">
+      <div className="container mx-auto max-w-6xl space-y-6 px-6 py-4">
         <OrgLandingSection orgInstance={orgInstance} />
 
         <ProgramGroupListing orgInstance={orgInstance} />

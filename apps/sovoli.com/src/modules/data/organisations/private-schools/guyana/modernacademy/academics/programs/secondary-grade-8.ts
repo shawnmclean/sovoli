@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import { PRIMARY_PHOTOS } from "../../photos";
+import { SECONDARY_PHOTOS, shuffleArray } from "../../photos";
 import type { Program } from "~/modules/academics/types";
 import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
 import {
@@ -15,13 +15,23 @@ export const MAGY_SECONDARY_GRADE_8_PROGRAM: Program = {
   slug: "grade-8",
   audience: "parent",
   name: "Grade 8",
+  admission: {
+    id: "magy-secondary-grade-7-admission",
+    documents: [],
+    eligibility: [
+      {
+        type: "age",
+        ageRange: { minAgeYears: 13, maxAgeYears: 14 },
+      },
+    ],
+  },
   highlights: secondaryProgramHighlights,
   quickFacts: magyProgramQuickFacts,
   tagline: "Advancing towards CSEC excellence",
   outcome: "CSEC (Caribbean Secondary Education Certificate)",
   description:
     "Advanced secondary education building towards CSEC examination preparation",
-  photos: PRIMARY_PHOTOS,
+  photos: shuffleArray(SECONDARY_PHOTOS),
   cycles: [], // Will be added when cycles are created
   testimonials: MAGY_SHARED_TESTIMONIALS,
   activities: MAGY_SECONDARY_DEPT_ACTIVITIES,
