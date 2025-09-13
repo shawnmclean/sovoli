@@ -3,10 +3,10 @@ import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries
 import { bus } from "~/services/core/bus";
 
 import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
-import { ProgramsSection } from "./programs/components/ProgramsSection";
 import { TeamSection } from "../components/TeamSection";
 import { OrgGalleryCarousel } from "./components/OrgGalleryCarousel";
 import { OrgLandingSection } from "./components/OrgLandingSection";
+import { ProgramGroupListing } from "./components/ProgramGroupListing";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -38,7 +38,7 @@ export default async function WebsitePage({
       <div className="container mx-auto max-w-6xl space-y-14 px-6 py-4">
         <OrgLandingSection orgInstance={orgInstance} />
 
-        <ProgramsSection orgInstance={orgInstance} />
+        <ProgramGroupListing orgInstance={orgInstance} />
       </div>
 
       <TeamSection orgInstance={orgInstance} />
