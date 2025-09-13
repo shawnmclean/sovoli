@@ -12,6 +12,7 @@ const retrieveOrgInstance = async (username: string) => {
 
 interface ProgramsPageProps {
   params: Promise<{ username: string }>;
+  searchParams: Promise<{ age?: string; ageGroup?: string }>;
 }
 
 export async function generateMetadata({
@@ -44,14 +45,22 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProgramsPage({ params }: ProgramsPageProps) {
+export default async function ProgramsPage({
+  params,
+  searchParams,
+}: ProgramsPageProps) {
   const { username } = await params;
+  const { age, ageGroup } = await searchParams;
   const orgInstance = await retrieveOrgInstance(username);
 
   return (
     <>
       <div className="container mx-auto max-w-6xl space-y-14 px-6 py-4">
-        <ProgramsSection orgInstance={orgInstance} />
+        <ProgramsSection
+          orgInstance={orgInstance}
+          age={age ? parseInt(age, 10) : undefined}
+          ageGroup={ageGroup}
+        />
       </div>
     </>
   );
