@@ -352,4 +352,38 @@ export const PRE_NURSERY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
 export const NURSERY_YEAR_1_PHOTOS: Photo[] = shuffleArray(PHOTOS);
 export const NURSERY_YEAR_2_PHOTOS: Photo[] = shuffleArray(PHOTOS);
 export const PRIMARY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const SECONDARY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
+export const SECONDARY_PHOTOS: Photo[] = [
+  {
+    category: "default",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1757870814/o/magy/programs/secondary/1.jpg",
+    assetId: "847ce6773e28b9b48014c6d11295d08c",
+    publicId: "o/magy/programs/secondary/1",
+    width: 960,
+    height: 1280,
+    format: "jpg",
+    bytes: 249882,
+    version: 1757870814,
+  },
+  {
+    category: "default",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1757870815/o/magy/programs/secondary/2.jpg",
+    assetId: "c57f47efd9716f8145ec95a0d692b26b",
+    publicId: "o/magy/programs/secondary/2",
+    width: 1080,
+    height: 1440,
+    format: "jpg",
+    bytes: 235357,
+    version: 1757870815,
+  },
+  {
+    category: "default",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1757870816/o/magy/programs/secondary/3.jpg",
+    assetId: "024cb74ca40bbcf862e919868f1e444d",
+    publicId: "o/magy/programs/secondary/3",
+    width: 960,
+    height: 1280,
+    format: "jpg",
+    bytes: 218850,
+    version: 1757870816,
+  },
+];
