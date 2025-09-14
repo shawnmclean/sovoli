@@ -135,14 +135,17 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
                         className="block w-full"
                       >
                         <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
-                          <div className="relative h-28 w-full">
+                          <div className="relative aspect-square w-full">
                             {programImage ? (
                               <>
                                 <CldImage
                                   src={programImage.publicId}
                                   alt={programName}
-                                  width={programImage.width}
-                                  height={programImage.height}
+                                  width={200}
+                                  height={200}
+                                  crop="fill"
+                                  sizes="200px"
+                                  quality="auto"
                                   className="object-cover w-full h-full"
                                 />
                                 {/* Gradient overlay for better text readability */}
