@@ -3,7 +3,6 @@ import { Badge } from "@sovoli/ui/components/badge";
 import { BadgeCheckIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
-import type { Program } from "~/modules/academics/types";
 
 export interface OrgLandingSectionProps {
   orgInstance: OrgInstance;
