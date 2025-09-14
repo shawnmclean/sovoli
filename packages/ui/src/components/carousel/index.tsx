@@ -9,6 +9,8 @@ import { tv } from "tailwind-variants";
 import type { ButtonProps } from "../button";
 import { Button } from "../button";
 
+export * as AutoScroll from "embla-carousel-auto-scroll";
+
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];

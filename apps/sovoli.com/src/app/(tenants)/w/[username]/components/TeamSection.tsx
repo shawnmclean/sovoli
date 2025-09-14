@@ -1,10 +1,15 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import React from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
-import { motion, useAnimation } from "framer-motion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  AutoScroll,
+} from "@sovoli/ui/components/carousel";
 
 import type { OrgInstance } from "~/modules/organisations/types";
 
@@ -13,47 +18,7 @@ interface TeamSectionProps {
 }
 
 export function TeamSection({ orgInstance }: TeamSectionProps) {
-  const controls = useAnimation();
-  const scrollDuration = 80; // Adjust the speed (higher = slower)
-  const touchPauseRef = useRef(false);
-
   const members = orgInstance.workforceModule?.members ?? [];
-
-  // Centralized animation configuration with useMemo
-  const scrollConfig = useMemo(
-    () => ({
-      x: "-100%",
-      transition: {
-        repeat: Infinity,
-        duration: scrollDuration,
-        ease: "linear",
-      },
-    }),
-    [scrollDuration],
-  );
-
-  useEffect(() => {
-    void controls.start(scrollConfig);
-    return () => void controls.stop();
-  }, [controls, scrollConfig]);
-
-  const handleMouseEnter = () => {
-    void controls.stop();
-  };
-
-  const handleMouseLeave = () => {
-    if (!touchPauseRef.current) void controls.start(scrollConfig);
-  };
-
-  const handleTouchStart = () => {
-    touchPauseRef.current = true;
-    void controls.stop();
-  };
-
-  const handleTouchEnd = () => {
-    touchPauseRef.current = false;
-    void controls.start(scrollConfig);
-  };
 
   return (
     <section className="bg-background2 py-12">
@@ -65,45 +30,52 @@ export function TeamSection({ orgInstance }: TeamSectionProps) {
             highest quality education and support for all students.
           </p>
         </div>
-        <div
-          className="flex"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[
+            AutoScroll.default({
+              playOnInit: true,
+              stopOnInteraction: false,
+              speed: 1,
+            }),
+          ]}
+          className="w-full"
         >
-          <motion.div
-            className="flex gap-8"
-            animate={controls}
-            style={{ display: "flex", width: "auto" }}
-          >
-            {[...members, ...members, ...members].map((member, index) => (
-              <Link
-                href={`/workforce/people/${member.slug}`}
-                key={index}
-                className="group flex w-[160px] flex-col items-center"
+          <CarouselContent className="-ml-4">
+            {members.map((member) => (
+              <CarouselItem
+                key={member.slug}
+                className="pl-4 basis-[160px] flex-shrink-0"
               >
-                <Avatar
-                  src={member.image}
-                  alt={member.name}
-                  isBordered
-                  className="h-28 w-28"
-                  radius="full"
-                />
-                <div className="mt-3 text-center">
-                  <h3 className="text-lg font-semibold leading-tight">
-                    {member.name}
-                  </h3>
-                  <p className="max-w-full truncate text-sm text-default-600">
-                    {member.roleAssignments
-                      .map((role) => role.position.name)
-                      .join(", ")}
-                  </p>
-                </div>
-              </Link>
+                <Link
+                  href={`/workforce/people/${member.slug}`}
+                  className="group flex w-[160px] flex-col items-center"
+                >
+                  <Avatar
+                    src={member.image}
+                    alt={member.name}
+                    isBordered
+                    className="h-28 w-28"
+                    radius="full"
+                  />
+                  <div className="mt-3 text-center">
+                    <h3 className="text-lg font-semibold leading-tight">
+                      {member.name}
+                    </h3>
+                    <p className="max-w-full truncate text-sm text-default-600">
+                      {member.roleAssignments
+                        .map((role) => role.position.name)
+                        .join(", ")}
+                    </p>
+                  </div>
+                </Link>
+              </CarouselItem>
             ))}
-          </motion.div>
-        </div>
+          </CarouselContent>
+        </Carousel>
         <div className="mt-6 flex items-center justify-center gap-4">
           <Button
             color="default"
