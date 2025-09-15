@@ -191,7 +191,7 @@ export default async function Layout({ children, params, modals }: Props) {
       />
       <ProgramDetailNavbar
         orgInstance={orgInstance}
-        program={program}
+        program={programToUse}
         group={group}
       />
       <Alert

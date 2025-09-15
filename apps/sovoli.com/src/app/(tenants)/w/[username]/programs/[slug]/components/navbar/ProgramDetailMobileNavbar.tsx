@@ -13,7 +13,7 @@ import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
 export interface ProgramDetailNavbarProps {
   orgInstance: OrgInstance;
-  program?: Program;
+  program: Program;
   group?: ProgramGroup;
 }
 
@@ -23,8 +23,8 @@ export function ProgramDetailNavbar({
   group,
 }: ProgramDetailNavbarProps) {
   const programName =
-    program?.name ??
-    program?.standardProgramVersion?.program.name ??
+    program.name ??
+    program.standardProgramVersion?.program.name ??
     group?.name ??
     "";
 
