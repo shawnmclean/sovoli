@@ -121,7 +121,10 @@ export const trackProgramAnalytics = (
     | "Lead"
     | "LeadPhoneEntered"
     | "LeadNameEntered"
-    | "ViewSuppliers",
+    | "ViewSuppliers"
+    | "Subscribe"
+    | "SubscribePhoneEntered"
+    | "SubscribeNameEntered",
   program: Program,
   cycle?: ProgramCycle | null,
   additionalData?: Record<string, unknown>,
@@ -161,6 +164,7 @@ export const setPersonProperties = (properties: {
   name?: string;
   phone?: string;
   role?: "student" | "parent" | "job_seeker";
+  has_child?: boolean;
 }) => {
   posthog.setPersonProperties(properties);
 };

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronLeftIcon } from "lucide-react";
+import { BellIcon, ChevronLeftIcon } from "lucide-react";
 import {
   Navbar,
   NavbarContent,
@@ -9,6 +9,7 @@ import { Button } from "@sovoli/ui/components/button";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
 import type { Program, ProgramGroup } from "~/modules/academics/types";
+import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
 export interface ProgramDetailNavbarProps {
   orgInstance: OrgInstance;
@@ -59,6 +60,9 @@ export function ProgramDetailNavbar({
             text={`Check out ${programName} on ${orgInstance.org.name}`}
             isIconOnly
           />
+        </NavbarItem>
+        <NavbarItem>
+          <SubscribeProgramButton program={program} />
         </NavbarItem>
       </NavbarContent>
     </Navbar>

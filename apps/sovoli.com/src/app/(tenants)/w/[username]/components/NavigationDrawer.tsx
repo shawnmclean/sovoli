@@ -14,6 +14,7 @@ import {
 import { useEffect, useRef } from "react";
 import type { Program } from "~/modules/academics/types";
 import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
+import { SubscribeProgramButton } from "../programs/[slug]/components/SubscribeProgramButton";
 
 // Simple hook to track the previous path
 function usePreviousPath() {
@@ -102,7 +103,12 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
         <DrawerHeader
           showBackButton
           onBackPress={handleClose}
-          endContent={renderHeaderContent()}
+          endContent={
+            <>
+              {renderHeaderContent()}
+              <SubscribeProgramButton program={program} variant="light" />
+            </>
+          }
         />
         <DrawerBody>{children}</DrawerBody>
       </DrawerContent>
