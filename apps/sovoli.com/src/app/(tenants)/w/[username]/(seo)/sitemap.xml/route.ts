@@ -45,15 +45,17 @@ function generateWorkforceSitemapUrls(
     {
       loc: `${baseUrl}/workforce/people`,
       lastmod: new Date().toISOString(),
-      changefreq: "weekly" as const,
+      changefreq: "weekly",
       priority: 1,
     },
-    ...members.map((member: WorkforceMember) => ({
-      loc: `${baseUrl}/workforce/people/${member.slug}`,
-      lastmod: new Date().toISOString(),
-      changefreq: "weekly" as const,
-      priority: 0.8,
-    })),
+    ...members.map(
+      (member: WorkforceMember): SitemapUrl => ({
+        loc: `${baseUrl}/workforce/people/${member.slug}`,
+        lastmod: new Date().toISOString(),
+        changefreq: "weekly",
+        priority: 0.8,
+      }),
+    ),
   ];
 }
 
@@ -67,21 +69,29 @@ function generateAcademicsSitemapUrls(
     {
       loc: `${baseUrl}/programs/apply`,
       lastmod: new Date().toISOString(),
-      changefreq: "weekly" as const,
+      changefreq: "weekly",
       priority: 0.9,
     },
     {
       loc: `${baseUrl}/programs`,
       lastmod: new Date().toISOString(),
-      changefreq: "weekly" as const,
+      changefreq: "weekly",
       priority: 0.9,
     },
-    ...programs.map((program: Program) => ({
-      loc: `${baseUrl}/programs/${program.slug}`,
+    {
+      loc: `${baseUrl}/suppliers/student-supplies`,
       lastmod: new Date().toISOString(),
-      changefreq: "weekly" as const,
+      changefreq: "weekly",
       priority: 0.8,
-    })),
+    },
+    ...programs.map(
+      (program: Program): SitemapUrl => ({
+        loc: `${baseUrl}/programs/${program.slug}`,
+        lastmod: new Date().toISOString(),
+        changefreq: "daily",
+        priority: 0.8,
+      }),
+    ),
   ];
 }
 
