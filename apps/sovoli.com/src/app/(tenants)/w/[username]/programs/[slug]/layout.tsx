@@ -174,20 +174,127 @@ export default async function Layout({ children, params, modals }: Props) {
   const defaultCycle = currentCycle ?? nextCycle;
   const defaultTeachers = defaultCycle?.teachers ?? null;
 
+  // Build more complete structured data
+  const programName =
+    programToUse.name ?? programToUse.standardProgramVersion?.program.name;
+  const programDescription =
+    programToUse.description ??
+    programToUse.standardProgramVersion?.program.description;
+
   const programSchema: WithContext<EducationalOccupationalProgram> = {
     "@context": "https://schema.org",
     "@type": "EducationalOccupationalProgram",
-    name:
-      programToUse.name ?? programToUse.standardProgramVersion?.program.name,
-    description: programToUse.description,
-    hasCourse: [],
+    name: programName,
+    description: programDescription,
+    provider: {
+      "@type": "EducationalOrganization",
+      name: orgInstance.org.name,
+      url: orgInstance.websiteModule.website.url,
+      ...(orgInstance.websiteModule.website.description && {
+        description: orgInstance.websiteModule.website.description,
+      }),
+      ...(orgInstance.org.logo && {
+        logo: orgInstance.org.logo,
+      }),
+      ...(orgInstance.org.locations.length > 0 && {
+        address: orgInstance.org.locations.map((location) => ({
+          "@type": "PostalAddress" as const,
+          ...(location.address.line1 && {
+            streetAddress: location.address.line1,
+          }),
+          ...(location.address.city && {
+            addressLocality: location.address.city,
+          }),
+          ...(location.address.state && {
+            addressRegion: location.address.state,
+          }),
+          ...(location.address.postalCode && {
+            postalCode: location.address.postalCode,
+          }),
+          addressCountry: location.address.countryCode,
+        })),
+      }),
+      ...(orgInstance.org.categories.length > 0 && {
+        additionalType:
+          orgInstance.org.categories[0] === "private-school"
+            ? "https://schema.org/School"
+            : orgInstance.org.categories[0] === "nursery-school"
+              ? "https://schema.org/Preschool"
+              : orgInstance.org.categories[0] === "vocational-school"
+                ? "https://schema.org/CollegeOrUniversity"
+                : "https://schema.org/EducationalOrganization",
+      }),
+    },
+    ...(programToUse.photos?.[0]?.url && {
+      image: programToUse.photos[0].url,
+    }),
+    ...(defaultCycle && {
+      offers: {
+        "@type": "Offer",
+        ...(defaultCycle.academicCycle.startDate && {
+          validFrom: defaultCycle.academicCycle.startDate,
+        }),
+        ...(defaultCycle.academicCycle.endDate && {
+          validThrough: defaultCycle.academicCycle.endDate,
+        }),
+        availability: "https://schema.org/InStock",
+        // Add pricing information
+        ...(() => {
+          // Find tuition pricing (primary cost)
+          const tuitionItem = defaultCycle.pricingPackage.pricingItems.find(
+            (item) => item.purpose === "tuition",
+          );
+
+          if (tuitionItem) {
+            // Get the first available currency and amount
+            const currencyEntry = Object.entries(tuitionItem.amount).find(
+              ([_, amount]) => amount && amount > 0,
+            );
+
+            if (currencyEntry) {
+              const [currency, amount] = currencyEntry;
+              return {
+                price: amount,
+                priceCurrency: currency,
+                priceSpecification: {
+                  "@type": "PriceSpecification" as const,
+                  price: amount,
+                  priceCurrency: currency,
+                  ...(tuitionItem.billingCycle === "term" && {
+                    unitText: "per term",
+                  }),
+                  ...(tuitionItem.billingCycle === "annual" && {
+                    unitText: "per year",
+                  }),
+                  ...(tuitionItem.billingCycle === "one-time" && {
+                    unitText: "one-time",
+                  }),
+                  ...(tuitionItem.billingCycle === "program" && {
+                    unitText: "per program",
+                  }),
+                },
+              };
+            }
+          }
+          return {};
+        })(),
+      },
+    }),
+    ...(defaultCycle?.academicCycle.startDate && {
+      startDate: defaultCycle.academicCycle.startDate,
+    }),
+    ...(defaultCycle?.academicCycle.endDate && {
+      endDate: defaultCycle.academicCycle.endDate,
+    }),
   };
 
   return (
     <div className="flex min-h-screen flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(programSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(programSchema, null, 0), // Compact JSON without whitespace
+        }}
       />
       <ProgramDetailNavbar
         orgInstance={orgInstance}
