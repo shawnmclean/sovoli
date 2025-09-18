@@ -1,9 +1,13 @@
-import { generateText } from "ai";
+import { streamText } from "ai";
 
-export async function GET() {
-  const result = await generateText({
-    model: "xai/grok-3",
-    prompt: "Tell me the history of the San Francisco Mission-style burrito.",
+export const maxDuration = 30;
+
+export function GET() {
+  const result = streamText({
+    model: "gpt-4o",
+    prompt: "Hello, how are you?",
   });
-  return Response.json(result);
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
+  return result.toUIMessageStreamResponse();
 }
