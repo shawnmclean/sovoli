@@ -7,7 +7,6 @@ import { Chip } from "@sovoli/ui/components/chip";
 import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 import { LibraryBigIcon, MessageSquareIcon } from "lucide-react";
 
-import { Comments } from "./Comments";
 import { ReferenceList } from "./ReferenceList";
 
 export interface ConnectionsProps {
