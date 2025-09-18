@@ -41,12 +41,7 @@ export function Connections({ knowledge }: ConnectionsProps) {
           </div>
         }
       >
-        {knowledge.slug ===
-          "understanding-dataloss-warnings-during-schema-changes" ||
-        knowledge.slug ===
-          "reflections-on-balance-energy-and-the-guiding-force" ? (
-          <Comments />
-        ) : null}
+        Comments here
       </Tab>
       <Tab
         key="references"
