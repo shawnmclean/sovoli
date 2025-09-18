@@ -17,7 +17,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@ai-sdk/google": "1.0.12",
+    "@ai-sdk/react": "2.0.46",
     "@anatine/zod-openapi": "2.2.6",
     "@auth/core": "0.37.2",
     "@auth/drizzle-adapter": "1.7.4",
@@ -59,7 +59,7 @@
     "@vercel/otel": "1.10.0",
     "@vercel/speed-insights": "1.1.0",
     "@vis.gl/react-google-maps": "1.5.2",
-    "ai": "4.0.22",
+    "ai": "5.0.46",
     "cloudinary": "2.5.1",
     "date-fns": "4.1.0",
     "flat": "6.0.1",
@@ -87,7 +87,7 @@
     "server-only": "0.0.1",
     "superjson": "2.2.2",
     "udsv": "0.6.0",
-    "zod": "catalog:"
+    "zod": "3.25.76"
   },
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",

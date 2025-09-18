@@ -33,9 +33,6 @@ catalogs:
     typescript:
       specifier: 5.5.2
       version: 5.5.2
-    zod:
-      specifier: 3.24.1
-      version: 3.24.1
 
 importers:
 
@@ -54,12 +51,12 @@ importers:
 
   apps/sovoli.com:
     dependencies:
-      '@ai-sdk/google':
-        specifier: 1.0.12
-        version: 1.0.12(zod@3.24.1)
+      '@ai-sdk/react':
+        specifier: 2.0.46
+        version: 2.0.46(react@19.0.0)(zod@3.25.76)
       '@anatine/zod-openapi':
         specifier: 2.2.6
-        version: 2.2.6(openapi3-ts@4.5.0)(zod@3.24.1)
+        version: 2.2.6(openapi3-ts@4.5.0)(zod@3.25.76)
       '@auth/core':
         specifier: 0.37.2
         version: 0.37.2
@@ -119,7 +116,7 @@ importers:
         version: 2.2.2
       '@rvf/zod':
         specifier: 7.0.1
-        version: 7.0.1(@rvf/core@7.1.3(@types/react@19.0.1)(react@19.0.0)(scheduler@0.25.0)(use-sync-external-store@1.5.0(react@19.0.0)))(@rvf/set-get@7.0.1)(zod@3.24.1)
+        version: 7.0.1(@rvf/core@7.1.3(@types/react@19.0.1)(react@19.0.0)(scheduler@0.25.0)(use-sync-external-store@1.5.0(react@19.0.0)))(@rvf/set-get@7.0.1)(zod@3.25.76)
       '@sovoli/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -131,7 +128,7 @@ importers:
         version: 2.47.8(bufferutil@4.0.9)(utf-8-validate@6.0.5)
       '@t3-oss/env-nextjs':
         specifier: 0.11.1
-        version: 0.11.1(typescript@5.5.2)(zod@3.24.1)
+        version: 0.11.1(typescript@5.5.2)(zod@3.25.76)
       '@tiptap-pro/extension-file-handler':
         specifier: 2.17.4
         version: 2.17.4(@tiptap/core@2.24.0(@tiptap/pm@2.24.0))(@tiptap/pm@2.24.0)
@@ -167,7 +164,7 @@ importers:
         version: 2.24.0
       '@trigger.dev/sdk':
         specifier: 3.3.12
-        version: 3.3.12(bufferutil@4.0.9)(utf-8-validate@6.0.5)(zod@3.24.1)
+        version: 3.3.12(bufferutil@4.0.9)(utf-8-validate@6.0.5)(zod@3.25.76)
       '@vercel/analytics':
         specifier: 1.4.1
         version: 1.4.1(next@15.5.2(@opentelemetry/api@1.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
@@ -181,8 +178,8 @@ importers:
         specifier: 1.5.2
         version: 1.5.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       ai:
-        specifier: 4.0.22
-        version: 4.0.22(react@19.0.0)(zod@3.24.1)
+        specifier: 5.0.46
+        version: 5.0.46(zod@3.25.76)
       cloudinary:
         specifier: 2.5.1
         version: 2.5.1
@@ -265,8 +262,8 @@ importers:
         specifier: 0.6.0
         version: 0.6.0
       zod:
-        specifier: 'catalog:'
-        version: 3.24.1
+        specifier: 3.25.76
+        version: 3.25.76
     devDependencies:
       '@sovoli/eslint-config':
         specifier: workspace:*
@@ -345,13 +342,13 @@ importers:
         version: 0.33.0(@neondatabase/serverless@0.9.5)(@opentelemetry/api@1.9.0)(@types/pg@8.11.6)(@types/react@19.0.1)(@vercel/postgres@0.9.0)(react@19.0.0)
       drizzle-zod:
         specifier: 0.5.1
-        version: 0.5.1(drizzle-orm@0.33.0(@neondatabase/serverless@0.9.5)(@opentelemetry/api@1.9.0)(@types/pg@8.11.6)(@types/react@19.0.1)(@vercel/postgres@0.9.0)(react@19.0.0))(zod@3.24.1)
+        version: 0.5.1(drizzle-orm@0.33.0(@neondatabase/serverless@0.9.5)(@opentelemetry/api@1.9.0)(@types/pg@8.11.6)(@types/react@19.0.1)(@vercel/postgres@0.9.0)(react@19.0.0))(zod@3.25.76)
       next-auth:
         specifier: 5.0.0-beta.20
         version: 5.0.0-beta.20(next@15.5.2(@opentelemetry/api@1.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       zod:
-        specifier: 'catalog:'
-        version: 3.24.1
+        specifier: 3.25.76
+        version: 3.25.76
     devDependencies:
       '@sovoli/eslint-config':
         specifier: workspace:*
@@ -610,42 +607,28 @@ importers:
 
 packages:
 
-  '@ai-sdk/google@1.0.12':
-    resolution: {integrity: sha512-vZUK8X997tKmycwCa9d26PoGtIyNEILykYb6JscMoA/pfr5Nss8Ox1JtSGn+PRkehpJhclOaLNWV1JQAjp73aA==}
+  '@ai-sdk/gateway@1.0.23':
+    resolution: {integrity: sha512-ynV7WxpRK2zWLGkdOtrU2hW22mBVkEYVS3iMg1+ZGmAYSgzCqzC74bfOJZ2GU1UdcrFWUsFI9qAYjsPkd+AebA==}
     engines: {node: '>=18'}
     peerDependencies:
-      zod: ^3.0.0
+      zod: ^3.25.76 || ^4
 
-  '@ai-sdk/provider-utils@2.0.5':
-    resolution: {integrity: sha512-2M7vLhYN0ThGjNlzow7oO/lsL+DyMxvGMIYmVQvEYaCWhDzxH5dOp78VNjJIVwHzVLMbBDigX3rJuzAs853idw==}
+  '@ai-sdk/provider-utils@3.0.9':
+    resolution: {integrity: sha512-Pm571x5efqaI4hf9yW4KsVlDBDme8++UepZRnq+kqVBWWjgvGhQlzU8glaFq0YJEB9kkxZHbRRyVeHoV2sRYaQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      zod: ^3.0.0
-    peerDependenciesMeta:
-      zod:
-        optional: true
+      zod: ^3.25.76 || ^4
 
-  '@ai-sdk/provider@1.0.3':
-    resolution: {integrity: sha512-WiuJEpHTrltOIzv3x2wx4gwksAHW0h6nK3SoDzjqCOJLu/2OJ1yASESTIX+f07ChFykHElVoP80Ol/fe9dw6tQ==}
+  '@ai-sdk/provider@2.0.0':
+    resolution: {integrity: sha512-6o7Y2SeO9vFKB8lArHXehNuusnpddKPk7xqL7T2/b+OvXMRIXUO1rR4wcv1hAFUAT9avGZshty3Wlua/XA7TvA==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@1.0.7':
-    resolution: {integrity: sha512-j2/of4iCNq+r2Bjx0O9vdRhn5C/02t2Esenis71YtnsoynPz74eQlJ3N0RYYPheThiJes50yHdfdVdH9ulxs1A==}
+  '@ai-sdk/react@2.0.46':
+    resolution: {integrity: sha512-3/FtNRAIUxhGGoMHYwLmB/pZ9MlZ9Y/+PZuZsQXCSL3OW2lWrPt9jTz2A2Fa65EMLKa8OK4AJQBq1Q0daAg4hg==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
-      zod: ^3.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      zod:
-        optional: true
-
-  '@ai-sdk/ui-utils@1.0.6':
-    resolution: {integrity: sha512-ZP6Vjj+VCnSPBIAvWAdKj2olQONJ/f4aZpkVCGkzprdhv8TjHwB6CTlXFS3zypuEGy4asg84dc1dvXKooQXFvg==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.0.0
+      zod: ^3.25.76 || ^4
     peerDependenciesMeta:
       zod:
         optional: true
@@ -3608,6 +3591,9 @@ packages:
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
+  '@standard-schema/spec@1.0.0':
+    resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+
   '@supabase/auth-js@2.67.1':
     resolution: {integrity: sha512-1SRZG9VkLFz4rtiyEc1l49tMq9jTYu4wJt3pMQEWi7yshZFIBdVH1o5sshk1plQd5LY6GcrPIpCydM2gGDxchA==}
 
@@ -3863,9 +3849,6 @@ packages:
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
 
-  '@types/diff-match-patch@1.0.36':
-    resolution: {integrity: sha512-xFdR6tkm0MWvBfO8xXCSsinYxHcqkQUlcHeSpMC2ukzOb6lwQAfDmW+Qt0AvlGd8HpsS28qKsB+oPeJn9I39jg==}
-
   '@types/estree-jsx@1.0.5':
     resolution: {integrity: sha512-52CcUVNFyfb1A2ALocQw/Dd1BQFNmSdkuC3BkZ6iqhdMfQz7JWOFRuJFloOzjk+6WijU56m9oKXFAXc7o3Towg==}
 
@@ -4104,17 +4087,11 @@ packages:
     resolution: {integrity: sha512-jRR5wdylq8CkOe6hei19GGZnxM6rBGwFl3Bg0YItGDimvjGtAvdZk4Pu6Cl4u4Igsws4a1fd1Vq3ezrhn4KmFw==}
     engines: {node: '>= 14'}
 
-  ai@4.0.22:
-    resolution: {integrity: sha512-yvcjWtofI2HZwgT3jMkoNnDUhAY+S9cOvZ6xbbOzrS0ZeFl1/gcbasFnwAqUJ7uL/t72/3a0Vy/pKg6N19A2Mw==}
+  ai@5.0.46:
+    resolution: {integrity: sha512-xo2uh4EDIV13KpXAmIxFXQ2UAPfrte1say5uTsf7LkadFlKceUK/0xaLhW/+TwX+WzT02MlLsQvxGzdSmpaH5w==}
     engines: {node: '>=18'}
     peerDependencies:
-      react: ^18 || ^19 || ^19.0.0-rc
-      zod: ^3.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      zod:
-        optional: true
+      zod: ^3.25.76 || ^4
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -4543,9 +4520,6 @@ packages:
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
 
-  diff-match-patch@1.0.5:
-    resolution: {integrity: sha512-IayShXAgj/QMXgB0IWmKx+rOPuGMhqm5w6jvFxmVenXKIzRqTAAsbBPT3kWQeGANj3jGgvcvv4yK6SxqYmikgw==}
-
   dlv@1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
 
@@ -4917,6 +4891,10 @@ packages:
   eventsource-parser@3.0.3:
     resolution: {integrity: sha512-nVpZkTMM9rF6AQ9gPJpFsNAMt48wIzB5TQgiTLdHiuO8XEDhUgZEhqKlZWXbIzo9VmJ/HvysHqEaVeD5v9TPvA==}
     engines: {node: '>=20.0.0'}
+
+  eventsource-parser@3.0.6:
+    resolution: {integrity: sha512-Vo1ab+QXPzZ4tCa8SwIHJFaSzy4R6SHf7BY79rFBDf0idraZWAkYrDjDj8uWaSm3S2TK+hJ7/t1CEmZ7jXw+pg==}
+    engines: {node: '>=18.0.0'}
 
   evt@2.5.9:
     resolution: {integrity: sha512-GpjX476FSlttEGWHT8BdVMoI8wGXQGbEOtKcP4E+kggg+yJzXBZN2n4x7TS/zPBJ1DZqWI+rguZZApjjzQ0HpA==}
@@ -5430,11 +5408,6 @@ packages:
 
   jsonc-parser@3.2.1:
     resolution: {integrity: sha512-AilxAyFOAcK5wA1+LeaySVBrHsGQvUFCDWXKpZjzaL0PqW+xfBOttn8GNtWKFWqneyMZj41MWF9Kl6iPWLwgOA==}
-
-  jsondiffpatch@0.6.0:
-    resolution: {integrity: sha512-3QItJOXp2AP1uv7waBkao5nCvhEv+QmJAd38Ybq7wNI74Q+BBmnLn4EDKz6yI9xGAIQoUF87qHt+kc1IVxB4zQ==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
 
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
@@ -6528,9 +6501,6 @@ packages:
   scroll-into-view-if-needed@3.0.10:
     resolution: {integrity: sha512-t44QCeDKAPf1mtQH3fYpWz8IM/DyvHLjs8wUvvwMYxk5moOqCzrMSxK6HQVD0QVmVjXFavoFIPRVrMuJPKAvtg==}
 
-  secure-json-parse@2.7.0:
-    resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
-
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
@@ -7157,11 +7127,6 @@ packages:
   zod-error@1.5.0:
     resolution: {integrity: sha512-zzopKZ/skI9iXpqCEPj+iLCKl9b88E43ehcU+sbRoHuwGd9F1IDVGQ70TyO6kmfiRL1g4IXkjsXK+g1gLYl4WQ==}
 
-  zod-to-json-schema@3.24.6:
-    resolution: {integrity: sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==}
-    peerDependencies:
-      zod: ^3.24.1
-
   zod-validation-error@1.5.0:
     resolution: {integrity: sha512-/7eFkAI4qV0tcxMBB/3+d2c1P6jzzZYdYSlBuAklzMuCrJu5bzJfHS0yVAS87dRHVlhftd6RFJDIvv03JgkSbw==}
     engines: {node: '>=16.0.0'}
@@ -7171,8 +7136,8 @@ packages:
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
-  zod@3.24.1:
-    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
   zustand@5.0.6:
     resolution: {integrity: sha512-ihAqNeUVhe0MAD+X8M5UzqyZ9k3FFZLBTtqo6JLPwV53cbRB/mJwBI0PxcIgqhBBHlEs8G45OTDTMq3gNcLq3A==}
@@ -7197,50 +7162,40 @@ packages:
 
 snapshots:
 
-  '@ai-sdk/google@1.0.12(zod@3.24.1)':
+  '@ai-sdk/gateway@1.0.23(zod@3.25.76)':
     dependencies:
-      '@ai-sdk/provider': 1.0.3
-      '@ai-sdk/provider-utils': 2.0.5(zod@3.24.1)
-      zod: 3.24.1
+      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider-utils': 3.0.9(zod@3.25.76)
+      zod: 3.25.76
 
-  '@ai-sdk/provider-utils@2.0.5(zod@3.24.1)':
+  '@ai-sdk/provider-utils@3.0.9(zod@3.25.76)':
     dependencies:
-      '@ai-sdk/provider': 1.0.3
-      eventsource-parser: 3.0.3
-      nanoid: 3.3.11
-      secure-json-parse: 2.7.0
-    optionalDependencies:
-      zod: 3.24.1
+      '@ai-sdk/provider': 2.0.0
+      '@standard-schema/spec': 1.0.0
+      eventsource-parser: 3.0.6
+      zod: 3.25.76
 
-  '@ai-sdk/provider@1.0.3':
+  '@ai-sdk/provider@2.0.0':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@1.0.7(react@19.0.0)(zod@3.24.1)':
+  '@ai-sdk/react@2.0.46(react@19.0.0)(zod@3.25.76)':
     dependencies:
-      '@ai-sdk/provider-utils': 2.0.5(zod@3.24.1)
-      '@ai-sdk/ui-utils': 1.0.6(zod@3.24.1)
+      '@ai-sdk/provider-utils': 3.0.9(zod@3.25.76)
+      ai: 5.0.46(zod@3.25.76)
+      react: 19.0.0
       swr: 2.3.4(react@19.0.0)
       throttleit: 2.1.0
     optionalDependencies:
-      react: 19.0.0
-      zod: 3.24.1
-
-  '@ai-sdk/ui-utils@1.0.6(zod@3.24.1)':
-    dependencies:
-      '@ai-sdk/provider': 1.0.3
-      '@ai-sdk/provider-utils': 2.0.5(zod@3.24.1)
-      zod-to-json-schema: 3.24.6(zod@3.24.1)
-    optionalDependencies:
-      zod: 3.24.1
+      zod: 3.25.76
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@anatine/zod-openapi@2.2.6(openapi3-ts@4.5.0)(zod@3.24.1)':
+  '@anatine/zod-openapi@2.2.6(openapi3-ts@4.5.0)(zod@3.25.76)':
     dependencies:
       openapi3-ts: 4.5.0
       ts-deepmerge: 6.2.1
-      zod: 3.24.1
+      zod: 3.25.76
 
   '@auth/core@0.34.2':
     dependencies:
@@ -7353,7 +7308,7 @@ snapshots:
       '@cloudinary-util/types': 1.5.10
       '@cloudinary-util/util': 3.3.2
       '@cloudinary/url-gen': 1.15.0
-      zod: 3.24.1
+      zod: 3.25.76
 
   '@cloudinary-util/util@3.3.2': {}
 
@@ -11035,13 +10990,15 @@ snapshots:
 
   '@rvf/set-get@7.0.1': {}
 
-  '@rvf/zod@7.0.1(@rvf/core@7.1.3(@types/react@19.0.1)(react@19.0.0)(scheduler@0.25.0)(use-sync-external-store@1.5.0(react@19.0.0)))(@rvf/set-get@7.0.1)(zod@3.24.1)':
+  '@rvf/zod@7.0.1(@rvf/core@7.1.3(@types/react@19.0.1)(react@19.0.0)(scheduler@0.25.0)(use-sync-external-store@1.5.0(react@19.0.0)))(@rvf/set-get@7.0.1)(zod@3.25.76)':
     dependencies:
       '@rvf/core': 7.1.3(@types/react@19.0.1)(react@19.0.0)(scheduler@0.25.0)(use-sync-external-store@1.5.0(react@19.0.0))
       '@rvf/set-get': 7.0.1
-      zod: 3.24.1
+      zod: 3.25.76
 
   '@socket.io/component-emitter@3.1.2': {}
+
+  '@standard-schema/spec@1.0.0': {}
 
   '@supabase/auth-js@2.67.1':
     dependencies:
@@ -11093,16 +11050,16 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@t3-oss/env-core@0.11.1(typescript@5.5.2)(zod@3.24.1)':
+  '@t3-oss/env-core@0.11.1(typescript@5.5.2)(zod@3.25.76)':
     dependencies:
-      zod: 3.24.1
+      zod: 3.25.76
     optionalDependencies:
       typescript: 5.5.2
 
-  '@t3-oss/env-nextjs@0.11.1(typescript@5.5.2)(zod@3.24.1)':
+  '@t3-oss/env-nextjs@0.11.1(typescript@5.5.2)(zod@3.25.76)':
     dependencies:
-      '@t3-oss/env-core': 0.11.1(typescript@5.5.2)(zod@3.24.1)
-      zod: 3.24.1
+      '@t3-oss/env-core': 0.11.1(typescript@5.5.2)(zod@3.25.76)
+      zod: 3.25.76
     optionalDependencies:
       typescript: 5.5.2
 
@@ -11350,7 +11307,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@trigger.dev/sdk@3.3.12(bufferutil@4.0.9)(utf-8-validate@6.0.5)(zod@3.24.1)':
+  '@trigger.dev/sdk@3.3.12(bufferutil@4.0.9)(utf-8-validate@6.0.5)(zod@3.25.76)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.52.1
@@ -11365,7 +11322,7 @@ snapshots:
       ulid: 2.4.0
       uuid: 9.0.1
       ws: 8.18.3(bufferutil@4.0.9)(utf-8-validate@6.0.5)
-      zod: 3.24.1
+      zod: 3.25.76
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -11386,8 +11343,6 @@ snapshots:
   '@types/debug@4.1.12':
     dependencies:
       '@types/ms': 2.1.0
-
-  '@types/diff-match-patch@1.0.36': {}
 
   '@types/estree-jsx@1.0.5':
     dependencies:
@@ -11615,18 +11570,13 @@ snapshots:
 
   agent-base@7.1.3: {}
 
-  ai@4.0.22(react@19.0.0)(zod@3.24.1):
+  ai@5.0.46(zod@3.25.76):
     dependencies:
-      '@ai-sdk/provider': 1.0.3
-      '@ai-sdk/provider-utils': 2.0.5(zod@3.24.1)
-      '@ai-sdk/react': 1.0.7(react@19.0.0)(zod@3.24.1)
-      '@ai-sdk/ui-utils': 1.0.6(zod@3.24.1)
+      '@ai-sdk/gateway': 1.0.23(zod@3.25.76)
+      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider-utils': 3.0.9(zod@3.25.76)
       '@opentelemetry/api': 1.9.0
-      jsondiffpatch: 0.6.0
-      zod-to-json-schema: 3.24.6(zod@3.24.1)
-    optionalDependencies:
-      react: 19.0.0
-      zod: 3.24.1
+      zod: 3.25.76
 
   ajv@6.12.6:
     dependencies:
@@ -12047,8 +11997,6 @@ snapshots:
 
   didyoumean@1.2.2: {}
 
-  diff-match-patch@1.0.5: {}
-
   dlv@1.1.3: {}
 
   doctrine@2.1.0:
@@ -12093,10 +12041,10 @@ snapshots:
       '@vercel/postgres': 0.9.0
       react: 19.0.0
 
-  drizzle-zod@0.5.1(drizzle-orm@0.33.0(@neondatabase/serverless@0.9.5)(@opentelemetry/api@1.9.0)(@types/pg@8.11.6)(@types/react@19.0.1)(@vercel/postgres@0.9.0)(react@19.0.0))(zod@3.24.1):
+  drizzle-zod@0.5.1(drizzle-orm@0.33.0(@neondatabase/serverless@0.9.5)(@opentelemetry/api@1.9.0)(@types/pg@8.11.6)(@types/react@19.0.1)(@vercel/postgres@0.9.0)(react@19.0.0))(zod@3.25.76):
     dependencies:
       drizzle-orm: 0.33.0(@neondatabase/serverless@0.9.5)(@opentelemetry/api@1.9.0)(@types/pg@8.11.6)(@types/react@19.0.1)(@vercel/postgres@0.9.0)(react@19.0.0)
-      zod: 3.24.1
+      zod: 3.25.76
 
   dunder-proto@1.0.1:
     dependencies:
@@ -12553,6 +12501,8 @@ snapshots:
   event-target-polyfill@0.0.4: {}
 
   eventsource-parser@3.0.3: {}
+
+  eventsource-parser@3.0.6: {}
 
   evt@2.5.9:
     dependencies:
@@ -13106,12 +13056,6 @@ snapshots:
       minimist: 1.2.8
 
   jsonc-parser@3.2.1: {}
-
-  jsondiffpatch@0.6.0:
-    dependencies:
-      '@types/diff-match-patch': 1.0.36
-      chalk: 5.4.1
-      diff-match-patch: 1.0.5
 
   jsx-ast-utils@3.3.5:
     dependencies:
@@ -14501,8 +14445,6 @@ snapshots:
     dependencies:
       compute-scroll-into-view: 3.1.1
 
-  secure-json-parse@2.7.0: {}
-
   semver@6.3.1: {}
 
   semver@7.7.2: {}
@@ -15281,11 +15223,7 @@ snapshots:
 
   zod-error@1.5.0:
     dependencies:
-      zod: 3.24.1
-
-  zod-to-json-schema@3.24.6(zod@3.24.1):
-    dependencies:
-      zod: 3.24.1
+      zod: 3.25.76
 
   zod-validation-error@1.5.0(zod@3.23.8):
     dependencies:
@@ -15293,7 +15231,7 @@ snapshots:
 
   zod@3.23.8: {}
 
-  zod@3.24.1: {}
+  zod@3.25.76: {}
 
   zustand@5.0.6(@types/react@19.0.1)(immer@10.1.1)(react@19.0.0)(use-sync-external-store@1.5.0(react@19.0.0)):
     optionalDependencies:
