@@ -46,6 +46,7 @@ export default async function Layout({ children, params }: Props) {
   const organizationSchema: WithContext<Organization> = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
+    "@id": `${orgInstance.websiteModule.website.url}#org`,
     name: orgInstance.org.name,
     url: orgInstance.websiteModule.website.url,
     ...(orgInstance.org.logo && {
@@ -86,6 +87,18 @@ export default async function Layout({ children, params }: Props) {
               ? "https://schema.org/CollegeOrUniversity"
               : "https://schema.org/EducationalOrganization",
     }),
+    ...(orgInstance.academicModule?.programs &&
+      orgInstance.academicModule.programs.length > 0 && {
+        hasOfferingCatalog: {
+          "@type": "OfferingCatalog",
+          name: "Educational Programs",
+          itemListElement: orgInstance.academicModule.programs.map(
+            (program) => ({
+              "@id": `${orgInstance.websiteModule.website.url}/programs/${program.slug}`,
+            }),
+          ),
+        },
+      }),
   };
 
   return (

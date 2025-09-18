@@ -187,43 +187,7 @@ export default async function Layout({ children, params, modals }: Props) {
     name: programName,
     description: programDescription,
     provider: {
-      "@type": "EducationalOrganization",
-      name: orgInstance.org.name,
-      url: orgInstance.websiteModule.website.url,
-      ...(orgInstance.websiteModule.website.description && {
-        description: orgInstance.websiteModule.website.description,
-      }),
-      ...(orgInstance.org.logo && {
-        logo: orgInstance.org.logo,
-      }),
-      ...(orgInstance.org.locations.length > 0 && {
-        address: orgInstance.org.locations.map((location) => ({
-          "@type": "PostalAddress" as const,
-          ...(location.address.line1 && {
-            streetAddress: location.address.line1,
-          }),
-          ...(location.address.city && {
-            addressLocality: location.address.city,
-          }),
-          ...(location.address.state && {
-            addressRegion: location.address.state,
-          }),
-          ...(location.address.postalCode && {
-            postalCode: location.address.postalCode,
-          }),
-          addressCountry: location.address.countryCode,
-        })),
-      }),
-      ...(orgInstance.org.categories.length > 0 && {
-        additionalType:
-          orgInstance.org.categories[0] === "private-school"
-            ? "https://schema.org/School"
-            : orgInstance.org.categories[0] === "nursery-school"
-              ? "https://schema.org/Preschool"
-              : orgInstance.org.categories[0] === "vocational-school"
-                ? "https://schema.org/CollegeOrUniversity"
-                : "https://schema.org/EducationalOrganization",
-      }),
+      "@id": `${orgInstance.websiteModule.website.url}#org`,
     },
     ...(programToUse.photos?.[0]?.url && {
       image: programToUse.photos[0].url,
