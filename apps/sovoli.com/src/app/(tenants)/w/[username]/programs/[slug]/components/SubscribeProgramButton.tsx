@@ -12,8 +12,7 @@ import { useDisclosure } from "@sovoli/ui/components/dialog";
 import type { Program } from "~/modules/academics/types";
 import { BellIcon } from "lucide-react";
 import { trackProgramAnalytics } from "../lib/programAnalytics";
-import { NamesForm } from "~/app/signin/components/NamesForm";
-import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
+import { NamesForm, WhatsAppOTPForm } from "~/modules/auth";
 
 export interface SubscribeProgramButtonProps {
   program: Program;
