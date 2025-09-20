@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { NamesForm } from "./NamesForm";
-import { WhatsAppOTPForm } from "./WhatsAppOTPForm";
+import { WhatsAppOTP } from "./WhatsAppOTP";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "~/app/(tenants)/w/[username]/programs/[slug]/lib/programAnalytics";
 import { Button } from "@sovoli/ui/components/button";
@@ -44,7 +44,7 @@ export function SignupWizard({
 
   if (step === "otp") {
     return (
-      <WhatsAppOTPForm
+      <WhatsAppOTP
         onSuccess={(phoneNumber) => {
           setPhone(phoneNumber);
 

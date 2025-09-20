@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
-
-import type { State } from "~/app/signin/actions/signInAction";
 import {
   Dropdown,
   DropdownTrigger,
@@ -13,13 +11,15 @@ import {
 } from "@sovoli/ui/components/dropdown";
 import { ChevronDownIcon } from "lucide-react";
 import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
+import type { State } from "../actions/sendOTPAction";
 
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";
 
-export interface WhatsAppOTPFormProps {
+export interface WhatsAppOTPSendFormProps {
+  formAction: (formData: FormData) => Promise<State>;
+  pending: boolean;
   onSuccess?: (phone: string) => void;
-  onError?: (message: string) => void;
 }
 
 // Flag component that maps country codes to flag components
@@ -41,7 +41,11 @@ function Flag({
   return <FlagComponent height={height} />;
 }
 
-export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
+export function WhatsAppOTPSendForm({
+  formAction,
+  pending,
+  onSuccess,
+}: WhatsAppOTPSendFormProps) {
   const [phone, setPhone] = useState("");
   const [selectedCountry, setSelectedCountry] = useState<{
     code: string;
@@ -52,8 +56,6 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
     name: "Guyana",
     countryCode: "GY",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [state, setState] = useState<State>(null);
 
   const countryCodes: {
     code: string;
@@ -69,32 +71,14 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!phone.trim()) {
-      setState({
-        status: "error",
-        message: "Please enter a phone number",
-      });
-      return;
-    }
+    const fullPhoneNumber = selectedCountry.code + phone;
+    const formData = new FormData();
+    formData.append("phone", fullPhoneNumber);
 
-    setIsSubmitting(true);
-    setState(null);
+    const result = await formAction(formData);
 
-    try {
-      // Here you would typically call an API to save the names
-      // For now, we'll simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 100));
-
-      // Combine country code and phone number
-      const fullPhoneNumber = selectedCountry.code + phone;
+    if (result?.status === "success") {
       onSuccess?.(fullPhoneNumber);
-      // Reset form on success
-      setPhone("");
-    } catch {
-      const errorMessage = "An unexpected error occurred. Please try again.";
-      onError?.(errorMessage);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -104,6 +88,7 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
         <h1 className="text-3xl font-bold mb-2">Your phone number?</h1>
         <p className="text-base">Enter your WhatsApp number.</p>
       </div>
+
       <div className="flex flex-col gap-2">
         <div className="relative">
           <Input
@@ -117,9 +102,9 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
             variant="bordered"
             placeholder="Enter phone number"
             isRequired
-            isDisabled={isSubmitting}
+            isDisabled={pending}
             startContent={
-              <Dropdown isDisabled={isSubmitting}>
+              <Dropdown isDisabled={pending}>
                 <DropdownTrigger>
                   <Button
                     variant="light"
@@ -165,19 +150,6 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
         </div>
       </div>
 
-      {/* Action state messages */}
-      {state && (
-        <div
-          className={`p-3 rounded-lg ${
-            state.status === "success"
-              ? "bg-success-50 text-success-700 border border-success-200"
-              : "bg-danger-50 text-danger-700 border border-danger-200"
-          }`}
-        >
-          {state.message}
-        </div>
-      )}
-
       {/* Terms and Privacy Notice */}
       <div className="text-center text-xs text-default-500">
         By pressing continue, you agree to Sovoli's{" "}
@@ -207,10 +179,10 @@ export function WhatsAppOTPForm({ onSuccess, onError }: WhatsAppOTPFormProps) {
         color="primary"
         radius="lg"
         fullWidth
-        isLoading={isSubmitting}
-        isDisabled={isSubmitting}
+        isLoading={pending}
+        isDisabled={pending}
       >
-        {isSubmitting ? "Sending..." : "Continue"}
+        {pending ? "Sending..." : "Continue"}
       </Button>
     </form>
   );

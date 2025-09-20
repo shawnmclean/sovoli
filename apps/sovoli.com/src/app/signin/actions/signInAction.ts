@@ -1,7 +1,7 @@
 "use server";
 
 import { withZod } from "@rvf/zod";
-import { whatsAppOTPFormSchema } from "./schemas";
+import { whatsAppOTPFormSchema } from "../../../modules/auth/actions/schemas";
 
 export type State = {
   status: "error" | "success";

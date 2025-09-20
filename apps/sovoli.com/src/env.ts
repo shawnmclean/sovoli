@@ -26,6 +26,7 @@ export const env = createEnv({
     SUPABASE_ANON_KEY: z.string().min(1),
     CLOUDINARY_API_SECRET: z.string().min(1),
     CLOUDINARY_API_KEY: z.string().min(1),
+    AUTH_SECRET: z.string().min(1),
   },
 
   /**
