@@ -37,7 +37,7 @@
     "@opentelemetry/sdk-trace-node": "2.1.0",
     "@opentelemetry/semantic-conventions": "1.37.0",
     "@paralleldrive/cuid2": "2.2.2",
-    "@rvf/zod": "7.0.4",
+    "@rvf/core": "8.0.0",
     "@sovoli/db": "workspace:*",
     "@sovoli/ui": "workspace:*",
     "@supabase/supabase-js": "2.47.8",
@@ -86,8 +86,7 @@
     "server-only": "0.0.1",
     "superjson": "2.2.2",
     "udsv": "0.6.0",
-    "zod": "4.1.9",
-    "zod-form-data": "3.0.1"
+    "zod": "4.1.9"
   },
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",

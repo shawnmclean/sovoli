@@ -1,7 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { withZod } from "@rvf/zod";
+import type { FieldErrors } from "@rvf/core";
+import { parseFormData } from "@rvf/core";
 
 import { auth } from "~/core/auth";
 import { CreateShelfImport } from "~/services/import/createShelfImport";
@@ -10,10 +11,8 @@ import { formImportShelfSchema } from "./schemas";
 export type State = {
   status: "error";
   message: string;
-  errors?: Record<string, string>;
+  errors?: FieldErrors;
 } | null;
-
-const validator = withZod(formImportShelfSchema);
 
 export async function importShelfAction(
   _prevState: State,
@@ -27,7 +26,7 @@ export async function importShelfAction(
     };
   }
 
-  const result = await validator.validate(formData);
+  const result = await parseFormData(formData, formImportShelfSchema);
 
   if (result.error) {
     console.error(result.error.fieldErrors);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useActionState, useEffect } from "react";
+import { useState, useActionState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import {
@@ -69,15 +69,13 @@ export function WhatsAppOTPSendForm({
     { code: "+876", name: "Jamaica", countryCode: "JM" },
   ];
 
-  // Handle state changes from server action
-  useEffect(() => {
-    if (state?.status === "success" && state.otpToken) {
-      const fullPhoneNumber = selectedCountry.code + phone;
-      onSuccess?.(fullPhoneNumber, state.otpToken);
-    } else if (state?.status === "error") {
-      onError?.(state.message);
-    }
-  }, [state, selectedCountry.code, phone, onSuccess, onError]);
+  // Handle success and error cases
+  if (state?.status === "success" && state.otpToken) {
+    const fullPhoneNumber = selectedCountry.code + phone;
+    onSuccess?.(fullPhoneNumber, state.otpToken);
+  } else if (state?.status === "error") {
+    // onError?.(state.message);
+  }
 
   const handleSubmit = (formData: FormData) => {
     const fullPhoneNumber = selectedCountry.code + phone;
@@ -92,16 +90,10 @@ export function WhatsAppOTPSendForm({
         <p className="text-base">Enter your WhatsApp number.</p>
       </div>
 
-      {/* Display state messages */}
-      {state && (
-        <div
-          className={`p-3 rounded-lg ${
-            state.status === "success"
-              ? "bg-success-50 text-success-700 border border-success-200"
-              : "bg-danger-50 text-danger-700 border border-danger-200"
-          }`}
-        >
-          {state.message}
+      {/* Display error messages */}
+      {state?.status === "error" && (
+        <div className="p-3 rounded-lg bg-danger-50 text-danger-700 border border-danger-200">
+          {state.errors?.phone}
         </div>
       )}
 
