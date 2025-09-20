@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useActionState, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import type { VerifyState } from "../actions/verifyOTPAction";
@@ -8,53 +8,69 @@ import type { State } from "../actions/sendOTPAction";
 
 export interface WhatsAppOTPVerifyFormProps {
   phone: string;
-  verifyFormAction: (formData: FormData) => Promise<VerifyState>;
-  sendFormAction: (formData: FormData) => Promise<State>;
-  verifyPending: boolean;
-  sendPending: boolean;
+  verifyAction: (
+    prevState: VerifyState,
+    formData: FormData,
+  ) => Promise<VerifyState>;
+  sendAction: (prevState: State, formData: FormData) => Promise<State>;
   otpToken?: string;
   onSuccess?: (phone: string) => void;
+  onError?: (message: string) => void;
   onBack?: () => void;
 }
 
 export function WhatsAppOTPVerifyForm({
   phone,
-  verifyFormAction,
-  sendFormAction,
-  verifyPending,
-  sendPending,
+  verifyAction,
+  sendAction,
   otpToken,
   onSuccess,
+  onError,
   onBack,
 }: WhatsAppOTPVerifyFormProps) {
+  const [verifyState, verifyFormAction, isVerifyPending] = useActionState(
+    verifyAction,
+    null,
+  );
+  const [sendState, sendFormAction, isSendPending] = useActionState(
+    sendAction,
+    null,
+  );
   const [otp, setOtp] = useState("");
-  const [verifyState, setVerifyState] = useState<VerifyState>(null);
 
-  const handleVerifySubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("otp", otp);
-    formData.append("phone", phone);
-    if (otpToken) {
-      formData.append("otpToken", otpToken);
-    }
-
-    const result = await verifyFormAction(formData);
-    setVerifyState(result);
-
-    if (result?.status === "success") {
+  // Handle verify state changes
+  useEffect(() => {
+    if (verifyState?.status === "success") {
       onSuccess?.(phone);
+    } else if (verifyState?.status === "error") {
+      onError?.(verifyState.message);
     }
+  }, [verifyState, phone, onSuccess, onError]);
+
+  // Handle send state changes (for resend)
+  useEffect(() => {
+    if (sendState?.status === "error") {
+      onError?.(sendState.message);
+    }
+    // Clear OTP when resending
+    if (sendState?.status === "success") {
+      setOtp("");
+    }
+  }, [sendState, onError]);
+
+  const handleVerifySubmit = (formData: FormData) => {
+    formData.set("otp", otp);
+    formData.set("phone", phone);
+    if (otpToken) {
+      formData.set("otpToken", otpToken);
+    }
+    verifyFormAction(formData);
   };
 
-  const handleResend = async () => {
+  const handleResend = () => {
     const formData = new FormData();
-    formData.append("phone", phone);
-
-    await sendFormAction(formData);
-    setOtp("");
-    setVerifyState(null);
+    formData.set("phone", phone);
+    sendFormAction(formData);
   };
 
   const formatPhoneForDisplay = (phone: string) => {
@@ -75,7 +91,32 @@ export function WhatsAppOTPVerifyForm({
         </p>
       </div>
 
-      <form onSubmit={handleVerifySubmit} className="space-y-4">
+      {/* Display state messages */}
+      {verifyState && (
+        <div
+          className={`p-3 rounded-lg ${
+            verifyState.status === "success"
+              ? "bg-success-50 text-success-700 border border-success-200"
+              : "bg-danger-50 text-danger-700 border border-danger-200"
+          }`}
+        >
+          {verifyState.message}
+        </div>
+      )}
+
+      {sendState && (
+        <div
+          className={`p-3 rounded-lg ${
+            sendState.status === "success"
+              ? "bg-success-50 text-success-700 border border-success-200"
+              : "bg-danger-50 text-danger-700 border border-danger-200"
+          }`}
+        >
+          {sendState.message}
+        </div>
+      )}
+
+      <form action={handleVerifySubmit} className="space-y-4">
         <div className="flex flex-col gap-2">
           <Input
             name="otp"
@@ -88,24 +129,11 @@ export function WhatsAppOTPVerifyForm({
             variant="bordered"
             placeholder="Enter verification code"
             isRequired
-            isDisabled={verifyPending}
+            isDisabled={isVerifyPending}
             maxLength={6}
             className="text-center text-lg tracking-widest"
           />
         </div>
-
-        {/* Verification state messages */}
-        {verifyState && (
-          <div
-            className={`p-3 rounded-lg ${
-              verifyState.status === "success"
-                ? "bg-success-50 text-success-700 border border-success-200"
-                : "bg-danger-50 text-danger-700 border border-danger-200"
-            }`}
-          >
-            {verifyState.message}
-          </div>
-        )}
 
         <Button
           type="submit"
@@ -113,10 +141,10 @@ export function WhatsAppOTPVerifyForm({
           color="primary"
           radius="lg"
           fullWidth
-          isLoading={verifyPending}
-          isDisabled={verifyPending || !otp.trim()}
+          isLoading={isVerifyPending}
+          isDisabled={isVerifyPending || !otp.trim()}
         >
-          {verifyPending ? "Verifying..." : "Verify"}
+          {isVerifyPending ? "Verifying..." : "Verify"}
         </Button>
       </form>
 
@@ -126,11 +154,11 @@ export function WhatsAppOTPVerifyForm({
           color="primary"
           radius="lg"
           fullWidth
-          isLoading={sendPending}
-          isDisabled={sendPending}
+          isLoading={isSendPending}
+          isDisabled={isSendPending}
           onPress={handleResend}
         >
-          {sendPending ? "Sending..." : "Resend code"}
+          {isSendPending ? "Sending..." : "Resend code"}
         </Button>
 
         {onBack && (
@@ -139,7 +167,7 @@ export function WhatsAppOTPVerifyForm({
             radius="lg"
             fullWidth
             onPress={onBack}
-            isDisabled={verifyPending || sendPending}
+            isDisabled={isVerifyPending || isSendPending}
           >
             Change phone number
           </Button>
