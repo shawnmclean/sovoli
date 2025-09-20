@@ -3,6 +3,7 @@
 import { useState, useActionState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
+import { Form } from "@sovoli/ui/components/form";
 import {
   Dropdown,
   DropdownTrigger,
@@ -12,6 +13,8 @@ import {
 import { ChevronDownIcon } from "lucide-react";
 import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
 import type { State } from "../actions/sendOTPAction";
+import { parseFormData } from "@rvf/core";
+import { whatsAppOTPFormSchema } from "../actions/schemas";
 
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";
@@ -77,7 +80,12 @@ export function WhatsAppOTPSendForm({
     // onError?.(state.message);
   }
 
-  const handleSubmit = (formData: FormData) => {
+  const handleSubmit = async (formData: FormData) => {
+    // const validatedData = await parseFormData(formData, whatsAppOTPFormSchema);
+    // if (validatedData.error) {
+    //   console.error(validatedData.error);
+    //   return;
+    // }
     const fullPhoneNumber = selectedCountry.code + phone;
     formData.set("phone", fullPhoneNumber);
     formAction(formData);
@@ -97,71 +105,65 @@ export function WhatsAppOTPSendForm({
         </div>
       )}
 
-      <form action={handleSubmit} className="space-y-4">
-        <div className="flex flex-col gap-2">
-          <div className="relative">
-            <Input
-              name="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              fullWidth
-              autoFocus
-              type="tel"
-              size="lg"
-              variant="bordered"
-              placeholder="Enter phone number"
-              isRequired
-              isDisabled={isPending}
-              startContent={
-                <Dropdown isDisabled={isPending}>
-                  <DropdownTrigger>
-                    <Button
-                      variant="light"
-                      className="h-full min-w-[100px] border-r border-divider rounded-r-none pl-0 gap-1"
-                      startContent={
-                        <Flag code={selectedCountry.countryCode} height={18} />
-                      }
-                      endContent={
-                        <ChevronDownIcon
-                          className="text-default-500"
-                          size={16}
-                        />
-                      }
-                    >
-                      {selectedCountry.code}
-                    </Button>
-                  </DropdownTrigger>
-                  <DropdownMenu
-                    aria-label="Country Codes"
-                    className="max-h-[300px]"
-                    selectionMode="single"
-                    selectedKeys={[selectedCountry.code]}
-                    onSelectionChange={(keys) => {
-                      const selectedKey = Array.from(keys)[0] as string;
-                      const country = countryCodes.find(
-                        (c) => c.code === selectedKey,
-                      );
-                      if (country) setSelectedCountry(country);
-                    }}
+      <Form
+        action={handleSubmit}
+        validationErrors={state?.errors}
+        className="space-y-4"
+      >
+        <Input
+          name="phone"
+          fullWidth
+          autoFocus
+          type="tel"
+          size="lg"
+          variant="bordered"
+          placeholder="Enter phone number"
+          isRequired
+          isDisabled={isPending}
+          startContent={
+            <Dropdown isDisabled={isPending}>
+              <DropdownTrigger>
+                <Button
+                  variant="light"
+                  className="h-full min-w-[100px] border-r border-divider rounded-r-none pl-0 gap-1"
+                  startContent={
+                    <Flag code={selectedCountry.countryCode} height={18} />
+                  }
+                  endContent={
+                    <ChevronDownIcon className="text-default-500" size={16} />
+                  }
+                >
+                  {selectedCountry.code}
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="Country Codes"
+                className="max-h-[300px]"
+                selectionMode="single"
+                selectedKeys={[selectedCountry.code]}
+                onSelectionChange={(keys) => {
+                  const selectedKey = Array.from(keys)[0] as string;
+                  const country = countryCodes.find(
+                    (c) => c.code === selectedKey,
+                  );
+                  if (country) setSelectedCountry(country);
+                }}
+              >
+                {countryCodes.map((country) => (
+                  <DropdownItem
+                    key={country.code}
+                    description={country.name}
+                    startContent={
+                      <Flag code={country.countryCode} height={20} />
+                    }
                   >
-                    {countryCodes.map((country) => (
-                      <DropdownItem
-                        key={country.code}
-                        description={country.name}
-                        startContent={
-                          <Flag code={country.countryCode} height={20} />
-                        }
-                      >
-                        {country.code}
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-              }
-            />
-          </div>
-        </div>
-
+                    {country.code}
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
+          }
+        />
         {/* Terms and Privacy Notice */}
         <div className="text-center text-xs text-default-500">
           By pressing continue, you agree to Sovoli's{" "}
@@ -196,7 +198,7 @@ export function WhatsAppOTPSendForm({
         >
           {isPending ? "Sending..." : "Continue"}
         </Button>
-      </form>
+      </Form>
     </div>
   );
 }

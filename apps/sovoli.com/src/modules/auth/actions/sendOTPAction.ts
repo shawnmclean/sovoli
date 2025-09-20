@@ -14,7 +14,7 @@ export type State = {
 } | null;
 
 // Use validated environment variable
-const HMAC_SECRET = env.AUTH_SECRET as string;
+const HMAC_SECRET = env.AUTH_SECRET;
 
 export async function sendOTPAction(
   _prevState: State,
