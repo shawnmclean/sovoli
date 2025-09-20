@@ -1,9 +1,10 @@
-import { fileURLToPath } from "url";
 import createMDX from "@next/mdx";
+import { fileURLToPath } from "node:url";
 import createJiti from "jiti";
+const jiti = createJiti(fileURLToPath(import.meta.url));
 
-// Import env files to validate at build time. Use jiti so we can load .ts files in here.
-createJiti(fileURLToPath(import.meta.url))("./src/env");
+// Import env here to validate during build. Using jiti@^1 we can import .ts files :)
+jiti("./src/env");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
