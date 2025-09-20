@@ -2,7 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { unauthorized } from "next/navigation";
-import { withZod } from "@rvf/zod";
+import type { FieldErrors } from "@rvf/core";
+import { parseFormData } from "@rvf/core";
 import { db, eq, schema } from "@sovoli/db";
 
 import { auth } from "~/core/auth";
@@ -11,10 +12,8 @@ import { updateContentSchema } from "./schemas";
 export type State = {
   status: "error" | "success";
   message?: string;
-  errors?: Record<string, string>;
+  errors?: FieldErrors;
 } | null;
-
-const validator = withZod(updateContentSchema);
 
 export async function updateContentAction(
   _prevState: State,
@@ -25,7 +24,7 @@ export async function updateContentAction(
     unauthorized();
   }
 
-  const result = await validator.validate(formData);
+  const result = await parseFormData(formData, updateContentSchema);
 
   if (result.error) {
     return {
@@ -39,7 +38,7 @@ export async function updateContentAction(
     .update(schema.Knowledge)
     .set({
       description: result.data.description,
-      content: result.data.content
+      content: result.data.content,
     })
     .where(eq(schema.Knowledge.id, result.data.id));
 

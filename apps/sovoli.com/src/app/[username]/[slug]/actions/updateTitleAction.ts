@@ -2,7 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { unauthorized } from "next/navigation";
-import { withZod } from "@rvf/zod";
+import type { FieldErrors } from "@rvf/core";
+import { parseFormData } from "@rvf/core";
 import { db, eq, schema } from "@sovoli/db";
 
 import { auth } from "~/core/auth";
@@ -11,10 +12,8 @@ import { updateTitleFormSchema } from "./schemas";
 export type State = {
   status: "error" | "success";
   message?: string;
-  errors?: Record<string, string>;
+  errors?: FieldErrors;
 } | null;
-
-const validator = withZod(updateTitleFormSchema);
 
 export async function updateTitleAction(
   _prevState: State,
@@ -25,7 +24,7 @@ export async function updateTitleAction(
     unauthorized();
   }
 
-  const result = await validator.validate(formData);
+  const result = await parseFormData(formData, updateTitleFormSchema);
 
   if (result.error) {
     return {
