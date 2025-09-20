@@ -1,6 +1,7 @@
 "use server";
 
-import { withZod } from "@rvf/zod";
+import type { FieldErrors } from "@rvf/core";
+import { parseFormData } from "@rvf/core";
 import { whatsAppOTPVerifyFormSchema } from "./schemas";
 import { createHmac } from "crypto";
 import { env } from "~/env";
@@ -8,10 +9,8 @@ import { env } from "~/env";
 export type VerifyState = {
   status: "error" | "success";
   message: string;
-  errors?: Record<string, string>;
+  errors?: FieldErrors;
 } | null;
-
-const validator = withZod(whatsAppOTPVerifyFormSchema);
 
 // Use validated environment variable
 const HMAC_SECRET = env.AUTH_SECRET as string;
@@ -28,7 +27,7 @@ export async function verifyOTPAction(
   _prevState: VerifyState,
   formData: FormData,
 ): Promise<VerifyState> {
-  const result = await validator.validate(formData);
+  const result = await parseFormData(formData, whatsAppOTPVerifyFormSchema);
 
   if (result.error) {
     return {

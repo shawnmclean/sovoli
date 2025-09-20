@@ -1,6 +1,7 @@
 "use server";
 
-import { withZod } from "@rvf/zod";
+import type { FieldErrors } from "@rvf/core";
+import { parseFormData } from "@rvf/core";
 import { db, eq, schema } from "@sovoli/db";
 import {
   KnowledgeMediaAssetPlacement,
@@ -15,7 +16,7 @@ export type State =
   | {
       status: "error";
       message: string;
-      errors?: Record<string, string>;
+      errors?: FieldErrors;
     }
   | {
       status: "success";
@@ -23,8 +24,6 @@ export type State =
       slug?: string | null;
     }
   | null;
-
-const validator = withZod(formSaveDraftKnowledgeSchema);
 
 export async function saveDraftKnowledgeAction(
   _prevState: State,
@@ -35,7 +34,7 @@ export async function saveDraftKnowledgeAction(
     throw new Error("Unauthorized");
   }
 
-  const result = await validator.validate(formData);
+  const result = await parseFormData(formData, formSaveDraftKnowledgeSchema);
   if (result.error) {
     return {
       status: "error",

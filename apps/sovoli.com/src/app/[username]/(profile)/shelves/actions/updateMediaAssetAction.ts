@@ -2,7 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { createId } from "@paralleldrive/cuid2";
-import { withZod } from "@rvf/zod";
+import type { FieldErrors } from "@rvf/core";
+import { parseFormData } from "@rvf/core";
 import { db, eq, schema } from "@sovoli/db";
 import { MediaAssetHost } from "@sovoli/db/schema";
 import { createClient } from "@supabase/supabase-js";
@@ -14,10 +15,8 @@ import { formUpdateMediaAssetSchema } from "./schemas";
 export type State = {
   status: "error" | "success";
   message: string;
-  errors?: Record<string, string>;
+  errors?: FieldErrors;
 } | null;
-
-const validator = withZod(formUpdateMediaAssetSchema);
 
 const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY);
 
@@ -33,7 +32,7 @@ export async function updateMediaAssetAction(
     };
   }
 
-  const result = await validator.validate(formData);
+  const result = await parseFormData(formData, formUpdateMediaAssetSchema);
 
   if (result.error) {
     return {
