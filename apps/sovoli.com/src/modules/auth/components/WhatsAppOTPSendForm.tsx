@@ -13,8 +13,8 @@ import {
 import { ChevronDownIcon } from "lucide-react";
 import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
 import type { State } from "../actions/sendOTPAction";
-import { parseFormData } from "@rvf/core";
-import { whatsAppOTPFormSchema } from "../actions/schemas";
+// import { parseFormData } from "@rvf/core";
+// import { whatsAppOTPFormSchema } from "../actions/schemas";
 
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";
@@ -80,12 +80,7 @@ export function WhatsAppOTPSendForm({
     // onError?.(state.message);
   }
 
-  const handleSubmit = async (formData: FormData) => {
-    // const validatedData = await parseFormData(formData, whatsAppOTPFormSchema);
-    // if (validatedData.error) {
-    //   console.error(validatedData.error);
-    //   return;
-    // }
+  const handleSubmit = (formData: FormData) => {
     const fullPhoneNumber = selectedCountry.code + phone;
     formData.set("phone", fullPhoneNumber);
     formAction(formData);
@@ -112,6 +107,8 @@ export function WhatsAppOTPSendForm({
       >
         <Input
           name="phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
           fullWidth
           autoFocus
           type="tel"
