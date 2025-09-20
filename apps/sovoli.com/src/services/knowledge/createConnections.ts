@@ -43,7 +43,7 @@ export const createConnections = async ({
       targetKnowledgeId: "temp",
       notes: connection.notes,
       type: connection.type,
-      metadata: connection.metadata,
+      metadata: connection.metadata as { page?: number; chapter?: number },
     });
   }
   // use a transaction to submit all connections and target knowledge to ensure consistency
