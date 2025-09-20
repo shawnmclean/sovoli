@@ -1,4 +1,3 @@
-import { extendZodWithOpenApi } from "@anatine/zod-openapi";
 import {
   KnowledgeConnectionMetadataSchema,
   KnowledgeConnectionTypes,
@@ -8,45 +7,18 @@ import {
 } from "@sovoli/db/schema";
 import { z } from "zod";
 
-extendZodWithOpenApi(z);
-
 // #region Shared Schemas
 
 // Base schema for connections without connectionId (used for creating connections)
 const BaseConnectionSchema = z.object({
-  notes: z
-    .string()
-    .optional()
-    .openapi({
-      description:
-        "Additional notes in markdown format about the connection such as why it was recommended or added to the collection.",
-      examples: [
-        `This book explores the concept of mortality and how it influences human behavior. It aligns with the existential themes present on the shelf and provides a psychological perspective on how people cope with the knowledge of death.
-      
-      ## Learning outcomes:
-      
-      - What psychological mechanisms do people use to deny death?
-      - How does the fear of death influence human culture and behavior?
-      `,
-      ],
-    }),
+  notes: z.string().optional(),
   order: z.number().optional(),
-  type: z.enum(KnowledgeConnectionTypes).openapi({
-    description: `
-      'Contains' means that the knowledge is a part of the target knowledge such as a book shelf or collection.
-      'Recommends' means that the knowledge is recommended to the user based on their preferences.
-      'Refers' means that the knowledge is a reference to the target knowledge, such as a book review or a blog post.
-    `,
-  }),
+  type: z.enum(KnowledgeConnectionTypes),
 
   metadata: KnowledgeConnectionMetadataSchema.optional(),
 
   targetKnowledge: z.object({
-    query: z.string().openapi({
-      description:
-        "The query is used to search for the book. If the book is already in your knowledge library, it will be linked. Format: `{title} {author}`",
-      examples: ["The Interpretation of Dreams Sigmung Freud"],
-    }),
+    query: z.string(),
     queryType: z.enum(KnowledgeQueryTypes),
     type: z.enum(KnowledgeTypes),
   }),
@@ -59,52 +31,26 @@ const BaseUpsertKnowledgeSchemaRequest = z.object({
         name: z.string(),
         id: z.string(),
         mime_type: z.string().nullish(),
-        download_link: z.string().url(),
+        download_link: z.string(),
       }),
     )
-    .optional()
-    .openapi({
-      description:
-        "This object is meant for ChatGPT to send files related to the knowledge, such as images, PDFs, etc. For images, the recommended resolution is 1600x900, 16:9 ratio.",
-    }),
+    .optional(),
 
   title: z.string(),
   description: z.string(),
-  content: z.string().openapi({
-    description:
-      "This field holds the highlighted text in Markdown format. It supports Github Flavored Markdown",
-    examples: ["## Important Concept\nThis text was highlighted by the user."],
-  }),
+  content: z.string(),
 
   // New context field to hold non-highlighted text
-  context: z
-    .string()
-    .optional()
-    .openapi({
-      description:
-        "This field contains additional text (not highlighted) used as context for AI models.",
-      examples: [
-        "This is some text that was not highlighted but is still important for context.",
-      ],
-    }),
+  context: z.string().optional(),
 
   // A description of what the context represents
-  contextDescription: z
-    .string()
-    .optional()
-    .openapi({
-      description:
-        "This field describes the type of text in the context field, e.g., 'Page text', 'Surrounding paragraphs'.",
-      examples: ["Full page text"],
-    }),
+  contextDescription: z.string().optional(),
   type: z.enum(KnowledgeTypes),
 
   iaPrivate: z.boolean().optional().default(false),
 });
 
-const BaseUpsertKnowledgeSchemaResponse = SelectKnowledgeSchema.extend({
-  url: z.string().url(),
-});
+const BaseUpsertKnowledgeSchemaResponse = SelectKnowledgeSchema;
 
 // #endregion
 
@@ -126,10 +72,7 @@ export type PostKnowledgeSchemaRequest = z.infer<
 // #region PUT /knowledge/:id Schamas
 export const UpdateConnectionSchema = BaseConnectionSchema.partial().extend({
   action: z.literal("update"),
-  id: z.string().openapi({
-    description:
-      "The unique ID of the connection, required for updates. If this is omitted, the connection will be created.",
-  }),
+  id: z.string(),
 });
 export type UpdateConnectionSchema = z.infer<typeof UpdateConnectionSchema>;
 
@@ -138,10 +81,7 @@ const AddConnectionSchema = BaseConnectionSchema.extend({
 });
 const RemoveConnectionSchema = z.object({
   action: z.literal("remove"),
-  id: z.string().openapi({
-    description:
-      "The unique ID of the connection to remove. This is required for deleting a connection.",
-  }),
+  id: z.string(),
 });
 
 const PutConnectionSchema = z.discriminatedUnion("action", [
@@ -153,18 +93,12 @@ const PutConnectionSchema = z.discriminatedUnion("action", [
 export const PutKnowledgeSchemaRequest =
   BaseUpsertKnowledgeSchemaRequest.partial().extend({
     connections: PutConnectionSchema.array().optional(),
-    authToken: z.string().optional().openapi({
-      description:
-        "This token is mandatory for updates if the knowledge was created by a bot such as ChatGPT.",
-    }),
+    authToken: z.string().optional(),
 
     assets: z
       .array(
         z.object({
-          id: z.string().openapi({
-            description:
-              "The unique ID of the media asset to remove. This is required for deleting a media asset.",
-          }),
+          id: z.string(),
           action: z.literal("remove"),
         }),
       )
