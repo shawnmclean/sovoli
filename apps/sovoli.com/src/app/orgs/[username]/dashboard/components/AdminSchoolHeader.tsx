@@ -21,7 +21,7 @@ export function AdminSchoolHeader({ orgInstance }: AdminSchoolHeaderProps) {
             src={orgInstance.org.logo}
             name={orgInstance.org.name}
             size="lg"
-            className="h-16 w-16 flex-shrink-0"
+            className="h-16 w-16 shrink-0"
             fallback={
               <span className="text-xs text-default-500">
                 Logo Not Available

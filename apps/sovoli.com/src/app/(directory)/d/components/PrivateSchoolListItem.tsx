@@ -72,7 +72,7 @@ export function PrivateSchoolListItem({
         </Button>
 
         {/* View Count */}
-        <div className="flex flex-col items-center gap-0 text-default-400 text-xs flex-shrink-0 leading-none">
+        <div className="flex flex-col items-center gap-0 text-default-400 text-xs shrink-0 leading-none">
           <EyeIcon size={16} />
           <span>&lt;10</span>
         </div>

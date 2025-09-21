@@ -39,7 +39,7 @@ export function OrgBadgeSection({
     <ProgramSectionsWrapper program={program} section="org_badge">
       <div className="flex items-center gap-4">
         {/* Logo with Score Badge */}
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <Badge
             color="secondary"
             variant="solid"

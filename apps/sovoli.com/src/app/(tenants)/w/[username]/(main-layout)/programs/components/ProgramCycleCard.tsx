@@ -68,7 +68,7 @@ export function ProgramCycleCard({
   };
 
   return (
-    <Card className="overflow-hidden shadow transition hover:shadow-lg cursor-pointer group">
+    <Card className="overflow-hidden shadow-sm transition hover:shadow-lg cursor-pointer group">
       {/* Header Image */}
       <CardHeader className="p-0 relative">
         <div className="relative w-full min-h-[300px] overflow-hidden">

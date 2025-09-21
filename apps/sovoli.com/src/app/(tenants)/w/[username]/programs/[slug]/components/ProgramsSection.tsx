@@ -110,7 +110,7 @@ export function ProgramsSection({
                         </h3>
                         {ageReq?.ageRange && (
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                            <UserIcon className="w-3 h-3 flex-shrink-0" />
+                            <UserIcon className="w-3 h-3 shrink-0" />
                             <span>{formatAgeRange(ageReq.ageRange)}</span>
                           </div>
                         )}
