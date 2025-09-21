@@ -5,7 +5,7 @@ import type { ServiceModule } from "../services/types";
 import type { ScoringModule } from "../scoring/types";
 import type { WebsiteModule } from "../websites/types";
 import type { WorkforceModule } from "../workforce/types";
-import { Photo } from "../core/photos/types";
+import type { Photo } from "../core/photos/types";
 
 // For use internally
 export interface Person {

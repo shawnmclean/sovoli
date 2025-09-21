@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { WhatsAppOTPSendForm } from "./WhatsAppOTPSendForm";
 import { WhatsAppOTPVerifyForm } from "./WhatsAppOTPVerifyForm";
 import { sendOTPAction } from "../actions/sendOTPAction";
