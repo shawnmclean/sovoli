@@ -82,7 +82,7 @@ export function ProgramDetailMobileFooter({
             <Skeleton isLoaded={!(isLoading && isInitialized)}>
               <div className="flex flex-1 items-center">Select a cycle</div>
             </Skeleton>
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <Button
                 variant="shadow"
                 color="primary"

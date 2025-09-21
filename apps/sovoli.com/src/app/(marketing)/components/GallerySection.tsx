@@ -47,7 +47,7 @@ export function GallerySection() {
               href={mockup.src.src}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-xl border border-default-200 p-2 shadow-sm transition-shadow hover:shadow-md"
+              className="block rounded-xl border border-default-200 p-2 shadow-xs transition-shadow hover:shadow-md"
             >
               <Image
                 src={mockup.src}

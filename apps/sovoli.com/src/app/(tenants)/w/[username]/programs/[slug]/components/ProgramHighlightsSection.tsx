@@ -69,7 +69,7 @@ export function ProgramHighlightsSection({
           return (
             <div key={index} className="flex items-start gap-3">
               <div
-                className={`flex-shrink-0 w-8 h-8 bg-${color}-100 rounded-lg flex items-center justify-center`}
+                className={`shrink-0 w-8 h-8 bg-${color}-100 rounded-lg flex items-center justify-center`}
               >
                 <IconComponent className={`h-4 w-4 text-${color}`} />
               </div>

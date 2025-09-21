@@ -314,7 +314,7 @@ export function RulesAttentionSummary({
               ) && (
                 <div className="flex flex-col items-center gap-3 pt-4 border-t border-default-200 w-full">
                   <div className="flex items-center gap-2 text-sm font-medium text-secondary-600">
-                    <div className="p-1 bg-secondary-100 rounded-full shadow-sm border border-secondary-300">
+                    <div className="p-1 bg-secondary-100 rounded-full shadow-xs border border-secondary-300">
                       <WrenchIcon className="w-4 h-4 text-secondary-700" />
                     </div>
                     Total score boost:{" "}

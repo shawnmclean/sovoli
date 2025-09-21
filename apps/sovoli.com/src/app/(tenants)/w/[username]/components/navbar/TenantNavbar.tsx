@@ -271,7 +271,7 @@ export function TenantNavbar({
                 variant="light"
                 size="sm"
                 onPress={onOpenChange}
-                className="flex-shrink-0"
+                className="shrink-0"
               >
                 <XIcon width={20} />
               </Button>

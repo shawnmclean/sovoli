@@ -47,7 +47,6 @@ function Flag({
 export function WhatsAppOTPSendForm({
   sendAction,
   onSuccess,
-  onError,
 }: WhatsAppOTPSendFormProps) {
   const [state, formAction, isPending] = useActionState(sendAction, null);
   const [phone, setPhone] = useState("");

@@ -40,7 +40,7 @@ export function HeroSection({ orgInstance: _orgInstance }: HeroSectionProps) {
         {notices.map(({ icon, text, className }, i) => (
           <div
             key={i}
-            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-semibold text-sm shadow-sm ${className}`}
+            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-semibold text-sm shadow-xs ${className}`}
             aria-label={text}
           >
             <span>{icon}</span>

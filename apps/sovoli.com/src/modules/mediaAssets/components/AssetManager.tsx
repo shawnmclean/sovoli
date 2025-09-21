@@ -127,7 +127,7 @@ export const AssetManager = ({
                     {(file.status === "uploading" ||
                       file.status === "idle") && (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="flex items-center justify-center rounded-lg bg-gray-300 bg-opacity-80 p-3">
+                        <div className="flex items-center justify-center rounded-lg bg-gray-300/80 p-3">
                           <Spinner className="h-6 w-6" />
                         </div>
                       </div>

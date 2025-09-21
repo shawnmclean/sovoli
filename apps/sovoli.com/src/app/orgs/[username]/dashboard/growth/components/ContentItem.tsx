@@ -64,7 +64,7 @@ export function ContentItem({ config, children }: ContentItemProps) {
         <ModalContent className="flex flex-col h-screen max-h-screen">
           {() => (
             <>
-              <ModalHeader className="flex flex-col gap-1 flex-shrink-0">
+              <ModalHeader className="flex flex-col gap-1 shrink-0">
                 <h2 className="text-lg font-semibold">{config.name}</h2>
                 <p className="text-sm text-gray-600">
                   {config.name} - {config.type} ({config.width}px x{" "}
@@ -82,7 +82,7 @@ export function ContentItem({ config, children }: ContentItemProps) {
                 >
                   <div
                     ref={printRef}
-                    className="relative bg-white border border-gray-300 rounded-lg shadow-lg flex-shrink-0 enrollment-flier-container"
+                    className="relative bg-white border border-gray-300 rounded-lg shadow-lg shrink-0 enrollment-flier-container"
                     style={{
                       width: `${config.width}px`,
                       height: `${config.height}px`,
@@ -95,7 +95,7 @@ export function ContentItem({ config, children }: ContentItemProps) {
                   </div>
                 </div>
               </ModalBody>
-              <ModalFooter className="flex-shrink-0">
+              <ModalFooter className="shrink-0">
                 <div className="flex items-center gap-4 flex-1">
                   <Slider
                     aria-label="Zoom level"

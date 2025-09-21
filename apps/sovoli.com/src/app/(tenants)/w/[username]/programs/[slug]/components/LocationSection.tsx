@@ -72,7 +72,7 @@ export function LocationSection({
         <CardBody className="space-y-4">
           <div className="space-y-3">
             <div className="flex items-start gap-3">
-              <MapPinIcon className="mt-1 text-default-500 flex-shrink-0" />
+              <MapPinIcon className="mt-1 text-default-500 shrink-0" />
               <div>
                 <address className="not-italic text-default-600 whitespace-pre-line">
                   {addressLines}

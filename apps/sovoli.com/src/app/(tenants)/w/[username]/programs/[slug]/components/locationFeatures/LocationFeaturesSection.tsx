@@ -199,7 +199,7 @@ export function LocationFeaturesSection({
                   key={feature}
                   className="flex items-center gap-3 rounded-lg"
                 >
-                  <div className="flex-shrink-0 w-8 h-8 bg-default-100 rounded-lg flex items-center justify-center">
+                  <div className="shrink-0 w-8 h-8 bg-default-100 rounded-lg flex items-center justify-center">
                     <Icon className="h-4 w-4 text-default-600" />
                   </div>
                   <span className="text-sm font-medium text-foreground">

@@ -22,7 +22,7 @@ export interface ShelfActionsProps {
 }
 
 const dropdownIconStyles = tv({
-  base: "text-xl text-default-500 pointer-events-none flex-shrink-0",
+  base: "text-xl text-default-500 pointer-events-none shrink-0",
   variants: {
     variant: {
       danger: "text-danger",

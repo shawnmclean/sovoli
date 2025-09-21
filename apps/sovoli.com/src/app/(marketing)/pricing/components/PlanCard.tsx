@@ -220,7 +220,7 @@ export function PlanCard({
                 <ul className="space-y-3">
                   {Object.entries(plan.features).map(([key, feature]) => (
                     <li key={key} className="flex items-start text-sm gap-2">
-                      <CheckIcon className="text-success mt-1 h-4 w-4 flex-shrink-0" />
+                      <CheckIcon className="text-success mt-1 h-4 w-4 shrink-0" />
                       <div className="flex flex-col">
                         <span className="font-medium">{feature.label}</span>
                         {feature.pitch && (

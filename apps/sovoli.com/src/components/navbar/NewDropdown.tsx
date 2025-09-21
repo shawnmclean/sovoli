@@ -10,8 +10,7 @@ import {
 import { ChevronDownIcon, FilePlusIcon, LibraryIcon } from "lucide-react";
 
 export const NewDropdown = () => {
-  const iconClasses =
-    "text-xl text-default-500 pointer-events-none flex-shrink-0";
+  const iconClasses = "text-xl text-default-500 pointer-events-none shrink-0";
   return (
     <Dropdown>
       <DropdownTrigger>

@@ -75,8 +75,7 @@ export function computeFeeRange(orgInstance: OrgInstance): string {
 }
 
 export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
-  const iconClasses =
-    "text-xl text-default-500 pointer-events-none flex-shrink-0";
+  const iconClasses = "text-xl text-default-500 pointer-events-none shrink-0";
 
   const score = orgInstance.scoringModule
     ? (
@@ -97,7 +96,7 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
             sm:flex-row sm:items-center sm:text-left sm:gap-4
           "
         >
-          <div className="flex justify-center sm:justify-start sm:flex-shrink-0">
+          <div className="flex justify-center sm:justify-start sm:shrink-0">
             <Badge
               color="secondary"
               variant="solid"

@@ -99,7 +99,7 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
               {program.whatYouWillLearn.map((group) => (
                 <li key={group.heading} className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-primary flex-shrink-0" />
+                    <CheckIcon className="h-4 w-4 text-primary shrink-0" />
                     <span className="font-bold text-foreground">
                       {group.heading}
                     </span>

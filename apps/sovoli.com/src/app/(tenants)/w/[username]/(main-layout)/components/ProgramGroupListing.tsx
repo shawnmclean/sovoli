@@ -128,13 +128,13 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
                   return (
                     <CarouselItem
                       key={program.slug}
-                      className="pl-2 basis-[216px] flex-shrink-0"
+                      className="pl-2 basis-[216px] shrink-0"
                     >
                       <Link
                         href={`/programs/${program.slug}`}
                         className="block w-full"
                       >
-                        <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
+                        <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
                           <div className="relative aspect-square w-full">
                             {programImage ? (
                               <>
@@ -165,7 +165,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
                             </h3>
                             {ageReq?.ageRange && (
                               <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                <UserIcon className="w-3 h-3 flex-shrink-0" />
+                                <UserIcon className="w-3 h-3 shrink-0" />
                                 <span>{formatAgeRange(ageReq.ageRange)}</span>
                               </div>
                             )}

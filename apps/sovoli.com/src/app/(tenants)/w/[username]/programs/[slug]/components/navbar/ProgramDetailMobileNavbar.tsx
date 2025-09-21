@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BellIcon, ChevronLeftIcon } from "lucide-react";
+import { ChevronLeftIcon } from "lucide-react";
 import {
   Navbar,
   NavbarContent,

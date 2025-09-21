@@ -66,7 +66,7 @@ export function OrgLandingSection({ orgInstance }: OrgLandingSectionProps) {
   return (
     <div className="flex items-center gap-4 text-left border-b border-default-200 pb-4">
       {/* Logo with Score Badge */}
-      <div className="flex-shrink-0">
+      <div className="shrink-0">
         <Badge
           color="secondary"
           variant="solid"

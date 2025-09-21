@@ -110,7 +110,7 @@ export function CurriculumDetails({ program }: CurriculumDetailsProps) {
                                   key={topicIndex}
                                   className="text-xs text-foreground-600 flex items-start gap-2"
                                 >
-                                  <span className="flex-shrink-0 w-1.5 h-1.5 bg-primary rounded-full mt-1.5"></span>
+                                  <span className="shrink-0 w-1.5 h-1.5 bg-primary rounded-full mt-1.5"></span>
                                   {topic}
                                 </li>
                               ))}

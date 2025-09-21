@@ -13,7 +13,7 @@ export type VerifyState = {
 } | null;
 
 // Use validated environment variable
-const HMAC_SECRET = env.AUTH_SECRET as string;
+const HMAC_SECRET = env.AUTH_SECRET;
 
 // Type for the OTP token payload
 interface OTPTokenPayload {

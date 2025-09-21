@@ -181,9 +181,7 @@ export function TeamDirectory({ orgInstance }: TeamDirectoryProps) {
             }
           >
             {uniqueRoles.map((role) => (
-              <SelectItem key={role} value={role}>
-                {role}
-              </SelectItem>
+              <SelectItem key={role}>{role}</SelectItem>
             ))}
           </Select>
         </div>
@@ -197,9 +195,7 @@ export function TeamDirectory({ orgInstance }: TeamDirectoryProps) {
             }
           >
             {uniqueDepartments.map((department) => (
-              <SelectItem key={department} value={department}>
-                {department}
-              </SelectItem>
+              <SelectItem key={department}>{department}</SelectItem>
             ))}
           </Select>
         </div>

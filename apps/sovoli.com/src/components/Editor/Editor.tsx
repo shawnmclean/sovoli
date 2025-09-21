@@ -27,7 +27,7 @@ export const Editor = ({ name, defaultValue, ref }: EditorProps) => {
   }
 
   return (
-    <div className="relative flex h-[500px] w-full flex-col items-start gap-3 overflow-auto rounded-large border-2 border-default-200 shadow-sm focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
+    <div className="relative flex h-[500px] w-full flex-col items-start gap-3 overflow-auto rounded-large border-2 border-default-200 shadow-xs focus-within:border-default-foreground hover:border-default-400 hover:focus-within:border-default-foreground">
       <EditorMenu editor={editor} />
       <div className="w-full flex-1 overflow-auto p-2">
         <EditorContent editor={editor} />

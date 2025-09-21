@@ -82,7 +82,7 @@ export function ProgramsSection({
               return (
                 <CarouselItem key={program.slug} className="pl-4 basis-[280px]">
                   <Link href={`/programs/${program.slug}`}>
-                    <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card">
+                    <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card">
                       <div className="relative h-32 w-full">
                         {programImage ? (
                           <>
@@ -110,7 +110,7 @@ export function ProgramsSection({
                         </h3>
                         {ageReq?.ageRange && (
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                            <UserIcon className="w-3 h-3 flex-shrink-0" />
+                            <UserIcon className="w-3 h-3 shrink-0" />
                             <span>{formatAgeRange(ageReq.ageRange)}</span>
                           </div>
                         )}

@@ -53,7 +53,7 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
     <div>
       {showDiscount ? (
         <div className="relative bg-content2 rounded-lg p-3 pt-6">
-          <span className="absolute -top-2 left-3 bg-content2 border border-foreground-200 px-3 py-0.5 rounded-full text-xs text-foreground-700 font-medium shadow uppercase">
+          <span className="absolute -top-2 left-3 bg-content2 border border-foreground-200 px-3 py-0.5 rounded-full text-xs text-foreground-700 font-medium shadow-sm uppercase">
             {item.label}
           </span>
           <div className="flex items-center justify-between gap-2">

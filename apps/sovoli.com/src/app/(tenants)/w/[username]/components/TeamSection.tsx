@@ -48,7 +48,7 @@ export function TeamSection({ orgInstance }: TeamSectionProps) {
             {members.map((member) => (
               <CarouselItem
                 key={member.slug}
-                className="pl-4 basis-[160px] flex-shrink-0"
+                className="pl-4 basis-[160px] shrink-0"
               >
                 <Link
                   href={`/workforce/people/${member.slug}`}

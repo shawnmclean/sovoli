@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@sovoli/ui/theme.css";
+
+@source "./src/app/**/*.{js,ts,jsx,tsx,mdx}";
+@source "./src/pages/**/*.{js,ts,jsx,tsx,mdx}";
+@source "./src/components/**/*.{js,ts,jsx,tsx,mdx}";
+@source "./src/modules/**/*.{js,ts,jsx,tsx,mdx}";
 
 .prose {
   :first-child {
