@@ -77,7 +77,7 @@ export function ProgramDetailMobileFooter({
   if (!selectedCycle) {
     return (
       <>
-        <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
+        <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:0] [bottom:max(0px,calc(100dvh-100vh))]">
           <div className="flex w-full items-center justify-between py-3 gap-4">
             <Skeleton isLoaded={!(isLoading && isInitialized)}>
               <div className="flex flex-1 items-center">Select a cycle</div>
@@ -124,7 +124,7 @@ export function ProgramDetailMobileFooter({
 
   return (
     <>
-      <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40">
+      <footer className="fixed left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:0] [bottom:max(0px,calc(100dvh-100vh))]">
         <div className="flex w-full items-center py-3 justify-between">
           {/* Left side - Program info badge */}
           <PriceButton defaultCycle={defaultCycle} />
