@@ -134,7 +134,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
                         href={`/programs/${program.slug}`}
                         className="block w-full"
                       >
-                        <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
+                        <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
                           <div className="relative aspect-square w-full">
                             {programImage ? (
                               <>

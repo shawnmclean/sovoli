@@ -18,7 +18,7 @@ interface CatalogItemCardProps {
 
 function CatalogItemCard({ item }: CatalogItemCardProps) {
   return (
-    <div className="group bg-card rounded-xl shadow-sm hover:shadow-lg transition-all duration-200">
+    <div className="group bg-card rounded-xl shadow-xs hover:shadow-lg transition-all duration-200">
       <div className="p-4 sm:p-5">
         <div className="mb-3">
           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">

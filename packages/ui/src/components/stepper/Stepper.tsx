@@ -44,7 +44,7 @@ export const Stepper: React.FC<StepperProps> = ({
                 aria-current={isActive ? "step" : undefined}
               >
                 <span
-                  className={`flex items-center justify-center w-8 h-8 rounded-full border-2 text-base font-semibold transition-all duration-200 shadow-sm
+                  className={`flex items-center justify-center w-8 h-8 rounded-full border-2 text-base font-semibold transition-all duration-200 shadow-xs
                     ${
                       isCompleted
                         ? "border-primary bg-primary/10 text-primary"

@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "./hero.ts";
+
+@theme {
+  /* Custom background images */
+  --background-image-hero-section-title: linear-gradient(
+    91deg,
+    #fff 32.88%,
+    rgba(255, 255, 255, 0.4) 99.12%
+  );
+
+  /* Custom animations */
+  --animate-neon-pulse: neonPulse 2s ease-in-out infinite;
+
+  /* HeroUI layout configuration */
+  --radius-small: 2px;
+  --radius-medium: 4px;
+  --radius-large: 6px;
+}
+
+@keyframes neonPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 5px #800080,
+      0 0 10px #ff00ff,
+      0 0 20px #800080,
+      0 0 40px #ff00ff;
+  }
+  50% {
+    box-shadow:
+      0 0 10px #ff00ff,
+      0 0 20px #800080,
+      0 0 30px #ff00ff,
+      0 0 50px #800080;
+  }
+}
+
+/* Typography configuration for prose */
+.prose {
+  --tw-prose-body: hsl(var(--heroui-default-700));
+  --tw-prose-headings: hsl(var(--heroui-foreground));
+  --tw-prose-lead: hsl(var(--heroui-default-600));
+  --tw-prose-links: hsl(var(--heroui-default-900));
+  --tw-prose-bold: hsl(var(--heroui-default-900));
+  --tw-prose-counters: hsl(var(--heroui-default-500));
+  --tw-prose-bullets: hsl(var(--heroui-default-300));
+  --tw-prose-hr: hsl(var(--heroui-default-200));
+  --tw-prose-quotes: hsl(var(--heroui-default-900));
+  --tw-prose-quote-borders: hsl(var(--heroui-default-200));
+  --tw-prose-captions: hsl(var(--heroui-default-500));
+  --tw-prose-code: hsl(var(--heroui-default-900));
+  --tw-prose-pre-code: hsl(var(--heroui-default-200));
+  --tw-prose-pre-bg: hsl(var(--heroui-default-800));
+  --tw-prose-th-borders: hsl(var(--heroui-default-300));
+  --tw-prose-td-borders: hsl(var(--heroui-default-200));
+}
+
+/* Dark mode typography */
+.dark .prose {
+  --tw-prose-invert-body: hsl(var(--heroui-default-300));
+  --tw-prose-invert-headings: #ffffff;
+  --tw-prose-invert-lead: #a3a3a3;
+  --tw-prose-invert-links: #ffffff;
+  --tw-prose-invert-bold: #ffffff;
+  --tw-prose-invert-counters: #a3a3a3;
+  --tw-prose-invert-bullets: #525252;
+  --tw-prose-invert-hr: #404040;
+  --tw-prose-invert-quotes: #f5f5f5;
+  --tw-prose-invert-quote-borders: #404040;
+  --tw-prose-invert-captions: #a3a3a3;
+  --tw-prose-invert-code: #ffffff;
+  --tw-prose-invert-pre-code: hsl(var(--heroui-default-300));
+  --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+  --tw-prose-invert-th-borders: #525252;
+  --tw-prose-invert-td-borders: #404040;
+}
