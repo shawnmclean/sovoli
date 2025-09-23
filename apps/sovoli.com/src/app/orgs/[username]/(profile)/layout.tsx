@@ -7,6 +7,7 @@ import { SchoolNavigation } from "./components/SchoolNavigation";
 import { config } from "~/utils/config";
 import { OrgNavbar } from "./components/OrgNavbar/OrgNavbar";
 import { Alert } from "@sovoli/ui/components/alert";
+import { OrgDetailMobileFooter } from "./components/OrgFooter/OrgDetailMobileFooter";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -66,6 +67,7 @@ export default async function Layout({ children, params }: Props) {
         <div className="w-full md:w-2/3">{children}</div>
       </main>
       <Footer />
+      <OrgDetailMobileFooter orgInstance={orgInstance} />
     </div>
   );
 }
