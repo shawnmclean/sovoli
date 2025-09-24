@@ -136,6 +136,9 @@ export function GuidedChatForm({
 
   return (
     <Modal
+      classNames={{
+        wrapper: "h-(--visual-viewport-height)",
+      }}
       scrollBehavior="inside"
       isOpen={isOpen}
       size="full"

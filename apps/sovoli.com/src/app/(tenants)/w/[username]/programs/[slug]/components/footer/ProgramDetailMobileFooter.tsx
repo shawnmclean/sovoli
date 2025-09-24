@@ -144,6 +144,9 @@ export function ProgramDetailMobileFooter({
 
       {/* Program Details Drawer */}
       <Drawer
+        classNames={{
+          wrapper: "h-(--visual-viewport-height)",
+        }}
         isOpen={isOpen}
         size="5xl"
         placement="bottom"
