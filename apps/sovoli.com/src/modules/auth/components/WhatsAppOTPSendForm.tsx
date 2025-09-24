@@ -96,7 +96,7 @@ export function WhatsAppOTPSendForm({
   return (
     <div className="space-y-4">
       <div className="text-left">
-        <h1 className="text-3xl font-bold mb-2">Your phone number?</h1>
+        <h1 className="text-2xl font-bold mb-2">Your phone number?</h1>
         <p className="text-base">Enter your WhatsApp number.</p>
       </div>
 

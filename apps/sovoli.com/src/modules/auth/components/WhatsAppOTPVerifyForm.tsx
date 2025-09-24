@@ -40,7 +40,7 @@ export function WhatsAppOTPVerifyForm({
   return (
     <div className="space-y-4">
       <div className="text-left">
-        <h1 className="text-3xl font-bold mb-2">Enter verification code</h1>
+        <h1 className="text-2xl font-bold mb-2">Verify your phone number</h1>
         <p className="text-base">
           We sent a code to <strong>{phone}</strong>
         </p>
