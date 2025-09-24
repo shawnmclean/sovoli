@@ -13,8 +13,9 @@ import {
 import { ChevronDownIcon } from "lucide-react";
 import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
 import type { State } from "../actions/sendOTPAction";
-// import { parseFormData } from "@rvf/core";
-// import { whatsAppOTPFormSchema } from "../actions/schemas";
+import type { FieldErrors } from "@rvf/core";
+import { parseFormData } from "@rvf/core";
+import { whatsAppOTPFormSchema } from "../actions/schemas";
 
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";
@@ -49,6 +50,9 @@ export function WhatsAppOTPSendForm({
   onSuccess,
 }: WhatsAppOTPSendFormProps) {
   const [state, formAction, isPending] = useActionState(sendAction, null);
+  const [clientErrors, setClientErrors] = useState<FieldErrors | undefined>(
+    undefined,
+  );
   const [phone, setPhone] = useState("");
   const [selectedCountry, setSelectedCountry] = useState<{
     code: string;
@@ -75,13 +79,17 @@ export function WhatsAppOTPSendForm({
   if (state?.status === "success" && state.otpToken) {
     const fullPhoneNumber = selectedCountry.code + phone;
     onSuccess?.(fullPhoneNumber, state.otpToken);
-  } else if (state?.status === "error") {
-    // onError?.(state.message);
   }
 
-  const handleSubmit = (formData: FormData) => {
+  const handleSubmit = async (formData: FormData) => {
     const fullPhoneNumber = selectedCountry.code + phone;
     formData.set("phone", fullPhoneNumber);
+
+    const validatedData = await parseFormData(formData, whatsAppOTPFormSchema);
+    if (validatedData.error) {
+      setClientErrors(validatedData.error.fieldErrors);
+      return;
+    }
     formAction(formData);
   };
 
@@ -95,14 +103,15 @@ export function WhatsAppOTPSendForm({
       {/* Display error messages */}
       {state?.status === "error" && (
         <div className="p-3 rounded-lg bg-danger-50 text-danger-700 border border-danger-200">
-          {state.errors?.phone}
+          {state.message}
         </div>
       )}
 
       <Form
         action={handleSubmit}
-        validationErrors={state?.errors}
+        validationErrors={state?.errors ?? clientErrors}
         className="space-y-4"
+        validationBehavior="aria"
       >
         <Input
           name="phone"
