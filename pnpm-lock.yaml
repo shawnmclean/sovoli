@@ -492,6 +492,9 @@ importers:
       '@heroui/input':
         specifier: 2.4.27
         version: 2.4.27(@heroui/system@2.4.22(@heroui/theme@2.4.22(tailwindcss@4.1.13))(framer-motion@11.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.22(tailwindcss@4.1.13))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/input-otp':
+        specifier: 2.1.26
+        version: 2.1.26(@heroui/system@2.4.22(@heroui/theme@2.4.22(tailwindcss@4.1.13))(framer-motion@11.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.22(tailwindcss@4.1.13))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/link':
         specifier: 2.2.22
         version: 2.2.22(@heroui/system@2.4.22(@heroui/theme@2.4.22(tailwindcss@4.1.13))(framer-motion@11.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.22(tailwindcss@4.1.13))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -1458,6 +1461,14 @@ packages:
       '@heroui/theme': '>=2.4.17'
       react: '>=18 || >=19.0.0-rc.0'
       react-dom: '>=18 || >=19.0.0-rc.0'
+
+  '@heroui/input-otp@2.1.26':
+    resolution: {integrity: sha512-eVVSOvwTiuVmq/hXWDYuq9ICR59R7TuWi55dDG/hd5WN6jIBJsNkmt7MmYVaSNNISyzi27hPEK43/bvK4eO9FA==}
+    peerDependencies:
+      '@heroui/system': '>=2.4.18'
+      '@heroui/theme': '>=2.4.17'
+      react: '>=18'
+      react-dom: '>=18'
 
   '@heroui/input@2.4.27':
     resolution: {integrity: sha512-sLGw7r+BXyB1MllKNKmn0xLvSW0a1l+3gXefnUCXGSvI3bwrLvk3hUgbkVSJRnxSChU41yXaYDRcHL39t7yzuQ==}
@@ -4845,6 +4856,12 @@ packages:
   inline-style-parser@0.2.4:
     resolution: {integrity: sha512-0aO8FkhNZlj/ZIbNi7Lxxr12obT7cL1moPfE4tg1LkX7LlLfC6DeX4l2ZEud1ukP9jNQyNnfzQVqwbwmAATY4Q==}
 
+  input-otp@1.4.1:
+    resolution: {integrity: sha512-+yvpmKYKHi9jIGngxagY9oWiiblPB7+nEO75F2l2o4vs+6vpPZZmUl4tBNYuTCvQjhvEIbdNeJu70bhfYP2nbw==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc
+
   internal-slot@1.1.0:
     resolution: {integrity: sha512-4gd7VpWNQNB4UKKCFFVcp1AVv+FMOgs9NKzjHKusc8jTMhd5eL1NqQqOpE0KzMds804/yHlglp3uxgluOqAPLw==}
     engines: {node: '>= 0.4'}
@@ -7693,6 +7710,23 @@ snapshots:
       '@heroui/system': 2.4.22(@heroui/theme@2.4.22(tailwindcss@4.1.13))(framer-motion@11.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/theme': 2.4.22(tailwindcss@4.1.13)
       '@heroui/use-image': 2.1.12(react@19.0.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+
+  '@heroui/input-otp@2.1.26(@heroui/system@2.4.22(@heroui/theme@2.4.22(tailwindcss@4.1.13))(framer-motion@11.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.22(tailwindcss@4.1.13))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@heroui/form': 2.1.26(@heroui/system@2.4.22(@heroui/theme@2.4.22(tailwindcss@4.1.13))(framer-motion@11.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.22(tailwindcss@4.1.13))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/react-utils': 2.1.13(react@19.0.0)
+      '@heroui/shared-utils': 2.1.11
+      '@heroui/system': 2.4.22(@heroui/theme@2.4.22(tailwindcss@4.1.13))(framer-motion@11.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/theme': 2.4.22(tailwindcss@4.1.13)
+      '@heroui/use-form-reset': 2.0.1(react@19.0.0)
+      '@react-aria/focus': 3.21.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@react-aria/form': 3.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@react-stately/form': 3.2.1(react@19.0.0)
+      '@react-stately/utils': 3.10.8(react@19.0.0)
+      '@react-types/textfield': 3.12.5(react@19.0.0)
+      input-otp: 1.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
@@ -11975,6 +12009,11 @@ snapshots:
   ini@5.0.0: {}
 
   inline-style-parser@0.2.4: {}
+
+  input-otp@1.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   internal-slot@1.1.0:
     dependencies:

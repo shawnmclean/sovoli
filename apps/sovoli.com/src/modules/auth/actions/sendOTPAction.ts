@@ -32,7 +32,7 @@ export async function sendOTPAction(
   const { phone } = validatedData.data;
 
   // Generate a random OTP (for demo purposes, use a fixed value)
-  const otp = "1234"; // In production, generate a random 4-6 digit OTP
+  const otp = "123456"; // In production, generate a random 4-6 digit OTP
 
   // Create a token with phone and OTP for verification
   const payload = JSON.stringify({

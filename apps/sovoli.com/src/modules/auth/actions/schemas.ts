@@ -16,8 +16,8 @@ export type WhatsAppOTPFormSchema = z.infer<typeof whatsAppOTPFormSchema>;
 export const whatsAppOTPVerifyFormSchema = z.object({
   otp: z
     .string()
-    .min(4, "OTP must be at least 4 digits")
-    .max(6, "OTP must be at most 6 digits"),
+    .length(6, "Please enter all 6 digits of your verification code"),
+  otpToken: z.string().min(1, "OTP token is required"),
   phone: phoneSchema,
 });
 export type WhatsAppOTPVerifyFormSchema = z.infer<

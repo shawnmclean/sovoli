@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useActionState, useEffect } from "react";
+import { useState, useActionState, useEffect, useRef } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { Input } from "@sovoli/ui/components/input";
+import { InputOtp } from "@sovoli/ui/components/input-otp";
 import type { VerifyState } from "../actions/verifyOTPAction";
 import type { State } from "../actions/sendOTPAction";
+import { Form } from "@sovoli/ui/components/form";
 
 export interface WhatsAppOTPVerifyFormProps {
   phone: string;
@@ -24,70 +25,24 @@ export function WhatsAppOTPVerifyForm({
   verifyAction,
   sendAction,
   otpToken,
-  onSuccess,
-  onError,
   onBack,
 }: WhatsAppOTPVerifyFormProps) {
   const [verifyState, verifyFormAction, isVerifyPending] = useActionState(
     verifyAction,
     null,
   );
-  const [sendState, sendFormAction, isSendPending] = useActionState(
+  const [resendState, resendFormAction, isSendPending] = useActionState(
     sendAction,
     null,
   );
-  const [otp, setOtp] = useState("");
-
-  // Handle verify state changes
-  useEffect(() => {
-    if (verifyState?.status === "success") {
-      onSuccess?.(phone);
-    } else if (verifyState?.status === "error") {
-      onError?.(verifyState.message);
-    }
-  }, [verifyState, phone, onSuccess, onError]);
-
-  // Handle send state changes (for resend)
-  useEffect(() => {
-    if (sendState?.status === "error") {
-      onError?.(sendState.message);
-    }
-    // Clear OTP when resending
-    if (sendState?.status === "success") {
-      setOtp("");
-    }
-  }, [sendState, onError]);
-
-  const handleVerifySubmit = (formData: FormData) => {
-    formData.set("otp", otp);
-    formData.set("phone", phone);
-    if (otpToken) {
-      formData.set("otpToken", otpToken);
-    }
-    verifyFormAction(formData);
-  };
-
-  const handleResend = () => {
-    const formData = new FormData();
-    formData.set("phone", phone);
-    sendFormAction(formData);
-  };
-
-  const formatPhoneForDisplay = (phone: string) => {
-    // Simple formatting - in production you might want more sophisticated formatting
-    if (phone.length > 4) {
-      const start = phone.slice(0, -4);
-      return `${start}****`;
-    }
-    return phone;
-  };
+  const formRef = useRef<HTMLFormElement>(null);
 
   return (
     <div className="space-y-4">
       <div className="text-left">
         <h1 className="text-3xl font-bold mb-2">Enter verification code</h1>
         <p className="text-base">
-          We sent a code to {formatPhoneForDisplay(phone)}
+          We sent a code to <strong>{phone}</strong>
         </p>
       </div>
 
@@ -104,62 +59,56 @@ export function WhatsAppOTPVerifyForm({
         </div>
       )}
 
-      {sendState && (
+      {resendState && (
         <div
           className={`p-3 rounded-lg ${
-            sendState.status === "success"
+            resendState.status === "success"
               ? "bg-success-50 text-success-700 border border-success-200"
               : "bg-danger-50 text-danger-700 border border-danger-200"
           }`}
         >
-          {sendState.message}
+          {resendState.message}
         </div>
       )}
 
-      <form action={handleVerifySubmit} className="space-y-4">
-        <div className="flex flex-col gap-2">
-          <Input
-            name="otp"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            fullWidth
-            autoFocus
-            type="text"
-            size="lg"
-            variant="bordered"
-            placeholder="Enter verification code"
-            isRequired
-            isDisabled={isVerifyPending}
-            maxLength={6}
-            className="text-center text-lg tracking-widest"
-          />
-        </div>
-
-        <Button
-          type="submit"
-          variant="solid"
-          color="primary"
-          radius="lg"
-          fullWidth
-          isLoading={isVerifyPending}
-          isDisabled={isVerifyPending || !otp.trim()}
-        >
-          {isVerifyPending ? "Verifying..." : "Verify"}
-        </Button>
-      </form>
+      <Form
+        ref={formRef}
+        action={verifyFormAction}
+        className="w-full flex justify-center items-center"
+        validationErrors={verifyState?.errors}
+      >
+        <input name="phone" defaultValue={phone} type="hidden" />
+        <input name="otpToken" defaultValue={otpToken} type="hidden" />
+        <InputOtp
+          name="otp"
+          length={6}
+          autoFocus
+          size="lg"
+          variant="bordered"
+          isRequired
+          isDisabled={isVerifyPending}
+          onComplete={() => {
+            // Trigger form submission when OTP is complete
+            formRef.current?.requestSubmit();
+          }}
+        />
+      </Form>
 
       <div className="flex flex-col gap-2">
-        <Button
-          variant="light"
-          color="primary"
-          radius="lg"
-          fullWidth
-          isLoading={isSendPending}
-          isDisabled={isSendPending}
-          onPress={handleResend}
-        >
-          {isSendPending ? "Sending..." : "Resend code"}
-        </Button>
+        <Form action={resendFormAction}>
+          <input name="phone" defaultValue={phone} type="hidden" />
+          <Button
+            variant="light"
+            color="primary"
+            radius="lg"
+            fullWidth
+            isLoading={isSendPending}
+            isDisabled={isSendPending}
+            type="submit"
+          >
+            {isSendPending ? "Sending..." : "Resend code"}
+          </Button>
+        </Form>
 
         {onBack && (
           <Button

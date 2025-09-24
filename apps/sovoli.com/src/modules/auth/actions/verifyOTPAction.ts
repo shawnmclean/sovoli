@@ -29,6 +29,8 @@ export async function verifyOTPAction(
 ): Promise<VerifyState> {
   const result = await parseFormData(formData, whatsAppOTPVerifyFormSchema);
 
+  console.log("result", result);
+
   if (result.error) {
     return {
       status: "error",
@@ -37,8 +39,7 @@ export async function verifyOTPAction(
     };
   }
 
-  const { otp, phone } = result.data;
-  const otpToken = formData.get("otpToken") as string;
+  const { otp, phone, otpToken } = result.data;
 
   if (!otpToken) {
     return {

@@ -111,7 +111,6 @@ export function WhatsAppOTPSendForm({
         action={handleSubmit}
         validationErrors={state?.errors ?? clientErrors}
         className="space-y-4"
-        validationBehavior="aria"
       >
         <Input
           name="phone"
