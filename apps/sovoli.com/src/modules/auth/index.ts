@@ -4,7 +4,7 @@ export { PhoneNumberStep as WhatsAppOTPForm } from "./components/PhoneNumberStep
 export type { WhatsAppOTPProps } from "./components/PhoneNumberStep";
 export { WhatsAppOTPSendForm } from "./components/PhoneNumberForm";
 export type { PhoneNumberFormProps as WhatsAppOTPSendFormProps } from "./components/PhoneNumberForm";
-export { WhatsAppOTPVerifyForm } from "./components/WhatsAppOTPVerifyForm";
-export type { WhatsAppOTPVerifyFormProps } from "./components/WhatsAppOTPVerifyForm";
+export { WhatsAppOTPVerifyForm } from "./components/PhoneOTPVerifyForm";
+export type { PhoneOTPVerifyFormProps as WhatsAppOTPVerifyFormProps } from "./components/PhoneOTPVerifyForm";
 export { NamesForm } from "./components/NamesForm";
 export type { NamesFormProps } from "./components/NamesForm";

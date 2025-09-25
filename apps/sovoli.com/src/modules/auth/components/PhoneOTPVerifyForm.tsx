@@ -8,7 +8,7 @@ import type { State } from "../actions/sendOTPAction";
 import { Form } from "@sovoli/ui/components/form";
 import { ArrowLeft } from "lucide-react";
 
-export interface WhatsAppOTPVerifyFormProps {
+export interface PhoneOTPVerifyFormProps {
   phone: string;
   verifyAction: (
     prevState: VerifyState,
@@ -21,13 +21,13 @@ export interface WhatsAppOTPVerifyFormProps {
   onBack?: () => void;
 }
 
-export function WhatsAppOTPVerifyForm({
+export function PhoneOTPVerifyForm({
   phone,
   verifyAction,
   sendAction,
   otpToken,
   onBack,
-}: WhatsAppOTPVerifyFormProps) {
+}: PhoneOTPVerifyFormProps) {
   const [verifyState, verifyFormAction, isVerifyPending] = useActionState(
     verifyAction,
     null,

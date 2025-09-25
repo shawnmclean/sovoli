@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { PhoneNumberForm } from "./PhoneNumberForm";
-import { WhatsAppOTPVerifyForm } from "./WhatsAppOTPVerifyForm";
+import { PhoneOTPVerifyForm } from "./PhoneOTPVerifyForm";
 import { sendOTPAction } from "../actions/sendOTPAction";
 import { verifyOTPAction } from "../actions/verifyOTPAction";
 
@@ -43,7 +43,7 @@ export function PhoneNumberStep({ onSuccess, onError }: PhoneNumberStepProps) {
           onError={onError}
         />
       ) : (
-        <WhatsAppOTPVerifyForm
+        <PhoneOTPVerifyForm
           phone={phone}
           verifyAction={verifyOTPAction}
           sendAction={sendOTPAction}
