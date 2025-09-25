@@ -4,7 +4,7 @@ import { useState, useActionState, useEffect, useRef } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { InputOtp } from "@sovoli/ui/components/input-otp";
 import type { VerifyState } from "../../actions/verifyOTPAction";
-import type { State } from "../../actions/sendOTPAction";
+import type { PhoneActionStates } from "../../actions/states";
 import { Form } from "@sovoli/ui/components/form";
 import { ArrowLeft } from "lucide-react";
 
@@ -14,7 +14,10 @@ export interface PhoneOTPVerifyFormProps {
     prevState: VerifyState,
     formData: FormData,
   ) => Promise<VerifyState>;
-  sendAction: (prevState: State, formData: FormData) => Promise<State>;
+  sendAction: (
+    prevState: PhoneActionStates,
+    formData: FormData,
+  ) => Promise<PhoneActionStates>;
   otpToken?: string;
   onSuccess?: (phone: string) => void;
   onError?: (message: string) => void;

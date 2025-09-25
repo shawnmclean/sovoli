@@ -3,8 +3,8 @@
 import { whatsAppOTPFormSchema } from "./schemas";
 import { createHmac, randomBytes } from "crypto";
 import { env } from "~/env";
-import type { FieldErrors } from "@rvf/core";
 import { parseFormData } from "@rvf/core";
+import type { SendOTPActionState } from "./states";
 
 /**
  * WhatsApp OTP Sending Action
@@ -17,20 +17,13 @@ import { parseFormData } from "@rvf/core";
  * The OTP is sent as a parameter in the template message.
  */
 
-export type State = {
-  status: "error" | "success";
-  message: string;
-  errors?: FieldErrors;
-  otpToken?: string;
-} | null;
-
 // Use validated environment variable
 const HMAC_SECRET = env.AUTH_SECRET;
 
 export async function sendOTPAction(
-  _prevState: State,
+  _prevState: SendOTPActionState,
   formData: FormData,
-): Promise<State> {
+): Promise<SendOTPActionState> {
   const validatedData = await parseFormData(formData, whatsAppOTPFormSchema);
 
   if (validatedData.error) {

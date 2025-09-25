@@ -6,6 +6,7 @@ import { PhoneOTPVerifyForm } from "./PhoneOTPVerifyForm";
 import { sendOTPAction } from "../../actions/sendOTPAction";
 import { verifyOTPAction } from "../../actions/verifyOTPAction";
 import type { SignupWizardMode } from "../types";
+import type { LeadPhoneActionState } from "../../actions/states";
 
 export interface PhoneNumberStepProps {
   mode: SignupWizardMode;
@@ -15,12 +16,16 @@ export interface PhoneNumberStepProps {
 
 type Step = "send" | "verify";
 
-export function PhoneNumberStep({ onSuccess, onError }: PhoneNumberStepProps) {
+export function PhoneNumberStep({
+  onSuccess,
+  onError,
+  mode,
+}: PhoneNumberStepProps) {
   const [currentStep, setCurrentStep] = useState<Step>("send");
   const [phone, setPhone] = useState("");
   const [otpToken, setOtpToken] = useState<string | undefined>();
 
-  const handleSendSuccess = (phoneNumber: string, token: string) => {
+  const _handleSendSuccess = (phoneNumber: string, token: string) => {
     setPhone(phoneNumber);
     setOtpToken(token);
     setCurrentStep("verify");
@@ -36,14 +41,27 @@ export function PhoneNumberStep({ onSuccess, onError }: PhoneNumberStepProps) {
     setOtpToken(undefined);
   };
 
+  const leadPhoneAction = async (
+    prevState: LeadPhoneActionState,
+    formData: FormData,
+  ): Promise<LeadPhoneActionState> => {
+    const phone = formData.get("phone") as string;
+    return new Promise((resolve) => {
+      console.log("leadPhoneAction", phone);
+      resolve({
+        status: "success",
+        message: "Phone sent successfully",
+        leadId: "123456",
+      });
+    });
+  };
+
+  const phoneAction = mode === "lead" ? leadPhoneAction : sendOTPAction;
+
   return (
     <div className="space-y-4">
       {currentStep === "send" ? (
-        <PhoneNumberForm
-          sendAction={sendOTPAction}
-          onSuccess={handleSendSuccess}
-          onError={onError}
-        />
+        <PhoneNumberForm sendAction={phoneAction} defaultPhone={phone} />
       ) : (
         <PhoneOTPVerifyForm
           phone={phone}

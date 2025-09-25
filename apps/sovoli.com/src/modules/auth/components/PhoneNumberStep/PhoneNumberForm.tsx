@@ -12,18 +12,20 @@ import {
 } from "@sovoli/ui/components/dropdown";
 import { ChevronDownIcon } from "lucide-react";
 import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
-import type { State } from "../../actions/sendOTPAction";
 import type { FieldErrors } from "@rvf/core";
 import { parseFormData } from "@rvf/core";
+import type { PhoneActionStates } from "../../actions/states";
 import { whatsAppOTPFormSchema } from "../../actions/schemas";
 
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";
 
 export interface PhoneNumberFormProps {
-  sendAction: (prevState: State, formData: FormData) => Promise<State>;
-  onSuccess?: (phone: string, otpToken: string) => void;
-  onError?: (message: string) => void;
+  defaultPhone?: string;
+  sendAction: (
+    prevState: PhoneActionStates,
+    formData: FormData,
+  ) => Promise<PhoneActionStates>;
 }
 
 // Flag component that maps country codes to flag components
@@ -47,13 +49,13 @@ function Flag({
 
 export function PhoneNumberForm({
   sendAction,
-  onSuccess,
+  defaultPhone,
 }: PhoneNumberFormProps) {
   const [state, formAction, isPending] = useActionState(sendAction, null);
   const [clientErrors, setClientErrors] = useState<FieldErrors | undefined>(
     undefined,
   );
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(defaultPhone);
   const [selectedCountry, setSelectedCountry] = useState<{
     code: string;
     name: string;
@@ -74,12 +76,6 @@ export function PhoneNumberForm({
     { code: "+592", name: "Guyana", countryCode: "GY" },
     { code: "+1876", name: "Jamaica", countryCode: "JM" },
   ];
-
-  // Handle success and error cases
-  if (state?.status === "success" && state.otpToken) {
-    const fullPhoneNumber = selectedCountry.code + phone;
-    onSuccess?.(fullPhoneNumber, state.otpToken);
-  }
 
   const handleSubmit = async (formData: FormData) => {
     const fullPhoneNumber = selectedCountry.code + phone;
