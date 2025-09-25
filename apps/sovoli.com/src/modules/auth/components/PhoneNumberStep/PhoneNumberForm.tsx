@@ -12,10 +12,10 @@ import {
 } from "@sovoli/ui/components/dropdown";
 import { ChevronDownIcon } from "lucide-react";
 import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
-import type { State } from "../actions/sendOTPAction";
+import type { State } from "../../actions/sendOTPAction";
 import type { FieldErrors } from "@rvf/core";
 import { parseFormData } from "@rvf/core";
-import { whatsAppOTPFormSchema } from "../actions/schemas";
+import { whatsAppOTPFormSchema } from "../../actions/schemas";
 
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";

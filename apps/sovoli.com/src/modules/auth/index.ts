@@ -1,10 +1,10 @@
 export { SignupWizard } from "./components/SignupWizard";
 export type { SignupWizardProps } from "./components/SignupWizard";
-export { PhoneNumberStep as WhatsAppOTPForm } from "./components/PhoneNumberStep";
-export type { WhatsAppOTPProps } from "./components/PhoneNumberStep";
-export { WhatsAppOTPSendForm } from "./components/PhoneNumberForm";
-export type { PhoneNumberFormProps as WhatsAppOTPSendFormProps } from "./components/PhoneNumberForm";
-export { WhatsAppOTPVerifyForm } from "./components/PhoneOTPVerifyForm";
-export type { PhoneOTPVerifyFormProps as WhatsAppOTPVerifyFormProps } from "./components/PhoneOTPVerifyForm";
+export { PhoneNumberStep as WhatsAppOTPForm } from "./components/PhoneNumberStep/PhoneNumberStep";
+export type { WhatsAppOTPProps } from "./components/PhoneNumberStep/PhoneNumberStep";
+export { WhatsAppOTPSendForm } from "./components/PhoneNumberStep/PhoneNumberForm";
+export type { PhoneNumberFormProps as WhatsAppOTPSendFormProps } from "./components/PhoneNumberStep/PhoneNumberForm";
+export { WhatsAppOTPVerifyForm } from "./components/PhoneNumberStep/PhoneOTPVerifyForm";
+export type { PhoneOTPVerifyFormProps as WhatsAppOTPVerifyFormProps } from "./components/PhoneNumberStep/PhoneOTPVerifyForm";
 export { NamesForm } from "./components/NamesForm";
 export type { NamesFormProps } from "./components/NamesForm";

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { NamesForm } from "./NamesForm";
-import { PhoneNumberStep } from "./PhoneNumberStep";
+import type { SignupWizardMode } from "./types";
+import { PhoneNumberStep } from "./PhoneNumberStep/PhoneNumberStep";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "~/app/(tenants)/w/[username]/programs/[slug]/lib/programAnalytics";
 import { Button } from "@sovoli/ui/components/button";
@@ -22,7 +23,7 @@ export interface SignupWizardProps {
   program?: Program;
   // General signup success message
   successMessage?: string;
-  mode: "lead" | "auth";
+  mode: SignupWizardMode;
 }
 
 export function SignupWizard({
@@ -59,6 +60,7 @@ export function SignupWizard({
           setStep("names");
         }}
         onError={onError}
+        mode={mode}
       />
     );
   }

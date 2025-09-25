@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { PhoneNumberForm } from "./PhoneNumberForm";
 import { PhoneOTPVerifyForm } from "./PhoneOTPVerifyForm";
-import { sendOTPAction } from "../actions/sendOTPAction";
-import { verifyOTPAction } from "../actions/verifyOTPAction";
+import { sendOTPAction } from "../../actions/sendOTPAction";
+import { verifyOTPAction } from "../../actions/verifyOTPAction";
+import type { SignupWizardMode } from "../types";
 
 export interface PhoneNumberStepProps {
+  mode: SignupWizardMode;
   onSuccess?: (phone: string) => void;
   onError?: (message: string) => void;
 }

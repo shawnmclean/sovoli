@@ -3,8 +3,8 @@
 import { useState, useActionState, useEffect, useRef } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { InputOtp } from "@sovoli/ui/components/input-otp";
-import type { VerifyState } from "../actions/verifyOTPAction";
-import type { State } from "../actions/sendOTPAction";
+import type { VerifyState } from "../../actions/verifyOTPAction";
+import type { State } from "../../actions/sendOTPAction";
 import { Form } from "@sovoli/ui/components/form";
 import { ArrowLeft } from "lucide-react";
 
