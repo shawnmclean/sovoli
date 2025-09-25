@@ -6,6 +6,7 @@ import { InputOtp } from "@sovoli/ui/components/input-otp";
 import type { VerifyState } from "../actions/verifyOTPAction";
 import type { State } from "../actions/sendOTPAction";
 import { Form } from "@sovoli/ui/components/form";
+import { ArrowLeft } from "lucide-react";
 
 export interface WhatsAppOTPVerifyFormProps {
   phone: string;
@@ -36,13 +37,43 @@ export function WhatsAppOTPVerifyForm({
     null,
   );
   const formRef = useRef<HTMLFormElement>(null);
+  const [countdown, setCountdown] = useState(60);
+
+  // Countdown timer effect
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [countdown]);
+
+  // Reset countdown when resend is successful
+  useEffect(() => {
+    if (resendState?.status === "success") {
+      setCountdown(60);
+    }
+  }, [resendState]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
+      {/* Back button - top left */}
+      {onBack && (
+        <div className="flex justify-start">
+          <Button
+            variant="light"
+            size="sm"
+            isIconOnly
+            onPress={onBack}
+            isDisabled={isVerifyPending || isSendPending}
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </Button>
+        </div>
+      )}
       <div className="text-left">
         <h1 className="text-2xl font-bold mb-2">Verify your phone number</h1>
         <p className="text-base">
-          We sent a code to <strong>{phone}</strong>
+          We sent a 6 digit code to <strong>{phone}</strong>
         </p>
       </div>
 
@@ -94,33 +125,26 @@ export function WhatsAppOTPVerifyForm({
         />
       </Form>
 
-      <div className="flex flex-col gap-2">
+      {/* Resend section - below input with countdown */}
+      <div className="flex justify-between items-center">
         <Form action={resendFormAction}>
           <input name="phone" defaultValue={phone} type="hidden" />
           <Button
             variant="light"
             color="primary"
-            radius="lg"
-            fullWidth
+            size="sm"
             isLoading={isSendPending}
-            isDisabled={isSendPending}
+            isDisabled={isSendPending || countdown > 0}
             type="submit"
           >
             {isSendPending ? "Sending..." : "Resend code"}
           </Button>
         </Form>
 
-        {onBack && (
-          <Button
-            variant="light"
-            radius="lg"
-            fullWidth
-            onPress={onBack}
-            isDisabled={isVerifyPending || isSendPending}
-          >
-            Change phone number
-          </Button>
-        )}
+        {/* Countdown timer */}
+        <div className="text-sm text-default-500">
+          {countdown > 0 ? `Resend in ${countdown}s` : "Ready to resend"}
+        </div>
       </div>
     </div>
   );

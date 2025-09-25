@@ -72,7 +72,7 @@ export function WhatsAppOTPSendForm({
     { code: "+1", name: "United States", countryCode: "US" },
     { code: "+44", name: "United Kingdom", countryCode: "GB" },
     { code: "+592", name: "Guyana", countryCode: "GY" },
-    { code: "+876", name: "Jamaica", countryCode: "JM" },
+    { code: "+1876", name: "Jamaica", countryCode: "JM" },
   ];
 
   // Handle success and error cases
