@@ -4,36 +4,26 @@ import { useState } from "react";
 import { PhoneNumberForm } from "./PhoneNumberForm";
 import { PhoneOTPVerifyForm } from "./PhoneOTPVerifyForm";
 import { sendOTPAction } from "../../actions/sendOTPAction";
+import type { VerifyState } from "../../actions/verifyOTPAction";
 import { verifyOTPAction } from "../../actions/verifyOTPAction";
 import type { SignupWizardMode } from "../types";
-import type { LeadPhoneActionState } from "../../actions/states";
+import type {
+  LeadPhoneActionState,
+  SendOTPActionState,
+} from "../../actions/states";
+import posthog from "posthog-js";
 
 export interface PhoneNumberStepProps {
   mode: SignupWizardMode;
   onSuccess?: (phone: string) => void;
-  onError?: (message: string) => void;
 }
 
 type Step = "send" | "verify";
 
-export function PhoneNumberStep({
-  onSuccess,
-  onError,
-  mode,
-}: PhoneNumberStepProps) {
+export function PhoneNumberStep({ onSuccess, mode }: PhoneNumberStepProps) {
   const [currentStep, setCurrentStep] = useState<Step>("send");
   const [phone, setPhone] = useState("");
   const [otpToken, setOtpToken] = useState<string | undefined>();
-
-  const _handleSendSuccess = (phoneNumber: string, token: string) => {
-    setPhone(phoneNumber);
-    setOtpToken(token);
-    setCurrentStep("verify");
-  };
-
-  const handleVerifySuccess = (phoneNumber: string) => {
-    onSuccess?.(phoneNumber);
-  };
 
   const handleBack = () => {
     setCurrentStep("send");
@@ -46,8 +36,15 @@ export function PhoneNumberStep({
     formData: FormData,
   ): Promise<LeadPhoneActionState> => {
     const phone = formData.get("phone") as string;
+
+    posthog.capture("LeadPhoneEntered", {
+      $set: {
+        phone: phone,
+      },
+    });
+
+    onSuccess?.(phone);
     return new Promise((resolve) => {
-      console.log("leadPhoneAction", phone);
       resolve({
         status: "success",
         message: "Phone sent successfully",
@@ -56,7 +53,32 @@ export function PhoneNumberStep({
     });
   };
 
-  const phoneAction = mode === "lead" ? leadPhoneAction : sendOTPAction;
+  const otpPhoneAction = async (
+    prevState: SendOTPActionState,
+    formData: FormData,
+  ): Promise<SendOTPActionState> => {
+    const result = await sendOTPAction(prevState, formData);
+
+    if (result?.status === "success") {
+      setOtpToken(result.otpToken);
+      setPhone(result.phone ?? (formData.get("phone") as string)); // for whatever reason, the phone is not set in the result
+      setCurrentStep("verify");
+    }
+    return result;
+  };
+
+  const verifyPhoneAction = async (
+    prevState: VerifyState,
+    formData: FormData,
+  ): Promise<VerifyState> => {
+    const result = await verifyOTPAction(prevState, formData);
+    if (result?.status === "success") {
+      onSuccess?.(phone);
+    }
+    return result;
+  };
+
+  const phoneAction = mode === "lead" ? leadPhoneAction : otpPhoneAction;
 
   return (
     <div className="space-y-4">
@@ -65,11 +87,9 @@ export function PhoneNumberStep({
       ) : (
         <PhoneOTPVerifyForm
           phone={phone}
-          verifyAction={verifyOTPAction}
+          verifyAction={verifyPhoneAction}
           sendAction={sendOTPAction}
           otpToken={otpToken}
-          onSuccess={handleVerifySuccess}
-          onError={onError}
           onBack={handleBack}
         />
       )}

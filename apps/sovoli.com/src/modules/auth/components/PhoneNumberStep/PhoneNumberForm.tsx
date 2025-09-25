@@ -12,7 +12,6 @@ import {
 } from "@sovoli/ui/components/dropdown";
 import { ChevronDownIcon } from "lucide-react";
 import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
-import type { FieldErrors } from "@rvf/core";
 import { parseFormData } from "@rvf/core";
 import type { PhoneActionStates } from "../../actions/states";
 import { whatsAppOTPFormSchema } from "../../actions/schemas";
@@ -47,14 +46,21 @@ function Flag({
   return <FlagComponent height={height} />;
 }
 
+const countryCodes: {
+  code: string;
+  name: string;
+  countryCode: CountryCode;
+}[] = [
+  { code: "+1", name: "United States", countryCode: "US" },
+  { code: "+44", name: "United Kingdom", countryCode: "GB" },
+  { code: "+592", name: "Guyana", countryCode: "GY" },
+  { code: "+1876", name: "Jamaica", countryCode: "JM" },
+];
+
 export function PhoneNumberForm({
   sendAction,
   defaultPhone,
 }: PhoneNumberFormProps) {
-  const [state, formAction, isPending] = useActionState(sendAction, null);
-  const [clientErrors, setClientErrors] = useState<FieldErrors | undefined>(
-    undefined,
-  );
   const [phone, setPhone] = useState(defaultPhone);
   const [selectedCountry, setSelectedCountry] = useState<{
     code: string;
@@ -66,28 +72,41 @@ export function PhoneNumberForm({
     countryCode: "GY",
   });
 
-  const countryCodes: {
-    code: string;
-    name: string;
-    countryCode: CountryCode;
-  }[] = [
-    { code: "+1", name: "United States", countryCode: "US" },
-    { code: "+44", name: "United Kingdom", countryCode: "GB" },
-    { code: "+592", name: "Guyana", countryCode: "GY" },
-    { code: "+1876", name: "Jamaica", countryCode: "JM" },
-  ];
+  const clientActionValidation = async (
+    prevState: PhoneActionStates,
+    formData: FormData,
+  ): Promise<PhoneActionStates> => {
+    // Get the raw phone number and country code from form data
+    const rawPhone = formData.get("phone") as string;
+    const countryCode = formData.get("countryCode") as string;
 
-  const handleSubmit = async (formData: FormData) => {
-    const fullPhoneNumber = selectedCountry.code + phone;
-    formData.set("phone", fullPhoneNumber);
+    // Combine country code with phone number
+    const fullPhoneNumber = countryCode + rawPhone;
+    console.log("Combined phone number:", fullPhoneNumber);
 
-    const validatedData = await parseFormData(formData, whatsAppOTPFormSchema);
+    // Create new FormData with the combined phone number
+    const updatedFormData = new FormData();
+    updatedFormData.set("phone", fullPhoneNumber);
+
+    const validatedData = await parseFormData(
+      updatedFormData,
+      whatsAppOTPFormSchema,
+    );
     if (validatedData.error) {
-      setClientErrors(validatedData.error.fieldErrors);
-      return;
+      return {
+        status: "error",
+        message: "",
+        errors: validatedData.error.fieldErrors,
+      };
     }
-    formAction(formData);
+
+    return sendAction(prevState, updatedFormData);
   };
+
+  const [state, formAction, isPending] = useActionState(
+    clientActionValidation,
+    null,
+  );
 
   return (
     <div className="space-y-4">
@@ -97,17 +116,23 @@ export function PhoneNumberForm({
       </div>
 
       {/* Display error messages */}
-      {state?.status === "error" && (
+      {state?.status === "error" && state.message && (
         <div className="p-3 rounded-lg bg-danger-50 text-danger-700 border border-danger-200">
+          {state.message}
+        </div>
+      )}
+      {state?.status === "success" && state.message && (
+        <div className="p-3 rounded-lg bg-success-50 text-success-700 border border-success-200">
           {state.message}
         </div>
       )}
 
       <Form
-        action={handleSubmit}
-        validationErrors={state?.errors ?? clientErrors}
+        action={formAction}
+        validationErrors={state?.errors}
         className="space-y-4"
       >
+        <input type="hidden" name="countryCode" value={selectedCountry.code} />
         <Input
           name="phone"
           value={phone}
@@ -146,7 +171,9 @@ export function PhoneNumberForm({
                   const country = countryCodes.find(
                     (c) => c.code === selectedKey,
                   );
-                  if (country) setSelectedCountry(country);
+                  if (country) {
+                    setSelectedCountry(country);
+                  }
                 }}
               >
                 {countryCodes.map((country) => (

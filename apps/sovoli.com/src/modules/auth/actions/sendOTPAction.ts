@@ -120,6 +120,7 @@ export async function sendOTPAction(
       status: "success",
       message: "WhatsApp message sent successfully!",
       otpToken,
+      phone,
     };
   } catch (error) {
     console.error("Error sending WhatsApp message:", error);

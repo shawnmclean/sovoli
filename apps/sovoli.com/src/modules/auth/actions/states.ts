@@ -9,6 +9,7 @@ export interface BasePhoneActionState {
 export type SendOTPActionState =
   | ({
       otpToken?: string;
+      phone?: string;
     } & BasePhoneActionState)
   | null;
 

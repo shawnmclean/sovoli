@@ -47,19 +47,8 @@ export function SignupWizard({
       <PhoneNumberStep
         onSuccess={(phoneNumber) => {
           setPhone(phoneNumber);
-
-          // Track analytics if program is provided
-          if (program) {
-            trackProgramAnalytics("LeadPhoneEntered", program, cycle, {
-              $set: {
-                phone: phoneNumber,
-              },
-            });
-          }
-
           setStep("names");
         }}
-        onError={onError}
         mode={mode}
       />
     );
@@ -84,7 +73,7 @@ export function SignupWizard({
           }
 
           if (!program) {
-            setStep("success");
+            onSuccess?.({ phone, firstName, lastName });
           } else {
             setStep("choice");
           }
