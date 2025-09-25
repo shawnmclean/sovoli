@@ -21,7 +21,7 @@ import { Skeleton } from "@sovoli/ui/components/skeleton";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
 import { Divider } from "@sovoli/ui/components/divider";
 import { PriceButton } from "./price/PriceButton";
-import { SignupWizard } from "~/modules/auth";
+import { SignupWizard } from "~/modules/auth/components/SignupWizard";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;

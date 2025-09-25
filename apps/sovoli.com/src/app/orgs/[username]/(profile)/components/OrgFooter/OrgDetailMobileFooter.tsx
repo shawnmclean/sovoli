@@ -12,7 +12,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
 import { Divider } from "@sovoli/ui/components/divider";
-import { SignupWizard } from "~/modules/auth";
+import { SignupWizard } from "~/modules/auth/components/SignupWizard";
 
 export interface OrgDetailMobileFooterProps {
   orgInstance: OrgInstance;

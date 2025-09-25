@@ -12,7 +12,7 @@ import { useDisclosure } from "@sovoli/ui/components/dialog";
 import type { Program } from "~/modules/academics/types";
 import { BellIcon, CheckCircleIcon } from "lucide-react";
 import { trackProgramAnalytics } from "../lib/programAnalytics";
-import { SignupWizard } from "~/modules/auth";
+import { SignupWizard } from "~/modules/auth/components/SignupWizard";
 
 export interface SubscribeProgramButtonProps {
   program: Program;
