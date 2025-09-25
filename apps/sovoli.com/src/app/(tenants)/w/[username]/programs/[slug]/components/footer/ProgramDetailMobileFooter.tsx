@@ -18,13 +18,10 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import { Skeleton } from "@sovoli/ui/components/skeleton";
-// import { GuidedChatForm } from "../GuidedChatForm";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
-// import { WhatsAppOTPForm } from "~/app/signin/components/WhatsAppOTPForm";
 import { Divider } from "@sovoli/ui/components/divider";
-// import { Alert } from "@sovoli/ui/components/alert";
-import { LeadsForm } from "../LeadsForm";
 import { PriceButton } from "./price/PriceButton";
+import { SignupWizard } from "~/modules/auth";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -194,13 +191,8 @@ export function ProgramDetailMobileFooter({
                     </div>
                   </div>
                   <Divider />
-                  <LeadsForm
-                    onSuccess={() => {
-                      onOpenChange();
-                    }}
-                    onError={() => {
-                      onOpenChange();
-                    }}
+                  <SignupWizard
+                    mode="lead"
                     cycle={selectedCycle}
                     program={program}
                     whatsappNumber={whatsappNumber}

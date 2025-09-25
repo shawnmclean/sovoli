@@ -22,6 +22,7 @@ export interface SignupWizardProps {
   program?: Program;
   // General signup success message
   successMessage?: string;
+  mode: "lead" | "auth";
 }
 
 export function SignupWizard({
@@ -31,6 +32,7 @@ export function SignupWizard({
   program,
   whatsappNumber,
   successMessage,
+  mode = "lead",
 }: SignupWizardProps) {
   const [step, setStep] = useState<"phone" | "names" | "choice" | "success">(
     "phone",

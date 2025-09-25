@@ -97,7 +97,7 @@ export function OrgDetailMobileFooter({
               </div>
               <Divider />
               <SignupWizard
-                mode="general"
+                mode="auth"
                 whatsappNumber={whatsappNumber}
                 successMessage={`Thanks for your interest in ${orgInstance.org.name}! We'll be in touch soon.`}
                 onSuccess={() => {
