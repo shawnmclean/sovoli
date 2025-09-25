@@ -1,19 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { WhatsAppOTPSendForm } from "./WhatsAppOTPSendForm";
+import { PhoneNumberForm } from "./PhoneNumberForm";
 import { WhatsAppOTPVerifyForm } from "./WhatsAppOTPVerifyForm";
 import { sendOTPAction } from "../actions/sendOTPAction";
 import { verifyOTPAction } from "../actions/verifyOTPAction";
 
-export interface WhatsAppOTPProps {
+export interface PhoneNumberStepProps {
   onSuccess?: (phone: string) => void;
   onError?: (message: string) => void;
 }
 
 type Step = "send" | "verify";
 
-export function WhatsAppOTP({ onSuccess, onError }: WhatsAppOTPProps) {
+export function PhoneNumberStep({ onSuccess, onError }: PhoneNumberStepProps) {
   const [currentStep, setCurrentStep] = useState<Step>("send");
   const [phone, setPhone] = useState("");
   const [otpToken, setOtpToken] = useState<string | undefined>();
@@ -37,7 +37,7 @@ export function WhatsAppOTP({ onSuccess, onError }: WhatsAppOTPProps) {
   return (
     <div className="space-y-4">
       {currentStep === "send" ? (
-        <WhatsAppOTPSendForm
+        <PhoneNumberForm
           sendAction={sendOTPAction}
           onSuccess={handleSendSuccess}
           onError={onError}

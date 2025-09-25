@@ -20,7 +20,7 @@ import { whatsAppOTPFormSchema } from "../actions/schemas";
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";
 
-export interface WhatsAppOTPSendFormProps {
+export interface PhoneNumberFormProps {
   sendAction: (prevState: State, formData: FormData) => Promise<State>;
   onSuccess?: (phone: string, otpToken: string) => void;
   onError?: (message: string) => void;
@@ -45,10 +45,10 @@ function Flag({
   return <FlagComponent height={height} />;
 }
 
-export function WhatsAppOTPSendForm({
+export function PhoneNumberForm({
   sendAction,
   onSuccess,
-}: WhatsAppOTPSendFormProps) {
+}: PhoneNumberFormProps) {
   const [state, formAction, isPending] = useActionState(sendAction, null);
   const [clientErrors, setClientErrors] = useState<FieldErrors | undefined>(
     undefined,

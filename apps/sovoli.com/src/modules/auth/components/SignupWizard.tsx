@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { NamesForm } from "./NamesForm";
-import { WhatsAppOTP } from "./WhatsAppOTP";
+import { PhoneNumberStep } from "./PhoneNumberStep";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "~/app/(tenants)/w/[username]/programs/[slug]/lib/programAnalytics";
 import { Button } from "@sovoli/ui/components/button";
@@ -20,8 +20,6 @@ export interface SignupWizardProps {
   onError?: (message?: string) => void;
   cycle?: ProgramCycle;
   program?: Program;
-  // Generic signup mode when not program-specific
-  mode?: "program" | "general";
   // General signup success message
   successMessage?: string;
 }
@@ -32,19 +30,18 @@ export function SignupWizard({
   cycle,
   program,
   whatsappNumber,
-  mode = "general",
   successMessage,
 }: SignupWizardProps) {
-  const [step, setStep] = useState<"otp" | "names" | "choice" | "success">(
-    "otp",
+  const [step, setStep] = useState<"phone" | "names" | "choice" | "success">(
+    "phone",
   );
   const [phone, setPhone] = useState<string | null>(null);
   const [firstName, setFirstName] = useState<string | null>(null);
   const [lastName, setLastName] = useState<string | null>(null);
 
-  if (step === "otp") {
+  if (step === "phone") {
     return (
-      <WhatsAppOTP
+      <PhoneNumberStep
         onSuccess={(phoneNumber) => {
           setPhone(phoneNumber);
 
@@ -82,7 +79,7 @@ export function SignupWizard({
             });
           }
 
-          if (mode === "general") {
+          if (!program) {
             setStep("success");
           } else {
             setStep("choice");
@@ -93,14 +90,7 @@ export function SignupWizard({
     );
   }
 
-  if (
-    step === "choice" &&
-    phone &&
-    firstName &&
-    lastName &&
-    program &&
-    mode === "program"
-  ) {
+  if (step === "choice" && phone && firstName && lastName && program) {
     return (
       <div>
         {/* Program Information Section */}
@@ -189,13 +179,7 @@ export function SignupWizard({
     );
   }
 
-  if (
-    step === "success" &&
-    phone &&
-    firstName &&
-    lastName &&
-    mode === "general"
-  ) {
+  if (step === "success" && phone && firstName && lastName && !program) {
     return (
       <div className="text-center space-y-4">
         <div className="text-6xl">🎉</div>
