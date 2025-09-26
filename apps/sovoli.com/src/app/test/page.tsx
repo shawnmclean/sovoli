@@ -1,39 +1,20 @@
 "use client";
 
-import { useChat } from "@ai-sdk/react";
-import { useState } from "react";
+import { ChatDialogExample } from "~/modules/chat/components/ChatDialogExample";
 
-export default function Chat() {
-  const [input, setInput] = useState("");
-  const { messages, sendMessage } = useChat();
+export default function TestPage() {
   return (
-    <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
-      {messages.map((message) => (
-        <div key={message.id} className="whitespace-pre-wrap">
-          {message.role === "user" ? "User: " : "AI: "}
-          {message.parts.map((part, i) => {
-            switch (part.type) {
-              case "text":
-                return <div key={`${message.id}-${i}`}>{part.text}</div>;
-            }
-          })}
-        </div>
-      ))}
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          void sendMessage({ text: input });
-          setInput("");
-        }}
-      >
-        <input
-          className="fixed dark:bg-zinc-900 bottom-0 w-full max-w-md p-2 mb-8 border border-zinc-300 dark:border-zinc-800 rounded shadow-xl"
-          value={input}
-          placeholder="Say something..."
-          onChange={(e) => setInput(e.currentTarget.value)}
-        />
-      </form>
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="text-center space-y-6">
+        <h1 className="text-3xl font-bold text-foreground">
+          Chat Dialog Test Page
+        </h1>
+        <p className="text-default-500 max-w-md">
+          Click the button below to open the chat dialog and test all its
+          features including message bubbles, quick replies, and input handling.
+        </p>
+        <ChatDialogExample />
+      </div>
     </div>
   );
 }
