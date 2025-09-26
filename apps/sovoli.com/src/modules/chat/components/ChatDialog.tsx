@@ -102,6 +102,7 @@ export function ChatDialog({
       placement="center"
       backdrop="opaque"
       classNames={{
+        wrapper: "h-(--visual-viewport-height)",
         base: "max-h-[90vh]",
         body: "p-0",
       }}
