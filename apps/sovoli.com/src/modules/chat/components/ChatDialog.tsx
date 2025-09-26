@@ -42,36 +42,19 @@ export function ChatDialog({
   title = "AI Assistant",
 }: ChatDialogProps) {
   const { messages: aiMessages, sendMessage } = useChat();
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  // Convert AI SDK messages to our ChatMessage format
-  useEffect(() => {
-    const convertedMessages: ChatMessage[] = aiMessages.map((msg) => ({
-      id: msg.id,
-      text: msg.parts
-        .map((part) => {
-          switch (part.type) {
-            case "text":
-              return part.text;
-            default:
-              return "";
-          }
-        })
-        .join(""),
-      isUser: msg.role === "user",
-      timestamp: new Date(),
-    }));
-
-    setChatMessages(convertedMessages);
-  }, [aiMessages]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chatMessages]);
+    if (messagesEndRef.current) {
+      // Use a small delay to ensure DOM is updated
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [aiMessages.length]);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
@@ -83,14 +66,6 @@ export function ChatDialog({
         setInputValue("");
       } catch (error) {
         console.error("Error sending message:", error);
-        // Add error message to chat
-        const errorMessage: ChatMessage = {
-          id: Date.now().toString(),
-          text: "Sorry, there was an error processing your message. Please try again.",
-          isUser: false,
-          timestamp: new Date(),
-        };
-        setChatMessages((prev) => [...prev, errorMessage]);
       } finally {
         setIsLoading(false);
       }
@@ -104,14 +79,6 @@ export function ChatDialog({
         await sendMessage({ text: reply });
       } catch (error) {
         console.error("Error sending message:", error);
-        // Add error message to chat
-        const errorMessage: ChatMessage = {
-          id: Date.now().toString(),
-          text: "Sorry, there was an error processing your message. Please try again.",
-          isUser: false,
-          timestamp: new Date(),
-        };
-        setChatMessages((prev) => [...prev, errorMessage]);
       } finally {
         setIsLoading(false);
       }
@@ -169,7 +136,7 @@ export function ChatDialog({
               <div className="flex flex-col h-full">
                 <div className="flex-grow overflow-y-auto p-4 flex flex-col justify-end">
                   <div className="space-y-4">
-                    {chatMessages.length === 0 ? (
+                    {aiMessages.length === 0 ? (
                       <div className="flex flex-col items-center justify-center h-full text-center text-default-500">
                         <MessageCircleIcon className="w-12 h-12 mb-4 opacity-50" />
                         <p className="text-sm">Start a conversation</p>
@@ -179,8 +146,25 @@ export function ChatDialog({
                       </div>
                     ) : (
                       <>
-                        {chatMessages.map((message) => (
-                          <MessageBubble key={message.id} message={message} />
+                        {aiMessages.map((message) => (
+                          <MessageBubble
+                            key={message.id}
+                            message={{
+                              id: message.id,
+                              text: message.parts
+                                .map((part) => {
+                                  switch (part.type) {
+                                    case "text":
+                                      return part.text;
+                                    default:
+                                      return "";
+                                  }
+                                })
+                                .join(""),
+                              isUser: message.role === "user",
+                              timestamp: new Date(),
+                            }}
+                          />
                         ))}
                         {isLoading && (
                           <div className="flex justify-start">
@@ -208,7 +192,7 @@ export function ChatDialog({
 
             <ModalFooter className="flex flex-col gap-2 p-4 border-t border-divider">
               {/* Quick Reply Buttons */}
-              {chatMessages.length === 0 && (
+              {aiMessages.length === 0 && (
                 <div className="w-full">
                   <p className="text-xs text-default-500 mb-3 text-center">
                     Quick replies:
@@ -240,7 +224,6 @@ export function ChatDialog({
                   variant="bordered"
                   size="lg"
                   isDisabled={isLoading}
-                  autoFocus
                 />
                 <Button
                   isIconOnly

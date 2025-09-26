@@ -19,7 +19,13 @@ export async function POST(request: Request) {
   SCHOOL DATA (JSON):
   ${JSON.stringify(orgInstance, null, 2)}
 
-  When asked, answer using that data, cite which field you used, and do not hallucinate. If the user asks about items not in the JSON, clearly say "Not in provided data." Keep responses concise.`;
+
+  RULES:
+    - Registration is paid only once. Do not factor it termly.
+  
+  When asked, answer using that data, cite which field you used, and do not hallucinate. If the user asks about items not in the JSON, clearly say "Not in provided data." Keep responses concise.
+
+  `;
 
   const result = streamText({
     model: "openai/gpt-5-nano",
