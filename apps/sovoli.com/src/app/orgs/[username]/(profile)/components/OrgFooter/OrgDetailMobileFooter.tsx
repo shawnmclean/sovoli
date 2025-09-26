@@ -2,17 +2,11 @@
 
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-} from "@sovoli/ui/components/drawer";
 import { gradientBorderButton } from "~/components/GradientBorderButton";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { MessageSquareShareIcon } from "lucide-react";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
-import { Divider } from "@sovoli/ui/components/divider";
-import { SignupWizard } from "~/modules/auth/components/SignupWizard";
+import { SignupDialog } from "~/modules/auth/components/SignupDialog";
 
 export interface OrgDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -53,64 +47,20 @@ export function OrgDetailMobileFooter({
         </div>
       </footer>
 
-      {/* Organization Contact Drawer */}
-      <Drawer
-        classNames={{
-          wrapper: "h-(--visual-viewport-height)",
-        }}
+      {/* Organization Contact Dialog */}
+      <SignupDialog
         isOpen={isOpen}
-        size="5xl"
-        placement="bottom"
-        backdrop="opaque"
         onOpenChange={onOpenChange}
-        motionProps={{
-          variants: {
-            enter: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-            exit: {
-              y: 100,
-              opacity: 0,
-              transition: {
-                duration: 0.3,
-              },
-            },
-          },
+        mode="auth"
+        whatsappNumber={whatsappNumber}
+        successMessage={`Thanks for your interest in ${orgInstance.org.name}! We'll be in touch soon.`}
+        onSuccess={() => {
+          onOpenChange();
         }}
-      >
-        <DrawerContent>
-          <DrawerBody className="mt-4">
-            <div className="space-y-4 py-4">
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className="font-semibold text-lg">
-                    Get in touch with {orgInstance.org.name}
-                  </span>
-                  <span className="text-sm text-default-600">
-                    We'd love to hear from you
-                  </span>
-                </div>
-              </div>
-              <Divider />
-              <SignupWizard
-                mode="auth"
-                whatsappNumber={whatsappNumber}
-                successMessage={`Thanks for your interest in ${orgInstance.org.name}! We'll be in touch soon.`}
-                onSuccess={() => {
-                  onOpenChange();
-                }}
-                onError={() => {
-                  onOpenChange();
-                }}
-              />
-            </div>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+        onError={() => {
+          onOpenChange();
+        }}
+      />
     </>
   );
 }

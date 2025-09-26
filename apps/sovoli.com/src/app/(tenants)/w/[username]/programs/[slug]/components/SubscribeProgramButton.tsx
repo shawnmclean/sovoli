@@ -12,7 +12,7 @@ import { useDisclosure } from "@sovoli/ui/components/dialog";
 import type { Program } from "~/modules/academics/types";
 import { BellIcon, CheckCircleIcon } from "lucide-react";
 import { trackProgramAnalytics } from "../lib/programAnalytics";
-import { SignupWizard } from "~/modules/auth/components/SignupWizard";
+import { SignupDialog } from "~/modules/auth/components/SignupDialog";
 
 export interface SubscribeProgramButtonProps {
   program: Program;
@@ -30,37 +30,81 @@ export function SubscribeProgramButton({
   program,
   variant = "solid",
 }: SubscribeProgramButtonProps) {
-  const { isOpen, onOpen, onClose } = useDisclosure({
+  const {
+    isOpen: isSignupOpen,
+    onOpen: onSignupOpen,
+    onOpenChange: onSignupOpenChange,
+  } = useDisclosure({
     defaultOpen: false,
   });
-  const [step, setStep] = useState<"signup" | "child" | "thank-you">("signup");
+  const {
+    isOpen: isCustomFlowOpen,
+    onOpen: onCustomFlowOpen,
+    onClose: onCustomFlowClose,
+  } = useDisclosure({
+    defaultOpen: false,
+  });
+  const [step, setStep] = useState<"child" | "thank-you">("child");
   const [phone, setPhone] = useState<string | null>(null);
   const [firstName, setFirstName] = useState<string | null>(null);
   const [lastName, setLastName] = useState<string | null>(null);
 
-  const handleClose = () => {
-    setStep("signup");
-    setPhone(null);
-    setFirstName(null);
-    setLastName(null);
-    onClose();
+  const handleSignupSuccess = ({
+    phone,
+    firstName,
+    lastName,
+  }: {
+    phone: string;
+    firstName?: string;
+    lastName?: string;
+  }) => {
+    setPhone(phone);
+    setFirstName(firstName ?? null);
+    setLastName(lastName ?? null);
+
+    trackProgramAnalytics("SubscribePhoneEntered", program, null, {
+      $set: {
+        phone: phone,
+        first_name: firstName,
+        last_name: lastName,
+        name: `${firstName} ${lastName}`,
+      },
+    });
+
+    onSignupOpenChange();
+    setStep("child");
+    onCustomFlowOpen();
   };
 
-  const handleThankYouClose = () => {
-    setStep("signup");
+  const handleCustomFlowClose = () => {
+    setStep("child");
     setPhone(null);
     setFirstName(null);
     setLastName(null);
-    onClose();
+    onCustomFlowClose();
   };
 
   return (
     <>
-      <Button variant={variant} isIconOnly radius="full" onPress={onOpen}>
+      <Button variant={variant} isIconOnly radius="full" onPress={onSignupOpen}>
         <BellIcon size={18} />
       </Button>
 
-      <Drawer isOpen={isOpen} onClose={handleClose} placement="bottom">
+      {/* Signup Dialog */}
+      <SignupDialog
+        isOpen={isSignupOpen}
+        onOpenChange={onSignupOpenChange}
+        mode="lead"
+        onSuccess={handleSignupSuccess}
+        successMessage={`Thanks for your interest in ${program.name ?? program.standardProgramVersion?.program.name}! We'll be in touch soon.`}
+      />
+
+      {/* Custom Flow Drawer */}
+      <Drawer
+        isOpen={isCustomFlowOpen}
+        onClose={handleCustomFlowClose}
+        placement="bottom"
+      >
         <DrawerContent>
           <DrawerHeader className="flex flex-row items-center justify-between gap-3 px-4 py-3">
             <div className="flex flex-col gap-0.5">
@@ -73,27 +117,7 @@ export function SubscribeProgramButton({
             </div>
           </DrawerHeader>
           <DrawerBody className="px-4 pb-4">
-            {step === "signup" ? (
-              <SignupWizard
-                mode="lead"
-                onSuccess={({ phone, firstName, lastName }) => {
-                  trackProgramAnalytics(
-                    "SubscribePhoneEntered",
-                    program,
-                    null,
-                    {
-                      $set: {
-                        phone: phone,
-                        first_name: firstName,
-                        last_name: lastName,
-                        name: `${firstName} ${lastName}`,
-                      },
-                    },
-                  );
-                  setStep("child");
-                }}
-              />
-            ) : step === "child" ? (
+            {step === "child" ? (
               <div className="space-y-6">
                 <div className="text-left">
                   <h1 className="text-3xl font-bold mb-2">
@@ -163,7 +187,7 @@ export function SubscribeProgramButton({
                   <Button
                     color="primary"
                     fullWidth
-                    onPress={handleThankYouClose}
+                    onPress={handleCustomFlowClose}
                   >
                     Close
                   </Button>
