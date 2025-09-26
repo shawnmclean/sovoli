@@ -5,6 +5,7 @@ import {
   Modal,
   ModalBody,
   ModalContent,
+  ModalFooter,
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
 import { Button } from "@sovoli/ui/components/button";
@@ -126,15 +127,32 @@ export function ChatDialog({
 
   return (
     <Modal
+      scrollBehavior="inside"
+      classNames={{
+        wrapper: "h-(--visual-viewport-height)",
+      }}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       size="full"
       placement="center"
       backdrop="opaque"
-      classNames={{
-        wrapper: "h-(--visual-viewport-height)",
-        base: "max-h-[90vh]",
-        body: "p-0",
+      motionProps={{
+        variants: {
+          enter: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.3,
+            },
+          },
+          exit: {
+            y: 100,
+            opacity: 0,
+            transition: {
+              duration: 0.3,
+            },
+          },
+        },
       }}
     >
       <ModalContent>
@@ -147,47 +165,55 @@ export function ChatDialog({
               </div>
             </ModalHeader>
 
-            <ModalBody className="flex flex-col h-[500px] p-0">
-              {/* Messages Area */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                {chatMessages.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-full text-center text-default-500">
-                    <MessageCircleIcon className="w-12 h-12 mb-4 opacity-50" />
-                    <p className="text-sm">Start a conversation</p>
-                    <p className="text-xs">
-                      Send a message or use one of the quick replies below
-                    </p>
-                  </div>
-                ) : (
-                  <>
-                    {chatMessages.map((message) => (
-                      <MessageBubble key={message.id} message={message} />
-                    ))}
-                    {isLoading && (
-                      <div className="flex justify-start">
-                        <div className="bg-default-100 text-default-foreground rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%]">
-                          <div className="flex items-center gap-2">
-                            <div className="flex space-x-1">
-                              <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce" />
-                              <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.1s]" />
-                              <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+            <ModalBody className="p-0 h-[calc(100vh-200px)]">
+              <div className="flex flex-col h-full">
+                <div className="flex-grow overflow-y-auto p-4 flex flex-col justify-end">
+                  <div className="space-y-4">
+                    {chatMessages.length === 0 ? (
+                      <div className="flex flex-col items-center justify-center h-full text-center text-default-500">
+                        <MessageCircleIcon className="w-12 h-12 mb-4 opacity-50" />
+                        <p className="text-sm">Start a conversation</p>
+                        <p className="text-xs">
+                          Send a message or use one of the quick replies below
+                        </p>
+                      </div>
+                    ) : (
+                      <>
+                        {chatMessages.map((message) => (
+                          <MessageBubble key={message.id} message={message} />
+                        ))}
+                        {isLoading && (
+                          <div className="flex justify-start">
+                            <div className="bg-default-100 text-default-foreground rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%]">
+                              <div className="flex items-center gap-2">
+                                <div className="flex space-x-1">
+                                  <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce" />
+                                  <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.1s]" />
+                                  <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+                                </div>
+                                <span className="text-sm text-default-500">
+                                  AI is typing...
+                                </span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
+                        )}
+                      </>
                     )}
-                  </>
-                )}
-                <div ref={messagesEndRef} />
+                    <div ref={messagesEndRef} />
+                  </div>
+                </div>
               </div>
+            </ModalBody>
 
+            <ModalFooter className="flex flex-col gap-2 p-4 border-t border-divider">
               {/* Quick Reply Buttons */}
               {chatMessages.length === 0 && (
-                <div className="px-4 py-2 border-t border-divider">
-                  <p className="text-xs text-default-500 mb-2">
+                <div className="w-full">
+                  <p className="text-xs text-default-500 mb-3 text-center">
                     Quick replies:
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 justify-center">
                     {QUICK_REPLIES.map((reply) => (
                       <Button
                         key={reply}
@@ -204,31 +230,30 @@ export function ChatDialog({
               )}
 
               {/* Input Area */}
-              <div className="p-4 border-t border-divider">
-                <div className="flex gap-2">
-                  <Input
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={handleKeyPress}
-                    placeholder={isLoading ? "AI is thinking..." : placeholder}
-                    className="flex-1"
-                    variant="bordered"
-                    size="lg"
-                    isDisabled={isLoading}
-                  />
-                  <Button
-                    isIconOnly
-                    color="primary"
-                    size="lg"
-                    onPress={handleSendMessage}
-                    isDisabled={!inputValue.trim() || isLoading}
-                    isLoading={isLoading}
-                  >
-                    <SendIcon className="w-4 h-4" />
-                  </Button>
-                </div>
+              <div className="flex w-full items-center gap-2">
+                <Input
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleKeyPress}
+                  placeholder={isLoading ? "AI is thinking..." : placeholder}
+                  className="flex-1"
+                  variant="bordered"
+                  size="lg"
+                  isDisabled={isLoading}
+                  autoFocus
+                />
+                <Button
+                  isIconOnly
+                  color="primary"
+                  size="lg"
+                  onPress={handleSendMessage}
+                  isDisabled={!inputValue.trim() || isLoading}
+                  isLoading={isLoading}
+                >
+                  <SendIcon className="w-4 h-4" />
+                </Button>
               </div>
-            </ModalBody>
+            </ModalFooter>
           </>
         )}
       </ModalContent>
