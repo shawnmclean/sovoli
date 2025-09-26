@@ -22,7 +22,7 @@ export async function POST(request: Request) {
   When asked, answer using that data, cite which field you used, and do not hallucinate. If the user asks about items not in the JSON, clearly say "Not in provided data." Keep responses concise.`;
 
   const result = streamText({
-    model: "gpt-4o",
+    model: "openai/gpt-5-nano",
     system: systemPrompt,
     messages: convertToModelMessages(messages),
   });

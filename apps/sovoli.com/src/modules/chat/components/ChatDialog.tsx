@@ -29,12 +29,11 @@ export interface ChatDialogProps {
 }
 
 const QUICK_REPLIES = [
-  "Hello!",
-  "How can I help?",
-  "Tell me more",
-  "Thanks!",
-  "I need assistance",
+  "Your cost?",
+  "Payment options?",
+  "Location?",
   "What are your hours?",
+  "Can I schedule a tour?",
 ];
 
 export function ChatDialog({

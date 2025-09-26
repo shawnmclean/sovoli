@@ -9,7 +9,9 @@ import type { ChatMessage } from "./ChatDialog";
 import { MessageCircleIcon } from "lucide-react";
 
 export function ChatDialogExample() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure({
+    defaultOpen: true,
+  });
   const { messages: aiMessages, sendMessage } = useChat();
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
