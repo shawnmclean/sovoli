@@ -10,8 +10,9 @@ export default function TestPage() {
           Chat Dialog Test Page
         </h1>
         <p className="text-default-500 max-w-md">
-          Click the button below to open the chat dialog and test all its
-          features including message bubbles, quick replies, and input handling.
+          Click the button below to open the AI-powered chat dialog. The AI has
+          knowledge about the school and can answer questions about programs,
+          admissions, and more.
         </p>
         <ChatDialogExample />
       </div>

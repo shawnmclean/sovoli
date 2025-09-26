@@ -25,6 +25,7 @@ export interface ChatDialogProps {
   messages?: ChatMessage[];
   placeholder?: string;
   title?: string;
+  isLoading?: boolean;
 }
 
 const QUICK_REPLIES = [
@@ -43,6 +44,7 @@ export function ChatDialog({
   messages = [],
   placeholder = "Type your message...",
   title = "Chat Support",
+  isLoading = false,
 }: ChatDialogProps) {
   const [inputValue, setInputValue] = useState("");
   const [localMessages, setLocalMessages] = useState<ChatMessage[]>(messages);
@@ -126,9 +128,27 @@ export function ChatDialog({
                     </p>
                   </div>
                 ) : (
-                  localMessages.map((message) => (
-                    <MessageBubble key={message.id} message={message} />
-                  ))
+                  <>
+                    {localMessages.map((message) => (
+                      <MessageBubble key={message.id} message={message} />
+                    ))}
+                    {isLoading && (
+                      <div className="flex justify-start">
+                        <div className="bg-default-100 text-default-foreground rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%]">
+                          <div className="flex items-center gap-2">
+                            <div className="flex space-x-1">
+                              <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce" />
+                              <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.1s]" />
+                              <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+                            </div>
+                            <span className="text-sm text-default-500">
+                              AI is typing...
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 )}
                 <div ref={messagesEndRef} />
               </div>
@@ -162,17 +182,19 @@ export function ChatDialog({
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyPress}
-                    placeholder={placeholder}
+                    placeholder={isLoading ? "AI is thinking..." : placeholder}
                     className="flex-1"
                     variant="bordered"
                     size="lg"
+                    isDisabled={isLoading}
                   />
                   <Button
                     isIconOnly
                     color="primary"
                     size="lg"
                     onPress={handleSendMessage}
-                    isDisabled={!inputValue.trim()}
+                    isDisabled={!inputValue.trim() || isLoading}
+                    isLoading={isLoading}
                   >
                     <SendIcon className="w-4 h-4" />
                   </Button>
