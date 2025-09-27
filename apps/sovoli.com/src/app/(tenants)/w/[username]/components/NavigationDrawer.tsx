@@ -1,11 +1,6 @@
 "use client";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerHeader,
-} from "@sovoli/ui/components/drawer";
+import { Drawer } from "@sovoli/ui/components/drawer";
 import {
   useRouter,
   useSelectedLayoutSegment,
@@ -13,9 +8,6 @@ import {
 } from "next/navigation";
 import { useEffect, useRef } from "react";
 import type { Program } from "~/modules/academics/types";
-import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
-import { SubscribeProgramButton } from "../programs/[slug]/components/SubscribeProgramButton";
-
 // Simple hook to track the previous path
 function usePreviousPath() {
   const pathname = usePathname();
@@ -53,27 +45,9 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
     }
   };
 
-  // Render appropriate header content based on the current modal segment
-  const renderHeaderContent = () => {
-    switch (segment) {
-      case "(.)requirements":
-      case "requirements":
-        return (
-          <ShareButton
-            title="Share"
-            variant="light"
-            text={`Check out ${program.name} requirements.`}
-          />
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <Drawer
       isOpen={isOpen}
-      onOpenChange={handleClose}
       onClose={handleClose}
       size="full"
       placement="bottom"
@@ -98,19 +72,7 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
         },
       }}
     >
-      <DrawerContent>
-        <DrawerHeader
-          showBackButton
-          onBackPress={handleClose}
-          endContent={
-            <>
-              {renderHeaderContent()}
-              <SubscribeProgramButton program={program} variant="light" />
-            </>
-          }
-        />
-        <DrawerBody>{children}</DrawerBody>
-      </DrawerContent>
+      {children}
     </Drawer>
   );
 }
