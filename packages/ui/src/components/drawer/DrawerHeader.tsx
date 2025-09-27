@@ -78,6 +78,10 @@ export interface DrawerHeaderProps {
    * Children to render in the header (deprecated, use startContent/endContent instead)
    */
   children?: React.ReactNode;
+  /**
+   * Additional CSS classes for the root element
+   */
+  className?: string;
 }
 
 export const DrawerHeader = forwardRef<"header", DrawerHeaderProps>(
@@ -88,6 +92,7 @@ export const DrawerHeader = forwardRef<"header", DrawerHeaderProps>(
       onBackPress,
       size = "md",
       classNames,
+      className,
       backButtonIcon = <ChevronLeftIcon size={24} />,
       startContent,
       endContent,
@@ -126,7 +131,9 @@ export const DrawerHeader = forwardRef<"header", DrawerHeaderProps>(
     return (
       <header
         ref={domRef}
-        className={base({ className: classNames?.base })}
+        className={base({
+          className: [classNames?.base, className].filter(Boolean).join(" "),
+        })}
         {...otherProps}
       >
         {startItems}

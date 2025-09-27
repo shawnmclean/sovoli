@@ -1,16 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import {
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-} from "@sovoli/ui/components/dialog";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { useChat } from "@ai-sdk/react";
 import { SendIcon, MessageCircleIcon } from "lucide-react";
+import { Avatar } from "@sovoli/ui/components/avatar";
 import {
   Drawer,
   DrawerBody,
@@ -18,6 +13,7 @@ import {
   DrawerFooter,
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
+import { Badge } from "@sovoli/ui/components/badge";
 
 export interface ChatMessage {
   id: string;
@@ -45,7 +41,6 @@ export function ChatDialog({
   isOpen,
   onOpenChange,
   placeholder = "Type your message...",
-  title = "AI Assistant",
 }: ChatDialogProps) {
   const { messages: aiMessages, sendMessage } = useChat();
   const [inputValue, setInputValue] = useState("");
@@ -103,6 +98,7 @@ export function ChatDialog({
       scrollBehavior="inside"
       isOpen={isOpen}
       onOpenChange={onOpenChange}
+      hideCloseButton
       size="full"
       placement="bottom"
       backdrop="opaque"
@@ -126,12 +122,24 @@ export function ChatDialog({
       }}
     >
       <DrawerContent>
-        {() => (
+        {(onClose) => (
           <>
-            <DrawerHeader className="flex flex-col gap-1 px-6 py-4 border-b border-divider">
-              <div className="flex items-center gap-2">
-                <MessageCircleIcon className="w-5 h-5 text-primary" />
-                <h2 className="text-lg font-semibold">{title}</h2>
+            <DrawerHeader showBackButton onBackPress={onClose}>
+              <div className="flex items-center gap-3 ml-2">
+                <Badge
+                  color="success"
+                  content=""
+                  placement="bottom-right"
+                  shape="circle"
+                >
+                  <Avatar src="/logo.svg" name="Sovoli" radius="full" />
+                </Badge>
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium text-foreground">
+                    Sovoli
+                  </span>
+                  <span className="text-xs text-default-500">AI Assistant</span>
+                </div>
               </div>
             </DrawerHeader>
 
@@ -197,9 +205,6 @@ export function ChatDialog({
               {/* Quick Reply Buttons */}
               {aiMessages.length === 0 && (
                 <div className="w-full">
-                  <p className="text-xs text-default-500 mb-3 text-center">
-                    Quick replies:
-                  </p>
                   <div className="flex flex-wrap gap-2 justify-center">
                     {QUICK_REPLIES.map((reply) => (
                       <Button

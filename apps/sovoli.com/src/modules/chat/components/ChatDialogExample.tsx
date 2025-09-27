@@ -23,7 +23,6 @@ export function ChatDialogExample() {
       <ChatDialog
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        title="AI Assistant"
         placeholder="Ask me anything..."
       />
     </div>
