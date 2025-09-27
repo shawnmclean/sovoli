@@ -12,6 +12,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { useChat } from "@ai-sdk/react";
 import { SendIcon, MessageCircleIcon } from "lucide-react";
+import { Drawer } from "@sovoli/ui/components/drawer";
 
 export interface ChatMessage {
   id: string;
@@ -93,15 +94,12 @@ export function ChatDialog({
   };
 
   return (
-    <Modal
+    <Drawer
       scrollBehavior="inside"
-      classNames={{
-        wrapper: "h-(--visual-viewport-height)",
-      }}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       size="full"
-      placement="center"
+      placement="bottom"
       backdrop="opaque"
       motionProps={{
         variants: {
@@ -240,7 +238,7 @@ export function ChatDialog({
           </>
         )}
       </ModalContent>
-    </Modal>
+    </Drawer>
   );
 }
 
