@@ -44,6 +44,13 @@ import { ORG_LOCATION_FEATURE_GROUPS } from "~/modules/organisations/locationFea
 import type { Program } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
 import { useEffect } from "react";
+import {
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+} from "@sovoli/ui/components/drawer";
+import { SubscribeProgramButton } from "../SubscribeProgramButton";
+import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
 
 interface LocationFeaturesDetailsProps {
   orgInstance: OrgInstance;
@@ -206,70 +213,96 @@ export function LocationFeaturesDetails({
   // Find the primary location
   const primaryLocation = locations.find((location) => location.isPrimary);
 
-  if (!primaryLocation?.features || primaryLocation.features.length === 0) {
-    return (
-      <div className="space-y-6">
-        <h1 className="text-2xl font-semibold text-foreground">
-          Your Learning Space
-        </h1>
-
-        <div className="text-center text-foreground-600">
-          <p>No location features are available for this program.</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Group features by category
-  const groupedFeatures: Record<string, OrgLocationFeature[]> = {};
-
-  Object.entries(ORG_LOCATION_FEATURE_GROUPS).forEach(
-    ([groupKey, groupFeatures]) => {
-      const availableFeatures =
-        primaryLocation.features?.filter((feature) =>
-          groupFeatures.includes(feature),
-        ) ?? [];
-      if (availableFeatures.length > 0) {
-        groupedFeatures[groupKey] = availableFeatures;
-      }
-    },
-  );
-
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-foreground">
-        Your Learning Space
-      </h1>
+    <DrawerContent>
+      {(onClose) => (
+        <>
+          <DrawerHeader
+            showBackButton
+            onBackPress={onClose}
+            endContent={
+              <>
+                <ShareButton
+                  title="Share"
+                  variant="light"
+                  text={`Check out ${program.name} learning space.`}
+                />
+                <SubscribeProgramButton program={program} variant="light" />
+              </>
+            }
+          />
+          <DrawerBody>
+            <div className="space-y-6">
+              <h1 className="text-2xl font-semibold text-foreground">
+                Your Learning Space
+              </h1>
 
-      <div className="space-y-6">
-        {Object.entries(groupedFeatures).map(([groupKey, features]) => (
-          <div key={groupKey} className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Badge color={GROUP_COLORS[groupKey]} variant="flat" size="sm">
-                {GROUP_LABELS[groupKey]}
-              </Badge>
+              {!primaryLocation?.features ||
+              primaryLocation.features.length === 0 ? (
+                <div className="text-center text-foreground-600">
+                  <p>No location features are available for this program.</p>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {(() => {
+                    // Group features by category
+                    const groupedFeatures: Record<
+                      string,
+                      OrgLocationFeature[]
+                    > = {};
+
+                    Object.entries(ORG_LOCATION_FEATURE_GROUPS).forEach(
+                      ([groupKey, groupFeatures]) => {
+                        const availableFeatures =
+                          primaryLocation.features?.filter((feature) =>
+                            groupFeatures.includes(feature),
+                          ) ?? [];
+                        if (availableFeatures.length > 0) {
+                          groupedFeatures[groupKey] = availableFeatures;
+                        }
+                      },
+                    );
+
+                    return Object.entries(groupedFeatures).map(
+                      ([groupKey, features]) => (
+                        <div key={groupKey} className="space-y-3">
+                          <div className="flex items-center gap-2">
+                            <Badge
+                              color={GROUP_COLORS[groupKey]}
+                              variant="flat"
+                              size="sm"
+                            >
+                              {GROUP_LABELS[groupKey]}
+                            </Badge>
+                          </div>
+                          <div className="grid grid-cols-1 gap-3">
+                            {features.map((feature) => {
+                              const Icon = FEATURE_ICONS[feature];
+                              return (
+                                <div
+                                  key={feature}
+                                  className="flex items-center gap-3 p-3 bg-default-50 rounded-lg"
+                                >
+                                  <div className="shrink-0 w-8 h-8 bg-default-100 rounded-lg flex items-center justify-center">
+                                    <Icon className="h-4 w-4 text-default-600" />
+                                  </div>
+                                  <span className="text-sm font-medium text-foreground">
+                                    {FEATURE_LABELS[feature]}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ),
+                    );
+                  })()}
+                </div>
+              )}
             </div>
-            <div className="grid grid-cols-1 gap-3">
-              {features.map((feature) => {
-                const Icon = FEATURE_ICONS[feature];
-                return (
-                  <div
-                    key={feature}
-                    className="flex items-center gap-3 p-3 bg-default-50 rounded-lg"
-                  >
-                    <div className="shrink-0 w-8 h-8 bg-default-100 rounded-lg flex items-center justify-center">
-                      <Icon className="h-4 w-4 text-default-600" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">
-                      {FEATURE_LABELS[feature]}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          </DrawerBody>
+        </>
+      )}
+    </DrawerContent>
   );
 }
