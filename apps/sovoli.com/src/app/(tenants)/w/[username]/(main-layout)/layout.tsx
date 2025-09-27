@@ -33,7 +33,7 @@ export default async function Layout({ children, params }: Props) {
       {children}
 
       <Footer orgInstance={orgInstance} />
-      <MobileFooter orgInstance={orgInstance} />
+      <MobileFooter />
     </div>
   );
 }

@@ -10,6 +10,7 @@ const retreiveOrgInstance = async (username: string) => {
 interface Props {
   children: React.ReactNode;
   params: Promise<{ username: string }>;
+  modals: React.ReactNode;
 }
 export async function generateMetadata({ params }: Props) {
   const { username } = await params;
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function Layout({ children, params }: Props) {
+export default async function Layout({ children, params, modals }: Props) {
   const { username } = await params;
   const orgInstance = await retreiveOrgInstance(username);
 
@@ -110,6 +111,7 @@ export default async function Layout({ children, params }: Props) {
         }}
       />
       {children}
+      {modals}
     </>
   );
 }
