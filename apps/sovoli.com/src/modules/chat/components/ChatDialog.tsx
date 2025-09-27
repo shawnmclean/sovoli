@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { useChat } from "@ai-sdk/react";
-import { SendIcon, MessageCircleIcon } from "lucide-react";
+import { SendIcon } from "lucide-react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import {
   Drawer,
@@ -14,6 +14,7 @@ import {
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { Badge } from "@sovoli/ui/components/badge";
+import Image from "next/image";
 
 export interface ChatMessage {
   id: string;
@@ -143,18 +144,16 @@ export function ChatDialog({
               </div>
             </DrawerHeader>
 
-            <DrawerBody className="p-0 h-[calc(100vh-200px)]">
-              <div className="flex flex-col h-full">
+            <DrawerBody className="p-0 h-[calc(100vh-200px)] relative overflow-hidden">
+              {/* Subtle Gradient Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-default-50/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent" />
+
+              <div className="flex flex-col h-full relative z-10">
                 <div className="flex-grow overflow-y-auto p-4 flex flex-col justify-end">
                   <div className="space-y-4">
                     {aiMessages.length === 0 ? (
-                      <div className="flex flex-col items-center justify-center h-full text-center text-default-500">
-                        <MessageCircleIcon className="w-12 h-12 mb-4 opacity-50" />
-                        <p className="text-sm">Start a conversation</p>
-                        <p className="text-xs">
-                          Send a message or use one of the quick replies below
-                        </p>
-                      </div>
+                      <WelcomeScreen />
                     ) : (
                       <>
                         {aiMessages.map((message) => (
@@ -249,6 +248,40 @@ export function ChatDialog({
         )}
       </DrawerContent>
     </Drawer>
+  );
+}
+
+function WelcomeScreen() {
+  return (
+    <div className="flex flex-col items-center justify-center h-full text-center">
+      {/* Content */}
+      <div className="flex flex-col items-center space-y-6">
+        {/* Sovoli Logo */}
+        <div className="flex flex-col items-center space-y-3">
+          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm border border-primary/20 flex items-center justify-center shadow-lg">
+            <Image
+              src="/logo.svg"
+              alt="Sovoli Logo"
+              className="w-12 h-12"
+              width={48}
+              height={48}
+            />
+          </div>
+          <h1 className="text-2xl font-bold text-foreground">Sovoli</h1>
+        </div>
+
+        {/* Welcome Text */}
+        <div className="space-y-3">
+          <h2 className="text-xl font-bold text-foreground">
+            Hey, I'm your AI assistant!
+          </h2>
+          <p className="text-sm text-default-600 max-w-xs leading-relaxed">
+            I'm here to help you with any questions about our programs,
+            admissions, or anything else you'd like to know.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 
