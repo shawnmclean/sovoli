@@ -96,9 +96,6 @@ export function ChatDialog({
 
   return (
     <Drawer
-      classNames={{
-        wrapper: "h-(--visual-viewport-height)",
-      }}
       scrollBehavior="inside"
       isOpen={isOpen}
       onOpenChange={onOpenChange}
