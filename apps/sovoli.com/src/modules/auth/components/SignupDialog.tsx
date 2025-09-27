@@ -4,10 +4,13 @@ import {
   Drawer,
   DrawerBody,
   DrawerContent,
+  DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { SignupWizard } from "./SignupWizard";
 import type { SignupWizardMode } from "./types";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
+import { XIcon } from "lucide-react";
+import { Button } from "@sovoli/ui/components/button";
 
 export interface SignupDialogProps {
   isOpen: boolean;
@@ -42,6 +45,7 @@ export function SignupDialog({
       size="5xl"
       placement="bottom"
       backdrop="opaque"
+      hideCloseButton
       onOpenChange={onOpenChange}
       motionProps={{
         variants: {
@@ -63,19 +67,34 @@ export function SignupDialog({
       }}
     >
       <DrawerContent>
-        <DrawerBody className="mt-4">
-          <div className="space-y-4 py-4">
-            <SignupWizard
-              mode={mode}
-              cycle={cycle}
-              program={program}
-              whatsappNumber={whatsappNumber}
-              onSuccess={onSuccess}
-              onError={onError}
-              successMessage={successMessage}
+        {(onClose) => (
+          <>
+            <DrawerHeader
+              classNames={{
+                base: "py-0",
+              }}
+              endContent={
+                <Button isIconOnly onPress={onClose} variant="light">
+                  <XIcon size={24} />
+                </Button>
+              }
             />
-          </div>
-        </DrawerBody>
+
+            <DrawerBody>
+              <div className="space-y-4 pb-4">
+                <SignupWizard
+                  mode={mode}
+                  cycle={cycle}
+                  program={program}
+                  whatsappNumber={whatsappNumber}
+                  onSuccess={onSuccess}
+                  onError={onError}
+                  successMessage={successMessage}
+                />
+              </div>
+            </DrawerBody>
+          </>
+        )}
       </DrawerContent>
     </Drawer>
   );

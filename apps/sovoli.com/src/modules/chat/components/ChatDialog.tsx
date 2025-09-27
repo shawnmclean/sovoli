@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import {
-  Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
@@ -12,7 +11,13 @@ import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { useChat } from "@ai-sdk/react";
 import { SendIcon, MessageCircleIcon } from "lucide-react";
-import { Drawer } from "@sovoli/ui/components/drawer";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+} from "@sovoli/ui/components/drawer";
 
 export interface ChatMessage {
   id: string;
@@ -120,17 +125,17 @@ export function ChatDialog({
         },
       }}
     >
-      <ModalContent>
+      <DrawerContent>
         {() => (
           <>
-            <ModalHeader className="flex flex-col gap-1 px-6 py-4 border-b border-divider">
+            <DrawerHeader className="flex flex-col gap-1 px-6 py-4 border-b border-divider">
               <div className="flex items-center gap-2">
                 <MessageCircleIcon className="w-5 h-5 text-primary" />
                 <h2 className="text-lg font-semibold">{title}</h2>
               </div>
-            </ModalHeader>
+            </DrawerHeader>
 
-            <ModalBody className="p-0 h-[calc(100vh-200px)]">
+            <DrawerBody className="p-0 h-[calc(100vh-200px)]">
               <div className="flex flex-col h-full">
                 <div className="flex-grow overflow-y-auto p-4 flex flex-col justify-end">
                   <div className="space-y-4">
@@ -186,9 +191,9 @@ export function ChatDialog({
                   </div>
                 </div>
               </div>
-            </ModalBody>
+            </DrawerBody>
 
-            <ModalFooter className="flex flex-col gap-2 p-4 border-t border-divider">
+            <DrawerFooter className="flex flex-col gap-2 p-4 border-t border-divider">
               {/* Quick Reply Buttons */}
               {aiMessages.length === 0 && (
                 <div className="w-full">
@@ -234,10 +239,10 @@ export function ChatDialog({
                   <SendIcon className="w-4 h-4" />
                 </Button>
               </div>
-            </ModalFooter>
+            </DrawerFooter>
           </>
         )}
-      </ModalContent>
+      </DrawerContent>
     </Drawer>
   );
 }
