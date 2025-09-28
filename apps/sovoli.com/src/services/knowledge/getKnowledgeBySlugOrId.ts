@@ -48,7 +48,6 @@ export class GetKnowledgeBySlugOrId extends BaseService<
         KnowledgeMediaAssets: {
           with: { MediaAsset: true },
         },
-        Book: true,
       },
       where: and(usernameFilter, privacyFilter, slugFilter),
     })) as SelectKnowledgeSchema | undefined;
@@ -111,7 +110,6 @@ export class GetKnowledgeBySlugOrId extends BaseService<
           'jobError', ${schema.Knowledge.jobError},
           'verifiedDate', ${schema.Knowledge.verifiedDate},
           'MediaAssets', COALESCE(${mediaAssetsSubquery.mediaAssets}, '[]'),
-          'bookId', ${schema.Knowledge.bookId},
           'chapterNumber', ${schema.Knowledge.chapterNumber},
           'query', ${schema.Knowledge.query},
           'User', JSON_BUILD_OBJECT(
@@ -119,37 +117,7 @@ export class GetKnowledgeBySlugOrId extends BaseService<
             'username', ${schema.User.username},
             'name', ${schema.User.name}
           ),
-          'SourceConnections', json_build_array(),
-          'Book', CASE
-            WHEN ${schema.Book.id} IS NOT NULL THEN JSON_BUILD_OBJECT(
-              'id', ${schema.Book.id},
-              'title', ${schema.Book.title},
-              'subtitle', ${schema.Book.subtitle},
-              'description', ${schema.Book.description},
-              'isbn13', ${schema.Book.isbn13},
-              'isbn10', ${schema.Book.isbn10},
-              'asin', ${schema.Book.asin},
-              'image', ${schema.Book.image},
-              'editions', ${schema.Book.editions},
-              'googleId', ${schema.Book.googleId},
-              'olid', ${schema.Book.olid},
-              'slug', ${schema.Book.slug},
-              'publishedDate', ${schema.Book.publishedDate},
-              'publisher', ${schema.Book.publisher},
-              'pageCount', ${schema.Book.pageCount},
-              'description', ${schema.Book.description},
-              'language', ${schema.Book.language},
-              'triggerDevId', ${schema.Book.triggerDevId},
-              'inferrenceError', ${schema.Book.inferrenceError},
-              'lastGoogleUpdated', ${schema.Book.lastGoogleUpdated},
-              'authors', ${schema.Book.authors},
-              'lastOLUpdated', ${schema.Book.lastOLUpdated},
-              'inferredAuthor', ${schema.Book.inferredAuthor},
-              'createdAt', ${schema.Book.createdAt},
-              'updatedAt', ${schema.Book.updatedAt}
-            )
-            ELSE NULL
-          END
+          'SourceConnections', json_build_array()
         )
         `,
       })
@@ -170,7 +138,6 @@ export class GetKnowledgeBySlugOrId extends BaseService<
         mediaAssetsSubquery,
         eq(mediaAssetsSubquery.knowledgeId, schema.Knowledge.id),
       )
-      .leftJoin(schema.Book, eq(schema.Knowledge.bookId, schema.Book.id))
       .orderBy(desc(schema.KnowledgeConnection.createdAt))
       .limit(pageSize)
       .offset((page - 1) * pageSize);

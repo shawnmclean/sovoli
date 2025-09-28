@@ -1,7 +1,5 @@
 export * from "./User";
 export * from "./UserRelations";
-export * from "./Book";
-export * from "./BookRelations";
 export * from "./Knowledge";
 export * from "./KnowledgeRelations";
 export * from "./KnowledgeConnection";

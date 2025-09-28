@@ -2,13 +2,7 @@ import type { KnowledgeConnection } from "@sovoli/db/schema";
 import NextImage from "next/image";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-} from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
+import { Card, CardFooter, CardHeader } from "@sovoli/ui/components/card";
 import { Image } from "@sovoli/ui/components/image";
 
 import supabaseLoader from "~/loaders/supabaseImageLoader";
@@ -20,53 +14,11 @@ export interface MainReferenceProps {
 export function MainReference({ knowledgeConnection }: MainReferenceProps) {
   // TODO: Different views for different knowledge types
   switch (knowledgeConnection.TargetKnowledge?.type) {
-    case "book":
-      return <BookReference knowledgeConnection={knowledgeConnection} />;
     case "note":
       return <NoteReference knowledgeConnection={knowledgeConnection} />;
     default:
       return null;
   }
-}
-
-function BookReference({ knowledgeConnection }: MainReferenceProps) {
-  const book = knowledgeConnection.TargetKnowledge?.Book;
-  const authors = book?.authors as unknown as string[];
-
-  if (!book) return null;
-
-  return (
-    <Card className="border border-default-200">
-      <CardBody className="flex flex-row gap-4">
-        <Image
-          alt={book.title}
-          src={book.image ?? ""}
-          className="object-cover"
-          width={120}
-          height={120}
-          as={NextImage}
-          loader={supabaseLoader}
-        />
-        <div className="flex items-start justify-between">
-          <div className="flex flex-col">
-            <h1 className="text-lg font-medium">{book.title}</h1>
-            <p className="text-sm text-foreground/80">
-              By {authors.join(", ")}
-            </p>
-          </div>
-          <div className="inline-flex">
-            <Chip
-              size="sm"
-              variant="faded"
-              title="This note is a main reference to this book"
-            >
-              i
-            </Chip>
-          </div>
-        </div>
-      </CardBody>
-    </Card>
-  );
 }
 
 function NoteReference({ knowledgeConnection }: MainReferenceProps) {

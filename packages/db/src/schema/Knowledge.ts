@@ -15,7 +15,6 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 import { createEnumObject } from "../utils";
-import { Book, SelectBookSchema } from "./Book";
 import { SelectKnowledgeConnectionSchema } from "./KnowledgeConnection";
 import type { KnowledgeMediaAsset } from "./KnowledgeMediaAsset";
 import { SelectMediaAssetSchema } from "./MediaAsset";
@@ -57,8 +56,6 @@ export const Knowledge = pgTable(
     slug: varchar("slug", { length: 255 }),
     type: knowledgeTypeEnum("type").notNull().default(KnowledgeType.note),
 
-    bookId: varchar("book_id", { length: 256 }).references(() => Book.id),
-
     chapterNumber: integer("chapter_number"),
     isPublic: boolean("is_public").notNull().default(true),
 
@@ -76,13 +73,6 @@ export const Knowledge = pgTable(
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
   },
   (table) => ({
-    /**
-     * only allow a distinct book per owner
-     */
-    uniqueBook: unique("unique_knowledge_user_book").on(
-      table.userId,
-      table.bookId,
-    ),
     /**
      * only allow a distinct slug per owner
      */
@@ -106,7 +96,6 @@ export type SelectKnowledgeSchema = z.infer<typeof BaseKnowledgeSchema> & {
   TargetConnections?: SelectKnowledgeConnectionSchema[] | null;
   MediaAssets?: SelectMediaAssetSchema[] | null;
   KnowledgeMediaAssets?: KnowledgeMediaAsset[] | null;
-  Book?: SelectBookSchema | null;
 };
 
 // Recursive schema for Knowledge
@@ -119,7 +108,6 @@ export const SelectKnowledgeSchema = BaseKnowledgeSchema.extend({
   TargetConnections: z
     .lazy(() => SelectKnowledgeConnectionSchema.array())
     .nullish(), // Recursive connections
-  Book: SelectBookSchema.nullish(),
 });
 
 export const InsertKnowledgeSchema = createInsertSchema(Knowledge);
