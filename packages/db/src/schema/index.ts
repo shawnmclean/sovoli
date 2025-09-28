@@ -14,6 +14,3 @@ export * from "./KnowledgeMediaAsset";
 export * from "./KnowledgeMediaAssetRelation";
 export * from "./Organization";
 export * from "./PublicIdentifer";
-
-export * from "./WaitlistContact";
-export * from "./SchoolSurvey";
