@@ -125,15 +125,15 @@ export default async function KnowledgePage({ params }: KnowledgePageProps) {
                 Photos
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {knowledge.inlinePhotos.filter(isPhoto).map((photo, index) => (
+                {knowledge.inlinePhotos.filter(isPhoto).map((photo) => (
                   <div
-                    key={photo.publicId ?? index}
+                    key={photo.publicId}
                     className="bg-white rounded-lg border border-gray-200 p-4"
                   >
                     <div className="relative h-48 rounded mb-2 overflow-hidden">
                       <Image
                         src={photo.url}
-                        alt={photo.alt || ""}
+                        alt={photo.alt ?? ""}
                         fill
                         className="object-cover"
                       />
