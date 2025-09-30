@@ -1,0 +1,113 @@
+---
+id: "shawn-typescript-guide"
+title: "TypeScript Guide"
+description: "Essential TypeScript concepts and patterns"
+type: "note"
+slug: "typescript-guide"
+isOrigin: true
+isPublic: true
+isDraft: false
+verifiedDate: "2024-01-25"
+query: "typescript guide tutorial"
+queryType: "query"
+createdAt: "2024-01-15T00:00:00Z"
+updatedAt: "2024-01-25T00:00:00Z"
+userId: "shawn"
+coverPhoto:
+  url: "/orgs/users/shawn/notes/photos/typescript-guide-cover.webp"
+  alt: "TypeScript Guide Cover"
+  caption: "Essential TypeScript concepts and patterns"
+  category: "default"
+  publicId: "shawn-typescript-guide-cover"
+inlinePhotos:
+  - url: "/orgs/users/shawn/notes/photos/typescript-types-diagram.webp"
+    alt: "TypeScript Types Diagram"
+    caption: "Overview of TypeScript type system"
+    category: "default"
+    publicId: "shawn-typescript-types-diagram"
+---
+
+# TypeScript Guide
+
+Essential concepts and patterns for TypeScript development.
+
+## Basic Types
+
+TypeScript provides several basic types for common values.
+
+```typescript
+// Boolean
+let isDone: boolean = false;
+
+// Number
+let decimal: number = 6;
+let hex: number = 0xf00d;
+
+// String
+let color: string = "blue";
+
+// Array
+let list: number[] = [1, 2, 3];
+let list2: Array<number> = [1, 2, 3];
+```
+
+## Interfaces
+
+Interfaces define the shape of objects.
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email?: string; // Optional property
+}
+
+function createUser(user: User): User {
+  return user;
+}
+```
+
+## Types vs Interfaces
+
+### Interfaces
+
+- Can be extended
+- Can be implemented by classes
+- Support declaration merging
+
+```typescript
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+```
+
+### Types
+
+- Can represent unions, primitives, and computed types
+- Cannot be extended
+- More flexible for complex types
+
+```typescript
+type Status = "loading" | "success" | "error";
+
+type UserWithStatus = User & {
+  status: Status;
+};
+```
+
+## Generics
+
+Generics allow you to create reusable components.
+
+```typescript
+function identity<T>(arg: T): T {
+  return arg;
+}
+
+let output = identity<string>("myString");
+let output2 = identity<number>(123);
+```

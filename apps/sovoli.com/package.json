@@ -58,6 +58,7 @@
     "@vercel/otel": "1.13.0",
     "@vercel/speed-insights": "1.2.0",
     "@vis.gl/react-google-maps": "1.5.2",
+    "gray-matter": "4.0.3",
     "ai": "5.0.46",
     "cloudinary": "2.5.1",
     "date-fns": "4.1.0",
