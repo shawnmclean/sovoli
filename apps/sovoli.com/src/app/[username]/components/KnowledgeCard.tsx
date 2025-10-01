@@ -92,7 +92,7 @@ export function KnowledgeCard({ knowledge, username }: KnowledgeCardProps) {
 
         {/* Action Button */}
         <Link
-          href={`/users/${username}/${knowledge.slug}`}
+          href={`/${username}/${knowledge.slug}`}
           className="inline-flex items-center text-primary hover:text-primary-600 font-medium text-sm"
         >
           View Details
