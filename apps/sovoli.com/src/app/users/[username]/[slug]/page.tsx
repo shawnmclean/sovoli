@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getCldOgImageUrl } from "next-cloudinary";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Link } from "@sovoli/ui/components/link";
@@ -13,12 +15,60 @@ import {
 import { KnowledgeContent } from "./components/KnowledgeContent";
 import { CoverImage } from "./components/CoverImage";
 import { InlinePhotos } from "./components/InlinePhotos";
+import { config } from "~/utils/config";
 
 interface KnowledgePageProps {
   params: Promise<{
     username: string;
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ username: string; slug: string }>;
+}): Promise<Metadata> {
+  const { username, slug } = await params;
+
+  // Get specific knowledge item
+  const knowledgeHandler = new GetKnowledgeBySlugQueryHandler();
+  const knowledgeResult = await knowledgeHandler.handle(
+    new GetKnowledgeBySlugQuery(username, slug),
+  );
+
+  if (!knowledgeResult.knowledge) {
+    return {
+      title: `Knowledge not found - ${config.siteName}`,
+      description: `The knowledge item "${slug}" by ${username} could not be found.`,
+    };
+  }
+
+  const knowledge = knowledgeResult.knowledge;
+
+  // Generate cover image URL if available
+  const coverImageUrl =
+    knowledge.coverPhoto?.bucket && knowledge.coverPhoto.id
+      ? getCldOgImageUrl({
+          src: `${knowledge.coverPhoto.bucket}/${knowledge.coverPhoto.id}`,
+        })
+      : null;
+
+  const description = knowledge.description.trim()
+    ? knowledge.description
+    : `Read ${knowledge.title} by ${username} on ${config.siteName}`;
+
+  return {
+    title: `${knowledge.title} - ${username}`,
+    description: description,
+    openGraph: {
+      title: `${knowledge.title} - ${username}`,
+      description: description,
+      url: `${config.url}/users/${username}/${slug}`,
+      siteName: config.siteName,
+      images: coverImageUrl ? [coverImageUrl] : config.images,
+    },
+  };
 }
 
 export default async function KnowledgePage({ params }: KnowledgePageProps) {

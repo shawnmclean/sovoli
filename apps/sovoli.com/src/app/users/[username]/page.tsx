@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
@@ -7,6 +8,7 @@ import {
   GetUserKnowledgeByUsernameQueryHandler,
 } from "~/modules/notes/services/GetUserKnowledgeByUsername";
 import { KnowledgeCard } from "./components/KnowledgeCard";
+import { config } from "~/utils/config";
 
 interface UserPageProps {
   params: Promise<{
@@ -16,6 +18,42 @@ interface UserPageProps {
     page: string | undefined;
     pageSize: string | undefined;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}): Promise<Metadata> {
+  const { username } = await params;
+
+  // Get user's knowledge items to determine if user exists
+  const userKnowledgeHandler = new GetUserKnowledgeByUsernameQueryHandler();
+  const result = await userKnowledgeHandler.handle(
+    new GetUserKnowledgeByUsernameQuery(username),
+  );
+
+  if (!result.userKnowledge) {
+    return {
+      title: `User not found - ${config.siteName}`,
+      description: `The user ${username} could not be found.`,
+    };
+  }
+
+  const { knowledgeItems } = result.userKnowledge;
+  const totalItems = knowledgeItems.length;
+
+  return {
+    title: `${username}'s Knowledge`,
+    description: `Browse ${username}'s collection of ${totalItems} knowledge items including notes, books, and collections.`,
+    openGraph: {
+      title: `${username}'s Knowledge`,
+      description: `Browse ${username}'s collection of ${totalItems} knowledge items including notes, books, and collections.`,
+      url: `${config.url}/users/${username}`,
+      siteName: config.siteName,
+      images: config.images,
+    },
+  };
 }
 
 export default async function UserPage({
