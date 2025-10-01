@@ -70,7 +70,7 @@ JOIN "user" u ON k.user_id = u.id
 LEFT JOIN knowledge_media_asset kma ON k.id = kma.knowledge_id
 LEFT JOIN media_asset ma ON kma.media_asset_id = ma.id
 WHERE u.username = 'shawn' 
-  AND k.type = 'note'
+  AND k.type = 'collection'
   AND k.is_public = true
 GROUP BY k.id, k.title, k.description, k.type, k.content, k.slug, 
          k.is_origin, k.is_public, k.is_draft, k.chapter_number, 
