@@ -10,7 +10,7 @@ interface CoverImageProps {
 
 export function CoverImage({ bucket, id, alt }: CoverImageProps) {
   return (
-    <div className="mb-8 relative h-64 rounded-lg overflow-hidden">
+    <div className="mb-8 relative h-64 rounded-lg overflow-hidden bg-default-100">
       <CldImage
         src={`${bucket}/${id}`}
         alt={alt}

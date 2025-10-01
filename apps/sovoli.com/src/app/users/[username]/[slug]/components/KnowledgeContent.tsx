@@ -15,13 +15,13 @@ export function KnowledgeContent({ content }: KnowledgeContentProps) {
 
     return (
       <article
-        className="prose max-w-none"
+        className="prose prose-lg max-w-none dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: contentHTML }}
       />
     );
   } else {
     return (
-      <article className="prose max-w-none">
+      <article className="prose prose-lg max-w-none dark:prose-invert">
         <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
       </article>
     );

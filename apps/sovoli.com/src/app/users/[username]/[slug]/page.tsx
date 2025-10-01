@@ -1,4 +1,7 @@
 import { notFound } from "next/navigation";
+import { Card, CardBody } from "@sovoli/ui/components/card";
+import { Badge } from "@sovoli/ui/components/badge";
+import { Link } from "@sovoli/ui/components/link";
 import {
   GetKnowledgeBySlugQuery,
   GetKnowledgeBySlugQueryHandler,
@@ -45,43 +48,49 @@ export default async function KnowledgePage({ params }: KnowledgePageProps) {
     ) ?? [];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-4">
-            <a href={`/users/${username}`} className="hover:text-gray-700">
+          <nav className="flex items-center space-x-2 text-sm text-default-500 mb-4">
+            <Link
+              href={`/users/${username}`}
+              className="hover:text-default-700"
+            >
               {username}
-            </a>
+            </Link>
             <span>/</span>
-            <span className="text-gray-900">{knowledge.title}</span>
+            <span className="text-foreground">{knowledge.title}</span>
           </nav>
 
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-foreground mb-2">
                 {knowledge.title}
               </h1>
-              <p className="text-gray-600 text-lg">{knowledge.description}</p>
+              <p className="text-default-600 text-lg">
+                {knowledge.description}
+              </p>
             </div>
             <div className="flex items-center gap-2">
-              <span
-                className={`px-3 py-1 rounded-full text-sm font-medium ${
+              <Badge
+                color={
                   knowledge.type === "note"
-                    ? "bg-blue-100 text-blue-800"
+                    ? "primary"
                     : knowledge.type === "book"
-                      ? "bg-green-100 text-green-800"
+                      ? "success"
                       : knowledge.type === "collection"
-                        ? "bg-purple-100 text-purple-800"
-                        : "bg-gray-100 text-gray-800"
-                }`}
+                        ? "secondary"
+                        : "default"
+                }
+                size="sm"
               >
                 {knowledge.type}
-              </span>
+              </Badge>
               {knowledge.isPublic && (
-                <span className="px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                <Badge color="success" size="sm">
                   Public
-                </span>
+                </Badge>
               )}
             </div>
           </div>
@@ -97,11 +106,11 @@ export default async function KnowledgePage({ params }: KnowledgePageProps) {
         )}
 
         {/* Content */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-          <div className="prose prose-lg max-w-none">
+        <Card className="p-8">
+          <CardBody className="p-0">
             <KnowledgeContent content={knowledge.content} />
-          </div>
-        </div>
+          </CardBody>
+        </Card>
 
         {/* Inline Photos */}
         {Array.isArray(knowledge.inlinePhotos) &&
@@ -112,44 +121,49 @@ export default async function KnowledgePage({ params }: KnowledgePageProps) {
         {/* Other Items */}
         {otherItems.length > 0 && (
           <div className="mt-12">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               More from {username}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {otherItems.slice(0, 3).map((item) => (
-                <a
+                <Link
                   key={item.id}
                   href={`/users/${username}/${item.slug}`}
-                  className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow"
+                  className="block"
                 >
-                  <h4 className="font-medium text-gray-900 mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="text-sm text-gray-600 line-clamp-2">
-                    {item.description}
-                  </p>
-                  <div className="mt-2">
-                    <span
-                      className={`px-2 py-1 rounded text-xs ${
-                        item.type === "note"
-                          ? "bg-blue-100 text-blue-800"
-                          : item.type === "book"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-gray-100 text-gray-800"
-                      }`}
-                    >
-                      {item.type}
-                    </span>
-                  </div>
-                </a>
+                  <Card className="p-4 hover:shadow-md transition-shadow">
+                    <CardBody className="p-0">
+                      <h4 className="font-medium text-foreground mb-1">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-default-600 line-clamp-2">
+                        {item.description}
+                      </p>
+                      <div className="mt-2">
+                        <Badge
+                          color={
+                            item.type === "note"
+                              ? "primary"
+                              : item.type === "book"
+                                ? "success"
+                                : "default"
+                          }
+                          size="sm"
+                        >
+                          {item.type}
+                        </Badge>
+                      </div>
+                    </CardBody>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
         )}
 
         {/* Metadata */}
-        <div className="mt-8 pt-8 border-t border-gray-200">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-500">
+        <div className="mt-8 pt-8 border-t border-divider">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-default-500">
             <div>
               <span className="font-medium">Created:</span>
               <br />

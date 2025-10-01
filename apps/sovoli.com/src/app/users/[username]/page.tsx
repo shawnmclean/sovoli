@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import {
   GetUserKnowledgeByUsernameQuery,
   GetUserKnowledgeByUsernameQueryHandler,
@@ -47,14 +48,14 @@ export default async function UserPage({
   const paginatedItems = knowledgeItems.slice(startIndex, endIndex);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-foreground">
             {username}'s Knowledge
           </h1>
-          <p className="mt-2 text-gray-600">{totalItems} knowledge items</p>
+          <p className="mt-2 text-default-600">{totalItems} knowledge items</p>
         </div>
 
         {/* Knowledge Grid */}
@@ -66,15 +67,17 @@ export default async function UserPage({
 
         {/* Empty State */}
         {totalItems === 0 && (
-          <div className="text-center py-12">
-            <div className="text-gray-400 text-6xl mb-4">📝</div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
-              No knowledge items yet
-            </h3>
-            <p className="text-gray-500">
-              {username} hasn't created any knowledge items yet.
-            </p>
-          </div>
+          <Card className="text-center py-12">
+            <CardBody>
+              <div className="text-default-400 text-6xl mb-4">📝</div>
+              <h3 className="text-lg font-medium text-foreground mb-2">
+                No knowledge items yet
+              </h3>
+              <p className="text-default-500">
+                {username} hasn't created any knowledge items yet.
+              </p>
+            </CardBody>
+          </Card>
         )}
 
         {/* Pagination */}

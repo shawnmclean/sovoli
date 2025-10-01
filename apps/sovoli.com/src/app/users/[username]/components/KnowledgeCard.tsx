@@ -1,6 +1,9 @@
 "use client";
 
 import { CldImage } from "next-cloudinary";
+import { Card, CardBody } from "@sovoli/ui/components/card";
+import { Badge } from "@sovoli/ui/components/badge";
+import { Link } from "@sovoli/ui/components/link";
 import type { KnowledgeFile } from "~/modules/notes/services/types";
 import type { Photo } from "~/modules/core/photos/types";
 
@@ -18,10 +21,10 @@ interface KnowledgeCardProps {
 
 export function KnowledgeCard({ knowledge, username }: KnowledgeCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+    <Card className="hover:shadow-md transition-shadow">
       {/* Cover Image */}
       {hasCoverPhoto(knowledge) && (
-        <div className="aspect-video bg-gray-100 rounded-t-lg overflow-hidden relative">
+        <div className="aspect-video bg-default-100 rounded-t-lg overflow-hidden relative">
           <CldImage
             src={`${knowledge.coverPhoto.bucket}/${knowledge.coverPhoto.id}`}
             alt={knowledge.coverPhoto.alt ?? knowledge.title}
@@ -32,45 +35,45 @@ export function KnowledgeCard({ knowledge, username }: KnowledgeCardProps) {
         </div>
       )}
 
-      {/* Content */}
-      <div className="p-6">
+      <CardBody className="p-6">
         {/* Type Badge */}
         <div className="flex items-center gap-2 mb-3">
-          <span
-            className={`px-2 py-1 rounded-full text-xs font-medium ${
+          <Badge
+            color={
               knowledge.type === "note"
-                ? "bg-blue-100 text-blue-800"
+                ? "primary"
                 : knowledge.type === "book"
-                  ? "bg-green-100 text-green-800"
+                  ? "success"
                   : knowledge.type === "collection"
-                    ? "bg-purple-100 text-purple-800"
-                    : "bg-gray-100 text-gray-800"
-            }`}
+                    ? "secondary"
+                    : "default"
+            }
+            size="sm"
           >
             {knowledge.type}
-          </span>
+          </Badge>
           {knowledge.isPublic && (
-            <span className="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            <Badge color="success" size="sm">
               Public
-            </span>
+            </Badge>
           )}
           {knowledge.isDraft && (
-            <span className="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+            <Badge color="warning" size="sm">
               Draft
-            </span>
+            </Badge>
           )}
         </div>
 
         {/* Title and Description */}
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+        <h3 className="text-lg font-semibold text-foreground mb-2">
           {knowledge.title}
         </h3>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+        <p className="text-default-600 text-sm mb-4 line-clamp-3">
           {knowledge.description}
         </p>
 
         {/* Metadata */}
-        <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+        <div className="flex items-center justify-between text-xs text-default-500 mb-4">
           <span>
             {(Array.isArray(knowledge.inlinePhotos)
               ? knowledge.inlinePhotos.length
@@ -88,9 +91,9 @@ export function KnowledgeCard({ knowledge, username }: KnowledgeCardProps) {
         </div>
 
         {/* Action Button */}
-        <a
+        <Link
           href={`/users/${username}/${knowledge.slug}`}
-          className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm"
+          className="inline-flex items-center text-primary hover:text-primary-600 font-medium text-sm"
         >
           View Details
           <svg
@@ -106,8 +109,8 @@ export function KnowledgeCard({ knowledge, username }: KnowledgeCardProps) {
               d="M9 5l7 7-7 7"
             />
           </svg>
-        </a>
-      </div>
-    </div>
+        </Link>
+      </CardBody>
+    </Card>
   );
 }
