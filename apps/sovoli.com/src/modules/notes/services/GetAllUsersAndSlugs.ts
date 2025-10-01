@@ -1,6 +1,5 @@
-import { readdir } from "fs/promises";
-import { join, extname } from "path";
 import type { UserSlug } from "./types";
+import { KnowledgeFileCache } from "./KnowledgeFileCache";
 
 interface Result {
   usersAndSlugs: UserSlug[];
@@ -11,56 +10,18 @@ export class GetAllUsersAndSlugsQuery {
 }
 
 export class GetAllUsersAndSlugsQueryHandler {
-  private readonly usersDir = join(
-    process.cwd(),
-    "src/modules/data/organisations/users",
-  );
+  private cache = KnowledgeFileCache.getInstance();
 
   async handle(): Promise<Result> {
     try {
-      const usersAndSlugs: UserSlug[] = [];
+      // Ensure cache is loaded
+      await this.cache.loadAllFiles();
 
-      // Read all user directories
-      const userDirs = await readdir(this.usersDir, { withFileTypes: true });
-
-      for (const userDir of userDirs) {
-        if (userDir.isDirectory()) {
-          const username = userDir.name;
-          const userNotesPath = join(this.usersDir, username, "notes");
-
-          // Check if notes directory exists
-          const notesDirExists = await this.directoryExists(userNotesPath);
-          if (!notesDirExists) continue;
-
-          // Read all .mdx files for this user
-          const files = await readdir(userNotesPath, { withFileTypes: true });
-
-          for (const file of files) {
-            if (file.isFile() && extname(file.name) === ".mdx") {
-              const slug = file.name.replace(".mdx", "");
-              usersAndSlugs.push({
-                username,
-                slug,
-              });
-            }
-          }
-        }
-      }
-
+      const usersAndSlugs = this.cache.getUserSlugs();
       return { usersAndSlugs };
     } catch (error) {
       console.error("Error reading all users and slugs:", error);
       return { usersAndSlugs: [] };
-    }
-  }
-
-  private async directoryExists(path: string): Promise<boolean> {
-    try {
-      const { stat } = await import("fs/promises");
-      const stats = await stat(path);
-      return stats.isDirectory();
-    } catch {
-      return false;
     }
   }
 }

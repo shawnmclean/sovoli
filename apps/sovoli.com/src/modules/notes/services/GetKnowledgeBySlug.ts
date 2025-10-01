@@ -1,8 +1,5 @@
-import { readFile } from "fs/promises";
-import { join } from "path";
-import matter from "gray-matter";
 import type { KnowledgeFile } from "./types";
-import type { Photo } from "~/modules/core/photos/types";
+import { KnowledgeFileCache } from "./KnowledgeFileCache";
 
 interface Result {
   knowledge: KnowledgeFile | null;
@@ -18,47 +15,17 @@ export class GetKnowledgeBySlugQuery {
 }
 
 export class GetKnowledgeBySlugQueryHandler {
-  private readonly usersDir = join(
-    process.cwd(),
-    "src/modules/data/organisations/users",
-  );
+  private cache = KnowledgeFileCache.getInstance();
 
   async handle(query: GetKnowledgeBySlugQuery): Promise<Result> {
     try {
-      const filePath = join(
-        this.usersDir,
+      // Ensure cache is loaded
+      await this.cache.loadAllFiles();
+
+      const knowledge = this.cache.getKnowledgeFileBySlug(
         query.username,
-        "notes",
-        `${query.slug}.mdx`,
+        query.slug,
       );
-      const fileContent = await readFile(filePath, "utf-8");
-
-      // Parse frontmatter and content
-      const { data: frontmatter, content } = matter(fileContent);
-
-      const knowledge: KnowledgeFile = {
-        id: (frontmatter.id as string) || `${query.username}-${query.slug}`,
-        title: (frontmatter.title as string) || query.slug,
-        description: (frontmatter.description as string) || "",
-        type: frontmatter.type as "note" | "book" | "collection" | "shelf",
-        content,
-        slug: query.slug,
-        isOrigin: (frontmatter.isOrigin as boolean) || true,
-        isPublic: (frontmatter.isPublic as boolean) || true,
-        isDraft: (frontmatter.isDraft as boolean) || false,
-        chapterNumber: frontmatter.chapterNumber as number | undefined,
-        verifiedDate: frontmatter.verifiedDate as string | undefined,
-        query: frontmatter.query as string | undefined,
-        queryType: frontmatter.queryType as "query" | "isbn",
-        createdAt:
-          (frontmatter.createdAt as string) || new Date().toISOString(),
-        updatedAt:
-          (frontmatter.updatedAt as string) || new Date().toISOString(),
-        userId: query.username,
-        coverPhoto: frontmatter.coverPhoto as Photo | undefined,
-        inlinePhotos: frontmatter.inlinePhotos as Photo[],
-      };
-
       return { knowledge };
     } catch (error) {
       console.error(
