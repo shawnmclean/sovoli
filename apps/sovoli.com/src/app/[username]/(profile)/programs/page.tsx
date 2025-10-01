@@ -38,7 +38,7 @@ export default async function ProgramsPage({
         endContent={
           <Button
             as={Link}
-            href={`/orgs/${org.username}/dashboard`}
+            href={`/${org.username}/dashboard`}
             size="sm"
             variant="flat"
             color="default"

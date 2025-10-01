@@ -33,7 +33,7 @@ const HOME_PAGE: PageConfig = {
       subtitle:
         "Join a community dedicated to academic excellence and personal growth",
       backgroundImage:
-        "/orgs/private-schools/guyana/modernacademy/website/home/hero.webp",
+        "/private-schools/guyana/modernacademy/website/home/hero.webp",
       actions: [
         { label: "Apply Now", href: "/programs" },
         { label: "Schedule a Visit", href: "/programs" },
@@ -73,7 +73,7 @@ export const MODERN_ACADEMY_WEBSITE: WebsiteModule = {
     domain: ORG_DOMAIN,
     images: [
       {
-        url: "/orgs/private-schools/guyana/modernacademy/website/home/hero.webp",
+        url: "/private-schools/guyana/modernacademy/website/home/hero.webp",
         width: 1200,
         height: 600,
         alt: "School front",

@@ -188,7 +188,7 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
               <Button
                 color="warning"
                 as={Link}
-                href={`/orgs/${orgInstance.org.username}/dashboard`}
+                href={`/${orgInstance.org.username}/dashboard`}
               >
                 Claim
               </Button>

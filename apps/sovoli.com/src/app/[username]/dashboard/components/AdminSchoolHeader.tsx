@@ -40,7 +40,7 @@ export function AdminSchoolHeader({ orgInstance }: AdminSchoolHeaderProps) {
           <Button
             variant="faded"
             as={Link}
-            href={`/orgs/${orgInstance.org.username}`}
+            href={`/${orgInstance.org.username}`}
           >
             Profile
           </Button>

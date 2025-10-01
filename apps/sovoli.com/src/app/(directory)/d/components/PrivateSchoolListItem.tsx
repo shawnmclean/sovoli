@@ -22,7 +22,7 @@ export function PrivateSchoolListItem({
   return (
     <Card className="w-full">
       <CardBody className="gap-2">
-        <Link href={`/orgs/${org.username}`} color="foreground">
+        <Link href={`/${org.username}`} color="foreground">
           <div className="flex items-center gap-3">
             <Avatar src={org.logo} name={org.name} size="md" />
 

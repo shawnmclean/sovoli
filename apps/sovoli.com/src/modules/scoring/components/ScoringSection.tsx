@@ -29,7 +29,7 @@ export const ScoringSection = ({
       <div className="flex items-center justify-between mb-2">
         <div />
         <Link
-          href={`/orgs/${org.username}/scores`}
+          href={`/${org.username}/scores`}
           color="primary"
           className="flex items-center gap-1 text-xs"
         >

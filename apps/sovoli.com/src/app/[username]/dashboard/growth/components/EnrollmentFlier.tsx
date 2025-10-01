@@ -115,7 +115,7 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
               </div>
             </div>
             <Image
-              src="/orgs/private-schools/guyana/modernacademy/programs/pre-nursery.webp"
+              src="/private-schools/guyana/modernacademy/programs/pre-nursery.webp"
               alt="School Programs"
               width={800}
               height={250}

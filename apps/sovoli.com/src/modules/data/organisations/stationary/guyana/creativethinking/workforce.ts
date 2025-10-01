@@ -10,8 +10,8 @@ const MANAGER: Position = {
   name: "Manager",
   slug: "manager",
   description: "Store manager and owner",
-  image: "/orgs/stationary/guyana/creativethinking/team/manager.webp",
-  url: "/orgs/stationary/guyana/creativethinking/team",
+  image: "/stationary/guyana/creativethinking/team/manager.webp",
+  url: "/stationary/guyana/creativethinking/team",
 };
 
 const SALES_DEPARTMENT: Department = {
@@ -19,15 +19,15 @@ const SALES_DEPARTMENT: Department = {
   slug: "sales-customer-service",
   description:
     "Our friendly sales team is here to help you find exactly what you need.",
-  image: "/orgs/stationary/guyana/creativethinking/team/sales.webp",
-  url: "/orgs/stationary/guyana/creativethinking/team",
+  image: "/stationary/guyana/creativethinking/team/sales.webp",
+  url: "/stationary/guyana/creativethinking/team",
 };
 
 export const STORE_MANAGER: WorkforceMember = {
   id: "001",
   name: "Store Manager",
   slug: "store-manager",
-  image: "/orgs/stationary/guyana/creativethinking/team/manager.webp",
+  image: "/stationary/guyana/creativethinking/team/manager.webp",
   bio: "Dedicated to providing quality stationery and office supplies to the community. Committed to excellent customer service and helping customers find exactly what they need for their educational and office requirements.",
   quote:
     "Your success is our priority - we're here to provide the tools you need to excel.",

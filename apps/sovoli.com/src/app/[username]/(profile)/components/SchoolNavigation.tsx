@@ -33,12 +33,12 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
       className="border-t border-default-200 py-2"
     >
       <Tab
-        key={`/orgs/${orgInstance.org.username}`}
+        key={`/${orgInstance.org.username}`}
         title="About"
-        href={`/orgs/${orgInstance.org.username}`}
+        href={`/${orgInstance.org.username}`}
       />
       <Tab
-        key={`/orgs/${orgInstance.org.username}/programs`}
+        key={`/${orgInstance.org.username}/programs`}
         title={
           <div className="flex items-center space-x-2">
             <span>Programs</span>
@@ -47,10 +47,10 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
             </Chip>
           </div>
         }
-        href={`/orgs/${orgInstance.org.username}/programs`}
+        href={`/${orgInstance.org.username}/programs`}
       />
       <Tab
-        key={`/orgs/${orgInstance.org.username}/scores`}
+        key={`/${orgInstance.org.username}/scores`}
         title={
           <div className="flex items-center space-x-2">
             <span>Scores</span>
@@ -59,11 +59,11 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
             </Chip>
           </div>
         }
-        href={`/orgs/${orgInstance.org.username}/scores`}
+        href={`/${orgInstance.org.username}/scores`}
       />
 
       <Tab
-        key={`/orgs/${orgInstance.org.username}/jobs`}
+        key={`/${orgInstance.org.username}/jobs`}
         title={
           <div className="flex items-center space-x-2">
             <span>Jobs</span>
@@ -79,12 +79,12 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
             ) : null}
           </div>
         }
-        // href={`/orgs/${orgInstance.org.username}/jobs`}
+        // href={`/${orgInstance.org.username}/jobs`}
       />
       <Tab
-        key={`/orgs/${orgInstance.org.username}/logs`}
+        key={`/${orgInstance.org.username}/logs`}
         title="Logs"
-        href={`/orgs/${orgInstance.org.username}/logs`}
+        href={`/${orgInstance.org.username}/logs`}
       />
     </Tabs>
   );

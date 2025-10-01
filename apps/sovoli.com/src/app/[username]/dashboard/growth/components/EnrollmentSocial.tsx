@@ -135,7 +135,7 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
               </div>
             </div>
             <Image
-              src="/orgs/private-schools/guyana/modernacademy/programs/pre-nursery.webp"
+              src="/private-schools/guyana/modernacademy/programs/pre-nursery.webp"
               alt="School Programs"
               width={1350}
               height={400}

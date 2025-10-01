@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: Props) {
     openGraph: {
       title: orgInstance.org.name,
       description: `Profile page for ${orgInstance.org.name}`,
-      url: `https://sovoli.com/orgs/${orgInstance.org.username}`,
+      url: `https://sovoli.com/${orgInstance.org.username}`,
       siteName: orgInstance.org.name,
       images: orgInstance.org.logo,
     },

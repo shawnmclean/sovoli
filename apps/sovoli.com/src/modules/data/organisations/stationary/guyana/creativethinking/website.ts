@@ -15,7 +15,7 @@ const HOME_PAGE: PageConfig = {
       subtitle:
         "Creative Thinking Stationery Hub offers a comprehensive range of stationery, office supplies, and educational materials to support your learning and work needs.",
       backgroundImage:
-        "/orgs/stationary/guyana/creativethinking/website/home/hero.webp",
+        "/stationary/guyana/creativethinking/website/home/hero.webp",
       actions: [
         { label: "View Products", href: "/offerings" },
         { label: "Contact Us", href: "/contact" },
@@ -40,7 +40,7 @@ export const CREATIVE_THINKING_STATIONERY_HUB_WEBSITE: WebsiteModule = {
     domain: ORG_DOMAIN,
     images: [
       {
-        url: `/orgs/${ORG_USERNAME}/websites/landing/hero.jpg`,
+        url: `/${ORG_USERNAME}/websites/landing/hero.jpg`,
         width: 1200,
         height: 600,
         alt: "Creative Thinking Stationery Hub storefront",

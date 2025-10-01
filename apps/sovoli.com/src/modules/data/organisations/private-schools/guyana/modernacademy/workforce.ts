@@ -15,7 +15,7 @@ export const ANITA_DHANIRAM: WorkforceMember = {
   id: "003",
   name: "Anita Dhaniram",
   slug: "anita-dhaniram",
-  image: "/orgs/private-schools/guyana/modernacademy/team/anita.webp",
+  image: "/private-schools/guyana/modernacademy/team/anita.webp",
   bio: "Anita supports all administrative operations and keeps the school running smoothly.",
   quote:
     "At Modern Academy, we are like a parent to your child—it's a home away from home.",
@@ -48,7 +48,7 @@ export const JESSICA_GOBIN: WorkforceMember = {
   id: "005",
   name: "Jessica A Gobin",
   slug: "jessica-a-gobin",
-  image: "/orgs/private-schools/guyana/modernacademy/team/jessica.webp",
+  image: "/private-schools/guyana/modernacademy/team/jessica.webp",
   bio: "Jessica has a natural gift for connecting with children. Previously in office work, she quickly realized her calling was in the classroom, where her calm energy, playful nature, and deep empathy draw children to her. Whether it's singing nursery rhymes, conducting simple science experiments, or guiding early literacy, she makes learning feel like magic. Her connection with kids is mutual—uplifting her spirit as much as she nurtures theirs.",
   quote:
     "All kids need is a little help, a little hope and somebody who believes. — Magic Johnson",
@@ -115,7 +115,7 @@ export const WONDA_BARON: WorkforceMember = {
   id: "006",
   name: "Wonda Baron",
   slug: "wonda-baron",
-  image: "/orgs/private-schools/guyana/modernacademy/team/wonda.webp",
+  image: "/private-schools/guyana/modernacademy/team/wonda.webp",
   bio: "Wonda has dreamed of being a teacher since childhood and followed that passion with commitment. Though she explored other jobs, her heart always led her back to the classroom. As a mother herself, she brings both structure and warmth to her teaching, using motivational quotes and playful methods to make learning fun. Her students love her—even when she's strict—and often don't want her to miss a day. With a keen eye for student progress, she tailors her approach to every learner's needs and helps lift every child to their full potential.",
   quote:
     "Every child learns differently—my role is to meet them where they are and guide them forward.",
@@ -140,7 +140,7 @@ export const MOLTA_MCRAE: WorkforceMember = {
   id: "007",
   name: "Molta M. McRae",
   slug: "molta-mcrae",
-  image: "/orgs/private-schools/guyana/modernacademy/team/molta.webp",
+  image: "/private-schools/guyana/modernacademy/team/molta.webp",
   bio: "With over two decades of teaching experience, Molta has become a trusted mentor to students and parents alike. Her classrooms are rooted in love, discipline, and unwavering care. Understanding the complex realities children face—especially those from single-parent homes—she steps in with compassion and structure, serving as a second parent. Her deep relationships with families allow her to support students holistically and guide them toward emotional and academic success.",
   quote:
     "Always be there for your kids. Children require attention—Miss alone cannot do it.",
@@ -165,7 +165,7 @@ export const SAMANTHA_PERSAUD: WorkforceMember = {
   id: "008",
   name: "Samantha Persaud",
   slug: "samantha-persaud",
-  image: "/orgs/private-schools/guyana/modernacademy/team/samantha.webp",
+  image: "/private-schools/guyana/modernacademy/team/samantha.webp",
   bio: "Samantha is a grounded and focused educator whose quiet strength creates a peaceful classroom environment. She believes in nurturing the whole child and leads with a gentle authority that makes her approachable and respected. While her profile is still being fully built, Samantha continues to make a lasting impact through her calm presence and commitment to student success.",
   isPublic: true,
   contacts: [],

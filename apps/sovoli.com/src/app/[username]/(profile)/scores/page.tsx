@@ -44,7 +44,7 @@ export default async function ScoresPage({
         endContent={
           <Button
             as={Link}
-            href={`/orgs/${org.username}/dashboard`}
+            href={`/${org.username}/dashboard`}
             size="sm"
             variant="flat"
             color="default"

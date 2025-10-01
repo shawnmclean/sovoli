@@ -15,7 +15,7 @@ const HOME_PAGE: PageConfig = {
       subtitle:
         "Argosy Book Store offers a comprehensive range of books, stationery, and educational materials to support your learning and reading needs in Georgetown.",
       backgroundImage:
-        "/orgs/stationary/guyana/argosybookstore/website/home/hero.webp",
+        "/stationary/guyana/argosybookstore/website/home/hero.webp",
       actions: [
         { label: "Browse Books", href: "/offerings" },
         { label: "Contact Us", href: "/contact" },
@@ -40,7 +40,7 @@ export const ARGOSY_BOOK_STORE_WEBSITE: WebsiteModule = {
     domain: ORG_DOMAIN,
     images: [
       {
-        url: `/orgs/${ORG_USERNAME}/websites/landing/hero.jpg`,
+        url: `/${ORG_USERNAME}/websites/landing/hero.jpg`,
         width: 1200,
         height: 600,
         alt: "Argosy Book Store storefront",

@@ -77,14 +77,14 @@ Photos are stored in the frontmatter using the Photo interface structure:
 
 ```yaml
 coverPhoto:
-  url: "/orgs/users/shawn/notes/photos/cover.webp"
+  url: "/users/shawn/notes/photos/cover.webp"
   alt: "Cover Image"
   caption: "Description of the cover image"
   category: "default"
   publicId: "shawn-cover-image"
 
 inlinePhotos:
-  - url: "/orgs/users/shawn/notes/photos/diagram.webp"
+  - url: "/users/shawn/notes/photos/diagram.webp"
     alt: "Diagram"
     caption: "Description of the diagram"
     category: "default"

@@ -22,14 +22,14 @@ export function AdminSchoolNavigation({
       className="border-t border-default-200 py-2"
     >
       <Tab
-        key={`/orgs/${orgInstance.org.username}/dashboard`}
+        key={`/${orgInstance.org.username}/dashboard`}
         title="Overview"
-        href={`/orgs/${orgInstance.org.username}/dashboard`}
+        href={`/${orgInstance.org.username}/dashboard`}
       />
       <Tab
-        key={`/orgs/${orgInstance.org.username}/dashboard/growth`}
+        key={`/${orgInstance.org.username}/dashboard/growth`}
         title="Growth"
-        href={`/orgs/${orgInstance.org.username}/dashboard/growth`}
+        href={`/${orgInstance.org.username}/dashboard/growth`}
       />
     </Tabs>
   );

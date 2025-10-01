@@ -14,7 +14,7 @@ const HOME_PAGE: PageConfig = {
       subtitle:
         "Fit Right offers premium tailoring services and hands-on vocational training in fashion design and alterations.",
       backgroundImage:
-        "/orgs/vocational-training/guyana/fitright/website/home/hero.webp",
+        "/vocational-training/guyana/fitright/website/home/hero.webp",
       actions: [
         { label: "Apply Now", href: "/programs" },
         { label: "Schedule a Visit", href: "/programs" },
@@ -39,7 +39,7 @@ export const FITRIGHT_ACADEMY_WEBSITE: WebsiteModule = {
     domain: ORG_DOMAIN,
     images: [
       {
-        url: `/orgs/${ORG_USERNAME}/websites/landing/hero.jpg`,
+        url: `/${ORG_USERNAME}/websites/landing/hero.jpg`,
         width: 1200,
         height: 600,
         alt: "Fit Right front or logo",

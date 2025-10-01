@@ -4,7 +4,7 @@ import { ORG_USERNAME } from "./constants";
 export const MARIAN_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    logo: "/orgs/private-schools/guyana/marianacademy/logo.webp",
+    logo: "/private-schools/guyana/marianacademy/logo.webp",
     name: "Marian Academy",
     categories: ["private-school"],
     locations: [

@@ -171,7 +171,7 @@ export function PublicScoreBreakdown({
                                     (contact) => contact.type === "whatsapp",
                                   )?.value
                               }
-                              message={`Hi, I’m a parent exploring schools. I noticed some info is missing on your Sovoli profile. You can view and update it here: ${config.url}/orgs/${orgInstance.org.username}/scores`}
+                              message={`Hi, I’m a parent exploring schools. I noticed some info is missing on your Sovoli profile. You can view and update it here: ${config.url}/${orgInstance.org.username}/scores`}
                               size="sm"
                               variant="flat"
                               color="primary"

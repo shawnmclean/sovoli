@@ -35,7 +35,7 @@ export async function TrendingSection() {
         {trendingSchools.map((school) => (
           <Link
             key={school?.org.username}
-            href={`/orgs/${school?.org.username}`}
+            href={`/${school?.org.username}`}
             className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-default-100 transition-colors"
           >
             <Avatar

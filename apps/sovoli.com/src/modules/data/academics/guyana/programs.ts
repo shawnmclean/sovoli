@@ -37,7 +37,7 @@ export const GY_NURSERY_YEAR_1_PROGRAM: StandardProgram = {
     "Early childhood education nursery year 1 program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
-  image: "/orgs/defaults/programs/nursery.webp",
+  image: "/defaults/programs/nursery.webp",
   group: GY_PROGRAM_GROUP_NURSERY,
 };
 
@@ -73,7 +73,7 @@ export const GY_NURSERY_YEAR_2_PROGRAM: StandardProgram = {
     "Early childhood education nursery year 2 program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
-  image: "/orgs/defaults/programs/nursery.webp",
+  image: "/defaults/programs/nursery.webp",
   group: GY_PROGRAM_GROUP_NURSERY,
 };
 
@@ -135,7 +135,7 @@ export const GY_PRIMARY_GRADE_1_PROGRAM: StandardProgram = {
     "Primary education grade 1 program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
-  image: "/orgs/defaults/programs/primary.webp",
+  image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
@@ -164,7 +164,7 @@ export const GY_PRIMARY_GRADE_2_PROGRAM: StandardProgram = {
     "Primary education grade 2 program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
-  image: "/orgs/defaults/programs/primary.webp",
+  image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
@@ -193,7 +193,7 @@ export const GY_PRIMARY_GRADE_3_PROGRAM: StandardProgram = {
     "Primary education grade 3 program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
-  image: "/orgs/defaults/programs/primary.webp",
+  image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
@@ -222,7 +222,7 @@ export const GY_PRIMARY_GRADE_4_PROGRAM: StandardProgram = {
     "Primary education grade 4 program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
-  image: "/orgs/defaults/programs/primary.webp",
+  image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
@@ -251,7 +251,7 @@ export const GY_PRIMARY_GRADE_5_PROGRAM: StandardProgram = {
     "Primary education grade 5 program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
-  image: "/orgs/defaults/programs/primary.webp",
+  image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
 };
 
@@ -280,7 +280,7 @@ export const GY_PRIMARY_GRADE_6_PROGRAM: StandardProgram = {
     "Primary education grade 6 program under the Ministry of Education, Guyana",
   country: "GY",
   authority: "MoE-GY",
-  image: "/orgs/defaults/programs/primary.webp",
+  image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
 };
 

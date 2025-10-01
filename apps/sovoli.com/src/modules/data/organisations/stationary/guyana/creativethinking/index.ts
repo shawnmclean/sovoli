@@ -8,7 +8,7 @@ export const CREATIVE_THINKING_STATIONERY_HUB_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Creative Thinking Stationery Hub",
-    logo: "/orgs/stationary/guyana/creativethinking/logo.webp",
+    logo: "/stationary/guyana/creativethinking/logo.webp",
     isVerified: false,
     verification: {
       status: "pending",
