@@ -1,83 +1,22 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import {
-  GetUserKnowledgeByUsernameQuery,
-  GetUserKnowledgeByUsernameQueryHandler,
-} from "~/modules/notes/services/GetUserKnowledgeByUsername";
-import { KnowledgeCard } from "./components/KnowledgeCard";
-import { config } from "~/utils/config";
+import { KnowledgeCard } from "./KnowledgeCard";
+import type { KnowledgeFile } from "~/modules/notes/services/types";
 
-interface UserPageProps {
-  params: Promise<{
-    username: string;
-  }>;
-  searchParams: Promise<{
-    page: string | undefined;
-    pageSize: string | undefined;
-  }>;
+interface UserKnowledgeProfileProps {
+  username: string;
+  knowledgeItems: KnowledgeFile[];
+  page: number;
+  pageSize: number;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ username: string }>;
-}): Promise<Metadata> {
-  const { username } = await params;
-
-  // Get user's knowledge items to determine if user exists
-  const userKnowledgeHandler = new GetUserKnowledgeByUsernameQueryHandler();
-  const result = await userKnowledgeHandler.handle(
-    new GetUserKnowledgeByUsernameQuery(username),
-  );
-
-  if (!result.userKnowledge) {
-    return {
-      title: `User not found - ${config.siteName}`,
-      description: `The user ${username} could not be found.`,
-    };
-  }
-
-  const { knowledgeItems } = result.userKnowledge;
-  const totalItems = knowledgeItems.length;
-
-  return {
-    title: `${username}'s Knowledge`,
-    description: `Browse ${username}'s collection of ${totalItems} knowledge items including notes, books, and collections.`,
-    openGraph: {
-      title: `${username}'s Knowledge`,
-      description: `Browse ${username}'s collection of ${totalItems} knowledge items including notes, books, and collections.`,
-      url: `${config.url}/users/${username}`,
-      siteName: config.siteName,
-      images: config.images,
-    },
-  };
-}
-
-export default async function UserPage({
-  params,
-  searchParams,
-}: UserPageProps) {
-  const { username } = await params;
-  const searchParamsResolved = await searchParams;
-
-  const page = parseInt(searchParamsResolved.page ?? "1");
-  const pageSize = parseInt(searchParamsResolved.pageSize ?? "10");
-
-  // Get user's knowledge items
-  const userKnowledgeHandler = new GetUserKnowledgeByUsernameQueryHandler();
-  const result = await userKnowledgeHandler.handle(
-    new GetUserKnowledgeByUsernameQuery(username),
-  );
-
-  if (!result.userKnowledge) {
-    notFound();
-  }
-
-  const { knowledgeItems } = result.userKnowledge;
-
+export function UserKnowledgeProfile({
+  username,
+  knowledgeItems,
+  page,
+  pageSize,
+}: UserKnowledgeProfileProps) {
   // Calculate pagination
   const totalItems = knowledgeItems.length;
   const totalPages = Math.ceil(totalItems / pageSize);

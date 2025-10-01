@@ -2,12 +2,17 @@ import { notFound } from "next/navigation";
 import { Footer } from "~/components/footer/Footer";
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import {
+  GetUserKnowledgeByUsernameQuery,
+  GetUserKnowledgeByUsernameQueryHandler,
+} from "~/modules/notes/services/GetUserKnowledgeByUsername";
 import { SchoolHeader } from "./components/SchoolHeader";
 import { SchoolNavigation } from "./components/SchoolNavigation";
 import { config } from "~/utils/config";
 import { OrgNavbar } from "./components/OrgNavbar/OrgNavbar";
 import { Alert } from "@sovoli/ui/components/alert";
 import { OrgDetailMobileFooter } from "./components/OrgFooter/OrgDetailMobileFooter";
+import { UserKnowledgeProfile } from "./components/UserKnowledgeProfile";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -24,6 +29,31 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
   const { username } = await params;
+
+  // First check for user knowledge
+  const userKnowledgeHandler = new GetUserKnowledgeByUsernameQueryHandler();
+  const userKnowledgeResult = await userKnowledgeHandler.handle(
+    new GetUserKnowledgeByUsernameQuery(username),
+  );
+
+  if (userKnowledgeResult.userKnowledge) {
+    const { knowledgeItems } = userKnowledgeResult.userKnowledge;
+    const totalItems = knowledgeItems.length;
+
+    return {
+      title: `${username}'s Knowledge`,
+      description: `Browse ${username}'s collection of ${totalItems} knowledge items including notes, books, and collections.`,
+      openGraph: {
+        title: `${username}'s Knowledge`,
+        description: `Browse ${username}'s collection of ${totalItems} knowledge items including notes, books, and collections.`,
+        url: `${config.url}/${username}`,
+        siteName: config.siteName,
+        images: config.images,
+      },
+    };
+  }
+
+  // If no user knowledge, get org instance
   const orgInstance = await retreiveOrgInstance(username);
 
   return {
@@ -47,6 +77,19 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function Layout({ children, params }: Props) {
   const { username } = await params;
+
+  // First check for user knowledge
+  const userKnowledgeHandler = new GetUserKnowledgeByUsernameQueryHandler();
+  const userKnowledgeResult = await userKnowledgeHandler.handle(
+    new GetUserKnowledgeByUsernameQuery(username),
+  );
+
+  if (userKnowledgeResult.userKnowledge) {
+    // Render user knowledge profile with simple layout
+    return <div className="min-h-screen bg-background">{children}</div>;
+  }
+
+  // If no user knowledge, get org instance and render org layout
   const orgInstance = await retreiveOrgInstance(username);
 
   return (

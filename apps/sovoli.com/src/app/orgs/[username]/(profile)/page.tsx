@@ -4,11 +4,16 @@ import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries
 import { bus } from "~/services/core/bus";
 
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import {
+  GetUserKnowledgeByUsernameQuery,
+  GetUserKnowledgeByUsernameQueryHandler,
+} from "~/modules/notes/services/GetUserKnowledgeByUsername";
 
 import { Link } from "@sovoli/ui/components/link";
 import { GlobeIcon, PhoneIcon, MailIcon, MapPinIcon } from "lucide-react";
 import { countryCodeToName } from "~/utils/countryUtils";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { UserKnowledgeProfile } from "./components/UserKnowledgeProfile";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -34,6 +39,25 @@ export default async function OrgProfilePage({
   params: Promise<{ username: string }>;
 }) {
   const { username } = await params;
+
+  // First check for user knowledge
+  const userKnowledgeHandler = new GetUserKnowledgeByUsernameQueryHandler();
+  const userKnowledgeResult = await userKnowledgeHandler.handle(
+    new GetUserKnowledgeByUsernameQuery(username),
+  );
+
+  if (userKnowledgeResult.userKnowledge) {
+    return (
+      <UserKnowledgeProfile
+        username={username}
+        knowledgeItems={userKnowledgeResult.userKnowledge.knowledgeItems}
+        page={1}
+        pageSize={10}
+      />
+    );
+  }
+
+  // If no user knowledge, get org instance
   const orgInstance = await retreiveOrgInstance(username);
 
   const websiteUrl =
