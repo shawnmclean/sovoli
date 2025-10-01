@@ -1,7 +1,4 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import {
   GetKnowledgeBySlugQuery,
   GetKnowledgeBySlugQueryHandler,
@@ -10,17 +7,9 @@ import {
   GetUserKnowledgeByUsernameQuery,
   GetUserKnowledgeByUsernameQueryHandler,
 } from "~/modules/notes/services/GetUserKnowledgeByUsername";
-import type { Photo } from "~/modules/core/photos/types";
-
-// Type guard for Photo
-function isPhoto(obj: unknown): obj is Photo {
-  return (
-    typeof obj === "object" &&
-    obj !== null &&
-    "url" in obj &&
-    typeof (obj as Photo).url === "string"
-  );
-}
+import { KnowledgeContent } from "./components/KnowledgeContent";
+import { CoverImage } from "./components/CoverImage";
+import { InlinePhotos } from "./components/InlinePhotos";
 
 interface KnowledgePageProps {
   params: Promise<{
@@ -99,52 +88,25 @@ export default async function KnowledgePage({ params }: KnowledgePageProps) {
         </div>
 
         {/* Cover Image */}
-        {isPhoto(knowledge.coverPhoto) && (
-          <div className="mb-8 relative h-64 rounded-lg overflow-hidden">
-            <Image
-              src={knowledge.coverPhoto.url}
-              alt={knowledge.coverPhoto.alt ?? knowledge.title}
-              fill
-              className="object-cover"
-            />
-          </div>
+        {knowledge.coverPhoto?.bucket && knowledge.coverPhoto.id && (
+          <CoverImage
+            bucket={knowledge.coverPhoto.bucket}
+            id={knowledge.coverPhoto.id}
+            alt={knowledge.coverPhoto.alt ?? knowledge.title}
+          />
         )}
 
         {/* Content */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
           <div className="prose prose-lg max-w-none">
-            <Markdown remarkPlugins={[remarkGfm]}>{knowledge.content}</Markdown>
+            <KnowledgeContent content={knowledge.content} />
           </div>
         </div>
 
         {/* Inline Photos */}
         {Array.isArray(knowledge.inlinePhotos) &&
           knowledge.inlinePhotos.length > 0 && (
-            <div className="mt-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                Photos
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {knowledge.inlinePhotos.filter(isPhoto).map((photo) => (
-                  <div
-                    key={photo.publicId}
-                    className="bg-white rounded-lg border border-gray-200 p-4"
-                  >
-                    <div className="relative h-48 rounded mb-2 overflow-hidden">
-                      <Image
-                        src={photo.url}
-                        alt={photo.alt ?? ""}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <p className="text-sm font-medium text-gray-900">
-                      {photo.caption ?? photo.alt}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <InlinePhotos photos={knowledge.inlinePhotos} />
           )}
 
         {/* Other Items */}
@@ -202,8 +164,11 @@ export default async function KnowledgePage({ params }: KnowledgePageProps) {
               <span className="font-medium">Photos:</span>
               <br />
               {(Array.isArray(knowledge.inlinePhotos)
-                ? knowledge.inlinePhotos.filter(isPhoto).length
-                : 0) + (isPhoto(knowledge.coverPhoto) ? 1 : 0)}
+                ? knowledge.inlinePhotos.length
+                : 0) +
+                (knowledge.coverPhoto?.bucket && knowledge.coverPhoto.id
+                  ? 1
+                  : 0)}
             </div>
             <div>
               <span className="font-medium">Status:</span>

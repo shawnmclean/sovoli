@@ -1,0 +1,89 @@
+---
+id: "pbz4lkw2q5ectbur0rkmzl5o"
+title: "Migrating from Supabase to Cloudinary Images"
+description: "Migration plan for migrating images from supabase storage to cloudinary that is hosted on NextJs"
+type: "note"
+slug: "migrating-from-supabase-to-cloudinary-images"
+isOrigin: true
+isPublic: true
+isDraft: false
+queryType: "query"
+createdAt: "2025-01-30T23:23:27.765Z"
+updatedAt: "2025-01-30T23:23:27.765Z"
+userId: "shawn"
+---
+
+## How did we get here?
+
+When we started Sovoli, we needed a working prototype as fast as possible that meets the needs of storing and associating photos of bookshelves to posts.
+
+Initially, we were creating these posts in ChatGPT by uploading images to it and having it give insights about the books on the shelves. So when ChatGPT Actions sent this information to us, they sent us the JSON data along with a link to the file that was on their servers. We needed a background worker to take this image and move it to supabase, then update our database.
+
+Displaying this image was another story as we needed an image loader for the nextjs framework to optimize how we retrieve the images.
+
+## Where are we headed?
+
+Now that we are making these submissions directly from the website, we need to upload the files directly from the browser since vercel caps the request body. Plus I have learnt early in my career to just send the files directly to the storage system to avoid taking up server computations.
+
+Since I've been posting on Sovoli and sharing the articles, we are surpassing the 5Gb egress (outgoing) transfer limits. So this cost optimization is necessary work.
+
+We will also need the following behaviors:
+
+- On the fly transformations (⭕️ supabase pro plan required, ✅ free in cloudinary)
+- Open Graph image support (✅ out of box in cloudinary)
+- Video support (✅ out of box in cloudinary)
+Cloudinary seems to have a generous free tier.
+
+## The Design for Supabase
+
+To store and serve these images in supabase, we store the **bucket** and **path** in the database. We have the projectId coming from an environment variable.
+
+### SignedUrl Client Upload
+
+We have a route in nextjs that we call when we detect that an image is about to be uploaded. This will call the supabase services to get a signed Url:
+
+```
+const newFilename = `${id}.${fileExt}`;
+
+const { data, error } = await supabase.storage
+   .from(env.SUPABASE_MEDIA_BUCKET)
+   .createSignedUploadUrl(newFilename);```
+
+We will create a record in the database with this url (which will be the same file name that we will use to reference the image). We will return this information and the id of the asset to the client.
+
+The client will then use this signed url to send the image directly to that storage system.
+
+It will also use the `assetId` to make the association between the post and the image.
+
+### Displaying the Image in NextJs
+
+When upgrading to NextJs 15, something broke with the `<Image>` component where we now need to pass the loader directly into the component itself:
+
+```
+<Image
+  src={image.src}
+  alt={image.alt || "Image"}
+  className="object-contain"
+  fill
+  loader={supabaseLoader}
+/>```
+
+## The Design for Cloudinary
+
+The good thing is that the patterns are similar. We can do a signed upload, except that cloudinary is the one that generates an Id, so we will need to wait on that.
+
+## Migrating Existing Images
+
+We may need a script that will go through all assets in our database, find their supabase versions and move them to cloudinary, while updating the flags and new information in the database.
+
+## Action Plan
+
+Upload to cloudinary with Signed Url
+
+Display images from cloudinary
+
+Migrate images from Supabase to Cloudinary
+
+Cleanup unused Supabase code
+
+Compress Image before upload

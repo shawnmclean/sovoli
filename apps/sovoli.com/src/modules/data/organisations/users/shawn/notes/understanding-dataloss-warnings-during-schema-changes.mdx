@@ -1,0 +1,75 @@
+---
+id: "a7825644-0df0-49ea-9dc3-edd8823110f5"
+title: "Understanding Data-Loss Warnings During Schema Changes"
+description: "An in-depth note discussing the potential risks and implications of data loss warnings when altering column types in a database schema, along with book recommendations for further reading."
+type: "note"
+slug: "understanding-dataloss-warnings-during-schema-changes"
+isOrigin: true
+isPublic: true
+isDraft: false
+queryType: "query"
+createdAt: "2024-10-18T01:53:56.180Z"
+updatedAt: "2024-10-18T01:53:56.180Z"
+userId: "shawn"
+coverPhoto: {"bucket":"media","id":"8328b2b3-06e0-428f-a584-7656a4022e20","path":"8328b2b3-06e0-428f-a584-7656a4022e20.webp","url":"https://files.oaiusercontent.com/file-MQaf7djfzGmteJSdF3FQ2tb7?se=2024-10-17T20%3A57%3A15Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D97eb0c67-6532-4a80-9428-64c0ec7466de.webp&sig=cTyHeqX1IJZcDRWYBaS1/35vX6RxSegL3FPe5iPuoT8%3D","alt":"schema-change-warning-image","caption":"","category":"default"}
+---
+
+### **Understanding Data-Loss Warnings During Schema Changes**
+
+When modifying database schemas, such as altering column types, systems often provide warnings about potential data loss. Although no direct data truncation may occur, these warnings serve as a caution against unforeseen side effects due to changes in data structure, application logic, or performance characteristics. Below is an explanation of the potential risks associated with the following changes:
+
+#### **Changes Overview**
+- `isbn_13`: Changing from `varchar(13)` to `varchar(15)`
+- `isbn_10`: Changing from `varchar(10)` to `varchar(15)`
+- `title`: Changing from `varchar(255)` to `text`
+- `subtitle`: Changing from `varchar(255)` to `text`
+- `publisher`: Changing from `varchar(255)` to `text`
+
+#### **Potential Risks and Implications:**
+
+1. **`varchar(13)` to `varchar(15)` (and similar for `isbn_10`)**
+   - **No truncation**: You are increasing the maximum allowable length, so data will not be truncated.
+   - **Validation loosened**: If there were constraints enforcing strict length validation (such as always requiring exactly 13 characters for `isbn_13` or 10 for `isbn_10`), this change could allow invalid data entries (e.g., allowing 14-character ISBNs). 
+   - **Recommendation**: Check for any application-level or database-level validation constraints that rely on specific lengths.
+
+2. **`varchar(255)` to `text` (for `title`, `subtitle`, and `publisher`)**
+   - **No truncation**: `text` can store far more data than `varchar(255)`, so existing data won’t be lost.
+   - **Indexing and Performance**: Some databases (e.g., MySQL) treat `varchar` and `text` differently in terms of how they are stored and indexed. For example, `text` fields may not be fully indexed, and performance could degrade if those fields are used in frequent queries or joins.
+   - **Recommendation**: Ensure that indexes and performance metrics are validated after the change, especially if `title`, `subtitle`, or `publisher` are part of your query patterns.
+
+#### **Key Considerations**
+- **Application Logic**: Check if any code logic relies on specific field lengths. For instance, validation routines or external integrations might be based on the assumption that certain fields (like ISBNs) adhere strictly to a certain length.
+- **Indexing**: Ensure that any indexes involving these columns are still valid, and analyze query performance post-change.
+- **Data Integrity**: Review any constraints or rules that may no longer be enforced due to these changes (such as length restrictions or non-null constraints).
+
+---
+
+### **Recommended Reading:**
+
+1. **"SQL Antipatterns: Avoiding the Pitfalls of Database Programming" by Bill Karwin**
+   - This book provides practical examples of common database pitfalls, such as issues with schema changes, and suggests better approaches. After reading, you’ll understand how to:
+     - Avoid data loss during schema migrations.
+     - Improve database design to handle future changes.
+   
+2. **"Database Design and Relational Theory: Normal Forms and All That Jazz" by C.J. Date**
+   - For a deeper theoretical understanding of relational database schema design and constraints, this book covers essential topics about data integrity and schema evolution. Key outcomes:
+     - How to maintain data integrity during schema changes.
+     - The importance of normalization and constraints in relational databases.
+   
+3. **"Refactoring Databases: Evolutionary Database Design" by Scott W. Ambler and Pramodkumar Sadalage**
+   - This book focuses on how to make database schema changes safely in an agile environment, which is relevant to your schema modification scenario. After reading, you'll know:
+     - Strategies for evolving schemas without breaking applications.
+     - Best practices for handling constraints and validation during schema changes.
+   
+4. **"High Performance MySQL" by Baron Schwartz, Peter Zaitsev, and Vadim Tkachenko**
+   - If you're using MySQL, this book covers advanced topics like performance optimization and how schema design choices (like `varchar` vs. `text`) impact performance. You will be able to answer:
+     - How does MySQL handle `varchar` vs. `text` fields in terms of performance?
+     - What are the best practices for indexing large `text` fields?
+
+---
+
+**Next Steps:**
+- Validate any existing constraints or validation logic.
+- Check your database indexing strategies for the affected columns.
+- Analyze application logic that might rely on specific column lengths.
+- Use the recommended reading to gain deeper insight into schema design and evolutionary changes.

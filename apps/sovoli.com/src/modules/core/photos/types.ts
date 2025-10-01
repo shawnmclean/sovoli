@@ -14,6 +14,12 @@ export interface Photo {
   // Cloudinary fields (auto-populated on upload)
   assetId?: string; // Cloudinary asset ID
   publicId: string; // Cloudinary public ID
+
+  // Database fields for media assets
+  bucket?: string; // Cloudinary bucket/folder
+  id?: string; // Media asset ID
+  path?: string | null; // Optional path
+
   width?: number;
   height?: number;
   format?: string; // webp, jpg, etc.
