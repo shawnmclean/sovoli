@@ -11,7 +11,7 @@ import {
   DrawerBody,
 } from "@sovoli/ui/components/drawer";
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
-import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
+import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 
 interface ActivitiesDetailsProps {
   program: Program;

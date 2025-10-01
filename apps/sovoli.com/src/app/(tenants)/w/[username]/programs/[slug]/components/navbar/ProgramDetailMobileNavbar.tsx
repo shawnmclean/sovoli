@@ -7,7 +7,7 @@ import {
 } from "@sovoli/ui/components/navbar";
 import { Button } from "@sovoli/ui/components/button";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
+import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 import type { Program, ProgramGroup } from "~/modules/academics/types";
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
 

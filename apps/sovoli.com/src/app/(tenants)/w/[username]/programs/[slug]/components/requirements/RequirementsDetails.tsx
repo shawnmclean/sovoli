@@ -27,7 +27,7 @@ import {
   DrawerBody as DrawerBodyComponent,
 } from "@sovoli/ui/components/drawer";
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
-import { ShareButton } from "~/app/orgs/[username]/(profile)/components/OrgNavbar/ShareButton";
+import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORGS } from "~/modules/data/organisations";
 import { pluralize } from "~/utils/pluralize";

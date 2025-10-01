@@ -1,11 +1,15 @@
 import type { MetadataRoute } from "next";
-import { and, db, eq, isNotNull, ne, schema } from "@sovoli/db";
 
 import { getBaseUrl } from "~/utils/getBaseUrl";
 import { ORGS } from "~/modules/data/organisations";
 import { bus } from "~/services/core/bus";
 import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
 import { countryCodeToName } from "~/utils/countryUtils";
+import {
+  GetUserKnowledgeByUsernameQuery,
+  GetUserKnowledgeByUsernameQueryHandler,
+} from "~/modules/notes/services/GetUserKnowledgeByUsername";
+import { KnowledgeFileCache } from "~/modules/notes/services/KnowledgeFileCache";
 
 export const dynamic = "force-dynamic";
 
@@ -30,59 +34,44 @@ function generateStaticPages(
   ];
 }
 
-// Generate user URLs from database
+// Generate user URLs from knowledge files
 async function generateUserUrls(
   baseUrl: string,
   now: Date,
 ): Promise<MetadataRoute.Sitemap> {
-  // Get all public users with their knowledge items
-  const usersWithKnowledge = await db.query.User.findMany({
-    with: {
-      KnowledgeResources: {
-        where: eq(schema.Knowledge.isPublic, true),
-        columns: {
-          id: true,
-          slug: true,
-          type: true,
-        },
-      },
-    },
-    columns: {
-      username: true,
-    },
-    where: and(isNotNull(schema.User.username), ne(schema.User.username, "")),
-  });
-
   const userUrls: MetadataRoute.Sitemap = [];
+  const userKnowledgeHandler = new GetUserKnowledgeByUsernameQueryHandler();
+  const cache = KnowledgeFileCache.getInstance();
 
-  for (const user of usersWithKnowledge) {
-    if (!user.username) continue;
+  // Ensure cache is loaded
+  await cache.loadAllFiles();
 
-    // User profile page
-    userUrls.push({
-      url: `${baseUrl}/${user.username}`,
-      lastModified: now,
-    });
+  // Get all unique usernames from the cache
+  const userSlugs = cache.getUserSlugs();
+  const uniqueUsernames = [...new Set(userSlugs.map((us) => us.username))];
 
-    // User shelves page
-    userUrls.push({
-      url: `${baseUrl}/${user.username}/shelves`,
-      lastModified: now,
-    });
+  for (const username of uniqueUsernames) {
+    // Check if user has knowledge using the handler
+    const userKnowledgeResult = await userKnowledgeHandler.handle(
+      new GetUserKnowledgeByUsernameQuery(username),
+    );
 
-    // User collections page
-    userUrls.push({
-      url: `${baseUrl}/${user.username}/collections`,
-      lastModified: now,
-    });
+    if (userKnowledgeResult.userKnowledge) {
+      const { knowledgeItems } = userKnowledgeResult.userKnowledge;
 
-    // Individual knowledge items
-    for (const knowledge of user.KnowledgeResources) {
-      const slug = knowledge.slug ?? knowledge.id;
+      // User profile page
       userUrls.push({
-        url: `${baseUrl}/${user.username}/${slug}`,
+        url: `${baseUrl}/${username}`,
         lastModified: now,
       });
+
+      // Individual knowledge items
+      for (const knowledge of knowledgeItems) {
+        userUrls.push({
+          url: `${baseUrl}/${username}/${knowledge.slug}`,
+          lastModified: now,
+        });
+      }
     }
   }
 
@@ -101,19 +90,19 @@ function generateOrganizationUrls(
 
     // Main organization profile page
     organizationUrls.push({
-      url: `${baseUrl}/orgs/${username}`,
+      url: `${baseUrl}/${username}`,
       lastModified: now,
     });
 
     // Organization scores page
     organizationUrls.push({
-      url: `${baseUrl}/orgs/${username}/scores`,
+      url: `${baseUrl}/${username}/scores`,
       lastModified: now,
     });
 
     // Organization logs page
     organizationUrls.push({
-      url: `${baseUrl}/orgs/${username}/logs`,
+      url: `${baseUrl}/${username}/logs`,
       lastModified: now,
     });
   }
