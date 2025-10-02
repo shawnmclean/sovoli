@@ -12,7 +12,6 @@ import { config } from "~/utils/config";
 import { OrgNavbar } from "./components/OrgNavbar/OrgNavbar";
 import { Alert } from "@sovoli/ui/components/alert";
 import { OrgDetailMobileFooter } from "./components/OrgFooter/OrgDetailMobileFooter";
-import { UserKnowledgeProfile } from "./components/UserKnowledgeProfile";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
