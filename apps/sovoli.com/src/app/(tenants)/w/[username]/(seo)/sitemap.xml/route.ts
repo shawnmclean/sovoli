@@ -67,12 +67,6 @@ function generateAcademicsSitemapUrls(
 
   return [
     {
-      loc: `${baseUrl}/programs/apply`,
-      lastmod: new Date().toISOString(),
-      changefreq: "weekly",
-      priority: 0.9,
-    },
-    {
       loc: `${baseUrl}/programs`,
       lastmod: new Date().toISOString(),
       changefreq: "weekly",
