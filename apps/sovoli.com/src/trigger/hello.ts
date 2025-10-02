@@ -5,9 +5,9 @@ export const helloWorld = task({
   run: async (payload: { name: string }) => {
     console.log(`Hello ${payload.name}!`);
 
-    return {
+    return await Promise.resolve({
       message: `Hello ${payload.name}!`,
       timestamp: new Date().toISOString(),
-    };
+    });
   },
 });
