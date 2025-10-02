@@ -1,1 +1,1 @@
-export * from "@ncdai/react-wheel-picker";
+export * from "./wheel-picker";
