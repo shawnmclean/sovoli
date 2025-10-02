@@ -15,6 +15,11 @@ import {
 } from "@sovoli/ui/components/drawer";
 import { Badge } from "@sovoli/ui/components/badge";
 import Image from "next/image";
+import { ConversationForm } from "./ConversationForm";
+import type {
+  ConversationFormConfig,
+  FormResponse,
+} from "../types/conversation-form";
 
 export interface ChatMessage {
   id: string;
@@ -28,6 +33,8 @@ export interface ChatDialogProps {
   onOpenChange: (isOpen: boolean) => void;
   placeholder?: string;
   title?: string;
+  conversationConfig?: ConversationFormConfig;
+  showConversationForm?: boolean;
 }
 
 const QUICK_REPLIES = [
@@ -38,15 +45,31 @@ const QUICK_REPLIES = [
   "Can I schedule a tour?",
 ];
 
+type DialogMode = "conversation" | "chat";
+
 export function ChatDialog({
   isOpen,
   onOpenChange,
   placeholder = "Type your message...",
+  conversationConfig,
+  showConversationForm = false,
 }: ChatDialogProps) {
   const { messages: aiMessages, sendMessage } = useChat();
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [mode, setMode] = useState<DialogMode>(
+    showConversationForm && conversationConfig ? "conversation" : "chat",
+  );
+  const [formResponses, setFormResponses] = useState<FormResponse>({});
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Reset mode when dialog opens with conversation form
+  useEffect(() => {
+    if (isOpen && showConversationForm && conversationConfig) {
+      setMode("conversation");
+      setFormResponses({});
+    }
+  }, [isOpen, showConversationForm, conversationConfig]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -94,6 +117,21 @@ export function ChatDialog({
     }
   };
 
+  const handleFormComplete = (responses: FormResponse) => {
+    setFormResponses(responses);
+    setMode("chat");
+    // You can process the form responses here and potentially send them to the AI
+    console.log("Form completed with responses:", responses);
+  };
+
+  const handleFormCancel = () => {
+    onOpenChange(false);
+  };
+
+  const handleBackToForm = () => {
+    setMode("conversation");
+  };
+
   return (
     <Drawer
       scrollBehavior="inside"
@@ -139,8 +177,22 @@ export function ChatDialog({
                   <span className="text-sm font-medium text-foreground">
                     Sovoli
                   </span>
-                  <span className="text-xs text-default-500">AI Assistant</span>
+                  <span className="text-xs text-default-500">
+                    {mode === "conversation" ? "Questionnaire" : "AI Assistant"}
+                  </span>
                 </div>
+                {mode === "chat" &&
+                  Object.keys(formResponses).length > 0 &&
+                  conversationConfig && (
+                    <Button
+                      size="sm"
+                      variant="light"
+                      onPress={handleBackToForm}
+                      className="ml-auto"
+                    >
+                      Back to Form
+                    </Button>
+                  )}
               </div>
             </DrawerHeader>
 
@@ -150,100 +202,134 @@ export function ChatDialog({
               <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent" />
 
               <div className="flex flex-col h-full relative z-10">
-                <div className="flex-grow overflow-y-auto p-4 flex flex-col justify-end">
-                  <div className="space-y-4">
-                    {aiMessages.length === 0 ? (
-                      <WelcomeScreen />
-                    ) : (
-                      <>
-                        {aiMessages.map((message) => (
-                          <MessageBubble
-                            key={message.id}
-                            message={{
-                              id: message.id,
-                              text: message.parts
-                                .map((part) => {
-                                  switch (part.type) {
-                                    case "text":
-                                      return part.text;
-                                    default:
-                                      return "";
-                                  }
-                                })
-                                .join(""),
-                              isUser: message.role === "user",
-                              timestamp: new Date(),
-                            }}
-                          />
-                        ))}
-                        {isLoading && (
-                          <div className="flex justify-start">
-                            <div className="bg-default-100 text-default-foreground rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%]">
-                              <div className="flex items-center gap-2">
-                                <div className="flex space-x-1">
-                                  <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce" />
-                                  <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.1s]" />
-                                  <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+                {mode === "conversation" && conversationConfig ? (
+                  <ConversationForm
+                    config={{
+                      ...conversationConfig,
+                      onComplete: handleFormComplete,
+                      onCancel: handleFormCancel,
+                    }}
+                  />
+                ) : (
+                  <div className="flex-grow overflow-y-auto p-4 flex flex-col justify-end">
+                    <div className="space-y-4">
+                      {/* Show form responses summary if available */}
+                      {Object.keys(formResponses).length > 0 && (
+                        <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-4">
+                          <h4 className="text-sm font-medium text-primary mb-2">
+                            Your Information:
+                          </h4>
+                          <div className="space-y-1">
+                            {Object.entries(formResponses).map(
+                              ([key, value]) => (
+                                <p
+                                  key={key}
+                                  className="text-xs text-default-600"
+                                >
+                                  <span className="font-medium">{key}:</span>{" "}
+                                  {String(value)}
+                                </p>
+                              ),
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {aiMessages.length === 0 ? (
+                        <WelcomeScreen />
+                      ) : (
+                        <>
+                          {aiMessages.map((message) => (
+                            <MessageBubble
+                              key={message.id}
+                              message={{
+                                id: message.id,
+                                text: message.parts
+                                  .map((part) => {
+                                    switch (part.type) {
+                                      case "text":
+                                        return part.text;
+                                      default:
+                                        return "";
+                                    }
+                                  })
+                                  .join(""),
+                                isUser: message.role === "user",
+                                timestamp: new Date(),
+                              }}
+                            />
+                          ))}
+                          {isLoading && (
+                            <div className="flex justify-start">
+                              <div className="bg-default-100 text-default-foreground rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%]">
+                                <div className="flex items-center gap-2">
+                                  <div className="flex space-x-1">
+                                    <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce" />
+                                    <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.1s]" />
+                                    <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+                                  </div>
+                                  <span className="text-sm text-default-500">
+                                    AI is typing...
+                                  </span>
                                 </div>
-                                <span className="text-sm text-default-500">
-                                  AI is typing...
-                                </span>
                               </div>
                             </div>
-                          </div>
-                        )}
-                      </>
-                    )}
-                    <div ref={messagesEndRef} />
+                          )}
+                        </>
+                      )}
+                      <div ref={messagesEndRef} />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </DrawerBody>
 
-            <DrawerFooter className="flex flex-col gap-2 p-4 border-t border-divider">
-              {/* Quick Reply Buttons */}
-              {aiMessages.length === 0 && (
-                <div className="w-full">
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {QUICK_REPLIES.map((reply) => (
-                      <Button
-                        key={reply}
-                        size="sm"
-                        variant="bordered"
-                        className="text-xs"
-                        onPress={() => handleQuickReply(reply)}
-                      >
-                        {reply}
-                      </Button>
-                    ))}
+            {mode === "chat" && (
+              <DrawerFooter className="flex flex-col gap-2 p-4 border-t border-divider">
+                {/* Quick Reply Buttons */}
+                {aiMessages.length === 0 && (
+                  <div className="w-full">
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {QUICK_REPLIES.map((reply) => (
+                        <Button
+                          key={reply}
+                          size="sm"
+                          variant="bordered"
+                          className="text-xs"
+                          onPress={() => handleQuickReply(reply)}
+                        >
+                          {reply}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {/* Input Area */}
-              <div className="flex w-full items-center gap-2">
-                <Input
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyDown={handleKeyPress}
-                  placeholder={isLoading ? "AI is thinking..." : placeholder}
-                  className="flex-1"
-                  variant="bordered"
-                  size="lg"
-                  isDisabled={isLoading}
-                />
-                <Button
-                  isIconOnly
-                  color="primary"
-                  size="lg"
-                  onPress={handleSendMessage}
-                  isDisabled={!inputValue.trim() || isLoading}
-                  isLoading={isLoading}
-                >
-                  <SendIcon className="w-4 h-4" />
-                </Button>
-              </div>
-            </DrawerFooter>
+                {/* Input Area */}
+                <div className="flex w-full items-center gap-2">
+                  <Input
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyPress}
+                    placeholder={isLoading ? "AI is thinking..." : placeholder}
+                    className="flex-1"
+                    variant="bordered"
+                    size="lg"
+                    isDisabled={isLoading}
+                  />
+                  <Button
+                    isIconOnly
+                    color="primary"
+                    size="lg"
+                    onPress={handleSendMessage}
+                    isDisabled={!inputValue.trim() || isLoading}
+                    isLoading={isLoading}
+                  >
+                    <SendIcon className="w-4 h-4" />
+                  </Button>
+                </div>
+              </DrawerFooter>
+            )}
           </>
         )}
       </DrawerContent>

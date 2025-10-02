@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@ncdai/react-wheel-picker/style.css";
 @plugin "@tailwindcss/typography";
 @plugin "./hero.ts";
 
