@@ -13,7 +13,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Modern Academy",
-    logo: "/images/orgs/magy/logo.webp",
+    logo: "/images/orgs/private-schools/guyana/modernacademy/logo.webp",
     isVerified: true,
     verification: {
       status: "verified",
