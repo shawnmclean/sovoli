@@ -111,7 +111,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-fun-with-language-book-5",
-    name: "Fun with Language Bk 5",
+    name: "Fun with Language Book 5",
     category: "book",
     tags: ["textbook", "language", "grade-5"],
     attributes: {
@@ -122,7 +122,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-fun-with-language-book-6",
-    name: "Fun with Language Bk 6",
+    name: "Fun with Language Book 6",
     category: "book",
     tags: ["textbook", "language", "grade-6"],
     attributes: {
@@ -153,7 +153,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-lets-do-mathematics-book-5",
-    name: "Let's Do Math Bk 5",
+    name: "Let's Do Math Book 5",
     category: "book",
     tags: ["textbook", "mathematics", "grade-5"],
     attributes: {
@@ -164,7 +164,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-lets-do-mathematics-book-6",
-    name: "Let's Do Math Bk 6",
+    name: "Let's Do Math Book 6",
     category: "book",
     tags: ["textbook", "mathematics", "grade-6"],
     attributes: {
@@ -239,7 +239,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-fun-with-language-book-3",
-    name: "Fun with Language Bk 3",
+    name: "Fun with Language Book 3",
     category: "book",
     tags: ["textbook", "language", "grade-3"],
     attributes: {
@@ -250,7 +250,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-lets-do-mathematics-book-3",
-    name: "Let's Do Math Bk 3",
+    name: "Let's Do Math Book 3",
     category: "book",
     tags: ["textbook", "mathematics", "grade-3"],
     attributes: {
@@ -315,7 +315,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-fun-with-language-book-4",
-    name: "Fun with Language Bk 4",
+    name: "Fun with Language Book 4",
     category: "book",
     tags: ["textbook", "language", "grade-4"],
     attributes: {
@@ -326,7 +326,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-lets-do-mathematics-book-4",
-    name: "Let's Do Math Bk 4",
+    name: "Let's Do Math Book 4",
     category: "book",
     tags: ["textbook", "mathematics", "grade-4"],
     attributes: {
@@ -425,7 +425,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-fun-with-language-book-2-parts-1-2-3",
-    name: "Fun with Language Bk 2 Pt 1,2,3",
+    name: "Fun with Language Book 2 Pt 1,2,3",
     category: "book",
     tags: ["textbook", "language", "grade-2"],
     attributes: {
@@ -480,7 +480,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-fun-with-language-book-1-parts-1-2-3",
-    name: "Fun with Language Bk 1 Pt 1,2,3",
+    name: "Fun with Language Book 1 Pt 1,2,3",
     category: "book",
     tags: ["textbook", "language", "grade-1"],
     attributes: {
@@ -491,7 +491,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-nelson-west-indian-readers-book-2",
-    name: "New Nelson West Indian Readers Bk 2",
+    name: "New Nelson West Indian Readers Book 2",
     category: "book",
     tags: ["textbook", "nelson", "west-indian", "grade-2"],
     attributes: {
@@ -502,7 +502,7 @@ export const BOOKS: Item[] = [
   },
   {
     id: "book-nelson-west-indian-readers-book-3",
-    name: "New Nelson West Indian Readers Bk 3",
+    name: "New Nelson West Indian Readers Book 3",
     category: "book",
     tags: ["textbook", "nelson", "west-indian", "grade-3"],
     attributes: {
