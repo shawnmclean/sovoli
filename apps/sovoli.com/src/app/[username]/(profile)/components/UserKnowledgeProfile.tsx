@@ -32,7 +32,14 @@ export function UserKnowledgeProfile({
           <h1 className="text-3xl font-bold text-foreground">
             {username}'s Knowledge
           </h1>
-          <p className="mt-2 text-default-600">{totalItems} knowledge items</p>
+          <p className="mt-2 text-default-600">
+            {totalItems} knowledge items
+            {totalPages > 1 && (
+              <span className="ml-2">
+                (Page {page} of {totalPages})
+              </span>
+            )}
+          </p>
         </div>
 
         {/* Knowledge Grid */}
@@ -60,22 +67,121 @@ export function UserKnowledgeProfile({
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="mt-8 flex justify-center">
-            <ul className="flex items-center gap-2">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                <li key={p}>
-                  <Button
-                    as={Link}
-                    href={`?page=${p}&pageSize=${pageSize}`}
-                    variant={p === page ? "solid" : "light"}
-                    size="sm"
-                    radius="md"
-                    isIconOnly
-                  >
-                    {p}
-                  </Button>
-                </li>
-              ))}
-            </ul>
+            <div className="flex items-center gap-2">
+              {/* Previous Button */}
+              {page > 1 && (
+                <Button
+                  as={Link}
+                  href={`?page=${page - 1}&pageSize=${pageSize}`}
+                  variant="light"
+                  size="sm"
+                  radius="md"
+                >
+                  Previous
+                </Button>
+              )}
+
+              {/* Page Numbers */}
+              <div className="flex items-center gap-1">
+                {(() => {
+                  const maxVisiblePages = 5;
+                  const startPage = Math.max(
+                    1,
+                    page - Math.floor(maxVisiblePages / 2),
+                  );
+                  const endPage = Math.min(
+                    totalPages,
+                    startPage + maxVisiblePages - 1,
+                  );
+                  const adjustedStartPage = Math.max(
+                    1,
+                    endPage - maxVisiblePages + 1,
+                  );
+
+                  const pages = [];
+
+                  // Add first page and ellipsis if needed
+                  if (adjustedStartPage > 1) {
+                    pages.push(
+                      <Button
+                        key={1}
+                        as={Link}
+                        href={`?page=1&pageSize=${pageSize}`}
+                        variant={1 === page ? "solid" : "light"}
+                        size="sm"
+                        radius="md"
+                        isIconOnly
+                      >
+                        1
+                      </Button>,
+                    );
+                    if (adjustedStartPage > 2) {
+                      pages.push(
+                        <span key="ellipsis1" className="px-2">
+                          ...
+                        </span>,
+                      );
+                    }
+                  }
+
+                  // Add visible page numbers
+                  for (let p = adjustedStartPage; p <= endPage; p++) {
+                    pages.push(
+                      <Button
+                        key={p}
+                        as={Link}
+                        href={`?page=${p}&pageSize=${pageSize}`}
+                        variant={p === page ? "solid" : "light"}
+                        size="sm"
+                        radius="md"
+                        isIconOnly
+                      >
+                        {p}
+                      </Button>,
+                    );
+                  }
+
+                  // Add ellipsis and last page if needed
+                  if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                      pages.push(
+                        <span key="ellipsis2" className="px-2">
+                          ...
+                        </span>,
+                      );
+                    }
+                    pages.push(
+                      <Button
+                        key={totalPages}
+                        as={Link}
+                        href={`?page=${totalPages}&pageSize=${pageSize}`}
+                        variant={totalPages === page ? "solid" : "light"}
+                        size="sm"
+                        radius="md"
+                        isIconOnly
+                      >
+                        {totalPages}
+                      </Button>,
+                    );
+                  }
+
+                  return pages;
+                })()}
+              </div>
+
+              {/* Next Button */}
+              {page < totalPages && (
+                <Button
+                  as={Link}
+                  href={`?page=${page + 1}&pageSize=${pageSize}`}
+                  variant="light"
+                  size="sm"
+                  radius="md"
+                >
+                  Next
+                </Button>
+              )}
+            </div>
           </div>
         )}
       </div>

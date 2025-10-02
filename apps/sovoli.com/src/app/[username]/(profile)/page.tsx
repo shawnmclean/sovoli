@@ -35,10 +35,17 @@ export async function generateStaticParams() {
 
 export default async function OrgProfilePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ username: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { username } = await params;
+  const search = await searchParams;
+
+  // Get pagination parameters from URL
+  const page = parseInt(search.page as string) || 1;
+  const pageSize = parseInt(search.pageSize as string) || 9;
 
   // First check for user knowledge
   const userKnowledgeHandler = new GetUserKnowledgeByUsernameQueryHandler();
@@ -51,8 +58,8 @@ export default async function OrgProfilePage({
       <UserKnowledgeProfile
         username={username}
         knowledgeItems={userKnowledgeResult.userKnowledge.knowledgeItems}
-        page={1}
-        pageSize={10}
+        page={page}
+        pageSize={pageSize}
       />
     );
   }
