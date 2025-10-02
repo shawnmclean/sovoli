@@ -4,7 +4,6 @@ import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { config } from "~/utils/config";
 import { Alert } from "@sovoli/ui/components/alert";
-import { Navbar } from "~/components/navbar/Navbar";
 import { AdminSchoolHeader } from "./components/AdminSchoolHeader";
 import { AdminSchoolNavigation } from "./components/AdminSchoolNavigation";
 
@@ -50,7 +49,6 @@ export default async function Layout({ children, params }: Props) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Navbar />
       <Alert
         className="hidden md:flex"
         variant="flat"

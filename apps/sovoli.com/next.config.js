@@ -18,33 +18,11 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     dangerouslyAllowSVG: true,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "covers.openlibrary.org",
-      },
-      {
-        protocol: "http",
-        hostname: "books.google.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.isbndb.com",
-      },
-      {
-        protocol: "https",
-        hostname: "ivzknqycaxkrztubruny.supabase.co",
-      },
-      // Development Bucket
-      {
-        protocol: "https",
-        hostname: "qxvzrmayigmtjhfucogx.supabase.co",
-      },
-    ],
+    remotePatterns: [],
   },
 
   /** Enables hot reloading for local packages without a build step */
-  transpilePackages: ["@sovoli/ui", "@sovoli/auth", "@sovoli/db"],
+  transpilePackages: ["@sovoli/ui", "@sovoli/db"],
   serverExternalPackages: [
     "@opentelemetry/sdk-node",
     "@opentelemetry/instrumentation",
