@@ -2,6 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
+import {
+  WheelPicker,
+  WheelPickerWrapper,
+} from "@sovoli/ui/components/wheel-picker";
+import type { WheelPickerOption } from "@sovoli/ui/components/wheel-picker";
 import type { WheelPickerQuestion } from "../../types/conversation-form";
 
 interface AgeWheelPickerQuestionProps {
@@ -31,9 +36,23 @@ export function AgeWheelPickerQuestion({
     }
   }, [value]);
 
-  const handleValueChange = (newValue: string | number) => {
-    setSelectedValue(newValue);
-    onChange(newValue);
+  // Convert question options to WheelPickerOption format
+  const wheelPickerOptions: WheelPickerOption[] = question.options.map(
+    (option) => ({
+      label: option.label,
+      value: option.value.toString(),
+    }),
+  );
+
+  const handleValueChange = (newValue: string) => {
+    // Convert back to original type (string or number)
+    const originalValue = question.options.find(
+      (opt) => opt.value.toString() === newValue,
+    )?.value;
+    if (originalValue !== undefined) {
+      setSelectedValue(originalValue);
+      onChange(originalValue);
+    }
   };
 
   const handleNext = () => {
@@ -55,31 +74,15 @@ export function AgeWheelPickerQuestion({
         )}
       </div>
 
-      {/* Simple Wheel Picker */}
+      {/* Wheel Picker */}
       <div className="w-full max-w-xs">
-        <div className="relative h-48 overflow-hidden border border-default-200 rounded-lg bg-default-50">
-          {/* Selection indicator */}
-          <div className="absolute top-1/2 left-0 right-0 h-12 -translate-y-1/2 bg-primary/10 border-y border-primary/20 pointer-events-none z-10" />
-
-          {/* Options list */}
-          <div className="h-full overflow-y-auto scrollbar-hide">
-            <div className="py-20">
-              {question.options.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => handleValueChange(option.value)}
-                  className={`w-full h-12 flex items-center justify-center text-center transition-all duration-200 ${
-                    selectedValue === option.value
-                      ? "text-primary font-semibold scale-105"
-                      : "text-default-600 hover:text-foreground"
-                  }`}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <WheelPickerWrapper>
+          <WheelPicker
+            options={wheelPickerOptions}
+            value={selectedValue.toString()}
+            onValueChange={handleValueChange}
+          />
+        </WheelPickerWrapper>
       </div>
 
       {/* Selected Value Display */}
