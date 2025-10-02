@@ -552,6 +552,9 @@ importers:
       '@heroui/user':
         specifier: 2.2.21
         version: 2.2.21(@heroui/system@2.4.22(@heroui/theme@2.4.22(tailwindcss@4.1.13))(framer-motion@11.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.22(tailwindcss@4.1.13))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@ncdai/react-wheel-picker':
+        specifier: 1.0.17
+        version: 1.0.17(react@19.0.0)
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -2001,6 +2004,11 @@ packages:
   '@modelcontextprotocol/sdk@1.18.2':
     resolution: {integrity: sha512-beedclIvFcCnPrYgHsylqiYJVJ/CI47Vyc4tY8no1/Li/O8U4BTlJfy6ZwxkYwx+Mx10nrgwSVrA7VBbhh4slg==}
     engines: {node: '>=18'}
+
+  '@ncdai/react-wheel-picker@1.0.17':
+    resolution: {integrity: sha512-fnKwMDla0yAnBA5tRq9GRLl6+wiyuzkGKfaN6pn1VM2o6aElB4HWRwITRMBmdTfZOYdPE0BAf6ZYbmMeaogucQ==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc
 
   '@neondatabase/serverless@0.9.5':
     resolution: {integrity: sha512-siFas6gItqv6wD/pZnvdu34wEqgG3nSE6zWZdq5j2DEsa+VvX8i/5HXJOo06qrw5axPXn+lGCxeR+NLaSPIXug==}
@@ -8533,6 +8541,10 @@ snapshots:
       zod-to-json-schema: 3.24.6(zod@3.25.76)
     transitivePeerDependencies:
       - supports-color
+
+  '@ncdai/react-wheel-picker@1.0.17(react@19.0.0)':
+    dependencies:
+      react: 19.0.0
 
   '@neondatabase/serverless@0.9.5':
     dependencies:

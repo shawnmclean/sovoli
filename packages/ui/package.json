@@ -48,6 +48,7 @@
     "@heroui/theme": "2.4.22",
     "@heroui/tooltip": "2.2.23",
     "@heroui/user": "2.2.21",
+    "@ncdai/react-wheel-picker": "1.0.17",
     "date-fns": "4.1.0",
     "embla-carousel-auto-scroll": "8.6.0",
     "embla-carousel-react": "8.6.0",
