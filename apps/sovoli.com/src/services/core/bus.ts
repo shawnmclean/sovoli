@@ -10,10 +10,6 @@ import {
   GetUsernameByDomainQuery,
   GetUsernameByDomainQueryHandler,
 } from "~/modules/websites/services/queries/GetUsernameByDomainQuery";
-import {
-  GetUserProfileByUsernameQuery,
-  GetUserProfileByUsernameQueryHandler,
-} from "../users/queries/GetUserProfileByUsernameQuery";
 import { QueryProcessor } from "./QueryProcessor";
 import {
   GetAllCategoryAddressesQuery,
@@ -34,10 +30,6 @@ export class Bus {
   }
 
   private registerHandlers() {
-    this.queryProcessor.register(
-      GetUserProfileByUsernameQuery,
-      new GetUserProfileByUsernameQueryHandler(),
-    );
     this.queryProcessor.register(
       GetUsernameByDomainQuery,
       new GetUsernameByDomainQueryHandler(),

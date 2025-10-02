@@ -21,7 +21,6 @@ export const env = createEnv({
     POSTGRES_URL: z.string().url(),
     TRIGGER_SECRET_KEY: z.string(),
     ISBN_DB_API_KEY: z.string().min(1),
-    SUPABASE_MEDIA_BUCKET: z.string().min(1),
     SUPABASE_URL: z.string().min(1),
     SUPABASE_ANON_KEY: z.string().min(1),
     CLOUDINARY_API_SECRET: z.string().min(1),
