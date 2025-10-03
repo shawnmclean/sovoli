@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { useChat } from "@ai-sdk/react";
-import { SendIcon } from "lucide-react";
+import { EllipsisIcon, SendIcon } from "lucide-react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import {
   Drawer,
@@ -128,10 +128,6 @@ export function ChatDialog({
     onOpenChange(false);
   };
 
-  const handleBackToForm = () => {
-    setMode("conversation");
-  };
-
   return (
     <Drawer
       scrollBehavior="inside"
@@ -163,38 +159,35 @@ export function ChatDialog({
       <DrawerContent>
         {(onClose) => (
           <>
-            <DrawerHeader showBackButton onBackPress={onClose}>
-              <div className="flex items-center gap-3 ml-2">
-                <Badge
-                  color="success"
-                  content=""
-                  placement="bottom-right"
-                  shape="circle"
-                >
-                  <Avatar src="/logo.svg" name="Sovoli" radius="full" />
-                </Badge>
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium text-foreground">
-                    Sovoli
-                  </span>
-                  <span className="text-xs text-default-500">
-                    {mode === "conversation" ? "Questionnaire" : "AI Assistant"}
-                  </span>
+            <DrawerHeader
+              showBackButton
+              onBackPress={onClose}
+              startContent={
+                <div className="flex items-center gap-3 ml-2">
+                  <Badge
+                    color="success"
+                    content=""
+                    placement="bottom-right"
+                    shape="circle"
+                  >
+                    <Avatar src="/logo.svg" name="Sovoli" radius="full" />
+                  </Badge>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-medium text-foreground">
+                      Sovoli AI
+                    </span>
+                    <span className="text-xs text-default-500">
+                      Enrollment Advisor
+                    </span>
+                  </div>
                 </div>
-                {mode === "chat" &&
-                  Object.keys(formResponses).length > 0 &&
-                  conversationConfig && (
-                    <Button
-                      size="sm"
-                      variant="light"
-                      onPress={handleBackToForm}
-                      className="ml-auto"
-                    >
-                      Back to Form
-                    </Button>
-                  )}
-              </div>
-            </DrawerHeader>
+              }
+              endContent={
+                <Button isIconOnly onPress={onClose} variant="light">
+                  <EllipsisIcon className="w-4 h-4" />
+                </Button>
+              }
+            />
 
             <DrawerBody className="p-0 h-[calc(100vh-200px)] relative overflow-hidden">
               {/* Subtle Gradient Background */}
@@ -203,16 +196,27 @@ export function ChatDialog({
 
               <div className="flex flex-col h-full relative z-10">
                 {mode === "conversation" && conversationConfig ? (
-                  <ConversationForm
-                    config={{
-                      ...conversationConfig,
-                      onComplete: handleFormComplete,
-                      onCancel: handleFormCancel,
-                    }}
-                  />
+                  <div className="flex-grow overflow-y-auto flex flex-col">
+                    <div className="space-y-4 p-4">
+                      {/* Welcome Screen - Always visible at top */}
+                      <WelcomeScreen />
+
+                      {/* Conversation Form */}
+                      <ConversationForm
+                        config={{
+                          ...conversationConfig,
+                          onComplete: handleFormComplete,
+                          onCancel: handleFormCancel,
+                        }}
+                      />
+                    </div>
+                  </div>
                 ) : (
-                  <div className="flex-grow overflow-y-auto p-4 flex flex-col justify-end">
-                    <div className="space-y-4">
+                  <div className="flex-grow overflow-y-auto flex flex-col">
+                    <div className="space-y-4 p-4">
+                      {/* Welcome Screen - Always visible at top */}
+                      <WelcomeScreen />
+
                       {/* Show form responses summary if available */}
                       {Object.keys(formResponses).length > 0 && (
                         <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-4">
@@ -235,47 +239,42 @@ export function ChatDialog({
                         </div>
                       )}
 
-                      {aiMessages.length === 0 ? (
-                        <WelcomeScreen />
-                      ) : (
-                        <>
-                          {aiMessages.map((message) => (
-                            <MessageBubble
-                              key={message.id}
-                              message={{
-                                id: message.id,
-                                text: message.parts
-                                  .map((part) => {
-                                    switch (part.type) {
-                                      case "text":
-                                        return part.text;
-                                      default:
-                                        return "";
-                                    }
-                                  })
-                                  .join(""),
-                                isUser: message.role === "user",
-                                timestamp: new Date(),
-                              }}
-                            />
-                          ))}
-                          {isLoading && (
-                            <div className="flex justify-start">
-                              <div className="bg-default-100 text-default-foreground rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%]">
-                                <div className="flex items-center gap-2">
-                                  <div className="flex space-x-1">
-                                    <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce" />
-                                    <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.1s]" />
-                                    <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.2s]" />
-                                  </div>
-                                  <span className="text-sm text-default-500">
-                                    AI is typing...
-                                  </span>
-                                </div>
+                      {/* Messages */}
+                      {aiMessages.map((message) => (
+                        <MessageBubble
+                          key={message.id}
+                          message={{
+                            id: message.id,
+                            text: message.parts
+                              .map((part) => {
+                                switch (part.type) {
+                                  case "text":
+                                    return part.text;
+                                  default:
+                                    return "";
+                                }
+                              })
+                              .join(""),
+                            isUser: message.role === "user",
+                            timestamp: new Date(),
+                          }}
+                        />
+                      ))}
+                      {isLoading && (
+                        <div className="flex justify-start">
+                          <div className="bg-default-100 text-default-foreground rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%]">
+                            <div className="flex items-center gap-2">
+                              <div className="flex space-x-1">
+                                <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce" />
+                                <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.1s]" />
+                                <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.2s]" />
                               </div>
+                              <span className="text-sm text-default-500">
+                                AI is typing...
+                              </span>
                             </div>
-                          )}
-                        </>
+                          </div>
+                        </div>
                       )}
                       <div ref={messagesEndRef} />
                     </div>
@@ -339,26 +338,26 @@ export function ChatDialog({
 
 function WelcomeScreen() {
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center">
+    <div className="flex flex-col items-center text-center py-6 border-b border-divider/50">
       {/* Content */}
-      <div className="flex flex-col items-center space-y-6">
+      <div className="flex flex-col items-center space-y-4">
         {/* Sovoli Logo */}
-        <div className="flex flex-col items-center space-y-3">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm border border-primary/20 flex items-center justify-center shadow-lg">
+        <div className="flex flex-col items-center space-y-2">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm border border-primary/20 flex items-center justify-center shadow-lg">
             <Image
               src="/logo.svg"
               alt="Sovoli Logo"
-              className="w-12 h-12"
-              width={48}
-              height={48}
+              className="w-10 h-10"
+              width={40}
+              height={40}
             />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Sovoli</h1>
+          <h1 className="text-xl font-bold text-foreground">Sovoli</h1>
         </div>
 
         {/* Welcome Text */}
-        <div className="space-y-3">
-          <h2 className="text-xl font-bold text-foreground">
+        <div className="space-y-2">
+          <h2 className="text-lg font-bold text-foreground">
             Hey, I'm your AI assistant!
           </h2>
           <p className="text-sm text-default-600 max-w-xs leading-relaxed">

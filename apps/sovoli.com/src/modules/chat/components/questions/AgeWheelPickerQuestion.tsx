@@ -64,16 +64,6 @@ export function AgeWheelPickerQuestion({
 
   return (
     <div className="flex flex-col items-center space-y-6 p-6">
-      {/* Question Label */}
-      <div className="text-center">
-        <h3 className="text-lg font-semibold text-foreground mb-2">
-          {question.label}
-        </h3>
-        {question.placeholder && (
-          <p className="text-sm text-default-500">{question.placeholder}</p>
-        )}
-      </div>
-
       {/* Wheel Picker */}
       <div className="w-full max-w-xs">
         <WheelPickerWrapper>
@@ -83,17 +73,6 @@ export function AgeWheelPickerQuestion({
             onValueChange={handleValueChange}
           />
         </WheelPickerWrapper>
-      </div>
-
-      {/* Selected Value Display */}
-      <div className="text-center">
-        <p className="text-sm text-default-600">
-          Selected:{" "}
-          <span className="font-medium text-foreground">
-            {question.options.find((opt) => opt.value === selectedValue)
-              ?.label ?? selectedValue}
-          </span>
-        </p>
       </div>
 
       {/* Navigation Buttons */}

@@ -6,7 +6,7 @@ import { ChatDialog } from "../../modules/chat/components/ChatDialog";
 import type { ConversationFormConfig } from "../../modules/chat/types/conversation-form";
 
 export default function TestConversationPage() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   // Example configuration for a child's age and additional questions
   const conversationConfig: ConversationFormConfig = {
@@ -23,14 +23,6 @@ export default function TestConversationPage() {
           label: `${i + 1} year${i === 0 ? "" : "s"} old`,
         })),
         defaultValue: 5,
-      },
-      {
-        id: "child-name",
-        type: "text-input",
-        label: "What's your child's name?",
-        placeholder: "Enter your child's first name",
-        required: true,
-        maxLength: 50,
       },
       {
         id: "interests",
