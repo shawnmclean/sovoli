@@ -3,52 +3,9 @@
 import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { ChatDialog } from "../../modules/chat/components/ChatDialog";
-import type { ConversationFormConfig } from "../../modules/chat/types/conversation-form";
 
 export default function TestConversationPage() {
   const [isOpen, setIsOpen] = useState(true);
-
-  // Example configuration for a child's age and additional questions
-  const conversationConfig: ConversationFormConfig = {
-    questions: [
-      {
-        id: "child-age",
-        type: "wheel-picker",
-        label: "What's your child's age?",
-        placeholder:
-          "Please select your child's age to help us provide better recommendations",
-        required: true,
-        options: Array.from({ length: 18 }, (_, i) => ({
-          value: i + 1,
-          label: `${i + 1} year${i === 0 ? "" : "s"} old`,
-        })),
-        defaultValue: 5,
-      },
-      {
-        id: "interests",
-        type: "text-input",
-        label: "What are your child's main interests?",
-        placeholder:
-          "Tell us about activities, subjects, or hobbies your child enjoys",
-        multiline: true,
-        maxLength: 500,
-      },
-      {
-        id: "learning-goals",
-        type: "text-input",
-        label: "What are your learning goals for your child?",
-        placeholder: "What would you like your child to achieve or learn?",
-        multiline: true,
-        maxLength: 500,
-      },
-    ],
-    onComplete: (responses) => {
-      console.log("Form completed with responses:", responses);
-      // Here you can process the responses and potentially send them to your AI
-    },
-    showProgress: true,
-    allowBackNavigation: true,
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -76,12 +33,7 @@ export default function TestConversationPage() {
           </Button>
         </div>
 
-        <ChatDialog
-          isOpen={isOpen}
-          onOpenChange={setIsOpen}
-          conversationConfig={conversationConfig}
-          showConversationForm={true}
-        />
+        <ChatDialog isOpen={isOpen} onOpenChange={setIsOpen} />
       </div>
     </div>
   );

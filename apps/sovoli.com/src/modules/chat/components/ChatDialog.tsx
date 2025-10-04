@@ -153,9 +153,18 @@ export function ChatDialog({
                 </div>
               }
               endContent={
-                <Button isIconOnly onPress={onClose} variant="light">
-                  <EllipsisIcon className="w-4 h-4" />
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button
+                    isIconOnly
+                    onPress={() => setIsFamilyDrawerOpen(true)}
+                    variant="light"
+                  >
+                    <UsersIcon className="w-4 h-4" />
+                  </Button>
+                  <Button isIconOnly onPress={onClose} variant="light">
+                    <EllipsisIcon className="w-4 h-4" />
+                  </Button>
+                </div>
               }
             />
 
@@ -235,15 +244,6 @@ export function ChatDialog({
 
               {/* Input Area */}
               <div className="flex w-full items-center gap-2">
-                <Button
-                  isIconOnly
-                  variant="bordered"
-                  size="lg"
-                  onPress={() => setIsFamilyDrawerOpen(true)}
-                  className="shrink-0"
-                >
-                  <UsersIcon className="w-4 h-4" />
-                </Button>
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
