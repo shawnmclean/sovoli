@@ -1,10 +1,15 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { useChat } from "@ai-sdk/react";
-import { EllipsisIcon, SendIcon, UsersIcon } from "lucide-react";
+import {
+  EllipsisIcon,
+  SendIcon,
+  UsersIcon,
+  ChevronDownIcon,
+} from "lucide-react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import {
   Drawer,
@@ -56,21 +61,97 @@ export function ChatDialog({
   const [isLoading, setIsLoading] = useState(false);
   const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
   const [isFamilyDrawerOpen, setIsFamilyDrawerOpen] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   // Use the unified message manager
   const messageManager = useMessageManager();
   const { messages: guidedMessages } = messageManager;
 
-  // Auto-scroll to bottom when new messages arrive
-  useEffect(() => {
-    if (messagesEndRef.current) {
-      // Use a small delay to ensure DOM is updated
-      setTimeout(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
+  // Check if user is at bottom of scroll
+  const checkIfAtBottom = () => {
+    if (messagesContainerRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } =
+        messagesContainerRef.current;
+      const isAtBottom = scrollHeight - scrollTop - clientHeight < 50; // 50px threshold
+      console.log("Scroll check:", {
+        scrollTop,
+        scrollHeight,
+        clientHeight,
+        isAtBottom,
+      });
+      const shouldShowButton = !isAtBottom;
+      console.log("Should show scroll button:", shouldShowButton);
+      setShowScrollButton(shouldShowButton);
     }
-  }, [aiMessages.length]);
+  };
+
+  // Throttled scroll check to avoid excessive calls
+  const throttledCheckIfAtBottom = useCallback(() => {
+    let timeoutId: NodeJS.Timeout;
+    return () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkIfAtBottom, 100);
+    };
+  }, [])();
+
+  // Handle scroll to bottom
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // Set up scroll and resize observers
+  useEffect(() => {
+    const container = messagesContainerRef.current;
+    if (!container) return;
+
+    // Initial check
+    const timer = setTimeout(() => {
+      checkIfAtBottom();
+    }, 1000);
+
+    // Set up ResizeObserver to watch for container size changes
+    const resizeObserver = new ResizeObserver(() => {
+      console.log("Container resized, checking scroll position");
+      checkIfAtBottom();
+    });
+
+    // Set up scroll listener
+    const handleScroll = () => {
+      throttledCheckIfAtBottom();
+    };
+
+    // Set up window resize listener
+    const handleWindowResize = () => {
+      console.log("Window resized, checking scroll position");
+      checkIfAtBottom();
+    };
+
+    // Attach observers and listeners
+    resizeObserver.observe(container);
+    container.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleWindowResize);
+
+    // Cleanup
+    return () => {
+      clearTimeout(timer);
+      resizeObserver.disconnect();
+      container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [throttledCheckIfAtBottom]);
+
+  // Check scroll position when messages change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      checkIfAtBottom();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [aiMessages.length, guidedMessages.length]);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
@@ -189,7 +270,10 @@ export function ChatDialog({
               <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent" />
 
               <div className="flex flex-col h-full relative z-10">
-                <div className="flex-grow overflow-y-auto flex flex-col">
+                <div
+                  ref={messagesContainerRef}
+                  className="flex-grow overflow-y-auto flex flex-col"
+                >
                   <div className="space-y-4 p-4">
                     {/* Welcome Screen - Always visible at top */}
                     <WelcomeScreen />
@@ -249,6 +333,20 @@ export function ChatDialog({
                     <div ref={messagesEndRef} />
                   </div>
                 </div>
+
+                {showScrollButton && (
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
+                    <Button
+                      isIconOnly
+                      variant="solid"
+                      size="sm"
+                      radius="full"
+                      onPress={scrollToBottom}
+                    >
+                      <ChevronDownIcon className="w-5 h-5" />
+                    </Button>
+                  </div>
+                )}
               </div>
             </DrawerBody>
 
