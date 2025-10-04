@@ -17,6 +17,10 @@ import { Badge } from "@sovoli/ui/components/badge";
 import Image from "next/image";
 import { FamilyDrawer } from "./FamilyDrawer";
 import type { FamilyMember } from "./FamilyDrawer";
+import { GuidedFlowManager } from "./GuidedFlowManager";
+import { UnifiedMessageBubble } from "./UnifiedMessageBubble";
+import { useMessageManager } from "../hooks/useMessageManager";
+import type { Audience } from "../types/guided-chat";
 
 export interface ChatMessage {
   id: string;
@@ -30,6 +34,7 @@ export interface ChatDialogProps {
   onOpenChange: (isOpen: boolean) => void;
   placeholder?: string;
   title?: string;
+  audience?: Audience;
 }
 
 const QUICK_REPLIES = [
@@ -44,6 +49,7 @@ export function ChatDialog({
   isOpen,
   onOpenChange,
   placeholder = "Type your message...",
+  audience = "parent",
 }: ChatDialogProps) {
   const { messages: aiMessages, sendMessage } = useChat();
   const [inputValue, setInputValue] = useState("");
@@ -51,6 +57,10 @@ export function ChatDialog({
   const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
   const [isFamilyDrawerOpen, setIsFamilyDrawerOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Use the unified message manager
+  const messageManager = useMessageManager();
+  const { messages: guidedMessages } = messageManager;
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -96,6 +106,11 @@ export function ChatDialog({
       e.preventDefault();
       handleSendMessage();
     }
+  };
+
+  const handleGuidedFlowComplete = () => {
+    // Handle guided flow completion
+    console.log("Guided flow completed");
   };
 
   return (
@@ -179,7 +194,15 @@ export function ChatDialog({
                     {/* Welcome Screen - Always visible at top */}
                     <WelcomeScreen />
 
-                    {/* Messages */}
+                    {/* All Messages - Guided and AI */}
+                    {guidedMessages.map((message) => (
+                      <UnifiedMessageBubble
+                        key={message.id}
+                        message={message}
+                      />
+                    ))}
+
+                    {/* AI Messages */}
                     {aiMessages.map((message) => (
                       <MessageBubble
                         key={message.id}
@@ -200,6 +223,13 @@ export function ChatDialog({
                         }}
                       />
                     ))}
+
+                    {/* Guided Flow Manager - handles input/buttons */}
+                    <GuidedFlowManager
+                      audience={audience}
+                      onFlowComplete={handleGuidedFlowComplete}
+                      messageManager={messageManager}
+                    />
                     {isLoading && (
                       <div className="flex justify-start">
                         <div className="bg-default-100 text-default-foreground rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%]">
