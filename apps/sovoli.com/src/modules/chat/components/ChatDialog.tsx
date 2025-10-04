@@ -264,7 +264,7 @@ export function ChatDialog({
               }
             />
 
-            <DrawerBody className="p-0 h-[calc(100vh-200px)] relative overflow-hidden">
+            <DrawerBody className="p-0 h-[calc(100vh-200px)] relative overflow-hidden overflow-x-hidden">
               {/* Subtle Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-default-50/30" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent" />
@@ -272,9 +272,9 @@ export function ChatDialog({
               <div className="flex flex-col h-full relative z-10">
                 <div
                   ref={messagesContainerRef}
-                  className="flex-grow overflow-y-auto flex flex-col"
+                  className="flex-grow overflow-y-auto overflow-x-hidden flex flex-col"
                 >
-                  <div className="space-y-4 p-4">
+                  <div className="space-y-4 p-4 overflow-x-hidden">
                     {/* Welcome Screen - Always visible at top */}
                     <WelcomeScreen />
 
