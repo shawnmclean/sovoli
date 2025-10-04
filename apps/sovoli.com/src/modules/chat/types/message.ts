@@ -20,11 +20,11 @@ export interface QuestionState {
   id: string;
   text: string;
   isActive: boolean;
-  quickReplies?: Array<{
+  quickReplies?: {
     id: string;
     label: string;
     value: string;
-  }>;
+  }[];
   drawerComponent?: string;
 }
 
