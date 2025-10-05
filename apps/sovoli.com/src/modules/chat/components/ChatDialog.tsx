@@ -22,8 +22,6 @@ import { Badge } from "@sovoli/ui/components/badge";
 import Image from "next/image";
 import { FamilyDrawer } from "./FamilyDrawer";
 import type { FamilyMember } from "./FamilyDrawer";
-import { GuidedFlowManager } from "./GuidedFlowManager";
-import { UnifiedMessageBubble } from "./UnifiedMessageBubble";
 import { useMessageManager } from "../hooks/useMessageManager";
 import type { Audience } from "../types/guided-chat";
 
@@ -56,7 +54,27 @@ export function ChatDialog({
   placeholder = "Type your message...",
   audience = "parent",
 }: ChatDialogProps) {
-  const { messages: aiMessages, sendMessage } = useChat();
+  const {
+    messages: aiMessages,
+    sendMessage,
+    setMessages,
+  } = useChat({
+    messages: [
+      {
+        id: "welcome",
+        role: "system",
+        parts: [
+          {
+            type: "text",
+            text: "Hello! I'm here to help you with any questions you have.",
+          },
+        ],
+        metadata: {
+          inputType: "age",
+        },
+      },
+    ],
+  });
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
@@ -189,9 +207,23 @@ export function ChatDialog({
     }
   };
 
-  const handleGuidedFlowComplete = () => {
-    // Handle guided flow completion
-    console.log("Guided flow completed");
+  const handleAgeResponse = (value: string, messageId: string) => {
+    // Append user message
+    const userMessage = {
+      id: crypto.randomUUID(),
+      role: "user",
+      parts: [{ type: "text", text: value }],
+    };
+
+    // Update the AI message that had the inputType
+    const updatedMessages = aiMessages.map((m) =>
+      m.id === messageId
+        ? { ...m, metadata: { ...m.metadata, answered: true } }
+        : m,
+    );
+
+    // Push both back into state
+    setMessages([...updatedMessages, userMessage]);
   };
 
   return (
@@ -277,60 +309,46 @@ export function ChatDialog({
                   <div className="space-y-4 p-4">
                     {/* Welcome Screen - Always visible at top */}
                     <WelcomeScreen />
-
-                    {/* All Messages - Guided and AI */}
-                    {guidedMessages.map((message) => (
-                      <UnifiedMessageBubble
-                        key={message.id}
-                        message={message}
-                      />
-                    ))}
-
                     {/* AI Messages */}
                     {aiMessages.map((message) => (
-                      <MessageBubble
-                        key={message.id}
-                        message={{
-                          id: message.id,
-                          text: message.parts
-                            .map((part) => {
-                              switch (part.type) {
-                                case "text":
-                                  return part.text;
-                                default:
-                                  return "";
-                              }
-                            })
-                            .join(""),
-                          isUser: message.role === "user",
-                          timestamp: new Date(),
-                        }}
-                      />
-                    ))}
+                      <div key={message.id}>
+                        <MessageBubble
+                          key={message.id}
+                          message={{
+                            id: message.id,
+                            text: message.parts
+                              .map((part) => {
+                                switch (part.type) {
+                                  case "text":
+                                    return part.text;
+                                  default:
+                                    return "";
+                                }
+                              })
+                              .join(""),
+                            isUser: message.role === "user",
+                            timestamp: new Date(),
+                          }}
+                        />
 
-                    {/* Guided Flow Manager - handles input/buttons */}
-                    <GuidedFlowManager
-                      audience={audience}
-                      onFlowComplete={handleGuidedFlowComplete}
-                      messageManager={messageManager}
-                    />
-                    {isLoading && (
-                      <div className="flex justify-start">
-                        <div className="bg-default-100 text-default-foreground rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%]">
-                          <div className="flex items-center gap-2">
-                            <div className="flex space-x-1">
-                              <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce" />
-                              <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.1s]" />
-                              <div className="w-2 h-2 bg-default-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+                        {message.metadata?.inputType === "age" &&
+                          !message.metadata?.answered && (
+                            <div className="flex flex-col items-center text-center py-6 border-b border-divider/50">
+                              {[1, 2, 3, 4, 5].map((num) => (
+                                <Button
+                                  key={num}
+                                  onPress={() =>
+                                    handleAgeResponse(String(num), message.id)
+                                  }
+                                  className="m-1"
+                                >
+                                  {num}
+                                </Button>
+                              ))}
                             </div>
-                            <span className="text-sm text-default-500">
-                              AI is typing...
-                            </span>
-                          </div>
-                        </div>
+                          )}
                       </div>
-                    )}
-                    <div ref={messagesEndRef} />
+                    ))}
                   </div>
                 </div>
 
