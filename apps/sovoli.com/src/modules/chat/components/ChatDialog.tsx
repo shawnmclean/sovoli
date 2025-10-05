@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
+import { useChat } from "@ai-sdk/react";
 import {
   EllipsisIcon,
   SendIcon,
@@ -33,9 +34,10 @@ export interface ChatMessage {
   timestamp: Date;
 }
 
-export interface GuidedMessage {
+// Extended message type for guided flow
+export interface ExtendedMessage {
   id: string;
-  role: "user" | "assistant";
+  role: "user" | "system" | "assistant";
   parts: { type: "text"; text: string }[];
   metadata?: {
     inputType?: "text" | "buttons" | "date" | "none";
@@ -67,14 +69,39 @@ export function ChatDialog({
   placeholder = "Type your message...",
   audience: _audience = "parent",
 }: ChatDialogProps) {
-  const [messages, setMessages] = useState<GuidedMessage[]>([]);
+  const { messages, sendMessage, setMessages } = useChat({
+    messages: [
+      {
+        id: "welcome",
+        role: "assistant",
+        parts: [
+          {
+            type: "text",
+            text: "Hello! I'm here to help you with any questions you have.",
+          },
+        ],
+        metadata: {
+          inputType: "age",
+        },
+      },
+    ],
+  });
+
   const [inputValue, setInputValue] = useState("");
-  const [isLoading, _setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
   const [isFamilyDrawerOpen, setIsFamilyDrawerOpen] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  // Check if there's an unanswered guided input
+  const hasUnansweredInput = (messages as ExtendedMessage[]).some(
+    (message) =>
+      message.metadata?.inputType &&
+      !message.metadata.answered &&
+      message.role === "assistant",
+  );
 
   // Check if user is at bottom of scroll
   const checkIfAtBottom = () => {
@@ -162,13 +189,13 @@ export function ChatDialog({
 
   // Initialize the first step of the guided flow
   useEffect(() => {
-    if (messages.length === 0) {
+    if (messages.length === 1 && messages[0]?.id === "welcome") {
       const first = enrollmentFlow.age;
       setMessages([
         {
           id: first.id,
-          role: "assistant",
-          parts: [{ type: "text", text: first.text }],
+          role: "assistant" as const,
+          parts: [{ type: "text" as const, text: first.text }],
           metadata: {
             inputType: first.inputType,
             options: "options" in first ? [...first.options] : undefined,
@@ -177,30 +204,35 @@ export function ChatDialog({
         },
       ]);
     }
-  }, [messages.length]);
+  }, [messages.length, setMessages]);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
 
-    // Add user message
-    const userMessage: GuidedMessage = {
-      id: crypto.randomUUID(),
-      role: "user",
-      parts: [{ type: "text", text: inputValue.trim() }],
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-    setInputValue("");
+    void (async () => {
+      try {
+        setIsLoading(true);
+        await sendMessage({ text: inputValue.trim() });
+        setInputValue("");
+      } catch (error) {
+        console.error("Error sending message:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
   };
 
   const handleQuickReply = (reply: string) => {
-    const userMessage: GuidedMessage = {
-      id: crypto.randomUUID(),
-      role: "user",
-      parts: [{ type: "text", text: reply }],
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
+    void (async () => {
+      try {
+        setIsLoading(true);
+        await sendMessage({ text: reply });
+      } catch (error) {
+        console.error("Error sending message:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -220,14 +252,14 @@ export function ChatDialog({
     const nextStep = nextStepId ? enrollmentFlow[nextStepId] : null;
 
     // 1. Create a new user message
-    const userMessage: GuidedMessage = {
+    const userMessage = {
       id: crypto.randomUUID(),
-      role: "user",
-      parts: [{ type: "text", text: value }],
+      role: "user" as const,
+      parts: [{ type: "text" as const, text: value }],
     };
 
     // 2. Mark the current guided message as answered
-    const updatedMessages = messages.map((m) =>
+    const updatedMessages = (messages as ExtendedMessage[]).map((m) =>
       m.id === messageId
         ? {
             ...m,
@@ -240,11 +272,11 @@ export function ChatDialog({
     );
 
     // 3. Construct next guided assistant message if any
-    const nextMessage: GuidedMessage | null = nextStep
+    const nextMessage = nextStep
       ? {
           id: nextStep.id,
-          role: "assistant",
-          parts: [{ type: "text", text: nextStep.text }],
+          role: "assistant" as const,
+          parts: [{ type: "text" as const, text: nextStep.text }],
           metadata: {
             inputType: nextStep.inputType,
             options: "options" in nextStep ? [...nextStep.options] : undefined,
@@ -258,7 +290,7 @@ export function ChatDialog({
       ...updatedMessages,
       userMessage,
       ...(nextMessage ? [nextMessage] : []),
-    ]);
+    ] as any);
   };
 
   return (
@@ -424,18 +456,26 @@ export function ChatDialog({
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyPress}
-                  placeholder={isLoading ? "AI is thinking..." : placeholder}
+                  placeholder={
+                    hasUnansweredInput
+                      ? "Please answer the question above first..."
+                      : isLoading
+                        ? "AI is thinking..."
+                        : placeholder
+                  }
                   className="flex-1"
                   variant="bordered"
                   size="lg"
-                  isDisabled={isLoading}
+                  isDisabled={isLoading || hasUnansweredInput}
                 />
                 <Button
                   isIconOnly
                   color="primary"
                   size="lg"
                   onPress={handleSendMessage}
-                  isDisabled={!inputValue.trim() || isLoading}
+                  isDisabled={
+                    !inputValue.trim() || isLoading || hasUnansweredInput
+                  }
                   isLoading={isLoading}
                 >
                   <SendIcon className="w-4 h-4" />

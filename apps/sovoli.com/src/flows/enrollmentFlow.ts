@@ -22,7 +22,6 @@ export const enrollmentFlow = {
   summary: {
     id: "summary",
     text: "Thank you! We'll now show programs that match your child's info.",
-    inputType: "none" as const,
     next: null,
   },
 } as const;
