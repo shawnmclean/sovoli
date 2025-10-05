@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
-import { useChat } from "@ai-sdk/react";
 import {
   EllipsisIcon,
   SendIcon,
@@ -22,14 +21,28 @@ import { Badge } from "@sovoli/ui/components/badge";
 import Image from "next/image";
 import { FamilyDrawer } from "./FamilyDrawer";
 import type { FamilyMember } from "./FamilyDrawer";
-import { useMessageManager } from "../hooks/useMessageManager";
 import type { Audience } from "../types/guided-chat";
+import { enrollmentFlow } from "../../../flows/enrollmentFlow";
+import type { FlowStepId } from "../../../flows/enrollmentFlow";
+import { GuidedInput } from "./GuidedInput";
 
 export interface ChatMessage {
   id: string;
   text: string;
   isUser: boolean;
   timestamp: Date;
+}
+
+export interface GuidedMessage {
+  id: string;
+  role: "user" | "assistant";
+  parts: { type: "text"; text: string }[];
+  metadata?: {
+    inputType?: "text" | "buttons" | "date" | "none";
+    options?: string[];
+    stepId?: string;
+    answered?: boolean;
+  };
 }
 
 export interface ChatDialogProps {
@@ -52,40 +65,16 @@ export function ChatDialog({
   isOpen,
   onOpenChange,
   placeholder = "Type your message...",
-  audience = "parent",
+  audience: _audience = "parent",
 }: ChatDialogProps) {
-  const {
-    messages: aiMessages,
-    sendMessage,
-    setMessages,
-  } = useChat({
-    messages: [
-      {
-        id: "welcome",
-        role: "system",
-        parts: [
-          {
-            type: "text",
-            text: "Hello! I'm here to help you with any questions you have.",
-          },
-        ],
-        metadata: {
-          inputType: "age",
-        },
-      },
-    ],
-  });
+  const [messages, setMessages] = useState<GuidedMessage[]>([]);
   const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, _setIsLoading] = useState(false);
   const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
   const [isFamilyDrawerOpen, setIsFamilyDrawerOpen] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
-
-  // Use the unified message manager
-  const messageManager = useMessageManager();
-  const { messages: guidedMessages } = messageManager;
 
   // Check if user is at bottom of scroll
   const checkIfAtBottom = () => {
@@ -169,35 +158,49 @@ export function ChatDialog({
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [aiMessages.length, guidedMessages.length]);
+  }, [messages.length]);
+
+  // Initialize the first step of the guided flow
+  useEffect(() => {
+    if (messages.length === 0) {
+      const first = enrollmentFlow.age;
+      setMessages([
+        {
+          id: first.id,
+          role: "assistant",
+          parts: [{ type: "text", text: first.text }],
+          metadata: {
+            inputType: first.inputType,
+            options: "options" in first ? [...first.options] : undefined,
+            stepId: first.id,
+          },
+        },
+      ]);
+    }
+  }, [messages.length]);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
 
-    void (async () => {
-      try {
-        setIsLoading(true);
-        await sendMessage({ text: inputValue.trim() });
-        setInputValue("");
-      } catch (error) {
-        console.error("Error sending message:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
+    // Add user message
+    const userMessage: GuidedMessage = {
+      id: crypto.randomUUID(),
+      role: "user",
+      parts: [{ type: "text", text: inputValue.trim() }],
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInputValue("");
   };
 
   const handleQuickReply = (reply: string) => {
-    void (async () => {
-      try {
-        setIsLoading(true);
-        await sendMessage({ text: reply });
-      } catch (error) {
-        console.error("Error sending message:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
+    const userMessage: GuidedMessage = {
+      id: crypto.randomUUID(),
+      role: "user",
+      parts: [{ type: "text", text: reply }],
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -207,23 +210,55 @@ export function ChatDialog({
     }
   };
 
-  const handleAgeResponse = (value: string, messageId: string) => {
-    // Append user message
-    const userMessage = {
+  const handleGuidedResponse = (
+    messageId: string,
+    value: string,
+    currentStepId: FlowStepId,
+  ) => {
+    const step = enrollmentFlow[currentStepId];
+    const nextStepId = step.next;
+    const nextStep = nextStepId ? enrollmentFlow[nextStepId] : null;
+
+    // 1. Create a new user message
+    const userMessage: GuidedMessage = {
       id: crypto.randomUUID(),
       role: "user",
       parts: [{ type: "text", text: value }],
     };
 
-    // Update the AI message that had the inputType
-    const updatedMessages = aiMessages.map((m) =>
+    // 2. Mark the current guided message as answered
+    const updatedMessages = messages.map((m) =>
       m.id === messageId
-        ? { ...m, metadata: { ...m.metadata, answered: true } }
+        ? {
+            ...m,
+            metadata: {
+              ...m.metadata,
+              answered: true,
+            },
+          }
         : m,
     );
 
-    // Push both back into state
-    setMessages([...updatedMessages, userMessage]);
+    // 3. Construct next guided assistant message if any
+    const nextMessage: GuidedMessage | null = nextStep
+      ? {
+          id: nextStep.id,
+          role: "assistant",
+          parts: [{ type: "text", text: nextStep.text }],
+          metadata: {
+            inputType: nextStep.inputType,
+            options: "options" in nextStep ? [...nextStep.options] : undefined,
+            stepId: nextStep.id,
+          },
+        }
+      : null;
+
+    // 4. Update messages in one go
+    setMessages([
+      ...updatedMessages,
+      userMessage,
+      ...(nextMessage ? [nextMessage] : []),
+    ]);
   };
 
   return (
@@ -309,42 +344,37 @@ export function ChatDialog({
                   <div className="space-y-4 p-4">
                     {/* Welcome Screen - Always visible at top */}
                     <WelcomeScreen />
-                    {/* AI Messages */}
-                    {aiMessages.map((message) => (
+
+                    {/* Messages */}
+                    {messages.map((message) => (
                       <div key={message.id}>
                         <MessageBubble
-                          key={message.id}
                           message={{
                             id: message.id,
                             text: message.parts
-                              .map((part) => {
-                                switch (part.type) {
-                                  case "text":
-                                    return part.text;
-                                  default:
-                                    return "";
-                                }
-                              })
+                              .map((part) => part.text)
                               .join(""),
                             isUser: message.role === "user",
                             timestamp: new Date(),
                           }}
                         />
 
-                        {message.metadata?.inputType === "age" &&
-                          !message.metadata?.answered && (
+                        {message.metadata?.inputType &&
+                          !message.metadata.answered &&
+                          message.role === "assistant" && (
                             <div className="flex flex-col items-center text-center py-6 border-b border-divider/50">
-                              {[1, 2, 3, 4, 5].map((num) => (
-                                <Button
-                                  key={num}
-                                  onPress={() =>
-                                    handleAgeResponse(String(num), message.id)
-                                  }
-                                  className="m-1"
-                                >
-                                  {num}
-                                </Button>
-                              ))}
+                              <GuidedInput
+                                key={`${message.id}-input`}
+                                inputType={message.metadata.inputType}
+                                options={message.metadata.options}
+                                onSubmit={(value) =>
+                                  handleGuidedResponse(
+                                    message.id,
+                                    value,
+                                    message.metadata?.stepId as FlowStepId,
+                                  )
+                                }
+                              />
                             </div>
                           )}
                       </div>
@@ -370,7 +400,7 @@ export function ChatDialog({
 
             <DrawerFooter className="flex flex-col gap-2 p-4 border-t border-divider">
               {/* Quick Reply Buttons */}
-              {aiMessages.length === 0 && (
+              {messages.length === 0 && (
                 <div className="w-full">
                   <div className="flex flex-wrap gap-2 justify-center">
                     {QUICK_REPLIES.map((reply) => (
