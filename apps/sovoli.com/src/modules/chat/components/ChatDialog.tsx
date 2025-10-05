@@ -23,8 +23,8 @@ import Image from "next/image";
 import { FamilyDrawer } from "./FamilyDrawer";
 import type { FamilyMember } from "./FamilyDrawer";
 import type { Audience } from "../types/guided-chat";
-import { enrollmentFlow } from "../../../flows/enrollmentFlow";
-import type { FlowStepId } from "../../../flows/enrollmentFlow";
+import { enrollmentFlow } from "../config/enrollmentFlow";
+import type { FlowStepId } from "../config/enrollmentFlow";
 import { GuidedInput } from "./GuidedInput";
 
 export interface ChatMessage {
@@ -109,14 +109,8 @@ export function ChatDialog({
       const { scrollTop, scrollHeight, clientHeight } =
         messagesContainerRef.current;
       const isAtBottom = scrollHeight - scrollTop - clientHeight < 50; // 50px threshold
-      console.log("Scroll check:", {
-        scrollTop,
-        scrollHeight,
-        clientHeight,
-        isAtBottom,
-      });
+
       const shouldShowButton = !isAtBottom;
-      console.log("Should show scroll button:", shouldShowButton);
       setShowScrollButton(shouldShowButton);
     }
   };
