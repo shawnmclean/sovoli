@@ -24,7 +24,6 @@ export function ChatDialogExample() {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         placeholder="Ask me anything..."
-        audience="parent"
       />
     </div>
   );

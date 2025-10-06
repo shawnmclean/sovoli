@@ -7,8 +7,14 @@ export const enrollmentFlow = {
   },
   location: {
     id: "location",
-    text: "Where are you located?",
+    text: "Thank you! Where are you located?",
     inputType: "location",
+    next: "thankyou",
+  },
+  thankyou: {
+    id: "thankyou",
+    text: "Thank you! I'll be in touch soon.",
+    inputType: null,
     next: null,
   },
 } as const;
