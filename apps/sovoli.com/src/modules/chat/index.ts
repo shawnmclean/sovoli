@@ -3,7 +3,7 @@ export { ChatDialogExample } from "./components/ChatDialogExample";
 export { FamilyDrawer } from "./components/FamilyDrawer";
 export { GuidedChatFlow } from "./components/GuidedChatFlow";
 export { GuidedFlowManager } from "./components/GuidedFlowManager";
-export { AgePickerDrawer } from "./components/AgePickerDrawer";
+export { AgePickerDrawer } from "./components/ChatInput/AgePickerDrawer";
 export { UnifiedMessageBubble } from "./components/UnifiedMessageBubble";
 
 export type { ChatMessage, ChatDialogProps } from "./components/ChatDialog";

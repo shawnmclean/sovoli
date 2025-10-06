@@ -4,18 +4,16 @@ import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { SendIcon } from "lucide-react";
+import { AgeChatInput } from "./AgeChatInput";
+import type { ChatInputType } from "./types";
 
-export interface GuidedInputProps {
-  inputType: "text" | "buttons" | "date" | "none";
+export interface ChatInputProps {
+  inputType: ChatInputType;
   options?: string[];
   onSubmit: (value: string) => void;
 }
 
-export function GuidedInput({
-  inputType,
-  options,
-  onSubmit,
-}: GuidedInputProps) {
+export function ChatInput({ inputType, options, onSubmit }: ChatInputProps) {
   const [value, setValue] = useState("");
 
   if (inputType === "buttons") {
@@ -56,6 +54,10 @@ export function GuidedInput({
         </Button>
       </div>
     );
+  }
+
+  if (inputType === "age") {
+    return <AgeChatInput onSubmit={onSubmit} />;
   }
 
   return null;

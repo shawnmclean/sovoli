@@ -1,22 +1,24 @@
+import type { ChatInputType } from "../components/ChatInput/types";
+
 export const enrollmentFlow = {
   age: {
     id: "age",
     text: "How old is your child?",
-    inputType: "buttons" as const,
+    inputType: "age" as ChatInputType,
     options: ["3", "4", "5", "6", "7", "8+"] as const,
     next: "grade" as const,
   },
   grade: {
     id: "grade",
     text: "Which grade are they entering?",
-    inputType: "buttons" as const,
+    inputType: "buttons" as ChatInputType,
     options: ["Nursery", "Prep", "Grade 1"] as const,
     next: "location" as const,
   },
   location: {
     id: "location",
     text: "Where are you located?",
-    inputType: "text" as const,
+    inputType: "text" as ChatInputType,
     next: "summary" as const,
   },
   summary: {

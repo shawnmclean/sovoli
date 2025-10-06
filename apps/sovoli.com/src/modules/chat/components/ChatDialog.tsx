@@ -25,7 +25,8 @@ import type { FamilyMember } from "./FamilyDrawer";
 import type { Audience } from "../types/guided-chat";
 import { enrollmentFlow } from "../config/enrollmentFlow";
 import type { FlowStepId } from "../config/enrollmentFlow";
-import { GuidedInput } from "./GuidedInput";
+import { ChatInput, GuidedInput } from "./ChatInput/ChatInput";
+import { ChatInputType } from "./ChatInput/types";
 
 export interface ChatMessage {
   id: string;
@@ -81,7 +82,7 @@ export function ChatDialog({
           },
         ],
         metadata: {
-          inputType: "age",
+          inputType: "age" as ChatInputType,
         },
       },
     ],
@@ -389,7 +390,7 @@ export function ChatDialog({
                           !message.metadata.answered &&
                           message.role === "assistant" && (
                             <div className="flex flex-col items-center text-center py-6 border-b border-divider/50">
-                              <GuidedInput
+                              <ChatInput
                                 key={`${message.id}-input`}
                                 inputType={message.metadata.inputType}
                                 options={message.metadata.options}
