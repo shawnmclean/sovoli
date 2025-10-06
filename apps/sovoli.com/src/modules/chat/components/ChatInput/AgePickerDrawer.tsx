@@ -13,7 +13,11 @@ import {
   WheelPicker,
   WheelPickerWrapper,
 } from "@sovoli/ui/components/wheel-picker";
-import type { AgeSelection } from "../../types/guided-chat";
+
+export interface AgeSelection {
+  years: number;
+  months: number;
+}
 
 interface AgePickerDrawerProps {
   isOpen: boolean;

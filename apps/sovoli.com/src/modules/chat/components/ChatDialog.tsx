@@ -22,11 +22,10 @@ import { Badge } from "@sovoli/ui/components/badge";
 import Image from "next/image";
 import { FamilyDrawer } from "./FamilyDrawer";
 import type { FamilyMember } from "./FamilyDrawer";
-import type { Audience } from "../types/guided-chat";
 import { enrollmentFlow } from "../config/enrollmentFlow";
 import type { FlowStepId } from "../config/enrollmentFlow";
-import { ChatInput, GuidedInput } from "./ChatInput/ChatInput";
-import { ChatInputType } from "./ChatInput/types";
+import { ChatInput } from "./ChatInput/ChatInput";
+import type { ExtendedUIMessage } from "../types";
 
 export interface ChatMessage {
   id: string;
@@ -35,25 +34,11 @@ export interface ChatMessage {
   timestamp: Date;
 }
 
-// Extended message type for guided flow
-export interface ExtendedMessage {
-  id: string;
-  role: "user" | "system" | "assistant";
-  parts: { type: "text"; text: string }[];
-  metadata?: {
-    inputType?: "text" | "buttons" | "date" | "none";
-    options?: string[];
-    stepId?: string;
-    answered?: boolean;
-  };
-}
-
 export interface ChatDialogProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
   placeholder?: string;
   title?: string;
-  audience?: Audience;
 }
 
 const QUICK_REPLIES = [
@@ -68,9 +53,8 @@ export function ChatDialog({
   isOpen,
   onOpenChange,
   placeholder = "Type your message...",
-  audience: _audience = "parent",
 }: ChatDialogProps) {
-  const { messages, sendMessage, setMessages } = useChat({
+  const { messages, sendMessage, setMessages } = useChat<ExtendedUIMessage>({
     messages: [
       {
         id: "welcome",
@@ -81,8 +65,20 @@ export function ChatDialog({
             text: "Hello! I'm here to help you with any questions you have.",
           },
         ],
+      },
+      {
+        id: "age",
+        role: "assistant",
+        parts: [
+          {
+            type: "text",
+            text: "How old is your child?",
+          },
+        ],
         metadata: {
-          inputType: "age" as ChatInputType,
+          inputType: "age",
+          isQuestion: true,
+          answered: false,
         },
       },
     ],
@@ -97,9 +93,9 @@ export function ChatDialog({
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   // Check if there's an unanswered guided input
-  const hasUnansweredInput = (messages as ExtendedMessage[]).some(
+  const hasUnansweredInput = messages.some(
     (message) =>
-      message.metadata?.inputType &&
+      message.metadata?.isQuestion &&
       !message.metadata.answered &&
       message.role === "assistant",
   );
@@ -182,25 +178,6 @@ export function ChatDialog({
     return () => clearTimeout(timer);
   }, [messages.length]);
 
-  // Initialize the first step of the guided flow
-  useEffect(() => {
-    if (messages.length === 1 && messages[0]?.id === "welcome") {
-      const first = enrollmentFlow.age;
-      setMessages([
-        {
-          id: first.id,
-          role: "assistant" as const,
-          parts: [{ type: "text" as const, text: first.text }],
-          metadata: {
-            inputType: first.inputType,
-            options: "options" in first ? [...first.options] : undefined,
-            stepId: first.id,
-          },
-        },
-      ]);
-    }
-  }, [messages.length, setMessages]);
-
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
 
@@ -237,45 +214,44 @@ export function ChatDialog({
     }
   };
 
-  const handleGuidedResponse = (
-    messageId: string,
-    value: string,
-    currentStepId: FlowStepId,
-  ) => {
+  const handleGuidedResponse = (messageId: string, value: string) => {
+    const currentStepId = messageId as FlowStepId;
     const step = enrollmentFlow[currentStepId];
     const nextStepId = step.next;
     const nextStep = nextStepId ? enrollmentFlow[nextStepId] : null;
 
     // 1. Create a new user message
-    const userMessage = {
+    const userMessage: ExtendedUIMessage = {
       id: crypto.randomUUID(),
       role: "user" as const,
       parts: [{ type: "text" as const, text: value }],
     };
 
     // 2. Mark the current guided message as answered
-    const updatedMessages = (messages as ExtendedMessage[]).map((m) =>
+    const updatedMessages = messages.map((m) =>
       m.id === messageId
         ? {
             ...m,
-            metadata: {
-              ...m.metadata,
-              answered: true,
-            },
+            metadata: m.metadata?.isQuestion
+              ? {
+                  ...m.metadata,
+                  answered: true,
+                }
+              : m.metadata,
           }
         : m,
     );
 
     // 3. Construct next guided assistant message if any
-    const nextMessage = nextStep
+    const nextMessage: ExtendedUIMessage | null = nextStep
       ? {
           id: nextStep.id,
           role: "assistant" as const,
           parts: [{ type: "text" as const, text: nextStep.text }],
           metadata: {
+            isQuestion: true,
             inputType: nextStep.inputType,
-            options: "options" in nextStep ? [...nextStep.options] : undefined,
-            stepId: nextStep.id,
+            answered: false,
           },
         }
       : null;
@@ -285,7 +261,7 @@ export function ChatDialog({
       ...updatedMessages,
       userMessage,
       ...(nextMessage ? [nextMessage] : []),
-    ] as any);
+    ]);
   };
 
   return (
@@ -379,27 +355,24 @@ export function ChatDialog({
                           message={{
                             id: message.id,
                             text: message.parts
-                              .map((part) => part.text)
+                              .map((part) =>
+                                part.type === "text" ? part.text : "",
+                              )
                               .join(""),
                             isUser: message.role === "user",
                             timestamp: new Date(),
                           }}
                         />
 
-                        {message.metadata?.inputType &&
+                        {message.metadata?.isQuestion &&
                           !message.metadata.answered &&
                           message.role === "assistant" && (
                             <div className="flex flex-col items-center text-center py-6 border-b border-divider/50">
                               <ChatInput
                                 key={`${message.id}-input`}
                                 inputType={message.metadata.inputType}
-                                options={message.metadata.options}
                                 onSubmit={(value) =>
-                                  handleGuidedResponse(
-                                    message.id,
-                                    value,
-                                    message.metadata?.stepId as FlowStepId,
-                                  )
+                                  handleGuidedResponse(message.id, value)
                                 }
                               />
                             </div>

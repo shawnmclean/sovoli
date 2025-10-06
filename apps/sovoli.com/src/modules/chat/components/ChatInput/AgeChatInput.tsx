@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { AgePickerDrawer } from "./AgePickerDrawer";
-import type { AgeSelection } from "../../types/guided-chat";
+import type { AgeSelection } from "./AgePickerDrawer";
 
 interface AgeChatInputProps {
   onSubmit: (value: string) => void;
