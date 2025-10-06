@@ -25,14 +25,8 @@ import type { FamilyMember } from "./FamilyDrawer";
 import { enrollmentFlow } from "../config/enrollmentFlow";
 import type { FlowStepId } from "../config/enrollmentFlow";
 import { ChatInput } from "./ChatInput/ChatInput";
-import type { ExtendedUIMessage } from "../types";
-
-export interface ChatMessage {
-  id: string;
-  text: string;
-  isUser: boolean;
-  timestamp: Date;
-}
+import type { ChatMessage } from "../types";
+import { lastAssistantMessageIsCompleteWithToolCalls } from "ai";
 
 export interface ChatDialogProps {
   isOpen: boolean;
@@ -54,35 +48,48 @@ export function ChatDialog({
   onOpenChange,
   placeholder = "Type your message...",
 }: ChatDialogProps) {
-  const { messages, sendMessage, setMessages } = useChat<ExtendedUIMessage>({
-    messages: [
-      {
-        id: "welcome",
-        role: "assistant",
-        parts: [
-          {
-            type: "text",
-            text: "Hello! I'm here to help you with any questions you have.",
-          },
-        ],
-      },
-      {
-        id: "age",
-        role: "assistant",
-        parts: [
-          {
-            type: "text",
-            text: "How old is your child?",
-          },
-        ],
-        metadata: {
-          inputType: "age",
-          isQuestion: true,
-          answered: false,
+  const { messages, sendMessage, setMessages, addToolResult } =
+    useChat<ChatMessage>({
+      // sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
+      messages: [
+        {
+          id: "welcome",
+          role: "assistant",
+          parts: [
+            {
+              type: "text",
+              text: "Hello! I'm here to help you with any questions you have.",
+            },
+          ],
         },
+        {
+          id: "age",
+          role: "assistant",
+          parts: [
+            {
+              type: "text",
+              text: "How old is your child?",
+            },
+            {
+              type: "tool-getAge",
+              state: "input-available",
+              toolCallId: "123",
+              input: {},
+            },
+          ],
+        },
+      ],
+      onToolCall: ({ toolCall }) => {
+        console.log("Tool call:", toolCall);
+        if (toolCall.dynamic) {
+          return;
+        }
+
+        // if (toolCall.toolName === "getLocation") {
+        //   console.log("Tool call:", toolCall);
+        // }
       },
-    ],
-  });
+    });
 
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -221,7 +228,7 @@ export function ChatDialog({
     const nextStep = nextStepId ? enrollmentFlow[nextStepId] : null;
 
     // 1. Create a new user message
-    const userMessage: ExtendedUIMessage = {
+    const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
       role: "user" as const,
       parts: [{ type: "text" as const, text: value }],
@@ -243,7 +250,7 @@ export function ChatDialog({
     );
 
     // 3. Construct next guided assistant message if any
-    const nextMessage: ExtendedUIMessage | null = nextStep
+    const nextMessage: ChatMessage | null = nextStep
       ? {
           id: nextStep.id,
           role: "assistant" as const,
@@ -355,18 +362,44 @@ export function ChatDialog({
                     {/* Messages */}
                     {messages.map((message) => (
                       <div key={message.id}>
-                        <MessageBubble
-                          message={{
-                            id: message.id,
-                            text: message.parts
-                              .map((part) =>
-                                part.type === "text" ? part.text : "",
-                              )
-                              .join(""),
-                            isUser: message.role === "user",
-                            timestamp: new Date(),
-                          }}
-                        />
+                        {message.parts.map((part) => {
+                          switch (part.type) {
+                            case "text":
+                              return (
+                                <MessageBubble
+                                  isUser={message.role === "user"}
+                                  timestamp={new Date()}
+                                  text={part.text}
+                                />
+                              );
+                            case "tool-getAge": {
+                              const callId = part.toolCallId;
+
+                              switch (part.state) {
+                                case "input-streaming":
+                                  return <div>Input streaming</div>;
+                                case "input-available":
+                                  return (
+                                    <ChatInput
+                                      inputType="age"
+                                      onSubmit={(value) => {
+                                        void (async () => {
+                                          await addToolResult({
+                                            tool: "getAge",
+                                            toolCallId: callId,
+                                            output: value,
+                                          });
+                                        })();
+                                      }}
+                                    />
+                                  );
+                                case "output-available":
+                                  return <div>{part.output}</div>;
+                              }
+                              return <div>Calling tool getLocation</div>;
+                            }
+                          }
+                        })}
 
                         {message.metadata?.isQuestion &&
                           !message.metadata.answered &&
@@ -504,26 +537,28 @@ function WelcomeScreen() {
 }
 
 interface MessageBubbleProps {
-  message: ChatMessage;
+  isUser: boolean;
+  timestamp: Date;
+  text: string;
 }
 
-function MessageBubble({ message }: MessageBubbleProps) {
+function MessageBubble({ isUser, timestamp, text }: MessageBubbleProps) {
   return (
-    <div className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}>
+    <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
       <div
         className={`max-w-[80%] px-3 py-2 rounded-2xl text-sm ${
-          message.isUser
+          isUser
             ? "bg-primary text-primary-foreground rounded-br-md"
             : "bg-default-100 text-default-foreground rounded-bl-md"
         }`}
       >
-        <p className="whitespace-pre-wrap">{message.text}</p>
+        <p className="whitespace-pre-wrap">{text}</p>
         <p
           className={`text-xs mt-1 ${
-            message.isUser ? "text-primary-foreground/70" : "text-default-500"
+            isUser ? "text-primary-foreground/70" : "text-default-500"
           }`}
         >
-          {message.timestamp.toLocaleTimeString([], {
+          {timestamp.toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
           })}

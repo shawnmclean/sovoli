@@ -1,5 +1,17 @@
-import type { UIMessage } from "ai";
+import type { InferUITools, ToolSet, UIDataTypes, UIMessage } from "ai";
+import { tool } from "ai";
 import { z } from "zod";
+
+const tools = {
+  getAge: tool({
+    description: "Get the age of the user",
+    inputSchema: z.object({}),
+  }),
+  getLocation: tool({
+    description: "Get the location of the user",
+    inputSchema: z.object({}),
+  }),
+} satisfies ToolSet;
 
 export const chatInputTypes = ["age", "location"] as const;
 
@@ -23,5 +35,6 @@ export const messageMetadataSchema = z.discriminatedUnion("isQuestion", [
 
 export type MessageMetadata = z.infer<typeof messageMetadataSchema>;
 
-// Create a typed UIMessage
-export type ExtendedUIMessage = UIMessage<MessageMetadata>;
+export type ChatTools = InferUITools<typeof tools>;
+
+export type ChatMessage = UIMessage<MessageMetadata, UIDataTypes, ChatTools>;
