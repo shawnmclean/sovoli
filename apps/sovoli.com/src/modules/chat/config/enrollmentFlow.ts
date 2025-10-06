@@ -14,7 +14,7 @@ export const enrollmentFlow = {
   thankyou: {
     id: "thankyou",
     text: "Thank you! I'll be in touch soon.",
-    inputType: null,
+    inputType: undefined,
     next: null,
   },
 } as const;

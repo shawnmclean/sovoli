@@ -248,11 +248,15 @@ export function ChatDialog({
           id: nextStep.id,
           role: "assistant" as const,
           parts: [{ type: "text" as const, text: nextStep.text }],
-          metadata: {
-            isQuestion: true,
-            inputType: nextStep.inputType,
-            answered: false,
-          },
+          metadata: nextStep.inputType
+            ? {
+                isQuestion: true,
+                inputType: nextStep.inputType,
+                answered: false,
+              }
+            : {
+                isQuestion: false,
+              },
         }
       : null;
 
