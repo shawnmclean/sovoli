@@ -6,6 +6,7 @@ const tools = {
   getAge: tool({
     description: "Get the age of the user",
     inputSchema: z.object({}),
+    outputSchema: z.object({ years: z.number(), months: z.number() }),
   }),
   getMoreChildren: tool({
     description: "Ask if the user wants to add another child",

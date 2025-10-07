@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Drawer,
@@ -35,6 +35,13 @@ export function AgePickerDrawer({
   const [selectedAge, setSelectedAge] = useState<AgeSelection>(
     initialAge ?? { years: 2, months: 0 },
   );
+
+  // Update selectedAge when initialAge changes (when drawer opens with new age)
+  useEffect(() => {
+    if (initialAge && isOpen) {
+      setSelectedAge(initialAge);
+    }
+  }, [initialAge, isOpen]);
 
   // Generate year options (0-18 years)
   const yearOptions = Array.from({ length: 19 }, (_, i) => ({

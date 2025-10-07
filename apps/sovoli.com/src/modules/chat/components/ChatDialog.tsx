@@ -22,8 +22,8 @@ import { Badge } from "@sovoli/ui/components/badge";
 import Image from "next/image";
 import { FamilyDrawer } from "./FamilyDrawer";
 import type { FamilyMember } from "./FamilyDrawer";
-import { ChatInput } from "./ChatInput/ChatInput";
 import type { ChatMessage } from "../types";
+import { AgeChatInput } from "./ChatInput/AgeChatInput";
 
 export interface ChatDialogProps {
   isOpen: boolean;
@@ -313,8 +313,7 @@ export function ChatDialog({
                                   return <div>Input streaming</div>;
                                 case "input-available":
                                   return (
-                                    <ChatInput
-                                      inputType="age"
+                                    <AgeChatInput
                                       onSubmit={(value) => {
                                         void (async () => {
                                           await addToolResult({
@@ -348,7 +347,12 @@ export function ChatDialog({
                                     />
                                   );
                                 case "output-available":
-                                  return <div>{part.output}</div>;
+                                  return (
+                                    <div>
+                                      {part.output.years} years and{" "}
+                                      {part.output.months} months
+                                    </div>
+                                  );
                               }
                               return <div>Calling tool getLocation</div>;
                             }
