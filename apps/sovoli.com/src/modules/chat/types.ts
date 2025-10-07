@@ -2,6 +2,7 @@ import type { InferUITools, ToolSet, UIDataTypes, UIMessage } from "ai";
 import { tool } from "ai";
 import { z } from "zod";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const tools = {
   getAge: tool({
     description: "Get the age of the user",
