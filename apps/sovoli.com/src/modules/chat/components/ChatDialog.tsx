@@ -163,14 +163,16 @@ export function ChatDialog({
     };
   }, [throttledCheckIfAtBottom]);
 
-  // Check scroll position when messages change
+  // Check scroll position when messages change and auto-scroll to bottom
   useEffect(() => {
     const timer = setTimeout(() => {
       checkIfAtBottom();
+      // Auto-scroll to bottom when new messages arrive
+      scrollToBottom();
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [messages.length]);
+  }, [messages.length, status]);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
@@ -443,6 +445,8 @@ export function ChatDialog({
                         </div>
                       </div>
                     )}
+                    {/* Scroll target for auto-scrolling */}
+                    <div ref={messagesEndRef} />
                   </div>
                 </div>
 
