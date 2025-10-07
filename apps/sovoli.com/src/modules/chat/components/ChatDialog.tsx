@@ -86,12 +86,14 @@ export function ChatDialog({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-  // Check if there's an unanswered guided input
-  const hasUnansweredInput = messages.some(
-    (message) =>
-      message.metadata?.isQuestion &&
-      !message.metadata.answered &&
-      message.role === "assistant",
+  // Check if there's a tool waiting for input
+  const hasUnansweredInput = messages.some((message) =>
+    message.parts.some(
+      (part) =>
+        part.type !== "text" &&
+        "state" in part &&
+        part.state === "input-available",
+    ),
   );
 
   // Check if user is at bottom of scroll
