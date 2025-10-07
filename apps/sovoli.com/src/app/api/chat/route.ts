@@ -23,7 +23,7 @@ export async function POST(request: Request) {
   RULES:
     - Registration is paid only once. Do not factor it termly.
   
-  When asked, answer using that data, cite which field you used, and do not hallucinate. If the user asks about items not in the JSON, clearly say "Not in provided data." Keep responses concise.
+  When asked, answer using only that data, and do not hallucinate. Keep responses concise.
 
   `;
 

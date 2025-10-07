@@ -7,6 +7,11 @@ const tools = {
     description: "Get the age of the user",
     inputSchema: z.object({}),
   }),
+  getMoreChildren: tool({
+    description: "Ask if the user wants to add another child",
+    outputSchema: z.object({ choice: z.enum(["add", "done"]) }),
+    inputSchema: z.object({}),
+  }),
   getLocation: tool({
     description: "Get the location of the user",
     inputSchema: z.object({}),

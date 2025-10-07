@@ -22,11 +22,8 @@ import { Badge } from "@sovoli/ui/components/badge";
 import Image from "next/image";
 import { FamilyDrawer } from "./FamilyDrawer";
 import type { FamilyMember } from "./FamilyDrawer";
-import { enrollmentFlow } from "../config/enrollmentFlow";
-import type { FlowStepId } from "../config/enrollmentFlow";
 import { ChatInput } from "./ChatInput/ChatInput";
 import type { ChatMessage } from "../types";
-import { lastAssistantMessageIsCompleteWithToolCalls } from "ai";
 
 export interface ChatDialogProps {
   isOpen: boolean;
@@ -53,7 +50,7 @@ export function ChatDialog({
       // sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
       messages: [
         {
-          id: "welcome",
+          id: crypto.randomUUID(),
           role: "assistant",
           parts: [
             {
@@ -63,7 +60,7 @@ export function ChatDialog({
           ],
         },
         {
-          id: "age",
+          id: crypto.randomUUID(),
           role: "assistant",
           parts: [
             {
@@ -73,22 +70,12 @@ export function ChatDialog({
             {
               type: "tool-getAge",
               state: "input-available",
-              toolCallId: "123",
+              toolCallId: crypto.randomUUID(),
               input: {},
             },
           ],
         },
       ],
-      onToolCall: ({ toolCall }) => {
-        console.log("Tool call:", toolCall);
-        if (toolCall.dynamic) {
-          return;
-        }
-
-        // if (toolCall.toolName === "getLocation") {
-        //   console.log("Tool call:", toolCall);
-        // }
-      },
     });
 
   const [inputValue, setInputValue] = useState("");
@@ -221,60 +208,6 @@ export function ChatDialog({
     }
   };
 
-  const handleGuidedResponse = (messageId: string, value: string) => {
-    const currentStepId = messageId as FlowStepId;
-    const step = enrollmentFlow[currentStepId];
-    const nextStepId = step.next;
-    const nextStep = nextStepId ? enrollmentFlow[nextStepId] : null;
-
-    // 1. Create a new user message
-    const userMessage: ChatMessage = {
-      id: crypto.randomUUID(),
-      role: "user" as const,
-      parts: [{ type: "text" as const, text: value }],
-    };
-
-    // 2. Mark the current guided message as answered
-    const updatedMessages = messages.map((m) =>
-      m.id === messageId
-        ? {
-            ...m,
-            metadata: m.metadata?.isQuestion
-              ? {
-                  ...m.metadata,
-                  answered: true,
-                }
-              : m.metadata,
-          }
-        : m,
-    );
-
-    // 3. Construct next guided assistant message if any
-    const nextMessage: ChatMessage | null = nextStep
-      ? {
-          id: nextStep.id,
-          role: "assistant" as const,
-          parts: [{ type: "text" as const, text: nextStep.text }],
-          metadata: nextStep.inputType
-            ? {
-                isQuestion: true,
-                inputType: nextStep.inputType,
-                answered: false,
-              }
-            : {
-                isQuestion: false,
-              },
-        }
-      : null;
-
-    // 4. Update messages in one go
-    setMessages([
-      ...updatedMessages,
-      userMessage,
-      ...(nextMessage ? [nextMessage] : []),
-    ]);
-  };
-
   return (
     <Drawer
       scrollBehavior="inside"
@@ -389,6 +322,27 @@ export function ChatDialog({
                                             toolCallId: callId,
                                             output: value,
                                           });
+
+                                          setMessages((prev) => [
+                                            ...prev,
+                                            {
+                                              role: "assistant",
+                                              id: crypto.randomUUID(),
+                                              parts: [
+                                                {
+                                                  type: "text",
+                                                  text: "Age updated, do you want to add another child?",
+                                                },
+                                                {
+                                                  type: "tool-getMoreChildren",
+                                                  state: "input-available",
+                                                  toolCallId:
+                                                    crypto.randomUUID(),
+                                                  input: {},
+                                                },
+                                              ],
+                                            },
+                                          ]);
                                         })();
                                       }}
                                     />
@@ -398,22 +352,70 @@ export function ChatDialog({
                               }
                               return <div>Calling tool getLocation</div>;
                             }
+                            case "tool-getMoreChildren": {
+                              const callId = part.toolCallId;
+
+                              switch (part.state) {
+                                case "input-streaming":
+                                  return <div>Input streaming</div>;
+                                case "input-available":
+                                  return (
+                                    <div>
+                                      <Button
+                                        onPress={() => {
+                                          void (async () => {
+                                            await addToolResult({
+                                              tool: "getMoreChildren",
+                                              toolCallId: callId,
+                                              output: { choice: "add" },
+                                            });
+
+                                            setMessages((prev) => [
+                                              ...prev,
+                                              {
+                                                id: crypto.randomUUID(),
+                                                role: "assistant",
+                                                parts: [
+                                                  {
+                                                    type: "text",
+                                                    text: "How old is your child?",
+                                                  },
+                                                  {
+                                                    type: "tool-getAge",
+                                                    state: "input-available",
+                                                    toolCallId:
+                                                      crypto.randomUUID(),
+                                                    input: {},
+                                                  },
+                                                ],
+                                              },
+                                            ]);
+                                          })();
+                                        }}
+                                      >
+                                        Add
+                                      </Button>
+                                      <Button
+                                        onPress={() => {
+                                          void (async () => {
+                                            await addToolResult({
+                                              tool: "getMoreChildren",
+                                              toolCallId: callId,
+                                              output: { choice: "done" },
+                                            });
+                                          })();
+                                        }}
+                                      >
+                                        Done
+                                      </Button>
+                                    </div>
+                                  );
+                                case "output-available":
+                                  return <div>{part.output.choice}</div>;
+                              }
+                            }
                           }
                         })}
-
-                        {message.metadata?.isQuestion &&
-                          !message.metadata.answered &&
-                          message.role === "assistant" && (
-                            <div className="flex flex-col items-center text-center py-6 border-b border-divider/50">
-                              <ChatInput
-                                key={`${message.id}-input`}
-                                inputType={message.metadata.inputType}
-                                onSubmit={(value) =>
-                                  handleGuidedResponse(message.id, value)
-                                }
-                              />
-                            </div>
-                          )}
                       </div>
                     ))}
                   </div>
