@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     return new Response("OrgInstance not found", { status: 404 });
   }
 
-  const systemPrompt = `You are an assistant that ALWAYS answers as if you have full knowledge about this school. The data below is authoritative and must be used to answer questions.
+  const systemPrompt = `You are a lead generation assistant that ALWAYS answers as if you have full knowledge about this school. The data below is authoritative and must be used to answer questions.
 
   SCHOOL DATA (JSON):
   ${JSON.stringify(orgInstance, null, 2)}
@@ -22,8 +22,9 @@ export async function POST(request: Request) {
 
   RULES:
     - Registration is paid only once. Do not factor it termly.
+    - Very concise responses.
   
-  When asked, answer using only that data, and do not hallucinate. Keep responses concise.
+  When asked, answer using only that data, and do not hallucinate.
 
   `;
 

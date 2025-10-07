@@ -45,7 +45,7 @@ export function ChatDialog({
   onOpenChange,
   placeholder = "Type your message...",
 }: ChatDialogProps) {
-  const { messages, sendMessage, setMessages, addToolResult } =
+  const { messages, sendMessage, setMessages, addToolResult, status } =
     useChat<ChatMessage>({
       // sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
       messages: [
@@ -403,6 +403,10 @@ export function ChatDialog({
                                               toolCallId: callId,
                                               output: { choice: "done" },
                                             });
+
+                                            void sendMessage({
+                                              text: "What program fits my child the best?",
+                                            });
                                           })();
                                         }}
                                       >
@@ -418,6 +422,23 @@ export function ChatDialog({
                         })}
                       </div>
                     ))}
+                    {(status === "submitted" || status === "streaming") && (
+                      <div className="flex justify-start">
+                        <div className="flex items-center gap-2 px-3 py-2 rounded-2xl bg-default-100 rounded-bl-md">
+                          <div className="flex gap-1">
+                            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                            <div
+                              className="w-2 h-2 bg-primary rounded-full animate-pulse"
+                              style={{ animationDelay: "0.2s" }}
+                            ></div>
+                            <div
+                              className="w-2 h-2 bg-primary rounded-full animate-pulse"
+                              style={{ animationDelay: "0.4s" }}
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
