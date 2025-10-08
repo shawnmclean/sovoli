@@ -24,6 +24,7 @@ import { FamilyDrawer } from "./FamilyDrawer";
 import type { FamilyMember } from "./FamilyDrawer";
 import type { ChatMessage } from "../types";
 import { AgeChatInput } from "./ChatInput/AgeChatInput";
+import { DefaultChatTransport } from "ai";
 
 export interface ChatDialogProps {
   isOpen: boolean;
@@ -45,11 +46,6 @@ export function ChatDialog({
   onOpenChange,
   placeholder = "Type your message...",
 }: ChatDialogProps) {
-  const { messages, sendMessage, setMessages, addToolResult, status } =
-    useChat<ChatMessage>({
-      // sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
-    });
-
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
@@ -59,6 +55,22 @@ export function ChatDialog({
   const [isFlowComplete, setIsFlowComplete] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const familyMembersRef = useRef<FamilyMember[]>([]);
+
+  // Keep ref in sync with state
+  useEffect(() => {
+    familyMembersRef.current = familyMembers;
+  }, [familyMembers]);
+
+  const { messages, sendMessage, setMessages, addToolResult, status } =
+    useChat<ChatMessage>({
+      transport: new DefaultChatTransport({
+        api: "/api/chat",
+        body: () => ({
+          familyMembers: familyMembersRef.current,
+        }),
+      }),
+    });
 
   // Helper function to simulate server response with delay
   const addMessageWithDelay = useCallback(
