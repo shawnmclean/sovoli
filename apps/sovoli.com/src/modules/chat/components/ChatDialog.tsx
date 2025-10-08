@@ -56,6 +56,7 @@ export function ChatDialog({
   const [isFamilyDrawerOpen, setIsFamilyDrawerOpen] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isSimulatingResponse, setIsSimulatingResponse] = useState(false);
+  const [isFlowComplete, setIsFlowComplete] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
@@ -211,6 +212,7 @@ export function ChatDialog({
     void (async () => {
       try {
         setIsLoading(true);
+        setIsFlowComplete(false); // Hide quick replies when user sends a message
         await sendMessage({ text: inputValue.trim() });
         setInputValue("");
       } catch (error) {
@@ -225,6 +227,7 @@ export function ChatDialog({
     void (async () => {
       try {
         setIsLoading(true);
+        setIsFlowComplete(false); // Hide quick replies when user uses a quick reply
         await sendMessage({ text: reply });
       } catch (error) {
         console.error("Error sending message:", error);
@@ -461,9 +464,12 @@ export function ChatDialog({
                                               output: { choice: "done" },
                                             });
 
-                                            void sendMessage({
+                                            await sendMessage({
                                               text: "What program fits my child the best?",
                                             });
+
+                                            // Mark flow as complete to show quick replies
+                                            setIsFlowComplete(true);
                                           })();
                                         }}
                                       >
@@ -521,23 +527,27 @@ export function ChatDialog({
 
             <DrawerFooter className="flex flex-col gap-2 p-4 border-t border-divider">
               {/* Quick Reply Buttons */}
-              {messages.length === 0 && (
-                <div className="w-full">
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {QUICK_REPLIES.map((reply) => (
-                      <Button
-                        key={reply}
-                        size="sm"
-                        variant="bordered"
-                        className="text-xs"
-                        onPress={() => handleQuickReply(reply)}
-                      >
-                        {reply}
-                      </Button>
-                    ))}
+              {isFlowComplete &&
+                !hasUnansweredInput &&
+                status !== "submitted" &&
+                status !== "streaming" &&
+                !isSimulatingResponse && (
+                  <div className="w-full">
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {QUICK_REPLIES.map((reply) => (
+                        <Button
+                          key={reply}
+                          size="sm"
+                          variant="bordered"
+                          className="text-xs"
+                          onPress={() => handleQuickReply(reply)}
+                        >
+                          {reply}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* Input Area */}
               <div className="flex w-full items-center gap-2">
