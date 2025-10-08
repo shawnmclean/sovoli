@@ -48,17 +48,50 @@ export function ChatDialog({
   const { messages, sendMessage, setMessages, addToolResult, status } =
     useChat<ChatMessage>({
       // sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
-      messages: [
+    });
+
+  const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
+  const [isFamilyDrawerOpen, setIsFamilyDrawerOpen] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  const [isSimulatingResponse, setIsSimulatingResponse] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  // Helper function to simulate server response with delay
+  const addMessageWithDelay = useCallback(
+    async (message: ChatMessage, delayMs = 1000) => {
+      setIsSimulatingResponse(true);
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+      setMessages((prev) => [...prev, message]);
+      setIsSimulatingResponse(false);
+    },
+    [setMessages],
+  );
+
+  // Send initial messages with delay when chat opens
+  useEffect(() => {
+    if (!isOpen || messages.length > 0) return;
+
+    const sendInitialMessages = async () => {
+      // First greeting message
+      await addMessageWithDelay(
         {
           id: crypto.randomUUID(),
           role: "assistant",
           parts: [
             {
               type: "text",
-              text: "Hello! I'm here to help you with any questions you have.",
+              text: "Hello! For me to help you, I need to know a little bit about you.",
             },
           ],
         },
+        800,
+      );
+
+      // Second message asking for age
+      await addMessageWithDelay(
         {
           id: crypto.randomUUID(),
           role: "assistant",
@@ -75,16 +108,12 @@ export function ChatDialog({
             },
           ],
         },
-      ],
-    });
+        1000,
+      );
+    };
 
-  const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
-  const [isFamilyDrawerOpen, setIsFamilyDrawerOpen] = useState(false);
-  const [showScrollButton, setShowScrollButton] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const messagesContainerRef = useRef<HTMLDivElement>(null);
+    void sendInitialMessages();
+  }, [isOpen, messages.length, addMessageWithDelay]);
 
   // Check if there's a tool waiting for input
   const hasUnansweredInput = messages.some((message) =>
@@ -174,7 +203,7 @@ export function ChatDialog({
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [messages.length, status]);
+  }, [messages.length, status, isSimulatingResponse]);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
@@ -353,26 +382,22 @@ export function ChatDialog({
                                             output: value,
                                           });
 
-                                          setMessages((prev) => [
-                                            ...prev,
-                                            {
-                                              role: "assistant",
-                                              id: crypto.randomUUID(),
-                                              parts: [
-                                                {
-                                                  type: "text",
-                                                  text: "Age updated, do you want to add another child?",
-                                                },
-                                                {
-                                                  type: "tool-getMoreChildren",
-                                                  state: "input-available",
-                                                  toolCallId:
-                                                    crypto.randomUUID(),
-                                                  input: {},
-                                                },
-                                              ],
-                                            },
-                                          ]);
+                                          await addMessageWithDelay({
+                                            role: "assistant",
+                                            id: crypto.randomUUID(),
+                                            parts: [
+                                              {
+                                                type: "text",
+                                                text: "Age updated, do you want to add another child?",
+                                              },
+                                              {
+                                                type: "tool-getMoreChildren",
+                                                state: "input-available",
+                                                toolCallId: crypto.randomUUID(),
+                                                input: {},
+                                              },
+                                            ],
+                                          });
                                         })();
                                       }}
                                     />
@@ -405,26 +430,23 @@ export function ChatDialog({
                                               output: { choice: "add" },
                                             });
 
-                                            setMessages((prev) => [
-                                              ...prev,
-                                              {
-                                                id: crypto.randomUUID(),
-                                                role: "assistant",
-                                                parts: [
-                                                  {
-                                                    type: "text",
-                                                    text: "How old is your child?",
-                                                  },
-                                                  {
-                                                    type: "tool-getAge",
-                                                    state: "input-available",
-                                                    toolCallId:
-                                                      crypto.randomUUID(),
-                                                    input: {},
-                                                  },
-                                                ],
-                                              },
-                                            ]);
+                                            await addMessageWithDelay({
+                                              id: crypto.randomUUID(),
+                                              role: "assistant",
+                                              parts: [
+                                                {
+                                                  type: "text",
+                                                  text: "How old is your child?",
+                                                },
+                                                {
+                                                  type: "tool-getAge",
+                                                  state: "input-available",
+                                                  toolCallId:
+                                                    crypto.randomUUID(),
+                                                  input: {},
+                                                },
+                                              ],
+                                            });
                                           })();
                                         }}
                                       >
@@ -457,7 +479,9 @@ export function ChatDialog({
                         })}
                       </div>
                     ))}
-                    {(status === "submitted" || status === "streaming") && (
+                    {(status === "submitted" ||
+                      status === "streaming" ||
+                      isSimulatingResponse) && (
                       <div className="flex justify-start">
                         <div className="flex items-center gap-2 px-3 py-2 rounded-2xl bg-default-100 rounded-bl-md">
                           <div className="flex gap-1">
