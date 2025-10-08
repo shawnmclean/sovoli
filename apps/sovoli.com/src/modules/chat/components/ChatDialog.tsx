@@ -273,7 +273,15 @@ export function ChatDialog({
                     onPress={() => setIsFamilyDrawerOpen(true)}
                     variant="light"
                   >
-                    <UsersIcon className="w-4 h-4" />
+                    <Badge
+                      color="primary"
+                      content={familyMembers.length || ""}
+                      size="sm"
+                      placement="bottom-right"
+                      isInvisible={familyMembers.length === 0}
+                    >
+                      <UsersIcon className="w-4 h-4" />
+                    </Badge>
                   </Button>
                   <Button isIconOnly onPress={onClose} variant="light">
                     <EllipsisIcon className="w-4 h-4" />
@@ -320,6 +328,25 @@ export function ChatDialog({
                                     <AgeChatInput
                                       onSubmit={(value) => {
                                         void (async () => {
+                                          // Calculate total age for the family member
+                                          const totalYears =
+                                            value.years + value.months / 12;
+
+                                          // Create new family member
+                                          const newMember: FamilyMember = {
+                                            id: crypto.randomUUID(),
+                                            name: `Child ${familyMembers.length + 1}`,
+                                            relationship: "Child",
+                                            age: Math.floor(totalYears),
+                                            notes: `${value.years} years, ${value.months} months`,
+                                          };
+
+                                          // Add to family members
+                                          setFamilyMembers((prev) => [
+                                            ...prev,
+                                            newMember,
+                                          ]);
+
                                           await addToolResult({
                                             tool: "getAge",
                                             toolCallId: callId,
