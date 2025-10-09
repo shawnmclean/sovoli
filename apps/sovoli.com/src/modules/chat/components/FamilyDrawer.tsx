@@ -102,6 +102,7 @@ export function FamilyDrawer({
 
   return (
     <Drawer
+      hideCloseButton
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       placement="bottom"
@@ -144,7 +145,7 @@ export function FamilyDrawer({
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      size="sm"
+                      size="lg"
                     />
                     <Input
                       placeholder="Relationship (e.g., Child, Spouse)"
@@ -155,7 +156,7 @@ export function FamilyDrawer({
                           relationship: e.target.value,
                         })
                       }
-                      size="sm"
+                      size="lg"
                     />
                   </div>
 
@@ -167,7 +168,7 @@ export function FamilyDrawer({
                       onChange={(e) =>
                         setFormData({ ...formData, age: e.target.value })
                       }
-                      size="sm"
+                      size="lg"
                     />
                     <Input
                       placeholder="Notes (optional)"
@@ -175,7 +176,7 @@ export function FamilyDrawer({
                       onChange={(e) =>
                         setFormData({ ...formData, notes: e.target.value })
                       }
-                      size="sm"
+                      size="lg"
                     />
                   </div>
 

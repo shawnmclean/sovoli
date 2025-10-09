@@ -361,6 +361,27 @@ export function ChatDialog({
                                   text={part.text}
                                 />
                               );
+
+                            case "tool-setupFamily": {
+                              switch (part.state) {
+                                case "input-streaming":
+                                  return <div>Input streaming</div>;
+                                case "input-available":
+                                  return <div>Family Input available</div>;
+                                case "output-available":
+                                  return (
+                                    <div className="mt-2 px-2 py-1 bg-default-100 rounded-md">
+                                      <span className="text-default-600 text-xs">
+                                        {part.output.success
+                                          ? "✓ Family setup completed"
+                                          : "✗ Family setup failed"}
+                                      </span>
+                                    </div>
+                                  );
+                              }
+
+                              return <div>Calling tool setupFamily</div>;
+                            }
                             case "tool-getAge": {
                               const callId = part.toolCallId;
 
@@ -403,7 +424,7 @@ export function ChatDialog({
                                             parts: [
                                               {
                                                 type: "text",
-                                                text: "Age updated, do you want to add another child?",
+                                                text: "Thank you! Now, do you want to add another child?",
                                               },
                                               {
                                                 type: "tool-getMoreChildren",
@@ -419,9 +440,14 @@ export function ChatDialog({
                                   );
                                 case "output-available":
                                   return (
-                                    <div>
-                                      {part.output.years} years and{" "}
-                                      {part.output.months} months
+                                    <div className="mt-2 px-2 py-1 bg-default-100 rounded-md">
+                                      <span className="text-default-600 text-xs">
+                                        ✓ Age recorded: {part.output.years}{" "}
+                                        years
+                                        {part.output.months > 0 && (
+                                          <> {part.output.months}m</>
+                                        )}
+                                      </span>
                                     </div>
                                   );
                               }
@@ -433,64 +459,75 @@ export function ChatDialog({
                               switch (part.state) {
                                 case "input-streaming":
                                   return <div>Input streaming</div>;
-                                case "input-available":
-                                  return (
-                                    <div>
-                                      <Button
-                                        onPress={() => {
-                                          void (async () => {
-                                            await addToolResult({
-                                              tool: "getMoreChildren",
-                                              toolCallId: callId,
-                                              output: { choice: "add" },
-                                            });
+                                case "input-available": {
+                                  const handleAddChild = async () => {
+                                    await addToolResult({
+                                      tool: "getMoreChildren",
+                                      toolCallId: callId,
+                                      output: { choice: "add" },
+                                    });
 
-                                            await addMessageWithDelay({
-                                              id: crypto.randomUUID(),
-                                              role: "assistant",
-                                              parts: [
-                                                {
-                                                  type: "text",
-                                                  text: "How old is your child?",
-                                                },
-                                                {
-                                                  type: "tool-getAge",
-                                                  state: "input-available",
-                                                  toolCallId:
-                                                    crypto.randomUUID(),
-                                                  input: {},
-                                                },
-                                              ],
-                                            });
-                                          })();
-                                        }}
+                                    await addMessageWithDelay({
+                                      id: crypto.randomUUID(),
+                                      role: "assistant",
+                                      parts: [
+                                        {
+                                          type: "text",
+                                          text: "How old is your child?",
+                                        },
+                                        {
+                                          type: "tool-getAge",
+                                          state: "input-available",
+                                          toolCallId: crypto.randomUUID(),
+                                          input: {},
+                                        },
+                                      ],
+                                    });
+                                  };
+
+                                  const handleContinue = async () => {
+                                    await addToolResult({
+                                      tool: "getMoreChildren",
+                                      toolCallId: callId,
+                                      output: { choice: "done" },
+                                    });
+
+                                    await sendMessage({
+                                      text: "What program fits my child the best?",
+                                    });
+
+                                    // Mark flow as complete to show quick replies
+                                    setIsFlowComplete(true);
+                                  };
+
+                                  return (
+                                    <div className="flex gap-3 mt-3">
+                                      <Button
+                                        variant="bordered"
+                                        onPress={handleAddChild}
+                                        className="flex-1"
                                       >
-                                        Add
+                                        Yes
                                       </Button>
                                       <Button
-                                        onPress={() => {
-                                          void (async () => {
-                                            await addToolResult({
-                                              tool: "getMoreChildren",
-                                              toolCallId: callId,
-                                              output: { choice: "done" },
-                                            });
-
-                                            await sendMessage({
-                                              text: "What program fits my child the best?",
-                                            });
-
-                                            // Mark flow as complete to show quick replies
-                                            setIsFlowComplete(true);
-                                          })();
-                                        }}
+                                        onPress={handleContinue}
+                                        className="flex-1"
                                       >
-                                        Done
+                                        No, Continue
                                       </Button>
                                     </div>
                                   );
+                                }
                                 case "output-available":
-                                  return <div>{part.output.choice}</div>;
+                                  return (
+                                    <div className="mt-2 px-2 py-1 bg-default-100 rounded-md">
+                                      <span className="text-default-600 text-xs">
+                                        {part.output.choice === "add"
+                                          ? "→ Adding another child"
+                                          : "✓ Family setup complete"}
+                                      </span>
+                                    </div>
+                                  );
                               }
                             }
                           }

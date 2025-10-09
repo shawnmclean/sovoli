@@ -67,6 +67,7 @@ export function AgePickerDrawer({
   return (
     <Drawer
       isOpen={isOpen}
+      hideCloseButton
       onOpenChange={onOpenChange}
       placement="bottom"
       size="md"

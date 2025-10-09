@@ -11,50 +11,64 @@ interface AgeChatInputProps {
 
 export function AgeChatInput({ onSubmit }: AgeChatInputProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [selectedInitialAge, setSelectedInitialAge] = useState<
-    AgeSelection | undefined
-  >();
-
-  // Age button options as tuples [label, AgeSelection]
-  const ageOptions: [string, AgeSelection][] = [
-    ["2 years", { years: 2, months: 0 }],
-    ["3 years", { years: 3, months: 0 }],
-    ["4 years", { years: 4, months: 0 }],
-    ["5 years", { years: 5, months: 0 }],
-    ["6 years", { years: 6, months: 0 }],
-    ["7 years", { years: 7, months: 0 }],
-    ["8+ years", { years: 8, months: 0 }],
-  ];
+  const [showExtendedAges, setShowExtendedAges] = useState(false);
 
   const handleAgeSelected = (ageSelection: AgeSelection) => {
     onSubmit(ageSelection);
   };
 
-  const handleAgeButtonClick = (ageSelection: AgeSelection) => {
-    setSelectedInitialAge(ageSelection);
+  const handleOpen2to6Drawer = () => {
     setIsDrawerOpen(true);
+  };
+
+  const handleDirectAgeSelect = (years: number) => {
+    onSubmit({ years, months: 0 });
+  };
+
+  const handleShow10Plus = () => {
+    setShowExtendedAges(true);
   };
 
   return (
     <>
       <div className="flex flex-wrap gap-2 mt-2">
-        {ageOptions.map(([label, ageSelection]) => (
+        <Button size="sm" variant="bordered" onPress={handleOpen2to6Drawer}>
+          2-6 years
+        </Button>
+        {[6, 7, 8, 9, 10].map((age) => (
           <Button
-            key={label}
+            key={age}
             size="sm"
             variant="bordered"
-            onPress={() => handleAgeButtonClick(ageSelection)}
+            onPress={() => handleDirectAgeSelect(age)}
           >
-            {label}
+            {age} years
           </Button>
         ))}
+        {!showExtendedAges ? (
+          <Button size="sm" variant="bordered" onPress={handleShow10Plus}>
+            10+ years
+          </Button>
+        ) : (
+          <>
+            {Array.from({ length: 9 }, (_, i) => i + 11).map((age) => (
+              <Button
+                key={age}
+                size="sm"
+                variant="bordered"
+                onPress={() => handleDirectAgeSelect(age)}
+              >
+                {age} years
+              </Button>
+            ))}
+          </>
+        )}
       </div>
 
       <AgePickerDrawer
         isOpen={isDrawerOpen}
         onOpenChange={setIsDrawerOpen}
         onAgeSelected={handleAgeSelected}
-        initialAge={selectedInitialAge}
       />
     </>
   );
