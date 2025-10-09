@@ -2,6 +2,7 @@ import type { UIMessage } from "ai";
 import { convertToModelMessages, streamText } from "ai";
 import { getOrgInstanceByUsername } from "~/app/(tenants)/w/[username]/lib/getOrgInstanceByUsername";
 import { tools } from "~/modules/chat/types";
+import { getProgramSuggestions } from "~/modules/chat/lib/getProgramSuggestions";
 
 export const maxDuration = 30;
 
@@ -52,11 +53,33 @@ export async function POST(request: Request) {
 
   `;
 
+  // Create tool implementations with access to orgInstance and familyMembers
+  const toolsWithImplementations = {
+    ...tools,
+    programSuggestions: {
+      ...tools.programSuggestions,
+      execute: async ({ familyMemberIds }: { familyMemberIds: string[] }) => {
+        const programs = orgInstance.academicModule?.programs ?? [];
+
+        // Filter family members by the requested IDs
+        const requestedMembers = familyMembers.filter((m) =>
+          familyMemberIds.includes(m.id),
+        );
+
+        const suggestions = await Promise.resolve(
+          getProgramSuggestions(programs, requestedMembers),
+        );
+
+        return { suggestions };
+      },
+    },
+  };
+
   const result = streamText({
     model: "openai/gpt-5-nano",
     system: systemPrompt,
     messages: convertToModelMessages(messages),
-    tools,
+    tools: toolsWithImplementations,
   });
 
   return result.toUIMessageStreamResponse();

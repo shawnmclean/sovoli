@@ -9,6 +9,7 @@ import {
   SendIcon,
   UsersIcon,
   ChevronDownIcon,
+  ExternalLinkIcon,
 } from "lucide-react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import {
@@ -492,8 +493,27 @@ export function ChatDialog({
                                       output: { choice: "done" },
                                     });
 
-                                    await sendMessage({
-                                      text: "What program fits my child the best?",
+                                    // Call programSuggestions tool instead of sending message
+                                    await addMessageWithDelay({
+                                      id: crypto.randomUUID(),
+                                      role: "assistant",
+                                      parts: [
+                                        {
+                                          type: "text",
+                                          text: "Let me find the best programs for your children...",
+                                        },
+                                        {
+                                          type: "tool-programSuggestions",
+                                          state: "input-available",
+                                          toolCallId: crypto.randomUUID(),
+                                          input: {
+                                            familyMemberIds:
+                                              familyMembersRef.current.map(
+                                                (m) => m.id,
+                                              ),
+                                          },
+                                        },
+                                      ],
                                     });
 
                                     // Mark flow as complete to show quick replies
@@ -526,6 +546,144 @@ export function ChatDialog({
                                           ? "→ Adding another child"
                                           : "✓ Family setup complete"}
                                       </span>
+                                    </div>
+                                  );
+                              }
+                              break;
+                            }
+                            case "tool-programSuggestions": {
+                              const callId = part.toolCallId;
+
+                              switch (part.state) {
+                                case "input-streaming":
+                                  return (
+                                    <div className="flex items-center gap-2 text-sm text-default-600">
+                                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary" />
+                                      Finding best programs...
+                                    </div>
+                                  );
+                                case "input-available":
+                                  // Auto-execute the tool to fetch program suggestions from API
+                                  void (async () => {
+                                    try {
+                                      const response = await fetch(
+                                        "/api/programs/suggestions",
+                                        {
+                                          method: "POST",
+                                          headers: {
+                                            "Content-Type": "application/json",
+                                          },
+                                          body: JSON.stringify({
+                                            familyMembers:
+                                              familyMembersRef.current,
+                                          }),
+                                        },
+                                      );
+
+                                      const data = (await response.json()) as {
+                                        suggestions: {
+                                          familyMemberId: string;
+                                          familyMemberName: string;
+                                          programs: {
+                                            id: string;
+                                            slug: string;
+                                            name: string;
+                                            description?: string;
+                                            ageRange?: string;
+                                            price?: number;
+                                            currency?: string;
+                                            billingCycle?: string;
+                                          }[];
+                                        }[];
+                                      };
+
+                                      await addToolResult({
+                                        tool: "programSuggestions",
+                                        toolCallId: callId,
+                                        output: data,
+                                      });
+                                      scrollToBottom();
+                                    } catch (error) {
+                                      console.error(
+                                        "Error fetching program suggestions:",
+                                        error,
+                                      );
+                                    }
+                                  })();
+                                  return (
+                                    <div className="flex items-center gap-2 text-sm text-default-600">
+                                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary" />
+                                      Analyzing program options...
+                                    </div>
+                                  );
+                                case "output-available":
+                                  return (
+                                    <div className="mt-3 space-y-3">
+                                      {part.output.suggestions.map(
+                                        (suggestion) => (
+                                          <div
+                                            key={suggestion.familyMemberId}
+                                            className="space-y-2"
+                                          >
+                                            <h4 className="text-sm font-medium text-default-600">
+                                              For {suggestion.familyMemberName}
+                                            </h4>
+                                            <div className="space-y-2">
+                                              {suggestion.programs.map(
+                                                (program) => (
+                                                  <a
+                                                    key={program.id}
+                                                    href={`/programs/${program.slug}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-between gap-3 bg-default-50 hover:bg-default-100 border border-divider hover:border-primary/50 rounded-lg p-3 transition-all group"
+                                                  >
+                                                    <div className="flex-1 min-w-0">
+                                                      <div className="flex items-center gap-1.5">
+                                                        <h5 className="font-medium text-foreground group-hover:text-primary truncate transition-colors">
+                                                          {program.name}
+                                                        </h5>
+                                                        <ExternalLinkIcon className="w-3 h-3 text-default-400 group-hover:text-primary shrink-0 transition-colors" />
+                                                      </div>
+                                                      <div className="flex items-center gap-2 mt-0.5">
+                                                        {program.ageRange && (
+                                                          <p className="text-xs text-default-500">
+                                                            {program.ageRange}
+                                                          </p>
+                                                        )}
+                                                        {program.price && (
+                                                          <>
+                                                            {program.ageRange && (
+                                                              <span className="text-xs text-default-400">
+                                                                •
+                                                              </span>
+                                                            )}
+                                                            <p className="text-xs font-medium text-primary">
+                                                              {program.currency}{" "}
+                                                              {program.price.toLocaleString()}
+                                                              {program.billingCycle &&
+                                                                program.billingCycle !==
+                                                                  "one-time" && (
+                                                                  <span className="text-default-500 font-normal">
+                                                                    {" "}
+                                                                    /{" "}
+                                                                    {
+                                                                      program.billingCycle
+                                                                    }
+                                                                  </span>
+                                                                )}
+                                                            </p>
+                                                          </>
+                                                        )}
+                                                      </div>
+                                                    </div>
+                                                  </a>
+                                                ),
+                                              )}
+                                            </div>
+                                          </div>
+                                        ),
+                                      )}
                                     </div>
                                   );
                               }

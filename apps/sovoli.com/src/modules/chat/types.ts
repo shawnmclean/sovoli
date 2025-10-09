@@ -59,6 +59,34 @@ export const tools = {
         .optional(),
     }),
   }),
+  programSuggestions: tool({
+    description: `Get program suggestions for family members based on their age and needs.`,
+    inputSchema: z.object({
+      familyMemberIds: z
+        .array(z.string())
+        .describe("IDs of family members to get program suggestions for"),
+    }),
+    outputSchema: z.object({
+      suggestions: z.array(
+        z.object({
+          familyMemberId: z.string(),
+          familyMemberName: z.string(),
+          programs: z.array(
+            z.object({
+              id: z.string(),
+              slug: z.string(),
+              name: z.string(),
+              description: z.string().optional(),
+              ageRange: z.string().optional(),
+              price: z.number().optional(),
+              currency: z.string().optional(),
+              billingCycle: z.string().optional(),
+            }),
+          ),
+        }),
+      ),
+    }),
+  }),
 } satisfies ToolSet;
 
 export const chatInputTypes = ["age", "location"] as const;
