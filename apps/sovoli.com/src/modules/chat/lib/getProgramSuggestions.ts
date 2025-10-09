@@ -147,17 +147,6 @@ export function getProgramSuggestions(
         const priceValue = currency && amount ? amount[currency] : undefined;
         const billingCycle = itemToUse?.billingCycle;
 
-        console.log("Program pricing debug:", {
-          programName: program.name ?? program.slug,
-          hasCurrentCycle: !!currentCycle,
-          cycleId: currentCycle?.id,
-          pricingItemsCount: pricingItems?.length ?? 0,
-          hasTuition: !!tuitionItem,
-          currency,
-          priceValue,
-          billingCycle,
-        });
-
         return {
           id: program.id,
           slug: program.slug,
