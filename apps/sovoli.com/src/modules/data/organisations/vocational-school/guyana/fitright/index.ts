@@ -54,6 +54,16 @@ export const FITRIGHT_ORG: OrgInstance = {
         isPrimary: true,
       },
     ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/fitrightacademy",
+      },
+      {
+        platform: "website",
+        url: "https://www.fitright.gy",
+      },
+    ],
   },
   websiteModule: FITRIGHT_ACADEMY_WEBSITE,
   academicModule: FITRIGHT_ACADEMIC,
