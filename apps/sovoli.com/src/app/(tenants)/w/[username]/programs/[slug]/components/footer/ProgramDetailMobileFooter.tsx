@@ -14,6 +14,7 @@ import { Skeleton } from "@sovoli/ui/components/skeleton";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
 import { PriceButton } from "./price/PriceButton";
 import { SignupDialog } from "~/modules/auth/components/SignupDialog";
+import { Link } from "@sovoli/ui/components/link";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
@@ -74,11 +75,12 @@ export function ProgramDetailMobileFooter({
 
           {/* Right side - Reserve button */}
           <Button
+            as={Link}
             variant="shadow"
             radius="lg"
             startContent={<MessageSquareShareIcon size={16} />}
             className={gradientBorderButton()}
-            onPress={onOpen}
+            href="/chat"
           >
             Chat Now
           </Button>

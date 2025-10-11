@@ -57,6 +57,7 @@ export function ChatDialog({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const familyMembersRef = useRef<FamilyMember[]>([]);
+  const hasInitializedMessagesRef = useRef(false);
 
   // Keep ref in sync with state
   useEffect(() => {
@@ -86,7 +87,15 @@ export function ChatDialog({
 
   // Send initial messages with delay when chat opens
   useEffect(() => {
-    if (!isOpen || messages.length > 0) return;
+    if (!isOpen) {
+      // Reset initialization flag when chat closes
+      hasInitializedMessagesRef.current = false;
+      return;
+    }
+
+    // Only initialize once
+    if (hasInitializedMessagesRef.current) return;
+    hasInitializedMessagesRef.current = true;
 
     const sendInitialMessages = async () => {
       // First greeting message
@@ -127,7 +136,7 @@ export function ChatDialog({
     };
 
     void sendInitialMessages();
-  }, [isOpen, messages.length, addMessageWithDelay]);
+  }, [isOpen, addMessageWithDelay]);
 
   // Check if there's a tool waiting for input
   const hasUnansweredInput = messages.some((message) =>
