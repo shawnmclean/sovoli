@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import {
-  Drawer,
   DrawerBody,
   DrawerContent,
   DrawerFooter,
@@ -28,8 +27,6 @@ import { AgeChatInput } from "./ChatInput/AgeChatInput";
 import { DefaultChatTransport } from "ai";
 
 export interface ChatDialogProps {
-  isOpen: boolean;
-  onOpenChange: (isOpen: boolean) => void;
   placeholder?: string;
   title?: string;
 }
@@ -43,8 +40,6 @@ const QUICK_REPLIES = [
 ];
 
 export function ChatDialog({
-  isOpen,
-  onOpenChange,
   placeholder = "Type your message...",
 }: ChatDialogProps) {
   const [inputValue, setInputValue] = useState("");
@@ -85,14 +80,8 @@ export function ChatDialog({
     [setMessages],
   );
 
-  // Send initial messages with delay when chat opens
+  // Send initial messages with delay when component mounts
   useEffect(() => {
-    if (!isOpen) {
-      // Reset initialization flag when chat closes
-      hasInitializedMessagesRef.current = false;
-      return;
-    }
-
     // Only initialize once
     if (hasInitializedMessagesRef.current) return;
     hasInitializedMessagesRef.current = true;
@@ -136,7 +125,7 @@ export function ChatDialog({
     };
 
     void sendInitialMessages();
-  }, [isOpen, addMessageWithDelay]);
+  }, [addMessageWithDelay]);
 
   // Check if there's a tool waiting for input
   const hasUnansweredInput = messages.some((message) =>
@@ -267,33 +256,7 @@ export function ChatDialog({
   };
 
   return (
-    <Drawer
-      scrollBehavior="inside"
-      isOpen={isOpen}
-      onOpenChange={onOpenChange}
-      hideCloseButton
-      size="full"
-      placement="bottom"
-      backdrop="opaque"
-      motionProps={{
-        variants: {
-          enter: {
-            opacity: 1,
-            y: 0,
-            transition: {
-              duration: 0.3,
-            },
-          },
-          exit: {
-            y: 100,
-            opacity: 0,
-            transition: {
-              duration: 0.3,
-            },
-          },
-        },
-      }}
-    >
+    <>
       <DrawerContent>
         {(onClose) => (
           <>
@@ -808,7 +771,7 @@ export function ChatDialog({
         familyMembers={familyMembers}
         onFamilyMembersChange={setFamilyMembers}
       />
-    </Drawer>
+    </>
   );
 }
 
