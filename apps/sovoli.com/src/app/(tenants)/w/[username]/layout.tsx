@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getOrgInstanceByUsername } from "./lib/getOrgInstanceByUsername";
 import type { Organization, WithContext } from "schema-dts";
-import { GeneralNavigationDrawer } from "./components/GeneralNavigationDrawer";
+import { NavigationDrawer } from "./components/NavigationDrawer";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -112,9 +112,7 @@ export default async function Layout({ children, params, modals }: Props) {
         }}
       />
       {children}
-      <GeneralNavigationDrawer fallbackPath="/">
-        {modals}
-      </GeneralNavigationDrawer>
+      <NavigationDrawer fallbackPath="/">{modals}</NavigationDrawer>
     </>
   );
 }

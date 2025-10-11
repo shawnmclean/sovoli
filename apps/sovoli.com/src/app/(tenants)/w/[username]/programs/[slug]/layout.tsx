@@ -275,7 +275,9 @@ export default async function Layout({ children, params, modals }: Props) {
         program={programToUse}
         defaultCycle={defaultCycle}
       >
-        <NavigationDrawer program={programToUse}>{modals}</NavigationDrawer>
+        <NavigationDrawer fallbackPath={`/programs/${programToUse.slug}`}>
+          {modals}
+        </NavigationDrawer>
         {group && <ProgramGroupTracking group={group} />}
         <ProgramTracking program={programToUse} defaultCycle={defaultCycle} />
 

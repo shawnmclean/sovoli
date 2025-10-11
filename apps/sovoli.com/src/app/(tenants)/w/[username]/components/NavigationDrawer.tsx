@@ -7,7 +7,7 @@ import {
   usePathname,
 } from "next/navigation";
 import { useEffect, useRef } from "react";
-import type { Program } from "~/modules/academics/types";
+
 // Simple hook to track the previous path
 function usePreviousPath() {
   const pathname = usePathname();
@@ -20,14 +20,35 @@ function usePreviousPath() {
   return previousPath.current;
 }
 
-interface NavigationDrawerProps {
-  program: Program;
-  children: React.ReactNode;
+// Helper to check if a path is internal to the app
+function isInternalPath(path: string | null): boolean {
+  if (!path) return false;
+
+  // Check if it's a relative path starting with /
+  if (path.startsWith("/")) return true;
+
+  // Check if it's an absolute URL on the same origin
+  try {
+    const url = new URL(path, window.location.origin);
+    return url.origin === window.location.origin;
+  } catch {
+    return false;
+  }
 }
 
-export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
+interface NavigationDrawerProps {
+  children: React.ReactNode;
+  fallbackPath?: string;
+  slotName?: string;
+}
+
+export function NavigationDrawer({
+  children,
+  fallbackPath = "/",
+  slotName = "modals",
+}: NavigationDrawerProps) {
   const router = useRouter();
-  const segment = useSelectedLayoutSegment("modals");
+  const segment = useSelectedLayoutSegment(slotName);
   const previousPath = usePreviousPath();
   const { isOpen, onClose } = useDisclosure({
     isOpen: segment !== "(slot)" && segment !== null,
@@ -36,17 +57,18 @@ export function NavigationDrawer({ program, children }: NavigationDrawerProps) {
   const handleClose = () => {
     onClose();
 
-    // Only use back navigation if we're confident the previous page is the program details page
-    // Otherwise, navigate to the programs details page
-    if (previousPath === `/programs/${program.slug}`) {
+    // Only use back navigation if the previous path is internal to our app
+    // Otherwise, navigate to the fallback path
+    if (isInternalPath(previousPath)) {
       router.back();
     } else {
-      router.push(`/programs/${program.slug}`);
+      router.push(fallbackPath);
     }
   };
 
   return (
     <Drawer
+      scrollBehavior="inside"
       isOpen={isOpen}
       onClose={handleClose}
       size="full"
