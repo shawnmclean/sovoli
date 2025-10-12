@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
 import {
@@ -21,6 +21,7 @@ import { tv } from "tailwind-variants";
 
 import type { OrgInstanceWithWebsite } from "../../lib/types";
 import { MobileSearchBar } from "./MobileSearchBar";
+import { Skeleton } from "@sovoli/ui/components/skeleton";
 
 const navbarBaseStyles = tv({
   base: "border-default-100 bg-transparent",
@@ -221,7 +222,9 @@ export function TenantNavbar({
         </NavbarContent>
 
         {/* Mobile Search Bar */}
-        <MobileSearchBar />
+        <Suspense fallback={<Skeleton className="w-full h-10" />}>
+          <MobileSearchBar />
+        </Suspense>
       </Navbar>
     </>
   );
