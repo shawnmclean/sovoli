@@ -1,7 +1,7 @@
 "use client";
 
-import { ChatDialogExample } from "~/modules/chat/components/ChatDialogExample";
 import { Drawer } from "@sovoli/ui/components/drawer";
+import { ChatDialog } from "~/modules/chat/components/ChatDialog";
 import { useRouter } from "next/navigation";
 
 export default function ChatPage() {
@@ -35,7 +35,7 @@ export default function ChatPage() {
         },
       }}
     >
-      <ChatDialogExample />
+      <ChatDialog />
     </Drawer>
   );
 }

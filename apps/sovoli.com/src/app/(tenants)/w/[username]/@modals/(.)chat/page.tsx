@@ -1,5 +1,5 @@
-import { ChatDialogExample } from "~/modules/chat/components/ChatDialogExample";
+import { ChatDialog } from "~/modules/chat/components/ChatDialog";
 
 export default function ChatPage() {
-  return <ChatDialogExample />;
+  return <ChatDialog />;
 }
