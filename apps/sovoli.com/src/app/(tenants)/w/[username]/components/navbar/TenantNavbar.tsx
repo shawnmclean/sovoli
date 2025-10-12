@@ -16,10 +16,11 @@ import {
   NavbarContent,
   NavbarItem,
 } from "@sovoli/ui/components/navbar";
-import { ChevronDownIcon, SearchIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
 import type { OrgInstanceWithWebsite } from "../../lib/types";
+import { MobileSearchBar } from "./MobileSearchBar";
 
 const navbarBaseStyles = tv({
   base: "border-default-100 bg-transparent",
@@ -220,18 +221,7 @@ export function TenantNavbar({
         </NavbarContent>
 
         {/* Mobile Search Bar */}
-        <div className="md:hidden flex-1">
-          <Button
-            as={Link}
-            href="/search"
-            variant="bordered"
-            fullWidth
-            className="w-full justify-start text-default-400 bg-default-100"
-            startContent={<SearchIcon width={16} />}
-          >
-            What program fits your child?
-          </Button>
-        </div>
+        <MobileSearchBar />
       </Navbar>
     </>
   );
