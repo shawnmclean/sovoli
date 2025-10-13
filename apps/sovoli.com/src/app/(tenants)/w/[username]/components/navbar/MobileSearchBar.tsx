@@ -15,6 +15,7 @@ import posthog from "posthog-js";
 import { AgeChatInput } from "~/modules/chat/components/ChatInput/AgeChatInput";
 import type { AgeSelection } from "~/modules/chat/components/ChatInput/AgePickerDrawer";
 import type { ProgramSuggestion } from "~/modules/chat/lib/getProgramSuggestions";
+import { useTenant } from "../TenantProvider";
 import { ProgramSearchItem } from "./ProgramSearchItem";
 
 interface ProgramSuggestionsResponse {
@@ -37,6 +38,7 @@ type LoadingState =
     };
 
 export function MobileSearchBar() {
+  const { tenant } = useTenant();
   const [isOpen, setIsOpen] = useState(false);
   const [loadingState, setLoadingState] = useState<LoadingState>({
     type: "idle",
@@ -78,10 +80,6 @@ export function MobileSearchBar() {
     // Set loading state
     setLoadingState({ type: "loading" });
 
-    // Extract username from pathname (/w/[username]/...)
-    const pathParts = window.location.pathname.split("/");
-    const username = pathParts[2]; // /w/[username]/...
-
     // Calculate age in years (converting months to fractional years if needed)
     const ageInYears = ageSelection.years + ageSelection.months / 12;
 
@@ -90,18 +88,18 @@ export function MobileSearchBar() {
       age_years: ageSelection.years,
       age_months: ageSelection.months,
       age_total_years: ageInYears,
-      username,
+      tenant,
     });
 
     try {
       // Call the API to get program suggestions
+      // Note: tenant is automatically extracted by middleware from the request
       const response = await fetch("/api/programs/suggestions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username,
           familyMembers: [
             {
               id: "temp-1",
@@ -136,7 +134,7 @@ export function MobileSearchBar() {
           age_years: ageSelection.years,
           age_months: ageSelection.months,
           age_total_years: ageInYears,
-          username,
+          tenant,
           result: "found",
           programs_count: programs.length,
         });
@@ -148,7 +146,7 @@ export function MobileSearchBar() {
           age_years: ageSelection.years,
           age_months: ageSelection.months,
           age_total_years: ageInYears,
-          username,
+          tenant,
           result: "not_found",
           programs_count: 0,
         });
@@ -162,7 +160,7 @@ export function MobileSearchBar() {
         age_years: ageSelection.years,
         age_months: ageSelection.months,
         age_total_years: ageInYears,
-        username,
+        tenant,
         result: "error",
         programs_count: 0,
       });

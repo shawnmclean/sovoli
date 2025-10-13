@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getOrgInstanceByUsername } from "./lib/getOrgInstanceByUsername";
 import type { Organization, WithContext } from "schema-dts";
 import { NavigationDrawer } from "./components/NavigationDrawer";
+import { TenantProvider } from "./components/TenantProvider";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -104,7 +105,7 @@ export default async function Layout({ children, params, modals }: Props) {
   };
 
   return (
-    <>
+    <TenantProvider tenant={username}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -113,6 +114,6 @@ export default async function Layout({ children, params, modals }: Props) {
       />
       {children}
       <NavigationDrawer fallbackPath="/">{modals}</NavigationDrawer>
-    </>
+    </TenantProvider>
   );
 }
