@@ -9,17 +9,17 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const url = request.url;
 
-  // Skip rewriting for static assets (images, styles, js, etc.)
+  // Skip processing for static assets (images, styles, js, etc.)
   if (
     pathname.startsWith("/ingest/") ||
     pathname.startsWith("/_next/") ||
     pathname.startsWith("/images/") || // Adjust this to your static asset paths
-    pathname.startsWith("/api/") ||
     /\.(png|jpg|jpeg|svg|gif|ico|webp|avif|js|css|map|json)$/i.test(pathname)
   ) {
     return NextResponse.next();
   }
 
+  const isApiRoute = pathname.startsWith("/api/");
   let subdomain: string | null | undefined = null;
 
   if (url.includes("localhost") || url.includes("127.0.0.1")) {
@@ -66,6 +66,14 @@ export async function middleware(request: NextRequest) {
 
   // If we have a subdomain (either from regular URL or preview deployment)
   if (subdomain) {
+    if (isApiRoute) {
+      // For API routes, pass the tenant via header instead of rewriting
+      const response = NextResponse.next();
+      response.headers.set("x-tenant", subdomain);
+      return response;
+    }
+
+    // For page routes, rewrite to the tenant path
     return NextResponse.rewrite(
       new URL(`/w/${subdomain}${pathname}`, request.url),
     );
@@ -99,13 +107,13 @@ export const config = {
   matcher: [
     /*
      * Match all paths except for:
-     * 1. /api routes
-     * 2. /_next (Next.js internals)
-     * 3. /examples (inside /public)
-     * 4. all root files inside /public (e.g. /favicon.ico)
+     * 1. /_next (Next.js internals)
+     * 2. /examples (inside /public)
+     * 3. all root files inside /public (e.g. /favicon.ico)
      */
     "/sitemap.xml",
     "/robots.txt",
-    "/((?!api|_next|examples|[\\w-]+\\.\\w+).*)",
+    "/api/:path*",
+    "/((?!_next|examples|[\\w-]+\\.\\w+).*)",
   ],
 };

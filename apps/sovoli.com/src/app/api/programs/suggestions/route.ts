@@ -1,5 +1,5 @@
-import { getOrgInstanceByUsername } from "~/app/(tenants)/w/[username]/lib/getOrgInstanceByUsername";
 import { getProgramSuggestions } from "~/modules/chat/lib/getProgramSuggestions";
+import { withOrgInstance } from "~/app/api/lib/withOrgInstance";
 
 export const maxDuration = 30;
 
@@ -11,22 +11,17 @@ interface FamilyMember {
   notes?: string;
 }
 
-export async function POST(request: Request) {
-  const body = (await request.json()) as {
-    familyMembers: FamilyMember[];
-    username?: string;
-  };
+export const POST = withOrgInstance(
+  async (request, { orgInstance, tenant }) => {
+    const body = (await request.json()) as {
+      familyMembers: FamilyMember[];
+    };
 
-  const { familyMembers, username = "magy" } = body;
+    const { familyMembers } = body;
 
-  const orgInstance = await getOrgInstanceByUsername(username);
+    const programs = orgInstance.academicModule?.programs ?? [];
+    const suggestions = getProgramSuggestions(programs, familyMembers);
 
-  if (!orgInstance) {
-    return new Response("OrgInstance not found", { status: 404 });
-  }
-
-  const programs = orgInstance.academicModule?.programs ?? [];
-  const suggestions = getProgramSuggestions(programs, familyMembers);
-
-  return Response.json({ suggestions });
-}
+    return Response.json({ suggestions, tenant });
+  },
+);

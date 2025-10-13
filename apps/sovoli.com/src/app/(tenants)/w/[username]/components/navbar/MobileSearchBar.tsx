@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Drawer,
@@ -11,6 +11,7 @@ import {
 } from "@sovoli/ui/components/drawer";
 import { SearchIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import posthog from "posthog-js";
 import { AgeChatInput } from "~/modules/chat/components/ChatInput/AgeChatInput";
 import type { AgeSelection } from "~/modules/chat/components/ChatInput/AgePickerDrawer";
 import type { ProgramSuggestion } from "~/modules/chat/lib/getProgramSuggestions";
@@ -46,6 +47,16 @@ export function MobileSearchBar() {
   // Support both controlled state and URL param
   const drawerIsOpen = isOpen || urlParamOpen;
 
+  // Track when search is opened
+  useEffect(() => {
+    if (drawerIsOpen) {
+      const source = urlParamOpen ? "url_param" : "button";
+      posthog.capture("mobile_search_opened", {
+        source,
+      });
+    }
+  }, [drawerIsOpen, urlParamOpen]);
+
   const handleClose = () => {
     // Close controlled state
     setIsOpen(false);
@@ -73,6 +84,14 @@ export function MobileSearchBar() {
 
     // Calculate age in years (converting months to fractional years if needed)
     const ageInYears = ageSelection.years + ageSelection.months / 12;
+
+    // Track search attempt
+    posthog.capture("mobile_search_submitted", {
+      age_years: ageSelection.years,
+      age_months: ageSelection.months,
+      age_total_years: ageInYears,
+      username,
+    });
 
     try {
       // Call the API to get program suggestions
@@ -111,12 +130,42 @@ export function MobileSearchBar() {
           type: "found",
           programs,
         });
+
+        // Track successful search
+        posthog.capture("mobile_search_results", {
+          age_years: ageSelection.years,
+          age_months: ageSelection.months,
+          age_total_years: ageInYears,
+          username,
+          result: "found",
+          programs_count: programs.length,
+        });
       } else {
         setLoadingState({ type: "not-found" });
+
+        // Track no results
+        posthog.capture("mobile_search_results", {
+          age_years: ageSelection.years,
+          age_months: ageSelection.months,
+          age_total_years: ageInYears,
+          username,
+          result: "not_found",
+          programs_count: 0,
+        });
       }
     } catch (error) {
       console.error("Error fetching program suggestions:", error);
       setLoadingState({ type: "not-found" });
+
+      // Track error
+      posthog.capture("mobile_search_results", {
+        age_years: ageSelection.years,
+        age_months: ageSelection.months,
+        age_total_years: ageInYears,
+        username,
+        result: "error",
+        programs_count: 0,
+      });
     }
   };
 
