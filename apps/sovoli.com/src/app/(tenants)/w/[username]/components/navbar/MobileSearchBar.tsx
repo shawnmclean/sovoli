@@ -85,9 +85,9 @@ export function MobileSearchBar() {
 
     // Track search attempt
     posthog.capture("Search", {
-      age_years: ageSelection.years,
-      age_months: ageSelection.months,
-      age_total_years: ageInYears,
+      // This param is needed for Meta CAPI
+      search_string:
+        ageSelection.years + " years " + ageSelection.months + " months",
       tenant,
     });
 
