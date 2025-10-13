@@ -196,7 +196,10 @@ export function MobileSearchBar() {
                     <h2 className="text-base font-medium mb-2">
                       How old is your child?
                     </h2>
-                    <AgeChatInput onSubmit={handleAgeSubmit} />
+                    <AgeChatInput
+                      onSubmit={handleAgeSubmit}
+                      isDisabled={loadingState.type !== "idle"}
+                    />
 
                     {/* Loading states */}
                     {loadingState.type === "loading" && (

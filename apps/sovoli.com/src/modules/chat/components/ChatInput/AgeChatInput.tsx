@@ -7,9 +7,13 @@ import type { AgeSelection } from "./AgePickerDrawer";
 
 interface AgeChatInputProps {
   onSubmit: (ageSelection: AgeSelection) => void;
+  isDisabled?: boolean;
 }
 
-export function AgeChatInput({ onSubmit }: AgeChatInputProps) {
+export function AgeChatInput({
+  onSubmit,
+  isDisabled = false,
+}: AgeChatInputProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showExtendedAges, setShowExtendedAges] = useState(false);
 
@@ -32,7 +36,12 @@ export function AgeChatInput({ onSubmit }: AgeChatInputProps) {
   return (
     <>
       <div className="flex flex-wrap gap-2 mt-2">
-        <Button size="sm" variant="bordered" onPress={handleOpen2to6Drawer}>
+        <Button
+          size="sm"
+          variant="bordered"
+          onPress={handleOpen2to6Drawer}
+          isDisabled={isDisabled}
+        >
           2-6 years
         </Button>
         {[6, 7, 8, 9, 10].map((age) => (
@@ -41,12 +50,18 @@ export function AgeChatInput({ onSubmit }: AgeChatInputProps) {
             size="sm"
             variant="bordered"
             onPress={() => handleDirectAgeSelect(age)}
+            isDisabled={isDisabled}
           >
             {age} years
           </Button>
         ))}
         {!showExtendedAges ? (
-          <Button size="sm" variant="bordered" onPress={handleShow10Plus}>
+          <Button
+            size="sm"
+            variant="bordered"
+            onPress={handleShow10Plus}
+            isDisabled={isDisabled}
+          >
             10+ years
           </Button>
         ) : (
@@ -57,6 +72,7 @@ export function AgeChatInput({ onSubmit }: AgeChatInputProps) {
                 size="sm"
                 variant="bordered"
                 onPress={() => handleDirectAgeSelect(age)}
+                isDisabled={isDisabled}
               >
                 {age} years
               </Button>
