@@ -10,10 +10,11 @@ import {
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { SearchIcon } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { AgeChatInput } from "~/modules/chat/components/ChatInput/AgeChatInput";
 import type { AgeSelection } from "~/modules/chat/components/ChatInput/AgePickerDrawer";
 import type { ProgramSuggestion } from "~/modules/chat/lib/getProgramSuggestions";
+import { ProgramSearchItem } from "./ProgramSearchItem";
 
 interface ProgramSuggestionsResponse {
   suggestions: ProgramSuggestion[];
@@ -23,14 +24,22 @@ type LoadingState =
   | { type: "idle" }
   | { type: "loading" }
   | { type: "not-found" }
-  | { type: "found"; programName: string; countdown: number };
+  | {
+      type: "found";
+      programs: {
+        id: string;
+        slug: string;
+        name: string;
+        ageRange?: string;
+        imageUrl?: string;
+      }[];
+    };
 
 export function MobileSearchBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [loadingState, setLoadingState] = useState<LoadingState>({
     type: "idle",
   });
-  const router = useRouter();
   const searchParams = useSearchParams();
   const urlParamOpen = searchParams.get("s") === "true";
 
@@ -48,7 +57,7 @@ export function MobileSearchBar() {
       const params = new URLSearchParams(searchParams.toString());
       params.delete("s");
       const newUrl = params.toString() ? `?${params.toString()}` : "";
-      router.push(window.location.pathname + newUrl);
+      window.history.pushState({}, "", window.location.pathname + newUrl);
     }
   };
 
@@ -93,43 +102,15 @@ export function MobileSearchBar() {
 
       const data = (await response.json()) as ProgramSuggestionsResponse;
 
-      // Get the first suggested program
+      // Get all suggested programs
       const firstSuggestion = data.suggestions[0];
-      const firstProgram = firstSuggestion?.programs[0];
+      const programs = firstSuggestion?.programs ?? [];
 
-      if (firstProgram?.slug && firstProgram.name) {
-        // Start countdown from 3
-        const programSlug = firstProgram.slug;
-        const programName = firstProgram.name;
-
+      if (programs.length > 0) {
         setLoadingState({
           type: "found",
-          programName,
-          countdown: 3,
+          programs,
         });
-
-        // Countdown: 3 -> 2 -> 1 -> navigate
-        setTimeout(() => {
-          setLoadingState({
-            type: "found",
-            programName,
-            countdown: 2,
-          });
-
-          setTimeout(() => {
-            setLoadingState({
-              type: "found",
-              programName,
-              countdown: 1,
-            });
-
-            setTimeout(() => {
-              router.push(`programs/${programSlug}`);
-              setIsOpen(false);
-              setLoadingState({ type: "idle" });
-            }, 1000);
-          }, 1000);
-        }, 1000);
       } else {
         setLoadingState({ type: "not-found" });
       }
@@ -198,7 +179,10 @@ export function MobileSearchBar() {
                     </h2>
                     <AgeChatInput
                       onSubmit={handleAgeSubmit}
-                      isDisabled={loadingState.type !== "idle"}
+                      isDisabled={
+                        loadingState.type !== "idle" &&
+                        loadingState.type !== "found"
+                      }
                     />
 
                     {/* Loading states */}
@@ -215,10 +199,18 @@ export function MobileSearchBar() {
                     )}
 
                     {loadingState.type === "found" && (
-                      <div className="mt-4 p-3 bg-success-50 text-success-900 rounded-lg text-sm">
-                        We found the program:{" "}
-                        <strong>{loadingState.programName}</strong>, redirecting
-                        in {loadingState.countdown}...
+                      <div className="mt-4 space-y-2">
+                        <p className="text-sm text-success-900 font-medium mb-3">
+                          We found {loadingState.programs.length} program
+                          {loadingState.programs.length !== 1 ? "s" : ""} for
+                          your child:
+                        </p>
+                        {loadingState.programs.map((program) => (
+                          <ProgramSearchItem
+                            key={program.id}
+                            program={program}
+                          />
+                        ))}
                       </div>
                     )}
                   </div>
@@ -227,7 +219,9 @@ export function MobileSearchBar() {
 
               <DrawerFooter className="border-t border-divider p-4">
                 <div className="text-sm text-default-500 text-center w-full">
-                  Select an age to continue
+                  {loadingState.type === "found"
+                    ? "Select a program to view details"
+                    : "Select an age to continue"}
                 </div>
               </DrawerFooter>
             </>

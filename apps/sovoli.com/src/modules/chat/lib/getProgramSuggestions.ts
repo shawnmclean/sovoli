@@ -45,6 +45,7 @@ export interface ProgramSuggestion {
     price?: number;
     currency?: string;
     billingCycle?: string;
+    imageUrl?: string;
   }[];
 }
 
@@ -159,6 +160,9 @@ export function getProgramSuggestions(
           price: priceValue,
           currency: currency,
           billingCycle: billingCycle,
+          imageUrl:
+            program.photos?.[0]?.url ??
+            program.standardProgramVersion?.program.image,
         };
       }),
     };
