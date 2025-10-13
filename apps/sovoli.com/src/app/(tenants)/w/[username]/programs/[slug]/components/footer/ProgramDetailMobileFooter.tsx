@@ -75,12 +75,11 @@ export function ProgramDetailMobileFooter({
 
           {/* Right side - Reserve button */}
           <Button
-            as={Link}
             variant="shadow"
             radius="lg"
             startContent={<MessageSquareShareIcon size={16} />}
             className={gradientBorderButton()}
-            href="/chat"
+            onPress={onOpen}
           >
             Chat Now
           </Button>
