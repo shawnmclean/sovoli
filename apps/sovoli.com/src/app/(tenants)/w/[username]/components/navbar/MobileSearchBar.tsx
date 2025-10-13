@@ -128,42 +128,12 @@ export function MobileSearchBar() {
           type: "found",
           programs,
         });
-
-        // Track successful search
-        posthog.capture("mobile_search_results", {
-          age_years: ageSelection.years,
-          age_months: ageSelection.months,
-          age_total_years: ageInYears,
-          tenant,
-          result: "found",
-          programs_count: programs.length,
-        });
       } else {
         setLoadingState({ type: "not-found" });
-
-        // Track no results
-        posthog.capture("mobile_search_results", {
-          age_years: ageSelection.years,
-          age_months: ageSelection.months,
-          age_total_years: ageInYears,
-          tenant,
-          result: "not_found",
-          programs_count: 0,
-        });
       }
     } catch (error) {
       console.error("Error fetching program suggestions:", error);
       setLoadingState({ type: "not-found" });
-
-      // Track error
-      posthog.capture("mobile_search_results", {
-        age_years: ageSelection.years,
-        age_months: ageSelection.months,
-        age_total_years: ageInYears,
-        tenant,
-        result: "error",
-        programs_count: 0,
-      });
     }
   };
 
