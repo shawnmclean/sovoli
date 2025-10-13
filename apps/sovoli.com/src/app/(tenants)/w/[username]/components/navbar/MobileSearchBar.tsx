@@ -84,7 +84,7 @@ export function MobileSearchBar() {
     const ageInYears = ageSelection.years + ageSelection.months / 12;
 
     // Track search attempt
-    posthog.capture("mobile_search_submitted", {
+    posthog.capture("Search", {
       age_years: ageSelection.years,
       age_months: ageSelection.months,
       age_total_years: ageInYears,
