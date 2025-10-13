@@ -14,7 +14,6 @@ import { Skeleton } from "@sovoli/ui/components/skeleton";
 import { getWhatsAppContact } from "~/utils/whatsappUtils";
 import { PriceButton } from "./price/PriceButton";
 import { SignupDialog } from "~/modules/auth/components/SignupDialog";
-import { Link } from "@sovoli/ui/components/link";
 
 export interface ProgramDetailMobileFooterProps {
   orgInstance: OrgInstance;
