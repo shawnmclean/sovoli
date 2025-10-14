@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import posthog from "posthog-js";
 import { AgeChatInput } from "~/modules/chat/components/ChatInput/AgeChatInput";
 import type { AgeSelection } from "~/modules/chat/components/ChatInput/AgePickerDrawer";
@@ -30,16 +30,29 @@ type LoadingState =
 interface ProgramSearchContentProps {
   onSearchStart?: () => void;
   onSearchComplete?: (programsFound: number) => void;
+  source?: "mobile_drawer" | "search_page";
 }
 
 export function ProgramSearchContent({
   onSearchStart,
   onSearchComplete,
+  source = "search_page",
 }: ProgramSearchContentProps) {
   const { tenant } = useTenant();
   const [loadingState, setLoadingState] = useState<LoadingState>({
     type: "idle",
   });
+  const hasTrackedRef = useRef(false);
+
+  // Track when search is opened (only once)
+  useEffect(() => {
+    if (!hasTrackedRef.current) {
+      posthog.capture("mobile_search_opened", {
+        source,
+      });
+      hasTrackedRef.current = true;
+    }
+  }, [source]);
 
   useEffect(() => {
     if (loadingState.type === "found") {
@@ -112,10 +125,6 @@ export function ProgramSearchContent({
       console.error("Error fetching program suggestions:", error);
       setLoadingState({ type: "not-found" });
     }
-  };
-
-  const resetSearch = () => {
-    setLoadingState({ type: "idle" });
   };
 
   return (

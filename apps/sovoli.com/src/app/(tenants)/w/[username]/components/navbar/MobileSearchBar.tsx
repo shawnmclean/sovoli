@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Drawer,
@@ -10,42 +10,15 @@ import {
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { SearchIcon } from "lucide-react";
-import { useSearchParams } from "next/navigation";
-import posthog from "posthog-js";
 import { ProgramSearchContent } from "../search/ProgramSearchContent";
 
 export function MobileSearchBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [programsFound, setProgramsFound] = useState(0);
-  const searchParams = useSearchParams();
-  const urlParamOpen = searchParams.get("s") === "true";
-
-  // Support both controlled state and URL param
-  const drawerIsOpen = isOpen || urlParamOpen;
-
-  // Track when search is opened
-  useEffect(() => {
-    if (drawerIsOpen) {
-      const source = urlParamOpen ? "url_param" : "button";
-      posthog.capture("mobile_search_opened", {
-        source,
-      });
-    }
-  }, [drawerIsOpen, urlParamOpen]);
 
   const handleClose = () => {
-    // Close controlled state
     setIsOpen(false);
-    // Reset programs found
     setProgramsFound(0);
-
-    // If opened via URL param, remove it
-    if (urlParamOpen) {
-      const params = new URLSearchParams(searchParams.toString());
-      params.delete("s");
-      const newUrl = params.toString() ? `?${params.toString()}` : "";
-      window.history.pushState({}, "", window.location.pathname + newUrl);
-    }
   };
 
   return (
@@ -63,7 +36,7 @@ export function MobileSearchBar() {
       </div>
       <Drawer
         scrollBehavior="inside"
-        isOpen={drawerIsOpen}
+        isOpen={isOpen}
         onClose={handleClose}
         size="full"
         placement="bottom"
@@ -101,6 +74,7 @@ export function MobileSearchBar() {
 
               <DrawerBody className="p-4">
                 <ProgramSearchContent
+                  source="mobile_drawer"
                   onSearchComplete={(count) => setProgramsFound(count)}
                 />
               </DrawerBody>

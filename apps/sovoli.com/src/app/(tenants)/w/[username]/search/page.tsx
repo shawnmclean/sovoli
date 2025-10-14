@@ -22,7 +22,7 @@ export default function SearchPage() {
           Search for programs that match your child&apos;s age
         </p>
       </div>
-      <ProgramSearchContent />
+      <ProgramSearchContent source="search_page" />
     </div>
   );
 }
