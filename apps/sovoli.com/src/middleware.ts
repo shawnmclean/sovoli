@@ -7,99 +7,82 @@ import { GetUsernameByDomainQuery } from "./modules/websites/services/queries/Ge
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const url = request.url;
 
-  // Skip processing for static assets (images, styles, js, etc.)
-  if (
-    pathname.startsWith("/ingest/") ||
-    pathname.startsWith("/_next/") ||
-    pathname.startsWith("/images/") || // Adjust this to your static asset paths
-    /\.(png|jpg|jpeg|svg|gif|ico|webp|avif|js|css|map|json)$/i.test(pathname)
-  ) {
-    return NextResponse.next();
-  }
+  // --- 1. Skip static assets and internal paths ---
+  if (isStaticAsset(pathname)) return NextResponse.next();
 
+  const host = request.headers.get("host") ?? "";
+  const hostname = host.split(":")[0]?.toLowerCase() ?? "";
   const isApiRoute = pathname.startsWith("/api/");
-  let subdomain: string | null | undefined = null;
+  const rootDomain = webConfig.rootDomain.replace(/^www\./, "").toLowerCase();
 
-  if (url.includes("localhost") || url.includes("127.0.0.1")) {
-    // Try to extract subdomain from the full URL for local development
-    // This handles cases where browsers normalize the hostname
-    const fullUrlMatch = /http:\/\/([^.]+)\.localhost/.exec(url);
-    if (fullUrlMatch?.[1]) {
-      subdomain = fullUrlMatch[1];
-    } else {
-      // Standard host header approach as fallback
-      const host = request.headers.get("host") ?? "";
-      const hostname = host.split(":")[0];
+  // --- 2. Handle localhost / preview / production cases ---
+  let tenant: string | null = null;
 
-      if (hostname?.includes(".localhost")) {
-        subdomain = hostname.split(".")[0];
-      }
-    }
-  } else {
-    // Production/non-localhost handling
-    const host = request.headers.get("host") ?? "";
-    const hostname = host.split(":")[0];
-    const rootDomainFormatted = webConfig.rootDomain.split(":")[0];
-
-    // Handle preview deployment URLs (tenant---branch-name.vercel.app)
-    const isPreviewDeployment =
-      hostname?.includes("---") && hostname.endsWith(".vercel.app");
-
-    if (isPreviewDeployment) {
-      // Extract subdomain from preview URL (format: tenant---branch-name.vercel.app)
-      const parts = hostname?.split("---");
-      if (parts && parts.length > 0) {
-        subdomain = parts[0];
-      }
-    } else if (hostname && rootDomainFormatted) {
-      const isRootDomain =
-        hostname === rootDomainFormatted ||
-        hostname === `www.${rootDomainFormatted}`;
-
-      if (!isRootDomain) {
-        subdomain = await resolveTenantFromHost(hostname, rootDomainFormatted);
-      }
-    }
+  if (isLocalhost(hostname)) {
+    tenant = extractLocalTenant(request.url, hostname);
+  } else if (isPreviewHost(hostname)) {
+    tenant = extractPreviewTenant(hostname);
+  } else if (!isRootHost(hostname, rootDomain)) {
+    tenant = await resolveTenant(hostname);
   }
 
-  // If we have a subdomain (either from regular URL or preview deployment)
-  if (subdomain) {
-    if (isApiRoute) {
-      // For API routes, pass the tenant via header instead of rewriting
-      const response = NextResponse.next();
-      response.headers.set("x-tenant", subdomain);
-      return response;
-    }
+  // --- 3. If no tenant, serve normally ---
+  if (!tenant) return NextResponse.next();
 
-    // For page routes, rewrite to the tenant path
-    return NextResponse.rewrite(
-      new URL(`/w/${subdomain}${pathname}`, request.url),
-    );
+  // --- 4. Handle API routes separately (no rewrites) ---
+  if (isApiRoute) {
+    const res = NextResponse.next();
+    res.headers.set("x-tenant", tenant);
+    res.headers.set("vary", "host");
+    return res;
   }
 
-  // On the root domain, allow normal access
-  return NextResponse.next();
+  const rewritten = NextResponse.rewrite(
+    new URL(`/w/${tenant}${pathname}`, request.url),
+  );
+  rewritten.headers.set("x-tenant", tenant);
+  rewritten.headers.set("vary", "host");
+  return rewritten;
 }
 
-export async function resolveTenantFromHost(
-  hostname: string,
-  rootDomain: string,
-): Promise<string | null> {
-  const isSubdomain =
-    hostname.endsWith(`.${rootDomain}`) &&
-    hostname !== rootDomain &&
-    hostname !== `www.${rootDomain}`;
+function isStaticAsset(path: string): boolean {
+  return (
+    path.startsWith("/_next/") ||
+    path.startsWith("/ingest/") ||
+    path.startsWith("/images/") ||
+    /\.(png|jpg|jpeg|svg|gif|ico|webp|avif|js|css|map|json)$/i.test(path)
+  );
+}
 
-  if (isSubdomain) {
-    return hostname.replace(`.${rootDomain}`, "");
-  }
+function isLocalhost(host: string): boolean {
+  return host.includes("localhost") || host.includes("127.0.0.1");
+}
 
+function isPreviewHost(host: string): boolean {
+  return host.includes("---") && host.endsWith(".vercel.app");
+}
+
+function isRootHost(host: string, rootDomain: string): boolean {
+  return host === rootDomain || host === `www.${rootDomain}`;
+}
+
+function extractLocalTenant(url: string, host: string): string | null {
+  const match = /http:\/\/([^.]+)\.localhost/.exec(url);
+  if (match?.[1]) return match[1];
+  if (host.includes(".localhost")) return host.split(".")[0] ?? null;
+  return null;
+}
+
+function extractPreviewTenant(host: string): string | null {
+  return host.split("---")[0] ?? null;
+}
+
+async function resolveTenant(hostname: string): Promise<string | null> {
+  // Custom domain → lookup
   const { username } = await bus.queryProcessor.execute(
     new GetUsernameByDomainQuery(hostname),
   );
-
   return username ?? null;
 }
 
