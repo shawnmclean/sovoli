@@ -133,9 +133,7 @@ export function ProgramSearchContent({
         <h2 className="text-base font-medium mb-2">How old is your child?</h2>
         <AgeChatInput
           onSubmit={handleAgeSubmit}
-          isDisabled={
-            loadingState.type !== "idle" && loadingState.type !== "found"
-          }
+          isDisabled={loadingState.type === "loading"}
         />
 
         {/* Loading states */}
