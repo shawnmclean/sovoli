@@ -8,7 +8,6 @@ import { OrgGalleryCarousel } from "./components/OrgGalleryCarousel";
 import { OrgLandingSection } from "./components/OrgLandingSection";
 import { ProgramGroupListing } from "./components/ProgramGroupListing";
 import { ProgramSearchContent } from "../components/search/ProgramSearchContent";
-import { Divider } from "@sovoli/ui/components/divider";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);

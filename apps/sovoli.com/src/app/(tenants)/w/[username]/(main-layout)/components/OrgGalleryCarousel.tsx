@@ -124,7 +124,7 @@ export function OrgGalleryCarousel({ orgInstance }: OrgGalleryCarouselProps) {
   }
 
   return (
-    <div className="w-full max-w-full md:max-w-md mx-auto relative aspect-square">
+    <div className="w-full max-w-full md:max-w-2xl mx-auto relative aspect-[16/9]">
       <Carousel
         opts={{
           align: "start",
@@ -136,13 +136,13 @@ export function OrgGalleryCarousel({ orgInstance }: OrgGalleryCarouselProps) {
         <CarouselContent className="-ml-0">
           {photos.map((photo, index) => (
             <CarouselItem key={index} className="basis-full pl-0">
-              <div className="w-full max-w-md aspect-square mx-auto relative">
+              <div className="w-full max-w-2xl aspect-[16/9] mx-auto relative">
                 <CldImage
                   src={photo.publicId}
                   priority={index === 0}
                   alt={`Organization photo ${index + 1}`}
-                  width={448}
-                  height={448}
+                  width={800}
+                  height={450}
                   crop="fill"
                   sizes="100vw"
                   quality="auto"
