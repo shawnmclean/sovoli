@@ -20,7 +20,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
 import type { OrgInstanceWithWebsite } from "../../lib/types";
-import { MobileSearchBar } from "./MobileSearchBar";
+// import { MobileSearchBar } from "./MobileSearchBar";
 
 const navbarBaseStyles = tv({
   base: "border-default-100 bg-transparent",
@@ -135,7 +135,7 @@ export function TenantNavbar({
       <Navbar
         maxWidth="xl"
         classNames={{
-          base: navbarBaseStyles({ menuOpen: isMenuOpen }),
+          base: `${navbarBaseStyles({ menuOpen: isMenuOpen })} hidden md:block`,
           wrapper: "w-full justify-center",
           item: "hidden md:flex",
         }}
@@ -221,7 +221,7 @@ export function TenantNavbar({
         </NavbarContent>
 
         {/* Mobile Search Bar */}
-        <MobileSearchBar />
+        {/* <MobileSearchBar /> */}
       </Navbar>
     </>
   );
