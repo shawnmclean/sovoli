@@ -37,8 +37,9 @@ export function AgeChatInput({
     <>
       <div className="flex flex-wrap gap-2 mt-2">
         <Button
-          size="sm"
-          variant="bordered"
+          color="primary"
+          variant="flat"
+          radius="md"
           onPress={handleOpen2to6Drawer}
           isDisabled={isDisabled}
         >
@@ -47,8 +48,9 @@ export function AgeChatInput({
         {[6, 7, 8, 9, 10].map((age) => (
           <Button
             key={age}
-            size="sm"
-            variant="bordered"
+            color="primary"
+            variant="flat"
+            radius="md"
             onPress={() => handleDirectAgeSelect(age)}
             isDisabled={isDisabled}
           >
@@ -57,8 +59,9 @@ export function AgeChatInput({
         ))}
         {!showExtendedAges ? (
           <Button
-            size="sm"
+            color="primary"
             variant="bordered"
+            radius="md"
             onPress={handleShow10Plus}
             isDisabled={isDisabled}
           >
@@ -69,8 +72,9 @@ export function AgeChatInput({
             {Array.from({ length: 9 }, (_, i) => i + 11).map((age) => (
               <Button
                 key={age}
-                size="sm"
-                variant="bordered"
+                color="primary"
+                variant="flat"
+                radius="md"
                 onPress={() => handleDirectAgeSelect(age)}
                 isDisabled={isDisabled}
               >

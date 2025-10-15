@@ -128,9 +128,11 @@ export function ProgramSearchContent({
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 my-2">
       <div>
-        <h2 className="text-base font-medium mb-2">How old is your child?</h2>
+        <h2 className="text-default-600 font-medium mb-2">
+          Tap your child’s age
+        </h2>
         <AgeChatInput
           onSubmit={handleAgeSubmit}
           isDisabled={loadingState.type === "loading"}
