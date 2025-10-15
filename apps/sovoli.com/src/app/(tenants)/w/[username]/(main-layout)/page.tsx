@@ -39,9 +39,12 @@ export default async function WebsitePage({
 
       <div className="container mx-auto max-w-6xl space-y-6 px-6 py-4">
         <OrgLandingSection orgInstance={orgInstance} />
-
-        <ProgramSearchContent />
-        <Divider />
+        {orgInstance.org.categories.includes("private-school") && (
+          <>
+            <ProgramSearchContent />
+            <Divider />
+          </>
+        )}
 
         <ProgramGroupListing orgInstance={orgInstance} />
       </div>
