@@ -16,6 +16,10 @@ export async function middleware(request: NextRequest) {
   const isApiRoute = pathname.startsWith("/api/");
   const rootDomain = webConfig.rootDomain.replace(/^www\./, "").toLowerCase();
 
+  if (isRootHost(hostname, rootDomain)) {
+    return NextResponse.next();
+  }
+
   // --- 2. Handle localhost / preview / production cases ---
   let tenant: string | null = null;
 
@@ -23,12 +27,12 @@ export async function middleware(request: NextRequest) {
     tenant = extractLocalTenant(request.url, hostname);
   } else if (isPreviewHost(hostname)) {
     tenant = extractPreviewTenant(hostname);
-  } else if (!isRootHost(hostname, rootDomain)) {
+  } else {
     tenant = await resolveTenant(hostname);
   }
 
-  // --- 3. If no tenant, serve normally ---
-  if (!tenant) return NextResponse.next();
+  // --- 3. If no tenant, return 404 ---
+  if (!tenant) return new NextResponse(null, { status: 404 });
 
   // --- 4. Handle API routes separately (no rewrites) ---
   if (isApiRoute) {
