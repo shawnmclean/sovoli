@@ -114,3 +114,5 @@ export const INTEMEDIATE_SEWING_PHOTOS: Photo[] = shuffleArray(
 export const ADVANCED_SEWING_PHOTOS: Photo[] = shuffleArray(
   FITRIGHT_ELEMENTARY_SEWING_PHOTOS,
 );
+
+export const FITRIGHT_ACADEMY_PHOTOS: Photo[] = [...BAG_WORKSHOP_PHOTOS];

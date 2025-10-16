@@ -3,6 +3,7 @@ import { ORG_USERNAME } from "./constants";
 import { FITRIGHT_ACADEMY_WEBSITE } from "./website";
 import { FITRIGHT_ACADEMIC } from "./academic";
 import { FITRIGHT_WORKFORCE } from "./workforce";
+import { FITRIGHT_ACADEMY_PHOTOS } from "./photos";
 
 export const FITRIGHT_ORG: OrgInstance = {
   org: {
@@ -64,6 +65,7 @@ export const FITRIGHT_ORG: OrgInstance = {
         url: "https://www.fitright.gy",
       },
     ],
+    photos: FITRIGHT_ACADEMY_PHOTOS,
   },
   websiteModule: FITRIGHT_ACADEMY_WEBSITE,
   academicModule: FITRIGHT_ACADEMIC,
