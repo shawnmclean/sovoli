@@ -1,9 +1,11 @@
 "use client";
 
 import { createContext, useContext } from "react";
+import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 
 interface TenantContextValue {
   tenant: string;
+  orgInstance: OrgInstanceWithWebsite;
 }
 
 const TenantContext = createContext<TenantContextValue | null>(null);
@@ -11,12 +13,14 @@ const TenantContext = createContext<TenantContextValue | null>(null);
 export function TenantProvider({
   children,
   tenant,
+  orgInstance,
 }: {
   children: React.ReactNode;
   tenant: string;
+  orgInstance: OrgInstanceWithWebsite;
 }) {
   return (
-    <TenantContext.Provider value={{ tenant }}>
+    <TenantContext.Provider value={{ tenant, orgInstance }}>
       {children}
     </TenantContext.Provider>
   );

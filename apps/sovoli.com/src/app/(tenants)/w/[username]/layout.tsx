@@ -105,7 +105,7 @@ export default async function Layout({ children, params, modals }: Props) {
   };
 
   return (
-    <TenantProvider tenant={username}>
+    <TenantProvider orgInstance={orgInstance} tenant={username}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

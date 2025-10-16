@@ -24,6 +24,7 @@ import type { FamilyMember } from "./FamilyDrawer";
 import type { ChatMessage } from "../types";
 import { DefaultChatTransport } from "ai";
 import { MessageRenderer } from "./MessageRenderer";
+import { useTenant } from "~/app/(tenants)/w/[username]/components/TenantProvider";
 
 export interface ChatDialogProps {
   placeholder?: string;
@@ -41,6 +42,8 @@ const QUICK_REPLIES = [
 export function ChatDialog({
   placeholder = "Type your message...",
 }: ChatDialogProps) {
+  const { orgInstance } = useTenant();
+
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
@@ -86,45 +89,69 @@ export function ChatDialog({
     hasInitializedMessagesRef.current = true;
 
     const sendInitialMessages = async () => {
-      // First greeting message
-      await addMessageWithDelay(
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          parts: [
-            {
-              type: "text",
-              text: "Hello! For me to help you, I need to know a little bit about you.",
-            },
-          ],
-        },
-        800,
-      );
+      // Check if this is a private school
+      const isPrivateSchool =
+        orgInstance.org.categories.includes("private-school");
 
-      // Second message asking for age
-      await addMessageWithDelay(
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          parts: [
-            {
-              type: "text",
-              text: "How old is your child?",
-            },
-            {
-              type: "tool-getAge",
-              state: "input-available",
-              toolCallId: crypto.randomUUID(),
-              input: {},
-            },
-          ],
-        },
-        1000,
-      );
+      if (isPrivateSchool) {
+        // Private school flow: greeting + age collection
+        await addMessageWithDelay(
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            parts: [
+              {
+                type: "text",
+                text: "Hello! For me to help you, I need to know a little bit about you.",
+              },
+            ],
+          },
+          800,
+        );
+
+        // Second message asking for age (only for private schools)
+        await addMessageWithDelay(
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            parts: [
+              {
+                type: "text",
+                text: "How old is your child?",
+              },
+              {
+                type: "tool-getAge",
+                state: "input-available",
+                toolCallId: crypto.randomUUID(),
+                input: {},
+              },
+            ],
+          },
+          1000,
+        );
+      } else {
+        // Other organization types: just greeting and show quick replies
+        await addMessageWithDelay(
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            parts: [
+              {
+                type: "text",
+                text: "Hello! I'm here to help you with any questions about our programs, admissions, or anything else you'd like to know. How can I assist you today?",
+              },
+            ],
+          },
+          800,
+        );
+
+        // For non-private schools, show quick replies immediately after greeting
+        setIsFlowComplete(true);
+      }
     };
 
     void sendInitialMessages();
-  }, [addMessageWithDelay]);
+  }, [addMessageWithDelay, orgInstance.org.categories]);
 
   // Check if there's a tool waiting for input
   const hasUnansweredInput = messages.some((message) =>
