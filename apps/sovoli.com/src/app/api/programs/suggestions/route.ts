@@ -11,17 +11,15 @@ interface FamilyMember {
   notes?: string;
 }
 
-export const POST = withOrgInstance(
-  async (request, { orgInstance, tenant }) => {
-    const body = (await request.json()) as {
-      familyMembers: FamilyMember[];
-    };
+export const POST = withOrgInstance(async (request, { orgInstance }) => {
+  const body = (await request.json()) as {
+    familyMembers: FamilyMember[];
+  };
 
-    const { familyMembers } = body;
+  const { familyMembers } = body;
 
-    const programs = orgInstance.academicModule?.programs ?? [];
-    const suggestions = getProgramSuggestions(programs, familyMembers);
+  const programs = orgInstance.academicModule?.programs ?? [];
+  const suggestions = getProgramSuggestions(programs, familyMembers);
 
-    return Response.json({ suggestions, tenant });
-  },
-);
+  return Response.json({ suggestions });
+});

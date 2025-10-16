@@ -5,7 +5,6 @@ export interface OrgInstanceContext {
   orgInstance: NonNullable<
     Awaited<ReturnType<typeof getOrgInstanceByUsername>>
   >;
-  tenant: string;
 }
 
 type RouteHandler<T = unknown> = (
@@ -45,6 +44,6 @@ export function withOrgInstance<T extends Request | NextRequest = Request>(
     }
 
     // Call the handler with the orgInstance context
-    return handler(request, { orgInstance, tenant });
+    return handler(request, { orgInstance });
   };
 }
