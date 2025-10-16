@@ -8,7 +8,7 @@ export const FITRIGHT_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "FitRight Academy",
-    logo: "/vocational-training/guyana/fitright/logo.webp",
+    logo: "/images/orgs/vocational-training/guyana/fitright/logo.webp",
     isVerified: true,
     verification: {
       status: "verified",

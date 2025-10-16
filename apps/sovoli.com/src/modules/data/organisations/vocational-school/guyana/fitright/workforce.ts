@@ -26,7 +26,7 @@ export const XAVIRINE_DORNELLAS: WorkforceMember = {
   id: "001",
   name: "Xavirine D'Ornellas",
   slug: "xavirine-dornellas",
-  image: "/vocational-training/guyana/fitright/team/xavirine.webp",
+  image: "/images/orgs/vocational-training/guyana/fitright/team/xavirine.webp",
   bio: "Xavirine D'Ornellas is a passionate teacher born in Guyana with over a decade of experience in design, sewing, and teaching. Her passion for design and sewing began at the age of seven when she started designing and sewing clothes for her dolls, and by fourteen, she was making clothes for herself. She worked as a school teacher in Guyana for many years, successfully tutoring students in the art of making their own clothes. Her teaching method, known as the 'Xavie teaching method,' is fun, approachable, and rich with helpful tips and techniques aimed at helping students transform fabric into beautiful, well-fitted garments. She has a very open mind and loves supporting new ideas. Her professional experience includes working in couture tailoring in French Guyana, St Lucia, and New York.",
   quote:
     "Transform fabric into beautiful, well-fitted garments with fun and approachable techniques.",
