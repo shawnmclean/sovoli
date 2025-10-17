@@ -12,8 +12,6 @@ import { EventActivitiesSection } from "./components/EventActivitiesSection";
 import { EventRequirementsSection } from "./components/EventRequirementsSection";
 import { EventHighlightsSection } from "./components/EventHighlightsSection";
 import { EventGalleryCarousel } from "./components/EventGalleryCarousel";
-import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
-
 const retrieveOrgInstanceWithEvent = async (username: string, slug: string) => {
   const result = await getOrgInstanceWithEvent(username, slug);
   if (!result?.event) return notFound();
@@ -48,7 +46,6 @@ const getEventStatus = (startDate: string, endDate?: string) => {
 interface Props {
   children: React.ReactNode;
   params: Promise<{ username: string; slug: string }>;
-  modals: React.ReactNode;
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -82,7 +79,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function Layout({ children, params, modals }: Props) {
+export default async function Layout({ children, params }: Props) {
   const { username, slug } = await params;
   const result = await retrieveOrgInstanceWithEvent(username, slug);
 
@@ -122,9 +119,6 @@ export default async function Layout({ children, params, modals }: Props) {
         color="warning"
         title="Website optimized for mobile devices. Use your phone please."
       />
-      <NavigationDrawer fallbackPath={`/events/${event.slug}`}>
-        {modals}
-      </NavigationDrawer>
 
       <EventGalleryCarousel event={event} />
 
