@@ -1,12 +1,5 @@
 import type { Event } from "~/modules/events/types";
-import {
-  CheckCircle,
-  AlertCircle,
-  Package,
-  Shirt,
-  Wrench,
-  Info,
-} from "lucide-react";
+import { Package, Shirt, Wrench, Info } from "lucide-react";
 
 interface EventRequirementsSectionProps {
   event: Event;
@@ -41,7 +34,7 @@ export function EventRequirementsSection({
 
       <div className="space-y-4">
         {event.requirements.map((requirement, index) => {
-          const IconComponent = requirementIconMap[requirement.type] || Info;
+          const IconComponent = requirementIconMap[requirement.type];
           const iconColor =
             requirementColorMap[requirement.type] || "text-gray-600";
 

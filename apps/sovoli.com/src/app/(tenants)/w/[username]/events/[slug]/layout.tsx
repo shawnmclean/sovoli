@@ -10,16 +10,15 @@ import { EventHeroSection } from "./components/EventHeroSection";
 import { EventDetailsSection } from "./components/EventDetailsSection";
 import { EventActivitiesSection } from "./components/EventActivitiesSection";
 import { EventRequirementsSection } from "./components/EventRequirementsSection";
-import { EventTestimonialsSection } from "./components/EventTestimonialsSection";
 import { EventHighlightsSection } from "./components/EventHighlightsSection";
-import { EventGallerySection } from "./components/EventGallerySection";
+import { EventGalleryCarousel } from "./components/EventGalleryCarousel";
 import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 
 const retrieveOrgInstanceWithEvent = async (username: string, slug: string) => {
   const result = await getOrgInstanceWithEvent(username, slug);
   if (!result?.event) return notFound();
 
-  return result;
+  return { orgInstance: result.orgInstance, event: result.event };
 };
 
 // Helper function to get current date (start of day in local timezone)
@@ -56,13 +55,6 @@ export async function generateMetadata({ params }: Props) {
   const { username, slug } = await params;
   const result = await retrieveOrgInstanceWithEvent(username, slug);
 
-  if (!result || !result.event) {
-    return {
-      title: "Event Not Found",
-      description: "The requested event could not be found.",
-    };
-  }
-
   const { orgInstance, event } = result;
   const {
     websiteModule: { website },
@@ -93,10 +85,6 @@ export async function generateMetadata({ params }: Props) {
 export default async function Layout({ children, params, modals }: Props) {
   const { username, slug } = await params;
   const result = await retrieveOrgInstanceWithEvent(username, slug);
-
-  if (!result || !result.event) {
-    return notFound();
-  }
 
   const { orgInstance, event } = result;
 
@@ -138,7 +126,7 @@ export default async function Layout({ children, params, modals }: Props) {
         {modals}
       </NavigationDrawer>
 
-      <EventGallerySection event={event} />
+      <EventGalleryCarousel event={event} />
 
       <div className="container mx-auto max-w-7xl px-4">
         <EventHeroSection orgInstance={orgInstance} event={event} />
@@ -150,11 +138,6 @@ export default async function Layout({ children, params, modals }: Props) {
         <EventActivitiesSection event={event} />
 
         <EventRequirementsSection event={event} />
-
-        <EventTestimonialsSection
-          testimonials={event.testimonials}
-          event={event}
-        />
       </div>
 
       <EventDetailMobileFooter orgInstance={orgInstance} event={event} />

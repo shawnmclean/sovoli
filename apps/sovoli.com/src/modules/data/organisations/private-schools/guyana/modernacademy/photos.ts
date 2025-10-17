@@ -387,3 +387,5 @@ export const SECONDARY_PHOTOS: Photo[] = [
     version: 1757870816,
   },
 ];
+
+export const DIWALI_EVENT_PHOTOS: Photo[] = shuffleArray(PHOTOS);

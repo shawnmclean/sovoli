@@ -8,10 +8,7 @@ interface EventHeroSectionProps {
   event: Event;
 }
 
-export function EventHeroSection({
-  orgInstance,
-  event,
-}: EventHeroSectionProps) {
+export function EventHeroSection({ event }: EventHeroSectionProps) {
   const startDate = parseISO(event.startDate);
   const endDate = event.endDate ? parseISO(event.endDate) : null;
 
@@ -60,16 +57,6 @@ export function EventHeroSection({
           </div>
         )}
       </div>
-
-      {event.photos && event.photos.length > 0 && (
-        <div className="mb-6">
-          <img
-            src={event.photos[0].url}
-            alt={event.name}
-            className="w-full h-64 object-cover rounded-lg shadow-md"
-          />
-        </div>
-      )}
     </div>
   );
 }

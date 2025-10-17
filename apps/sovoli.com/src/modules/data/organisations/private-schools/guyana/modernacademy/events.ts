@@ -1,4 +1,5 @@
 import type { EventModule } from "~/modules/events/types";
+import { DIWALI_EVENT_PHOTOS } from "./photos";
 
 export const MODERN_ACADEMY_EVENTS: EventModule = {
   events: [
@@ -50,6 +51,7 @@ export const MODERN_ACADEMY_EVENTS: EventModule = {
           description: "Building cultural understanding and community bonds",
         },
       ],
+      photos: DIWALI_EVENT_PHOTOS,
       activities: [
         {
           id: "rangoli-making",
@@ -143,35 +145,6 @@ export const MODERN_ACADEMY_EVENTS: EventModule = {
           isRequired: false,
           notes:
             "Optional - Friday casual wear is acceptable if traditional wear is not available",
-        },
-      ],
-      testimonials: [
-        {
-          author: "Priya Sharma",
-          content:
-            "My daughter absolutely loved the Diwali celebration! The rangoli making was her favorite part, and she learned so much about our culture.",
-          date: "2024-10-20",
-          rating: 5,
-          relation: "Parent",
-          source: "facebook",
-        },
-        {
-          author: "Raj Patel",
-          content:
-            "The teachers did an amazing job organizing the event. It was wonderful to see all the children learning about different cultures together.",
-          date: "2024-10-21",
-          rating: 5,
-          relation: "Parent",
-          source: "google",
-        },
-        {
-          author: "Anita Singh",
-          content:
-            "The Diwali celebration was so well organized! My son came home excited to tell us about the stories he learned and the rangoli he made.",
-          date: "2024-10-22",
-          rating: 5,
-          relation: "Parent",
-          source: "other",
         },
       ],
       notes:

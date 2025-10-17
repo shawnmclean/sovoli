@@ -37,7 +37,6 @@ export interface Event {
 
   // Additional Information
   notes?: string;
-  testimonials?: EventTestimonial[];
 }
 
 export interface EventHighlight {
@@ -84,16 +83,6 @@ export interface EventRequirement {
   isRequired: boolean;
   quantity?: string;
   notes?: string;
-}
-
-export interface EventTestimonial {
-  author: string;
-  content: string;
-  date?: string;
-  rating: number;
-  relation: "Parent" | "Student" | "Guardian" | "Teacher";
-  link?: string;
-  source?: "google" | "facebook" | "other";
 }
 
 export interface EventCategory {
