@@ -30,7 +30,9 @@ export function EventDetailMobileFooter({
       <footer className="fixed left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
         <div className="flex w-full items-center py-3 justify-between">
           {/* Left side - Event info badge */}
-          <div className="text-sm font-medium text-gray-700">{event.name}</div>
+          <div className="text-sm font-medium text-foreground/80">
+            {event.name}
+          </div>
 
           {/* Right side - Reserve button */}
           <Button

@@ -15,24 +15,28 @@ export function EventHeroSection({ event }: EventHeroSectionProps) {
   return (
     <div className="py-8">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{event.name}</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-2">
+          {event.name}
+        </h1>
         {event.tagline && (
-          <p className="text-lg text-gray-600 mb-4">{event.tagline}</p>
+          <p className="text-lg text-muted-foreground mb-4">{event.tagline}</p>
         )}
         {event.description && (
-          <p className="text-gray-700 leading-relaxed">{event.description}</p>
+          <p className="text-foreground/80 leading-relaxed">
+            {event.description}
+          </p>
         )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="flex items-center space-x-2 text-gray-700">
-          <Calendar className="h-5 w-5 text-blue-600" />
+        <div className="flex items-center space-x-2 text-foreground/80">
+          <Calendar className="h-5 w-5 text-primary" />
           <div>
             <p className="font-medium">
               {format(startDate, "EEEE, MMMM do, yyyy")}
             </p>
             {endDate && endDate.getTime() !== startDate.getTime() && (
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 to {format(endDate, "EEEE, MMMM do, yyyy")}
               </p>
             )}
@@ -40,8 +44,8 @@ export function EventHeroSection({ event }: EventHeroSectionProps) {
         </div>
 
         {event.time && (
-          <div className="flex items-center space-x-2 text-gray-700">
-            <Clock className="h-5 w-5 text-green-600" />
+          <div className="flex items-center space-x-2 text-foreground/80">
+            <Clock className="h-5 w-5 text-success" />
             <div>
               <p className="font-medium">{event.time}</p>
             </div>
@@ -49,8 +53,8 @@ export function EventHeroSection({ event }: EventHeroSectionProps) {
         )}
 
         {event.location && (
-          <div className="flex items-center space-x-2 text-gray-700">
-            <MapPin className="h-5 w-5 text-red-600" />
+          <div className="flex items-center space-x-2 text-foreground/80">
+            <MapPin className="h-5 w-5 text-danger" />
             <div>
               <p className="font-medium">{event.location}</p>
             </div>

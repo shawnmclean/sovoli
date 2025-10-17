@@ -117,8 +117,8 @@ export function EventGalleryCarousel({ event }: EventGalleryCarouselProps) {
 
   if (photos.length === 0) {
     return (
-      <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-        <p className="text-gray-500 text-sm">No photos available</p>
+      <div className="w-full h-full bg-content2 flex items-center justify-center">
+        <p className="text-muted-foreground text-sm">No photos available</p>
       </div>
     );
   }
@@ -165,7 +165,7 @@ export function EventGalleryCarousel({ event }: EventGalleryCarouselProps) {
             radius="md"
             size="sm"
             classNames={{
-              base: "bg-black/50 text-white",
+              base: "bg-foreground/50 text-background",
             }}
           >
             {current + 1} / {photos.length}

@@ -54,7 +54,7 @@ export function EventHighlightsSection({ event }: EventHighlightsSectionProps) {
 
   return (
     <div className="py-8">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">
+      <h2 className="text-2xl font-bold text-foreground mb-6">
         Event Highlights
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -64,14 +64,16 @@ export function EventHighlightsSection({ event }: EventHighlightsSectionProps) {
           return (
             <div
               key={index}
-              className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg"
+              className="flex items-start space-x-3 p-4 bg-content2 rounded-lg"
             >
-              <IconComponent className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+              <IconComponent className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
               <div>
-                <h3 className="font-semibold text-gray-900 mb-1">
+                <h3 className="font-semibold text-foreground mb-1">
                   {highlight.label}
                 </h3>
-                <p className="text-gray-600 text-sm">{highlight.description}</p>
+                <p className="text-muted-foreground text-sm">
+                  {highlight.description}
+                </p>
               </div>
             </div>
           );
