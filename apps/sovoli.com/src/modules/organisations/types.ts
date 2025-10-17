@@ -5,6 +5,7 @@ import type { ServiceModule } from "../services/types";
 import type { ScoringModule } from "../scoring/types";
 import type { WebsiteModule } from "../websites/types";
 import type { WorkforceModule } from "../workforce/types";
+import type { EventModule } from "../events/types";
 import type { Photo } from "../core/photos/types";
 
 // For use internally
@@ -118,6 +119,7 @@ export interface OrgInstance {
   workforceModule: WorkforceModule | null;
   scoringModule: ScoringModule | null;
   catalogModule?: CatalogModule | null;
+  eventModule?: EventModule | null;
 }
 
 export type OrgInstanceWithWebsite = Omit<OrgInstance, "websiteModule"> & {
