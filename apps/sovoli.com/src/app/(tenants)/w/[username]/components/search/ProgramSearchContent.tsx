@@ -43,6 +43,7 @@ export function ProgramSearchContent({
     type: "idle",
   });
   const hasTrackedRef = useRef(false);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   // Track when search is opened (only once)
   useEffect(() => {
@@ -57,6 +58,13 @@ export function ProgramSearchContent({
   useEffect(() => {
     if (loadingState.type === "found") {
       onSearchComplete?.(loadingState.programs.length);
+      // Scroll results into view when they are found
+      if (resultsRef.current) {
+        resultsRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
     } else if (loadingState.type === "not-found") {
       onSearchComplete?.(0);
     }
@@ -152,7 +160,7 @@ export function ProgramSearchContent({
         )}
 
         {loadingState.type === "found" && (
-          <div className="mt-4 space-y-2">
+          <div ref={resultsRef} className="mt-4 space-y-2">
             <p className="text-sm text-success-900 font-medium mb-3">
               We found {loadingState.programs.length} program
               {loadingState.programs.length !== 1 ? "s" : ""} for your child:
