@@ -7,10 +7,7 @@ import { getOrgInstanceWithEvent } from "./lib/getOrgInstanceWithEvent";
 import { Alert } from "@sovoli/ui/components/alert";
 import { EventDetailMobileFooter } from "./components/footer/EventDetailMobileFooter";
 import { EventHeroSection } from "./components/EventHeroSection";
-import { EventDetailsSection } from "./components/EventDetailsSection";
-import { EventActivitiesSection } from "./components/EventActivitiesSection";
 import { EventRequirementsSection } from "./components/EventRequirementsSection";
-import { EventHighlightsSection } from "./components/EventHighlightsSection";
 import { EventGalleryCarousel } from "./components/EventGalleryCarousel";
 const retrieveOrgInstanceWithEvent = async (username: string, slug: string) => {
   const result = await getOrgInstanceWithEvent(username, slug);
@@ -124,12 +121,6 @@ export default async function Layout({ children, params }: Props) {
 
       <div className="container mx-auto max-w-7xl px-4">
         <EventHeroSection orgInstance={orgInstance} event={event} />
-
-        <EventHighlightsSection event={event} />
-
-        <EventDetailsSection event={event} />
-
-        <EventActivitiesSection event={event} />
 
         <EventRequirementsSection event={event} />
       </div>

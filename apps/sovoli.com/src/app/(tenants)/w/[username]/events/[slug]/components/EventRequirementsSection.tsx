@@ -28,9 +28,7 @@ export function EventRequirementsSection({
 
   return (
     <div className="py-8">
-      <h2 className="text-2xl font-bold text-foreground mb-6">
-        Event Requirements
-      </h2>
+      <h2 className="text-2xl font-bold text-foreground mb-6">Requirements</h2>
 
       <div className="space-y-4">
         {event.requirements.map((requirement, index) => {
