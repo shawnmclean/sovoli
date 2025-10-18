@@ -134,7 +134,6 @@ function ShowAllReviewsButton({ count }: { count: number }) {
 
 export function ProgramTestimonialsSection({
   testimonials,
-  program,
 }: ProgramTestimonialsSectionProps) {
   if (!testimonials || testimonials.length === 0) {
     return null;
