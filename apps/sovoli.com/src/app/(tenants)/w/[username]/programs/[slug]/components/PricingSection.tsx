@@ -13,7 +13,7 @@ interface PricingSectionProps {
   program: Program;
 }
 
-export function PricingSection({ defaultCycle, program }: PricingSectionProps) {
+export function PricingSection({ defaultCycle }: PricingSectionProps) {
   const { selectedCycle, isLoading, isInitialized } =
     useProgramCycleSelection();
 
