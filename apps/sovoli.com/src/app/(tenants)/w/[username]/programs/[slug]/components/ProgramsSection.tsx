@@ -10,7 +10,6 @@ import {
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { UserIcon } from "lucide-react";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 import { CldImage } from "next-cloudinary";
 
 // Helper function to display age range
@@ -45,9 +44,9 @@ export function ProgramsSection({
   }
 
   return (
-    <ProgramSectionsWrapper program={currentProgram} section="programs">
+    <section className="my-6 border-b border-default-200 pb-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-foreground mb-2">
+        <h2 className="text-xl font-bold text-foreground mb-2">
           Other Programs
         </h2>
         <p className="text-sm text-muted-foreground">
@@ -123,6 +122,6 @@ export function ProgramsSection({
           </CarouselContent>
         </Carousel>
       </div>
-    </ProgramSectionsWrapper>
+    </section>
   );
 }

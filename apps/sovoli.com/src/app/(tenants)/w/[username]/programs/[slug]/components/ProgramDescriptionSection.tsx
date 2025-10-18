@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import type { Program } from "~/modules/academics/types";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface ProgramDescriptionSectionProps {
   program: Program;
@@ -30,7 +29,7 @@ export function ProgramDescriptionSection({
     : programDescription.slice(0, 200) + (shouldShowReadMore ? "..." : "");
 
   return (
-    <ProgramSectionsWrapper program={program} section="program_description">
+    <section className="my-6 border-b border-default-200 pb-6">
       <div className="space-y-4">
         <div className="prose prose-sm max-w-none">
           <p className="text-foreground-600 leading-relaxed">{displayText}</p>
@@ -54,6 +53,6 @@ export function ProgramDescriptionSection({
           </Button>
         )}
       </div>
-    </ProgramSectionsWrapper>
+    </section>
   );
 }

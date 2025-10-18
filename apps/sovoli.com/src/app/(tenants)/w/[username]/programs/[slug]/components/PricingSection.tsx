@@ -6,7 +6,6 @@ import { ProgramPriceCard } from "../../../(main-layout)/programs/components/Pro
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 import type { ProgramCycle } from "~/modules/academics/types";
 import type { PricingItem } from "~/modules/core/economics/types";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 import type { Program } from "~/modules/academics/types";
 
 interface PricingSectionProps {
@@ -27,11 +26,7 @@ export function PricingSection({ defaultCycle, program }: PricingSectionProps) {
   }
 
   return (
-    <ProgramSectionsWrapper
-      program={program}
-      section="pricing"
-      className="hidden md:block"
-    >
+    <section className="my-6 border-b border-default-200 pb-6 hidden md:block">
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h2 className="text-xl font-bold text-foreground">Your Cost</h2>
@@ -81,6 +76,6 @@ export function PricingSection({ defaultCycle, program }: PricingSectionProps) {
           </div>
         </CardBody>
       </Card>
-    </ProgramSectionsWrapper>
+    </section>
   );
 }

@@ -1,6 +1,5 @@
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 import { countryCodeToName } from "~/utils/countryUtils";
 
 export interface ProgramHeroSectionProps {
@@ -35,11 +34,7 @@ export const ProgramHeroSection = ({
   };
 
   return (
-    <ProgramSectionsWrapper
-      className="text-center"
-      program={program}
-      section="program_hero"
-    >
+    <section className="my-6 border-b border-default-200 pb-6 text-center">
       {/* Program Name */}
       <h1 className="text-2xl leading-tight tracking-tight my-4">
         {programName}
@@ -71,6 +66,6 @@ export const ProgramHeroSection = ({
         ✅ Trusted by 200+{" "}
         {program.audience === "parent" ? "parents" : "students"}
       </p>
-    </ProgramSectionsWrapper>
+    </section>
   );
 };

@@ -5,7 +5,6 @@ import { MapPinIcon, MapIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
 import type { Program } from "~/modules/academics/types";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface LocationSectionProps {
   orgInstance: OrgInstance;
@@ -61,7 +60,7 @@ export function LocationSection({
   };
 
   return (
-    <ProgramSectionsWrapper program={program} section="location">
+    <section className="my-6 border-b border-default-200 pb-6">
       <Card className="overflow-hidden">
         <CardHeader className="pb-4">
           <h3 className="text-xl font-bold text-foreground">
@@ -100,6 +99,6 @@ export function LocationSection({
           </div>
         </CardBody>
       </Card>
-    </ProgramSectionsWrapper>
+    </section>
   );
 }

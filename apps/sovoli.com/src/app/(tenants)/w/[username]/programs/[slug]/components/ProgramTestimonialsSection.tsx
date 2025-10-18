@@ -14,7 +14,6 @@ import { format } from "date-fns";
 
 import type { ProgramTestimonial } from "~/modules/academics/types";
 import { SiFacebook, SiGoogle } from "@icons-pack/react-simple-icons";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 import type { Program } from "~/modules/academics/types";
 
 interface ProgramTestimonialsSectionProps {
@@ -142,7 +141,7 @@ export function ProgramTestimonialsSection({
   }
 
   return (
-    <ProgramSectionsWrapper program={program} section="program_testimonials">
+    <section className="my-6 border-b border-default-200 pb-6">
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -177,6 +176,6 @@ export function ProgramTestimonialsSection({
           <ShowAllReviewsButton count={testimonials.length} />
         )}
       </div>
-    </ProgramSectionsWrapper>
+    </section>
   );
 }

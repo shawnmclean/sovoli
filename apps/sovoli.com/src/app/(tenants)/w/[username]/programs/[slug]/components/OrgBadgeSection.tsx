@@ -3,7 +3,6 @@ import { Badge } from "@sovoli/ui/components/badge";
 import { BadgeCheckIcon } from "lucide-react";
 
 import type { OrgInstance } from "~/modules/organisations/types";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 import type { Program } from "~/modules/academics/types";
 
 export interface OrgBadgeSectionProps {
@@ -36,7 +35,7 @@ export function OrgBadgeSection({
   const firstCategory = org.categories[0];
 
   return (
-    <ProgramSectionsWrapper program={program} section="org_badge">
+    <section className="my-6 border-b border-default-200 pb-6">
       <div className="flex items-center gap-4">
         {/* Logo with Score Badge */}
         <div className="shrink-0">
@@ -89,6 +88,6 @@ export function OrgBadgeSection({
           </div>
         </div>
       </div>
-    </ProgramSectionsWrapper>
+    </section>
   );
 }

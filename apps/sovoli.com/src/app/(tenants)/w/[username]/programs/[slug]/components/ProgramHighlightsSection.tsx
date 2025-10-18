@@ -19,7 +19,6 @@ import {
   MessageCircleIcon,
 } from "lucide-react";
 import type { Program } from "~/modules/academics/types";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface ProgramHighlightsSectionProps {
   program: Program;
@@ -60,7 +59,7 @@ export function ProgramHighlightsSection({
   };
 
   return (
-    <ProgramSectionsWrapper program={program} section="program_highlights">
+    <section className="my-6 border-b border-default-200 pb-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {program.highlights.map((highlight, index) => {
           const IconComponent = ProgramHighlightIconMap[highlight.icon];
@@ -85,6 +84,6 @@ export function ProgramHighlightsSection({
           );
         })}
       </div>
-    </ProgramSectionsWrapper>
+    </section>
   );
 }

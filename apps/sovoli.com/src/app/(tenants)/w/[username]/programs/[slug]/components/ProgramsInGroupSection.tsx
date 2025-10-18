@@ -1,7 +1,6 @@
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { Link } from "@sovoli/ui/components/link";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 export interface ProgramsInGroupSectionProps {
   orgInstance: OrgInstance;
@@ -36,7 +35,7 @@ export const ProgramsInGroupSection = ({
   }
 
   return (
-    <ProgramSectionsWrapper program={program} section="programs_in_group">
+    <section className="my-6 border-b border-default-200 pb-6">
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -65,6 +64,6 @@ export const ProgramsInGroupSection = ({
           ))}
         </div>
       </div>
-    </ProgramSectionsWrapper>
+    </section>
   );
 };

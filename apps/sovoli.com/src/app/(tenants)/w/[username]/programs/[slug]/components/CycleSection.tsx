@@ -12,7 +12,6 @@ import {
   formatCycleLabel,
 } from "~/utils/dateUtils";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
-import { ProgramSectionsWrapper } from "./ProgramSectionsWrapper";
 
 interface CycleSectionProps {
   program: Program;
@@ -114,7 +113,7 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
     const cycleLabel = formatCycleLabel(startDate, endDate);
 
     return (
-      <ProgramSectionsWrapper program={program} section="cycle_info">
+      <section className="my-6 border-b border-default-200 pb-6">
         <div className="space-y-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <CalendarIcon className="h-6 w-6 text-primary" />
@@ -177,12 +176,12 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
             </div>
           </div>
         </div>
-      </ProgramSectionsWrapper>
+      </section>
     );
   }
 
   return (
-    <ProgramSectionsWrapper program={program} section="cycle_pricing">
+    <section className="my-6 border-b border-default-200 pb-6">
       <div className="space-y-4">
         <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
           <CalendarIcon className="h-6 w-6 text-primary" />
@@ -274,6 +273,6 @@ export function CycleSection({ program, defaultCycle }: CycleSectionProps) {
           </RadioGroup>
         </div>
       </div>
-    </ProgramSectionsWrapper>
+    </section>
   );
 }
