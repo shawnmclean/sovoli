@@ -1,7 +1,22 @@
 import type { Event } from "~/modules/events/types";
 import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
-import { format, parseISO } from "date-fns";
+import { format, parseISO, parse } from "date-fns";
 import { Calendar, MapPin, Clock } from "lucide-react";
+import { Card, CardBody } from "@sovoli/ui/components/card";
+
+// Utility function to format 24-hour time "09:00" to "9AM" using date-fns
+const formatTime = (timeString: string): string => {
+  try {
+    // Parse 24-hour time string and create a date object for today
+    const timeDate = parse(timeString, "HH:mm", new Date());
+
+    // Format to 12-hour format without leading zeros for hours
+    return format(timeDate, "h:mm a").replace(/^0+/, "").replace(/:00/, "");
+  } catch {
+    // Fallback to original string if parsing fails
+    return timeString;
+  }
+};
 
 interface EventHeroSectionProps {
   orgInstance: OrgInstanceWithWebsite;
@@ -10,57 +25,47 @@ interface EventHeroSectionProps {
 
 export function EventHeroSection({ event }: EventHeroSectionProps) {
   const startDate = parseISO(event.startDate);
-  const endDate = event.endDate ? parseISO(event.endDate) : null;
 
   return (
-    <div className="py-8">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-foreground mb-2">
-          {event.name}
-        </h1>
-        {event.tagline && (
-          <p className="text-lg text-muted-foreground mb-4">{event.tagline}</p>
-        )}
-        {event.description && (
-          <p className="text-foreground/80 leading-relaxed">
-            {event.description}
-          </p>
-        )}
-      </div>
+    <section className="my-6 border-b border-default-200 pb-6 text-center">
+      {/* Event Name */}
+      <h1 className="text-2xl leading-tight tracking-tight my-4">
+        {event.name}
+      </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="flex items-center space-x-2 text-foreground/80">
-          <Calendar className="h-5 w-5 text-primary" />
-          <div>
-            <p className="font-medium">
-              {format(startDate, "EEEE, MMMM do, yyyy")}
-            </p>
-            {endDate && endDate.getTime() !== startDate.getTime() && (
-              <p className="text-sm text-muted-foreground">
-                to {format(endDate, "EEEE, MMMM do, yyyy")}
-              </p>
+      {/* Event Description */}
+      {event.description && (
+        <p className="text-sm text-foreground-500 max-w-3xl mx-auto mb-4">
+          {event.description}
+        </p>
+      )}
+
+      {/* Event Info Pill */}
+      <Card className="inline-flex mx-auto">
+        <CardBody className="px-3 py-2 sm:px-4 sm:py-3">
+          <div className="flex items-center gap-2 sm:gap-4 text-foreground-500 text-xs sm:text-sm">
+            {/* Location */}
+            {event.location && (
+              <div className="flex items-center gap-1 sm:gap-2">
+                <MapPin className="h-4 w-4" />
+                <span>{event.location}</span>
+              </div>
             )}
-          </div>
-        </div>
 
-        {event.time && (
-          <div className="flex items-center space-x-2 text-foreground/80">
-            <Clock className="h-5 w-5 text-success" />
-            <div>
-              <p className="font-medium">{event.time}</p>
+            {/* Separator - only show if both location and date/time exist */}
+            {event.location && "•"}
+
+            {/* Date & Time */}
+            <div className="flex items-center gap-1 sm:gap-2">
+              <Calendar className="h-4 w-4" />
+              <span>
+                {format(startDate, "dd MMM")}
+                {event.startTime && ` - ${formatTime(event.startTime)}`}
+              </span>
             </div>
           </div>
-        )}
-
-        {event.location && (
-          <div className="flex items-center space-x-2 text-foreground/80">
-            <MapPin className="h-5 w-5 text-danger" />
-            <div>
-              <p className="font-medium">{event.location}</p>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+        </CardBody>
+      </Card>
+    </section>
   );
 }

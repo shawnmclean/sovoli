@@ -11,9 +11,10 @@ export interface Event {
   tagline?: string;
 
   // Event Details
-  startDate: string;
-  endDate?: string;
-  time?: string;
+  startDate: string; // ISO date format: "2025-10-17"
+  endDate?: string; // ISO date format: "2025-10-17"
+  startTime?: string; // 24-hour format: "09:00" or "21:30"
+  endTime?: string; // 24-hour format: "15:00" or "23:30"
   location?: string;
 
   // Event Content
