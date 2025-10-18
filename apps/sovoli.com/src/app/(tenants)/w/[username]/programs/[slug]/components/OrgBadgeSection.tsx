@@ -10,10 +10,7 @@ export interface OrgBadgeSectionProps {
   program: Program;
 }
 
-export function OrgBadgeSection({
-  orgInstance,
-  program,
-}: OrgBadgeSectionProps) {
+export function OrgBadgeSection({ orgInstance }: OrgBadgeSectionProps) {
   const org = orgInstance.org;
 
   // Calculate score
