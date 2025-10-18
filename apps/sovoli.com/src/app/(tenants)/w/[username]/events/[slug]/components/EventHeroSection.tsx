@@ -1,7 +1,7 @@
 import type { Event } from "~/modules/events/types";
 import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import { format, parseISO, parse } from "date-fns";
-import { Calendar, MapPin, Clock } from "lucide-react";
+import { ClockIcon, MapPinIcon } from "lucide-react";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 
 // Utility function to format 24-hour time "09:00" to "9AM" using date-fns
@@ -47,7 +47,7 @@ export function EventHeroSection({ event }: EventHeroSectionProps) {
             {/* Location */}
             {event.location && (
               <div className="flex items-center gap-1 sm:gap-2">
-                <MapPin className="h-4 w-4" />
+                <MapPinIcon className="h-4 w-4" />
                 <span>{event.location}</span>
               </div>
             )}
@@ -57,7 +57,7 @@ export function EventHeroSection({ event }: EventHeroSectionProps) {
 
             {/* Date & Time */}
             <div className="flex items-center gap-1 sm:gap-2">
-              <Calendar className="h-4 w-4" />
+              <ClockIcon className="h-4 w-4" />
               <span>
                 {format(startDate, "dd MMM")}
                 {event.startTime && ` - ${formatTime(event.startTime)}`}
