@@ -3,7 +3,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { Image } from "@sovoli/ui/components/image";
-import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { format, parseISO, parse } from "date-fns";
 
 interface EventCardProps {
