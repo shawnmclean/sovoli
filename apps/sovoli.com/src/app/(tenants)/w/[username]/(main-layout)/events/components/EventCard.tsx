@@ -1,15 +1,23 @@
 import type { Event } from "~/modules/events/types";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { Calendar, Clock, MapPin, Users } from "lucide-react";
-import Link from "next/link";
+import { Calendar, Clock, MapPin } from "lucide-react";
+import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
+import { Chip } from "@sovoli/ui/components/chip";
+import { Link } from "@sovoli/ui/components/link";
+import { Badge } from "@sovoli/ui/components/badge";
+import { Button } from "@sovoli/ui/components/button";
 import { Image } from "@sovoli/ui/components/image";
+import { ArrowRightIcon } from "lucide-react";
 
 interface EventCardProps {
   event: Event;
   orgInstance: OrgInstance;
 }
 
-export function EventCard({ event, orgInstance }: EventCardProps) {
+export function EventCard({
+  event,
+  orgInstance: _orgInstance,
+}: EventCardProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -28,160 +36,142 @@ export function EventCard({ event, orgInstance }: EventCardProps) {
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
-  const getStatusColor = (status?: string) => {
-    switch (status) {
-      case "upcoming":
-        return "bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary";
-      case "current":
-        return "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/20 dark:text-emerald-400";
-      case "completed":
-        return "bg-muted text-muted-foreground";
-      case "cancelled":
-        return "bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive";
-      default:
-        return "bg-muted text-muted-foreground";
-    }
-  };
-
   return (
-    <div className="bg-card text-card-foreground rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden border">
+    <Card className="overflow-hidden shadow-md transition hover:shadow-lg">
       {/* Event Image */}
-      {event.photos && event.photos.length > 0 && event.photos[0] && (
-        <div className="aspect-video overflow-hidden">
-          <Image
-            src={event.photos[0].url}
-            alt={event.name}
-            width={400}
-            height={225}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
+      <div className="relative">
+        <Image
+          src={event.photos?.[0]?.url ?? ""}
+          alt={event.name}
+          width={800}
+          height={225}
+          className="h-52 w-full object-cover"
+        />
 
-      <div className="p-6">
-        {/* Event Status and Category */}
-        <div className="flex items-center justify-between mb-3">
-          {event.status && (
-            <span
-              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(
-                event.status,
-              )}`}
+        {/* Status Badge */}
+        {event.status && (
+          <div className="absolute top-3 left-3 z-20">
+            <Badge
+              color={
+                event.status === "upcoming"
+                  ? "primary"
+                  : event.status === "current"
+                    ? "success"
+                    : "default"
+              }
+              variant="flat"
+              size="sm"
             >
               {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
-            </span>
-          )}
-          {event.category && (
-            <span className="text-sm text-muted-foreground">
-              {event.category.name}
-            </span>
-          )}
-        </div>
-
-        {/* Event Title */}
-        <h3 className="text-xl font-semibold mb-2">{event.name}</h3>
-
-        {/* Event Description */}
-        {event.description && (
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-            {event.description}
-          </p>
+            </Badge>
+          </div>
         )}
 
+        {/* Popular Badge */}
+        {event.isPopular && (
+          <div className="absolute top-3 right-3 z-20">
+            <Badge color="warning" variant="flat" size="sm">
+              🔥 Popular
+            </Badge>
+          </div>
+        )}
+      </div>
+
+      <CardBody className="flex flex-col space-y-3">
+        {/* Event Title + Description */}
+        <div>
+          <h3 className="text-xl font-semibold text-primary-800">
+            {event.name}
+          </h3>
+          <p className="text-base leading-relaxed text-foreground-600">
+            {event.description ?? "Join us for this exciting event!"}
+          </p>
+        </div>
+
         {/* Event Details */}
-        <div className="space-y-2 mb-4">
+        <div className="space-y-2">
           {/* Date */}
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4 mr-2" />
-            <span>{formatDate(event.startDate)}</span>
+          <div className="flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-foreground-500" />
+            <Chip color="default" variant="dot">
+              {formatDate(event.startDate)}
+            </Chip>
           </div>
 
           {/* Time */}
           {event.startTime && (
-            <div className="flex items-center text-sm text-muted-foreground">
-              <Clock className="w-4 h-4 mr-2" />
-              <span>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-foreground-500" />
+              <Chip color="default" variant="dot">
                 {formatTime(event.startTime)}
                 {event.endTime && ` - ${formatTime(event.endTime)}`}
-              </span>
+              </Chip>
             </div>
           )}
 
           {/* Location */}
           {event.location && (
-            <div className="flex items-center text-sm text-muted-foreground">
-              <MapPin className="w-4 h-4 mr-2" />
-              <span>{event.location}</span>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-foreground-500" />
+              <Chip color="default" variant="dot">
+                {event.location}
+              </Chip>
             </div>
           )}
         </div>
 
         {/* Event Highlights */}
         {event.highlights && event.highlights.length > 0 && (
-          <div className="mb-4">
-            <div className="flex items-center text-sm text-muted-foreground mb-2">
-              <Users className="w-4 h-4 mr-2" />
-              <span className="font-medium">Highlights</span>
-            </div>
-            <div className="flex flex-wrap gap-1">
-              {event.highlights.slice(0, 3).map((highlight, index) => (
-                <span
-                  key={index}
-                  className="inline-flex items-center px-2 py-1 rounded-md text-xs bg-muted text-muted-foreground"
-                >
-                  {highlight.label}
-                </span>
-              ))}
-              {event.highlights.length > 3 && (
-                <span className="text-xs text-muted-foreground">
-                  +{event.highlights.length - 3} more
-                </span>
-              )}
-            </div>
+          <div className="flex flex-wrap gap-1">
+            {event.highlights.slice(0, 3).map((highlight, index) => (
+              <Chip key={index} color="default" variant="flat" size="sm">
+                {highlight.label}
+              </Chip>
+            ))}
+            {event.highlights.length > 3 && (
+              <Chip color="default" variant="flat" size="sm">
+                +{event.highlights.length - 3} more
+              </Chip>
+            )}
           </div>
         )}
 
         {/* Event Tags */}
         {event.tags && event.tags.length > 0 && (
-          <div className="mb-4">
-            <div className="flex flex-wrap gap-1">
-              {event.tags.slice(0, 3).map((tag, index) => (
-                <span
-                  key={index}
-                  className="inline-flex items-center px-2 py-1 rounded-md text-xs bg-primary/10 text-primary"
-                >
-                  #{tag}
-                </span>
-              ))}
-              {event.tags.length > 3 && (
-                <span className="text-xs text-muted-foreground">
-                  +{event.tags.length - 3} more
-                </span>
-              )}
-            </div>
+          <div className="flex flex-wrap gap-1">
+            {event.tags.slice(0, 3).map((tag, index) => (
+              <Chip key={index} color="primary" variant="flat" size="sm">
+                #{tag}
+              </Chip>
+            ))}
+            {event.tags.length > 3 && (
+              <Chip color="default" variant="flat" size="sm">
+                +{event.tags.length - 3} more
+              </Chip>
+            )}
           </div>
         )}
+      </CardBody>
 
-        {/* View Details Link */}
-        <Link
+      {/* Footer */}
+      <CardFooter className="flex flex-col items-center gap-3 pt-4">
+        <Button
+          as={Link}
           href={`/events/${event.slug}`}
-          className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+          fullWidth
+          color="primary"
+          variant="solid"
+          radius="md"
+          size="lg"
+          startContent={<ArrowRightIcon className="w-5 h-5" />}
         >
           View Details
-          <svg
-            className="w-4 h-4 ml-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </Link>
-      </div>
-    </div>
+        </Button>
+
+        <p className="text-xs text-foreground-500 text-center">
+          📅 Event Details &middot; 🎯 Activities &middot; 📍 Location
+        </p>
+      </CardFooter>
+    </Card>
   );
 }
