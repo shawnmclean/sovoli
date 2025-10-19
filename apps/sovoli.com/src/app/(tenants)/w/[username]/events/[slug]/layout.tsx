@@ -9,6 +9,7 @@ import { EventDetailMobileFooter } from "./components/footer/EventDetailMobileFo
 import { EventHeroSection } from "./components/EventHeroSection";
 import { EventRequirementsSection } from "./components/EventRequirementsSection";
 import { EventGalleryCarousel } from "./components/EventGalleryCarousel";
+import { EventDetailNavbar } from "./components/navbar/EventDetailMobileNavbar";
 const retrieveOrgInstanceWithEvent = async (username: string, slug: string) => {
   const result = await getOrgInstanceWithEvent(username, slug);
   if (!result?.event) return notFound();
@@ -117,6 +118,7 @@ export default async function Layout({ children, params }: Props) {
         title="Website optimized for mobile devices. Use your phone please."
       />
 
+      <EventDetailNavbar orgInstance={orgInstance} event={event} />
       <EventGalleryCarousel event={event} />
 
       <div className="container mx-auto max-w-7xl px-4">
