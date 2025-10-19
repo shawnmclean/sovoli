@@ -19,6 +19,7 @@ import {
   InfoIcon,
   ShoppingBagIcon,
   MessagesSquareIcon,
+  CalendarIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { tv } from "tailwind-variants";
@@ -196,6 +197,18 @@ export function MobileFooter() {
                   >
                     <PhoneIcon className={drawerButtonClasses.icon()} />
                     <span className={drawerButtonClasses.text()}>Contact</span>
+                  </Button>
+                  <Button
+                    as={Link}
+                    href="/events"
+                    variant="light"
+                    color="default"
+                    size="sm"
+                    className={drawerButtonClasses.base()}
+                    onPress={onOpenChange}
+                  >
+                    <CalendarIcon className={drawerButtonClasses.icon()} />
+                    <span className={drawerButtonClasses.text()}>Events</span>
                   </Button>
                   <Button
                     as={Link}
