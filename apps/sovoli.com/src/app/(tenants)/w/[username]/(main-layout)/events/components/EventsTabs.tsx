@@ -6,6 +6,7 @@ import { Tabs, Tab } from "@sovoli/ui/components/tabs";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Event } from "~/modules/events/types";
 import { EventCard } from "./EventCard";
+import { SubscribeAllEventsButton } from "./SubscribeAllEventsButton";
 
 export interface EventsTabsProps {
   orgInstance: OrgInstance;
@@ -97,11 +98,16 @@ export function EventsTabs({ orgInstance }: EventsTabsProps) {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Events</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          {getTabDescription()}
-        </p>
+      <div className="text-center space-y-6">
+        <div>
+          <h1 className="text-4xl font-bold mb-4">Events</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {getTabDescription()}
+          </p>
+        </div>
+        <div className="flex justify-center">
+          <SubscribeAllEventsButton orgInstance={orgInstance} />
+        </div>
       </div>
 
       {/* Tabs */}
