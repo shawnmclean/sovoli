@@ -4,32 +4,32 @@ import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { Image } from "@sovoli/ui/components/image";
 import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
+import { format, parseISO, parse } from "date-fns";
 
 interface EventCardProps {
   event: Event;
   orgInstance: OrgInstance;
 }
 
+// Utility function to format 24-hour time "09:00" to "9AM" using date-fns
+const formatTime = (timeString: string): string => {
+  try {
+    // Parse 24-hour time string and create a date object for today
+    const timeDate = parse(timeString, "HH:mm", new Date());
+
+    // Format to 12-hour format without leading zeros for hours
+    return format(timeDate, "h:mm a").replace(/^0+/, "").replace(/:00/, "");
+  } catch {
+    // Fallback to original string if parsing fails
+    return timeString;
+  }
+};
+
 export function EventCard({
   event,
   orgInstance: _orgInstance,
 }: EventCardProps) {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-    });
-  };
-
-  const formatTime = (timeString: string) => {
-    const [hours, minutes] = timeString.split(":");
-    const hour = parseInt(hours ?? "0", 10);
-    const ampm = hour >= 12 ? "PM" : "AM";
-    const displayHour = hour % 12 || 12;
-    return `${displayHour}:${minutes} ${ampm}`;
-  };
+  const startDate = parseISO(event.startDate);
 
   return (
     <Card
@@ -65,22 +65,14 @@ export function EventCard({
               {event.name}
             </h3>
 
-            {/* Date */}
+            {/* Date & Time */}
             <div className="flex items-center gap-2 text-sm text-foreground-600">
-              <Calendar className="w-4 h-4 text-foreground-500" />
-              <span>{formatDate(event.startDate)}</span>
+              <Clock className="w-4 h-4 text-foreground-500" />
+              <span>
+                {format(startDate, "dd MMM")}
+                {event.startTime && ` - ${formatTime(event.startTime)}`}
+              </span>
             </div>
-
-            {/* Time */}
-            {event.startTime && (
-              <div className="flex items-center gap-2 text-sm text-foreground-600">
-                <Clock className="w-4 h-4 text-foreground-500" />
-                <span>
-                  {formatTime(event.startTime)}
-                  {event.endTime && ` - ${formatTime(event.endTime)}`}
-                </span>
-              </div>
-            )}
           </div>
 
           {/* Arrow Icon */}
