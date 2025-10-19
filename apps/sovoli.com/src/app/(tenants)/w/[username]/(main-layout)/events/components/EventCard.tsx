@@ -39,14 +39,16 @@ export function EventCard({
     >
       <CardBody className="flex flex-row p-0">
         {/* Event Image - Left Side */}
-        <div className="relative w-32 aspect-square p-2 flex items-center justify-center">
-          <Image
-            src={event.photos?.[0]?.url ?? ""}
-            alt={event.name}
-            width={128}
-            height={128}
-            className="h-full w-full object-cover rounded-lg"
-          />
+        <div className="w-32 min-h-32 flex-shrink-0 p-2 flex items-center justify-center">
+          <div className="w-28 h-28">
+            <Image
+              src={event.photos?.[0]?.url ?? ""}
+              alt={event.name}
+              width={112}
+              height={112}
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </div>
         </div>
 
         {/* Event Details - Right Side */}
@@ -56,14 +58,6 @@ export function EventCard({
             <h3 className="text-lg font-semibold text-foreground">
               {event.name}
             </h3>
-
-            {/* Location */}
-            {event.location && (
-              <div className="flex items-center gap-2 text-sm text-foreground-600">
-                <MapPin className="w-4 h-4 text-foreground-500" />
-                <span>{event.location}</span>
-              </div>
-            )}
 
             {/* Date */}
             <div className="flex items-center gap-2 text-sm text-foreground-600">
