@@ -26,7 +26,6 @@ const MODERN_ACADEMY_EVENT_LIST = [
 
 export const MODERN_ACADEMY_EVENTS: EventModule = {
   events: MODERN_ACADEMY_EVENT_LIST,
-  upcomingEvents: [],
   featuredEvents: [],
 };
 

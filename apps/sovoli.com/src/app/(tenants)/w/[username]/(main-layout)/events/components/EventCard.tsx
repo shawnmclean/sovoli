@@ -48,25 +48,6 @@ export function EventCard({
           className="h-52 w-full object-cover"
         />
 
-        {/* Status Badge */}
-        {event.status && (
-          <div className="absolute top-3 left-3 z-20">
-            <Badge
-              color={
-                event.status === "upcoming"
-                  ? "primary"
-                  : event.status === "current"
-                    ? "success"
-                    : "default"
-              }
-              variant="flat"
-              size="sm"
-            >
-              {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
-            </Badge>
-          </div>
-        )}
-
         {/* Popular Badge */}
         {event.isPopular && (
           <div className="absolute top-3 right-3 z-20">

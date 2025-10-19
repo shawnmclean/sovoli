@@ -99,7 +99,6 @@ export interface EventCategory {
 
 export interface EventModule {
   events: Event[];
-  upcomingEvents?: Event[];
   featuredEvents?: Event[];
 }
 
