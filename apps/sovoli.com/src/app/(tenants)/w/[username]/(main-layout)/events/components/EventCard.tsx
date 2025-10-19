@@ -3,8 +3,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { Image } from "@sovoli/ui/components/image";
-import { Badge } from "@sovoli/ui/components/badge";
-import { Calendar } from "lucide-react";
+import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
 
 interface EventCardProps {
   event: Event;
@@ -19,10 +18,17 @@ export function EventCard({
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
       weekday: "long",
-      year: "numeric",
       month: "long",
       day: "numeric",
     });
+  };
+
+  const formatTime = (timeString: string) => {
+    const [hours, minutes] = timeString.split(":");
+    const hour = parseInt(hours ?? "0", 10);
+    const ampm = hour >= 12 ? "PM" : "AM";
+    const displayHour = hour % 12 || 12;
+    return `${displayHour}:${minutes} ${ampm}`;
   };
 
   return (
@@ -31,25 +37,57 @@ export function EventCard({
       href={`/events/${event.slug}`}
       className="overflow-hidden shadow-md transition hover:shadow-lg"
     >
-      {/* Event Image */}
-      <div className="relative w-full">
-        <Image
-          src={event.photos?.[0]?.url ?? ""}
-          alt={event.name}
-          width={800}
-          height={150}
-          className="h-52 w-full object-cover block"
-        />
-      </div>
+      <CardBody className="flex flex-row p-0">
+        {/* Event Image - Left Side */}
+        <div className="relative w-32 aspect-square p-2 flex items-center justify-center">
+          <Image
+            src={event.photos?.[0]?.url ?? ""}
+            alt={event.name}
+            width={128}
+            height={128}
+            className="h-full w-full object-cover rounded-lg"
+          />
+        </div>
 
-      <CardBody className="flex flex-col space-y-3">
-        {/* Event Title */}
-        <h3 className="text-xl font-semibold text-primary-800">{event.name}</h3>
+        {/* Event Details - Right Side */}
+        <div className="flex-1 p-4 flex flex-col justify-between">
+          <div className="space-y-2">
+            {/* Event Title */}
+            <h3 className="text-lg font-semibold text-foreground">
+              {event.name}
+            </h3>
 
-        {/* Date */}
-        <span className="text-sm text-foreground-600">
-          {formatDate(event.startDate)}
-        </span>
+            {/* Location */}
+            {event.location && (
+              <div className="flex items-center gap-2 text-sm text-foreground-600">
+                <MapPin className="w-4 h-4 text-foreground-500" />
+                <span>{event.location}</span>
+              </div>
+            )}
+
+            {/* Date */}
+            <div className="flex items-center gap-2 text-sm text-foreground-600">
+              <Calendar className="w-4 h-4 text-foreground-500" />
+              <span>{formatDate(event.startDate)}</span>
+            </div>
+
+            {/* Time */}
+            {event.startTime && (
+              <div className="flex items-center gap-2 text-sm text-foreground-600">
+                <Clock className="w-4 h-4 text-foreground-500" />
+                <span>
+                  {formatTime(event.startTime)}
+                  {event.endTime && ` - ${formatTime(event.endTime)}`}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Arrow Icon */}
+          <div className="flex justify-end">
+            <ArrowRight className="w-5 h-5 text-foreground-400" />
+          </div>
+        </div>
       </CardBody>
     </Card>
   );
