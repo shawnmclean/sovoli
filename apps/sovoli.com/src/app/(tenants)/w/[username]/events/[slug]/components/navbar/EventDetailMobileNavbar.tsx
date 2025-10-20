@@ -54,7 +54,7 @@ export function EventDetailNavbar({
           />
         </NavbarItem>
         <NavbarItem>
-          <SubscribeEventButton event={event} />
+          <SubscribeEventButton event={event} orgInstance={orgInstance} />
         </NavbarItem>
       </NavbarContent>
     </Navbar>

@@ -12,6 +12,7 @@ import { useDisclosure } from "@sovoli/ui/components/dialog";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { BellIcon, CheckCircleIcon } from "lucide-react";
 import { SignupDialog } from "~/modules/auth/components/SignupDialog";
+import posthog from "posthog-js";
 
 export interface SubscribeAllEventsButtonProps {
   orgInstance: OrgInstance;
@@ -59,6 +60,9 @@ export function SubscribeAllEventsButton({
     firstName?: string;
     lastName?: string;
   }) => {
+    posthog.capture("SubscribedToAllEvents", {
+      tenant: orgInstance.org.username,
+    });
     setPhone(phone);
     setFirstName(firstName ?? null);
     setLastName(lastName ?? null);

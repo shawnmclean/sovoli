@@ -12,6 +12,8 @@ import { useDisclosure } from "@sovoli/ui/components/dialog";
 import type { Event } from "~/modules/events/types";
 import { BellIcon, CheckCircleIcon } from "lucide-react";
 import { SignupDialog } from "~/modules/auth/components/SignupDialog";
+import posthog from "posthog-js";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface SubscribeEventButtonProps {
   event: Event;
@@ -23,10 +25,12 @@ export interface SubscribeEventButtonProps {
     | "faded"
     | "shadow"
     | "ghost";
+  orgInstance: OrgInstance;
 }
 
 export function SubscribeEventButton({
   event,
+  orgInstance,
   variant = "solid",
 }: SubscribeEventButtonProps) {
   const {
@@ -57,6 +61,11 @@ export function SubscribeEventButton({
     firstName?: string;
     lastName?: string;
   }) => {
+    posthog.capture("SubscribedToEvent", {
+      event: event.slug,
+      tenant: orgInstance.org.username,
+    });
+
     setPhone(phone);
     setFirstName(firstName ?? null);
     setLastName(lastName ?? null);
