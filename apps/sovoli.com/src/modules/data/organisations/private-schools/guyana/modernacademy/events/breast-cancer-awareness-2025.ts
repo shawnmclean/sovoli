@@ -94,7 +94,3 @@ export const BREAST_CANCER_AWARENESS_2025_EVENT: Event = {
   notes:
     "Teachers will facilitate age-appropriate conversations about health, self-care, and supporting families affected by breast cancer.",
 };
-
-export const BREAST_CANCER_AWARENESS_EVENT_ASSETS = {
-  photos: BREAST_CANCER_AWARENESS_EVENT_PHOTOS,
-};

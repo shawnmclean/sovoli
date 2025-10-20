@@ -1,4 +1,20 @@
 import type { Event } from "~/modules/events/types";
+import type { Photo } from "~/modules/core/photos/types";
+
+const HALLOWEEN_PARTY_EVENT_PHOTOS: Photo[] = [
+  {
+    category: "events",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760991132/o/magy/events/halloween-party-2025/1.png",
+    assetId: "9ecf6126c0bcfbdf5d2fcf49704b2374",
+    publicId: "o/magy/events/halloween-party-2025/1",
+    width: 1024,
+    height: 1024,
+    format: "png",
+    bytes: 1868651,
+    version: 1760991132,
+    uploadedAt: "2025-10-20T20:12:12Z",
+  },
+];
 
 export const HALLOWEEN_PARTY_2025_EVENT: Event = {
   id: "halloween-party-2025",
@@ -23,7 +39,8 @@ export const HALLOWEEN_PARTY_2025_EVENT: Event = {
     {
       icon: "calendar",
       label: "Costume Parade",
-      description: "Students dress up in creative costumes and showcase them with friends.",
+      description:
+        "Students dress up in creative costumes and showcase them with friends.",
     },
     {
       icon: "gift",
@@ -54,26 +71,31 @@ export const HALLOWEEN_PARTY_2025_EVENT: Event = {
     {
       id: "costume",
       name: "Halloween Costume",
-      description: "Students should wear a costume of their choice and bring a treat basket.",
+      description:
+        "Students should wear a costume of their choice and bring a treat basket.",
       type: "wear",
       isRequired: true,
-      notes: "Costumes should be school-appropriate and comfortable for movement.",
+      notes:
+        "Costumes should be school-appropriate and comfortable for movement.",
     },
     {
       id: "treat-contribution",
       name: "Sweets or Chocolates",
-      description: "Each child is asked to bring sweets or chocolates to share.",
+      description:
+        "Each child is asked to bring sweets or chocolates to share.",
       type: "bring",
       isRequired: true,
     },
     {
       id: "decorations",
       name: "Class Decorations",
-      description: "Students can contribute Halloween decorations to brighten their classroom.",
+      description:
+        "Students can contribute Halloween decorations to brighten their classroom.",
       type: "bring",
       isRequired: false,
     },
   ],
+  photos: HALLOWEEN_PARTY_EVENT_PHOTOS,
   notes:
     "Teachers will supervise treat exchanges and ensure allergies or dietary needs are respected during the celebrations.",
 };

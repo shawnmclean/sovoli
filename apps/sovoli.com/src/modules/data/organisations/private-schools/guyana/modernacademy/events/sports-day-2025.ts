@@ -1,4 +1,20 @@
 import type { Event } from "~/modules/events/types";
+import type { Photo } from "~/modules/core/photos/types";
+
+const SPORTS_DAY_EVENT_PHOTOS: Photo[] = [
+  {
+    category: "events",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760991745/o/magy/events/sports-day-2025/1.png",
+    assetId: "b710400ee729f8aec3563984ba304e12",
+    publicId: "o/magy/events/sports-day-2025/1",
+    width: 1024,
+    height: 1024,
+    format: "png",
+    bytes: 2187568,
+    version: 1760991745,
+    uploadedAt: "2025-10-20T20:22:25Z",
+  },
+];
 
 export const SPORTS_DAY_2025_EVENT: Event = {
   id: "sports-day-2025",
@@ -23,7 +39,8 @@ export const SPORTS_DAY_2025_EVENT: Event = {
     {
       icon: "trophy",
       label: "House Competitions",
-      description: "Each team represents their colour in track and field challenges.",
+      description:
+        "Each team represents their colour in track and field challenges.",
     },
     {
       icon: "users",
@@ -40,13 +57,15 @@ export const SPORTS_DAY_2025_EVENT: Event = {
     {
       id: "opening-ceremony",
       title: "Opening Ceremony & Warm-Up",
-      description: "House teams gather for introductions, chants, and stretching routines.",
+      description:
+        "House teams gather for introductions, chants, and stretching routines.",
       duration: "45 minutes",
     },
     {
       id: "relay-races",
       title: "Relay Races & Field Events",
-      description: "Track races, relays, and fun obstacle courses for each age group.",
+      description:
+        "Track races, relays, and fun obstacle courses for each age group.",
       duration: "3 hours",
     },
   ],
@@ -54,25 +73,29 @@ export const SPORTS_DAY_2025_EVENT: Event = {
     {
       id: "team-colors",
       name: "Team Colour Outfit",
-      description: "Students should wear their team's colour to represent their house.",
+      description:
+        "Students should wear their team's colour to represent their house.",
       type: "wear",
       isRequired: true,
     },
     {
       id: "water-bottle",
       name: "Water Bottle",
-      description: "Bring a labelled water bottle to stay hydrated throughout the day.",
+      description:
+        "Bring a labelled water bottle to stay hydrated throughout the day.",
       type: "bring",
       isRequired: true,
     },
     {
       id: "sunscreen",
       name: "Sun Protection",
-      description: "Apply sunscreen and wear hats or visors for outdoor comfort.",
+      description:
+        "Apply sunscreen and wear hats or visors for outdoor comfort.",
       type: "prepare",
       isRequired: false,
     },
   ],
+  photos: SPORTS_DAY_EVENT_PHOTOS,
   notes:
     "Parents and guardians are invited to cheer for teams and ensure students have a healthy snack for the day.",
 };

@@ -362,7 +362,3 @@ export const DIWALI_CELEBRATION_2025_EVENT: Event = {
   notes:
     "This is a special cultural celebration event. Parents are encouraged to participate and share their own Diwali traditions. The event promotes cultural diversity and understanding among all students.",
 };
-
-export const DIWALI_EVENT_ASSETS = {
-  photos: DIWALI_EVENT_PHOTOS,
-};
