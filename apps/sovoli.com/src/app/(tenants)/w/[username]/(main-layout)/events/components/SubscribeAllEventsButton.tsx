@@ -47,25 +47,11 @@ export function SubscribeAllEventsButton({
     defaultOpen: false,
   });
   const [step, setStep] = useState<"child" | "thank-you">("child");
-  const [phone, setPhone] = useState<string | null>(null);
-  const [firstName, setFirstName] = useState<string | null>(null);
-  const [lastName, setLastName] = useState<string | null>(null);
 
-  const handleSignupSuccess = ({
-    phone,
-    firstName,
-    lastName,
-  }: {
-    phone: string;
-    firstName?: string;
-    lastName?: string;
-  }) => {
+  const handleSignupSuccess = () => {
     posthog.capture("SubscribedToAllEvents", {
       tenant: orgInstance.org.username,
     });
-    setPhone(phone);
-    setFirstName(firstName ?? null);
-    setLastName(lastName ?? null);
 
     onSignupOpenChange();
     setStep("child");
@@ -74,9 +60,6 @@ export function SubscribeAllEventsButton({
 
   const handleCustomFlowClose = () => {
     setStep("child");
-    setPhone(null);
-    setFirstName(null);
-    setLastName(null);
     onCustomFlowClose();
   };
 
