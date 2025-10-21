@@ -2,6 +2,7 @@ import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import type { Program } from "~/modules/academics/types";
+import type { Event } from "~/modules/events/types";
 
 interface SitemapUrl {
   loc: string;
@@ -89,6 +90,30 @@ function generateAcademicsSitemapUrls(
   ];
 }
 
+function generateEventsSitemapUrls(
+  baseUrl: string,
+  orgInstance: OrgInstance,
+): SitemapUrl[] {
+  const events = orgInstance.eventModule?.events ?? [];
+
+  return [
+    {
+      loc: `${baseUrl}/events`,
+      lastmod: new Date().toISOString(),
+      changefreq: "weekly",
+      priority: 0.9,
+    },
+    ...events.map(
+      (event: Event): SitemapUrl => ({
+        loc: `${baseUrl}/events/${event.slug}`,
+        lastmod: new Date().toISOString(),
+        changefreq: "weekly",
+        priority: 0.8,
+      }),
+    ),
+  ];
+}
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ username: string }> },
@@ -122,6 +147,7 @@ export async function GET(
     },
     ...generateWorkforceSitemapUrls(baseUrl, orgInstance),
     ...generateAcademicsSitemapUrls(baseUrl, orgInstance),
+    ...generateEventsSitemapUrls(baseUrl, orgInstance),
   ];
 
   const xml = generateSitemapXml(sitemapUrls);
