@@ -54,8 +54,8 @@ export function SubscribeAllEventsButton({
     lastName,
   }: {
     phone: string;
-    firstName: string;
-    lastName: string;
+    firstName?: string;
+    lastName?: string;
   }) => {
     posthog.capture("SubscribedToAllEvents", {
       tenant: orgInstance.org.username,
