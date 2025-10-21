@@ -70,6 +70,7 @@ export function SubscribeAllEventsButton({
         size={size}
         startContent={<BellIcon size={16} />}
         onPress={onSignupOpen}
+        color="primary"
       >
         Subscribe to All Events
       </Button>
