@@ -55,8 +55,8 @@ export function SubscribeEventButton({
     lastName,
   }: {
     phone: string;
-    firstName: string;
-    lastName: string;
+    firstName?: string;
+    lastName?: string;
   }) => {
     posthog.capture("SubscribedToEvent", {
       event: event.slug,
