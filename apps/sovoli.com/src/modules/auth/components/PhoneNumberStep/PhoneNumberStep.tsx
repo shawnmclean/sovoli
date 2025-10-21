@@ -37,12 +37,6 @@ export function PhoneNumberStep({ onSuccess, mode }: PhoneNumberStepProps) {
   ): Promise<LeadPhoneActionState> => {
     const phone = formData.get("phone") as string;
 
-    posthog.capture("LeadPhoneEntered", {
-      $set: {
-        phone: phone,
-      },
-    });
-
     onSuccess?.(phone);
     return new Promise((resolve) => {
       resolve({

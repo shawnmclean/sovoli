@@ -48,9 +48,23 @@ export function SubscribeAllEventsButton({
   });
   const [step, setStep] = useState<"child" | "thank-you">("child");
 
-  const handleSignupSuccess = () => {
+  const handleSignupSuccess = ({
+    phone,
+    firstName,
+    lastName,
+  }: {
+    phone: string;
+    firstName: string;
+    lastName: string;
+  }) => {
     posthog.capture("SubscribedToAllEvents", {
       tenant: orgInstance.org.username,
+      $set: {
+        phone: phone,
+        first_name: firstName,
+        last_name: lastName,
+        name: `${firstName} ${lastName}`,
+      },
     });
 
     onSignupOpenChange();

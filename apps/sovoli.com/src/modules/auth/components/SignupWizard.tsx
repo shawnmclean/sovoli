@@ -10,6 +10,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { ProgramPriceCard } from "~/app/(tenants)/w/[username]/(main-layout)/programs/components/ProgramPriceCard";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import posthog from "posthog-js";
 
 export interface SignupWizardProps {
   whatsappNumber?: string;
@@ -47,6 +48,11 @@ export function SignupWizard({
       <PhoneNumberStep
         onSuccess={(phoneNumber) => {
           setPhone(phoneNumber);
+          posthog.capture("LeadPhoneEntered", {
+            $set: {
+              phone: phoneNumber,
+            },
+          });
           setStep("names");
         }}
         mode={mode}
@@ -60,6 +66,13 @@ export function SignupWizard({
         onSuccess={(firstName, lastName) => {
           setFirstName(firstName);
           setLastName(lastName);
+          posthog.capture("LeadNameEntered", {
+            $set: {
+              first_name: firstName,
+              last_name: lastName,
+              name: `${firstName} ${lastName}`,
+            },
+          });
 
           // Track analytics if program is provided
           if (program) {
