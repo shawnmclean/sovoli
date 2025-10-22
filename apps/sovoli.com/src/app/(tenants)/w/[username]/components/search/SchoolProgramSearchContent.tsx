@@ -80,18 +80,11 @@ export function SchoolProgramSearchContent({
   return (
     <div className="flex flex-col gap-4 my-2">
       <div>
-        <h2 className="text-default-600 font-medium mb-2">
-          Search by school program
-        </h2>
-
         <div className="space-y-4">
           {/* School Selection */}
           <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">
-              School Name
-            </label>
             <Autocomplete
-              placeholder="Search for a school"
+              placeholder="Select your school"
               selectedKey={selectedSchool}
               onSelectionChange={(key) => {
                 setSelectedSchool((key as string) || "");
@@ -122,35 +115,29 @@ export function SchoolProgramSearchContent({
           </div>
 
           {/* Program Selection */}
-          <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">
-              Program Name
-            </label>
-            <Autocomplete
-              placeholder={
-                selectedSchool
-                  ? "Search for a program"
-                  : "Select a school first"
-              }
-              selectedKey={selectedProgram || null}
-              onSelectionChange={(key) => {
-                console.log("Program selected:", key);
-                setSelectedProgram((key as string) || "");
-              }}
-              isDisabled={!selectedSchool || availablePrograms.length === 0}
-              className="w-full"
-              allowsCustomValue={false}
-            >
-              {availablePrograms.map((program) => (
-                <AutocompleteItem
-                  key={program.id}
-                  textValue={program.name ?? program.slug}
-                >
-                  {program.name ?? program.slug}
-                </AutocompleteItem>
-              ))}
-            </Autocomplete>
-          </div>
+          {selectedSchool && availablePrograms.length > 0 && (
+            <div>
+              <Autocomplete
+                placeholder="Search for a program"
+                selectedKey={selectedProgram || null}
+                onSelectionChange={(key) => {
+                  console.log("Program selected:", key);
+                  setSelectedProgram((key as string) || "");
+                }}
+                className="w-full"
+                allowsCustomValue={false}
+              >
+                {availablePrograms.map((program) => (
+                  <AutocompleteItem
+                    key={program.id}
+                    textValue={program.name ?? program.slug}
+                  >
+                    {program.name ?? program.slug}
+                  </AutocompleteItem>
+                ))}
+              </Autocomplete>
+            </div>
+          )}
 
           {/* Search Button */}
           <Button
@@ -159,7 +146,7 @@ export function SchoolProgramSearchContent({
             startContent={<SearchIcon size={16} />}
             className="w-full"
           >
-            {isLoading ? "Searching..." : "Search Products"}
+            {isLoading ? "Searching..." : "Find Supply List"}
           </Button>
         </div>
 
