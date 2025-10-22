@@ -1,5 +1,5 @@
 import { Avatar } from "@sovoli/ui/components/avatar";
-import { Badge } from "@sovoli/ui/components/badge";
+// import { Badge } from "@sovoli/ui/components/badge";
 import { BadgeCheckIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
@@ -12,14 +12,14 @@ export function OrgLandingSection({ orgInstance }: OrgLandingSectionProps) {
   const org = orgInstance.org;
 
   // Calculate score
-  const score = orgInstance.scoringModule
-    ? (() => {
-        const { totalScore, maxScore } =
-          orgInstance.scoringModule.result.scoreSummary;
-        const rawScore = (totalScore / maxScore) * 10;
-        return isNaN(rawScore) || !isFinite(rawScore) ? 0 : rawScore.toFixed(1);
-      })()
-    : 0;
+  // const score = orgInstance.scoringModule
+  //   ? (() => {
+  //       const { totalScore, maxScore } =
+  //         orgInstance.scoringModule.result.scoreSummary;
+  //       const rawScore = (totalScore / maxScore) * 10;
+  //       return isNaN(rawScore) || !isFinite(rawScore) ? 0 : rawScore.toFixed(1);
+  //     })()
+  //   : 0;
 
   // Get establishment year from incorporation date
   const establishmentYear = org.verification?.incorporationDate
@@ -67,25 +67,23 @@ export function OrgLandingSection({ orgInstance }: OrgLandingSectionProps) {
     <div className="flex items-center gap-4 text-left border-b border-default-200 pb-4">
       {/* Logo with Score Badge */}
       <div className="shrink-0">
-        <Badge
+        {/* <Badge
           color="secondary"
           variant="solid"
           content={score}
           size="sm"
           placement="bottom-right"
           shape="circle"
-        >
-          <Avatar
-            src={org.logo}
-            name={org.name}
-            size="lg"
-            fallback={
-              <span className="text-xs text-default-500">
-                Logo Not Available
-              </span>
-            }
-          />
-        </Badge>
+        > */}
+        <Avatar
+          src={org.logo}
+          name={org.name}
+          size="lg"
+          fallback={
+            <span className="text-xs text-default-500">Logo Not Available</span>
+          }
+        />
+        {/* </Badge> */}
       </div>
 
       {/* Organization Info */}
