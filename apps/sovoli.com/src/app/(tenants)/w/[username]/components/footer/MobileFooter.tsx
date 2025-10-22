@@ -23,7 +23,10 @@ import {
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { tv } from "tailwind-variants";
-import type { OrgInstance } from "~/modules/organisations/types";
+import type {
+  OrgInstance,
+  OrgCategoryKeys,
+} from "~/modules/organisations/types";
 
 const footerButton = tv({
   slots: {
@@ -70,55 +73,131 @@ const footerCTAButton = tv({
   },
 });
 
+// Button configuration types
+interface FooterButtonConfig {
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  isSelected: (pathname: string) => boolean;
+}
+
+interface FooterConfig {
+  leftButtons: FooterButtonConfig[];
+  rightButtons: FooterButtonConfig[];
+}
+
+// Button configuration mapping based on organization categories
+const getFooterConfig = (categories: OrgCategoryKeys[]): FooterConfig => {
+  // Check if organization is a stationary/bookstore type
+  const isStationaryType = categories.includes("stationary");
+
+  if (isStationaryType) {
+    return {
+      leftButtons: [
+        {
+          href: "/",
+          icon: HomeIcon,
+          label: "Home",
+          isSelected: (pathname) => pathname === "/" || pathname === "",
+        },
+        {
+          href: "/catalog",
+          icon: BookOpenIcon,
+          label: "Catalog",
+          isSelected: (pathname) => pathname === "/catalog",
+        },
+      ],
+      rightButtons: [
+        {
+          href: "/workforce/people",
+          icon: UsersIcon,
+          label: "Team",
+          isSelected: (pathname) => pathname.startsWith("/workforce/people"),
+        },
+        {
+          href: "#",
+          icon: MenuIcon,
+          label: "More",
+          isSelected: () => false, // This will be handled by the drawer
+        },
+      ],
+    };
+  }
+
+  // Default configuration for school/academy types
+  return {
+    leftButtons: [
+      {
+        href: "/",
+        icon: HomeIcon,
+        label: "Home",
+        isSelected: (pathname) => pathname === "/" || pathname === "",
+      },
+      {
+        href: "/programs",
+        icon: BookOpenIcon,
+        label: "Programs",
+        isSelected: (pathname) => pathname === "/programs",
+      },
+    ],
+    rightButtons: [
+      {
+        href: "/workforce/people",
+        icon: UsersIcon,
+        label: "Team",
+        isSelected: (pathname) => pathname.startsWith("/workforce/people"),
+      },
+      {
+        href: "#",
+        icon: MenuIcon,
+        label: "More",
+        isSelected: () => false, // This will be handled by the drawer
+      },
+    ],
+  };
+};
+
 export interface MobileFooterProps {
   orgInstance: OrgInstance;
 }
 
-export function MobileFooter() {
+export function MobileFooter({ orgInstance }: MobileFooterProps) {
   const pathname = usePathname();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const footerButtonClasses = footerButton({
-    isSelected: pathname === "/" || pathname === "",
-  });
-  const programsButtonClasses = footerButton({
-    isSelected: pathname === "/programs",
-  });
-  const teamButtonClasses = footerButton({
-    isSelected: pathname.startsWith("/workforce/people"),
-  });
+  // Get the footer configuration based on organization categories
+  const footerConfig = getFooterConfig(orgInstance.org.categories);
+
   const ctaButtonClasses = footerCTAButton({
     isSelected: pathname.startsWith("/programs/apply"),
   });
-  const moreButtonClasses = footerButton();
   const drawerButtonClasses = drawerButton();
 
   return (
     <footer className="fixed bottom-0 left-0 right-0 bg-content1 shadow-lg pb-2 px-2 md:hidden z-40">
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-1 justify-start gap-2">
-          <Button
-            as={Link}
-            href="/"
-            variant="light"
-            color="default"
-            size="sm"
-            className={footerButtonClasses.base()}
-          >
-            <HomeIcon className={footerButtonClasses.icon()} />
-            <span className={footerButtonClasses.text()}>Home</span>
-          </Button>
-          <Button
-            as={Link}
-            href="/programs"
-            variant="light"
-            color="default"
-            size="sm"
-            className={programsButtonClasses.base()}
-          >
-            <BookOpenIcon className={programsButtonClasses.icon()} />
-            <span className={programsButtonClasses.text()}>Programs</span>
-          </Button>
+          {footerConfig.leftButtons.map((button, index) => {
+            const IconComponent = button.icon;
+            const buttonClasses = footerButton({
+              isSelected: button.isSelected(pathname),
+            });
+
+            return (
+              <Button
+                key={index}
+                as={Link}
+                href={button.href}
+                variant="light"
+                color="default"
+                size="sm"
+                className={buttonClasses.base()}
+              >
+                <IconComponent className={buttonClasses.icon()} />
+                <span className={buttonClasses.text()}>{button.label}</span>
+              </Button>
+            );
+          })}
         </div>
         <div className="flex justify-center">
           <div className={ctaButtonClasses.container()}>
@@ -137,27 +216,28 @@ export function MobileFooter() {
           </div>
         </div>
         <div className="flex flex-1 justify-end gap-2">
-          <Button
-            as={Link}
-            href="/workforce/people"
-            variant="light"
-            color="default"
-            size="sm"
-            className={teamButtonClasses.base()}
-          >
-            <UsersIcon className={teamButtonClasses.icon()} />
-            <span className={teamButtonClasses.text()}>Team</span>
-          </Button>
-          <Button
-            onPress={onOpen}
-            variant="light"
-            color="default"
-            size="sm"
-            className={moreButtonClasses.base()}
-          >
-            <MenuIcon className={moreButtonClasses.icon()} />
-            <span className={moreButtonClasses.text()}>More</span>
-          </Button>
+          {footerConfig.rightButtons.map((button, index) => {
+            const IconComponent = button.icon;
+            const buttonClasses = footerButton({
+              isSelected: button.isSelected(pathname),
+            });
+
+            return (
+              <Button
+                key={index}
+                as={Link}
+                href={button.href}
+                variant="light"
+                color="default"
+                size="sm"
+                className={buttonClasses.base()}
+                onPress={button.label === "More" ? onOpen : undefined}
+              >
+                <IconComponent className={buttonClasses.icon()} />
+                <span className={buttonClasses.text()}>{button.label}</span>
+              </Button>
+            );
+          })}
           <Drawer
             isOpen={isOpen}
             placement="bottom"
