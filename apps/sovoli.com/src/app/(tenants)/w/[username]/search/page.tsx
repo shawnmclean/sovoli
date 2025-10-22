@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ChevronLeftIcon } from "lucide-react";
-import { ProgramSearchContent } from "../components/search/ProgramSearchContent";
+import { PrivateSchoolSearchContent } from "../components/search/PrivateSchoolSearchContent";
 
 export default function SearchPage() {
   return (
@@ -22,7 +22,7 @@ export default function SearchPage() {
           Search for programs that match your child&apos;s age
         </p>
       </div>
-      <ProgramSearchContent source="search_page" />
+      <PrivateSchoolSearchContent source="search_page" />
     </div>
   );
 }

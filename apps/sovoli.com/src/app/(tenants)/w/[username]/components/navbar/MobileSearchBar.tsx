@@ -10,7 +10,7 @@ import {
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { SearchIcon } from "lucide-react";
-import { ProgramSearchContent } from "../search/ProgramSearchContent";
+import { PrivateSchoolSearchContent } from "../search/PrivateSchoolSearchContent";
 
 export function MobileSearchBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +73,7 @@ export function MobileSearchBar() {
               </DrawerHeader>
 
               <DrawerBody className="p-4">
-                <ProgramSearchContent
+                <PrivateSchoolSearchContent
                   source="mobile_drawer"
                   onSearchComplete={(count) => setProgramsFound(count)}
                 />

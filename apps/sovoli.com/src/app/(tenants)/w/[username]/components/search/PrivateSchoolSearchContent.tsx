@@ -27,17 +27,17 @@ type LoadingState =
       }[];
     };
 
-interface ProgramSearchContentProps {
+interface PrivateSchoolSearchContentProps {
   onSearchStart?: () => void;
   onSearchComplete?: (programsFound: number) => void;
-  source?: "mobile_drawer" | "search_page";
+  source?: "landing_page" | "mobile_drawer" | "search_page";
 }
 
-export function ProgramSearchContent({
+export function PrivateSchoolSearchContent({
   onSearchStart,
   onSearchComplete,
-  source = "search_page",
-}: ProgramSearchContentProps) {
+  source = "landing_page",
+}: PrivateSchoolSearchContentProps) {
   const { tenant } = useTenant();
   const [loadingState, setLoadingState] = useState<LoadingState>({
     type: "idle",
@@ -136,40 +136,45 @@ export function ProgramSearchContent({
   };
 
   return (
-    <div className="flex flex-col gap-4 my-2">
-      <div>
-        <h2 className="text-default-600 font-medium mb-2">
-          Tap your child’s age
-        </h2>
-        <AgeChatInput
-          onSubmit={handleAgeSubmit}
-          isDisabled={loadingState.type === "loading"}
-        />
+    <div className="mb-18">
+      <h1 className="text-2xl font-bold text-foreground mb-1">
+        Find the Right Fit
+      </h1>
+      <div className="flex flex-col gap-4 my-2">
+        <div>
+          <h2 className="text-default-600 font-medium mb-2">
+            Tap your child's age
+          </h2>
+          <AgeChatInput
+            onSubmit={handleAgeSubmit}
+            isDisabled={loadingState.type === "loading"}
+          />
 
-        {/* Loading states */}
-        {loadingState.type === "loading" && (
-          <div className="mt-4 p-3 bg-primary-50 text-primary-900 rounded-lg text-sm">
-            Finding the right program for your child...
-          </div>
-        )}
+          {/* Loading states */}
+          {loadingState.type === "loading" && (
+            <div className="mt-4 p-3 bg-primary-50 text-primary-900 rounded-lg text-sm">
+              Finding the right program for your child...
+            </div>
+          )}
 
-        {loadingState.type === "not-found" && (
-          <div className="mt-4 p-3 bg-danger-50 text-danger-900 rounded-lg text-sm">
-            Sorry we don&apos;t have any programs for that age.
-          </div>
-        )}
+          {loadingState.type === "not-found" && (
+            <div className="mt-4 p-3 bg-danger-50 text-danger-900 rounded-lg text-sm">
+              Sorry we don&apos;t have any programs for that age.
+            </div>
+          )}
 
-        {loadingState.type === "found" && (
-          <div ref={resultsRef} className="mt-4 space-y-2">
-            <p className="text-sm text-success-900 font-medium mb-3">
-              We found {loadingState.programs.length} program
-              {loadingState.programs.length !== 1 ? "s" : ""} for your child:
-            </p>
-            {loadingState.programs.map((program) => (
-              <ProgramSearchItem key={program.id} program={program} />
-            ))}
-          </div>
-        )}
+          {loadingState.type === "found" && (
+            <div ref={resultsRef} className="mt-4 space-y-2">
+              <p className="text-sm text-success-900 font-medium mb-3">
+                We found {loadingState.programs.length} program
+                {loadingState.programs.length !== 1 ? "s" : ""} for your child:
+              </p>
+              {loadingState.programs.map((program) => (
+                <ProgramSearchItem key={program.id} program={program} />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

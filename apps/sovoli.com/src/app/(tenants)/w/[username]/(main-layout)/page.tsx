@@ -7,7 +7,7 @@ import { TeamSection } from "../components/TeamSection";
 import { OrgGalleryCarousel } from "./components/OrgGalleryCarousel";
 import { OrgLandingSection } from "./components/OrgLandingSection";
 import { ProgramGroupListing } from "./components/ProgramGroupListing";
-import { ProgramSearchContent } from "../components/search/ProgramSearchContent";
+import { SearchContent } from "../components/search/SearchContent";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -38,15 +38,7 @@ export default async function WebsitePage({
 
       <div className="container mx-auto max-w-6xl space-y-6 px-6 py-4">
         <OrgLandingSection orgInstance={orgInstance} />
-        {orgInstance.org.categories.includes("private-school") && (
-          <div className="mb-18">
-            <h1 className="text-2xl font-bold text-foreground mb-1">
-              Find the Right Fit
-            </h1>
-            <ProgramSearchContent />
-          </div>
-        )}
-
+        <SearchContent orgInstance={orgInstance} />
         <ProgramGroupListing orgInstance={orgInstance} />
       </div>
 
