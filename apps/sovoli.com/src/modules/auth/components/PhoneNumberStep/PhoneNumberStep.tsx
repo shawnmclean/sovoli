@@ -11,7 +11,6 @@ import type {
   LeadPhoneActionState,
   SendOTPActionState,
 } from "../../actions/states";
-import posthog from "posthog-js";
 
 export interface PhoneNumberStepProps {
   mode: SignupWizardMode;

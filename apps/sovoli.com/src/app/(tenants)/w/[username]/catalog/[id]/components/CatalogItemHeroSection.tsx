@@ -26,22 +26,16 @@ export const CatalogItemHeroSection = ({
 
       {/* Category and Brand */}
       <div className="flex justify-center gap-4 text-sm text-muted-foreground mb-4">
-        {itemCategory && (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
-            {itemCategory}
-          </span>
-        )}
-        {itemBrand && (
-          <span className="text-muted-foreground">by {itemBrand}</span>
-        )}
+        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+          {itemCategory}
+        </span>
+        <span className="text-muted-foreground">by {itemBrand}</span>
       </div>
 
       {/* Description */}
-      {itemDescription && (
-        <p className="text-sm text-foreground-500 max-w-3xl mx-auto mb-4">
-          {itemDescription}
-        </p>
-      )}
+      <p className="text-sm text-foreground-500 max-w-3xl mx-auto mb-4">
+        {itemDescription}
+      </p>
 
       {/* Primary Location */}
       {primaryLocation && (

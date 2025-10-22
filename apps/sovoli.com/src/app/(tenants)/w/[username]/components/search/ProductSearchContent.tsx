@@ -44,7 +44,7 @@ export function ProductSearchContent({
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      handleSearch();
+      void handleSearch();
     }
   };
 
@@ -59,12 +59,12 @@ export function ProductSearchContent({
             placeholder="What are you looking for?"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             disabled={isLoading}
             className="flex-1"
           />
           <Button
-            onClick={handleSearch}
+            onPress={handleSearch}
             disabled={!searchQuery.trim() || isLoading}
             startContent={<SearchIcon size={16} />}
           >
