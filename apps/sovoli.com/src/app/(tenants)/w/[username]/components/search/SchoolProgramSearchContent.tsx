@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Autocomplete,
@@ -22,6 +23,7 @@ export function SchoolProgramSearchContent({
   onSearchComplete,
   source: _source = "landing_page",
 }: SchoolProgramSearchContentProps) {
+  const router = useRouter();
   const [selectedSchool, setSelectedSchool] = useState<string>("");
   const [selectedProgram, setSelectedProgram] = useState<string>("");
   const [availablePrograms, setAvailablePrograms] = useState<Program[]>([]);
@@ -52,21 +54,22 @@ export function SchoolProgramSearchContent({
     }
   }, [selectedSchool, privateSchools]);
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
     if (!selectedSchool || !selectedProgram) return;
 
     onSearchStart?.();
     setIsLoading(true);
 
     try {
-      // TODO: Implement school program search logic
-      // This would search for products based on the selected school and program
+      // Navigate to catalog page with school and program query params
+      const searchParams = new URLSearchParams({
+        school: selectedSchool,
+        program: selectedProgram,
+      });
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      router.push(`/catalog?${searchParams.toString()}`);
 
-      // For now, just complete with mock results
-      onSearchComplete?.(0);
+      onSearchComplete?.(1);
     } catch (error) {
       console.error("Error searching school programs:", error);
       onSearchComplete?.(0);
@@ -141,7 +144,7 @@ export function SchoolProgramSearchContent({
 
           {/* Search Button */}
           <Button
-            onClick={handleSearch}
+            onPress={handleSearch}
             disabled={!canSearch}
             startContent={<SearchIcon size={16} />}
             className="w-full"
@@ -149,15 +152,6 @@ export function SchoolProgramSearchContent({
             {isLoading ? "Searching..." : "Find Supply List"}
           </Button>
         </div>
-
-        {/* Loading state */}
-        {isLoading && (
-          <div className="mt-4 p-3 bg-primary-50 text-primary-900 rounded-lg text-sm">
-            Searching for products for this program...
-          </div>
-        )}
-
-        {/* TODO: Add results display when search is implemented */}
       </div>
     </div>
   );

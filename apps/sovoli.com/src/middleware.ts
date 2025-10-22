@@ -43,7 +43,7 @@ export async function middleware(request: NextRequest) {
   }
 
   const rewritten = NextResponse.rewrite(
-    new URL(`/w/${tenant}${pathname}`, request.url),
+    new URL(`/w/${tenant}${pathname}${request.nextUrl.search}`, request.url),
   );
   rewritten.headers.set("x-tenant", tenant);
   rewritten.headers.set("vary", "host");
