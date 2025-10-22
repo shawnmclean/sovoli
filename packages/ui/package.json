@@ -16,6 +16,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@heroui/autocomplete": "2.3.29",
     "@heroui/accordion": "2.2.23",
     "@heroui/alert": "2.2.26",
     "@heroui/avatar": "2.2.21",
