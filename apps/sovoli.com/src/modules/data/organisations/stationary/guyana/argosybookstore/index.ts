@@ -8,7 +8,7 @@ export const ARGOSY_BOOK_STORE_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Argosy Book Store",
-    logo: "/stationary/guyana/argosybookstore/logo.webp",
+    logo: "/images/orgs/stationary/guyana/argosybookstore/logo.webp",
     isVerified: false,
     verification: {
       status: "pending",
