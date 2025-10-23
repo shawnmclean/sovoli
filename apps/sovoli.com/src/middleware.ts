@@ -72,7 +72,7 @@ function isRootHost(host: string, rootDomain: string): boolean {
 }
 
 function extractLocalTenant(url: string, host: string): string | null {
-  const match = /http:\/\/([^.]+)\.localhost/.exec(url);
+  const match = /https?:\/\/([^.]+)\.localhost/.exec(url);
   if (match?.[1]) return match[1];
   if (host.includes(".localhost")) return host.split(".")[0] ?? null;
   return null;

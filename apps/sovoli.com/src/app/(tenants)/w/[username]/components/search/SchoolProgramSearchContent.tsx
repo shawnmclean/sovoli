@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@sovoli/ui/components/button";
 import {
@@ -30,8 +30,12 @@ export function SchoolProgramSearchContent({
   const [isLoading, setIsLoading] = useState(false);
 
   // Get all private schools for the dropdown
-  const privateSchools = PRIVATE_SCHOOLS.filter((org) =>
-    org.org.categories.includes("private-school"),
+  const privateSchools = useMemo(
+    () =>
+      PRIVATE_SCHOOLS.filter((org) =>
+        org.org.categories.includes("private-school"),
+      ),
+    [],
   );
 
   // Update available programs when school changes
