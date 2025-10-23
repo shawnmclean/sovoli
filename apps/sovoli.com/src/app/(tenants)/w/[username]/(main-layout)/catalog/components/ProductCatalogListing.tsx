@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface CatalogItemCardProps {
   item: {
     id: string;
@@ -14,33 +16,35 @@ interface CatalogItemCardProps {
 
 function CatalogItemCard({ item }: CatalogItemCardProps) {
   return (
-    <div className="group bg-card rounded-xl shadow-xs hover:shadow-lg transition-all duration-200">
-      <div className="p-4 sm:p-5">
-        <div className="mb-3">
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
-            {item.item.category}
-          </span>
-        </div>
-
-        <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-          {item.item.name}
-        </h3>
-
-        {item.item.description && (
-          <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-            {item.item.description}
-          </p>
-        )}
-
-        {item.price.GYD && (
-          <div className="mt-3">
-            <span className="text-xl font-bold text-foreground">
-              GYD ${item.price.GYD.toLocaleString()}
+    <Link href={`/catalog/${item.id}`} className="block">
+      <div className="group bg-card rounded-xl shadow-xs hover:shadow-lg transition-all duration-200">
+        <div className="p-4 sm:p-5">
+          <div className="mb-3">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+              {item.item.category}
             </span>
           </div>
-        )}
+
+          <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+            {item.item.name}
+          </h3>
+
+          {item.item.description && (
+            <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+              {item.item.description}
+            </p>
+          )}
+
+          {item.price.GYD && (
+            <div className="mt-3">
+              <span className="text-xl font-bold text-foreground">
+                GYD ${item.price.GYD.toLocaleString()}
+              </span>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

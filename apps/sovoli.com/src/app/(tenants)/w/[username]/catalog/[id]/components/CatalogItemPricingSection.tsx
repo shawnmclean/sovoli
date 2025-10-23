@@ -31,14 +31,6 @@ export const CatalogItemPricingSection = ({
               : "Contact us for pricing"}
           </p>
         </div>
-
-        {price.GYD && (
-          <div className="mt-4 text-center">
-            <button className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-              Add to Cart
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );

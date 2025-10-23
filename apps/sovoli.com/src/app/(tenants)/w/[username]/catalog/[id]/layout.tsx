@@ -7,7 +7,6 @@ import { getOrgInstanceWithCatalogItem } from "./lib/getOrgInstanceWithCatalogIt
 import { Alert } from "@sovoli/ui/components/alert";
 import { CatalogItemHeroSection } from "./components/CatalogItemHeroSection";
 import { CatalogItemDetailsSection } from "./components/CatalogItemDetailsSection";
-import { CatalogItemPricingSection } from "./components/CatalogItemPricingSection";
 import { CatalogItemGallery } from "./components/CatalogItemGallery";
 
 const retrieveOrgInstanceWithCatalogItem = async (
@@ -110,8 +109,6 @@ export default async function Layout({ children, params }: Props) {
         />
 
         <CatalogItemDetailsSection catalogItem={catalogItem} />
-
-        <CatalogItemPricingSection catalogItem={catalogItem} />
       </div>
 
       {children}

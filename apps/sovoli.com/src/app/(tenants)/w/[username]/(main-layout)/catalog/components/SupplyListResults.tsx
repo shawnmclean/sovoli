@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Alert } from "@sovoli/ui/components/alert";
@@ -248,9 +249,12 @@ export function SupplyListResults({
                             {match.catalogItem.price.GYD?.toLocaleString() ??
                               match.catalogItem.price.USD?.toLocaleString()}
                           </span>
-                          <span className="text-xs text-foreground-500">
+                          <Link
+                            href={`/catalog/${match.catalogItem.id}`}
+                            className="text-xs text-primary hover:text-primary/80 transition-colors underline"
+                          >
                             Available
-                          </span>
+                          </Link>
                         </div>
                       ) : (
                         <p className="text-sm text-foreground-500">

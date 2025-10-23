@@ -15,6 +15,7 @@ export const CatalogItemHeroSection = ({
   const itemDescription = catalogItem.item.description;
   const itemCategory = catalogItem.item.category;
   const itemBrand = catalogItem.item.brand;
+  const price = catalogItem.price;
 
   // Get primary location
   const primaryLocation = org.locations.find((loc) => loc.isPrimary);
@@ -23,6 +24,18 @@ export const CatalogItemHeroSection = ({
     <section className="my-6 border-b border-default-200 pb-6 text-center">
       {/* Item Name */}
       <h1 className="text-2xl leading-tight tracking-tight my-4">{itemName}</h1>
+
+      {/* Price */}
+      {price.GYD && (
+        <div className="mb-4">
+          <div className="text-3xl font-bold text-primary">
+            GYD ${price.GYD.toLocaleString()}
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Price includes all applicable taxes
+          </p>
+        </div>
+      )}
 
       {/* Category and Brand */}
       <div className="flex justify-center gap-4 text-sm text-muted-foreground mb-4">
