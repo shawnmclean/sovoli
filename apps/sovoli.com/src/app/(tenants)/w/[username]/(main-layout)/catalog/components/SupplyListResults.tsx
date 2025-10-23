@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
-import { Switch } from "@sovoli/ui/components/switch";
 import { Alert } from "@sovoli/ui/components/alert";
 import {
   PackageIcon,
@@ -57,7 +56,6 @@ export function SupplyListResults({
   const [selectedItems, setSelectedItems] = useState<Record<string, boolean>>(
     {},
   );
-  const [showPricing, setShowPricing] = useState(true);
 
   // Create a map of requirement items to catalog matches for easy lookup
   const itemMatches = useMemo(() => {
@@ -178,21 +176,6 @@ export function SupplyListResults({
   return (
     <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="space-y-4 pb-20">
-        {/* Toggle for pricing */}
-        <div className="pb-2">
-          <div className="flex items-center justify-end gap-2">
-            <Switch
-              isSelected={showPricing}
-              onValueChange={setShowPricing}
-              size="sm"
-            >
-              <span className="text-sm text-foreground-600">
-                {showPricing ? "Show Price" : "Hide Price"}
-              </span>
-            </Switch>
-          </div>
-        </div>
-
         {requirements.map((requirement, reqIndex) => {
           // Calculate category totals
           const categoryTotal = requirement.items.reduce(
@@ -259,18 +242,16 @@ export function SupplyListResults({
                       </div>
 
                       {match ? (
-                        showPricing ? (
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm text-foreground-600">
-                              GYD{" "}
-                              {match.catalogItem.price.GYD?.toLocaleString() ??
-                                match.catalogItem.price.USD?.toLocaleString()}
-                            </span>
-                            <span className="text-xs text-foreground-500">
-                              Available
-                            </span>
-                          </div>
-                        ) : null
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-foreground-600">
+                            GYD{" "}
+                            {match.catalogItem.price.GYD?.toLocaleString() ??
+                              match.catalogItem.price.USD?.toLocaleString()}
+                          </span>
+                          <span className="text-xs text-foreground-500">
+                            Available
+                          </span>
+                        </div>
                       ) : (
                         <p className="text-sm text-foreground-500">
                           Not available in catalog
@@ -316,8 +297,9 @@ export function SupplyListResults({
                   orgId={school.org.username}
                   orgName={school.org.name}
                   startContent={<SiWhatsapp size={16} />}
+                  color="success"
                 >
-                  Get Quote
+                  Order Now
                 </Button>
               )}
             </div>
