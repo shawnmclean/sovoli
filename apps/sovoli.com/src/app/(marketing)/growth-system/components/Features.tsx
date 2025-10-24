@@ -73,7 +73,7 @@ export function Features() {
   const [selectedTab, setSelectedTab] = useState("diagnostics");
 
   return (
-    <section className="py-8 px-4 sm:py-16">
+    <section className="py-6 px-2 sm:py-12">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold">Features</h2>

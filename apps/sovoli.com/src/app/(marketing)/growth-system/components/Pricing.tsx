@@ -1,9 +1,7 @@
 "use client";
 
-import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { CheckIcon } from "lucide-react";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { growthPlan } from "~/modules/plans/data/growth";
 
 export function Pricing() {
@@ -15,16 +13,10 @@ export function Pricing() {
   );
 
   return (
-    <section className="py-8 px-4 sm:py-16">
+    <section className="py-6 px-2 sm:py-12">
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-base sm:text-lg text-default-600 max-w-2xl mx-auto px-4">
-            One complete solution that includes everything you need to grow your
-            school's enrollment.
-          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold">Pricing</h2>
         </div>
 
         <Card className="bg-background shadow-lg ring-2 ring-primary-500">
@@ -56,37 +48,8 @@ export function Pricing() {
                 </li>
               ))}
             </ul>
-
-            <div className="space-y-4">
-              <WhatsAppLink
-                intent="Contact"
-                role="admin"
-                page="pricing"
-                funnel="growth-system"
-                message="Hi! I'm interested in the Growth System for my school. Can we discuss the details?"
-              >
-                <Button
-                  variant="bordered"
-                  color="success"
-                  size="lg"
-                  className="w-full"
-                >
-                  Message on WhatsApp
-                </Button>
-              </WhatsAppLink>
-            </div>
           </CardBody>
         </Card>
-
-        <div className="text-center mt-8">
-          <p className="text-sm text-default-500 mb-4">
-            Includes setup, onboarding, and 30-day money-back guarantee. No
-            long-term contracts.
-          </p>
-          <p className="text-sm text-default-500">
-            Need a custom solution? Contact us for enterprise pricing.
-          </p>
-        </div>
       </div>
     </section>
   );

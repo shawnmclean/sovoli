@@ -4,7 +4,7 @@ import overviewImage from "./overview.webp";
 
 export function Overview() {
   return (
-    <section className="py-8 px-2 sm:py-16">
+    <section className="py-6 px-2 sm:py-16">
       <div className="mx-auto max-w-6xl text-center">
         {/* Product Icon and Name */}
         <div className="flex items-center justify-center gap-3 mb-6">

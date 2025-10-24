@@ -1,9 +1,9 @@
 import { Overview } from "./components/Overview";
 import { Customers } from "./components/Customers";
 import { Features } from "./components/Features";
-import { Answers } from "./components/Answers";
+// import { Answers } from "./components/Answers";
 import { Pricing } from "./components/Pricing";
-import { Compare } from "./components/Compare";
+// import { Compare } from "./components/Compare";
 
 export const metadata = {
   title: "Growth System – Sovoli",
@@ -17,9 +17,9 @@ export default function GrowthSystemPage() {
       <Overview />
       <Customers />
       <Features />
-      <Answers />
+      {/* <Answers /> */}
       <Pricing />
-      <Compare />
+      {/* <Compare /> */}
     </div>
   );
 }
