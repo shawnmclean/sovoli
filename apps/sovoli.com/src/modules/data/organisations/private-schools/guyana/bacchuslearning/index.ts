@@ -12,7 +12,6 @@ export const BACCHUS_LEARNING_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Bacchus Learning Centre",
-    logo: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761265485/o/blcgy/school/park.jpg",
     isVerified: false,
     verification: {
       status: "pending",
