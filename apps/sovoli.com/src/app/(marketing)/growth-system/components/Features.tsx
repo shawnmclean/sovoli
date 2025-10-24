@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Tabs, Tab } from "@sovoli/ui/components/tabs";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import {
-  BarChart3Icon,
   SearchIcon,
   TargetIcon,
   GlobeIcon,
