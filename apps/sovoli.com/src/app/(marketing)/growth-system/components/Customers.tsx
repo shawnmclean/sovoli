@@ -3,28 +3,23 @@
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
+import { Image } from "@sovoli/ui/components/image";
 
 const customers = [
   {
     company: "Modern Academy",
-    title: "Increased enrollment by 40% in first semester",
+    title: "Increased calls by 300%",
     quote:
-      "The Growth System helped us connect with parents we never would have reached. Our website now generates qualified leads every week.",
-    caseStudyLink: "/case-studies/modern-academy",
+      "We were getting 2 calls per week from ads, now we're getting 6-8 calls per week without ads.",
+    caseStudyLink: "https://www.ma.edu.gy?ref=sovoli-case-study",
+    logo: "/images/orgs/private-schools/guyana/modernacademy/logo.webp",
   },
   {
-    company: "St. Joseph's Preparatory",
-    title: "Reduced marketing costs by 60% while doubling inquiries",
-    quote:
-      "We were spending thousands on ineffective ads. Now we have a system that works and costs less than hiring a marketing agency.",
-    caseStudyLink: "/case-studies/st-josephs",
-  },
-  {
-    company: "Guyana Academy of Excellence",
-    title: "Achieved 100% digital readiness score",
-    quote:
-      "From having no online presence to being the top-ranked school in our area. The transformation has been incredible.",
-    caseStudyLink: "/case-studies/guyana-academy",
+    company: "Fit Right Academy",
+    title: "Got our first few students",
+    quote: "Found the right students for our program.",
+    caseStudyLink: "https://www.fitright.gy?ref=sovoli-case-study",
+    logo: "/images/orgs/vocational-training/guyana/fitright/logo.webp",
   },
 ];
 
@@ -36,41 +31,54 @@ export function Customers() {
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
             Schools Already Growing With Sovoli
           </h2>
-          <p className="text-base sm:text-lg text-default-600 max-w-2xl mx-auto px-4">
-            See how private schools across Guyana are using the Growth System to
-            increase enrollment and reduce marketing costs.
-          </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           {customers.map((customer, index) => (
             <Card key={index} className="bg-background">
-              <CardBody className="p-6 sm:p-8">
-                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                  {/* Company Info */}
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-primary-600 mb-2">
-                      {customer.company}
-                    </h3>
-                    <h4 className="text-lg font-medium text-default-800 mb-3">
-                      {customer.title}
-                    </h4>
-                    <blockquote className="text-default-600 italic">
-                      "{customer.quote}"
-                    </blockquote>
-                  </div>
+              <CardBody>
+                <div className="flex flex-col gap-2">
+                  {/* Header with Logo, Company Name, and Case Study Button */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      {/* Company Logo */}
+                      <Image
+                        src={customer.logo}
+                        alt={`${customer.company} logo`}
+                        width={32}
+                        height={32}
+                      />
+                      {/* Company Name */}
+                      <h3 className="text-xl font-semibold text-primary">
+                        {customer.company}
+                      </h3>
+                    </div>
 
-                  {/* Case Study Link */}
-                  <div className="flex-shrink-0">
+                    {/* Case Study Button */}
                     <Button
                       as={Link}
+                      target="_blank"
                       href={customer.caseStudyLink}
                       variant="bordered"
-                      color="primary"
-                      className="w-full sm:w-auto"
+                      color="default"
+                      size="sm"
                     >
-                      View Case Study
+                      View
                     </Button>
+                  </div>
+
+                  {/* Achievement/Title */}
+                  <div>
+                    <h4 className="text-lg font-bold text-default-800">
+                      {customer.title}
+                    </h4>
+                  </div>
+
+                  {/* Quote */}
+                  <div>
+                    <blockquote className="text-default-600 italic text-sm">
+                      "{customer.quote}"
+                    </blockquote>
                   </div>
                 </div>
               </CardBody>
