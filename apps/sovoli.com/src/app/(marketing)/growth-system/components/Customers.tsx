@@ -28,7 +28,7 @@ export function Customers() {
     <section className="py-8 px-4 sm:py-16 bg-default-50">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold">
             Schools Already Growing With Sovoli
           </h2>
         </div>

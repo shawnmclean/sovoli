@@ -12,84 +12,59 @@ import {
 } from "lucide-react";
 
 const features = {
-  diagnostics: {
-    title: "Digital Readiness Diagnostics",
-    icon: BarChart3Icon,
-    content: {
-      headline: "Understand Your School's Digital Health",
-      description:
-        "Get a comprehensive assessment of your school's online presence and digital marketing readiness.",
-      features: [
-        "Website performance analysis",
-        "Social media presence audit",
-        "Google Business Profile optimization",
-        "Online reputation assessment",
-        "Competitive positioning analysis",
-      ],
-    },
-  },
   discovery: {
-    title: "Parent Discovery Engine",
+    title: "Discovery",
     icon: SearchIcon,
     content: {
-      headline: "Be Found When Parents Search",
+      headline: "Parents are searching for your school",
       description:
-        "Optimize your school's visibility so parents find you first when looking for education options.",
+        "Get your school infront of the right parents when they search for schools in your area.",
       features: [
-        "Local SEO optimization",
-        "Google Business Profile setup",
-        "Online directory listings",
-        "Review management system",
-        "Search ranking monitoring",
+        "Optimize search on Google and Bing maps",
+        "Get found on popular search engines such as Google and Bing",
+        "Rank up in popular school directories",
       ],
     },
   },
   ads: {
-    title: "Smart Advertising Platform",
+    title: "Ads",
     icon: TargetIcon,
     content: {
-      headline: "Facebook & Google Ads That Actually Convert",
+      headline: "Intelligent Advertising",
       description:
         "Run cost-effective advertising campaigns that target the right parents at the right time.",
       features: [
-        "Facebook CAPI integration",
-        "Automated ad optimization",
-        "Parent persona targeting",
-        "Cost-per-lead tracking",
-        "A/B testing campaigns",
+        "Create and run ads on Facebook and Instagram",
+        "Learns your audience and targets them with the right ads",
+        "Ad performance reports (how much did you spend? how many leads did you get? how much did you earn?)",
       ],
     },
   },
-  website: {
-    title: "Mobile-First School Website",
+  diagnostics: {
+    title: "Website",
     icon: GlobeIcon,
     content: {
       headline: "Professional Website Built for Mobile",
       description:
-        "Get a fast, beautiful website that works perfectly on phones and converts visitors into leads.",
+        "Majority of parents are using mobile devices to search for schools, so we build a website that works perfectly on mobile.",
       features: [
-        "Mobile-optimized design",
-        "Fast loading speeds",
-        "Parent-friendly navigation",
-        "Program showcase pages",
-        "Contact form integration",
+        "Program Finder page to showcase your programs",
+        "Comprehensive program details page",
+        "School Calendar to showcase your events and activities",
+        "AI Chatbot to answer parent questions",
+        "Enrollment and schedule visitation flows",
       ],
     },
   },
+
   leadCapture: {
-    title: "WhatsApp Lead Capture",
+    title: "WhatsApp",
     icon: MessageCircleIcon,
     content: {
       headline: "Convert Visitors Into Conversations",
       description:
-        "Seamlessly connect website visitors with your school through WhatsApp integration.",
-      features: [
-        "One-click WhatsApp chat",
-        "Automated lead qualification",
-        "Parent inquiry management",
-        "Follow-up reminders",
-        "Lead tracking dashboard",
-      ],
+        "Guyanese parents prefer to communicate via WhatsApp. So we send high quality leads to your WhatsApp number.",
+      features: ["One-click WhatsApp chat", "Follow-up reminders"],
     },
   },
 };
@@ -101,13 +76,7 @@ export function Features() {
     <section className="py-8 px-4 sm:py-16">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Complete Growth System
-          </h2>
-          <p className="text-base sm:text-lg text-default-600 max-w-2xl mx-auto px-4">
-            Five integrated tools that work together to grow your school's
-            enrollment systematically.
-          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold">Features</h2>
         </div>
 
         <Tabs
@@ -130,13 +99,10 @@ export function Features() {
                   </div>
                 }
               >
-                <Card className="bg-background mt-6">
+                <Card>
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <feature.icon className="h-6 w-6 text-primary-600" />
-                      </div>
-                      <div>
+                      <div className="flex flex-col gap-2">
                         <h3 className="text-xl font-semibold">
                           {feature.content.headline}
                         </h3>
