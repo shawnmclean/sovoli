@@ -1,6 +1,6 @@
 import { Footer } from "~/components/footer/Footer";
 import { DirectoryNavbar } from "./components/DirectoryNavbar/DirectoryNavbar";
-import { Alert } from "@sovoli/ui/components/alert";
+import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
 
 interface Props {
   children: React.ReactNode;
@@ -9,13 +9,7 @@ export default function Layout({ children }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <DirectoryNavbar />
-      <Alert
-        className="hidden md:flex"
-        variant="flat"
-        color="warning"
-        title="Website optimized for mobile devices. Use your phone please."
-      />
-
+      <MobileOnlyAlert />
       {children}
 
       <Footer />

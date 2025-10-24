@@ -4,7 +4,7 @@ import type { Product, WithContext } from "schema-dts";
 import type { OrgInstanceWithWebsite } from "../../lib/types";
 
 import { getOrgInstanceWithCatalogItem } from "./lib/getOrgInstanceWithCatalogItem";
-import { Alert } from "@sovoli/ui/components/alert";
+import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
 import { CatalogItemHeroSection } from "./components/CatalogItemHeroSection";
 import { CatalogItemDetailsSection } from "./components/CatalogItemDetailsSection";
 import { CatalogItemGallery } from "./components/CatalogItemGallery";
@@ -93,12 +93,7 @@ export default async function Layout({ children, params }: Props) {
           __html: JSON.stringify(productSchema, null, 0),
         }}
       />
-      <Alert
-        className="hidden md:flex"
-        variant="flat"
-        color="warning"
-        title="Website optimized for mobile devices. Use your phone please."
-      />
+      <MobileOnlyAlert />
 
       <CatalogItemGallery catalogItem={catalogItem} />
 

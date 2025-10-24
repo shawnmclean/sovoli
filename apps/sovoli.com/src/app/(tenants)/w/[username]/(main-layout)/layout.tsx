@@ -4,7 +4,7 @@ import { Footer } from "../components/footer/Footer";
 import { TenantNavbar } from "../components/navbar/TenantNavbar";
 import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 import { MobileFooter } from "../components/footer/MobileFooter";
-import { Alert } from "@sovoli/ui/components/alert";
+import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -24,12 +24,7 @@ export default async function Layout({ children, params }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <TenantNavbar orgInstance={orgInstance} />
-      <Alert
-        className="hidden md:flex"
-        variant="flat"
-        color="warning"
-        title="Website optimized for mobile devices. Use your phone please."
-      />
+      <MobileOnlyAlert />
       {children}
 
       <Footer orgInstance={orgInstance} />

@@ -4,7 +4,7 @@ import { parseISO } from "date-fns";
 import type { Event, WithContext } from "schema-dts";
 
 import { getOrgInstanceWithEvent } from "./lib/getOrgInstanceWithEvent";
-import { Alert } from "@sovoli/ui/components/alert";
+import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
 import { EventDetailMobileFooter } from "./components/footer/EventDetailMobileFooter";
 import { EventHeroSection } from "./components/EventHeroSection";
 import { EventRequirementsSection } from "./components/EventRequirementsSection";
@@ -111,13 +111,7 @@ export default async function Layout({ children, params }: Props) {
           __html: JSON.stringify(eventSchema, null, 0),
         }}
       />
-      <Alert
-        className="hidden md:flex"
-        variant="flat"
-        color="warning"
-        title="Website optimized for mobile devices. Use your phone please."
-      />
-
+      <MobileOnlyAlert />
       <EventDetailNavbar orgInstance={orgInstance} event={event} />
       <EventGalleryCarousel event={event} />
 

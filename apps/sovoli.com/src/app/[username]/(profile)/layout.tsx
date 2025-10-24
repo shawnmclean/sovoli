@@ -10,7 +10,7 @@ import { SchoolHeader } from "./components/SchoolHeader";
 import { SchoolNavigation } from "./components/SchoolNavigation";
 import { config } from "~/utils/config";
 import { OrgNavbar } from "./components/OrgNavbar/OrgNavbar";
-import { Alert } from "@sovoli/ui/components/alert";
+import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
 import { OrgDetailMobileFooter } from "./components/OrgFooter/OrgDetailMobileFooter";
 
 const retreiveOrgInstance = async (username: string) => {
@@ -94,12 +94,7 @@ export default async function Layout({ children, params }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <OrgNavbar orgInstance={orgInstance} />
-      <Alert
-        className="hidden md:flex"
-        variant="flat"
-        color="warning"
-        title="Website optimized for mobile devices. Use your phone please."
-      />
+      <MobileOnlyAlert />
 
       <main className="flex-grow">
         <SchoolHeader orgInstance={orgInstance} />

@@ -5,7 +5,7 @@ import type { EducationalOccupationalProgram, WithContext } from "schema-dts";
 
 import { ProgramDetailNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
-import { Alert } from "@sovoli/ui/components/alert";
+import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
 import { ProgramGalleryCarousel } from "./components/ProgramGalleryCarousel";
 import { ProgramHeroSection } from "./components/ProgramHeroSection";
 import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionContext";
@@ -265,12 +265,7 @@ export default async function Layout({ children, params, modals }: Props) {
         program={programToUse}
         group={group}
       />
-      <Alert
-        className="hidden md:flex"
-        variant="flat"
-        color="warning"
-        title="Website optimized for mobile devices. Use your phone please."
-      />
+      <MobileOnlyAlert />
       <ProgramCycleSelectionProvider
         program={programToUse}
         defaultCycle={defaultCycle}
