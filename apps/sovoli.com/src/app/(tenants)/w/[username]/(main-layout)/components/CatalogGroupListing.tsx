@@ -30,7 +30,7 @@ const getCategoryDisplayName = (category: string) => {
     food: "Food",
     service: "Services",
   };
-  return categoryMap[category] || category;
+  return categoryMap[category] ?? category;
 };
 
 // Helper function to get sorting order for categories

@@ -52,7 +52,7 @@ export const CatalogItemDetailsSection = ({
         </div>
 
         {/* Physical Information */}
-        {(item.dimensions || item.weightInGrams) && (
+        {(item.dimensions ?? item.weightInGrams) && (
           <div>
             <h3 className="font-semibold text-foreground mb-2">
               Physical Information

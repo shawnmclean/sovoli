@@ -49,6 +49,7 @@ import { CHASE_ACADEMY_ORG } from "./chaseacademy";
 import { FRASERS_EDUCATIONAL_ORG } from "./fraserseducational";
 import { MORGANS_LEARNING_ORG } from "./morganslearning";
 import { PURE_MASTERS_ACADEMY_ORG } from "./puremastersacademy";
+import { BACCHUS_LEARNING_ORG } from "./bacchuslearning";
 
 export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] = [
   MODERN_ACADEMY_ORG,
@@ -100,4 +101,5 @@ export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] = [
   FRASERS_EDUCATIONAL_ORG,
   MORGANS_LEARNING_ORG,
   PURE_MASTERS_ACADEMY_ORG,
+  BACCHUS_LEARNING_ORG,
 ];
