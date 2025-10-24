@@ -12,10 +12,11 @@ export async function middleware(request: NextRequest) {
   if (isStaticAsset(pathname)) return NextResponse.next();
 
   const host = request.headers.get("host") ?? "";
-  const hostname = host.split(":")[0]?.toLowerCase() ?? "";
+  const hostname = host.toLowerCase();
   const isApiRoute = pathname.startsWith("/api/");
   const rootDomain = webConfig.rootDomain.replace(/^www\./, "").toLowerCase();
-
+  console.log("rootDomain", rootDomain);
+  console.log("hostname", hostname);
   if (isRootHost(hostname, rootDomain)) {
     return NextResponse.next();
   }
@@ -60,7 +61,8 @@ function isStaticAsset(path: string): boolean {
 }
 
 function isLocalhost(host: string): boolean {
-  return host.includes("localhost") || host.includes("127.0.0.1");
+  const hostname = host.split(":")[0];
+  return hostname === "localhost" || hostname === "127.0.0.1";
 }
 
 function isPreviewHost(host: string): boolean {
@@ -74,7 +76,8 @@ function isRootHost(host: string, rootDomain: string): boolean {
 function extractLocalTenant(url: string, host: string): string | null {
   const match = /https?:\/\/([^.]+)\.localhost/.exec(url);
   if (match?.[1]) return match[1];
-  if (host.includes(".localhost")) return host.split(".")[0] ?? null;
+  const hostname = host.split(":")[0];
+  if (hostname?.includes(".localhost")) return hostname.split(".")[0] ?? null;
   return null;
 }
 
