@@ -15,8 +15,7 @@ export async function middleware(request: NextRequest) {
   const hostname = host.toLowerCase();
   const isApiRoute = pathname.startsWith("/api/");
   const rootDomain = webConfig.rootDomain.replace(/^www\./, "").toLowerCase();
-  console.log("rootDomain", rootDomain);
-  console.log("hostname", hostname);
+
   if (isRootHost(hostname, rootDomain)) {
     return NextResponse.next();
   }
