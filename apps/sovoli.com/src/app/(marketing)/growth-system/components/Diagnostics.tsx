@@ -1,0 +1,134 @@
+"use client";
+
+import React, { useState, useMemo } from "react";
+import { Button } from "@sovoli/ui/components/button";
+import {
+  Autocomplete,
+  AutocompleteItem,
+} from "@sovoli/ui/components/autocomplete";
+import { SearchIcon } from "lucide-react";
+import Image from "next/image";
+import { PRIVATE_SCHOOLS } from "~/modules/data/organisations/private-schools";
+
+export function Diagnostics() {
+  const [value, setValue] = useState("");
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Get all private schools for the dropdown
+  const privateSchools = useMemo(
+    () =>
+      PRIVATE_SCHOOLS.filter((org) =>
+        org.org.categories.includes("private-school"),
+      ),
+    [],
+  );
+
+  const onSelectionChange = (key: React.Key | null) => {
+    setSelectedKey(key as string | null);
+  };
+
+  const onInputChange = (inputValue: string) => {
+    setValue(inputValue);
+  };
+
+  const handleSearch = () => {
+    const schoolName = selectedKey ?? value;
+    if (!schoolName) return;
+
+    setIsLoading(true);
+
+    try {
+      // Here you would implement the actual diagnostics logic
+      console.log("Running diagnostics for school:", schoolName);
+
+      // Simulate API call
+      setTimeout(() => {
+        setIsLoading(false);
+        // You could show results in a modal or navigate to a results page
+        alert(`Diagnostics completed for: ${schoolName}`);
+      }, 2000);
+    } catch (error) {
+      console.error("Error running diagnostics:", error);
+      setIsLoading(false);
+    }
+  };
+
+  const canSearch = (selectedKey ?? value) && !isLoading;
+
+  return (
+    <section className="py-6 px-2 sm:py-12">
+      <div className="mx-auto max-w-4xl">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+            School Diagnostics
+          </h2>
+          <p className="text-default-600 max-w-2xl mx-auto">
+            Get a comprehensive analysis of your school's digital presence and
+            discover opportunities to improve your online visibility.
+          </p>
+        </div>
+
+        <div className="bg-background rounded-lg border border-default-200 p-6 sm:p-8">
+          <div className="space-y-6">
+            {/* School Selection */}
+            <div>
+              <label className="block text-sm font-medium text-default-700 mb-2">
+                Select your school or enter a new one
+              </label>
+              <Autocomplete
+                allowsCustomValue={true}
+                placeholder="Search for your school or enter a new school name"
+                selectedKey={selectedKey}
+                onSelectionChange={onSelectionChange}
+                onInputChange={onInputChange}
+                className="w-full"
+                defaultItems={privateSchools}
+              >
+                {(school) => (
+                  <AutocompleteItem
+                    key={school.org.username}
+                    textValue={school.org.name}
+                  >
+                    <div className="flex items-center gap-3">
+                      {school.org.logo && (
+                        <Image
+                          src={school.org.logo}
+                          alt={`${school.org.name} logo`}
+                          width={24}
+                          height={24}
+                          className="rounded-sm object-cover"
+                        />
+                      )}
+                      <span>{school.org.name}</span>
+                    </div>
+                  </AutocompleteItem>
+                )}
+              </Autocomplete>
+            </div>
+
+            {/* Search Button */}
+            <Button
+              onPress={handleSearch}
+              disabled={!canSearch}
+              startContent={<SearchIcon size={16} />}
+              className="w-full"
+              size="lg"
+            >
+              {isLoading ? "Running Diagnostics..." : "Run School Diagnostics"}
+            </Button>
+
+            {/* Info Text */}
+            <div className="text-sm text-default-500 text-center">
+              <p>
+                Our diagnostics will analyze your school's website, social media
+                presence, search engine visibility, and provide actionable
+                recommendations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

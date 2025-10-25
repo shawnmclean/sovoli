@@ -3,6 +3,7 @@ import { Customers } from "./components/Customers";
 import { Features } from "./components/Features";
 // import { Answers } from "./components/Answers";
 import { Pricing } from "./components/Pricing";
+import { Diagnostics } from "./components/Diagnostics";
 // import { Compare } from "./components/Compare";
 
 export const metadata = {
@@ -19,6 +20,7 @@ export default function GrowthSystemPage() {
       <Features />
       {/* <Answers /> */}
       <Pricing />
+      <Diagnostics />
       {/* <Compare /> */}
     </div>
   );
