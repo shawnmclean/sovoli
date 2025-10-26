@@ -28,7 +28,7 @@ export const Input = extendVariants(BaseInput, {
     },
     textSize: {
       base: {
-        input: "text-md",
+        input: "text-lg",
       },
     },
   },
