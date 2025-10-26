@@ -6,8 +6,8 @@ import {
   Autocomplete,
   AutocompleteItem,
 } from "@sovoli/ui/components/autocomplete";
+import { Avatar } from "@sovoli/ui/components/avatar";
 import { SearchIcon } from "lucide-react";
-import Image from "next/image";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { PRIVATE_SCHOOLS } from "~/modules/data/organisations/private-schools";
 
@@ -101,6 +101,7 @@ export function Diagnostics() {
                 onSelectionChange={onSelectionChange}
                 onInputChange={onInputChange}
                 className="w-full"
+                size="md"
                 defaultItems={privateSchools}
                 footer={
                   <WhatsAppLink
@@ -122,15 +123,12 @@ export function Diagnostics() {
                     textValue={school.org.name}
                   >
                     <div className="flex items-center gap-3">
-                      {school.org.logo && (
-                        <Image
-                          src={school.org.logo}
-                          alt={`${school.org.name} logo`}
-                          width={24}
-                          height={24}
-                          className="rounded-sm object-cover"
-                        />
-                      )}
+                      <Avatar
+                        src={school.org.logo}
+                        alt={`${school.org.name} logo`}
+                        size="sm"
+                        className="flex-shrink-0"
+                      />
                       <span>{school.org.name}</span>
                     </div>
                   </AutocompleteItem>

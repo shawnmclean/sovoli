@@ -6,7 +6,7 @@ import { ScrollShadow } from "@heroui/scroll-shadow";
 import { ChevronDownIcon, CloseIcon } from "@heroui/shared-icons";
 import { Listbox } from "@heroui/listbox";
 import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
+import { Input } from "@sovoli/ui/components/input";
 import { AnimatePresence } from "framer-motion";
 
 import { useAutocomplete } from "@heroui/autocomplete";
