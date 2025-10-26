@@ -35,4 +35,4 @@ export const Input = extendVariants(BaseInput, {
   defaultVariants: {
     textSize: "base",
   },
-});
+}) as typeof BaseInput;
