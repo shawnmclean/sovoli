@@ -8,6 +8,7 @@ import {
 } from "@sovoli/ui/components/autocomplete";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { PRIVATE_SCHOOLS } from "~/modules/data/organisations/private-schools";
 
 export function Diagnostics() {
@@ -56,6 +57,24 @@ export function Diagnostics() {
 
   const canSearch = (selectedKey ?? value) && !isLoading;
 
+  // Get the current school name for WhatsApp message
+  const getCurrentSchoolName = () => {
+    if (selectedKey) {
+      const selectedSchool = privateSchools.find(
+        (school) => school.org.username === selectedKey,
+      );
+      return selectedSchool?.org.name || value;
+    }
+    return value;
+  };
+
+  const getWhatsAppMessage = () => {
+    const schoolName = getCurrentSchoolName();
+    return schoolName
+      ? `I would like to run diagnostics on my school: ${schoolName}`
+      : "I would like to run diagnostics on my school";
+  };
+
   return (
     <section className="py-6 px-2 sm:py-12">
       <div className="mx-auto max-w-4xl">
@@ -77,13 +96,25 @@ export function Diagnostics() {
                 Select your school or enter a new one
               </label>
               <Autocomplete
-                allowsCustomValue={true}
                 placeholder="Search for your school or enter a new school name"
                 selectedKey={selectedKey}
                 onSelectionChange={onSelectionChange}
                 onInputChange={onInputChange}
                 className="w-full"
                 defaultItems={privateSchools}
+                footer={
+                  <WhatsAppLink
+                    message={getWhatsAppMessage()}
+                    intent="Request Data"
+                    page="landing"
+                    funnel="discovery"
+                    className="w-full"
+                  >
+                    <Button variant="bordered" className="w-full">
+                      + Add My School
+                    </Button>
+                  </WhatsAppLink>
+                }
               >
                 {(school) => (
                   <AutocompleteItem
