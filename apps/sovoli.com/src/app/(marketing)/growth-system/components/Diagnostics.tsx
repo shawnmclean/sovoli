@@ -63,7 +63,7 @@ export function Diagnostics() {
       const selectedSchool = privateSchools.find(
         (school) => school.org.username === selectedKey,
       );
-      return selectedSchool?.org.name || value;
+      return selectedSchool?.org.name ?? value;
     }
     return value;
   };
