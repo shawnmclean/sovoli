@@ -10,7 +10,20 @@ import {
   MessageCircleIcon,
 } from "lucide-react";
 
-const features = {
+type FeatureKey = "discovery" | "ads" | "diagnostics" | "leadCapture";
+
+const features: Record<
+  FeatureKey,
+  {
+    title: string;
+    icon: React.ComponentType<{ className?: string }>;
+    content: {
+      headline: string;
+      description: string;
+      features: string[];
+    };
+  }
+> = {
   discovery: {
     title: "Discovery",
     icon: SearchIcon,
@@ -69,7 +82,7 @@ const features = {
 };
 
 export function Features() {
-  const [selectedTab, setSelectedTab] = useState("diagnostics");
+  const [selectedTab, setSelectedTab] = useState<FeatureKey>("discovery");
 
   return (
     <section className="py-6 px-2 sm:py-12">
@@ -80,7 +93,7 @@ export function Features() {
 
         <Tabs
           selectedKey={selectedTab}
-          onSelectionChange={(key) => setSelectedTab(key as string)}
+          onSelectionChange={(key) => setSelectedTab(key as FeatureKey)}
           className="w-full"
         >
           {Object.entries(features).map(([key, feature]) => {

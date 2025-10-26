@@ -78,14 +78,8 @@ export function Diagnostics() {
   return (
     <section className="py-6 px-2 sm:py-12">
       <div className="mx-auto max-w-4xl">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            School Diagnostics
-          </h2>
-          <p className="text-default-600 max-w-2xl mx-auto">
-            Get a comprehensive analysis of your school's digital presence and
-            discover opportunities to improve your online visibility.
-          </p>
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold">School Diagnostics</h2>
         </div>
 
         <div className="bg-background rounded-lg border border-default-200 p-6 sm:p-8">
@@ -96,7 +90,7 @@ export function Diagnostics() {
                 Select your school or enter a new one
               </label>
               <Autocomplete
-                placeholder="Search for your school or enter a new school name"
+                placeholder="Search school or enter a new school"
                 selectedKey={selectedKey}
                 onSelectionChange={onSelectionChange}
                 onInputChange={onInputChange}
