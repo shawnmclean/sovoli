@@ -15,7 +15,6 @@ import {
   TargetIcon,
   GlobeIcon,
   MessageCircleIcon,
-  ArrowRight,
 } from "lucide-react";
 import bingResultImage from "./bing-result.png";
 import googleResultImage from "./google-maps.png";
@@ -118,7 +117,7 @@ function FeatureImageCarousel({
   }, [api]);
 
   return (
-    <div className="mt-6 rounded-lg overflow-hidden relative">
+    <div className="mt-6 relative">
       <Carousel
         opts={{
           align: "start",
@@ -130,7 +129,7 @@ function FeatureImageCarousel({
         <CarouselContent className="-ml-0">
           {images.map((image, index) => (
             <CarouselItem key={index} className="basis-full pl-0">
-              <div className="w-full relative">
+              <div className="w-full relative border border-default-200 rounded-lg shadow-lg overflow-hidden">
                 <Image
                   src={image}
                   alt={`${alt} ${index + 1}`}
@@ -231,23 +230,10 @@ export function Features() {
                       ))}
                     </ul>
                     {feature.images && feature.images.length > 0 && (
-                      <>
-                        <FeatureImageCarousel
-                          images={feature.images}
-                          alt={feature.content.headline}
-                        />
-                        <div className="mt-4">
-                          <a
-                            href="https://www.google.com/search?q=private+schools+in+guyana"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary-600 hover:text-primary-700 underline inline-flex items-center gap-1"
-                          >
-                            see it yourself
-                            <ArrowRight className="h-4 w-4" />
-                          </a>
-                        </div>
-                      </>
+                      <FeatureImageCarousel
+                        images={feature.images}
+                        alt={feature.content.headline}
+                      />
                     )}
                   </CardBody>
                 </Card>
