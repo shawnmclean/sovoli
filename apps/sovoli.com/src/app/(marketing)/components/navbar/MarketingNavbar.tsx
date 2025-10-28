@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -12,8 +11,9 @@ import {
   NavbarMenuToggle,
 } from "@sovoli/ui/components/navbar";
 import { Button } from "@sovoli/ui/components/button";
-import { Link as UILink } from "@sovoli/ui/components/link";
+import { Link } from "@sovoli/ui/components/link";
 import { Logo } from "~/components/Logo/Logo";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   { name: "Growth System", href: "/growth-system" },
@@ -22,6 +22,11 @@ const menuItems = [
 
 export function MarketingNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
     <Navbar
@@ -47,14 +52,14 @@ export function MarketingNavbar() {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {menuItems.map((item) => (
           <NavbarItem key={item.name}>
-            <UILink
+            <Link
               color="foreground"
               href={item.href}
               className="w-full"
               size="sm"
             >
               {item.name}
-            </UILink>
+            </Link>
           </NavbarItem>
         ))}
       </NavbarContent>
@@ -70,14 +75,14 @@ export function MarketingNavbar() {
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
-            <UILink
+            <Link
               color="foreground"
               className="w-full"
               href={item.href}
               size="lg"
             >
               {item.name}
-            </UILink>
+            </Link>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
