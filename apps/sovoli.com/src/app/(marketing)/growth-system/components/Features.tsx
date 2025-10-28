@@ -1,14 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Tabs, Tab } from "@sovoli/ui/components/tabs";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@sovoli/ui/components/carousel";
+import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   SearchIcon,
   TargetIcon,
   GlobeIcon,
   MessageCircleIcon,
+  ArrowRight,
 } from "lucide-react";
+import bingResultImage from "./bing-result.png";
+import googleResultImage from "./google-maps.png";
+import type { StaticImageData } from "next/image";
 
 type FeatureKey = "discovery" | "ads" | "diagnostics" | "leadCapture";
 
@@ -17,6 +28,7 @@ const features: Record<
   {
     title: string;
     icon: React.ComponentType<{ className?: string }>;
+    images?: StaticImageData[];
     content: {
       headline: string;
       description: string;
@@ -28,6 +40,7 @@ const features: Record<
   discovery: {
     title: "Discovery",
     icon: SearchIcon,
+    images: [bingResultImage, googleResultImage],
     content: {
       headline: "Parents are searching for schools right now.",
       description:
@@ -35,9 +48,8 @@ const features: Record<
       features: [
         "Show up when parents search online for schools",
         "Appear on Google and Bing maps with directions",
-        "Be listed in Sovoli’s trusted school directory",
+        "Be listed in Sovoli's trusted school directory",
       ],
-      footnote: "We'll help you get found on Google, Bing, and Sovoli.",
     },
   },
   ads: {
@@ -82,6 +94,89 @@ const features: Record<
     },
   },
 };
+
+function FeatureImageCarousel({
+  images,
+  alt,
+}: {
+  images: StaticImageData[];
+  alt: string;
+}) {
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  return (
+    <div className="mt-6 rounded-lg overflow-hidden relative">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: images.length > 1,
+        }}
+        setApi={setApi}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-0">
+          {images.map((image, index) => (
+            <CarouselItem key={index} className="basis-full pl-0">
+              <div className="w-full relative">
+                <Image
+                  src={image}
+                  alt={`${alt} ${index + 1}`}
+                  className="w-full h-auto"
+                />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+      {/* Dots Indicator */}
+      {images.length > 1 && (
+        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
+          {Array.from({ length: Math.min(5, images.length) }, (_, i) => {
+            let slideIndex;
+            if (images.length <= 5) {
+              // If 5 or fewer images, show all dots
+              slideIndex = i;
+            } else if (current < 2) {
+              // Near the beginning, show first 5
+              slideIndex = i;
+            } else if (current >= images.length - 2) {
+              // Near the end, show last 5
+              slideIndex = images.length - 5 + i;
+            } else {
+              // In the middle, show dots around current position
+              slideIndex = current - 2 + i;
+            }
+
+            return (
+              <div
+                key={i}
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
+                  current === slideIndex
+                    ? "bg-white scale-120 shadow-lg"
+                    : "bg-white/60"
+                }`}
+                aria-label={`Slide ${slideIndex + 1} of ${images.length}`}
+              />
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Features() {
   const [selectedTab, setSelectedTab] = useState<FeatureKey>("discovery");
@@ -135,6 +230,25 @@ export function Features() {
                         </li>
                       ))}
                     </ul>
+                    {feature.images && feature.images.length > 0 && (
+                      <>
+                        <FeatureImageCarousel
+                          images={feature.images}
+                          alt={feature.content.headline}
+                        />
+                        <div className="mt-4">
+                          <a
+                            href="https://www.google.com/search?q=private+schools+in+guyana"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary-600 hover:text-primary-700 underline inline-flex items-center gap-1"
+                          >
+                            see it yourself
+                            <ArrowRight className="h-4 w-4" />
+                          </a>
+                        </div>
+                      </>
+                    )}
                   </CardBody>
                 </Card>
               </Tab>
