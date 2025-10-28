@@ -22,6 +22,14 @@ import googleResultImage from "./google-maps.png";
 import sovoliDirectoryImage from "./sovoli-directory.png";
 import type { StaticImageData } from "next/image";
 import { Button } from "@sovoli/ui/components/button";
+import {
+  Modal,
+  ModalContent,
+  ModalBody,
+  useDisclosure,
+  ModalHeader,
+} from "@sovoli/ui/components/dialog";
+import { ChevronLeftIcon } from "lucide-react";
 
 type FeatureKey = "discovery" | "ads" | "diagnostics" | "leadCapture";
 
@@ -45,13 +53,13 @@ const features: Record<
   discovery: {
     title: "Discovery",
     icon: SearchIcon,
-    headline: "Parents are searching for schools right now.",
+    headline: "Parents are searching.",
     description:
       "A mother opens her phone and types ‘best schools near me.’ Your school appears at the top.",
     features: [
-      "Show up when parents search online for schools",
-      "Appear on Google and Bing maps with directions",
-      "Be listed in Sovoli's trusted school directory",
+      "Show up when parents search online",
+      "Appear on Google and Bing maps",
+      "Be listed in trusted school directories",
     ],
     screenshots: [
       {
@@ -107,6 +115,86 @@ const features: Record<
   },
 };
 
+// Modal Component for full-screen image viewing
+function FeatureImageModal({
+  screenshots,
+  alt,
+  isOpen,
+  onClose,
+  initialIndex = 0,
+}: {
+  screenshots: Screenshot[];
+  alt: string;
+  isOpen: boolean;
+  onClose: () => void;
+  initialIndex?: number;
+}) {
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [current, setCurrent] = useState(initialIndex);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  const currentScreenshot = screenshots[current];
+
+  return (
+    <Modal isOpen={isOpen} onOpenChange={onClose} size="full" hideCloseButton>
+      <ModalContent>
+        <ModalHeader className="flex items-center justify-between">
+          <Button variant="light" isIconOnly radius="full" onPress={onClose}>
+            <ChevronLeftIcon />
+          </Button>
+          <span className="text-sm">
+            {current + 1} / {screenshots.length}
+          </span>
+        </ModalHeader>
+        <ModalBody className="p-0 flex-1 overflow-hidden">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: screenshots.length > 1,
+              startIndex: initialIndex,
+            }}
+            setApi={setApi}
+            className="w-full h-full"
+          >
+            <CarouselContent className="h-full -ml-0">
+              {screenshots.map((screenshot, index) => (
+                <CarouselItem key={index} className="basis-full pl-0 h-full">
+                  <div className="w-full h-full relative flex items-center justify-center bg-default-50">
+                    <Image
+                      src={screenshot.image}
+                      alt={`${alt} ${index + 1}`}
+                      className="object-contain max-w-full max-h-full"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+          {/* Footnote in modal */}
+          {currentScreenshot?.footnote && (
+            <div className="p-4 bg-default-50 border-t border-default-200">
+              <p className="text-sm text-default-600 text-center">
+                {currentScreenshot.footnote}
+              </p>
+            </div>
+          )}
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
+}
+
 function FeatureImageCarousel({
   screenshots,
   alt,
@@ -118,6 +206,7 @@ function FeatureImageCarousel({
 }) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     if (!api) {
@@ -146,11 +235,12 @@ function FeatureImageCarousel({
         <CarouselContent className="-ml-0">
           {screenshots.map((screenshot, index) => (
             <CarouselItem key={index} className="basis-full pl-0">
-              <div className="w-full relative border border-default-200 rounded-lg shadow-lg overflow-hidden">
+              <div className="w-full aspect-[12/9] relative border border-default-200 rounded-lg shadow-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
                 <Image
                   src={screenshot.image}
                   alt={`${alt} ${index + 1}`}
-                  className="w-full h-auto"
+                  className="w-full h-full object-cover object-top"
+                  onClick={onOpen}
                 />
               </div>
             </CarouselItem>
@@ -196,6 +286,14 @@ function FeatureImageCarousel({
           {currentScreenshot?.footnote ?? footnote}
         </p>
       )}
+      {/* Full Screen Modal */}
+      <FeatureImageModal
+        screenshots={screenshots}
+        alt={alt}
+        isOpen={isOpen}
+        onClose={onClose}
+        initialIndex={current}
+      />
     </div>
   );
 }
@@ -270,7 +368,7 @@ export function Features() {
                           onPress={() => setSelectedTab(currentNextKey)}
                           className="gap-2"
                         >
-                          Learn about {features[currentNextKey].title}
+                          Next: Learn about {features[currentNextKey].title}
                           <ChevronRightIcon className="h-4 w-4" />
                         </Button>
                       </div>
