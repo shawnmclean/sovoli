@@ -135,66 +135,64 @@ function FeatureImageCarousel({
 
   return (
     <div className="mt-6">
-      <div className="relative">
-        <Carousel
-          opts={{
-            align: "start",
-            loop: screenshots.length > 1,
-          }}
-          setApi={setApi}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-0">
-            {screenshots.map((screenshot, index) => (
-              <CarouselItem key={index} className="basis-full pl-0">
-                <div className="w-full relative border border-default-200 rounded-lg shadow-lg overflow-hidden">
-                  <Image
-                    src={screenshot.image}
-                    alt={`${alt} ${index + 1}`}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-        {/* Dots Indicator */}
-        {screenshots.length > 1 && (
-          <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
-            {Array.from({ length: Math.min(5, screenshots.length) }, (_, i) => {
-              let slideIndex;
-              if (screenshots.length <= 5) {
-                // If 5 or fewer screenshots, show all dots
-                slideIndex = i;
-              } else if (current < 2) {
-                // Near the beginning, show first 5
-                slideIndex = i;
-              } else if (current >= screenshots.length - 2) {
-                // Near the end, show last 5
-                slideIndex = screenshots.length - 5 + i;
-              } else {
-                // In the middle, show dots around current position
-                slideIndex = current - 2 + i;
-              }
-
-              return (
-                <div
-                  key={i}
-                  className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
-                    current === slideIndex
-                      ? "bg-white scale-120 shadow-lg"
-                      : "bg-white/60"
-                  }`}
-                  aria-label={`Slide ${slideIndex + 1} of ${screenshots.length}`}
+      <Carousel
+        opts={{
+          align: "start",
+          loop: screenshots.length > 1,
+        }}
+        setApi={setApi}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-0">
+          {screenshots.map((screenshot, index) => (
+            <CarouselItem key={index} className="basis-full pl-0">
+              <div className="w-full relative border border-default-200 rounded-lg shadow-lg overflow-hidden">
+                <Image
+                  src={screenshot.image}
+                  alt={`${alt} ${index + 1}`}
+                  className="w-full h-auto"
                 />
-              );
-            })}
-          </div>
-        )}
-      </div>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+      {/* Dots Indicator */}
+      {screenshots.length > 1 && (
+        <div className="mt-2 flex justify-center gap-2">
+          {Array.from({ length: Math.min(5, screenshots.length) }, (_, i) => {
+            let slideIndex;
+            if (screenshots.length <= 5) {
+              // If 5 or fewer screenshots, show all dots
+              slideIndex = i;
+            } else if (current < 2) {
+              // Near the beginning, show first 5
+              slideIndex = i;
+            } else if (current >= screenshots.length - 2) {
+              // Near the end, show last 5
+              slideIndex = screenshots.length - 5 + i;
+            } else {
+              // In the middle, show dots around current position
+              slideIndex = current - 2 + i;
+            }
+
+            return (
+              <div
+                key={i}
+                className={`h-1 rounded-sm transition-all duration-200 ${
+                  current === slideIndex
+                    ? "bg-primary-500 w-8"
+                    : "bg-default-300 w-4"
+                }`}
+                aria-label={`Slide ${slideIndex + 1} of ${screenshots.length}`}
+              />
+            );
+          })}
+        </div>
+      )}
       {/* Footnote - show screenshot-specific footnote or general footnote */}
       {(currentScreenshot?.footnote ?? footnote) && (
-        <p className="mt-3 text-sm text-default-500 text-center">
+        <p className="mt-2 text-sm text-default-500 text-center">
           {currentScreenshot?.footnote ?? footnote}
         </p>
       )}
