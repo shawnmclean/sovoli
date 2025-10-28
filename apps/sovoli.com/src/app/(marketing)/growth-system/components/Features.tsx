@@ -21,6 +21,7 @@ const features: Record<
       headline: string;
       description: string;
       features: string[];
+      footnote?: string;
     };
   }
 > = {
@@ -28,14 +29,15 @@ const features: Record<
     title: "Discovery",
     icon: SearchIcon,
     content: {
-      headline: "Parents are searching for your school",
+      headline: "Parents are searching for schools right now.",
       description:
-        "Get your school infront of the right parents when they search for schools in your area.",
+        "A mother opens her phone and types 'best schools near me.' We put your school in front of her.",
       features: [
-        "Optimize search on Google and Bing maps",
-        "Get found on popular search engines such as Google and Bing",
-        "Rank up in popular school directories",
+        "Show up when parents search online for schools",
+        "Appear on Google and Bing maps with directions",
+        "Be listed in Sovoli’s trusted school directory",
       ],
+      footnote: "We'll help you get found on Google, Bing, and Sovoli.",
     },
   },
   ads: {
