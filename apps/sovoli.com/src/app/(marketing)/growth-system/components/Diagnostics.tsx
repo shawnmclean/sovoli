@@ -10,11 +10,12 @@ import { Avatar } from "@sovoli/ui/components/avatar";
 import { SearchIcon } from "lucide-react";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { PRIVATE_SCHOOLS } from "~/modules/data/organisations/private-schools";
+import { useRouter } from "next/navigation";
 
 export function Diagnostics() {
   const [value, setValue] = useState("");
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   // Get all private schools for the dropdown
   const privateSchools = useMemo(
@@ -37,25 +38,8 @@ export function Diagnostics() {
     const schoolName = selectedKey ?? value;
     if (!schoolName) return;
 
-    setIsLoading(true);
-
-    try {
-      // Here you would implement the actual diagnostics logic
-      console.log("Running diagnostics for school:", schoolName);
-
-      // Simulate API call
-      setTimeout(() => {
-        setIsLoading(false);
-        // You could show results in a modal or navigate to a results page
-        alert(`Diagnostics completed for: ${schoolName}`);
-      }, 2000);
-    } catch (error) {
-      console.error("Error running diagnostics:", error);
-      setIsLoading(false);
-    }
+    void router.push(`/${schoolName}/dashboard`);
   };
-
-  const canSearch = (selectedKey ?? value) && !isLoading;
 
   // Get the current school name for WhatsApp message
   const getCurrentSchoolName = () => {
@@ -86,11 +70,10 @@ export function Diagnostics() {
           <div className="space-y-6">
             {/* School Selection */}
             <div>
-              <label className="block text-sm font-medium text-default-700 mb-2">
-                Select your school or enter a new one
-              </label>
               <Autocomplete
-                placeholder="Search school or enter a new school"
+                label="Find your school"
+                labelPlacement="outside"
+                placeholder="School name..."
                 selectedKey={selectedKey}
                 onSelectionChange={onSelectionChange}
                 onInputChange={onInputChange}
@@ -133,12 +116,12 @@ export function Diagnostics() {
             {/* Search Button */}
             <Button
               onPress={handleSearch}
-              disabled={!canSearch}
+              disabled={!selectedKey}
               startContent={<SearchIcon size={16} />}
               className="w-full"
               size="lg"
             >
-              {isLoading ? "Running Diagnostics..." : "Run School Diagnostics"}
+              View Diagnostics
             </Button>
 
             {/* Info Text */}
