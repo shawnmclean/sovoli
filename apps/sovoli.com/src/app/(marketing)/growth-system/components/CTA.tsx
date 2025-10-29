@@ -3,15 +3,18 @@
 import { Button } from "@sovoli/ui/components/button";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import type { TrackingEventProperties } from "./Tracking";
 
 interface CTAProps {
   message?: string;
   phoneNumber?: string;
+  trackingEventProperties: TrackingEventProperties;
 }
 
 export function CTA({
   message = "I would like more information on your growth system",
   phoneNumber,
+  trackingEventProperties,
 }: CTAProps) {
   return (
     <section className="py-6 px-4 sm:py-12 relative">
@@ -37,6 +40,7 @@ export function CTA({
               event="Contact"
               eventProperties={{
                 audience: "school-admin",
+                ...trackingEventProperties,
               }}
             >
               <SiWhatsapp className="mr-2 h-5 w-5" />

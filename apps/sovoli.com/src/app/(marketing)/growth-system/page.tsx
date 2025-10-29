@@ -5,6 +5,8 @@ import { Features } from "./components/Features";
 import { Pricing } from "./components/Pricing";
 import { Diagnostics } from "./components/Diagnostics";
 import { CTA } from "./components/CTA";
+import type { TrackingEventProperties } from "./components/Tracking";
+import { Tracking } from "./components/Tracking";
 // import { Roadmap } from "./components/Roadmap";
 // import { Compare } from "./components/Compare";
 
@@ -15,14 +17,23 @@ export const metadata = {
 };
 
 export default function GrowthSystemPage() {
+  const trackingProperties: TrackingEventProperties = {
+    content_name: "Growth System",
+    content_type: "product",
+    content_ids: ["growth-system"],
+    value: 80000,
+    currency: "GYD",
+    predicted_ltv: 1200000,
+  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-default-50">
+      <Tracking trackingEventProperties={trackingProperties} />
       <Overview />
       <Customers />
       <Features />
       {/* <Answers /> */}
       <Pricing />
-      <CTA />
+      <CTA trackingEventProperties={trackingProperties} />
       <Diagnostics />
       {/* <Roadmap /> */}
       {/* <Compare /> */}
