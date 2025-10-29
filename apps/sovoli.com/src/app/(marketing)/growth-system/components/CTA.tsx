@@ -34,9 +34,7 @@ export function CTA({
               color="primary"
               variant="solid"
               className="font-semibold"
-              page="landing"
-              funnel="conversion"
-              intent="Contact"
+              event="Contact"
             >
               <SiWhatsapp className="mr-2 h-5 w-5" />
               Message Us on WhatsApp
