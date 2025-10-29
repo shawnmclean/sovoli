@@ -65,3 +65,41 @@
     }
   }
 }
+
+@keyframes shine-border {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.animate-shine-border {
+  animation: shine-border 6s linear infinite;
+  pointer-events: none;
+}
+
+.shine-border-gradient {
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 30deg,
+    rgba(0, 0, 0, 0.6) 35deg,
+    rgba(0, 0, 0, 0.9) 50deg,
+    rgba(0, 0, 0, 0.6) 65deg,
+    transparent 70deg,
+    transparent 360deg
+  );
+}
+
+.dark .shine-border-gradient {
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 30deg,
+    rgba(255, 255, 255, 0.7) 35deg,
+    rgba(255, 255, 255, 1) 50deg,
+    rgba(255, 255, 255, 0.7) 65deg,
+    transparent 70deg,
+    transparent 360deg
+  );
+}

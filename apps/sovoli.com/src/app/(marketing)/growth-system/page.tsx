@@ -4,7 +4,8 @@ import { Features } from "./components/Features";
 // import { Answers } from "./components/Answers";
 import { Pricing } from "./components/Pricing";
 import { Diagnostics } from "./components/Diagnostics";
-import { Roadmap } from "./components/Roadmap";
+import { CTA } from "./components/CTA";
+// import { Roadmap } from "./components/Roadmap";
 // import { Compare } from "./components/Compare";
 
 export const metadata = {
@@ -22,7 +23,8 @@ export default function GrowthSystemPage() {
       {/* <Answers /> */}
       <Pricing />
       <Diagnostics />
-      <Roadmap />
+      <CTA />
+      {/* <Roadmap /> */}
       {/* <Compare /> */}
     </div>
   );
