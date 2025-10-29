@@ -35,6 +35,9 @@ export function CTA({
               variant="solid"
               className="font-semibold"
               event="Contact"
+              eventProperties={{
+                audience: "school-admin",
+              }}
             >
               <SiWhatsapp className="mr-2 h-5 w-5" />
               Message Us on WhatsApp
