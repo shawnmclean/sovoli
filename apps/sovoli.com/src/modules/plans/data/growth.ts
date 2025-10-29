@@ -7,7 +7,9 @@ export const growthPlan: PlanDefinition = {
 
   features: {
     autoVerify: {
-      label: "Verification Badge",
+      label: "Sovoli Verification Badge",
+      pitch:
+        "We'll ensure your school is compliant with a trusted badge on our trusted school directory.",
       covers: [],
     },
     googleProfile: {
@@ -28,13 +30,6 @@ export const growthPlan: PlanDefinition = {
         "We'll set up your email with an @edu.gy domain for up to 3 admins.",
       ctaLabel: "Get Email",
       covers: ["hasEmail", "hasEmailEduDomain"],
-    },
-    registration: {
-      label: "Need Help Getting Verified?",
-      pitch:
-        "If you don’t have registration documents, we’ll assist you with the process through the proper local channels.",
-      ctaLabel: "Register School",
-      covers: ["isVerified"],
     },
     logo: {
       label: "Logo Design",
@@ -65,16 +60,6 @@ export const growthPlan: PlanDefinition = {
           USD: 200,
         },
         notes: "Includes domain renewal, email support, hosting, and updates.",
-      },
-      {
-        id: "optional-registration-assist",
-        label: "Registration Assistance",
-        billingCycle: "one-time",
-        amount: {
-          GYD: 20000,
-          USD: 100,
-        },
-        optional: true,
       },
       {
         id: "optional-logo",

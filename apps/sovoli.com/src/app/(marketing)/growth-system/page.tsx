@@ -22,8 +22,8 @@ export default function GrowthSystemPage() {
       <Features />
       {/* <Answers /> */}
       <Pricing />
-      <Diagnostics />
       <CTA />
+      <Diagnostics />
       {/* <Roadmap /> */}
       {/* <Compare /> */}
     </div>
