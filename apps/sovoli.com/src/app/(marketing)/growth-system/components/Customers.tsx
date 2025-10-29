@@ -49,7 +49,7 @@ export function Customers() {
                         height={32}
                       />
                       {/* Company Name */}
-                      <h3 className="text-xl font-semibold text-primary">
+                      <h3 className="text-xl font-semibold text-default-800">
                         {customer.company}
                       </h3>
                     </div>
@@ -69,7 +69,7 @@ export function Customers() {
 
                   {/* Achievement/Title */}
                   <div>
-                    <h4 className="text-lg font-bold text-default-800">
+                    <h4 className="text-lg font-bold text-default-900">
                       {customer.title}
                     </h4>
                   </div>
