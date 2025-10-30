@@ -2,8 +2,8 @@ import type { PlanDefinition } from "../types";
 
 export const growthPlan: PlanDefinition = {
   key: "growth",
-  title: "Growth Package",
-  onboardingNode: "4/5 spots left this month.",
+  title: "Growth System",
+  onboardingNode: "Working with only 1 more school this month.",
 
   features: {
     autoVerify: {
@@ -37,6 +37,13 @@ export const growthPlan: PlanDefinition = {
       ctaLabel: "Design Logo",
       covers: ["hasLogo"],
     },
+    campaignAds: {
+      label: "Campaign Ads",
+      pitch:
+        "We'll run Facebook and Instagram ads for you, based on your budget.",
+      ctaLabel: "Run Campaign Ads",
+      covers: [],
+    },
   },
 
   pricingPackage: {
@@ -61,25 +68,15 @@ export const growthPlan: PlanDefinition = {
         },
         notes: "Includes domain renewal, email support, hosting, and updates.",
       },
-      {
-        id: "optional-logo",
-        label: "Logo Design",
-        billingCycle: "one-time",
-        amount: {
-          GYD: 5000,
-          USD: 25,
-        },
-        optional: true,
-      },
     ],
 
     discounts: [
       {
         id: "early-growth-offer",
         type: "percentage",
-        value: 50,
-        message: "Special offer for first 2 schools",
-        validUntil: "2025-09-01",
+        value: 25,
+        message: "Special offer for the next school",
+        validUntil: "2025-11-05",
         appliesTo: ["setup"],
       },
     ],

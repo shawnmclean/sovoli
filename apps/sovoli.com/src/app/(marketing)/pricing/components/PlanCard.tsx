@@ -23,6 +23,8 @@ interface PlanCardProps {
   onToggleDetails?: () => void;
   isPrimary?: boolean;
   orgUsername?: string;
+  hideHeader?: boolean; // hide plan title/subtitle
+  hideCta?: boolean; // hide CTA button
 }
 
 export function PlanCard({
@@ -31,6 +33,8 @@ export function PlanCard({
   onToggleDetails,
   isPrimary = false,
   orgUsername,
+  hideHeader = false,
+  hideCta = false,
 }: PlanCardProps) {
   const [selectedOptionals, setSelectedOptionals] = useState<
     Record<string, boolean>
@@ -111,12 +115,14 @@ export function PlanCard({
     <Card className="overflow-visible flex flex-col">
       <CardHeader className="flex flex-col items-start gap-2 pb-3">
         <div className="flex justify-between w-full items-center">
-          <div>
-            <h2 className="text-xl font-semibold">{plan.title}</h2>
-            {plan.subtitle && (
-              <p className="text-sm text-default-500">{plan.subtitle}</p>
-            )}
-          </div>
+          {!hideHeader && (
+            <div>
+              <h2 className="text-xl font-semibold">{plan.title}</h2>
+              {plan.subtitle && (
+                <p className="text-sm text-default-500">{plan.subtitle}</p>
+              )}
+            </div>
+          )}
           {!isPrimary && onToggleDetails && (
             <button
               className="text-sm text-primary font-medium"
@@ -280,68 +286,78 @@ export function PlanCard({
       )}
 
       <CardFooter className="flex flex-col items-start pt-4 gap-2">
-        <div className="w-full p-3 bg-default-50 rounded-lg border border-default-200">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-default-700">
-              You're Paying:
-            </span>
-            <div className="flex items-center gap-2">
-              <span className="text-lg font-semibold">
-                <DualCurrencyPrice
-                  usdPrice={oneTimeUSD}
-                  gydPrice={oneTimeGYD}
-                />
+        {optionalItems.length > 0 && (
+          <div className="w-full p-3 bg-default-50 rounded-lg border border-default-200">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-default-700">
+                You're Paying:
               </span>
-              {selectedAddOnCount > 0 && (
-                <span className="text-xs text-success-600">
-                  ({selectedAddOnCount}{" "}
-                  {pluralize(selectedAddOnCount, "add-on", "add-ons")} selected)
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-semibold">
+                  <DualCurrencyPrice
+                    usdPrice={oneTimeUSD}
+                    gydPrice={oneTimeGYD}
+                  />
                 </span>
-              )}
+                {selectedAddOnCount > 0 && (
+                  <span className="text-xs text-success-600">
+                    ({selectedAddOnCount}{" "}
+                    {pluralize(selectedAddOnCount, "add-on", "add-ons")}{" "}
+                    selected)
+                  </span>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
-        <Button
-          as={WhatsAppLink}
-          message={whatsappMessage}
-          color="primary"
-          variant="solid"
-          size="lg"
-          className="w-full mt-2"
-          endContent={<RocketIcon className="w-4 h-4" />}
-          intent="Purchase"
-          role="admin"
-          page="pricing"
-          orgId={orgUsername}
-          funnel="upgrade"
-        >
-          Launch My School
-        </Button>
+        {!hideCta && (
+          <Button
+            as={WhatsAppLink}
+            message={whatsappMessage}
+            color="primary"
+            variant="solid"
+            size="lg"
+            className="w-full mt-2"
+            endContent={<RocketIcon className="w-4 h-4" />}
+            intent="Purchase"
+            role="admin"
+            page="pricing"
+            orgId={orgUsername}
+            funnel="upgrade"
+          >
+            Launch My School
+          </Button>
+        )}
 
         {/* Annual maintenance fee */}
         {(annualUSD > 0 || annualGYD > 0) && (
           <div className="w-full p-3 bg-default-50 rounded-lg border border-default-200 mt-2">
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <span className="text-sm font-medium text-default-700">
-                  {
-                    plan.pricingPackage.pricingItems.find(
-                      (item) => item.id === "annual-maintenance",
-                    )?.label
-                  }
-                </span>
-                <span className="text-xs text-default-500">
-                  {
-                    plan.pricingPackage.pricingItems.find(
-                      (item) => item.id === "annual-maintenance",
-                    )?.notes
-                  }
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm font-medium text-default-700 whitespace-nowrap">
+                {
+                  plan.pricingPackage.pricingItems.find(
+                    (item) => item.id === "annual-maintenance",
+                  )?.label
+                }
+              </span>
+              <div className="text-sm font-semibold text-default-700 whitespace-nowrap text-right">
+                <DualCurrencyPrice
+                  className="whitespace-nowrap"
+                  usdPrice={annualUSD}
+                  gydPrice={annualGYD}
+                />
+                <span className="text-default-500 text-xs ml-1 align-middle whitespace-nowrap">
+                  / year
                 </span>
               </div>
-              <span className="text-sm font-semibold text-default-700">
-                <DualCurrencyPrice usdPrice={annualUSD} gydPrice={annualGYD} />
-              </span>
+            </div>
+            <div className="mt-1 text-xs text-default-500">
+              {
+                plan.pricingPackage.pricingItems.find(
+                  (item) => item.id === "annual-maintenance",
+                )?.notes
+              }
             </div>
           </div>
         )}
