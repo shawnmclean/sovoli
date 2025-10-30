@@ -65,11 +65,7 @@ export function MarketingNavbar() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem>
-          <Button as={Link} color="primary" href="/pricing" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
+        <NavbarItem></NavbarItem>
       </NavbarContent>
 
       <NavbarMenu>
