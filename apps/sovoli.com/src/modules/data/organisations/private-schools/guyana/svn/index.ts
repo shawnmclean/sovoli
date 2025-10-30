@@ -1,31 +1,28 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
 
-export const APEX_EDUCATION_ORG: OrgInstance = {
+export const SVN_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "Apex Education",
+    name: "Saraswati Vidya Niketan (SVN)",
     categories: ["private-school"],
     locations: [
       {
         key: "main",
         address: {
-          line1: "RW95+QW4",
-          city: "Georgetown",
+          city: "Cornelia Ida",
+          line2: "West Coast Demerara",
           countryCode: "GY",
         },
-        placeId: "ChIJRSkgg7rtr40RkOmXRc1sNBk",
-        coordinates: {
-          lat: 6.8203095,
-          lng: -58.0895078,
-        },
         contacts: [
-          { type: "phone", value: "+592-220-6139", isPublic: true },
-          { type: "email", value: "apexeducation@yahoo.com", isPublic: true },
+          { type: "phone", value: "+592-276-0013", isPublic: true },
+          { type: "phone", value: "+592-276-0014", isPublic: true },
+          { type: "email", value: "secretary@svn.edu.gy", isPublic: true },
         ],
         isPrimary: true,
       },
     ],
+    socialLinks: [{ platform: "website", url: "https://svn.edu.gy" }],
   },
   websiteModule: null,
   academicModule: null,
@@ -33,3 +30,5 @@ export const APEX_EDUCATION_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
+
+

@@ -10,7 +10,9 @@ export const GEORGETOWN_LEARNING_ORG: OrgInstance = {
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [],
+        contacts: [
+          { type: "phone", value: "+592-226-0396", isPublic: true },
+        ],
         isPrimary: true,
       },
     ],

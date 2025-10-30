@@ -50,6 +50,12 @@ import { FRASERS_EDUCATIONAL_ORG } from "./fraserseducational";
 import { MORGANS_LEARNING_ORG } from "./morganslearning";
 import { PURE_MASTERS_ACADEMY_ORG } from "./puremastersacademy";
 import { BACCHUS_LEARNING_ORG } from "./bacchuslearning";
+import { WESTFIELD_PREP_ORG } from "./westfieldprep";
+import { ANAIS_PRIVATE_SCHOOL_ORG } from "./anaisprivateschool";
+import { HEAVENLY_SUNLIGHT_ORG } from "./heavenlysunlight";
+import { SVN_ORG } from "./svn";
+import { DHARMIC_RAMA_KRISHNA_ORG } from "./dharmicramakrishna";
+import { GEORGETOWN_SDA_ACADEMY_ORG } from "./georgetown-sda-academy";
 
 export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] = [
   MODERN_ACADEMY_ORG,
@@ -102,4 +108,10 @@ export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] = [
   MORGANS_LEARNING_ORG,
   PURE_MASTERS_ACADEMY_ORG,
   BACCHUS_LEARNING_ORG,
+  WESTFIELD_PREP_ORG,
+  ANAIS_PRIVATE_SCHOOL_ORG,
+  HEAVENLY_SUNLIGHT_ORG,
+  SVN_ORG,
+  DHARMIC_RAMA_KRISHNA_ORG,
+  GEORGETOWN_SDA_ACADEMY_ORG,
 ];

@@ -10,7 +10,9 @@ export const NEW_LIFE_MINISTRIES_ORG: OrgInstance = {
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [],
+        contacts: [
+          { type: "phone", value: "+592-227-4980", isPublic: true },
+        ],
         isPrimary: true,
       },
     ],

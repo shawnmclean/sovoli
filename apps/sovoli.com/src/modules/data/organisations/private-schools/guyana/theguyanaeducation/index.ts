@@ -10,7 +10,11 @@ export const THE_GUYANA_EDUCATION_ORG: OrgInstance = {
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [],
+        contacts: [
+          { type: "phone", value: "+592-225-5279", isPublic: true },
+          { type: "phone", value: "+592-226-9717", isPublic: true },
+          { type: "email", value: "getc@solutions2000.net", isPublic: true },
+        ],
         isPrimary: true,
       },
     ],

@@ -1,19 +1,20 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
 
-export const THE_BUSINESS_ORG: OrgInstance = {
+export const DHARMIC_RAMA_KRISHNA_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "The Business School",
+    name: "Dharmic Rama Krishna School",
     categories: ["private-school"],
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
-        contacts: [
-          { type: "phone", value: "+592-226-8906", isPublic: true },
-          { type: "email", value: "info@busineschool.com", isPublic: true },
-        ],
+        address: {
+          line1: "Liliendaal",
+          line2: "East Coast Demerara (near Giftland Mall)",
+          countryCode: "GY",
+        },
+        contacts: [{ type: "phone", value: "+592-226-0189", isPublic: true }],
         isPrimary: true,
       },
     ],
@@ -24,3 +25,5 @@ export const THE_BUSINESS_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
+
+

@@ -10,7 +10,10 @@ export const INTERNATIONAL_BUSINESS_ORG: OrgInstance = {
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [],
+        contacts: [
+          { type: "phone", value: "+592-225-5474", isPublic: true },
+          { type: "email", value: "ibusinesscollege@yahoo.com", isPublic: true },
+        ],
         isPrimary: true,
       },
     ],

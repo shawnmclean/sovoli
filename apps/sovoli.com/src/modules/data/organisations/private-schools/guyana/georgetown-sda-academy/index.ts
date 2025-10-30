@@ -1,18 +1,22 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
 
-export const THE_BUSINESS_ORG: OrgInstance = {
+export const GEORGETOWN_SDA_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "The Business School",
+    name: "Georgetown Seventh-day Adventist Academy",
     categories: ["private-school"],
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
+        address: {
+          line1: "D’Urban Backlands",
+          line2: "Opp. Davis Memorial Hospital",
+          city: "Georgetown",
+          countryCode: "GY",
+        },
         contacts: [
-          { type: "phone", value: "+592-226-8906", isPublic: true },
-          { type: "email", value: "info@busineschool.com", isPublic: true },
+          { type: "email", value: "info@guyanaconference.org", isPublic: true },
         ],
         isPrimary: true,
       },
@@ -24,3 +28,5 @@ export const THE_BUSINESS_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
+
+

@@ -1,19 +1,21 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
 
-export const THE_BUSINESS_ORG: OrgInstance = {
+export const WESTFIELD_PREP_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "The Business School",
+    name: "Westfield Prep Schools",
     categories: ["private-school"],
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
-        contacts: [
-          { type: "phone", value: "+592-226-8906", isPublic: true },
-          { type: "email", value: "info@busineschool.com", isPublic: true },
-        ],
+        address: {
+          line1: "120–121 Parade Street",
+          line2: "Kingston",
+          city: "Georgetown",
+          countryCode: "GY",
+        },
+        contacts: [{ type: "phone", value: "+592-218-1855", isPublic: true }],
         isPrimary: true,
       },
     ],
