@@ -13,22 +13,13 @@ export function Pricing() {
           <h2 className="text-2xl sm:text-3xl font-bold">Pricing</h2>
         </div>
 
-        <div>
-          <PlanCard
-            plan={growthPlan}
-            showDetails={true}
-            isPrimary={true}
-            hideHeader={true}
-            hideCta={true}
-          />
-        </div>
-
-        <div className="mt-8 text-center">
-          <p className="text-sm text-default-500">
-            <span className="font-medium text-default-600">Note:</span> Campaign
-            ad spend is separate and will be discussed during onboarding.
-          </p>
-        </div>
+        <PlanCard
+          plan={growthPlan}
+          showDetails={true}
+          isPrimary={true}
+          hideHeader={true}
+          hideCta={true}
+        />
       </div>
     </section>
   );
