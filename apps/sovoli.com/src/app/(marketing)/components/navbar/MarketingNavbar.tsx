@@ -10,7 +10,6 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@sovoli/ui/components/navbar";
-import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
 import { Logo } from "~/components/Logo/Logo";
 import { usePathname } from "next/navigation";
