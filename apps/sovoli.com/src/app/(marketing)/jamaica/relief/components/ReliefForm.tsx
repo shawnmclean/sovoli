@@ -2,6 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+} from "@sovoli/ui/components/card";
+import { Divider } from "@sovoli/ui/components/divider";
 import { Input } from "@sovoli/ui/components/input";
 import { Radio, RadioGroup } from "@sovoli/ui/components/radio";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
@@ -204,6 +211,7 @@ export function ReliefForm() {
             </div>
             <Select
               label="Delivery location"
+              labelPlacement="outside"
               placeholder="Select a location"
               selectedKeys={formData.dropOffLocation ? [formData.dropOffLocation] : []}
               onSelectionChange={(keys) => {
@@ -216,6 +224,9 @@ export function ReliefForm() {
                 } else {
                   updateFormData("dropOffLocation", "");
                 }
+              }}
+              classNames={{
+                label: "text-sm font-medium text-default-600",
               }}
             >
               {dropOffLocations.map((location) => (
@@ -234,42 +245,58 @@ export function ReliefForm() {
                 donation so we can coordinate with the relief team.
               </p>
             </div>
-            <div className="space-y-4">
-              <label className="text-sm font-medium text-default-600">
-                Contribution type
-              </label>
-              <RadioGroup
-                orientation="horizontal"
-                value={formData.contributionType}
-                onValueChange={(value) =>
-                  updateFormData(
-                    "contributionType",
-                    value as ReliefFormData["contributionType"],
-                  )
-                }
+            <RadioGroup
+              orientation="horizontal"
+              label="Contribution type"
+              labelPlacement="outside"
+              value={formData.contributionType}
+              onValueChange={(value) =>
+                updateFormData(
+                  "contributionType",
+                  value as ReliefFormData["contributionType"],
+                )
+              }
+              classNames={{
+                base: "space-y-3",
+                label: "text-sm font-medium text-default-600",
+                wrapper: "flex flex-col gap-3 md:flex-row",
+              }}
+            >
+              <Radio
+                value="supplies"
                 classNames={{
-                  wrapper: "flex flex-col gap-3 md:flex-row",
+                  base: "border border-default-200 rounded-xl px-4 py-3 data-[selected=true]:border-primary",
                 }}
               >
-                <Radio value="supplies">Supplies</Radio>
-                <Radio value="financial">Financial support</Radio>
-              </RadioGroup>
-            </div>
+                Supplies
+              </Radio>
+              <Radio
+                value="financial"
+                classNames={{
+                  base: "border border-default-200 rounded-xl px-4 py-3 data-[selected=true]:border-primary",
+                }}
+              >
+                Financial support
+              </Radio>
+            </RadioGroup>
             {formData.contributionType === "supplies" && (
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-default-600">
-                  Supplies details
-                </label>
-                <textarea
-                  value={formData.suppliesDescription}
-                  onChange={(event) =>
-                    updateFormData("suppliesDescription", event.target.value)
-                  }
-                  rows={4}
-                  placeholder="List the items you plan to include (e.g. canned goods, toiletries, bedding)."
-                  className="w-full rounded-xl border border-default-200 bg-background p-3 text-base text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40"
-                />
-              </div>
+              <Input
+                isMultiline
+                minRows={4}
+                label="Supplies details"
+                labelPlacement="outside"
+                placeholder="List the items you plan to include (e.g. canned goods, toiletries, bedding)."
+                value={formData.suppliesDescription}
+                onValueChange={(value) =>
+                  updateFormData("suppliesDescription", value)
+                }
+                classNames={{
+                  label: "text-sm font-medium text-default-600",
+                  inputWrapper:
+                    "rounded-2xl border border-default-200 bg-default-50/60 shadow-sm",
+                  input: "text-base leading-relaxed",
+                }}
+              />
             )}
             {formData.contributionType === "financial" && (
               <div className="space-y-2">
@@ -322,8 +349,7 @@ export function ReliefForm() {
             <div>
               <h2 className="text-2xl font-semibold">Tell us about the recipient</h2>
               <p className="mt-2 text-base text-default-500">
-                Share the details for the person you would like us to support so
-                we can reach out directly.
+                Share the details for the person you would like us to support so we can reach out directly.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -353,25 +379,28 @@ export function ReliefForm() {
                 updateFormData("recipientLocation", value)
               }
             />
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-default-600">
-                Any additional notes?
-              </label>
-              <textarea
-                value={formData.recipientNotes}
-                onChange={(event) =>
-                  updateFormData("recipientNotes", event.target.value)
-                }
-                rows={3}
-                placeholder="Share any special needs or context that would help our team."
-                className="w-full rounded-xl border border-default-200 bg-background p-3 text-base text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40"
-              />
-            </div>
+            <Input
+              isMultiline
+              minRows={3}
+              label="Any additional notes?"
+              labelPlacement="outside"
+              placeholder="Share any special needs or context that would help our team."
+              value={formData.recipientNotes}
+              onValueChange={(value) =>
+                updateFormData("recipientNotes", value)
+              }
+              classNames={{
+                label: "text-sm font-medium text-default-600",
+                inputWrapper:
+                  "rounded-2xl border border-default-200 bg-default-50/60 shadow-sm",
+                input: "text-base leading-relaxed",
+              }}
+            />
           </div>
         );
       case STEPS.CONFIRM:
         return (
-          <div className="space-y-6 text-center">
+          <div className="space-y-8 text-center">
             <div className="space-y-3">
               <h2 className="text-3xl font-semibold">Thank you for standing with Jamaica</h2>
               <p className="text-base text-default-500">
@@ -380,9 +409,15 @@ export function ReliefForm() {
                 support during this recovery effort.
               </p>
             </div>
-            <div className="rounded-2xl border border-default-200 bg-default-50 p-6 text-left shadow-sm">
-              <h3 className="text-lg font-semibold">Submission summary</h3>
-              <dl className="mt-4 space-y-3 text-sm">
+            <Card className="rounded-2xl border border-default-200 bg-default-50/80 text-left">
+              <CardHeader className="flex flex-col items-start gap-2 px-5 py-4 sm:px-6">
+                <h3 className="text-lg font-semibold">Submission summary</h3>
+                <p className="text-small text-default-500">
+                  Review the details you shared with our relief team.
+                </p>
+              </CardHeader>
+              <Divider />
+              <CardBody className="space-y-4 px-5 py-4 text-sm sm:px-6">
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                   <dt className="font-medium text-default-600">Care package</dt>
                   <dd className="text-default-800">
@@ -439,13 +474,17 @@ export function ReliefForm() {
                     </dd>
                   </div>
                 )}
-              </dl>
-            </div>
-            <div className="flex flex-wrap justify-center gap-3">
+              </CardBody>
+            </Card>
+            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
               <Button onPress={resetForm} variant="flat" color="primary">
                 Submit another response
               </Button>
-              <Button onPress={() => setCurrentStep(0)} variant="ghost">
+              <Button
+                onPress={() => setCurrentStep(0)}
+                variant="ghost"
+                className="sm:ml-2"
+              >
                 Review your answers
               </Button>
             </div>
@@ -457,37 +496,48 @@ export function ReliefForm() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-3xl space-y-10 rounded-3xl border border-default-200 bg-background/80 p-6 shadow-lg backdrop-blur">
-      <Stepper
-        steps={stepSequence.map((step, index) => ({
-          label: step.label,
-          completed: index < currentStep,
-        }))}
-        currentStep={currentStep}
-        onStepClick={(index) => {
-          if (index < currentStep) {
-            setCurrentStep(index);
-          }
-        }}
-      />
-      <div>{renderStepContent()}</div>
+    <Card className="mx-auto w-full max-w-3xl rounded-3xl border border-default-200 bg-background/80 shadow-large backdrop-blur">
+      <CardHeader className="flex flex-col gap-4 p-4 sm:p-8">
+        <Stepper
+          className="px-0"
+          steps={stepSequence.map((step, index) => ({
+            label: step.label,
+            completed: index < currentStep,
+          }))}
+          currentStep={currentStep}
+          onStepClick={(index) => {
+            if (index < currentStep) {
+              setCurrentStep(index);
+            }
+          }}
+        />
+      </CardHeader>
+      <Divider />
+      <CardBody className="space-y-8 p-4 sm:p-8">{renderStepContent()}</CardBody>
       {currentStepKey !== STEPS.CONFIRM && (
-        <div className="flex flex-wrap justify-between gap-3">
-          <Button
-            variant="flat"
-            color="default"
-            onPress={goToPreviousStep}
-            isDisabled={currentStep === 0}
-          >
-            Back
-          </Button>
-          <div className="ml-auto">
-            <Button color="primary" onPress={goToNextStep} isDisabled={!canProceed}>
+        <>
+          <Divider />
+          <CardFooter className="flex flex-col-reverse gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <Button
+              variant="flat"
+              color="default"
+              onPress={goToPreviousStep}
+              isDisabled={currentStep === 0}
+              className="w-full sm:w-auto"
+            >
+              Back
+            </Button>
+            <Button
+              color="primary"
+              onPress={goToNextStep}
+              isDisabled={!canProceed}
+              className="w-full sm:w-auto"
+            >
               Next
             </Button>
-          </div>
-        </div>
+          </CardFooter>
+        </>
       )}
-    </div>
+    </Card>
   );
 }
