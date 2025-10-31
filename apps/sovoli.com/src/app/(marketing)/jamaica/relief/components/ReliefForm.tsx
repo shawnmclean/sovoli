@@ -63,7 +63,7 @@ export function ReliefForm() {
   const stepSequence: StepDefinition[] = useMemo(() => {
     const baseSteps: StepDefinition[] = [
       { key: STEPS.INTENT, label: "Care Package" },
-      { key: STEPS.LOCATION, label: "Drop-off" },
+      { key: STEPS.LOCATION, label: "Delivery" },
       { key: STEPS.CONTRIBUTION, label: "Contribution" },
       { key: STEPS.CONTACT, label: "Your Details" },
     ];
@@ -197,13 +197,13 @@ export function ReliefForm() {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-semibold">Where will you drop off?</h2>
+              <h2 className="text-2xl font-semibold">Where would you like to send help?</h2>
               <p className="mt-2 text-base text-default-500">
-                Choose the relief hub that is easiest for you to access.
+                Choose the relief hub where our team should deliver your support.
               </p>
             </div>
             <Select
-              label="Drop-off location"
+              label="Delivery location"
               placeholder="Select a location"
               selectedKeys={formData.dropOffLocation ? [formData.dropOffLocation] : []}
               onSelectionChange={(keys) => {
@@ -295,7 +295,7 @@ export function ReliefForm() {
             <div>
               <h2 className="text-2xl font-semibold">How can we reach you?</h2>
               <p className="mt-2 text-base text-default-500">
-                We'll confirm your submission and share the exact drop-off
+                We'll confirm your submission and share the exact delivery
                 details for your care package.
               </p>
             </div>
@@ -376,7 +376,7 @@ export function ReliefForm() {
               <h2 className="text-3xl font-semibold">Thank you for standing with Jamaica</h2>
               <p className="text-base text-default-500">
                 Our relief team will reach out shortly with guidance on when and
-                where to drop off your care package. We truly appreciate your
+                where we'll deliver your care package. We truly appreciate your
                 support during this recovery effort.
               </p>
             </div>
@@ -392,7 +392,7 @@ export function ReliefForm() {
                   </dd>
                 </div>
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                  <dt className="font-medium text-default-600">Drop-off location</dt>
+                  <dt className="font-medium text-default-600">Delivery location</dt>
                   <dd className="text-default-800">{formData.dropOffLocation}</dd>
                 </div>
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
