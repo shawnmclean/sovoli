@@ -46,9 +46,9 @@ export function Hero() {
           Rebuilding Jamaica
         </h1>
         <p className="text-sm sm:text-base text-default-500">
-          This is a small movement to help rebuild Jamaica after the hurricane.
-          You were invited by one of the following persons to help rebuild
-          Jamaica after the hurricane.
+          This is a small private movement to help rebuild Jamaica after the
+          hurricane. This form is used to help organize the data. You may have
+          been invited or affiliated with one of the following persons to help:
         </p>
       </div>
 
