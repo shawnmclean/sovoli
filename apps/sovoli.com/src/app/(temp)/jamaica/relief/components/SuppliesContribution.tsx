@@ -3,11 +3,14 @@
 import { useMemo, useState } from "react";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Input } from "@sovoli/ui/components/input";
+import { NumberInput } from "@sovoli/ui/components/number-input";
 import {
   Listbox,
   ListboxItem,
   ListboxSection,
 } from "@sovoli/ui/components/listbox";
+import { ScrollShadow } from "@heroui/scroll-shadow";
+import { Chip } from "@sovoli/ui/components/chip";
 import { AlertTriangleIcon, SearchIcon } from "lucide-react";
 
 export interface SuppliesItem {
@@ -42,15 +45,19 @@ export const SUPPLIES_ITEMS: SuppliesItem[] = [
 interface SuppliesContributionProps {
   suppliesItems: Record<string, number>;
   suppliesOther: string;
+  suppliesItemNotes?: Record<string, string>; // itemId -> notes
   onItemQuantityChange: (itemId: string, quantity: number) => void;
   onOtherChange: (value: string) => void;
+  onItemNoteChange?: (itemId: string, note: string) => void;
 }
 
 export function SuppliesContribution({
   suppliesItems,
   suppliesOther,
+  suppliesItemNotes = {},
   onItemQuantityChange,
   onOtherChange,
+  onItemNoteChange,
 }: SuppliesContributionProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGroups, setSelectedGroups] = useState<Set<string>>(
@@ -125,10 +132,49 @@ export function SuppliesContribution({
   const selectedKeys = useMemo(() => {
     return new Set(
       Object.keys(suppliesItems).filter(
-        (key) => suppliesItems[key] !== undefined && suppliesItems[key] > 0,
+        (key) => suppliesItems[key] !== undefined && suppliesItems[key] >= 1,
       ),
     );
   }, [suppliesItems]);
+
+  // Create a flat array of all items for easier lookup
+  const allItemsFlat = useMemo(() => {
+    return SUPPLIES_ITEMS;
+  }, []);
+
+  const topContent = useMemo(() => {
+    // Show all items with quantity > 0 in topContent
+    const itemsWithQuantity = Object.entries(suppliesItems)
+      .filter(([, quantity]) => quantity > 0)
+      .map(([id]) => {
+        const item = allItemsFlat.find((i) => i.id === id);
+        const quantity = suppliesItems[id];
+        if (!item) return null;
+        return { id, item, quantity };
+      })
+      .filter(
+        (item): item is { id: string; item: SuppliesItem; quantity: number } =>
+          item !== null,
+      );
+
+    if (!itemsWithQuantity.length) {
+      return null;
+    }
+
+    return (
+      <ScrollShadow
+        hideScrollBar
+        className="w-full flex py-0.5 px-2 gap-1"
+        orientation="horizontal"
+      >
+        {itemsWithQuantity.map(({ id, item, quantity }) => (
+          <Chip key={id} size="sm">
+            {item.name} ({quantity})
+          </Chip>
+        ))}
+      </ScrollShadow>
+    );
+  }, [suppliesItems, allItemsFlat]);
 
   const handleSelectionChange = (keys: Set<string> | "all") => {
     if (keys === "all") {
@@ -146,18 +192,21 @@ export function SuppliesContribution({
 
     const currentSelected = new Set(
       Object.keys(suppliesItems).filter(
-        (key) => suppliesItems[key] !== undefined && suppliesItems[key] > 0,
+        (key) => suppliesItems[key] !== undefined && suppliesItems[key] >= 1,
       ),
     );
 
     // Add newly selected items with quantity 1
     keys.forEach((key) => {
       if (!currentSelected.has(key)) {
-        onItemQuantityChange(key, 1);
+        const currentQuantity = suppliesItems[key] ?? 0;
+        if (currentQuantity < 1) {
+          onItemQuantityChange(key, 1);
+        }
       }
     });
 
-    // Remove unselected items
+    // Remove unselected items - set to 0
     currentSelected.forEach((key) => {
       if (!keys.has(key)) {
         onItemQuantityChange(key, 0);
@@ -177,7 +226,6 @@ export function SuppliesContribution({
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-semibold">Select supplies</h2>
       <p className="text-base text-default-500">
         Select the items you can provide and specify quantities.
       </p>
@@ -212,73 +260,91 @@ export function SuppliesContribution({
         </div>
 
         {/* Listbox with grouped items */}
-        <Listbox
-          aria-label="Supplies selection"
-          selectionMode="multiple"
-          selectedKeys={selectedKeys}
-          onSelectionChange={(keys) =>
-            handleSelectionChange(keys as Set<string> | "all")
-          }
-          variant="bordered"
-        >
-          {Object.entries(filteredGroups).map(([category, group]) => (
-            <div key={category} className="space-y-2">
-              <div className="flex items-center gap-2 px-2 py-1">
-                <span className="text-sm font-semibold text-default-700">
-                  {group.label}
-                </span>
-                {group.important && (
-                  <AlertTriangleIcon className="w-4 h-4 text-warning shrink-0" />
-                )}
-              </div>
+        <div className="w-full border border-default-200 px-1 py-2 rounded-lg">
+          <Listbox
+            aria-label="Supplies selection"
+            selectionMode="multiple"
+            selectedKeys={selectedKeys}
+            onSelectionChange={(keys) =>
+              handleSelectionChange(keys as Set<string> | "all")
+            }
+            variant="flat"
+            topContent={topContent}
+            classNames={{
+              base: "max-w-full",
+              list: "max-h-[300px] overflow-scroll gap-2",
+            }}
+          >
+            {Object.entries(filteredGroups).map(([category, group]) => (
               <ListboxSection
-                title=""
+                key={category}
+                title={group.label}
                 aria-label={group.label}
                 showDivider={false}
+                classNames={{
+                  heading: group.important
+                    ? "flex items-center gap-2 text-warning-600"
+                    : undefined,
+                }}
               >
-                {group.items.map((item) => (
-                  <ListboxItem
-                    key={item.id}
-                    textValue={item.name}
-                    classNames={{
-                      base: item.highPriority
-                        ? "border-warning-300 bg-warning-50"
-                        : undefined,
-                    }}
-                    description={
-                      suppliesItems[item.id] !== undefined ? (
-                        <div className="flex items-center gap-2 mt-1">
-                          <Input
-                            type="number"
-                            min={1}
-                            placeholder="Quantity"
-                            value={String(suppliesItems[item.id] ?? "")}
+                {group.items.map((item) => {
+                  const quantity = suppliesItems[item.id] ?? 0;
+                  const isSelected = quantity >= 1;
+                  const note = suppliesItemNotes[item.id] ?? "";
+                  return (
+                    <ListboxItem
+                      key={item.id}
+                      textValue={item.name}
+                      classNames={{
+                        base: `${
+                          item.highPriority
+                            ? "border-warning-300 bg-warning-50"
+                            : ""
+                        } mb-2`,
+                      }}
+                    >
+                      <div className="flex flex-col gap-2 w-full">
+                        <div className="flex items-center justify-between w-full gap-2">
+                          <div className="flex items-center gap-2 flex-1 min-w-0">
+                            {item.highPriority && (
+                              <AlertTriangleIcon className="w-5 h-5 text-warning shrink-0" />
+                            )}
+                            <span className="truncate">{item.name}</span>
+                          </div>
+                          <NumberInput
+                            minValue={0}
+                            value={quantity}
                             onValueChange={(value) => {
-                              const num = Number(value);
-                              if (!Number.isNaN(num) && num > 0) {
-                                onItemQuantityChange(item.id, num);
+                              if (typeof value === "number" && value >= 0) {
+                                onItemQuantityChange(item.id, value);
                               }
                             }}
                             onClick={(e) => e.stopPropagation()}
-                            className="w-32"
+                            className="w-32 shrink-0"
                             size="sm"
                           />
                         </div>
-                      ) : undefined
-                    }
-                    startContent={
-                      item.highPriority ? (
-                        <AlertTriangleIcon className="w-5 h-5 text-warning shrink-0" />
-                      ) : undefined
-                    }
-                  >
-                    {item.name}
-                  </ListboxItem>
-                ))}
+                        {isSelected && onItemNoteChange && (
+                          <div className="ml-6">
+                            <Input
+                              placeholder="Add additional information (optional)"
+                              value={note}
+                              onValueChange={(value) =>
+                                onItemNoteChange(item.id, value)
+                              }
+                              size="sm"
+                              onClick={(e) => e.stopPropagation()}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </ListboxItem>
+                  );
+                })}
               </ListboxSection>
-            </div>
-          ))}
-        </Listbox>
+            ))}
+          </Listbox>
+        </div>
 
         <div>
           <Input

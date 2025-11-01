@@ -2,25 +2,21 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-} from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Input } from "@sovoli/ui/components/input";
 import { CustomRadio, RadioGroup } from "@sovoli/ui/components/radio";
+import { Confirmation } from "./Confirmation";
 import { FinancialContribution } from "./FinancialContribution";
 import { Hero } from "./Hero";
 import { LabourContribution } from "./LabourContribution";
-import { SuppliesContribution, SUPPLIES_ITEMS } from "./SuppliesContribution";
+import { SuppliesContribution } from "./SuppliesContribution";
 
-interface ReliefFormData {
+export interface ReliefFormData {
   contributionType: "labour" | "supplies" | "financial" | "";
   labourAvailability: "now" | "end-of-nov" | "other" | "";
   labourAvailabilityOther: string;
   suppliesItems: Record<string, number>; // itemId -> quantity
+  suppliesItemNotes: Record<string, string>; // itemId -> notes
   suppliesOther: string;
   financialAmount: string;
   name: string;
@@ -36,6 +32,7 @@ const initialFormData: ReliefFormData = {
   labourAvailability: "",
   labourAvailabilityOther: "",
   suppliesItems: {},
+  suppliesItemNotes: {},
   suppliesOther: "",
   financialAmount: "",
   name: "",
@@ -161,10 +158,33 @@ export function ReliefForm() {
         newItems[itemId] = quantity;
       } else {
         delete newItems[itemId];
+        // Also remove the note when quantity is 0
+        const newNotes = { ...prev.suppliesItemNotes };
+        delete newNotes[itemId];
+        return {
+          ...prev,
+          suppliesItems: newItems,
+          suppliesItemNotes: newNotes,
+        };
       }
       return {
         ...prev,
         suppliesItems: newItems,
+      };
+    });
+  };
+
+  const updateSuppliesItemNote = (itemId: string, note: string) => {
+    setFormData((prev) => {
+      const newNotes = { ...prev.suppliesItemNotes };
+      if (note.trim()) {
+        newNotes[itemId] = note;
+      } else {
+        delete newNotes[itemId];
+      }
+      return {
+        ...prev,
+        suppliesItemNotes: newNotes,
       };
     });
   };
@@ -174,14 +194,29 @@ export function ReliefForm() {
     setCurrentStep(0);
   };
 
+  const getStepTitle = () => {
+    switch (currentStepKey) {
+      case STEPS.CONTRIBUTION:
+        return "What are you contributing?";
+      case STEPS.CONTRIBUTION_DETAILS:
+        if (formData.contributionType === "labour") return "Availability";
+        if (formData.contributionType === "supplies") return "Select supplies";
+        if (formData.contributionType === "financial") return "Amount";
+        return "";
+      case STEPS.CONTACT:
+        return "Your Details";
+      case STEPS.CONFIRM:
+        return "Thank you for standing with Jamaica";
+      default:
+        return "";
+    }
+  };
+
   const renderStepContent = () => {
     switch (currentStepKey) {
       case STEPS.CONTRIBUTION:
         return (
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold">
-              What are you contributing?
-            </h2>
             <RadioGroup
               value={formData.contributionType}
               onValueChange={(value) =>
@@ -194,8 +229,8 @@ export function ReliefForm() {
                 wrapper: "grid gap-4 md:grid-cols-3",
               }}
             >
-              <CustomRadio value="labour">Labour</CustomRadio>
               <CustomRadio value="supplies">Supplies</CustomRadio>
+              <CustomRadio value="labour">Labour</CustomRadio>
               <CustomRadio value="financial">Financial</CustomRadio>
             </RadioGroup>
           </div>
@@ -220,8 +255,10 @@ export function ReliefForm() {
             <SuppliesContribution
               suppliesItems={formData.suppliesItems}
               suppliesOther={formData.suppliesOther}
+              suppliesItemNotes={formData.suppliesItemNotes}
               onItemQuantityChange={updateSuppliesItemQuantity}
               onOtherChange={(value) => updateFormData("suppliesOther", value)}
+              onItemNoteChange={updateSuppliesItemNote}
             />
           );
         }
@@ -240,8 +277,7 @@ export function ReliefForm() {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-semibold">Your Details</h2>
-              <p className="mt-2 text-base text-default-500">
+              <p className="text-base text-default-500">
                 We'll use this information to coordinate your contribution.
               </p>
             </div>
@@ -298,150 +334,39 @@ export function ReliefForm() {
             </div>
           </div>
         );
-      case STEPS.CONFIRM: {
-        const selectedSuppliesItems = Object.entries(
-          formData.suppliesItems,
-        ).map(([itemId, quantity]) => {
-          const item = SUPPLIES_ITEMS.find((i) => i.id === itemId);
-          return item ? `${item.name} (${quantity})` : "";
-        });
-
+      case STEPS.CONFIRM:
         return (
-          <div className="space-y-8 text-center">
-            <div className="space-y-3">
-              <h2 className="text-3xl font-semibold">
-                Thank you for standing with Jamaica
-              </h2>
-              <p className="text-base text-default-500">
-                Our relief team will reach out shortly to coordinate your
-                contribution. We truly appreciate your support during this
-                recovery effort.
-              </p>
-            </div>
-            <Card className="rounded-2xl border border-default-200 bg-default-50/80 text-left">
-              <CardHeader className="flex flex-col items-start gap-2 px-5 py-4 sm:px-6">
-                <h3 className="text-lg font-semibold">Submission summary</h3>
-                <p className="text-small text-default-500">
-                  Review the details you shared with our relief team.
-                </p>
-              </CardHeader>
-              <Divider />
-              <CardBody className="space-y-4 px-5 py-4 text-sm sm:px-6">
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                  <dt className="font-medium text-default-600">
-                    Contribution type
-                  </dt>
-                  <dd className="text-default-800 capitalize">
-                    {formData.contributionType}
-                  </dd>
-                </div>
-                {formData.contributionType === "labour" && (
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                    <dt className="font-medium text-default-600">
-                      Availability
-                    </dt>
-                    <dd className="text-default-800">
-                      {formData.labourAvailability === "end-of-nov"
-                        ? "End of November"
-                        : formData.labourAvailability === "other"
-                          ? formData.labourAvailabilityOther
-                          : "Now"}
-                    </dd>
-                  </div>
-                )}
-                {formData.contributionType === "supplies" && (
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                    <dt className="font-medium text-default-600">Supplies</dt>
-                    <dd className="text-default-800">
-                      {selectedSuppliesItems.length > 0 && (
-                        <div>
-                          {selectedSuppliesItems.map((item, idx) => (
-                            <div key={idx}>{item}</div>
-                          ))}
-                        </div>
-                      )}
-                      {formData.suppliesOther && (
-                        <div>
-                          {selectedSuppliesItems.length > 0 && <br />}
-                          Other: {formData.suppliesOther}
-                        </div>
-                      )}
-                    </dd>
-                  </div>
-                )}
-                {formData.contributionType === "financial" && (
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                    <dt className="font-medium text-default-600">Amount</dt>
-                    <dd className="text-default-800">
-                      JMD {Number(formData.financialAmount).toLocaleString()}
-                    </dd>
-                  </div>
-                )}
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                  <dt className="font-medium text-default-600">Your details</dt>
-                  <dd className="text-default-800">
-                    {formData.name}
-                    <br />
-                    {formData.phone}
-                    <br />
-                    {formData.addressLine1}
-                    {formData.addressLine2 && (
-                      <>
-                        <br />
-                        {formData.addressLine2}
-                      </>
-                    )}
-                    <br />
-                    {formData.city}, {formData.stateCountry}
-                  </dd>
-                </div>
-              </CardBody>
-            </Card>
-            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <Button onPress={resetForm} variant="flat" color="primary">
-                Submit another response
-              </Button>
-              <Button
-                onPress={() => setCurrentStep(0)}
-                variant="ghost"
-                className="sm:ml-2"
-              >
-                Review your answers
-              </Button>
-            </div>
-          </div>
+          <Confirmation
+            formData={formData}
+            onResetForm={resetForm}
+            onReviewAnswers={() => setCurrentStep(0)}
+          />
         );
-      }
       default:
         return null;
     }
   };
 
   return (
-    <div className="w-full flex flex-col items-center gap-12">
+    <div className="w-full flex flex-col items-center gap-12 pb-24">
       {currentStep === 0 && <Hero />}
-      <Card className="w-full max-w-3xl rounded-3xl border border-default-200 bg-background/80 shadow-large backdrop-blur">
-        <CardHeader className="flex flex-col gap-4 p-4 sm:p-8">
-          <div className="text-center">
+      <div className="w-full flex flex-col gap-4">
+        <h1 className="text-3xl font-semibold text-center">{getStepTitle()}</h1>
+        <Divider />
+        <div className="space-y-8">{renderStepContent()}</div>
+      </div>
+      {currentStepKey !== STEPS.CONFIRM && (
+        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-default-200 p-4 z-10">
+          <div className="max-w-7xl mx-auto flex flex-row gap-3 items-center justify-between">
             <span className="text-sm font-medium text-default-600">
               Step {currentStep + 1} of {stepSequence.length}
             </span>
-          </div>
-        </CardHeader>
-        <Divider />
-        <CardBody className="space-y-8 p-4 sm:p-8">
-          {renderStepContent()}
-        </CardBody>
-        {currentStepKey !== STEPS.CONFIRM && (
-          <>
-            <Divider />
-            <CardFooter className="flex flex-col-reverse gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div className="flex flex-row gap-3">
               <Button
                 variant="flat"
                 color="default"
                 onPress={goToPreviousStep}
                 isDisabled={currentStep === 0}
-                className="w-full sm:w-auto"
               >
                 Back
               </Button>
@@ -449,14 +374,13 @@ export function ReliefForm() {
                 color="primary"
                 onPress={goToNextStep}
                 isDisabled={!canProceed}
-                className="w-full sm:w-auto"
               >
                 Next
               </Button>
-            </CardFooter>
-          </>
-        )}
-      </Card>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
