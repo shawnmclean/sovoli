@@ -36,3 +36,6 @@ export const Input = extendVariants(BaseInput, {
     textSize: "base",
   },
 }) as typeof BaseInput;
+
+// Export Input as Textarea alias for multiline support
+export const Textarea = Input;

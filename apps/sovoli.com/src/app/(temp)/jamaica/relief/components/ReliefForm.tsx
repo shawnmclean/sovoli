@@ -9,8 +9,12 @@ import {
   CardHeader,
 } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
-import { Input } from "@sovoli/ui/components/input";
-import { Radio, RadioGroup } from "@sovoli/ui/components/radio";
+import { Input, Textarea } from "@sovoli/ui/components/input";
+import {
+  CustomRadio,
+  CustomRadioInline,
+  RadioGroup,
+} from "@sovoli/ui/components/radio";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { Stepper } from "@sovoli/ui/components/stepper";
 
@@ -163,8 +167,8 @@ export function ReliefForm() {
                 Who would you like to send help to?
               </h2>
               <p className="mt-2 text-base text-default-500">
-                Let us know if this is a general care package for anyone in
-                need or if you have a specific person in mind.
+                Let us know if this is a general care package for anyone in need
+                or if you have a specific person in mind.
               </p>
             </div>
             <RadioGroup
@@ -179,24 +183,18 @@ export function ReliefForm() {
                 wrapper: "grid gap-4 md:grid-cols-2",
               }}
             >
-              <Radio
+              <CustomRadio
                 value="general"
                 description="We'll match your care package with community members most in need."
-                classNames={{
-                  base: "border border-default-200 rounded-xl p-4 data-[selected=true]:border-primary",
-                }}
               >
                 I'm sending a general care package
-              </Radio>
-              <Radio
+              </CustomRadio>
+              <CustomRadio
                 value="specific"
                 description="Provide the details of the person you would like us to reach out to."
-                classNames={{
-                  base: "border border-default-200 rounded-xl p-4 data-[selected=true]:border-primary",
-                }}
               >
                 I have someone specific in mind
-              </Radio>
+              </CustomRadio>
             </RadioGroup>
           </div>
         );
@@ -204,16 +202,21 @@ export function ReliefForm() {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-semibold">Where would you like to send help?</h2>
+              <h2 className="text-2xl font-semibold">
+                Where would you like to send help?
+              </h2>
               <p className="mt-2 text-base text-default-500">
-                Choose the relief hub where our team should deliver your support.
+                Choose the relief hub where our team should deliver your
+                support.
               </p>
             </div>
             <Select
               label="Delivery location"
               labelPlacement="outside"
               placeholder="Select a location"
-              selectedKeys={formData.dropOffLocation ? [formData.dropOffLocation] : []}
+              selectedKeys={
+                formData.dropOffLocation ? [formData.dropOffLocation] : []
+              }
               onSelectionChange={(keys) => {
                 const [first] = Array.from(keys);
                 if (typeof first === "string") {
@@ -239,7 +242,9 @@ export function ReliefForm() {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-semibold">What would you like to send?</h2>
+              <h2 className="text-2xl font-semibold">
+                What would you like to send?
+              </h2>
               <p className="mt-2 text-base text-default-500">
                 Let us know if you're contributing supplies or a financial
                 donation so we can coordinate with the relief team.
@@ -248,7 +253,6 @@ export function ReliefForm() {
             <RadioGroup
               orientation="horizontal"
               label="Contribution type"
-              labelPlacement="outside"
               value={formData.contributionType}
               onValueChange={(value) =>
                 updateFormData(
@@ -262,27 +266,13 @@ export function ReliefForm() {
                 wrapper: "flex flex-col gap-3 md:flex-row",
               }}
             >
-              <Radio
-                value="supplies"
-                classNames={{
-                  base: "border border-default-200 rounded-xl px-4 py-3 data-[selected=true]:border-primary",
-                }}
-              >
-                Supplies
-              </Radio>
-              <Radio
-                value="financial"
-                classNames={{
-                  base: "border border-default-200 rounded-xl px-4 py-3 data-[selected=true]:border-primary",
-                }}
-              >
+              <CustomRadioInline value="supplies">Supplies</CustomRadioInline>
+              <CustomRadioInline value="financial">
                 Financial support
-              </Radio>
+              </CustomRadioInline>
             </RadioGroup>
             {formData.contributionType === "supplies" && (
-              <Input
-                isMultiline
-                minRows={4}
+              <Textarea
                 label="Supplies details"
                 labelPlacement="outside"
                 placeholder="List the items you plan to include (e.g. canned goods, toiletries, bedding)."
@@ -347,9 +337,12 @@ export function ReliefForm() {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-semibold">Tell us about the recipient</h2>
+              <h2 className="text-2xl font-semibold">
+                Tell us about the recipient
+              </h2>
               <p className="mt-2 text-base text-default-500">
-                Share the details for the person you would like us to support so we can reach out directly.
+                Share the details for the person you would like us to support so
+                we can reach out directly.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -379,16 +372,12 @@ export function ReliefForm() {
                 updateFormData("recipientLocation", value)
               }
             />
-            <Input
-              isMultiline
-              minRows={3}
+            <Textarea
               label="Any additional notes?"
               labelPlacement="outside"
               placeholder="Share any special needs or context that would help our team."
               value={formData.recipientNotes}
-              onValueChange={(value) =>
-                updateFormData("recipientNotes", value)
-              }
+              onValueChange={(value) => updateFormData("recipientNotes", value)}
               classNames={{
                 label: "text-sm font-medium text-default-600",
                 inputWrapper:
@@ -402,7 +391,9 @@ export function ReliefForm() {
         return (
           <div className="space-y-8 text-center">
             <div className="space-y-3">
-              <h2 className="text-3xl font-semibold">Thank you for standing with Jamaica</h2>
+              <h2 className="text-3xl font-semibold">
+                Thank you for standing with Jamaica
+              </h2>
               <p className="text-base text-default-500">
                 Our relief team will reach out shortly with guidance on when and
                 where we'll deliver your care package. We truly appreciate your
@@ -427,8 +418,12 @@ export function ReliefForm() {
                   </dd>
                 </div>
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                  <dt className="font-medium text-default-600">Delivery location</dt>
-                  <dd className="text-default-800">{formData.dropOffLocation}</dd>
+                  <dt className="font-medium text-default-600">
+                    Delivery location
+                  </dt>
+                  <dd className="text-default-800">
+                    {formData.dropOffLocation}
+                  </dd>
                 </div>
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                   <dt className="font-medium text-default-600">Contribution</dt>
@@ -513,7 +508,9 @@ export function ReliefForm() {
         />
       </CardHeader>
       <Divider />
-      <CardBody className="space-y-8 p-4 sm:p-8">{renderStepContent()}</CardBody>
+      <CardBody className="space-y-8 p-4 sm:p-8">
+        {renderStepContent()}
+      </CardBody>
       {currentStepKey !== STEPS.CONFIRM && (
         <>
           <Divider />
