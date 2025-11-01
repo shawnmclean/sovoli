@@ -2,7 +2,7 @@
 
 import { env } from "~/env";
 import type { ReliefFormData } from "./components/ReliefForm";
-import { SUPPLIES_ITEMS } from "./components/SuppliesContribution";
+import { SUPPLIES_ITEMS } from "./data/suppliesItems";
 
 const AIRTABLE_BASE_ID = "appmYWD3Zt106eYfY";
 const AIRTABLE_TABLE_ID = "tbleTRy42k25VuQhF";
@@ -45,7 +45,7 @@ export async function submitReliefForm(formData: ReliefFormData) {
       "Contact Phone"?: string;
       "Address Line 1"?: string;
       "Address Line 2"?: string;
-      City?: string;
+      "City"?: string;
       "State/Country"?: string;
     } = {
       "Submission ID": crypto.randomUUID(),
@@ -57,7 +57,7 @@ export async function submitReliefForm(formData: ReliefFormData) {
       "Contact Phone": formData.phone,
       "Address Line 1": formData.addressLine1,
       "Address Line 2": formData.addressLine2 || undefined,
-      City: formData.city,
+      "City": formData.city,
       "State/Country": formData.stateCountry,
     };
 

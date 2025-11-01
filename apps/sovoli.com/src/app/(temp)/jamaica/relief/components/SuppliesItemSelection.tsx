@@ -9,7 +9,8 @@ import {
   ListboxSection,
 } from "@sovoli/ui/components/listbox";
 import { AlertTriangleIcon, SearchIcon } from "lucide-react";
-import { SUPPLIES_ITEMS, SuppliesItem } from "./SuppliesContribution";
+import { SUPPLIES_ITEMS } from "../data/suppliesItems";
+import type { SuppliesItem } from "../data/suppliesItems";
 
 interface SuppliesItemSelectionProps {
   selectedItemIds: Set<string>;

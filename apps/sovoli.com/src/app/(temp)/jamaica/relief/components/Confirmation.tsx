@@ -4,7 +4,7 @@ import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Button } from "@sovoli/ui/components/button";
 import type { ReliefFormData } from "./ReliefForm";
-import { SUPPLIES_ITEMS } from "./SuppliesContribution";
+import { SUPPLIES_ITEMS } from "../data/suppliesItems";
 
 interface ConfirmationProps {
   formData: ReliefFormData;

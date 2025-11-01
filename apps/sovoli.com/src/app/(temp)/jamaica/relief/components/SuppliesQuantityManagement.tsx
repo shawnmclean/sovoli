@@ -5,8 +5,8 @@ import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { NumberInput } from "@sovoli/ui/components/number-input";
 import { AlertTriangleIcon, TrashIcon } from "lucide-react";
-import { SUPPLIES_ITEMS } from "./SuppliesContribution";
-import type { SuppliesItem } from "./SuppliesContribution";
+import { SUPPLIES_ITEMS } from "../data/suppliesItems";
+import type { SuppliesItem } from "../data/suppliesItems";
 
 interface SuppliesQuantityManagementProps {
   selectedItemIds: Set<string>;
