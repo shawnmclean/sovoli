@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
 import { CustomRadio, RadioGroup } from "@sovoli/ui/components/radio";
@@ -12,6 +12,7 @@ import { LabourContribution } from "./LabourContribution";
 import { SuppliesItemSelection } from "./SuppliesItemSelection";
 import { SuppliesQuantityManagement } from "./SuppliesQuantityManagement";
 import { Input } from "@sovoli/ui/components/input";
+import { submitReliefForm } from "../actions";
 
 export interface ReliefFormData {
   contributionType: "labour" | "supplies" | "financial" | "";
@@ -66,6 +67,7 @@ interface StepDefinition {
 export function ReliefForm() {
   const [formData, setFormData] = useState<ReliefFormData>(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
+  const [isPending, startTransition] = useTransition();
 
   const stepSequence: StepDefinition[] = useMemo(() => {
     const steps: StepDefinition[] = [
@@ -158,7 +160,16 @@ export function ReliefForm() {
 
   const goToNextStep = () => {
     if (!canProceed) return;
-    setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
+
+    // If we're on the contact step, submit the form via server action
+    if (currentStepKey === STEPS.CONTACT) {
+      startTransition(async () => {
+        await submitReliefForm(formData);
+        setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
+      });
+    } else {
+      setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
+    }
   };
 
   const goToPreviousStep = () => {
@@ -450,7 +461,8 @@ export function ReliefForm() {
               <Button
                 color="primary"
                 onPress={goToNextStep}
-                isDisabled={!canProceed}
+                isDisabled={!canProceed || isPending}
+                isLoading={isPending}
               >
                 Next
               </Button>
