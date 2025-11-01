@@ -10,14 +10,12 @@ export const metadata: Metadata = {
     description:
       "Pledge a care package or financial support to help communities in Jamaica recover after the hurricane.",
     type: "website",
-    images: [],
   },
   twitter: {
     card: "summary_large_image",
     title: "Jamaica Hurricane Relief Support",
     description:
       "Pledge a care package or financial support to help communities in Jamaica recover after the hurricane.",
-    images: [],
   },
 };
 

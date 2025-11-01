@@ -7,7 +7,7 @@ export const size = {
 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default function TwitterImage() {
   return new ImageResponse(
     (
       <div
@@ -44,8 +44,19 @@ export default function OpenGraphImage() {
               letterSpacing: "-2px",
             }}
           >
-            Rebuilding Jamaica
+            Jamaica Hurricane
           </h1>
+          <h2
+            style={{
+              fontSize: 64,
+              fontWeight: "bold",
+              margin: 0,
+              lineHeight: 1.1,
+              letterSpacing: "-1px",
+            }}
+          >
+            Relief Support
+          </h2>
           <p
             style={{
               fontSize: 32,
