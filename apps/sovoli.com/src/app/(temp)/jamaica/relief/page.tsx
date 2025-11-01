@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Hero } from "./components/Hero";
 import { ReliefForm } from "./components/ReliefForm";
 
 export const metadata: Metadata = {
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 export default function JamaicaReliefPage() {
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col items-center gap-12 px-4 pb-16 pt-12">
-      <Hero />
       <ReliefForm />
     </main>
   );

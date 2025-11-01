@@ -12,6 +12,7 @@ import { Divider } from "@sovoli/ui/components/divider";
 import { Input } from "@sovoli/ui/components/input";
 import { CustomRadio, RadioGroup } from "@sovoli/ui/components/radio";
 import { FinancialContribution } from "./FinancialContribution";
+import { Hero } from "./Hero";
 import { LabourContribution } from "./LabourContribution";
 import { SuppliesContribution, SUPPLIES_ITEMS } from "./SuppliesContribution";
 
@@ -417,42 +418,45 @@ export function ReliefForm() {
   };
 
   return (
-    <Card className="mx-auto w-full max-w-3xl rounded-3xl border border-default-200 bg-background/80 shadow-large backdrop-blur">
-      <CardHeader className="flex flex-col gap-4 p-4 sm:p-8">
-        <div className="text-center">
-          <span className="text-sm font-medium text-default-600">
-            Step {currentStep + 1} of {stepSequence.length}
-          </span>
-        </div>
-      </CardHeader>
-      <Divider />
-      <CardBody className="space-y-8 p-4 sm:p-8">
-        {renderStepContent()}
-      </CardBody>
-      {currentStepKey !== STEPS.CONFIRM && (
-        <>
-          <Divider />
-          <CardFooter className="flex flex-col-reverse gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-            <Button
-              variant="flat"
-              color="default"
-              onPress={goToPreviousStep}
-              isDisabled={currentStep === 0}
-              className="w-full sm:w-auto"
-            >
-              Back
-            </Button>
-            <Button
-              color="primary"
-              onPress={goToNextStep}
-              isDisabled={!canProceed}
-              className="w-full sm:w-auto"
-            >
-              Next
-            </Button>
-          </CardFooter>
-        </>
-      )}
-    </Card>
+    <div className="w-full flex flex-col items-center gap-12">
+      {currentStep === 0 && <Hero />}
+      <Card className="w-full max-w-3xl rounded-3xl border border-default-200 bg-background/80 shadow-large backdrop-blur">
+        <CardHeader className="flex flex-col gap-4 p-4 sm:p-8">
+          <div className="text-center">
+            <span className="text-sm font-medium text-default-600">
+              Step {currentStep + 1} of {stepSequence.length}
+            </span>
+          </div>
+        </CardHeader>
+        <Divider />
+        <CardBody className="space-y-8 p-4 sm:p-8">
+          {renderStepContent()}
+        </CardBody>
+        {currentStepKey !== STEPS.CONFIRM && (
+          <>
+            <Divider />
+            <CardFooter className="flex flex-col-reverse gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+              <Button
+                variant="flat"
+                color="default"
+                onPress={goToPreviousStep}
+                isDisabled={currentStep === 0}
+                className="w-full sm:w-auto"
+              >
+                Back
+              </Button>
+              <Button
+                color="primary"
+                onPress={goToNextStep}
+                isDisabled={!canProceed}
+                className="w-full sm:w-auto"
+              >
+                Next
+              </Button>
+            </CardFooter>
+          </>
+        )}
+      </Card>
+    </div>
   );
 }
