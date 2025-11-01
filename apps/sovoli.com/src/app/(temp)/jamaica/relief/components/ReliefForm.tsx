@@ -273,7 +273,6 @@ export function ReliefForm() {
               }}
             >
               <CustomRadio value="supplies">Supplies</CustomRadio>
-              <CustomRadio value="labour">Labour</CustomRadio>
               <CustomRadio value="financial">Financial</CustomRadio>
             </RadioGroup>
           </div>
