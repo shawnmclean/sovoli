@@ -68,6 +68,7 @@ export function ReliefForm() {
   const [formData, setFormData] = useState<ReliefFormData>(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
   const [isPending, startTransition] = useTransition();
+  const [hasAutoNavigated, setHasAutoNavigated] = useState(false);
 
   const stepSequence: StepDefinition[] = useMemo(() => {
     const steps: StepDefinition[] = [
@@ -105,10 +106,11 @@ export function ReliefForm() {
 
   // Auto-navigate when contribution type is selected
   useEffect(() => {
-    if (formData.contributionType && currentStep === 0) {
+    if (formData.contributionType && currentStep === 0 && !hasAutoNavigated) {
       setCurrentStep(1);
+      setHasAutoNavigated(true);
     }
-  }, [formData.contributionType, currentStep, stepSequence.length]);
+  }, [formData.contributionType, currentStep, hasAutoNavigated]);
 
   const currentStepKey = stepSequence[currentStep]?.key ?? STEPS.CONTRIBUTION;
 
@@ -227,6 +229,7 @@ export function ReliefForm() {
   const resetForm = () => {
     setFormData(initialFormData);
     setCurrentStep(0);
+    setHasAutoNavigated(false);
   };
 
   const getStepTitle = () => {

@@ -8,6 +8,8 @@ import {
   ListboxItem,
   ListboxSection,
 } from "@sovoli/ui/components/listbox";
+import { Chip } from "@sovoli/ui/components/chip";
+import { ScrollShadow } from "@heroui/scroll-shadow";
 import { AlertTriangleIcon, SearchIcon } from "lucide-react";
 import { SUPPLIES_ITEMS } from "../data/suppliesItems";
 import type { SuppliesItem } from "../data/suppliesItems";
@@ -112,6 +114,37 @@ export function SuppliesItemSelection({
     setSelectedGroups(newSelected);
   };
 
+  // Create a stable string key from the Set for dependency tracking
+  // Note: Using size and string representation since Set reference equality doesn't work for React deps
+  const selectedItemsKey = useMemo(
+    () => Array.from(selectedItemIds).sort().join(","),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [Array.from(selectedItemIds).sort().join(",")],
+  );
+
+  const topContent = useMemo(() => {
+    const arrayValues = Array.from(selectedItemIds);
+
+    if (!arrayValues.length) {
+      return null;
+    }
+
+    return (
+      <ScrollShadow
+        hideScrollBar
+        className="w-full flex py-0.5 px-2 gap-1"
+        orientation="horizontal"
+      >
+        {arrayValues.map((itemId) => {
+          const item = SUPPLIES_ITEMS.find((i) => i.id === itemId);
+          if (!item) return null;
+          return <Chip key={itemId}>{item.name}</Chip>;
+        })}
+      </ScrollShadow>
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedItemsKey]);
+
   return (
     <div className="space-y-6">
       <p className="text-base text-default-500">
@@ -157,6 +190,7 @@ export function SuppliesItemSelection({
               handleSelectionChange(keys as Set<string> | "all")
             }
             variant="flat"
+            topContent={topContent}
             classNames={{
               base: "max-w-full",
               list: "max-h-[300px] overflow-scroll gap-2",
@@ -199,6 +233,12 @@ export function SuppliesItemSelection({
               </ListboxSection>
             ))}
           </Listbox>
+        </div>
+
+        {/* Legend */}
+        <div className="flex items-center gap-2 text-sm text-default-500">
+          <AlertTriangleIcon className="w-4 h-4 text-warning shrink-0" />
+          <span>Items marked with this icon are urgently needed</span>
         </div>
       </div>
     </div>
