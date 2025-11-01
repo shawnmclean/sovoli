@@ -8,56 +8,18 @@ import {
   ListboxItem,
   ListboxSection,
 } from "@sovoli/ui/components/listbox";
-import { ScrollShadow } from "@heroui/scroll-shadow";
-import { Chip } from "@sovoli/ui/components/chip";
 import { AlertTriangleIcon, SearchIcon } from "lucide-react";
+import { SUPPLIES_ITEMS, SuppliesItem } from "./SuppliesContribution";
 
-export interface SuppliesItem {
-  id: string;
-  name: string;
-  category: "food" | "building" | "other";
-  highPriority?: boolean;
+interface SuppliesItemSelectionProps {
+  selectedItemIds: Set<string>;
+  onSelectionChange: (selectedIds: Set<string>) => void;
 }
 
-export const SUPPLIES_ITEMS: SuppliesItem[] = [
-  // Food items
-  { id: "canned-goods", name: "Canned Goods", category: "food" },
-  { id: "rice", name: "Rice", category: "food", highPriority: true },
-  { id: "beans", name: "Beans", category: "food" },
-  { id: "water", name: "Bottled Water", category: "food", highPriority: true },
-  {
-    id: "baby-formula",
-    name: "Baby Formula",
-    category: "food",
-    highPriority: true,
-  },
-  { id: "non-perishable", name: "Non-perishable Foods", category: "food" },
-  // Building supplies
-  { id: "plywood", name: "Plywood", category: "building", highPriority: true },
-  { id: "tarps", name: "Tarps", category: "building", highPriority: true },
-  { id: "nails", name: "Nails", category: "building" },
-  { id: "screws", name: "Screws", category: "building" },
-  { id: "tools", name: "Tools", category: "building" },
-  { id: "lumber", name: "Lumber", category: "building" },
-];
-
-interface SuppliesContributionProps {
-  suppliesItems: Record<string, number>;
-  suppliesOther: string;
-  suppliesItemNotes?: Record<string, string>; // itemId -> notes
-  onItemQuantityChange: (itemId: string, quantity: number) => void;
-  onOtherChange: (value: string) => void;
-  onItemNoteChange?: (itemId: string, note: string) => void;
-}
-
-export function SuppliesContribution({
-  suppliesItems,
-  suppliesOther,
-  suppliesItemNotes: _suppliesItemNotes = {},
-  onItemQuantityChange,
-  onOtherChange,
-  onItemNoteChange: _onItemNoteChange,
-}: SuppliesContributionProps) {
+export function SuppliesItemSelection({
+  selectedItemIds,
+  onSelectionChange,
+}: SuppliesItemSelectionProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGroups, setSelectedGroups] = useState<Set<string>>(
     new Set(["food", "building"]),
@@ -128,84 +90,15 @@ export function SuppliesContribution({
     return filtered;
   }, [groupedItems, selectedGroups, searchQuery]);
 
-  const selectedKeys = useMemo(() => {
-    return new Set(
-      Object.keys(suppliesItems).filter(
-        (key) => suppliesItems[key] !== undefined && suppliesItems[key] >= 1,
-      ),
-    );
-  }, [suppliesItems]);
-
-  // Create a flat array of all items for easier lookup
-  const allItemsFlat = useMemo(() => {
-    return SUPPLIES_ITEMS;
-  }, []);
-
-  const topContent = useMemo(() => {
-    // Show all selected items in topContent
-    const selectedItems = Object.keys(suppliesItems)
-      .filter((key) => suppliesItems[key] && suppliesItems[key] > 0)
-      .map((id) => {
-        const item = allItemsFlat.find((i) => i.id === id);
-        if (!item) return null;
-        return { id, item };
-      })
-      .filter(
-        (item): item is { id: string; item: SuppliesItem } => item !== null,
-      );
-
-    if (!selectedItems.length) {
-      return null;
-    }
-
-    return (
-      <ScrollShadow
-        hideScrollBar
-        className="w-full flex py-0.5 px-2 gap-1"
-        orientation="horizontal"
-      >
-        {selectedItems.map(({ id, item }) => (
-          <Chip key={id} size="sm">
-            {item.name}
-          </Chip>
-        ))}
-      </ScrollShadow>
-    );
-  }, [suppliesItems, allItemsFlat]);
-
   const handleSelectionChange = (keys: Set<string> | "all") => {
     if (keys === "all") {
       // Select all items
-      SUPPLIES_ITEMS.forEach((item) => {
-        if (
-          suppliesItems[item.id] === undefined ||
-          suppliesItems[item.id] === 0
-        ) {
-          onItemQuantityChange(item.id, 1);
-        }
-      });
+      const allIds = new Set(SUPPLIES_ITEMS.map((item) => item.id));
+      onSelectionChange(allIds);
       return;
     }
 
-    const currentSelected = new Set(
-      Object.keys(suppliesItems).filter(
-        (key) => suppliesItems[key] !== undefined && suppliesItems[key] >= 1,
-      ),
-    );
-
-    // Add newly selected items
-    keys.forEach((key) => {
-      if (!currentSelected.has(key)) {
-        onItemQuantityChange(key, 1);
-      }
-    });
-
-    // Remove unselected items
-    currentSelected.forEach((key) => {
-      if (!keys.has(key)) {
-        onItemQuantityChange(key, 0);
-      }
-    });
+    onSelectionChange(keys);
   };
 
   const toggleGroup = (category: string) => {
@@ -258,12 +151,11 @@ export function SuppliesContribution({
           <Listbox
             aria-label="Supplies selection"
             selectionMode="multiple"
-            selectedKeys={selectedKeys}
+            selectedKeys={selectedItemIds}
             onSelectionChange={(keys) =>
               handleSelectionChange(keys as Set<string> | "all")
             }
             variant="flat"
-            topContent={topContent}
             classNames={{
               base: "max-w-full",
               list: "max-h-[300px] overflow-scroll gap-2",
@@ -306,16 +198,6 @@ export function SuppliesContribution({
               </ListboxSection>
             ))}
           </Listbox>
-        </div>
-
-        <div>
-          <Input
-            size="lg"
-            label="Other"
-            placeholder="Specify other items not listed above"
-            value={suppliesOther}
-            onValueChange={onOtherChange}
-          />
         </div>
       </div>
     </div>

@@ -3,13 +3,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
-import { Input } from "@sovoli/ui/components/input";
 import { CustomRadio, RadioGroup } from "@sovoli/ui/components/radio";
 import { Confirmation } from "./Confirmation";
+import { ContactInfo } from "./ContactInfo";
 import { FinancialContribution } from "./FinancialContribution";
 import { Hero } from "./Hero";
 import { LabourContribution } from "./LabourContribution";
-import { SuppliesContribution } from "./SuppliesContribution";
+import { SuppliesItemSelection } from "./SuppliesItemSelection";
+import { SuppliesQuantityManagement } from "./SuppliesQuantityManagement";
+import { Input } from "@sovoli/ui/components/input";
 
 export interface ReliefFormData {
   contributionType: "labour" | "supplies" | "financial" | "";
@@ -19,6 +21,7 @@ export interface ReliefFormData {
   suppliesItemNotes: Record<string, string>; // itemId -> notes
   suppliesOther: string;
   financialAmount: string;
+  financialCurrency: "USD" | "JMD";
   name: string;
   phone: string;
   addressLine1: string;
@@ -35,6 +38,7 @@ const initialFormData: ReliefFormData = {
   suppliesItemNotes: {},
   suppliesOther: "",
   financialAmount: "",
+  financialCurrency: "USD",
   name: "",
   phone: "",
   addressLine1: "",
@@ -46,6 +50,8 @@ const initialFormData: ReliefFormData = {
 const STEPS = {
   CONTRIBUTION: "contribution",
   CONTRIBUTION_DETAILS: "contribution_details",
+  SUPPLIES_SELECTION: "supplies_selection",
+  SUPPLIES_QUANTITIES: "supplies_quantities",
   CONTACT: "contact",
   CONFIRM: "confirm",
 } as const;
@@ -67,15 +73,18 @@ export function ReliefForm() {
     ];
 
     if (formData.contributionType) {
-      steps.push({
-        key: STEPS.CONTRIBUTION_DETAILS,
-        label:
-          formData.contributionType === "labour"
-            ? "Availability"
-            : formData.contributionType === "supplies"
-              ? "Supplies"
-              : "Amount",
-      });
+      if (formData.contributionType === "supplies") {
+        steps.push(
+          { key: STEPS.SUPPLIES_SELECTION, label: "Select Items" },
+          { key: STEPS.SUPPLIES_QUANTITIES, label: "Set Quantities" },
+        );
+      } else {
+        steps.push({
+          key: STEPS.CONTRIBUTION_DETAILS,
+          label:
+            formData.contributionType === "labour" ? "Availability" : "Amount",
+        });
+      }
     }
 
     steps.push(
@@ -92,6 +101,13 @@ export function ReliefForm() {
     }
   }, [currentStep, stepSequence]);
 
+  // Auto-navigate when contribution type is selected
+  useEffect(() => {
+    if (formData.contributionType && currentStep === 0) {
+      setCurrentStep(1);
+    }
+  }, [formData.contributionType, currentStep, stepSequence.length]);
+
   const currentStepKey = stepSequence[currentStep]?.key ?? STEPS.CONTRIBUTION;
 
   const isStepComplete = (stepKey: StepKey) => {
@@ -105,16 +121,24 @@ export function ReliefForm() {
           }
           return formData.labourAvailability !== "";
         }
-        if (formData.contributionType === "supplies") {
-          const hasSelectedItems =
-            Object.keys(formData.suppliesItems).length > 0;
-          return hasSelectedItems || formData.suppliesOther.trim().length > 0;
-        }
         if (formData.contributionType === "financial") {
           const amount = Number(formData.financialAmount);
           return !Number.isNaN(amount) && amount > 0;
         }
         return false;
+      case STEPS.SUPPLIES_SELECTION: {
+        const selectedItemIds = Object.keys(formData.suppliesItems).filter(
+          (key) =>
+            formData.suppliesItems[key] && formData.suppliesItems[key] > 0,
+        );
+        return (
+          selectedItemIds.length > 0 || formData.suppliesOther.trim().length > 0
+        );
+      }
+      case STEPS.SUPPLIES_QUANTITIES: {
+        const hasSelectedItems = Object.keys(formData.suppliesItems).length > 0;
+        return hasSelectedItems || formData.suppliesOther.trim().length > 0;
+      }
       case STEPS.CONTACT:
         return (
           formData.name.trim().length > 0 &&
@@ -200,9 +224,12 @@ export function ReliefForm() {
         return "What are you contributing?";
       case STEPS.CONTRIBUTION_DETAILS:
         if (formData.contributionType === "labour") return "Availability";
-        if (formData.contributionType === "supplies") return "Select supplies";
         if (formData.contributionType === "financial") return "Amount";
         return "";
+      case STEPS.SUPPLIES_SELECTION:
+        return "Select Items";
+      case STEPS.SUPPLIES_QUANTITIES:
+        return "Set Quantities";
       case STEPS.CONTACT:
         return "Your Details";
       case STEPS.CONFIRM:
@@ -250,89 +277,139 @@ export function ReliefForm() {
             />
           );
         }
-        if (formData.contributionType === "supplies") {
-          return (
-            <SuppliesContribution
-              suppliesItems={formData.suppliesItems}
-              suppliesOther={formData.suppliesOther}
-              suppliesItemNotes={formData.suppliesItemNotes}
-              onItemQuantityChange={updateSuppliesItemQuantity}
-              onOtherChange={(value) => updateFormData("suppliesOther", value)}
-              onItemNoteChange={updateSuppliesItemNote}
-            />
-          );
-        }
         if (formData.contributionType === "financial") {
           return (
             <FinancialContribution
               amount={formData.financialAmount}
+              currency={formData.financialCurrency}
               onAmountChange={(value) =>
                 updateFormData("financialAmount", value)
+              }
+              onCurrencyChange={(value: "USD" | "JMD") =>
+                updateFormData("financialCurrency", value)
               }
             />
           );
         }
         return null;
-      case STEPS.CONTACT:
+      case STEPS.SUPPLIES_SELECTION: {
+        const selectedItemIds = new Set(
+          Object.keys(formData.suppliesItems).filter(
+            (key) =>
+              formData.suppliesItems[key] && formData.suppliesItems[key] > 0,
+          ),
+        );
+
+        const handleSelectionChange = (selectedIds: Set<string>) => {
+          // Initialize all selected items with quantity 1
+          const newItems = { ...formData.suppliesItems };
+
+          // Add newly selected items
+          selectedIds.forEach((id) => {
+            if (!newItems[id] || newItems[id] === 0) {
+              newItems[id] = 1;
+            }
+          });
+
+          // Remove unselected items
+          Object.keys(newItems).forEach((id) => {
+            if (!selectedIds.has(id)) {
+              delete newItems[id];
+              // Also remove notes for unselected items
+              if (formData.suppliesItemNotes[id]) {
+                const newNotes = { ...formData.suppliesItemNotes };
+                delete newNotes[id];
+                setFormData((prev) => ({
+                  ...prev,
+                  suppliesItems: newItems,
+                  suppliesItemNotes: newNotes,
+                }));
+                return;
+              }
+            }
+          });
+
+          setFormData((prev) => ({
+            ...prev,
+            suppliesItems: newItems,
+          }));
+        };
+
         return (
           <div className="space-y-6">
+            <SuppliesItemSelection
+              selectedItemIds={selectedItemIds}
+              onSelectionChange={handleSelectionChange}
+            />
             <div>
-              <p className="text-base text-default-500">
-                We'll use this information to coordinate your contribution.
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
               <Input
                 size="lg"
-                label="Full name"
-                placeholder="Enter your name"
-                value={formData.name}
-                onValueChange={(value) => updateFormData("name", value)}
+                label="Other"
+                placeholder="Specify other items not listed above"
+                value={formData.suppliesOther}
+                onValueChange={(value: string) =>
+                  updateFormData("suppliesOther", value)
+                }
               />
-              <Input
-                size="lg"
-                label="Contact number"
-                type="tel"
-                placeholder="e.g. 876-555-0123"
-                value={formData.phone}
-                onValueChange={(value) => updateFormData("phone", value)}
-              />
-            </div>
-            <div className="space-y-4">
-              <Input
-                size="lg"
-                label="Address Line 1"
-                placeholder="Street address"
-                value={formData.addressLine1}
-                onValueChange={(value) => updateFormData("addressLine1", value)}
-              />
-              <Input
-                size="lg"
-                label="Address Line 2"
-                placeholder="Apartment, suite, etc. (optional)"
-                value={formData.addressLine2}
-                onValueChange={(value) => updateFormData("addressLine2", value)}
-              />
-              <div className="grid gap-4 md:grid-cols-2">
-                <Input
-                  size="lg"
-                  label="City"
-                  placeholder="City"
-                  value={formData.city}
-                  onValueChange={(value) => updateFormData("city", value)}
-                />
-                <Input
-                  size="lg"
-                  label="State/Country"
-                  placeholder="State or Country"
-                  value={formData.stateCountry}
-                  onValueChange={(value) =>
-                    updateFormData("stateCountry", value)
-                  }
-                />
-              </div>
             </div>
           </div>
+        );
+      }
+      case STEPS.SUPPLIES_QUANTITIES: {
+        const selectedItemIds = new Set(
+          Object.keys(formData.suppliesItems).filter(
+            (key) =>
+              formData.suppliesItems[key] && formData.suppliesItems[key] > 0,
+          ),
+        );
+
+        const handleItemRemove = (itemId: string) => {
+          const newItems = { ...formData.suppliesItems };
+          delete newItems[itemId];
+
+          const newNotes = { ...formData.suppliesItemNotes };
+          delete newNotes[itemId];
+
+          setFormData((prev) => ({
+            ...prev,
+            suppliesItems: newItems,
+            suppliesItemNotes: newNotes,
+          }));
+        };
+
+        return (
+          <SuppliesQuantityManagement
+            selectedItemIds={selectedItemIds}
+            suppliesItems={formData.suppliesItems}
+            suppliesItemNotes={formData.suppliesItemNotes}
+            onItemQuantityChange={updateSuppliesItemQuantity}
+            onItemRemove={handleItemRemove}
+            onItemNoteChange={updateSuppliesItemNote}
+          />
+        );
+      }
+      case STEPS.CONTACT:
+        return (
+          <ContactInfo
+            name={formData.name}
+            phone={formData.phone}
+            addressLine1={formData.addressLine1}
+            addressLine2={formData.addressLine2}
+            city={formData.city}
+            stateCountry={formData.stateCountry}
+            onNameChange={(value) => updateFormData("name", value)}
+            onPhoneChange={(value) => updateFormData("phone", value)}
+            onAddressLine1Change={(value) =>
+              updateFormData("addressLine1", value)
+            }
+            onAddressLine2Change={(value) =>
+              updateFormData("addressLine2", value)
+            }
+            onCityChange={(value) => updateFormData("city", value)}
+            onStateCountryChange={(value) =>
+              updateFormData("stateCountry", value)
+            }
+          />
         );
       case STEPS.CONFIRM:
         return (

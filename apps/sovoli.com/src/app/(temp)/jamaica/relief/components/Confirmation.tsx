@@ -22,9 +22,14 @@ export function Confirmation({
     Object.keys(formData.suppliesItems).length > 0 ||
     formData.suppliesOther.trim().length > 0;
 
-  const selectedSuppliesItems = Object.entries(formData.suppliesItems)
-    .map(([itemId, quantity]) => {
+  const selectedSuppliesItems = Object.keys(formData.suppliesItems)
+    .filter(
+      (itemId) =>
+        formData.suppliesItems[itemId] && formData.suppliesItems[itemId] > 0,
+    )
+    .map((itemId) => {
       const item = SUPPLIES_ITEMS.find((i) => i.id === itemId);
+      const quantity = formData.suppliesItems[itemId];
       return item ? { id: itemId, name: item.name, quantity } : null;
     })
     .filter(
@@ -59,7 +64,8 @@ export function Confirmation({
                   <div className="space-y-1">
                     {selectedSuppliesItems.map((item, idx) => (
                       <div key={idx}>
-                        {item.name} ({item.quantity})
+                        {item.name}{" "}
+                        <span className="font-medium">({item.quantity})</span>
                         {formData.suppliesItemNotes[item.id] && (
                           <span className="block text-default-500 text-xs mt-1">
                             {formData.suppliesItemNotes[item.id]}
@@ -149,7 +155,8 @@ export function Confirmation({
             <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
               <dt className="font-medium text-default-600">Amount</dt>
               <dd className="text-default-800">
-                JMD {Number(formData.financialAmount).toLocaleString()}
+                {formData.financialCurrency}{" "}
+                {Number(formData.financialAmount).toLocaleString()}
               </dd>
             </div>
           )}
