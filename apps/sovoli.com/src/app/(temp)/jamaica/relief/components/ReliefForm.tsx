@@ -35,7 +35,9 @@ const initialFormData: ReliefFormData = {
   contributionType: "",
   labourAvailability: "",
   labourAvailabilityOther: "",
-  suppliesItems: {},
+  suppliesItems: {
+    tarps: 1, // Default selected item
+  },
   suppliesItemNotes: {},
   suppliesOther: "",
   financialAmount: "",

@@ -43,6 +43,10 @@ export function SuppliesItemSelection({
         items: [],
         label: "Food Supplies",
       },
+      other: {
+        items: [],
+        label: "Other Supplies",
+      },
     };
 
     SUPPLIES_ITEMS.forEach((item) => {
@@ -178,6 +182,12 @@ export function SuppliesItemSelection({
           >
             Food Supplies
           </Checkbox>
+          <Checkbox
+            isSelected={selectedGroups.has("other")}
+            onValueChange={() => toggleGroup("other")}
+          >
+            Other Supplies
+          </Checkbox>
         </div>
 
         {/* Listbox with grouped items */}
@@ -226,6 +236,11 @@ export function SuppliesItemSelection({
                           <AlertTriangleIcon className="w-5 h-5 text-warning shrink-0" />
                         )}
                         <span className="truncate">{item.name}</span>
+                        {item.source && (
+                          <span className="text-xs text-default-400 shrink-0">
+                            ({item.source})
+                          </span>
+                        )}
                       </div>
                     </ListboxItem>
                   );
