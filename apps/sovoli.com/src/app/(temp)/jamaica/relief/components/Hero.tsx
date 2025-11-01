@@ -46,7 +46,9 @@ export function Hero() {
           Rebuilding Jamaica
         </h1>
         <p className="text-sm sm:text-base text-default-500">
-          Data capture for rebuilding Jamaica after the hurricane.
+          This is a small movement to help rebuild Jamaica after the hurricane.
+          You were invited by one of the following persons to help rebuild
+          Jamaica after the hurricane.
         </p>
       </div>
 
