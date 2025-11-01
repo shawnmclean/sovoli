@@ -17,4 +17,3 @@ export function JamaicaIcon({ size = 120 }: { size?: number }) {
     </svg>
   );
 }
-
