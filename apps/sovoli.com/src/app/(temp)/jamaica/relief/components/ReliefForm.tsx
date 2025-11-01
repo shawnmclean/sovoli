@@ -15,8 +15,6 @@ import {
   CustomRadioInline,
   RadioGroup,
 } from "@sovoli/ui/components/radio";
-import { Select, SelectItem } from "@sovoli/ui/components/select";
-import { Stepper } from "@sovoli/ui/components/stepper";
 
 interface ReliefFormData {
   packageIntent: "general" | "specific" | "";
@@ -27,8 +25,9 @@ interface ReliefFormData {
   donorName: string;
   donorPhone: string;
   recipientName: string;
+  recipientAddressLine1: string;
+  recipientAddressLine2: string;
   recipientPhone: string;
-  recipientLocation: string;
   recipientNotes: string;
 }
 
@@ -41,22 +40,17 @@ const initialFormData: ReliefFormData = {
   donorName: "",
   donorPhone: "",
   recipientName: "",
+  recipientAddressLine1: "",
+  recipientAddressLine2: "",
   recipientPhone: "",
-  recipientLocation: "",
   recipientNotes: "",
 };
-
-const dropOffLocations: ReliefFormData["dropOffLocation"][] = [
-  "Black River",
-  "Savanna-la-Mar",
-];
 
 const STEPS = {
   INTENT: "intent",
   LOCATION: "location",
   CONTRIBUTION: "contribution",
   CONTACT: "contact",
-  RECIPIENT: "recipient",
   CONFIRM: "confirm",
 } as const;
 
@@ -74,16 +68,17 @@ export function ReliefForm() {
   const stepSequence: StepDefinition[] = useMemo(() => {
     const baseSteps: StepDefinition[] = [
       { key: STEPS.INTENT, label: "Care Package" },
-      { key: STEPS.LOCATION, label: "Delivery" },
       { key: STEPS.CONTRIBUTION, label: "Contribution" },
-      { key: STEPS.CONTACT, label: "Your Details" },
     ];
 
     if (formData.packageIntent === "specific") {
-      baseSteps.push({ key: STEPS.RECIPIENT, label: "Recipient" });
+      baseSteps.push({ key: STEPS.LOCATION, label: "Delivery" });
     }
 
-    baseSteps.push({ key: STEPS.CONFIRM, label: "Confirmation" });
+    baseSteps.push(
+      { key: STEPS.CONTACT, label: "Your Details" },
+      { key: STEPS.CONFIRM, label: "Confirmation" },
+    );
 
     return baseSteps;
   }, [formData.packageIntent]);
@@ -101,7 +96,17 @@ export function ReliefForm() {
       case STEPS.INTENT:
         return formData.packageIntent !== "";
       case STEPS.LOCATION:
-        return formData.dropOffLocation !== "";
+        if (formData.packageIntent === "general") {
+          return true;
+        }
+        if (formData.packageIntent === "specific") {
+          return (
+            formData.recipientName.trim().length > 0 &&
+            formData.recipientAddressLine1.trim().length > 0 &&
+            formData.recipientPhone.trim().length > 0
+          );
+        }
+        return false;
       case STEPS.CONTRIBUTION:
         if (formData.contributionType === "financial") {
           const amount = Number(formData.financialAmount);
@@ -115,14 +120,6 @@ export function ReliefForm() {
         return (
           formData.donorName.trim().length > 0 &&
           formData.donorPhone.trim().length > 0
-        );
-      case STEPS.RECIPIENT:
-        if (formData.packageIntent !== "specific") {
-          return true;
-        }
-        return (
-          formData.recipientName.trim().length > 0 &&
-          formData.recipientPhone.trim().length > 0
         );
       case STEPS.CONFIRM:
         return true;
@@ -162,15 +159,9 @@ export function ReliefForm() {
       case STEPS.INTENT:
         return (
           <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-semibold">
-                Who would you like to send help to?
-              </h2>
-              <p className="mt-2 text-base text-default-500">
-                Let us know if this is a general care package for anyone in need
-                or if you have a specific person in mind.
-              </p>
-            </div>
+            <h2 className="text-2xl font-semibold">
+              Who would you like to send help to?
+            </h2>
             <RadioGroup
               value={formData.packageIntent}
               onValueChange={(value) =>
@@ -199,57 +190,82 @@ export function ReliefForm() {
           </div>
         );
       case STEPS.LOCATION:
-        return (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-semibold">
-                Where would you like to send help?
-              </h2>
-              <p className="mt-2 text-base text-default-500">
-                Choose the relief hub where our team should deliver your
-                support.
-              </p>
-            </div>
-            <Select
-              label="Delivery location"
-              labelPlacement="outside"
-              placeholder="Select a location"
-              selectedKeys={
-                formData.dropOffLocation ? [formData.dropOffLocation] : []
-              }
-              onSelectionChange={(keys) => {
-                const [first] = Array.from(keys);
-                if (typeof first === "string") {
-                  updateFormData(
-                    "dropOffLocation",
-                    first as ReliefFormData["dropOffLocation"],
-                  );
-                } else {
-                  updateFormData("dropOffLocation", "");
+        if (formData.packageIntent === "general") {
+          return null;
+        }
+        if (formData.packageIntent === "specific") {
+          return (
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-2xl font-semibold">
+                  Tell us about the recipient
+                </h2>
+                <p className="mt-2 text-base text-default-500">
+                  Share the details for the person you would like us to support
+                  so we can reach out directly.
+                </p>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <Input
+                  size="lg"
+                  label="Recipient name"
+                  placeholder="John Doe"
+                  value={formData.recipientName}
+                  onValueChange={(value) =>
+                    updateFormData("recipientName", value)
+                  }
+                />
+                <Input
+                  size="lg"
+                  label="Recipient contact number"
+                  type="tel"
+                  placeholder="e.g. 876-555-0987"
+                  value={formData.recipientPhone}
+                  onValueChange={(value) =>
+                    updateFormData("recipientPhone", value)
+                  }
+                />
+              </div>
+              <div className="space-y-4">
+                <Input
+                  size="lg"
+                  label="Address Line 1"
+                  placeholder="Street address, community, or parish"
+                  value={formData.recipientAddressLine1}
+                  onValueChange={(value) =>
+                    updateFormData("recipientAddressLine1", value)
+                  }
+                />
+                <Input
+                  size="lg"
+                  label="Address Line 2"
+                  placeholder="Additional location details (optional)"
+                  value={formData.recipientAddressLine2}
+                  onValueChange={(value) =>
+                    updateFormData("recipientAddressLine2", value)
+                  }
+                />
+              </div>
+              <Textarea
+                size="lg"
+                label="Any additional notes?"
+                labelPlacement="outside"
+                placeholder="Share any special needs or context that would help our team."
+                value={formData.recipientNotes}
+                onValueChange={(value) =>
+                  updateFormData("recipientNotes", value)
                 }
-              }}
-              classNames={{
-                label: "text-sm font-medium text-default-600",
-              }}
-            >
-              {dropOffLocations.map((location) => (
-                <SelectItem key={location}>{location}</SelectItem>
-              ))}
-            </Select>
-          </div>
-        );
+              />
+            </div>
+          );
+        }
+        return null;
       case STEPS.CONTRIBUTION:
         return (
           <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-semibold">
-                What would you like to send?
-              </h2>
-              <p className="mt-2 text-base text-default-500">
-                Let us know if you're contributing supplies or a financial
-                donation so we can coordinate with the relief team.
-              </p>
-            </div>
+            <h2 className="text-2xl font-semibold">
+              What would you like to send?
+            </h2>
             <RadioGroup
               orientation="horizontal"
               label="Contribution type"
@@ -333,60 +349,6 @@ export function ReliefForm() {
             </div>
           </div>
         );
-      case STEPS.RECIPIENT:
-        return (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-semibold">
-                Tell us about the recipient
-              </h2>
-              <p className="mt-2 text-base text-default-500">
-                Share the details for the person you would like us to support so
-                we can reach out directly.
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              <Input
-                label="Recipient name"
-                placeholder="Enter their name"
-                value={formData.recipientName}
-                onValueChange={(value) =>
-                  updateFormData("recipientName", value)
-                }
-              />
-              <Input
-                label="Recipient contact number"
-                type="tel"
-                placeholder="e.g. 876-555-0987"
-                value={formData.recipientPhone}
-                onValueChange={(value) =>
-                  updateFormData("recipientPhone", value)
-                }
-              />
-            </div>
-            <Input
-              label="Where in Jamaica are they located?"
-              placeholder="Community or parish"
-              value={formData.recipientLocation}
-              onValueChange={(value) =>
-                updateFormData("recipientLocation", value)
-              }
-            />
-            <Textarea
-              label="Any additional notes?"
-              labelPlacement="outside"
-              placeholder="Share any special needs or context that would help our team."
-              value={formData.recipientNotes}
-              onValueChange={(value) => updateFormData("recipientNotes", value)}
-              classNames={{
-                label: "text-sm font-medium text-default-600",
-                inputWrapper:
-                  "rounded-2xl border border-default-200 bg-default-50/60 shadow-sm",
-                input: "text-base leading-relaxed",
-              }}
-            />
-          </div>
-        );
       case STEPS.CONFIRM:
         return (
           <div className="space-y-8 text-center">
@@ -418,14 +380,6 @@ export function ReliefForm() {
                   </dd>
                 </div>
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                  <dt className="font-medium text-default-600">
-                    Delivery location
-                  </dt>
-                  <dd className="text-default-800">
-                    {formData.dropOffLocation}
-                  </dd>
-                </div>
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                   <dt className="font-medium text-default-600">Contribution</dt>
                   <dd className="text-default-800">
                     {formData.contributionType === "financial"
@@ -452,10 +406,12 @@ export function ReliefForm() {
                       {formData.recipientName}
                       <br />
                       {formData.recipientPhone}
-                      {formData.recipientLocation && (
+                      <br />
+                      {formData.recipientAddressLine1}
+                      {formData.recipientAddressLine2 && (
                         <>
                           <br />
-                          {formData.recipientLocation}
+                          {formData.recipientAddressLine2}
                         </>
                       )}
                       {formData.recipientNotes && (
@@ -493,19 +449,11 @@ export function ReliefForm() {
   return (
     <Card className="mx-auto w-full max-w-3xl rounded-3xl border border-default-200 bg-background/80 shadow-large backdrop-blur">
       <CardHeader className="flex flex-col gap-4 p-4 sm:p-8">
-        <Stepper
-          className="px-0"
-          steps={stepSequence.map((step, index) => ({
-            label: step.label,
-            completed: index < currentStep,
-          }))}
-          currentStep={currentStep}
-          onStepClick={(index) => {
-            if (index < currentStep) {
-              setCurrentStep(index);
-            }
-          }}
-        />
+        <div className="text-center">
+          <span className="text-sm font-medium text-default-600">
+            Step {currentStep + 1} of {stepSequence.length}
+          </span>
+        </div>
       </CardHeader>
       <Divider />
       <CardBody className="space-y-8 p-4 sm:p-8">
