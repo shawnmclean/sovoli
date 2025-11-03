@@ -6,6 +6,12 @@ export const GEORGETOWN_SDA_ACADEMY_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Georgetown Seventh-day Adventist Academy",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/GeorgetownSDAAcademy",
+      },
+    ],
     locations: [
       {
         key: "main",
@@ -15,6 +21,7 @@ export const GEORGETOWN_SDA_ACADEMY_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJm-5grQbvr40Rq_7pvFw9nhw",
         contacts: [
           { type: "email", value: "info@guyanaconference.org", isPublic: true },
         ],

@@ -9,7 +9,12 @@ export const SUCCESS_ELEMENTARY_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
+        address: {
+          line1: "QR69+8VW",
+          city: "Georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJPQW3sHTxr40RfEKrInJ4UMM",
         contacts: [],
         isPrimary: true,
       },

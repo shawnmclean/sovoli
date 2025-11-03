@@ -15,8 +15,14 @@ export const GREEN_ACRES_SCHOOL_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJ3_n5swnvr40R7e4a7ySjUMo",
         contacts: [
-          { type: "phone", value: "+592-225-3583", isPublic: true },
+          {
+            type: "phone",
+            value: "+592-225-3583",
+            isPublic: true,
+            primary: true,
+          },
           { type: "phone", value: "+592-225-5568", isPublic: true },
           {
             type: "email",

@@ -6,11 +6,24 @@ export const CIOGMETEN_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "CIOG-Meten Meer Zorg Islamic Academy",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/people/CIOG-Meten-Meer-Zorg-Islamic-Academy/100089279011270/",
+      },
+    ],
     locations: [
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [{ type: "phone", value: "+592-689-5420", isPublic: true }],
+        contacts: [
+          {
+            type: "phone",
+            value: "+592-689-5420",
+            isPublic: true,
+            primary: true,
+          },
+        ],
         isPrimary: true,
       },
     ],

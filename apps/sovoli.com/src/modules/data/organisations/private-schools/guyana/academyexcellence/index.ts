@@ -6,6 +6,12 @@ export const ACADEMY_EXCELLENCE_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Academy of Excellence",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/Academy-of-Excellence-833797406654539/",
+      },
+    ],
     locations: [
       {
         key: "main",

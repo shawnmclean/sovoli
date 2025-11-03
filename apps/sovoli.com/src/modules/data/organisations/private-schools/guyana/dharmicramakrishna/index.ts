@@ -10,11 +10,20 @@ export const DHARMIC_RAMA_KRISHNA_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "Liliendaal",
-          line2: "East Coast Demerara (near Giftland Mall)",
+          line1: "RV9J+76J Giftland Mall",
+          line2: "Liliendaal",
           countryCode: "GY",
         },
-        contacts: [{ type: "phone", value: "+592-226-0189", isPublic: true }],
+        placeId: "ChIJy5kIiTDvr40Rv2lS8yxh3ss",
+        contacts: [
+          {
+            type: "phone",
+            value: "+592-664-8789",
+            isPublic: true,
+            primary: true,
+          },
+          { type: "phone", value: "+592-226-0189", isPublic: true },
+        ],
         isPrimary: true,
       },
     ],

@@ -6,6 +6,12 @@ export const MAES_SCHOOLS_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Mae's Schools",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "website",
+        url: "https://maesschools.edu.gy",
+      },
+    ],
     locations: [
       {
         key: "main",
@@ -15,7 +21,14 @@ export const MAES_SCHOOLS_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJ49aKHU_vr40R6MEyo06BeeI",
         contacts: [
+          {
+            type: "phone",
+            value: "+592-227-8772",
+            isPublic: true,
+            primary: true,
+          },
           { type: "phone", value: "+592-226-2660", isPublic: true },
           { type: "phone", value: "+592-227-4339", isPublic: true },
           { type: "phone", value: "+592-225-9812", isPublic: true },

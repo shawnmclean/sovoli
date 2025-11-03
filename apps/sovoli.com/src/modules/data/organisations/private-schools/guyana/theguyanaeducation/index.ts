@@ -9,9 +9,19 @@ export const THE_GUYANA_EDUCATION_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
+        address: {
+          line1: "Doctor Harrycharran Building, 91 Middle St",
+          city: "Georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJJzDKcQzvr40RtimJJppsxPA",
         contacts: [
-          { type: "phone", value: "+592-225-5279", isPublic: true },
+          {
+            type: "phone",
+            value: "+592-225-5279",
+            isPublic: true,
+            primary: true,
+          },
           { type: "phone", value: "+592-226-9717", isPublic: true },
           { type: "email", value: "getc@solutions2000.net", isPublic: true },
         ],

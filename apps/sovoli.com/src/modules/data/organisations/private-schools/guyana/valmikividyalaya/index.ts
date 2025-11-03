@@ -9,7 +9,12 @@ export const VALMIKI_VIDYALAYA_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
+        address: {
+          line1: "QXW6+H8X",
+          city: "Lusignan",
+          countryCode: "GY",
+        },
+        placeId: "ChIJM3CqCuvtr40RQXkR_s5Rt_c",
         contacts: [],
         isPrimary: true,
       },

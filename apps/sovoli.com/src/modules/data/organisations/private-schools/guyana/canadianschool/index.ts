@@ -9,8 +9,19 @@ export const CANADIAN_SCHOOL_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
-        contacts: [],
+        address: {
+          line1: "530-531 Third Avenue",
+          countryCode: "GY",
+        },
+        placeId: "ChIJG8zzLtvxr40Rf-M_7ARM11c",
+        contacts: [
+          {
+            type: "phone",
+            value: "+592-216-6921",
+            isPublic: true,
+            primary: true,
+          },
+        ],
         isPrimary: true,
       },
     ],

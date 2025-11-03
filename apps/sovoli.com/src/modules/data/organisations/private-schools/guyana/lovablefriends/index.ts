@@ -6,11 +6,24 @@ export const LOVABLE_FRIENDS_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Lovable Friends Academy",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/people/Lovable-Friends-Academy/100070935283966/",
+      },
+    ],
     locations: [
       {
         key: "main",
         address: { city: "georgetown", countryCode: "GY" },
-        contacts: [{ type: "phone", value: "+592-663-0397", isPublic: true }],
+        contacts: [
+          {
+            type: "phone",
+            value: "+592-663-0397",
+            isPublic: true,
+            primary: true,
+          },
+        ],
         isPrimary: true,
       },
     ],

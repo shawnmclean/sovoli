@@ -9,7 +9,12 @@ export const EDEN_HAVEN_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
+        address: {
+          line1: "RW99+4M8",
+          city: "Success",
+          countryCode: "GY",
+        },
+        placeId: "ChIJnTIFkKvtr40RUWhAxXoTScw",
         contacts: [],
         isPrimary: true,
       },

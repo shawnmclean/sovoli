@@ -6,11 +6,29 @@ export const GEMSVILLE_ACADEMY_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Gemsville Academy",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/Gemsville.Academy",
+      },
+    ],
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", countryCode: "GY" },
-        contacts: [{ type: "phone", value: "+592-231-7227", isPublic: true }],
+        address: {
+          line1: "Durban St",
+          city: "georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJ7za27ATvr40RbJEL4kFrVJ8",
+        contacts: [
+          {
+            type: "phone",
+            value: "+592-231-7227",
+            isPublic: true,
+            primary: true,
+          },
+        ],
         isPrimary: true,
       },
     ],

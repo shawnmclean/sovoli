@@ -38,6 +38,7 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJzyj03p7vr40RXk47iTW-wqs",
         contacts: [
           { type: "whatsapp", value: "+592 622-9382", isPublic: true },
           {

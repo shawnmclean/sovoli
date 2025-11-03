@@ -6,6 +6,16 @@ export const SCHOOL_NATIONS_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "School of the Nations",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "website",
+        url: "https://nations.gy",
+      },
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/schoolofthenationsgy/",
+      },
+    ],
     locations: [
       {
         key: "main",
@@ -15,8 +25,14 @@ export const SCHOOL_NATIONS_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJd608Hg3vr40RPspQbqU_Ik0",
         contacts: [
-          { type: "phone", value: "+592-225-4516", isPublic: true },
+          {
+            type: "phone",
+            value: "+592-225-4516",
+            isPublic: true,
+            primary: true,
+          },
           { type: "phone", value: "+592-227-4623", isPublic: true },
           { type: "phone", value: "+592-226-5781", isPublic: true },
           { type: "email", value: "info@nations.gy", isPublic: true },

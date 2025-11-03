@@ -10,12 +10,19 @@ export const SVN_ORG: OrgInstance = {
       {
         key: "main",
         address: {
+          line1: "Block H, North Public Road",
           city: "Cornelia Ida",
           line2: "West Coast Demerara",
           countryCode: "GY",
         },
+        placeId: "ChIJyWrFV6Xmr40R7awQEIthRb8",
         contacts: [
-          { type: "phone", value: "+592-276-0013", isPublic: true },
+          {
+            type: "phone",
+            value: "+592-276-0013",
+            isPublic: true,
+            primary: true,
+          },
           { type: "phone", value: "+592-276-0014", isPublic: true },
           { type: "email", value: "secretary@svn.edu.gy", isPublic: true },
         ],

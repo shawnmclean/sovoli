@@ -15,7 +15,15 @@ export const WESTFIELD_PREP_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
-        contacts: [{ type: "phone", value: "+592-218-1855", isPublic: true }],
+        placeId: "ChIJcc5vABLvr40RLorB08nKK9o",
+        contacts: [
+          {
+            type: "phone",
+            value: "+592-218-1855",
+            isPublic: true,
+            primary: true,
+          },
+        ],
         isPrimary: true,
       },
     ],

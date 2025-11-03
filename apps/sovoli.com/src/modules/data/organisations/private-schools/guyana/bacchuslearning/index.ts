@@ -38,6 +38,7 @@ export const BACCHUS_LEARNING_ORG: OrgInstance = {
           countryCode: "GY",
           landmark: "Georgetown",
         },
+        placeId: "ChIJhdU0WKPvr40RJlk-Wdp1UHI",
         coordinates: {
           lat: 6.8045, // Approximate coordinates for Campbellville
           lng: -58.1553,
@@ -74,7 +75,7 @@ export const BACCHUS_LEARNING_ORG: OrgInstance = {
     socialLinks: [
       {
         platform: "facebook",
-        url: "https://www.facebook.com/profile.php?id=100066985290933",
+        url: "https://www.facebook.com/people/Bacchus-Learning-Centre/100063457753269/",
       },
     ],
     supplierRecommendations: [],

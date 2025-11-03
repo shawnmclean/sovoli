@@ -7,10 +7,25 @@ export const CAMILLES_ACADEMY_ORG: OrgInstance = {
     name: "Camille's Academy",
 
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "website",
+        url: "https://camillesacademy.com/",
+      },
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/CamillesAcademy",
+      },
+    ],
     locations: [
       {
         key: "main",
-        address: { city: "diamond", countryCode: "GY" },
+        address: {
+          line1: "E Bank Public Rd",
+          city: "diamond",
+          countryCode: "GY",
+        },
+        placeId: "ChIJtY7Vti77r40R6J2cqOwiRjY",
         contacts: [
           { type: "phone", value: "+592-261-5027", isPublic: true },
           { type: "phone", value: "+592-265-1134", isPublic: true },

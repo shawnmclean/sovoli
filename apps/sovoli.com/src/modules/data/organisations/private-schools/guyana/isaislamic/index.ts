@@ -6,6 +6,12 @@ export const ISA_ISLAMIC_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "ISA Islamic School",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "website",
+        url: "http://www.isaislamicschool.com/",
+      },
+    ],
     locations: [
       {
         key: "main",
@@ -15,8 +21,14 @@ export const ISA_ISLAMIC_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJiRKZieXvr40ReB1kBvqBa0A",
         contacts: [
-          { type: "phone", value: "+592-226-0973", isPublic: true },
+          {
+            type: "phone",
+            value: "+592-226-0973",
+            isPublic: true,
+            primary: true,
+          },
           { type: "phone", value: "+592-226-3952", isPublic: true },
           { type: "phone", value: "+592-223-6402", isPublic: true },
           {

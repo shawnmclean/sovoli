@@ -15,9 +15,15 @@ export const CHASE_ACADEMY_ORG: OrgInstance = {
           city: "georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJ3eJWlCzvr40RdQlCRyOnRxo",
         contacts: [
           { type: "email", value: "info@chaseacademy.org.gy", isPublic: true },
-          { type: "phone", value: "+592-227-0248", isPublic: true },
+          {
+            type: "phone",
+            value: "+592-227-0248",
+            isPublic: true,
+            primary: true,
+          },
           {
             type: "phone",
             value: "+592-225-8482",
@@ -41,6 +47,7 @@ export const CHASE_ACADEMY_ORG: OrgInstance = {
       },
     ],
     socialLinks: [
+      { platform: "website", url: "https://chaseacademy.org.gy" },
       { platform: "facebook", url: "https://www.facebook.com/CAF.guyana" },
       { platform: "instagram", url: "https://www.instagram.com/chase.academy" },
     ],

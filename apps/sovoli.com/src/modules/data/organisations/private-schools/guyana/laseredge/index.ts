@@ -6,12 +6,28 @@ export const LASER_EDGE_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Laser Edge Academic College",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/people/Laser-Edge-Academic-College/100057705457998/",
+      },
+    ],
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
+        address: {
+          line1: "Lot 200 De Souza Street, Better Hope, East Coast Demerara",
+          city: "Better Hope",
+          countryCode: "GY",
+        },
+        placeId: "ChIJfSbC5Rvtr40ROAuXJUFPm4Q",
         contacts: [
-          { type: "phone", value: "+592-220-4321", isPublic: true },
+          {
+            type: "phone",
+            value: "+592-625-3753",
+            isPublic: true,
+            primary: true,
+          },
         ],
         isPrimary: true,
       },

@@ -9,8 +9,20 @@ export const GENESIS_EARLY_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
-        contacts: [],
+        address: {
+          line1: "QQ7J+7XV",
+          city: "LaGrange",
+          countryCode: "GY",
+        },
+        placeId: "ChIJF_btS2n7r40RJUJiXqgLfw0",
+        contacts: [
+          {
+            type: "phone",
+            value: "+592-604-9091",
+            isPublic: true,
+            primary: true,
+          },
+        ],
         isPrimary: true,
       },
     ],

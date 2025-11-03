@@ -6,6 +6,12 @@ export const CHESED_ACADEMY_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Chesed Academy",
     categories: ["private-school"],
+    socialLinks: [
+      {
+        platform: "website",
+        url: "http://chesedacademy.edu.gy/",
+      },
+    ],
     locations: [
       {
         key: "main",
@@ -19,7 +25,14 @@ export const CHESED_ACADEMY_ORG: OrgInstance = {
           lat: 6.8116026,
           lng: -58.1531682,
         },
-        contacts: [{ type: "phone", value: "+592-650-7584", isPublic: true }],
+        contacts: [
+          {
+            type: "phone",
+            value: "+592-650-7584",
+            isPublic: true,
+            primary: true,
+          },
+        ],
         isPrimary: true,
       },
     ],
