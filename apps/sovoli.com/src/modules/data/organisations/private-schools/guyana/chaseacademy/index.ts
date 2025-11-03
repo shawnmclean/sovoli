@@ -4,7 +4,7 @@ import { ORG_USERNAME } from "./constants";
 export const CHASE_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "Chase Academy",
+    name: "Chases Academy",
     categories: ["private-school"],
     locations: [
       {
