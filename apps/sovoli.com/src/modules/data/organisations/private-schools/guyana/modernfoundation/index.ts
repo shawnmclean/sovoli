@@ -1,32 +1,25 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
 
-export const ANAIS_PRIVATE_SCHOOL_ORG: OrgInstance = {
+export const MODERN_FOUNDATION_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "Anais Private School",
+    name: "Modern Foundation Academy",
     categories: ["private-school"],
     locations: [
       {
         key: "main",
         address: {
-          line1: "149 Crown Street",
-          line2: "Queenstown",
-          city: "Georgetown",
           countryCode: "GY",
         },
-        contacts: [
-          { type: "phone", value: "+592-227-7757", isPublic: true },
-          { type: "phone", value: "+592-667-2965", label: "Facebook", isPublic: true },
-          { type: "email", value: "amsteron@yahoo.com", isPublic: true },
-        ],
+        contacts: [],
         isPrimary: true,
       },
     ],
     socialLinks: [
       {
         platform: "facebook",
-        url: "https://www.facebook.com/profile.php/?id=61561711731990",
+        url: "https://www.facebook.com/p/Modern-Foundation-Academy-100070923206822/",
       },
     ],
   },
@@ -36,5 +29,4 @@ export const ANAIS_PRIVATE_SCHOOL_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-
 

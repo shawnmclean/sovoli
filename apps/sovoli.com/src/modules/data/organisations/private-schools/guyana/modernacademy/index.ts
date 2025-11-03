@@ -146,7 +146,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
     socialLinks: [
       {
         platform: "facebook",
-        url: "https://www.facebook.com/profile.php?id=100063128446623",
+        url: "https://www.facebook.com/modernacademygy",
       },
       {
         platform: "website",
