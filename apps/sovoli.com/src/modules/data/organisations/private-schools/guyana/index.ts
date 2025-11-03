@@ -1,4 +1,5 @@
 import type { OrgInstance } from "~/modules/organisations/types";
+import { applyPrivateSchoolMetadata } from "./metadata";
 // Import all org instances from each tenant
 import { MODERN_ACADEMY_ORG } from "./modernacademy";
 import { ACADEMY_EXCELLENCE_ORG } from "./academyexcellence";
@@ -57,7 +58,7 @@ import { SVN_ORG } from "./svn";
 import { DHARMIC_RAMA_KRISHNA_ORG } from "./dharmicramakrishna";
 import { GEORGETOWN_SDA_ACADEMY_ORG } from "./georgetown-sda-academy";
 
-export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] = [
+const PRIVATE_SCHOOLS_GUYANA_BASE: OrgInstance[] = [
   MODERN_ACADEMY_ORG,
   ACADEMY_EXCELLENCE_ORG,
   ACADEMY_PROFESSIONAL_ORG,
@@ -115,3 +116,6 @@ export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] = [
   DHARMIC_RAMA_KRISHNA_ORG,
   GEORGETOWN_SDA_ACADEMY_ORG,
 ];
+
+export const PRIVATE_SCHOOLS_GUYANA: OrgInstance[] =
+  PRIVATE_SCHOOLS_GUYANA_BASE.map(applyPrivateSchoolMetadata);
