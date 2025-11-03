@@ -8,9 +8,9 @@
 | Apex Education | apexeducation | RW95+QW4, Georgetown, Guyana | | +592-220-6139 | ChIJRSkgg7rtr40RkOmXRc1sNBk | | | |
 | Anais Private School | anaisprivateschool | 149 Crown Street, Queenstown, Georgetown, Guyana | | +592-227-7757 | | | | |
 | Bacchus Learning Centre | blcgy | 75 Pike St, Georgetown, Guyana | | +592-681-0037 | ChIJhdU0WKPvr40RJlk-Wdp1UHI | https://www.facebook.com/people/Bacchus-Learning-Centre/100063457753269/ | October 17, 2024 | |
-| Camille's Academy | camillesacademygy | E Bank Public Rd, Guyana | https://camillesacademy.com/ | +592-261-5027 | ChIJtY7Vti77r40R6J2cqOwiRjY | https://www.facebook.com/CamillesAcademy | [Needs verification] | |
+| Camille's Academy | camillesacademygy | E Bank Public Rd, Guyana | https://camillesacademy.com/ | +592-261-5027 | ChIJtY7Vti77r40R6J2cqOwiRjY | https://www.facebook.com/CamillesAcademy | November 2, 2024 | |
 | Canadian School of Arts & Science | canadianschoolgy | 530-531 Third Avenue, Guyana | | +592-216-6921 | ChIJG8zzLtvxr40Rf-M_7ARM11c | | | |
-| Caribbean First Class Elementary | caribbeanfirstgy | 168 Charlotte St, Georgetown, Guyana | http://cfces.net/ | +592-231-4164 | ChIJhwAoewnvr40RQyEEfNsrK_o | https://www.facebook.com/caribbeanfirstclasselementary | [Needs verification] | |
+| Caribbean First Class Elementary | caribbeanfirstgy | 168 Charlotte St, Georgetown, Guyana | http://cfces.net/ | +592-231-4164 | ChIJhwAoewnvr40RQyEEfNsrK_o | https://www.facebook.com/caribbeanfirstclasselementary | August 12, 2024 | https://www.instagram.com/CaribbeanFirstClassElementary |
 | Chase Academy | chaseacademygy | RRCQ+5J7, Georgetown, Guyana | https://chaseacademy.org.gy | +592-227-0248 | ChIJ3eJWlCzvr40RdQlCRyOnRxo | https://www.facebook.com/CAF.guyana | [Needs verification] | |
 | Chesed Academy | chesedacademygy | 145 Fifth St, Georgetown, Guyana | http://chesedacademy.edu.gy/ | +592-650-7584 | ChIJCWxqfb7vr40RV1MobA5514I | | | |
 | CIOG-Meten Meer Zorg Islamic Academy | ciogmetengy | Guyana | | +592-689-5420 | | https://www.facebook.com/people/CIOG-Meten-Meer-Zorg-Islamic-Academy/100089279011270/ | [Needs verification] | |
