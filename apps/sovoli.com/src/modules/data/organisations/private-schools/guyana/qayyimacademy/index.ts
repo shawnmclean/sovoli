@@ -9,8 +9,15 @@ export const QAYYIM_ACADEMY_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
-        contacts: [],
+        address: {
+          line1: "816 De Groot En Klyne",
+          line2: "Uitvlugt",
+          countryCode: "GY",
+        },
+        placeId: "ChIJeXWvEjbhr40RCWsn8lquJN8",
+        contacts: [
+          { type: "phone", value: "+592-622-5121", isPublic: true },
+        ],
         isPrimary: true,
       },
     ],

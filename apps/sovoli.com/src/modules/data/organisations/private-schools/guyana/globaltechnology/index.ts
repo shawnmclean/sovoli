@@ -9,9 +9,22 @@ export const GLOBAL_TECHNOLOGY_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
-        contacts: [],
+        address: {
+          line1: "210 Camp Street & New Market Street North",
+          city: "Georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJozT46g7vr40RkD5N3M5y-VU",
+        contacts: [
+          { type: "phone", value: "+592-225-4657", isPublic: true },
+        ],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/GlobalTechnologyInc/",
       },
     ],
   },

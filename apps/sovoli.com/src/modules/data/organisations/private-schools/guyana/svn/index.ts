@@ -10,19 +10,26 @@ export const SVN_ORG: OrgInstance = {
       {
         key: "main",
         address: {
+          line1: "Block H, North Public Road",
+          line2: "Cornelia Ida, West Coast Demerara, VP8J+29H",
           city: "Cornelia Ida",
-          line2: "West Coast Demerara",
           countryCode: "GY",
         },
+        placeId: "ChIJyWrFV6Xmr40R7awQEIthRb8",
         contacts: [
           { type: "phone", value: "+592-276-0013", isPublic: true },
-          { type: "phone", value: "+592-276-0014", isPublic: true },
           { type: "email", value: "secretary@svn.edu.gy", isPublic: true },
         ],
         isPrimary: true,
       },
     ],
-    socialLinks: [{ platform: "website", url: "https://svn.edu.gy" }],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/SVNGuyana",
+      },
+      { platform: "website", url: "https://svn.edu.gy" },
+    ],
   },
   websiteModule: null,
   academicModule: null,

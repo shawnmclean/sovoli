@@ -14,6 +14,12 @@ export const LOVABLE_FRIENDS_ORG: OrgInstance = {
         isPrimary: true,
       },
     ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/people/Lovable-Friends-Academy/100070935283966/",
+      },
+    ],
   },
   websiteModule: null,
   academicModule: null,

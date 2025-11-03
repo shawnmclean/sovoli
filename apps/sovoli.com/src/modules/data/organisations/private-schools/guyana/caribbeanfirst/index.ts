@@ -9,9 +9,24 @@ export const CARIBBEAN_FIRST_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", countryCode: "GY" },
+        address: {
+          line1: "168 Charlotte St",
+          city: "georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJhwAoewnvr40RQyEEfNsrK_o",
         contacts: [{ type: "phone", value: "+592-231-4164", isPublic: true }],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/caribbeanfirstclasselementary",
+      },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/CaribbeanFirstClassElementary",
       },
     ],
   },

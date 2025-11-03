@@ -9,9 +9,20 @@ export const STANDARD_CHRISTIAN_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", countryCode: "GY" },
+        address: {
+          line1: "45 Arapaima St",
+          city: "georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJwUjmaa_vr40RF07eimgf4wU",
         contacts: [{ type: "phone", value: "+592-642-4913", isPublic: true }],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/standardchristianacademy",
       },
     ],
   },

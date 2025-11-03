@@ -9,9 +9,23 @@ export const ACADEMY_PROFESSIONAL_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
-        contacts: [],
+        address: {
+          line1: "21 Public Road",
+          line2: "Mc Doom Village",
+          city: "Georgetown",
+          countryCode: "GY",
+        },
+        contacts: [
+          { type: "phone", value: "+592-233-0616", isPublic: true },
+          { type: "phone", value: "+592-680-6946", isPublic: true },
+        ],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/pages/Academy-of-Professional-Studies/108375192530485",
       },
     ],
   },

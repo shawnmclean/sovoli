@@ -16,6 +16,12 @@ export const CONCORD_ACADEMY_ORG: OrgInstance = {
         isPrimary: true,
       },
     ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/pages/Concord-academy-guyana/220701441450956",
+      },
+    ],
   },
   websiteModule: null,
   academicModule: null,

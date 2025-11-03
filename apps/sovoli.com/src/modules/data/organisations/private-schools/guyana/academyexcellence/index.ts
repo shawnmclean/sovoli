@@ -10,7 +10,8 @@ export const ACADEMY_EXCELLENCE_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "VP6J+22V",
+          line1: "263 Block X",
+          line2: "Cornelia Ida",
           city: "Cornelia Ida",
           countryCode: "GY",
         },
@@ -21,6 +22,12 @@ export const ACADEMY_EXCELLENCE_ORG: OrgInstance = {
         },
         contacts: [],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/Academy-of-Excellence-833797406654539/",
       },
     ],
   },

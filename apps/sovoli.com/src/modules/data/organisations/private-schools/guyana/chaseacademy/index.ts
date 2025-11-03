@@ -10,11 +10,11 @@ export const CHASE_ACADEMY_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "120-121 Parade Street",
-          line2: "Kingston",
+          line1: "RRCQ+5J7",
           city: "georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJ3eJWlCzvr40RdQlCRyOnRxo",
         contacts: [
           { type: "email", value: "info@chaseacademy.org.gy", isPublic: true },
           { type: "phone", value: "+592-227-0248", isPublic: true },

@@ -14,6 +14,12 @@ export const CIOGMETEN_ORG: OrgInstance = {
         isPrimary: true,
       },
     ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/people/CIOG-Meten-Meer-Zorg-Islamic-Academy/100089279011270/",
+      },
+    ],
   },
   websiteModule: null,
   academicModule: null,

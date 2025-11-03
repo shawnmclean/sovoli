@@ -9,8 +9,15 @@ export const ACADEMIC_TRAINING_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
-        contacts: [],
+        address: {
+          line1: "163 Waterloo Street",
+          line2: "Cummingsburg",
+          city: "Georgetown",
+          countryCode: "GY",
+        },
+        contacts: [
+          { type: "phone", value: "+592-225-1585", isPublic: true },
+        ],
         isPrimary: true,
       },
     ],

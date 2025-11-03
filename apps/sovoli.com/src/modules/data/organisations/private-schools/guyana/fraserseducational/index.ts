@@ -10,14 +10,13 @@ export const FRASERS_EDUCATIONAL_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "High & Young Streets",
-          line2: "Kingston",
-          city: "georgetown",
+          line1: "9CR3+PMV",
+          line2: "Fort Wellington",
           countryCode: "GY",
         },
+        placeId: "ChIJv6PHiVKcpY0Ridydgz_JXOI",
         contacts: [
-          { type: "phone", value: "+592-232-0207", isPublic: true },
-          { type: "phone", value: "+592-647-9192", isPublic: true },
+          { type: "phone", value: "+592-232-0167", isPublic: true },
         ],
         isPrimary: true,
       },

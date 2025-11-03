@@ -26,18 +26,18 @@ export const DOMINION_SCHOOLS_ORG: OrgInstance = {
     socialLinks: [
       {
         platform: "facebook",
-        url: "https://www.facebook.com/profile.php?id=61566083309964",
+        url: "https://www.facebook.com/people/Dominion-Schools/100044258427036/",
       },
     ],
     locations: [
       {
         key: "main",
         address: {
-          line1: "112 Regent Street",
-          line2: "Bourda",
+          line1: "RR5W+F74, Regent St",
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJzyj03p7vr40RXk47iTW-wqs",
         contacts: [
           { type: "whatsapp", value: "+592 622-9382", isPublic: true },
           {

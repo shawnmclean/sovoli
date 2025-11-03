@@ -9,9 +9,20 @@ export const GEMSVILLE_ACADEMY_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", countryCode: "GY" },
+        address: {
+          line1: "Durban St",
+          city: "georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJ7za27ATvr40RbJEL4kFrVJ8",
         contacts: [{ type: "phone", value: "+592-231-7227", isPublic: true }],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/Gemsville.Academy",
       },
     ],
   },

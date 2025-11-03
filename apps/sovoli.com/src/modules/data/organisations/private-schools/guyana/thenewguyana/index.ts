@@ -10,14 +10,13 @@ export const THE_NEW_GUYANA_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "Houston Gardens",
-          line2: "Greater Georgetown",
+          line1: "Lot 1, Houston Gardens (behind",
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJATLWtdrvr40RHEllyelP5NU",
         contacts: [
           { type: "phone", value: "+592-225-2135", isPublic: true },
-          { type: "phone", value: "+592-225-1807", isPublic: true },
           {
             type: "email",
             value: "admin@newguyanaschool.edu.gy",
@@ -25,6 +24,12 @@ export const THE_NEW_GUYANA_ORG: OrgInstance = {
           },
         ],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/newguyanaschool",
       },
     ],
   },

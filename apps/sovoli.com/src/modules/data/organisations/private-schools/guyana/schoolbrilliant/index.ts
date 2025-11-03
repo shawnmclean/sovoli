@@ -9,7 +9,11 @@ export const SCHOOL_BRILLIANT_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { countryCode: "GY" },
+        address: {
+          line1: "1662 Herstelling East Bank Demerara",
+          countryCode: "GY",
+        },
+        placeId: "ChIJVV-p0Wbwr40RJJhQjHY7eUI",
         contacts: [],
         isPrimary: true,
       },

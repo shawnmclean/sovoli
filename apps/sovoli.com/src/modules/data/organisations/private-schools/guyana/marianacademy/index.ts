@@ -11,8 +11,7 @@ export const MARIAN_ACADEMY_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "Carifesta Avenue",
-          line2: "Thomas Lands",
+          line1: "Marian Academy, Carifesta Ave",
           city: "Georgetown",
           countryCode: "GY",
         },
@@ -23,7 +22,6 @@ export const MARIAN_ACADEMY_ORG: OrgInstance = {
         },
         contacts: [
           { type: "phone", value: "+592-226-9044", isPublic: true },
-          { type: "phone", value: "+592-226-9045", isPublic: true },
           { type: "email", value: "info@marianacademy.edu.gy", isPublic: true },
         ],
         isPrimary: true,
@@ -32,7 +30,7 @@ export const MARIAN_ACADEMY_ORG: OrgInstance = {
     socialLinks: [
       {
         platform: "facebook",
-        url: "https://www.facebook.com/profile.php?id=100069197352006",
+        url: "https://www.facebook.com/people/Marian-Academy/100066278006703/",
       },
       {
         platform: "instagram",

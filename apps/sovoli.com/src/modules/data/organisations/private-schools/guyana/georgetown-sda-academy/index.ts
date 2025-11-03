@@ -10,15 +10,21 @@ export const GEORGETOWN_SDA_ACADEMY_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "D’Urban Backlands",
-          line2: "Opp. Davis Memorial Hospital",
+          line1: "Guyana supply, lot 12 Brikery EBD",
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJm-5grQbvr40Rq_7pvFw9nhw",
         contacts: [
           { type: "email", value: "info@guyanaconference.org", isPublic: true },
         ],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/GeorgetownSDAAcademy",
       },
     ],
   },

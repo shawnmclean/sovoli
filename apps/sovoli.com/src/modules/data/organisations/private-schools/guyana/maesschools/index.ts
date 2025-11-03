@@ -10,18 +10,22 @@ export const MAES_SCHOOLS_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "9 & 19 Third Avenue",
-          line2: "Subryanville",
+          line1: "RVF8+863",
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJ49aKHU_vr40R6MEyo06BeeI",
         contacts: [
-          { type: "phone", value: "+592-226-2660", isPublic: true },
-          { type: "phone", value: "+592-227-4339", isPublic: true },
-          { type: "phone", value: "+592-225-9812", isPublic: true },
+          { type: "phone", value: "+592-227-8772", isPublic: true },
           { type: "email", value: "info@maesschools.edu.gy", isPublic: true },
         ],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/maesschools/",
       },
     ],
   },

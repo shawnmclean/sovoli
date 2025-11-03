@@ -9,9 +9,22 @@ export const MET_PRIDE_ORG: OrgInstance = {
     locations: [
       {
         key: "main",
-        address: { city: "georgetown", countryCode: "GY" },
-        contacts: [{ type: "phone", value: "+592-699-7239", isPublic: true }],
+        address: {
+          line1: "W, Freeman St",
+          city: "georgetown",
+          countryCode: "GY",
+        },
+        placeId: "ChIJuYZv3VLvr40RzkXUTs7fOfg",
+        contacts: [
+          { type: "phone", value: "+592-227-2013", isPublic: true },
+        ],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/metprideacademyguyana",
       },
     ],
   },

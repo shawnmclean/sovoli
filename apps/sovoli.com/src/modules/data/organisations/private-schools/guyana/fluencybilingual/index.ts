@@ -14,6 +14,12 @@ export const FLUENCY_BILINGUAL_ORG: OrgInstance = {
         isPrimary: true,
       },
     ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/people/Fluency-Bilingual-Academy/100066474619701/",
+      },
+    ],
   },
   websiteModule: null,
   academicModule: null,

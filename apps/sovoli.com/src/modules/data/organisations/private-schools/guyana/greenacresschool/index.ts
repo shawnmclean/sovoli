@@ -10,14 +10,13 @@ export const GREEN_ACRES_SCHOOL_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "297 Thomas Street",
-          line2: "South Cummingsburg",
+          line1: "297 Thomas St",
           city: "Georgetown",
           countryCode: "GY",
         },
+        placeId: "ChIJ3_n5swnvr40R7e4a7ySjUMo",
         contacts: [
           { type: "phone", value: "+592-225-3583", isPublic: true },
-          { type: "phone", value: "+592-225-5568", isPublic: true },
           {
             type: "email",
             value: "rhonda_singh2000@yahoo.com",

@@ -10,7 +10,8 @@ export const APEX_EDUCATION_ORG: OrgInstance = {
       {
         key: "main",
         address: {
-          line1: "RW95+QW4",
+          line1: "11 Public Road",
+          line2: "Vryheids Lust North, East Coast Demerara",
           city: "Georgetown",
           countryCode: "GY",
         },
@@ -24,6 +25,12 @@ export const APEX_EDUCATION_ORG: OrgInstance = {
           { type: "email", value: "apexeducation@yahoo.com", isPublic: true },
         ],
         isPrimary: true,
+      },
+    ],
+    socialLinks: [
+      {
+        platform: "facebook",
+        url: "https://www.facebook.com/p/Apex-Education-100063756137169/",
       },
     ],
   },
