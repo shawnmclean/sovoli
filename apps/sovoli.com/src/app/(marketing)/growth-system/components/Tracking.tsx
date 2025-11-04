@@ -11,6 +11,7 @@ export interface TrackingEventProperties {
   value?: number;
   currency?: string;
   predicted_ltv?: number;
+  audience?: "school-admin" | "parent";
 }
 
 interface TrackingProps {

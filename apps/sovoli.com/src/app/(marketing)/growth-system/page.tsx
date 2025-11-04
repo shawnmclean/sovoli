@@ -24,6 +24,7 @@ export default function GrowthSystemPage() {
     value: 80000,
     currency: "GYD",
     predicted_ltv: 1200000,
+    audience: "school-admin",
   };
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-default-50">
