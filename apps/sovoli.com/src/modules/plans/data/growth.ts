@@ -76,7 +76,7 @@ export const growthPlan: PlanDefinition = {
         type: "percentage",
         value: 25,
         message: "Special offer for the next school",
-        validUntil: "2025-11-05",
+        validUntil: "2025-11-10",
         appliesTo: ["setup"],
       },
     ],
