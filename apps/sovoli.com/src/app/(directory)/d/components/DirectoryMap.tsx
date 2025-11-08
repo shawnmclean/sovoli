@@ -52,6 +52,40 @@ export function DirectoryMap({
 }: DirectoryMapProps) {
   const apiKey = env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
+  if (!apiKey) {
+    return (
+      <Card>
+        <CardBody>
+          <p className="text-default-600">
+            Map view is currently unavailable. Please configure{" "}
+            <code className="rounded bg-default-100 px-1 py-0.5 text-xs">
+              NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+            </code>{" "}
+            to enable Google Maps.
+          </p>
+        </CardBody>
+      </Card>
+    );
+  }
+
+  return (
+    <APIProvider apiKey={apiKey} libraries={["geocoding"]}>
+      <DirectoryMapContent
+        orgs={orgs}
+        readableCategory={readableCategory}
+        formattedLocations={formattedLocations}
+      />
+    </APIProvider>
+  );
+}
+
+function DirectoryMapContent({
+  orgs,
+  readableCategory,
+  formattedLocations,
+}: DirectoryMapProps) {
+  const geocodingLib = useMapsLibrary("geocoding") as GeocodingLibrary | null;
+
   const markers = useMemo<DirectoryMarker[]>(() => {
     const entries: DirectoryMarker[] = [];
 
@@ -92,9 +126,8 @@ export function DirectoryMap({
     [geocodedPositions, markers],
   );
 
-  const geocodingLib = useMapsLibrary("geocoding") as GeocodingLibrary | null;
-
   useEffect(() => {
+    console.log("geocodingLib", geocodingLib);
     if (!geocodingLib) return;
 
     const unresolved = markers.filter(
@@ -121,8 +154,12 @@ export function DirectoryMap({
               }
 
               geocoder.geocode({ placeId }, (results, status) => {
+                if (cancelled) {
+                  resolve();
+                  return;
+                }
+
                 if (
-                  cancelled ||
                   status !== google.maps.GeocoderStatus.OK ||
                   !results ||
                   results.length === 0
@@ -138,6 +175,7 @@ export function DirectoryMap({
                 }
 
                 const location = firstResult.geometry.location;
+
                 updates[marker.key] = {
                   lat: location.lat(),
                   lng: location.lng(),
@@ -177,22 +215,6 @@ export function DirectoryMap({
   const defaultCenter = markerPositions[0] ?? DEFAULT_CENTER;
   const defaultZoom = markerPositions.length > 1 ? 11 : 14;
 
-  if (!apiKey) {
-    return (
-      <Card>
-        <CardBody>
-          <p className="text-default-600">
-            Map view is currently unavailable. Please configure{" "}
-            <code className="rounded bg-default-100 px-1 py-0.5 text-xs">
-              NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-            </code>{" "}
-            to enable Google Maps.
-          </p>
-        </CardBody>
-      </Card>
-    );
-  }
-
   if (!hasLocations) {
     return (
       <Card>
@@ -207,7 +229,7 @@ export function DirectoryMap({
   }
 
   return (
-    <APIProvider apiKey={apiKey}>
+    <>
       <div className="h-[600px] w-full overflow-hidden border border-default-200">
         <Map
           id="directory-map"
@@ -236,7 +258,7 @@ export function DirectoryMap({
         Showing {pluralize(markerPositions.length, readableCategory)} in{" "}
         {formattedLocations}.
       </p>
-    </APIProvider>
+    </>
   );
 }
 
