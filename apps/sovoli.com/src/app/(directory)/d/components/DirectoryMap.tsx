@@ -208,7 +208,7 @@ export function DirectoryMap({
 
   return (
     <APIProvider apiKey={apiKey}>
-      <div className="h-[600px] w-full overflow-hidden rounded-xl border border-default-200">
+      <div className="h-[600px] w-full overflow-hidden border border-default-200">
         <Map
           id="directory-map"
           defaultCenter={defaultCenter}

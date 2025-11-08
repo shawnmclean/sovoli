@@ -123,9 +123,10 @@ export default async function DirectoryCategoryPage(props: Props) {
     .join(", ");
 
   const totalPages = Math.ceil(total / pageSize);
+  const contentContainerClass = "mx-auto max-w-5xl px-4 sm:px-6";
 
-  return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6">
+  const headerSection = (
+    <div className={contentContainerClass}>
       {/* Back Button - only show if there's a second location */}
       {locations.length > 1 && (
         <div className="mb-4">
@@ -166,61 +167,83 @@ export default async function DirectoryCategoryPage(props: Props) {
           <DirectoryViewTabs defaultView={view} />
         </div>
       </div>
-      {total === 0 ? (
-        <Card>
-          <CardBody className="flex flex-col items-center justify-center py-12">
-            <SearchIcon className="mb-4 h-12 w-12 text-default-400" />
-            <p className="text-lg text-default-600">No organizations found.</p>
-            <p className="mt-2 max-w-md text-center text-default-500">
-              We couldn't find any {readableCategory.toLowerCase()} in{" "}
-              {formattedLocations}. Try expanding your search to other
-              locations.
-            </p>
-          </CardBody>
-        </Card>
-      ) : view === "map" ? (
+    </div>
+  );
+
+  if (total === 0) {
+    return (
+      <>
+        {headerSection}
+        <div className={contentContainerClass}>
+          <Card>
+            <CardBody className="flex flex-col items-center justify-center py-12">
+              <SearchIcon className="mb-4 h-12 w-12 text-default-400" />
+              <p className="text-lg text-default-600">
+                No organizations found.
+              </p>
+              <p className="mt-2 max-w-md text-center text-default-500">
+                We couldn't find any {readableCategory.toLowerCase()} in{" "}
+                {formattedLocations}. Try expanding your search to other
+                locations.
+              </p>
+            </CardBody>
+          </Card>
+        </div>
+      </>
+    );
+  }
+
+  if (view === "map") {
+    return (
+      <>
+        {headerSection}
         <DirectoryMapClient
           orgs={orgs}
           readableCategory={readableCategory}
           formattedLocations={formattedLocations}
         />
-      ) : (
-        <>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {orgs.map((orgInstance) => (
-              <OrgListItem
-                key={orgInstance.org.username}
-                orgInstance={orgInstance}
-              />
-            ))}
+      </>
+    );
+  }
+
+  return (
+    <>
+      {headerSection}
+      <div className={contentContainerClass}>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {orgs.map((orgInstance) => (
+            <OrgListItem
+              key={orgInstance.org.username}
+              orgInstance={orgInstance}
+            />
+          ))}
+        </div>
+        {totalPages > 1 && (
+          <div className="mt-8 flex justify-center">
+            <nav className="flex items-center gap-2" aria-label="Pagination">
+              {Array.from({ length: totalPages }, (_, i) => {
+                const pageNum = i + 1;
+                const isActive = pageNum === page;
+                const href = `?page=${pageNum}&pageSize=${pageSize}`;
+                return (
+                  <Link
+                    key={pageNum}
+                    href={href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`px-3 py-1 rounded-md border text-sm font-medium ${
+                      isActive
+                        ? "bg-primary-600 text-white border-primary-600"
+                        : "bg-white text-default-700 border-default-200 hover:bg-default-100"
+                    }`}
+                  >
+                    {pageNum}
+                  </Link>
+                );
+              })}
+            </nav>
           </div>
-          {totalPages > 1 && (
-            <div className="mt-8 flex justify-center">
-              <nav className="flex items-center gap-2" aria-label="Pagination">
-                {Array.from({ length: totalPages }, (_, i) => {
-                  const pageNum = i + 1;
-                  const isActive = pageNum === page;
-                  const href = `?page=${pageNum}&pageSize=${pageSize}`;
-                  return (
-                    <Link
-                      key={pageNum}
-                      href={href}
-                      aria-current={isActive ? "page" : undefined}
-                      className={`px-3 py-1 rounded-md border text-sm font-medium ${
-                        isActive
-                          ? "bg-primary-600 text-white border-primary-600"
-                          : "bg-white text-default-700 border-default-200 hover:bg-default-100"
-                      }`}
-                    >
-                      {pageNum}
-                    </Link>
-                  );
-                })}
-              </nav>
-            </div>
-          )}
-        </>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }

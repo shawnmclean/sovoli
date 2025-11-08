@@ -9,7 +9,7 @@ const DirectoryMapLazy = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-[600px] w-full animate-pulse rounded-xl border border-dashed border-default-300 bg-default-100" />
+      <div className="h-[600px] w-full animate-pulse border border-dashed border-default-300 bg-default-100" />
     ),
   },
 );
