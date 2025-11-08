@@ -9,6 +9,7 @@ import { MODERN_ACADEMY_EVENTS } from "./events";
 //import { CREATIVE_THINKING_STATIONERY_HUB_ORG } from "~/modules/data/organisations/stationary/guyana/creativethinking";
 import { ARGOSY_BOOK_STORE_ORG } from "~/modules/data/organisations/stationary/guyana/argosybookstore";
 import { MODERN_ACADEMY_PHOTOS } from "./photos";
+import { MODERN_ACADEMY_PROCUREMENT } from "./procurement";
 
 export const MODERN_ACADEMY_ORG: OrgInstance = {
   org: {
@@ -169,4 +170,5 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
   workforceModule: MODERN_ACADEMY_WORKFORCE,
   scoringModule: null,
   eventModule: MODERN_ACADEMY_EVENTS,
+  procurementModule: MODERN_ACADEMY_PROCUREMENT,
 };

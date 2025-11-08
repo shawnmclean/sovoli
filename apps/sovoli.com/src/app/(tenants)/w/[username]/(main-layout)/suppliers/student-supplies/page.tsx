@@ -9,13 +9,13 @@ const retrieveOrgInstance = async (username: string) => {
   return result;
 };
 
-interface ProgramsPageProps {
+interface StudentSuppliesPageProps {
   params: Promise<{ username: string }>;
 }
 
 export async function generateMetadata({
   params,
-}: ProgramsPageProps): Promise<Metadata> {
+}: StudentSuppliesPageProps): Promise<Metadata> {
   const { username } = await params;
   const {
     websiteModule: { website },
@@ -33,7 +33,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProgramsPage({ params }: ProgramsPageProps) {
+export default async function StudentSuppliesPage({
+  params,
+}: StudentSuppliesPageProps) {
   const { username } = await params;
   const orgInstance = await retrieveOrgInstance(username);
 

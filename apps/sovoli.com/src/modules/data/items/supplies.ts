@@ -285,4 +285,13 @@ export const SUPPLIES: Item[] = [
     tags: ["stationery", "compass", "geometry", "math"],
     unitLabel: "unit",
   },
+  {
+    id: "equipment-ac-unit",
+    name: "Air Conditioning Unit",
+    category: "equipment",
+    tags: ["facilities", "classroom", "cooling"],
+    unitLabel: "unit",
+    description:
+      "Standard split-system AC unit suitable for classroom environments.",
+  },
 ];
