@@ -1,19 +1,52 @@
 "use client";
 
 import type { Key } from "react";
-import { useState } from "react";
+import { useMemo } from "react";
 import { Tabs, Tab } from "@sovoli/ui/components/tabs";
 import { ListIcon, MapIcon } from "lucide-react";
+import {
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 
-export function DirectoryViewTabs() {
-  const [selected, setSelected] = useState("list");
+type DirectoryView = "list" | "map";
+
+const DEFAULT_VIEW: DirectoryView = "list";
+
+interface DirectoryViewTabsProps {
+  defaultView?: DirectoryView;
+}
+
+export function DirectoryViewTabs({
+  defaultView = DEFAULT_VIEW,
+}: DirectoryViewTabsProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const selected = useMemo<DirectoryView>(() => {
+    const view = searchParams.get("view");
+    if (view === "map") return "map";
+    return defaultView;
+  }, [defaultView, searchParams]);
 
   const handleChange = (key: Key | null) => {
-    if (key === "map") {
-      alert("Map coming soon");
-      return;
+    if (!key) return;
+    const nextView = (key as DirectoryView) ?? DEFAULT_VIEW;
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (nextView === "map") {
+      params.set("view", "map");
+    } else {
+      params.delete("view");
     }
-    setSelected(key as string);
+
+    const query = params.toString();
+
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
   };
 
   return (

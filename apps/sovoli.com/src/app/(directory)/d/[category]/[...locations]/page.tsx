@@ -13,6 +13,7 @@ import { OrgListItem } from "../../components/OrgListItem";
 import { Chip } from "@sovoli/ui/components/chip";
 
 import { countryCodeToName, countryNameToCode } from "~/utils/countryUtils";
+import { DirectoryMapClient } from "../../components/DirectoryMapClient";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",
@@ -26,6 +27,7 @@ interface Props {
   searchParams: Promise<{
     page: string | undefined;
     pageSize: string | undefined;
+    view?: string | undefined;
   }>;
 }
 
@@ -102,6 +104,8 @@ export default async function DirectoryCategoryPage(props: Props) {
 
   const page = parseInt(searchParams.page ?? "1");
   const pageSize = parseInt(searchParams.pageSize ?? "20");
+  const viewParam = searchParams.view;
+  const view: "list" | "map" = viewParam === "map" ? "map" : "list";
 
   const country = locations[0];
   const stateOrCity = locations[1];
@@ -159,7 +163,7 @@ export default async function DirectoryCategoryPage(props: Props) {
             </Chip>
             <span className="text-default-500">{`${total} results`}</span>
           </div>
-          <DirectoryViewTabs />
+          <DirectoryViewTabs defaultView={view} />
         </div>
       </div>
       {total === 0 ? (
@@ -174,6 +178,12 @@ export default async function DirectoryCategoryPage(props: Props) {
             </p>
           </CardBody>
         </Card>
+      ) : view === "map" ? (
+        <DirectoryMapClient
+          orgs={orgs}
+          readableCategory={readableCategory}
+          formattedLocations={formattedLocations}
+        />
       ) : (
         <>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
