@@ -1,4 +1,4 @@
-export type CurrencyCode = "GYD" | "USD";
+export type CurrencyCode = "GYD" | "USD" | "JMD";
 export type AmountByCurrency = Partial<Record<CurrencyCode, number>>;
 
 export type BillingCycle = "one-time" | "annual" | "term" | "program";
