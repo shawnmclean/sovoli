@@ -2,6 +2,8 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { OrgLocationFeature } from "~/modules/organisations/types";
 import { APPLETON_BASIC_SCHOOL_ACADEMIC } from "./academic";
 import { ORG_USERNAME } from "./constants";
+import { APPLETON_BASIC_SCHOOL_NEEDS } from "./needs";
+import { APPLETON_BASIC_SCHOOL_PROJECTS } from "./projects";
 import { APPLETON_BASIC_SCHOOL_WORKFORCE } from "./workforce";
 import { APPLETON_BASIC_SCHOOL_WEBSITE } from "./website";
 
@@ -83,4 +85,6 @@ export const APPLETON_BASIC_SCHOOL_ORG: OrgInstance = {
   serviceModule: null,
   workforceModule: APPLETON_BASIC_SCHOOL_WORKFORCE,
   scoringModule: null,
+  needsModule: APPLETON_BASIC_SCHOOL_NEEDS,
+  projectsModule: APPLETON_BASIC_SCHOOL_PROJECTS,
 };
