@@ -302,4 +302,40 @@ export const SUPPLIES: Item[] = [
     unitLabel: "sheet",
     description: "3/4-inch plywood sheet for building repairs and maintenance.",
   },
+  {
+    id: "maintenance-zinc-roof-sheet",
+    name: "Zinc Roofing Sheet",
+    category: "material",
+    tags: ["facilities", "maintenance", "roofing", "relief"],
+    unitLabel: "sheet",
+    description:
+      "Corrugated metal roofing sheet suitable for emergency structural repairs.",
+  },
+  {
+    id: "relief-tarpaulin-heavy-duty",
+    name: "Heavy-Duty Tarpaulin",
+    category: "material",
+    tags: ["relief", "shelter", "weatherproofing"],
+    unitLabel: "tarp",
+    description:
+      "Reinforced tarpaulin for temporary coverage of damaged classrooms and walkways.",
+  },
+  {
+    id: "supply-cleanup-kit",
+    name: "Disaster Cleanup Kit",
+    category: "material",
+    tags: ["relief", "cleaning", "sanitation"],
+    unitLabel: "kit",
+    description:
+      "Bundle of mops, disinfectant, gloves, and safety gear for post-disaster cleanup.",
+  },
+  {
+    id: "equipment-portable-generator",
+    name: "Portable Generator",
+    category: "equipment",
+    tags: ["relief", "power", "facilities"],
+    unitLabel: "unit",
+    description:
+      "5 kW portable generator to provide backup electricity during recovery efforts.",
+  },
 ];
