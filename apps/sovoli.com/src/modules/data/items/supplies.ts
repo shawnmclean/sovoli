@@ -294,4 +294,12 @@ export const SUPPLIES: Item[] = [
     description:
       "Standard split-system AC unit suitable for classroom environments.",
   },
+  {
+    id: "maintenance-plyboard",
+    name: "Plyboard Sheet",
+    category: "material",
+    tags: ["facilities", "maintenance", "construction"],
+    unitLabel: "sheet",
+    description: "3/4-inch plywood sheet for building repairs and maintenance.",
+  },
 ];
