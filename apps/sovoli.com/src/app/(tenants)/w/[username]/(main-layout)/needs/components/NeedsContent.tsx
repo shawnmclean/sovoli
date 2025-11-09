@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
 import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
-import type { ProcurementNeed } from "~/modules/procurement/types";
+import type { Need } from "~/modules/needs/types";
 
-interface ProcurementContentProps {
+interface NeedsContentProps {
   orgInstance: OrgInstanceWithWebsite;
 }
 
@@ -21,7 +21,7 @@ function formatDate(value?: string) {
   });
 }
 
-function formatTimeline(need: ProcurementNeed) {
+function formatTimeline(need: Need) {
   const timeline = need.neededBy;
   if (!timeline) return null;
 
@@ -42,7 +42,7 @@ function formatTimeline(need: ProcurementNeed) {
   return `ASAP${reason}`;
 }
 
-function formatStatus(status?: ProcurementNeed["status"]) {
+function formatStatus(status?: Need["status"]) {
   if (!status) return null;
   return status
     .split("-")
@@ -50,7 +50,7 @@ function formatStatus(status?: ProcurementNeed["status"]) {
     .join(" ");
 }
 
-function formatPriority(priority?: ProcurementNeed["priority"]) {
+function formatPriority(priority?: Need["priority"]) {
   switch (priority) {
     case "high":
       return "High";
@@ -63,7 +63,7 @@ function formatPriority(priority?: ProcurementNeed["priority"]) {
   }
 }
 
-function getPriorityColor(priority?: ProcurementNeed["priority"]) {
+function getPriorityColor(priority?: Need["priority"]) {
   switch (priority) {
     case "high":
       return "danger";
@@ -76,7 +76,7 @@ function getPriorityColor(priority?: ProcurementNeed["priority"]) {
   }
 }
 
-function getStatusColor(status?: ProcurementNeed["status"]) {
+function getStatusColor(status?: Need["status"]) {
   switch (status) {
     case "approved":
     case "fulfilled":
@@ -92,9 +92,9 @@ function getStatusColor(status?: ProcurementNeed["status"]) {
   }
 }
 
-export function ProcurementContent({ orgInstance }: ProcurementContentProps) {
-  const procurementModule = orgInstance.procurementModule;
-  const needs = procurementModule?.needs ?? [];
+export function NeedsContent({ orgInstance }: NeedsContentProps) {
+  const needsModule = orgInstance.needsModule;
+  const needs = needsModule?.needs ?? [];
   const [expandedNeedId, setExpandedNeedId] = useState<string | null>(null);
 
   if (needs.length === 0) {
@@ -103,10 +103,10 @@ export function ProcurementContent({ orgInstance }: ProcurementContentProps) {
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="text-center space-y-4">
             <h1 className="text-3xl font-bold text-foreground">
-              Procurement Needs
+              Organization Needs
             </h1>
             <p className="text-muted-foreground">
-              There are no procurement requests listed for{" "}
+              There are no needs listed for{" "}
               {orgInstance.websiteModule.website.siteName} at this time.
             </p>
           </div>
@@ -124,11 +124,10 @@ export function ProcurementContent({ orgInstance }: ProcurementContentProps) {
       <div className="max-w-4xl mx-auto px-3 py-6 space-y-6 sm:px-4 sm:py-8 sm:space-y-8">
         <header className="space-y-2">
           <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
-            Procurement Needs
+            Organization Needs
           </h1>
           <p className="text-sm text-muted-foreground sm:text-base">
-            Active procurement requests for{" "}
-            {orgInstance.websiteModule.website.siteName}.
+            Active needs for {orgInstance.websiteModule.website.siteName}.
           </p>
         </header>
 

@@ -2,9 +2,9 @@ import type { AmountByCurrency } from "../core/economics/types";
 import type { Item } from "../core/items/types";
 import type { OrgLocation } from "../organisations/types";
 
-export type ProcurementNeedPriority = "low" | "medium" | "high";
+export type NeedPriority = "low" | "medium" | "high";
 
-export type ProcurementNeedStatus =
+export type NeedStatus =
   | "planned"
   | "awaiting-approval"
   | "approved"
@@ -12,7 +12,7 @@ export type ProcurementNeedStatus =
   | "fulfilled"
   | "cancelled";
 
-export type ProcurementNeedTimeline =
+export type NeedTimeline =
   | {
       type: "deadline";
       date: string; // ISO date string
@@ -23,15 +23,15 @@ export type ProcurementNeedTimeline =
       reason?: string;
     };
 
-export interface ProcurementNeed {
+export interface Need {
   id: string;
   title: string;
   description?: string;
   item: Item; // central Item (global definition)
   quantity?: number; // default: 1
   unit?: string; // e.g., "pack", "set", etc.
-  priority?: ProcurementNeedPriority;
-  neededBy?: ProcurementNeedTimeline;
+  priority?: NeedPriority;
+  neededBy?: NeedTimeline;
   procurementWindow?: {
     start: string;
     end?: string;
@@ -40,12 +40,12 @@ export interface ProcurementNeed {
   requestingUnit?: {
     locationKey?: OrgLocation["key"];
   };
-  status?: ProcurementNeedStatus;
+  status?: NeedStatus;
   notes?: string;
   createdAt?: string;
   updatedAt?: string;
 }
 
-export interface ProcurementModule {
-  needs: ProcurementNeed[];
+export interface NeedsModule {
+  needs: Need[];
 }

@@ -1,4 +1,4 @@
-import type { ProcurementModule } from "~/modules/procurement/types";
+import type { NeedsModule } from "~/modules/needs/types";
 import { findItemById } from "~/modules/data/items";
 
 const AC_UNIT_ITEM = findItemById("equipment-ac-unit");
@@ -12,7 +12,7 @@ if (!PLYBOARD_ITEM) {
   throw new Error("maintenance-plyboard item is missing from core items.");
 }
 
-export const MODERN_ACADEMY_PROCUREMENT: ProcurementModule = {
+export const MODERN_ACADEMY_NEEDS: NeedsModule = {
   needs: [
     {
       id: "magy-classroom-ac-2025",

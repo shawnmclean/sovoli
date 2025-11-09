@@ -39,7 +39,8 @@ export class GetOrgInstanceByUsernameQueryHandler
         workforceModule: entry.workforceModule ?? null,
         catalogModule: entry.catalogModule ?? null,
         eventModule: entry.eventModule ?? null,
-        procurementModule: entry.procurementModule ?? null,
+        needsModule: entry.needsModule ?? null,
+        projectsModule: entry.projectsModule ?? null,
       },
     };
   }

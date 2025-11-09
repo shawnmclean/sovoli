@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
-import { ProcurementContent } from "./components/ProcurementContent";
+import { NeedsContent } from "./components/NeedsContent";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -21,27 +21,19 @@ export async function generateMetadata({
   const siteName = orgInstance.websiteModule.website.siteName;
 
   return {
-    title: "Procurement Needs",
-    description: `Current procurement items requested by ${siteName}.`,
-    keywords: [
-      "procurement",
-      "school procurement",
-      "facility upgrades",
-      "suppliers",
-      siteName,
-    ],
+    title: "Organization Needs",
+    description: `Current needs requested by ${siteName}.`,
+    keywords: ["needs", "organization needs", siteName],
   };
 }
 
-export default async function ProcurementPage({
-  params,
-}: ProcurementPageProps) {
+export default async function NeedsPage({ params }: ProcurementPageProps) {
   const { username } = await params;
   const orgInstance = await retrieveOrgInstance(username);
 
-  if (!orgInstance.procurementModule) {
+  if (!orgInstance.needsModule) {
     return notFound();
   }
 
-  return <ProcurementContent orgInstance={orgInstance} />;
+  return <NeedsContent orgInstance={orgInstance} />;
 }

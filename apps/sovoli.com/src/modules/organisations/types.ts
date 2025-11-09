@@ -7,7 +7,8 @@ import type { WebsiteModule } from "../websites/types";
 import type { WorkforceModule } from "../workforce/types";
 import type { EventModule } from "../events/types";
 import type { Photo } from "../core/photos/types";
-import { ProcurementModule } from "../procurement/types";
+import type { NeedsModule, ProcurementModule } from "../needs/types";
+import type { ProjectsModule } from "../projects/types";
 
 // For use internally
 export interface Person {
@@ -121,7 +122,8 @@ export interface OrgInstance {
   scoringModule: ScoringModule | null;
   catalogModule?: CatalogModule | null;
   eventModule?: EventModule | null;
-  procurementModule?: ProcurementModule | null;
+  needsModule?: NeedsModule | null;
+  projectsModule?: ProjectsModule | null;
 }
 
 export type OrgInstanceWithWebsite = Omit<OrgInstance, "websiteModule"> & {
