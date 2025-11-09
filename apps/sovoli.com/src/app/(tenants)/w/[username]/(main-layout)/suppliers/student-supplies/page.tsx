@@ -33,6 +33,7 @@ export async function generateMetadata({
   };
 }
 
+// TODO: This page is temperary, we should move it to sovoli root
 export default async function StudentSuppliesPage({
   params,
 }: StudentSuppliesPageProps) {

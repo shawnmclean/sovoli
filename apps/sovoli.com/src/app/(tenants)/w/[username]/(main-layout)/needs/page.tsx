@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import { ProcurementContent } from "./components/ProcurementContent";
 
 const retrieveOrgInstance = async (username: string) => {
