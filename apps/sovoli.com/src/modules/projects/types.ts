@@ -1,6 +1,5 @@
-import type { Item } from "../core/items/types";
 import type { OrgLocation } from "../organisations/types";
-export type ResourceType = "material" | "human" | "service" | "financial";
+import type { Need } from "../needs/types";
 
 /** Standardized project lifecycle states */
 export type ProjectStatus = "planned" | "active" | "completed" | "cancelled";
@@ -8,50 +7,60 @@ export type ProjectStatus = "planned" | "active" | "completed" | "cancelled";
 /** Priority classification */
 export type ProjectPriority = "low" | "medium" | "high";
 
-export interface ProjectResource {
-  id: string;
-  type: ResourceType; // e.g., "human" for volunteers, "material" for supplies
-  title: string;
-  description?: string;
-  item?: Item; // Link to item catalog (for materials/services)
-  role?: string; // e.g., "Electrician", "Teacher", "Contractor"
-  quantity?: number;
-  unit?: string; // e.g., "person", "sheet", "hour"
-  priority?: ProjectPriority;
-  status?: ProjectStatus;
-  source?: "internal" | "external"; // External implies procurement
-  neededBy?: {
-    type: "deadline" | "asap";
-    date?: string; // For deadlines
-    reason?: string; // For ASAP requests
-  };
-  notes?: string;
-}
+/** Optional project categories */
+export type ProjectCategory =
+  | "maintenance"
+  | "construction"
+  | "education"
+  | "event"
+  | "relief"
+  | "administration"
+  | "other";
 
+/**
+ * A project represents an initiative or operation carried out by a school/org.
+ * Each project may include multiple Needs (materials, human resources, services, etc.).
+ * Some Needs may also exist outside of projects.
+ */
 export interface Project {
+  /** Globally unique ID */
   id: string;
+
+  /** Project title */
   title: string;
+
+  /** Description and purpose */
   description?: string;
-  category?:
-    | "maintenance"
-    | "construction"
-    | "education"
-    | "event"
-    | "relief"
-    | "administration";
+
+  /** Classification (used for filtering or grouping) */
+  category?: ProjectCategory;
+
+  /** Current state of the project */
   status?: ProjectStatus;
+
+  /** How critical or important this project is */
   priority?: ProjectPriority;
+
+  /** Where it’s taking place */
   locationKey?: OrgLocation["key"];
+
+  /** Timeline */
   startDate?: string;
   endDate?: string;
-  internal?: boolean; // true = purely internal project (no procurement)
-  resources?: ProjectResource[]; // mixed manpower/material/service needs
+
+  /** If true, means this is an internal initiative (no external procurement) */
+  internal?: boolean;
+
+  /** Linked needs (external or internal resources). */
+  needs?: Need[];
+
+  /** Metadata */
   createdAt?: string;
   updatedAt?: string;
   notes?: string;
 }
 
-/** Projects module shape embedded into each org instance */
+/** Collection wrapper for embedding under an organization instance */
 export interface ProjectsModule {
   projects: Project[];
 }

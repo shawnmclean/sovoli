@@ -7,7 +7,7 @@ import type { WebsiteModule } from "../websites/types";
 import type { WorkforceModule } from "../workforce/types";
 import type { EventModule } from "../events/types";
 import type { Photo } from "../core/photos/types";
-import type { NeedsModule, ProcurementModule } from "../needs/types";
+import type { NeedsModule } from "../needs/types";
 import type { ProjectsModule } from "../projects/types";
 
 // For use internally

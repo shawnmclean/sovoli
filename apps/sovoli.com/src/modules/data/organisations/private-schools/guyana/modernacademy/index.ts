@@ -10,6 +10,7 @@ import { MODERN_ACADEMY_EVENTS } from "./events";
 import { ARGOSY_BOOK_STORE_ORG } from "~/modules/data/organisations/stationary/guyana/argosybookstore";
 import { MODERN_ACADEMY_PHOTOS } from "./photos";
 import { MODERN_ACADEMY_NEEDS } from "./needs";
+import { MODERN_ACADEMY_PROJECTS } from "./projects";
 
 export const MODERN_ACADEMY_ORG: OrgInstance = {
   org: {
@@ -171,4 +172,5 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
   scoringModule: null,
   eventModule: MODERN_ACADEMY_EVENTS,
   needsModule: MODERN_ACADEMY_NEEDS,
+  projectsModule: MODERN_ACADEMY_PROJECTS,
 };
