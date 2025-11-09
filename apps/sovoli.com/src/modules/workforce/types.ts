@@ -1,3 +1,4 @@
+import type { AmountByCurrency } from "../core/economics/types";
 import type { Contact } from "../core/types";
 
 export interface Department {
@@ -22,6 +23,19 @@ export interface Position {
   description: string;
   image: string;
   url: string;
+
+  qualifications?: string[];
+  employmentType?:
+    | "full-time"
+    | "part-time"
+    | "contract"
+    | "temporary"
+    | "volunteer";
+  compensationRange?: {
+    min?: AmountByCurrency;
+    max?: AmountByCurrency;
+    period?: "hourly" | "monthly" | "annual";
+  };
 }
 
 export interface OrgRoleAssignment {
