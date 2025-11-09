@@ -50,7 +50,7 @@ export interface NeedBase {
 
   /** Timing and budget */
   neededBy?: NeedTimeline;
-  procurementWindow?: { start: string; end?: string };
+  window?: { start: string; end?: string };
   totalBudget?: AmountByCurrency;
 
   /** Organisational context */
@@ -106,16 +106,6 @@ export interface JobNeed extends NeedBase {
   type: "job";
   position?: Position; // optional denormalized embed for UI
   openings?: number;
-  employmentType?:
-    | "full-time"
-    | "part-time"
-    | "contract"
-    | "temporary"
-    | "volunteer";
-  applicationDeadline?: string; // ISO date
-  contactEmail?: string;
-  contactPhone?: string;
-  filledByMemberIds?: string[]; // workforce.members ids once hired
 }
 
 /** Union of all need variants */

@@ -1,5 +1,6 @@
-import type { NeedsModule } from "~/modules/needs/types";
+import type { Need, NeedsModule } from "~/modules/needs/types";
 import { findItemById } from "~/modules/data/items";
+import { PRIMARY_TEACHER } from "./workforceMeta";
 
 const AC_UNIT_ITEM = findItemById("equipment-ac-unit");
 const PLYBOARD_ITEM = findItemById("maintenance-plyboard");
@@ -12,8 +13,20 @@ if (!PLYBOARD_ITEM) {
   throw new Error("maintenance-plyboard item is missing from core items.");
 }
 
+const PRIMARY_TEACHER_NEED: Need = {
+  id: "magy-primary-teacher-2025",
+  title: "Primary School Teacher",
+  description:
+    "Hire a primary school teacher to teach literacy, numeracy, and social skills at the primary education level.",
+  position: PRIMARY_TEACHER,
+  openings: 1,
+  type: "job",
+  neededBy: { type: "deadline", date: "2025-12-05" },
+};
+
 export const MODERN_ACADEMY_NEEDS: NeedsModule = {
   needs: [
+    PRIMARY_TEACHER_NEED,
     {
       id: "magy-classroom-ac-2025",
       title: "Classroom Air Conditioning Units",

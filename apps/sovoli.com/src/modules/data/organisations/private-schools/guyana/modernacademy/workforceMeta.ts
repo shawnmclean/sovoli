@@ -44,6 +44,24 @@ export const TEACHER: Position = {
   description: "Delivers classroom instruction and fosters student growth.",
   image: "/images/positions/teacher.jpg",
   url: "/workforce/positions/teacher",
+  employmentType: "full-time",
+};
+
+export const PRIMARY_TEACHER: Position = {
+  ...TEACHER,
+  name: "Primary School Teacher",
+  slug: "primary-school-teacher",
+  description:
+    "Teaches literacy, numeracy, and social skills at the primary education level.",
+  qualifications: [
+    "Trained Teacher’s Certificate or Bachelor’s in Education",
+    "At least 2 years teaching experience",
+  ],
+  compensationRange: {
+    min: { GYD: 145000 },
+    max: { GYD: 175000 },
+    period: "monthly",
+  },
 };
 
 export const SECRETARY: Position = {
