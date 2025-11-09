@@ -164,7 +164,7 @@ export function NeedsContent({ orgInstance }: NeedsContentProps) {
                   : "—";
               const displayTitle = need.title.trim()
                 ? need.title
-                : need.item.name;
+                : (need.item?.name ?? "Untitled item");
 
               return (
                 <div
@@ -180,7 +180,7 @@ export function NeedsContent({ orgInstance }: NeedsContentProps) {
                         {neededBy ?? "Timeline not set"}
                       </p>
                       <p className="text-xs text-muted-foreground md:hidden">
-                        Item: {need.item.name}
+                        Item: {need.item?.name ?? "Untitled item"}
                       </p>
                     </div>
                     <div className="md:text-sm">{quantityText}</div>
@@ -243,7 +243,7 @@ export function NeedsContent({ orgInstance }: NeedsContentProps) {
                           ) : (
                             <p>No additional description provided.</p>
                           )}
-                          {need.item.description && (
+                          {need.item?.description && (
                             <p className="text-xs text-muted-foreground">
                               Item detail: {need.item.description}
                             </p>
