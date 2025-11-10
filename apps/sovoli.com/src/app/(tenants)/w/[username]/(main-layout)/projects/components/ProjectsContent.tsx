@@ -298,15 +298,15 @@ export function ProjectsContent({ orgInstance }: ProjectsContentProps) {
                               const needTitle =
                                 trimmedTitle.length > 0
                                   ? trimmedTitle
-                                  : (need.item?.name ?? "Untitled need");
+                                  : need.title;
                               return (
-                                <li key={need.id} className="flex flex-col">
+                                <li key={need.slug} className="flex flex-col">
                                   <span className="font-medium">
                                     {needTitle}
                                   </span>
                                   <span className="text-xs text-muted-foreground">
                                     {need.description ??
-                                      need.item?.description ??
+                                      need.description ??
                                       "No description provided."}
                                   </span>
                                 </li>
