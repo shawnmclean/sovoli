@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
-import { NeedDetails } from "../components/NeedDetails";
+import { NeedDetails } from "./components/NeedDetails";
 import type { Need } from "~/modules/needs/types";
 
 const retrieveOrgInstance = async (username: string) => {
