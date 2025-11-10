@@ -43,6 +43,8 @@ export interface NeedBase {
   title: string;
   description?: string;
 
+  quantity?: number;
+
   /** Classification and context */
   source?: NeedSource;
   projectId?: string; // optional link to a project
@@ -72,8 +74,6 @@ export interface NeedBase {
 export interface MaterialNeed extends NeedBase {
   type: "material";
   item: Item;
-  quantity: number; // required for materials
-  unit?: string; // e.g., "pack", "set"
 }
 
 /** 2) SERVICE: contractor/RFP-type needs. */
@@ -105,7 +105,6 @@ export interface FinancialNeed extends NeedBase {
 export interface JobNeed extends NeedBase {
   type: "job";
   position?: Position; // optional denormalized embed for UI
-  openings?: number;
 }
 
 /** Union of all need variants */

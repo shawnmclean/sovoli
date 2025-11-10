@@ -19,7 +19,7 @@ const PRIMARY_TEACHER_NEED: Need = {
   description:
     "Hire a primary school teacher to teach literacy, numeracy, and social skills at the primary education level.",
   position: PRIMARY_TEACHER,
-  openings: 1,
+  quantity: 1,
   type: "job",
   neededBy: { type: "deadline", date: "2025-12-05" },
 };
@@ -34,7 +34,6 @@ export const MODERN_ACADEMY_NEEDS: NeedsModule = {
         "Install new air conditioning units to keep the main campus classrooms cool before the new school year.",
       item: AC_UNIT_ITEM,
       quantity: 3,
-      unit: "unit",
       type: "material",
       source: "external",
       priority: "high",
@@ -63,7 +62,6 @@ export const MODERN_ACADEMY_NEEDS: NeedsModule = {
         "Purchase plyboards to repair classroom walls and prevent further weather damage.",
       item: PLYBOARD_ITEM,
       quantity: 10,
-      unit: "boards",
       type: "material",
       source: "external",
       priority: "medium",
