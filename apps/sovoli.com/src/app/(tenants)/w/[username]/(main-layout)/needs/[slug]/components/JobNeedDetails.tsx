@@ -304,7 +304,7 @@ function formatCompactCompensation(range?: CompensationRange | null) {
   const { min, max, period } = range;
   const currencyData = pickPrimaryCurrency(min, max);
   if (!currencyData) return null;
-  const { code, minValue, maxValue } = currencyData;
+  const { minValue, maxValue } = currencyData;
 
   const periodConfig =
     period === "annual"
@@ -333,7 +333,7 @@ function formatCompactCompensation(range?: CompensationRange | null) {
 
   if (!amount) return null;
 
-  return `${code.toUpperCase()} ${amount}/${periodConfig.suffix}`;
+  return `${amount}/${periodConfig.suffix}`;
 }
 
 function pickPrimaryCurrency(
@@ -352,7 +352,6 @@ function pickPrimaryCurrency(
     entries.find(([code]) => code === primaryCode)?.[1] ?? null;
 
   return {
-    code: primaryCode,
     minValue: findValue(minEntries),
     maxValue: findValue(maxEntries),
   };
