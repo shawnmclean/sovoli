@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
 import type { AmountByCurrency } from "~/modules/core/economics/types";
@@ -204,6 +205,17 @@ function NeedListSection<TNeed extends Need>({
                         {need.notes}
                       </div>
                     ) : null}
+
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <Button
+                        as={Link}
+                        href={`/needs/${need.slug}`}
+                        size="sm"
+                        color="primary"
+                      >
+                        Open full details
+                      </Button>
+                    </div>
 
                     {hasAuditDates ? (
                       <div className="mt-4 border-t border-divider pt-3 text-xs text-muted-foreground">
