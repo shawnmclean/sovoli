@@ -4,11 +4,7 @@ import type { Key } from "react";
 import { useMemo } from "react";
 import { Tabs, Tab } from "@sovoli/ui/components/tabs";
 import { ListIcon, MapIcon } from "lucide-react";
-import {
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type DirectoryView = "list" | "map";
 
@@ -33,7 +29,7 @@ export function DirectoryViewTabs({
 
   const handleChange = (key: Key | null) => {
     if (!key) return;
-    const nextView = (key as DirectoryView) ?? DEFAULT_VIEW;
+    const nextView = key as DirectoryView;
     const params = new URLSearchParams(searchParams.toString());
 
     if (nextView === "map") {
