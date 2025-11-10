@@ -39,7 +39,7 @@ export interface ProcurementInfo {
 
 /** Primary entity describing a school or org requirement (shared fields) */
 export interface NeedBase {
-  id: string;
+  slug: string;
   title: string;
   description?: string;
 

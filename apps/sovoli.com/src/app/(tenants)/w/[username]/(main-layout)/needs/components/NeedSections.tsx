@@ -79,7 +79,7 @@ function NeedListSection<TNeed extends Need>({
             const createdAt = formatDate(need.createdAt);
             const updatedAt = formatDate(need.updatedAt);
             const hasAuditDates = createdAt ?? updatedAt;
-            const isExpanded = expandedNeedId === need.id;
+            const isExpanded = expandedNeedId === need.slug;
             const addressLine1 = location ? location.address.line1 : undefined;
             const defaultTitle =
               need.title.trim().length > 0 ? need.title : "Untitled need";
@@ -90,7 +90,7 @@ function NeedListSection<TNeed extends Need>({
 
             return (
               <div
-                key={need.id}
+                key={need.slug}
                 className="transition-colors hover:bg-default-50"
               >
                 <div className="flex flex-col gap-3 px-4 py-4 text-sm text-muted-foreground md:grid md:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(0,120px)] md:items-center md:gap-4 md:px-6 md:text-base">
@@ -145,7 +145,7 @@ function NeedListSection<TNeed extends Need>({
                       color="primary"
                       onPress={() =>
                         setExpandedNeedId((prev) =>
-                          prev === need.id ? null : need.id,
+                          prev === need.slug ? null : need.slug,
                         )
                       }
                     >

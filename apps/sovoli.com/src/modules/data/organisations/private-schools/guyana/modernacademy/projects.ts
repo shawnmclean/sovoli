@@ -1,12 +1,12 @@
 import type { ProjectsModule } from "~/modules/projects/types";
 import { MODERN_ACADEMY_NEEDS } from "./needs";
 
-function findNeedById(id: string) {
-  const need = MODERN_ACADEMY_NEEDS.needs.find((entry) => entry.id === id);
+function findNeedBySlug(slug: string) {
+  const need = MODERN_ACADEMY_NEEDS.needs.find((entry) => entry.slug === slug);
 
   if (!need) {
     throw new Error(
-      `${id} need is missing from Modern Academy needs configuration.`,
+      `${slug} need is missing from Modern Academy needs configuration.`,
     );
   }
 
@@ -27,7 +27,7 @@ export const MODERN_ACADEMY_PROJECTS: ProjectsModule = {
       startDate: "2025-08-15",
       endDate: "2025-08-31",
       internal: false,
-      needs: [findNeedById("magy-classroom-ac-2025")],
+      needs: [findNeedBySlug("magy-classroom-ac-2025")],
     },
   ],
 };

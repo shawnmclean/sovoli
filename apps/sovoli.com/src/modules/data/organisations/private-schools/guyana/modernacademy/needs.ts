@@ -14,7 +14,7 @@ if (!PLYBOARD_ITEM) {
 }
 
 const PRIMARY_TEACHER_NEED: Need = {
-  id: "magy-primary-teacher-2025",
+  slug: "magy-primary-teacher-2025",
   title: "Primary School Teacher",
   description:
     "Hire a primary school teacher to teach literacy, numeracy, and social skills at the primary education level.",
@@ -28,7 +28,7 @@ export const MODERN_ACADEMY_NEEDS: NeedsModule = {
   needs: [
     PRIMARY_TEACHER_NEED,
     {
-      id: "magy-classroom-ac-2025",
+      slug: "magy-classroom-ac-2025",
       title: "Classroom Air Conditioning Units",
       description:
         "Install new air conditioning units to keep the main campus classrooms cool before the new school year.",
@@ -56,7 +56,7 @@ export const MODERN_ACADEMY_NEEDS: NeedsModule = {
       },
     },
     {
-      id: "magy-building-plyboards-2025",
+      slug: "magy-building-plyboards-2025",
       title: "Plyboards for Building Repairs",
       description:
         "Purchase plyboards to repair classroom walls and prevent further weather damage.",
