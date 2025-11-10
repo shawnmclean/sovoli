@@ -1,12 +1,14 @@
 import type { ProjectsModule } from "~/modules/projects/types";
 import { APPLETON_BASIC_SCHOOL_NEEDS } from "./needs";
 
-function findNeedById(id: string) {
-  const need = APPLETON_BASIC_SCHOOL_NEEDS.needs.find((entry) => entry.id === id);
+function findNeedBySlug(slug: string) {
+  const need = APPLETON_BASIC_SCHOOL_NEEDS.needs.find(
+    (entry) => entry.slug === slug,
+  );
 
   if (!need) {
     throw new Error(
-      `${id} need is missing from Appleton Basic School needs configuration.`,
+      `${slug} need is missing from Appleton Basic School needs configuration.`,
     );
   }
 
@@ -28,12 +30,12 @@ export const APPLETON_BASIC_SCHOOL_PROJECTS: ProjectsModule = {
       endDate: "2025-12-15",
       internal: false,
       needs: [
-        findNeedById("absjm-roof-repairs-2025"),
-        findNeedById("absjm-tarpaulin-cover-2025"),
-        findNeedById("absjm-cleanup-kits-2025"),
-        findNeedById("absjm-portable-generator-2025"),
-        findNeedById("absjm-skilled-volunteers-2025"),
-        findNeedById("absjm-debris-removal-crew-2025"),
+        findNeedBySlug("absjm-roof-repairs-2025"),
+        findNeedBySlug("absjm-tarpaulin-cover-2025"),
+        findNeedBySlug("absjm-cleanup-kits-2025"),
+        findNeedBySlug("absjm-portable-generator-2025"),
+        findNeedBySlug("absjm-skilled-volunteers-2025"),
+        findNeedBySlug("absjm-debris-removal-crew-2025"),
       ],
       notes:
         "Project overseen by the principal with support from the parish disaster risk management team.",
