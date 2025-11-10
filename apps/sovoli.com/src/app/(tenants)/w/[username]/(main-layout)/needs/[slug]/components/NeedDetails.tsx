@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
 import type { ReactNode } from "react";
-import { useTenant } from "../../../../components/TenantProvider";
 import {
   formatAmountByCurrency,
   formatDate,
@@ -58,9 +57,7 @@ function InfoRow({ label, value }: { label: string; value: ReactNode }) {
 }
 
 export function NeedDetails({ need }: NeedDetailsProps) {
-  const { tenant } = useTenant();
-
-  const backHref = `/w/${tenant}/needs`;
+  const backHref = `/needs`;
   const typeDisplay = need.type.charAt(0).toUpperCase() + need.type.slice(1);
 
   return (

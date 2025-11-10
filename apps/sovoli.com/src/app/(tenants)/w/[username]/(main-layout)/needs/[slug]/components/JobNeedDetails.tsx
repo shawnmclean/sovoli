@@ -10,9 +10,12 @@ import {
   UsersIcon,
   DollarSignIcon,
   MapPinIcon,
+  MessageCircleIcon,
 } from "lucide-react";
 import { useMemo } from "react";
 import { useTenant } from "../../../../components/TenantProvider";
+
+import { gradientBorderButton } from "~/components/GradientBorderButton";
 import {
   formatAmountByCurrency,
   formatEmploymentType,
@@ -64,11 +67,6 @@ export function JobNeedDetails({ need }: JobNeedDetailsProps) {
       </div>
     );
   }
-
-  const ctaHref =
-    position.url && position.url.trim().length > 0
-      ? position.url
-      : `/w/${tenant}/contact`;
 
   return (
     <div className="space-y-5">
@@ -166,14 +164,11 @@ export function JobNeedDetails({ need }: JobNeedDetailsProps) {
         </section>
       ) : null}
 
-      <Button
-        as={Link}
-        href={ctaHref}
-        color="primary"
-        className="w-full rounded-full py-5 text-base font-semibold"
-      >
-        Apply Now
-      </Button>
+      <WhatsAppButton
+        tenant={tenant}
+        orgInstance={orgInstance}
+        needTitle={position.name || need.title}
+      />
     </div>
   );
 }
@@ -208,4 +203,94 @@ function resolveLocationLabel(
 ) {
   const record = locations.find((item) => item.key === key);
   return record?.label ?? record?.key ?? "On campus";
+}
+
+function WhatsAppButton({
+  tenant,
+  orgInstance,
+  needTitle,
+}: {
+  tenant: string;
+  orgInstance: ReturnType<typeof useTenant>["orgInstance"];
+  needTitle: string | undefined;
+}) {
+  const { phone, label } = findWhatsappContact(orgInstance);
+  const fallbackUrl = `/w/${tenant}/contact`;
+
+  if (!phone) {
+    return (
+      <Button
+        as={Link}
+        href={fallbackUrl}
+        color="primary"
+        size="lg"
+        fullWidth
+        className={gradientBorderButton()}
+      >
+        Contact the school
+      </Button>
+    );
+  }
+
+  const encodedMessage = encodeURIComponent(
+    [
+      "Hello!",
+      `I'm interested in the ${needTitle ?? "teaching opportunity"} at ${
+        orgInstance.org.name
+      }.`,
+      "Could you share more details?",
+    ].join(" "),
+  );
+  const whatsappUrl = `https://wa.me/${sanitizePhoneNumber(
+    phone,
+  )}?text=${encodedMessage}`;
+
+  return (
+    <Button
+      as={Link}
+      href={whatsappUrl}
+      target="_blank"
+      rel="noreferrer"
+      color="success"
+      startContent={<MessageCircleIcon className="h-5 w-5" />}
+      className={gradientBorderButton()}
+      size="lg"
+      fullWidth
+    >
+      Chat via WhatsApp
+    </Button>
+  );
+}
+
+function findWhatsappContact({
+  org,
+}: ReturnType<typeof useTenant>["orgInstance"]): {
+  phone: string | null;
+  label?: string;
+} {
+  const locationContact = org.locations
+    .flatMap((location) => location.contacts)
+    .find((contact) => contact.type === "whatsapp" && contact.isPublic);
+
+  if (locationContact) {
+    return locationContact.label
+      ? { phone: locationContact.value, label: locationContact.label }
+      : { phone: locationContact.value };
+  }
+
+  const personContact =
+    org.internalCRM?.people
+      .flatMap((person) => person.contacts)
+      .find((contact) => contact.type === "whatsapp" && contact.isPublic) ??
+    null;
+
+  return personContact
+    ? personContact.label
+      ? { phone: personContact.value, label: personContact.label }
+      : { phone: personContact.value }
+    : { phone: null };
+}
+
+function sanitizePhoneNumber(value: string) {
+  return value.replace(/[^+\d]/g, "");
 }
