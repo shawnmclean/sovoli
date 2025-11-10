@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Button } from "@sovoli/ui/components/button";
 import {
   BriefcaseIcon,
-  CalendarIcon,
   GraduationCapIcon,
   UsersIcon,
   DollarSignIcon,
@@ -17,7 +16,6 @@ import { useTenant } from "../../../../components/TenantProvider";
 
 import { gradientBorderButton } from "~/components/GradientBorderButton";
 import {
-  formatAmountByCurrency,
   formatEmploymentType,
   formatTimeline,
 } from "../../components/needFormatters";
@@ -36,26 +34,10 @@ export function JobNeedDetails({ need }: JobNeedDetailsProps) {
   const timeline = formatTimeline(need);
   const openings = typeof need.quantity === "number" ? need.quantity : null;
 
-  const compensationLabel = useMemo(() => {
-    if (!position?.compensationRange) return null;
-
-    const { min, max, period } = position.compensationRange;
-    const minFormatted = min ? formatAmountByCurrency(min) : null;
-    const maxFormatted = max ? formatAmountByCurrency(max) : null;
-
-    const range =
-      minFormatted && maxFormatted
-        ? `${minFormatted} – ${maxFormatted}`
-        : (minFormatted ?? maxFormatted);
-
-    if (!range) return null;
-
-    if (!period) return range;
-
-    const periodLabel =
-      period.charAt(0).toUpperCase() + period.slice(1).toLowerCase();
-    return `${range} • ${periodLabel}`;
-  }, [position?.compensationRange]);
+  const compensationLabel = useMemo(
+    () => formatCompactCompensation(position?.compensationRange),
+    [position?.compensationRange],
+  );
 
   if (!position) {
     return (
@@ -69,8 +51,8 @@ export function JobNeedDetails({ need }: JobNeedDetailsProps) {
   }
 
   return (
-    <div className="space-y-5">
-      <header className="rounded-3xl border border-divider bg-card p-5 text-center shadow-sm">
+    <div className="space-y-4">
+      <header className="rounded-3xl border border-divider bg-card p-4 text-center shadow-sm">
         <div className="flex justify-center">
           <div className="relative h-16 w-16 overflow-hidden rounded-full border border-divider bg-muted">
             {orgInstance.org.logo ? (
@@ -94,56 +76,51 @@ export function JobNeedDetails({ need }: JobNeedDetailsProps) {
           {position.name || need.title}
         </h2>
         {position.description || need.description ? (
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
             {position.description || need.description}
           </p>
         ) : null}
       </header>
 
-      <section className="grid gap-3 rounded-3xl border border-divider bg-card p-4 sm:grid-cols-2">
-        {compensationLabel ? (
-          <FactCard
-            icon={<DollarSignIcon className="h-5 w-5 text-primary" />}
-            label="Salary"
-            value={compensationLabel}
-          />
-        ) : null}
-
-        {employmentType ? (
-          <FactCard
-            icon={<BriefcaseIcon className="h-5 w-5 text-primary" />}
-            label="Job Type"
-            value={employmentType}
-          />
-        ) : null}
-
-        {openings ? (
-          <FactCard
-            icon={<UsersIcon className="h-5 w-5 text-primary" />}
-            label="Positions"
-            value={`${openings} opening${openings > 1 ? "s" : ""}`}
-          />
-        ) : null}
-
-        {timeline ? (
-          <FactCard
-            icon={<CalendarIcon className="h-5 w-5 text-primary" />}
-            label="Needed By"
-            value={timeline}
-          />
-        ) : null}
-
-        {need.requestingUnit?.locationKey ? (
-          <FactCard
-            icon={<MapPinIcon className="h-5 w-5 text-primary" />}
-            label="Location"
-            value={resolveLocationLabel(
-              need.requestingUnit.locationKey,
-              orgInstance.org.locations,
-            )}
-          />
-        ) : null}
-      </section>
+      <SummaryRow
+        facts={[
+          compensationLabel
+            ? {
+                key: "salary",
+                icon: <DollarSignIcon className="h-5 w-5 text-primary" />,
+                label: "Salary",
+                value: compensationLabel,
+              }
+            : null,
+          employmentType
+            ? {
+                key: "type",
+                icon: <BriefcaseIcon className="h-5 w-5 text-primary" />,
+                label: "Job type",
+                value: employmentType,
+              }
+            : null,
+          openings
+            ? {
+                key: "openings",
+                icon: <UsersIcon className="h-5 w-5 text-primary" />,
+                label: "Openings",
+                value: `${openings} position${openings > 1 ? "s" : ""}`,
+              }
+            : null,
+          need.requestingUnit?.locationKey
+            ? {
+                key: "location",
+                icon: <MapPinIcon className="h-5 w-5 text-primary" />,
+                label: "Location",
+                value: resolveLocationLabel(
+                  need.requestingUnit.locationKey,
+                  orgInstance.org.locations,
+                ),
+              }
+            : null,
+        ]}
+      />
 
       {position.qualifications && position.qualifications.length > 0 ? (
         <section className="space-y-3 rounded-3xl border border-divider bg-card p-5">
@@ -169,31 +146,56 @@ export function JobNeedDetails({ need }: JobNeedDetailsProps) {
         orgInstance={orgInstance}
         needTitle={position.name || need.title}
       />
+      {timeline ? (
+        <p className="text-center text-xs font-medium text-muted-foreground">
+          Needed by {timeline.replace(/^Needed by\s*/i, "")}
+        </p>
+      ) : null}
     </div>
   );
 }
 
-function FactCard({
-  icon,
-  label,
-  value,
-}: {
+interface SummaryFact {
+  key: string;
   icon: ReactNode;
   label: string;
   value: string;
-}) {
+}
+
+function FactCard({ icon, label, value }: SummaryFact) {
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-divider bg-muted/20 px-4 py-3">
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-50">
+    <div className="flex min-w-[88px] flex-1 flex-col items-center gap-2 rounded-2xl border border-divider bg-card p-3 text-center shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
+      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-50 text-primary">
         {icon}
       </div>
       <div className="space-y-0.5">
-        <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-          {label}
-        </p>
+        <p className="text-xs font-medium text-muted-foreground">{label}</p>
         <p className="text-sm font-semibold text-foreground">{value}</p>
       </div>
     </div>
+  );
+}
+
+function SummaryRow({ facts }: { facts: (SummaryFact | null)[] }) {
+  const visibleFacts = facts.filter(
+    (fact): fact is SummaryFact => fact !== null,
+  );
+
+  if (visibleFacts.length === 0) return null;
+
+  return (
+    <section className="rounded-3xl border border-divider bg-card px-3 py-4">
+      <div className="flex flex-wrap items-stretch justify-center gap-3">
+        {visibleFacts.map((fact) => (
+          <FactCard
+            key={fact.key}
+            icon={fact.icon}
+            label={fact.label}
+            value={fact.value}
+          />
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -214,7 +216,7 @@ function WhatsAppButton({
   orgInstance: ReturnType<typeof useTenant>["orgInstance"];
   needTitle: string | undefined;
 }) {
-  const { phone, label } = findWhatsappContact(orgInstance);
+  const { phone } = findWhatsappContact(orgInstance);
   const fallbackUrl = `/w/${tenant}/contact`;
 
   if (!phone) {
@@ -293,4 +295,87 @@ function findWhatsappContact({
 
 function sanitizePhoneNumber(value: string) {
   return value.replace(/[^+\d]/g, "");
+}
+type CompensationRange = NonNullable<JobNeed["position"]>["compensationRange"];
+
+function formatCompactCompensation(range?: CompensationRange | null) {
+  if (!range) return null;
+
+  const { min, max, period } = range;
+  const currencyData = pickPrimaryCurrency(min, max);
+  if (!currencyData) return null;
+  const { code, minValue, maxValue } = currencyData;
+
+  const periodConfig =
+    period === "annual"
+      ? { multiplier: 1, suffix: "Y" }
+      : period === "monthly"
+        ? { multiplier: 1, suffix: "M" }
+        : period === "hourly"
+          ? { multiplier: 160, suffix: "M" }
+          : { multiplier: 1, suffix: "M" };
+
+  const scale = (value: number | null) =>
+    value === null ? null : value * periodConfig.multiplier;
+
+  const scaledMin = scale(minValue);
+  const scaledMax = scale(maxValue);
+
+  if (scaledMin === null && scaledMax === null) return null;
+
+  const minLabel = formatMagnitude(scaledMin);
+  const maxLabel = formatMagnitude(scaledMax);
+
+  const amount =
+    minLabel && maxLabel && minLabel !== maxLabel
+      ? `${minLabel}-${maxLabel}`
+      : (minLabel ?? maxLabel);
+
+  if (!amount) return null;
+
+  return `${code.toUpperCase()} ${amount}/${periodConfig.suffix}`;
+}
+
+function pickPrimaryCurrency(
+  min?: Record<string, number | undefined>,
+  max?: Record<string, number | undefined>,
+) {
+  const minEntries = extractNumericEntries(min);
+  const maxEntries = extractNumericEntries(max);
+
+  const primaryEntry = [...minEntries, ...maxEntries][0];
+  if (!primaryEntry) return null;
+
+  const [primaryCode] = primaryEntry;
+
+  const findValue = (entries: [string, number][]): number | null =>
+    entries.find(([code]) => code === primaryCode)?.[1] ?? null;
+
+  return {
+    code: primaryCode,
+    minValue: findValue(minEntries),
+    maxValue: findValue(maxEntries),
+  };
+}
+
+function formatMagnitude(value: number | null) {
+  if (value === null) return null;
+  const absolute = Math.abs(value);
+
+  if (absolute >= 1_000_000) {
+    return `${(value / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
+  }
+
+  if (absolute >= 1_000) {
+    return `${(value / 1_000).toFixed(1).replace(/\.0$/, "")}k`;
+  }
+
+  return value.toLocaleString();
+}
+
+function extractNumericEntries(source?: Record<string, number | undefined>) {
+  if (!source) return [];
+  return Object.entries(source).filter(
+    (entry): entry is [string, number] => typeof entry[1] === "number",
+  );
 }
