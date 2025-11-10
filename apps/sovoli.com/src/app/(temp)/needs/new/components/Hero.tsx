@@ -14,7 +14,7 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     name: "Shemiele Da'Briel",
-    company: "Microsoft",
+    company: "Ex-Microsoft",
     role: "Seattle diaspora",
     whatsapp: "",
   },
@@ -29,12 +29,6 @@ const teamMembers: TeamMember[] = [
     company: "Ex-Auth0",
     role: "On the ground",
     whatsapp: "18764354470",
-  },
-  {
-    name: "Larren Peart",
-    company: "BlueDot",
-    role: "On the ground logistics and distribution",
-    whatsapp: "",
   },
 ];
 
