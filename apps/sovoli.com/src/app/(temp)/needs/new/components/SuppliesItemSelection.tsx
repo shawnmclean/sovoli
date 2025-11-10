@@ -25,7 +25,7 @@ export function SuppliesItemSelection({
 }: SuppliesItemSelectionProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGroups, setSelectedGroups] = useState<Set<string>>(
-    new Set(["food", "building"]),
+    new Set(["building", "food", "other"]),
   );
 
   // Sort all items: high priority first, then regular items, grouped by category
@@ -152,7 +152,7 @@ export function SuppliesItemSelection({
   return (
     <div className="space-y-6">
       <p className="text-base text-default-500">
-        Select the items you can provide.
+        Select the supplies your school currently needs.
       </p>
 
       <div className="space-y-6">

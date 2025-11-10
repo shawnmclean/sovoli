@@ -1,8 +1,8 @@
 "use client";
 
+import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
-import { Button } from "@sovoli/ui/components/button";
 import type { ReliefFormData } from "./ReliefForm";
 import { SUPPLIES_ITEMS } from "../data/suppliesItems";
 
@@ -17,108 +17,86 @@ export function Confirmation({
   onResetForm,
   onReviewAnswers,
 }: ConfirmationProps) {
-  const isSupplies = formData.contributionType === "supplies";
-  const hasSuppliesItems =
-    Object.keys(formData.suppliesItems).length > 0 ||
-    formData.suppliesOther.trim().length > 0;
-
-  const selectedSuppliesItems = Object.keys(formData.suppliesItems)
-    .filter(
-      (itemId) =>
-        formData.suppliesItems[itemId] && formData.suppliesItems[itemId] > 0,
-    )
-    .map((itemId) => {
-      const item = SUPPLIES_ITEMS.find((i) => i.id === itemId);
-      const quantity = formData.suppliesItems[itemId];
-      return item ? { id: itemId, name: item.name, quantity } : null;
-    })
-    .filter(
-      (item): item is { id: string; name: string; quantity: number } =>
-        item !== null,
-    );
+  const selectedSupplies = formData.suppliesSelected
+    .map((itemId) => SUPPLIES_ITEMS.find((item) => item.id === itemId)?.name)
+    .filter((name): name is string => Boolean(name));
+  const hasSupplies =
+    selectedSupplies.length > 0 || formData.suppliesOther.trim().length > 0;
 
   return (
     <div className="space-y-8 text-center">
       <div className="space-y-3">
         <p className="text-base text-default-500">
-          Our relief team will reach out shortly to coordinate your
-          contribution. We truly appreciate your support during this recovery
-          effort.
+          Thanks for sharing your school&apos;s needs. Our team will reach out
+          to coordinate next steps and keep you updated on support.
         </p>
       </div>
 
-      {isSupplies && hasSuppliesItems && (
+      {hasSupplies && (
         <Card className="rounded-2xl border border-default-200 bg-default-50/80 text-left">
           <CardHeader className="flex flex-col items-start gap-2 px-5 py-4 sm:px-6">
-            <h3 className="text-lg font-semibold">Supplies Information</h3>
+            <h3 className="text-lg font-semibold">Supplies Needed</h3>
             <p className="text-small text-default-500">
-              Details about your supplies contribution.
+              We captured these items from your submission.
             </p>
           </CardHeader>
           <Divider />
           <CardBody className="space-y-4 px-5 py-4 text-sm sm:px-6">
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-              <dt className="font-medium text-default-600">Supplies</dt>
-              <dd className="text-default-800">
-                {selectedSuppliesItems.length > 0 && (
-                  <div className="space-y-1">
-                    {selectedSuppliesItems.map((item, idx) => (
-                      <div key={idx}>
-                        {item.name}{" "}
-                        <span className="font-medium">({item.quantity})</span>
-                        {formData.suppliesItemNotes[item.id] && (
-                          <span className="block text-default-500 text-xs mt-1">
-                            {formData.suppliesItemNotes[item.id]}
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {formData.suppliesOther && (
-                  <div
-                    className={selectedSuppliesItems.length > 0 ? "mt-2" : ""}
-                  >
-                    Other: {formData.suppliesOther}
-                  </div>
-                )}
-              </dd>
-            </div>
+            {selectedSupplies.length > 0 && (
+              <ul className="list-disc space-y-1 pl-5 text-default-800">
+                {selectedSupplies.map((name) => (
+                  <li key={name}>{name}</li>
+                ))}
+              </ul>
+            )}
+            {formData.suppliesOther && (
+              <div className="text-default-800">
+                <span className="font-medium">Other items: </span>
+                {formData.suppliesOther}
+              </div>
+            )}
+            {formData.notes && (
+              <div className="rounded-lg border border-default-200 bg-white/60 p-3 text-default-700">
+                <span className="font-medium">Notes: </span>
+                {formData.notes}
+              </div>
+            )}
           </CardBody>
         </Card>
       )}
 
       <Card className="rounded-2xl border border-default-200 bg-default-50/80 text-left">
         <CardHeader className="flex flex-col items-start gap-2 px-5 py-4 sm:px-6">
-          <h3 className="text-lg font-semibold">Shipping Information</h3>
+          <h3 className="text-lg font-semibold">School & Location</h3>
           <p className="text-small text-default-500">
-            Where to send your contribution and your point of contact.
+            Confirm we captured the correct campus details.
           </p>
         </CardHeader>
         <Divider />
         <CardBody className="space-y-4 px-5 py-4 text-sm sm:px-6">
-          <div className="flex flex-col gap-1">
-            <dt className="font-medium text-default-600">Foundation</dt>
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+            <dt className="font-medium text-default-600">School</dt>
             <dd className="text-default-800">
-              <div className="space-y-1">
-                <div className="font-semibold">Jamaica Relief Foundation</div>
-                <div className="text-default-500 text-xs">
-                  123 Main Street
-                  <br />
-                  Kingston, Jamaica
-                </div>
-              </div>
+              {formData.schoolName}
+              {formData.schoolType && (
+                <span className="block text-default-500 text-xs">
+                  {formData.schoolType}
+                </span>
+              )}
             </dd>
           </div>
-          <div className="flex flex-col gap-1">
-            <dt className="font-medium text-default-600">Contact Person</dt>
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+            <dt className="font-medium text-default-600">Location</dt>
             <dd className="text-default-800">
-              <div className="space-y-1">
-                <div className="font-semibold">Larren Peart</div>
-                <div className="text-default-500 text-xs">
-                  BlueDot - On the ground logistics and distribution
-                </div>
-              </div>
+              {formData.locationAddressLine1}
+              {formData.locationAddressLine2 && (
+                <>
+                  <br />
+                  {formData.locationAddressLine2}
+                </>
+              )}
+              <br />
+              {formData.locationCity}, {formData.locationParish}
             </dd>
           </div>
         </CardBody>
@@ -126,58 +104,34 @@ export function Confirmation({
 
       <Card className="rounded-2xl border border-default-200 bg-default-50/80 text-left">
         <CardHeader className="flex flex-col items-start gap-2 px-5 py-4 sm:px-6">
-          <h3 className="text-lg font-semibold">Submission Summary</h3>
+          <h3 className="text-lg font-semibold">Point of Contact</h3>
           <p className="text-small text-default-500">
-            Review the details you shared with our relief team.
+            We use this information for follow-ups and confirmations.
           </p>
         </CardHeader>
         <Divider />
         <CardBody className="space-y-4 px-5 py-4 text-sm sm:px-6">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-            <dt className="font-medium text-default-600">Contribution type</dt>
-            <dd className="text-default-800 capitalize">
-              {formData.contributionType}
-            </dd>
-          </div>
-          {formData.contributionType === "labour" && (
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-              <dt className="font-medium text-default-600">Availability</dt>
-              <dd className="text-default-800">
-                {formData.labourAvailability === "end-of-nov"
-                  ? "End of November"
-                  : formData.labourAvailability === "other"
-                    ? formData.labourAvailabilityOther
-                    : "Now"}
-              </dd>
-            </div>
-          )}
-          {formData.contributionType === "financial" && (
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-              <dt className="font-medium text-default-600">Amount</dt>
-              <dd className="text-default-800">
-                {formData.financialCurrency}{" "}
-                {Number(formData.financialAmount).toLocaleString()}
-              </dd>
-            </div>
-          )}
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-            <dt className="font-medium text-default-600">Your details</dt>
+            <dt className="font-medium text-default-600">Contact</dt>
             <dd className="text-default-800">
-              {formData.name}
-              <br />
-              {formData.phone}
-              <br />
-              {formData.addressLine1}
-              {formData.addressLine2 && (
-                <>
-                  <br />
-                  {formData.addressLine2}
-                </>
+              {formData.contactName}
+              {formData.contactRole && (
+                <span className="block text-default-500 text-xs">
+                  {formData.contactRole}
+                </span>
               )}
-              <br />
-              {formData.city}, {formData.stateCountry}
             </dd>
           </div>
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+            <dt className="font-medium text-default-600">Phone</dt>
+            <dd className="text-default-800">{formData.contactPhone}</dd>
+          </div>
+          {formData.contactEmail && (
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+              <dt className="font-medium text-default-600">Email</dt>
+              <dd className="text-default-800">{formData.contactEmail}</dd>
+            </div>
+          )}
         </CardBody>
       </Card>
 

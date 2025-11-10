@@ -3,59 +3,52 @@
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
-import { CustomRadio, RadioGroup } from "@sovoli/ui/components/radio";
 import { Confirmation } from "./Confirmation";
-import { ContactInfo } from "./ContactInfo";
-import { FinancialContribution } from "./FinancialContribution";
+import { ContactDetails } from "./ContactDetails";
 import { Hero } from "./Hero";
-import { LabourContribution } from "./LabourContribution";
+import { LocationInfo } from "./LocationInfo";
+import { SchoolInfo } from "./SchoolInfo";
 import { SuppliesItemSelection } from "./SuppliesItemSelection";
-import { SuppliesQuantityManagement } from "./SuppliesQuantityManagement";
-import { Input } from "@sovoli/ui/components/input";
 import { submitReliefForm } from "../actions";
+import { Input } from "@sovoli/ui/components/input";
 
 export interface ReliefFormData {
-  contributionType: "labour" | "supplies" | "financial" | "";
-  labourAvailability: "now" | "end-of-nov" | "other" | "";
-  labourAvailabilityOther: string;
-  suppliesItems: Record<string, number>; // itemId -> quantity
-  suppliesItemNotes: Record<string, string>; // itemId -> notes
+  contactName: string;
+  contactPhone: string;
+  contactEmail: string;
+  contactRole: string;
+  schoolName: string;
+  schoolType: string;
+  locationAddressLine1: string;
+  locationAddressLine2: string;
+  locationCity: string;
+  locationParish: string;
+  suppliesSelected: string[];
   suppliesOther: string;
-  financialAmount: string;
-  financialCurrency: "USD" | "JMD";
-  name: string;
-  phone: string;
-  addressLine1: string;
-  addressLine2: string;
-  city: string;
-  stateCountry: string;
+  notes: string;
 }
 
 const initialFormData: ReliefFormData = {
-  contributionType: "",
-  labourAvailability: "",
-  labourAvailabilityOther: "",
-  suppliesItems: {
-    tarps: 1, // Default selected item
-  },
-  suppliesItemNotes: {},
+  contactName: "",
+  contactPhone: "",
+  contactEmail: "",
+  contactRole: "",
+  schoolName: "",
+  schoolType: "",
+  locationAddressLine1: "",
+  locationAddressLine2: "",
+  locationCity: "",
+  locationParish: "",
+  suppliesSelected: [],
   suppliesOther: "",
-  financialAmount: "",
-  financialCurrency: "USD",
-  name: "",
-  phone: "",
-  addressLine1: "",
-  addressLine2: "",
-  city: "",
-  stateCountry: "",
+  notes: "",
 };
 
 const STEPS = {
-  CONTRIBUTION: "contribution",
-  CONTRIBUTION_DETAILS: "contribution_details",
-  SUPPLIES_SELECTION: "supplies_selection",
-  SUPPLIES_QUANTITIES: "supplies_quantities",
   CONTACT: "contact",
+  SCHOOL: "school",
+  LOCATION: "location",
+  SUPPLIES: "supplies",
   CONFIRM: "confirm",
 } as const;
 
@@ -70,35 +63,17 @@ export function ReliefForm() {
   const [formData, setFormData] = useState<ReliefFormData>(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
   const [isPending, startTransition] = useTransition();
-  const [hasAutoNavigated, setHasAutoNavigated] = useState(false);
 
-  const stepSequence: StepDefinition[] = useMemo(() => {
-    const steps: StepDefinition[] = [
-      { key: STEPS.CONTRIBUTION, label: "Contribution" },
-    ];
-
-    if (formData.contributionType) {
-      if (formData.contributionType === "supplies") {
-        steps.push(
-          { key: STEPS.SUPPLIES_SELECTION, label: "Select Items" },
-          { key: STEPS.SUPPLIES_QUANTITIES, label: "Set Quantities" },
-        );
-      } else {
-        steps.push({
-          key: STEPS.CONTRIBUTION_DETAILS,
-          label:
-            formData.contributionType === "labour" ? "Availability" : "Amount",
-        });
-      }
-    }
-
-    steps.push(
-      { key: STEPS.CONTACT, label: "Your Details" },
+  const stepSequence: StepDefinition[] = useMemo(
+    () => [
+      { key: STEPS.CONTACT, label: "Contact" },
+      { key: STEPS.SCHOOL, label: "School" },
+      { key: STEPS.LOCATION, label: "Location" },
+      { key: STEPS.SUPPLIES, label: "Supplies" },
       { key: STEPS.CONFIRM, label: "Confirmation" },
-    );
-
-    return steps;
-  }, [formData.contributionType]);
+    ],
+    [],
+  );
 
   useEffect(() => {
     if (currentStep > stepSequence.length - 1) {
@@ -106,52 +81,27 @@ export function ReliefForm() {
     }
   }, [currentStep, stepSequence]);
 
-  // Auto-navigate when contribution type is selected
-  useEffect(() => {
-    if (formData.contributionType && currentStep === 0 && !hasAutoNavigated) {
-      setCurrentStep(1);
-      setHasAutoNavigated(true);
-    }
-  }, [formData.contributionType, currentStep, hasAutoNavigated]);
-
-  const currentStepKey = stepSequence[currentStep]?.key ?? STEPS.CONTRIBUTION;
+  const currentStepKey = stepSequence[currentStep]?.key ?? STEPS.CONTACT;
 
   const isStepComplete = (stepKey: StepKey) => {
     switch (stepKey) {
-      case STEPS.CONTRIBUTION:
-        return formData.contributionType !== "";
-      case STEPS.CONTRIBUTION_DETAILS:
-        if (formData.contributionType === "labour") {
-          if (formData.labourAvailability === "other") {
-            return formData.labourAvailabilityOther.trim().length > 0;
-          }
-          return formData.labourAvailability !== "";
-        }
-        if (formData.contributionType === "financial") {
-          const amount = Number(formData.financialAmount);
-          return !Number.isNaN(amount) && amount > 0;
-        }
-        return false;
-      case STEPS.SUPPLIES_SELECTION: {
-        const selectedItemIds = Object.keys(formData.suppliesItems).filter(
-          (key) =>
-            formData.suppliesItems[key] && formData.suppliesItems[key] > 0,
-        );
-        return (
-          selectedItemIds.length > 0 || formData.suppliesOther.trim().length > 0
-        );
-      }
-      case STEPS.SUPPLIES_QUANTITIES: {
-        const hasSelectedItems = Object.keys(formData.suppliesItems).length > 0;
-        return hasSelectedItems || formData.suppliesOther.trim().length > 0;
-      }
       case STEPS.CONTACT:
         return (
-          formData.name.trim().length > 0 &&
-          formData.phone.trim().length > 0 &&
-          formData.addressLine1.trim().length > 0 &&
-          formData.city.trim().length > 0 &&
-          formData.stateCountry.trim().length > 0
+          formData.contactName.trim().length > 0 &&
+          formData.contactPhone.trim().length > 0
+        );
+      case STEPS.SCHOOL:
+        return formData.schoolName.trim().length > 0;
+      case STEPS.LOCATION:
+        return (
+          formData.locationAddressLine1.trim().length > 0 &&
+          formData.locationCity.trim().length > 0 &&
+          formData.locationParish.trim().length > 0
+        );
+      case STEPS.SUPPLIES:
+        return (
+          formData.suppliesSelected.length > 0 ||
+          formData.suppliesOther.trim().length > 0
         );
       case STEPS.CONFIRM:
         return true;
@@ -165,15 +115,15 @@ export function ReliefForm() {
   const goToNextStep = () => {
     if (!canProceed) return;
 
-    // If we're on the contact step, submit the form via server action
-    if (currentStepKey === STEPS.CONTACT) {
+    if (currentStepKey === STEPS.SUPPLIES) {
       startTransition(async () => {
         await submitReliefForm(formData);
         setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
       });
-    } else {
-      setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
+      return;
     }
+
+    setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
   };
 
   const goToPreviousStep = () => {
@@ -190,242 +140,121 @@ export function ReliefForm() {
     }));
   };
 
-  const updateSuppliesItemQuantity = (itemId: string, quantity: number) => {
-    setFormData((prev) => {
-      const newItems = { ...prev.suppliesItems };
-      if (quantity > 0) {
-        newItems[itemId] = quantity;
-      } else {
-        delete newItems[itemId];
-        // Also remove the note when quantity is 0
-        const newNotes = { ...prev.suppliesItemNotes };
-        delete newNotes[itemId];
-        return {
-          ...prev,
-          suppliesItems: newItems,
-          suppliesItemNotes: newNotes,
-        };
-      }
-      return {
-        ...prev,
-        suppliesItems: newItems,
-      };
-    });
-  };
-
-  const updateSuppliesItemNote = (itemId: string, note: string) => {
-    setFormData((prev) => {
-      const newNotes = { ...prev.suppliesItemNotes };
-      if (note.trim()) {
-        newNotes[itemId] = note;
-      } else {
-        delete newNotes[itemId];
-      }
-      return {
-        ...prev,
-        suppliesItemNotes: newNotes,
-      };
-    });
-  };
-
   const resetForm = () => {
     setFormData(initialFormData);
     setCurrentStep(0);
-    setHasAutoNavigated(false);
   };
 
   const getStepTitle = () => {
     switch (currentStepKey) {
-      case STEPS.CONTRIBUTION:
-        return "What are you contributing?";
-      case STEPS.CONTRIBUTION_DETAILS:
-        if (formData.contributionType === "labour") return "Availability";
-        if (formData.contributionType === "financial") return "Amount";
-        return "";
-      case STEPS.SUPPLIES_SELECTION:
-        return "Select Items";
-      case STEPS.SUPPLIES_QUANTITIES:
-        return "Set Quantities";
       case STEPS.CONTACT:
-        return "Your Details";
+        return "Point of Contact";
+      case STEPS.SCHOOL:
+        return "School Information";
+      case STEPS.LOCATION:
+        return "School Location";
+      case STEPS.SUPPLIES:
+        return "What supplies are needed?";
       case STEPS.CONFIRM:
-        return "Thank you for standing with Jamaica";
+        return "Thank you for sharing your needs";
       default:
         return "";
     }
   };
 
+  const renderSuppliesStep = () => {
+    const selectedItemIds = new Set(formData.suppliesSelected);
+
+    const handleSelectionChange = (selectedIds: Set<string>) => {
+      setFormData((prev) => ({
+        ...prev,
+        suppliesSelected: Array.from(selectedIds),
+      }));
+    };
+
+    return (
+      <div className="space-y-6">
+        <SuppliesItemSelection
+          selectedItemIds={selectedItemIds}
+          onSelectionChange={handleSelectionChange}
+        />
+        <Input
+          size="lg"
+          label="Other supplies"
+          placeholder="List any additional items not shown above"
+          value={formData.suppliesOther}
+          onValueChange={(value: string) =>
+            updateFormData("suppliesOther", value)
+          }
+        />
+        <Input
+          size="lg"
+          label="Additional notes"
+          placeholder="Add context about damages, urgency, or quantities"
+          value={formData.notes}
+          onValueChange={(value: string) => updateFormData("notes", value)}
+        />
+      </div>
+    );
+  };
+
   const renderStepContent = () => {
     switch (currentStepKey) {
-      case STEPS.CONTRIBUTION:
-        return (
-          <div className="space-y-6">
-            <RadioGroup
-              value={formData.contributionType}
-              onValueChange={(value) =>
-                updateFormData(
-                  "contributionType",
-                  value as ReliefFormData["contributionType"],
-                )
-              }
-              classNames={{
-                wrapper: "grid gap-4 md:grid-cols-3",
-              }}
-            >
-              <CustomRadio value="supplies">Supplies</CustomRadio>
-              <CustomRadio value="financial">Financial</CustomRadio>
-            </RadioGroup>
-          </div>
-        );
-      case STEPS.CONTRIBUTION_DETAILS:
-        if (formData.contributionType === "labour") {
-          return (
-            <LabourContribution
-              availability={formData.labourAvailability}
-              availabilityOther={formData.labourAvailabilityOther}
-              onAvailabilityChange={(value) =>
-                updateFormData("labourAvailability", value)
-              }
-              onAvailabilityOtherChange={(value) =>
-                updateFormData("labourAvailabilityOther", value)
-              }
-            />
-          );
-        }
-        if (formData.contributionType === "financial") {
-          return (
-            <FinancialContribution
-              amount={formData.financialAmount}
-              currency={formData.financialCurrency}
-              onAmountChange={(value) =>
-                updateFormData("financialAmount", value)
-              }
-              onCurrencyChange={(value: "USD" | "JMD") =>
-                updateFormData("financialCurrency", value)
-              }
-            />
-          );
-        }
-        return null;
-      case STEPS.SUPPLIES_SELECTION: {
-        const selectedItemIds = new Set(
-          Object.keys(formData.suppliesItems).filter(
-            (key) =>
-              formData.suppliesItems[key] && formData.suppliesItems[key] > 0,
-          ),
-        );
-
-        const handleSelectionChange = (selectedIds: Set<string>) => {
-          // Initialize all selected items with quantity 1
-          const newItems = { ...formData.suppliesItems };
-
-          // Add newly selected items
-          selectedIds.forEach((id) => {
-            if (!newItems[id] || newItems[id] === 0) {
-              newItems[id] = 1;
-            }
-          });
-
-          // Remove unselected items
-          Object.keys(newItems).forEach((id) => {
-            if (!selectedIds.has(id)) {
-              delete newItems[id];
-              // Also remove notes for unselected items
-              if (formData.suppliesItemNotes[id]) {
-                const newNotes = { ...formData.suppliesItemNotes };
-                delete newNotes[id];
-                setFormData((prev) => ({
-                  ...prev,
-                  suppliesItems: newItems,
-                  suppliesItemNotes: newNotes,
-                }));
-                return;
-              }
-            }
-          });
-
-          setFormData((prev) => ({
-            ...prev,
-            suppliesItems: newItems,
-          }));
-        };
-
-        return (
-          <div className="space-y-6">
-            <SuppliesItemSelection
-              selectedItemIds={selectedItemIds}
-              onSelectionChange={handleSelectionChange}
-            />
-            <div>
-              <Input
-                size="lg"
-                label="Other"
-                placeholder="Specify other items not listed above"
-                value={formData.suppliesOther}
-                onValueChange={(value: string) =>
-                  updateFormData("suppliesOther", value)
-                }
-              />
-            </div>
-          </div>
-        );
-      }
-      case STEPS.SUPPLIES_QUANTITIES: {
-        const selectedItemIds = new Set(
-          Object.keys(formData.suppliesItems).filter(
-            (key) =>
-              formData.suppliesItems[key] && formData.suppliesItems[key] > 0,
-          ),
-        );
-
-        const handleItemRemove = (itemId: string) => {
-          const newItems = { ...formData.suppliesItems };
-          delete newItems[itemId];
-
-          const newNotes = { ...formData.suppliesItemNotes };
-          delete newNotes[itemId];
-
-          setFormData((prev) => ({
-            ...prev,
-            suppliesItems: newItems,
-            suppliesItemNotes: newNotes,
-          }));
-        };
-
-        return (
-          <SuppliesQuantityManagement
-            selectedItemIds={selectedItemIds}
-            suppliesItems={formData.suppliesItems}
-            suppliesItemNotes={formData.suppliesItemNotes}
-            onItemQuantityChange={updateSuppliesItemQuantity}
-            onItemRemove={handleItemRemove}
-            onItemNoteChange={updateSuppliesItemNote}
-          />
-        );
-      }
       case STEPS.CONTACT:
         return (
-          <ContactInfo
-            name={formData.name}
-            phone={formData.phone}
-            addressLine1={formData.addressLine1}
-            addressLine2={formData.addressLine2}
-            city={formData.city}
-            stateCountry={formData.stateCountry}
-            onNameChange={(value) => updateFormData("name", value)}
-            onPhoneChange={(value) => updateFormData("phone", value)}
-            onAddressLine1Change={(value) =>
-              updateFormData("addressLine1", value)
+          <ContactDetails
+            contactName={formData.contactName}
+            contactPhone={formData.contactPhone}
+            contactEmail={formData.contactEmail}
+            contactRole={formData.contactRole}
+            onContactNameChange={(value) =>
+              updateFormData("contactName", value)
             }
-            onAddressLine2Change={(value) =>
-              updateFormData("addressLine2", value)
+            onContactPhoneChange={(value) =>
+              updateFormData("contactPhone", value)
             }
-            onCityChange={(value) => updateFormData("city", value)}
-            onStateCountryChange={(value) =>
-              updateFormData("stateCountry", value)
+            onContactEmailChange={(value) =>
+              updateFormData("contactEmail", value)
+            }
+            onContactRoleChange={(value) =>
+              updateFormData("contactRole", value)
             }
           />
         );
+      case STEPS.SCHOOL:
+        return (
+          <SchoolInfo
+            schoolName={formData.schoolName}
+            schoolType={formData.schoolType}
+            onSchoolNameChange={(value) =>
+              updateFormData("schoolName", value)
+            }
+            onSchoolTypeChange={(value) =>
+              updateFormData("schoolType", value)
+            }
+          />
+        );
+      case STEPS.LOCATION:
+        return (
+          <LocationInfo
+            addressLine1={formData.locationAddressLine1}
+            addressLine2={formData.locationAddressLine2}
+            city={formData.locationCity}
+            parish={formData.locationParish}
+            onAddressLine1Change={(value) =>
+              updateFormData("locationAddressLine1", value)
+            }
+            onAddressLine2Change={(value) =>
+              updateFormData("locationAddressLine2", value)
+            }
+            onCityChange={(value) => updateFormData("locationCity", value)}
+            onParishChange={(value) =>
+              updateFormData("locationParish", value)
+            }
+          />
+        );
+      case STEPS.SUPPLIES:
+        return renderSuppliesStep();
       case STEPS.CONFIRM:
         return (
           <Confirmation
@@ -477,3 +306,4 @@ export function ReliefForm() {
     </div>
   );
 }
+

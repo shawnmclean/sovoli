@@ -2,20 +2,20 @@ import type { Metadata } from "next";
 import { ReliefForm } from "./components/ReliefForm";
 
 export const metadata: Metadata = {
-  title: "Jamaica Hurricane Relief",
+  title: "Jamaica School Needs Intake",
   description:
-    "Pledge a care package or financial support to help communities in Jamaica recover after the hurricane.",
+    "Share what your school or organisation needs after the hurricane so we can coordinate marketplace support.",
   openGraph: {
-    title: "Jamaica Hurricane Relief Support",
+    title: "Jamaica School Needs Intake",
     description:
-      "Pledge a care package or financial support to help communities in Jamaica recover after the hurricane.",
+      "Document supplies and recovery needs from schools to coordinate community support.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jamaica Hurricane Relief Support",
+    title: "Jamaica School Needs Intake",
     description:
-      "Pledge a care package or financial support to help communities in Jamaica recover after the hurricane.",
+      "Share your campus needs so partners can mobilise supplies and assistance.",
   },
 };
 

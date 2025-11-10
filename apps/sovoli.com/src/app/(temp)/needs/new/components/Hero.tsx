@@ -37,12 +37,12 @@ export function Hero() {
     <div className="w-full max-w-3xl space-y-4">
       <div className="text-center space-y-3 sm:space-y-4 px-2">
         <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-          Rebuilding Jamaica
+          School Needs Intake
         </h1>
         <p className="text-sm sm:text-base text-default-500">
-          This is a small private movement to help rebuild Jamaica after the
-          hurricane. This form is used to help organize the data. You may have
-          been invited or affiliated with one of the following persons to help:
+          We are collecting need assessments from schools and organisations to
+          coordinate supplies and recovery support after the hurricane. If you
+          received this link, please share what your campus requires.
         </p>
       </div>
 
@@ -97,10 +97,10 @@ export function Hero() {
             </div>
           ) : (
             <p className="text-sm text-default-700">
-              This relief effort is organized by community members and
-              volunteers committed to supporting Jamaica's recovery. Our mission
-              is to coordinate resources and connect those in need with those
-              who can help.
+              This intake is organised by community members and volunteers
+              committed to supporting Jamaica&apos;s recovery. Our mission is to
+              understand school-level needs quickly so we can mobilise the right
+              resources.
             </p>
           )}
         </AccordionItem>
