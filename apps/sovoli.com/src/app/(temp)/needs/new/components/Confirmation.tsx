@@ -4,7 +4,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import type { ReliefFormData } from "./ReliefForm";
-import { SUPPLIES_ITEMS } from "../data/suppliesItems";
+import { findItemById } from "~/modules/data/items";
 import {
   CONTACT_ROLE_OPTIONS,
   ORG_TYPE_OPTIONS,
@@ -24,7 +24,7 @@ export function Confirmation({
 }: ConfirmationProps) {
   const selectedSupplies = formData.suppliesSelected
     .map((itemId) => {
-      const item = SUPPLIES_ITEMS.find((entry) => entry.id === itemId);
+      const item = findItemById(itemId);
       if (!item) {
         return null;
       }

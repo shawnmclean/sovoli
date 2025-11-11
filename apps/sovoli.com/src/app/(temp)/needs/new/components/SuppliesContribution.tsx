@@ -11,11 +11,8 @@ import {
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import { Chip } from "@sovoli/ui/components/chip";
 import { SearchIcon } from "lucide-react";
-import type { SuppliesItem } from "../data/suppliesItems";
-import { SUPPLIES_ITEMS } from "../data/suppliesItems";
-
-export type { SuppliesItem };
-export { SUPPLIES_ITEMS };
+import { ALL_ITEMS } from "~/modules/data/items";
+import type { Item } from "~/modules/core/items/types";
 
 interface SuppliesContributionProps {
   suppliesItems: Record<string, number>;
@@ -26,6 +23,39 @@ interface SuppliesContributionProps {
   onItemNoteChange?: (itemId: string, note: string) => void;
 }
 
+type ItemCategory = Item["category"];
+
+const CATEGORY_LABELS = new Map<ItemCategory, string>([
+  ["book", "Books"],
+  ["uniform", "Uniforms"],
+  ["material", "Materials"],
+  ["equipment", "Equipment"],
+  ["tool", "Tools"],
+  ["furniture", "Furniture"],
+  ["electronics", "Electronics"],
+  ["hygiene", "Hygiene"],
+  ["food", "Food"],
+  ["service", "Services"],
+  ["other", "Other Items"],
+]);
+
+const getCategoryLabel = (category: ItemCategory) => {
+  const label = CATEGORY_LABELS.get(category);
+  if (label) {
+    return label;
+  }
+  return category
+    .split("-")
+    .map((segment) => {
+      if (segment.length === 0) {
+        return segment;
+      }
+      const firstChar = segment.charAt(0).toUpperCase();
+      return `${firstChar}${segment.slice(1)}`;
+    })
+    .join(" ");
+};
+
 export function SuppliesContribution({
   suppliesItems,
   suppliesOther,
@@ -35,57 +65,56 @@ export function SuppliesContribution({
   onItemNoteChange: _onItemNoteChange,
 }: SuppliesContributionProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGroups, setSelectedGroups] = useState<Set<string>>(
-    new Set(["food", "building"]),
+  const allCategories = useMemo(() => {
+    return Array.from(
+      new Set<ItemCategory>(ALL_ITEMS.map((item) => item.category)),
+    );
+  }, []);
+  const [selectedGroups, setSelectedGroups] = useState<Set<ItemCategory>>(
+    () => new Set(allCategories),
   );
 
-  // Sort all items grouped by category
   const groupedItems = useMemo(() => {
-    const groups: Record<string, { items: SuppliesItem[]; label: string }> = {
-      building: {
-        items: [],
-        label: "Building Supplies",
-      },
-      food: {
-        items: [],
-        label: "Food Supplies",
-      },
-    };
-
-    SUPPLIES_ITEMS.forEach((item) => {
-      const group = groups[item.category];
-      if (group) {
-        group.items.push(item);
+    const map = new Map<ItemCategory, { items: Item[]; label: string }>();
+    ALL_ITEMS.forEach((item) => {
+      const existing = map.get(item.category);
+      if (existing) {
+        existing.items.push(item);
+        return;
       }
+      map.set(item.category, {
+        items: [item],
+        label: getCategoryLabel(item.category),
+      });
     });
-
-    return groups;
+    return map;
   }, []);
 
   // Filter items based on search query and selected groups
   const filteredGroups = useMemo(() => {
-    const filtered: typeof groupedItems = {};
-
-    Object.entries(groupedItems).forEach(([category, group]) => {
-      // Filter by selected groups
+    const entries: [ItemCategory, { items: Item[]; label: string }][] = [];
+    groupedItems.forEach((group, category) => {
       if (!selectedGroups.has(category)) {
         return;
       }
 
-      // Filter by search query
       const filteredItems = group.items.filter((item) =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase()),
       );
 
-      if (filteredItems.length > 0) {
-        filtered[category] = {
+      if (filteredItems.length === 0) {
+        return;
+      }
+      entries.push([
+        category,
+        {
           ...group,
           items: filteredItems,
-        };
-      }
+        },
+      ]);
     });
 
-    return filtered;
+    return entries;
   }, [groupedItems, selectedGroups, searchQuery]);
 
   const selectedKeys = useMemo(() => {
@@ -98,7 +127,7 @@ export function SuppliesContribution({
 
   // Create a flat array of all items for easier lookup
   const allItemsFlat = useMemo(() => {
-    return SUPPLIES_ITEMS;
+    return ALL_ITEMS;
   }, []);
 
   const topContent = useMemo(() => {
@@ -110,9 +139,7 @@ export function SuppliesContribution({
         if (!item) return null;
         return { id, item };
       })
-      .filter(
-        (item): item is { id: string; item: SuppliesItem } => item !== null,
-      );
+      .filter((item): item is { id: string; item: Item } => item !== null);
 
     if (!selectedItems.length) {
       return null;
@@ -136,7 +163,7 @@ export function SuppliesContribution({
   const handleSelectionChange = (keys: Set<string> | "all") => {
     if (keys === "all") {
       // Select all items
-      SUPPLIES_ITEMS.forEach((item) => {
+      ALL_ITEMS.forEach((item) => {
         if (
           suppliesItems[item.id] === undefined ||
           suppliesItems[item.id] === 0
@@ -168,7 +195,7 @@ export function SuppliesContribution({
     });
   };
 
-  const toggleGroup = (category: string) => {
+  const toggleGroup = (category: ItemCategory) => {
     const newSelected = new Set(selectedGroups);
     if (newSelected.has(category)) {
       newSelected.delete(category);
@@ -196,22 +223,19 @@ export function SuppliesContribution({
 
         {/* Group Filters */}
         <div className="flex flex-wrap gap-4">
-          <Checkbox
-            isSelected={selectedGroups.has("building")}
-            onValueChange={() => toggleGroup("building")}
-          >
-            Building Supplies
-          </Checkbox>
-          <Checkbox
-            isSelected={selectedGroups.has("food")}
-            onValueChange={() => toggleGroup("food")}
-          >
-            Food Supplies
-          </Checkbox>
+          {allCategories.map((category) => (
+            <Checkbox
+              key={category}
+              isSelected={selectedGroups.has(category)}
+              onValueChange={() => toggleGroup(category)}
+            >
+              {getCategoryLabel(category)}
+            </Checkbox>
+          ))}
         </div>
 
         {/* Listbox with grouped items */}
-        <div className="w-full border border-default-200 px-1 py-2 rounded-lg">
+        <div className="w-full rounded-lg border border-default-200 px-1 py-2">
           <Listbox
             aria-label="Supplies selection"
             selectionMode="multiple"
@@ -226,7 +250,7 @@ export function SuppliesContribution({
               list: "max-h-[300px] overflow-scroll gap-2",
             }}
           >
-            {Object.entries(filteredGroups).map(([category, group]) => (
+            {filteredGroups.map(([category, group]) => (
               <ListboxSection
                 key={category}
                 title={group.label}

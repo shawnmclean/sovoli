@@ -2,7 +2,7 @@
 
 import { env } from "~/env";
 import type { ReliefFormData } from "./components/ReliefForm";
-import { SUPPLIES_ITEMS } from "./data/suppliesItems";
+import { findItemById } from "~/modules/data/items";
 import {
   CONTACT_ROLE_OPTIONS,
   ORG_TYPE_OPTIONS,
@@ -18,7 +18,7 @@ export async function submitReliefForm(formData: ReliefFormData) {
   try {
     const suppliesItemsData = formData.suppliesSelected
       .map((itemId) => {
-        const item = SUPPLIES_ITEMS.find((entry) => entry.id === itemId);
+        const item = findItemById(itemId);
         if (!item) {
           return null;
         }
@@ -30,7 +30,7 @@ export async function submitReliefForm(formData: ReliefFormData) {
 
     const suppliesSelectedNames = formData.suppliesSelected
       .map((itemId) => {
-        const item = SUPPLIES_ITEMS.find((entry) => entry.id === itemId);
+        const item = findItemById(itemId);
         return item?.name ?? null;
       })
       .filter((value): value is string => value !== null);

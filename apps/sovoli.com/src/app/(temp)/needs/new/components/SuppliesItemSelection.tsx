@@ -6,8 +6,8 @@ import { Input } from "@sovoli/ui/components/input";
 import { Chip } from "@sovoli/ui/components/chip";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import { SearchIcon } from "lucide-react";
-import { SUPPLIES_ITEMS } from "../data/suppliesItems";
-import type { SuppliesItem } from "../data/suppliesItems";
+import { ALL_ITEMS } from "~/modules/data/items";
+import type { Item } from "~/modules/core/items/types";
 
 interface SuppliesItemSelectionProps {
   selectedItemIds: Set<string>;
@@ -16,6 +16,39 @@ interface SuppliesItemSelectionProps {
   onQuantityChange: (itemId: string, quantity: number) => void;
 }
 
+type ItemCategory = Item["category"];
+
+const CATEGORY_LABELS = new Map<ItemCategory, string>([
+  ["book", "Books"],
+  ["uniform", "Uniforms"],
+  ["material", "Materials"],
+  ["equipment", "Equipment"],
+  ["tool", "Tools"],
+  ["furniture", "Furniture"],
+  ["electronics", "Electronics"],
+  ["hygiene", "Hygiene"],
+  ["food", "Food"],
+  ["service", "Services"],
+  ["other", "Other Items"],
+]);
+
+const getCategoryLabel = (category: ItemCategory) => {
+  const label = CATEGORY_LABELS.get(category);
+  if (label) {
+    return label;
+  }
+  return category
+    .split("-")
+    .map((segment) => {
+      if (segment.length === 0) {
+        return segment;
+      }
+      const firstChar = segment.charAt(0).toUpperCase();
+      return `${firstChar}${segment.slice(1)}`;
+    })
+    .join(" ");
+};
+
 export function SuppliesItemSelection({
   selectedItemIds,
   quantities,
@@ -23,75 +56,64 @@ export function SuppliesItemSelection({
   onQuantityChange,
 }: SuppliesItemSelectionProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGroups, setSelectedGroups] = useState<Set<string>>(
-    new Set(["building", "food", "other"]),
+  const allCategories = useMemo(() => {
+    return Array.from(
+      new Set<ItemCategory>(ALL_ITEMS.map((item) => item.category)),
+    );
+  }, []);
+  const [selectedGroups, setSelectedGroups] = useState<Set<ItemCategory>>(
+    () => new Set(allCategories),
   );
 
-  // Sort all items grouped by category
   const groupedItems = useMemo(() => {
-    const groups: Record<string, { items: SuppliesItem[]; label: string }> = {
-      building: {
-        items: [],
-        label: "Building Supplies",
-      },
-      food: {
-        items: [],
-        label: "Food Supplies",
-      },
-      other: {
-        items: [],
-        label: "Other Supplies",
-      },
-    };
-
-    SUPPLIES_ITEMS.forEach((item) => {
-      const group = groups[item.category];
-      if (group) {
-        group.items.push(item);
+    const map = new Map<ItemCategory, { items: Item[]; label: string }>();
+    ALL_ITEMS.forEach((item) => {
+      const existing = map.get(item.category);
+      if (existing) {
+        existing.items.push(item);
+        return;
       }
+      map.set(item.category, {
+        items: [item],
+        label: getCategoryLabel(item.category),
+      });
     });
-
-    return groups;
+    return map;
   }, []);
 
-  // Filter items based on search query and selected groups
   const filteredGroups = useMemo(() => {
-    const filtered: typeof groupedItems = {};
-
-    Object.entries(groupedItems).forEach(([category, group]) => {
-      // Filter by selected groups
+    const entries: [ItemCategory, { items: Item[]; label: string }][] = [];
+    groupedItems.forEach((group, category) => {
       if (!selectedGroups.has(category)) {
         return;
       }
-
-      // Filter by search query
       const filteredItems = group.items.filter((item) =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase()),
       );
-
-      if (filteredItems.length > 0) {
-        filtered[category] = {
+      if (filteredItems.length === 0) {
+        return;
+      }
+      entries.push([
+        category,
+        {
           ...group,
           items: filteredItems,
-        };
-      }
+        },
+      ]);
     });
-
-    return filtered;
+    return entries;
   }, [groupedItems, selectedGroups, searchQuery]);
 
-  const toggleGroup = (category: string) => {
-    const newSelected = new Set(selectedGroups);
-    if (newSelected.has(category)) {
-      newSelected.delete(category);
+  const toggleGroup = (category: ItemCategory) => {
+    const next = new Set(selectedGroups);
+    if (next.has(category)) {
+      next.delete(category);
     } else {
-      newSelected.add(category);
+      next.add(category);
     }
-    setSelectedGroups(newSelected);
+    setSelectedGroups(next);
   };
 
-  // Create a stable string key from the Set for dependency tracking
-  // Note: Using size and string representation since Set reference equality doesn't work for React deps
   const selectedItemsKey = useMemo(
     () => Array.from(selectedItemIds).sort().join(","),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,7 +135,7 @@ export function SuppliesItemSelection({
       >
         {arrayValues
           .map((itemId) => {
-            const item = SUPPLIES_ITEMS.find((i) => i.id === itemId);
+            const item = ALL_ITEMS.find((i) => i.id === itemId);
             if (!item) return null;
             const qty = quantities[itemId] ?? 0;
             const suffix = qty > 0 ? ` x${qty}` : "";
@@ -159,13 +181,10 @@ export function SuppliesItemSelection({
     onSelectionChange(nextSelected);
   };
 
-  const hasResults = Object.values(filteredGroups).some(
-    (group) => group.items.length > 0,
-  );
+  const hasResults = filteredGroups.length > 0;
 
   return (
     <div className="space-y-6">
-      {/* Search (sticky) */}
       <div className="sticky top-0 z-20 border-b border-default-200">
         <div className="bg-background/95 backdrop-blur-md py-4">
           <div className="space-y-3">
@@ -187,32 +206,21 @@ export function SuppliesItemSelection({
           quantities.
         </p>
 
-        {/* Group Filters */}
         <div className="flex flex-wrap gap-4">
-          <Checkbox
-            isSelected={selectedGroups.has("building")}
-            onValueChange={() => toggleGroup("building")}
-          >
-            Building Supplies
-          </Checkbox>
-          <Checkbox
-            isSelected={selectedGroups.has("food")}
-            onValueChange={() => toggleGroup("food")}
-          >
-            Food Supplies
-          </Checkbox>
-          <Checkbox
-            isSelected={selectedGroups.has("other")}
-            onValueChange={() => toggleGroup("other")}
-          >
-            Other Supplies
-          </Checkbox>
+          {allCategories.map((category) => (
+            <Checkbox
+              key={category}
+              isSelected={selectedGroups.has(category)}
+              onValueChange={() => toggleGroup(category)}
+            >
+              {getCategoryLabel(category)}
+            </Checkbox>
+          ))}
         </div>
 
-        {/* Supplies list */}
         <div className="w-full space-y-8">
           {hasResults ? (
-            Object.entries(filteredGroups).map(([category, group]) => (
+            filteredGroups.map(([category, group]) => (
               <div key={category} className="space-y-3">
                 <h3 className="text-sm font-semibold uppercase tracking-wide text-default-500">
                   {group.label}
@@ -226,6 +234,8 @@ export function SuppliesItemSelection({
                       ? "border-primary-200 bg-primary-50/60"
                       : "border-default-200 bg-background";
                     const inputId = `quantity-${item.id}`;
+                    const secondaryLine =
+                      item.brand ?? item.attributes?.source ?? item.unitLabel;
                     return (
                       <div
                         key={item.id}
@@ -243,9 +253,9 @@ export function SuppliesItemSelection({
                               <span className="font-medium text-default-800">
                                 {item.name}
                               </span>
-                              {item.source && (
+                              {secondaryLine && (
                                 <span className="text-xs text-default-400">
-                                  ({item.source})
+                                  {secondaryLine}
                                 </span>
                               )}
                             </div>
