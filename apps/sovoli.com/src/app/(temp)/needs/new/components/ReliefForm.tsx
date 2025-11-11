@@ -15,7 +15,11 @@ import type { PhoneActionStates } from "../../../../../modules/auth/actions/stat
 import { PhoneNumberForm } from "../../../../../modules/auth/components/PhoneNumberStep/PhoneNumberForm";
 import { NamesForm } from "../../../../../modules/auth/components/NamesForm";
 import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./options";
-import type { ContactRoleOptionKey, OrgTypeOptionKey } from "./options";
+import type {
+  ContactRoleOptionKey,
+  OrgTypeOptionKey,
+  ParishOptionKey,
+} from "./options";
 
 export interface ReliefFormData {
   contactFirstName: string;
@@ -30,7 +34,7 @@ export interface ReliefFormData {
   locationAddressLine1: string;
   locationAddressLine2: string;
   locationCity: string;
-  locationParish: string;
+  locationParish: ParishOptionKey | "";
   suppliesSelected: string[];
   suppliesOther: string;
   notes: string;
@@ -117,7 +121,7 @@ export function ReliefForm() {
         return (
           formData.locationAddressLine1.trim().length > 0 &&
           formData.locationCity.trim().length > 0 &&
-          formData.locationParish.trim().length > 0
+          formData.locationParish !== ""
         );
       case STEPS.SUPPLIES:
         return (
@@ -169,9 +173,9 @@ export function ReliefForm() {
   const getStepTitle = () => {
     switch (currentStepKey) {
       case STEPS.PHONE:
-        return "How do we reach you?";
+        return "";
       case STEPS.NAMES:
-        return "Who should we list as contact?";
+        return "";
       case STEPS.SCHOOL:
         return "School Information";
       case STEPS.LOCATION:

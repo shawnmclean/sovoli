@@ -5,7 +5,11 @@ import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import type { ReliefFormData } from "./ReliefForm";
 import { SUPPLIES_ITEMS } from "../data/suppliesItems";
-import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./options";
+import {
+  CONTACT_ROLE_OPTIONS,
+  ORG_TYPE_OPTIONS,
+  PARISH_OPTIONS,
+} from "./options";
 
 interface ConfirmationProps {
   formData: ReliefFormData;
@@ -32,6 +36,9 @@ export function Confirmation({
   const contactRoleLabel =
     CONTACT_ROLE_OPTIONS.find((option) => option.key === formData.contactRole)
       ?.label ?? formData.contactRole;
+  const parishLabel =
+    PARISH_OPTIONS.find((option) => option.key === formData.locationParish)
+      ?.label ?? formData.locationParish;
 
   return (
     <div className="space-y-8 text-center">
@@ -106,7 +113,7 @@ export function Confirmation({
                 </>
               )}
               <br />
-              {formData.locationCity}, {formData.locationParish}
+              {formData.locationCity}, {parishLabel}
             </dd>
           </div>
         </CardBody>

@@ -3,7 +3,11 @@
 import { env } from "~/env";
 import type { ReliefFormData } from "./components/ReliefForm";
 import { SUPPLIES_ITEMS } from "./data/suppliesItems";
-import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./components/options";
+import {
+  CONTACT_ROLE_OPTIONS,
+  ORG_TYPE_OPTIONS,
+  PARISH_OPTIONS,
+} from "./components/options";
 
 const AIRTABLE_BASE_ID = "appmYWD3Zt106eYfY";
 const AIRTABLE_TABLE_ID = "tblvRaHezCwSrQC06";
@@ -29,6 +33,9 @@ export async function submitReliefForm(formData: ReliefFormData) {
     const contactRoleLabel =
       CONTACT_ROLE_OPTIONS.find((option) => option.key === formData.contactRole)
         ?.label ?? formData.contactRole;
+    const parishLabel =
+      PARISH_OPTIONS.find((option) => option.key === formData.locationParish)
+        ?.label ?? formData.locationParish;
 
     const highPriorityItems = Array.from(
       new Set(
@@ -80,7 +87,7 @@ export async function submitReliefForm(formData: ReliefFormData) {
         ? formData.locationAddressLine2
         : undefined,
       "Location City": formData.locationCity,
-      "Location Parish": formData.locationParish,
+      "Location Parish": parishLabel,
       "Supplies Selected":
         suppliesItemsData.length > 0 ? suppliesItemsData : undefined,
       "High Priority Items":

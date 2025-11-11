@@ -1,14 +1,17 @@
 import { Input } from "@sovoli/ui/components/input";
+import { Select, SelectItem } from "@sovoli/ui/components/select";
+import { PARISH_OPTIONS } from "./options";
+import type { ParishOptionKey } from "./options";
 
 interface LocationInfoProps {
   addressLine1: string;
   addressLine2: string;
   city: string;
-  parish: string;
+  parish: ParishOptionKey | "";
   onAddressLine1Change: (value: string) => void;
   onAddressLine2Change: (value: string) => void;
   onCityChange: (value: string) => void;
-  onParishChange: (value: string) => void;
+  onParishChange: (value: ParishOptionKey | "") => void;
 }
 
 export function LocationInfo({
@@ -45,15 +48,22 @@ export function LocationInfo({
           value={city}
           onValueChange={onCityChange}
         />
-        <Input
-          size="lg"
+        <Select
           label="Parish"
-          placeholder="Parish"
-          value={parish}
-          onValueChange={onParishChange}
-        />
+          selectedKeys={parish ? [parish] : []}
+          onSelectionChange={(keys) =>
+            onParishChange(
+              (Array.from(keys)[0] as ParishOptionKey | undefined) ?? "",
+            )
+          }
+          placeholder="Select parish"
+          size="lg"
+        >
+          {PARISH_OPTIONS.map((option) => (
+            <SelectItem key={option.key}>{option.label}</SelectItem>
+          ))}
+        </Select>
       </div>
     </div>
   );
 }
-
