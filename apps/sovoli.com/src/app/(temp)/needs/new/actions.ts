@@ -35,10 +35,6 @@ export async function submitReliefForm(formData: ReliefFormData) {
       })
       .filter((value): value is string => value !== null);
 
-    const contactName = [formData.contactFirstName, formData.contactLastName]
-      .filter((value) => value && value.trim().length > 0)
-      .join(" ");
-
     const orgTypeLabel =
       ORG_TYPE_OPTIONS.find((option) => option.key === formData.schoolType)
         ?.label ?? formData.schoolType;
@@ -57,13 +53,11 @@ export async function submitReliefForm(formData: ReliefFormData) {
             .join(" ");
 
     const fields: {
-      "Submission ID": string;
       "Contact First Name": string;
       "Contact Last Name": string;
-      "Contact Name"?: string;
       "Contact Phone"?: string;
       "Contact Role"?: string;
-      "School Name": string;
+      "Organisation Name": string;
       "Organisation Type"?: string;
       "Location Address 1": string;
       "Location Address 2"?: string;
@@ -74,13 +68,11 @@ export async function submitReliefForm(formData: ReliefFormData) {
       "Supplies Other"?: string;
       Notes?: string;
     } = {
-      "Submission ID": crypto.randomUUID(),
       "Contact First Name": formData.contactFirstName,
       "Contact Last Name": formData.contactLastName,
-      "Contact Name": contactName || undefined,
       "Contact Phone": combinedPhone || undefined,
       "Contact Role": contactRoleLabel || undefined,
-      "School Name": formData.schoolName,
+      "Organisation Name": formData.schoolName,
       "Organisation Type": orgTypeLabel || undefined,
       "Location Address 1": formData.locationAddressLine1,
       "Location Address 2": formData.locationAddressLine2.trim().length
