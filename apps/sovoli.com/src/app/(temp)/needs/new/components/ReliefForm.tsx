@@ -4,21 +4,29 @@ import { useEffect, useMemo, useState, useTransition } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Confirmation } from "./Confirmation";
-import { ContactDetails } from "./ContactDetails";
 import { Hero } from "./Hero";
 import { LocationInfo } from "./LocationInfo";
 import { SchoolInfo } from "./SchoolInfo";
 import { SuppliesItemSelection } from "./SuppliesItemSelection";
 import { submitReliefForm } from "../actions";
 import { Input } from "@sovoli/ui/components/input";
+import { Select, SelectItem } from "@sovoli/ui/components/select";
+import type { PhoneActionStates } from "../../../../../modules/auth/actions/states";
+import { PhoneNumberForm } from "../../../../../modules/auth/components/PhoneNumberStep/PhoneNumberForm";
+import { NamesForm } from "../../../../../modules/auth/components/NamesForm";
+import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./options";
+import type { ContactRoleOptionKey, OrgTypeOptionKey } from "./options";
 
 export interface ReliefFormData {
-  contactName: string;
+  contactFirstName: string;
+  contactLastName: string;
   contactPhone: string;
-  contactEmail: string;
-  contactRole: string;
+  contactPhoneRaw: string;
+  contactDialCode: string;
+  contactCountryIso: string;
+  contactRole: ContactRoleOptionKey | "";
   schoolName: string;
-  schoolType: string;
+  schoolType: OrgTypeOptionKey | "";
   locationAddressLine1: string;
   locationAddressLine2: string;
   locationCity: string;
@@ -28,10 +36,15 @@ export interface ReliefFormData {
   notes: string;
 }
 
+type SupportedCountryIso = "US" | "GB" | "GY" | "JM";
+
 const initialFormData: ReliefFormData = {
-  contactName: "",
+  contactFirstName: "",
+  contactLastName: "",
   contactPhone: "",
-  contactEmail: "",
+  contactPhoneRaw: "",
+  contactDialCode: "",
+  contactCountryIso: "",
   contactRole: "",
   schoolName: "",
   schoolType: "",
@@ -45,7 +58,8 @@ const initialFormData: ReliefFormData = {
 };
 
 const STEPS = {
-  CONTACT: "contact",
+  PHONE: "phone",
+  NAMES: "names",
   SCHOOL: "school",
   LOCATION: "location",
   SUPPLIES: "supplies",
@@ -66,7 +80,8 @@ export function ReliefForm() {
 
   const stepSequence: StepDefinition[] = useMemo(
     () => [
-      { key: STEPS.CONTACT, label: "Contact" },
+      { key: STEPS.PHONE, label: "Phone" },
+      { key: STEPS.NAMES, label: "Names" },
       { key: STEPS.SCHOOL, label: "School" },
       { key: STEPS.LOCATION, label: "Location" },
       { key: STEPS.SUPPLIES, label: "Supplies" },
@@ -81,17 +96,23 @@ export function ReliefForm() {
     }
   }, [currentStep, stepSequence]);
 
-  const currentStepKey = stepSequence[currentStep]?.key ?? STEPS.CONTACT;
+  const currentStepKey = stepSequence[currentStep]?.key ?? STEPS.PHONE;
 
   const isStepComplete = (stepKey: StepKey) => {
     switch (stepKey) {
-      case STEPS.CONTACT:
+      case STEPS.PHONE:
+        return formData.contactPhone.trim().length > 0;
+      case STEPS.NAMES:
         return (
-          formData.contactName.trim().length > 0 &&
-          formData.contactPhone.trim().length > 0
+          formData.contactFirstName.trim().length > 0 &&
+          formData.contactLastName.trim().length > 0
         );
       case STEPS.SCHOOL:
-        return formData.schoolName.trim().length > 0;
+        return (
+          formData.schoolName.trim().length > 0 &&
+          formData.schoolType.trim().length > 0 &&
+          formData.contactRole.trim().length > 0
+        );
       case STEPS.LOCATION:
         return (
           formData.locationAddressLine1.trim().length > 0 &&
@@ -147,8 +168,10 @@ export function ReliefForm() {
 
   const getStepTitle = () => {
     switch (currentStepKey) {
-      case STEPS.CONTACT:
-        return "Point of Contact";
+      case STEPS.PHONE:
+        return "How do we reach you?";
+      case STEPS.NAMES:
+        return "Who should we list as contact?";
       case STEPS.SCHOOL:
         return "School Information";
       case STEPS.LOCATION:
@@ -198,41 +221,131 @@ export function ReliefForm() {
     );
   };
 
+  const normalizeCountryIso = (
+    iso: string,
+  ): SupportedCountryIso | undefined => {
+    if (iso === "US" || iso === "GB" || iso === "GY" || iso === "JM") {
+      return iso;
+    }
+    return undefined;
+  };
+
+  const phoneDefaultCountry: SupportedCountryIso =
+    normalizeCountryIso(formData.contactCountryIso) ?? "JM";
+
+  const handlePhoneSubmission = (
+    _prevState: PhoneActionStates,
+    data: FormData,
+  ): Promise<PhoneActionStates> => {
+    const getValue = (key: string) => {
+      const value = data.get(key);
+      return typeof value === "string" ? value : "";
+    };
+
+    const phone = getValue("phone");
+    const dialCode = getValue("countryCode");
+    const rawPhone = getValue("rawPhone");
+    const countryIso = getValue("countryIso");
+    const normalizedIso = normalizeCountryIso(countryIso);
+
+    setFormData((prev) => ({
+      ...prev,
+      contactPhone: phone,
+      contactDialCode: dialCode,
+      contactPhoneRaw: rawPhone,
+      contactCountryIso: normalizedIso ?? "",
+    }));
+    setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
+    return Promise.resolve({ status: "success", message: "" });
+  };
+
+  const handleNamesSuccess = (firstName: string, lastName: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      contactFirstName: firstName,
+      contactLastName: lastName,
+    }));
+    setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
+  };
+
   const renderStepContent = () => {
     switch (currentStepKey) {
-      case STEPS.CONTACT:
+      case STEPS.PHONE:
         return (
-          <ContactDetails
-            contactName={formData.contactName}
-            contactPhone={formData.contactPhone}
-            contactEmail={formData.contactEmail}
-            contactRole={formData.contactRole}
-            onContactNameChange={(value) =>
-              updateFormData("contactName", value)
-            }
-            onContactPhoneChange={(value) =>
-              updateFormData("contactPhone", value)
-            }
-            onContactEmailChange={(value) =>
-              updateFormData("contactEmail", value)
-            }
-            onContactRoleChange={(value) =>
-              updateFormData("contactRole", value)
-            }
+          <PhoneNumberForm
+            defaultPhone={formData.contactPhoneRaw}
+            defaultCountryCode={phoneDefaultCountry}
+            sendAction={handlePhoneSubmission}
+          />
+        );
+      case STEPS.NAMES:
+        return (
+          <NamesForm
+            defaultFirstName={formData.contactFirstName}
+            defaultLastName={formData.contactLastName}
+            resetOnSuccess={false}
+            onSuccess={handleNamesSuccess}
           />
         );
       case STEPS.SCHOOL:
         return (
-          <SchoolInfo
-            schoolName={formData.schoolName}
-            schoolType={formData.schoolType}
-            onSchoolNameChange={(value) =>
-              updateFormData("schoolName", value)
-            }
-            onSchoolTypeChange={(value) =>
-              updateFormData("schoolType", value)
-            }
-          />
+          <div className="space-y-6">
+            <SchoolInfo
+              schoolName={formData.schoolName}
+              onSchoolNameChange={(value) =>
+                updateFormData("schoolName", value)
+              }
+            />
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-default-600">
+                  Organisation type
+                </label>
+                <Select
+                  selectedKeys={
+                    formData.schoolType ? [formData.schoolType] : []
+                  }
+                  onSelectionChange={(keys) =>
+                    updateFormData(
+                      "schoolType",
+                      (Array.from(keys)[0] as OrgTypeOptionKey | undefined) ??
+                        "",
+                    )
+                  }
+                  placeholder="Select organisation type"
+                  size="lg"
+                >
+                  {ORG_TYPE_OPTIONS.map((option) => (
+                    <SelectItem key={option.key}>{option.label}</SelectItem>
+                  ))}
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-default-600">
+                  Your role
+                </label>
+                <Select
+                  selectedKeys={
+                    formData.contactRole ? [formData.contactRole] : []
+                  }
+                  onSelectionChange={(keys) =>
+                    updateFormData(
+                      "contactRole",
+                      (Array.from(keys)[0] as
+                        | ContactRoleOptionKey
+                        | undefined) ?? "",
+                    )
+                  }
+                  placeholder="Select your role"
+                  size="lg"
+                >
+                  {CONTACT_ROLE_OPTIONS.map((option) => (
+                    <SelectItem key={option.key}>{option.label}</SelectItem>
+                  ))}
+                </Select>
+              </div>
+            </div>
+          </div>
         );
       case STEPS.LOCATION:
         return (
@@ -248,9 +361,7 @@ export function ReliefForm() {
               updateFormData("locationAddressLine2", value)
             }
             onCityChange={(value) => updateFormData("locationCity", value)}
-            onParishChange={(value) =>
-              updateFormData("locationParish", value)
-            }
+            onParishChange={(value) => updateFormData("locationParish", value)}
           />
         );
       case STEPS.SUPPLIES:
@@ -268,6 +379,10 @@ export function ReliefForm() {
     }
   };
 
+  const showFooter = currentStepKey !== STEPS.CONFIRM;
+  const showNextButton =
+    currentStepKey !== STEPS.PHONE && currentStepKey !== STEPS.NAMES;
+
   return (
     <div className="w-full flex flex-col items-center gap-12 pb-24">
       {currentStep === 0 && <Hero />}
@@ -276,7 +391,7 @@ export function ReliefForm() {
         <Divider />
         <div className="space-y-8">{renderStepContent()}</div>
       </div>
-      {currentStepKey !== STEPS.CONFIRM && (
+      {showFooter && (
         <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-default-200 p-4 z-10">
           <div className="max-w-7xl mx-auto flex flex-row gap-3 items-center justify-between">
             <span className="text-sm font-medium text-default-600">
@@ -291,14 +406,16 @@ export function ReliefForm() {
               >
                 Back
               </Button>
-              <Button
-                color="primary"
-                onPress={goToNextStep}
-                isDisabled={!canProceed || isPending}
-                isLoading={isPending}
-              >
-                Next
-              </Button>
+              {showNextButton && (
+                <Button
+                  color="primary"
+                  onPress={goToNextStep}
+                  isDisabled={!canProceed || isPending}
+                  isLoading={isPending}
+                >
+                  Next
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -306,4 +423,3 @@ export function ReliefForm() {
     </div>
   );
 }
-

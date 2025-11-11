@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useActionState } from "react";
+import { useEffect, useState, useActionState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { Form } from "@sovoli/ui/components/form";
@@ -21,6 +21,7 @@ type CountryCode = "US" | "GB" | "GY" | "JM";
 
 export interface PhoneNumberFormProps {
   defaultPhone?: string;
+  defaultCountryCode?: CountryCode;
   sendAction: (
     prevState: PhoneActionStates,
     formData: FormData,
@@ -60,17 +61,45 @@ const countryCodes: {
 export function PhoneNumberForm({
   sendAction,
   defaultPhone,
+  defaultCountryCode,
 }: PhoneNumberFormProps) {
   const [phone, setPhone] = useState(defaultPhone);
   const [selectedCountry, setSelectedCountry] = useState<{
     code: string;
     name: string;
     countryCode: CountryCode;
-  }>({
-    code: "+592",
-    name: "Guyana",
-    countryCode: "GY",
+  }>(() => {
+    if (defaultCountryCode) {
+      const match = countryCodes.find(
+        (item) => item.countryCode === defaultCountryCode,
+      );
+      if (match) {
+        return match;
+      }
+    }
+    return {
+      code: "+592",
+      name: "Guyana",
+      countryCode: "GY",
+    };
   });
+
+  useEffect(() => {
+    if (defaultPhone !== undefined) {
+      setPhone(defaultPhone);
+    }
+  }, [defaultPhone]);
+
+  useEffect(() => {
+    if (defaultCountryCode) {
+      const match = countryCodes.find(
+        (item) => item.countryCode === defaultCountryCode,
+      );
+      if (match) {
+        setSelectedCountry(match);
+      }
+    }
+  }, [defaultCountryCode]);
 
   const clientActionValidation = async (
     prevState: PhoneActionStates,
@@ -87,6 +116,9 @@ export function PhoneNumberForm({
     // Create new FormData with the combined phone number
     const updatedFormData = new FormData();
     updatedFormData.set("phone", fullPhoneNumber);
+    updatedFormData.set("countryCode", countryCode);
+    updatedFormData.set("countryIso", selectedCountry.countryCode);
+    updatedFormData.set("rawPhone", rawPhone);
 
     const validatedData = await parseFormData(
       updatedFormData,

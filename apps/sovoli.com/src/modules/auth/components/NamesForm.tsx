@@ -1,18 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 export interface NamesFormProps {
   onSuccess?: (firstName: string, lastName: string) => void;
   onError?: (message: string) => void;
+  defaultFirstName?: string;
+  defaultLastName?: string;
+  resetOnSuccess?: boolean;
 }
 
-export function NamesForm({ onSuccess, onError }: NamesFormProps) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+export function NamesForm({
+  onSuccess,
+  onError,
+  defaultFirstName = "",
+  defaultLastName = "",
+  resetOnSuccess = true,
+}: NamesFormProps) {
+  const [firstName, setFirstName] = useState(defaultFirstName);
+  const [lastName, setLastName] = useState(defaultLastName);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setFirstName(defaultFirstName);
+  }, [defaultFirstName]);
+
+  useEffect(() => {
+    setLastName(defaultLastName);
+  }, [defaultLastName]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,9 +48,11 @@ export function NamesForm({ onSuccess, onError }: NamesFormProps) {
       await new Promise((resolve) => setTimeout(resolve, 100));
 
       onSuccess?.(firstName, lastName);
-      // Reset form on success
-      setFirstName("");
-      setLastName("");
+      if (resetOnSuccess) {
+        // Reset form on success
+        setFirstName("");
+        setLastName("");
+      }
     } catch {
       const errorMessage = "An unexpected error occurred. Please try again.";
       setError(errorMessage);

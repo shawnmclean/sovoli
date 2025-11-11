@@ -5,6 +5,7 @@ import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import type { ReliefFormData } from "./ReliefForm";
 import { SUPPLIES_ITEMS } from "../data/suppliesItems";
+import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./options";
 
 interface ConfirmationProps {
   formData: ReliefFormData;
@@ -22,6 +23,15 @@ export function Confirmation({
     .filter((name): name is string => Boolean(name));
   const hasSupplies =
     selectedSupplies.length > 0 || formData.suppliesOther.trim().length > 0;
+  const contactFullName = [formData.contactFirstName, formData.contactLastName]
+    .filter((value) => value && value.trim().length > 0)
+    .join(" ");
+  const organisationTypeLabel =
+    ORG_TYPE_OPTIONS.find((option) => option.key === formData.schoolType)
+      ?.label ?? formData.schoolType;
+  const contactRoleLabel =
+    CONTACT_ROLE_OPTIONS.find((option) => option.key === formData.contactRole)
+      ?.label ?? formData.contactRole;
 
   return (
     <div className="space-y-8 text-center">
@@ -78,9 +88,9 @@ export function Confirmation({
             <dt className="font-medium text-default-600">School</dt>
             <dd className="text-default-800">
               {formData.schoolName}
-              {formData.schoolType && (
+              {organisationTypeLabel && (
                 <span className="block text-default-500 text-xs">
-                  {formData.schoolType}
+                  {organisationTypeLabel}
                 </span>
               )}
             </dd>
@@ -114,10 +124,10 @@ export function Confirmation({
           <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
             <dt className="font-medium text-default-600">Contact</dt>
             <dd className="text-default-800">
-              {formData.contactName}
-              {formData.contactRole && (
+              {contactFullName}
+              {contactRoleLabel && (
                 <span className="block text-default-500 text-xs">
-                  {formData.contactRole}
+                  {contactRoleLabel}
                 </span>
               )}
             </dd>
@@ -126,12 +136,6 @@ export function Confirmation({
             <dt className="font-medium text-default-600">Phone</dt>
             <dd className="text-default-800">{formData.contactPhone}</dd>
           </div>
-          {formData.contactEmail && (
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-              <dt className="font-medium text-default-600">Email</dt>
-              <dd className="text-default-800">{formData.contactEmail}</dd>
-            </div>
-          )}
         </CardBody>
       </Card>
 
