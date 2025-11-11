@@ -1,9 +1,10 @@
 export const ORG_TYPE_OPTIONS = [
+  { key: "public-basic", label: "Public Basic School" },
+  { key: "private-basic", label: "Private Basic School" },
   { key: "public-primary", label: "Public Primary School" },
-  { key: "public-secondary", label: "Public Secondary / High School" },
   { key: "private-primary", label: "Private Primary School" },
-  { key: "private-secondary", label: "Private Secondary / High School" },
-  { key: "basic-infant", label: "Basic / Infant School" },
+  { key: "public-secondary", label: "Public Secondary School" },
+  { key: "private-secondary", label: "Private Secondary School" },
   { key: "tertiary", label: "Tertiary / College" },
   { key: "special-education", label: "Special Education Institution" },
   { key: "stationary", label: "Stationary" },
