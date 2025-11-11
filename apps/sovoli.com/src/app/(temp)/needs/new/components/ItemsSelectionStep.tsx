@@ -1,0 +1,185 @@
+"use client";
+
+import type { Dispatch, SetStateAction } from "react";
+import { useMemo, useState } from "react";
+import { Input } from "@sovoli/ui/components/input";
+
+import type { ReliefFormData, ReliefFormUpdater } from "./ReliefForm";
+import { ItemsSelection, getCategoryLabel } from "./ItemsSelection";
+import type { ItemCategory } from "./ItemsSelection";
+import { ItemsSearchNavBar } from "./ItemsSearchNavBar";
+import { ALL_ITEMS } from "~/modules/data/items";
+
+interface ItemsSelectionStepProps {
+  formData: ReliefFormData;
+  onUpdate: ReliefFormUpdater;
+  setFormData: Dispatch<SetStateAction<ReliefFormData>>;
+}
+
+const ALL_ITEMS_BY_ID = new Map(ALL_ITEMS.map((item) => [item.id, item]));
+const ALL_CATEGORY_KEYS = Array.from(
+  new Set<ItemCategory>(ALL_ITEMS.map((item) => item.category)),
+);
+
+export function ItemsSelectionStep({
+  formData,
+  onUpdate,
+  setFormData,
+}: ItemsSelectionStepProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategories, setActiveCategories] = useState<Set<ItemCategory>>(
+    () => new Set(ALL_CATEGORY_KEYS),
+  );
+
+  const selectedItemIds = useMemo(
+    () => new Set(formData.suppliesSelected),
+    [formData.suppliesSelected],
+  );
+
+  const categoryOptions = useMemo(
+    () =>
+      ALL_CATEGORY_KEYS.map((category) => ({
+        key: category,
+        label: getCategoryLabel(category),
+        isActive: activeCategories.has(category),
+      })),
+    [activeCategories],
+  );
+
+  const filteredItems = useMemo(() => {
+    const trimmedQuery = searchQuery.trim().toLowerCase();
+
+    if (
+      trimmedQuery.length === 0 &&
+      activeCategories.size === ALL_CATEGORY_KEYS.length
+    ) {
+      return ALL_ITEMS;
+    }
+
+    return ALL_ITEMS.filter((item) => {
+      if (!activeCategories.has(item.category)) {
+        return false;
+      }
+
+      if (trimmedQuery.length === 0) {
+        return true;
+      }
+
+      const haystack = [
+        item.name,
+        item.brand,
+        item.attributes?.source,
+        item.unitLabel,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      return haystack.includes(trimmedQuery);
+    });
+  }, [activeCategories, searchQuery]);
+
+  const selectedItemsSummary = useMemo(() => {
+    return formData.suppliesSelected
+      .map((itemId) => {
+        const item = ALL_ITEMS_BY_ID.get(itemId);
+        if (!item) {
+          return undefined;
+        }
+        return {
+          id: itemId,
+          name: item.name,
+          quantity: formData.suppliesQuantities[itemId] ?? 0,
+        };
+      })
+      .filter(
+        (
+          value,
+        ): value is {
+          id: string;
+          name: string;
+          quantity: number;
+        } => value !== undefined,
+      );
+  }, [formData.suppliesQuantities, formData.suppliesSelected]);
+
+  const handleSelectionChange = (selectedIds: Set<string>) => {
+    setFormData((prev) => {
+      const nextSelected = Array.from(selectedIds);
+      const nextQuantities = nextSelected.reduce<Record<string, number>>(
+        (acc, itemId) => {
+          const existingQuantity = prev.suppliesQuantities[itemId];
+          acc[itemId] =
+            existingQuantity && existingQuantity > 0 ? existingQuantity : 1;
+          return acc;
+        },
+        {},
+      );
+
+      return {
+        ...prev,
+        suppliesSelected: nextSelected,
+        suppliesQuantities: nextQuantities,
+      };
+    });
+  };
+
+  const handleQuantityChange = (itemId: string, quantity: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      suppliesQuantities: {
+        ...prev.suppliesQuantities,
+        [itemId]: quantity,
+      },
+    }));
+  };
+
+  const handleToggleCategory = (categoryKey: ItemCategory) => {
+    setActiveCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(categoryKey)) {
+        next.delete(categoryKey);
+      } else {
+        next.add(categoryKey);
+      }
+      return next;
+    });
+  };
+
+  return (
+    <div className="flex flex-col gap-10">
+      <ItemsSearchNavBar
+        categories={categoryOptions}
+        onSearchQueryChange={setSearchQuery}
+        onToggleCategory={handleToggleCategory}
+        searchQuery={searchQuery}
+        selectedItems={selectedItemsSummary}
+      />
+
+      <section className="mx-auto w-full max-w-5xl px-4 pb-12">
+        <ItemsSelection
+          items={filteredItems}
+          selectedItemIds={selectedItemIds}
+          quantities={formData.suppliesQuantities}
+          onSelectionChange={handleSelectionChange}
+          onQuantityChange={handleQuantityChange}
+        />
+
+        <Input
+          size="lg"
+          label="Other supplies"
+          placeholder="List any additional items not shown above"
+          value={formData.suppliesOther}
+          onValueChange={(value: string) => onUpdate("suppliesOther", value)}
+        />
+        <Input
+          size="lg"
+          label="Additional notes"
+          placeholder="Add context about damages, urgency, or quantities"
+          value={formData.notes}
+          onValueChange={(value: string) => onUpdate("notes", value)}
+        />
+      </section>
+    </div>
+  );
+}

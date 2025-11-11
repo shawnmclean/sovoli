@@ -1,20 +1,19 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { Divider } from "@sovoli/ui/components/divider";
 import { Confirmation } from "./Confirmation";
 import { Hero } from "./Hero";
 import { LocationInfo } from "./LocationInfo";
 import { SchoolInfo } from "./SchoolInfo";
-import { SuppliesItemSelection } from "./SuppliesItemSelection";
 import { submitReliefForm } from "../actions";
-import { Input } from "@sovoli/ui/components/input";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 import type { PhoneActionStates } from "../../../../../modules/auth/actions/states";
 import { PhoneNumberForm } from "../../../../../modules/auth/components/PhoneNumberStep/PhoneNumberForm";
 import { NamesForm } from "../../../../../modules/auth/components/NamesForm";
 import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./options";
+import { ItemsSelectionStep } from "./ItemsSelectionStep";
 import type {
   ContactRoleOptionKey,
   OrgTypeOptionKey,
@@ -81,7 +80,7 @@ interface StepDefinition {
 
 export function ReliefForm() {
   const [formData, setFormData] = useState<ReliefFormData>(initialFormData);
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(4);
   const [isPending, startTransition] = useTransition();
 
   const stepSequence: StepDefinition[] = useMemo(
@@ -174,83 +173,6 @@ export function ReliefForm() {
     setCurrentStep(0);
   };
 
-  const getStepTitle = () => {
-    switch (currentStepKey) {
-      case STEPS.PHONE:
-        return "";
-      case STEPS.NAMES:
-        return "";
-      case STEPS.SCHOOL:
-        return "School Information";
-      case STEPS.LOCATION:
-        return "School Location";
-      case STEPS.SUPPLIES:
-        return "";
-      case STEPS.CONFIRM:
-        return "Thank you for sharing your needs";
-      default:
-        return "";
-    }
-  };
-
-  const renderSuppliesStep = () => {
-    const selectedItemIds = new Set(formData.suppliesSelected);
-
-    const handleSelectionChange = (selectedIds: Set<string>) => {
-      setFormData((prev) => {
-        return {
-          ...prev,
-          suppliesQuantities: Array.from(selectedIds).reduce<
-            Record<string, number>
-          >((acc, itemId) => {
-            const existingQuantity = prev.suppliesQuantities[itemId];
-            acc[itemId] =
-              existingQuantity && existingQuantity > 0 ? existingQuantity : 1;
-            return acc;
-          }, {}),
-          suppliesSelected: Array.from(selectedIds),
-        };
-      });
-    };
-
-    const handleQuantityChange = (itemId: string, quantity: number) => {
-      setFormData((prev) => ({
-        ...prev,
-        suppliesQuantities: {
-          ...prev.suppliesQuantities,
-          [itemId]: quantity,
-        },
-      }));
-    };
-
-    return (
-      <div className="space-y-6">
-        <SuppliesItemSelection
-          selectedItemIds={selectedItemIds}
-          quantities={formData.suppliesQuantities}
-          onSelectionChange={handleSelectionChange}
-          onQuantityChange={handleQuantityChange}
-        />
-        <Input
-          size="lg"
-          label="Other supplies"
-          placeholder="List any additional items not shown above"
-          value={formData.suppliesOther}
-          onValueChange={(value: string) =>
-            updateFormData("suppliesOther", value)
-          }
-        />
-        <Input
-          size="lg"
-          label="Additional notes"
-          placeholder="Add context about damages, urgency, or quantities"
-          value={formData.notes}
-          onValueChange={(value: string) => updateFormData("notes", value)}
-        />
-      </div>
-    );
-  };
-
   const normalizeCountryIso = (
     iso: string,
   ): SupportedCountryIso | undefined => {
@@ -302,106 +224,53 @@ export function ReliefForm() {
     switch (currentStepKey) {
       case STEPS.PHONE:
         return (
-          <PhoneNumberForm
-            defaultPhone={formData.contactPhoneRaw}
+          <PhoneStep
             defaultCountryCode={phoneDefaultCountry}
-            sendAction={handlePhoneSubmission}
+            defaultPhone={formData.contactPhoneRaw}
+            onSubmit={handlePhoneSubmission}
           />
         );
       case STEPS.NAMES:
         return (
-          <NamesForm
+          <NamesStep
             defaultFirstName={formData.contactFirstName}
             defaultLastName={formData.contactLastName}
-            resetOnSuccess={false}
             onSuccess={handleNamesSuccess}
           />
         );
       case STEPS.SCHOOL:
         return (
-          <div className="space-y-6">
-            <SchoolInfo
-              schoolName={formData.schoolName}
-              onSchoolNameChange={(value) =>
-                updateFormData("schoolName", value)
-              }
-            />
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-default-600">
-                  Organisation type
-                </label>
-                <Select
-                  selectedKeys={
-                    formData.schoolType ? [formData.schoolType] : []
-                  }
-                  onSelectionChange={(keys) =>
-                    updateFormData(
-                      "schoolType",
-                      (Array.from(keys)[0] as OrgTypeOptionKey | undefined) ??
-                        "",
-                    )
-                  }
-                  placeholder="Select organisation type"
-                  size="lg"
-                >
-                  {ORG_TYPE_OPTIONS.map((option) => (
-                    <SelectItem key={option.key}>{option.label}</SelectItem>
-                  ))}
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-default-600">
-                  Your role
-                </label>
-                <Select
-                  selectedKeys={
-                    formData.contactRole ? [formData.contactRole] : []
-                  }
-                  onSelectionChange={(keys) =>
-                    updateFormData(
-                      "contactRole",
-                      (Array.from(keys)[0] as
-                        | ContactRoleOptionKey
-                        | undefined) ?? "",
-                    )
-                  }
-                  placeholder="Select your role"
-                  size="lg"
-                >
-                  {CONTACT_ROLE_OPTIONS.map((option) => (
-                    <SelectItem key={option.key}>{option.label}</SelectItem>
-                  ))}
-                </Select>
-              </div>
-            </div>
-          </div>
+          <SchoolStep
+            contactRole={formData.contactRole}
+            onUpdate={updateFormData}
+            schoolName={formData.schoolName}
+            schoolType={formData.schoolType}
+          />
         );
       case STEPS.LOCATION:
         return (
-          <LocationInfo
+          <LocationStep
             addressLine1={formData.locationAddressLine1}
             addressLine2={formData.locationAddressLine2}
             city={formData.locationCity}
+            onUpdate={updateFormData}
             parish={formData.locationParish}
-            onAddressLine1Change={(value) =>
-              updateFormData("locationAddressLine1", value)
-            }
-            onAddressLine2Change={(value) =>
-              updateFormData("locationAddressLine2", value)
-            }
-            onCityChange={(value) => updateFormData("locationCity", value)}
-            onParishChange={(value) => updateFormData("locationParish", value)}
           />
         );
       case STEPS.SUPPLIES:
-        return renderSuppliesStep();
+        return (
+          <ItemsSelectionStep
+            formData={formData}
+            onUpdate={updateFormData}
+            setFormData={setFormData}
+          />
+        );
       case STEPS.CONFIRM:
         return (
-          <Confirmation
+          <ConfirmStep
             formData={formData}
             onResetForm={resetForm}
-            onReviewAnswers={() => setCurrentStep(0)}
+            onReview={() => setCurrentStep(0)}
           />
         );
       default:
@@ -414,16 +283,11 @@ export function ReliefForm() {
     currentStepKey !== STEPS.PHONE && currentStepKey !== STEPS.NAMES;
 
   return (
-    <div className="w-full flex flex-col items-center gap-12 pb-24">
-      {currentStep === 0 && <Hero />}
-      <div className="w-full flex flex-col gap-4">
-        <h1 className="text-3xl font-semibold text-center">{getStepTitle()}</h1>
-        <Divider />
-        <div className="space-y-8">{renderStepContent()}</div>
-      </div>
+    <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex-1">{renderStepContent()}</div>
       {showFooter && (
-        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-default-200 p-4 z-10">
-          <div className="max-w-7xl mx-auto flex flex-row gap-3 items-center justify-between">
+        <footer className="sticky bottom-0 left-0 right-0 border-t border-default-200 bg-background/95 p-4 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl flex-row items-center justify-between gap-3">
             <span className="text-sm font-medium text-default-600">
               Step {currentStep + 1} of {stepSequence.length}
             </span>
@@ -448,8 +312,197 @@ export function ReliefForm() {
               )}
             </div>
           </div>
-        </div>
+        </footer>
       )}
     </div>
+  );
+}
+
+export type ReliefFormUpdater = <K extends keyof ReliefFormData>(
+  key: K,
+  value: ReliefFormData[K],
+) => void;
+
+interface PhoneStepProps {
+  defaultPhone: string;
+  defaultCountryCode: SupportedCountryIso;
+  onSubmit: (
+    prevState: PhoneActionStates,
+    formData: FormData,
+  ) => Promise<PhoneActionStates>;
+}
+
+function PhoneStep({
+  defaultCountryCode,
+  defaultPhone,
+  onSubmit,
+}: PhoneStepProps) {
+  return (
+    <div className="flex flex-col">
+      <Hero />
+      <StepSection>
+        <PhoneNumberForm
+          defaultPhone={defaultPhone}
+          defaultCountryCode={defaultCountryCode}
+          sendAction={onSubmit}
+        />
+      </StepSection>
+    </div>
+  );
+}
+
+interface NamesStepProps {
+  defaultFirstName: string;
+  defaultLastName: string;
+  onSuccess: (firstName: string, lastName: string) => void;
+}
+
+function NamesStep({
+  defaultFirstName,
+  defaultLastName,
+  onSuccess,
+}: NamesStepProps) {
+  return (
+    <StepSection>
+      <NamesForm
+        defaultFirstName={defaultFirstName}
+        defaultLastName={defaultLastName}
+        resetOnSuccess={false}
+        onSuccess={onSuccess}
+      />
+    </StepSection>
+  );
+}
+
+interface SchoolStepProps {
+  schoolName: string;
+  schoolType: OrgTypeOptionKey | "";
+  contactRole: ContactRoleOptionKey | "";
+  onUpdate: ReliefFormUpdater;
+}
+
+function SchoolStep({
+  contactRole,
+  onUpdate,
+  schoolName,
+  schoolType,
+}: SchoolStepProps) {
+  return (
+    <StepSection>
+      <div className="space-y-6">
+        <SchoolInfo
+          schoolName={schoolName}
+          onSchoolNameChange={(value) => onUpdate("schoolName", value)}
+        />
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-default-600">
+              Organisation type
+            </label>
+            <Select
+              selectedKeys={schoolType ? [schoolType] : []}
+              onSelectionChange={(keys) =>
+                onUpdate(
+                  "schoolType",
+                  (Array.from(keys)[0] as OrgTypeOptionKey | undefined) ?? "",
+                )
+              }
+              placeholder="Select organisation type"
+              size="lg"
+            >
+              {ORG_TYPE_OPTIONS.map((option) => (
+                <SelectItem key={option.key}>{option.label}</SelectItem>
+              ))}
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-default-600">
+              Your role
+            </label>
+            <Select
+              selectedKeys={contactRole ? [contactRole] : []}
+              onSelectionChange={(keys) =>
+                onUpdate(
+                  "contactRole",
+                  (Array.from(keys)[0] as ContactRoleOptionKey | undefined) ??
+                    "",
+                )
+              }
+              placeholder="Select your role"
+              size="lg"
+            >
+              {CONTACT_ROLE_OPTIONS.map((option) => (
+                <SelectItem key={option.key}>{option.label}</SelectItem>
+              ))}
+            </Select>
+          </div>
+        </div>
+      </div>
+    </StepSection>
+  );
+}
+
+interface LocationStepProps {
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  parish: ParishOptionKey | "";
+  onUpdate: ReliefFormUpdater;
+}
+
+function LocationStep({
+  addressLine1,
+  addressLine2,
+  city,
+  onUpdate,
+  parish,
+}: LocationStepProps) {
+  return (
+    <StepSection>
+      <LocationInfo
+        addressLine1={addressLine1}
+        addressLine2={addressLine2}
+        city={city}
+        parish={parish}
+        onAddressLine1Change={(value) =>
+          onUpdate("locationAddressLine1", value)
+        }
+        onAddressLine2Change={(value) =>
+          onUpdate("locationAddressLine2", value)
+        }
+        onCityChange={(value) => onUpdate("locationCity", value)}
+        onParishChange={(value) => onUpdate("locationParish", value)}
+      />
+    </StepSection>
+  );
+}
+
+interface ConfirmStepProps {
+  formData: ReliefFormData;
+  onResetForm: () => void;
+  onReview: () => void;
+}
+
+function ConfirmStep({ formData, onResetForm, onReview }: ConfirmStepProps) {
+  return (
+    <StepSection>
+      <Confirmation
+        formData={formData}
+        onResetForm={onResetForm}
+        onReviewAnswers={onReview}
+      />
+    </StepSection>
+  );
+}
+
+interface StepSectionProps {
+  children: ReactNode;
+}
+
+function StepSection({ children }: StepSectionProps) {
+  return (
+    <section className="mx-auto w-full max-w-5xl px-4 py-10">
+      {children}
+    </section>
   );
 }
