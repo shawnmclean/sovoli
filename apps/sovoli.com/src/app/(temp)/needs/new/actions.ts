@@ -6,7 +6,7 @@ import { SUPPLIES_ITEMS } from "./data/suppliesItems";
 import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./components/options";
 
 const AIRTABLE_BASE_ID = "appmYWD3Zt106eYfY";
-const AIRTABLE_TABLE_ID = "tbleTRy42k25VuQhF";
+const AIRTABLE_TABLE_ID = "tblvRaHezCwSrQC06";
 
 export async function submitReliefForm(formData: ReliefFormData) {
   console.log("Needs Intake Submission:", JSON.stringify(formData, null, 2));
@@ -30,25 +30,43 @@ export async function submitReliefForm(formData: ReliefFormData) {
       CONTACT_ROLE_OPTIONS.find((option) => option.key === formData.contactRole)
         ?.label ?? formData.contactRole;
 
+    const highPriorityItems = Array.from(
+      new Set(
+        formData.suppliesSelected
+          .map((itemId) => {
+            const item = SUPPLIES_ITEMS.find(
+              (entry) => entry.id === itemId && entry.highPriority,
+            );
+            return item?.name ?? null;
+          })
+          .filter((value): value is string => value !== null),
+      ),
+    );
+
     const fields: {
-      "Submission ID"?: string;
+      "Submission ID": string;
+      "Contact First Name": string;
+      "Contact Last Name": string;
       "Contact Name"?: string;
       "Contact Phone"?: string;
       "Contact Phone Raw"?: string;
       "Contact Dial Code"?: string;
       "Contact Country ISO"?: string;
       "Contact Role"?: string;
-      "School Name"?: string;
+      "School Name": string;
       "School Type"?: string;
-      "Location Address 1"?: string;
+      "Location Address 1": string;
       "Location Address 2"?: string;
-      "Location City / Town"?: string;
-      "Location Parish"?: string;
-      "Supplies Needed"?: string;
+      "Location City": string;
+      "Location Parish": string;
+      "Supplies Selected"?: string[];
+      "High Priority Items"?: string[];
       "Supplies Other"?: string;
       Notes?: string;
     } = {
       "Submission ID": crypto.randomUUID(),
+      "Contact First Name": formData.contactFirstName,
+      "Contact Last Name": formData.contactLastName,
       "Contact Name": contactName || undefined,
       "Contact Phone": formData.contactPhone || undefined,
       "Contact Phone Raw": formData.contactPhoneRaw || undefined,
@@ -58,13 +76,19 @@ export async function submitReliefForm(formData: ReliefFormData) {
       "School Name": formData.schoolName,
       "School Type": orgTypeLabel || undefined,
       "Location Address 1": formData.locationAddressLine1,
-      "Location Address 2": formData.locationAddressLine2 || undefined,
-      "Location City / Town": formData.locationCity,
+      "Location Address 2": formData.locationAddressLine2.trim().length
+        ? formData.locationAddressLine2
+        : undefined,
+      "Location City": formData.locationCity,
       "Location Parish": formData.locationParish,
-      "Supplies Needed":
-        suppliesItemsData.length > 0 ? suppliesItemsData.join("\n") : undefined,
-      "Supplies Other": formData.suppliesOther || undefined,
-      Notes: formData.notes || undefined,
+      "Supplies Selected":
+        suppliesItemsData.length > 0 ? suppliesItemsData : undefined,
+      "High Priority Items":
+        highPriorityItems.length > 0 ? highPriorityItems : undefined,
+      "Supplies Other": formData.suppliesOther.trim().length
+        ? formData.suppliesOther
+        : undefined,
+      Notes: formData.notes.trim().length > 0 ? formData.notes : undefined,
     };
 
     const response = await fetch(
