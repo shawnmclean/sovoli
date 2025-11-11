@@ -36,6 +36,7 @@ export interface ReliefFormData {
   locationCity: string;
   locationParish: ParishOptionKey | "";
   suppliesSelected: string[];
+  suppliesQuantities: Record<string, number>;
   suppliesOther: string;
   notes: string;
 }
@@ -57,6 +58,7 @@ const initialFormData: ReliefFormData = {
   locationCity: "",
   locationParish: "",
   suppliesSelected: [],
+  suppliesQuantities: {},
   suppliesOther: "",
   notes: "",
 };
@@ -124,9 +126,11 @@ export function ReliefForm() {
           formData.locationParish !== ""
         );
       case STEPS.SUPPLIES:
-        return (
-          formData.suppliesSelected.length > 0 ||
-          formData.suppliesOther.trim().length > 0
+        if (formData.suppliesSelected.length === 0) {
+          return formData.suppliesOther.trim().length > 0;
+        }
+        return formData.suppliesSelected.every(
+          (itemId) => (formData.suppliesQuantities[itemId] ?? 0) > 0,
         );
       case STEPS.CONFIRM:
         return true;
@@ -181,7 +185,7 @@ export function ReliefForm() {
       case STEPS.LOCATION:
         return "School Location";
       case STEPS.SUPPLIES:
-        return "What supplies are needed?";
+        return "";
       case STEPS.CONFIRM:
         return "Thank you for sharing your needs";
       default:
@@ -193,9 +197,29 @@ export function ReliefForm() {
     const selectedItemIds = new Set(formData.suppliesSelected);
 
     const handleSelectionChange = (selectedIds: Set<string>) => {
+      setFormData((prev) => {
+        return {
+          ...prev,
+          suppliesQuantities: Array.from(selectedIds).reduce<
+            Record<string, number>
+          >((acc, itemId) => {
+            const existingQuantity = prev.suppliesQuantities[itemId];
+            acc[itemId] =
+              existingQuantity && existingQuantity > 0 ? existingQuantity : 1;
+            return acc;
+          }, {}),
+          suppliesSelected: Array.from(selectedIds),
+        };
+      });
+    };
+
+    const handleQuantityChange = (itemId: string, quantity: number) => {
       setFormData((prev) => ({
         ...prev,
-        suppliesSelected: Array.from(selectedIds),
+        suppliesQuantities: {
+          ...prev.suppliesQuantities,
+          [itemId]: quantity,
+        },
       }));
     };
 
@@ -203,7 +227,9 @@ export function ReliefForm() {
       <div className="space-y-6">
         <SuppliesItemSelection
           selectedItemIds={selectedItemIds}
+          quantities={formData.suppliesQuantities}
           onSelectionChange={handleSelectionChange}
+          onQuantityChange={handleQuantityChange}
         />
         <Input
           size="lg"

@@ -2,21 +2,19 @@ export interface SuppliesItem {
   id: string;
   name: string;
   category: "food" | "building" | "other";
-  highPriority?: boolean;
   source?: string;
 }
 
 export const SUPPLIES_ITEMS: SuppliesItem[] = [
   // Food items
   { id: "canned-goods", name: "Canned Goods", category: "food" },
-  { id: "rice", name: "Rice", category: "food", highPriority: true },
+  { id: "rice", name: "Rice", category: "food" },
   { id: "beans", name: "Beans", category: "food" },
-  { id: "water", name: "Bottled Water", category: "food", highPriority: true },
+  { id: "water", name: "Bottled Water", category: "food" },
   {
     id: "baby-formula",
     name: "Baby Formula",
     category: "food",
-    highPriority: true,
   },
   { id: "non-perishable", name: "Non-perishable Foods", category: "food" },
   // Building supplies
@@ -42,8 +40,8 @@ export const SUPPLIES_ITEMS: SuppliesItem[] = [
     name: "Chainsaw - long blade for tree trunks",
     category: "building",
   },
-  { id: "plywood", name: "Plywood", category: "building", highPriority: true },
-  { id: "tarps", name: "Tarps", category: "building", highPriority: true },
+  { id: "plywood", name: "Plywood", category: "building" },
+  { id: "tarps", name: "Tarps", category: "building" },
   { id: "nails", name: "Nails", category: "building" },
   { id: "screws", name: "Screws", category: "building" },
   { id: "tools", name: "Tools", category: "building" },

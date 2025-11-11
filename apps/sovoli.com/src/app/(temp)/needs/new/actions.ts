@@ -10,13 +10,25 @@ import {
 } from "./components/options";
 
 const AIRTABLE_BASE_ID = "appmYWD3Zt106eYfY";
-const AIRTABLE_TABLE_ID = "tblvRaHezCwSrQC06";
+const AIRTABLE_TABLE_ID = "tbloHJD4xzvsh9UdH";
 
 export async function submitReliefForm(formData: ReliefFormData) {
   console.log("Needs Intake Submission:", JSON.stringify(formData, null, 2));
 
   try {
     const suppliesItemsData = formData.suppliesSelected
+      .map((itemId) => {
+        const item = SUPPLIES_ITEMS.find((entry) => entry.id === itemId);
+        if (!item) {
+          return null;
+        }
+        const quantity = formData.suppliesQuantities[itemId] ?? 0;
+        const quantityLabel = quantity > 0 ? ` (x${quantity})` : "";
+        return `${item.name}${quantityLabel}`;
+      })
+      .filter((value): value is string => value !== null);
+
+    const suppliesSelectedNames = formData.suppliesSelected
       .map((itemId) => {
         const item = SUPPLIES_ITEMS.find((entry) => entry.id === itemId);
         return item?.name ?? null;
@@ -37,18 +49,12 @@ export async function submitReliefForm(formData: ReliefFormData) {
       PARISH_OPTIONS.find((option) => option.key === formData.locationParish)
         ?.label ?? formData.locationParish;
 
-    const highPriorityItems = Array.from(
-      new Set(
-        formData.suppliesSelected
-          .map((itemId) => {
-            const item = SUPPLIES_ITEMS.find(
-              (entry) => entry.id === itemId && entry.highPriority,
-            );
-            return item?.name ?? null;
-          })
-          .filter((value): value is string => value !== null),
-      ),
-    );
+    const combinedPhone =
+      formData.contactPhone && formData.contactPhone.trim().length > 0
+        ? formData.contactPhone
+        : [formData.contactDialCode, formData.contactPhoneRaw]
+            .filter((value) => value && value.trim().length > 0)
+            .join(" ");
 
     const fields: {
       "Submission ID": string;
@@ -56,18 +62,15 @@ export async function submitReliefForm(formData: ReliefFormData) {
       "Contact Last Name": string;
       "Contact Name"?: string;
       "Contact Phone"?: string;
-      "Contact Phone Raw"?: string;
-      "Contact Dial Code"?: string;
-      "Contact Country ISO"?: string;
       "Contact Role"?: string;
       "School Name": string;
-      "School Type"?: string;
+      "Organisation Type"?: string;
       "Location Address 1": string;
       "Location Address 2"?: string;
       "Location City": string;
       "Location Parish": string;
-      "Supplies Selected"?: string[];
-      "High Priority Items"?: string[];
+      "Supplies Names"?: string;
+      "Supplies Summary"?: string;
       "Supplies Other"?: string;
       Notes?: string;
     } = {
@@ -75,23 +78,22 @@ export async function submitReliefForm(formData: ReliefFormData) {
       "Contact First Name": formData.contactFirstName,
       "Contact Last Name": formData.contactLastName,
       "Contact Name": contactName || undefined,
-      "Contact Phone": formData.contactPhone || undefined,
-      "Contact Phone Raw": formData.contactPhoneRaw || undefined,
-      "Contact Dial Code": formData.contactDialCode || undefined,
-      "Contact Country ISO": formData.contactCountryIso || undefined,
+      "Contact Phone": combinedPhone || undefined,
       "Contact Role": contactRoleLabel || undefined,
       "School Name": formData.schoolName,
-      "School Type": orgTypeLabel || undefined,
+      "Organisation Type": orgTypeLabel || undefined,
       "Location Address 1": formData.locationAddressLine1,
       "Location Address 2": formData.locationAddressLine2.trim().length
         ? formData.locationAddressLine2
         : undefined,
       "Location City": formData.locationCity,
       "Location Parish": parishLabel,
-      "Supplies Selected":
-        suppliesItemsData.length > 0 ? suppliesItemsData : undefined,
-      "High Priority Items":
-        highPriorityItems.length > 0 ? highPriorityItems : undefined,
+      "Supplies Names":
+        suppliesSelectedNames.length > 0
+          ? suppliesSelectedNames.join("\n")
+          : undefined,
+      "Supplies Summary":
+        suppliesItemsData.length > 0 ? suppliesItemsData.join("\n") : undefined,
       "Supplies Other": formData.suppliesOther.trim().length
         ? formData.suppliesOther
         : undefined,

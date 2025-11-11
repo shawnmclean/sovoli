@@ -23,7 +23,17 @@ export function Confirmation({
   onReviewAnswers,
 }: ConfirmationProps) {
   const selectedSupplies = formData.suppliesSelected
-    .map((itemId) => SUPPLIES_ITEMS.find((item) => item.id === itemId)?.name)
+    .map((itemId) => {
+      const item = SUPPLIES_ITEMS.find((entry) => entry.id === itemId);
+      if (!item) {
+        return null;
+      }
+      const quantity = formData.suppliesQuantities[itemId] ?? 0;
+      if (quantity > 0) {
+        return `${item.name} (x${quantity})`;
+      }
+      return item.name;
+    })
     .filter((name): name is string => Boolean(name));
   const hasSupplies =
     selectedSupplies.length > 0 || formData.suppliesOther.trim().length > 0;

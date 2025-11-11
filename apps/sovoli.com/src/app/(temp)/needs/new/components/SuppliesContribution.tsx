@@ -10,7 +10,7 @@ import {
 } from "@sovoli/ui/components/listbox";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import { Chip } from "@sovoli/ui/components/chip";
-import { AlertTriangleIcon, SearchIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import type { SuppliesItem } from "../data/suppliesItems";
 import { SUPPLIES_ITEMS } from "../data/suppliesItems";
 
@@ -39,16 +39,12 @@ export function SuppliesContribution({
     new Set(["food", "building"]),
   );
 
-  // Sort all items: high priority first, then regular items, grouped by category
+  // Sort all items grouped by category
   const groupedItems = useMemo(() => {
-    const groups: Record<
-      string,
-      { items: SuppliesItem[]; label: string; important?: boolean }
-    > = {
+    const groups: Record<string, { items: SuppliesItem[]; label: string }> = {
       building: {
         items: [],
         label: "Building Supplies",
-        important: true,
       },
       food: {
         items: [],
@@ -60,18 +56,6 @@ export function SuppliesContribution({
       const group = groups[item.category];
       if (group) {
         group.items.push(item);
-      }
-    });
-
-    // Sort items within each group: high priority first
-    Object.keys(groups).forEach((category) => {
-      const group = groups[category];
-      if (group) {
-        group.items.sort((a, b) => {
-          if (a.highPriority && !b.highPriority) return -1;
-          if (!a.highPriority && b.highPriority) return 1;
-          return 0;
-        });
       }
     });
 
@@ -216,10 +200,7 @@ export function SuppliesContribution({
             isSelected={selectedGroups.has("building")}
             onValueChange={() => toggleGroup("building")}
           >
-            <div className="flex items-center gap-2">
-              <span>Building Supplies</span>
-              <AlertTriangleIcon className="w-4 h-4 text-warning" />
-            </div>
+            Building Supplies
           </Checkbox>
           <Checkbox
             isSelected={selectedGroups.has("food")}
@@ -251,29 +232,11 @@ export function SuppliesContribution({
                 title={group.label}
                 aria-label={group.label}
                 showDivider={false}
-                classNames={{
-                  heading: group.important
-                    ? "flex items-center gap-2 text-warning-600"
-                    : undefined,
-                }}
               >
                 {group.items.map((item) => {
                   return (
-                    <ListboxItem
-                      key={item.id}
-                      textValue={item.name}
-                      classNames={{
-                        base: `${
-                          item.highPriority
-                            ? "border-warning-300 bg-warning-50"
-                            : ""
-                        } mb-2`,
-                      }}
-                    >
+                    <ListboxItem key={item.id} textValue={item.name}>
                       <div className="flex items-center gap-2 flex-1 min-w-0">
-                        {item.highPriority && (
-                          <AlertTriangleIcon className="w-5 h-5 text-warning shrink-0" />
-                        )}
                         <span className="truncate">{item.name}</span>
                       </div>
                     </ListboxItem>
