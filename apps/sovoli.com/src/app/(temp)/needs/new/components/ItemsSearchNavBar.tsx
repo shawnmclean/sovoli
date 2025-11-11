@@ -2,7 +2,6 @@
 
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
-import { Chip } from "@sovoli/ui/components/chip";
 import {
   Dropdown,
   DropdownItem,
@@ -11,8 +10,7 @@ import {
 } from "@sovoli/ui/components/dropdown";
 import { Input } from "@sovoli/ui/components/input";
 import { Navbar, NavbarContent } from "@sovoli/ui/components/navbar";
-import { ScrollShadow } from "@heroui/scroll-shadow";
-import { ChevronDownIcon, SearchIcon, SlidersHorizontal } from "lucide-react";
+import { SearchIcon, SlidersHorizontal } from "lucide-react";
 
 interface ItemsSearchCategoryOption<TCategory extends string = string> {
   key: TCategory;
@@ -39,9 +37,8 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
   onSearchQueryChange,
   onToggleCategory,
   searchQuery,
-  selectedItems,
+  selectedItems: _selectedItems,
 }: ItemsSearchNavBarProps<TCategory>) {
-  const hasSelectedItems = selectedItems.length > 0;
   const hasCategories = categories.length > 0;
   const activeCategoryCount = categories.filter(
     (category) => category.isActive,
@@ -54,11 +51,11 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
   return (
     <Navbar
       maxWidth="full"
-      className="border-b border-default-200 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+      className="border-b border-default-200 bg-background/95 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/80"
     >
-      <NavbarContent className="flex w-full flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
+      <NavbarContent className="flex w-full items-center gap-3 py-3">
         <Input
-          className="w-full md:max-w-2xl"
+          className="w-full flex-1"
           size="lg"
           placeholder="Search items..."
           value={searchQuery}
@@ -70,12 +67,15 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
           <Dropdown closeOnSelect={false}>
             <DropdownTrigger>
               <Button
+                isIconOnly
+                size="lg"
                 variant="flat"
                 color="default"
-                endContent={<ChevronDownIcon className="h-4 w-4" />}
-                startContent={<SlidersHorizontal className="h-4 w-4" />}
+                className="shrink-0"
+                aria-label={filtersLabel}
+                title={filtersLabel}
               >
-                {filtersLabel}
+                <SlidersHorizontal className="h-4 w-4" />
               </Button>
             </DropdownTrigger>
             <DropdownMenu
@@ -104,26 +104,6 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
           </Dropdown>
         ) : null}
       </NavbarContent>
-
-      {hasSelectedItems ? (
-        <NavbarContent className="flex w-full pb-4 pt-0">
-          <ScrollShadow
-            hideScrollBar
-            className="flex w-full gap-1 py-0.5"
-            orientation="horizontal"
-          >
-            {selectedItems.map((item) => {
-              const suffix = item.quantity > 0 ? ` x${item.quantity}` : "";
-              return (
-                <Chip key={item.id}>
-                  {item.name}
-                  {suffix}
-                </Chip>
-              );
-            })}
-          </ScrollShadow>
-        </NavbarContent>
-      ) : null}
     </Navbar>
   );
 }

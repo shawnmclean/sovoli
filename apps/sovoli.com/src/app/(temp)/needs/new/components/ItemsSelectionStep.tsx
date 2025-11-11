@@ -156,7 +156,7 @@ export function ItemsSelectionStep({
         selectedItems={selectedItemsSummary}
       />
 
-      <section className="mx-auto w-full max-w-5xl px-4 pb-12">
+      <section className="mx-auto w-full max-w-5xl px-4 pb-12 gap-4 flex flex-col">
         <ItemsSelection
           items={filteredItems}
           selectedItemIds={selectedItemIds}

@@ -80,7 +80,7 @@ interface StepDefinition {
 
 export function ReliefForm() {
   const [formData, setFormData] = useState<ReliefFormData>(initialFormData);
-  const [currentStep, setCurrentStep] = useState(4);
+  const [currentStep, setCurrentStep] = useState(0);
   const [isPending, startTransition] = useTransition();
 
   const stepSequence: StepDefinition[] = useMemo(
