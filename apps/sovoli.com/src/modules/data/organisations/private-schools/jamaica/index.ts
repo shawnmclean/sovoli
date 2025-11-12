@@ -1,6 +1,5 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ANANDA_MARGA_SCHOOL_ORG } from "./anandamarga";
-import { APPLETON_BASIC_SCHOOL_ORG } from "./appleton";
 import { ARK_OF_CHRIST_PREPARATORY_ORG } from "./arkofchrist";
 import { BLACK_RIVER_PREPARATORY_SCHOOL_ORG } from "./blackriverprep";
 import { BULL_SAVANNAH_PREPARATORY_SCHOOL_ORG } from "./bullsavannahprep";
@@ -32,7 +31,6 @@ import { WILMOR_PREPARATORY_SCHOOL_ORG } from "./wilmorprep";
 
 export const PRIVATE_SCHOOLS_JAMAICA: OrgInstance[] = [
   ANANDA_MARGA_SCHOOL_ORG,
-  APPLETON_BASIC_SCHOOL_ORG,
   ARK_OF_CHRIST_PREPARATORY_ORG,
   BLACK_RIVER_PREPARATORY_SCHOOL_ORG,
   BULL_SAVANNAH_PREPARATORY_SCHOOL_ORG,

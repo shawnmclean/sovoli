@@ -1,11 +1,13 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 
 import { PRIVATE_SCHOOLS } from "./private-schools";
+import { PUBLIC_SCHOOLS } from "./public-schools";
 import { STATIONARY_ORGS } from "./stationary";
 import { VOCATIONAL_SCHOOLS } from "./vocational-school";
 
 const orgs: OrgInstance[] = [
   ...PRIVATE_SCHOOLS,
+  ...PUBLIC_SCHOOLS,
   ...STATIONARY_ORGS,
   ...VOCATIONAL_SCHOOLS,
 ];
