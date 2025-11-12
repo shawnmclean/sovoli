@@ -13,6 +13,8 @@ import { Chip } from "@sovoli/ui/components/chip";
 import { SearchIcon } from "lucide-react";
 import { ALL_ITEMS } from "~/modules/data/items";
 import type { Item } from "~/modules/core/items/types";
+import type { ItemCategory } from "./ItemsSelection";
+import { getCategoryLabel } from "./ItemsSelection";
 
 interface SuppliesContributionProps {
   suppliesItems: Record<string, number>;
@@ -23,38 +25,14 @@ interface SuppliesContributionProps {
   onItemNoteChange?: (itemId: string, note: string) => void;
 }
 
-type ItemCategory = Item["category"];
+const ALL_CATEGORY_KEYS = Array.from(
+  new Set<ItemCategory>(ALL_ITEMS.map((item) => item.category)),
+);
 
-const CATEGORY_LABELS = new Map<ItemCategory, string>([
-  ["book", "Books"],
-  ["uniform", "Uniforms"],
-  ["material", "Materials"],
-  ["equipment", "Equipment"],
-  ["tool", "Tools"],
-  ["furniture", "Furniture"],
-  ["electronics", "Electronics"],
-  ["hygiene", "Hygiene"],
-  ["food", "Food"],
-  ["service", "Services"],
-  ["other", "Other Items"],
-]);
-
-const getCategoryLabel = (category: ItemCategory) => {
-  const label = CATEGORY_LABELS.get(category);
-  if (label) {
-    return label;
-  }
-  return category
-    .split("-")
-    .map((segment) => {
-      if (segment.length === 0) {
-        return segment;
-      }
-      const firstChar = segment.charAt(0).toUpperCase();
-      return `${firstChar}${segment.slice(1)}`;
-    })
-    .join(" ");
-};
+const ALL_ITEMS_BY_ID = ALL_ITEMS.reduce<Record<string, Item>>((acc, item) => {
+  acc[item.id] = item;
+  return acc;
+}, {});
 
 export function SuppliesContribution({
   suppliesItems,
@@ -65,57 +43,43 @@ export function SuppliesContribution({
   onItemNoteChange: _onItemNoteChange,
 }: SuppliesContributionProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const allCategories = useMemo(() => {
-    return Array.from(
-      new Set<ItemCategory>(ALL_ITEMS.map((item) => item.category)),
-    );
-  }, []);
-  const [selectedGroups, setSelectedGroups] = useState<Set<ItemCategory>>(
-    () => new Set(allCategories),
+  const [activeCategories, setActiveCategories] = useState<Set<ItemCategory>>(
+    () => new Set(ALL_CATEGORY_KEYS),
   );
-
-  const groupedItems = useMemo(() => {
-    const map = new Map<ItemCategory, { items: Item[]; label: string }>();
-    ALL_ITEMS.forEach((item) => {
-      const existing = map.get(item.category);
-      if (existing) {
-        existing.items.push(item);
-        return;
-      }
-      map.set(item.category, {
-        items: [item],
-        label: getCategoryLabel(item.category),
-      });
-    });
-    return map;
-  }, []);
 
   // Filter items based on search query and selected groups
   const filteredGroups = useMemo(() => {
-    const entries: [ItemCategory, { items: Item[]; label: string }][] = [];
-    groupedItems.forEach((group, category) => {
-      if (!selectedGroups.has(category)) {
-        return;
+    const trimmedQuery = searchQuery.trim().toLowerCase();
+    return ALL_CATEGORY_KEYS.flatMap((category) => {
+      if (!activeCategories.has(category)) {
+        return [];
       }
 
-      const filteredItems = group.items.filter((item) =>
-        item.name.toLowerCase().includes(searchQuery.toLowerCase()),
-      );
+      const categoryItems = ALL_ITEMS.filter((item) => {
+        if (item.category !== category) {
+          return false;
+        }
 
-      if (filteredItems.length === 0) {
-        return;
+        if (trimmedQuery.length === 0) {
+          return true;
+        }
+
+        return item.name.toLowerCase().includes(trimmedQuery);
+      });
+
+      if (categoryItems.length === 0) {
+        return [];
       }
-      entries.push([
-        category,
+
+      return [
         {
-          ...group,
-          items: filteredItems,
+          category,
+          label: getCategoryLabel(category),
+          items: categoryItems,
         },
-      ]);
+      ];
     });
-
-    return entries;
-  }, [groupedItems, selectedGroups, searchQuery]);
+  }, [activeCategories, searchQuery]);
 
   const selectedKeys = useMemo(() => {
     return new Set(
@@ -125,17 +89,12 @@ export function SuppliesContribution({
     );
   }, [suppliesItems]);
 
-  // Create a flat array of all items for easier lookup
-  const allItemsFlat = useMemo(() => {
-    return ALL_ITEMS;
-  }, []);
-
   const topContent = useMemo(() => {
     // Show all selected items in topContent
     const selectedItems = Object.keys(suppliesItems)
       .filter((key) => suppliesItems[key] && suppliesItems[key] > 0)
       .map((id) => {
-        const item = allItemsFlat.find((i) => i.id === id);
+        const item = ALL_ITEMS_BY_ID[id];
         if (!item) return null;
         return { id, item };
       })
@@ -158,7 +117,7 @@ export function SuppliesContribution({
         ))}
       </ScrollShadow>
     );
-  }, [suppliesItems, allItemsFlat]);
+  }, [suppliesItems]);
 
   const handleSelectionChange = (keys: Set<string> | "all") => {
     if (keys === "all") {
@@ -196,13 +155,13 @@ export function SuppliesContribution({
   };
 
   const toggleGroup = (category: ItemCategory) => {
-    const newSelected = new Set(selectedGroups);
+    const newSelected = new Set(activeCategories);
     if (newSelected.has(category)) {
       newSelected.delete(category);
     } else {
       newSelected.add(category);
     }
-    setSelectedGroups(newSelected);
+    setActiveCategories(newSelected);
   };
 
   return (
@@ -223,10 +182,10 @@ export function SuppliesContribution({
 
         {/* Group Filters */}
         <div className="flex flex-wrap gap-4">
-          {allCategories.map((category) => (
+          {ALL_CATEGORY_KEYS.map((category) => (
             <Checkbox
               key={category}
-              isSelected={selectedGroups.has(category)}
+              isSelected={activeCategories.has(category)}
               onValueChange={() => toggleGroup(category)}
             >
               {getCategoryLabel(category)}
@@ -250,9 +209,9 @@ export function SuppliesContribution({
               list: "max-h-[300px] overflow-scroll gap-2",
             }}
           >
-            {filteredGroups.map(([category, group]) => (
+            {filteredGroups.map((group) => (
               <ListboxSection
-                key={category}
+                key={group.category}
                 title={group.label}
                 aria-label={group.label}
                 showDivider={false}

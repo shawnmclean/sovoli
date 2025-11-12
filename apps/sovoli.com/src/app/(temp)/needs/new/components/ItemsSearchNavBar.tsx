@@ -86,13 +86,14 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
 
         {hasCategories ? (
           <Dropdown closeOnSelect={false}>
-            <DropdownTrigger>
+            <DropdownTrigger asChild>
               <Button
                 isIconOnly
                 size="lg"
-                variant="flat"
-                color="default"
-                className="shrink-0"
+                radius="full"
+                variant="bordered"
+                color="primary"
+                className="relative shrink-0 overflow-visible"
                 aria-label={filtersLabel}
                 title={filtersLabel}
               >
@@ -104,7 +105,20 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
                   showArrow
                   closeDelay={1000}
                 >
-                  <SlidersHorizontal className="h-4 w-4" />
+                  <Badge
+                    color="primary"
+                    content={String(activeCategoryCount)}
+                    size="md"
+                    placement="top-right"
+                    isInvisible={totalSelectableCategories === 0}
+                    classNames={{
+                      base: "relative inline-flex shrink-0",
+                      badge:
+                        "top-0 right-0 translate-x-[65%] -translate-y-[65%] w-5 h-5 min-w-5 min-h-5 text-small px-0 font-medium",
+                    }}
+                  >
+                    <SlidersHorizontal className="h-5 w-5 text-default-500" />
+                  </Badge>
                 </Tooltip>
               </Button>
             </DropdownTrigger>
