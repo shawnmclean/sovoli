@@ -9,7 +9,7 @@ import {
   useMapsLibrary,
 } from "@vis.gl/react-google-maps";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import type { OrgInstance } from "~/modules/organisations/types";
+import type { Address, OrgInstance } from "~/modules/organisations/types";
 import { pluralize } from "~/utils/pluralize";
 import { env } from "~/env";
 
@@ -23,12 +23,13 @@ interface DirectoryMarker {
   title: string;
   coordinates?: LatLngLiteral;
   placeId?: string;
+  address?: string;
 }
 
 interface GeocodingLibrary {
   Geocoder: new () => {
     geocode: (
-      request: { placeId: string },
+      request: google.maps.GeocoderRequest,
       callback: (
         results: google.maps.GeocoderResult[] | null,
         status: google.maps.GeocoderStatus,
@@ -44,6 +45,26 @@ export interface DirectoryMapProps {
 }
 
 const DEFAULT_CENTER: LatLngLiteral = { lat: 0, lng: 0 };
+
+function formatAddress(address: Address | undefined): string | undefined {
+  if (!address) return undefined;
+
+  const parts = [
+    address.line1,
+    address.line2,
+    address.line3,
+    address.city,
+    address.state,
+    address.postalCode,
+    address.countryCode,
+  ].filter(Boolean);
+
+  if (parts.length === 0) {
+    return undefined;
+  }
+
+  return parts.join(", ");
+}
 
 export function DirectoryMap({
   orgs,
@@ -94,7 +115,9 @@ function DirectoryMapContent({
       for (const location of org.locations) {
         const hasCoordinates = Boolean(location.coordinates);
         const hasPlaceId = Boolean(location.placeId);
-        if (!hasCoordinates && !hasPlaceId) continue;
+        const formattedAddress = formatAddress(location.address);
+        const hasAddress = Boolean(formattedAddress);
+        if (!hasCoordinates && !hasPlaceId && !hasAddress) continue;
 
         entries.push({
           key: `${org.username}-${location.key}`,
@@ -106,6 +129,7 @@ function DirectoryMapContent({
               }
             : undefined,
           placeId: location.placeId ?? undefined,
+          address: formattedAddress,
         });
       }
     }
@@ -132,7 +156,9 @@ function DirectoryMapContent({
 
     const unresolved = markers.filter(
       (marker) =>
-        !marker.coordinates && marker.placeId && !geocodedPositions[marker.key],
+        !marker.coordinates &&
+        !geocodedPositions[marker.key] &&
+        Boolean(marker.placeId ?? marker.address),
     );
 
     if (unresolved.length === 0) return;
@@ -147,13 +173,18 @@ function DirectoryMapContent({
         unresolved.map(
           (marker) =>
             new Promise<void>((resolve) => {
-              const placeId = marker.placeId;
-              if (!placeId) {
+              const request: google.maps.GeocoderRequest | null = marker.placeId
+                ? { placeId: marker.placeId }
+                : marker.address
+                  ? { address: marker.address }
+                  : null;
+
+              if (!request) {
                 resolve();
                 return;
               }
 
-              geocoder.geocode({ placeId }, (results, status) => {
+              geocoder.geocode(request, (results, status) => {
                 if (cancelled) {
                   resolve();
                   return;
