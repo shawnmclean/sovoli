@@ -15,6 +15,7 @@ export function SchoolInfo({
         size="lg"
         label="School or organisation name"
         placeholder="e.g. Portmore Primary School"
+        autoFocus
         value={schoolName}
         onValueChange={onSchoolNameChange}
       />
