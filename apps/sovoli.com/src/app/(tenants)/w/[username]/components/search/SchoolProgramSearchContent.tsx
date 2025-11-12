@@ -11,7 +11,6 @@ import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { PRIVATE_SCHOOLS } from "~/modules/data/organisations/private-schools";
 import type { Program } from "~/modules/academics/types";
-import { Avatar } from "@sovoli/ui/components/avatar";
 
 interface SchoolProgramSearchContentProps {
   onSearchStart?: () => void;
