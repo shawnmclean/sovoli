@@ -50,7 +50,7 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
     }
     const timeoutId = window.setTimeout(() => {
       setIsTooltipOpen(false);
-    }, 4000);
+    }, 6000);
 
     return () => {
       window.clearTimeout(timeoutId);
@@ -100,6 +100,7 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
                 <Tooltip
                   content="Disaster Relief Filters Applied"
                   placement="bottom-end"
+                  color="primary"
                   isOpen={isTooltipOpen}
                   onOpenChange={setIsTooltipOpen}
                   showArrow
@@ -109,12 +110,12 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
                     color="primary"
                     content={String(activeCategoryCount)}
                     size="md"
-                    placement="top-right"
+                    placement="bottom-right"
                     isInvisible={totalSelectableCategories === 0}
                     classNames={{
                       base: "relative inline-flex shrink-0",
                       badge:
-                        "top-0 right-0 translate-x-[65%] -translate-y-[65%] w-5 h-5 min-w-5 min-h-5 text-small px-0 font-medium",
+                        "bottom-0 right-0 translate-x-[65%] translate-y-full w-5 h-5 min-w-5 min-h-5 text-small px-0 font-medium",
                     }}
                   >
                     <SlidersHorizontal className="h-5 w-5 text-default-500" />
