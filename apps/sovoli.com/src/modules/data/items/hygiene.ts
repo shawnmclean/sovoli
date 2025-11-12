@@ -1,0 +1,60 @@
+import type { Item } from "~/modules/core/items/types";
+
+export const HYGIENE_ITEMS: Item[] = [
+  {
+    id: "supply-detergent",
+    name: "Detergent",
+    category: "hygiene",
+    tags: ["general", "cleaning"],
+  },
+  {
+    id: "supply-hand-sanitizer",
+    name: "Hand Sanitizer",
+    category: "hygiene",
+    tags: ["hygiene", "sanitizer"],
+    unitLabel: "bottle",
+  },
+  {
+    id: "supply-paper-towel",
+    name: "Paper Towel",
+    category: "hygiene",
+    tags: ["general", "paper-towel"],
+    unitLabel: "roll",
+  },
+  {
+    id: "supply-liquid-soap",
+    name: "Liquid Soap",
+    category: "hygiene",
+    tags: ["general", "soap"],
+    unitLabel: "bottle",
+  },
+  {
+    id: "supply-toilet-paper",
+    name: "Toilet Paper",
+    category: "hygiene",
+    tags: ["general", "toilet-paper"],
+    unitLabel: "roll",
+  },
+  {
+    id: "supply-soap",
+    name: "Soap",
+    category: "hygiene",
+    tags: ["general", "soap", "hygiene"],
+    unitLabel: "bar",
+  },
+  {
+    id: "supply-bounty-tissue",
+    name: "Bounty Tissue",
+    category: "hygiene",
+    tags: ["general", "tissue", "bounty"],
+    brand: "Bounty",
+    unitLabel: "roll",
+  },
+  {
+    id: "supply-tissue-paper-towel",
+    name: "Tissue/Paper Towel",
+    category: "hygiene",
+    tags: ["general", "tissue", "paper-towel"],
+    unitLabel: "roll",
+  },
+];

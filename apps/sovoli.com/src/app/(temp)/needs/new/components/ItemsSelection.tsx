@@ -15,26 +15,8 @@ interface ItemsSelectionProps {
 
 export type ItemCategory = Item["category"];
 
-const CATEGORY_LABELS = new Map<ItemCategory, string>([
-  ["book", "Books"],
-  ["uniform", "Uniforms"],
-  ["material", "Materials"],
-  ["equipment", "Equipment"],
-  ["tool", "Tools"],
-  ["furniture", "Furniture"],
-  ["electronics", "Electronics"],
-  ["hygiene", "Hygiene"],
-  ["food", "Food"],
-  ["service", "Services"],
-  ["other", "Other Items"],
-]);
-
-export const getCategoryLabel = (category: ItemCategory) => {
-  const label = CATEGORY_LABELS.get(category);
-  if (label) {
-    return label;
-  }
-  return category
+export const getCategoryLabel = (category: ItemCategory) =>
+  category
     .split("-")
     .map((segment) => {
       if (segment.length === 0) {
@@ -44,7 +26,6 @@ export const getCategoryLabel = (category: ItemCategory) => {
       return `${firstChar}${segment.slice(1)}`;
     })
     .join(" ");
-};
 
 export function ItemsSelection({
   items,
@@ -164,7 +145,9 @@ export function ItemsSelection({
                               inputMode="numeric"
                               min={0}
                               size="sm"
+                              variant="bordered"
                               value={displayValue}
+                              isDisabled={!isSelected}
                               onValueChange={(value) =>
                                 handleQuantityInput(item.id, value)
                               }
