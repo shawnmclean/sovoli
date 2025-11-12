@@ -20,6 +20,24 @@ const ALL_ITEMS_BY_ID = new Map(ALL_ITEMS.map((item) => [item.id, item]));
 const ALL_CATEGORY_KEYS = Array.from(
   new Set<ItemCategory>(ALL_ITEMS.map((item) => item.category)),
 );
+const PREFERRED_CATEGORY_KEYS = [
+  "hardware",
+  "hygiene",
+  "bedding",
+] satisfies readonly ItemCategory[];
+const PREFERRED_CATEGORY_SET = new Set<ItemCategory>(PREFERRED_CATEGORY_KEYS);
+const INITIAL_ACTIVE_CATEGORIES = (() => {
+  const preferred = ALL_CATEGORY_KEYS.filter((category) =>
+    PREFERRED_CATEGORY_SET.has(category),
+  );
+  if (preferred.length > 0) {
+    return new Set<ItemCategory>(preferred);
+  }
+  if (ALL_CATEGORY_KEYS.length > 0) {
+    return new Set<ItemCategory>(ALL_CATEGORY_KEYS);
+  }
+  return new Set<ItemCategory>();
+})();
 type CategoryFilterKey = ItemCategory | "all";
 
 export function ItemsSelectionStep({
@@ -29,7 +47,7 @@ export function ItemsSelectionStep({
 }: ItemsSelectionStepProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategories, setActiveCategories] = useState<Set<ItemCategory>>(
-    () => new Set(ALL_CATEGORY_KEYS),
+    () => new Set(INITIAL_ACTIVE_CATEGORIES),
   );
 
   const selectedItemIds = useMemo(

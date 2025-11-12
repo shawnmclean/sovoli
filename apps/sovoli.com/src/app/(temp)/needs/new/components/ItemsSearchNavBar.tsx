@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
+import { Badge } from "@sovoli/ui/components/badge";
 import {
   Dropdown,
   DropdownItem,
@@ -10,6 +12,7 @@ import {
 } from "@sovoli/ui/components/dropdown";
 import { Input } from "@sovoli/ui/components/input";
 import { Navbar, NavbarContent } from "@sovoli/ui/components/navbar";
+import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { SearchIcon, SlidersHorizontal } from "lucide-react";
 
 interface ItemsSearchCategoryOption<TCategory extends string = string> {
@@ -39,6 +42,20 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
   searchQuery,
   selectedItems: _selectedItems,
 }: ItemsSearchNavBarProps<TCategory>) {
+  const [isTooltipOpen, setIsTooltipOpen] = useState(true);
+
+  useEffect(() => {
+    if (!isTooltipOpen) {
+      return;
+    }
+    const timeoutId = window.setTimeout(() => {
+      setIsTooltipOpen(false);
+    }, 4000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [isTooltipOpen]);
   const hasCategories = categories.length > 0;
   const selectableCategories = categories.filter(
     (category) => category.key !== "all",
@@ -79,7 +96,16 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
                 aria-label={filtersLabel}
                 title={filtersLabel}
               >
-                <SlidersHorizontal className="h-4 w-4" />
+                <Tooltip
+                  content="Disaster Relief Filters Applied"
+                  placement="bottom-end"
+                  isOpen={isTooltipOpen}
+                  onOpenChange={setIsTooltipOpen}
+                  showArrow
+                  closeDelay={1000}
+                >
+                  <SlidersHorizontal className="h-4 w-4" />
+                </Tooltip>
               </Button>
             </DropdownTrigger>
             <DropdownMenu
