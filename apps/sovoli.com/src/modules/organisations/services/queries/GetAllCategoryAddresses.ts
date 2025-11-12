@@ -1,10 +1,12 @@
 import { ORGS } from "~/modules/data/organisations";
+import { getOrgCategoryGroupKeysForCategories } from "~/modules/organisations/lib/categoryHierarchy";
+import type { OrgCategoryIdentifier } from "~/modules/organisations/types";
 import type { Address } from "~/modules/organisations/types";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
 
 export interface CategoryAddress {
-  category: string;
+  category: OrgCategoryIdentifier;
   address: Address;
 }
 
@@ -21,14 +23,32 @@ export class GetAllCategoryAddressesQueryHandler
 {
   handle(): Promise<Result> {
     const result: CategoryAddress[] = [];
+    const seen = new Set<string>();
 
     for (const org of ORGS) {
-      for (const category of org.org.categories) {
-        for (const location of org.org.locations) {
+      const categoryGroups = getOrgCategoryGroupKeysForCategories(
+        org.org.categories,
+      );
+
+      for (const location of org.org.locations) {
+        const addResult = (categoryIdentifier: OrgCategoryIdentifier) => {
+          const dedupeKey = `${categoryIdentifier}::${org.org.username}::${location.key}`;
+          if (seen.has(dedupeKey)) {
+            return;
+          }
+          seen.add(dedupeKey);
           result.push({
-            category,
+            category: categoryIdentifier,
             address: location.address,
           });
+        };
+
+        for (const category of org.org.categories) {
+          addResult(category);
+        }
+
+        for (const categoryGroup of categoryGroups) {
+          addResult(categoryGroup);
         }
       }
     }

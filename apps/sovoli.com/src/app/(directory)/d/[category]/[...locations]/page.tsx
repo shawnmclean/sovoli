@@ -17,9 +17,11 @@ import { DirectoryMapClient } from "../../components/DirectoryMapClient";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",
+  "public-school": "Public School",
   "nursery-school": "Nursery School",
   "secondary-school": "Secondary School",
   "pre-school": "Pre-School",
+  school: "School",
 };
 
 interface Props {

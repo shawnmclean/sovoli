@@ -132,11 +132,16 @@ export type OrgInstanceWithWebsite = Omit<OrgInstance, "websiteModule"> & {
 
 export type OrgCategoryKeys =
   | "private-school"
+  | "public-school"
   | "nursery-school"
   | "primary-school"
   | "special-education-school"
   | "vocational-school"
   | "stationary";
+
+export type OrgCategoryGroupKey = "school";
+
+export type OrgCategoryIdentifier = OrgCategoryKeys | OrgCategoryGroupKey;
 
 // #region Tech Stack
 export type TechCategory =

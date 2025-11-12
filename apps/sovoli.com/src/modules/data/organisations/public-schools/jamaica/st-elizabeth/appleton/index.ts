@@ -28,7 +28,7 @@ export const APPLETON_BASIC_SCHOOL_ORG: OrgInstance = {
       claimedAt: undefined,
       people: [],
     },
-    categories: ["private-school", "nursery-school"],
+    categories: ["public-school", "nursery-school"],
     locations: [
       {
         key: "main-campus",

@@ -1,4 +1,5 @@
 import { ORGS } from "~/modules/data/organisations";
+import { resolveOrgCategoryFilter } from "~/modules/organisations/lib/categoryHierarchy";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
@@ -38,13 +39,21 @@ export class GetOrgsByCategoryAndLocationQueryHandler
       pageSize = 10,
     } = query.params;
 
+    const resolvedCategoryKeys = resolveOrgCategoryFilter(category);
+    if (resolvedCategoryKeys.length === 0) {
+      return {
+        orgs: [],
+        total: 0,
+        page,
+        pageSize,
+      };
+    }
+
     let filteredOrgs = ORGS;
 
-    // Filter by category
+    // Filter by category (including hierarchical groups)
     filteredOrgs = filteredOrgs.filter((org) =>
-      org.org.categories.some(
-        (cat) => cat.toLowerCase() === category.toLowerCase(),
-      ),
+      org.org.categories.some((cat) => resolvedCategoryKeys.includes(cat)),
     );
 
     // Filter by country first
