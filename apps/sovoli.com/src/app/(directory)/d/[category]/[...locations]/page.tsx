@@ -14,6 +14,10 @@ import { Chip } from "@sovoli/ui/components/chip";
 
 import { countryCodeToName, countryNameToCode } from "~/utils/countryUtils";
 import { DirectoryMapClient } from "../../components/DirectoryMapClient";
+import {
+  toDisplayLocationSegment,
+  toLocationSegment,
+} from "~/modules/organisations/lib/locationSegments";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",
@@ -46,20 +50,28 @@ export async function generateStaticParams() {
     const country = countryCodeToName(categoryAddress.address.countryCode);
     if (!country) continue;
 
+    const countrySegment = toLocationSegment(country);
+
     paths.push({
       category: categoryAddress.category,
-      locations: [country],
+      locations: [countrySegment],
     });
     if (categoryAddress.address.state) {
       paths.push({
         category: categoryAddress.category,
-        locations: [country, categoryAddress.address.state],
+        locations: [
+          countrySegment,
+          toLocationSegment(categoryAddress.address.state),
+        ],
       });
     }
     if (categoryAddress.address.city) {
       paths.push({
         category: categoryAddress.category,
-        locations: [country, categoryAddress.address.city],
+        locations: [
+          countrySegment,
+          toLocationSegment(categoryAddress.address.city),
+        ],
       });
     }
   }
@@ -92,7 +104,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, locations } = await params;
   const readableCategory = CATEGORY_MAP[category] ?? category;
   const formattedLocations = locations
-    .map((loc) => loc.charAt(0).toUpperCase() + loc.slice(1))
+    .map((loc) => toDisplayLocationSegment(loc))
     .join(", ");
   return {
     title: `Top ${pluralize(2, readableCategory)} in ${formattedLocations}`,
@@ -109,8 +121,13 @@ export default async function DirectoryCategoryPage(props: Props) {
   const viewParam = searchParams.view;
   const view: "list" | "map" = viewParam === "map" ? "map" : "list";
 
-  const country = locations[0];
-  const stateOrCity = locations[1];
+  const countrySegment = locations[0];
+  const stateOrCitySegment = locations[1];
+  const country =
+    countrySegment !== undefined
+      ? toDisplayLocationSegment(countrySegment)
+      : undefined;
+  const stateOrCity = stateOrCitySegment;
 
   const { orgs, total } = await retreiveOrgsByCategoryAndLocation(
     category,
@@ -121,7 +138,7 @@ export default async function DirectoryCategoryPage(props: Props) {
   );
   const readableCategory = CATEGORY_MAP[category] ?? category;
   const formattedLocations = locations
-    .map((loc) => loc.charAt(0).toUpperCase() + loc.slice(1))
+    .map((loc) => toDisplayLocationSegment(loc))
     .join(", ");
 
   const totalPages = Math.ceil(total / pageSize);

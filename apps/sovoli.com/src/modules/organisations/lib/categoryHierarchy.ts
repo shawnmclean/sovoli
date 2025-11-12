@@ -64,3 +64,11 @@ export const getOrgCategoryGroupKeysForCategories = (
   }
   return [...groups];
 };
+
+export const orgCategoriesIncludeGroup = (
+  categories: readonly OrgCategoryKeys[],
+  groupKey: OrgCategoryGroupKey,
+) => {
+  const groupCategories = ORG_CATEGORY_GROUPS[groupKey];
+  return groupCategories.some((category) => categories.includes(category));
+};
