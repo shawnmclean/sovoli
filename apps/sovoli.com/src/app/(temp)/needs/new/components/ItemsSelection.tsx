@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import { Checkbox } from "@sovoli/ui/components/checkbox";
-import { Input } from "@sovoli/ui/components/input";
+import { Button } from "@sovoli/ui/components/button";
+import { Minus, Plus, Trash2 } from "lucide-react";
 import type { Item } from "~/modules/core/items/types";
 
 interface ItemsSelectionProps {
@@ -50,26 +50,9 @@ export function ItemsSelection({
     return Array.from(map.entries());
   }, [items]);
 
-  const handleCheckboxChange = (itemId: string, checked: boolean) => {
-    const nextSelected = new Set(selectedItemIds);
-    if (checked) {
-      nextSelected.add(itemId);
-      const existingQuantity = quantities[itemId] ?? 0;
-      if (existingQuantity <= 0) {
-        onQuantityChange(itemId, 1);
-      }
-    } else {
-      nextSelected.delete(itemId);
-      onQuantityChange(itemId, 0);
-    }
-    onSelectionChange(nextSelected);
-  };
-
-  const handleQuantityInput = (itemId: string, value: string) => {
-    const parsed = Number.parseInt(value, 10);
-    const nextQuantity = Number.isNaN(parsed) ? 0 : Math.max(parsed, 0);
+  const updateQuantity = (itemId: string, proposedQuantity: number) => {
+    const nextQuantity = Math.max(proposedQuantity, 0);
     onQuantityChange(itemId, nextQuantity);
-
     const nextSelected = new Set(selectedItemIds);
     if (nextQuantity > 0) {
       nextSelected.add(itemId);
@@ -77,6 +60,26 @@ export function ItemsSelection({
       nextSelected.delete(itemId);
     }
     onSelectionChange(nextSelected);
+  };
+
+  const handleAddToList = (itemId: string) => {
+    const currentQuantity = quantities[itemId] ?? 0;
+    const nextQuantity = currentQuantity > 0 ? currentQuantity : 1;
+    updateQuantity(itemId, nextQuantity);
+  };
+
+  const handleIncrement = (itemId: string) => {
+    const currentQuantity = quantities[itemId] ?? 0;
+    updateQuantity(itemId, currentQuantity + 1);
+  };
+
+  const handleDecrement = (itemId: string) => {
+    const currentQuantity = quantities[itemId] ?? 0;
+    if (currentQuantity <= 1) {
+      updateQuantity(itemId, 0);
+      return;
+    }
+    updateQuantity(itemId, currentQuantity - 1);
   };
 
   const hasResults = groupedItems.length > 0;
@@ -99,12 +102,10 @@ export function ItemsSelection({
                 <div className="space-y-3">
                   {group.items.map((item) => {
                     const quantity = quantities[item.id] ?? 0;
-                    const displayValue = quantity > 0 ? String(quantity) : "";
                     const isSelected = selectedItemIds.has(item.id);
                     const cardStyles = isSelected
                       ? "border-primary-200 bg-primary-50/60"
                       : "border-default-200 bg-background";
-                    const inputId = `quantity-${item.id}`;
                     const secondaryLine =
                       item.brand ?? item.attributes?.source ?? item.unitLabel;
                     return (
@@ -113,46 +114,61 @@ export function ItemsSelection({
                         className={`rounded-xl border px-4 py-3 transition-colors ${cardStyles}`}
                       >
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                          <Checkbox
-                            isSelected={isSelected}
-                            onValueChange={(value) =>
-                              handleCheckboxChange(item.id, value)
-                            }
-                            className="sm:flex-1"
-                          >
-                            <div className="flex flex-col gap-1 text-left">
-                              <span className="font-medium text-default-800">
-                                {item.name}
+                          <div className="flex flex-1 flex-col gap-1 text-left">
+                            <span className="font-medium text-default-800">
+                              {item.name}
+                            </span>
+                            {secondaryLine ? (
+                              <span className="text-xs text-default-400">
+                                {secondaryLine}
                               </span>
-                              {secondaryLine && (
-                                <span className="text-xs text-default-400">
-                                  {secondaryLine}
+                            ) : null}
+                          </div>
+                          <div className="flex items-center gap-3 sm:min-w-[180px] sm:justify-end">
+                            {isSelected ? (
+                              <div className="flex items-center gap-2">
+                                <Button
+                                  isIconOnly
+                                  size="sm"
+                                  variant="light"
+                                  color="default"
+                                  onPress={() => handleDecrement(item.id)}
+                                  aria-label={
+                                    quantity > 1
+                                      ? `Decrease quantity of ${item.name}`
+                                      : `Remove ${item.name} from list`
+                                  }
+                                >
+                                  {quantity > 1 ? (
+                                    <Minus className="h-4 w-4" />
+                                  ) : (
+                                    <Trash2 className="h-4 w-4" />
+                                  )}
+                                </Button>
+                                <span className="min-w-[1.5rem] text-center text-sm font-semibold text-default-700">
+                                  {quantity}
                                 </span>
-                              )}
-                            </div>
-                          </Checkbox>
-                          <div className="flex items-center gap-3 sm:min-w-[160px]">
-                            <label
-                              htmlFor={inputId}
-                              className="text-sm font-medium text-default-600"
-                            >
-                              Qty
-                            </label>
-                            <Input
-                              id={inputId}
-                              aria-label={`Quantity for ${item.name}`}
-                              type="number"
-                              inputMode="numeric"
-                              min={0}
-                              size="sm"
-                              variant="bordered"
-                              value={displayValue}
-                              isDisabled={!isSelected}
-                              onValueChange={(value) =>
-                                handleQuantityInput(item.id, value)
-                              }
-                              className="w-20"
-                            />
+                                <Button
+                                  isIconOnly
+                                  size="sm"
+                                  variant="light"
+                                  color="default"
+                                  onPress={() => handleIncrement(item.id)}
+                                  aria-label={`Increase quantity of ${item.name}`}
+                                >
+                                  <Plus className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            ) : (
+                              <Button
+                                size="sm"
+                                color="primary"
+                                onPress={() => handleAddToList(item.id)}
+                                aria-label={`Add ${item.name} to list`}
+                              >
+                                Add to list
+                              </Button>
+                            )}
                           </div>
                         </div>
                       </div>
