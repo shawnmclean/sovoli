@@ -30,6 +30,7 @@ import { FYFFES_PEN_PRIMARY_ORG } from "./fyffespenprimaryseh";
 import { GENEVA_PRIMARY_ORG } from "./genevaprimaryseh";
 import { GIDDY_HALL_ALL_AGE_ORG } from "./giddyhallallageseh";
 import { GINGER_HILL_ALL_AGE_ORG } from "./gingerhillallageseh";
+import { GINGER_HILL_PRIMARY_ORG } from "./gingerhillprimaryseh";
 import { GLEN_STUART_PRIMARY_ORG } from "./glenstuartprimaryseh";
 import { GOSHEN_ALL_AGE_ORG } from "./goshenallageseh";
 import { HAMPTON_SCHOOL_ORG } from "./hamptonschoolhighseh";
@@ -119,6 +120,7 @@ export const ST_ELIZABETH_PUBLIC_SCHOOLS_JAMAICA: OrgInstance[] = [
   GENEVA_PRIMARY_ORG,
   GIDDY_HALL_ALL_AGE_ORG,
   GINGER_HILL_ALL_AGE_ORG,
+  GINGER_HILL_PRIMARY_ORG,
   GLEN_STUART_PRIMARY_ORG,
   GOSHEN_ALL_AGE_ORG,
   HAMPTON_SCHOOL_ORG,
