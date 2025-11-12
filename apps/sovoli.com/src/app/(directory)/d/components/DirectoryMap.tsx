@@ -120,8 +120,8 @@ function DirectoryMapContent({
         if (!hasCoordinates && !hasPlaceId && !hasAddress) continue;
 
         entries.push({
-          key: `${org.username}-${location.key}`,
-          title: location.label ?? org.name,
+          key: org.username,
+          title: org.name,
           coordinates: location.coordinates
             ? {
                 lat: location.coordinates.lat,
@@ -133,7 +133,6 @@ function DirectoryMapContent({
         });
       }
     }
-
     return entries;
   }, [orgs]);
 
@@ -151,7 +150,6 @@ function DirectoryMapContent({
   );
 
   useEffect(() => {
-    console.log("geocodingLib", geocodingLib);
     if (!geocodingLib) return;
 
     const unresolved = markers.filter(

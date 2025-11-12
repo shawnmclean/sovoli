@@ -129,13 +129,26 @@ export default async function DirectoryCategoryPage(props: Props) {
       : undefined;
   const stateOrCity = stateOrCitySegment;
 
-  const { orgs, total } = await retreiveOrgsByCategoryAndLocation(
+  const initialResult = await retreiveOrgsByCategoryAndLocation(
     category,
     country,
     stateOrCity,
     page,
     pageSize,
   );
+  let { orgs, total } = initialResult;
+
+  if (view === "map" && total > orgs.length) {
+    const allResults = await retreiveOrgsByCategoryAndLocation(
+      category,
+      country,
+      stateOrCity,
+      1,
+      total,
+    );
+    orgs = allResults.orgs;
+    total = allResults.total;
+  }
   const readableCategory = CATEGORY_MAP[category] ?? category;
   const formattedLocations = locations
     .map((loc) => toDisplayLocationSegment(loc))
