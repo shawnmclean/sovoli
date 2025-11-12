@@ -20,6 +20,7 @@ const ALL_ITEMS_BY_ID = new Map(ALL_ITEMS.map((item) => [item.id, item]));
 const ALL_CATEGORY_KEYS = Array.from(
   new Set<ItemCategory>(ALL_ITEMS.map((item) => item.category)),
 );
+type CategoryFilterKey = ItemCategory | "all";
 
 export function ItemsSelectionStep({
   formData,
@@ -36,14 +37,23 @@ export function ItemsSelectionStep({
     [formData.suppliesSelected],
   );
 
+  const allCategoriesActive =
+    activeCategories.size === ALL_CATEGORY_KEYS.length;
+
   const categoryOptions = useMemo(
-    () =>
-      ALL_CATEGORY_KEYS.map((category) => ({
+    () => [
+      {
+        key: "all" as const,
+        label: "All categories",
+        isActive: allCategoriesActive,
+      },
+      ...ALL_CATEGORY_KEYS.map((category) => ({
         key: category,
         label: getCategoryLabel(category),
         isActive: activeCategories.has(category),
       })),
-    [activeCategories],
+    ],
+    [activeCategories, allCategoriesActive],
   );
 
   const filteredItems = useMemo(() => {
@@ -134,8 +144,15 @@ export function ItemsSelectionStep({
     }));
   };
 
-  const handleToggleCategory = (categoryKey: ItemCategory) => {
+  const handleToggleCategory = (categoryKey: CategoryFilterKey) => {
     setActiveCategories((prev) => {
+      if (categoryKey === "all") {
+        if (prev.size === ALL_CATEGORY_KEYS.length) {
+          return new Set<ItemCategory>();
+        }
+        return new Set<ItemCategory>(ALL_CATEGORY_KEYS);
+      }
+
       const next = new Set(prev);
       if (next.has(categoryKey)) {
         next.delete(categoryKey);

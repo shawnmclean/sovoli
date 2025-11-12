@@ -40,11 +40,15 @@ export function ItemsSearchNavBar<TCategory extends string = string>({
   selectedItems: _selectedItems,
 }: ItemsSearchNavBarProps<TCategory>) {
   const hasCategories = categories.length > 0;
-  const activeCategoryCount = categories.filter(
+  const selectableCategories = categories.filter(
+    (category) => category.key !== "all",
+  );
+  const activeCategoryCount = selectableCategories.filter(
     (category) => category.isActive,
   ).length;
+  const totalSelectableCategories = selectableCategories.length;
   const filtersLabel =
-    !hasCategories || activeCategoryCount === categories.length
+    !hasCategories || activeCategoryCount === totalSelectableCategories
       ? "Filter categories"
       : `Filter categories (${activeCategoryCount})`;
 
