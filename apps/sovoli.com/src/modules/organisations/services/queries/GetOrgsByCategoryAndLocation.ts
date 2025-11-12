@@ -1,5 +1,6 @@
 import { ORGS } from "~/modules/data/organisations";
 import { resolveOrgCategoryFilter } from "~/modules/organisations/lib/categoryHierarchy";
+import { doesLocationValueMatchSegment } from "~/modules/organisations/lib/locationSegments";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
@@ -70,16 +71,16 @@ export class GetOrgsByCategoryAndLocationQueryHandler
 
     // Filter by state or city
     if (stateOrCity) {
+      const targetSegment = stateOrCity;
       filteredOrgs = filteredOrgs.filter((org) =>
         org.org.locations.some((location) => {
-          const state = location.address.state
-            ? location.address.state.toLowerCase()
-            : "";
-          const city = location.address.city
-            ? location.address.city.toLowerCase()
-            : "";
-          const target = stateOrCity.toLowerCase();
-          return state === target || city === target;
+          return (
+            doesLocationValueMatchSegment(
+              location.address.state,
+              targetSegment,
+            ) ||
+            doesLocationValueMatchSegment(location.address.city, targetSegment)
+          );
         }),
       );
     }

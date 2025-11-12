@@ -14,7 +14,6 @@ import { MODEL_PRIVATE_PREPARATORY_SCHOOL_ORG } from "./modelprivate";
 import { JOINTWOOD_SDA_PREPARATORY_SCHOOL_ORG } from "./jointwoodsda";
 import { JUNCTION_KINDER_PREP_ORG } from "./junctionkinderprep";
 import { KAYAN_PREPARATORY_SCHOOL_ORG } from "./kayanprep";
-import { MUNRO_PREPARATORY_SCHOOL_ORG } from "./st-elizabeth/munroprep";
 import { NEW_HOPE_PREPARATORY_SCHOOL_ORG } from "./newhopeprep";
 import { NEW_MARKET_PREPARATORY_SCHOOL_ORG } from "./newmarketprep";
 import { PROMISE_LEARNING_CENTRE_ORG } from "./promiselearning";
@@ -47,7 +46,6 @@ export const PRIVATE_SCHOOLS_JAMAICA: OrgInstance[] = [
   JUNCTION_KINDER_PREP_ORG,
   KAYAN_PREPARATORY_SCHOOL_ORG,
   MODEL_PRIVATE_PREPARATORY_SCHOOL_ORG,
-  MUNRO_PREPARATORY_SCHOOL_ORG,
   NEW_HOPE_PREPARATORY_SCHOOL_ORG,
   NEW_MARKET_PREPARATORY_SCHOOL_ORG,
   PROMISE_LEARNING_CENTRE_ORG,
