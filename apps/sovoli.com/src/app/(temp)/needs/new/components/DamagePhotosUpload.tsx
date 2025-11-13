@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useCallback, useEffect, useMemo } from "react";
+import { useCallback } from "react";
 import Image from "next/image";
-import { CloudUpload, X, Loader2 } from "lucide-react";
+import { CloudUpload, X, Loader2, AlertCircle } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "@sovoli/ui/components/button";
 import {
@@ -11,62 +11,176 @@ import {
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
 
-export interface DamagePhotosUploadProps {
-  photos: File[];
-  onPhotosChange: (files: File[]) => void;
-}
+import { uploadToCloudinary } from "~/core/cloudinary/uploadToCloudinary";
+import type { UploadSignature } from "~/core/cloudinary/generateUploadSignatures";
+import { processImage } from "~/core/image/processImage";
 
-interface PhotoWithPreview {
-  file: File;
-  preview: string;
-  uploadState: "pending" | "uploading" | "success" | "error";
+import type { DamagePhoto } from "./damage-photo-types";
+import { createDamagePhoto } from "./damage-photo-types";
+
+export interface DamagePhotosUploadProps {
+  photos: DamagePhoto[];
+  onPhotosChange: (updater: (photos: DamagePhoto[]) => DamagePhoto[]) => void;
 }
 
 export function DamagePhotosUpload({
   photos,
   onPhotosChange,
 }: DamagePhotosUploadProps) {
-  const [uploadingIndexes] = useState<Set<number>>(new Set());
-
-  // Create preview URLs for all photos
-  const photosWithPreview = useMemo<PhotoWithPreview[]>(() => {
-    return photos.map((photo, index) => ({
-      file: photo,
-      preview: URL.createObjectURL(photo),
-      uploadState: uploadingIndexes.has(index)
-        ? ("uploading" as const)
-        : ("success" as const),
-    }));
-  }, [photos, uploadingIndexes]);
-
-  // Clean up object URLs when component unmounts or photos change
-  useEffect(() => {
-    return () => {
-      photosWithPreview.forEach((photo) => {
-        URL.revokeObjectURL(photo.preview);
-      });
-    };
-  }, [photosWithPreview]);
-
-  const handleDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const newPhotos = [...photos, ...acceptedFiles];
-      onPhotosChange(newPhotos);
+  const assignPhotos = useCallback(
+    (newPhotos: DamagePhoto[]) => {
+      onPhotosChange((current) => [...current, ...newPhotos]);
     },
-    [photos, onPhotosChange],
+    [onPhotosChange],
+  );
+
+  const updatePhoto = useCallback(
+    (id: string, partial: Partial<DamagePhoto>) => {
+      onPhotosChange((current) =>
+        current.map((photo) => {
+          if (photo.id !== id) return photo;
+
+          if (
+            partial.status === "success" &&
+            photo.previewUrl.startsWith("blob:")
+          ) {
+            URL.revokeObjectURL(photo.previewUrl);
+          }
+
+          return { ...photo, ...partial };
+        }),
+      );
+    },
+    [onPhotosChange],
+  );
+
+  const markPhotosAsErrored = useCallback(
+    (photosToUpdate: DamagePhoto[], errorMessage: string) => {
+      onPhotosChange((current) =>
+        current.map((photo) => {
+          if (!photosToUpdate.some((target) => target.id === photo.id)) {
+            return photo;
+          }
+
+          return {
+            ...photo,
+            status: "error",
+            errorMessage,
+          };
+        }),
+      );
+    },
+    [onPhotosChange],
   );
 
   const handleRemove = useCallback(
-    (indexToRemove: number) => {
-      // Revoke the object URL before removing
-      const photoToRemove = photosWithPreview[indexToRemove];
-      if (photoToRemove) {
-        URL.revokeObjectURL(photoToRemove.preview);
-      }
-      const newPhotos = photos.filter((_, index) => index !== indexToRemove);
-      onPhotosChange(newPhotos);
+    (photoId: string) => {
+      onPhotosChange((current) => {
+        const photoToRemove = current.find((photo) => photo.id === photoId);
+        if (photoToRemove && photoToRemove.previewUrl.startsWith("blob:")) {
+          URL.revokeObjectURL(photoToRemove.previewUrl);
+        }
+        return current.filter((photo) => photo.id !== photoId);
+      });
     },
-    [photos, onPhotosChange, photosWithPreview],
+    [onPhotosChange],
+  );
+
+  const fetchSignatures = useCallback(async (count: number) => {
+    const response = await fetch("/api/needs/upload-signatures", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ count }),
+    });
+
+    if (!response.ok) {
+      const message = await response.text();
+      throw new Error(
+        message || "Unable to request Cloudinary upload signatures.",
+      );
+    }
+
+    return (await response.json()) as UploadSignature[];
+  }, []);
+
+  const handleDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      if (acceptedFiles.length === 0) return;
+
+      const incomingPhotos = acceptedFiles.map(createDamagePhoto);
+      assignPhotos(incomingPhotos);
+
+      let signatures: UploadSignature[] = [];
+
+      try {
+        signatures = await fetchSignatures(acceptedFiles.length);
+      } catch (error) {
+        console.error("Failed to request Cloudinary upload signatures:", error);
+        const message =
+          error instanceof Error
+            ? error.message
+            : "Failed to request upload signatures.";
+        markPhotosAsErrored(incomingPhotos, message);
+        return;
+      }
+
+      await Promise.all(
+        incomingPhotos.map(async (photo, index) => {
+          const file = photo.file;
+          const signature = signatures[index];
+          if (!file || !signature) {
+            updatePhoto(photo.id, {
+              status: "error",
+              errorMessage: "Missing upload data for this file.",
+            });
+            return;
+          }
+
+          updatePhoto(photo.id, { status: "uploading" });
+
+          try {
+            const processedBlob = await processImage(
+              file,
+              80,
+              "auto",
+              "auto",
+              "webp",
+            );
+
+            const processedFileName = file.name.replace(/\.[^/.]+$/, ".webp");
+            const processedFile = new File([processedBlob], processedFileName, {
+              type: processedBlob.type,
+              lastModified: Date.now(),
+            });
+
+            const uploadedAsset = await uploadToCloudinary(
+              processedFile,
+              signature,
+            );
+
+            updatePhoto(photo.id, {
+              status: "success",
+              url: uploadedAsset.url,
+              publicId: uploadedAsset.id,
+              file: undefined,
+              previewUrl: uploadedAsset.url,
+            });
+          } catch (error) {
+            console.error("Cloudinary upload failed:", error);
+            const message =
+              error instanceof Error
+                ? error.message
+                : "Cloudinary upload failed.";
+
+            updatePhoto(photo.id, {
+              status: "error",
+              errorMessage: message,
+            });
+          }
+        }),
+      );
+    },
+    [assignPhotos, fetchSignatures, markPhotosAsErrored, updatePhoto],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -74,13 +188,15 @@ export function DamagePhotosUpload({
     accept: {
       "image/jpeg": [],
       "image/png": [],
+      "image/webp": [],
     },
-    onDrop: handleDrop,
+    onDrop: (acceptedFiles) => {
+      void handleDrop(acceptedFiles);
+    },
   });
 
   return (
     <div className="space-y-4">
-      {/* Dropzone */}
       <div
         {...getRootProps({
           className: `flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
@@ -104,17 +220,15 @@ export function DamagePhotosUpload({
             drop
           </p>
           <p className="text-xs text-default-500">
-            (Only *.jpeg and *.png images will be accepted)
+            (JPEG, PNG or WEBP images up to 10MB)
           </p>
         </div>
       </div>
 
-      {/* Image List */}
-      {photosWithPreview.length > 0 && (
+      {photos.length > 0 && (
         <div className="space-y-3">
           <p className="text-sm font-medium text-default-700">
-            {photosWithPreview.length} photo
-            {photosWithPreview.length !== 1 ? "s" : ""} selected
+            {photos.length} photo{photos.length !== 1 ? "s" : ""} added
           </p>
           <Carousel
             opts={{
@@ -124,44 +238,63 @@ export function DamagePhotosUpload({
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
-              {photosWithPreview.map((photo, index) => (
+              {photos.map((photo) => (
                 <CarouselItem
-                  key={`${photo.file.name}-${index}`}
+                  key={photo.id}
                   className="pl-2 md:pl-4 basis-[160px] shrink-0"
                 >
-                  <div className="relative group aspect-square rounded-lg overflow-hidden border border-default-200 bg-default-100">
-                    {/* Image Preview */}
+                  <div className="relative group aspect-square overflow-hidden rounded-lg border border-default-200 bg-default-100">
                     <Image
-                      src={photo.preview}
-                      alt={photo.file.name}
+                      src={photo.url ?? photo.previewUrl}
+                      alt={photo.fileName}
                       fill
                       className="object-cover"
                       sizes="160px"
                     />
 
-                    {/* Remove Button */}
                     <Button
                       isIconOnly
                       size="sm"
                       color="danger"
                       variant="solid"
-                      className="absolute top-2 right-2 z-10"
-                      onPress={() => handleRemove(index)}
-                      aria-label={`Remove ${photo.file.name}`}
+                      className="absolute top-2 right-2 z-20"
+                      onPress={() => handleRemove(photo.id)}
+                      aria-label={`Remove ${photo.fileName}`}
                     >
                       <X className="h-4 w-4" />
                     </Button>
 
-                    {/* Upload State Indicator */}
-                    {photo.uploadState === "uploading" && (
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20">
-                        <Loader2 className="h-6 w-6 text-white animate-spin" />
+                    {photo.status === "uploading" && (
+                      <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/50">
+                        <Loader2 className="h-6 w-6 animate-spin text-white" />
                       </div>
                     )}
 
-                    {/* Image Name */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs p-2 truncate">
-                      {photo.file.name}
+                    {photo.status === "error" && (
+                      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-danger-500/70 p-3 text-center text-white">
+                        <AlertCircle className="h-5 w-5" />
+                        <span className="text-xs font-semibold">
+                          Upload failed
+                        </span>
+                        {photo.errorMessage && (
+                          <span className="text-[10px] leading-tight">
+                            {photo.errorMessage}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-2 text-xs text-white">
+                      <p className="truncate">{photo.fileName}</p>
+                      <p className="text-[10px] capitalize">
+                        {photo.status === "success"
+                          ? "Uploaded"
+                          : photo.status === "uploading"
+                            ? "Uploading…"
+                            : photo.status === "error"
+                              ? "Error"
+                              : "Pending"}
+                      </p>
                     </div>
                   </div>
                 </CarouselItem>

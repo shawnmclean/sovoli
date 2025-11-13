@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
@@ -49,6 +50,10 @@ export function Confirmation({
   const parishLabel =
     PARISH_OPTIONS.find((option) => option.key === formData.locationParish)
       ?.label ?? formData.locationParish;
+  const damagePhotos = formData.photos.filter(
+    (photo) => photo.status === "success" && photo.url,
+  );
+  const hasDamagePhotos = damagePhotos.length > 0;
 
   return (
     <div className="space-y-8 text-center">
@@ -88,6 +93,36 @@ export function Confirmation({
                 {formData.notes}
               </div>
             )}
+          </CardBody>
+        </Card>
+      )}
+
+      {hasDamagePhotos && (
+        <Card className="rounded-2xl border border-default-200 bg-default-50/80 text-left">
+          <CardHeader className="flex flex-col items-start gap-2 px-5 py-4 sm:px-6">
+            <h3 className="text-lg font-semibold">Damage Photos</h3>
+            <p className="text-small text-default-500">
+              These photos will help us verify the damage.
+            </p>
+          </CardHeader>
+          <Divider />
+          <CardBody className="px-5 py-4 sm:px-6">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {damagePhotos.map((photo) => (
+                <div
+                  key={photo.id}
+                  className="relative aspect-square overflow-hidden rounded-xl border border-default-200 bg-default-100"
+                >
+                  <Image
+                    src={photo.url ?? ""}
+                    alt={photo.fileName}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 640px) 140px, 40vw"
+                  />
+                </div>
+              ))}
+            </div>
           </CardBody>
         </Card>
       )}

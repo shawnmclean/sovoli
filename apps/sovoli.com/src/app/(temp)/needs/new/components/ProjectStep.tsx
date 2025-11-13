@@ -5,6 +5,7 @@ import { Textarea } from "@sovoli/ui/components/input";
 import { DamagePhotosUpload } from "./DamagePhotosUpload";
 import { SEVERITY_OPTIONS } from "./options";
 import type { SeverityOptionKey } from "./options";
+import type { DamagePhoto } from "./damage-photo-types";
 
 const SEVERITY_COLORS: Record<SeverityOptionKey, string> = {
   minor: "bg-blue-500",
@@ -16,10 +17,12 @@ const SEVERITY_COLORS: Record<SeverityOptionKey, string> = {
 interface ProjectStepProps {
   severity: SeverityOptionKey | "";
   damageDescription: string;
-  photos: File[];
+  photos: DamagePhoto[];
   onSeverityChange: (value: SeverityOptionKey | "") => void;
   onDamageDescriptionChange: (value: string) => void;
-  onPhotosChange: (files: File[]) => void;
+  onPhotosChange: (
+    updater: (photos: DamagePhoto[]) => DamagePhoto[],
+  ) => void;
 }
 
 export function ProjectStep({
