@@ -31,6 +31,8 @@ export interface OrganizationAutocompleteProps {
   className?: string;
   /** Whether to allow custom values */
   allowsCustomValue?: boolean;
+  /** Footer component to display at the bottom of the autocomplete dropdown */
+  footer?: React.ReactNode;
 }
 
 export function OrganizationAutocomplete({
@@ -43,6 +45,7 @@ export function OrganizationAutocomplete({
   stateOrCity,
   className,
   allowsCustomValue = false,
+  footer,
 }: OrganizationAutocompleteProps) {
   // Filter organizations based on provided criteria
   const filteredOrgs = useMemo(() => {
@@ -97,12 +100,13 @@ export function OrganizationAutocomplete({
     <Autocomplete
       defaultItems={filteredOrgs}
       placeholder={placeholder}
-      selectedKey={selectedKey || null}
+      selectedKey={selectedKey ?? null}
       onSelectionChange={(key) => {
         onSelectionChange?.(key ? (key as string) : null);
       }}
       className={className}
       allowsCustomValue={allowsCustomValue}
+      footer={footer}
     >
       {(org) => (
         <AutocompleteItem key={org.org.username} textValue={org.org.name}>

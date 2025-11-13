@@ -9,6 +9,7 @@ import {
 } from "@sovoli/ui/components/autocomplete";
 import { SearchIcon } from "lucide-react";
 import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { ORGS } from "~/modules/data/organisations";
 import type { Program } from "~/modules/academics/types";
 
@@ -71,7 +72,27 @@ export function SchoolProgramSearchContent({
     }
   };
 
-  const canSearch = selectedSchool && selectedProgram && !isLoading;
+  const hasNoPrograms = selectedSchool && availablePrograms.length === 0;
+  const canSearch =
+    selectedSchool && selectedProgram && !isLoading && !hasNoPrograms;
+
+  // Get the current school name for WhatsApp message
+  const getCurrentSchoolName = () => {
+    if (selectedSchool) {
+      const selectedSchoolOrg = ORGS.find(
+        (school) => school.org.username === selectedSchool,
+      );
+      return selectedSchoolOrg?.org.name ?? "";
+    }
+    return "";
+  };
+
+  const getWhatsAppMessage = () => {
+    const schoolName = getCurrentSchoolName();
+    return schoolName
+      ? `I would like to add my school: ${schoolName}`
+      : "I would like to add my school";
+  };
 
   return (
     <div className="flex flex-col gap-4 my-2">
@@ -88,6 +109,19 @@ export function SchoolProgramSearchContent({
               categoryGroup="school"
               className="w-full"
               countryCode="GY"
+              footer={
+                <WhatsAppLink
+                  message={getWhatsAppMessage()}
+                  intent="Request Data"
+                  page="landing"
+                  funnel="discovery"
+                  className="w-full"
+                >
+                  <Button variant="bordered" className="w-full">
+                    + Add My School
+                  </Button>
+                </WhatsAppLink>
+              }
             />
           </div>
 
@@ -113,6 +147,14 @@ export function SchoolProgramSearchContent({
                   </AutocompleteItem>
                 ))}
               </Autocomplete>
+            </div>
+          )}
+
+          {/* Error message when no programs are available */}
+          {hasNoPrograms && (
+            <div className="p-3 rounded-lg bg-danger-50 text-danger-700 border border-danger-200">
+              No programs available for this school. Please select a different
+              school.
             </div>
           )}
 
