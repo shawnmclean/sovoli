@@ -80,7 +80,7 @@ export const SIR_CHABEERAJ_FRANCIS: WorkforceMember = {
   contacts: [],
   roleAssignments: [
     {
-      position: TEACHER,
+      position: DIRECTOR_OF_STUDIES,
       department: FACULTY,
       titleOverride: "Grades 3–6 & Secondary Teacher",
     },
@@ -193,34 +193,6 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
       roleAssignments: [
         {
           position: PRINCIPAL,
-          department: ADMIN,
-          isPrimary: true,
-        },
-      ],
-    },
-    {
-      id: "001",
-      name: "Joel Bhagwandin",
-      slug: "joel-bhagwandin",
-      image: undefined,
-      bio: "Joel has been leading our school for over 10 years with a focus on academic excellence and student well-being.",
-      isPublic: true,
-      contacts: [
-        {
-          type: "email",
-          value: "joel@ma.edu.gy",
-          label: "Work",
-          isPublic: true,
-        },
-        {
-          type: "phone",
-          value: "+592 627-1915",
-          isPublic: true,
-        },
-      ],
-      roleAssignments: [
-        {
-          position: DIRECTOR_OF_STUDIES,
           department: ADMIN,
           isPrimary: true,
         },
