@@ -2,7 +2,7 @@
 
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { Textarea } from "@sovoli/ui/components/input";
-import { ImageFileInput } from "~/components/form/ImageFileInput";
+import { DamagePhotosUpload } from "./DamagePhotosUpload";
 import { SEVERITY_OPTIONS } from "./options";
 import type { SeverityOptionKey } from "./options";
 
@@ -30,12 +30,9 @@ export function ProjectStep({
   onDamageDescriptionChange,
   onPhotosChange,
 }: ProjectStepProps) {
-  const handleFileDropped = (files: File[]) => {
-    onPhotosChange(files);
-  };
-
   return (
     <div className="space-y-6">
+      <h1 className="text-2xl font-bold">Assessment</h1>
       <div className="space-y-2">
         <Select
           label="Severity"
@@ -48,6 +45,7 @@ export function ProjectStep({
           }
           placeholder="Select severity level"
           size="lg"
+          required
           renderValue={(items) => {
             const selected = items[0];
             if (!selected) return null;
@@ -96,16 +94,7 @@ export function ProjectStep({
 
       <div className="space-y-2">
         <label className="text-sm font-medium text-default-700">Photos</label>
-        <ImageFileInput
-          name="damage-photos"
-          multiple={true}
-          onFileDropped={handleFileDropped}
-        />
-        {photos.length > 0 && (
-          <p className="text-sm text-default-500">
-            {photos.length} photo{photos.length !== 1 ? "s" : ""} selected
-          </p>
-        )}
+        <DamagePhotosUpload photos={photos} onPhotosChange={onPhotosChange} />
       </div>
     </div>
   );
