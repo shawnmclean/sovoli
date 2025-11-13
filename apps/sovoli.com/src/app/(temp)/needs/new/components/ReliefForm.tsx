@@ -94,7 +94,7 @@ interface SelectedSupplySummary {
 
 export function ReliefForm() {
   const [formData, setFormData] = useState<ReliefFormData>(initialFormData);
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const [isPending, startTransition] = useTransition();
 
   const stepSequence: StepDefinition[] = useMemo(

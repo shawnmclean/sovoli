@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@sovoli/ui/components/button";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
 import { ORGS } from "~/modules/data/organisations";
@@ -83,43 +82,35 @@ export function OrgSelectionStep({
     }
   };
 
-  const handleCreateNewClick = () => {
-    setIsCreatingNew(true);
-    onSelectedOrgKeyChange(null);
-    // Don't clear schoolName here - let user type it in the autocomplete
-  };
-
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-default-600">
-          School or organisation
-        </label>
         <OrganizationAutocomplete
+          label="School or organisation"
           selectedKey={selectedOrgKey}
           onSelectionChange={handleOrgSelectionChange}
           placeholder="Select an organization"
           categoryGroup="school"
           countryCode="JM"
-          footer={
-            <Button
-              variant="bordered"
-              className="w-full"
-              onPress={handleCreateNewClick}
-            >
-              + Create new organization
-            </Button>
-          }
+          allowsCreate={true}
+          onCreate={(name) => {
+            console.log("Creating new organization:", name);
+            setIsCreatingNew(true);
+            onSchoolNameChange(name);
+          }}
         />
+        {showLocationAndType && schoolName.trim().length > 0 && (
+          <p className="text-sm text-default-500">
+            Give us some additional info for "{schoolName}"
+          </p>
+        )}
       </div>
 
       {showLocationAndType && (
         <>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-default-600">
-              Organisation type
-            </label>
             <Select
+              label="Organisation type"
               selectedKeys={schoolType ? [schoolType] : []}
               onSelectionChange={(keys) =>
                 onSchoolTypeChange(
@@ -149,10 +140,8 @@ export function OrgSelectionStep({
       )}
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-default-600">
-          Your role
-        </label>
         <Select
+          label="Your role"
           selectedKeys={contactRole ? [contactRole] : []}
           onSelectionChange={(keys) =>
             onContactRoleChange(
