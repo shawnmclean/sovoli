@@ -19,7 +19,6 @@ import { NEW_MARKET_PREPARATORY_SCHOOL_ORG } from "./newmarketprep";
 import { PROMISE_LEARNING_CENTRE_ORG } from "./promiselearning";
 import { READING_EXPRESS_ORG } from "./readingexpress";
 import { ROSEVILLE_PLAY_AND_LEARN_PREPARATORY_ORG } from "./rosevilleprep";
-import { SANTA_CRUZ_PREPARATORY_SCHOOL_ORG } from "./santacruzprep";
 import { SCHOOL_OF_EXCELLENCE_ORG } from "./schoolofexcellence";
 import { ST_ELMOS_PREPARATORY_SCHOOL_ORG } from "./stelmosprep";
 import { ST_VINCENT_STRAMBI_CATHOLIC_HIGH_SCHOOL_ORG } from "./stvincentsrambi";
@@ -51,7 +50,6 @@ export const PRIVATE_SCHOOLS_JAMAICA: OrgInstance[] = [
   PROMISE_LEARNING_CENTRE_ORG,
   READING_EXPRESS_ORG,
   ROSEVILLE_PLAY_AND_LEARN_PREPARATORY_ORG,
-  SANTA_CRUZ_PREPARATORY_SCHOOL_ORG,
   SCHOOL_OF_EXCELLENCE_ORG,
   ST_ELMOS_PREPARATORY_SCHOOL_ORG,
   ST_VINCENT_STRAMBI_CATHOLIC_HIGH_SCHOOL_ORG,

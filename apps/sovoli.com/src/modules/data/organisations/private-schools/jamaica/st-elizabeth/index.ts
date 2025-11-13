@@ -17,7 +17,7 @@ import { MARANATHA_SCHOOL_FOR_THE_DEAF_ORG } from "./maranathaschoolforthedeaf";
 import { MUNRO_PREPARATORY_SCHOOL_ORG } from "./munroprep";
 import { NEW_MARKET_PREP_ORG } from "./newmarketprep";
 import { ROSEVILLE_PLAY_AND_LEARN_ORG } from "./rosevilleeiandprep";
-import { SANTA_CRUZ_PREPARATORY_ORG } from "./santa-prep718";
+import { SANTA_CRUZ_PREPARATORY_SCHOOL_ORG } from "./santaprep";
 import { SCHOOL_OF_EXCELLENCE_ORG } from "./schoolofexcellence";
 import { SHEILA_S_PROFESSIONAL_EDUCATION_CENTRE_SPEC_ORG } from "./sheilasprofessionaleducationcentrespec";
 import { SOUTH_EAST_COLLEGE_ORG } from "./southeastcollege";
@@ -47,7 +47,7 @@ export const ST_ELIZABETH_PRIVATE_SCHOOLS_JAMAICA: OrgInstance[] = [
   MUNRO_PREPARATORY_SCHOOL_ORG,
   NEW_MARKET_PREP_ORG,
   ROSEVILLE_PLAY_AND_LEARN_ORG,
-  SANTA_CRUZ_PREPARATORY_ORG,
+  SANTA_CRUZ_PREPARATORY_SCHOOL_ORG,
   SCHOOL_OF_EXCELLENCE_ORG,
   SHEILA_S_PROFESSIONAL_EDUCATION_CENTRE_SPEC_ORG,
   SOUTH_EAST_COLLEGE_ORG,
