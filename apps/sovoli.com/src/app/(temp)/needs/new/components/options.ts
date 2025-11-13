@@ -39,6 +39,30 @@ export const PARISH_OPTIONS = [
   { key: "st-thomas", label: "St. Thomas" },
 ] as const;
 
+export const SEVERITY_OPTIONS = [
+  {
+    key: "minor",
+    label: "Minor",
+    description: "Roof leaking, loss of books, etc",
+  },
+  {
+    key: "moderate",
+    label: "Moderate",
+    description: "Partial roof damage and structure",
+  },
+  {
+    key: "severe",
+    label: "Severe",
+    description: "Complete roof damage, multiple buildings, etc",
+  },
+  {
+    key: "critical",
+    label: "Critical",
+    description: "Flattened, complete devastation",
+  },
+] as const;
+
 export type OrgTypeOptionKey = (typeof ORG_TYPE_OPTIONS)[number]["key"];
 export type ContactRoleOptionKey = (typeof CONTACT_ROLE_OPTIONS)[number]["key"];
 export type ParishOptionKey = (typeof PARISH_OPTIONS)[number]["key"];
+export type SeverityOptionKey = (typeof SEVERITY_OPTIONS)[number]["key"];

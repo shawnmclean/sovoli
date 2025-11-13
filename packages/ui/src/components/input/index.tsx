@@ -1,4 +1,4 @@
-import { Input as BaseInput } from "@heroui/input";
+import { Input as BaseInput, Textarea as BaseTextarea } from "@heroui/input";
 import { extendVariants } from "@heroui/system";
 
 export const Input = extendVariants(BaseInput, {
@@ -37,5 +37,4 @@ export const Input = extendVariants(BaseInput, {
   },
 }) as typeof BaseInput;
 
-// Export Input as Textarea alias for multiline support
-export const Textarea = Input;
+export const Textarea = BaseTextarea;

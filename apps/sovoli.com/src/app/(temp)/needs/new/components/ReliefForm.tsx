@@ -20,11 +20,13 @@ import type { PhoneActionStates } from "../../../../../modules/auth/actions/stat
 import { PhoneNumberForm } from "../../../../../modules/auth/components/PhoneNumberStep/PhoneNumberForm";
 import { NamesForm } from "../../../../../modules/auth/components/NamesForm";
 import { ItemsSelectionStep } from "./ItemsSelectionStep";
+import { ProjectStep } from "./ProjectStep";
 import { findItemById } from "~/modules/data/items";
 import type {
   ContactRoleOptionKey,
   OrgTypeOptionKey,
   ParishOptionKey,
+  SeverityOptionKey,
 } from "./options";
 
 export interface ReliefFormData {
@@ -42,6 +44,9 @@ export interface ReliefFormData {
   locationAddressLine2: string;
   locationCity: string;
   locationParish: ParishOptionKey | "";
+  severity: SeverityOptionKey | "";
+  damageDescription: string;
+  photos: File[];
   suppliesSelected: string[];
   suppliesQuantities: Record<string, number>;
   suppliesOther: string;
@@ -65,6 +70,9 @@ const initialFormData: ReliefFormData = {
   locationAddressLine2: "",
   locationCity: "",
   locationParish: "",
+  severity: "",
+  damageDescription: "",
+  photos: [],
   suppliesSelected: [],
   suppliesQuantities: {},
   suppliesOther: "",
@@ -75,6 +83,7 @@ const STEPS = {
   PHONE: "phone",
   NAMES: "names",
   ORG_SELECTION: "org-selection",
+  PROJECT: "project",
   SUPPLIES: "supplies",
   CONFIRM: "confirm",
 } as const;
@@ -102,6 +111,7 @@ export function ReliefForm() {
       { key: STEPS.PHONE, label: "Phone" },
       { key: STEPS.NAMES, label: "Names" },
       { key: STEPS.ORG_SELECTION, label: "Organization" },
+      { key: STEPS.PROJECT, label: "Project" },
       { key: STEPS.SUPPLIES, label: "Supplies" },
       { key: STEPS.CONFIRM, label: "Confirmation" },
     ],
@@ -218,6 +228,11 @@ export function ReliefForm() {
           formData.locationParish !== ""
         );
       }
+      case STEPS.PROJECT:
+        return (
+          formData.severity !== "" &&
+          formData.damageDescription.trim().length > 0
+        );
       case STEPS.SUPPLIES:
         if (formData.suppliesSelected.length === 0) {
           return formData.suppliesOther.trim().length > 0;
@@ -344,6 +359,15 @@ export function ReliefForm() {
             schoolName={formData.schoolName}
             schoolType={formData.schoolType}
             selectedOrgKey={formData.selectedOrgKey}
+          />
+        );
+      case STEPS.PROJECT:
+        return (
+          <ProjectStepWrapper
+            severity={formData.severity}
+            damageDescription={formData.damageDescription}
+            photos={formData.photos}
+            onUpdate={updateFormData}
           />
         );
       case STEPS.SUPPLIES:
@@ -604,6 +628,35 @@ function OrgSelectionStepWrapper({
         }
         onCityChange={(value) => onUpdate("locationCity", value)}
         onParishChange={(value) => onUpdate("locationParish", value)}
+      />
+    </StepSection>
+  );
+}
+
+interface ProjectStepWrapperProps {
+  severity: SeverityOptionKey | "";
+  damageDescription: string;
+  photos: File[];
+  onUpdate: ReliefFormUpdater;
+}
+
+function ProjectStepWrapper({
+  severity,
+  damageDescription,
+  photos,
+  onUpdate,
+}: ProjectStepWrapperProps) {
+  return (
+    <StepSection>
+      <ProjectStep
+        severity={severity}
+        damageDescription={damageDescription}
+        photos={photos}
+        onSeverityChange={(value) => onUpdate("severity", value)}
+        onDamageDescriptionChange={(value) =>
+          onUpdate("damageDescription", value)
+        }
+        onPhotosChange={(value) => onUpdate("photos", value)}
       />
     </StepSection>
   );
