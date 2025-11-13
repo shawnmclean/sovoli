@@ -14,14 +14,11 @@ import {
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { Confirmation } from "./Confirmation";
 import { Hero } from "./Hero";
-import { LocationInfo } from "./LocationInfo";
-import { SchoolInfo } from "./SchoolInfo";
+import { OrgSelectionStep } from "./OrgSelectionStep";
 import { submitReliefForm } from "../actions";
-import { Select, SelectItem } from "@sovoli/ui/components/select";
 import type { PhoneActionStates } from "../../../../../modules/auth/actions/states";
 import { PhoneNumberForm } from "../../../../../modules/auth/components/PhoneNumberStep/PhoneNumberForm";
 import { NamesForm } from "../../../../../modules/auth/components/NamesForm";
-import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./options";
 import { ItemsSelectionStep } from "./ItemsSelectionStep";
 import { findItemById } from "~/modules/data/items";
 import type {
@@ -38,6 +35,7 @@ export interface ReliefFormData {
   contactDialCode: string;
   contactCountryIso: string;
   contactRole: ContactRoleOptionKey | "";
+  selectedOrgKey: string | null;
   schoolName: string;
   schoolType: OrgTypeOptionKey | "";
   locationAddressLine1: string;
@@ -60,6 +58,7 @@ const initialFormData: ReliefFormData = {
   contactDialCode: "",
   contactCountryIso: "",
   contactRole: "",
+  selectedOrgKey: null,
   schoolName: "",
   schoolType: "",
   locationAddressLine1: "",
@@ -75,8 +74,7 @@ const initialFormData: ReliefFormData = {
 const STEPS = {
   PHONE: "phone",
   NAMES: "names",
-  SCHOOL: "school",
-  LOCATION: "location",
+  ORG_SELECTION: "org-selection",
   SUPPLIES: "supplies",
   CONFIRM: "confirm",
 } as const;
@@ -103,8 +101,7 @@ export function ReliefForm() {
     () => [
       { key: STEPS.PHONE, label: "Phone" },
       { key: STEPS.NAMES, label: "Names" },
-      { key: STEPS.SCHOOL, label: "School" },
-      { key: STEPS.LOCATION, label: "Location" },
+      { key: STEPS.ORG_SELECTION, label: "Organization" },
       { key: STEPS.SUPPLIES, label: "Supplies" },
       { key: STEPS.CONFIRM, label: "Confirmation" },
     ],
@@ -200,18 +197,27 @@ export function ReliefForm() {
           formData.contactFirstName.trim().length > 0 &&
           formData.contactLastName.trim().length > 0
         );
-      case STEPS.SCHOOL:
+      case STEPS.ORG_SELECTION: {
+        // Always require role
+        if (formData.contactRole.trim().length === 0) {
+          return false;
+        }
+        // Require school name
+        if (formData.schoolName.trim().length === 0) {
+          return false;
+        }
+        // If an existing org is selected, that's enough
+        if (formData.selectedOrgKey) {
+          return true;
+        }
+        // If creating new, require type and location
         return (
-          formData.schoolName.trim().length > 0 &&
           formData.schoolType.trim().length > 0 &&
-          formData.contactRole.trim().length > 0
-        );
-      case STEPS.LOCATION:
-        return (
           formData.locationAddressLine1.trim().length > 0 &&
           formData.locationCity.trim().length > 0 &&
           formData.locationParish !== ""
         );
+      }
       case STEPS.SUPPLIES:
         if (formData.suppliesSelected.length === 0) {
           return formData.suppliesOther.trim().length > 0;
@@ -326,23 +332,18 @@ export function ReliefForm() {
             onSuccess={handleNamesSuccess}
           />
         );
-      case STEPS.SCHOOL:
+      case STEPS.ORG_SELECTION:
         return (
-          <SchoolStep
+          <OrgSelectionStepWrapper
             contactRole={formData.contactRole}
+            locationAddressLine1={formData.locationAddressLine1}
+            locationAddressLine2={formData.locationAddressLine2}
+            locationCity={formData.locationCity}
+            locationParish={formData.locationParish}
             onUpdate={updateFormData}
             schoolName={formData.schoolName}
             schoolType={formData.schoolType}
-          />
-        );
-      case STEPS.LOCATION:
-        return (
-          <LocationStep
-            addressLine1={formData.locationAddressLine1}
-            addressLine2={formData.locationAddressLine2}
-            city={formData.locationCity}
-            onUpdate={updateFormData}
-            parish={formData.locationParish}
+            selectedOrgKey={formData.selectedOrgKey}
           />
         );
       case STEPS.SUPPLIES:
@@ -557,96 +558,44 @@ function NamesStep({
   );
 }
 
-interface SchoolStepProps {
+interface OrgSelectionStepWrapperProps {
+  selectedOrgKey: string | null;
   schoolName: string;
   schoolType: OrgTypeOptionKey | "";
   contactRole: ContactRoleOptionKey | "";
+  locationAddressLine1: string;
+  locationAddressLine2: string;
+  locationCity: string;
+  locationParish: ParishOptionKey | "";
   onUpdate: ReliefFormUpdater;
 }
 
-function SchoolStep({
-  contactRole,
-  onUpdate,
+function OrgSelectionStepWrapper({
+  selectedOrgKey,
   schoolName,
   schoolType,
-}: SchoolStepProps) {
-  return (
-    <StepSection>
-      <div className="space-y-6">
-        <SchoolInfo
-          schoolName={schoolName}
-          onSchoolNameChange={(value) => onUpdate("schoolName", value)}
-        />
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-default-600">
-              Organisation type
-            </label>
-            <Select
-              selectedKeys={schoolType ? [schoolType] : []}
-              onSelectionChange={(keys) =>
-                onUpdate(
-                  "schoolType",
-                  (Array.from(keys)[0] as OrgTypeOptionKey | undefined) ?? "",
-                )
-              }
-              placeholder="Select organisation type"
-              size="lg"
-            >
-              {ORG_TYPE_OPTIONS.map((option) => (
-                <SelectItem key={option.key}>{option.label}</SelectItem>
-              ))}
-            </Select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-default-600">
-              Your role
-            </label>
-            <Select
-              selectedKeys={contactRole ? [contactRole] : []}
-              onSelectionChange={(keys) =>
-                onUpdate(
-                  "contactRole",
-                  (Array.from(keys)[0] as ContactRoleOptionKey | undefined) ??
-                    "",
-                )
-              }
-              placeholder="Select your role"
-              size="lg"
-            >
-              {CONTACT_ROLE_OPTIONS.map((option) => (
-                <SelectItem key={option.key}>{option.label}</SelectItem>
-              ))}
-            </Select>
-          </div>
-        </div>
-      </div>
-    </StepSection>
-  );
-}
-
-interface LocationStepProps {
-  addressLine1: string;
-  addressLine2: string;
-  city: string;
-  parish: ParishOptionKey | "";
-  onUpdate: ReliefFormUpdater;
-}
-
-function LocationStep({
-  addressLine1,
-  addressLine2,
-  city,
+  contactRole,
+  locationAddressLine1,
+  locationAddressLine2,
+  locationCity,
+  locationParish,
   onUpdate,
-  parish,
-}: LocationStepProps) {
+}: OrgSelectionStepWrapperProps) {
   return (
     <StepSection>
-      <LocationInfo
-        addressLine1={addressLine1}
-        addressLine2={addressLine2}
-        city={city}
-        parish={parish}
+      <OrgSelectionStep
+        selectedOrgKey={selectedOrgKey}
+        schoolName={schoolName}
+        schoolType={schoolType}
+        contactRole={contactRole}
+        locationAddressLine1={locationAddressLine1}
+        locationAddressLine2={locationAddressLine2}
+        locationCity={locationCity}
+        locationParish={locationParish}
+        onSelectedOrgKeyChange={(key) => onUpdate("selectedOrgKey", key)}
+        onSchoolNameChange={(value) => onUpdate("schoolName", value)}
+        onSchoolTypeChange={(value) => onUpdate("schoolType", value)}
+        onContactRoleChange={(value) => onUpdate("contactRole", value)}
         onAddressLine1Change={(value) =>
           onUpdate("locationAddressLine1", value)
         }

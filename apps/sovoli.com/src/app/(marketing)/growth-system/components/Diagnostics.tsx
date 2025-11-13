@@ -1,55 +1,36 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import {
-  Autocomplete,
-  AutocompleteItem,
-} from "@sovoli/ui/components/autocomplete";
-import { Avatar } from "@sovoli/ui/components/avatar";
 import { SearchIcon } from "lucide-react";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { PRIVATE_SCHOOLS } from "~/modules/data/organisations/private-schools";
+import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
+import { ORGS } from "~/modules/data/organisations";
 import { useRouter } from "next/navigation";
 
 export function Diagnostics() {
-  const [value, setValue] = useState("");
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const router = useRouter();
 
-  // Get all private schools for the dropdown
-  const privateSchools = useMemo(
-    () =>
-      PRIVATE_SCHOOLS.filter((org) =>
-        org.org.categories.includes("private-school"),
-      ),
-    [],
-  );
-
-  const onSelectionChange = (key: React.Key | null) => {
-    setSelectedKey(key as string | null);
-  };
-
-  const onInputChange = (inputValue: string) => {
-    setValue(inputValue);
+  const onSelectionChange = (key: string | null) => {
+    setSelectedKey(key);
   };
 
   const handleSearch = () => {
-    const schoolName = selectedKey ?? value;
-    if (!schoolName) return;
+    if (!selectedKey) return;
 
-    void router.push(`/${schoolName}/dashboard`);
+    void router.push(`/${selectedKey}/dashboard`);
   };
 
   // Get the current school name for WhatsApp message
   const getCurrentSchoolName = () => {
     if (selectedKey) {
-      const selectedSchool = privateSchools.find(
-        (school) => school.org.username === selectedKey,
+      const selectedSchool = ORGS.find(
+        (org) => org.org.username === selectedKey,
       );
-      return selectedSchool?.org.name ?? value;
+      return selectedSchool?.org.name ?? "";
     }
-    return value;
+    return "";
   };
 
   const getWhatsAppMessage = () => {
@@ -70,47 +51,31 @@ export function Diagnostics() {
           <div className="space-y-6">
             {/* School Selection */}
             <div>
-              <Autocomplete
-                label="Find your school"
-                labelPlacement="outside"
-                placeholder="School name..."
-                selectedKey={selectedKey}
-                onSelectionChange={onSelectionChange}
-                onInputChange={onInputChange}
-                className="w-full"
-                size="md"
-                defaultItems={privateSchools}
-                footer={
-                  <WhatsAppLink
-                    message={getWhatsAppMessage()}
-                    intent="Request Data"
-                    page="landing"
-                    funnel="discovery"
-                    className="w-full"
-                  >
-                    <Button variant="bordered" className="w-full">
-                      + Add My School
-                    </Button>
-                  </WhatsAppLink>
-                }
-              >
-                {(school) => (
-                  <AutocompleteItem
-                    key={school.org.username}
-                    textValue={school.org.name}
-                  >
-                    <div className="flex items-center gap-3">
-                      <Avatar
-                        src={school.org.logo}
-                        alt={`${school.org.name} logo`}
-                        size="sm"
-                        className="flex-shrink-0"
-                      />
-                      <span>{school.org.name}</span>
-                    </div>
-                  </AutocompleteItem>
-                )}
-              </Autocomplete>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-default-600">
+                  Find your school
+                </label>
+                <OrganizationAutocomplete
+                  selectedKey={selectedKey}
+                  onSelectionChange={onSelectionChange}
+                  placeholder="School name..."
+                  categoryGroup="school"
+                  className="w-full"
+                  footer={
+                    <WhatsAppLink
+                      message={getWhatsAppMessage()}
+                      intent="Request Data"
+                      page="landing"
+                      funnel="discovery"
+                      className="w-full"
+                    >
+                      <Button variant="bordered" className="w-full">
+                        + Add My School
+                      </Button>
+                    </WhatsAppLink>
+                  }
+                />
+              </div>
             </div>
 
             {/* Search Button */}
