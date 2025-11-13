@@ -11,6 +11,47 @@ import {
   DIRECTOR_OF_STUDIES,
 } from "./workforceMeta";
 
+export const SIR_CHABEERAJ_FRANCIS: WorkforceMember = {
+  id: "003",
+  name: "Sir Chabeeraj Francis",
+  slug: "sir-chabeeraj-francis",
+  bio: "Sir Chabeeraj believes education is the most powerful tool to transform lives. A medical scholar and university student himself, he draws from both academic and real-world experiences to teach students how knowledge can elevate them beyond perceived limits. His scholarship to China and degree in medicine were earned through perseverance, and now he channels that same drive into guiding students toward academic and personal excellence. With a passion for health education, he hopes to shape planetary wellbeing by starting at the grassroots—our schools.",
+  quote: "Knowledge gained is knowledge shared.",
+  isPublic: true,
+  contacts: [],
+  roleAssignments: [
+    {
+      position: DIRECTOR_OF_STUDIES,
+      department: FACULTY,
+      titleOverride: "Director of Studies & Secondary Teacher",
+    },
+  ],
+  subjectAssignments: [
+    {
+      subject: "English",
+      grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
+    },
+    {
+      subject: "Math",
+      grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
+    },
+    {
+      subject: "Science",
+      grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
+    },
+    {
+      subject: "Social Studies",
+      grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
+    },
+    { subject: "Information Technology", grades: ["Secondary"] },
+    { subject: "Health & Family Life Education", grades: ["Secondary"] },
+    { subject: "Human & Social Biology", grades: ["Secondary"] },
+    { subject: "Principles of Business", grades: ["Secondary"] },
+    { subject: "Office Administration", grades: ["Secondary"] },
+    { subject: "Geography", grades: ["Secondary"] },
+  ],
+};
+
 export const ANITA_DHANIRAM: WorkforceMember = {
   id: "003",
   name: "Anita Dhaniram",
@@ -67,47 +108,6 @@ export const JESSICA_GOBIN: WorkforceMember = {
     { subject: "Science", grades: ["Nursery Year 2"] },
     { subject: "Social Studies", grades: ["Nursery Year 2"] },
     { subject: "Art", grades: ["Nursery Year 2"] },
-  ],
-};
-
-export const SIR_CHABEERAJ_FRANCIS: WorkforceMember = {
-  id: "004",
-  name: "Sir Chabeeraj Francis",
-  slug: "sir-chabeeraj-francis",
-  bio: "Sir Chabeeraj believes education is the most powerful tool to transform lives. A medical scholar and university student himself, he draws from both academic and real-world experiences to teach students how knowledge can elevate them beyond perceived limits. His scholarship to China and degree in medicine were earned through perseverance, and now he channels that same drive into guiding students toward academic and personal excellence. With a passion for health education, he hopes to shape planetary wellbeing by starting at the grassroots—our schools.",
-  quote: "Knowledge gained is knowledge shared.",
-  isPublic: true,
-  contacts: [],
-  roleAssignments: [
-    {
-      position: DIRECTOR_OF_STUDIES,
-      department: FACULTY,
-      titleOverride: "Grades 3–6 & Secondary Teacher",
-    },
-  ],
-  subjectAssignments: [
-    {
-      subject: "English",
-      grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
-    },
-    {
-      subject: "Math",
-      grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
-    },
-    {
-      subject: "Science",
-      grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
-    },
-    {
-      subject: "Social Studies",
-      grades: ["Grade 3", "Grade 4", "Grade 5", "Grade 6", "Secondary"],
-    },
-    { subject: "Information Technology", grades: ["Secondary"] },
-    { subject: "Health & Family Life Education", grades: ["Secondary"] },
-    { subject: "Human & Social Biology", grades: ["Secondary"] },
-    { subject: "Principles of Business", grades: ["Secondary"] },
-    { subject: "Office Administration", grades: ["Secondary"] },
-    { subject: "Geography", grades: ["Secondary"] },
   ],
 };
 
@@ -225,8 +225,8 @@ export const MODERN_ACADEMY_WORKFORCE: WorkforceModule = {
         },
       ],
     },
-    ANITA_DHANIRAM,
     SIR_CHABEERAJ_FRANCIS,
+    ANITA_DHANIRAM,
     JESSICA_GOBIN,
     WONDA_BARON,
     MOLTA_MCRAE,
