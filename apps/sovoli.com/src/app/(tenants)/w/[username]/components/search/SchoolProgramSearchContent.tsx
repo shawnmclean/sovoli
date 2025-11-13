@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@sovoli/ui/components/button";
 import {
@@ -8,8 +8,8 @@ import {
   AutocompleteItem,
 } from "@sovoli/ui/components/autocomplete";
 import { SearchIcon } from "lucide-react";
-import Image from "next/image";
-import { PRIVATE_SCHOOLS } from "~/modules/data/organisations/private-schools";
+import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
+import { ORGS } from "~/modules/data/organisations";
 import type { Program } from "~/modules/academics/types";
 
 interface SchoolProgramSearchContentProps {
@@ -29,21 +29,10 @@ export function SchoolProgramSearchContent({
   const [availablePrograms, setAvailablePrograms] = useState<Program[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Get all private schools for the dropdown
-  const privateSchools = useMemo(
-    () =>
-      PRIVATE_SCHOOLS.filter((org) =>
-        org.org.categories.includes("private-school"),
-      ),
-    [],
-  );
-
   // Update available programs when school changes
   useEffect(() => {
     if (selectedSchool) {
-      const school = privateSchools.find(
-        (s) => s.org.username === selectedSchool,
-      );
+      const school = ORGS.find((s) => s.org.username === selectedSchool);
       const programs = school?.academicModule?.programs ?? [];
       console.log("Available programs:", programs);
       setAvailablePrograms(programs);
@@ -56,7 +45,7 @@ export function SchoolProgramSearchContent({
       setAvailablePrograms([]);
       setSelectedProgram("");
     }
-  }, [selectedSchool, privateSchools]);
+  }, [selectedSchool]);
 
   const handleSearch = () => {
     if (!selectedSchool || !selectedProgram) return;
@@ -90,35 +79,16 @@ export function SchoolProgramSearchContent({
         <div className="space-y-4">
           {/* School Selection */}
           <div>
-            <Autocomplete
-              defaultItems={privateSchools}
+            <OrganizationAutocomplete
               placeholder="Select your school"
-              selectedKey={selectedSchool}
+              selectedKey={selectedSchool || null}
               onSelectionChange={(key) => {
-                setSelectedSchool((key as string) || "");
+                setSelectedSchool(key ?? "");
               }}
+              categoryGroup="school"
               className="w-full"
-            >
-              {(school) => (
-                <AutocompleteItem
-                  key={school.org.username}
-                  textValue={school.org.name}
-                >
-                  <div className="flex items-center gap-3">
-                    {school.org.logo && (
-                      <Image
-                        src={school.org.logo}
-                        alt={`${school.org.name} logo`}
-                        width={24}
-                        height={24}
-                        className="rounded-sm object-cover"
-                      />
-                    )}
-                    <span>{school.org.name}</span>
-                  </div>
-                </AutocompleteItem>
-              )}
-            </Autocomplete>
+              countryCode="GY"
+            />
           </div>
 
           {/* Program Selection */}
@@ -127,7 +97,7 @@ export function SchoolProgramSearchContent({
               <Autocomplete
                 placeholder="Search for a program"
                 selectedKey={selectedProgram || null}
-                onSelectionChange={(key) => {
+                onSelectionChange={(key: React.Key | null) => {
                   console.log("Program selected:", key);
                   setSelectedProgram((key as string) || "");
                 }}
