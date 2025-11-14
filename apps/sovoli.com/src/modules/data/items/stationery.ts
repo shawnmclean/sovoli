@@ -2,6 +2,15 @@ import type { Item } from "~/modules/core/items/types";
 
 export const STATIONERY_ITEMS: Item[] = [
   {
+    id: "relief-basic-school-supplies",
+    name: "Basic School Supplies",
+    category: "stationery",
+    unitLabel: "kit",
+    tags: ["relief", "stationery", "school"],
+    description:
+      "Pens, pencils, exercise books, and other essentials for displaced students.",
+  },
+  {
     id: "supply-crayola-crayons-fat",
     name: "Crayola Crayons (Fat)",
     category: "stationery",

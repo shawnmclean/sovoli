@@ -2,6 +2,15 @@ import type { Item } from "~/modules/core/items/types";
 
 export const HARDWARE_ITEMS: Item[] = [
   {
+    id: "relief-basic-hand-tools",
+    name: "Basic Hand Tools",
+    category: "hardware",
+    unitLabel: "set",
+    tags: ["relief", "tools", "cleanup"],
+    description:
+      "Drills, shovels, axes, hammers, and machetes packaged for recovery crews.",
+  },
+  {
     id: "maintenance-plyboard",
     name: "Plyboard Sheet",
     category: "hardware",
@@ -80,6 +89,15 @@ export const HARDWARE_ITEMS: Item[] = [
     name: "Tools (General)",
     category: "hardware",
     tags: ["relief", "building", "tooling"],
+  },
+  {
+    id: "relief-fuel-containers",
+    name: "Fuel Containers",
+    category: "hardware",
+    unitLabel: "container",
+    tags: ["relief", "power", "storage"],
+    description:
+      "Certified fuel cans for transporting gasoline or butane during response.",
   },
   {
     id: "relief-lumber",

@@ -312,7 +312,7 @@ export function DamagePhotosUpload({
     <div className="space-y-4">
       <div
         {...getRootProps({
-          className: `flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
+          className: `flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
             isDragActive
               ? "border-primary bg-primary/5"
               : "border-default-300 hover:border-default-400 hover:bg-default-50 dark:border-default-600 dark:hover:border-default-500 dark:hover:bg-default-900/50"

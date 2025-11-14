@@ -67,4 +67,11 @@ export const EQUIPMENT_ITEMS: Item[] = [
     category: "equipment",
     tags: ["relief", "shelter"],
   },
+  {
+    id: "relief-water-boots",
+    name: "Water Boots",
+    category: "equipment",
+    unitLabel: "pair",
+    tags: ["relief", "protective-gear", "footwear"],
+  },
 ];
