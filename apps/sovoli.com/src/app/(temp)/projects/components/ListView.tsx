@@ -139,21 +139,6 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
               )}
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
-              {project.locationLabel && (
-                <span className="inline-flex items-center gap-1">
-                  <MapPinIcon className="h-4 w-4" />
-                  {project.locationLabel}
-                </span>
-              )}
-              {timeline && (
-                <span className="inline-flex items-center gap-1">
-                  <CalendarDaysIcon className="h-4 w-4" />
-                  {timeline}
-                </span>
-              )}
-            </div>
-
             {needsCount > 0 && (
               <div>
                 <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
