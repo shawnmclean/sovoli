@@ -1,17 +1,80 @@
 "use client";
 
 import { useState } from "react";
+import { Divider } from "@sovoli/ui/components/divider";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
 import { ORGS } from "~/modules/data/organisations";
 import { LocationInfo } from "./LocationInfo";
-import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./options";
+import {
+  CONTACT_ROLE_OPTIONS,
+  ORG_TYPE_OPTIONS,
+  PARISH_OPTIONS,
+} from "./options";
 import { slugify } from "~/utils/slugify";
 import type {
   ContactRoleOptionKey,
   OrgTypeOptionKey,
   ParishOptionKey,
 } from "./options";
+
+type OrgInstance = (typeof ORGS)[number];
+type OrgLocation = OrgInstance["org"]["locations"][number];
+
+const getPrimaryLocation = (
+  locations: OrgInstance["org"]["locations"],
+): OrgLocation | undefined => {
+  return locations.find((location) => location.isPrimary) ?? locations[0];
+};
+
+const stateToParishKey = (state?: string): ParishOptionKey | "" => {
+  if (!state) {
+    return "";
+  }
+
+  const normalized = slugify(state);
+  const isValidParish = PARISH_OPTIONS.some(
+    (option) => option.key === normalized,
+  );
+
+  return isValidParish ? (normalized as ParishOptionKey) : "";
+};
+
+const inferOrgType = (org: OrgInstance): OrgTypeOptionKey | "" => {
+  const categories = new Set(org.org.categories);
+
+  if (categories.has("stationary")) {
+    return "stationary";
+  }
+
+  if (categories.has("special-education-school")) {
+    return "special-education";
+  }
+
+  if (categories.has("vocational-school")) {
+    return "tertiary";
+  }
+
+  const ownership = categories.has("public-school")
+    ? "public"
+    : categories.has("private-school")
+      ? "private"
+      : null;
+
+  if (!ownership) {
+    return "";
+  }
+
+  if (categories.has("primary-school")) {
+    return `${ownership}-primary` as OrgTypeOptionKey;
+  }
+
+  if (categories.has("nursery-school")) {
+    return `${ownership}-basic` as OrgTypeOptionKey;
+  }
+
+  return "";
+};
 
 interface OrgSelectionStepProps {
   selectedOrgKey: string | null;
@@ -60,10 +123,42 @@ export function OrgSelectionStep({
     ? ORGS.find((org) => org.org.username === selectedOrgKey)
     : null;
 
-  // Show location and type only when creating new org
-  // Show if: explicitly creating new, or have a school name but no selected org
-  const showLocationAndType =
-    isCreatingNew || (schoolName.trim().length > 0 && !selectedOrg);
+  const applyLocation = (location?: OrgLocation) => {
+    const nextAddressLine1 = location?.address.line1 ?? "";
+    if (locationAddressLine1 !== nextAddressLine1) {
+      onAddressLine1Change(nextAddressLine1);
+    }
+
+    const nextAddressLine2 =
+      location?.address.line2 ?? location?.address.line3 ?? "";
+    if (locationAddressLine2 !== nextAddressLine2) {
+      onAddressLine2Change(nextAddressLine2);
+    }
+
+    const nextCity = location?.address.city ?? "";
+    if (locationCity !== nextCity) {
+      onCityChange(nextCity);
+    }
+
+    const nextParish = stateToParishKey(location?.address.state);
+    if (locationParish !== nextParish) {
+      onParishChange(nextParish);
+    }
+  };
+
+  const clearLocation = () => {
+    applyLocation(undefined);
+  };
+
+  const trimmedSchoolName = schoolName.trim();
+  const hasEnteredSchoolName = trimmedSchoolName.length > 0;
+  const hasSelectedOrg = Boolean(selectedOrg);
+  const hasOrgContext = isCreatingNew || hasSelectedOrg;
+  const showOrganisationType =
+    hasOrgContext || (hasEnteredSchoolName && !hasSelectedOrg);
+  const showLocationInfo =
+    hasOrgContext || (hasEnteredSchoolName && !hasSelectedOrg);
+  const showRoleSelect = hasOrgContext;
 
   const handleOrgSelectionChange = (key: string | null) => {
     onSelectedOrgKeyChange(key);
@@ -74,18 +169,34 @@ export function OrgSelectionStep({
         setIsCreatingNew(false);
         onSchoolNameChange(org.org.name);
         onSchoolUsernameChange(org.org.username);
+        const inferredType = inferOrgType(org);
+        if (schoolType !== inferredType) {
+          onSchoolTypeChange(inferredType);
+        }
+        const location = getPrimaryLocation(org.org.locations);
+        applyLocation(location);
       } else {
         // Custom value entered (not matching any org)
         setIsCreatingNew(true);
         onSchoolNameChange(key);
         onSchoolUsernameChange(slugify(key));
+        if (schoolType !== "") {
+          onSchoolTypeChange("");
+        }
+        clearLocation();
       }
     } else {
-      // Clear selection - but keep isCreatingNew state if it was set
-      if (!isCreatingNew) {
+      // Clear selection and reset creation state
+      const wasCreatingNew = isCreatingNew;
+      setIsCreatingNew(false);
+      if (!wasCreatingNew) {
         onSchoolNameChange("");
       }
       onSchoolUsernameChange("");
+      if (schoolType !== "") {
+        onSchoolTypeChange("");
+      }
+      clearLocation();
     }
   };
 
@@ -97,7 +208,7 @@ export function OrgSelectionStep({
           label="School or organisation"
           selectedKey={selectedOrgKey}
           onSelectionChange={handleOrgSelectionChange}
-          placeholder="Select an organization"
+          placeholder="Type to search or create"
           categoryGroup="school"
           countryCode="JM"
           allowsCreate={true}
@@ -106,65 +217,70 @@ export function OrgSelectionStep({
             setIsCreatingNew(true);
             onSchoolNameChange(name);
             onSchoolUsernameChange(slugify(name));
+            if (schoolType !== "") {
+              onSchoolTypeChange("");
+            }
+            clearLocation();
           }}
         />
-        {showLocationAndType && schoolName.trim().length > 0 && (
-          <p className="text-sm text-default-500">
-            Give us some additional info for "{schoolName}"
-          </p>
-        )}
       </div>
 
-      {showLocationAndType && (
+      {showOrganisationType && (
+        <div className="space-y-2">
+          <Select
+            label="Organisation type"
+            selectedKeys={schoolType ? [schoolType] : []}
+            onSelectionChange={(keys) =>
+              onSchoolTypeChange(
+                (Array.from(keys)[0] as OrgTypeOptionKey | undefined) ?? "",
+              )
+            }
+            placeholder="Select organisation type"
+            size="lg"
+          >
+            {ORG_TYPE_OPTIONS.map((option) => (
+              <SelectItem key={option.key}>{option.label}</SelectItem>
+            ))}
+          </Select>
+        </div>
+      )}
+
+      {showLocationInfo && (
+        <LocationInfo
+          addressLine1={locationAddressLine1}
+          addressLine2={locationAddressLine2}
+          city={locationCity}
+          parish={locationParish}
+          onAddressLine1Change={onAddressLine1Change}
+          onAddressLine2Change={onAddressLine2Change}
+          onCityChange={onCityChange}
+          onParishChange={onParishChange}
+        />
+      )}
+
+      {showRoleSelect && (
         <>
+          <Divider className="my-3" />
           <div className="space-y-2">
             <Select
-              label="Organisation type"
-              selectedKeys={schoolType ? [schoolType] : []}
+              label="Your role"
+              selectedKeys={contactRole ? [contactRole] : []}
               onSelectionChange={(keys) =>
-                onSchoolTypeChange(
-                  (Array.from(keys)[0] as OrgTypeOptionKey | undefined) ?? "",
+                onContactRoleChange(
+                  (Array.from(keys)[0] as ContactRoleOptionKey | undefined) ??
+                    "",
                 )
               }
-              placeholder="Select organisation type"
+              placeholder="Select your role"
               size="lg"
             >
-              {ORG_TYPE_OPTIONS.map((option) => (
+              {CONTACT_ROLE_OPTIONS.map((option) => (
                 <SelectItem key={option.key}>{option.label}</SelectItem>
               ))}
             </Select>
           </div>
-
-          <LocationInfo
-            addressLine1={locationAddressLine1}
-            addressLine2={locationAddressLine2}
-            city={locationCity}
-            parish={locationParish}
-            onAddressLine1Change={onAddressLine1Change}
-            onAddressLine2Change={onAddressLine2Change}
-            onCityChange={onCityChange}
-            onParishChange={onParishChange}
-          />
         </>
       )}
-
-      <div className="space-y-2">
-        <Select
-          label="Your role"
-          selectedKeys={contactRole ? [contactRole] : []}
-          onSelectionChange={(keys) =>
-            onContactRoleChange(
-              (Array.from(keys)[0] as ContactRoleOptionKey | undefined) ?? "",
-            )
-          }
-          placeholder="Select your role"
-          size="lg"
-        >
-          {CONTACT_ROLE_OPTIONS.map((option) => (
-            <SelectItem key={option.key}>{option.label}</SelectItem>
-          ))}
-        </Select>
-      </div>
     </div>
   );
 }

@@ -52,7 +52,6 @@ export interface ReliefFormData {
   suppliesSelected: string[];
   suppliesQuantities: Record<string, number>;
   suppliesOther: string;
-  notes: string;
 }
 
 type SupportedCountryIso = "US" | "GB" | "GY" | "JM";
@@ -79,7 +78,6 @@ const initialFormData: ReliefFormData = {
   suppliesSelected: [],
   suppliesQuantities: {},
   suppliesOther: "",
-  notes: "",
 };
 
 const STEPS = {

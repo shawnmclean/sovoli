@@ -124,7 +124,6 @@ export async function submitReliefForm(formData: ReliefFormData) {
       "Supplies Other": formData.suppliesOther.trim().length
         ? formData.suppliesOther
         : undefined,
-      Notes: formData.notes.trim().length > 0 ? formData.notes : undefined,
     };
 
     if (successfulPhotos.length > 0) {

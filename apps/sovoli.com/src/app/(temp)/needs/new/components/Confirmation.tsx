@@ -85,12 +85,6 @@ export function Confirmation({
                 {formData.suppliesOther}
               </div>
             )}
-            {formData.notes && (
-              <div className="rounded-lg border border-default-200 bg-white/60 p-3 text-default-700">
-                <span className="font-medium">Notes: </span>
-                {formData.notes}
-              </div>
-            )}
           </CardBody>
         </Card>
       )}
@@ -106,25 +100,29 @@ export function Confirmation({
           <Divider />
           <CardBody className="px-5 py-4 sm:px-6">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {damagePhotos.map((photo) => (
-                <div
-                  key={photo.id}
-                  className="relative aspect-square overflow-hidden rounded-xl border border-default-200 bg-default-100"
-                >
-                  <Image
-                    src={photo.url}
-                    alt={
-                      photo.alt ??
-                      photo.caption ??
-                      photo.publicId ??
-                      "Damage photo"
-                    }
-                    fill
-                    className="object-cover"
-                    sizes="(min-width: 640px) 140px, 40vw"
-                  />
-                </div>
-              ))}
+              {damagePhotos.map((photo) => {
+                const altText =
+                  photo.alt ??
+                  photo.caption ??
+                  (photo.publicId.trim().length > 0
+                    ? photo.publicId
+                    : "Damage photo");
+
+                return (
+                  <div
+                    key={photo.id}
+                    className="relative aspect-square overflow-hidden rounded-xl border border-default-200 bg-default-100"
+                  >
+                    <Image
+                      src={photo.url}
+                      alt={altText}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 640px) 140px, 40vw"
+                    />
+                  </div>
+                );
+              })}
             </div>
           </CardBody>
         </Card>

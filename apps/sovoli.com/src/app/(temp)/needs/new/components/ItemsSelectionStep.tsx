@@ -207,13 +207,6 @@ export function ItemsSelectionStep({
           value={formData.suppliesOther}
           onValueChange={(value: string) => onUpdate("suppliesOther", value)}
         />
-        <Input
-          size="lg"
-          label="Additional notes"
-          placeholder="Add context about damages, urgency, or quantities"
-          value={formData.notes}
-          onValueChange={(value: string) => onUpdate("notes", value)}
-        />
       </section>
     </div>
   );
