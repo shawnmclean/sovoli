@@ -1,0 +1,70 @@
+import type { ProjectsModule } from "~/modules/projects/types";
+
+export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
+  projects: [
+    {
+      id: "ghaa-hurricane-melissa-stabilization-2025",
+      title: "Hurricane Melissa Campus Stabilization",
+      description:
+        "Coordinate rapid assessments, debris clearing, and temporary classroom coverage so Ginger Hill All Age can safely resume classes after Hurricane Melissa.",
+      category: "relief",
+      status: "planned",
+      priority: "high",
+      locationKey: "main-campus",
+      startDate: "2025-11-15",
+      endDate: "2025-12-20",
+      internal: false,
+      needs: [],
+      tags: ["hurricane-mellissa"],
+      photos: [
+        {
+          category: "environment",
+          url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763153721/o/gingerhillallagejm/projects/hpfhacbyl4vux0t64v2v.jpg",
+          publicId: "o/gingerhillallagejm/projects/hpfhacbyl4vux0t64v2v",
+          assetId: "ccd59d465bf09ad846a4d6562a212407",
+          width: 1200,
+          height: 1600,
+          format: "jpg",
+          bytes: 150487,
+          version: 1763153721,
+          uploadedAt: "2025-11-14T20:55:21Z",
+          caption:
+            "Roof damage at Ginger Hill All Age after Hurricane Melissa.",
+          alt: "Damaged Ginger Hill All Age school building with tarps after the hurricane",
+        },
+        {
+          category: "environment",
+          url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763153906/o/gingerhillallagejm/projects/odasjjagw6ioeidfi7sv.jpg",
+          publicId: "o/gingerhillallagejm/projects/odasjjagw6ioeidfi7sv",
+          assetId: "c01e627197a4a2e1da3dce81de586b7d",
+          width: 1200,
+          height: 1600,
+          format: "jpg",
+          bytes: 114034,
+          version: 1763153906,
+          uploadedAt: "2025-11-14T20:58:26Z",
+          caption: "Volunteers inspect classroom walls for structural cracks.",
+          alt: "Volunteers assessing damaged classroom walls with clipboards",
+        },
+        {
+          category: "environment",
+          url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763153910/o/gingerhillallagejm/projects/wjserpsagyi4elwska6b.jpg",
+          publicId: "o/gingerhillallagejm/projects/wjserpsagyi4elwska6b",
+          assetId: "7392a9fd9943af909c224ac6531c94f2",
+          width: 1200,
+          height: 1600,
+          format: "jpg",
+          bytes: 153448,
+          version: 1763153910,
+          uploadedAt: "2025-11-14T20:58:30Z",
+          caption: "Community members clear debris around the school grounds.",
+          alt: "Community members removing fallen branches near Ginger Hill All Age",
+        },
+      ],
+      notes:
+        "Requires roofing contractors, tarpaulins, portable restrooms, and emergency supplies sourced via Sovoli partners.",
+      createdAt: "2025-11-14",
+      updatedAt: "2025-11-14",
+    },
+  ],
+};

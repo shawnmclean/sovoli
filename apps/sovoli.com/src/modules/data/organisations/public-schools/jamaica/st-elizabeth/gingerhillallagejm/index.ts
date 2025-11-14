@@ -1,6 +1,7 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 
 import { ORG_USERNAME } from "./constants";
+import { GINGER_HILL_ALL_AGE_PROJECTS } from "./projects";
 
 export const GINGER_HILL_ALL_AGE_ORG: OrgInstance = {
   org: {
@@ -40,4 +41,5 @@ export const GINGER_HILL_ALL_AGE_ORG: OrgInstance = {
   serviceModule: null,
   workforceModule: null,
   scoringModule: null,
+  projectsModule: GINGER_HILL_ALL_AGE_PROJECTS,
 };

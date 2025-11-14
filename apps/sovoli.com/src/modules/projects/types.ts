@@ -1,5 +1,6 @@
 import type { OrgLocation } from "../organisations/types";
 import type { Need } from "../needs/types";
+import type { Photo } from "../core/photos/types";
 
 /** Standardized project lifecycle states */
 export type ProjectStatus = "planned" | "active" | "completed" | "cancelled";
@@ -29,6 +30,9 @@ export interface Project {
   /** Project title */
   title: string;
 
+  /** Project photos */
+  photos?: Photo[];
+
   /** Description and purpose */
   description?: string;
 
@@ -53,6 +57,9 @@ export interface Project {
 
   /** Linked needs (external or internal resources). */
   needs?: Need[];
+
+  /** Free-form labels for discovery/filtering (e.g., hurricane ids). */
+  tags?: string[];
 
   /** Metadata */
   createdAt?: string;
