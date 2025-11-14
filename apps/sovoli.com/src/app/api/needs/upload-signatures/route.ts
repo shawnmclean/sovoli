@@ -6,6 +6,7 @@ import { generateUploadSignatures } from "~/core/cloudinary/generateUploadSignat
 const requestSchema = z
   .object({
     count: z.number().int().min(1).max(20).optional(),
+    username: z.string().optional(),
   })
   .optional();
 
@@ -13,11 +14,14 @@ export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json().catch(() => ({}));
+    const body = (await request.json()) as z.infer<typeof requestSchema>;
     const parsedBody = requestSchema.parse(body);
     const count = parsedBody?.count ?? 1;
-
-    const signatures = generateUploadSignatures({ count });
+    const username = parsedBody?.username;
+    const signatures = generateUploadSignatures({
+      count,
+      folder: `o/${username}/projects`,
+    });
 
     return NextResponse.json(signatures);
   } catch (error) {

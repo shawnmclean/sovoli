@@ -18,6 +18,7 @@ interface ProjectStepProps {
   severity: SeverityOptionKey | "";
   damageDescription: string;
   photos: Photo[];
+  schoolUsername: string;
   onSeverityChange: (value: SeverityOptionKey | "") => void;
   onDamageDescriptionChange: (value: string) => void;
   onPhotosChange: (updater: (photos: Photo[]) => Photo[]) => void;
@@ -28,6 +29,7 @@ export function ProjectStep({
   severity,
   damageDescription,
   photos,
+  schoolUsername,
   onSeverityChange,
   onDamageDescriptionChange,
   onPhotosChange,
@@ -99,6 +101,7 @@ export function ProjectStep({
         <label className="text-sm font-medium text-default-700">Photos</label>
         <DamagePhotosUpload
           photos={photos}
+          username={schoolUsername}
           onPhotosChange={onPhotosChange}
           onUploadStatusChange={onUploadStatusChange}
         />

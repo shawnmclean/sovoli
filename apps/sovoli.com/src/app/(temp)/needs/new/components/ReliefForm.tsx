@@ -40,6 +40,7 @@ export interface ReliefFormData {
   contactRole: ContactRoleOptionKey | "";
   selectedOrgKey: string | null;
   schoolName: string;
+  schoolUsername: string;
   schoolType: OrgTypeOptionKey | "";
   locationAddressLine1: string;
   locationAddressLine2: string;
@@ -66,6 +67,7 @@ const initialFormData: ReliefFormData = {
   contactRole: "",
   selectedOrgKey: null,
   schoolName: "",
+  schoolUsername: "",
   schoolType: "",
   locationAddressLine1: "",
   locationAddressLine2: "",
@@ -369,6 +371,7 @@ export function ReliefForm() {
             locationParish={formData.locationParish}
             onUpdate={updateFormData}
             schoolName={formData.schoolName}
+            schoolUsername={formData.schoolUsername}
             schoolType={formData.schoolType}
             selectedOrgKey={formData.selectedOrgKey}
           />
@@ -379,6 +382,7 @@ export function ReliefForm() {
             severity={formData.severity}
             damageDescription={formData.damageDescription}
             photos={formData.photos}
+            schoolUsername={formData.schoolUsername}
             onUpdate={updateFormData}
             onUploadStatusChange={setHasPendingDamagePhotoUploads}
           />
@@ -600,6 +604,7 @@ function NamesStep({
 interface OrgSelectionStepWrapperProps {
   selectedOrgKey: string | null;
   schoolName: string;
+  schoolUsername: string;
   schoolType: OrgTypeOptionKey | "";
   contactRole: ContactRoleOptionKey | "";
   locationAddressLine1: string;
@@ -612,6 +617,7 @@ interface OrgSelectionStepWrapperProps {
 function OrgSelectionStepWrapper({
   selectedOrgKey,
   schoolName,
+  schoolUsername,
   schoolType,
   contactRole,
   locationAddressLine1,
@@ -625,6 +631,7 @@ function OrgSelectionStepWrapper({
       <OrgSelectionStep
         selectedOrgKey={selectedOrgKey}
         schoolName={schoolName}
+        schoolUsername={schoolUsername}
         schoolType={schoolType}
         contactRole={contactRole}
         locationAddressLine1={locationAddressLine1}
@@ -633,6 +640,7 @@ function OrgSelectionStepWrapper({
         locationParish={locationParish}
         onSelectedOrgKeyChange={(key) => onUpdate("selectedOrgKey", key)}
         onSchoolNameChange={(value) => onUpdate("schoolName", value)}
+        onSchoolUsernameChange={(value) => onUpdate("schoolUsername", value)}
         onSchoolTypeChange={(value) => onUpdate("schoolType", value)}
         onContactRoleChange={(value) => onUpdate("contactRole", value)}
         onAddressLine1Change={(value) =>
@@ -652,6 +660,7 @@ interface ProjectStepWrapperProps {
   severity: SeverityOptionKey | "";
   damageDescription: string;
   photos: Photo[];
+  schoolUsername: string;
   onUpdate: ReliefFormUpdater;
   onUploadStatusChange: (hasPendingUploads: boolean) => void;
 }
@@ -660,6 +669,7 @@ function ProjectStepWrapper({
   severity,
   damageDescription,
   photos,
+  schoolUsername,
   onUpdate,
   onUploadStatusChange,
 }: ProjectStepWrapperProps) {
@@ -669,6 +679,7 @@ function ProjectStepWrapper({
         severity={severity}
         damageDescription={damageDescription}
         photos={photos}
+        schoolUsername={schoolUsername}
         onSeverityChange={(value) => onUpdate("severity", value)}
         onDamageDescriptionChange={(value) =>
           onUpdate("damageDescription", value)

@@ -5,7 +5,7 @@ import { v2 as cloudinary } from "cloudinary";
 
 import { env } from "~/env";
 
-const DEFAULT_UPLOAD_FOLDER = "needs-intake/photos";
+const DEFAULT_UPLOAD_FOLDER = "tmp";
 
 let isConfigured = false;
 

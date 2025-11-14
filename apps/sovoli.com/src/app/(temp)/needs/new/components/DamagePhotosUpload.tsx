@@ -49,16 +49,29 @@ type DisplayItem =
       errorMessage?: string;
     };
 
-const getPhotoKey = (photo: Photo) => photo.publicId || photo.id || photo.url;
+const getFirstNonEmpty = (...values: (string | undefined)[]) =>
+  values.find((value) => value !== undefined && value.trim().length > 0);
+
+const getPhotoKey = (photo: Photo) =>
+  getFirstNonEmpty(
+    photo.publicId,
+    photo.id,
+    photo.assetId,
+    photo.url,
+    photo.caption,
+    photo.alt,
+  ) ?? crypto.randomUUID();
 
 export interface DamagePhotosUploadProps {
   photos: Photo[];
+  username: string;
   onPhotosChange: (updater: (photos: Photo[]) => Photo[]) => void;
   onUploadStatusChange?: (hasPendingUploads: boolean) => void;
 }
 
 export function DamagePhotosUpload({
   photos,
+  username,
   onPhotosChange,
   onUploadStatusChange,
 }: DamagePhotosUploadProps) {
@@ -91,8 +104,9 @@ export function DamagePhotosUpload({
   const removeQueueItem = useCallback((id: string) => {
     setQueue((current) => {
       const target = current.find((item) => item.id === id);
-      if (target && target.previewUrl.startsWith("blob:")) {
-        URL.revokeObjectURL(target.previewUrl);
+      const previewUrl = target?.previewUrl;
+      if (previewUrl?.startsWith("blob:")) {
+        URL.revokeObjectURL(previewUrl);
       }
       return current.filter((item) => item.id !== id);
     });
@@ -118,22 +132,29 @@ export function DamagePhotosUpload({
     [removePhotoByKey, removeQueueItem],
   );
 
-  const fetchSignatures = useCallback(async (count: number) => {
-    const response = await fetch("/api/needs/upload-signatures", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ count }),
-    });
+  const fetchSignatures = useCallback(
+    async (count: number) => {
+      const trimmedUsername = username.trim();
+      const response = await fetch("/api/needs/upload-signatures", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          count,
+          username: trimmedUsername.length > 0 ? trimmedUsername : undefined,
+        }),
+      });
 
-    if (!response.ok) {
-      const message = await response.text();
-      throw new Error(
-        message || "Unable to request Cloudinary upload signatures.",
-      );
-    }
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(
+          message || "Unable to request Cloudinary upload signatures.",
+        );
+      }
 
-    return (await response.json()) as UploadSignature[];
-  }, []);
+      return (await response.json()) as UploadSignature[];
+    },
+    [username],
+  );
 
   const handleDrop = useCallback(
     async (acceptedFiles: File[]) => {
@@ -174,7 +195,7 @@ export function DamagePhotosUpload({
         incomingItems.map(async (item, index) => {
           const { file } = item;
           const signature = signatures[index];
-          if (!file || !signature) {
+          if (!signature) {
             updateQueueItems([item.id], (queueItem) => ({
               ...queueItem,
               status: "error",
@@ -257,9 +278,12 @@ export function DamagePhotosUpload({
       key: getPhotoKey(photo),
       kind: "photo" as const,
       fileName:
-        photo.caption ?? photo.alt ?? photo.publicId ?? "Uploaded photo",
+        getFirstNonEmpty(photo.caption, photo.alt, photo.publicId) ??
+        "Uploaded photo",
       imageSrc: photo.url,
-      alt: photo.alt ?? photo.caption ?? photo.publicId ?? "Damage photo",
+      alt:
+        getFirstNonEmpty(photo.alt, photo.caption, photo.publicId) ??
+        "Damage photo",
       status: "success",
       statusLabel: "Uploaded",
     }));

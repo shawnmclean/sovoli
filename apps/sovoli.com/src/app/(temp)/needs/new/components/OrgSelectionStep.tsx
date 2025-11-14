@@ -6,6 +6,7 @@ import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete"
 import { ORGS } from "~/modules/data/organisations";
 import { LocationInfo } from "./LocationInfo";
 import { CONTACT_ROLE_OPTIONS, ORG_TYPE_OPTIONS } from "./options";
+import { slugify } from "~/utils/slugify";
 import type {
   ContactRoleOptionKey,
   OrgTypeOptionKey,
@@ -15,6 +16,7 @@ import type {
 interface OrgSelectionStepProps {
   selectedOrgKey: string | null;
   schoolName: string;
+  schoolUsername: string;
   schoolType: OrgTypeOptionKey | "";
   contactRole: ContactRoleOptionKey | "";
   locationAddressLine1: string;
@@ -23,6 +25,7 @@ interface OrgSelectionStepProps {
   locationParish: ParishOptionKey | "";
   onSelectedOrgKeyChange: (key: string | null) => void;
   onSchoolNameChange: (value: string) => void;
+  onSchoolUsernameChange: (value: string) => void;
   onSchoolTypeChange: (value: OrgTypeOptionKey | "") => void;
   onContactRoleChange: (value: ContactRoleOptionKey | "") => void;
   onAddressLine1Change: (value: string) => void;
@@ -42,6 +45,7 @@ export function OrgSelectionStep({
   locationParish,
   onSelectedOrgKeyChange,
   onSchoolNameChange,
+  onSchoolUsernameChange,
   onSchoolTypeChange,
   onContactRoleChange,
   onAddressLine1Change,
@@ -69,16 +73,19 @@ export function OrgSelectionStep({
         // Existing org selected
         setIsCreatingNew(false);
         onSchoolNameChange(org.org.name);
+        onSchoolUsernameChange(org.org.username);
       } else {
         // Custom value entered (not matching any org)
         setIsCreatingNew(true);
         onSchoolNameChange(key);
+        onSchoolUsernameChange(slugify(key));
       }
     } else {
       // Clear selection - but keep isCreatingNew state if it was set
       if (!isCreatingNew) {
         onSchoolNameChange("");
       }
+      onSchoolUsernameChange("");
     }
   };
 
@@ -98,6 +105,7 @@ export function OrgSelectionStep({
             console.log("Creating new organization:", name);
             setIsCreatingNew(true);
             onSchoolNameChange(name);
+            onSchoolUsernameChange(slugify(name));
           }}
         />
         {showLocationAndType && schoolName.trim().length > 0 && (
