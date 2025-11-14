@@ -15,7 +15,7 @@ const AIRTABLE_TABLE_ID = "tbloHJD4xzvsh9UdH";
 export async function submitReliefForm(formData: ReliefFormData) {
   const loggableFormData = {
     ...formData,
-    photos: formData.photos.map(({ file: _file, ...photo }) => photo),
+    photos: formData.photos,
   };
 
   console.log(
@@ -60,81 +60,81 @@ export async function submitReliefForm(formData: ReliefFormData) {
             .filter((value) => value && value.trim().length > 0)
             .join(" ");
 
-      const successfulPhotos = formData.photos.filter(
-        (photo) => photo.status === "success" && photo.url,
-      );
+    const successfulPhotos = formData.photos.filter(
+      (photo) => photo.url && photo.publicId,
+    );
 
-      const fields: {
-        "Contact First Name": string;
-        "Contact Last Name": string;
-        "Contact Phone"?: string;
-        "Contact Role"?: string;
-        "Organisation Name": string;
-        "Organisation Type"?: string;
-        "Location Address 1": string;
-        "Location Address 2"?: string;
-        "Location City": string;
-        "Location Parish": string;
-        "Supplies Names"?: string;
-        "Supplies Summary"?: string;
-        "Supplies Other"?: string;
-        "Damage Photo URLs"?: string;
-        "Damage Photo Public IDs"?: string;
-        "Damage Photo Buckets"?: string;
-        "Damage Photo Asset IDs"?: string;
-        Notes?: string;
-      } = {
-        "Contact First Name": formData.contactFirstName,
-        "Contact Last Name": formData.contactLastName,
-        "Contact Phone": combinedPhone || undefined,
-        "Contact Role": contactRoleLabel || undefined,
-        "Organisation Name": formData.schoolName,
-        "Organisation Type": orgTypeLabel || undefined,
-        "Location Address 1": formData.locationAddressLine1,
-        "Location Address 2": formData.locationAddressLine2.trim().length
-          ? formData.locationAddressLine2
+    const fields: {
+      "Contact First Name": string;
+      "Contact Last Name": string;
+      "Contact Phone"?: string;
+      "Contact Role"?: string;
+      "Organisation Name": string;
+      "Organisation Type"?: string;
+      "Location Address 1": string;
+      "Location Address 2"?: string;
+      "Location City": string;
+      "Location Parish": string;
+      "Supplies Names"?: string;
+      "Supplies Summary"?: string;
+      "Supplies Other"?: string;
+      "Damage Photo URLs"?: string;
+      "Damage Photo Public IDs"?: string;
+      "Damage Photo Buckets"?: string;
+      "Damage Photo Asset IDs"?: string;
+      Notes?: string;
+    } = {
+      "Contact First Name": formData.contactFirstName,
+      "Contact Last Name": formData.contactLastName,
+      "Contact Phone": combinedPhone || undefined,
+      "Contact Role": contactRoleLabel || undefined,
+      "Organisation Name": formData.schoolName,
+      "Organisation Type": orgTypeLabel || undefined,
+      "Location Address 1": formData.locationAddressLine1,
+      "Location Address 2": formData.locationAddressLine2.trim().length
+        ? formData.locationAddressLine2
+        : undefined,
+      "Location City": formData.locationCity,
+      "Location Parish": parishLabel,
+      "Supplies Names":
+        suppliesSelectedNames.length > 0
+          ? suppliesSelectedNames.join("\n")
           : undefined,
-        "Location City": formData.locationCity,
-        "Location Parish": parishLabel,
-        "Supplies Names":
-          suppliesSelectedNames.length > 0
-            ? suppliesSelectedNames.join("\n")
-            : undefined,
-        "Supplies Summary":
-          suppliesItemsData.length > 0 ? suppliesItemsData.join("\n") : undefined,
-        "Supplies Other": formData.suppliesOther.trim().length
-          ? formData.suppliesOther
-          : undefined,
-        Notes: formData.notes.trim().length > 0 ? formData.notes : undefined,
-      };
+      "Supplies Summary":
+        suppliesItemsData.length > 0 ? suppliesItemsData.join("\n") : undefined,
+      "Supplies Other": formData.suppliesOther.trim().length
+        ? formData.suppliesOther
+        : undefined,
+      Notes: formData.notes.trim().length > 0 ? formData.notes : undefined,
+    };
 
-      if (successfulPhotos.length > 0) {
-        const photoUrls = successfulPhotos
-          .map((photo) => photo.url)
-          .filter((url): url is string => Boolean(url));
-        const photoIds = successfulPhotos
-          .map((photo) => photo.publicId)
-          .filter((id): id is string => Boolean(id));
-        const photoBuckets = successfulPhotos
-          .map((photo) => photo.bucket)
-          .filter((bucket): bucket is string => Boolean(bucket));
-        const assetIds = successfulPhotos
-          .map((photo) => photo.assetId)
-          .filter((assetId): assetId is string => Boolean(assetId));
+    if (successfulPhotos.length > 0) {
+      const photoUrls = successfulPhotos
+        .map((photo) => photo.url)
+        .filter((url): url is string => Boolean(url));
+      const photoIds = successfulPhotos
+        .map((photo) => photo.publicId)
+        .filter((id): id is string => Boolean(id));
+      const photoBuckets = successfulPhotos
+        .map((photo) => photo.bucket)
+        .filter((bucket): bucket is string => Boolean(bucket));
+      const assetIds = successfulPhotos
+        .map((photo) => photo.assetId)
+        .filter((assetId): assetId is string => Boolean(assetId));
 
-        if (photoUrls.length > 0) {
-          fields["Damage Photo URLs"] = photoUrls.join("\n");
-        }
-        if (photoIds.length > 0) {
-          fields["Damage Photo Public IDs"] = photoIds.join("\n");
-        }
-        if (photoBuckets.length > 0) {
-          fields["Damage Photo Buckets"] = photoBuckets.join("\n");
-        }
-        if (assetIds.length > 0) {
-          fields["Damage Photo Asset IDs"] = assetIds.join("\n");
-        }
+      if (photoUrls.length > 0) {
+        fields["Damage Photo URLs"] = photoUrls.join("\n");
       }
+      if (photoIds.length > 0) {
+        fields["Damage Photo Public IDs"] = photoIds.join("\n");
+      }
+      if (photoBuckets.length > 0) {
+        fields["Damage Photo Buckets"] = photoBuckets.join("\n");
+      }
+      if (assetIds.length > 0) {
+        fields["Damage Photo Asset IDs"] = assetIds.join("\n");
+      }
+    }
 
     const response = await fetch(
       `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`,

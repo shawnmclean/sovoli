@@ -28,7 +28,7 @@ import type {
   ParishOptionKey,
   SeverityOptionKey,
 } from "./options";
-import type { DamagePhoto } from "./damage-photo-types";
+import type { Photo } from "~/modules/core/photos/types";
 
 export interface ReliefFormData {
   contactFirstName: string;
@@ -47,7 +47,7 @@ export interface ReliefFormData {
   locationParish: ParishOptionKey | "";
   severity: SeverityOptionKey | "";
   damageDescription: string;
-  photos: DamagePhoto[];
+  photos: Photo[];
   suppliesSelected: string[];
   suppliesQuantities: Record<string, number>;
   suppliesOther: string;
@@ -106,6 +106,8 @@ export function ReliefForm() {
   const [formData, setFormData] = useState<ReliefFormData>(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
   const [isPending, startTransition] = useTransition();
+  const [hasPendingDamagePhotoUploads, setHasPendingDamagePhotoUploads] =
+    useState(false);
 
   const stepSequence: StepDefinition[] = useMemo(
     () => [
@@ -226,17 +228,10 @@ export function ReliefForm() {
         );
       }
       case STEPS.PROJECT:
-        if (
-          formData.photos.length > 0 &&
-          formData.photos.some(
-            (photo) => photo.status !== "success" || !photo.url,
-          )
-        ) {
-          return false;
-        }
         return (
           formData.severity !== "" &&
-          formData.damageDescription.trim().length > 0
+          formData.damageDescription.trim().length > 0 &&
+          !hasPendingDamagePhotoUploads
         );
       case STEPS.SUPPLIES:
         if (formData.suppliesSelected.length === 0) {
@@ -294,14 +289,9 @@ export function ReliefForm() {
   };
 
   const resetForm = () => {
-    formData.photos.forEach((photo) => {
-      if (photo.previewUrl.startsWith("blob:")) {
-        URL.revokeObjectURL(photo.previewUrl);
-      }
-    });
-
     setFormData(initialFormData);
     setCurrentStep(0);
+    setHasPendingDamagePhotoUploads(false);
   };
 
   const normalizeCountryIso = (
@@ -390,6 +380,7 @@ export function ReliefForm() {
             damageDescription={formData.damageDescription}
             photos={formData.photos}
             onUpdate={updateFormData}
+            onUploadStatusChange={setHasPendingDamagePhotoUploads}
           />
         );
       case STEPS.SUPPLIES:
@@ -660,8 +651,9 @@ function OrgSelectionStepWrapper({
 interface ProjectStepWrapperProps {
   severity: SeverityOptionKey | "";
   damageDescription: string;
-  photos: DamagePhoto[];
+  photos: Photo[];
   onUpdate: ReliefFormUpdater;
+  onUploadStatusChange: (hasPendingUploads: boolean) => void;
 }
 
 function ProjectStepWrapper({
@@ -669,6 +661,7 @@ function ProjectStepWrapper({
   damageDescription,
   photos,
   onUpdate,
+  onUploadStatusChange,
 }: ProjectStepWrapperProps) {
   return (
     <StepSection>
@@ -681,6 +674,7 @@ function ProjectStepWrapper({
           onUpdate("damageDescription", value)
         }
         onPhotosChange={(updater) => onUpdate("photos", updater)}
+        onUploadStatusChange={onUploadStatusChange}
       />
     </StepSection>
   );

@@ -2,10 +2,10 @@
 
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { Textarea } from "@sovoli/ui/components/input";
-import { DamagePhotosUpload } from "./DamagePhotosUpload";
 import { SEVERITY_OPTIONS } from "./options";
 import type { SeverityOptionKey } from "./options";
-import type { DamagePhoto } from "./damage-photo-types";
+import { DamagePhotosUpload } from "./DamagePhotosUpload";
+import type { Photo } from "~/modules/core/photos/types";
 
 const SEVERITY_COLORS: Record<SeverityOptionKey, string> = {
   minor: "bg-blue-500",
@@ -17,12 +17,11 @@ const SEVERITY_COLORS: Record<SeverityOptionKey, string> = {
 interface ProjectStepProps {
   severity: SeverityOptionKey | "";
   damageDescription: string;
-  photos: DamagePhoto[];
+  photos: Photo[];
   onSeverityChange: (value: SeverityOptionKey | "") => void;
   onDamageDescriptionChange: (value: string) => void;
-  onPhotosChange: (
-    updater: (photos: DamagePhoto[]) => DamagePhoto[],
-  ) => void;
+  onPhotosChange: (updater: (photos: Photo[]) => Photo[]) => void;
+  onUploadStatusChange: (hasPendingUploads: boolean) => void;
 }
 
 export function ProjectStep({
@@ -32,6 +31,7 @@ export function ProjectStep({
   onSeverityChange,
   onDamageDescriptionChange,
   onPhotosChange,
+  onUploadStatusChange,
 }: ProjectStepProps) {
   return (
     <div className="space-y-6">
@@ -97,7 +97,11 @@ export function ProjectStep({
 
       <div className="space-y-2">
         <label className="text-sm font-medium text-default-700">Photos</label>
-        <DamagePhotosUpload photos={photos} onPhotosChange={onPhotosChange} />
+        <DamagePhotosUpload
+          photos={photos}
+          onPhotosChange={onPhotosChange}
+          onUploadStatusChange={onUploadStatusChange}
+        />
       </div>
     </div>
   );

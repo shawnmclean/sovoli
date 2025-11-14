@@ -50,9 +50,7 @@ export function Confirmation({
   const parishLabel =
     PARISH_OPTIONS.find((option) => option.key === formData.locationParish)
       ?.label ?? formData.locationParish;
-  const damagePhotos = formData.photos.filter(
-    (photo) => photo.status === "success" && photo.url,
-  );
+  const damagePhotos = formData.photos.filter((photo) => photo.url);
   const hasDamagePhotos = damagePhotos.length > 0;
 
   return (
@@ -114,12 +112,13 @@ export function Confirmation({
                   className="relative aspect-square overflow-hidden rounded-xl border border-default-200 bg-default-100"
                 >
                   <Image
-                    src={
-                      photo.url && photo.url.length > 0
-                        ? photo.url
-                        : photo.previewUrl
+                    src={photo.url}
+                    alt={
+                      photo.alt ??
+                      photo.caption ??
+                      photo.publicId ??
+                      "Damage photo"
                     }
-                    alt={photo.alt ?? photo.fileName}
                     fill
                     className="object-cover"
                     sizes="(min-width: 640px) 140px, 40vw"

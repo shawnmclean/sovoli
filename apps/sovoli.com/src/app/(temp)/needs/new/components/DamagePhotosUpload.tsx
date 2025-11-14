@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { CloudUpload, X, Loader2, AlertCircle } from "lucide-react";
 import { useDropzone } from "react-dropzone";
@@ -15,75 +15,107 @@ import { uploadToCloudinary } from "~/core/cloudinary/uploadToCloudinary";
 import type { UploadSignature } from "~/core/cloudinary/generateUploadSignatures";
 import { processImage } from "~/core/image/processImage";
 
-import type { DamagePhoto } from "./damage-photo-types";
-import { createDamagePhoto } from "./damage-photo-types";
+import type { Photo } from "~/modules/core/photos/types";
+
+type UploadStatus = "uploading" | "error";
+
+interface UploadQueueItem {
+  id: string;
+  fileName: string;
+  previewUrl: string;
+  status: UploadStatus;
+  errorMessage?: string;
+  file: File;
+}
+
+type DisplayItem =
+  | {
+      kind: "photo";
+      key: string;
+      fileName: string;
+      imageSrc: string;
+      alt: string;
+      status: "success";
+      statusLabel: string;
+    }
+  | {
+      kind: "queue";
+      key: string;
+      fileName: string;
+      imageSrc: string;
+      alt: string;
+      status: UploadStatus;
+      statusLabel: string;
+      errorMessage?: string;
+    };
+
+const getPhotoKey = (photo: Photo) => photo.publicId || photo.id || photo.url;
 
 export interface DamagePhotosUploadProps {
-  photos: DamagePhoto[];
-  onPhotosChange: (updater: (photos: DamagePhoto[]) => DamagePhoto[]) => void;
+  photos: Photo[];
+  onPhotosChange: (updater: (photos: Photo[]) => Photo[]) => void;
+  onUploadStatusChange?: (hasPendingUploads: boolean) => void;
 }
 
 export function DamagePhotosUpload({
   photos,
   onPhotosChange,
+  onUploadStatusChange,
 }: DamagePhotosUploadProps) {
-  const assignPhotos = useCallback(
-    (newPhotos: DamagePhoto[]) => {
-      onPhotosChange((current) => [...current, ...newPhotos]);
-    },
-    [onPhotosChange],
-  );
+  const [queue, setQueue] = useState<UploadQueueItem[]>([]);
+  const queueRef = useRef<UploadQueueItem[]>([]);
 
-  const updatePhoto = useCallback(
-    (id: string, partial: Partial<DamagePhoto>) => {
-      onPhotosChange((current) =>
-        current.map((photo) => {
-          if (photo.id !== id) return photo;
+  useEffect(() => {
+    queueRef.current = queue;
+  }, [queue]);
 
-          if (
-            partial.status === "success" &&
-            photo.previewUrl.startsWith("blob:")
-          ) {
-            URL.revokeObjectURL(photo.previewUrl);
-          }
+  useEffect(() => {
+    return () => {
+      queueRef.current.forEach((item) => {
+        if (item.previewUrl.startsWith("blob:")) {
+          URL.revokeObjectURL(item.previewUrl);
+        }
+      });
+    };
+  }, []);
 
-          return { ...photo, ...partial };
-        }),
+  const updateQueueItems = useCallback(
+    (ids: string[], updater: (item: UploadQueueItem) => UploadQueueItem) => {
+      setQueue((current) =>
+        current.map((item) => (ids.includes(item.id) ? updater(item) : item)),
       );
     },
-    [onPhotosChange],
+    [],
   );
 
-  const markPhotosAsErrored = useCallback(
-    (photosToUpdate: DamagePhoto[], errorMessage: string) => {
-      onPhotosChange((current) =>
-        current.map((photo) => {
-          if (!photosToUpdate.some((target) => target.id === photo.id)) {
-            return photo;
-          }
+  const removeQueueItem = useCallback((id: string) => {
+    setQueue((current) => {
+      const target = current.find((item) => item.id === id);
+      if (target && target.previewUrl.startsWith("blob:")) {
+        URL.revokeObjectURL(target.previewUrl);
+      }
+      return current.filter((item) => item.id !== id);
+    });
+  }, []);
 
-          return {
-            ...photo,
-            status: "error",
-            errorMessage,
-          };
-        }),
+  const removePhotoByKey = useCallback(
+    (key: string) => {
+      onPhotosChange((current) =>
+        current.filter((photo) => getPhotoKey(photo) !== key),
       );
     },
     [onPhotosChange],
   );
 
   const handleRemove = useCallback(
-    (photoId: string) => {
-      onPhotosChange((current) => {
-        const photoToRemove = current.find((photo) => photo.id === photoId);
-        if (photoToRemove && photoToRemove.previewUrl.startsWith("blob:")) {
-          URL.revokeObjectURL(photoToRemove.previewUrl);
-        }
-        return current.filter((photo) => photo.id !== photoId);
-      });
+    (key: string, kind: "photo" | "queue") => {
+      if (kind === "photo") {
+        removePhotoByKey(key);
+      } else {
+        removeQueueItem(key);
+      }
     },
-    [onPhotosChange],
+    [removePhotoByKey, removeQueueItem],
   );
 
   const fetchSignatures = useCallback(async (count: number) => {
@@ -107,8 +139,15 @@ export function DamagePhotosUpload({
     async (acceptedFiles: File[]) => {
       if (acceptedFiles.length === 0) return;
 
-      const incomingPhotos = acceptedFiles.map(createDamagePhoto);
-      assignPhotos(incomingPhotos);
+      const incomingItems: UploadQueueItem[] = acceptedFiles.map((file) => ({
+        id: crypto.randomUUID(),
+        fileName: file.name,
+        previewUrl: URL.createObjectURL(file),
+        status: "uploading",
+        file,
+      }));
+
+      setQueue((current) => [...current, ...incomingItems]);
 
       let signatures: UploadSignature[] = [];
 
@@ -120,27 +159,29 @@ export function DamagePhotosUpload({
           error instanceof Error
             ? error.message
             : "Failed to request upload signatures.";
-        markPhotosAsErrored(incomingPhotos, message);
+        updateQueueItems(
+          incomingItems.map((item) => item.id),
+          (item) => ({
+            ...item,
+            status: "error",
+            errorMessage: message,
+          }),
+        );
         return;
       }
 
       await Promise.all(
-        incomingPhotos.map(async (photo, index) => {
-          const file = photo.file;
+        incomingItems.map(async (item, index) => {
+          const { file } = item;
           const signature = signatures[index];
           if (!file || !signature) {
-            updatePhoto(photo.id, {
+            updateQueueItems([item.id], (queueItem) => ({
+              ...queueItem,
               status: "error",
               errorMessage: "Missing upload data for this file.",
-            });
+            }));
             return;
           }
-
-          updatePhoto(photo.id, {
-            status: "uploading",
-            publicId: signature.id,
-            bucket: signature.folder,
-          });
 
           try {
             const processedBlob = await processImage(
@@ -162,9 +203,11 @@ export function DamagePhotosUpload({
               signature,
             );
 
-            updatePhoto(photo.id, {
-              status: "success",
+            const uploadedPhoto: Photo = {
+              category: "default",
               url: uploadedAsset.url,
+              caption: item.fileName,
+              alt: item.fileName,
               publicId: uploadedAsset.publicId,
               assetId: uploadedAsset.assetId,
               bytes: uploadedAsset.bytes,
@@ -173,11 +216,11 @@ export function DamagePhotosUpload({
               format: uploadedAsset.format,
               version: uploadedAsset.version,
               bucket: signature.folder,
-              alt: photo.fileName,
               uploadedAt: uploadedAsset.createdAt,
-              file: undefined,
-              previewUrl: uploadedAsset.url,
-            });
+            };
+
+            onPhotosChange((current) => [...current, uploadedPhoto]);
+            removeQueueItem(item.id);
           } catch (error) {
             console.error("Cloudinary upload failed:", error);
             const message =
@@ -185,15 +228,16 @@ export function DamagePhotosUpload({
                 ? error.message
                 : "Cloudinary upload failed.";
 
-            updatePhoto(photo.id, {
+            updateQueueItems([item.id], (queueItem) => ({
+              ...queueItem,
               status: "error",
               errorMessage: message,
-            });
+            }));
           }
         }),
       );
     },
-    [assignPhotos, fetchSignatures, markPhotosAsErrored, updatePhoto],
+    [fetchSignatures, onPhotosChange, removeQueueItem, updateQueueItems],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -207,6 +251,38 @@ export function DamagePhotosUpload({
       void handleDrop(acceptedFiles);
     },
   });
+
+  const displayItems = useMemo<DisplayItem[]>(() => {
+    const photoItems: DisplayItem[] = photos.map((photo) => ({
+      key: getPhotoKey(photo),
+      kind: "photo" as const,
+      fileName:
+        photo.caption ?? photo.alt ?? photo.publicId ?? "Uploaded photo",
+      imageSrc: photo.url,
+      alt: photo.alt ?? photo.caption ?? photo.publicId ?? "Damage photo",
+      status: "success",
+      statusLabel: "Uploaded",
+    }));
+
+    const queueItems: DisplayItem[] = queue.map((item) => ({
+      key: item.id,
+      kind: "queue" as const,
+      fileName: item.fileName,
+      imageSrc: item.previewUrl,
+      alt: item.fileName,
+      status: item.status,
+      errorMessage: item.errorMessage,
+      statusLabel: item.status === "uploading" ? "Uploading…" : "Error",
+    }));
+
+    return [...photoItems, ...queueItems];
+  }, [photos, queue]);
+
+  useEffect(() => {
+    onUploadStatusChange?.(queue.length > 0);
+  }, [onUploadStatusChange, queue]);
+
+  const totalCount = photos.length + queue.length;
 
   return (
     <div className="space-y-4">
@@ -238,10 +314,10 @@ export function DamagePhotosUpload({
         </div>
       </div>
 
-      {photos.length > 0 && (
+      {displayItems.length > 0 && (
         <div className="space-y-3">
           <p className="text-sm font-medium text-default-700">
-            {photos.length} photo{photos.length !== 1 ? "s" : ""} added
+            {totalCount} photo{totalCount !== 1 ? "s" : ""} added
           </p>
           <Carousel
             opts={{
@@ -251,19 +327,15 @@ export function DamagePhotosUpload({
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
-              {photos.map((photo) => (
+              {displayItems.map((item) => (
                 <CarouselItem
-                  key={photo.id}
+                  key={item.key}
                   className="pl-2 md:pl-4 basis-[160px] shrink-0"
                 >
                   <div className="relative group aspect-square overflow-hidden rounded-lg border border-default-200 bg-default-100">
                     <Image
-                      src={
-                        photo.url && photo.url.length > 0
-                          ? photo.url
-                          : photo.previewUrl
-                      }
-                      alt={photo.alt ?? photo.fileName}
+                      src={item.imageSrc}
+                      alt={item.alt}
                       fill
                       className="object-cover"
                       sizes="160px"
@@ -275,42 +347,41 @@ export function DamagePhotosUpload({
                       color="danger"
                       variant="solid"
                       className="absolute top-2 right-2 z-20"
-                      onPress={() => handleRemove(photo.id)}
-                      aria-label={`Remove ${photo.fileName}`}
+                      onPress={() =>
+                        handleRemove(
+                          item.key,
+                          item.kind === "photo" ? "photo" : "queue",
+                        )
+                      }
+                      aria-label={`Remove ${item.fileName}`}
                     >
                       <X className="h-4 w-4" />
                     </Button>
 
-                    {photo.status === "uploading" && (
+                    {item.kind === "queue" && item.status === "uploading" && (
                       <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/50">
                         <Loader2 className="h-6 w-6 animate-spin text-white" />
                       </div>
                     )}
 
-                    {photo.status === "error" && (
+                    {item.kind === "queue" && item.status === "error" && (
                       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-danger-500/70 p-3 text-center text-white">
                         <AlertCircle className="h-5 w-5" />
                         <span className="text-xs font-semibold">
                           Upload failed
                         </span>
-                        {photo.errorMessage && (
+                        {item.errorMessage && (
                           <span className="text-[10px] leading-tight">
-                            {photo.errorMessage}
+                            {item.errorMessage}
                           </span>
                         )}
                       </div>
                     )}
 
                     <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-2 text-xs text-white">
-                      <p className="truncate">{photo.fileName}</p>
+                      <p className="truncate">{item.fileName}</p>
                       <p className="text-[10px] capitalize">
-                        {photo.status === "success"
-                          ? "Uploaded"
-                          : photo.status === "uploading"
-                            ? "Uploading…"
-                            : photo.status === "error"
-                              ? "Error"
-                              : "Pending"}
+                        {item.statusLabel}
                       </p>
                     </div>
                   </div>
