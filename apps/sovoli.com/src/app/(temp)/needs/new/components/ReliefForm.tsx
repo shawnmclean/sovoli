@@ -28,6 +28,7 @@ import type {
   ParishOptionKey,
   SeverityOptionKey,
 } from "./options";
+import type { DamagePhoto } from "./damage-photo-types";
 
 export interface ReliefFormData {
   contactFirstName: string;
@@ -46,7 +47,7 @@ export interface ReliefFormData {
   locationParish: ParishOptionKey | "";
   severity: SeverityOptionKey | "";
   damageDescription: string;
-  photos: File[];
+  photos: DamagePhoto[];
   suppliesSelected: string[];
   suppliesQuantities: Record<string, number>;
   suppliesOther: string;
@@ -208,19 +209,15 @@ export function ReliefForm() {
           formData.contactLastName.trim().length > 0
         );
       case STEPS.ORG_SELECTION: {
-        // Always require role
         if (formData.contactRole.trim().length === 0) {
           return false;
         }
-        // Require school name
         if (formData.schoolName.trim().length === 0) {
           return false;
         }
-        // If an existing org is selected, that's enough
         if (formData.selectedOrgKey) {
           return true;
         }
-        // If creating new, require type and location
         return (
           formData.schoolType.trim().length > 0 &&
           formData.locationAddressLine1.trim().length > 0 &&
@@ -229,6 +226,14 @@ export function ReliefForm() {
         );
       }
       case STEPS.PROJECT:
+        if (
+          formData.photos.length > 0 &&
+          formData.photos.some(
+            (photo) => photo.status !== "success" || !photo.url,
+          )
+        ) {
+          return false;
+        }
         return (
           formData.severity !== "" &&
           formData.damageDescription.trim().length > 0
@@ -269,15 +274,32 @@ export function ReliefForm() {
 
   const updateFormData = <K extends keyof ReliefFormData>(
     key: K,
-    value: ReliefFormData[K],
+    value:
+      | ReliefFormData[K]
+      | ((currentValue: ReliefFormData[K]) => ReliefFormData[K]),
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
+    setFormData((prev) => {
+      const resolvedValue =
+        typeof value === "function"
+          ? (value as (current: ReliefFormData[K]) => ReliefFormData[K])(
+              prev[key],
+            )
+          : value;
+
+      return {
+        ...prev,
+        [key]: resolvedValue,
+      };
+    });
   };
 
   const resetForm = () => {
+    formData.photos.forEach((photo) => {
+      if (photo.previewUrl.startsWith("blob:")) {
+        URL.revokeObjectURL(photo.previewUrl);
+      }
+    });
+
     setFormData(initialFormData);
     setCurrentStep(0);
   };
@@ -528,7 +550,9 @@ export function ReliefForm() {
 
 export type ReliefFormUpdater = <K extends keyof ReliefFormData>(
   key: K,
-  value: ReliefFormData[K],
+  value:
+    | ReliefFormData[K]
+    | ((currentValue: ReliefFormData[K]) => ReliefFormData[K]),
 ) => void;
 
 interface PhoneStepProps {
@@ -636,7 +660,7 @@ function OrgSelectionStepWrapper({
 interface ProjectStepWrapperProps {
   severity: SeverityOptionKey | "";
   damageDescription: string;
-  photos: File[];
+  photos: DamagePhoto[];
   onUpdate: ReliefFormUpdater;
 }
 
@@ -656,7 +680,7 @@ function ProjectStepWrapper({
         onDamageDescriptionChange={(value) =>
           onUpdate("damageDescription", value)
         }
-        onPhotosChange={(value) => onUpdate("photos", value)}
+        onPhotosChange={(updater) => onUpdate("photos", updater)}
       />
     </StepSection>
   );
