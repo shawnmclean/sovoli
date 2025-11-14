@@ -110,7 +110,7 @@ export function DamagePhotosUpload({
       const incomingPhotos = acceptedFiles.map(createDamagePhoto);
       assignPhotos(incomingPhotos);
 
-      let signatures: UploadSignature[] = [];
+      let signatures: UploadSignature[];
 
       try {
         signatures = await fetchSignatures(acceptedFiles.length);
@@ -136,7 +136,11 @@ export function DamagePhotosUpload({
             return;
           }
 
-          updatePhoto(photo.id, { status: "uploading" });
+          updatePhoto(photo.id, {
+            status: "uploading",
+            publicId: signature.id,
+            bucket: signature.folder,
+          });
 
           try {
             const processedBlob = await processImage(
@@ -161,7 +165,15 @@ export function DamagePhotosUpload({
             updatePhoto(photo.id, {
               status: "success",
               url: uploadedAsset.url,
-              publicId: uploadedAsset.id,
+              publicId: uploadedAsset.publicId,
+              assetId: uploadedAsset.assetId,
+              bytes: uploadedAsset.bytes,
+              width: uploadedAsset.width,
+              height: uploadedAsset.height,
+              format: uploadedAsset.format,
+              version: uploadedAsset.version,
+              bucket: signature.folder,
+              alt: photo.fileName,
               file: undefined,
               previewUrl: uploadedAsset.url,
             });
@@ -243,14 +255,14 @@ export function DamagePhotosUpload({
                   key={photo.id}
                   className="pl-2 md:pl-4 basis-[160px] shrink-0"
                 >
-                  <div className="relative group aspect-square overflow-hidden rounded-lg border border-default-200 bg-default-100">
-                    <Image
-                      src={photo.url ?? photo.previewUrl}
-                      alt={photo.fileName}
-                      fill
-                      className="object-cover"
-                      sizes="160px"
-                    />
+                    <div className="relative group aspect-square overflow-hidden rounded-lg border border-default-200 bg-default-100">
+                      <Image
+                        src={photo.url && photo.url.length > 0 ? photo.url : photo.previewUrl}
+                        alt={photo.fileName}
+                        fill
+                        className="object-cover"
+                        sizes="160px"
+                      />
 
                     <Button
                       isIconOnly
