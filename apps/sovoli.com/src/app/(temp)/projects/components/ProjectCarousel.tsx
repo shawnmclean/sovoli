@@ -32,7 +32,7 @@ export function ProjectCarousel({ photos, title, href }: ProjectCarouselProps) {
 
   if (photos.length === 0) {
     return (
-      <div className="flex min-h-[320px] w-full items-center justify-center rounded-2xl bg-slate-100 text-sm text-slate-500">
+      <div className="flex min-h-[320px] w-full items-center justify-center rounded-2xl bg-muted text-sm text-muted-foreground">
         Photos coming soon
       </div>
     );

@@ -43,7 +43,7 @@ export function ProjectGalleryCarousel({
 
   if (photos.length === 0) {
     return (
-      <div className="flex h-[300px] w-full items-center justify-center bg-slate-100 text-slate-500 md:h-[420px]">
+      <div className="flex h-[300px] w-full items-center justify-center bg-muted text-muted-foreground md:h-[420px]">
         No photos available yet
       </div>
     );
@@ -51,7 +51,7 @@ export function ProjectGalleryCarousel({
 
   return (
     <>
-      <div className="relative h-[320px] w-full overflow-hidden bg-black md:h-[460px]">
+      <div className="relative h-[320px] w-full overflow-hidden bg-background dark:bg-black md:h-[460px]">
         <Carousel
           className="h-full"
           setApi={setApi}
@@ -69,7 +69,7 @@ export function ProjectGalleryCarousel({
                 <button
                   type="button"
                   onClick={onOpen}
-                  className="relative h-full w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                  className="relative h-full w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-default-foreground/60 dark:focus-visible:ring-default-foreground/80"
                 >
                   <CldImage
                     src={photo.publicId}
@@ -86,7 +86,7 @@ export function ProjectGalleryCarousel({
         </Carousel>
 
         {photos.length > 1 && (
-          <div className="absolute bottom-4 right-4 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white">
+          <div className="absolute bottom-4 right-4 rounded-full bg-background/70 px-3 py-1 text-xs font-medium text-foreground shadow-sm dark:bg-black/60 dark:text-default-foreground">
             {current + 1} / {photos.length}
           </div>
         )}
@@ -130,14 +130,14 @@ function FullScreenGallery({
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} size="full" hideCloseButton>
-      <ModalContent className="bg-black">
-        <ModalHeader className="flex items-center justify-between text-white">
+      <ModalContent className="bg-background dark:bg-black">
+        <ModalHeader className="flex items-center justify-between text-foreground dark:text-default-foreground">
           <Button
             variant="light"
             isIconOnly
             radius="full"
             onPress={onClose}
-            className="bg-white/10 text-white hover:bg-white/20"
+            className="bg-foreground/10 text-foreground hover:bg-foreground/20 dark:bg-default-foreground/10 dark:text-default-foreground dark:hover:bg-default-foreground/20"
           >
             <ChevronLeftIcon />
           </Button>
@@ -160,7 +160,7 @@ function FullScreenGallery({
                   key={`${title}-modal-${index}`}
                   className="h-full basis-full"
                 >
-                  <div className="relative flex h-full w-full items-center justify-center bg-black">
+                  <div className="relative flex h-full w-full items-center justify-center bg-background dark:bg-black">
                     <CldImage
                       src={photo.publicId}
                       alt={photo.alt ?? `${title} photo ${index + 1}`}

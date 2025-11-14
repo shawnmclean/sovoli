@@ -55,9 +55,9 @@ export function MapView({ projects }: MapViewProps) {
     return (
       <Card>
         <CardBody>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Map view is unavailable until the{" "}
-            <code className="rounded bg-gray-100 px-1 py-0.5 text-xs text-gray-800">
+            <code className="rounded bg-muted px-1 py-0.5 text-xs text-foreground">
               NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
             </code>{" "}
             environment variable is configured.
@@ -194,7 +194,7 @@ function ProjectsMap({ projects }: MapViewProps) {
     return (
       <Card>
         <CardBody>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             We don&apos;t have precise coordinates for these projects yet.
             Switch back to the list view while we finalize map coverage.
           </p>
@@ -208,7 +208,7 @@ function ProjectsMap({ projects }: MapViewProps) {
 
   return (
     <div>
-      <div className="h-[360px] w-full overflow-hidden rounded-xl border border-gray-200 sm:h-[480px] lg:h-[600px]">
+      <div className="h-[360px] w-full overflow-hidden rounded-xl border border-divider sm:h-[480px] lg:h-[600px]">
         <Map
           id="projects-map"
           defaultCenter={defaultCenter}
@@ -233,7 +233,7 @@ function ProjectsMap({ projects }: MapViewProps) {
           })}
         </Map>
       </div>
-      <p className="mt-3 text-sm text-gray-500">
+      <p className="mt-3 text-sm text-muted-foreground">
         Showing {pluralize(markerPositions.length, "project location")} across
         the Sovoli network.
       </p>

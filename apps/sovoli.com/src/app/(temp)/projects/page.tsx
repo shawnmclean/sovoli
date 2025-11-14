@@ -62,10 +62,10 @@ export default async function ProjectsDirectoryPage({
 
       <section className="-mt-8 pb-16 sm:-mt-10">
         <div className="mx-auto max-w-5xl space-y-6 px-4 sm:px-6">
-          <Card className="border border-blue-100 shadow-lg">
+          <Card className="border border-divider shadow-lg">
             <CardBody className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-2">
-                <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                   Filter and search here soon
                 </p>
               </div>

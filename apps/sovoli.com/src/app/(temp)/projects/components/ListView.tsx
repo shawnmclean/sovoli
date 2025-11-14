@@ -24,7 +24,7 @@ export function ListView({ projects }: ListViewProps) {
       <Card>
         <CardBody className="text-center">
           <p className="text-lg font-semibold">No projects to show yet</p>
-          <p className="mt-2 text-gray-500">
+          <p className="mt-2 text-muted-foreground">
             As soon as recovery initiatives go live you&apos;ll see them listed
             here.
           </p>
@@ -48,7 +48,7 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
   const photos = useMemo(() => project.photos, [project.photos]);
 
   return (
-    <Card className="group overflow-hidden border border-gray-200 shadow-sm transition duration-200 hover:shadow-2xl">
+    <Card className="group overflow-hidden border border-divider shadow-sm transition duration-200 hover:shadow-2xl">
       <div className="relative w-full min-h-[320px] overflow-hidden rounded-2xl">
         <ProjectCarousel
           photos={photos}
@@ -67,33 +67,33 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
       <CardBody className="space-y-4">
         <Link
           href={`/projects/${project.id}`}
-          className="block space-y-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          className="block space-y-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label={`View project ${project.title}`}
         >
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold leading-tight text-gray-900">
+            <h2 className="text-2xl font-semibold leading-tight text-foreground">
               {project.title}
             </h2>
-            <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+            <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
               {project.orgName}
               {project.locationLabel && (
-                <span className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-gray-400">
-                  <MapPinIcon className="h-3 w-3" />
+                <span className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
+                  <MapPinIcon className="h-3 w-3 text-muted-foreground" />
                   {project.locationLabel}
                 </span>
               )}
             </p>
             {project.description && (
-              <p className="text-gray-600 line-clamp-3">
+              <p className="text-default-600 line-clamp-3">
                 {project.description}
               </p>
             )}
           </div>
 
-          <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
             {timeline && (
               <span className="inline-flex items-center gap-2">
-                <CalendarDaysIcon className="h-4 w-4 text-gray-400" />
+                <CalendarDaysIcon className="h-4 w-4 text-muted-foreground" />
                 {timeline}
               </span>
             )}
@@ -112,16 +112,18 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
               {project.needs.slice(0, 4).map((need) => (
                 <span
                   key={need.slug}
-                  className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700"
+                  className="inline-flex items-center gap-1 rounded-full border border-divider bg-muted px-3 py-1 text-xs font-medium text-foreground"
                 >
                   {need.title}
                   {need.quantity && (
-                    <span className="text-gray-400">· {need.quantity}</span>
+                    <span className="text-muted-foreground">
+                      · {need.quantity}
+                    </span>
                   )}
                 </span>
               ))}
               {project.needs.length > 4 && (
-                <span className="text-xs text-gray-400">
+                <span className="text-xs text-muted-foreground">
                   +{project.needs.length - 4} more
                 </span>
               )}
@@ -130,14 +132,14 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
         </Link>
       </CardBody>
 
-      <CardFooter className="flex items-center justify-between border-t border-gray-100 bg-gray-50 text-sm text-gray-500">
+      <CardFooter className="flex items-center justify-between border-t border-divider bg-muted text-sm text-muted-foreground">
         <span>
           Updated{" "}
           {formatDate(project.updatedAt ?? project.createdAt) ?? "recently"}
         </span>
         <Link
           href={`/projects/${project.id}`}
-          className="flex items-center gap-1 text-blue-600 transition hover:gap-2"
+          className="flex items-center gap-1 text-primary transition hover:gap-2"
         >
           View impact
           <ArrowRightIcon className="h-4 w-4" />

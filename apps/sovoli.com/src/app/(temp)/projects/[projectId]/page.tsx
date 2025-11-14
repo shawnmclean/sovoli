@@ -61,7 +61,7 @@ export default async function ProjectDetailsPage({
   const pledgeHref = `/needs/new?projectId=${project.projectId}&org=${project.orgUsername}`;
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       <div className="relative">
         <ProjectGalleryCarousel photos={project.photos} title={project.title} />
 
@@ -73,7 +73,7 @@ export default async function ProjectDetailsPage({
             href="/projects"
             variant="light"
             startContent={<ArrowLeftIcon className="h-4 w-4" />}
-            className="pointer-events-auto bg-white/80 text-gray-900 backdrop-blur"
+            className="pointer-events-auto bg-background/80 text-foreground backdrop-blur"
           >
             Back to projects
           </Button>
@@ -91,36 +91,38 @@ export default async function ProjectDetailsPage({
       </div>
 
       <main className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-10 sm:px-6">
-        <section className="rounded-3xl bg-white p-6 shadow-sm">
+        <section className="rounded-3xl bg-card p-6 shadow-sm">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="space-y-4">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                   {project.orgName}
                 </p>
-                <h1 className="text-3xl font-semibold text-gray-900 sm:text-4xl">
+                <h1 className="text-3xl font-semibold text-foreground sm:text-4xl">
                   {project.title}
                 </h1>
               </div>
               {project.description && (
-                <p className="text-lg text-gray-600">{project.description}</p>
+                <p className="text-lg text-default-600">
+                  {project.description}
+                </p>
               )}
-              <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                 {project.locationLabel && (
                   <span className="inline-flex items-center gap-2">
-                    <MapPinIcon className="h-4 w-4 text-gray-400" />
+                    <MapPinIcon className="h-4 w-4 text-muted-foreground" />
                     {project.locationLabel}
                   </span>
                 )}
                 {timeline && (
                   <span className="inline-flex items-center gap-2">
-                    <CalendarDaysIcon className="h-4 w-4 text-gray-400" />
+                    <CalendarDaysIcon className="h-4 w-4 text-muted-foreground" />
                     {timeline}
                   </span>
                 )}
                 {updatedAt && (
                   <span className="inline-flex items-center gap-2">
-                    <ClipboardListIcon className="h-4 w-4 text-gray-400" />
+                    <ClipboardListIcon className="h-4 w-4 text-muted-foreground" />
                     Updated {updatedAt}
                   </span>
                 )}
@@ -151,13 +153,13 @@ export default async function ProjectDetailsPage({
         <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           <Card className="rounded-3xl shadow-sm">
             <CardBody className="space-y-4">
-              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
+              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                 <AlertCircleIcon className="h-4 w-4" />
                 Linked needs
-                <span className="text-gray-400">({needsCount})</span>
+                <span className="text-muted-foreground">({needsCount})</span>
               </div>
               {needsCount === 0 ? (
-                <p className="text-gray-500">
+                <p className="text-muted-foreground">
                   School leaders are still finalizing the scoped needs for this
                   project.
                 </p>
@@ -166,20 +168,20 @@ export default async function ProjectDetailsPage({
                   {project.needs.map((need) => (
                     <li
                       key={need.slug}
-                      className="rounded-2xl border border-gray-100 bg-gray-50 px-4 py-3"
+                      className="rounded-2xl border border-divider bg-muted px-4 py-3"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
-                          <p className="text-base font-semibold text-gray-900">
+                          <p className="text-base font-semibold text-foreground">
                             {need.title}
                           </p>
                           {need.quantity && (
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-muted-foreground">
                               Quantity: {need.quantity}
                             </p>
                           )}
                         </div>
-                        <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                        <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                           {need.type}
                         </span>
                       </div>
@@ -192,29 +194,29 @@ export default async function ProjectDetailsPage({
 
           <Card className="rounded-3xl shadow-sm">
             <CardBody className="space-y-4">
-              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
+              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                 <TagIcon className="h-4 w-4" />
                 Project details
               </div>
-              <dl className="space-y-3 text-sm text-gray-600">
+              <dl className="space-y-3 text-sm text-default-600">
                 {project.status && (
                   <div className="flex justify-between">
-                    <dt className="text-gray-500">Status</dt>
-                    <dd className="font-medium text-gray-900 capitalize">
+                    <dt className="text-muted-foreground">Status</dt>
+                    <dd className="font-medium text-foreground capitalize">
                       {project.status}
                     </dd>
                   </div>
                 )}
                 {project.category && (
                   <div className="flex justify-between">
-                    <dt className="text-gray-500">Category</dt>
-                    <dd className="font-medium text-gray-900 capitalize">
+                    <dt className="text-muted-foreground">Category</dt>
+                    <dd className="font-medium text-foreground capitalize">
                       {project.category}
                     </dd>
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Priority</dt>
+                  <dt className="text-muted-foreground">Priority</dt>
                   <dd
                     className={`font-semibold uppercase tracking-wide ${getPriorityTextClass(
                       project.priority,
@@ -225,12 +227,12 @@ export default async function ProjectDetailsPage({
                 </div>
                 {project.tags && project.tags.length > 0 && (
                   <div>
-                    <dt className="text-gray-500">Tags</dt>
+                    <dt className="text-muted-foreground">Tags</dt>
                     <dd className="mt-2 flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700"
+                          className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground"
                         >
                           {tag}
                         </span>
@@ -240,8 +242,8 @@ export default async function ProjectDetailsPage({
                 )}
                 {project.notes && (
                   <div>
-                    <dt className="text-gray-500">Coordinator notes</dt>
-                    <dd className="mt-2 rounded-2xl bg-slate-50 p-3 text-gray-600">
+                    <dt className="text-muted-foreground">Coordinator notes</dt>
+                    <dd className="mt-2 rounded-2xl bg-muted p-3 text-default-600">
                       {project.notes}
                     </dd>
                   </div>
