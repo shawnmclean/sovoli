@@ -1,28 +1,19 @@
 "use client";
 
 import { useMemo } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@sovoli/ui/components/carousel";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
-import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
-import { Tooltip } from "@sovoli/ui/components/tooltip";
-import { CldImage } from "next-cloudinary";
 import {
   AlertCircleIcon,
-  ArrowUpRightIcon,
+  ArrowRightIcon,
   CalendarDaysIcon,
   MapPinIcon,
-  PackageIcon,
 } from "lucide-react";
 
 import type { ProjectDirectoryEntry } from "../types";
+import { formatTimeline, formatDate } from "../lib/formatters";
+import { getPriorityLabel, getPriorityTextClass } from "../lib/priorities";
+import { ProjectCarousel } from "./ProjectCarousel";
 interface ListViewProps {
   projects: ProjectDirectoryEntry[];
 }
@@ -57,209 +48,101 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
   const photos = useMemo(() => project.photos, [project.photos]);
 
   return (
-    <Card className="overflow-hidden border border-gray-200 shadow-sm">
-      <div className="grid gap-0 md:grid-cols-[minmax(0,40%)_minmax(0,60%)]">
-        <div className="relative min-h-[220px] bg-gray-100">
-          {photos.length > 0 ? (
-            <Carousel className="h-full">
-              <CarouselContent className="h-full">
-                {photos.map((photo, index) => (
-                  <CarouselItem
-                    key={`${project.id}-photo-${index}`}
-                    className="h-full basis-full"
-                  >
-                    <div className="relative h-full w-full">
-                      <CldImage
-                        src={photo.publicId}
-                        alt={photo.alt ?? project.title}
-                        fill
-                        sizes="(min-width: 768px) 40vw, 100vw"
-                        className="h-full w-full object-cover"
-                        priority={index === 0}
-                      />
-                      {photo.caption && (
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-3 text-xs text-white">
-                          {photo.caption}
-                        </div>
-                      )}
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              {photos.length > 1 && (
-                <>
-                  <CarouselPrevious className="left-3 top-1/2 -translate-y-1/2 bg-white/80" />
-                  <CarouselNext className="right-3 top-1/2 -translate-y-1/2 bg-white/80" />
-                </>
-              )}
-            </Carousel>
-          ) : (
-            <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 text-gray-500">
-              <PackageIcon className="h-8 w-8" />
-              <p className="mt-2 text-xs uppercase tracking-wide">
-                Photos coming soon
-              </p>
-            </div>
-          )}
-        </div>
-
-        <div className="flex flex-col">
-          <CardBody className="space-y-5">
-            {project.priority && (
-              <Chip
-                size="sm"
-                variant="flat"
-                color={getSeverityChipColor(project.priority)}
-                className="uppercase tracking-wide"
-              >
-                {project.priority} priority
-              </Chip>
-            )}
-
-            <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-2xl font-semibold leading-tight">
-                  {project.title}
-                </h2>
-                <Tooltip content="View the organisation profile">
-                  <Button
-                    as={Link}
-                    href={`/${project.orgUsername}`}
-                    variant="light"
-                    size="sm"
-                    radius="full"
-                    startContent={<ArrowUpRightIcon className="h-4 w-4" />}
-                  >
-                    {project.orgName}
-                  </Button>
-                </Tooltip>
-              </div>
-              {project.description && (
-                <p className="mt-2 text-gray-600">{project.description}</p>
-              )}
-            </div>
-
-            {needsCount > 0 && (
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
-                  Linked needs ({needsCount})
-                </p>
-                <div className="mt-2 space-y-2">
-                  {project.needs.slice(0, 4).map((need) => (
-                    <div
-                      key={need.slug}
-                      className="flex items-center gap-2 rounded-md border border-gray-100 bg-white/60 px-3 py-2 text-sm text-gray-700 shadow-sm"
-                    >
-                      <AlertCircleIcon className="h-4 w-4 text-orange-500" />
-                      <div className="flex flex-wrap gap-1">
-                        <span className="font-medium text-gray-900">
-                          {need.title}
-                        </span>
-                        {need.quantity && (
-                          <span className="text-gray-500">
-                            · {need.quantity}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                {project.needs.length > 4 && (
-                  <p className="mt-1 text-xs text-gray-400">
-                    +{project.needs.length - 4} additional needs scoped
-                  </p>
-                )}
-              </div>
-            )}
-
-            {project.notes && (
-              <div className="rounded-lg bg-gray-50 p-3 text-sm text-gray-600">
-                {project.notes}
-              </div>
-            )}
-          </CardBody>
-
-          <CardFooter className="flex flex-col gap-3 border-t border-gray-200 bg-gray-50 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              Last updated{" "}
-              {formatDate(project.updatedAt ?? project.createdAt) ?? "recently"}
-            </div>
-            <div className="flex flex-col gap-2 sm:flex-row">
-              <Button
-                as={Link}
-                href={`/needs/new?projectId=${project.projectId}&org=${project.orgUsername}`}
-                color="primary"
-                startContent={<AlertCircleIcon className="h-4 w-4" />}
-                className="w-full sm:w-auto"
-              >
-                Pledge supplies
-              </Button>
-              <Button
-                as={Link}
-                href={`/${project.orgUsername}`}
-                variant="bordered"
-                startContent={<ArrowUpRightIcon className="h-4 w-4" />}
-                className="w-full sm:w-auto"
-              >
-                View organisation
-              </Button>
-            </div>
-          </CardFooter>
+    <Card className="group overflow-hidden border border-gray-200 shadow-sm transition duration-200 hover:shadow-2xl">
+      <div className="relative w-full min-h-[320px] overflow-hidden rounded-2xl">
+        <ProjectCarousel
+          photos={photos}
+          title={project.title}
+          href={`/projects/${project.id}`}
+        />
+        <div className="absolute top-3 left-3 z-20">
+          <div className="rounded-full border border-foreground/20 bg-background/60 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-foreground backdrop-blur-sm shadow-lg">
+            <span className={getPriorityTextClass(project.priority)}>
+              {getPriorityLabel(project.priority)}
+            </span>
+          </div>
         </div>
       </div>
+
+      <CardBody className="space-y-4">
+        <Link
+          href={`/projects/${project.id}`}
+          className="block space-y-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          aria-label={`View project ${project.title}`}
+        >
+          <div className="space-y-2">
+            <h2 className="text-2xl font-semibold leading-tight text-gray-900">
+              {project.title}
+            </h2>
+            <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+              {project.orgName}
+              {project.locationLabel && (
+                <span className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-gray-400">
+                  <MapPinIcon className="h-3 w-3" />
+                  {project.locationLabel}
+                </span>
+              )}
+            </p>
+            {project.description && (
+              <p className="text-gray-600 line-clamp-3">
+                {project.description}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+            {timeline && (
+              <span className="inline-flex items-center gap-2">
+                <CalendarDaysIcon className="h-4 w-4 text-gray-400" />
+                {timeline}
+              </span>
+            )}
+            <span className="inline-flex items-center gap-2">
+              <AlertCircleIcon
+                className={`h-4 w-4 ${getPriorityTextClass(project.priority)}`}
+              />
+              {needsCount > 0
+                ? `${needsCount} scoped ${needsCount === 1 ? "need" : "needs"}`
+                : "Needs in review"}
+            </span>
+          </div>
+
+          {needsCount > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {project.needs.slice(0, 4).map((need) => (
+                <span
+                  key={need.slug}
+                  className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700"
+                >
+                  {need.title}
+                  {need.quantity && (
+                    <span className="text-gray-400">· {need.quantity}</span>
+                  )}
+                </span>
+              ))}
+              {project.needs.length > 4 && (
+                <span className="text-xs text-gray-400">
+                  +{project.needs.length - 4} more
+                </span>
+              )}
+            </div>
+          )}
+        </Link>
+      </CardBody>
+
+      <CardFooter className="flex items-center justify-between border-t border-gray-100 bg-gray-50 text-sm text-gray-500">
+        <span>
+          Updated{" "}
+          {formatDate(project.updatedAt ?? project.createdAt) ?? "recently"}
+        </span>
+        <Link
+          href={`/projects/${project.id}`}
+          className="flex items-center gap-1 text-blue-600 transition hover:gap-2"
+        >
+          View impact
+          <ArrowRightIcon className="h-4 w-4" />
+        </Link>
+      </CardFooter>
     </Card>
   );
-}
-
-type ChipColor =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-
-function getSeverityChipColor(
-  priority?: ProjectDirectoryEntry["priority"],
-): ChipColor {
-  if (!priority) return "primary";
-  const normalized = priority.toLowerCase();
-
-  if (normalized === "critical" || normalized === "emergency") {
-    return "danger";
-  }
-  if (normalized === "high") {
-    return "warning";
-  }
-  if (normalized === "medium") {
-    return "secondary";
-  }
-
-  return "primary";
-}
-
-function formatTimeline(start?: string, end?: string) {
-  const formattedStart = formatDate(start);
-  const formattedEnd = formatDate(end);
-
-  if (formattedStart && formattedEnd) {
-    return `${formattedStart} – ${formattedEnd}`;
-  }
-  if (formattedStart) return `Starts ${formattedStart}`;
-  if (formattedEnd) return `Complete by ${formattedEnd}`;
-
-  return null;
-}
-
-function formatDate(value?: string) {
-  if (!value) return null;
-  try {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    }).format(new Date(value));
-  } catch {
-    return value;
-  }
 }
