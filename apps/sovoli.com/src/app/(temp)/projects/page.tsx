@@ -70,14 +70,7 @@ export default async function ProjectsDirectoryPage({
             <CardBody className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-2">
                 <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
-                  Live response queue
-                </p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  {pluralize(totalProjects, "project")} ready for support
-                </p>
-                <p className="text-sm text-gray-600">
-                  Toggle list or map view to explore the operations already
-                  scoped with needs, budgets, and dates.
+                  Filter and search here soon
                 </p>
               </div>
               <DirectoryViewTabs defaultView={view} />
