@@ -80,6 +80,8 @@ export async function submitReliefForm(formData: ReliefFormData) {
         "Supplies Other"?: string;
         "Damage Photo URLs"?: string;
         "Damage Photo Public IDs"?: string;
+        "Damage Photo Buckets"?: string;
+        "Damage Photo Asset IDs"?: string;
         Notes?: string;
       } = {
         "Contact First Name": formData.contactFirstName,
@@ -113,12 +115,24 @@ export async function submitReliefForm(formData: ReliefFormData) {
         const photoIds = successfulPhotos
           .map((photo) => photo.publicId)
           .filter((id): id is string => Boolean(id));
+        const photoBuckets = successfulPhotos
+          .map((photo) => photo.bucket)
+          .filter((bucket): bucket is string => Boolean(bucket));
+        const assetIds = successfulPhotos
+          .map((photo) => photo.assetId)
+          .filter((assetId): assetId is string => Boolean(assetId));
 
         if (photoUrls.length > 0) {
           fields["Damage Photo URLs"] = photoUrls.join("\n");
         }
         if (photoIds.length > 0) {
           fields["Damage Photo Public IDs"] = photoIds.join("\n");
+        }
+        if (photoBuckets.length > 0) {
+          fields["Damage Photo Buckets"] = photoBuckets.join("\n");
+        }
+        if (assetIds.length > 0) {
+          fields["Damage Photo Asset IDs"] = assetIds.join("\n");
         }
       }
 

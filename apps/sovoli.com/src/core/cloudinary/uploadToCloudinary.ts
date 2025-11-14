@@ -5,11 +5,24 @@ interface CloudinaryUploadResponse {
   public_id: string;
   secure_url?: string;
   url: string;
+  width: number;
+  height: number;
+  bytes: number;
+  format: string;
+  version: number;
+  created_at: string;
 }
 
 export interface UploadedAsset {
-  id: string;
   url: string;
+  publicId: string;
+  assetId: string;
+  width: number;
+  height: number;
+  bytes: number;
+  format: string;
+  version: number;
+  createdAt: string;
 }
 
 export const uploadToCloudinary = async (
@@ -40,10 +53,16 @@ export const uploadToCloudinary = async (
   }
 
   const uploadResponse = (await response.json()) as CloudinaryUploadResponse;
-  const url = uploadResponse.secure_url ?? uploadResponse.url;
 
   return {
-    id: uploadResponse.public_id,
-    url,
+    url: uploadResponse.secure_url ?? uploadResponse.url,
+    publicId: uploadResponse.public_id,
+    assetId: uploadResponse.asset_id,
+    width: uploadResponse.width,
+    height: uploadResponse.height,
+    bytes: uploadResponse.bytes,
+    format: uploadResponse.format,
+    version: uploadResponse.version,
+    createdAt: uploadResponse.created_at,
   };
 };

@@ -114,8 +114,12 @@ export function Confirmation({
                   className="relative aspect-square overflow-hidden rounded-xl border border-default-200 bg-default-100"
                 >
                   <Image
-                    src={photo.url ?? ""}
-                    alt={photo.fileName}
+                    src={
+                      photo.url && photo.url.length > 0
+                        ? photo.url
+                        : photo.previewUrl
+                    }
+                    alt={photo.alt ?? photo.fileName}
                     fill
                     className="object-cover"
                     sizes="(min-width: 640px) 140px, 40vw"
