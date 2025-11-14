@@ -7,6 +7,7 @@ import {
   CONTACT_ROLE_OPTIONS,
   ORG_TYPE_OPTIONS,
   PARISH_OPTIONS,
+  SEVERITY_OPTIONS,
 } from "./components/options";
 
 const AIRTABLE_BASE_ID = "appmYWD3Zt106eYfY";
@@ -52,6 +53,15 @@ export async function submitReliefForm(formData: ReliefFormData) {
     const parishLabel =
       PARISH_OPTIONS.find((option) => option.key === formData.locationParish)
         ?.label ?? formData.locationParish;
+    const parishValue =
+      parishLabel && parishLabel.trim().length > 0 ? parishLabel : undefined;
+    const severityLabel =
+      SEVERITY_OPTIONS.find((option) => option.key === formData.severity)
+        ?.label ?? formData.severity;
+    const severityValue =
+      severityLabel && severityLabel.trim().length > 0
+        ? severityLabel
+        : undefined;
 
     const combinedPhone =
       formData.contactPhone && formData.contactPhone.trim().length > 0
@@ -74,15 +84,15 @@ export async function submitReliefForm(formData: ReliefFormData) {
       "Location Address 1": string;
       "Location Address 2"?: string;
       "Location City": string;
-      "Location Parish": string;
+      "Location Parish"?: string;
       "Supplies Names"?: string;
       "Supplies Summary"?: string;
       "Supplies Other"?: string;
-      "Damage Photo URLs"?: string;
-      "Damage Photo Public IDs"?: string;
-      "Damage Photo Buckets"?: string;
-      "Damage Photo Asset IDs"?: string;
+      "Project Severity"?: string;
+      "Project Description"?: string;
+      "Organisation Username"?: string;
       Notes?: string;
+      Photos?: string;
     } = {
       "Contact First Name": formData.contactFirstName,
       "Contact Last Name": formData.contactLastName,
@@ -95,7 +105,16 @@ export async function submitReliefForm(formData: ReliefFormData) {
         ? formData.locationAddressLine2
         : undefined,
       "Location City": formData.locationCity,
-      "Location Parish": parishLabel,
+      "Location Parish": parishValue,
+      "Project Severity": severityValue,
+      "Project Description":
+        formData.damageDescription.trim().length > 0
+          ? formData.damageDescription
+          : undefined,
+      "Organisation Username":
+        formData.schoolUsername.trim().length > 0
+          ? formData.schoolUsername
+          : undefined,
       "Supplies Names":
         suppliesSelectedNames.length > 0
           ? suppliesSelectedNames.join("\n")
@@ -109,30 +128,24 @@ export async function submitReliefForm(formData: ReliefFormData) {
     };
 
     if (successfulPhotos.length > 0) {
-      const photoUrls = successfulPhotos
-        .map((photo) => photo.url)
-        .filter((url): url is string => Boolean(url));
-      const photoIds = successfulPhotos
-        .map((photo) => photo.publicId)
-        .filter((id): id is string => Boolean(id));
-      const photoBuckets = successfulPhotos
-        .map((photo) => photo.bucket)
-        .filter((bucket): bucket is string => Boolean(bucket));
-      const assetIds = successfulPhotos
-        .map((photo) => photo.assetId)
-        .filter((assetId): assetId is string => Boolean(assetId));
+      const photosPayload = successfulPhotos.map((photo) => ({
+        url: photo.url,
+        publicId: photo.publicId,
+        assetId: photo.assetId,
+        bucket: photo.bucket,
+        uploadedAt: photo.uploadedAt,
+        bytes: photo.bytes,
+        width: photo.width,
+        height: photo.height,
+        format: photo.format,
+        version: photo.version,
+        caption: photo.caption,
+        alt: photo.alt,
+        category: photo.category,
+      }));
 
-      if (photoUrls.length > 0) {
-        fields["Damage Photo URLs"] = photoUrls.join("\n");
-      }
-      if (photoIds.length > 0) {
-        fields["Damage Photo Public IDs"] = photoIds.join("\n");
-      }
-      if (photoBuckets.length > 0) {
-        fields["Damage Photo Buckets"] = photoBuckets.join("\n");
-      }
-      if (assetIds.length > 0) {
-        fields["Damage Photo Asset IDs"] = assetIds.join("\n");
+      if (photosPayload.length > 0) {
+        fields.Photos = JSON.stringify(photosPayload, null, 2);
       }
     }
 

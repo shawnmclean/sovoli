@@ -235,13 +235,14 @@ export function ReliefForm() {
           formData.damageDescription.trim().length > 0 &&
           !hasPendingDamagePhotoUploads
         );
-      case STEPS.SUPPLIES:
+      case STEPS.SUPPLIES: {
         if (formData.suppliesSelected.length === 0) {
-          return formData.suppliesOther.trim().length > 0;
+          return true;
         }
         return formData.suppliesSelected.every(
           (itemId) => (formData.suppliesQuantities[itemId] ?? 0) > 0,
         );
+      }
       case STEPS.CONFIRM:
         return true;
       default:
