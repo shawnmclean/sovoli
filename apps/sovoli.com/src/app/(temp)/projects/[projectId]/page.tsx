@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import {
   AlertCircleIcon,
   ArrowLeftIcon,
@@ -12,6 +13,8 @@ import {
   TagIcon,
 } from "lucide-react";
 
+import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { config } from "~/utils/config";
 import { ProjectGalleryCarousel } from "../components/ProjectGalleryCarousel";
 import { getProjectById } from "../lib/projectsData";
 import { formatDate, formatTimeline } from "../lib/formatters";
@@ -58,7 +61,7 @@ export default async function ProjectDetailsPage({
   const timeline = formatTimeline(project.startDate, project.endDate);
   const updatedAt = formatDate(project.updatedAt ?? project.createdAt);
   const needsCount = project.needs.length;
-  const pledgeHref = `/needs/new?projectId=${project.projectId}&org=${project.orgUsername}`;
+  const whatsappMessage = `Hi Sovoli team, I'd like to pledge supplies for ${project.title} at ${project.orgName}.`;
 
   return (
     <div className="min-h-screen bg-background">
@@ -130,13 +133,21 @@ export default async function ProjectDetailsPage({
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <Button
-                as={Link}
-                href={pledgeHref}
+                as={WhatsAppLink}
+                phoneNumber={config.contact.whatsapp}
+                message={whatsappMessage}
                 color="primary"
-                startContent={<AlertCircleIcon className="h-4 w-4" />}
                 className="w-full"
+                size="lg"
+                event="Contact"
+                eventProperties={{
+                  source: "project-details",
+                  project_id: project.projectId,
+                  org_username: project.orgUsername,
+                }}
               >
-                Pledge supplies
+                <SiWhatsapp className="h-4 w-4" />
+                <span className="ml-2">Message to pledge support</span>
               </Button>
               <Button
                 as={Link}
