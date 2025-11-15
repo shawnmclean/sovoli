@@ -612,10 +612,14 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
                           <div className="text-xs text-muted-foreground">
                             Last updated {need.updatedAt ?? need.createdAt ?? "recently"}
                           </div>
-                          <Button asChild size="sm" variant="flat" color="primary">
-                            <Link href={`/w/${entry.orgUsername}/needs/${need.slug}`}>
-                              View details
-                            </Link>
+                          <Button
+                            as={Link}
+                            href={`/w/${entry.orgUsername}/needs/${need.slug}`}
+                            size="sm"
+                            variant="flat"
+                            color="primary"
+                          >
+                            View details
                           </Button>
                         </div>
                       </div>
