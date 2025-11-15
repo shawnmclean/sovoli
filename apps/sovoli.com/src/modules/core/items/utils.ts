@@ -12,6 +12,9 @@ export function formatItemCategoryLabel(category: ItemCategory): string {
         return segment;
       }
       const [first, ...rest] = segment;
+      if (first === undefined) {
+        return segment;
+      }
       return `${first.toUpperCase()}${rest.join("")}`;
     })
     .join(" ");
