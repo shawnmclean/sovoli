@@ -1,16 +1,17 @@
 import type { Item } from "~/modules/core/items/types";
+import { hydrateCategory } from "./categories";
 
 export const BOOKS: Item[] = [
   {
     id: "book-123-starters-coloring",
     name: "123 Starters Coloring Book",
-    category: "book",
+    category: hydrateCategory("workbooks"),
     tags: ["exercise", "coloring", "numbers"],
   },
   {
     id: "book-animal-friends-level-1a-reader",
     name: "Animal Friends Level 1A Reader",
-    category: "book",
+    category: hydrateCategory("readers"),
     tags: ["reader", "level-1a", "animal-friends"],
     attributes: {
       series: "Animal Friends",
@@ -21,7 +22,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-animal-friends-level-1a-workbook-1",
     name: "Animal Friends Level 1A Workbook 1",
-    category: "book",
+    category: hydrateCategory("workbooks"),
     tags: ["workbook", "level-1a", "animal-friends"],
     attributes: {
       series: "Animal Friends",
@@ -32,7 +33,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-animal-friends-level-1a-workbook-2",
     name: "Animal Friends Level 1A Workbook 2",
-    category: "book",
+    category: hydrateCategory("workbooks"),
     tags: ["workbook", "level-1a", "animal-friends"],
     attributes: {
       series: "Animal Friends",
@@ -43,7 +44,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-animal-friends-level-1a-workbook-3",
     name: "Animal Friends Level 1A Workbook 3",
-    category: "book",
+    category: hydrateCategory("workbooks"),
     tags: ["workbook", "level-1a", "animal-friends"],
     attributes: {
       series: "Animal Friends",
@@ -54,13 +55,13 @@ export const BOOKS: Item[] = [
   {
     id: "book-big-easy-coloring",
     name: "Big and Easy Coloring Book",
-    category: "book",
+    category: hydrateCategory("workbooks"),
     tags: ["exercise", "coloring"],
   },
   {
     id: "book-roraima-nursery-year-1-literacy",
     name: "Roraima Readers Nursery Year 1 Literacy",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "roraima-readers", "nursery-year-1"],
     attributes: {
       series: "Roraima Readers",
@@ -70,7 +71,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-nursery-year-1-numeracy",
     name: "Roraima Readers Nursery Year 1 Numeracy",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "roraima-readers", "nursery-year-1"],
     attributes: {
       series: "Roraima Readers",
@@ -80,7 +81,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-workbook-1-writing",
     name: "Roraima Reader Workbook 1 (Writing Skills)",
-    category: "book",
+    category: hydrateCategory("workbooks"),
     tags: ["workbook", "roraima-readers", "writing-skills"],
     attributes: {
       series: "Roraima Readers",
@@ -90,7 +91,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-numeracy-workbook-book-2",
     name: "Roraima Reader Numeracy Workbook (Book 2)",
-    category: "book",
+    category: hydrateCategory("workbooks"),
     tags: ["workbook", "roraima-readers", "book-2"],
     attributes: {
       series: "Roraima Readers",
@@ -101,7 +102,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-literacy-nursery-year-2",
     name: "Roraima Reader Literacy Nursery Year 2",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "roraima-readers", "nursery-year-2"],
     attributes: {
       series: "Roraima Readers",
@@ -112,7 +113,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-fun-with-language-book-5",
     name: "Fun with Language Book 5",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "language", "grade-5"],
     attributes: {
       series: "Fun with Language",
@@ -123,7 +124,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-fun-with-language-book-6",
     name: "Fun with Language Book 6",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "language", "grade-6"],
     attributes: {
       series: "Fun with Language",
@@ -134,7 +135,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-new-junior-english-revised",
     name: "New Junior English Revised",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "english"],
     attributes: {
       series: "New Junior English",
@@ -144,7 +145,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-new-first-aid-in-english",
     name: "New First Aid in English",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "english", "first-aid"],
     attributes: {
       series: "New First Aid",
@@ -154,7 +155,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-lets-do-mathematics-book-5",
     name: "Let's Do Math Book 5",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "mathematics", "grade-5"],
     attributes: {
       series: "Let's Do Math",
@@ -165,7 +166,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-lets-do-mathematics-book-6",
     name: "Let's Do Math Book 6",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "mathematics", "grade-6"],
     attributes: {
       series: "Let's Do Math",
@@ -176,7 +177,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-science-around-us-book-5",
     name: "Science Around Us Book 5",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "science", "grade-5"],
     attributes: {
       series: "Science Around Us",
@@ -187,7 +188,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-science-around-us-book-6",
     name: "Science Around Us Book 6",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "science", "grade-6"],
     attributes: {
       series: "Science Around Us",
@@ -198,7 +199,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-social-studies-for-our-children-book-5",
     name: "Social Studies for Our Children Book 5",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "social-studies", "grade-5"],
     attributes: {
       series: "Social Studies for Our Children",
@@ -209,7 +210,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-social-studies-for-our-children-book-6",
     name: "Social Studies for Our Children Book 6",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "social-studies", "grade-6"],
     attributes: {
       series: "Social Studies for Our Children",
@@ -220,7 +221,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-guyana-our-country-our-home",
     name: "Guyana our Country our Home",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "social-studies", "guyana", "geography"],
     attributes: {
       series: "Guyana Studies",
@@ -230,7 +231,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-oxford-dictionary-thesaurus",
     name: "Oxford Dictionary & Thesaurus",
-    category: "book",
+    category: hydrateCategory("teacher-resources"),
     tags: ["reference", "dictionary", "thesaurus", "oxford"],
     attributes: {
       brand: "Oxford",
@@ -240,7 +241,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-fun-with-language-book-3",
     name: "Fun with Language Book 3",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "language", "grade-3"],
     attributes: {
       series: "Fun with Language",
@@ -251,7 +252,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-lets-do-mathematics-book-3",
     name: "Let's Do Math Book 3",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "mathematics", "grade-3"],
     attributes: {
       series: "Let's Do Math",
@@ -262,7 +263,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-science-around-us-book-3",
     name: "Science Around Us Book 3",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "science", "grade-3"],
     attributes: {
       series: "Science Around Us",
@@ -273,7 +274,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-social-studies-for-our-children-book-3",
     name: "Social Studies for Our Children Book 3",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "social-studies", "grade-3"],
     attributes: {
       series: "Social Studies for Our Children",
@@ -284,7 +285,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-word-perfect-spelling-book-3",
     name: "Word Perfect Spelling Book 3",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "spelling", "grade-3"],
     attributes: {
       series: "Word Perfect Spelling",
@@ -295,7 +296,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-rainbow-readers-book-3",
     name: "Rainbow Readers Book 3",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "reading", "grade-3"],
     attributes: {
       series: "Rainbow Readers",
@@ -306,7 +307,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-oxford-primary-school-dictionary",
     name: "Oxford Primary School Dictionary",
-    category: "book",
+    category: hydrateCategory("teacher-resources"),
     tags: ["reference", "dictionary", "oxford", "primary"],
     attributes: {
       brand: "Oxford",
@@ -316,7 +317,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-fun-with-language-book-4",
     name: "Fun with Language Book 4",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "language", "grade-4"],
     attributes: {
       series: "Fun with Language",
@@ -327,7 +328,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-lets-do-mathematics-book-4",
     name: "Let's Do Math Book 4",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "mathematics", "grade-4"],
     attributes: {
       series: "Let's Do Math",
@@ -338,7 +339,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-science-around-us-book-4",
     name: "Science Around Us Book 4",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "science", "grade-4"],
     attributes: {
       series: "Science Around Us",
@@ -349,7 +350,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-social-studies-for-our-children-book-4",
     name: "Social Studies for Our Children Book 4",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "social-studies", "grade-4"],
     attributes: {
       series: "Social Studies for Our Children",
@@ -360,7 +361,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-word-perfect-spelling-book-4",
     name: "Word Perfect Spelling Book 4",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "spelling", "grade-4"],
     attributes: {
       series: "Word Perfect Spelling",
@@ -371,7 +372,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-rainbow-readers-book-4",
     name: "Rainbow Readers Book 4",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "reading", "grade-4"],
     attributes: {
       series: "Rainbow Readers",
@@ -382,7 +383,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-mathematics-made-easy-2",
     name: "Mathematics Made Easy Grade 2",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "mathematics", "grade-2"],
     attributes: {
       series: "Mathematics Made Easy",
@@ -393,7 +394,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-atlantic-reader-book-2",
     name: "Atlantic Reader Book 2",
-    category: "book",
+    category: hydrateCategory("readers"),
     tags: ["textbook", "reading", "grade-2"],
     attributes: {
       series: "Atlantic Reader",
@@ -404,7 +405,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-process-of-learning-language-arts-infant-second-year",
     name: "A Process of Learning Language Arts Infant 2nd Year",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "language-arts", "infant-second-year"],
     attributes: {
       series: "A Process of Learning",
@@ -415,7 +416,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-process-of-learning-composition-writing-infant-second-year",
     name: "A Process of Learning Composition Writing 2nd Year",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "composition", "infant-second-year"],
     attributes: {
       series: "A Process of Learning",
@@ -426,7 +427,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-fun-with-language-book-2-parts-1-2-3",
     name: "Fun with Language Book 2 Pt 1,2,3",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "language", "grade-2"],
     attributes: {
       series: "Fun with Language",
@@ -437,7 +438,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-mathematics-made-easy-1",
     name: "Mathematics Made Easy Grade 1",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "mathematics", "grade-1"],
     attributes: {
       series: "Mathematics Made Easy",
@@ -448,7 +449,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-atlantic-reader-book-1",
     name: "Atlantic Reader Book 1",
-    category: "book",
+    category: hydrateCategory("readers"),
     tags: ["textbook", "reading", "grade-1"],
     attributes: {
       series: "Atlantic Reader",
@@ -459,7 +460,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-process-of-learning-language-arts-infant-first-year",
     name: "A Process of Learning Language Arts Infant 1st Year",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "language-arts", "infant-first-year"],
     attributes: {
       series: "A Process of Learning",
@@ -470,7 +471,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-process-of-learning-composition-writing-infant-first-year",
     name: "A Process of Learning Composition Writing Infant 1st Year",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "composition", "infant-first-year"],
     attributes: {
       series: "A Process of Learning",
@@ -481,7 +482,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-fun-with-language-book-1-parts-1-2-3",
     name: "Fun with Language Book 1 Pt 1,2,3",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "language", "grade-1"],
     attributes: {
       series: "Fun with Language",
@@ -492,7 +493,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-nelson-west-indian-readers-book-2",
     name: "New Nelson West Indian Readers Book 2",
-    category: "book",
+    category: hydrateCategory("readers"),
     tags: ["textbook", "nelson", "west-indian", "grade-2"],
     attributes: {
       series: "Nelson West Indian Readers",
@@ -503,7 +504,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-nelson-west-indian-readers-book-3",
     name: "New Nelson West Indian Readers Book 3",
-    category: "book",
+    category: hydrateCategory("readers"),
     tags: ["textbook", "nelson", "west-indian", "grade-3"],
     attributes: {
       series: "Nelson West Indian Readers",
@@ -514,7 +515,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-reader-literacy-year-2",
     name: "Roraima Reader Literacy Year 2",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "roraima-readers", "literacy", "year-2"],
     attributes: {
       series: "Roraima Readers",
@@ -525,7 +526,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-reader-literacy-year-1",
     name: "Roraima Reader Literacy Year 1",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "roraima-readers", "literacy", "year-1"],
     attributes: {
       series: "Roraima Readers",
@@ -536,7 +537,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-reader-numeracy-year-2",
     name: "Roraima Reader Numeracy Year 2",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "roraima-readers", "numeracy", "year-2"],
     attributes: {
       series: "Roraima Readers",
@@ -547,7 +548,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-reader-numeracy-year-1",
     name: "Roraima Reader Numeracy Year 1",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "roraima-readers", "numeracy", "year-1"],
     attributes: {
       series: "Roraima Readers",
@@ -558,7 +559,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-reader-writing-skills-book-1-2",
     name: "Roraima Reader Writing Skills Book 1&2",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "roraima-readers", "writing-skills"],
     attributes: {
       series: "Roraima Readers",
@@ -569,7 +570,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-step-to-common-entrance-book-1",
     name: "Step to Common Entrance Book 1",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "common-entrance", "grade-1"],
     attributes: {
       series: "Step to Common Entrance",
@@ -580,7 +581,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-step-to-common-entrance-book-2",
     name: "Step to Common Entrance Book 2",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "common-entrance", "grade-2"],
     attributes: {
       series: "Step to Common Entrance",
@@ -591,7 +592,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-step-to-common-entrance-book-3",
     name: "Step to Common Entrance Book 3",
-    category: "book",
+    category: hydrateCategory("textbooks"),
     tags: ["textbook", "common-entrance", "grade-3"],
     attributes: {
       series: "Step to Common Entrance",

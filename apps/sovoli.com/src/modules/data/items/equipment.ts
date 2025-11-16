@@ -1,46 +1,47 @@
 import type { Item } from "~/modules/core/items/types";
+import { hydrateCategory } from "./categories";
 
 export const EQUIPMENT_ITEMS: Item[] = [
   {
     id: "supply-seamstress-scissors",
     name: "Seamstress Scissors",
-    category: "equipment",
+    category: hydrateCategory("tools"),
     tags: ["sewing", "scissors"],
   },
   {
     id: "supply-sewing-pins",
     name: "Sewing Pins",
-    category: "equipment",
+    category: hydrateCategory("tools"),
     tags: ["sewing", "pins"],
   },
   {
     id: "supply-pin-cushion",
     name: "Pin Cushion",
-    category: "equipment",
+    category: hydrateCategory("tools"),
     tags: ["sewing", "pin-cushion"],
   },
   {
     id: "supply-tape-measure",
     name: "Tape Measure",
-    category: "equipment",
+    category: hydrateCategory("tools"),
     tags: ["sewing", "measuring", "tape"],
   },
   {
     id: "supply-machine-needles-14",
     name: "No. 14 Machine Needles",
-    category: "equipment",
+    category: hydrateCategory("tools"),
     tags: ["sewing", "needle", "machine"],
   },
   {
     id: "supply-hand-needle",
     name: "Hand Needle",
-    category: "equipment",
+    category: hydrateCategory("tools"),
     tags: ["sewing", "needle", "hand"],
   },
   {
     id: "equipment-ac-unit",
     name: "Air Conditioning Unit",
-    category: "equipment",
+    category: hydrateCategory("electrical"),
     tags: ["facilities", "classroom", "cooling"],
     unitLabel: "unit",
     description:
@@ -49,7 +50,7 @@ export const EQUIPMENT_ITEMS: Item[] = [
   {
     id: "equipment-portable-generator",
     name: "Portable Generator",
-    category: "equipment",
+    category: hydrateCategory("electrical"),
     tags: ["relief", "power", "facilities"],
     unitLabel: "unit",
     description:
@@ -58,19 +59,19 @@ export const EQUIPMENT_ITEMS: Item[] = [
   {
     id: "relief-chainsaw",
     name: "Chainsaw (Long Blade)",
-    category: "equipment",
+    category: hydrateCategory("power-tools"),
     tags: ["relief", "building", "power-tool"],
   },
   {
     id: "relief-tents",
     name: "Tents",
-    category: "equipment",
+    category: hydrateCategory("hardware"),
     tags: ["relief", "shelter"],
   },
   {
     id: "relief-water-boots",
     name: "Water Boots",
-    category: "equipment",
+    category: hydrateCategory("safety"),
     unitLabel: "pair",
     tags: ["relief", "protective-gear", "footwear"],
   },

@@ -137,7 +137,8 @@ export type OrgCategoryKeys =
   | "primary-school"
   | "special-education-school"
   | "vocational-school"
-  | "stationary";
+  | "stationery"
+  | "hardware";
 
 export type OrgCategoryGroupKey = "school";
 
