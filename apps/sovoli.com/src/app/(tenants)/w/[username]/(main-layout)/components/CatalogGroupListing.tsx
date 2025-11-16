@@ -69,7 +69,7 @@ export function CatalogGroupListing({ orgInstance }: CatalogGroupListingProps) {
   const itemsByCategory = catalogItems.reduce(
     (acc, catalogItem) => {
       const category = catalogItem.item.category;
-      const categoryDisplayName = getCategoryDisplayName(category);
+      const categoryDisplayName = getCategoryDisplayName(category.id);
 
       if (!acc[categoryDisplayName]) {
         acc[categoryDisplayName] = [];

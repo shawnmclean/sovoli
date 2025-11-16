@@ -15,6 +15,7 @@ import type {
   Need,
   ServiceNeed,
 } from "~/modules/needs/types";
+import type { ItemCategory } from "~/modules/core/items/types";
 import {
   formatEmploymentType,
   formatAmountByCurrency,
@@ -27,6 +28,16 @@ import {
 } from "./needFormatters";
 
 type LocationMap = Map<OrgLocation["key"], OrgLocation>;
+
+function getCategoryLabel(category: ItemCategory): string {
+  const names: string[] = [];
+  let current: ItemCategory | undefined = category;
+  while (current) {
+    names.unshift(current.name);
+    current = current.parent;
+  }
+  return names.join(" / ");
+}
 
 interface NeedListSectionProps<TNeed extends Need> {
   title: string;
@@ -290,7 +301,8 @@ export function MaterialNeedsList({
             </h3>
             <div className="space-y-1 text-sm text-foreground">
               <p>
-                <span className="font-medium">Category:</span> {item.category}
+                <span className="font-medium">Category:</span>{" "}
+                {getCategoryLabel(item.category)}
               </p>
               {item.brand ? (
                 <p>

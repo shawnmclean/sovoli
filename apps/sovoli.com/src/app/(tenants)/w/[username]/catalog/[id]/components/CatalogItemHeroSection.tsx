@@ -1,3 +1,4 @@
+import { getCategoryLabel } from "~/app/(temp)/needs/new/components/ItemsSelection";
 import type { CatalogItem } from "~/modules/catalogs/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 
@@ -40,7 +41,7 @@ export const CatalogItemHeroSection = ({
       {/* Category and Brand */}
       <div className="flex justify-center gap-4 text-sm text-muted-foreground mb-4">
         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
-          {itemCategory}
+          {getCategoryLabel(itemCategory)}
         </span>
         <span className="text-muted-foreground">by {itemBrand}</span>
       </div>

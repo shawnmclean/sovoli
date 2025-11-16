@@ -1,17 +1,38 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { CatalogItem as ModuleCatalogItem } from "~/modules/catalogs/types";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import { ProductCatalogListing } from "./components/ProductCatalogListing";
 import { SupplyListHeader } from "./components/SupplyListHeader";
 import { SupplyListResults } from "./components/SupplyListResults";
 import { getProgramRequirements } from "./lib/getProgramRequirements";
 import { mapRequirementsToCatalog } from "./lib/mapRequirementsToCatalog";
+import type { CatalogItem as LocalCatalogItem } from "./lib/mapRequirementsToCatalog";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
   if (!result) return notFound();
   return result;
 };
+
+/**
+ * Transform module CatalogItem (with ItemCategory objects) to local CatalogItem format (with category strings)
+ */
+function transformCatalogItem(item: ModuleCatalogItem): LocalCatalogItem {
+  return {
+    id: item.id,
+    item: {
+      id: item.item.id,
+      name: item.item.name,
+      description: item.item.description,
+      category: item.item.category.id,
+    },
+    price: {
+      GYD: item.price.GYD,
+      USD: item.price.USD,
+    },
+  };
+}
 
 interface CatalogPageProps {
   params: Promise<{ username: string }>;
@@ -83,10 +104,11 @@ export default async function CatalogPage({
       );
     }
 
-    // Map requirements to catalog items
+    // Transform catalog items to local format and map requirements
+    const transformedCatalogItems = catalogItems.map(transformCatalogItem);
     const matchedItems = mapRequirementsToCatalog(
       programData.requirements,
-      catalogItems,
+      transformedCatalogItems,
     );
 
     return (
@@ -106,5 +128,6 @@ export default async function CatalogPage({
   }
 
   // Otherwise, show the regular product catalog listing
-  return <ProductCatalogListing catalogItems={catalogItems} />;
+  const transformedCatalogItems = catalogItems.map(transformCatalogItem);
+  return <ProductCatalogListing catalogItems={transformedCatalogItems} />;
 }

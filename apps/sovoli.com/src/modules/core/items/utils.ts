@@ -1,21 +1,15 @@
 import type { ItemCategory } from "./types";
 
 /**
- * Convert an `ItemCategory` value (e.g. "facility-supplies") into a human readable
- * label such as "Facility Supplies".
+ * Convert an `ItemCategory` object into a human readable label.
+ * Walks up the parent chain to build a full category path.
  */
 export function formatItemCategoryLabel(category: ItemCategory): string {
-  return category
-    .split("-")
-    .map((segment) => {
-      if (segment.length === 0) {
-        return segment;
-      }
-      const [first, ...rest] = segment;
-      if (first === undefined) {
-        return segment;
-      }
-      return `${first.toUpperCase()}${rest.join("")}`;
-    })
-    .join(" ");
+  const names: string[] = [];
+  let current: ItemCategory | undefined = category;
+  while (current) {
+    names.unshift(current.name);
+    current = current.parent;
+  }
+  return names.join(" / ");
 }

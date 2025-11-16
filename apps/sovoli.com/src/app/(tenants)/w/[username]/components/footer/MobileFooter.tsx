@@ -89,7 +89,7 @@ interface FooterConfig {
 // Button configuration mapping based on organization categories
 const getFooterConfig = (categories: OrgCategoryKeys[]): FooterConfig => {
   // Check if organization is a stationary/bookstore type
-  const isStationaryType = categories.includes("stationary");
+  const isStationaryType = categories.includes("stationery");
 
   if (isStationaryType) {
     return {

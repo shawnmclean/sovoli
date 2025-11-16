@@ -18,7 +18,7 @@ export function OfferingContent({ orgInstance }: OfferingContentProps) {
     return <ProgramGroupListing orgInstance={orgInstance} />;
   }
 
-  if (categories.includes("stationary")) {
+  if (categories.includes("stationery")) {
     return <CatalogGroupListing orgInstance={orgInstance} />;
   }
 

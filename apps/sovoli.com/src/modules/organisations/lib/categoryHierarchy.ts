@@ -7,7 +7,7 @@ export const ORG_CATEGORY_KEYS: readonly OrgCategoryKeys[] = [
   "primary-school",
   "special-education-school",
   "vocational-school",
-  "stationary",
+  "stationery",
 ];
 
 export const ORG_CATEGORY_GROUPS: Record<

@@ -99,15 +99,12 @@ export function ContentItem({ config, children }: ContentItemProps) {
                 <div className="flex items-center gap-4 flex-1">
                   <Slider
                     aria-label="Zoom level"
-                    classNames={{
-                      filler: "hidden",
-                    }}
                     size="sm"
                     minValue={25}
                     maxValue={300}
                     value={zoomLevel}
                     onChange={setZoomLevel}
-                    className="flex-1"
+                    className="flex-1 [&_.slider-filler]:hidden"
                   />
                   <span className="text-sm text-gray-600 min-w-[40px]">
                     {zoomLevel}%

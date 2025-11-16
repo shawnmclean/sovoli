@@ -73,7 +73,7 @@ export default async function Layout({ children, params }: Props) {
           name: catalogItem.item.brand,
         }
       : undefined,
-    category: catalogItem.item.category,
+    category: catalogItem.item.category.id,
     ...(catalogItem.item.photos?.[0]?.url && {
       image: catalogItem.item.photos[0]?.url,
     }),

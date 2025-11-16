@@ -1,3 +1,4 @@
+import { getCategoryLabel } from "~/app/(temp)/needs/new/components/ItemsSelection";
 import type { CatalogItem } from "~/modules/catalogs/types";
 
 export interface CatalogItemDetailsSectionProps {
@@ -21,7 +22,7 @@ export const CatalogItemDetailsSection = ({
           <div>
             <h3 className="font-semibold text-foreground mb-2">Category</h3>
             <p className="text-sm text-muted-foreground capitalize">
-              {item.category}
+              {getCategoryLabel(item.category)}
             </p>
           </div>
 

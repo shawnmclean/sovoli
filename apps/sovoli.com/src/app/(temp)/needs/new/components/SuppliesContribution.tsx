@@ -12,8 +12,7 @@ import { ScrollShadow } from "@heroui/scroll-shadow";
 import { Chip } from "@sovoli/ui/components/chip";
 import { SearchIcon } from "lucide-react";
 import { ALL_ITEMS } from "~/modules/data/items";
-import type { Item } from "~/modules/core/items/types";
-import type { ItemCategory } from "./ItemsSelection";
+import type { Item, ItemCategory } from "~/modules/core/items/types";
 import { getCategoryLabel } from "./ItemsSelection";
 
 interface SuppliesContributionProps {
@@ -26,8 +25,16 @@ interface SuppliesContributionProps {
 }
 
 const ALL_CATEGORY_KEYS = Array.from(
-  new Set<ItemCategory>(ALL_ITEMS.map((item) => item.category)),
+  new Set<string>(ALL_ITEMS.map((item) => item.category.id)),
 );
+
+// Create a map of category ID to ItemCategory for label lookup
+const CATEGORY_MAP = new Map<string, ItemCategory>();
+for (const item of ALL_ITEMS) {
+  if (!CATEGORY_MAP.has(item.category.id)) {
+    CATEGORY_MAP.set(item.category.id, item.category);
+  }
+}
 
 const ALL_ITEMS_BY_ID = ALL_ITEMS.reduce<Record<string, Item>>((acc, item) => {
   acc[item.id] = item;
@@ -43,20 +50,20 @@ export function SuppliesContribution({
   onItemNoteChange: _onItemNoteChange,
 }: SuppliesContributionProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategories, setActiveCategories] = useState<Set<ItemCategory>>(
+  const [activeCategories, setActiveCategories] = useState<Set<string>>(
     () => new Set(ALL_CATEGORY_KEYS),
   );
 
   // Filter items based on search query and selected groups
   const filteredGroups = useMemo(() => {
     const trimmedQuery = searchQuery.trim().toLowerCase();
-    return ALL_CATEGORY_KEYS.flatMap((category) => {
-      if (!activeCategories.has(category)) {
+    return ALL_CATEGORY_KEYS.flatMap((categoryId) => {
+      if (!activeCategories.has(categoryId)) {
         return [];
       }
 
       const categoryItems = ALL_ITEMS.filter((item) => {
-        if (item.category !== category) {
+        if (item.category.id !== categoryId) {
           return false;
         }
 
@@ -71,10 +78,11 @@ export function SuppliesContribution({
         return [];
       }
 
+      const category = CATEGORY_MAP.get(categoryId);
       return [
         {
-          category,
-          label: getCategoryLabel(category),
+          categoryId,
+          label: category ? getCategoryLabel(category) : categoryId,
           items: categoryItems,
         },
       ];
@@ -154,12 +162,12 @@ export function SuppliesContribution({
     });
   };
 
-  const toggleGroup = (category: ItemCategory) => {
+  const toggleGroup = (categoryId: string) => {
     const newSelected = new Set(activeCategories);
-    if (newSelected.has(category)) {
-      newSelected.delete(category);
+    if (newSelected.has(categoryId)) {
+      newSelected.delete(categoryId);
     } else {
-      newSelected.add(category);
+      newSelected.add(categoryId);
     }
     setActiveCategories(newSelected);
   };
@@ -182,15 +190,18 @@ export function SuppliesContribution({
 
         {/* Group Filters */}
         <div className="flex flex-wrap gap-4">
-          {ALL_CATEGORY_KEYS.map((category) => (
-            <Checkbox
-              key={category}
-              isSelected={activeCategories.has(category)}
-              onValueChange={() => toggleGroup(category)}
-            >
-              {getCategoryLabel(category)}
-            </Checkbox>
-          ))}
+          {ALL_CATEGORY_KEYS.map((categoryId) => {
+            const category = CATEGORY_MAP.get(categoryId);
+            return (
+              <Checkbox
+                key={categoryId}
+                isSelected={activeCategories.has(categoryId)}
+                onValueChange={() => toggleGroup(categoryId)}
+              >
+                {category ? getCategoryLabel(category) : categoryId}
+              </Checkbox>
+            );
+          })}
         </div>
 
         {/* Listbox with grouped items */}
@@ -211,7 +222,7 @@ export function SuppliesContribution({
           >
             {filteredGroups.map((group) => (
               <ListboxSection
-                key={group.category}
+                key={group.categoryId}
                 title={group.label}
                 aria-label={group.label}
                 showDivider={false}

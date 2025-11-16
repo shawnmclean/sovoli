@@ -31,7 +31,12 @@ export function mapRequirementsToCatalog(
       if (catalogItem) {
         matchedItems.push({
           requirementItem: {
-            item: requirementItem.item,
+            item: {
+              id: requirementItem.item.id,
+              name: requirementItem.item.name,
+              description: requirementItem.item.description,
+              category: requirementItem.item.category.id,
+            },
             quantity: requirementItem.quantity,
           },
           catalogItem: {

@@ -34,7 +34,7 @@ export const ARGOSY_BOOK_STORE_ORG: OrgInstance = {
         "Verification pending - will be updated with business registration information",
       documents: [],
     },
-    categories: ["stationary"],
+    categories: ["stationery"],
     locations: [
       {
         key: "main-location",

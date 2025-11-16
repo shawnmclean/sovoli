@@ -15,6 +15,7 @@ import type {
   Need,
   ServiceNeed,
 } from "~/modules/needs/types";
+import type { ItemCategory } from "~/modules/core/items/types";
 import { JobNeedDetails } from "./JobNeedDetails";
 
 interface NeedDetailsProps {
@@ -35,6 +36,16 @@ function DetailSection({ title, children }: DetailSectionProps) {
       </div>
     </section>
   );
+}
+
+function getCategoryLabel(category: ItemCategory): string {
+  const names: string[] = [];
+  let current: ItemCategory | undefined = category;
+  while (current) {
+    names.unshift(current.name);
+    current = current.parent;
+  }
+  return names.join(" / ");
 }
 
 function InfoRow({ label, value }: { label: string; value: ReactNode }) {
@@ -116,7 +127,10 @@ function MaterialNeedDetails({ need }: { need: MaterialNeed }) {
     <DetailSection title="Material Details">
       <InfoGrid>
         <InfoRow label="Item Name" value={need.item.name} />
-        <InfoRow label="Category" value={need.item.category} />
+        <InfoRow
+          label="Category"
+          value={getCategoryLabel(need.item.category)}
+        />
         <InfoRow label="Brand" value={need.item.brand ?? "Not provided"} />
         <InfoRow
           label="Model"

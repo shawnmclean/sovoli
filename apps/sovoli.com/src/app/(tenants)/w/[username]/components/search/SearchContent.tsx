@@ -29,7 +29,7 @@ export function SearchContent({
     );
   }
 
-  if (categories.includes("stationary")) {
+  if (categories.includes("stationery")) {
     return (
       <StationarySearchContent
         source={source}
