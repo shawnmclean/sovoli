@@ -7,7 +7,7 @@ export const ORG_TYPE_OPTIONS = [
   { key: "private-secondary", label: "Private Secondary School" },
   { key: "tertiary", label: "Tertiary / College" },
   { key: "special-education", label: "Special Education Institution" },
-  { key: "stationary", label: "Stationary" },
+  { key: "stationery", label: "Stationery" },
   { key: "other", label: "Other Organisation Type" },
 ] as const;
 
