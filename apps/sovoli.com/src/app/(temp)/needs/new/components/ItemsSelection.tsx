@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Minus, Plus, Trash2 } from "lucide-react";
-import type { Item } from "~/modules/core/items/types";
+import type { Item, ItemCategory } from "~/modules/core/items/types";
 
 interface ItemsSelectionProps {
   items: Item[];
@@ -13,19 +13,15 @@ interface ItemsSelectionProps {
   onQuantityChange: (itemId: string, quantity: number) => void;
 }
 
-export type ItemCategory = Item["category"];
-
-export const getCategoryLabel = (category: ItemCategory) =>
-  category
-    .split("-")
-    .map((segment) => {
-      if (segment.length === 0) {
-        return segment;
-      }
-      const firstChar = segment.charAt(0).toUpperCase();
-      return `${firstChar}${segment.slice(1)}`;
-    })
-    .join(" ");
+export const getCategoryLabel = (category: ItemCategory) => {
+  const names: string[] = [];
+  let current: ItemCategory | undefined = category;
+  while (current) {
+    names.unshift(current.name);
+    current = current.parent;
+  }
+  return names.join(" / ");
+};
 
 export function ItemsSelection({
   items,
@@ -35,14 +31,15 @@ export function ItemsSelection({
   onQuantityChange,
 }: ItemsSelectionProps) {
   const groupedItems = useMemo(() => {
-    const map = new Map<ItemCategory, { items: Item[]; label: string }>();
+    const map = new Map<string, { items: Item[]; label: string }>();
     items.forEach((item) => {
-      const existing = map.get(item.category);
+      const key = item.category.id;
+      const existing = map.get(key);
       if (existing) {
         existing.items.push(item);
         return;
       }
-      map.set(item.category, {
+      map.set(key, {
         items: [item],
         label: getCategoryLabel(item.category),
       });
