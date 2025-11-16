@@ -36,3 +36,14 @@ interface Dimensions {
   widthCm: number;
   heightCm: number;
 }
+
+/**
+ * A policy-defined set of items that can be used to filter items.
+ * ie. Used for "Hurricane Mellissa Building Repair Needs"
+ */
+export interface ItemTagSet {
+  id: string;
+  name: string;
+  description?: string;
+  items: Item[];
+}

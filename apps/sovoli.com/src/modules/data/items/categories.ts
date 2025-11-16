@@ -238,19 +238,3 @@ export function hydrateCategory(categoryId: string): ItemCategory {
     parent: def.parentId ? hydrateCategory(def.parentId) : undefined,
   };
 }
-
-/**
- * Maps org types to the root categories they supply.
- * Sovoli will automatically expand these into full subtrees.
- */
-export const ORG_CATEGORY_MAP: Partial<Record<OrgCategoryKeys, string[]>> = {
-  //
-  // BOOK & STATIONERY
-  //
-  stationery: ["stationery", "academic"],
-
-  //
-  // HARDWARE STORE
-  //
-  hardware: ["hardware", "facility", "electrical", "plumbing"],
-};
