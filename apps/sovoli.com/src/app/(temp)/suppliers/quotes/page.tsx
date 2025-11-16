@@ -213,7 +213,7 @@ export default async function QuotesPage({
             Download / Print
           </Button>
           <Button color="primary" className="flex-1" size="sm">
-            Share
+            Send Quotes
           </Button>
         </div>
       </footer>

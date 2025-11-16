@@ -43,8 +43,8 @@ const stateToParishKey = (state?: string): ParishOptionKey | "" => {
 const inferOrgType = (org: OrgInstance): OrgTypeOptionKey | "" => {
   const categories = new Set(org.org.categories);
 
-  if (categories.has("stationary")) {
-    return "stationary";
+  if (categories.has("stationery")) {
+    return "stationery";
   }
 
   if (categories.has("special-education-school")) {
