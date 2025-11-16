@@ -6,7 +6,7 @@ import { Input } from "@sovoli/ui/components/input";
 
 import type { ReliefFormData, ReliefFormUpdater } from "./ReliefForm";
 import { ItemsSelection, getCategoryLabel } from "./ItemsSelection";
-import type { ItemCategory } from "./ItemsSelection";
+import type { ItemCategory } from "~/modules/core/items/types";
 import { ItemsSearchNavBar } from "./ItemsSearchNavBar";
 import { ALL_ITEMS } from "~/modules/data/items";
 
@@ -18,27 +18,27 @@ interface ItemsSelectionStepProps {
 
 const ALL_ITEMS_BY_ID = new Map(ALL_ITEMS.map((item) => [item.id, item]));
 const ALL_CATEGORY_KEYS = Array.from(
-  new Set<ItemCategory>(ALL_ITEMS.map((item) => item.category)),
+  new Set<string>(ALL_ITEMS.map((item) => item.category.id)),
 );
 const PREFERRED_CATEGORY_KEYS = [
   "hardware",
   "hygiene",
   "bedding",
-] satisfies readonly ItemCategory[];
-const PREFERRED_CATEGORY_SET = new Set<ItemCategory>(PREFERRED_CATEGORY_KEYS);
+] satisfies readonly string[];
+const PREFERRED_CATEGORY_SET = new Set<string>(PREFERRED_CATEGORY_KEYS);
 const INITIAL_ACTIVE_CATEGORIES = (() => {
-  const preferred = ALL_CATEGORY_KEYS.filter((category) =>
-    PREFERRED_CATEGORY_SET.has(category),
+  const preferred = ALL_CATEGORY_KEYS.filter((categoryId) =>
+    PREFERRED_CATEGORY_SET.has(categoryId),
   );
   if (preferred.length > 0) {
-    return new Set<ItemCategory>(preferred);
+    return new Set<string>(preferred);
   }
   if (ALL_CATEGORY_KEYS.length > 0) {
-    return new Set<ItemCategory>(ALL_CATEGORY_KEYS);
+    return new Set<string>(ALL_CATEGORY_KEYS);
   }
-  return new Set<ItemCategory>();
+  return new Set<string>();
 })();
-type CategoryFilterKey = ItemCategory | "all";
+type CategoryFilterKey = string;
 
 export function ItemsSelectionStep({
   formData,
@@ -46,7 +46,7 @@ export function ItemsSelectionStep({
   setFormData,
 }: ItemsSelectionStepProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategories, setActiveCategories] = useState<Set<ItemCategory>>(
+  const [activeCategories, setActiveCategories] = useState<Set<string>>(
     () => new Set(INITIAL_ACTIVE_CATEGORIES),
   );
 
@@ -58,21 +58,31 @@ export function ItemsSelectionStep({
   const allCategoriesActive =
     activeCategories.size === ALL_CATEGORY_KEYS.length;
 
-  const categoryOptions = useMemo(
-    () => [
+  const categoryOptions = useMemo(() => {
+    // Create a map of category ID to ItemCategory for label lookup
+    const categoryMap = new Map<string, ItemCategory>();
+    for (const item of ALL_ITEMS) {
+      if (!categoryMap.has(item.category.id)) {
+        categoryMap.set(item.category.id, item.category);
+      }
+    }
+
+    return [
       {
         key: "all" as const,
         label: "All categories",
         isActive: allCategoriesActive,
       },
-      ...ALL_CATEGORY_KEYS.map((category) => ({
-        key: category,
-        label: getCategoryLabel(category),
-        isActive: activeCategories.has(category),
-      })),
-    ],
-    [activeCategories, allCategoriesActive],
-  );
+      ...ALL_CATEGORY_KEYS.map((categoryId) => {
+        const category = categoryMap.get(categoryId);
+        return {
+          key: categoryId,
+          label: category ? getCategoryLabel(category) : categoryId,
+          isActive: activeCategories.has(categoryId),
+        };
+      }),
+    ];
+  }, [activeCategories, allCategoriesActive]);
 
   const filteredItems = useMemo(() => {
     const trimmedQuery = searchQuery.trim().toLowerCase();
@@ -85,7 +95,7 @@ export function ItemsSelectionStep({
     }
 
     return ALL_ITEMS.filter((item) => {
-      if (!activeCategories.has(item.category)) {
+      if (!activeCategories.has(item.category.id)) {
         return false;
       }
 
@@ -166,9 +176,9 @@ export function ItemsSelectionStep({
     setActiveCategories((prev) => {
       if (categoryKey === "all") {
         if (prev.size === ALL_CATEGORY_KEYS.length) {
-          return new Set<ItemCategory>();
+          return new Set<string>();
         }
-        return new Set<ItemCategory>(ALL_CATEGORY_KEYS);
+        return new Set<string>(ALL_CATEGORY_KEYS);
       }
 
       const next = new Set(prev);
