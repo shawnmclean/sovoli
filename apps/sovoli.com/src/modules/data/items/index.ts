@@ -9,8 +9,10 @@ import { HARDWARE_ITEMS } from "./hardware";
 import { HYGIENE_ITEMS } from "./hygiene";
 import { OTHER_ITEMS } from "./other";
 import { STATIONERY_ITEMS } from "./stationery";
+import { BUILDING_ITEMS } from "./building";
 
 export const ALL_ITEMS: Item[] = [
+  ...BUILDING_ITEMS,
   ...BOOKS,
   ...STATIONERY_ITEMS,
   ...HYGIENE_ITEMS,
@@ -34,6 +36,7 @@ export function findItemsByIds(ids: string[]): Item[] {
 export {
   BEDDING_ITEMS,
   BOOKS,
+  BUILDING_ITEMS,
   ELECTRONICS_ITEMS,
   EQUIPMENT_ITEMS,
   FACILITY_SUPPLIES_ITEMS,

@@ -46,7 +46,7 @@ import { VEHICLE_CATEGORY_TREE } from "./vehicle";
 
 import type { CategoryDefinition } from "~/modules/core/items/types";
 
-export const GPC_CATEGORIES: CategoryDefinition[] = [
+export const ITEM_CATEGORY_TREE: CategoryDefinition[] = [
   ARTS_CRAFTS_NEEDLEWORK_CATEGORY_TREE,
   AUDIO_VISUAL_PHOTOGRAPHY_CATEGORY_TREE,
   BEAUTY_PERSONAL_CARE_HYGIENE_CATEGORY_TREE,
