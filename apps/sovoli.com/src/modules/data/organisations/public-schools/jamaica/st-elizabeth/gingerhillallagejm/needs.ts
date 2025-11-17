@@ -8,9 +8,7 @@ const FASTENER_ITEM = findItemById("relief-screws");
 const TOOL_KIT_ITEM = findItemById("relief-basic-hand-tools");
 
 if (!ZINC_ROOF_SHEET_ITEM) {
-  throw new Error(
-    "maintenance-zinc-roof-sheet item is missing from core items.",
-  );
+  throw new Error("zinc-roof-sheet item is missing from core items.");
 }
 
 if (!TARPAULIN_ITEM) {

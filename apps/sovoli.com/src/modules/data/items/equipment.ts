@@ -75,4 +75,13 @@ export const EQUIPMENT_ITEMS: Item[] = [
     unitLabel: "pair",
     tags: ["relief", "protective-gear", "footwear"],
   },
+  {
+    id: "relief-basic-hand-tools",
+    name: "Basic Hand Tool Kit",
+    category: hydrateCategory("toolkits"),
+    tags: ["relief", "building", "tooling"],
+    unitLabel: "kit",
+    description:
+      "Essential hand tools including hammers, screwdrivers, wrenches, and measuring tools for relief and repair work.",
+  },
 ];

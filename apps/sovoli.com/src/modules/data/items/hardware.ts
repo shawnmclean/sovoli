@@ -12,6 +12,24 @@ export const HARDWARE_ITEMS: Item[] = [
       "Standard 12-foot galvanized sheet for replacing damaged classroom roofs.",
   },
   {
+    id: "zinc-roof-sheet",
+    name: "Zinc Roof Sheet",
+    category: hydrateCategory("zinc"),
+    tags: ["facilities", "maintenance", "roofing", "relief"],
+    unitLabel: "sheet",
+    description:
+      "Corrugated galvanized zinc sheet for replacing damaged classroom roofs.",
+  },
+  {
+    id: "maintenance-zinc-roof-sheet",
+    name: "Zinc Roof Sheet - Maintenance",
+    category: hydrateCategory("zinc"),
+    tags: ["facilities", "maintenance", "roofing", "relief"],
+    unitLabel: "sheet",
+    description:
+      "Corrugated galvanized zinc sheet for maintenance and repair of classroom roofs.",
+  },
+  {
     id: "ridge-cap-12ft",
     name: "Zinc Ridge Cap - 12 ft",
     category: hydrateCategory("zinc"),
@@ -45,6 +63,15 @@ export const HARDWARE_ITEMS: Item[] = [
     unitLabel: "box",
     description:
       "Self-drilling screws with neoprene washers for fastening zinc sheets to purlins.",
+  },
+  {
+    id: "relief-screws",
+    name: "Roofing Screws",
+    category: hydrateCategory("screws"),
+    tags: ["relief", "building", "roofing", "fastener"],
+    unitLabel: "box",
+    description:
+      "Self-drilling screws with washers for fastening roofing materials during relief and repair work.",
   },
   {
     id: "tarpaulin-heavy-duty",
