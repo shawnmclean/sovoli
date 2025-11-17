@@ -8,7 +8,7 @@ export const TAGSET_ROOF_REPAIR: ItemTagSet = {
     "Materials required for temporary or permanent building roof restoration.",
   items: [
     findItemById("maintenance-plyboard"),
-    findItemById("maintenance-zinc-roof-sheet"),
+    findItemById("zinc-roof-sheet"),
     findItemById("roof-sealant"),
     findItemById("relief-screws"),
     findItemById("relief-basic-hand-tools"),

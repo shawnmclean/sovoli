@@ -1,7 +1,7 @@
 import type { NeedsModule } from "~/modules/needs/types";
 import { findItemById } from "~/modules/data/items";
 
-const ZINC_ROOF_SHEET_ITEM = findItemById("maintenance-zinc-roof-sheet");
+const ZINC_ROOF_SHEET_ITEM = findItemById("zinc-roof-sheet");
 const TARPAULIN_ITEM = findItemById("tarpaulin-heavy-duty");
 const ROOF_SEALANT_ITEM = findItemById("roof-sealant");
 const FASTENER_ITEM = findItemById("relief-screws");
