@@ -9,10 +9,10 @@ export const TAGSET_ROOF_REPAIR: ItemTagSet = {
   items: [
     findItemById("maintenance-plyboard"),
     findItemById("maintenance-zinc-roof-sheet"),
-    findItemById("relief-roof-sealant"),
+    findItemById("roof-sealant"),
     findItemById("relief-screws"),
     findItemById("relief-basic-hand-tools"),
-    findItemById("relief-tarpaulin-heavy-duty"),
+    findItemById("tarpaulin-heavy-duty"),
   ].filter((i): i is Item => i !== undefined),
 };
 

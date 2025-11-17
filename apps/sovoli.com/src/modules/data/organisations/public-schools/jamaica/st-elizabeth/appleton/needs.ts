@@ -2,7 +2,7 @@ import type { NeedsModule } from "~/modules/needs/types";
 import { findItemById } from "~/modules/data/items";
 
 const ROOF_SHEET_ITEM = findItemById("maintenance-zinc-roof-sheet");
-const TARPAULIN_ITEM = findItemById("relief-tarpaulin-heavy-duty");
+const TARPAULIN_ITEM = findItemById("tarpaulin-heavy-duty");
 const CLEANUP_KIT_ITEM = findItemById("supply-cleanup-kit");
 const PORTABLE_GENERATOR_ITEM = findItemById("equipment-portable-generator");
 
@@ -13,9 +13,7 @@ if (!ROOF_SHEET_ITEM) {
 }
 
 if (!TARPAULIN_ITEM) {
-  throw new Error(
-    "relief-tarpaulin-heavy-duty item is missing from core items.",
-  );
+  throw new Error("tarpaulin-heavy-duty item is missing from core items.");
 }
 
 if (!CLEANUP_KIT_ITEM) {

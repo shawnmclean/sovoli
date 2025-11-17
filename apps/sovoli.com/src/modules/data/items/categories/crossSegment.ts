@@ -1,0 +1,41 @@
+import type { CategoryDefinition } from "~/modules/core/items/types";
+
+export const CROSS_SEGMENT_CATEGORY_TREE: CategoryDefinition = {
+  id: "cross-segment",
+  name: "Cross Segment",
+  gpcCode: "58000000",
+  children: [
+    {
+      id: "cross-segment",
+      name: "Cross Segment",
+      gpcCode: "58010000",
+      parentId: "cross-segment",
+      children: [
+      {
+        id: "cross-segment",
+        name: "Cross Segment",
+        gpcCode: "58010100",
+        parentId: "cross-segment",
+        children: [
+        {
+          id: "cross-segment-variety-packs",
+          name: "Cross Segment Variety Packs",
+          gpcCode: "10000624",
+          gpcDescription: "Includes any products than can be described/observed as two or more distinct products sold together which exist within the schema but belong to different Segments of the schema, such as Food/Beverage/Tobacco and Beauty/Personal Care/Hygiene, that is two or more products, often contained within the same pack, which cross Segments within the GPC Schema. Includes products such as Liqueur and Glasses variety packs, Chocolates and Perfume variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+          parentId: "cross-segment",
+          children: [],
+        },
+        {
+          id: "temporary-classification",
+          name: "Temporary Classification",
+          gpcCode: "99999999",
+          gpcDescription: "Includes any products that can be described/observed as a product that cannot be classified within the GS1 Global Product Classification schema. This brick serves as a temporary holding place for products, which cannot be classified within the current segments of the schema due to its current evolution. The industry is encouraged to migrate as soon as the necessary classification is available.",
+          parentId: "cross-segment",
+          children: [],
+        },
+        ],
+      },
+      ],
+    },
+  ],
+};

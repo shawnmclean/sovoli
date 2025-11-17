@@ -2,8 +2,8 @@ import type { NeedsModule } from "~/modules/needs/types";
 import { findItemById } from "~/modules/data/items";
 
 const ZINC_ROOF_SHEET_ITEM = findItemById("maintenance-zinc-roof-sheet");
-const TARPAULIN_ITEM = findItemById("relief-tarpaulin-heavy-duty");
-const ROOF_SEALANT_ITEM = findItemById("relief-roof-sealant");
+const TARPAULIN_ITEM = findItemById("tarpaulin-heavy-duty");
+const ROOF_SEALANT_ITEM = findItemById("roof-sealant");
 const FASTENER_ITEM = findItemById("relief-screws");
 const TOOL_KIT_ITEM = findItemById("relief-basic-hand-tools");
 
@@ -14,13 +14,11 @@ if (!ZINC_ROOF_SHEET_ITEM) {
 }
 
 if (!TARPAULIN_ITEM) {
-  throw new Error(
-    "relief-tarpaulin-heavy-duty item is missing from core items.",
-  );
+  throw new Error("tarpaulin-heavy-duty item is missing from core items.");
 }
 
 if (!ROOF_SEALANT_ITEM) {
-  throw new Error("relief-roof-sealant item is missing from core items.");
+  throw new Error("roof-sealant item is missing from core items.");
 }
 
 if (!FASTENER_ITEM) {

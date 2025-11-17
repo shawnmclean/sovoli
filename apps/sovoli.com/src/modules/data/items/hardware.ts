@@ -3,7 +3,7 @@ import { hydrateCategory } from "./categories";
 
 export const HARDWARE_ITEMS: Item[] = [
   {
-    id: "relief-corrugated-zinc-12ft",
+    id: "corrugated-zinc-12ft",
     name: "Corrugated Zinc Sheet - 12 ft (28 gauge)",
     category: hydrateCategory("zinc"),
     tags: ["facilities", "maintenance", "roofing", "relief"],
@@ -12,7 +12,7 @@ export const HARDWARE_ITEMS: Item[] = [
       "Standard 12-foot galvanized sheet for replacing damaged classroom roofs.",
   },
   {
-    id: "relief-ridge-cap-12ft",
+    id: "ridge-cap-12ft",
     name: "Zinc Ridge Cap - 12 ft",
     category: hydrateCategory("zinc"),
     tags: ["facilities", "maintenance", "roofing", "relief"],
@@ -21,7 +21,7 @@ export const HARDWARE_ITEMS: Item[] = [
       "Pre-bent ridge flashing for sealing corrugated zinc roof peaks.",
   },
   {
-    id: "relief-roof-flashing-12ft",
+    id: "roof-flashing-12ft",
     name: "Galvanized Roof Flashing - 12 ft",
     category: hydrateCategory("zinc"),
     tags: ["facilities", "maintenance", "roofing"],
@@ -47,7 +47,7 @@ export const HARDWARE_ITEMS: Item[] = [
       "Self-drilling screws with neoprene washers for fastening zinc sheets to purlins.",
   },
   {
-    id: "relief-tarpaulin-heavy-duty",
+    id: "tarpaulin-heavy-duty",
     name: "Heavy-Duty Tarpaulin",
     category: hydrateCategory("hardware"),
     tags: ["relief", "shelter", "weatherproofing"],
@@ -56,21 +56,21 @@ export const HARDWARE_ITEMS: Item[] = [
       "Reinforced tarpaulin for temporary coverage of damaged classrooms and walkways.",
   },
   {
-    id: "relief-door-trim-adhesive",
+    id: "door-trim-adhesive",
     name: "Door Trim Adhesive Protection",
     category: hydrateCategory("adhesives"),
     tags: ["relief", "building", "adhesive"],
     attributes: { source: "Amazon" },
   },
   {
-    id: "relief-roof-sealant",
+    id: "roof-sealant",
     name: "Roof Sealant",
     category: hydrateCategory("roof-sealant"),
     tags: ["relief", "building", "roofing"],
     attributes: { source: "Local" },
   },
   {
-    id: "relief-roofing-nails-2-5in",
+    id: "roofing-nails-2-5in",
     name: "Galvanized Roofing Nails - 2.5 in",
     category: hydrateCategory("nails"),
     unitLabel: "box",
@@ -79,38 +79,41 @@ export const HARDWARE_ITEMS: Item[] = [
       "Ring-shank nails sized for batten strips and hurricane strapping on roofs.",
   },
   {
-    id: "relief-plywood-3-4-4x8",
+    id: "plywood-3-4-4x8",
     name: "3/4 in Plywood - 4x8 ft",
     category: hydrateCategory("plywood"),
     unitLabel: "sheet",
     tags: ["relief", "building", "lumber"],
-    description: "Thick sheet stock for decking repairs and roof sheathing replacement.",
+    description:
+      "Thick sheet stock for decking repairs and roof sheathing replacement.",
   },
   {
-    id: "relief-tarps",
+    id: "tarps",
     name: "Tarps",
     category: hydrateCategory("hardware"),
     unitLabel: "tarp",
     tags: ["relief", "building", "weatherproofing"],
   },
   {
-    id: "relief-strap-nails-3in",
+    id: "strap-nails-3in",
     name: "Hurricane Strap Nails - 3 in",
     category: hydrateCategory("nails"),
     unitLabel: "box",
     tags: ["relief", "building", "fastener"],
-    description: "Hot-dip galvanized nails sized for metal straps and connectors.",
+    description:
+      "Hot-dip galvanized nails sized for metal straps and connectors.",
   },
   {
-    id: "relief-structural-screws-4in",
-    name: "Structural Screws - 4 in", 
+    id: "structural-screws-4in",
+    name: "Structural Screws - 4 in",
     category: hydrateCategory("screws"),
     unitLabel: "box",
     tags: ["relief", "building", "framing"],
-    description: "Heavy-duty coated screws for fastening rafters and wall plates.",
+    description:
+      "Heavy-duty coated screws for fastening rafters and wall plates.",
   },
   {
-    id: "relief-fuel-containers",
+    id: "fuel-containers",
     name: "Fuel Containers",
     category: hydrateCategory("hardware"),
     unitLabel: "container",
@@ -119,67 +122,75 @@ export const HARDWARE_ITEMS: Item[] = [
       "Certified fuel cans for transporting gasoline or butane during response.",
   },
   {
-    id: "relief-lumber-2x2x12",
+    id: "lumber-2x2x12",
     name: "2x2x12 ft Treated Lumber",
     category: hydrateCategory("boards"),
     unitLabel: "board",
     tags: ["relief", "building", "lumber"],
-    description: "Used for batten strips and roof bracing in local Jamaican builds.",
+    description:
+      "Used for batten strips and roof bracing in local Jamaican builds.",
   },
   {
-    id: "relief-lumber-2x4x12",
+    id: "lumber-2x4x12",
     name: "2x4x12 ft Framing Lumber",
     category: hydrateCategory("framing"),
     unitLabel: "board",
     tags: ["relief", "building", "framing"],
-    description: "Common stud length carried by hardware suppliers across Jamaica.",
+    description:
+      "Common stud length carried by hardware suppliers across Jamaica.",
   },
   {
-    id: "relief-lumber-2x6x12",
+    id: "lumber-2x6x12",
     name: "2x6x12 ft Framing Lumber",
     category: hydrateCategory("framing"),
     unitLabel: "board",
     tags: ["relief", "building", "framing"],
-    description: "Sized for rafters and ridge boards in replacement roof structures.",
+    description:
+      "Sized for rafters and ridge boards in replacement roof structures.",
   },
   {
-    id: "relief-purlin-1x4x12",
+    id: "purlin-1x4x12",
     name: "1x4x12 ft Purlin Board",
     category: hydrateCategory("boards"),
     unitLabel: "board",
     tags: ["relief", "building", "roofing"],
-    description: "Treated purlin used under zinc sheets for fastening and ventilation.",
+    description:
+      "Treated purlin used under zinc sheets for fastening and ventilation.",
   },
   {
-    id: "relief-roofing-hammer",
+    id: "roofing-hammer",
     name: "Roofing Claw Hammer",
     category: hydrateCategory("hand-tools"),
     unitLabel: "tool",
     tags: ["relief", "building", "tooling"],
-    description: "16 oz straight-claw hammer suited for zinc work and nail removal.",
+    description:
+      "16 oz straight-claw hammer suited for zinc work and nail removal.",
   },
   {
-    id: "relief-tin-snips",
+    id: "tin-snips",
     name: "Tin Snips",
     category: hydrateCategory("cutting-tools"),
     unitLabel: "tool",
     tags: ["relief", "building", "cutting"],
-    description: "Left/right cut snips for trimming corrugated zinc sheets on site.",
+    description:
+      "Left/right cut snips for trimming corrugated zinc sheets on site.",
   },
   {
-    id: "relief-impact-driver",
+    id: "impact-driver",
     name: "18V Cordless Impact Driver",
     category: hydrateCategory("power-tools"),
     unitLabel: "tool",
     tags: ["relief", "building", "tooling"],
-    description: "Battery-powered driver for roofing screws and metal strap anchors.",
+    description:
+      "Battery-powered driver for roofing screws and metal strap anchors.",
   },
   {
-    id: "relief-measuring-tape-25ft",
+    id: "measuring-tape-25ft",
     name: "25 ft Measuring Tape",
     category: hydrateCategory("hand-tools"),
     unitLabel: "tool",
     tags: ["relief", "building", "layout"],
-    description: "Steel tape for verifying spans and cut lengths during roof rebuilds.",
+    description:
+      "Steel tape for verifying spans and cut lengths during roof rebuilds.",
   },
 ];

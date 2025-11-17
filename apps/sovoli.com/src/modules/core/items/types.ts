@@ -3,6 +3,8 @@ import type { Photo } from "../photos/types";
 export interface CategoryDefinition {
   id: string;
   name: string;
+  gpcCode?: string;
+  gpcDescription?: string;
   parentId?: string;
   children?: CategoryDefinition[];
 }
