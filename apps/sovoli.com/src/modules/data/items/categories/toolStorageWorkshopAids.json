@@ -1,0 +1,136 @@
+{
+  "id": "tool-storage-workshop-aids",
+  "name": "Tool Storage/Workshop Aids",
+  "gpcCode": "84000000",
+  "children": [
+    {
+      "id": "tool-storage-workshop-aids",
+      "name": "Tool Storage/Workshop Aids",
+      "gpcCode": "84010000",
+      "parentId": "tool-storage-workshop-aids",
+      "children": [
+        {
+          "id": "tool-storage",
+          "name": "Tool Storage",
+          "gpcCode": "84010100",
+          "parentId": "tool-storage-workshop-aids",
+          "children": [
+            {
+              "id": "tool-belts-holsters-pouches",
+              "name": "Tool Belts/Holsters/Pouches",
+              "gpcCode": "10003678",
+              "gpcDescription": "Includes any products that can be described/observed as accessories that fasten around the waist and have a number of compartments that are used for carrying tools and/or fasteners. Includes products such as tool belts specifically designed for hand tools.",
+              "parentId": "tool-storage"
+            },
+            {
+              "id": "tool-boxes-cases",
+              "name": "Tool Boxes/Cases",
+              "gpcCode": "10003676",
+              "gpcDescription": "Includes any products that can be described/observed as a container specifically designed for the storage and portability of hand tools. These products will have a number of different compartments designed for hand tools or fastening accessories. Includes products that may or may not have a lid.",
+              "parentId": "tool-storage"
+            },
+            {
+              "id": "tool-cabinets",
+              "name": "Tool Cabinets",
+              "gpcCode": "10003674",
+              "gpcDescription": "Includes any products that can be described/observed as a cabinet that is specifically designed to be used for the storage of tools. It may consist of shelves and/or drawers.",
+              "parentId": "tool-storage"
+            },
+            {
+              "id": "tool-carrybags-wallets",
+              "name": "Tool Carrybags/Wallets",
+              "gpcCode": "10003677",
+              "gpcDescription": "Includes any products that can be described/observed as a bag or wallet that is specifically designed to carry hand tools, power tools or tool accessories. Includes products such as carrybags that consist of varying compartments and wallets specifically designed for screwdrivers.",
+              "parentId": "tool-storage"
+            },
+            {
+              "id": "tool-carts",
+              "name": "Tool Carts",
+              "gpcCode": "10003578",
+              "gpcDescription": "Includes any products that can be described/observed as a wheeled, container with a number of compartments in which tools are stored for the user to be able to gain easy access to them. The distinguishing feature of the tool cart is the presence of a tray or a flat surface on the highest tier that provides a surface for the placement of tools. Includes products such as tool carts with drawer storage.",
+              "parentId": "tool-storage"
+            },
+            {
+              "id": "tool-storage-other",
+              "name": "Tool Storage Other",
+              "gpcCode": "10005102",
+              "gpcDescription": "Includes any products that can be described/observed as Tool Storage items, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "tool-storage"
+            },
+            {
+              "id": "tool-storage-variety-packs",
+              "name": "Tool Storage Variety Packs",
+              "gpcCode": "10005104",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Tool Storage products sold together which exist within the same class but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Tool Storage class. Includes products such as tool boxes sold with tool carrybags. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "tool-storage"
+            }
+          ]
+        },
+        {
+          "id": "workshop-aids",
+          "name": "Workshop Aids",
+          "gpcCode": "84010200",
+          "parentId": "tool-storage-workshop-aids",
+          "children": [
+            {
+              "id": "roller-stands",
+              "name": "Roller Stands",
+              "gpcCode": "10003572",
+              "gpcDescription": "Includes any products that can be described/observed as a stand specifically designed to catch and support a load as it is put through and exits a piece of machinery. These products may have a single or number of rollers on which to support the material providing a 'conveyer belt' for the finished material. Includes products such as telescopic roller stands.",
+              "parentId": "workshop-aids"
+            },
+            {
+              "id": "router-tables",
+              "name": "Router Tables",
+              "gpcCode": "10005806",
+              "gpcDescription": "Includes any products that can be described/observed as a woodworking table with a gantry to which a router or spindle is mounted. Includes tables that can have three or four motor driven systems that speedily and accurately mould and trim wood.",
+              "parentId": "workshop-aids"
+            },
+            {
+              "id": "saw-horses-trestles",
+              "name": "Saw Horses/Trestles",
+              "gpcCode": "10003470",
+              "gpcDescription": "Includes any products that can be described/observed as a work surface specifically designed to support materials being sawed.",
+              "parentId": "workshop-aids"
+            },
+            {
+              "id": "work-bench-table-replacement-parts-accessories",
+              "name": "Work Bench/Table Replacement Parts/Accessories",
+              "gpcCode": "10007938",
+              "gpcDescription": "Includes any products that may be described/observed as parts or accessories for Work Benches/Tables.",
+              "parentId": "workshop-aids"
+            },
+            {
+              "id": "work-benches",
+              "name": "Work Benches",
+              "gpcCode": "10003468",
+              "gpcDescription": "Includes any products that can be described/observed as a table for a carpenter or mechanic, designed to facilitate a number of different activities. The products can be equipped with vices for holding wood or metal while the craftsman works it with hand tools. Includes stationary and portable workbenches.",
+              "parentId": "workshop-aids"
+            },
+            {
+              "id": "workshop-aids-other",
+              "name": "Workshop Aids Other",
+              "gpcCode": "10005101",
+              "gpcDescription": "Includes any products that can be described/observed as Workshop Aids, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "workshop-aids"
+            },
+            {
+              "id": "workshop-aids-replacement-parts-accessories",
+              "name": "Workshop Aids Replacement Parts/Accessories",
+              "gpcCode": "10005100",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for workshop aids products. Includes products such as replacement castors for trestles.",
+              "parentId": "workshop-aids"
+            },
+            {
+              "id": "workshop-cloths-rags",
+              "name": "Workshop Cloths/Rags",
+              "gpcCode": "10005723",
+              "gpcDescription": "Includes any products that can be described/observed as a cloth or rag specifically designed for workshop use. The cloths are strong and absorbant enough to clean up oil and latex paint and some are coated to allow for cleaning fine sawdust from wood. Includes disposable workshop towels and non-disposable rags.",
+              "parentId": "workshop-aids"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

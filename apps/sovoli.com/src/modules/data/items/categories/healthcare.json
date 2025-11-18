@@ -1,0 +1,1394 @@
+{
+  "id": "healthcare",
+  "name": "Healthcare",
+  "gpcCode": "51000000",
+  "children": [
+    {
+      "id": "family-planning",
+      "name": "Family Planning",
+      "gpcCode": "51110000",
+      "parentId": "healthcare",
+      "children": [
+        {
+          "id": "barrier-contraception",
+          "name": "Barrier Contraception",
+          "gpcCode": "51111500",
+          "parentId": "family-planning",
+          "children": [
+            {
+              "id": "barrier-contraception-other",
+              "name": "Barrier Contraception Other",
+              "gpcCode": "10000838",
+              "gpcDescription": "Includes any products that can be described/observed as Barrier Contraception products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "barrier-contraception"
+            },
+            {
+              "id": "barrier-contraception-variety-packs",
+              "name": "Barrier Contraception Variety Packs",
+              "gpcCode": "10000674",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Barrier Contraception products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Barrier Contraception class. Includes products such as Diaphragms and Spermicides sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "barrier-contraception"
+            },
+            {
+              "id": "condoms",
+              "name": "Condoms",
+              "gpcCode": "10000460",
+              "gpcDescription": "Includes any products that can be described/observed as a thin latex sheath that is either worn by males or used by a female during sexual activity, to prevent conception and sexually transmitted diseases. These products are available with or without spermicide or lubricant and can be flavoured.",
+              "parentId": "barrier-contraception"
+            },
+            {
+              "id": "diaphragms-cervical-caps",
+              "name": "Diaphragms/Cervical Caps",
+              "gpcCode": "10000461",
+              "gpcDescription": "Includes any products that can be described/observed as a device, worn by a woman during sexual activity, that is specifically designed to be inserted into the vagina to prevent conception and sexually transmitted diseases. These products act as a barrier against sperm and are available with or without spermicides.",
+              "parentId": "barrier-contraception"
+            },
+            {
+              "id": "spermicides",
+              "name": "Spermicides",
+              "gpcCode": "10000462",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed for use as a sperm-killing agent, and typically intended as an aid to birth control. Includes products in cream, gel, tablet, film or liquid form. These products are used before any sexual activity as additional protection against the risk of becoming pregnant and to prevent sexually transmitted diseases. Products are normally used with a Diaphragm, Cervical Cap or Condom, but can be inserted directly into the vagina.",
+              "parentId": "barrier-contraception"
+            }
+          ]
+        },
+        {
+          "id": "family-planning-variety-packs",
+          "name": "Family Planning Variety Packs",
+          "gpcCode": "51111800",
+          "parentId": "family-planning",
+          "children": [
+            {
+              "id": "family-planning-variety-packs",
+              "name": "Family Planning Variety Packs",
+              "gpcCode": "10000675",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Family Planning products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Family Planning Family. Includes products such as IUDs and Spermicides variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "family-planning-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "hormonal-contraception",
+          "name": "Hormonal Contraception",
+          "gpcCode": "51111600",
+          "parentId": "family-planning",
+          "children": [
+            {
+              "id": "hormonal-contraception",
+              "name": "Hormonal Contraception",
+              "gpcCode": "10000463",
+              "gpcDescription": "Includes any products that can be described/observed as a hormone preparation in pill, patch, injection or implant form that prevents pregnancy by suppressing ovulation, causing the cervical mucus to thicken and/or preventing the thickening of the uterus lining, so as not to allow successful implantation of the embryo on the womb.",
+              "parentId": "hormonal-contraception"
+            }
+          ]
+        },
+        {
+          "id": "intra-uterine-contraception",
+          "name": "Intra-uterine Contraception",
+          "gpcCode": "51111700",
+          "parentId": "family-planning",
+          "children": [
+            {
+              "id": "intra-uterine-contraception",
+              "name": "Intra-uterine Contraception",
+              "gpcCode": "10000464",
+              "gpcDescription": "Includes any products that can be described/observed as a plastic device which is inserted into the womb to interfere with the migration of sperm from the vagina to the fallopian tube or to accelerate egg transport through the fallopian tube and thus impede fertilisation. Products include plastic Intra-Uterine Contraceptive Devices with or without copper and medicated Intra-Uterine Contraceptive Devices that are designed to release hormones over a period of time.",
+              "parentId": "intra-uterine-contraception"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "health-enhancement",
+      "name": "Health Enhancement",
+      "gpcCode": "51120000",
+      "parentId": "healthcare",
+      "children": [
+        {
+          "id": "dietary-aids",
+          "name": "Dietary Aids",
+          "gpcCode": "51121500",
+          "parentId": "health-enhancement",
+          "children": [
+            {
+              "id": "dietary-aid-appetite-fat-control",
+              "name": "Dietary Aid - Appetite/Fat Control",
+              "gpcCode": "10000465",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation containing specific ingredients designed to stimulate or suppress the appetite. These products are not designed to be a replacement for meals. Products also include Fat Burners and Fat Blockers designed to decrease the fat content of the body. ",
+              "parentId": "dietary-aids"
+            },
+            {
+              "id": "dietary-aid-meal-replacement",
+              "name": "Dietary Aid - Meal Replacement",
+              "gpcCode": "10000466",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation that is consumed as a meal substitute in order to promote slimming, weight gain or weight control by increasing the metabolism or reducing the feeling of hunger.",
+              "parentId": "dietary-aids"
+            },
+            {
+              "id": "dietary-aids-other",
+              "name": "Dietary Aids Other",
+              "gpcCode": "10000841",
+              "gpcDescription": "Includes any products that can be described/observed as Dietary Aids products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "dietary-aids"
+            },
+            {
+              "id": "dietary-aids-variety-packs",
+              "name": "Dietary Aids Variety Packs",
+              "gpcCode": "10000650",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Dietary Aids sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Dietary Aids class. Includes products such as Fat Blockers and Meal Replacements sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "dietary-aids"
+            }
+          ]
+        },
+        {
+          "id": "energy-stimulant-products",
+          "name": "Energy/Stimulant Products",
+          "gpcCode": "51121900",
+          "parentId": "health-enhancement",
+          "children": [
+            {
+              "id": "energy-stimulant-products",
+              "name": "Energy/Stimulant Products",
+              "gpcCode": "10000917",
+              "gpcDescription": "Includes any products that can be described/observed as a substance intended to stimulate the body and/or mind. Includes products such as caffeine. Includes products such as tablet stimulants, powder stimulants and liquid stimulants delivered in a specific quantities intended to be consumed in measured doses. ",
+              "parentId": "energy-stimulant-products"
+            },
+            {
+              "id": "energy-stimulant-products-other",
+              "name": "Energy/Stimulant Products Other",
+              "gpcCode": "10000918",
+              "gpcDescription": "Includes any products that can be described/observed as Energy/Stimulant Products, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "energy-stimulant-products"
+            }
+          ]
+        },
+        {
+          "id": "health-enhancement-variety-packs",
+          "name": "Health Enhancement Variety Packs",
+          "gpcCode": "51121800",
+          "parentId": "health-enhancement",
+          "children": [
+            {
+              "id": "health-enhancement-variety-packs",
+              "name": "Health Enhancement Variety Packs",
+              "gpcCode": "10000649",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Health Enhancement products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Health Enhancement Family. Includes products such as Minerals with Meal Replacement variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "health-enhancement-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "vitamins-minerals-nutritional-supplements",
+          "name": "Vitamins/Minerals/Nutritional Supplements",
+          "gpcCode": "51121600",
+          "parentId": "health-enhancement",
+          "children": [
+            {
+              "id": "nutritional-supplements",
+              "name": "Nutritional Supplements",
+              "gpcCode": "10000468",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation containing specific ingredients designed to enhance and improve health, to prevent or mitigate various deficiency conditions in the human body or to increase energy levels. Includes products of botanical, animal or marine origin.",
+              "parentId": "vitamins-minerals-nutritional-supplements"
+            },
+            {
+              "id": "vitamins-minerals",
+              "name": "Vitamins/Minerals",
+              "gpcCode": "10000467",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, composed of one or more minerals such as calcium, silica, zinc, or of one or more vitamins, such as A, C, B-complex, or a combination of vitamins and minerals, which is taken as a dietary supplement to help prevent and/or mitigate vitamin or mineral deficiency conditions of the human body.",
+              "parentId": "vitamins-minerals-nutritional-supplements"
+            },
+            {
+              "id": "vitamins-minerals-nutritional-supplements-variety-packs",
+              "name": "Vitamins/Minerals/Nutritional Supplements Variety Packs",
+              "gpcCode": "10000651",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Vitamins, Minerals and Nutritional Supplements sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Vitamins, Minerals and Nutritional Supplements class. Includes products such as Hormone Boosters and Minerals sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "vitamins-minerals-nutritional-supplements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "health-treatments-aids",
+      "name": "Health Treatments/Aids",
+      "gpcCode": "51100000",
+      "parentId": "healthcare",
+      "children": [
+        {
+          "id": "baby-treatments-aids",
+          "name": "Baby Treatments/Aids",
+          "gpcCode": "51102200",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "baby-treatments",
+              "name": "Baby Treatments",
+              "gpcCode": "10000500",
+              "gpcDescription": "Includes any products that can be described/observed as a remedy or application specifically designed to treat a condition that is unique to babies and infants. Includes products such as colic remedies, nappy rash creams, cradle cap wipes and creams.",
+              "parentId": "baby-treatments-aids"
+            },
+            {
+              "id": "breast-compress",
+              "name": "Breast Compress",
+              "gpcCode": "10008241",
+              "gpcDescription": "Includes any products that can be described/observed as a device that enables to continue the flow of milk to the baby when the baby is only sucking without drinking.",
+              "parentId": "baby-treatments-aids"
+            },
+            {
+              "id": "breast-pump",
+              "name": "Breast Pump",
+              "gpcCode": "10008242",
+              "gpcDescription": "Includes any products that can be described/observed as a device that enables to extract the nursing mother milk when the nursing baby is not sucking. These products can be powered or non powered.",
+              "parentId": "baby-treatments-aids"
+            },
+            {
+              "id": "navel-clamp",
+              "name": "Navel Clamp",
+              "gpcCode": "10008240",
+              "gpcDescription": "Includes any products that can be described/observed as an umbilical clamp that serves the umbilical cord before cutting the cord to close so that no infectious agents can penetrate through the umbilical cord, and to avoid bleeding. The clamp is removed 48 to 72 hours later, when the umbilicus has dried up enough to rule out any leakage of blood.",
+              "parentId": "baby-treatments-aids"
+            },
+            {
+              "id": "pacifiers-teething-rings",
+              "name": "Pacifiers/Teething Rings",
+              "gpcCode": "10000504",
+              "gpcDescription": "Includes any products that can be described/observed as a rubber or plastic device, designed specifically for a baby to suck or bite on, with the additional benefits of calming babies and stopping them from crying or to lessen the discomfort experienced by babies gaining their first teeth, including accessories. Includes products such as Teething Rings and Pacifiers and Pacifier Clips.",
+              "parentId": "baby-treatments-aids"
+            }
+          ]
+        },
+        {
+          "id": "bladder-genital-rectal-products",
+          "name": "Bladder/Genital/Rectal Products",
+          "gpcCode": "51102400",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "bladder-genital-rectal-products-other",
+              "name": "Bladder/Genital/Rectal Products Other",
+              "gpcCode": "10000849",
+              "gpcDescription": "Includes any products that can be described/observed as Bladder/Genital/Rectal products, where the user of the schema is not able to classify the products in existing bricks within schema.",
+              "parentId": "bladder-genital-rectal-products"
+            },
+            {
+              "id": "bladder-genital-rectal-products-variety-packs",
+              "name": "Bladder/Genital/Rectal Products Variety Packs",
+              "gpcCode": "10000852",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Bladder/Genital/Rectal Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Bladder/Genital/Rectal Products class. Includes products such as Enemas and Rectal Medication sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "bladder-genital-rectal-products"
+            },
+            {
+              "id": "cystitis-products",
+              "name": "Cystitis Products",
+              "gpcCode": "10000847",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation that is used to treat cystitis by reducing pain, inflammation and infection of the bladder. Includes products such as tablet remedies, liquid remedies, soluble powder remedies.",
+              "parentId": "bladder-genital-rectal-products"
+            },
+            {
+              "id": "diuretic-remedies",
+              "name": "Diuretic Remedies",
+              "gpcCode": "10000850",
+              "gpcDescription": "Includes any products that can be described/observed as treatment to relieve and eliminate excess water retention from the bladder. Includes products such as Tablet Remedies, Liquid Remedies and soluble powder remedies.",
+              "parentId": "bladder-genital-rectal-products"
+            },
+            {
+              "id": "enemas-douches",
+              "name": "Enemas/Douches",
+              "gpcCode": "10000851",
+              "gpcDescription": "Includes any products that can be described/observed as bladder/genital/rectal products that are used to clean the bowels, relieve constipation or those products that are used to cleanse, relieve discomfort from vaginal discharge, menstruation or urine leakage. Products used in this brick work by inserting water or a solution into the rectum or vagina through tubing and a nozzle.",
+              "parentId": "bladder-genital-rectal-products"
+            },
+            {
+              "id": "genital-irritation",
+              "name": "Genital Irritation",
+              "gpcCode": "10000846",
+              "gpcDescription": "Includes any products that can be described/observed as those that are used to treat, alleviate irritation and pain of the genital area for such conditions as thrush or unstable ph balance. Includes products such as wipes, gels and lotions. ",
+              "parentId": "bladder-genital-rectal-products"
+            },
+            {
+              "id": "medical-lubricants",
+              "name": "Medical Lubricants",
+              "gpcCode": "10000923",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation formulated to lubricate the genital, rectal, or other areas for medical purposes. These products are intended for use by healthcare professionals in medical settings such as hospitals, clinics, and doctor offices for procedures such as ultrasound examinations, catheter insertions, and other medical applications.",
+              "parentId": "bladder-genital-rectal-products"
+            },
+            {
+              "id": "rectal-medication",
+              "name": "Rectal Medication",
+              "gpcCode": "10000848",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation used to treat rectal ailments such as haemorrhoids, a condition which causes swollen blood vessels in and around the rectum, or tears in the skin around the opening of the anus, commonly known as anal fissures. Includes products such as tablets, which may be taken orally or as a suppository, creams and soluble powders.",
+              "parentId": "bladder-genital-rectal-products"
+            }
+          ]
+        },
+        {
+          "id": "drug-administration",
+          "name": "Drug Administration",
+          "gpcCode": "51101600",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "drug-administration",
+              "name": "Drug Administration",
+              "gpcCode": "10000456",
+              "gpcDescription": "Includes any products that can be described/observed as a medical device designed to inject fluids or powders into the body or used for the inhalation or irrigation of various body organs. Includes products such as Syringes and Needles.",
+              "parentId": "drug-administration"
+            },
+            {
+              "id": "drug-administration-accessories",
+              "name": "Drug Administration - Accessories",
+              "gpcCode": "10000457",
+              "gpcDescription": "Includes any products that can be described/observed as a medical device, specifically designed to assist in drug administration. Products include Enema Tips, Needle Covers, Enema Stop Corks, Irrigation Cans and Tubes, Syringe Boxes.",
+              "parentId": "drug-administration"
+            },
+            {
+              "id": "drug-administration-replacement-parts",
+              "name": "Drug Administration - Replacement Parts",
+              "gpcCode": "10000912",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Drug Administration products. Includes products such as Nebuliser Hoses and Masks.",
+              "parentId": "drug-administration"
+            },
+            {
+              "id": "drug-administration-other",
+              "name": "Drug Administration Other",
+              "gpcCode": "10000922",
+              "gpcDescription": "Includes any products that can be described/observed as Drug Administration products, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "drug-administration"
+            },
+            {
+              "id": "drug-administration-variety-packs",
+              "name": "Drug Administration Variety Packs",
+              "gpcCode": "10000681",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Drug Administration products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Drug Administration class. Includes products such as Needles and Needle Cases sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "drug-administration"
+            }
+          ]
+        },
+        {
+          "id": "enteral-feeding-equipment",
+          "name": "Enteral Feeding Equipment",
+          "gpcCode": "51103200",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "enteral-feeding-equipment-other",
+              "name": "Enteral Feeding Equipment Other",
+              "gpcCode": "10000902",
+              "gpcDescription": "Includes any products that can be described/observed as Enteral Feeding Equipment, where the user of the schema is not able to classify the product in existing bricks within the schema",
+              "parentId": "enteral-feeding-equipment"
+            },
+            {
+              "id": "enteral-feeding-equipment-variety-packs",
+              "name": "Enteral Feeding Equipment Variety Packs",
+              "gpcCode": "10000921",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Enteral Feeding Equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Enteral Feeding Equipment class. Includes products such as Enteral Feeding Bags and Pumps sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "enteral-feeding-equipment"
+            },
+            {
+              "id": "enteral-feeding-gastrostomy-kits",
+              "name": "Enteral Feeding Gastrostomy Kits",
+              "gpcCode": "10000898",
+              "gpcDescription": "Includes any products that can be described/observed as those which contain some or all of the products used to insert tubes into the gastric tract when enteral feeding is required. Includes products such as valves, fasteners, balloons, extension and connection parts. Products will typically include safety features making them difficult to remove once installed.",
+              "parentId": "enteral-feeding-equipment"
+            },
+            {
+              "id": "enteral-feeding-nutrition-bags-containers",
+              "name": "Enteral Feeding Nutrition Bags/Containers",
+              "gpcCode": "10000900",
+              "gpcDescription": "Includes any products that can be described/observed as being specifically intended to store food during the process of enteral feeding. Includes products such as feeding bags and feeding containers.",
+              "parentId": "enteral-feeding-equipment"
+            },
+            {
+              "id": "enteral-feeding-pumps-feeding-sets",
+              "name": "Enteral Feeding Pumps/Feeding Sets",
+              "gpcCode": "10000899",
+              "gpcDescription": "Includes any products that can be described/observed as those used to pump the nutritional feed into the patient who requires enteral feeding. Includes products such as the pumps themselves, gravity sets and nutrition bags.",
+              "parentId": "enteral-feeding-equipment"
+            },
+            {
+              "id": "enteral-feeding-tubes",
+              "name": "Enteral Feeding Tubes",
+              "gpcCode": "10000901",
+              "gpcDescription": "Includes any products that can be described/observed as tubes, which are designed to be used in the process of enteral feeding. Includes products such as Feeding Tubes, Decompression Tubes, Extension Tubes and Gastrostomy Tubes.",
+              "parentId": "enteral-feeding-equipment"
+            }
+          ]
+        },
+        {
+          "id": "first-aid",
+          "name": "First Aid",
+          "gpcCode": "51101700",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "first-aid-accessories",
+              "name": "First Aid - Accessories",
+              "gpcCode": "10000449",
+              "gpcDescription": "Includes any products that can be described/observed as a first aid accessory, specifically designed to be used in conjunction with first aid products to enhance or supplement the safety, comfort and convenience of the patient.",
+              "parentId": "first-aid"
+            },
+            {
+              "id": "first-aid-dressings-bandages-plaster",
+              "name": "First Aid - Dressings/Bandages/Plaster",
+              "gpcCode": "10000448",
+              "gpcDescription": "Includes any products that can be described/observed as a strip or square of cloth or similar material, which can be self adhesive, that is used as a protective dressing for a wound or sore. Available in various sizes and shapes and can be medicated.",
+              "parentId": "first-aid"
+            },
+            {
+              "id": "first-aid-sling-support",
+              "name": "First Aid - Sling/Support",
+              "gpcCode": "10000450",
+              "gpcDescription": "Includes any products that can be described/observed as a support that is used to totally or partially to immobilise an injury or to prevent the recurrence of an injury. Includes products made from a very high-density foam, nylon, spandex or polyester stretch fabric. Also includes products that are available in various shapes and sizes and splints.",
+              "parentId": "first-aid"
+            },
+            {
+              "id": "first-aid-other",
+              "name": "First Aid Other",
+              "gpcCode": "10000908",
+              "gpcDescription": "Includes any products that can be described/observed as First Aid products, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "first-aid"
+            },
+            {
+              "id": "first-aid-variety-packs",
+              "name": "First Aid Variety Packs",
+              "gpcCode": "10000684",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct First Aid products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the First Aid class. Includes products such as Slings and Textile Bandages sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "first-aid"
+            },
+            {
+              "id": "ice-heated-pack",
+              "name": "Ice/Heated Pack",
+              "gpcCode": "10000451",
+              "gpcDescription": "Includes any products that can be described/observed as a fluid, solid or gel-filled pack which can be cooled or heated for use in the assistance of pain relief and administering first aid, for example, for acute pain and swelling following injury. Products are available in various shapes and sizes which can be moulded to cover the affected area. Products include those with a self heating or cooling mechanism.",
+              "parentId": "first-aid"
+            },
+            {
+              "id": "poison-removal-treatment-products",
+              "name": "Poison Removal/Treatment Products",
+              "gpcCode": "10000909",
+              "gpcDescription": "Includes any products that can be described/observed as those which neutralise poison that has been injected into the body by poisonous animals such as bees, scorpions, jellyfish, mosquitoes, snakes, spiders and/or plants such as stinging plants. Includes products such as Syringes, Tablet Remedies, Powder Remedies, Liquid Remedies, Lotion Remedies and Cream Remedies.",
+              "parentId": "first-aid"
+            },
+            {
+              "id": "sterilisers-surgical-spirits",
+              "name": "Sterilisers/Surgical Spirits",
+              "gpcCode": "10000910",
+              "gpcDescription": "Includes any products that can be described/observed as sterilisers that clean and kill bacteria and germs. Products included are specifically intended for use on the skin or body, but may have additional uses such as preparing instruments like hypodermic needles and earrings prior to insertion in the skin. Sterilisers and surgical spirits are used prior to any additional treatment such as antiseptic.Includes products such as Powder Sterilisers, Tablet Sterilisers, Liquid Sterilisers. ",
+              "parentId": "first-aid"
+            }
+          ]
+        },
+        {
+          "id": "flower-homoeopathic-homeopathic-remedies",
+          "name": "Flower/Homoeopathic/Homeopathic Remedies",
+          "gpcCode": "51102600",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "flower-remedies",
+              "name": "Flower Remedies",
+              "gpcCode": "10000861",
+              "gpcDescription": "Includes any products that can be described/observed as diluted homeopathic tinctures of various different flowers. Products may be considered as an alternative to conventional medicine. Includes products such as Salt Remedies, Lotion Remedies, Cream Remedies, Tablet Remedies, Powder Remedies, Oil Remedies and Liquid Remedies. ",
+              "parentId": "flower-homoeopathic-homeopathic-remedies"
+            },
+            {
+              "id": "flower-homoeopathic-homeopathic-remedies-other",
+              "name": "Flower/Homoeopathic/Homeopathic Remedies Other",
+              "gpcCode": "10000914",
+              "gpcDescription": "Includes any products that can be described/observed as Flower/Homoeopathic/Homeopathic Remedies, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "flower-homoeopathic-homeopathic-remedies"
+            },
+            {
+              "id": "flower-homoeopathic-homeopathic-remedies-variety-packs",
+              "name": "Flower/Homoeopathic/Homeopathic Remedies Variety Packs",
+              "gpcCode": "10000862",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Flower/Homoeopathic/Homeopathic Remedies sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Flower/Homeopathic/Homeopathic Remedies class. Includes products such as Flower Tinctures and Homeopathic Remedies sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "flower-homoeopathic-homeopathic-remedies"
+            },
+            {
+              "id": "homoeopathic-homeopathic-remedies-combination-ingredients",
+              "name": "Homoeopathic/Homeopathic Remedies - Combination Ingredients",
+              "gpcCode": "10000860",
+              "gpcDescription": "Includes any products that can be described/observed as a combination of natural substance ingredients, which are used to treat physical and emotional ailments. Products may be considered as an alternative to conventional medicine. Includes products such as Salt Remedies, Lotion Remedies, Cream Remedies, Tablet Remedies, Powder Remedies, Oil Remedies and Liquid Remedies. ",
+              "parentId": "flower-homoeopathic-homeopathic-remedies"
+            },
+            {
+              "id": "homoeopathic-homeopathic-remedies-individual-ingredients",
+              "name": "Homoeopathic/Homeopathic Remedies - Individual Ingredients",
+              "gpcCode": "10000859",
+              "gpcDescription": "Includes any products that can be described/observed as individual natural substance ingredients, which are used to treat physical and emotional ailments. Products may be considered as an alternative to conventional medicine. Includes products such as Salt Remedies, Lotion Remedies, Cream Remedies, Tablet Remedies, Powder Remedies, Oil Remedies and Liquid Remedies. ",
+              "parentId": "flower-homoeopathic-homeopathic-remedies"
+            }
+          ]
+        },
+        {
+          "id": "foot-leg-care-treatments",
+          "name": "Foot/Leg Care/Treatments",
+          "gpcCode": "51101800",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "foot-care-hygiene-aids",
+              "name": "Foot Care/Hygiene Aids",
+              "gpcCode": "10000489",
+              "gpcDescription": "Includes any products that can be described/observed as a device or implement designed to assist the removal of rough, hard or dry skin from various areas of the feet or to remove corns or calluses. ",
+              "parentId": "foot-leg-care-treatments"
+            },
+            {
+              "id": "foot-leg-care-treatments-other",
+              "name": "Foot/Leg Care/Treatments Other",
+              "gpcCode": "10000907",
+              "gpcDescription": "Includes any products that can be described/observed as Foot/Leg Care and Treatments, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "foot-leg-care-treatments"
+            },
+            {
+              "id": "foot-leg-care-treatments-variety-packs",
+              "name": "Foot/Leg Care/Treatments Variety Packs",
+              "gpcCode": "10000685",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Foot/Leg Care and Treatment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Foot/Leg Care and Treatments class. Includes products such as Pumice Stones and Medicated Insoles sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "foot-leg-care-treatments"
+            },
+            {
+              "id": "medicated-orthopaedic-footwear",
+              "name": "Medicated/Orthopaedic Footwear",
+              "gpcCode": "10000488",
+              "gpcDescription": "Includes any products that can be described/observed as specialised footwear specifically designed to treat orthopaedic ailments, and typically intended to relieve pain and discomfort in the skeletal system and associated muscles, joints, and ligaments by offering greater torsional rigidity and extra depth within the shoe. Products include Orthopaedic or Shock Absorbent Insoles, designed to be inserted into normal footwear and removed according to individual need. Products also include Medicated and Antiseptic Insoles.",
+              "parentId": "foot-leg-care-treatments"
+            },
+            {
+              "id": "therapeutic-hosiery",
+              "name": "Therapeutic Hosiery",
+              "gpcCode": "10000474",
+              "gpcDescription": "Includes any products that can be described/observed as stockings, tights or socks, specifically designed for therapeutic purposes. Products include medicated hosiery, such as verucca or anti-fungal socks and those designed to promote blood circulation through the compression of the legs, in order to treat and/or prevent the symptoms of varicose veins and those that can be used as a therapy for tired legs. Includes products designed for male and female use. Products are specifically marketed as being therapeutic.",
+              "parentId": "foot-leg-care-treatments"
+            }
+          ]
+        },
+        {
+          "id": "gastrointestinal-remedy-products",
+          "name": "Gastrointestinal Remedy Products",
+          "gpcCode": "51102700",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "antacids-indigestion-flatulence-remedies",
+              "name": "Antacids/Indigestion/Flatulence Remedies",
+              "gpcCode": "10000863",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to relieve and neutralise acid to prevent or alleviate indigestion, upset stomach, heartburn and flatulence. Includes products such as Liquid Remedies, Soluble Powder Remedies and Tablet Remedies.",
+              "parentId": "gastrointestinal-remedy-products"
+            },
+            {
+              "id": "diarrhoea-remedies",
+              "name": "Diarrhoea Remedies",
+              "gpcCode": "10000864",
+              "gpcDescription": "Includes any products that can be described/observed as those that are used to relieve and alleviate frequent passing of liquid, loose stools. Includes products such as Liquid Remedies, Soluble Powder Remedies and Tablet Remedies.",
+              "parentId": "gastrointestinal-remedy-products"
+            },
+            {
+              "id": "gastrointestinal-remedy-products-other",
+              "name": "Gastrointestinal Remedy Products Other",
+              "gpcCode": "10000865",
+              "gpcDescription": "Includes any products that can be described/observed as Gastrointestinal Remedy products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "gastrointestinal-remedy-products"
+            },
+            {
+              "id": "gastrointestinal-remedy-products-variety-packs",
+              "name": "Gastrointestinal Remedy Products Variety Packs",
+              "gpcCode": "10000871",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Gastrointestinal Remedy Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Gastrointestinal Remedy Products class. Includes products such as Nausea Remedies and Worming Preparations sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "gastrointestinal-remedy-products"
+            },
+            {
+              "id": "general-multi-use-gastrointestinal-remedies",
+              "name": "General/Multi-use Gastrointestinal Remedies",
+              "gpcCode": "10000870",
+              "gpcDescription": "Includes any products that can be described/observed as a treatment intended to alleviate and treat a number of gastrointestinal ailments such as heartburn, indigestion, diarrhoea and flatulence. These products are for multi purpose use and will be effective treatments for more than one gastrointestinal ailment. Includes products such as Liquid Remedies, Soluble Powder Remedies and Tablet Remedies. ",
+              "parentId": "gastrointestinal-remedy-products"
+            },
+            {
+              "id": "laxatives",
+              "name": "Laxatives",
+              "gpcCode": "10000866",
+              "gpcDescription": "Includes any products that can be described/observed as those that alleviate and treat constipation by encouraging defecation or the elimination of faeces. Includes products such as Liquid Remedies, Soluble Powder Remedies and Tablet Remedies.",
+              "parentId": "gastrointestinal-remedy-products"
+            },
+            {
+              "id": "nausea-remedies",
+              "name": "Nausea Remedies",
+              "gpcCode": "10000868",
+              "gpcDescription": "Includes any products that can be described/observed as those that alleviate and/or prevent the symptoms of nausea that could be caused by food poisoning and excessive consumption of food. Includes products such as Liquid Remedies, Soluble Powder Remedies and Tablet Remedies.",
+              "parentId": "gastrointestinal-remedy-products"
+            },
+            {
+              "id": "oral-rehydration-electrolyte-maintenance",
+              "name": "Oral Rehydration/Electrolyte Maintenance",
+              "gpcCode": "10000869",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation which is intended to rehydrate and maintain electrolyte balance in the body, by replacing fluid lost through exercise or due to sickness such as diarrhoea or vomiting. Includes products such as Liquid Remedies, Soluble Powder Remedies and Tablet Remedies.",
+              "parentId": "gastrointestinal-remedy-products"
+            },
+            {
+              "id": "worming-preparations",
+              "name": "Worming Preparations",
+              "gpcCode": "10000867",
+              "gpcDescription": "Includes any products that can be described/observed as those that prevent and provide relief from parasitic worms such as round worm, thread worm and pin worm. Includes products such as Liquid Remedies, Soluble Powder Remedies or Tablet Remedies.",
+              "parentId": "gastrointestinal-remedy-products"
+            }
+          ]
+        },
+        {
+          "id": "habit-treatment",
+          "name": "Habit Treatment",
+          "gpcCode": "51101900",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "anti-smoking-aids",
+              "name": "Anti-smoking Aids",
+              "gpcCode": "10000682",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation or device used to aid the process of giving up smoking. Includes products such as Nicotine Patches intended to be placed on the surface of the body, Chewing Gums, Flavoured Confectionery and Tablets.",
+              "parentId": "habit-treatment"
+            },
+            {
+              "id": "habit-treatment",
+              "name": "Habit Treatment",
+              "gpcCode": "10000459",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, medication or device, specifically designed to combat undesirable habits or to prevent, treat or alleviate the symptoms associated with breaking undesired habits. Includes products such as all Anti-Alcoholic Treatments and Anti-Nail Biting Liquid.",
+              "parentId": "habit-treatment"
+            },
+            {
+              "id": "habit-treatment-variety-packs",
+              "name": "Habit Treatment Variety Packs",
+              "gpcCode": "10000690",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Habit Treatment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Habit Treatment class. Includes products such as Artificial Cigarettes and Nail Biting Treatments sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "habit-treatment"
+            }
+          ]
+        },
+        {
+          "id": "health-treatments-aids-materials",
+          "name": "Health Treatments/Aids Materials",
+          "gpcCode": "51103400",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "health-treatments-aids-sheets",
+              "name": "Health Treatments/Aids Sheets",
+              "gpcCode": "10006960",
+              "gpcDescription": "Includes any products that may be described/observed as sheets of material to be used in a healthcare setting to create various custom-made products such as splints, orthotic supports and cervical collars.",
+              "parentId": "health-treatments-aids-materials"
+            }
+          ]
+        },
+        {
+          "id": "health-treatments-aids-variety-packs",
+          "name": "Health Treatments/Aids Variety Packs",
+          "gpcCode": "51102300",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "health-treatments-aids-variety-packs",
+              "name": "Health Treatments/Aids Variety Packs",
+              "gpcCode": "10000683",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Health Treatments and Aids sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Health Treatments and Aids Family. Includes products such as Needles with Textile Bandages variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "health-treatments-aids-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "oral-mouth-treatments",
+          "name": "Oral/Mouth Treatments",
+          "gpcCode": "51103300",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "oral-mouth-treatments",
+              "name": "Oral/Mouth Treatments",
+              "gpcCode": "10002423",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically deigned to prevent, treat or alleviate ailments or disorders involving the mouth. Includes products such as Halitosis and Ulcer Treatments.",
+              "parentId": "oral-mouth-treatments"
+            }
+          ]
+        },
+        {
+          "id": "pain-relief-products",
+          "name": "Pain Relief Products",
+          "gpcCode": "51102500",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "arthritic-rheumatic-muscular-pain-relief",
+              "name": "Arthritic/Rheumatic/Muscular Pain Relief",
+              "gpcCode": "10000855",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to treat ailments that cause stiffness, swelling and pain in the joints and muscles of the body. Includes products such as Liquid Remedies, Soluble Powder Remedies, Tablet Form Remedies, Creams and Sprays.",
+              "parentId": "pain-relief-products"
+            },
+            {
+              "id": "general-multi-use-pain-relief",
+              "name": "General/Multi-use Pain Relief",
+              "gpcCode": "10000856",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to relieve a variety of pains in different parts of the body and not just one particular area Includes products such as Liquid Remedies, Soluble Powder Remedies, Tablet Form Remedies and Sprays. ",
+              "parentId": "pain-relief-products"
+            },
+            {
+              "id": "headache-migraine-pain-relief",
+              "name": "Headache/Migraine Pain Relief",
+              "gpcCode": "10000857",
+              "gpcDescription": "Includes any products that can be described observed as preparations intended to provide pain relief from headaches and severe recurring vascular headaches Includes products such as Liquid Remedies, Soluble Powder Remedies and Tablet Form Remedies.",
+              "parentId": "pain-relief-products"
+            },
+            {
+              "id": "pain-relief-powered",
+              "name": "Pain Relief (Powered)",
+              "gpcCode": "10000853",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device providing pain relief by using electrical impulses and currents, referred to as TENS Technology (Transcutaneous Electrical Nerve Stimulation) Products may be targeted at specific symptoms of muscular aches, arthritis, rheumatism. ",
+              "parentId": "pain-relief-products"
+            },
+            {
+              "id": "pain-relief-products-other",
+              "name": "Pain Relief Products Other",
+              "gpcCode": "10000854",
+              "gpcDescription": "Includes any products that can be described/observed as preparations intended to provide Pain Relief, where the user of the schema is not able to classify the product in existing bricks within the schema. ",
+              "parentId": "pain-relief-products"
+            },
+            {
+              "id": "pain-relief-products-variety-packs",
+              "name": "Pain Relief Products Variety Packs",
+              "gpcCode": "10000858",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Pain Relief Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Pain Relief Products class. Includes products such as Headache Pain Relief and Muscular Pain Relief sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "pain-relief-products"
+            }
+          ]
+        },
+        {
+          "id": "personal-aids",
+          "name": "Personal Aids",
+          "gpcCode": "51101500",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "disability-aids",
+              "name": "Disability Aids",
+              "gpcCode": "10000458",
+              "gpcDescription": "Includes any products that can be described/observed as a device or implement designed to assist people who have difficulty in standing or walking because of a foot or leg injury or general poor health. Products include Crutches, Walking Sticks and Frames, Wheel Chairs and Wheeled Walkers.",
+              "parentId": "personal-aids"
+            },
+            {
+              "id": "personal-aids-other",
+              "name": "Personal Aids Other",
+              "gpcCode": "10000915",
+              "gpcDescription": "Includes any products that can be described/observed as Personal Aids, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "personal-aids"
+            },
+            {
+              "id": "personal-aids-variety-packs",
+              "name": "Personal Aids Variety Packs",
+              "gpcCode": "10000686",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Personal Aid products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Personal Aids class. Includes products such as Crutches and Insect Repellents sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "personal-aids"
+            },
+            {
+              "id": "personal-repellents",
+              "name": "Personal Repellents",
+              "gpcCode": "10000570",
+              "gpcDescription": "Includes any products that may be observed/described as a preparation specifically designed to repel insects and typically intended to control both flying and crawling to prevent insects from biting or having physical contact with the person using the repellent. These types of repellents are used on the body. Includes products such as Liquid, Creams, Patches.",
+              "parentId": "personal-aids"
+            }
+          ]
+        },
+        {
+          "id": "respiratory-allergy-products",
+          "name": "Respiratory/Allergy Products",
+          "gpcCode": "51102900",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "allergy-prevention-relief-antihistamines",
+              "name": "Allergy Prevention/Relief/Antihistamines",
+              "gpcCode": "10000881",
+              "gpcDescription": "Includes any products that can be described/observed as remedies that prevent and/or relieve illness, skin problems and/or breathing problems, caused by allergies. Products may be targeted at specific allergies such as hay fever or asthma. Includes products such as Liquid Remedies, Soluble Powder Remedies, Tablet Form Remedies and Sprays.",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "chest-rubs",
+              "name": "Chest Rubs",
+              "gpcCode": "10000875",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to be rubbed onto the chest and neck to provide temporary relief of congestion and other cold symptoms",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "cold-cough-remedies",
+              "name": "Cold/Cough Remedies",
+              "gpcCode": "10000876",
+              "gpcDescription": "Includes any products that can be described/observed as remedies that prevent and/or relieve common respiratory infections such as coughs, colds and influenza. Includes products such as Liquid Remedies, Soluble Powder Remedies, Tablet Form Remedies and Sprays.",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "decongestants-other",
+              "name": "Decongestants Other",
+              "gpcCode": "10000882",
+              "gpcDescription": "Includes any products that can be described/observed as decongestants, which are not classified within any other brick within the Respiratory/Allergy Products class",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "humidifiers-vaporisers-non-powered",
+              "name": "Humidifiers/Vaporisers (Non Powered)",
+              "gpcCode": "10000883",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device that provides a moist, clean or treated air environment to avoid throat and nasal dryness and discomfort or relieve allergies and respiratory problems. Includes non-powered Humidifiers, which disperse tiny droplets of water to create a moist atmosphere, and non-powered Vaporisers, which turn liquid into vapour that is then dispersed into the atmosphere. Includes products that may be targeted at specific conditions such as Hay Fever. Includes refills for such products. ",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "humidifiers-vaporisers-powered",
+              "name": "Humidifiers/Vaporisers (Powered)",
+              "gpcCode": "10000916",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device that provides a moist, clean or treated air environment to avoid throat and nasal dryness and discomfort or relieve allergies and respiratory problems. Includes powered Humidifiers, which disperse tiny droplets of water to create a moist atmosphere, and powered Vaporisers, which turn liquid into vapour that is then dispersed into the atmosphere. Includes products that may be targeted at specific conditions such as Hay Fever. Includes refills for such products. ",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "inhalers-nebulisers-respirators-non-powered",
+              "name": "Inhalers/Nebulisers/Respirators (Non Powered)",
+              "gpcCode": "10000877",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device that delivers either clean air, gas or microscopic particles of medication directly to the upper respiratory tract, in order to prevent and relieve discomfort and congestion of the nasal and sinus passages. Typically, these products include hand-held pump dispensers used to relieve asthmatic conditions in the patient. ",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "inhalers-nebulisers-respirators-powered",
+              "name": "Inhalers/Nebulisers/Respirators (Powered)",
+              "gpcCode": "10000878",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device that delivers either clean air, gas or microscopic particles of medication directly to the upper respiratory tract, in order to prevent and relieve discomfort and congestion of the nasal and sinus passages. Typically, these products include ultrasonic nebulisers where sound vibrations create a drug aerosol application for asthmatic conditions. ",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "nasal-strips-sprays",
+              "name": "Nasal Strips/Sprays",
+              "gpcCode": "10000879",
+              "gpcDescription": "Includes any products that can be described/observed as remedies that provide relief to nasal congestion, restore moisture to dry nasal passages and/or reduce breathing problems. Includes products such as Liquid Remedies, Soluble Powder Remedies, Tablet Form Remedies, Strips, and Sprays.",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "respiratory-allergy-products-other",
+              "name": "Respiratory/Allergy Products Other",
+              "gpcCode": "10000920",
+              "gpcDescription": "Includes any products that can be described/observed as Respiratory/Allergy products, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "respiratory-allergy-products-variety-packs",
+              "name": "Respiratory/Allergy Products Variety Packs",
+              "gpcCode": "10000884",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Respiratory/Allergy Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Respiratory/Allergy Products class. Includes products such as Cough Remedies and Hay Fever Relief sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "respiratory-allergy-products"
+            },
+            {
+              "id": "throat-remedies",
+              "name": "Throat Remedies",
+              "gpcCode": "10000880",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to soothe or provide relief from the symptoms of a sore or infected throat. Includes products such as Liquid Remedies, Soluble Powder Remedies, Tablet Remedies and Spray Remedies.",
+              "parentId": "respiratory-allergy-products"
+            }
+          ]
+        },
+        {
+          "id": "sensory-organs-care-treatments",
+          "name": "Sensory Organs Care/Treatments",
+          "gpcCode": "51102100",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "ear-preparations",
+              "name": "Ear Preparations",
+              "gpcCode": "10000525",
+              "gpcDescription": "Includes any products that can be described/observed as a healthcare item, preparation or medication specifically designed to prevent, treat or alleviate ailments or disorders involving the ear. Includes synthetic products. ",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "eye-preparations",
+              "name": "Eye Preparations",
+              "gpcCode": "10000526",
+              "gpcDescription": "Includes any products that can be described/observed as a healthcare item, preparation or medication specifically designed to prevent, treat or alleviate ailments or disorders involving the eye. Includes synthetic products.",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "hearing-aids",
+              "name": "Hearing Aids",
+              "gpcCode": "10000487",
+              "gpcDescription": "Includes any products that can be described/observed as a small electronic apparatus that amplifies sound and is worn in or behind the ear to compensate for impaired hearing. Products include programmable, digital and conventional Hearing Aids. Products can be worn behind the ear, in the ear or completely inside the ear canal.",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "optic-appliances-contact-lenses",
+              "name": "Optic Appliances - Contact Lenses",
+              "gpcCode": "10000529",
+              "gpcDescription": "Includes any products that can be described/observed as a pair of very thin, circular optical lenses, specifically designed to aid and correct defective eyesight, and typically shaped to fit directly over the cornea of the eye. Products include Daily Wear Contact Lenses, disposable Contact Lenses, Extended Wear Contact Lenses, Soft Contact Lenses and Rigid Gas Permeable Lenses.",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "optic-appliances-spectacle-frames",
+              "name": "Optic Appliances - Spectacle Frames",
+              "gpcCode": "10000639",
+              "gpcDescription": "Includes any products that can be described/observed as an optical frame specifically designed to house spectacle lenses, which aid in correcting defective eyesight. Includes only frames with no lenses attached. ",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "optic-appliances-spectacle-lenses",
+              "name": "Optic Appliances - Spectacle Lenses",
+              "gpcCode": "10000638",
+              "gpcDescription": "Includes any products that can be described/observed as an optical lens specifically designed to aid and correct defective eyesight, and intended to be mounted in spectacle frames. Includes only lenses with no frame attached. ",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "optic-appliances-spectacles-ready-to-wear",
+              "name": "Optic Appliances - Spectacles - Ready To Wear",
+              "gpcCode": "10000528",
+              "gpcDescription": "Includes any products that can be described/observed as an optical instrument specifically designed to aid and correct defective eyesight, and typically composed of a pair of lenses mounted within a frame that is worn by the user so as to position the lenses immediately in front of the eyes. Includes only complete Spectacles which are ready to wear.",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "optic-appliances-sunglasses-ready-to-wear",
+              "name": "Optic Appliances - Sunglasses - Ready To Wear",
+              "gpcCode": "10000637",
+              "gpcDescription": "Includes any products that can be described/observed as an optical instrument specifically designed to protect the eyes from sunlight, and typically composed of a pair of tinted lenses mounted within a frame that is worn by the user so as to position the lenses immediately in front of the eyes. Includes only complete Sunglasses, which are ready to wear.",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "optic-appliances-care-contact-lenses",
+              "name": "Optic Appliances Care - Contact Lenses",
+              "gpcCode": "10000527",
+              "gpcDescription": "Includes any products that can be described/observed as a cream, gel or liquid that is employed for the cleaning and care of all types of contact lenses and products which protect and care for contact lenses such as specific cases.",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "optic-appliances-care-spectacles",
+              "name": "Optic Appliances Care - Spectacles",
+              "gpcCode": "10000688",
+              "gpcDescription": "Includes any products that can be described/observed as a cream, gel or liquid that is employed for the cleaning and care of all types of spectacles.",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "sensory-organs-care-treatments-other",
+              "name": "Sensory Organs Care/Treatments Other",
+              "gpcCode": "10000911",
+              "gpcDescription": "Includes any products that can be described/observed as Sensory Organs Care and Treatments, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "sensory-organs-care-treatments-variety-packs",
+              "name": "Sensory Organs Care/Treatments Variety Packs",
+              "gpcCode": "10000687",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Sensory Organs Care and Treatments sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sensory Organs Care and Treatments class. Includes products such as Contact Lenses and Contact Lenses Cases sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sensory-organs-care-treatments"
+            },
+            {
+              "id": "spectacle-care-accessories",
+              "name": "Spectacle Care Accessories",
+              "gpcCode": "10000689",
+              "gpcDescription": "Includes any products that can be described/observed as a product which protects and cares for spectacles such as specific cases and spectacle chains.",
+              "parentId": "sensory-organs-care-treatments"
+            }
+          ]
+        },
+        {
+          "id": "skin-scalp-aid-products",
+          "name": "Skin/Scalp Aid Products",
+          "gpcCode": "51103000",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "acne-rosacea-treatments",
+              "name": "Acne/Rosacea Treatments",
+              "gpcCode": "10000903",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to treat and alleviate acne and rosacea skin diseases, which are characterised by pimples, redness of the face and flushing of the skin. Includes products such as Creams Remedies, Lotion Remedies and Sprays.",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "anti-fungal-products",
+              "name": "Anti-fungal Products",
+              "gpcCode": "10000890",
+              "gpcDescription": "Includes any products that can be described/observed as a treatment intended to alleviate fungal infections such as athlete's foot, candida and tinea versicolor. Includes products such as Creams Remedies, Liquid Remedies and Tablet Remedies.",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "general-multi-purpose-skin-scalp-treatments",
+              "name": "General/Multi Purpose Skin/Scalp Treatments",
+              "gpcCode": "10000891",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation that treats and alleviates a variety of skin/scalp ailments, such as medicated powder that can treat chapped skin, itchy skin, skin rash, chafing and sunburn. Includes products such as Cream Remedies, Lotion Remedies, Sprays.",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "hair-loss-treatments",
+              "name": "Hair Loss Treatments",
+              "gpcCode": "10000888",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to treat and prevent the loss of hair. Includes products such as Cream Remedies, Lotion Remedies and sprays.",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "hand-sanitizers-antiseptics",
+              "name": "Hand Sanitizers / Antiseptics",
+              "gpcCode": "10000885",
+              "gpcDescription": "Includes any products that can be described/observed as preparations intended for sanitizing or disinfecting the skin and preparations for alleviating infections by killing bacteria in wounds, or to soothe/aid the healing of the broken/allergic skin. Includes alcohol-based Hand Sanitizer gels and foams as well as over-the-counter Antiseptic Creams, Liquid Remedies, Tablet Remedies, Lotions and Wipes.",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "insect-bite-relief",
+              "name": "Insect Bite Relief",
+              "gpcCode": "10000889",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to treat and relieve the itching and stings that are caused by insect bites such as bee and wasp stings. Includes products such as Cream Remedies, Lotion Remedies and Sprays.",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "parasite-infestation-equipment-non-powered",
+              "name": "Parasite Infestation Equipment (Non Powered)",
+              "gpcCode": "10000892",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device intended to treat and/or prevent parasite infestations such as head lice or body lice. Includes products such as non-powered Head Lice Combs that have been designed to remove lice from wet hair following the application of head lice lotion treatments. ",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "parasite-infestation-equipment-powered",
+              "name": "Parasite Infestation Equipment (Powered)",
+              "gpcCode": "10000893",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device intended to treat and/or prevent parasite infestations such as head lice or body lice. Includes products such as powered Head Lice Combs that have been designed to remove lice from wet hair following the application of head lice lotion treatments. ",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "parasite-infestation-treatments",
+              "name": "Parasite Infestation Treatments",
+              "gpcCode": "10000886",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to treat infestations of parasites such as head lice or body lice. Includes products such as Lotion Remedies, Shampoos and Cream Remedies. ",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "psoriasis-eczema-dry-skin-scalp-treatments",
+              "name": "Psoriasis/Eczema/Dry Skin/Scalp Treatments",
+              "gpcCode": "10000887",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to treat and alleviate the conditions of psoriasis/eczema and excessively dry skin, which are characterised by cracked, chapped or chafed skin. Products included may treat skin that has dried but previously been exposed to excessive perspiration resulting in chapped/chafed skin. Includes products such as Lotion Remedies, Cream Remedies, Tablet Remedies.",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "skin-scalp-treatment-products-other",
+              "name": "Skin/Scalp Treatment Products Other",
+              "gpcCode": "10000906",
+              "gpcDescription": "Includes any products that can be described/observed as Skin/Scalp Treatments, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "skin-scalp-treatment-products-variety-packs",
+              "name": "Skin/Scalp Treatment Products Variety Packs",
+              "gpcCode": "10000905",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Skin/Scalp Treatment Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Skin/Scalp Treatment Products class. Includes products such as Rosacea Treatments and Insect Bite Relief sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "skin-scalp-aid-products"
+            },
+            {
+              "id": "wart-verruca-corn-callus-treatments",
+              "name": "Wart/Verruca/Corn/Callus Treatments",
+              "gpcCode": "10000904",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to treat skin growths caused by viral infections in the top layer of skin, such as those found on the hands or feet and to treat hard thickened skin found on the hands, feet and toes. Includes products such as Lotion Remedies, Cream Remedies and Tablet Remedies. ",
+              "parentId": "skin-scalp-aid-products"
+            }
+          ]
+        },
+        {
+          "id": "sleeping-stress-relieving-products",
+          "name": "Sleeping/Stress Relieving Products",
+          "gpcCode": "51102800",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "sleeping-aids",
+              "name": "Sleeping Aids",
+              "gpcCode": "10000872",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to induce sleep to prevent insomnia or relieve disrupted sleeping patterns. Includes products such as Tablet Remedies and Liquid Remedies.",
+              "parentId": "sleeping-stress-relieving-products"
+            },
+            {
+              "id": "sleeping-stress-relieving-products-other",
+              "name": "Sleeping/Stress Relieving Products Other",
+              "gpcCode": "10000919",
+              "gpcDescription": "Includes any products that can be described/observed as Sleeping/Stress Relieving Products, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "sleeping-stress-relieving-products"
+            },
+            {
+              "id": "sleeping-stress-relieving-products-variety-packs",
+              "name": "Sleeping/Stress Relieving Products Variety Packs",
+              "gpcCode": "10000874",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Sleeping/Stress Relieving Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sleeping/Stress Relieving Products class. Includes products such as Stress Relief and Insomnia Relief sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sleeping-stress-relieving-products"
+            },
+            {
+              "id": "stress-relief-calmatives",
+              "name": "Stress Relief/Calmatives",
+              "gpcCode": "10000873",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation used to alleviate or reduce stress and stress related symptoms. Includes products such as Liquid Remedies and Tablet Remedies.",
+              "parentId": "sleeping-stress-relieving-products"
+            }
+          ]
+        },
+        {
+          "id": "travel-sickness-products",
+          "name": "Travel Sickness Products",
+          "gpcCode": "51103100",
+          "parentId": "health-treatments-aids",
+          "children": [
+            {
+              "id": "travel-sickness-preventatives-medicinal",
+              "name": "Travel Sickness Preventatives - Medicinal",
+              "gpcCode": "10000894",
+              "gpcDescription": "Includes any products that can be described/observed as medicinal remedies that prevent the feeling of illness, particularly nausea when travelling. Includes products such as Liquid Remedies, Soluble Powder Remedies, Tablet Form Remedies, and Sprays.",
+              "parentId": "travel-sickness-products"
+            },
+            {
+              "id": "travel-sickness-preventatives-non-medicinal",
+              "name": "Travel Sickness Preventatives - Non Medicinal",
+              "gpcCode": "10000895",
+              "gpcDescription": "Includes any products that can be described/observed as non-medicinal remedies that prevent the feeling of illness, particularly nausea when travelling. Includes products such as Wristbands.",
+              "parentId": "travel-sickness-products"
+            },
+            {
+              "id": "travel-sickness-products-other",
+              "name": "Travel Sickness Products Other",
+              "gpcCode": "10000897",
+              "gpcDescription": "Includes any products that can be described/observed as Travel Sickness Products, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "travel-sickness-products"
+            },
+            {
+              "id": "travel-sickness-products-variety-packs",
+              "name": "Travel Sickness Products Variety Packs",
+              "gpcCode": "10000896",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Travel Sickness Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Travel Sickness Products class. Includes products such as Travel Sickness Wristbands and Tablets sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "travel-sickness-products"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "healthcare-variety-packs",
+      "name": "Healthcare Variety Packs",
+      "gpcCode": "51140000",
+      "parentId": "healthcare",
+      "children": [
+        {
+          "id": "healthcare-variety-packs",
+          "name": "Healthcare Variety Packs",
+          "gpcCode": "51140100",
+          "parentId": "healthcare-variety-packs",
+          "children": [
+            {
+              "id": "healthcare-variety-packs",
+              "name": "Healthcare Variety Packs",
+              "gpcCode": "10000673",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Healthcare products sold together which exist within the schema but belong to different Families, that is two or more products contained within the same pack which cross Families within the Healthcare Segment. Includes products such as Vitamins and Glucose Tests variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "healthcare-variety-packs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "home-diagnostics",
+      "name": "Home Diagnostics",
+      "gpcCode": "51130000",
+      "parentId": "healthcare",
+      "children": [
+        {
+          "id": "diagnostic-monitors",
+          "name": "Diagnostic Monitors",
+          "gpcCode": "51131500",
+          "parentId": "home-diagnostics",
+          "children": [
+            {
+              "id": "diagnostic-monitors-other",
+              "name": "Diagnostic Monitors Other",
+              "gpcCode": "10000843",
+              "gpcDescription": "Includes any products that can be described/observed as Diagnostic Monitors, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "diagnostic-monitors"
+            },
+            {
+              "id": "home-diagnostic-monitors",
+              "name": "Home Diagnostic Monitors",
+              "gpcCode": "10000455",
+              "gpcDescription": "Includes any products that can be described/observed as a device, specifically designed for personal use to periodically monitor blood pressure, blood sugar, heartbeat, weight or body fat on an ongoing basis. Products include Diabetes Monitoring Kits, Chest Bands and Wrist, Finger Tip or Upper Arm Monitors and Personal Scales which monitor weight and/or body fat. Products can be operated manually or automatically and can be used in conjunction with Sports Equipment while exercising.",
+              "parentId": "diagnostic-monitors"
+            }
+          ]
+        },
+        {
+          "id": "diagnostic-tests",
+          "name": "Diagnostic Tests",
+          "gpcCode": "51131600",
+          "parentId": "home-diagnostics",
+          "children": [
+            {
+              "id": "diagnostic-tests-other",
+              "name": "Diagnostic Tests Other",
+              "gpcCode": "10000844",
+              "gpcDescription": "Includes any products that can be described/observed as Diagnostic Tests, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "diagnostic-tests"
+            },
+            {
+              "id": "diagnostic-tests-variety-packs",
+              "name": "Diagnostic Tests Variety Packs",
+              "gpcCode": "10000648",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Diagnostic Tests sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Diagnostic Tests class. Includes products such as Thermometers and Thermometer Covers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "diagnostic-tests"
+            },
+            {
+              "id": "home-diagnostic-products-accessories",
+              "name": "Home Diagnostic Products - Accessories",
+              "gpcCode": "10000454",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory that is designed for use in conjunction with diagnostic tests and kits. Products are typically intended to provide personal hygiene when using non-disposable diagnostic equipment. Includes products such as Pump Accessories, Control Solutions and Testing Strips, Covers or Disposable Needles (Lancets).",
+              "parentId": "diagnostic-tests"
+            },
+            {
+              "id": "home-diagnostic-tests",
+              "name": "Home Diagnostic Tests",
+              "gpcCode": "10000453",
+              "gpcDescription": "Includes any products that can be described/observed as a personal diagnostic test, which is designed for in-home use to test body functions or detect the presence or the level of various substances such as glucose, protein, hormones or alcohol in body fluids. These products usually work by analysing a sample of blood, saliva or urine. Two main types of test kit exist: one type provides results in several minutes, the other requires the test to be taken at home and the sample sent to a laboratory for detailed analysis and the results are provided within a few days. ",
+              "parentId": "diagnostic-tests"
+            },
+            {
+              "id": "thermometers",
+              "name": "Thermometers",
+              "gpcCode": "10000452",
+              "gpcDescription": "Includes any products that can be described/observed as a device designed to measure a person's body temperature. Measurements can be taken orally, rectally, under the arm, in the ear or against the forehead. Includes products available in various sizes and shapes and both Digital and Mercury types. ",
+              "parentId": "diagnostic-tests"
+            }
+          ]
+        },
+        {
+          "id": "home-diagnostics-variety-packs",
+          "name": "Home Diagnostics Variety Packs",
+          "gpcCode": "51131700",
+          "parentId": "home-diagnostics",
+          "children": [
+            {
+              "id": "home-diagnostics-variety-packs",
+              "name": "Home Diagnostics Variety Packs",
+              "gpcCode": "10000647",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Home Diagnostic products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Home Diagnostics Family. Includes products such as Blood Pressure Monitors with Cholesterol Tests variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "home-diagnostics-variety-packs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medical-devices",
+      "name": "Medical Devices",
+      "gpcCode": "51150000",
+      "parentId": "healthcare",
+      "children": [
+        {
+          "id": "medical-devices",
+          "name": "Medical Devices",
+          "gpcCode": "51150100",
+          "parentId": "medical-devices",
+          "children": [
+            {
+              "id": "medical-devices",
+              "name": "Medical Devices",
+              "gpcCode": "10005844",
+              "gpcDescription": "Includes any products that can be described/observed as devices, other than drugs, intended to be used for the diagnosis, treatment or prevention of disease. Includes all medical equipment and supplies from cotton swabs to MRI machines to surgical implants, for human applications.",
+              "parentId": "medical-devices"
+            },
+            {
+              "id": "support-component-of-a-medical-device",
+              "name": "Support Component of a Medical Device",
+              "gpcCode": "10008118",
+              "gpcDescription": "A trade item, that fails to meet the definition of a Medical Device as established by relevant regulatory authorities (generally identified as NAMDs: Not A Medical Device in the healthcare industry). These may include accessories that would not be considered devices in their own right, but are intended to support, supplement, and/or augment the performance of one or more medical devices.",
+              "parentId": "medical-devices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pharmaceutical-drugs",
+      "name": "Pharmaceutical Drugs",
+      "gpcCode": "51160000",
+      "parentId": "healthcare",
+      "children": [
+        {
+          "id": "pharmaceutical-drugs",
+          "name": "Pharmaceutical Drugs",
+          "gpcCode": "51160100",
+          "parentId": "pharmaceutical-drugs",
+          "children": [
+            {
+              "id": "pharmaceutical-compounding-accessories",
+              "name": "Pharmaceutical Compounding - Accessories",
+              "gpcCode": "10008142",
+              "gpcDescription": "Various pharmaceutical and laboratory accessories used for compounding pharmaceuticals. Includes items such as balances, pharmaceutical hot plates, bottle top dispensers non disposable, etc.",
+              "parentId": "pharmaceutical-drugs"
+            },
+            {
+              "id": "pharmaceutical-compounding-bases",
+              "name": "Pharmaceutical Compounding - Bases",
+              "gpcCode": "10008141",
+              "gpcDescription": "Base products for compounding with chemicals for preparation of specific dosage forms.",
+              "parentId": "pharmaceutical-drugs"
+            },
+            {
+              "id": "pharmaceutical-compounding-chemicals",
+              "name": "Pharmaceutical Compounding - Chemicals",
+              "gpcCode": "10008140",
+              "gpcDescription": "The chemicals used for the preparation of drug products for compounding in the pharmacy. These include but are not limited to precursors. ",
+              "parentId": "pharmaceutical-drugs"
+            },
+            {
+              "id": "pharmaceutical-drugs",
+              "name": "Pharmaceutical Drugs",
+              "gpcCode": "10005845",
+              "gpcDescription": "Includes any products that can be described/observed as a substance, used in the diagnosis, treatment or prevention of disease that achieves its primary intended purpose through pharmacological, immunological or metabolic means within or on the body. Includes all drugs, biologicals or therapeutic nutritionals for human applications.",
+              "parentId": "pharmaceutical-drugs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veterinary-healthcare",
+      "name": "Veterinary Healthcare",
+      "gpcCode": "51170000",
+      "parentId": "healthcare",
+      "children": [
+        {
+          "id": "veterinary-medical-devices",
+          "name": "Veterinary Medical Devices",
+          "gpcCode": "51170200",
+          "parentId": "veterinary-healthcare",
+          "children": [
+            {
+              "id": "support-component-of-a-veterinary-medical-device",
+              "name": "Support Component of a Veterinary Medical Device",
+              "gpcCode": "10008111",
+              "gpcDescription": "A trade item, that fails to meet the definition of a Veterinary Medical Device as established by relevant regulatory authorities (generally identified as NAMDs: Not A Medical Device in the veterinary healthcare industry). These may include accessories that would not be considered devices in their own right, but are intended to support, supplement, and/or augment the performance of one or more medical devices.",
+              "parentId": "veterinary-medical-devices"
+            },
+            {
+              "id": "veterinary-medical-devices",
+              "name": "Veterinary Medical Devices",
+              "gpcCode": "10006412",
+              "gpcDescription": "Includes any products that can be described/observed as devices or substances, used in the diagnosis, treatment or prevention of disease of animals (veterinary practices), other than drugs. Includes all medical equipment and supplies from cotton swabs to MRI machines to surgical implants used in the diagnosis, treatment or prevention of disease of animals (veterinary practices). Includes any products that can be described/observed as devices, other than drugs, intended to be used for the diagnosis, treatment or prevention of disease. Includes all medical equipment and supplies from cotton swabs to MRI machines to surgical implants, for veterinary applications.",
+              "parentId": "veterinary-medical-devices"
+            }
+          ]
+        },
+        {
+          "id": "veterinary-pharmaceuticals",
+          "name": "Veterinary Pharmaceuticals",
+          "gpcCode": "51170100",
+          "parentId": "veterinary-healthcare",
+          "children": [
+            {
+              "id": "veterinary-pharmaceuticals",
+              "name": "Veterinary Pharmaceuticals",
+              "gpcCode": "10000514",
+              "gpcDescription": "Includes any products that can be described/observed as drugs, biologicals or therapeutic nutritionals for veterinary applications, used in the diagnosis, treatment or prevention of disease of animals (veterinary practices).",
+              "parentId": "veterinary-pharmaceuticals"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

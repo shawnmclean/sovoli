@@ -1,0 +1,1037 @@
+{
+  "id": "household-office-furniture-furnishings",
+  "name": "Household/Office Furniture/Furnishings",
+  "gpcCode": "75000000",
+  "children": [
+    {
+      "id": "baby-furnishings",
+      "name": "Baby Furnishings",
+      "gpcCode": "75050000",
+      "parentId": "household-office-furniture-furnishings",
+      "children": [
+        {
+          "id": "baby-sanitary-furnishings",
+          "name": "Baby Sanitary Furnishings",
+          "gpcCode": "75050100",
+          "parentId": "baby-furnishings",
+          "children": [
+            {
+              "id": "baby-bath-safety-products",
+              "name": "Baby Bath Safety Products",
+              "gpcCode": "10000498",
+              "gpcDescription": "Includes any products that can be described/observed as devices which protect the baby from injury whilst bathing. Includes products such as tap guards.",
+              "parentId": "baby-sanitary-furnishings"
+            },
+            {
+              "id": "baby-baths-bath-chairs-bath-cradles",
+              "name": "Baby Baths/Bath Chairs/Bath Cradles",
+              "gpcCode": "10000827",
+              "gpcDescription": "Includes any products that can be described/observed as a container intended to be filled with water, into which a baby can be placed in order to be bathed. Also includes products such as bath chairs and bath cradles for baby use whilst being bathed. Products included may be designed to fit into existing adult sized baths and may also be inflatable or collapsible.",
+              "parentId": "baby-sanitary-furnishings"
+            },
+            {
+              "id": "baby-changing-mats",
+              "name": "Baby Changing Mats",
+              "gpcCode": "10000822",
+              "gpcDescription": "Includes any products that can be described/observed as a cushioned mat intended to be used when changing the baby's diaper and/or clothing. The mat provides comfort to the baby and protects surfaces such as carpets from soiling. Products included may have additional features such as being waterproof or foldable for ease of transport.",
+              "parentId": "baby-sanitary-furnishings"
+            },
+            {
+              "id": "baby-changing-table",
+              "name": "Baby Changing Table",
+              "gpcCode": "10000501",
+              "gpcDescription": "Includes any products that can be described/observed as tables that are designed specifically for use when changing a baby's diaper. Includes products such as tables that provide a basic surface for changing the baby's diaper and tables that provide additional safety or storage features. ",
+              "parentId": "baby-sanitary-furnishings"
+            },
+            {
+              "id": "baby-potties-training-seats",
+              "name": "Baby Potties/Training Seats",
+              "gpcCode": "10000821",
+              "gpcDescription": "Includes any products that can be described/observed as small bowls in which young children are taught toilet etiquette and specifically designed toilet seats used to fit existing toilets to enable young children to use the toilet in safety. Includes products such as Splash-Proof Potty, Baby Trainer Seat, Easy-Fold Toilet Seat and Training Stool.",
+              "parentId": "baby-sanitary-furnishings"
+            },
+            {
+              "id": "baby-sanitary-furnishings-other",
+              "name": "Baby Sanitary Furnishings - Other",
+              "gpcCode": "10006797",
+              "gpcDescription": "Includes any products that can be described/observed as those used as sanitary furnishings for babies that are not classified within any other brick within the Baby Sanitary Furnishings class.",
+              "parentId": "baby-sanitary-furnishings"
+            },
+            {
+              "id": "baby-sanitary-furnishings-replacement-parts",
+              "name": "Baby Sanitary Furnishings - Replacement Parts",
+              "gpcCode": "10006796",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Baby Sanitary Furnishings products. Includes products such as replacement parts like cover for Baby Changing Mats.",
+              "parentId": "baby-sanitary-furnishings"
+            },
+            {
+              "id": "baby-sanitary-furnishings-variety-pack",
+              "name": "Baby Sanitary Furnishings Variety Pack",
+              "gpcCode": "10006795",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Baby Sanitary Furnishings products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Baby Sanitary Furnishings. Includes products such as Baby Changing Mats and Baby Potties/Training Seats sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "baby-sanitary-furnishings"
+            }
+          ]
+        },
+        {
+          "id": "household-baby-beds-mattresses",
+          "name": "Household Baby Beds/Mattresses",
+          "gpcCode": "75050200",
+          "parentId": "baby-furnishings",
+          "children": [
+            {
+              "id": "baby-cot-mattress",
+              "name": "Baby Cot Mattress",
+              "gpcCode": "10000790",
+              "gpcDescription": "Includes any products that can be described/observed as a mattress specifically designed for use in conjunction with a baby cot.",
+              "parentId": "household-baby-beds-mattresses"
+            },
+            {
+              "id": "baby-cots-cot-beds-bassinet",
+              "name": "Baby Cots/Cot Beds/Bassinet",
+              "gpcCode": "10000789",
+              "gpcDescription": "Includes any products that can be described/observed as a safe structure in which a baby can sleep. Includes products such as cots, cot beds and bassinettes which include safety features such as security rails, teething rails and protective side bars that help prevent the baby falling from the cot or cot bed. ",
+              "parentId": "household-baby-beds-mattresses"
+            },
+            {
+              "id": "household-baby-beds-mattresses-other",
+              "name": "Household Baby Beds/Mattresses - Other",
+              "gpcCode": "10006808",
+              "gpcDescription": "Includes any products that may be described/observed as baby bed and/or mattress products, where the user of the schema is not able to classify the products in existing bricks within the schema. ",
+              "parentId": "household-baby-beds-mattresses"
+            },
+            {
+              "id": "household-baby-beds-mattresses-replacement-parts",
+              "name": "Household Baby Beds/Mattresses - Replacement Parts",
+              "gpcCode": "10006807",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part/accessory for baby beds and mattresses. Includes products such as crib rods and gate shoes. ",
+              "parentId": "household-baby-beds-mattresses"
+            },
+            {
+              "id": "household-baby-beds-mattresses-variety-pack",
+              "name": "Household Baby Beds/Mattresses Variety Pack",
+              "gpcCode": "10006806",
+              "gpcDescription": "Includes any products that can be described/observed as two or more baby bed and mattress products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack, which cross bricks within the Household Baby Beds/Mattresses class. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "household-baby-beds-mattresses"
+            }
+          ]
+        },
+        {
+          "id": "household-baby-seating",
+          "name": "Household Baby Seating",
+          "gpcCode": "75050300",
+          "parentId": "baby-furnishings",
+          "children": [
+            {
+              "id": "baby-bouncing-cradles-rocker-seats-non-powered",
+              "name": "Baby Bouncing Cradles/Rocker Seats (Non Powered)",
+              "gpcCode": "10000800",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device intended to safely bounce or rock the baby back and forth. ",
+              "parentId": "household-baby-seating"
+            },
+            {
+              "id": "baby-bouncing-cradles-rocker-seats-powered",
+              "name": "Baby Bouncing Cradles/Rocker Seats (Powered)",
+              "gpcCode": "10000801",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device intended to safely bounce or rock the baby back and forth. ",
+              "parentId": "household-baby-seating"
+            },
+            {
+              "id": "baby-high-chair",
+              "name": "Baby High Chair",
+              "gpcCode": "10000787",
+              "gpcDescription": "Includes any products that can be described/observed as a chair specifically designed for babies and intended primarily for use at feeding times. Includes products that provide a basic function of seating a baby in a suitable position to aid the feeding process. These can either be attached to the surface edge of a regular table, or be free standing. These are typically fitted with a table and a harness.",
+              "parentId": "household-baby-seating"
+            },
+            {
+              "id": "household-baby-seating-other",
+              "name": "Household Baby Seating - Other",
+              "gpcCode": "10006811",
+              "gpcDescription": "Includes any products that may be described/observed as baby seating products, where the user of the schema is not able to classify the products in existing bricks within the schema. ",
+              "parentId": "household-baby-seating"
+            },
+            {
+              "id": "household-baby-seating-replacement-parts",
+              "name": "Household Baby Seating - Replacement Parts",
+              "gpcCode": "10006810",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part/accessory for baby seating products. Includes products such as high chair tray hardware. ",
+              "parentId": "household-baby-seating"
+            },
+            {
+              "id": "household-baby-seating-variety-pack",
+              "name": "Household Baby Seating Variety Pack",
+              "gpcCode": "10006809",
+              "gpcDescription": "Includes any products that may be described/observed as baby seating products, where the user of the schema is not able to classify the products in existing bricks within the schema. ",
+              "parentId": "household-baby-seating"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "household-office-furnishings",
+      "name": "Household/Office Furnishings",
+      "gpcCode": "75020000",
+      "parentId": "household-office-furniture-furnishings",
+      "children": [
+        {
+          "id": "fabric-textile-furnishings-variety-packs",
+          "name": "Fabric/Textile Furnishings Variety Packs",
+          "gpcCode": "75020300",
+          "parentId": "household-office-furnishings",
+          "children": [
+            {
+              "id": "fabric-textile-furnishings-variety-packs",
+              "name": "Fabric/Textile Furnishings Variety Packs",
+              "gpcCode": "10003813",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct fabric or textile furnishing products sold together, which exist within the schema but belong to different classes, that is, two or more products contained within the same pack which cross classes within the Fabric/Textile Furnishings family. Includes products such as a Duvet Cover and Curtains sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "fabric-textile-furnishings-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "household-bedding-office-furnishings",
+          "name": "Household/Bedding/Office Furnishings",
+          "gpcCode": "75020100",
+          "parentId": "household-office-furnishings",
+          "children": [
+            {
+              "id": "bathroom-and-toilet-mats",
+              "name": "Bathroom & Toilet Mats",
+              "gpcCode": "10008114",
+              "gpcDescription": "Includes any products that can be described/observed as a loose fabric furnishing cover for a floor or bath, usually made of woven wool or synthetic fibres, or plastic. Specifically used in the bathroom or toilet room. Includes products such as anti-slip mat.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "bed-sheets-valances",
+              "name": "Bed Sheets/Valances",
+              "gpcCode": "10002227",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of fabric placed on a bed. A bed sheet is used to lie on or lie under. A bed valance covers the sides of the mattress, enhancing the bed décor as well as protecting the mattress and can also be used to lie upon. Includes products such as a Fitted Sheet, Flat Sheet or Valance Sheet. ",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "blankets-throws-non-powered",
+              "name": "Blankets/Throws (Non Powered)",
+              "gpcCode": "10002224",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered cover or wrap for warmth or comfort.  ",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "blankets-throws-powered",
+              "name": "Blankets/Throws (Powered)",
+              "gpcCode": "10005197",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of woven material used as a covering for warmth or comfort which has an electrical element that is governed by a thermostat. Some electric blankets and throws have switches that control the heat in particular sections of the blanket or throw to suit the requirements of the sleeper/sleepers. When the element is switched on, the blanket or throw warms to the desired temperature.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "curtains",
+              "name": "Curtains",
+              "gpcCode": "10002214",
+              "gpcDescription": "Includes any products that can be described/observed as folded or pleated fabric that hangs in a window, doorway or other opening. Typically these products serve to decorate as well as providing screened privacy and protection within the home or office.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "cushions",
+              "name": "Cushions",
+              "gpcCode": "10002217",
+              "gpcDescription": "Includes any products that can be described/observed as a fabric casing or bag filled with a soft textile or foam rubber. Also called decorative pillow, these products can be used indoor or outdoor to decorate the home, garden or office as well as providing comfort while sitting or reclining.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "cushions-cases-protectors-detachable",
+              "name": "Cushions Cases/Protectors - Detachable",
+              "gpcCode": "10008304",
+              "gpcDescription": "Includes any products that can be described/observed as a decorative removable covering that dresses a cushion. These products are a fabric cover, with or without a decorative design, designed intended to protect the stuffing of the cushion and can offer water-resistant and anti-mite properties.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "doormats",
+              "name": "Doormats",
+              "gpcCode": "10008115",
+              "gpcDescription": "Includes any products that can be described/observed as a loose cover for a floor, near the door. Specifically used to clean/wipe your shoes.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "duvets-quilts",
+              "name": "Duvets/Quilts",
+              "gpcCode": "10002222",
+              "gpcDescription": "Includes any products that can be described/observed as a bed cover made of two pieces of fabric with a padded layer of cotton, wool, feathers, or down in between. All the layers are stitched firmly together, sometimes in a decorative, lattice design. These products may loosely cover the bed or be attached to the mattress.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "duvets-quilts-covers-protectors-detachable",
+              "name": "Duvets/Quilts Covers/Protectors - Detachable",
+              "gpcCode": "10002223",
+              "gpcDescription": "Includes any products that can be described/observed as a removable covering for a duvet or a quilt. These protectors can offer water-resistant and anti-mite properties.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "fabric-textile-towels",
+              "name": "Fabric/Textile Towels",
+              "gpcCode": "10002219",
+              "gpcDescription": "Includes any products that can be described/observed as a rectangular absorbent cloth used for wiping and drying either the person or household items. Includes products such as Kitchen Towels and Bath Towels of various designs and colours.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "furnishing-covers-protectors-detachable",
+              "name": "Furnishing Covers/Protectors - Detachable",
+              "gpcCode": "10002216",
+              "gpcDescription": "Includes any products that can be described/observed as detachable piece of fabric furnishing, designed to be placed upon or over to cover a piece of furniture and used as decoration and/or protection. Includes products such as loose chair covers, mattress covers, sofa covers. These protectors can offer water-resistant properties.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "furnishing-floor-rugs-mats-detachable",
+              "name": "Furnishing Floor Rugs/Mats - Detachable",
+              "gpcCode": "10002218",
+              "gpcDescription": "Includes any products that can be described/observed as a loose fabric furnishing cover for a floor, usually made of woven wool, cotton natural materials or synthetic fibres. Products include Hand or Machine Knotted Rugs, made of a variety of synthetic fibres. These products can be used indoor or outdoor.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "horizontal-window-blinds",
+              "name": "Horizontal Window Blinds",
+              "gpcCode": "10002215",
+              "gpcDescription": "Includes any products that can be described/observed as a rigid window screen. The horizontal blinds consist of horizontal strips/slats that you can open and close. You can also choose to fully raise the blinds. ",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "household-office-fabric-textile-furnishing-variety-packs",
+              "name": "Household/Office Fabric/Textile Furnishing Variety Packs",
+              "gpcCode": "10002220",
+              "gpcDescription": "Includes any products that can be described/observed as two or more fabric or textile furnishing items for the home or office that are sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Household/Office Fabric/Textile Furnishings class. Includes products such as Cushions and Curtains sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "household-office-fabric-textile-furnishings-other",
+              "name": "Household/Office Fabric/Textile Furnishings Other",
+              "gpcCode": "10002221",
+              "gpcDescription": "Includes any products that can be described/observed as an item designed as a fabric or textile furnishing for the home or office, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "pillow-cases-protectors-detachable",
+              "name": "Pillow Cases/Protectors - Detachable",
+              "gpcCode": "10002226",
+              "gpcDescription": "Includes any products that can be described/observed as a removable covering that dresses a pillow. These products are used in bedding and can offer water-resistant and anti-mite properties.\n",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "pillows",
+              "name": "Pillows",
+              "gpcCode": "10002225",
+              "gpcDescription": "Includes any products that can be described/observed as a fabric case stuffed with either soft down, feathers, synthetic fibre or foam rubber and used to support the head when lying or sleeping. These products are used in bedding and can offer water-resistant and anti-mite properties. This includes nursing pillows and travel pillows.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "pleated-window-shades",
+              "name": "Pleated Window Shades",
+              "gpcCode": "10008014",
+              "gpcDescription": "Includes any products that can be described/observed as a window screen that normally operates on a track system. Pleated shades are curtains that are compressed (accordion) when closing. Some models can be opened both above and below. ",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "roll-down-window-blinds",
+              "name": "Roll-down Window Blinds",
+              "gpcCode": "10008012",
+              "gpcDescription": "Includes any products that can be described/observed as a window screen that normally operates on a dual-roller system (upper and lower). Roll-down blinds are a single panel, inset with sheer horizontal strips. The strips run past each other as it is raised or lowered, determining whether you can see through them or not. ",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "roll-down-window-shades",
+              "name": "Roll-down Window Shades",
+              "gpcCode": "10008013",
+              "gpcDescription": "Includes any products that can be described/observed as a window screen that operates on a roller system, which opens and closes the shade vertically.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "roman-window-shades",
+              "name": "Roman Window Shades",
+              "gpcCode": "10008015",
+              "gpcDescription": "Includes any products that can be described/observed as a window screen that normally operates on a rope/cord system, which opens and closes the shade either vertically by folding the fabric. ",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "table-and-kitchen-protective-gear",
+              "name": "Table and Kitchen Protective Gear",
+              "gpcCode": "10008305",
+              "gpcDescription": "Includes any products that can be described/observed as specialized items that safeguard surfaces, objects, and individuals in the culinary environment. Includes products such as tablecloths, non-disposable serviettes, pot-holders, coasters, table runners, aprons and placemats of various designs and colours, as well as oven mitts and cutting board mats that protect against burns, spills, and damage.",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "vertical-window-blinds",
+              "name": "Vertical Window Blinds",
+              "gpcCode": "10008016",
+              "gpcDescription": "Includes any products that can be described/observed as a window screen that normally operates on a track system, which opens and closes the blind. The vertical blinds consists of vertical strips/slats that you can open and close. You can also choose to slide the blind completely aside. ",
+              "parentId": "household-bedding-office-furnishings"
+            },
+            {
+              "id": "window-treatment-replacement-parts-accessories",
+              "name": "Window Treatment Replacement Parts/Accessories",
+              "gpcCode": "10007935",
+              "gpcDescription": "Includes any products that may be described/observed as a replacement part or accessories for Window Treatments. Specifically includes products such as blind cords, (shortenable) chain for vertical blinds.",
+              "parentId": "household-bedding-office-furnishings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "household-office-furniture",
+      "name": "Household/Office Furniture",
+      "gpcCode": "75010000",
+      "parentId": "household-office-furniture-furnishings",
+      "children": [
+        {
+          "id": "display-stands",
+          "name": "Display Stands",
+          "gpcCode": "75010700",
+          "parentId": "household-office-furniture",
+          "children": [
+            {
+              "id": "display-stand",
+              "name": "Display Stand",
+              "gpcCode": "10006330",
+              "gpcDescription": "Includes any products that may be described/observed as a empty device utilized to present products for sale. These devices are not permanent fixtures of a storefront, but are designed to aid in the selling practice.",
+              "parentId": "display-stands"
+            }
+          ]
+        },
+        {
+          "id": "household-beds-mattresses",
+          "name": "Household Beds/Mattresses",
+          "gpcCode": "75010400",
+          "parentId": "household-office-furniture",
+          "children": [
+            {
+              "id": "household-adjustable-beds-non-powered",
+              "name": "Household Adjustable Beds (Non Powered)",
+              "gpcCode": "10002209",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of household furniture for reclining and sleeping upon, consisting of an adjustable bed frame or bed base, which is most often sold in conjunction with a mattress. These products can be adjusted to recline at different angles and are operated manually. ",
+              "parentId": "household-beds-mattresses"
+            },
+            {
+              "id": "household-adjustable-beds-powered",
+              "name": "Household Adjustable Beds (Powered)",
+              "gpcCode": "10002208",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of household furniture for reclining and sleeping upon, consisting of an adjustable bed frame or bed base, which is most often sold in conjunction with a mattress. These products can be adjusted to recline at different angles and are operated with electrical energy. ",
+              "parentId": "household-beds-mattresses"
+            },
+            {
+              "id": "household-bed-frames-bedsteads",
+              "name": "Household Bed Frames/Bedsteads",
+              "gpcCode": "10002207",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of household furniture for reclining and sleeping, typically consisting of a flat, rectangular frame and sometimes sold in conjunction with a mattress. Some bed frames targeted at children will incorporate features such as ladders and climbing frames that encourage play activity within the bedroom. Includes products such as bunk beds and extendable bedframes, as well as children's multifunctional activity beds sold as a unit.",
+              "parentId": "household-beds-mattresses"
+            },
+            {
+              "id": "household-beds-replacement-parts-components",
+              "name": "Household Beds - Replacement Parts/Components",
+              "gpcCode": "10005096",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or individual component of a household bed. Includes products such as a bed base, bed head, bed leg or bed post.",
+              "parentId": "household-beds-mattresses"
+            },
+            {
+              "id": "household-beds-mattresses-other",
+              "name": "Household Beds/Mattresses Other",
+              "gpcCode": "10002212",
+              "gpcDescription": "Includes any products that can be described/observed as a household furniture item designed as a bed or a mattress, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "household-beds-mattresses"
+            },
+            {
+              "id": "household-beds-mattresses-variety-packs",
+              "name": "Household Beds/Mattresses Variety Packs",
+              "gpcCode": "10002213",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct household beds and/or mattresses products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Household Beds and Mattresses class. Includes products such as a Bed Frame and Mattress sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "household-beds-mattresses"
+            },
+            {
+              "id": "household-inflatable-beds-water-beds",
+              "name": "Household Inflatable Beds/Water Beds",
+              "gpcCode": "10002211",
+              "gpcDescription": "Includes any products that can be described/observed as a household mattress for sleeping upon, which is filled with air, gas or water. The mattress may incorporate a supportive bed frame. ",
+              "parentId": "household-beds-mattresses"
+            },
+            {
+              "id": "household-mattresses",
+              "name": "Household Mattresses",
+              "gpcCode": "10002210",
+              "gpcDescription": "Includes any products that can be described/observed as a usually rectangular pad of heavy cloth, filled with soft material or an arrangement of coiled springs and used to sleep upon in the home. These products may either be used on their own or placed upon a bed frame. ",
+              "parentId": "household-beds-mattresses"
+            }
+          ]
+        },
+        {
+          "id": "household-office-furniture-accessories",
+          "name": "Household/Office Furniture Accessories",
+          "gpcCode": "75010600",
+          "parentId": "household-office-furniture",
+          "children": [
+            {
+              "id": "furniture-castors-pads-slides",
+              "name": "Furniture Castors/Pads/Slides",
+              "gpcCode": "10005437",
+              "gpcDescription": "Includes any products that can be described/observed as a small, swivelled wheel, felt pad or silicone cap that is attached or fitted to the base or feet of furniture, enabling the furniture to be moved easily and also prevent scratching or damage to flooring. Includes products that are self-adhesive and long strip pull slides.",
+              "parentId": "household-office-furniture-accessories"
+            },
+            {
+              "id": "furniture-legs",
+              "name": "Furniture Legs",
+              "gpcCode": "10007721",
+              "gpcDescription": "Includes any products that may be described/observed as a leg meant to be attached to a piece of furniture (i.e. seatings, tables, beds). ",
+              "parentId": "household-office-furniture-accessories"
+            },
+            {
+              "id": "shelf-grip-liner-contact-paper",
+              "name": "Shelf Grip Liner/Contact Paper",
+              "gpcCode": "10005254",
+              "gpcDescription": "Includes any products that may be described/observed as sticky and durable paper or plastic used to line the shelf. These products can be self-adhesive and are used to keep things in place on a chosen surface, usually that of a shelf. Includes products such as Self-Adhesive Vinyl Shelf Grip Liner.",
+              "parentId": "household-office-furniture-accessories"
+            }
+          ]
+        },
+        {
+          "id": "household-office-furniture-variety-packs",
+          "name": "Household/Office Furniture Variety Packs",
+          "gpcCode": "75010500",
+          "parentId": "household-office-furniture",
+          "children": [
+            {
+              "id": "household-office-furniture-variety-packs",
+              "name": "Household/Office Furniture Variety Packs",
+              "gpcCode": "10003814",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Household/Office Furniture products sold together, which exist within the schema but belong to different classes, that is, two or more products contained within the same pack, which cross classes within the Household/Office Furniture family. Includes products such as a Table and Chair sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "household-office-furniture-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "household-office-seating",
+          "name": "Household/Office Seating",
+          "gpcCode": "75010200",
+          "parentId": "household-office-furniture",
+          "children": [
+            {
+              "id": "bean-bags-pouffes-ottomans",
+              "name": "Bean Bags/Pouffes/Ottomans",
+              "gpcCode": "10002197",
+              "gpcDescription": "Includes any products that can be described/observed as a cushioned seat, typically without legs. The cushion can be filled with polystyrene beads to create a squashy texture that moulds to the form of the seated person. Alternatively the cushion is filled with a textile stuffing.",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "household-office-chairs-replacement-parts-components",
+              "name": "Household/Office Chairs - Replacement Parts/Components",
+              "gpcCode": "10005097",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or individual component for a household or office chair. Includes products such as a chair back, chair seat, chair leg or chair arm.",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "household-office-chairs-stools-non-powered",
+              "name": "Household/Office Chairs/Stools (Non Powered)",
+              "gpcCode": "10002193",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered piece of furniture for the home or office, consisting of a seat with or without legs that may also have a back and arms and is designed to accommodate one person. These products can be adjustable and are operated manually. ",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "household-office-chairs-stools-powered",
+              "name": "Household/Office Chairs/Stools (Powered)",
+              "gpcCode": "10002192",
+              "gpcDescription": "Includes any products that can be described/observed as a powered piece of furniture, used in the home or office, consisting of a seat with legs that may also have a back and arms and is designed to accommodate one person. These products are adjustable and are operated with electrical energy. ",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "household-office-foot-rests",
+              "name": "Household/Office Foot Rests",
+              "gpcCode": "10002199",
+              "gpcDescription": "Includes any products that can be described/observed as a household or office piece of furniture, upon which a seated person can rest their feet.",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "household-office-seating-other",
+              "name": "Household/Office Seating Other",
+              "gpcCode": "10002201",
+              "gpcDescription": "Includes any products that can be described/observed as a household or office furniture item designed as seating, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "household-office-seating-variety-packs",
+              "name": "Household/Office Seating Variety Packs",
+              "gpcCode": "10002200",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct household or office seating products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Household/Office Seating class. Includes products such as a Chair and Sofa sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "household-office-sofa-beds",
+              "name": "Household/Office Sofa Beds",
+              "gpcCode": "10002196",
+              "gpcDescription": "Includes any products that can be described/observed as observed as a long seat, usually with a cushioned bottom, back and sides, designed to accommodate more than one person and to unfold to form a bed and/or mattress. Includes products such as a Futon.",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "household-office-sofas-non-powered",
+              "name": "Household/Office Sofas (Non Powered)",
+              "gpcCode": "10002195",
+              "gpcDescription": "Includes any products that can be described/observed as household or office seating, usually with a cushioned bottom, back, and sides, designed to accommodate more than one person. These products can be adjustable and are operated manually. Includes products such as a two or three-seater Sofa. ",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "household-office-sofas-powered",
+              "name": "Household/Office Sofas (Powered)",
+              "gpcCode": "10002194",
+              "gpcDescription": "Includes any products that can be described/observed household or office seating, usually with a cushioned bottom, back, and sides, designed to accommodate more than one person. These products are adjustable and are operated with electrical energy. Includes products such as a two or three seater Sofa. ",
+              "parentId": "household-office-seating"
+            },
+            {
+              "id": "inflatable-seating",
+              "name": "Inflatable Seating",
+              "gpcCode": "10002198",
+              "gpcDescription": "Includes any products that can be described/observed as an air-filled cushion used as a seat in the home or office. Such seating may be designed to accommodate one or more people and can be deflated and folded away for easy storage and transport.",
+              "parentId": "household-office-seating"
+            }
+          ]
+        },
+        {
+          "id": "household-office-storage-display-furniture-screens",
+          "name": "Household/Office Storage/Display Furniture/Screens",
+          "gpcCode": "75010100",
+          "parentId": "household-office-furniture",
+          "children": [
+            {
+              "id": "chests-of-drawers-dressers-drawers",
+              "name": "Chests of Drawers (Dressers)/Drawers",
+              "gpcCode": "10002117",
+              "gpcDescription": "Includes any products that can be described/observed as a box-like compartment within a frame that can be pulled out and pushed in and is typically designed to be used for storage of clothing, household items and office equipment. Includes products such as a Chest of Drawers or Drawer Pedestal. ",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "filing-cabinets",
+              "name": "Filing Cabinets",
+              "gpcCode": "10002185",
+              "gpcDescription": "Includes any products that can be described/observed as a cabinet that is specifically designed to be used for the storage of files and papers. It may consist of shelves and/or drawers with file storage fittings.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-organisers-tidies",
+              "name": "Household Organisers/Tidies",
+              "gpcCode": "10002189",
+              "gpcDescription": "Includes any products that can be described/observed as, either, a separate wardrobe fitting specifically designed to organise and store items of clothing and personal accessories, or, a tabletop storage container in which to place and keep small personal items such as keys and a mobile phone, or, a freestanding holder which can be used to organise and tidy items such as magazines and newspapers. Includes products such as a Magazine Holder and a Tie Rack.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-office-bar-counters",
+              "name": "Household/Office Bar Counters",
+              "gpcCode": "10005810",
+              "gpcDescription": "Includes any products that can be described/observed as a counter fitment that is specifically designed for entertaining and serving drinks in the home or office. They may have shelves and fittings for glasses and bottles, a cutting surface for lemons and limes and a rail at the bottom to rest one's feet. Bar Counters may also be coordinated with other elements of furniture such as bar stools and wine tables.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-office-boxes-baskets",
+              "name": "Household/Office Boxes/Baskets",
+              "gpcCode": "10002187",
+              "gpcDescription": "Includes any products that can be described/observed as a household or office box or basket that may or may not have a lid and is designed to be used for storage and/or display of personal items such as textile furnishing, ornamental furnishing, clothing, books or documents. Includes products such as a co-ordinated Multi Box Storage Set and Open Boxes used for storing and displaying books and ornaments.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-office-cupboards-display-cabinets",
+              "name": "Household/Office Cupboards/Display Cabinets",
+              "gpcCode": "10005199",
+              "gpcDescription": "Includes any products that can be described/observed as an item of household or office furniture that is used to store general household items and/or display ornaments such as silverware, ceramics and crystal ware. These products may be designed with glass panels or doors to enable a view of the items stored or displayed.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-office-partitions-screens",
+              "name": "Household/Office Partitions/Screens",
+              "gpcCode": "10002190",
+              "gpcDescription": "Includes any products that can be described/observed as a freestanding or desktop vertical structure that divides, separates and/or decorates a room in the home or office. Includes products such as mirrored, fabric, wicker or wooden Screens.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-office-shelving-units",
+              "name": "Household/Office Shelving Units",
+              "gpcCode": "10002184",
+              "gpcDescription": "Includes any products that can be described/observed as a flat, horizontal tablet or ledge that may be fixed to a wall or be a freestanding frame. These products are designed to hold household and office items, including ornaments. Includes products such as a Shelving Bookcase, Shelving Dresser, and Shoe Rack. ",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-office-storage-display-furniture-replacement-parts-components",
+              "name": "Household/Office Storage/Display Furniture - Replacement Parts/Components",
+              "gpcCode": "10005098",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or individual component for household or office cupboards, cabinets and shelving units. Includes products such as a cupboard door, drawer or shelf.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-office-storage-display-furniture-other",
+              "name": "Household/Office Storage/Display Furniture Other",
+              "gpcCode": "10003790",
+              "gpcDescription": "Includes any products that can be described/observed as a household or office product designed as storage or display furniture to be used in the home or office, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-office-storage-display-furniture-screens-variety-packs",
+              "name": "Household/Office Storage/Display Furniture/Screens Variety Packs",
+              "gpcCode": "10002191",
+              "gpcDescription": "Includes any products that can be described/observed as two or more Household/Office Storage and Display Furniture or Screens sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Household/Office Storage and Display Furniture and Screens class. Includes products such as a Wardrobe and Drawers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "household-office-wardrobes-lockers",
+              "name": "Household/Office Wardrobes/Lockers",
+              "gpcCode": "10002118",
+              "gpcDescription": "Includes any products that can be described/observed as an item of household or office furniture that is used to store and/or secure clothing, footwear, personal accessories, sports goods and if situated in the garage may store tools and Do It Yourself (DIY) supplies. The wardrobe/locker may also be equipped with hanging rails and also have a door or doors as well as hooks, shelves and drawers. ",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "storage-rails-holders",
+              "name": "Storage Rails/Holders",
+              "gpcCode": "10002188",
+              "gpcDescription": "Includes any products that can be described/observed as a rail or holder specifically designed for hanging pieces of clothing on or holding personal accessories. Products may be equipped with castors for ease of movement, or can be fixed to a wall or door. Includes products such as a Coat Stand and an Umbrella Holder.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "universal-entertainment-units",
+              "name": "Universal Entertainment Units",
+              "gpcCode": "10002186",
+              "gpcDescription": "Includes any products that can be described/observed as a framework or stand, in or on which to hold, hang or display entertainment equipment. The product is designed to universally accommodate a variety of equipment and is not specific to any one particular brand. Includes products such as Television, Video and Audio Racks as well as Multi-purpose Entertainment Storage Units.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "universal-turntables",
+              "name": "Universal Turntables",
+              "gpcCode": "10005743",
+              "gpcDescription": "Includes any products that can be described/observed as a revolving platform upon which can be placed a variety of furniture or appliances such as televisions, monitors, speakers, hifi units or kitchen appliances. The turning of the platform facilitates easy access and positioning of products.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            },
+            {
+              "id": "worktops-countertops",
+              "name": "Worktops/Countertops",
+              "gpcCode": "10006731",
+              "gpcDescription": "Includes any products that can be described/observed as a horizontal worksurface in kitchens (or other food preparation areas), bathrooms (vanity), workshops or garages frequently installed upon and supported by cupboards or cabinets. The surface is positioned at an ergonomic height for the user and the particular task for which it is designed. A countertop may be constructed of various materials with different attributes of functionality, durability, and aesthetics.",
+              "parentId": "household-office-storage-display-furniture-screens"
+            }
+          ]
+        },
+        {
+          "id": "household-office-tables-desks",
+          "name": "Household/Office Tables/Desks",
+          "gpcCode": "75010300",
+          "parentId": "household-office-furniture",
+          "children": [
+            {
+              "id": "household-office-desks-workstations",
+              "name": "Household/Office Desks/Workstations",
+              "gpcCode": "10002203",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of furniture for home or office that typically has a flat or sloping top for writing and often drawers or compartments. Typically these products are mounted to a wall or are designed to fit into a corner of an office. Includes products such as a PC Workstation.",
+              "parentId": "household-office-tables-desks"
+            },
+            {
+              "id": "household-office-tables",
+              "name": "Household/Office Tables",
+              "gpcCode": "10002202",
+              "gpcDescription": "Includes any products that can be described/observed as a freestanding piece of household or office furniture having a smooth flat top that is usually supported by one or more vertical legs. Includes products such as a Dining Table, Coffee Table or Side Table.",
+              "parentId": "household-office-tables-desks"
+            },
+            {
+              "id": "household-office-tables-desks-replacement-parts-components",
+              "name": "Household/Office Tables/Desks - Replacement Parts/Components",
+              "gpcCode": "10005095",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or individual component of a household or office table or desk. Includes products such as a table top, table leg and a table base.",
+              "parentId": "household-office-tables-desks"
+            },
+            {
+              "id": "household-office-tables-desks-other",
+              "name": "Household/Office Tables/Desks Other",
+              "gpcCode": "10002205",
+              "gpcDescription": "Includes any products that can be described/observed as a household or office furniture item designed as a table or desk for the home or office, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "household-office-tables-desks"
+            },
+            {
+              "id": "household-office-tables-desks-variety-packs",
+              "name": "Household/Office Tables/Desks Variety Packs",
+              "gpcCode": "10002206",
+              "gpcDescription": "Includes any products that can be described/observed as two or more Household/Office Tables and Desks sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Household/Office Tables and Desks class. Includes products such as an Office Table and PC Workstation sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "household-office-tables-desks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ornamental-furnishings",
+      "name": "Ornamental Furnishings",
+      "gpcCode": "75030000",
+      "parentId": "household-office-furniture-furnishings",
+      "children": [
+        {
+          "id": "clocks",
+          "name": "Clocks",
+          "gpcCode": "75030400",
+          "parentId": "ornamental-furnishings",
+          "children": [
+            {
+              "id": "alarm-clocks",
+              "name": "Alarm Clocks",
+              "gpcCode": "10007006",
+              "gpcDescription": "Includes any products that can be described/observed as an instrument for measuring or indicating time, a mechanical or electronic device having a numbered dial and moving hands or a digital display, with an alarm function to alert an individual or group of individuals at a specified time. ",
+              "parentId": "clocks"
+            },
+            {
+              "id": "clocks",
+              "name": "Clocks",
+              "gpcCode": "10002252",
+              "gpcDescription": "Includes any products that can be described/observed as an instrument for measuring or indicating time, especially a mechanical or electronic device having a numbered dial and moving hands or a digital display. Includes products such as a Wall Clock and Grandfather Clock.",
+              "parentId": "clocks"
+            },
+            {
+              "id": "clocks-replacement-parts",
+              "name": "Clocks - Replacement Parts",
+              "gpcCode": "10004101",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part for a clock. Includes products such as Clock Movements and Clock Dials.",
+              "parentId": "clocks"
+            }
+          ]
+        },
+        {
+          "id": "decorative-banners-flags",
+          "name": "Decorative Banners/Flags",
+          "gpcCode": "75030700",
+          "parentId": "ornamental-furnishings",
+          "children": [
+            {
+              "id": "decorative-banners-flags",
+              "name": "Decorative Banners/Flags",
+              "gpcCode": "10005816",
+              "gpcDescription": "Includes any products that can be described/observed as an oblong, square or triangular piece of fabric, attachable by one end to a pole or rope and decorated to represent a special occasion, a country's emblem or a sports team.",
+              "parentId": "decorative-banners-flags"
+            }
+          ]
+        },
+        {
+          "id": "decorative-banners-flags-accessories",
+          "name": "Decorative Banners/Flags - Accessories",
+          "gpcCode": "75030800",
+          "parentId": "ornamental-furnishings",
+          "children": [
+            {
+              "id": "decorative-banners-flags-accessories",
+              "name": "Decorative Banners/Flags - Accessories",
+              "gpcCode": "10006893",
+              "gpcDescription": "Includes any products that can be described/observed as accessories for decorative banners/flags.",
+              "parentId": "decorative-banners-flags-accessories"
+            }
+          ]
+        },
+        {
+          "id": "ornamental-furnishings-variety-packs",
+          "name": "Ornamental Furnishings Variety Packs",
+          "gpcCode": "75030600",
+          "parentId": "ornamental-furnishings",
+          "children": [
+            {
+              "id": "ornamental-furnishings-variety-packs",
+              "name": "Ornamental Furnishings Variety Packs",
+              "gpcCode": "10003816",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct ornamental furnishing products sold together, which exist within the schema but belong to different classes, that is, two or more products contained within the same pack which cross classes within the Ornamental Furnishings family. Includes products such as a Mantelpiece Clock and Mirror sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "ornamental-furnishings-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "ornaments",
+          "name": "Ornaments",
+          "gpcCode": "75030100",
+          "parentId": "ornamental-furnishings",
+          "children": [
+            {
+              "id": "artificial-flowers-plants-trees",
+              "name": "Artificial Flowers/Plants/Trees",
+              "gpcCode": "10002232",
+              "gpcDescription": "Includes any products that can be described/observed as an artificial tree or plant designed to decorate or adorn the house or office. Typically these products are made of fabric and plastic, or synthetic materials.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "candle-holders-accessories",
+              "name": "Candle Holders/Accessories",
+              "gpcCode": "10002249",
+              "gpcDescription": "Includes any products that can be described/observed as a holder with a cup or spike for supporting a candle. Includes products such as floor and table candle holders, as well as candle snuggers, which help to keep the candle secure in the candle holder.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "candles",
+              "name": "Candles",
+              "gpcCode": "10000555",
+              "gpcDescription": "Includes any products described/observed as a solid mass of tallow, stearin, wax or other fatty substance that has a wick running through the centre. When the wick is lit, a flame results from the melted grease. Although some candles are purely functional as a light source, the large majority are used as a means to decorate and add ambience to the home, garden or used for religious/spiritual purposes to decorate graves and churches. Includes products that may be scented and products that are formed into decorative, coloured shapes.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "christmas-tree-artificial-non-powered",
+              "name": "Christmas Tree - Artificial (Non Powered)",
+              "gpcCode": "10007011",
+              "gpcDescription": "Includes any products that may be described/observed as an artificial tree displayed during the Christmas season. These products are not operated with electrical energy.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "christmas-tree-artificial-powered",
+              "name": "Christmas Tree - Artificial (Powered)",
+              "gpcCode": "10008283",
+              "gpcDescription": "Includes any products that may be described/observed as an artificial tree displayed during the Christmas season. These products are operated with electrical energy  and can be equipped with lights.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "christmas-wreath-and-garland-artificial-non-powered",
+              "name": "Christmas Wreath and Garland - Artificial (Non Powered)",
+              "gpcCode": "10008284",
+              "gpcDescription": "Includes any products that can be described/observed as ornamentation that is designed to decorate the home or office as a celebration of Christmas season. These products are not operated with electrical energy.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "christmas-wreath-and-garland-artificial-powered",
+              "name": "Christmas Wreath and Garland - Artificial (Powered)",
+              "gpcCode": "10008285",
+              "gpcDescription": "Includes any products that can be described/observed as ornamentation that is designed to decorate the home or office as a celebration of Christmas season. These products are operated with electrical energy  and can be equipped with lights.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "decorative-magnets-stickers-window-clings",
+              "name": "Decorative Magnets/Stickers/Window Clings",
+              "gpcCode": "10002234",
+              "gpcDescription": "Includes any products that can be described/observed as an adhesive, static cling or magnetised label, picture or patch designed for decoration on walls, mirrors, windows and home appliances.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "incense",
+              "name": "Incense",
+              "gpcCode": "10008112",
+              "gpcDescription": "Includes any products that can be described/observed as a  gum, spice, or other substance that is burned for the scent it produces. It may be in stick, cone or loose form. Includes incense used for religious/spiritual purposes.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "incense-holders-burners-and-accessories",
+              "name": "Incense Holders/Burners and Accessories",
+              "gpcCode": "10008113",
+              "gpcDescription": "Includes any products that can be described/observed as a holder/burner for supporting and diffusing incense and their accessories. Includes products such as hand held (i.e. censers), floor and table holders/burners, as well as charcoal specifically designed for incense, which help to keep the incense secure and/or alight.  Includes incense holders/burners and accessories used for religious/spiritual purposes.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "natural-ornaments",
+              "name": "Natural Ornaments",
+              "gpcCode": "10008407",
+              "gpcDescription": "Includes any products that can be described/observed as a diverse range of decorative items crafted from various dried natural materials. Includes decorations products such as shells, dried exotic fruits, tree barks, tree roots, moss/sphagnum and other organic materials. These items are carefully preserved and arranged to showcase their beauty and texture even after the original freshness of the materials has passed. ",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "ornament-accessories",
+              "name": "Ornament Accessories",
+              "gpcCode": "10005692",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory that enhances or aids the function of an item of ornamental furnishing. Includes products such as a vase hugger, an ornamental tree skirt and an ornamental plate holder or stand.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "ornaments-non-powered",
+              "name": "Ornaments (Non Powered)",
+              "gpcCode": "10002231",
+              "gpcDescription": "Includes any products that can be described/observed as an article designed and created to decorate or adorn the home or office. Includes products such as Sculptures, Ornamental Plates, Paperweights, Porcelain or Glass Figures. These products are not operated with electrical or solar energy.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "ornaments-powered",
+              "name": "Ornaments (Powered)",
+              "gpcCode": "10008302",
+              "gpcDescription": "Includes any products that can be described/observed as an article designed and created to decorate or adorn the home or office. Includes products such as Sculptures, Ornamental Plates, Paperweights, Porcelain or Glass Figures. These products are operated with electrical or solar energy and can be equipped with lights.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "ornaments-variety-packs",
+              "name": "Ornaments Variety Packs",
+              "gpcCode": "10002238",
+              "gpcDescription": "Includes any products that can be described/observed as two or more ornaments sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Ornaments class. Includes products such as Candle Holders and Seasonal Decorations sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "seasonal-decorations-non-powered",
+              "name": "Seasonal Decorations (Non Powered)",
+              "gpcCode": "10002236",
+              "gpcDescription": "Includes any products that can be described/observed as ornamentation that is designed to decorate the home or office as a celebration of a specific date. These products are not operated with electrical energy. Includes products designed for various seasonal events such as Easter, Christmas or Chinese New Year.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "seasonal-decorations-powered",
+              "name": "Seasonal Decorations (Powered)",
+              "gpcCode": "10002237",
+              "gpcDescription": "Includes any products that can be described/observed as ornamentation designed to decorate the home or office to celebrate a specific date. These products are operated with electrical energy and can be equipped with lights. Includes products designed for occasions such as Easter, Christmas or Chinese New Year.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "sun-dream-catchers-windchimes",
+              "name": "Sun/Dream Catchers/Windchimes",
+              "gpcCode": "10002235",
+              "gpcDescription": "Includes any products that can be described/observed as an arrangement of small, suspended pieces of glass, metal, wood or ceramic, hung loosely together. Typically, the suspended pieces will reflect the light and emit a musical chime when knocked together by the wind.",
+              "parentId": "ornaments"
+            },
+            {
+              "id": "vases",
+              "name": "Vases",
+              "gpcCode": "10002233",
+              "gpcDescription": "Includes any products that can be described/observed as an open container made of clay, wood, glass or porcelain, used as an ornament and/or for holding and displaying cut flowers.",
+              "parentId": "ornaments"
+            }
+          ]
+        },
+        {
+          "id": "pictures-mirrors-frames",
+          "name": "Pictures/Mirrors/Frames",
+          "gpcCode": "75030200",
+          "parentId": "ornamental-furnishings",
+          "children": [
+            {
+              "id": "mirrors",
+              "name": "Mirrors",
+              "gpcCode": "10002245",
+              "gpcDescription": "Includes any products that can be described/observed as any glass or polished substance that forms images by the reflection of rays of light. Includes products such as Wall and Freestanding Mirrors.",
+              "parentId": "pictures-mirrors-frames"
+            },
+            {
+              "id": "paintings",
+              "name": "Paintings",
+              "gpcCode": "10002240",
+              "gpcDescription": "Includes any products that can be described/observed as a surface coated with paint for an artistic effect. Includes product such as original Paintings in oil, acrylic and other artistic materials.",
+              "parentId": "pictures-mirrors-frames"
+            },
+            {
+              "id": "photographs",
+              "name": "Photographs",
+              "gpcCode": "10002243",
+              "gpcDescription": "Includes any products that can be described/observed as an image, especially a positive print, recorded by a camera and reproduced on a photosensitive surface for an artistic effect and used for home and office decoration.",
+              "parentId": "pictures-mirrors-frames"
+            },
+            {
+              "id": "picture-frames",
+              "name": "Picture Frames",
+              "gpcCode": "10002246",
+              "gpcDescription": "Includes any products that can be described/observed as a framework in which a picture, poster or photograph is mounted.",
+              "parentId": "pictures-mirrors-frames"
+            },
+            {
+              "id": "picture-mirrors-frames-other",
+              "name": "Picture/Mirrors/Frames Other",
+              "gpcCode": "10002248",
+              "gpcDescription": "Includes any products that can be described/observed as a picture, mirror or a frame, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "pictures-mirrors-frames"
+            },
+            {
+              "id": "pictures-mirrors-frames-variety-packs",
+              "name": "Pictures/Mirrors/Frames Variety Packs",
+              "gpcCode": "10002247",
+              "gpcDescription": "Includes any products that can be described/observed as two or more pictures, mirrors or frames sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Pictures, Mirrors and Frames class. Includes products such as a Painting ad Frame sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "pictures-mirrors-frames"
+            },
+            {
+              "id": "posters-prints",
+              "name": "Posters/Prints",
+              "gpcCode": "10002241",
+              "gpcDescription": "Includes any products that can be described/observed as a decorative image produced by means of a printing press or other printing process. Typically a print is made of an original painting or photograph, covering a wide range of subjects, including decorative promotional posters advertising musical concerts and movies. Includes products that are produced using various printing methods such as C-Prints, Giclee, Lithographs and Monotypes.",
+              "parentId": "pictures-mirrors-frames"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

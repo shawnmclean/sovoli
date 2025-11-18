@@ -1,0 +1,342 @@
+{
+  "id": "raw-materials-non-food",
+  "name": "Raw Materials (Non Food)",
+  "gpcCode": "98000000",
+  "gpcDescription": "Include all raw materials that are not classified as a final product, unprocessed or minimally processed states of the material. Exclude all food materials.",
+  "children": [
+    {
+      "id": "formed-raw-material",
+      "name": "Formed Raw Material",
+      "gpcCode": "98020000",
+      "gpcDescription": "Includes materials that are in their solid or formed state as sheets or rolls, etc.",
+      "parentId": "raw-materials-non-food",
+      "children": [
+        {
+          "id": "raw-material-formed",
+          "name": "Raw Material (Formed)",
+          "gpcCode": "98020100",
+          "gpcDescription": "Includes any products that may be described/observed as material that has not yet been processed. Excludes any Unformed raw material and Recycled/Renewable materials.",
+          "parentId": "formed-raw-material",
+          "children": [
+            {
+              "id": "aluminium-formed",
+              "name": "Aluminium (Formed)",
+              "gpcCode": "10008161",
+              "gpcDescription": "Includes any products that may be described/observed as raw aluminium that have not yet been processed.",
+              "parentId": "raw-material-formed"
+            },
+            {
+              "id": "carbon-fiber-formed",
+              "name": "Carbon Fiber (Formed)",
+              "gpcCode": "10008289",
+              "gpcDescription": "Includes any products that may be described/observed as raw carbon fiber that have not yet been processed.",
+              "parentId": "raw-material-formed"
+            },
+            {
+              "id": "copper-formed",
+              "name": "Copper (Formed)",
+              "gpcCode": "10008162",
+              "gpcDescription": "Includes any products that may be described/observed as raw copper that have not yet been processed. ",
+              "parentId": "raw-material-formed"
+            },
+            {
+              "id": "glass-formed",
+              "name": "Glass (Formed)",
+              "gpcCode": "10008166",
+              "gpcDescription": "Includes any products that may be described/observed as raw Glass that have not yet been processed.",
+              "parentId": "raw-material-formed"
+            },
+            {
+              "id": "iron-formed",
+              "name": "Iron (Formed)",
+              "gpcCode": "10008160",
+              "gpcDescription": "Includes any products that may be described/observed as raw iron that have not yet been processed. ",
+              "parentId": "raw-material-formed"
+            },
+            {
+              "id": "papers-and-paperboards-formed",
+              "name": "Papers and Paperboards (Formed)",
+              "gpcCode": "10008167",
+              "gpcDescription": "Includes any products that may be described/observed as raw papers or paperboards that have not yet been processed.",
+              "parentId": "raw-material-formed"
+            },
+            {
+              "id": "plastics-formed",
+              "name": "Plastics (Formed)",
+              "gpcCode": "10008165",
+              "gpcDescription": "Includes any products that may be described/observed as raw Plastics that have not yet been processed.",
+              "parentId": "raw-material-formed"
+            },
+            {
+              "id": "raw-material-formed-others",
+              "name": "Raw Material (Formed) - Others",
+              "gpcCode": "10008168",
+              "gpcDescription": "Includes any products that may be described/observed as Primary Raw Material (Formed) products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "raw-material-formed"
+            },
+            {
+              "id": "steel-formed",
+              "name": "Steel (Formed)",
+              "gpcCode": "10008163",
+              "gpcDescription": "Includes any products that may be described/observed as raw steel that have not yet been processed.",
+              "parentId": "raw-material-formed"
+            },
+            {
+              "id": "wood-formed",
+              "name": "Wood (Formed)",
+              "gpcCode": "10008164",
+              "gpcDescription": "Includes any products that may be described/observed as raw Wood that have not yet been processed.",
+              "parentId": "raw-material-formed"
+            }
+          ]
+        },
+        {
+          "id": "recycled-renewable-material",
+          "name": "Recycled/Renewable Material",
+          "gpcCode": "98020200",
+          "gpcDescription": "Includes any products that may be described/observed as material that have been processed, refined or built. Excludes any Formed and Unformed raw materials.",
+          "parentId": "formed-raw-material",
+          "children": [
+            {
+              "id": "aluminium-recycled-renewable",
+              "name": "Aluminium (Recycled/Renewable)",
+              "gpcCode": "10008170",
+              "gpcDescription": "Includes any products that may be described/observed as aluminium that have undergone processing in some manner and that will be re-introducing in any given production process. This includes products such as aluminium flakes, sheets or bars.",
+              "parentId": "recycled-renewable-material"
+            },
+            {
+              "id": "copper-recycled-renewable",
+              "name": "Copper (Recycled/Renewable)",
+              "gpcCode": "10008171",
+              "gpcDescription": "Includes any products that may be described/observed as copper that have undergone processing in some manner and that will be re-introduced in any given production process. This includes products such as copper flakes, sheets, plates, wires or bars.",
+              "parentId": "recycled-renewable-material"
+            },
+            {
+              "id": "glass-recycled-renewable",
+              "name": "Glass (Recycled/Renewable)",
+              "gpcCode": "10008175",
+              "gpcDescription": "Includes any products that may be described/observed as glass that have undergone processing in some manner and that will be re-introduced in any given production process. This includes products such as glass powder, flakes and molded glass products.",
+              "parentId": "recycled-renewable-material"
+            },
+            {
+              "id": "iron-recycled-renewable",
+              "name": "Iron (Recycled/Renewable)",
+              "gpcCode": "10008169",
+              "gpcDescription": "Includes any products that may be described/observed as iron that have undergone processing in some manner and that will be re-introduced in any given production process. This includes products such as iron flakes, sheets, plates or bars.",
+              "parentId": "recycled-renewable-material"
+            },
+            {
+              "id": "material-recycled-renewable-others",
+              "name": "Material (Recycled/Renewable) - Others",
+              "gpcCode": "10008177",
+              "gpcDescription": "Includes any products that may be described/observed as recycled/renewable material product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "recycled-renewable-material"
+            },
+            {
+              "id": "multilayered-recycled-renewable",
+              "name": "Multilayered (Recycled/Renewable)",
+              "gpcCode": "10008472",
+              "gpcDescription": "Includes any products that may be described/observed as recycled/renewable from more than one type of material that have undergone processing in some manner and that will be re-introduced in any given production process. This includes products such as multilayered flakes, pulps or bars.",
+              "parentId": "recycled-renewable-material"
+            },
+            {
+              "id": "paper-and-paperboard-recycled-renewable",
+              "name": "Paper and Paperboard (Recycled/Renewable)",
+              "gpcCode": "10008176",
+              "gpcDescription": "Includes any products that may be described/observed as paper and paperboard that have undergone processing in some manner and that will be re-introduced in any given production process. This includes products such as paper and paperboard flakes, pulps or rolls.",
+              "parentId": "recycled-renewable-material"
+            },
+            {
+              "id": "plastic-recycled-renewable",
+              "name": "Plastic (Recycled/Renewable)",
+              "gpcCode": "10008174",
+              "gpcDescription": "Includes any products that may be described/observed as plastic that have undergone processing in some manner and that will be re-introducing in any given production process. This includes products such as plastic flakes, pellets or resins.",
+              "parentId": "recycled-renewable-material"
+            },
+            {
+              "id": "steel-recycled-renewable",
+              "name": "Steel (Recycled/Renewable)",
+              "gpcCode": "10008172",
+              "gpcDescription": "Includes any products that may be described/observed as steel that have undergone processing in some manner and that will be re-introduced in any given production process. This includes products such as steel flakes, sheets, pellets or bars.",
+              "parentId": "recycled-renewable-material"
+            },
+            {
+              "id": "wood-recycled-renewable",
+              "name": "Wood (Recycled/Renewable)",
+              "gpcCode": "10008173",
+              "gpcDescription": "Includes any products that may be described/observed as wood that have undergone processing in some manner and that will be re-introduced in any given production process. This includes products such as wood flakes, pulps or bars.",
+              "parentId": "recycled-renewable-material"
+            }
+          ]
+        },
+        {
+          "id": "waste-material-formed",
+          "name": "Waste Material (Formed)",
+          "gpcCode": "98020300",
+          "gpcDescription": "Includes any products that may be described/observed as material that has been discarded, unused and that can be collected and sorted for recycling or other forms of processing.",
+          "parentId": "formed-raw-material",
+          "children": [
+            {
+              "id": "aluminium-waste",
+              "name": "Aluminium (Waste)",
+              "gpcCode": "10008466",
+              "gpcDescription": "Includes any products that may be described/observed as waste aluminium that has been discarded, unused and that can be collected and sorted for recycling or other forms of processing. This includes products such as waste materials such as scraps, cut-outs, and damaged products.",
+              "parentId": "waste-material-formed"
+            },
+            {
+              "id": "copper-waste",
+              "name": "Copper (Waste)",
+              "gpcCode": "10008470",
+              "gpcDescription": "Includes any products that may be described/observed as waste copper that has been discarded, unused and that can be collected and sorted for recycling or other forms of processing. This includes products such as waste materials such as scraps, cut-outs, and damaged products.",
+              "parentId": "waste-material-formed"
+            },
+            {
+              "id": "glass-waste",
+              "name": "Glass (Waste)",
+              "gpcCode": "10008462",
+              "gpcDescription": "Includes any products that may be described/observed as waste glass that has been discarded, unused and that can be collected and sorted for recycling or other forms of processing. This includes products such as waste materials such as scraps, cut-outs, and damaged products.",
+              "parentId": "waste-material-formed"
+            },
+            {
+              "id": "iron-waste",
+              "name": "Iron (Waste)",
+              "gpcCode": "10008471",
+              "gpcDescription": "Includes any products that may be described/observed as waste iron that has been discarded, unused and that can be collected and sorted for recycling or other forms of processing. This includes products such as waste materials such as scraps, cut-outs, and damaged products.",
+              "parentId": "waste-material-formed"
+            },
+            {
+              "id": "multilayered-waste",
+              "name": "Multilayered (Waste)",
+              "gpcCode": "10008459",
+              "gpcDescription": "Includes any products that may be described/observed as waste of more than one type of material that has been discarded, unused and that can be collected and sorted for recycling or other forms of processing. This includes products such as waste materials such as scraps, cut-outs, and damaged products.",
+              "parentId": "waste-material-formed"
+            },
+            {
+              "id": "paper-and-paperboard-waste",
+              "name": "Paper and Paperboard (Waste)",
+              "gpcCode": "10008464",
+              "gpcDescription": "Includes any products that may be described/observed as waste paper and paperboard that have been discarded, unused and that can be collected and sorted for recycling or other forms of processing. This includes products such as waste materials such as scraps, cut-outs, and damaged products.",
+              "parentId": "waste-material-formed"
+            },
+            {
+              "id": "plastic-waste",
+              "name": "Plastic (Waste)",
+              "gpcCode": "10008463",
+              "gpcDescription": "Includes any products that may be described/observed as waste plastic that has been discarded, unused and that can be collected and sorted for recycling or other forms of processing. This includes products such as waste materials such as scraps, cut-outs, and damaged products.",
+              "parentId": "waste-material-formed"
+            },
+            {
+              "id": "steel-waste",
+              "name": "Steel (Waste)",
+              "gpcCode": "10008469",
+              "gpcDescription": "Includes any products that may be described/observed as waste steel that has been discarded, unused and that can be collected and sorted for recycling or other forms of processing. This includes products such as waste materials such as scraps, cut-outs, and damaged products.",
+              "parentId": "waste-material-formed"
+            },
+            {
+              "id": "waste-material-formed-others",
+              "name": "Waste Material (Formed) - Others",
+              "gpcCode": "10008460",
+              "gpcDescription": "Includes any products that may be described/observed as waste raw material (formed) products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "waste-material-formed"
+            },
+            {
+              "id": "wood-waste",
+              "name": "Wood (Waste)",
+              "gpcCode": "10008465",
+              "gpcDescription": "Includes any products that may be described/observed as waste wood that has been discarded, unused and that can be collected and sorted for recycling or other forms of processing. This includes products such as waste materials such as scraps, cut-outs, and damaged products.",
+              "parentId": "waste-material-formed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unformed-raw-material",
+      "name": "Unformed Raw Material",
+      "gpcCode": "98010000",
+      "gpcDescription": "Includes materials that are in their liquid state or unformed as powder, liquids, etc.",
+      "parentId": "raw-materials-non-food",
+      "children": [
+        {
+          "id": "raw-material-unformed",
+          "name": "Raw Material (Unformed)",
+          "gpcCode": "98010100",
+          "gpcDescription": "Includes any products that may be described/observed as material that are unformed. Excludes any formed raw materials.",
+          "parentId": "unformed-raw-material",
+          "children": [
+            {
+              "id": "aluminium-unformed",
+              "name": "Aluminium (Unformed)",
+              "gpcCode": "10008153",
+              "gpcDescription": "Includes any products that may be described/observed as raw aluminium that are unformed.",
+              "parentId": "raw-material-unformed"
+            },
+            {
+              "id": "chemicals-unformed",
+              "name": "Chemicals (Unformed)",
+              "gpcCode": "10008151",
+              "gpcDescription": "Includes any products that may be described/observed as raw Chemicals that are unformed.",
+              "parentId": "raw-material-unformed"
+            },
+            {
+              "id": "copper-unformed",
+              "name": "Copper (Unformed)",
+              "gpcCode": "10008154",
+              "gpcDescription": "Includes any products that may be described/observed as raw copper that are unformed.",
+              "parentId": "raw-material-unformed"
+            },
+            {
+              "id": "glass-unformed",
+              "name": "Glass (Unformed)",
+              "gpcCode": "10008158",
+              "gpcDescription": "Includes any products that may be described/observed as raw Glass that are unformed.",
+              "parentId": "raw-material-unformed"
+            },
+            {
+              "id": "iron-unformed",
+              "name": "Iron (Unformed)",
+              "gpcCode": "10008152",
+              "gpcDescription": "Includes any products that may be described/observed as raw iron that are unformed.",
+              "parentId": "raw-material-unformed"
+            },
+            {
+              "id": "oils-unformed",
+              "name": "Oils (Unformed)",
+              "gpcCode": "10008150",
+              "gpcDescription": "Includes any products that may be described/observed as raw Oils that are unformed.",
+              "parentId": "raw-material-unformed"
+            },
+            {
+              "id": "plastics-unformed",
+              "name": "Plastics (Unformed)",
+              "gpcCode": "10008157",
+              "gpcDescription": "Includes any products that may be described/observed as raw Plastics that are unformed.",
+              "parentId": "raw-material-unformed"
+            },
+            {
+              "id": "raw-material-unformed-others",
+              "name": "Raw Material (Unformed) - Others",
+              "gpcCode": "10008159",
+              "gpcDescription": "Includes any products that may be described/observed as Primary Raw Material (Unformed) products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "raw-material-unformed"
+            },
+            {
+              "id": "steel-unformed",
+              "name": "Steel (Unformed)",
+              "gpcCode": "10008155",
+              "gpcDescription": "Includes any products that may be described/observed as raw steel that are unformed.",
+              "parentId": "raw-material-unformed"
+            },
+            {
+              "id": "wood-unformed",
+              "name": "Wood (Unformed)",
+              "gpcCode": "10008156",
+              "gpcDescription": "Includes any products that may be described/observed as raw Wood that are unformed.",
+              "parentId": "raw-material-unformed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

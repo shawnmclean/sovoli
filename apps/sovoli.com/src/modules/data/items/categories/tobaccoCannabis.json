@@ -1,0 +1,504 @@
+{
+  "id": "tobacco-cannabis",
+  "name": "Tobacco/Cannabis",
+  "gpcCode": "12000000",
+  "children": [
+    {
+      "id": "tobacco-cannabis-smoking-accessories",
+      "name": "Tobacco/Cannabis/Smoking Accessories",
+      "gpcCode": "12010000",
+      "parentId": "tobacco-cannabis",
+      "children": [
+        {
+          "id": "cannabis-edibles",
+          "name": "Cannabis - Edibles",
+          "gpcCode": "12010100",
+          "parentId": "tobacco-cannabis-smoking-accessories",
+          "children": [
+            {
+              "id": "cannabis-biscuit-cookie-mix-shelf-stable",
+              "name": "Cannabis - Biscuit/Cookie Mix (shelf stable)",
+              "gpcCode": "10008077",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-biscuits-cookies-ready-to-eat-shelf-stable",
+              "name": "Cannabis - Biscuits/Cookies - Ready to Eat (shelf stable)",
+              "gpcCode": "10008076",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-biscuits-cookies-frozen",
+              "name": "Cannabis - Biscuits/Cookies (Frozen)",
+              "gpcCode": "10008070",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-biscuits-cookies-perishable",
+              "name": "Cannabis - Biscuits/Cookies (Perishable)",
+              "gpcCode": "10008071",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-candy-sugar-candy-substitute-confectionery",
+              "name": "Cannabis - Candy/Sugar Candy Substitute Confectionery",
+              "gpcCode": "10008073",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-chocolate-chocolate-candy-confectionery",
+              "name": "Cannabis - Chocolate/Chocolate Candy Confectionery",
+              "gpcCode": "10008074",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-coffee",
+              "name": "Cannabis - Coffee",
+              "gpcCode": "10008481",
+              "gpcDescription": "Includes any coffee products that may be described/observed as containing cannabinoids such as THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-condiments",
+              "name": "Cannabis - Condiments",
+              "gpcCode": "10008484",
+              "gpcDescription": "Includes any products that may be described/observed as containing cannabinoids such as THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-confectionery-sugar-sweetening-products-variety-packs",
+              "name": "Cannabis - Confectionery/Sugar Sweetening Products Variety Packs",
+              "gpcCode": "10008075",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-cooking-oils-vegetable-or-plant-shelf-stable",
+              "name": "Cannabis - Cooking Oils - Vegetable or Plant (Shelf Stable)",
+              "gpcCode": "10008088",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-drinks-flavoured-ready-to-drink-shelf-stable",
+              "name": "Cannabis - Drinks Flavoured - Ready to Drink (Shelf Stable)",
+              "gpcCode": "10008079",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-drinks-water-enhancer-shelf-stable",
+              "name": "Cannabis - Drinks Water Enhancer (Shelf Stable)",
+              "gpcCode": "10008080",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-fruit-herbal-infusions-ready-to-drink",
+              "name": "Cannabis - Fruit Herbal Infusions - Ready to Drink",
+              "gpcCode": "10008083",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-fruit-juice-ready-to-drink-perishable",
+              "name": "Cannabis - Fruit Juice - Ready to Drink (Perishable)",
+              "gpcCode": "10008084",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-fruit-juice-ready-to-drink-shelf-stable",
+              "name": "Cannabis - Fruit Juice - Ready to Drink (Shelf Stable)",
+              "gpcCode": "10008085",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-fruit-juice-drinks-ready-to-drink-perishable",
+              "name": "Cannabis - Fruit Juice Drinks - Ready to Drink (Perishable)",
+              "gpcCode": "10008086",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-fruit-juice-drinks-ready-to-drink-shelf-stable",
+              "name": "Cannabis - Fruit Juice Drinks - Ready to Drink (Shelf Stable)",
+              "gpcCode": "10008087",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-muffins-brownies-cakes-ready-to-eat-shelf-stable",
+              "name": "Cannabis - Muffins/Brownies/Cakes - Ready to Eat (shelf stable)",
+              "gpcCode": "10008078",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-non-savoury-food",
+              "name": "Cannabis - Non-Savoury Food",
+              "gpcCode": "10008483",
+              "gpcDescription": "Includes non-savoury food such as infused fruit bites, infused dried fruit products that may be described/observed as containing cannabinoids such as THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-powdered-drink-mix",
+              "name": "Cannabis - Powdered Drink Mix",
+              "gpcCode": "10008482",
+              "gpcDescription": "Includes any powdered drink mix products that may be described/observed as containing cannabinoids such as THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-savory-snack-ready-to-eat-shelf-stable",
+              "name": "Cannabis - Savory Snack - Ready to Eat (Shelf Stable)",
+              "gpcCode": "10008310",
+              "gpcDescription": "Includes any products that may be described/observed as cannabis derived THC or CBD, or both, infused with salty and spicy food and snacks. ",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-tea-herbal-tea-leaves-bags-infused",
+              "name": "Cannabis - Tea/Herbal Tea - Leaves/Bags Infused",
+              "gpcCode": "10008081",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            },
+            {
+              "id": "cannabis-tea-herbal-tea-infusions-ready-to-drink-shelf-stable",
+              "name": "Cannabis - Tea/Herbal Tea Infusions - Ready to Drink (Shelf Stable)",
+              "gpcCode": "10008082",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-edibles"
+            }
+          ]
+        },
+        {
+          "id": "cannabis-non-edibles",
+          "name": "Cannabis - Non-Edibles",
+          "gpcCode": "12010200",
+          "parentId": "tobacco-cannabis-smoking-accessories",
+          "children": [
+            {
+              "id": "cannabis-bath-and-shower",
+              "name": "Cannabis - Bath and Shower",
+              "gpcCode": "10008313",
+              "gpcDescription": "Includes any products that may be described/observed as bath products that contain THC, CBD, or both, with different cannabinoids producing different effects.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-budder",
+              "name": "Cannabis - Budder",
+              "gpcCode": "10008094",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-concentrate-other",
+              "name": "Cannabis - Concentrate - Other",
+              "gpcCode": "10008488",
+              "gpcDescription": "Includes any cannabis extract product that is intended to be inhaled, contains cannabinoids such as THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-disposible-vape-pen",
+              "name": "Cannabis - Disposible Vape Pen",
+              "gpcCode": "10008100",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-dried-flower-milled",
+              "name": "Cannabis - Dried Flower - Milled",
+              "gpcCode": "10008312",
+              "gpcDescription": "Includes any products that may be described/observed as dried flowers of the cannabis plant that is milled, a genus of flowering plant in the family Cannabaceae. Milled flower is ready for immediate use.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-dried-flower-whole",
+              "name": "Cannabis - Dried Flower - Whole",
+              "gpcCode": "10006993",
+              "gpcDescription": "Includes any products that may be described/observed as whole dried flowers of the cannabis plant, a genus of flowering plant in the family Cannabaceae.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-fresh",
+              "name": "Cannabis - Fresh",
+              "gpcCode": "10008316",
+              "gpcDescription": "Includes any products that may be described/observed as freshly harvested cannabis buds and leaves, but does not include plant material that can be used to propagate cannabis.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-hash",
+              "name": "Cannabis - Hash",
+              "gpcCode": "10008099",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-herbal-cigarettes-non-tobacco",
+              "name": "Cannabis - Herbal Cigarettes - Non Tobacco",
+              "gpcCode": "10008091",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-infused-pre-rolls",
+              "name": "Cannabis - Infused Pre-Rolls",
+              "gpcCode": "10008485",
+              "gpcDescription": "Includes any products that can be described/observed as a cylindrical roll of cannabis infused with flavour and/or cannabis extract, designed to be combusted and inhaled.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-kief",
+              "name": "Cannabis - Kief",
+              "gpcCode": "10008098",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-live-resin",
+              "name": "Cannabis - Live Resin",
+              "gpcCode": "10008314",
+              "gpcDescription": "Includes any products that may be described/observed as cannabis that is solvent-based, usually Butane Hash Oil (BHO), high-quality, flavourful concentrates made by flash-freezing the whole cannabis flowers then extracting them.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-live-rosin",
+              "name": "Cannabis - Live Rosin",
+              "gpcCode": "10008315",
+              "gpcDescription": "Includes any products that may be described/observed as cannabis that is solventless, made from pressing bubble hash that was derived from freshly frozen flower.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-oil-oral-spray-tincture",
+              "name": "Cannabis - Oil/Oral Spray/Tincture",
+              "gpcCode": "10006992",
+              "gpcDescription": "Includes any products that may be described/observed as cannabis infused with a liquid such as glycerin, alcohol, or oil in a way that cannabinoids, terpenes, and other compounds have melded with the base liquid. It meant for sublingual consumption and not vaporization or smoking.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-oral-solids-capsules-tablets-softgels",
+              "name": "Cannabis - Oral Solids - Capsules/Tablets/Softgels",
+              "gpcCode": "10008089",
+              "gpcDescription": "Includes any products that may be described/observed as solid oral ingestible cannabis extract that contain cannabinoids such as THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-personal-lubricants",
+              "name": "Cannabis - Personal Lubricants",
+              "gpcCode": "10008487",
+              "gpcDescription": "Includes any personal lubricants that may be described/observed as containing cannabinoids such as THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-plant",
+              "name": "Cannabis - Plant",
+              "gpcCode": "10008318",
+              "gpcDescription": "Includes any products that may be described/observed as the whole plant material (all parts of the plant) within the genus Cannabis.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-pre-rolled",
+              "name": "Cannabis - Pre-Rolled",
+              "gpcCode": "10006994",
+              "gpcDescription": "Includes any products that can be described/observed as a cylindrical roll of cannabis, cannabis product blend (with tobacco and herbs), designed to be smoked.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-resin",
+              "name": "Cannabis - Resin",
+              "gpcCode": "10008097",
+              "gpcDescription": "Includes any products that may be described/observed as cannabis that is solvent-based, a terpene sauce and few TCHa diamonds made from heating and pressing trimmed, dried and cured flowers.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-rosin",
+              "name": "Cannabis - Rosin",
+              "gpcCode": "10008096",
+              "gpcDescription": "Includes any products that may be described/observed as cannabis that is solventless, shatter like concentrate made from heating and pressing dried flower, hash, or kief together.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-seeds",
+              "name": "Cannabis - Seeds",
+              "gpcCode": "10008317",
+              "gpcDescription": "Includes any products that may be described/observed as a seed of a cannabis plant, a genus of flowering plant in the genus Cannabis.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-shatter",
+              "name": "Cannabis - Shatter",
+              "gpcCode": "10008093",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-solid-infused",
+              "name": "Cannabis - Solid Infused",
+              "gpcCode": "10008311",
+              "gpcDescription": "Includes any products that may be described/observed as cannabis infused in pre-made weed cigarette with hash added to it. The cannabis extract can be outside, or inside the cigarette roll. ",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-suppositories",
+              "name": "Cannabis - Suppositories",
+              "gpcCode": "10008486",
+              "gpcDescription": "Includes any products that may be described/observed as solid but readily meltable cone or cylinder that contain cannabinoids such as THC or CBD for insertion into a body orifice.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-topical-face-body-cream-lotions",
+              "name": "Cannabis - Topical - Face-Body Cream/Lotions",
+              "gpcCode": "10008090",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-vape-cartridge",
+              "name": "Cannabis - Vape Cartridge",
+              "gpcCode": "10008102",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-vape-kit",
+              "name": "Cannabis - Vape Kit",
+              "gpcCode": "10008101",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            },
+            {
+              "id": "cannabis-wax",
+              "name": "Cannabis - Wax",
+              "gpcCode": "10008095",
+              "gpcDescription": "Includes any products that may be described/observed as containing Cannabis derived THC or CBD.",
+              "parentId": "cannabis-non-edibles"
+            }
+          ]
+        },
+        {
+          "id": "e-cigarettes-and-accessories",
+          "name": "E-Cigarettes and Accessories",
+          "gpcCode": "12010400",
+          "parentId": "tobacco-cannabis-smoking-accessories",
+          "children": [
+            {
+              "id": "electronic-cigarette-accessories",
+              "name": "Electronic Cigarette Accessories",
+              "gpcCode": "10006730",
+              "gpcDescription": "Includes any products that can be described/observed as any accessories designed to support electronic cigarettes.  ",
+              "parentId": "e-cigarettes-and-accessories"
+            },
+            {
+              "id": "electronic-cigarettes",
+              "name": "Electronic Cigarettes",
+              "gpcCode": "10006729",
+              "gpcDescription": "Includes any products that can be described/observed as a an electronic inhaler that vaporises a liquid solution into an aerosol mist, simulating the act of tobacco smoking. These products can be flavoured with products such as Menthol.",
+              "parentId": "e-cigarettes-and-accessories"
+            }
+          ]
+        },
+        {
+          "id": "non-tobacco-non-cannabis-herbal",
+          "name": "Non-Tobacco/Non-Cannabis Herbal",
+          "gpcCode": "12010500",
+          "parentId": "tobacco-cannabis-smoking-accessories",
+          "children": [
+            {
+              "id": "herbal-chew-snuff-non-tobacco",
+              "name": "Herbal Chew/Snuff - Non Tobacco",
+              "gpcCode": "10006313",
+              "gpcDescription": "Includes any products that can be described/observed as a portion of dense, sometimes moist, non-smoking herbs, that is specifically designed to be sniffed or to be placed directly in the mouth to be sucked or chewed.  ",
+              "parentId": "non-tobacco-non-cannabis-herbal"
+            },
+            {
+              "id": "herbal-cigarettes-non-tobacco",
+              "name": "Herbal Cigarettes - Non Tobacco",
+              "gpcCode": "10000584",
+              "gpcDescription": "Includes any products that can be described/observed as a cylindrical roll of finely cut and blended herbs, designed to be smoked. Notably smaller than most cigars and always wrapped in thin paper, usually white. These products contain no nicotine or tobacco and can be used as an aid to help quit smoking tobacco.",
+              "parentId": "non-tobacco-non-cannabis-herbal"
+            }
+          ]
+        },
+        {
+          "id": "smoking-accessories",
+          "name": "Smoking Accessories",
+          "gpcCode": "12010600",
+          "parentId": "tobacco-cannabis-smoking-accessories",
+          "children": [
+            {
+              "id": "smoking-accessories",
+              "name": "Smoking Accessories",
+              "gpcCode": "10000303",
+              "gpcDescription": "Includes any products that can be described/observed as accessories specifically designed to prepare, enhance or supplement the quality, versatility, performance or convenience of another tobacco product. The products include pipes, ashtrays, humidors and pipe cleaners.",
+              "parentId": "smoking-accessories"
+            }
+          ]
+        },
+        {
+          "id": "tobacco",
+          "name": "Tobacco",
+          "gpcCode": "12010300",
+          "parentId": "tobacco-cannabis-smoking-accessories",
+          "children": [
+            {
+              "id": "cigarettes",
+              "name": "Cigarettes",
+              "gpcCode": "10000185",
+              "gpcDescription": "Includes any products that can be described/observed as a cylindrical roll of finely cut, cured tobacco, or a blend of tobacco and herbs, designed to be smoked. Notably smaller than most cigars and always wrapped in thin paper, usually white. These products may or may not have a filter, can be flavoured with products such as Menthol.",
+              "parentId": "tobacco"
+            },
+            {
+              "id": "cigars",
+              "name": "Cigars",
+              "gpcCode": "10000186",
+              "gpcDescription": "Includes any products which can be described/observed as cylindrical roll of tobacco cured for smoking, available in various lengths, thickness, degrees of straightness, and always wrapped in a tobacco leaf. Includes all types of cigars such as cigarillos, panatelas and coronas. Includes cigars with or without filter tips. Includes cigars of various flavours such as menthol, cherry, vanilla and chocolate.",
+              "parentId": "tobacco"
+            },
+            {
+              "id": "tobacco-chewing-snuff",
+              "name": "Tobacco - Chewing/Snuff",
+              "gpcCode": "10000134",
+              "gpcDescription": "Includes any products that can be described/observed as a portion of dense, sometimes moist, non-smoking tobacco that is specifically designed to be sniffed or to be placed directly in the mouth to be sucked or chewed. Specifically includes Scandinavian snus tobacco and tobacco that has additional flavourings (such as aniseed, cinnamon, mint and herbs.).",
+              "parentId": "tobacco"
+            },
+            {
+              "id": "tobacco-loose",
+              "name": "Tobacco - Loose",
+              "gpcCode": "10000267",
+              "gpcDescription": "Includes any products that can be described/observed as loose or pre-rubbed tobacco, which is pre-shredded and treated. Includes tobacco that is packaged loose and designed to be rolled into a cigarette by hand in conjunction with cigarette papers and can also be used with cigarette rolling machines. Includes loose tobacco that can be used in any type of pipe.",
+              "parentId": "tobacco"
+            },
+            {
+              "id": "tobacco-solid",
+              "name": "Tobacco - Solid",
+              "gpcCode": "10000268",
+              "gpcDescription": "Includes only products that can be described/observed as tobacco, which is compressed and sold as a packaged solid block or disc, designed to be cut up into portions and crumbled. Products can be used in any type of pipe.",
+              "parentId": "tobacco"
+            }
+          ]
+        },
+        {
+          "id": "tobacco-cannabis-herbal-products-smoking-accessories-variety-packs",
+          "name": "Tobacco/Cannabis/Herbal Products/Smoking Accessories Variety Packs",
+          "gpcCode": "12010700",
+          "parentId": "tobacco-cannabis-smoking-accessories",
+          "children": [
+            {
+              "id": "tobacco-cannabis-herbal-products-smoking-accessories-variety-packs",
+              "name": "Tobacco/Cannabis/Herbal Products/Smoking Accessories Variety Packs",
+              "gpcCode": "10000620",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Tobacco/Cannabis/Herbal Product or Smoking Accessory sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Tobacco Products and Smoking Accessories class. Includes products such as Pipes and Loose Tobacco sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "tobacco-cannabis-herbal-products-smoking-accessories-variety-packs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

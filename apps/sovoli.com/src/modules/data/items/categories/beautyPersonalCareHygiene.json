@@ -1,0 +1,1447 @@
+{
+  "id": "beauty-personal-care-hygiene",
+  "name": "Beauty/Personal Care/Hygiene",
+  "gpcCode": "53000000",
+  "children": [
+    {
+      "id": "beauty-personal-care-hygiene-variety-packs",
+      "name": "Beauty/Personal Care/Hygiene Variety Packs",
+      "gpcCode": "53220000",
+      "parentId": "beauty-personal-care-hygiene",
+      "children": [
+        {
+          "id": "beauty-personal-care-hygiene-variety-packs",
+          "name": "Beauty/Personal Care/Hygiene Variety Packs",
+          "gpcCode": "53220100",
+          "parentId": "beauty-personal-care-hygiene-variety-packs",
+          "children": [
+            {
+              "id": "beauty-personal-care-hygiene-variety-packs",
+              "name": "Beauty/Personal Care/Hygiene Variety Packs",
+              "gpcCode": "10000666",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Beauty, Personal Care and Hygiene products sold together which exist within the schema but belong to different Families, that is two or more products contained within the same pack which cross Families within the Beauty, Personal Care and Hygiene Segment. Includes products such as Perfume and Body Moisturisers variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "beauty-personal-care-hygiene-variety-packs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "body-products",
+      "name": "Body Products",
+      "gpcCode": "53200000",
+      "parentId": "beauty-personal-care-hygiene",
+      "children": [
+        {
+          "id": "body-massage-toning",
+          "name": "Body Massage/Toning",
+          "gpcCode": "53201000",
+          "parentId": "body-products",
+          "children": [
+            {
+              "id": "bath-massage-toning",
+              "name": "Bath Massage/Toning",
+              "gpcCode": "10000807",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device that can be added to the bath, such as bath spas, which are designed to produce bubbles provide relaxation and to massage the skin Includes products such as Bath Spa Hoses and Mats. ",
+              "parentId": "body-massage-toning"
+            },
+            {
+              "id": "body-massage-toning-replacement-parts",
+              "name": "Body Massage/Toning - Replacement Parts",
+              "gpcCode": "10000758",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Body Massage and Toning Products. Includes products such as pads for electrical massage and toning machines that can be applied to various parts of the body including the abdomen, buttocks and face.",
+              "parentId": "body-massage-toning"
+            },
+            {
+              "id": "body-massage-toning-other",
+              "name": "Body Massage/Toning Other",
+              "gpcCode": "10000760",
+              "gpcDescription": "Includes any products that can be described/observed as Body Massage and Toning products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "body-massage-toning"
+            },
+            {
+              "id": "body-massage-toning-variety-packs",
+              "name": "Body Massage/Toning Variety Packs",
+              "gpcCode": "10000668",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Body Massage and Toning products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Body Massage and Toning class. Includes products such as Electrical Abdominal Toners and Body Massagers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "body-massage-toning"
+            },
+            {
+              "id": "body-toning-firming-products-powered",
+              "name": "Body Toning/Firming Products (Powered)",
+              "gpcCode": "10000567",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device specifically designed to tone and firm the body. These products generally claim to stimulate muscles, which allegedly promotes toning, and/or slimming. Includes powered products such as abdominal toners and facial toners. ",
+              "parentId": "body-massage-toning"
+            },
+            {
+              "id": "personal-warming-massaging-non-powered",
+              "name": "Personal Warming/Massaging (Non Powered)",
+              "gpcCode": "10000566",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device whose function is to massage or warm parts of the body. Includes products such as gel packs which become warm through a chemical reaction process, hot water bottles and non-powered body massagers. ",
+              "parentId": "body-massage-toning"
+            },
+            {
+              "id": "personal-warming-massaging-powered",
+              "name": "Personal Warming/Massaging (Powered)",
+              "gpcCode": "10000759",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device whose function is to massage or warm parts of the body. Products may be targeted at any area of the body such as feet, back neck. Includes products such as infrared massager, deep tissue massager, and foot massager. Also includes personal warming devices that are warmed in a microwave oven prior to use. ",
+              "parentId": "body-massage-toning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cosmetics-fragrances",
+      "name": "Cosmetics/Fragrances",
+      "gpcCode": "53160000",
+      "parentId": "beauty-personal-care-hygiene",
+      "children": [
+        {
+          "id": "aromatherapy",
+          "name": "Aromatherapy",
+          "gpcCode": "53161500",
+          "parentId": "cosmetics-fragrances",
+          "children": [
+            {
+              "id": "aromatherapy-cushions",
+              "name": "Aromatherapy Cushions",
+              "gpcCode": "10000772",
+              "gpcDescription": "Includes any products that can be described/observed, as a bag made of cloth, plastic or leather which is filled with soft material and which contains aromatherapy oils intended to soothe and relax.",
+              "parentId": "aromatherapy"
+            },
+            {
+              "id": "aromatherapy-other",
+              "name": "Aromatherapy Other",
+              "gpcCode": "10000779",
+              "gpcDescription": "Includes any products that can be described/observed as Aromatherapy products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "aromatherapy"
+            },
+            {
+              "id": "aromatherapy-variety-packs",
+              "name": "Aromatherapy Variety Packs",
+              "gpcCode": "10000774",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Aromatherapy products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Aromatherapy class. Includes products such as Lavender Pure Essential Oil and Ceramic Oil Diffusers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "aromatherapy"
+            },
+            {
+              "id": "base-carrier-oils",
+              "name": "Base/Carrier Oils",
+              "gpcCode": "10000773",
+              "gpcDescription": "Includes any products that can be described/observed as pure non-volatile oils used mainly to dilute essential oils for massage. Products such as essential oils are often too strong/concentrated to be used directly on the skin, and therefore base carrier oils are used. Includes products such as grey jojoba, carrier oil, and grape seed oil.",
+              "parentId": "aromatherapy"
+            },
+            {
+              "id": "essential-oils",
+              "name": "Essential Oils",
+              "gpcCode": "10000771",
+              "gpcDescription": "Includes any products that can be described/observed as oils which are taken from a plant, and which can be used in a number of ways such as massaging, bathing or in vaporisers. Includes products such as lavender pure essential oil, eucalyptus natural essential oil, yarrow pure natural essential oil. ",
+              "parentId": "aromatherapy"
+            },
+            {
+              "id": "oil-diffusers-non-powered",
+              "name": "Oil Diffusers (Non Powered)",
+              "gpcCode": "10000769",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered diffuser that disperses essential oils into the atmosphere to promote and encourage relaxation. Includes products such as ceramic oil diffusers and metal oil diffusers. ",
+              "parentId": "aromatherapy"
+            },
+            {
+              "id": "oil-diffusers-powered",
+              "name": "Oil Diffusers (Powered)",
+              "gpcCode": "10000770",
+              "gpcDescription": "Includes any products that can be described/observed as a powered diffuser that disperses essential oils into the atmosphere to promote and encourage relaxation. Products may have additional features such as timers to regulate the amount of essential oil that is being diffused. ",
+              "parentId": "aromatherapy"
+            }
+          ]
+        },
+        {
+          "id": "cosmetic-makeup-products",
+          "name": "Cosmetic/MakeUp Products",
+          "gpcCode": "53161000",
+          "parentId": "cosmetics-fragrances",
+          "children": [
+            {
+              "id": "breast-hip-enhancer-pads",
+              "name": "Breast/Hip Enhancer Pads",
+              "gpcCode": "10000762",
+              "gpcDescription": "Includes any products that can be described/observed as a cosmetic item specifically designed to enhance the shape or size of the breast and hips. These products are intended to be worn under clothing. Includes products made from various materials such as gel, silicone, saline or fabric.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-complexion",
+              "name": "Cosmetic/MakeUp - Complexion",
+              "gpcCode": "10000532",
+              "gpcDescription": "Includes any products that can be described/observed as a Cosmetic/MakeUp preparation or item specifically designed to enhance or decorate the appearance of the face complexion. Includes face foundation and blushers.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-eyes",
+              "name": "Cosmetic/MakeUp - Eyes",
+              "gpcCode": "10000533",
+              "gpcDescription": "Includes any products that can be described/observed as a Cosmetic/MakeUp preparation or item specifically designed to enhance or decorate the appearance of the eyes. Includes eye shadow and eyebrow sticks. ",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-lips",
+              "name": "Cosmetic/MakeUp - Lips",
+              "gpcCode": "10000534",
+              "gpcDescription": "Includes any products that can be described/observed as a Cosmetic/MakeUp preparation or item specifically designed to enhance or decorate the appearance of the lips.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-multizone",
+              "name": "Cosmetic/MakeUp - Multizone",
+              "gpcCode": "10008306",
+              "gpcDescription": "Includes any products that can be described/observed as a Cosmetic/MakeUp preparation or item specifically designed to enhance or decorate the appearance of multiple face zones such as lips and cheeks or eyes and nose.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-aids-accessories",
+              "name": "Cosmetic/MakeUp Aids/Accessories",
+              "gpcCode": "10000377",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory or tool specifically designed for the removal, storage or maintenance of Cosmetic/MakeUp. Includes products specifically for cosmetic/makeup use such as eyelash curlers, eyebrow combs, mirrors, cosmetic bags and boxes, and pencil sharpeners.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-applicators",
+              "name": "Cosmetic/MakeUp Applicators",
+              "gpcCode": "10008024",
+              "gpcDescription": "Includes any products that can be described/observed as a cosmetic applicator specifically designed for the application of Cosmetic/MakeUp. ",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-display-test",
+              "name": "Cosmetic/MakeUp Display Test",
+              "gpcCode": "10006201",
+              "gpcDescription": "Includes any products that can be described/observed as a Cosmetic/MakeUp display stand/display unit that may be designed with or without a pedestal. The purpose of the display is specifically designed to enhance the item collection in a shop or in a retail store that are from the same panel of Cosmetics and MakeUp. Includes Cosmetic/MakeUp display tests that will have some samples of the product in order to represent the different possible colours or shades of the product. The Cosmetic/MakeUp display can be a display for items such as Cosmetic/MakeUp Lips display stands and Cosmetic/MakeUp Eyes stands or Cosmetic/MakeUp Paints/Shimmers/Glitters or Complexion.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-paints-shimmers-glitters",
+              "name": "Cosmetic/MakeUp Paints/Shimmers/Glitters",
+              "gpcCode": "10000761",
+              "gpcDescription": "Includes any products that can be described/observed as Cosmetic/MakeUp, specifically designed to decorate the face and/or body to give a shiny and/or glitter effect. Products include those that can be used on any area of the body such as the skin, face and hair. Includes products such as powder Cosmetic/MakeUp, liquid Cosmetic/MakeUp, lotion Cosmetic/MakeUp and spray Cosmetic/Makeup.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-products-other",
+              "name": "Cosmetic/MakeUp Products Other",
+              "gpcCode": "10000775",
+              "gpcDescription": "Includes any products that can be described/observed as Cosmetic/MakeUp Products, where the user of the schema is not able to classify the products in existing bricks within the schema.\n",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "cosmetic-makeup-products-variety-packs",
+              "name": "Cosmetic/MakeUp Products Variety Packs",
+              "gpcCode": "10000669",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Cosmetic/MakeUp Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Cosmetic/MakeUp Products class. Includes products such as Eye Shadow and Lipstick sold together. Items that are received free with purchases should be removed from the classification decision-making process. Also include Cosmetic/MakeUp Display Test that are sold with items like Cosmetic/MakeUp Lip, or any other product which belongs to the Cosmetic/MakeUp Product Class.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "eyelashes-false",
+              "name": "Eyelashes - False",
+              "gpcCode": "10000764",
+              "gpcDescription": "Includes any products that can be described/observed as artificial cosmetic aids used to enhance the appearance of the eye, by the application of full or single false eyelashes.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "skin-lightening",
+              "name": "Skin Lightening",
+              "gpcCode": "10000486",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed for artificial skin bleaching, or to disguise age or pigment spots. These products vary from those giving the effect that will last several days to permanent and semi-permanent ones.",
+              "parentId": "cosmetic-makeup-products"
+            },
+            {
+              "id": "tattoos-stencils-stick-on-jewellery-temporary",
+              "name": "Tattoos/Stencils/Stick-on Jewellery - Temporary",
+              "gpcCode": "10000763",
+              "gpcDescription": "Includes any products that can be described/observed as cosmetic items which are intended to temporarily give the body a decorative effect, by the application of jewels, transfers and temporary tattoos. Products include those that can be used on any area of the body such as the skin, face and nails. Includes products such as henna tattoos, body jewels and henna tattoo stencils.",
+              "parentId": "cosmetic-makeup-products"
+            }
+          ]
+        },
+        {
+          "id": "cosmetics-fragrances-variety-packs",
+          "name": "Cosmetics/Fragrances Variety Packs",
+          "gpcCode": "53161400",
+          "parentId": "cosmetics-fragrances",
+          "children": [
+            {
+              "id": "cosmetics-fragrances-variety-packs",
+              "name": "Cosmetics/Fragrances Variety Packs",
+              "gpcCode": "10000672",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Cosmetics and Fragrances sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Cosmetics and Fragrances Family. Includes products such as Body Spray with Lipstick variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "cosmetics-fragrances-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "fragrances",
+          "name": "Fragrances",
+          "gpcCode": "53161300",
+          "parentId": "cosmetics-fragrances",
+          "children": [
+            {
+              "id": "fragrances",
+              "name": "Fragrances",
+              "gpcCode": "10000365",
+              "gpcDescription": "Includes any products that can be described/observed as a fragrance containing fragrant natural oils extracted from flowers, wood or similar synthetic or infused oils. Usually sprayed or dabbed on the body in order to create a pleasant aroma or refresh the body and can have various levels of perfumed essences concentration. Includes products such as Eau de Toilette, Parfum and Eau de Cologne. Specifically includes Liquid Aftershave.",
+              "parentId": "fragrances"
+            }
+          ]
+        },
+        {
+          "id": "nail-cosmetic-care-products",
+          "name": "Nail Cosmetic/Care Products",
+          "gpcCode": "53161200",
+          "parentId": "cosmetics-fragrances",
+          "children": [
+            {
+              "id": "cosmetics-nails",
+              "name": "Cosmetics - Nails",
+              "gpcCode": "10000360",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, designed to be painted onto the finger or toe-nails to add colour or to add shine. Products may claim to have finishes such as frosted or matt, sometimes glitter is added; they are available in various colours and shades. Includes products such as nail polish/varnish and base coats, ",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nail-cosmetic-care-products-replacement-parts",
+              "name": "Nail Cosmetic/Care Products - Replacement Parts",
+              "gpcCode": "10000768",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Nail Cosmetic and Care products. Includes products such as a manicure aids case.",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nail-cosmetic-care-products-other",
+              "name": "Nail Cosmetic/Care Products Other",
+              "gpcCode": "10000778",
+              "gpcDescription": "Includes any products that can be described/observed as Nail Cosmetic and Care products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nail-cosmetic-care-products-variety-packs",
+              "name": "Nail Cosmetic/Care Products Variety Packs",
+              "gpcCode": "10000671",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Nail Cosmetic and Care Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Nail Cosmetic and Care Products class. Includes products such as Nail Polish Removers and Nail Files sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nails-accessories-non-powered",
+              "name": "Nails - Accessories (Non Powered)",
+              "gpcCode": "10000385",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered accessory, specifically designed to enhance the performance of nail care aids or other nail make up products. Includes products intended for both natural and false nails such as nail polish holders and nail polish correctors. ",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nails-accessories-powered",
+              "name": "Nails - Accessories (Powered)",
+              "gpcCode": "10000767",
+              "gpcDescription": "Includes any products that can be described/observed as a powered accessory, specifically designed to enhance the performance of nail care aids or other nail make up products. Includes products intended for both natural and false nails such as nail polish dryers and false nails glue dryers. ",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nails-aids-non-powered",
+              "name": "Nails - Aids (Non Powered)",
+              "gpcCode": "10000358",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device or tool, specifically designed to manicure the nails, and typically intended to polish and buff the nails or to remove or push back the nail cuticles. Includes non-powered products such as Callus Shaver, Cuticle Nipper, Nail File, Nail Clipper and Manicure Scissors. ",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nails-aids-powered",
+              "name": "Nails - Aids (Powered)",
+              "gpcCode": "10000780",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device or tool, specifically designed to manicure the nails, and typically intended to polish and buff the nails or to remove or push back the nail cuticles. Includes all powered products for manicuring the nails such as powered nail buffers and nail files.. ",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nails-cleansers-cosmetic-removers",
+              "name": "Nails - Cleansers/Cosmetic Removers",
+              "gpcCode": "10000333",
+              "gpcDescription": "Includes any products that can be described/observed as a cosmetic aid designed to remove nail polish or cleanse the nail. The products include those containing acetone, and acetone-free products, specially formulated for use on thin, fragile nails. Specifically includes products such as pens, sponges and wipes.",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nails-false",
+              "name": "Nails - False",
+              "gpcCode": "10000359",
+              "gpcDescription": "Includes any products that can be described/observed as artificial cosmetic nails that are designed to cover natural nails, either to give the immediate appearance of real, well-maintained nails or to strengthen weak natural nails. Includes complete kits and false nails, designed to be glued and removed after a short period of time. Also includes products, which are integrated with the natural nail as it grows. Products are available in various colours and shades and can be custom-shaped to fit particular nails.",
+              "parentId": "nail-cosmetic-care-products"
+            },
+            {
+              "id": "nails-treatments",
+              "name": "Nails - Treatments",
+              "gpcCode": "10000361",
+              "gpcDescription": "Includes any products that can be described/observed as a cosmetic treatment designed to care for the nail, such as to soften and help remove overgrown cuticles and dead skin. They also include products that are used to provide a health and/or nutritional benefit to finger/toe nails. Products may claim to have formulations such as moisturizing or infection prevention.",
+              "parentId": "nail-cosmetic-care-products"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hair-products",
+      "name": "Hair Products",
+      "gpcCode": "53140000",
+      "parentId": "beauty-personal-care-hygiene",
+      "children": [
+        {
+          "id": "hair-care-products",
+          "name": "Hair Care Products",
+          "gpcCode": "53141100",
+          "parentId": "hair-products",
+          "children": [
+            {
+              "id": "hair-accessories",
+              "name": "Hair - Accessories",
+              "gpcCode": "10000379",
+              "gpcDescription": "Includes any products that can be described/observed as a device such as a clip, net, pin or band, specifically designed and marketed for securing and supporting locks of hair and/or for decorative purposes.",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-aids-non-powered",
+              "name": "Hair - Aids (Non Powered)",
+              "gpcCode": "10000564",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered aid or device that performs a hair grooming function such as brushing, combing or trimming. The primary function of these products cannot be easily achieved through any other means, these products are a necessity in order to perform the specific function that they are used for. Includes products such as Wig and Toupee Adhesive, brushes, combs and non-powered clippers. ",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-aids-powered",
+              "name": "Hair - Aids (Powered)",
+              "gpcCode": "10000828",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device that is intended as an aid in trimming, cutting and drying hair on the body. This includes trimming the hair on the head into a particular style or for neatness, and trimming unsightly bodily hair, such as nasal hair and hair inside the ear. The primary function of these products cannot be easily achieved through any other means, these products are a necessity in order to perform the specific function that they are used for. ",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-brushes-and-combs",
+              "name": "Hair - Brushes and Combs",
+              "gpcCode": "10008023",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered aid or device that performs a hair grooming function such as brushing or combing.  ",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-colour",
+              "name": "Hair - Colour",
+              "gpcCode": "10000345",
+              "gpcDescription": "Includes any products that can be described/observed as a hair colourant, which is applied to the hair to change the colour for varying lengths of time. Products include temporary colourants, semi-permanents, dyes or permanent colourants and lighteners/bleaches and those applied to eyelashes and eyebrows. Also includes Colourant Restorers, Colour Enhancers/Correctors Products.",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-conditioner-treatment",
+              "name": "Hair - Conditioner/Treatment",
+              "gpcCode": "10000346",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to treat or condition the hair, and typically intended to be massaged in to wet or dry hair and is allowed to remain or then rinsed away. Typically these products leave the hair soft and manageable. Products may claim to have formulations such as anti-dry scalp, oil reduction, enhanced shine or de-tangling properties.",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-false",
+              "name": "Hair - False",
+              "gpcCode": "10000343",
+              "gpcDescription": "Includes any products that can be described/observed as an arrangement of artificial or human hair that is worn either to enhance a person's natural facial, head or body hair or as a fashion/costume accessory. Includes products such as wigs, toupees, hair extensions, eyebrows, moustache. ",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-perming",
+              "name": "Hair - Perming",
+              "gpcCode": "10000348",
+              "gpcDescription": "Includes any products that can be described/observed as a device, tool or liquid, specifically designed for use in the function of hair perming. Products may claim to have formulations such as conditioning, moisturising, heat protection or extra hold.",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-shampoo",
+              "name": "Hair - Shampoo",
+              "gpcCode": "10000368",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation which is specifically used to clean the hair. These products may be applied to the hair either with or without the addition of water and may be liquid, powder or applied from an aerosol. Products may also contain a conditioner to allow the user to wash and condition the hair at the same time. Includes products that may also have formulation claims such as anti-dandruff, for oily hair, sensitive or sun protection and conditioning. Specifically includes products such as 2 in 1 Shampoo and Conditioning products.",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-styling-non-powered",
+              "name": "Hair - Styling (Non Powered)",
+              "gpcCode": "10000381",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered preparation applied to the hair to style and hold. Products provide temporary styling and may be labelled according to the degree of hold they provide, such as 'regular' or 'extra hold'. Includes products such as preparations that may have additional formulation claims such as volumising, conditioning, and UV protection. ",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-styling-powered",
+              "name": "Hair - Styling (Powered)",
+              "gpcCode": "10000678",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device intended to aid in the styling or shaping of the hair. Includes products such as hair curling brushes, straightening tongs, braiding tools. ",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-care-products-replacement-parts",
+              "name": "Hair Care Products - Replacement Parts",
+              "gpcCode": "10000833",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Hair Care Products. Includes products such as trimmer blades and combs.",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-care-products-other",
+              "name": "Hair Care Products Other",
+              "gpcCode": "10000834",
+              "gpcDescription": "Includes any products that can be described/observed as Hair Care products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-care-products-variety-packs",
+              "name": "Hair Care Products Variety Packs",
+              "gpcCode": "10000677",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Hair Care Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Hair Care Products class. Includes products such as Shampoo and Conditioners sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "hair-care-products"
+            },
+            {
+              "id": "hair-curlers-rollers",
+              "name": "Hair Curlers/Rollers",
+              "gpcCode": "10000829",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device intended to create curls or waves in the hair. These are designed to be fastened or entwined into the hair and left to create a curled or waved effect to the hair. ",
+              "parentId": "hair-care-products"
+            }
+          ]
+        },
+        {
+          "id": "hair-products-variety-packs",
+          "name": "Hair Products Variety Packs",
+          "gpcCode": "53141200",
+          "parentId": "hair-products",
+          "children": [
+            {
+              "id": "hair-products-variety-packs",
+              "name": "Hair Products Variety Packs",
+              "gpcCode": "10000676",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Hair Products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Hair Products Family. Includes products such as Shampoo with Razors variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "hair-products-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "hair-removal-masking-products",
+          "name": "Hair Removal/Masking Products",
+          "gpcCode": "53141000",
+          "parentId": "hair-products",
+          "children": [
+            {
+              "id": "bleaching-lightening-products",
+              "name": "Bleaching/Lightening Products",
+              "gpcCode": "10000329",
+              "gpcDescription": "Includes any products that can be described/observed as a solution specifically intended to disguise the presence of facial or body hair by lightening its colour.",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "depilation-epilation-non-powered",
+              "name": "Depilation/Epilation (Non Powered)",
+              "gpcCode": "10000340",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered preparation or item specifically designed for hair removal. Includes all non-powered forms of epilating and depilating and their accessories, such as chemical, tweezing, sugar, friction or wax hair removal. ",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "depilation-epilation-powered",
+              "name": "Depilation/Epilation (Powered)",
+              "gpcCode": "10000830",
+              "gpcDescription": "Includes any products that can be described/observed as a powered preparation or item specifically designed for removing unwanted hair from the body by removing the root of the hair. Includes all powered forms of epilating and depilating and their accessories, such as electrolysis appliances. ",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "hair-removal-care",
+              "name": "Hair Removal - Care",
+              "gpcCode": "10000350",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, specifically designed for use prior or during epilation/depilation/waxing and typically intended to be applied to the skin to minimise irritation and discomfort during hair root removal or to inhibit future hair growth. These products can be fragranced.",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "hair-removal-masking-products-replacement-parts",
+              "name": "Hair Removal/Masking Products - Replacement Parts",
+              "gpcCode": "10000832",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Hair Removal/Masking Products. Includes products such as epilatory blades, shaving foils and cutterblocks",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "hair-removal-masking-products-other",
+              "name": "Hair Removal/Masking Products Other",
+              "gpcCode": "10000835",
+              "gpcDescription": "Includes any products that can be described/observed as Hair Removal/Masking products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "hair-removal-masking-products-variety-packs",
+              "name": "Hair Removal/Masking Products Variety Packs",
+              "gpcCode": "10000680",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Hair Removal/Masking Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Hair Removal/Masking Products class. Includes products such as Shaving Gel and Razors sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "hair-removal-shaving-accessories",
+              "name": "Hair Removal/Shaving - Accessories",
+              "gpcCode": "10000349",
+              "gpcDescription": "Includes any products that can be described/observed as a tool or device, specifically designed to be used during the shaving process and typically intended to be used in conjunction with other hair removal products in order to enhance or improve their performance. Includes products such as shaving mugs, brushes, stands.",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "mirrors-personal-care",
+              "name": "Mirrors - Personal Care",
+              "gpcCode": "10000679",
+              "gpcDescription": "Includes any products that can be described/observed as a device for viewing the users reflection and specifically intended for personal care use. These mirrors may be hand held, enclosed in a compact or freestanding, but will generally be small in size and easily portable. Also includes mirrors which provide magnification. ",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "shaving-blades",
+              "name": "Shaving - Blades",
+              "gpcCode": "10000369",
+              "gpcDescription": "Includes any products that can be described/observed as a metal blade specifically designed for use during shaving, and typically intended to be used in conjunction with a non-disposable razor. Includes continuous blades used in band razors and single and double-edged blades.",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "shaving-razors-disposable-non-powered",
+              "name": "Shaving - Razors - Disposable (Non Powered)",
+              "gpcCode": "10000370",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered disposable razor designed for the removal of hair from various parts of the body. Includes only disposable products which are completely discarded after a number of uses. Includes products for male, female and unisex use. Products may also have additional properties such as moisturising or skin smoothing strips beside the blades. Also includes non-powered disposable products which provide gel, soap or lather from the razor so that the user does not need to use additional lubrication. ",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "shaving-razors-non-disposable-non-powered",
+              "name": "Shaving - Razors - Non Disposable (Non Powered)",
+              "gpcCode": "10000730",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered, non-disposable razor designed for the removal of hair from various parts of the body. Includes only non-disposable razors which periodically require replacement blades or head units which contain blades. Includes products for male, female and unisex use. Products may also have additional properties such as moisturising or skin smoothing strips beside the blades. Also includes non-powered non-disposable products which provide gel, soap or lather from the razor so that the user does not need to use additional lubrication. ",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "shaving-razors-powered",
+              "name": "Shaving - Razors (Powered)",
+              "gpcCode": "10000831",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device intended to aid in the removal of body hair by cutting the hair close to the surface of the skin. Includes products such as leg shavers designed for women and facial rotary razors. ",
+              "parentId": "hair-removal-masking-products"
+            },
+            {
+              "id": "shaving-preparations",
+              "name": "Shaving Preparations",
+              "gpcCode": "10000535",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, specifically designed for use prior to or during the shaving process, to soften beard stubble, tone and smooth the skin. These products are intended to prepare the skin and beard for shaving, and to minimise irritation. Includes products that are scented or unscented, contain vitamins and ingredients to improve razor glide. ",
+              "parentId": "hair-removal-masking-products"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maternity-products",
+      "name": "Maternity Products",
+      "gpcCode": "53240000",
+      "parentId": "beauty-personal-care-hygiene",
+      "children": [
+        {
+          "id": "maternity-products",
+          "name": "Maternity Products",
+          "gpcCode": "53240100",
+          "parentId": "maternity-products",
+          "children": [
+            {
+              "id": "maternity-belt",
+              "name": "Maternity Belt",
+              "gpcCode": "10008238",
+              "gpcDescription": "Includes any products that can be described/observed as a belt that supports the pregnancy belly and prevents annoying complaints such as pelvic instability, back complaints and a tired lower back.",
+              "parentId": "maternity-products"
+            },
+            {
+              "id": "maternity-skin-care-moisturing-products",
+              "name": "Maternity Skin Care/Moisturing Products",
+              "gpcCode": "10008239",
+              "gpcDescription": "Includes any products that can be described/observed as a maternity skin care product specifically designed for application to any part or combination of parts of the body. Includes products such as stretch mark prevention creams and nipple creams intended to prevent the dry, itchy, cracked and bleeding nipples.",
+              "parentId": "maternity-products"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "personal-hygiene-products",
+      "name": "Personal Hygiene Products",
+      "gpcCode": "53180000",
+      "parentId": "beauty-personal-care-hygiene",
+      "children": [
+        {
+          "id": "adult-incontinence",
+          "name": "Adult Incontinence",
+          "gpcCode": "53181300",
+          "parentId": "personal-hygiene-products",
+          "children": [
+            {
+              "id": "adult-incontinence-pads",
+              "name": "Adult Incontinence - Pads",
+              "gpcCode": "10000481",
+              "gpcDescription": "Includes any products that can be described/observed as an absorbent pad of material, specifically designed for adult incontinence to help contain bodily waste and to protect garments. Specifically includes products designed to be worn inside underwear or incontinence pants.",
+              "parentId": "adult-incontinence"
+            },
+            {
+              "id": "adult-incontinence-supplies",
+              "name": "Adult Incontinence - Supplies",
+              "gpcCode": "10000321",
+              "gpcDescription": "Includes any products that can be described/observed as an item designed to be used in conjunction with adult incontinence products to enhance or supplement the safety, comfort and convenience of those suffering from incontinence. Products also include protective disposable and non-disposable bed sheets and seat pads.",
+              "parentId": "adult-incontinence"
+            },
+            {
+              "id": "adult-incontinence-underwear-disposable",
+              "name": "Adult Incontinence - Underwear (Disposable)",
+              "gpcCode": "10000709",
+              "gpcDescription": "Includes any products that can be described/observed as disposable protective underwear specifically designed for adult incontinence, to help contain bodily waste and to protect garments. They may or may not require the addition of incontinence pads.",
+              "parentId": "adult-incontinence"
+            },
+            {
+              "id": "adult-incontinence-underwear-non-disposable",
+              "name": "Adult Incontinence - Underwear (Non Disposable)",
+              "gpcCode": "10000710",
+              "gpcDescription": "Includes any products that can be described/observed as non-disposable protective underwear specifically designed for adult incontinence, to help contain bodily waste and to protect garments. They may or may not require the addition of incontinence pads.",
+              "parentId": "adult-incontinence"
+            },
+            {
+              "id": "adult-incontinence-other",
+              "name": "Adult Incontinence Other",
+              "gpcCode": "10000784",
+              "gpcDescription": "Includes any products that can be described/observed as Adult Incontinence products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "adult-incontinence"
+            },
+            {
+              "id": "adult-incontinence-variety-packs",
+              "name": "Adult Incontinence Variety Packs",
+              "gpcCode": "10000713",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Adult Incontinence products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Adult Incontinence class. Includes products such as Adult Incontinence Pads and Pad Bags sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "adult-incontinence"
+            }
+          ]
+        },
+        {
+          "id": "baby-diapers-accessories",
+          "name": "Baby Diapers/Accessories",
+          "gpcCode": "53181700",
+          "parentId": "personal-hygiene-products",
+          "children": [
+            {
+              "id": "baby-diapers-disposable",
+              "name": "Baby Diapers (Disposable)",
+              "gpcCode": "10000494",
+              "gpcDescription": "Includes any products that can be described/observed as a disposable paper-based or fabric garment specifically designed to collect and/or absorb bodily waste, and typically intended to be worn in place of underpants by a baby or infant who is not yet toilet trained. Includes disposable paper-based products that are enclosed within a waterproof backing, and disposable fabric products that may be worn with or without outer waterproof pants. ",
+              "parentId": "baby-diapers-accessories"
+            },
+            {
+              "id": "baby-diapers-non-disposable",
+              "name": "Baby Diapers (Non Disposable)",
+              "gpcCode": "10000728",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable paper-based or fabric garment specifically designed to collect and/or absorb bodily waste, and typically intended to be worn in place of underpants by a baby or infant who is not yet toilet trained. Includes non-disposable paper-based products that are enclosed within a waterproof backing, and non-disposable fabric products that may be worn with or without outer waterproof pants. ",
+              "parentId": "baby-diapers-accessories"
+            },
+            {
+              "id": "baby-diapers-accessories",
+              "name": "Baby Diapers Accessories",
+              "gpcCode": "10000496",
+              "gpcDescription": "Includes any products that can be described/observed as an implement, device or garment specifically designed to secure a baby diaper in place whilst it is being worn, to be worn over diapers so as to provide an additional water-proof layer that assists in keeping the diaper and its contents in place, or as a receptacle to contain clean or soiled diapers. Includes products such as diaper pins, covers and bags.",
+              "parentId": "baby-diapers-accessories"
+            },
+            {
+              "id": "baby-diapers-accessories-other",
+              "name": "Baby Diapers/Accessories Other",
+              "gpcCode": "10006821",
+              "gpcDescription": "Includes any products that can be described/observed as Baby Diapers/Accessories products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "baby-diapers-accessories"
+            },
+            {
+              "id": "baby-diapers-accessories-variety-packs",
+              "name": "Baby Diapers/Accessories Variety Packs",
+              "gpcCode": "10006822",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Baby Diapers/Accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Baby Diapers/Accessories class. Includes products such as Diapers and Diaper Bags sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "baby-diapers-accessories"
+            },
+            {
+              "id": "baby-inserts-pads",
+              "name": "Baby Inserts/Pads",
+              "gpcCode": "10000495",
+              "gpcDescription": "Includes any products that can be described/observed as an disposable layer of paper, tissue or other fibres that is specifically designed to absorb bodily waste, and is typically intended to be inserted inside the baby diaper, underwear or fixation pants in order to enhance the absorptive capacity of the garment and thereby prevent any spillage or seepage of urine or faecal matter.",
+              "parentId": "baby-diapers-accessories"
+            }
+          ]
+        },
+        {
+          "id": "child-incontinence",
+          "name": "Child Incontinence",
+          "gpcCode": "53181800",
+          "parentId": "personal-hygiene-products",
+          "children": [
+            {
+              "id": "child-incontinence-diapers-disposable",
+              "name": "Child Incontinence - Diapers (Disposable)",
+              "gpcCode": "10008296",
+              "gpcDescription": "Includes any products that can be described/observed as a disposable paper-based or fabric garment specifically designed to collect and/or absorb bodily waste, and typically intended to be worn in place of underpants by a child who suffers from bedwetting and/or daytime bladder control problems. Includes disposable paper-based products that are enclosed within a waterproof backing, and disposable fabric products that may be worn with or without outer waterproof pants.",
+              "parentId": "child-incontinence"
+            },
+            {
+              "id": "child-incontinence-diapers-non-disposable",
+              "name": "Child Incontinence - Diapers (Non-Disposable)",
+              "gpcCode": "10008297",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable paper-based or fabric garment specifically designed to collect and/or absorb bodily waste, and typically intended to be worn in place of underpants by a child who suffers from bedwetting and/or daytime bladder control problems. Includes non-disposable paper-based products that are enclosed within a waterproof backing, and non-disposable fabric products that may be worn with or without outer waterproof pants.",
+              "parentId": "child-incontinence"
+            },
+            {
+              "id": "child-incontinence-other",
+              "name": "Child Incontinence - Other",
+              "gpcCode": "10008300",
+              "gpcDescription": "Includes any products that can be described/observed as Child Incontinence products, where the user of the schema is not able to classify the products in existing bricks of the same class within the schema.",
+              "parentId": "child-incontinence"
+            },
+            {
+              "id": "child-incontinence-pads",
+              "name": "Child Incontinence - Pads",
+              "gpcCode": "10008295",
+              "gpcDescription": "Includes any products that can be described/observed as an absorbent pad of material, specifically designed for children incontinence to help contain bodily waste and to protect garments. Specifically includes products designed to be worn inside underwear or incontinence pants.",
+              "parentId": "child-incontinence"
+            },
+            {
+              "id": "child-incontinence-underwear-disposable",
+              "name": "Child Incontinence - Underwear (Disposable)",
+              "gpcCode": "10008298",
+              "gpcDescription": "Includes any products that can be described/observed as disposable protective underwear specifically designed for child incontinence, to help contain bodily waste and to protect garments. They may or may not require the addition of child incontinence pads.",
+              "parentId": "child-incontinence"
+            },
+            {
+              "id": "child-incontinence-underwear-non-disposable",
+              "name": "Child Incontinence - Underwear (Non-Disposable)",
+              "gpcCode": "10008299",
+              "gpcDescription": "Includes any products that can be described/observed as non-disposable protective underwear specifically designed for child incontinence, to help contain bodily waste and to protect garments. They may or may not require the addition of child incontinence pads.",
+              "parentId": "child-incontinence"
+            },
+            {
+              "id": "child-incontinence-variety-packs",
+              "name": "Child Incontinence - Variety Packs",
+              "gpcCode": "10008301",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Child Incontinence products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Child Incontinence class. Includes products such as Child Incontinence Pads and Underwear sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "child-incontinence"
+            }
+          ]
+        },
+        {
+          "id": "feminine-nursing-hygiene",
+          "name": "Feminine/Nursing Hygiene",
+          "gpcCode": "53181200",
+          "parentId": "personal-hygiene-products",
+          "children": [
+            {
+              "id": "feminine-hygiene-accessories",
+              "name": "Feminine Hygiene - Accessories",
+              "gpcCode": "10000344",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory, specifically designed to increase the comfort of a woman during her menstrual period. Includes products such as a belt or item underwear, typically intended to secure and hold looped sanitary towels in place, or a bag intended to hygienically hold and dispose of used sanitary towels, tampons and panty liners.",
+              "parentId": "feminine-nursing-hygiene"
+            },
+            {
+              "id": "feminine-hygiene-cups",
+              "name": "Feminine Hygiene - Cups",
+              "gpcCode": "10000482",
+              "gpcDescription": "Includes any products that can be described/observed as a small, soft, flexible cup, specifically designed for feminine hygiene, and typically intended to be inserted into the vagina to absorb menstrual flow and prevent external discharge.",
+              "parentId": "feminine-nursing-hygiene"
+            },
+            {
+              "id": "feminine-hygiene-panty-liners",
+              "name": "Feminine Hygiene - Panty Liners",
+              "gpcCode": "10000483",
+              "gpcDescription": "Includes any products that can be described/observed as a pre-cut, absorbent pad, or shield, with an adhesive strip, specifically designed for feminine hygiene, and typically intended to line the underwear in order to absorb non-menstrual discharge and protect garments from light staining. Products may be scented and non-scented.",
+              "parentId": "feminine-nursing-hygiene"
+            },
+            {
+              "id": "feminine-hygiene-tampons",
+              "name": "Feminine Hygiene - Tampons",
+              "gpcCode": "10000320",
+              "gpcDescription": "Includes any products that can be described/observed as a short, tubular wad of compressed absorbent fibre attached to a string, specifically designed for feminine hygiene, and typically intended to be inserted into the vagina to absorb menstrual flow and prevent external discharge. Includes products with or without applicators.",
+              "parentId": "feminine-nursing-hygiene"
+            },
+            {
+              "id": "feminine-hygiene-towels-pads",
+              "name": "Feminine Hygiene - Towels/Pads",
+              "gpcCode": "10000376",
+              "gpcDescription": "Includes any products that can be described/observed an absorbent pad, napkin, towel or shield, with an adhesive strip, specifically designed for feminine hygiene, and typically intended to line the underwear in order to absorb menstrual discharge as well as non-menstrual discharge specifically occurring during pregnancy and protect garments from light staining. Products may be light, fresh, deodorised, contoured, shaped, winged and long, etc.",
+              "parentId": "feminine-nursing-hygiene"
+            },
+            {
+              "id": "feminine-nursing-hygiene-other",
+              "name": "Feminine/Nursing Hygiene Other",
+              "gpcCode": "10000785",
+              "gpcDescription": "Includes any products that can be described/observed as Feminine/Nursing Hygiene products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "feminine-nursing-hygiene"
+            },
+            {
+              "id": "feminine-nursing-hygiene-variety-packs",
+              "name": "Feminine/Nursing Hygiene Variety Packs",
+              "gpcCode": "10000714",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Feminine/Nursing Hygiene products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Feminine/Nursing Hygiene class. Includes products such as Tampons and Panty Liners sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "feminine-nursing-hygiene"
+            },
+            {
+              "id": "nursing-hygiene-accessories",
+              "name": "Nursing Hygiene Accessories",
+              "gpcCode": "10000362",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory, specifically designed to enhance the comfort of nursing mothers. Products include breast soothers, designed to decrease swelling, also pads, wipes and nipple shields, typically intended to fit inside the bra cup to absorb any discharge that occurs between feedings, and to protect the garments. The products may be disposable or reusable, and can be impregnated with a solution for soothing cracked and sore nipples.",
+              "parentId": "feminine-nursing-hygiene"
+            }
+          ]
+        },
+        {
+          "id": "general-personal-hygiene",
+          "name": "General Personal Hygiene",
+          "gpcCode": "53181100",
+          "parentId": "personal-hygiene-products",
+          "children": [
+            {
+              "id": "antiperspirants-deodorants",
+              "name": "Antiperspirants/Deodorants",
+              "gpcCode": "10000338",
+              "gpcDescription": "Includes any products that can be described/observed as a deodorant or antiperspirant, specifically designed to lend a pleasant fragrance to the skin and typically intended to disguise and/or reduce body odour or to reduce perspiration. Products specifically include intimate deodorants, such as deodorizing vaginal pessaries, etc.",
+              "parentId": "general-personal-hygiene"
+            },
+            {
+              "id": "cotton-wool-products",
+              "name": "Cotton Wool Products",
+              "gpcCode": "10000335",
+              "gpcDescription": "Includes any products that can be described/observed as an absorbent ball, pad or pleat, made from either pure cotton wool or synthetic fibres, designed for a variety of purposes such as cleansing of body parts, removal of cosmetics and for general first aid needs. Products include absorbent balls that can be bound around ends of a short plastic or wooden stick.",
+              "parentId": "general-personal-hygiene"
+            },
+            {
+              "id": "ear-nasal-care",
+              "name": "Ear/Nasal Care",
+              "gpcCode": "10000341",
+              "gpcDescription": "Includes any products that may be described/observed as a preparation specifically designed to care for the health of ears or nasal cavity, and typically intended to cleanse or improve the condition of these areas. Includes products such as ear plugs, ear wax cleaning systems, nasal cleaning douche systems, neti pots.",
+              "parentId": "general-personal-hygiene"
+            },
+            {
+              "id": "facial-tissue-handkerchiefs-disposable",
+              "name": "Facial Tissue/Handkerchiefs (Disposable)",
+              "gpcCode": "10000485",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of disposable tissue paper or non-woven material, mainly designed for wiping or drying the face or for blowing the nose. Includes products packaged in boxes, travel packs and pocket packs.",
+              "parentId": "general-personal-hygiene"
+            },
+            {
+              "id": "general-personal-hygiene-other",
+              "name": "General Personal Hygiene Other",
+              "gpcCode": "10000786",
+              "gpcDescription": "Includes any products that can be described/observed as General Personal Hygiene products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "general-personal-hygiene"
+            },
+            {
+              "id": "general-personal-hygiene-variety-packs",
+              "name": "General Personal Hygiene Variety Packs",
+              "gpcCode": "10000715",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct General Personal Hygiene products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the General Personal Hygiene class. Includes products such as Cotton Buds and Facial Tissues sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "general-personal-hygiene"
+            },
+            {
+              "id": "toilet-paper",
+              "name": "Toilet Paper",
+              "gpcCode": "10000375",
+              "gpcDescription": "Includes any products that can be described/observed as a sheet or roll of disposable paper, tissue or non-woven material specifically designed to wipe and cleanse the anal-genital zone of the body. It may or may not be made wholly or partially from recycled material. Products may be labelled specifically for haemorrhoid relief.",
+              "parentId": "general-personal-hygiene"
+            }
+          ]
+        },
+        {
+          "id": "oral-hygiene",
+          "name": "Oral Hygiene",
+          "gpcCode": "53181500",
+          "parentId": "personal-hygiene-products",
+          "children": [
+            {
+              "id": "breath-fresheners",
+              "name": "Breath Fresheners",
+              "gpcCode": "10008369",
+              "gpcDescription": "Includes any products that can be described/observed as a flavoured, scented preparation, specifically designed to freshen the breath.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "dental-cleansing-toothpaste",
+              "name": "Dental Cleansing/Toothpaste",
+              "gpcCode": "10000383",
+              "gpcDescription": "Includes any products that can be described/observed as a cream, gel, liquid, paste or wipe specifically designed to clean natural teeth and typically intended to be used with a toothbrush and water to assist the removal of dental plaque and to help to prevent tooth decay and gum disease. Products may claim specific formulations to combat tartar or for use by smokers.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "dental-floss-tape",
+              "name": "Dental Floss/Tape",
+              "gpcCode": "10008377",
+              "gpcDescription": "Includes any products than can be described/observed as a device designed to clean between teeth in places that are not accessible with a toothbrush or an interdental brush. These products can be packaged with pre-cut or continuous length of strong thread or fine tape and are specifically designed to be drawn between the teeth to remove food particles and prevent dental plaque. Includes products such as toothpicks, dental floss and dental tape.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "denture-orthodontic-brush",
+              "name": "Denture/Orthodontic - Brush",
+              "gpcCode": "10008371",
+              "gpcDescription": "Includes any products than can be described/observed as a device specifically designed for cleaning dentures or orthodontic appliances, and typically intended to be used with a denture cleanser to remove food particles, stains, and bacteria.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "denture-orthodontic-care",
+              "name": "Denture/Orthodontic - Care",
+              "gpcCode": "10000336",
+              "gpcDescription": "Includes any products that can be described/observed as a substance, specifically designed to care for dentures or orthodontic  devices, or to temporarily fix them in place by adhering the dentures to the gums. Includes products such as denture whiteners and denture repair products",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "denture-orthodontic-cleansing",
+              "name": "Denture/Orthodontic - Cleansing",
+              "gpcCode": "10000337",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, specifically designed for cleaning dentures or orthodontic appliances, and typically intended to be applied with a denture brush or be dissolved in water where dentures are soaked.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "gum-stimulator-massager",
+              "name": "Gum Stimulator/Massager",
+              "gpcCode": "10008378",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to improve gum health by stimulating blood circulation and removing plaque. These products can be powered and non powered and are used to massage gum tissues and clean between teeth to promote healing, reduce inflammation, and improve overall oral hygiene.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "interdental-brush",
+              "name": "Interdental Brush",
+              "gpcCode": "10008375",
+              "gpcDescription": "Includes any products than can be described/observed as a device specifically designed for the use in the dental care and hygiene and typically intended to be used to clean and remove dental plaque between the teeth. Includes interdental brushes and interdental brushpicks.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "mouthwash-oral-rinses",
+              "name": "Mouthwash/Oral Rinses",
+              "gpcCode": "10000536",
+              "gpcDescription": "Includes any products that can be described/observed as a a fluid used for cleaning the oral cavity through swishing or gargling and typically intended to pass through the mouth without swallowing. These products are specifically designed to promote oral hygiene, to prevent tooth decay, gum disease, dental plaque, and reduce the bad breath. Products may claim specific formulations such as antiseptic or antibacterial.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "oral-care-accessories",
+              "name": "Oral Care - Accessories",
+              "gpcCode": "10000363",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory, specifically designed to assist in oral care. Such products include a dental mirror or a dental explorer, which is typically intended to be manoeuvred into the mouth and used to inspect teeth or gum tissue and other areas that would otherwise only be visible during a dental examination. Products also include stands and holders for dental brushes and other accessories.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "oral-care-centre-brush-cleanser-storage-powered",
+              "name": "Oral Care Centre - Brush/Cleanser/Storage (Powered)",
+              "gpcCode": "10005839",
+              "gpcDescription": "Includes any products that can be described/observed as a powered oral care device that is an all-in-one, UV sanitising, charging and storage solution for electric toothbrushes. Such products are can be mounted on a bathroom wall  or remain unmounted and transportable when travelling. The product may be rechargeable and have a recharge indicator.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "oral-cleaner-system-powered",
+              "name": "Oral Cleaner System (Powered)",
+              "gpcCode": "10008374",
+              "gpcDescription": "Includes any products than can be described/observed as a powered combination set, which includes a toothbrush and an oral irrigator, combining brushing and flossing in one unit. These products must be sold together in one single system.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "oral-hygiene-replacement-parts",
+              "name": "Oral Hygiene - Replacement Parts",
+              "gpcCode": "10000782",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Oral Hygiene products. Includes products such as brush heads for electrically powered toothbrushes, bleaching kit refills and interdental refills.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "oral-hygiene-other",
+              "name": "Oral Hygiene Other",
+              "gpcCode": "10000783",
+              "gpcDescription": "Includes any products that can be described/observed as Oral Hygiene products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "oral-hygiene-variety-packs",
+              "name": "Oral Hygiene Variety Packs",
+              "gpcCode": "10000716",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Oral Hygiene products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Oral Hygiene class. Includes products such as Mouth Rinse and Toothbrushes sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "oral-irrigator",
+              "name": "Oral Irrigator",
+              "gpcCode": "10008381",
+              "gpcDescription": "Includes any products that can be described/observed as a device that uses a stream of pulsating water to remove food particles, plaque, and bacteria from between teeth and below the gumline. These products can be powered and non powered and can also be called dental water jet, dental irrigator or water flosser. Oral irrigators are used as a supplement to regular brushing and flossing.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "tongue-cleaner",
+              "name": "Tongue Cleaner",
+              "gpcCode": "10008376",
+              "gpcDescription": "Includes any products than can be described/observed as a device designed to tongue clean. These products can also be called tongue scraper or tongue brush and are intended to clean the upper surface of the tongue.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "tongue-cleansing",
+              "name": "Tongue Cleansing",
+              "gpcCode": "10008370",
+              "gpcDescription": "Includes any products that can be described/observed as a dental product, normally a cream, gel or paste, that is designed to remove bacteria, and dead skin cells from the surface of the tongue. These products are typically intended to be It applied to the tongue with a tongue brush or scraper and then rinsed away with water.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "tooth-stain-removers-whitener-non-powered",
+              "name": "Tooth Stain Removers/Whitener (Non Powered)",
+              "gpcCode": "10008379",
+              "gpcDescription": "Includes any products that can be described/observed as a non powered device specifically designed to remove stains and discolouration from natural teeth. These products are applied directly to the teeth with the use of a brush or in the form of a pen or brush applicator.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "tooth-stain-removers-whitener-powered",
+              "name": "Tooth Stain Removers/Whitener (Powered)",
+              "gpcCode": "10008380",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device designed to remove stains and discolouration from natural teeth. These products uses light or heat to accelerate the whitening process nad to remove stains. Includes products such as teeth whitening kits.",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "toothbrush-non-powered",
+              "name": "Toothbrush (Non Powered)",
+              "gpcCode": "10008372",
+              "gpcDescription": "Includes any products than can be described/observed as a non-powered device specifically designed for the use in the dental care and hygiene and typically intended to be used with a dental cleanser and water to assist the removal of dental plaque and to help to prevent tooth decay and gum disease. ",
+              "parentId": "oral-hygiene"
+            },
+            {
+              "id": "toothbrush-powered",
+              "name": "Toothbrush (Powered)",
+              "gpcCode": "10008373",
+              "gpcDescription": "Includes any products than can be described/observed as a powered device specifically designed for the use in the dental care and hygiene and typically intended to be used with a dental cleanser and water to assist the removal of dental plaque and to help to prevent tooth decay and gum disease. ",
+              "parentId": "oral-hygiene"
+            }
+          ]
+        },
+        {
+          "id": "personal-hygiene-products-variety-packs",
+          "name": "Personal Hygiene Products Variety Packs",
+          "gpcCode": "53181600",
+          "parentId": "personal-hygiene-products",
+          "children": [
+            {
+              "id": "personal-hygiene-products-variety-packs",
+              "name": "Personal Hygiene Products Variety Packs",
+              "gpcCode": "10000712",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Personal Hygiene Products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Personal Hygiene Products Family. Includes products such as Panty Liners with Body Deodorant variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "personal-hygiene-products-variety-packs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "personal-intimacy",
+      "name": "Personal Intimacy",
+      "gpcCode": "53230000",
+      "parentId": "beauty-personal-care-hygiene",
+      "children": [
+        {
+          "id": "sexual-toys-aids",
+          "name": "Sexual Toys/Aids",
+          "gpcCode": "53230100",
+          "parentId": "personal-intimacy",
+          "children": [
+            {
+              "id": "intimate-lubricants",
+              "name": "Intimate Lubricants",
+              "gpcCode": "10008480",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation intended to moisturize and lubricate, to enhance the ease and comfort of intimate sexual activity and supplement the body's natural lubrication. These products come in various formulations including water-based, silicone-based, and oil-based, and may contain additional features such as flavours, warming or cooling effects, and pH balancing properties to enhance the user's experience.",
+              "parentId": "sexual-toys-aids"
+            },
+            {
+              "id": "penetration-accessories-non-powered",
+              "name": "Penetration Accessories (Non Powered)",
+              "gpcCode": "10006247",
+              "gpcDescription": "Includes any products that can be described/observed as non-powered equipment specifically designed to be used during sexual acts either to stimulate, increase performance or produce more enjoyment.",
+              "parentId": "sexual-toys-aids"
+            },
+            {
+              "id": "penetration-accessories-powered",
+              "name": "Penetration Accessories (Powered)",
+              "gpcCode": "10006246",
+              "gpcDescription": "Includes any products that can be described/observed as powered equipment specifically designed to be used during sexual acts either to stimulate, increase performance or produce more enjoyment.",
+              "parentId": "sexual-toys-aids"
+            },
+            {
+              "id": "suction-devices-non-powered",
+              "name": "Suction Devices (Non Powered)",
+              "gpcCode": "10006249",
+              "gpcDescription": "Includes any products that can be described/observed as non powered equipment specifically designed to be used during sexual acts either to stimulate, increase performance or produce more enjoyment.",
+              "parentId": "sexual-toys-aids"
+            },
+            {
+              "id": "suction-devices-powered",
+              "name": "Suction Devices (Powered)",
+              "gpcCode": "10006248",
+              "gpcDescription": "Includes any products that can be described/observed as powered equipment specifically designed to be used during sexual acts either to stimulate, increase performance or produce more enjoyment.",
+              "parentId": "sexual-toys-aids"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skin-products",
+      "name": "Skin Products",
+      "gpcCode": "53130000",
+      "parentId": "beauty-personal-care-hygiene",
+      "children": [
+        {
+          "id": "body-washing",
+          "name": "Body Washing",
+          "gpcCode": "53131300",
+          "parentId": "skin-products",
+          "children": [
+            {
+              "id": "bath-additives",
+              "name": "Bath Additives",
+              "gpcCode": "10000328",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation that is added to bath water so as to fragrance, relax, relieve aches and pains and/or to stimulate. Includes products which claim formulations such as foaming or fragrant properties and may sometimes contain essential oils. ",
+              "parentId": "body-washing"
+            },
+            {
+              "id": "body-washing-other",
+              "name": "Body Washing Other",
+              "gpcCode": "10000813",
+              "gpcDescription": "Includes any products that can be described/observed as Body Washing products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "body-washing"
+            },
+            {
+              "id": "body-washing-variety-packs",
+              "name": "Body Washing Variety Packs",
+              "gpcCode": "10000722",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Body Washing products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Body Washing class. Includes products such as Body Buffer Mitt and shower Gel sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "body-washing"
+            },
+            {
+              "id": "cleansing-washing-accessories-personal",
+              "name": "Cleansing/Washing Accessories - Personal",
+              "gpcCode": "10000334",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory specifically designed to be used in the bath/shower. Includes products typically intended to improve comfort and safety. Specifically includes Shower Caps and Exfoliating Durables.",
+              "parentId": "body-washing"
+            },
+            {
+              "id": "cleansing-washing-soap-body",
+              "name": "Cleansing/Washing/Soap - Body",
+              "gpcCode": "10000330",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation designed for cleaning and washing of the body and typically intended to be applied to the skin to remove germs and unwanted deposits of dirt, grime and oil. These products can be used with or without water. Products may claim to exfoliate or moisturise in addition to cleansing. Includes solids, foams, liquid soaps and shower gels. Products may claim to have skin formulations such as hypoallergenic, added vitamins, humectants and emollients.",
+              "parentId": "body-washing"
+            },
+            {
+              "id": "wipes-personal",
+              "name": "Wipes - Personal",
+              "gpcCode": "10000573",
+              "gpcDescription": "Includes any products that can be described/observed as a moist disposable paper or tissue, specifically designed to cleanse and/or disinfect the skin, some of these products are marketed to be used on specific areas of the body. Includes products such as feminine hygiene wipes and baby wipes.",
+              "parentId": "body-washing"
+            }
+          ]
+        },
+        {
+          "id": "skin-care",
+          "name": "Skin Care",
+          "gpcCode": "53131100",
+          "parentId": "skin-products",
+          "children": [
+            {
+              "id": "after-shave-care",
+              "name": "After Shave Care",
+              "gpcCode": "10000324",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, specifically designed to be applied to the skin after shaving, with the primary aim to soothe, moisturise and tone the skin, minimise irritation and discomfort rather than give a pleasant smell. ",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "after-sun-moisturisers",
+              "name": "After-Sun Moisturisers",
+              "gpcCode": "10006275",
+              "gpcDescription": "Includes any products that can be are designed and marketed to be used after or during sun tanning sessions. Specifically designed for application to any part or combination of parts of the body, and intended to restore moisture to the skin and to treat and/or prevent facial wrinkles or dry skin conditions. ",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "anti-spot-aids-non-powered",
+              "name": "Anti-spot Aids (Non Powered)",
+              "gpcCode": "10000327",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device specifically designed to remove blackheads/whiteheads with minimal trauma to the skin. Products may include strips, wooden and metal spoons and non-powered vacuum action pumps/syringes. ",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "anti-spot-aids-powered",
+              "name": "Anti-spot Aids (Powered)",
+              "gpcCode": "10000806",
+              "gpcDescription": "Includes any products that can be described/observed as powered devices intended to prevent and remove spots, fix clogged pore problems and remove blackhead acne and other impurities with minimal trauma to the skin. Includes products such as powered blemish removers and pore cleanser guns. ",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "cleansers-cosmetics-removers-non-powered",
+              "name": "Cleansers/Cosmetics Removers (Non Powered)",
+              "gpcCode": "10000332",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered preparation used on the face which is designed to cleanse/remove cosmetics from the skin. Products may claim to exfoliate or moisturise in addition to cleansing, and claim to have skin formulations such as hypoallergenic, added vitamins and lanolin. Includes products such as facial strips, gels and creams. ",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "cleansers-cosmetics-removers-powered",
+              "name": "Cleansers/Cosmetics Removers (Powered)",
+              "gpcCode": "10000808",
+              "gpcDescription": "Includes any products that can be described/observed as powered devices that are used to clean and remove cosmetics from the skin such as portable steam systems, which are used to cleanse the skin by opening the skin pores. Includes products such as facial saunas. ",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "cooling-face-body-misters",
+              "name": "Cooling Face/Body Misters",
+              "gpcCode": "10000719",
+              "gpcDescription": "Includes any products that can be described/observed as a skin cooling product specifically designed for application to the face and/or body, and intended to cool and freshen the skin. Products may have additional claims such as hydrating, soothing, moisturising, toning, anaesthetizing itchy skin.",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "exfoliants-masks",
+              "name": "Exfoliants/Masks",
+              "gpcCode": "10000342",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation applied to the skin in order to exfoliate the skin, or applied to the skin and allowed to remain for a short time before being removed and is specifically designed to cleanse, tighten, refresh or moisturise the skin. Products may claim to have skin formulations such as toning and hypoallergenic. Specifically includes body and facial masks and exfoliants/scrubs.",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "lip-balms",
+              "name": "Lip Balms",
+              "gpcCode": "10005727",
+              "gpcDescription": "Includes any products that can be described/observed as a balm formulated to heal, repair and moisturise the lips. In addition, products may be tinted to enhance the appearance of the lips. Includes products presented as an oily formation, a gel, or a stick and some products are flavoured.",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "skin-care-replacement-parts",
+              "name": "Skin Care - Replacement Parts",
+              "gpcCode": "10000810",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Skin Care products.",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "skin-care-other",
+              "name": "Skin Care Other",
+              "gpcCode": "10000812",
+              "gpcDescription": "Includes any products that can be described/observed as Skin Care products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "skin-care-variety-packs",
+              "name": "Skin Care Variety Packs",
+              "gpcCode": "10000721",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Skin Care products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Skin Care class. Includes products such as Exfoliants and Face Moisturisers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "skin-care-moisturising-products",
+              "name": "Skin Care/Moisturising Products",
+              "gpcCode": "10000356",
+              "gpcDescription": "Includes any products that can be described/observed as a product specifically designed for application to any part or combination of parts of the body, and intended to restore moisture to the skin and/or to treat and/or prevent facial wrinkles or dry skin conditions. Products may have additional claims such as moisturising, firming/toning, lifting, anti-cellulite, vitamin-enriched, sun-protection or antioxidant properties. ",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "skin-drying-powder",
+              "name": "Skin Drying Powder",
+              "gpcCode": "10000374",
+              "gpcDescription": "Includes any products that can be described/observed as a fine powder, which is specifically designed to condition the skin and is typically applied after bathing to absorb moisture and prevent friction. Products may claim formulations such as with antiseptic or medicated properties.",
+              "parentId": "skin-care"
+            },
+            {
+              "id": "toners-astringents",
+              "name": "Toners/Astringents",
+              "gpcCode": "10000484",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, which is applied or sprayed onto the face and is specifically designed to restore firmness to the skin by tightening the pores and cleansing the skin. Products may claim to have skin formulations such as anti-bacterial, alcohol-free, moisturising and sun protection.",
+              "parentId": "skin-care"
+            }
+          ]
+        },
+        {
+          "id": "skin-products-variety-packs",
+          "name": "Skin Products Variety Packs",
+          "gpcCode": "53131400",
+          "parentId": "skin-products",
+          "children": [
+            {
+              "id": "skin-products-variety-packs",
+              "name": "Skin Products Variety Packs",
+              "gpcCode": "10000717",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Skin Products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Skin Products Family. Includes products such as Sun Creams with After Sun Moisturisers variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "skin-products-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "skin-tanning-products",
+          "name": "Skin Tanning Products",
+          "gpcCode": "53131200",
+          "parentId": "skin-products",
+          "children": [
+            {
+              "id": "skin-tanning-products-replacement-parts",
+              "name": "Skin Tanning Products - Replacement Parts",
+              "gpcCode": "10000811",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Skin Tanning Products.",
+              "parentId": "skin-tanning-products"
+            },
+            {
+              "id": "skin-tanning-products-other",
+              "name": "Skin Tanning Products Other",
+              "gpcCode": "10000814",
+              "gpcDescription": "Includes any products that can be described/observed as Skin Tanning products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "skin-tanning-products"
+            },
+            {
+              "id": "skin-tanning-products-variety-packs",
+              "name": "Skin Tanning Products Variety Packs",
+              "gpcCode": "10000723",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Skin Tanning Products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Skin Tanning Products class. Includes products such as Sun Creams and Topical Sunless Tanning Lotions sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "skin-tanning-products"
+            },
+            {
+              "id": "sun-protection-products",
+              "name": "Sun Protection Products",
+              "gpcCode": "10000373",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed for sun protection or use in conjunction with the sun and typically intended to be applied/sprayed directly onto to the skin prior to sun exposure. Products may claim formulations with moisturising or other additional properties.",
+              "parentId": "skin-tanning-products"
+            },
+            {
+              "id": "sun-tan-accelerator-products",
+              "name": "Sun Tan Accelerator Products",
+              "gpcCode": "10000388",
+              "gpcDescription": "Includes any products that can be described/observed as a cream, gel, liquid or tablet specifically designed to accelerate skin tanning, and typically intended to be applied or sprayed directly onto the skin before sun exposure to enhance the tanning process or to be taken orally. Products may claim formulations with UV protection or moisturising properties.",
+              "parentId": "skin-tanning-products"
+            },
+            {
+              "id": "sunless-tanning-oral-non-powered",
+              "name": "Sunless Tanning - Oral (Non Powered)",
+              "gpcCode": "10000731",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered oral preparation specifically designed for artificial skin tanning, and typically intended to create a tanned appearance without the need for exposure to the sun. Includes oral products which act by stimulating the production of melanin in the skin which turns the skin to a darker colour. ",
+              "parentId": "skin-tanning-products"
+            },
+            {
+              "id": "sunless-tanning-topical-non-powered",
+              "name": "Sunless Tanning - Topical (Non Powered)",
+              "gpcCode": "10000355",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered topical preparation or device specifically designed for artificial skin tanning, and typically intended to create a tanned appearance without the need for exposure to the sun. Includes topical application products (such as creams or lotions) which \"dye\" the skin. These products often contain the active ingredient dihydroxyacetone (DHA), which reacts with skin's proteins (amino acids) in the outer layers of the skin to produce a browning effect. ",
+              "parentId": "skin-tanning-products"
+            },
+            {
+              "id": "sunless-tanning-powered",
+              "name": "Sunless Tanning (Powered)",
+              "gpcCode": "10000809",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device specifically designed for artificial skin tanning, and typically intended to create a tanned appearance without the need for exposure to the sun. Includes powered devices such as sun beds and sun lamps which act by emitting ultraviolet light and stimulating the production of melanin in the skin, which turns the skin to a darker colour. ",
+              "parentId": "skin-tanning-products"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tattoos-permanent",
+      "name": "Tattoos - Permanent",
+      "gpcCode": "53250000",
+      "parentId": "beauty-personal-care-hygiene",
+      "children": [
+        {
+          "id": "tattoos-permanent",
+          "name": "Tattoos - Permanent",
+          "gpcCode": "53250100",
+          "parentId": "tattoos-permanent",
+          "children": [
+            {
+              "id": "tattoos-permanent-studio-equipment",
+              "name": "Tattoos - Permanent - Studio Equipment",
+              "gpcCode": "10008454",
+              "gpcDescription": "Includes any products that can be described/observed as a product specifically designed to be used in a tattoo studio to provide comfort during the tattooing process. Includes products such as armrests, tools, and chairs.",
+              "parentId": "tattoos-permanent"
+            },
+            {
+              "id": "tattoos-permanent-tattooing-equipment",
+              "name": "Tattoos - Permanent - Tattooing Equipment",
+              "gpcCode": "10008453",
+              "gpcDescription": "Includes any products that can be described/observed as a product specifically designed to be used during tattooing. Includes products such as tattoo machines, needles and tattoo inks.",
+              "parentId": "tattoos-permanent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

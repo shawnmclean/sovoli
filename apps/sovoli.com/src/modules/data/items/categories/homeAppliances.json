@@ -1,0 +1,1109 @@
+{
+  "id": "home-appliances",
+  "name": "Home Appliances",
+  "gpcCode": "72000000",
+  "children": [
+    {
+      "id": "major-domestic-appliances",
+      "name": "Major Domestic Appliances",
+      "gpcCode": "72010000",
+      "parentId": "home-appliances",
+      "children": [
+        {
+          "id": "kitchen-washing-appliances",
+          "name": "Kitchen Washing Appliances",
+          "gpcCode": "72010600",
+          "parentId": "major-domestic-appliances",
+          "children": [
+            {
+              "id": "dishwashers",
+              "name": "Dishwashers",
+              "gpcCode": "10001964",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic appliance designed to wash dishes. Includes products such as built-in, built-under and countertop Dishwashers.",
+              "parentId": "kitchen-washing-appliances"
+            },
+            {
+              "id": "kitchen-washing-appliances-other",
+              "name": "Kitchen Washing Appliances Other",
+              "gpcCode": "10001965",
+              "gpcDescription": "Includes any products that may be described/observed as a Kitchen Washing Appliances product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "kitchen-washing-appliances"
+            },
+            {
+              "id": "kitchen-washing-appliances-replacement-parts-accessories",
+              "name": "Kitchen Washing Appliances Replacement Parts/Accessories",
+              "gpcCode": "10001966",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Kitchen Washing Appliances.",
+              "parentId": "kitchen-washing-appliances"
+            }
+          ]
+        },
+        {
+          "id": "major-cooking-appliances",
+          "name": "Major Cooking Appliances",
+          "gpcCode": "72010300",
+          "parentId": "major-domestic-appliances",
+          "children": [
+            {
+              "id": "cooker-hoods",
+              "name": "Cooker Hoods",
+              "gpcCode": "10005322",
+              "gpcDescription": "Includes any products that may be described/observed as a device that is placed above the cooker for the purpose of reducing cooking odours. These products are available in a range of designs with differing functionallity.",
+              "parentId": "major-cooking-appliances"
+            },
+            {
+              "id": "hobs-cooktops",
+              "name": "Hobs/Cooktops",
+              "gpcCode": "10001951",
+              "gpcDescription": "Includes any products that may be described/observed as a set of gas rings, electric rings or electric plates, or similar cooking surfaces, on which food is warmed, boiled or fried. Includes products such as gas hobs, electric hobs, ceramic hobs, and induction hobs.",
+              "parentId": "major-cooking-appliances"
+            },
+            {
+              "id": "major-cooking-appliances-other",
+              "name": "Major Cooking Appliances Other",
+              "gpcCode": "10001953",
+              "gpcDescription": "Includes any products that may be described/observed as a Cooking Appliances product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "major-cooking-appliances"
+            },
+            {
+              "id": "major-cooking-appliances-replacement-parts-accessories",
+              "name": "Major Cooking Appliances Replacement Parts/Accessories",
+              "gpcCode": "10001954",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Cooking Appliances.",
+              "parentId": "major-cooking-appliances"
+            },
+            {
+              "id": "microwave-ovens",
+              "name": "Microwave Ovens",
+              "gpcCode": "10001952",
+              "gpcDescription": "Includes any products that may be described/observed as a quick-cooking appliance that uses electromagnetic radiation, which penetrates food, to cause internal heat and cook it from the inside out. Includes products such as counter-top, above-the-counter and in-built Microwaves.",
+              "parentId": "major-cooking-appliances"
+            },
+            {
+              "id": "ovens",
+              "name": "Ovens",
+              "gpcCode": "10001950",
+              "gpcDescription": "Includes any products that may be described/observed as a cooking appliance in which food is placed to be baked or roasted. Includes products such as Fan Ovens and Electric Ovens.",
+              "parentId": "major-cooking-appliances"
+            },
+            {
+              "id": "range-cookers-stoves-oven-hob-cook-top-combined",
+              "name": "Range Cookers/Stoves (Oven/Hob/Cook Top Combined)",
+              "gpcCode": "10003690",
+              "gpcDescription": "Includes any products that may be described/observed as a complete unit consisting of a cooktop as well as one or more ovens. Includes products such as dual fuel range cookers and gas range cookers.",
+              "parentId": "major-cooking-appliances"
+            },
+            {
+              "id": "steam-ovens",
+              "name": "Steam Ovens",
+              "gpcCode": "10003691",
+              "gpcDescription": "Includes any products that may be described/observed as an oven, which uses steam as the sole source of heat to cook food.",
+              "parentId": "major-cooking-appliances"
+            }
+          ]
+        },
+        {
+          "id": "major-laundry-appliances",
+          "name": "Major Laundry Appliances",
+          "gpcCode": "72010500",
+          "parentId": "major-domestic-appliances",
+          "children": [
+            {
+              "id": "clothes-washers",
+              "name": "Clothes Washers",
+              "gpcCode": "10001959",
+              "gpcDescription": "Includes any products that may be described/observed as a machine designed for automatic cleaning of clothes and other fabric. Typically these products consist of a revolving drum into which clothes are placed to be soaked in water and spun. Includes products such as Top-Loading and Front-Loading Clothes Washer.",
+              "parentId": "major-laundry-appliances"
+            },
+            {
+              "id": "combination-clothes-washer-dryers",
+              "name": "Combination Clothes Washer/Dryers",
+              "gpcCode": "10001961",
+              "gpcDescription": "Includes any products that may be described/observed as a combination appliance consisting of both a washer and a dryer.",
+              "parentId": "major-laundry-appliances"
+            },
+            {
+              "id": "major-laundry-appliances-other",
+              "name": "Major Laundry Appliances Other",
+              "gpcCode": "10001962",
+              "gpcDescription": "Includes any products that may be described/observed as a Laundry Appliances product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "major-laundry-appliances"
+            },
+            {
+              "id": "major-laundry-appliances-replacement-parts-accessories",
+              "name": "Major Laundry Appliances Replacement Parts/Accessories",
+              "gpcCode": "10001963",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Laundry Appliances.",
+              "parentId": "major-laundry-appliances"
+            },
+            {
+              "id": "spin-tumble-dryers",
+              "name": "Spin/Tumble Dryers",
+              "gpcCode": "10003692",
+              "gpcDescription": "Includes any products that may be described/observed as a machine designed for automatic drying of clothes and other fabric. Typically these products consist of a revolving drum into which clothes are placed and spun at speed to reduce their water content after cleaning. Includes products such as Air Vented and Condensing Spin Dryers.",
+              "parentId": "major-laundry-appliances"
+            }
+          ]
+        },
+        {
+          "id": "major-water-dispensers",
+          "name": "Major Water Dispensers",
+          "gpcCode": "72010700",
+          "parentId": "major-domestic-appliances",
+          "children": [
+            {
+              "id": "water-dispensers-freestanding",
+              "name": "Water Dispensers - Freestanding",
+              "gpcCode": "10003712",
+              "gpcDescription": "Includes any products that may be described/observed as a freestanding water container that dispenses water upon request. These products are common in the home and office environments and can dispense both hot and cold water. Includes products such as free-standing office water dispensers.",
+              "parentId": "major-water-dispensers"
+            }
+          ]
+        },
+        {
+          "id": "refrigerating-freezing-appliances",
+          "name": "Refrigerating/Freezing Appliances",
+          "gpcCode": "72010200",
+          "parentId": "major-domestic-appliances",
+          "children": [
+            {
+              "id": "beverage-chillers-other",
+              "name": "Beverage Chillers Other",
+              "gpcCode": "10003710",
+              "gpcDescription": "Includes any products that may be described/observed as a container, which can be set to maintain a temperature cooler than the external temperature and is designed to store a particular type of beverage.",
+              "parentId": "refrigerating-freezing-appliances"
+            },
+            {
+              "id": "coolers-heaters",
+              "name": "Coolers/Heaters",
+              "gpcCode": "10001940",
+              "gpcDescription": "Includes any products that may be described/observed as a thermoelectric container, which can be set to maintain a temperature either cooler or warmer than the external temperature in order to preserve food or the condition of food.",
+              "parentId": "refrigerating-freezing-appliances"
+            },
+            {
+              "id": "freezers",
+              "name": "Freezers",
+              "gpcCode": "10003698",
+              "gpcDescription": "Includes any products that may be described/observed as a freezer unit designed for the freezing of food to preserve this past the given shelf-life. Includes products such as Box and Chest Freezers.",
+              "parentId": "refrigerating-freezing-appliances"
+            },
+            {
+              "id": "ice-makers",
+              "name": "Ice Makers",
+              "gpcCode": "10001938",
+              "gpcDescription": "Includes any products that may be described/observed as a freezer unit specifically designed for the freezing of water into ice. Includes products such as portable Ice Makers and under-counter Ice Makers.",
+              "parentId": "refrigerating-freezing-appliances"
+            },
+            {
+              "id": "refrigerating-freezing-appliances-other",
+              "name": "Refrigerating/Freezing Appliances Other",
+              "gpcCode": "10001941",
+              "gpcDescription": "Includes any products that may be described/observed as a Refrigerating/Freezing Appliance product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "refrigerating-freezing-appliances"
+            },
+            {
+              "id": "refrigerating-freezing-appliances-replacement-parts-accessories",
+              "name": "Refrigerating/Freezing Appliances Replacement Parts/Accessories",
+              "gpcCode": "10001942",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Cooling Appliances.",
+              "parentId": "refrigerating-freezing-appliances"
+            },
+            {
+              "id": "refrigerator-freezers",
+              "name": "Refrigerator/Freezers",
+              "gpcCode": "10003695",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to both refrigerate and freeze food items in the different compartments available.",
+              "parentId": "refrigerating-freezing-appliances"
+            },
+            {
+              "id": "refrigerators",
+              "name": "Refrigerators",
+              "gpcCode": "10003694",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to store and cool food/beverage items to extend their consumable lifetime.",
+              "parentId": "refrigerating-freezing-appliances"
+            },
+            {
+              "id": "wine-chillers",
+              "name": "Wine Chillers",
+              "gpcCode": "10001939",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to store and chill wine.",
+              "parentId": "refrigerating-freezing-appliances"
+            }
+          ]
+        },
+        {
+          "id": "warming-appliances",
+          "name": "Warming Appliances",
+          "gpcCode": "72010400",
+          "parentId": "major-domestic-appliances",
+          "children": [
+            {
+              "id": "hostess-trolleys-powered",
+              "name": "Hostess Trolleys (Powered)",
+              "gpcCode": "10001956",
+              "gpcDescription": "Includes any products that may be described/observed as a powered, mobile structure for transporting, holding and warming food products.",
+              "parentId": "warming-appliances"
+            },
+            {
+              "id": "warming-appliances-other",
+              "name": "Warming Appliances Other",
+              "gpcCode": "10001957",
+              "gpcDescription": "Includes any products that may be described/observed as a Warming Appliances product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "warming-appliances"
+            },
+            {
+              "id": "warming-appliances-replacement-parts-accessories",
+              "name": "Warming Appliances Replacement Parts/Accessories",
+              "gpcCode": "10001958",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Warming Appliances.",
+              "parentId": "warming-appliances"
+            },
+            {
+              "id": "warming-drawers",
+              "name": "Warming Drawers",
+              "gpcCode": "10001955",
+              "gpcDescription": "Includes any products that may be described/observed as a pullout compartment, typically built into the kitchen fitments, which can be electrically heated to keep food at, or bring it to, the desired temperature.",
+              "parentId": "warming-appliances"
+            }
+          ]
+        },
+        {
+          "id": "waste-disposing-compacting-appliances",
+          "name": "Waste Disposing/Compacting Appliances",
+          "gpcCode": "72010100",
+          "parentId": "major-domestic-appliances",
+          "children": [
+            {
+              "id": "food-waste-disposers",
+              "name": "Food Waste Disposers",
+              "gpcCode": "10001929",
+              "gpcDescription": "Includes any products that may be described/observed as a kitchen device typically affixed to the sink, and designed to break up food waste that might otherwise obstruct drains.",
+              "parentId": "waste-disposing-compacting-appliances"
+            },
+            {
+              "id": "trash-compactors",
+              "name": "Trash Compactors",
+              "gpcCode": "10001928",
+              "gpcDescription": "Includes any products that may be described/observed as an appliance designed to reduce the volume of household waste for more efficient disposal.",
+              "parentId": "waste-disposing-compacting-appliances"
+            },
+            {
+              "id": "waste-disposing-compacting-appliances-other",
+              "name": "Waste Disposing/Compacting Appliances Other",
+              "gpcCode": "10001930",
+              "gpcDescription": "Includes any products that may be described/observed as a Waste Disposing/Compacting Appliance product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "waste-disposing-compacting-appliances"
+            },
+            {
+              "id": "waste-disposing-compacting-appliances-replacement-parts-accessories",
+              "name": "Waste Disposing/Compacting Appliances Replacement Parts/Accessories",
+              "gpcCode": "10001931",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Compacting Appliances.",
+              "parentId": "waste-disposing-compacting-appliances"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "small-domestic-appliances",
+      "name": "Small Domestic Appliances",
+      "gpcCode": "72020000",
+      "parentId": "home-appliances",
+      "children": [
+        {
+          "id": "cleaning-appliances",
+          "name": "Cleaning Appliances",
+          "gpcCode": "72020400",
+          "parentId": "small-domestic-appliances",
+          "children": [
+            {
+              "id": "ash-vacuum-cleaners",
+              "name": "Ash Vacuum Cleaners",
+              "gpcCode": "10007950",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to clean up (cold) ashes from fireplaces or barbecues by suction. These products have adapted parts and filters in order to be able to suck up ashes without clogging the motor.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "cleaning-appliances-other",
+              "name": "Cleaning Appliances Other",
+              "gpcCode": "10002032",
+              "gpcDescription": "Includes any products that may be described/observed as Cleaning Appliances product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "cleaning-appliances-replacement-parts-accessories",
+              "name": "Cleaning Appliances Replacement Parts/Accessories",
+              "gpcCode": "10002033",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for Cleaning Appliances. Includes products such as Floor Polisher Brushes.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "disinfecting-cabinet",
+              "name": "Disinfecting Cabinet",
+              "gpcCode": "10006220",
+              "gpcDescription": "Includes any products that may be described/observed as a device used to disinfect eating or cooking utensils including dishes, silverware, chop sticks, etc. using methods such as ultraviolet radiation, high-low temperature sterilization, and ozone sterilization.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "ducted-vacuum-cleaner-accessories-replacement-parts",
+              "name": "Ducted Vacuum Cleaner Accessories/Replacement Parts",
+              "gpcCode": "10007952",
+              "gpcDescription": "Includes any products that may be described/observed as an accessory or replacement part for a ducted vacuum cleaner. Includes piping, hoses, wall outlets.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "ducted-vacuum-cleaners",
+              "name": "Ducted Vacuum Cleaners",
+              "gpcCode": "10007951",
+              "gpcDescription": "Includes any products that may be described/observed as a fixed, built in, or central, household electrical appliance designed to transport dust, debris and a limited amount of liquid to a central storage location.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "floor-polishers-shampoo-cleaner",
+              "name": "Floor Polishers/Shampoo Cleaner",
+              "gpcCode": "10002030",
+              "gpcDescription": "Includes any products that may be described/observed as a household appliance designed to polish floor surfaces and/or to clean carpets through a combination of high pressure sprays, cleaning fluid and heat. These products can either be hand-held or upright. Includes products such Corded and Cordless Polishers as well as Upright Carpet Shampoo Cleaners and Hand-held Deep Cleaners.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "handheld-vacuum-cleaner",
+              "name": "Handheld Vacuum Cleaner",
+              "gpcCode": "10008138",
+              "gpcDescription": "Includes any products that may be described/observed as a miniature vacuum cleaner to clean up minor spills.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "household-vacuum-cleaners",
+              "name": "Household Vacuum Cleaners",
+              "gpcCode": "10002028",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to suck up dust, dirt and a limited amount of liquid from floors, carpets and upholstery.Includes products such as two-piece, upright, hand-held and bagless vacuum cleaners.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "robot-vacuum-cleaners",
+              "name": "Robot Vacuum Cleaners",
+              "gpcCode": "10007949",
+              "gpcDescription": "Includes any products that may be described/observed as an autonomous electrical appliance designed to clean up dust, dirt and a limited amount of liquid from floors, carpets and upholstery by suction. Mostly sold together with a loading dock. ",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "shoe-cleaners-polishers",
+              "name": "Shoe Cleaners/Polishers",
+              "gpcCode": "10003711",
+              "gpcDescription": "Includes any products that may be described/observed as a household appliance specifically designed to clean and polish shoes. Includes products such as Hand-Held Shoe Polishers and Corded Shoe Polishers.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "sweepers-powered",
+              "name": "Sweepers (Powered)",
+              "gpcCode": "10002029",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to clean floors or carpets by the application of revolving or moving brushes.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "vacuum-cleaner-bags",
+              "name": "Vacuum Cleaner Bags",
+              "gpcCode": "10005762",
+              "gpcDescription": "Includes any products that can be described/observed as a cloth or paper bag that is specifically designed to be attached to a vacuum cleaner hose and is placed within the cleaner to collect all the dust and debris that is sucked up by the vacuum cleaner. Includes brand specific vacuum bags and universal vacuum bags.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "vacuum-cleaner-filters",
+              "name": "Vacuum Cleaner Filters",
+              "gpcCode": "10007953",
+              "gpcDescription": "Includes any products that can be described/observed as a filter used into any type of household vacuum cleaners. Includes brand specific filters and universal filters.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "vacuum-cleaner-heads",
+              "name": "Vacuum Cleaner Heads",
+              "gpcCode": "10007955",
+              "gpcDescription": "Includes any products that can be described/observed as a head brush, crevice tool or any other head used together with any type of household vacuum cleaners.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "vacuum-cleaner-hoses-tubes",
+              "name": "Vacuum Cleaner Hoses/Tubes",
+              "gpcCode": "10007954",
+              "gpcDescription": "Includes any products that can be described/observed as a tube or hose used together with any type of household vacuum cleaners.",
+              "parentId": "cleaning-appliances"
+            },
+            {
+              "id": "window-cleaners-powered",
+              "name": "Window Cleaners (Powered)",
+              "gpcCode": "10008280",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance specifically designed for cleaning windows.",
+              "parentId": "cleaning-appliances"
+            }
+          ]
+        },
+        {
+          "id": "food-beverage-preparation-appliances",
+          "name": "Food/Beverage Preparation Appliances",
+          "gpcCode": "72020200",
+          "parentId": "small-domestic-appliances",
+          "children": [
+            {
+              "id": "baby-feeding-aids-powered",
+              "name": "Baby Feeding Aids (Powered)",
+              "gpcCode": "10000820",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device that is intended as an aid in the feeding process for babies. Includes products such as bottle warmers and bottle sterilisers. ",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "butter-makers-powered",
+              "name": "Butter Makers (Powered)",
+              "gpcCode": "10002015",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to churn milk into butter.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "can-openers-powered",
+              "name": "Can Openers (Powered)",
+              "gpcCode": "10002000",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance wherein electronically powered blades cut along the rim of a can to remove its top. Includes products such as hands-free and surface-mounted Electric Can Openers.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "candyfloss-machines",
+              "name": "Candyfloss Machines",
+              "gpcCode": "10002019",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic appliance designed to create candyfloss from granulated sugar and food colouring by placing the ingredients in a heated, spinning bowl and running a stick around the edge to which the sugar then adheres.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "carbonated-drinks-makers",
+              "name": "Carbonated Drinks Makers",
+              "gpcCode": "10002016",
+              "gpcDescription": "Includes any products that may be described/observed as an appliance designed to pass carbon dioxide through a liquid in order to create bubbles within it and produce a \"sparkling\" effect. Includes products such as Soda-Streams.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "chocolate-fountains-powered",
+              "name": "Chocolate Fountains (Powered)",
+              "gpcCode": "10005690",
+              "gpcDescription": "Includes any products that may be described/observed as a device for serving chocolate. Chocolate Fountains comprise mutliple tiers over a containerised base. Chocolate is melted by heat from below, then vertically transported to the top of the fountain by a corkscrew auger. Once at the top the chocolate flows down the sides of the structure allowing the user to dip foodstuff into it and this pattern is repeated. Includes products such as Plastic Chocolate Fountains as well as Metal Chocolate Fountains.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "coffee-bean-roasters",
+              "name": "Coffee Bean Roasters",
+              "gpcCode": "10006852",
+              "gpcDescription": "Includes any products that may be described/observed as a device designed to roast/cook coffee beans by placing them in to a drum to be roasted before being consumed (either brewing or eating).",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "coffee-grinders-powered",
+              "name": "Coffee Grinders (Powered)",
+              "gpcCode": "10002006",
+              "gpcDescription": "Includes any products that may be described/observed as a device designed to reduce coffee beans into grounds in order to make a beverage. This is achieved either by a mill mechanism or rotating blades.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "cookie-guns-powered",
+              "name": "Cookie Guns (Powered)",
+              "gpcCode": "10005358",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic appliance designed to press out dough into cookie shapes that can be cooked in an oven. These appliances are designed to reduce the effort of the user allowing for cookies of varying shapes and sizes. Includes products such as battery powered cookie guns.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "dehydrators-powered",
+              "name": "Dehydrators (Powered)",
+              "gpcCode": "10002018",
+              "gpcDescription": "Includes any products that may be described/observed as an appliance designed to dry and preserve food by dehydrating it. Typically, food is placed in a pressurised chamber and hot air is forced across it.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "food-beverage-appliances-variety-packs",
+              "name": "Food/Beverage Appliances Variety Packs",
+              "gpcCode": "10002022",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Food/Beverage Preparation Appliances products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Food/Beverage Preparation Appliances class. Includes products such as Ice Cream Makers sold with Yogurt Makers. Items received free with purchase should be removed from the classification decision-making process.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "food-beverage-preparation-appliances-other",
+              "name": "Food/Beverage Preparation Appliances Other",
+              "gpcCode": "10002020",
+              "gpcDescription": "Includes any products that may be described/observed as a Food Preparation Appliances product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "food-beverage-preparation-appliances-replacement-parts-accessories",
+              "name": "Food/Beverage Preparation Appliances Replacement Parts/Accessories",
+              "gpcCode": "10002021",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Food Preparation Appliances.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "frozen-drinks-makers-ice-shavers-powered",
+              "name": "Frozen Drinks Makers/Ice Shavers (Powered)",
+              "gpcCode": "10005689",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic appliance designed to either prepare an ice based bevarage, produce ice flakes or provide a combination of these functions. These products are powered by electricity and are available in a variety of designs. Includes products such as Snow Cone Makers as well as Ice Shavers.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "graters-powered",
+              "name": "Graters (Powered)",
+              "gpcCode": "10002005",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic device, typically consisting of a handset containing a cavity for cheese or other foodstuffs and a revolving stainless steel drum against which it can be grated.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "hot-beverage-makers",
+              "name": "Hot Beverage Makers",
+              "gpcCode": "10002011",
+              "gpcDescription": "Includes any products that may be described/observed as a machine designed to produce a hot drink either through the use of a high pressure system as seen in an espreso machine or a pump system as used in filter coffee. These machines can be made from different materials and typically serve more than one hot beverage. Includes products such as Filter Coffee Makers, Espresso Makers, Tea Makers and Instant Coffee Makers as well as Percolators and Mochas. Specifically",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "ice-cream-makers-powered",
+              "name": "Ice Cream Makers (Powered)",
+              "gpcCode": "10002013",
+              "gpcDescription": "Includes any products that may be described/observed as an appliance designed to mix ingredients into ice cream, by blending them with a paddle in a frozen, insulated bowl. Includes products such as manual Ice-Cream Makers, automatic Ice-Cream Makers and dual Ice-Cream/Frozen Yogurt Makers.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "ice-crushers-ice-cube-makers-powered",
+              "name": "Ice Crushers/Ice Cube Makers (Powered)",
+              "gpcCode": "10005357",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic appliance designed to create ice cubes or crush ice in preparation to be added to a drink or recipe. These products are available in varying sizes dependent on the consumer requirements. Includes products such as stainless steel ice cube makers.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "juicers-powered",
+              "name": "Juicers (Powered)",
+              "gpcCode": "10002007",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to extract the juice from citrus fruit or similar by crushing it. The juice is collected in the body of the appliance and dispensed from a tap or spout.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "kettles-powered",
+              "name": "Kettles (Powered)",
+              "gpcCode": "10002012",
+              "gpcDescription": "Includes any products that may be described/observed as a lidded metal pot for boiling water over heat, or an electric jug for boiling water by use of an internal heated element. Includes products such as Jug-Kettles, and traditional \"whistling\" Kettles.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "kitchen-blending-appliances",
+              "name": "Kitchen Blending Appliances",
+              "gpcCode": "10006739",
+              "gpcDescription": "Includes any products that may be described/observed as a powered food blending machine with varying attachments which can be used for blending ingredients prior to cooking. These products can only be used for blending.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "kitchen-chopping-appliances",
+              "name": "Kitchen Chopping Appliances",
+              "gpcCode": "10006737",
+              "gpcDescription": "Includes any products that may be described/observed as a powered food chopping machine with varying attachments which can be used for chopping ingredients prior to cooking. These products can only be used for chopping.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "kitchen-combination-mixing-blending-chopping-appliances",
+              "name": "Kitchen Combination Mixing/Blending/Chopping Appliances",
+              "gpcCode": "10006735",
+              "gpcDescription": "Includes any products that may be described/observed as a powered food preparation machine with varying attachments which can be used for any commination of blending, chopping, slicing, or mixing of ingredients prior to cooking. These products can carry out many different functions from chopping, slicing, whisking and blending. Products include those multi-functional appliances.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "kitchen-mixing-appliances",
+              "name": "Kitchen Mixing Appliances",
+              "gpcCode": "10006738",
+              "gpcDescription": "Includes any products that may be described/observed as a powered food mixing machine with varying attachments which can be used for mixing ingredients prior to cooking. These products can only be used for mixing.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "kitchen-scales-powered",
+              "name": "Kitchen Scales (Powered)",
+              "gpcCode": "10005695",
+              "gpcDescription": "Includes any products that can be described/observed as a powered instrument or machine for weighing food. ",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "kitchen-slicing-appliances",
+              "name": "Kitchen Slicing Appliances",
+              "gpcCode": "10006736",
+              "gpcDescription": "Includes any products that may be described/observed as a powered food slicing machine with varying attachments which can be used for slicing ingredients prior to cooking. These products can only be used for slicing.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "knife-sharpeners-powered",
+              "name": "Knife Sharpeners (Powered)",
+              "gpcCode": "10002002",
+              "gpcDescription": "Includes any products that may be described/observed as an electric device consisting of slots through which a knife blade can be passed to be sharpened against an internal disk or surface, which removes the old edge to hone a new one. Includes products such as 3-stage Sharpeners and Diamond Hone Sharpeners.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "knives-powered",
+              "name": "Knives (Powered)",
+              "gpcCode": "10001998",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical device consisting of a handle and a moving blade powered by a motor intended for cutting meat or other foodstuffs.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "meat-grinders-mincers-powered",
+              "name": "Meat Grinders/Mincers (Powered)",
+              "gpcCode": "10002004",
+              "gpcDescription": "Includes any products that may be described/observed as an electric appliance typically consisting of a feeder tray, food chute and grinder mechanism. These products are intended to grind meat into small pieces, though some can also be used to grind other foods such as vegetables or cheese.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "party-drink-fountains-powered",
+              "name": "Party Drink Fountains (Powered)",
+              "gpcCode": "10005868",
+              "gpcDescription": "Includes any products that can be described/observed as a decorative punch bowl cum party fountain, which holds a party beverage that is pumped from the bottom bowl to the top where it cascades downward in a waterfall effect from one tier to the next. The bottom bowl may have beverage cups attached and will most probably be illuminated to enhance the fountain effect.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "soy-rice-milk-maker",
+              "name": "Soy/Rice Milk Maker",
+              "gpcCode": "10006218",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to make fresh nut, bean, seed and rice milks.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "vacuum-sealers-powered",
+              "name": "Vacuum Sealers (Powered)",
+              "gpcCode": "10002003",
+              "gpcDescription": "Includes any products that may be described/observed as a powered appliance, which dispenses, cuts and vacuum seals plastic bags for the purpose of preserving food. These products may operate automatically or be controlled with a manual override. Includes products such as freestanding and under-counter Vacuum Sealers.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "wine-bottle-openers-powered",
+              "name": "Wine/Bottle Openers (Powered)",
+              "gpcCode": "10005691",
+              "gpcDescription": "Includes any products that may be described/observed as a hand-held device for the esay opening of wine and similar bottles. These products can be either corded or cordless and are available in a variety of designs. Includes products such as Stainless Steel Ergonomically Desgined Powered Wine Bottle Openers.",
+              "parentId": "food-beverage-preparation-appliances"
+            },
+            {
+              "id": "yogurt-makers",
+              "name": "Yogurt Makers",
+              "gpcCode": "10002014",
+              "gpcDescription": "Includes any products that may be described/observed as an appliance designed to heat a mixture of milk and bacteria and hold it at temperature for a period of time, until it has transformed into yogurt.",
+              "parentId": "food-beverage-preparation-appliances"
+            }
+          ]
+        },
+        {
+          "id": "laundry-care-appliances",
+          "name": "Laundry Care Appliances",
+          "gpcCode": "72020300",
+          "parentId": "small-domestic-appliances",
+          "children": [
+            {
+              "id": "drying-racks-and-mills-parts-accessories",
+              "name": "Drying Racks and Mills Parts/Accessories",
+              "gpcCode": "10008120",
+              "gpcDescription": "Includes any products that may be described/observed as a part or accessories of a drying rack, mill, tower or line. Contains products such as protective covers, drying screens and ground anchors for drying racks and a variety of systems for attaching or hanging clothes.",
+              "parentId": "laundry-care-appliances"
+            },
+            {
+              "id": "ironing-boards-replacement-parts-accessories",
+              "name": "Ironing Boards  Replacement Parts/Accessories",
+              "gpcCode": "10008121",
+              "gpcDescription": "Includes any products that may be described/observed as a part or accessories of an ironing board. Contains products such as ironing board covers, coasters and blankets, sleeve boards and covers, cord guides, iron coasters.",
+              "parentId": "laundry-care-appliances"
+            },
+            {
+              "id": "laundry-care-appliances-other",
+              "name": "Laundry Care Appliances Other",
+              "gpcCode": "10002026",
+              "gpcDescription": "Includes any products that may be described/observed as a Laundry Appliances product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "laundry-care-appliances"
+            },
+            {
+              "id": "laundry-care-appliances-replacement-parts-accessories",
+              "name": "Laundry Care Appliances Replacement Parts/Accessories",
+              "gpcCode": "10002027",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts/accessories for laundry care appliances.",
+              "parentId": "laundry-care-appliances"
+            }
+          ]
+        },
+        {
+          "id": "portable-air-control-appliances",
+          "name": "Portable Air Control Appliances",
+          "gpcCode": "72020600",
+          "parentId": "small-domestic-appliances",
+          "children": [
+            {
+              "id": "air-conditioners-portable",
+              "name": "Air Conditioners - Portable",
+              "gpcCode": "10005317",
+              "gpcDescription": "Includes any products that may be described/observed as a portable device for controlling, especially lowering, the temperature and humidity of an enclosed space.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "air-controlling-appliances-multifunction-portable",
+              "name": "Air Controlling Appliances - Multifunction - Portable",
+              "gpcCode": "10005335",
+              "gpcDescription": "Includes any products that may be described/observed as a portable unit that combines the work of several appliances such as, air conditioner, dehumidifier and fan.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "air-coolers-portable",
+              "name": "Air Coolers - Portable",
+              "gpcCode": "10005334",
+              "gpcDescription": "Includes any products that may be described/observed as a portable device that cools the air or keeps the air cool.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "air-dehumidifier-portable-non-powered",
+              "name": "Air Dehumidifier - Portable (Non-Powered)",
+              "gpcCode": "10006798",
+              "gpcDescription": "Includes any products that may be described/observed as a portable device for decreasing humidity.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "air-dehumidifiers-portable-powered",
+              "name": "Air Dehumidifiers - Portable (Powered)",
+              "gpcCode": "10005332",
+              "gpcDescription": "Includes any products that may be described/observed as a portable device for decreasing the humidity in a room.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "air-heaters-portable",
+              "name": "Air Heaters - Portable",
+              "gpcCode": "10003992",
+              "gpcDescription": "Includes any products that may be described/observed as a portable device for supplying warmth to a small area. These products work through an electrical supply and are used in the absense of a larger \"built-in\" heating system. Includes products such as space heaters.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "air-humidifiers-portable",
+              "name": "Air Humidifiers - Portable",
+              "gpcCode": "10005331",
+              "gpcDescription": "Includes any products that may be described/observed as a portable device for increasing the humidity in a room.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "air-ionisers-portable",
+              "name": "Air Ionisers - Portable",
+              "gpcCode": "10005333",
+              "gpcDescription": "Includes any products that may be described/observed as a portable device that circulates air-cleaning negative ions into the air, while trapping particles on the electrostatically-charged metal dust-collection plate.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "air-purifiers-portable",
+              "name": "Air Purifiers - Portable",
+              "gpcCode": "10005336",
+              "gpcDescription": "Includes any products that may be described/observed as a portable device for removing air impurities.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "fans-portable",
+              "name": "Fans - Portable",
+              "gpcCode": "10005337",
+              "gpcDescription": "Includes any products that may be described/observed as a portable device using an electric motor to rotate thin, rigid vanes in order to move air, as for cooling.",
+              "parentId": "portable-air-control-appliances"
+            },
+            {
+              "id": "portable-air-control-appliances-replacement-parts-accessories",
+              "name": "Portable Air Control Appliances Replacement Parts/Accessories",
+              "gpcCode": "10005697",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for Portable Air Control Appliances. Includes products such as air filters.",
+              "parentId": "portable-air-control-appliances"
+            }
+          ]
+        },
+        {
+          "id": "small-cooking-heating-appliances",
+          "name": "Small Cooking/Heating Appliances",
+          "gpcCode": "72020100",
+          "parentId": "small-domestic-appliances",
+          "children": [
+            {
+              "id": "breadmakers",
+              "name": "Breadmakers",
+              "gpcCode": "10001983",
+              "gpcDescription": "Includes any products that may be described/observed as a freestanding appliance specifically designed for baking bread dough. Some breadmakers will also mix and knead the dough before baking. These products may have secondary functions such as the preparation of jams and conserves. Includes products such as Compact Models and dual Bread/Dessert Makers.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "cake-pie-maker",
+              "name": "Cake / Pie Maker",
+              "gpcCode": "10006740",
+              "gpcDescription": "Includes any products that may be described/observed as an electric appliance designed to cook pies, cakes, etc. or any combination of the above. Includes products such as Cake-Makers, Pie-Makers and Combinations.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "cooking-appliances-variety-packs-powered",
+              "name": "Cooking Appliances Variety Packs (Powered)",
+              "gpcCode": "10001991",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct powered Cooking Appliances products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Cooking Appliances class. Includes products such as Toasters sold with Toasted Sandwich Makers. Items received free with purchase should be removed from the classification decision-making process.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "cooking-timers-powered",
+              "name": "Cooking Timers (Powered)",
+              "gpcCode": "10005365",
+              "gpcDescription": "Includes any products that may be described/observed as a timing device used to warn the user, through an integrated alarm, when a recipe has been cooked for the required period of time. These products are available with additional functionalities such as thermometer.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "deep-fryers",
+              "name": "Deep Fryers",
+              "gpcCode": "10001981",
+              "gpcDescription": "Includes any products that may be described/observed as an appliance designed to heat fat to a high temperature, into which food is lowered to be cooked.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "egg-cookers",
+              "name": "Egg Cookers",
+              "gpcCode": "10001980",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical device specifically designed to cook eggs in a tray over hot water. Typically contains equipment for hard/soft-boiling eggs, and/or poaching, and/or omelette-making. Includes egg cookers for different number of eggs or used techniques.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "electric-grills",
+              "name": "Electric Grills",
+              "gpcCode": "10001969",
+              "gpcDescription": "Includes any products that may be described/observed as a freestanding electric appliance consisting of electric coils with which food is cooked, usually on a grid or tray. These product can be used indoors and/or outdoors.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "fondues-powered",
+              "name": "Fondues (Powered)",
+              "gpcCode": "10001986",
+              "gpcDescription": "Includes any products that may be described/observed as a pot which sits on, or has inbuilt, an electrical element designed for interactive cooking, specifically the melting of chocolate, cheese or other foodstuffs, heating soups, or similar processes.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "hot-dog-rollers",
+              "name": "Hot Dog Rollers",
+              "gpcCode": "10005704",
+              "gpcDescription": "Includes any products that may be described/observed as a small counter-top cooking appliance used to grill/sear sausages by placing them on heated rollers which turn the sausages until adequately browned.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "hot-stones-powered",
+              "name": "Hot Stones (Powered)",
+              "gpcCode": "10001990",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical stone platform on which food can be grilled.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "mexican-diners-powered",
+              "name": "Mexican Diners (Powered)",
+              "gpcCode": "10001988",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical cooking appliance containing different compartments used specifically for cooking Mexican food.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "multi-cookers-powered",
+              "name": "Multi-cookers (Powered)",
+              "gpcCode": "10001978",
+              "gpcDescription": "Includes any powered products that may be described/observed as a set of saucepans, which stack on top of each other, enabling multiple dishes to be cooked over the same heat. Typically these products consist of three levels, the central level will have a perforated base enabling steam to rise through from level one to steam ingredients in level two and heat those in level three. Can also be a term referring to a freestanding cooking unit, which performs a multitude of functions.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "paella-makers-powered",
+              "name": "Paella Makers (Powered)",
+              "gpcCode": "10001989",
+              "gpcDescription": "Includes any products that may be described/observed as a paella pan with an electrical heating stand.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "pancake-doughnut-makers",
+              "name": "Pancake/Doughnut Makers",
+              "gpcCode": "10001971",
+              "gpcDescription": "Includes any products that may be described/observed as an electric appliance designed to cook pancakes, doughnuts or any combination of the above. Includes products such as Pancake-Makers, Doughnut-Makers and Combinations.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "pasta-cookers-powered",
+              "name": "Pasta Cookers (Powered)",
+              "gpcCode": "10001979",
+              "gpcDescription": "Includes any powered products that may be described/observed as a cooking unit specifically designed for cooking pasta. These products typically consist of a saucepan in which water is boiled and a deep pasta colander in which the pasta is placed, and lowered into the water. These products are primarily intended for pasta but may be used, or may come with accessories that can be used, to cook vegetables or other foodstuffs.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "pizza-makers",
+              "name": "Pizza Makers",
+              "gpcCode": "10001985",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance specifically designed to cook pizzas. Typically the product consists of a heated base tray on which the pizza is passed or supported under a heating element. Includes products such as fully hinged Pizza Makers with closing lids and Pizza Makers with partial overhanging heating elements.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "popcorn-makers",
+              "name": "Popcorn Makers",
+              "gpcCode": "10001984",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to heat unpopped maize kernels until they burst and puff out. These products may use hot air or hot fat to cook the popcorn. Includes products such as Novelty/Cinema-Style Popcorn Makers.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "pressure-cookers-powered",
+              "name": "Pressure Cookers (Powered)",
+              "gpcCode": "10001976",
+              "gpcDescription": "Includes any products that may be described/observed as an electric appliance designed to cook food by heating water and forcing the steam through the food. Includes products such as pan-shaped and casserole-shaped Cookers.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "raclettes-powered",
+              "name": "Raclettes (Powered)",
+              "gpcCode": "10001972",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to melt cheese. Typically this product consists of a base to hold the cheese and a heating source under which the cheese is melted.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "rice-cookers-steamers",
+              "name": "Rice Cookers/Steamers",
+              "gpcCode": "10001977",
+              "gpcDescription": "Includes any products that may be described/observed as a cooking unit specifically designed to cook rice through the application of steam, although these products may also be suitable for the cooking of other foodstuffs such as vegetables. Includes products such as Microwave Rice Cooker/Steamers and Electric Rice Cooker/Steamers.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "rotisseries-roasters-powered",
+              "name": "Rotisseries/Roasters (Powered)",
+              "gpcCode": "10001974",
+              "gpcDescription": "Includes any products that may be described/observed as a small gas/electric oven in which meat, usually poultry, is placed on a tray or revolving spit and roasted. Includes products such as Rotisseries and Roaster Ovens.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "sandwich-waffle-makers",
+              "name": "Sandwich/Waffle Makers",
+              "gpcCode": "10001970",
+              "gpcDescription": "Includes any products that may be described/observed as an electric appliance designed to cook waffles, toasted sandwiches, or any combination of the above. Includes products such as Waffle-Makers, Sandwich-Makers and Combination Makers.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "slow-cookers-hot-pots-cocottes-powered",
+              "name": "Slow Cookers/Hot Pots/Cocottes (Powered)",
+              "gpcCode": "10001975",
+              "gpcDescription": "Includes any products that may be described/observed as an appliance typically consisting of an electrically heated outer wall, a removable crock-pot and a lid, designed to cook food slowly to enhance the flavour.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "small-cooking-appliances-other",
+              "name": "Small Cooking Appliances Other",
+              "gpcCode": "10002034",
+              "gpcDescription": "Includes any products that may be described/observed as Cooking Appliance products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "small-cooking-appliances-replacement-parts-accessories-powered",
+              "name": "Small Cooking Appliances Replacement Parts/Accessories (Powered)",
+              "gpcCode": "10002035",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Powered Cooking Appliances.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "tajines-powered",
+              "name": "Tajines (Powered)",
+              "gpcCode": "10001987",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical earthenware cooking dish with a conical lid to preserve the heat.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "toaster-ovens",
+              "name": "Toaster Ovens",
+              "gpcCode": "10001968",
+              "gpcDescription": "Includes any products that may be described/observed as a small freestanding oven specifically designed to toast bread products. These products may also be used to warm other products",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "toasters",
+              "name": "Toasters",
+              "gpcCode": "10001967",
+              "gpcDescription": "Includes any products that may be described/observed as a kitchen appliance for toasting bread. Products typically consist of one or more slots into which bread slices can be lowered to be cooked by the heat from electric wires. Products may also have accessories to enable warming of croissants or other products.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "warming-trays-powered",
+              "name": "Warming Trays (Powered)",
+              "gpcCode": "10005359",
+              "gpcDescription": "Includes any products that may be described/observed as an electric appliance designed to keep food warm over an extended period of time. Includes products such as mains operated warming trays designed for use with mugs.",
+              "parentId": "small-cooking-heating-appliances"
+            },
+            {
+              "id": "woks-powered",
+              "name": "Woks (Powered)",
+              "gpcCode": "10001982",
+              "gpcDescription": "Includes any products that may be described/observed as a metal pan with a rounded bottom and a lid, which heats when attached to an electric power supply. Includes products such as Dishwasher safe Electric Woks and non-stick Electric Woks.",
+              "parentId": "small-cooking-heating-appliances"
+            }
+          ]
+        },
+        {
+          "id": "small-domestic-appliances-other",
+          "name": "Small Domestic Appliances - Other",
+          "gpcCode": "72020700",
+          "parentId": "small-domestic-appliances",
+          "children": [
+            {
+              "id": "small-domestic-appliances-other",
+              "name": "Small Domestic Appliances - Other",
+              "gpcCode": "10006894",
+              "gpcDescription": "Includes any products that may be described/observed as Small Domestic Appliances products, where the user of the schema is not able to classify the products in existing bricks within the schema. ",
+              "parentId": "small-domestic-appliances-other"
+            }
+          ]
+        },
+        {
+          "id": "small-water-dispensers",
+          "name": "Small Water Dispensers",
+          "gpcCode": "72020500",
+          "parentId": "small-domestic-appliances",
+          "children": [
+            {
+              "id": "water-dispensers-tabletop",
+              "name": "Water Dispensers - Tabletop",
+              "gpcCode": "10003713",
+              "gpcDescription": "Includes any products that may be described/observed as a free standing water container that dispenses water upon request. These products are common in the home and office environments and can dispense both hot and cold water. Includes products such as tabletop office water dispensers.",
+              "parentId": "small-water-dispensers"
+            }
+          ]
+        },
+        {
+          "id": "smart-home-home-automation-equipment",
+          "name": "Smart Home/Home Automation Equipment",
+          "gpcCode": "72020800",
+          "parentId": "small-domestic-appliances",
+          "children": [
+            {
+              "id": "smart-home-home-automation-equipment-control-panel",
+              "name": "Smart Home/Home Automation Equipment - Control Panel",
+              "gpcCode": "10007021",
+              "gpcDescription": "Includes any products that may be described/observed as a physical device typically used for intelligent home control devices that can automate a variety of appliances and controls within a home.",
+              "parentId": "smart-home-home-automation-equipment"
+            },
+            {
+              "id": "smart-home-home-automation-equipment-lawn-garden-leisure-appliances",
+              "name": "Smart Home/Home Automation Equipment - Lawn/Garden/Leisure Appliances",
+              "gpcCode": "10007024",
+              "gpcDescription": "Includes any products that can be described/observed as lawn/garden/leisure appliances with intelligent home control. These are appliances that are used to schedule your garden sprinklers, take care of your plants.",
+              "parentId": "smart-home-home-automation-equipment"
+            },
+            {
+              "id": "smart-home-home-automation-equipment-power-monitoring-device",
+              "name": "Smart Home/Home Automation Equipment - Power Monitoring Device",
+              "gpcCode": "10007957",
+              "gpcDescription": "Includes any products that can be described/observed as a power monitoring device with or without intelligent home control.",
+              "parentId": "smart-home-home-automation-equipment"
+            },
+            {
+              "id": "smart-home-home-automation-equipment-security-appliances",
+              "name": "Smart Home/Home Automation Equipment - Security Appliances",
+              "gpcCode": "10007022",
+              "gpcDescription": "Includes any products that may be described/observed as distinct safety/security/surveillance products with intelligent home control. These can include cameras and water/smoke detectors.",
+              "parentId": "smart-home-home-automation-equipment"
+            },
+            {
+              "id": "smart-home-home-automation-equipment-smart-plug-socket",
+              "name": "Smart Home/Home Automation Equipment - Smart Plug/Socket",
+              "gpcCode": "10008303",
+              "gpcDescription": "Includes any products that can be described/observed as a wireless plug/socket appliance with intelligent home control. Includes products such as switched and unswitched freestanding sockets, with or without timer, USB, remote control and smart home functionalities (smart plugs).\nIncluded are all free-standing sockets with a plug. These can have different features such as dimmable, with timer function, with USB port, with remote control or smarthome.\n",
+              "parentId": "smart-home-home-automation-equipment"
+            },
+            {
+              "id": "smart-home-home-automation-equipment-temperature-regulation-appliances",
+              "name": "Smart Home/Home Automation Equipment - Temperature Regulation Appliances",
+              "gpcCode": "10007023",
+              "gpcDescription": "Includes any products that can be described/observed as temperature regulation appliance (heating, air conditioner, ventilation) with intelligent home control.For example home automation heating products, home automation air conditioner products.",
+              "parentId": "smart-home-home-automation-equipment"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1363 @@
+{
+  "id": "sports-equipment",
+  "name": "Sports Equipment",
+  "gpcCode": "71000000",
+  "children": [
+    {
+      "id": "baby-exercisers-transportation",
+      "name": "Baby Exercisers/Transportation",
+      "gpcCode": "71020000",
+      "parentId": "sports-equipment",
+      "children": [
+        {
+          "id": "baby-exercisers-transportation",
+          "name": "Baby Exercisers/Transportation",
+          "gpcCode": "71020100",
+          "parentId": "baby-exercisers-transportation",
+          "children": [
+            {
+              "id": "baby-carrier",
+              "name": "Baby Carrier",
+              "gpcCode": "10000502",
+              "gpcDescription": "Includes any products that can be described/observed as a device intended to transport babies from one place to another by strapping the baby onto the front or back of the carers body. Baby carriers allow the baby to either face the carer or face away from the carer. ",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "baby-carry-cots-baskets-cradles",
+              "name": "Baby Carry Cots/Baskets/Cradles",
+              "gpcCode": "10000795",
+              "gpcDescription": "Includes any products that can be described/observed as a portable cot, cradle or basket that allows the parent or guardian to carry the baby from place to place. ",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "baby-cot-basket-travel",
+              "name": "Baby Cot/Basket - Travel",
+              "gpcCode": "10000794",
+              "gpcDescription": "Includes any products that can be described/observed as temporary sleeping structures that are specifically intended for use for babies to sleep in. Travel cots/baskets are lightweight transportable beds that can be easily assembled and disassembled either by folding or collapsing the structure. Include such products such as Travel Cot, Activity Travel Cot. ",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "baby-door-bouncers",
+              "name": "Baby Door Bouncers",
+              "gpcCode": "10000802",
+              "gpcDescription": "Includes any products that can be described/observed as a device consisting of a seat with a length of elastic fastening that is securely attached to a door architrave or frame, and into which a baby can be placed for activity. Door bouncers encourage co-ordination skills by allowing the baby to jump up and down without the aid of adult intervention.",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "baby-exercisers-transportation-replacement-parts",
+              "name": "Baby Exercisers/Transportation - Replacement Parts",
+              "gpcCode": "10006813",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part/accessory for Baby Exercisers/Transportation products.",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "baby-exercisers-transportation-other",
+              "name": "Baby Exercisers/Transportation Other",
+              "gpcCode": "10000805",
+              "gpcDescription": "Includes any products that can be described/observed as exercise or transportation equipment intended for babies that are not classified within any other brick within the Baby Exercisers class.",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "baby-exercisers-transportation-variety-pack",
+              "name": "Baby Exercisers/Transportation Variety Pack",
+              "gpcCode": "10006812",
+              "gpcDescription": "Includes any products that can be described/observed as two or more baby exercisers/transportation products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack, which cross bricks within the Baby Exercisers/Transportation class. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "baby-swings",
+              "name": "Baby Swings",
+              "gpcCode": "10000803",
+              "gpcDescription": "Includes any products that can be described/observed as a device that incorporates a seat attached to a frame structure by separate pieces of material such as rope, and are designed to allow the baby to move back and forth in a swinging motion. ",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "baby-walkers",
+              "name": "Baby Walkers",
+              "gpcCode": "10000804",
+              "gpcDescription": "Includes any products that can be described/observed as a device that provides support and enables a baby to walk without any assistance or aid from adults. Walkers are typically wheeled devices that are designed to support the baby and help it to walk. The seat of the walker supports the baby's legs, hips and upper body. This allows the baby to walk unassisted. ",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "pram-pushchair-stroller-accessories",
+              "name": "Pram/Pushchair/Stroller Accessories",
+              "gpcCode": "10000797",
+              "gpcDescription": "Includes any products that cannot be described/observed as fundamental to prams/pushchair/stroller products, but can enhance it or assist in its operation. Includes products such as stroller netting, stroller shield, infant stroller umbrella, and pushchair drinks holder.",
+              "parentId": "baby-exercisers-transportation"
+            },
+            {
+              "id": "prams-pushchairs-strollers",
+              "name": "Prams/Pushchairs/Strollers",
+              "gpcCode": "10000793",
+              "gpcDescription": "Includes any products that can be described/observed as a device on wheels which is used to seat or lie babies, children in so that they can be transported from one place to another. Prams/pushchairs/strollers can be foldable/collapsible and can include prams/pushchairs/strollers where the bed can be detached from the pram and used as a car seat. Includes products such as Travel Systems and Double Prams. ",
+              "parentId": "baby-exercisers-transportation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sports-equipment",
+      "name": "Sports Equipment",
+      "gpcCode": "71010000",
+      "parentId": "sports-equipment",
+      "children": [
+        {
+          "id": "combat-sports-equipment",
+          "name": "Combat Sports Equipment",
+          "gpcCode": "71010700",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "combat-sports-equipment-other",
+              "name": "Combat Sports Equipment Other",
+              "gpcCode": "10004096",
+              "gpcDescription": "Includes any products that can be described/observed as Combat Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "combat-sports-equipment"
+            },
+            {
+              "id": "combat-sports-equipment-variety-packs",
+              "name": "Combat Sports Equipment Variety Packs",
+              "gpcCode": "10001809",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Combat Sports Equipment products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Combat Sports Equipment class. Includes products such as a Martial Arts Weapon and a Punching/Kicking Bag sold together. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "combat-sports-equipment"
+            },
+            {
+              "id": "fencing-sports-equipment-non-powered",
+              "name": "Fencing Sports Equipment (Non Powered)",
+              "gpcCode": "10004112",
+              "gpcDescription": "Includes any products that can be described/observed as non-powered equipment specifically designed for use during the sport of Fencing. Includes products such as a practice Foil, Epee or Sabre",
+              "parentId": "combat-sports-equipment"
+            },
+            {
+              "id": "fencing-sports-equipment-powered",
+              "name": "Fencing Sports Equipment (Powered)",
+              "gpcCode": "10004098",
+              "gpcDescription": "Includes any products that can be described/observed as powered equipment specifically designed for use during the sport of Fencing. The blades and tips of the swords are wired to an electric power source to enable a precise recording of a hit to the body. Includes products such as an electric Foil, Epee and Sabre",
+              "parentId": "combat-sports-equipment"
+            },
+            {
+              "id": "martial-arts-sports-equipment",
+              "name": "Martial Arts Sports Equipment",
+              "gpcCode": "10001807",
+              "gpcDescription": "Includes any products that can be described/observed as equipment specifically designed for use during Martial Arts Sports.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as Spears, Swords and Staffs.",
+              "parentId": "combat-sports-equipment"
+            },
+            {
+              "id": "punching-kicking-training-aids",
+              "name": "Punching/Kicking Training Aids",
+              "gpcCode": "10001806",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of equipment specifically designed to develop punching and/or kicking skills in combat sports. Includes products such as Punching/Kicking Bags.",
+              "parentId": "combat-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "cycle-sports-equipment",
+          "name": "Cycle Sports Equipment",
+          "gpcCode": "71010800",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "cycle-accessories-tools-tyre-patch-kits",
+              "name": "Cycle Accessories - Tools/Tyre Patch Kits",
+              "gpcCode": "10008274",
+              "gpcDescription": "Includes any products that can be described/observed as tools and repair kits for cycles and tyres including tyre pumps.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycle-anti-theft-device",
+              "name": "Cycle Anti-theft Device",
+              "gpcCode": "10006392",
+              "gpcDescription": "Includes any products that can be described/observed as a device to prevent or deter theft such as an alarm or a chain or a cable, that can be locked/unlocked by a code or a key.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycle-parts-gear-systems",
+              "name": "Cycle Parts - Gear systems",
+              "gpcCode": "10008269",
+              "gpcDescription": "Includes any products that can be described/observed as a gear system specifically used for cycles, that determines the speed at which the cyclist pedals, and the speed at which the drive wheel turns.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycle-sports-equipment-other",
+              "name": "Cycle Sports Equipment Other",
+              "gpcCode": "10001813",
+              "gpcDescription": "Includes any products that can be described/observed as Cycle Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycle-sports-equipment-variety-packs",
+              "name": "Cycle Sports Equipment Variety Packs",
+              "gpcCode": "10001812",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Cycle Sports Equipment products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Cycle Sports Equipment class. Includes products such as a Cycle sold with a replacement Saddle. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-non-powered",
+              "name": "Cycles (Non Powered)",
+              "gpcCode": "10001810",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered wheeled vehicle that is propelled by human power using the rotation of foot pedals. Includes products such as Tricycles and Racing Bikes.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-powered",
+              "name": "Cycles (Powered)",
+              "gpcCode": "10005815",
+              "gpcDescription": "Includes any product that can be described/observed as a bicycle with an attached motor used to assist with pedalling. Some can be propelled by the motor alone if the rider chooses not to pedal, while in others the motor will only run if the rider pedals.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-accessories-computers-navigation-equipment",
+              "name": "Cycles Accessories - Computers/Navigation Equipment",
+              "gpcCode": "10008275",
+              "gpcDescription": "Includes any products that can be described/observed as computers specifically used on Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-accessories-other",
+              "name": "Cycles Accessories - Other",
+              "gpcCode": "10008276",
+              "gpcDescription": "Includes any products that can be described/observed as Cycles accessories, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-bells",
+              "name": "Cycles Parts - Bells",
+              "gpcCode": "10008262",
+              "gpcDescription": "Includes any product that can be described/observed as a device specifically designed to be used in Cycles for warning pedestrians and other cyclists.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-brakes",
+              "name": "Cycles Parts - Brakes",
+              "gpcCode": "10008263",
+              "gpcDescription": "Includes any product that can be described/observed as Cycles device, consisting of a combination of interacting parts that works to reduce the speed or prevent it from moving.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-chains",
+              "name": "Cycles Parts - Chains",
+              "gpcCode": "10008264",
+              "gpcDescription": "Includes any products that can be described/observed as a chain specifically used for Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-dress-guards-mudguards",
+              "name": "Cycles Parts - Dress Guards/Mudguards",
+              "gpcCode": "10008265",
+              "gpcDescription": "Includes any products that can be described/observed as a guard specifically used for Cycles to prevent objects getting stuck in the wheel.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-grips",
+              "name": "Cycles Parts - Grips",
+              "gpcCode": "10008266",
+              "gpcDescription": "Includes any products that can be described/observed as a grip specifically used for Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-lighting",
+              "name": "Cycles Parts - Lighting",
+              "gpcCode": "10008260",
+              "gpcDescription": "Includes any products that can be described/observed as a front or rear light specifically used for Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-other",
+              "name": "Cycles Parts - Other",
+              "gpcCode": "10008270",
+              "gpcDescription": "Includes any products that can be described/observed as Cycles replacement parts, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-pedals",
+              "name": "Cycles Parts - Pedals",
+              "gpcCode": "10008267",
+              "gpcDescription": "Includes any products that can be described/observed as a pedal specifically used for Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-saddles-and-saddles-accessories",
+              "name": "Cycles Parts - Saddles & Saddles accessories",
+              "gpcCode": "10008261",
+              "gpcDescription": "Includes any products that can be described/observed as a saddle or saddle accessory, such as a saddle cover specifically used for Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-stands",
+              "name": "Cycles Parts - Stands",
+              "gpcCode": "10008268",
+              "gpcDescription": "Includes any products that can be described/observed as a stand specifically used for Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-parts-tyres-wheels",
+              "name": "Cycles Parts - Tyres/Wheels",
+              "gpcCode": "10008259",
+              "gpcDescription": "Includes any products that can be described/observed as a tyre specifically used for Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-transport-baskets-crates-panniers",
+              "name": "Cycles Transport - Baskets/Crates/Panniers",
+              "gpcCode": "10008272",
+              "gpcDescription": "Includes any products that can be described/observed as a basket, crate or bag specifically used on Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-transport-carriers-straps",
+              "name": "Cycles Transport - Carriers/Straps",
+              "gpcCode": "10008273",
+              "gpcDescription": "Includes any products that can be described/observed as carriers or straps specifically used on Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "cycles-transport-children-seats",
+              "name": "Cycles Transport - Children seats",
+              "gpcCode": "10008271",
+              "gpcDescription": "Includes any products that can be described/observed as a as a seat intended to transport children while in a Cycles.",
+              "parentId": "cycle-sports-equipment"
+            },
+            {
+              "id": "scooter-non-powered",
+              "name": "Scooter (Non Powered)",
+              "gpcCode": "10006391",
+              "gpcDescription": "Includes any product that can be described/observed as a non powered scooter.",
+              "parentId": "cycle-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "equestrian-sports-equipment",
+          "name": "Equestrian Sports Equipment",
+          "gpcCode": "71012400",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "equestrian-stable-equipment-accessories",
+              "name": "Equestrian Stable Equipment/Accessories",
+              "gpcCode": "10008386",
+              "gpcDescription": "Includes any products that may be described/observed as equestrian stable tools and accessories which are designed to to create and maintain a safe environment for horses in a stable. Includes products such as feeders, waterers, stall mats, bedding, fencing, and grooming tools.",
+              "parentId": "equestrian-sports-equipment"
+            },
+            {
+              "id": "equestrian-training-competition-accessories",
+              "name": "Equestrian Training/Competition Accessories",
+              "gpcCode": "10008385",
+              "gpcDescription": "Includes any products that may be described/observed as equestrian accessories which are designed to help riders and horses during training or an event competition. Includes products such as such jump cups, jump bars/beams, flags, markers, pawns, driving cones and other accessories to support the practice of equestrian sports. ",
+              "parentId": "equestrian-sports-equipment"
+            },
+            {
+              "id": "equestrian-training-competition-equipment",
+              "name": "Equestrian Training/Competition Equipment",
+              "gpcCode": "10008384",
+              "gpcDescription": "Includes any products that may be described/observed as equestrian equipment which are used by the horse and designed to enhance the performance during training or an event competition such as dressage, riding and jumping. Includes products such as saddles, bridles, reins, stirrups, girths, bits, spurs, whips, gaiters, hoof bells, blankets, fly masks and training aids.",
+              "parentId": "equestrian-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "fishing-angling-sports-equipment",
+          "name": "Fishing/Angling Sports Equipment",
+          "gpcCode": "71012100",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "fishfinders",
+              "name": "Fishfinders",
+              "gpcCode": "10005870",
+              "gpcDescription": "Includes any products that can be described/observed as a system that uses active sonar to detect fish and 'the bottom' and displays them on a graphical display device, generally a liquid crystal display (LCD) or cathode ray tube (CRT) screen.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-bait-flies",
+              "name": "Fishing Bait/Flies",
+              "gpcCode": "10001915",
+              "gpcDescription": "Includes any products that can be described/observed as a substance or insect specifically used to attract fish. Includes Artificial Flies, Ground Bait and Maggots.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-floats",
+              "name": "Fishing Floats",
+              "gpcCode": "10001917",
+              "gpcDescription": "Includes any products that can be described/observed as a buoyant object specifically designed for use during fishing to indicate depth or bite. Includes products such as Still Water and Canal Floats.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-hooks",
+              "name": "Fishing Hooks",
+              "gpcCode": "10001916",
+              "gpcDescription": "Includes any products that can be described/observed as a shaped piece of barbed metal specifically designed for use with fishing rods or poles and used to hook a fish. Includes products such as Jig Hooks and Bait Hooks.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-line-gut",
+              "name": "Fishing Line/Gut",
+              "gpcCode": "10001920",
+              "gpcDescription": "Includes any products that can be described/observed as a line of material or hair specifically designed for catching fish. Includes products such as Floating and Sinking Lines.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-nets",
+              "name": "Fishing Nets",
+              "gpcCode": "10001918",
+              "gpcDescription": "Includes any products that can be described/observed as a mesh of interwoven threads specifically designed for catching or storing fish or eels. Includes products such as Landing Nets and Sling Nets.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-reels",
+              "name": "Fishing Reels",
+              "gpcCode": "10001914",
+              "gpcDescription": "Includes any products that can be described/observed as a device specifically designed for the deployment and retrieval of fishing line using a spool attached to a fishing rod. Includes products such as Automatic Fly Reels and Spinning Reels.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-rod-accessories",
+              "name": "Fishing Rod Accessories",
+              "gpcCode": "10001921",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory for a Fishing Rod. Includes products such as Fishing Rod Stands and Joint Aligners.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-rods-poles",
+              "name": "Fishing Rods/Poles",
+              "gpcCode": "10001913",
+              "gpcDescription": "Includes any products that can be described/observed as long, straight cylindrical rod or pole used to manipulate a length of line with an attached hook, specifically designed for catching fish. Includes products such as Fly Fishing Rods and Ice Fishing Rods.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-angling-sports-equipment-other",
+              "name": "Fishing/Angling Sports Equipment Other",
+              "gpcCode": "10001923",
+              "gpcDescription": "Includes any products that can be described/observed as a Fishing/Angling product designed for recreational use, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "fishing-angling-sports-equipment"
+            },
+            {
+              "id": "fishing-angling-sports-equipment-variety-packs",
+              "name": "Fishing/Angling Sports Equipment Variety Packs",
+              "gpcCode": "10001922",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Fishing/Angling products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Fishing/Angling Sports Equipment class. Includes products such as Fishing Rods and Rod stands sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "fishing-angling-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "gymnastics-sports-equipment",
+          "name": "Gymnastics Sports Equipment",
+          "gpcCode": "71011000",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "gymnastics-apparatus",
+              "name": "Gymnastics Apparatus",
+              "gpcCode": "10001827",
+              "gpcDescription": "Includes any products that can be described/observed as apparatus for use in gymnastics. Includes products such as Vaults and Parallel Bars.",
+              "parentId": "gymnastics-sports-equipment"
+            },
+            {
+              "id": "gymnastics-sports-equipment-other",
+              "name": "Gymnastics Sports Equipment Other",
+              "gpcCode": "10001830",
+              "gpcDescription": "Includes any products that can be described/observed as Gymnastics products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "gymnastics-sports-equipment"
+            },
+            {
+              "id": "gymnastics-sports-equipment-variety-packs",
+              "name": "Gymnastics Sports Equipment Variety Packs",
+              "gpcCode": "10001829",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Gymnastics products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Gymnastics Sports Equipment class. Includes products such as Exercise Hoops sold with Parallel Bars. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "gymnastics-sports-equipment"
+            },
+            {
+              "id": "rhythm-gymnastics-equipment",
+              "name": "Rhythm Gymnastics Equipment",
+              "gpcCode": "10001826",
+              "gpcDescription": "Includes any products that can be described/observed as equipment used in rhythm gymnastics. Includes products such as Ribbons.",
+              "parentId": "gymnastics-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "hunting-sports-aids",
+          "name": "Hunting Sports Aids",
+          "gpcCode": "71011700",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "game-lures-decoys-callers",
+              "name": "Game Lures/Decoys/Callers",
+              "gpcCode": "10001880",
+              "gpcDescription": "Includes any products that can be described/observed as a device that attracts or entices a wild animal and draws it to the hunter. Includes products such as an Animal Scent or a Deer Caller.",
+              "parentId": "hunting-sports-aids"
+            },
+            {
+              "id": "hunting-field-dressing-equipment",
+              "name": "Hunting Field Dressing Equipment",
+              "gpcCode": "10001883",
+              "gpcDescription": "Includes any products that can be described/observed as an item or tool specifically designed to aid the skinning and cleaning of hunted prey. Includes products such as Field Dressing Kits and Plucking Drills.",
+              "parentId": "hunting-sports-aids"
+            },
+            {
+              "id": "hunting-sports-aids-other",
+              "name": "Hunting Sports Aids Other",
+              "gpcCode": "10001886",
+              "gpcDescription": "Includes any products that can be described/observed as a Hunting Sports Aid, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "hunting-sports-aids"
+            },
+            {
+              "id": "hunting-sports-aids-variety-packs",
+              "name": "Hunting Sports Aids Variety Packs",
+              "gpcCode": "10001885",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Hunting Sports Aids sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Hunting Sports Aids class. Includes products such as a Deer Caller and Field Dressing Kit sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "hunting-sports-aids"
+            }
+          ]
+        },
+        {
+          "id": "kiting-parachuting-sports-equipment",
+          "name": "Kiting/Parachuting Sports Equipment",
+          "gpcCode": "71011100",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "kites",
+              "name": "Kites",
+              "gpcCode": "10001831",
+              "gpcDescription": "Includes any products that can be described/observed as a light frame covered in material, which is specifically designed to be aerodynamic. They can be flown in the wind for sport or recreation and on a larger scale, can also be used to pull people across the ground on kite boards or buggies. Includes products such as 1-Line, 2-Line and 4-Line Kites.",
+              "parentId": "kiting-parachuting-sports-equipment"
+            },
+            {
+              "id": "kiting-parachuting-boards-buggies-non-powered",
+              "name": "Kiting/Parachuting Boards/Buggies (Non Powered)",
+              "gpcCode": "10001834",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered board or buggy used to skim land or water, or help direct parachute flight, when a kite or parachute is attached. Includes products such as Land-Based Kite Buggies and Parachute Boards.",
+              "parentId": "kiting-parachuting-sports-equipment"
+            },
+            {
+              "id": "kiting-parachuting-sports-equipment-replacement-parts-accessories",
+              "name": "Kiting/Parachuting Sports Equipment - Replacement Parts/Accessories",
+              "gpcCode": "10001835",
+              "gpcDescription": "Includes any products that can be described/observed as products that are specifically designed as replacement parts or accessories for kiting or parachuting equipment. Includes products such as Kite Buggy Back Axles and Parachute Ripcords.",
+              "parentId": "kiting-parachuting-sports-equipment"
+            },
+            {
+              "id": "kiting-parachuting-sports-equipment-other",
+              "name": "Kiting/Parachuting Sports Equipment Other",
+              "gpcCode": "10001838",
+              "gpcDescription": "Includes any products that can be described/observed as Kiting/Parachuting Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "kiting-parachuting-sports-equipment"
+            },
+            {
+              "id": "kiting-parachuting-sports-equipment-variety-packs",
+              "name": "Kiting/Parachuting Sports Equipment Variety Packs",
+              "gpcCode": "10001837",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Kiting/Parachuting Sports Equipment products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Kiting/Parachuting Sports Equipment class. Includes products such as Kites sold with Buggies. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "kiting-parachuting-sports-equipment"
+            },
+            {
+              "id": "parachutes",
+              "name": "Parachutes",
+              "gpcCode": "10001832",
+              "gpcDescription": "Includes products that can be described/observed as a device that is attached to people or objects to make them fall slowly and safely when they are dropped from an aircraft. It consists of a large piece of thin cloth that opens out in the air to form various shapes, such as v-shaped, wing-shape or umbrella shape.",
+              "parentId": "kiting-parachuting-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "personal-fitness-sports-equipment",
+          "name": "Personal Fitness Sports Equipment",
+          "gpcCode": "71010900",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "exercise-machines-non-powered",
+              "name": "Exercise Machines (Non Powered)",
+              "gpcCode": "10001815",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device used to improve fitness and/or cardiovascular strength. Includes products such as non-powered Treadmills and non-powered Rowing Machines. ",
+              "parentId": "personal-fitness-sports-equipment"
+            },
+            {
+              "id": "exercise-machines-powered",
+              "name": "Exercise Machines (Powered)",
+              "gpcCode": "10001814",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device used to improve fitness and/or cardiovascular strength. Includes products such as powered Rowing Machines, powered Treadmills and powered Exercise Bikes. ",
+              "parentId": "personal-fitness-sports-equipment"
+            },
+            {
+              "id": "free-weights-dumb-bells",
+              "name": "Free Weights/Dumb-bells",
+              "gpcCode": "10001816",
+              "gpcDescription": "Includes any products that can be described/observed as independent weights used to build muscle size and strength. Includes products such as dumb-bells as well as weights that can be attached to the ankle or wrist.",
+              "parentId": "personal-fitness-sports-equipment"
+            },
+            {
+              "id": "gym-accessories",
+              "name": "Gym Accessories",
+              "gpcCode": "10001819",
+              "gpcDescription": "Includes any products that can be described/observed as non-powered sports equipment that is used as a gym and personal fitness accessory to help tone the body. Includes products such as a Skipping Rope, Gym Ball or Resistance Band.",
+              "parentId": "personal-fitness-sports-equipment"
+            },
+            {
+              "id": "personal-fitness-sports-equipment-replacement-parts-accessories",
+              "name": "Personal Fitness Sports Equipment - Replacement Parts/Accessories",
+              "gpcCode": "10001823",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory for an item of Personal Fitness equipment. Includes products such as Exercise Bars and Exercise Machine Belts.",
+              "parentId": "personal-fitness-sports-equipment"
+            },
+            {
+              "id": "personal-fitness-sports-equipment-other",
+              "name": "Personal Fitness Sports Equipment Other",
+              "gpcCode": "10001825",
+              "gpcDescription": "Includes any products that can be described/observed as Personal Fitness Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "personal-fitness-sports-equipment"
+            },
+            {
+              "id": "personal-fitness-sports-equipment-variety-packs",
+              "name": "Personal Fitness Sports Equipment Variety Packs",
+              "gpcCode": "10001824",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Personal Fitness Sports Equipment products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Personal Fitness Sports Equipment class. Includes products such as Toning Sports Equipment sold with Free Weights. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "personal-fitness-sports-equipment"
+            },
+            {
+              "id": "sports-exercise-monitors",
+              "name": "Sports Exercise Monitors",
+              "gpcCode": "10001822",
+              "gpcDescription": "Includes any products that can be described/observed as monitors used to count specific measures when performing sporting activities. Includes products such as Pedometers and Speedometers.",
+              "parentId": "personal-fitness-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "racquet-sports-equipment",
+          "name": "Racquet Sports Equipment",
+          "gpcCode": "71010300",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "racquet-sports-replacement-parts-accessories",
+              "name": "Racquet Sports - Replacement Parts/Accessories",
+              "gpcCode": "10001778",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory for racquet sports. Includes products such as Grip Tape, Racquet String and Ball Machines.",
+              "parentId": "racquet-sports-equipment"
+            },
+            {
+              "id": "racquet-sports-equipment-other",
+              "name": "Racquet Sports Equipment Other",
+              "gpcCode": "10004097",
+              "gpcDescription": "Includes any products that can be described/observed as Racquet Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "racquet-sports-equipment"
+            },
+            {
+              "id": "racquet-sports-equipment-variety-packs",
+              "name": "Racquet Sports Equipment Variety Packs",
+              "gpcCode": "10001779",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Racquet Sports Equipment products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Racquet Sports Equipment class. Includes products such as Tennis Racquets sold with Grip Tape and Tennis Racquets sold with Tennis Training Aids. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "racquet-sports-equipment"
+            },
+            {
+              "id": "racquets",
+              "name": "Racquets",
+              "gpcCode": "10001776",
+              "gpcDescription": "Includes any products that can be described/observed as a flat paddle-shaped object that frames a pattern of strings used to hit a ball or shuttlecock. Includes products such as Tennis Racquets and Badminton Racquets.",
+              "parentId": "racquet-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "scooter-skate-sports-equipment",
+          "name": "Scooter/Skate Sports Equipment",
+          "gpcCode": "71011200",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "scooter-skateboard-sports-equipment-other",
+              "name": "Scooter/Skateboard Sports Equipment Other",
+              "gpcCode": "10001843",
+              "gpcDescription": "Includes any products that can be described/observed as Scooter/Skateboard Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "scooter-skate-sports-equipment"
+            },
+            {
+              "id": "scooter-skateboard-sports-equipment-variety-packs",
+              "name": "Scooter/Skateboard Sports Equipment Variety Packs",
+              "gpcCode": "10001842",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Scooter/Skateboard Sports Equipment products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Scooter/Skateboard Sports Equipment class. Includes products such as Skateboards sold with Skateboarding Ramps. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "scooter-skate-sports-equipment"
+            },
+            {
+              "id": "scooters-skateboards-hoverboards-powered",
+              "name": "Scooters/Skateboards/Hoverboards (Powered)",
+              "gpcCode": "10005814",
+              "gpcDescription": "Includes any products that can be described/observed as motorised sport equipment consisting of a narrow board with wheels and attached handlebars and brakes, to assist steering and control. This includes electric scooters, motorised skateboards, and hoverboards. These products are designed for recreational and sporting activities but may also be used for short-distance commuting.",
+              "parentId": "scooter-skate-sports-equipment"
+            },
+            {
+              "id": "skateboarding-sports-equipment-replacement-parts-accessories",
+              "name": "Skateboarding Sports Equipment - Replacement Parts/Accessories",
+              "gpcCode": "10001841",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for Skateboards, and are sold separately or in addition to Skateboards. Includes products such as Skate Ramps and Skateboard Wheels.",
+              "parentId": "scooter-skate-sports-equipment"
+            },
+            {
+              "id": "skateboards-non-powered",
+              "name": "Skateboards (Non Powered)",
+              "gpcCode": "10001840",
+              "gpcDescription": "Includes any products that can be described/observed as a narrow board with wheels underneath, which is manually powered by a person standing on the board and moving forward using one foot to push off the ground.",
+              "parentId": "scooter-skate-sports-equipment"
+            },
+            {
+              "id": "skates",
+              "name": "Skates",
+              "gpcCode": "10008489",
+              "gpcDescription": "Includes any products that may be described/observed for wheeled or blade-based movement on various surfaces. Includes products such as inline skates with a single line of wheels for smooth surfaces, ice skates with metal blades for gliding on ice, and roller skates featuring two pairs of wheels arranged side-by-side for flat surfaces.",
+              "parentId": "scooter-skate-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "snow-ice-sports-equipment",
+          "name": "Snow/Ice Sports Equipment",
+          "gpcCode": "71010500",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "curling-stones",
+              "name": "Curling Stones",
+              "gpcCode": "10001794",
+              "gpcDescription": "Includes any products that can be described/observed as stones designed to glide along an ice surface towards a target.",
+              "parentId": "snow-ice-sports-equipment"
+            },
+            {
+              "id": "skis-ski-boards-snow-boards",
+              "name": "Skis/Ski Boards/Snow Boards",
+              "gpcCode": "10001792",
+              "gpcDescription": "Includes any products that can be described/observed as a flat device worn on the feet to help the wearer slide over snow and primarily used for recreational and sporting purposes. Includes products such as a pair of Snow Skis, where one is attached to each foot, or a single Snow Board to which both feet are attached.",
+              "parentId": "snow-ice-sports-equipment"
+            },
+            {
+              "id": "sleds",
+              "name": "Sleds",
+              "gpcCode": "10001790",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered vehicle mounted on runners that slides across snow and ice and is manned by one or more persons. Primarily these products are used for sporting and recreational purposes. Includes products such as Sleds, Bobsleighs and Toboggans.",
+              "parentId": "snow-ice-sports-equipment"
+            },
+            {
+              "id": "snow-ice-sports-equipment-replacement-parts-accessories",
+              "name": "Snow/Ice Sports Equipment - Replacement Parts/Accessories",
+              "gpcCode": "10001795",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory for an item of Snow or Ice Sports Equipment. Includes products such as Ski Poles and Curling Sweepers.",
+              "parentId": "snow-ice-sports-equipment"
+            },
+            {
+              "id": "snow-ice-sports-equipment-other",
+              "name": "Snow/Ice Sports Equipment Other",
+              "gpcCode": "10001797",
+              "gpcDescription": "Includes any products that can be described/observed as Snow/Ice Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "snow-ice-sports-equipment"
+            },
+            {
+              "id": "snow-ice-sports-equipment-variety-packs",
+              "name": "Snow/Ice Sports Equipment Variety Packs",
+              "gpcCode": "10001796",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Snow/Ice Sports Equipment products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Snow/Ice Sports Equipment class. Includes products such as Skis sold with Bindings. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "snow-ice-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "sporting-firearms-equipment",
+          "name": "Sporting Firearms Equipment",
+          "gpcCode": "71011600",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "airguns",
+              "name": "Airguns",
+              "gpcCode": "10001873",
+              "gpcDescription": "Includes any products that can be described/observed as a gun or rifle, which uses a column of compressed air or other gas to propel a projectile.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "firearms-replacement-parts-accessories",
+              "name": "Firearms - Replacement Parts/Accessories",
+              "gpcCode": "10001877",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory for Sporting Firearms.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as Rifle Scopes and Ammunition Magazines.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "firearms-ammunition",
+              "name": "Firearms Ammunition",
+              "gpcCode": "10001874",
+              "gpcDescription": "Includes any products that can be described/observed as a projectile, usually of metal, which is shot from a firearm at high speed for the purpose of hunting or target practice.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "handguns-pistols",
+              "name": "Handguns/Pistols",
+              "gpcCode": "10001870",
+              "gpcDescription": "Includes any products that can be described/observed as a short-barrelled gun specifically designed for competitive or recreational shooting.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as Revolvers and Pistols.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "heavy-weapon-ammunition",
+              "name": "Heavy Weapon Ammunition",
+              "gpcCode": "10008055",
+              "gpcDescription": "Includes any products that can be described/observed as a projectile, usually of metal, which is shot from a heavy weapon.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "rifles",
+              "name": "Rifles",
+              "gpcCode": "10001871",
+              "gpcDescription": "Includes any products that can be described/observed as a long-barrelled gun with two or more helical grooves in its bore. This classification is specifically defining products designed for competitive or recreational shooting.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "shotguns",
+              "name": "Shotguns",
+              "gpcCode": "10001872",
+              "gpcDescription": "Includes any products that can be described/observed as a long barrelled gun with a smooth bore, which fires a large number of bullets or shot at any one time. Products are specifically designed for competitive or recreational shooting. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "sporting-firearms-equipment-other",
+              "name": "Sporting Firearms Equipment Other",
+              "gpcCode": "10001879",
+              "gpcDescription": "Includes any products that can be described/observed as Sporting Firearms Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "sporting-firearms-equipment-variety-packs",
+              "name": "Sporting Firearms Equipment Variety Packs",
+              "gpcCode": "10001878",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Sporting Firearms Equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sporting Firearms Equipment class. Includes products such as Guns and Ammunition sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "weapons-hand-held-grenades-explosives",
+              "name": "Weapons - Hand held - Grenades/Explosives",
+              "gpcCode": "10008052",
+              "gpcDescription": "Includes any products that can be described/observed as a grenade or explosive. Includes hand grenades, flash/bangs, smoke grenades, etc.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "weapons-hand-held-rocket-propelled",
+              "name": "Weapons - Hand held - Rocket propelled",
+              "gpcCode": "10008051",
+              "gpcDescription": "Includes any products that can be described/observed as a hand held, rocket propelled weapon. Includes products such as bazookas, rocket propelled grenades, etc.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "weapons-heavy-mounted",
+              "name": "Weapons - Heavy Mounted",
+              "gpcCode": "10008053",
+              "gpcDescription": "Includes any products that can be described/observed as a heavy mounted weapon. these are weapons which are identified as 'heavy' due to the weight and encumbrance of the weapons themselves and whose design provides increased range, penetration and destructive power against vehicles, buildings, aircraft and light fortifications beyond standard rifle calibers.",
+              "parentId": "sporting-firearms-equipment"
+            },
+            {
+              "id": "weapons-heavy-mounted-parts-and-accessories",
+              "name": "Weapons - Heavy Mounted - Parts & Accessories",
+              "gpcCode": "10008054",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory for heavy mounted weapons. Includes products such as Scopes and Ammunition Magazines or Feeding Systems.",
+              "parentId": "sporting-firearms-equipment"
+            }
+          ]
+        },
+        {
+          "id": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs",
+          "name": "Sports Balls/Pucks/Shuttlecocks/Frisbees/Boomerangs",
+          "gpcCode": "71010200",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "boomerangs",
+              "name": "Boomerangs",
+              "gpcCode": "10001772",
+              "gpcDescription": "Includes any products that can be described/observed as a curved piece of wood, which when thrown, returns to the thrower.",
+              "parentId": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs"
+            },
+            {
+              "id": "frisbees",
+              "name": "Frisbees",
+              "gpcCode": "10001771",
+              "gpcDescription": "Includes any products that can be described/observed as a disc, normally made of plastic, which is thrown by one player and caught by another player.",
+              "parentId": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs"
+            },
+            {
+              "id": "pucks",
+              "name": "Pucks",
+              "gpcCode": "10001769",
+              "gpcDescription": "Includes any products that can be described/observed as a vulcanised rubber disc used in ice hockey or indoor hockey.",
+              "parentId": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs"
+            },
+            {
+              "id": "shuttlecocks",
+              "name": "Shuttlecocks",
+              "gpcCode": "10001770",
+              "gpcDescription": "Includes any products that can be described/observed as a projectile struck to and fro by racquets while playing badminton. Typically they consist of a ball of cork or rubber with a crown of feathers or synthetic material.",
+              "parentId": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs"
+            },
+            {
+              "id": "sports-balls",
+              "name": "Sports Balls",
+              "gpcCode": "10001768",
+              "gpcDescription": "Includes any products that can be described/observed as a spherical object, which is hit, kicked or thrown during sporting activity. Includes products such as Footballs, Golf Balls, Netballs, Hockey Balls, Rugby Balls and Table Tennis Balls.",
+              "parentId": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs"
+            },
+            {
+              "id": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs-other",
+              "name": "Sports Balls/Pucks/Shuttlecocks/Frisbees/Boomerangs Other",
+              "gpcCode": "10001775",
+              "gpcDescription": "Includes any products that can be described/observed as a Sports Ball, Puck, Shuttlecock, Frisbee or Boomerang, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs"
+            },
+            {
+              "id": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs-variety-packs",
+              "name": "Sports Balls/Pucks/Shuttlecocks/Frisbees/Boomerangs Variety Packs",
+              "gpcCode": "10001774",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Sports Balls/Pucks/Shuttlecocks/Frisbees/Boomerang products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sports Balls/Pucks/Shuttlecocks/Frisbees/Boomerangs class. Includes products such as a child's Frisbee and Boomerang sold together. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sports-balls-pucks-shuttlecocks-frisbees-boomerangs"
+            }
+          ]
+        },
+        {
+          "id": "sports-bats-sticks-clubs-cues-mallets",
+          "name": "Sports Bats/Sticks/Clubs/Cues/Mallets",
+          "gpcCode": "71010400",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "sports-bats-sticks-clubs",
+              "name": "Sports Bats/Sticks/Clubs",
+              "gpcCode": "10001780",
+              "gpcDescription": "Includes any products that can be described/observed as an instrument specifically designed for hitting or redirecting balls and typically intended for use in playing sports. Includes products such as Cricket Bats, Baseball Bats, Hockey Sticks and Golf Clubs.",
+              "parentId": "sports-bats-sticks-clubs-cues-mallets"
+            },
+            {
+              "id": "sports-bats-sticks-clubs-other",
+              "name": "Sports Bats/Sticks/Clubs Other",
+              "gpcCode": "10001787",
+              "gpcDescription": "Includes any products that can be described/observed as a sports bat, stick, club, cue or mallet, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "sports-bats-sticks-clubs-cues-mallets"
+            }
+          ]
+        },
+        {
+          "id": "sports-equipment-accessories",
+          "name": "Sports Equipment Accessories",
+          "gpcCode": "71011900",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "pumps-powered",
+              "name": "Pumps ( Powered)",
+              "gpcCode": "10005703",
+              "gpcDescription": "Includes any products that can be described/observed as a powered pump specifically designed to inflate products used in sporting activity.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "pumps-non-powered",
+              "name": "Pumps (Non Powered)",
+              "gpcCode": "10005702",
+              "gpcDescription": "Includes any products that can be described/observed as a non powered pump specifically designed to inflate products used in sporting activity. Includes products such as floor pumps.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "rangefinders",
+              "name": "Rangefinders",
+              "gpcCode": "10005812",
+              "gpcDescription": "Includes any products that can be described/observed as a device for pin-pointing the distance of an object by sending a laser beam out to the object whose range is required and computing the distance. The product is used in hunting and golf.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-equipment-accessories-other",
+              "name": "Sports Equipment Accessories Other",
+              "gpcCode": "10001903",
+              "gpcDescription": "Includes any products that can be described/observed as Sports Equipment Accessories, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-equipment-accessories-variety-packs",
+              "name": "Sports Equipment Accessories Variety Packs",
+              "gpcCode": "10001902",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Sports Equipment Accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sports Equipment Accessories class. Includes products such as Golf Enclosures and Golf Score Cards sold together and Cricket Enclosures and Cricket Mats sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-equipment-bags-cases-covers",
+              "name": "Sports Equipment Bags/Cases/Covers",
+              "gpcCode": "10001892",
+              "gpcDescription": "Includes any products that can be described/observed as a container or cover specifically designed for carrying and protecting sports equipment. Includes products such as Golf Bags and Pool Table Covers.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-equipment-storage-racks-holders",
+              "name": "Sports Equipment Storage Racks/Holders",
+              "gpcCode": "10001898",
+              "gpcDescription": "Includes any products that can be described/observed as a stand or structure specifically designed to hold or store sporting equipment. Includes products such as Ball Caddies and Bike Racks.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-goals-nets-accessories",
+              "name": "Sports Goals/Nets Accessories",
+              "gpcCode": "10001894",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory for sports goals or nets. Includes products such as Goal Net Anchors and Cricket Cage Wheels.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-goals-nets-enclosures",
+              "name": "Sports Goals/Nets/Enclosures",
+              "gpcCode": "10001893",
+              "gpcDescription": "Includes any products that can be described/observed as structure of one or more posts, sometimes supporting a net, which is typically used to determine point scoring in ball sports, but can also be used for restricting the passage of a ball during game practice. Includes Football Goals, Tennis Nets and Cricket Nets.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-marking-equipment",
+              "name": "Sports Marking Equipment",
+              "gpcCode": "10001896",
+              "gpcDescription": "Includes any products that can be described/observed as an item or product specifically designed for marking a sports area, boundary, field of play, striking position or scoring position. Includes products such as marker flags, tees and line marking machines.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-mats-carpets",
+              "name": "Sports Mats/Carpets",
+              "gpcCode": "10001900",
+              "gpcDescription": "Includes any products that can be described/observed as a textile floor or ground cover, which may be padded and is specifically designed for use during sporting activities. Includes products such as an Indoor Cricket Surface and a Yoga Mat.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-scoring-equipment-non-powered",
+              "name": "Sports Scoring Equipment (Non Powered)",
+              "gpcCode": "10001899",
+              "gpcDescription": "Includes any products that can be described/observed as non-powered equipment specifically designed for recording or displaying game scores and times. Includes products such as Flip Card Scoreboards and Number Plate Scoreboards.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-scoring-equipment-powered",
+              "name": "Sports Scoring Equipment (Powered)",
+              "gpcCode": "10004111",
+              "gpcDescription": "Includes any products that can be described/observed as powered equipment specifically designed for recording or displaying game scores and times. Includes products such as Game Clocks and portable Electronic Scoreboards.",
+              "parentId": "sports-equipment-accessories"
+            },
+            {
+              "id": "sports-target-pins-skittles-stumps",
+              "name": "Sports Target Pins/Skittles/Stumps",
+              "gpcCode": "10001897",
+              "gpcDescription": "Includes any products that can be described/observed as vertical lengths of wood or synthetic material specifically designed for use as a target when throwing a ball. Includes products such as Bowling Pins, Skittles and Cricket Stumps.",
+              "parentId": "sports-equipment-accessories"
+            }
+          ]
+        },
+        {
+          "id": "sports-equipment-variety-packs",
+          "name": "Sports Equipment Variety Packs",
+          "gpcCode": "71012300",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "sports-equipment-variety-packs",
+              "name": "Sports Equipment Variety Packs",
+              "gpcCode": "10003688",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Sports Equipment products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Sports Equipment family. Includes products such as Footballs and Football Goals sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sports-equipment-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "sports-personal-protective-equipment",
+          "name": "Sports Personal Protective Equipment",
+          "gpcCode": "71012000",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "sports-personal-protective-equipment-other",
+              "name": "Sports Personal Protective Equipment Other",
+              "gpcCode": "10001912",
+              "gpcDescription": "Includes any products that can be described/observed as Sports Personal Protective Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "sports-personal-protective-equipment"
+            },
+            {
+              "id": "sports-personal-protective-equipment-variety-packs",
+              "name": "Sports Personal Protective Equipment Variety Packs",
+              "gpcCode": "10001911",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Sports Personal Protective Equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sports Personal Protective Equipment class. Includes products such as Shin Pads and Sporting Support Belts sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sports-personal-protective-equipment"
+            },
+            {
+              "id": "sports-protective-body-padding-guards",
+              "name": "Sports Protective Body Padding/Guards",
+              "gpcCode": "10001907",
+              "gpcDescription": "Includes any products that can be described/observed as protective body padding or guard specifically designed for use during sports or games. Includes products such as Shin Pads and Knee Pads.",
+              "parentId": "sports-personal-protective-equipment"
+            },
+            {
+              "id": "sports-protective-goggles-eye-masks",
+              "name": "Sports Protective Goggles/Eye Masks",
+              "gpcCode": "10001905",
+              "gpcDescription": "Includes any products that can be described/observed as protective eyewear specifically designed for use during sports or games.",
+              "parentId": "sports-personal-protective-equipment"
+            },
+            {
+              "id": "sports-protective-mouth-guards",
+              "name": "Sports Protective Mouth Guards",
+              "gpcCode": "10001904",
+              "gpcDescription": "Includes any products that can be described/observed as a protective guard or shield for the mouth and teeth, specifically designed for use during sports or games.",
+              "parentId": "sports-personal-protective-equipment"
+            },
+            {
+              "id": "sports-protective-support-belts",
+              "name": "Sports Protective Support Belts",
+              "gpcCode": "10001909",
+              "gpcDescription": "Includes any products that can be described/observed as a belt worn around the waist to support the lower back during sports or exercise.",
+              "parentId": "sports-personal-protective-equipment"
+            }
+          ]
+        },
+        {
+          "id": "sports-tables",
+          "name": "Sports Tables",
+          "gpcCode": "71011400",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "sports-tables",
+              "name": "Sports Tables",
+              "gpcCode": "10001855",
+              "gpcDescription": "Includes any products that can be described/observed as tables on which table sports are played. Includes products such as pool tables and table tennis tables.",
+              "parentId": "sports-tables"
+            },
+            {
+              "id": "sports-tables-other",
+              "name": "Sports Tables Other",
+              "gpcCode": "10001859",
+              "gpcDescription": "Includes any products that can be described/observed as Sports Tables, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "sports-tables"
+            }
+          ]
+        },
+        {
+          "id": "swimming-surfing-diving-sports-equipment",
+          "name": "Swimming/Surfing/Diving Sports Equipment",
+          "gpcCode": "71011300",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "boards-skis-water-sports",
+              "name": "Boards/Skis (Water Sports)",
+              "gpcCode": "10001844",
+              "gpcDescription": "Includes any products that can be described/observed as Boards or Skis used for Water Sports. Includes products such as Surf Ski Boards, Surf Body Boards and Water Skis. ",
+              "parentId": "swimming-surfing-diving-sports-equipment"
+            },
+            {
+              "id": "boards-skis-water-sports-replacement-parts-accessories",
+              "name": "Boards/Skis (Water Sports) - Replacement Parts/Accessories",
+              "gpcCode": "10001845",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for water sports Board/Ski products. Includes products such as Booms or Board Fins for Windsurfing Boards.",
+              "parentId": "swimming-surfing-diving-sports-equipment"
+            },
+            {
+              "id": "diving-equipment",
+              "name": "Diving Equipment",
+              "gpcCode": "10001848",
+              "gpcDescription": "Includes any products that can be described/observed as equipment that is designed to assist the diver swimming underwater, sometimes at considerable depth. Includes products such as Diving Snorkels and Diving Fins/Flippers.",
+              "parentId": "swimming-surfing-diving-sports-equipment"
+            },
+            {
+              "id": "swimming-training-aids",
+              "name": "Swimming Training Aids",
+              "gpcCode": "10001847",
+              "gpcDescription": "Includes any products that can be described/observed as swimming training aids, which help to improve swimming technique. Includes products such as Swimming Strokemaker Paddles and Swimming Pull Buoys.",
+              "parentId": "swimming-surfing-diving-sports-equipment"
+            },
+            {
+              "id": "swimming-surfing-diving-sports-equipment-replacement-parts-accessories",
+              "name": "Swimming/Surfing/Diving Sports Equipment - Replacement Parts/Accessories",
+              "gpcCode": "10001852",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessory for Water Sports Products. Includes products such as Water Ski Straps and Surf Board Arm/Leg Ropes.",
+              "parentId": "swimming-surfing-diving-sports-equipment"
+            },
+            {
+              "id": "swimming-surfing-diving-sports-equipment-other",
+              "name": "Swimming/Surfing/Diving Sports Equipment Other",
+              "gpcCode": "10001854",
+              "gpcDescription": "Includes any products that can be described/observed as Water Sports products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "swimming-surfing-diving-sports-equipment"
+            },
+            {
+              "id": "swimming-surfing-diving-sports-equipment-variety-packs",
+              "name": "Swimming/Surfing/Diving Sports Equipment Variety Packs",
+              "gpcCode": "10001853",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Water Sports products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Water Sports class. Includes products such as Diving Scooters and Diving Consoles/Gauges sold together. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "swimming-surfing-diving-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "target-sports-equipment",
+          "name": "Target Sports Equipment",
+          "gpcCode": "71011500",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "arrows",
+              "name": "Arrows",
+              "gpcCode": "10001863",
+              "gpcDescription": "Includes any products that can be described/observed as a thin stick with a sharp point at one end and often feathers at the other, which is fired at a target using a bow.",
+              "parentId": "target-sports-equipment"
+            },
+            {
+              "id": "bows",
+              "name": "Bows",
+              "gpcCode": "10001862",
+              "gpcDescription": "Includes any products that can be described/observed as sports equipment used for firing arrows. Typically the bow consists of a flexible narrow length of wood, which is curved under tension from a tight string joining the ends. Includes products such as Longbows and Crossbows.",
+              "parentId": "target-sports-equipment"
+            },
+            {
+              "id": "darts",
+              "name": "Darts",
+              "gpcCode": "10001860",
+              "gpcDescription": "Includes any products that can be described/observed as a small, cylindrical object with a tapered point at one end and a tail fin at the other end. Typically the darts are targeted at a circular score board.",
+              "parentId": "target-sports-equipment"
+            },
+            {
+              "id": "target-sports-equipment-replacement-parts-accessories",
+              "name": "Target Sports Equipment - Replacement Parts/Accessories",
+              "gpcCode": "10001867",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for Target Sports Equipment. Includes products such as Dart Shafts and Arrow Points.",
+              "parentId": "target-sports-equipment"
+            },
+            {
+              "id": "target-sports-equipment-other",
+              "name": "Target Sports Equipment Other",
+              "gpcCode": "10001869",
+              "gpcDescription": "Includes any products that can be described/observed as Target Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "target-sports-equipment"
+            },
+            {
+              "id": "target-sports-equipment-variety-packs",
+              "name": "Target Sports Equipment Variety Packs",
+              "gpcCode": "10001868",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Target Sports Equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Target Sports Equipment class. Includes products such as Bows and Arrows sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "target-sports-equipment"
+            },
+            {
+              "id": "targets-non-powered",
+              "name": "Targets (Non Powered)",
+              "gpcCode": "10001866",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered product specifically designed to provide a target for projectiles such as arrows, bullets and darts. Includes products such as Archery Boards and Silhouette Targets.",
+              "parentId": "target-sports-equipment"
+            },
+            {
+              "id": "targets-powered",
+              "name": "Targets (Powered)",
+              "gpcCode": "10001865",
+              "gpcDescription": "Includes any products that can be described/observed as product specifically designed to provide a target for projectiles such as arrows, bullets and darts. These products are supported by a power source. Includes products such as Electronic Dartboards and Clay Pigeon Machines.",
+              "parentId": "target-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "track-field-sports-equipment",
+          "name": "Track/Field Sports Equipment",
+          "gpcCode": "71010100",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "jumping-sports-equipment",
+              "name": "Jumping Sports Equipment",
+              "gpcCode": "10001764",
+              "gpcDescription": "Includes any products that can be described/observed as sports track or field equipment specifically designed for use in jumping sports. Includes products such as Poles, Hurdles and High Jump Stands.",
+              "parentId": "track-field-sports-equipment"
+            },
+            {
+              "id": "running-sports-equipment",
+              "name": "Running Sports Equipment",
+              "gpcCode": "10001763",
+              "gpcDescription": "Includes any products that can be described/observed as sports track or field equipment specifically designed for use in running sports. Includes products such as Batons, Starting Blocks and Finishing Posts.",
+              "parentId": "track-field-sports-equipment"
+            },
+            {
+              "id": "throwing-sports-equipment",
+              "name": "Throwing Sports Equipment",
+              "gpcCode": "10001762",
+              "gpcDescription": "Includes any products that can be described/observed as sports track or field equipment specifically designed for use in throwing sports. Includes products such as Javelins, Discus and Hammers.",
+              "parentId": "track-field-sports-equipment"
+            },
+            {
+              "id": "track-field-sports-equipment-other",
+              "name": "Track/Field Sports Equipment Other",
+              "gpcCode": "10001767",
+              "gpcDescription": "Includes any products that can be described/observed as Track/Field Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "track-field-sports-equipment"
+            },
+            {
+              "id": "track-field-sports-equipment-variety-packs",
+              "name": "Track/Field Sports Equipment Variety Packs",
+              "gpcCode": "10001766",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Track/Field Sports Equipment products sold together which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Track/Field Sports Equipment class. Includes products such as Hurdles sold with Finishing Posts. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "track-field-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "trekking-mountaineering-sports-equipment",
+          "name": "Trekking/Mountaineering Sports Equipment",
+          "gpcCode": "71010600",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "trekking-mountaineering-sports-equipment",
+              "name": "Trekking/Mountaineering Sports Equipment",
+              "gpcCode": "10001798",
+              "gpcDescription": "Includes any products that can be described/observed as sports equipment specifically designed to be used in trekking or mountaineering. Includes products such as Crampons, Compasses, Climbing Ropes and Ice Picks. ",
+              "parentId": "trekking-mountaineering-sports-equipment"
+            },
+            {
+              "id": "trekking-mountaineering-sports-equipment-other",
+              "name": "Trekking/Mountaineering Sports Equipment Other",
+              "gpcCode": "10001805",
+              "gpcDescription": "Includes any products that can be described/observed as Trekking/Mountaineering Sports Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "trekking-mountaineering-sports-equipment"
+            }
+          ]
+        },
+        {
+          "id": "watercraft-sports-equipment",
+          "name": "Watercraft Sports Equipment",
+          "gpcCode": "71011800",
+          "parentId": "sports-equipment",
+          "children": [
+            {
+              "id": "watercraft",
+              "name": "Watercraft",
+              "gpcCode": "10001887",
+              "gpcDescription": "Includes any products that can be described/observed as watercraft specifically designed for water sports. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "watercraft-sports-equipment"
+            },
+            {
+              "id": "watercraft-replacement-parts-accessories",
+              "name": "Watercraft - Replacement Parts/Accessories",
+              "gpcCode": "10001889",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for Watercraft.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as Oars and Boat Covers.",
+              "parentId": "watercraft-sports-equipment"
+            },
+            {
+              "id": "watercraft-equipment-other-non-powered",
+              "name": "Watercraft Equipment Other (Non Powered)",
+              "gpcCode": "10001891",
+              "gpcDescription": "Includes any products that can be described/observed as non-powered Watercraft Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "watercraft-sports-equipment"
+            },
+            {
+              "id": "watercraft-equipment-variety-packs-non-powered",
+              "name": "Watercraft Equipment Variety Packs (Non Powered)",
+              "gpcCode": "10001890",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct non-powered Watercraft Equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Watercraft Equipment - Non Powered class.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as Canoes and Paddles sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "watercraft-sports-equipment"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

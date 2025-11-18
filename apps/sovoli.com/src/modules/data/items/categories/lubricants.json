@@ -1,0 +1,155 @@
+{
+  "id": "lubricants",
+  "name": "Lubricants",
+  "gpcCode": "88000000",
+  "children": [
+    {
+      "id": "lubricants-variety-packs",
+      "name": "Lubricants Variety Packs",
+      "gpcCode": "88030000",
+      "parentId": "lubricants",
+      "children": [
+        {
+          "id": "lubricants-variety-packs",
+          "name": "Lubricants Variety Packs",
+          "gpcCode": "88030100",
+          "parentId": "lubricants-variety-packs",
+          "children": [
+            {
+              "id": "lubricants-variety-packs",
+              "name": "Lubricants Variety Packs",
+              "gpcCode": "10005356",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Lubricant products sold together, which exist within the schema belonging to different Families, that is two or more products contained within the same pack which cross Families within the Lubricants Segment. Includes products such as Brake Oil and an Oil Pump sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lubricants-variety-packs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lubricants-protective-compounds",
+      "name": "Lubricants/Protective Compounds",
+      "gpcCode": "88010000",
+      "parentId": "lubricants",
+      "children": [
+        {
+          "id": "lubricants-protective-compounds-variety-packs",
+          "name": "Lubricants/Protective Compounds Variety Packs",
+          "gpcCode": "88010500",
+          "parentId": "lubricants-protective-compounds",
+          "children": [
+            {
+              "id": "lubricants-protective-compounds-variety-packs",
+              "name": "Lubricants/Protective Compounds Variety Packs",
+              "gpcCode": "10005283",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Lubricants/Protective Compounds products sold together which exist within the schema but belong to different Classes, that is two or more products contained within the same pack which cross Classes within the Lubricants/Protective Compounds Family. Includes products such as Engine Oil and Antifreeze sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lubricants-protective-compounds-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "lubricating-products",
+          "name": "Lubricating Products",
+          "gpcCode": "88010100",
+          "parentId": "lubricants-protective-compounds",
+          "children": [
+            {
+              "id": "lubricating-greases",
+              "name": "Lubricating Greases",
+              "gpcCode": "10005268",
+              "gpcDescription": "Includes any products that can be described/observed as an oily, viscous, semisolid substance, which is interposed between two or more surfaces to control/reduce friction and wear. By creating a film between parts of a machine, these products enable moving surfaces to move more easily against one another. Typically these products are used when heavy pressures are applied to the surfaces and movements are discontinuous, due to their sticking and adhering qualities. Includes products such as such as Wool Grease and Silicone Based Greases.",
+              "parentId": "lubricating-products"
+            },
+            {
+              "id": "lubricating-oils-fluids",
+              "name": "Lubricating Oils/Fluids",
+              "gpcCode": "10005267",
+              "gpcDescription": "Includes any products that can be described/observed as a liquid or oil which is interposed between two or more surfaces to control/reduce friction and wear. By creating a film between parts of a machine, these products enable moving surfaces to move more easily against one another. Includes products such as Brake Oil and Spindle Oil. ",
+              "parentId": "lubricating-products"
+            },
+            {
+              "id": "lubricating-products-variety-packs",
+              "name": "Lubricating Products Variety Packs",
+              "gpcCode": "10005270",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Lubricating Products sold together, which exist within the schema belonging to different bricks but to the same Class, that is two or more products contained within the same pack which cross Bricks within the Lubricating Products Class. Includes products such as Water Dispersant and Wool Grease sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lubricating-products"
+            },
+            {
+              "id": "lubricating-waxes",
+              "name": "Lubricating Waxes",
+              "gpcCode": "10005269",
+              "gpcDescription": "Includes any products that can be described/observed as a waxy substance, which is applied to the surface of a tool, machine, work surface or fastening to reduce friction and wear and provide a protective barrier. Typically these products are applied to tools used to cut, drill, saw and sand wood. Includes products such as such as wax applied to zippers on a marine vessel. ",
+              "parentId": "lubricating-products"
+            }
+          ]
+        },
+        {
+          "id": "protective-compounds",
+          "name": "Protective Compounds",
+          "gpcCode": "88010200",
+          "parentId": "lubricants-protective-compounds",
+          "children": [
+            {
+              "id": "anti-corrosives",
+              "name": "Anti-corrosives",
+              "gpcCode": "10005273",
+              "gpcDescription": "Includes any products that can be described/observed as a chemical substance which stops or slows down the corrosion or rusting of metals and alloys. They provide a protective film or barrier against the damaging effects from moisture, air, detergents and other contaminates. Includes products such as Rust Removers. ",
+              "parentId": "protective-compounds"
+            },
+            {
+              "id": "anti-spatter-products",
+              "name": "Anti-spatter Products",
+              "gpcCode": "10005321",
+              "gpcDescription": "Includes any products that can be described/observed as chemical preparation that is used on materials which are being welded to protect them from welding spatters sticking on their surface. These products are also used to keep nozzles and other elements of welding torches clean and prolong their life. Includes products such as pastes and liquid sprays.",
+              "parentId": "protective-compounds"
+            },
+            {
+              "id": "antifreeze-coolants",
+              "name": "Antifreeze/Coolants",
+              "gpcCode": "10005272",
+              "gpcDescription": "Includes any products that can be described/observed as a liquid preparation which is added to the water or other liquid in a cooling system, to lower its freezing point and/or increase the temperature at which it boils. Includes products such as coolants used in welding equipment. ",
+              "parentId": "protective-compounds"
+            },
+            {
+              "id": "protective-compounds-variety-packs",
+              "name": "Protective Compounds Variety Packs",
+              "gpcCode": "10005275",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Protective Compound products sold together, which exist within the schema belonging to different bricks but to the same Class, that is two or more products contained within the same pack which cross Bricks within the Protective Compounds Class. Includes products such as Anti-corrosive and Anti-spatter products sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "protective-compounds"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lubricants-protective-compounds-storage-transfer",
+      "name": "Lubricants/Protective Compounds Storage/Transfer",
+      "gpcCode": "88020000",
+      "parentId": "lubricants",
+      "children": [
+        {
+          "id": "lubricants-protective-compounds-storage",
+          "name": "Lubricants/Protective Compounds Storage",
+          "gpcCode": "88020200",
+          "parentId": "lubricants-protective-compounds-storage-transfer",
+          "children": [
+            {
+              "id": "drain-pans",
+              "name": "Drain Pans",
+              "gpcCode": "10005277",
+              "gpcDescription": "Includes any products that can be described/observed as a tray or pan that has been specifically designed for the safe collection and recovery of used oil and other lubricating fluids. Includes products such as plastic drain pans with a pouring spout. ",
+              "parentId": "lubricants-protective-compounds-storage"
+            },
+            {
+              "id": "lubricants-protective-compounds-storage-variety-packs",
+              "name": "Lubricants/Protective Compounds Storage Variety Packs",
+              "gpcCode": "10005280",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Lubricant/Protective Compound Storage products sold together, which exist within the schema belonging to different bricks but to the same Class, that is two or more products contained within the same pack which cross Bricks within the Lubricants/Protective Compounds Storage Class. Includes products such as an Empty Oil Can and Drain Pan sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lubricants-protective-compounds-storage"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

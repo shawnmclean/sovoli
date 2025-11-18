@@ -1,0 +1,406 @@
+{
+  "id": "arts-crafts-needlework",
+  "name": "Arts/Crafts/Needlework",
+  "gpcCode": "70000000",
+  "gpcDescription": "All products that are used to any creative activities that involve making things by hand or by using simple tools. Includes products for pottery, woodworking, jewelry-making, weaving, knitting, crochet, sewing, painting and sculpting.",
+  "children": [
+    {
+      "id": "arts-crafts-needlework-supplies",
+      "name": "Arts/Crafts/Needlework Supplies",
+      "gpcCode": "70010000",
+      "gpcDescription": "All products that are used to any creative activities that involve making things by hand or by using simple tools. Includes products for pottery, woodworking, jewelry-making, weaving, knitting, crochet, sewing, painting and sculpting.",
+      "parentId": "arts-crafts-needlework",
+      "children": [
+        {
+          "id": "artists-painting-drawing-supplies",
+          "name": "Artists Painting/Drawing Supplies",
+          "gpcCode": "70010100",
+          "gpcDescription": "Includes any products that may be described/observed as supplies specifically designed for painting/drawing.",
+          "parentId": "arts-crafts-needlework-supplies",
+          "children": [
+            {
+              "id": "artists-brushes-applicators",
+              "name": "Artists Brushes/Applicators",
+              "gpcCode": "10001674",
+              "gpcDescription": "Includes any products that can be described/observed as a device consisting of bristles or a piece of sponge-like material fastened to a handle and used by an artist to apply paint onto a surface such as paper or canvas. Includes products such as Artists Brushes, Applicators and Painting Knives. ",
+              "parentId": "artists-painting-drawing-supplies"
+            },
+            {
+              "id": "artists-canvas-pre-primed-boards",
+              "name": "Artists Canvas/Pre-primed Boards",
+              "gpcCode": "10001679",
+              "gpcDescription": "Includes any products that can be described/observed as a surface used by an artist for painting, which may or may not be covered with a fabric such as canvas or hessian. Includes products such as Artists Stretched Canvas, Canvas Roll and Pre-Primed Boards.",
+              "parentId": "artists-painting-drawing-supplies"
+            },
+            {
+              "id": "artists-drawing-boards",
+              "name": "Artists Drawing Boards",
+              "gpcCode": "10005372",
+              "gpcDescription": "Includes any products that can be described/observed as a board used by an artist or designer for drawing upon. Includes products such as a portable desktop drawing board and a freestanding drawing board designed with fold-away legs.",
+              "parentId": "artists-painting-drawing-supplies"
+            },
+            {
+              "id": "artists-easels",
+              "name": "Artists Easels",
+              "gpcCode": "10001681",
+              "gpcDescription": "Includes any products that can be described/observed as an upright frame for displaying or supporting an artist's canvas or board. Includes products such as Free-Standing and Table-Top Easels.",
+              "parentId": "artists-painting-drawing-supplies"
+            },
+            {
+              "id": "artists-painting-surface-agents",
+              "name": "Artists Painting Surface Agents",
+              "gpcCode": "10001678",
+              "gpcDescription": "Includes any products that can be described/observed as a substance used by artists, which is applied to the painting surface as a pre-paint preparation or post-paint treatment. Includes products such as Artists Canvas Primer, Picture Varnish, Artists Gum Arabic and Artists Paint Lifting Preparation. ",
+              "parentId": "artists-painting-drawing-supplies"
+            },
+            {
+              "id": "artists-painting-drawing-supplies-other",
+              "name": "Artists Painting/Drawing Supplies Other",
+              "gpcCode": "10001685",
+              "gpcDescription": "Includes any products that may be described/observed as Artists Painting/Drawing Supplies products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "artists-painting-drawing-supplies"
+            },
+            {
+              "id": "artists-painting-drawing-supplies-variety-packs",
+              "name": "Artists Painting/Drawing Supplies Variety Packs",
+              "gpcCode": "10001684",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Artists Painting/Drawing Supplies products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack, which cross bricks within the Artists Painting/Drawing Supplies class. Includes products such as Brushes sold with Brush Holders. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "artists-painting-drawing-supplies"
+            },
+            {
+              "id": "artists-paints-dyes",
+              "name": "Artists Paints/Dyes",
+              "gpcCode": "10001676",
+              "gpcDescription": "Includes any products that can be described/ observed as a combination of pigments, thinners and oils, used in effecting an artistic painting. ",
+              "parentId": "artists-painting-drawing-supplies"
+            },
+            {
+              "id": "artists-palettes",
+              "name": "Artists Palettes",
+              "gpcCode": "10001680",
+              "gpcDescription": "Includes any products that can be described/observed as a board, which an artist can hold while painting and on which colours are mixed.",
+              "parentId": "artists-painting-drawing-supplies"
+            },
+            {
+              "id": "pastels-charcoal-crayons-chalk",
+              "name": "Pastels/Charcoal/Crayons/Chalk",
+              "gpcCode": "10001677",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of calcite, carbonaceous or wax material used for drawing and artistic colouring. Includes products such as Artists Chalk Pastels, Artists Charcoal and Artists Wax Crayons. Also includes Marking Pencils and Haberdashery Chalk, normally used for marking fabrics and textiles to facilitate needlework craft  and pavement chalk used notably as child toys.",
+              "parentId": "artists-painting-drawing-supplies"
+            }
+          ]
+        },
+        {
+          "id": "arts-crafts-needlework-storage-organizers",
+          "name": "Arts/Crafts/Needlework Storage/Organizers",
+          "gpcCode": "70011600",
+          "gpcDescription": "Includes any products that may be described/observed as an item specifically designed to store or and organize arts, crafts and needlework materials. ",
+          "parentId": "arts-crafts-needlework-supplies",
+          "children": [
+            {
+              "id": "arts-crafts-needlework-storage-organizers",
+              "name": "Arts/Crafts/Needlework Storage/Organizers",
+              "gpcCode": "10001712",
+              "gpcDescription": "Includes any products that may be described/observed as an item specifically designed to store and organize arts, crafts, needlework, toy-making and painting/drawing materials. Includes products such as thread boxes and needle cases.",
+              "parentId": "arts-crafts-needlework-storage-organizers"
+            }
+          ]
+        },
+        {
+          "id": "arts-crafts-needlework-supplies",
+          "name": "Arts/Crafts/Needlework Supplies",
+          "gpcCode": "70011400",
+          "gpcDescription": "Includes any products that may be described/observed as supplies specifically designed for arts, crafts and needlework.",
+          "parentId": "arts-crafts-needlework-supplies",
+          "children": [
+            {
+              "id": "arts-crafts-needlework-adornments",
+              "name": "Arts/Crafts/Needlework Adornments",
+              "gpcCode": "10001714",
+              "gpcDescription": "Includes any products that can be described/observed as a device designed to enhance arts, crafts and needlework craft. Includes products such as boning/wiring and sequins.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-beads-stones",
+              "name": "Arts/Crafts/Needlework Beads/Stones",
+              "gpcCode": "10001717",
+              "gpcDescription": "Includes any products that can be described/observed as a bead or stone material used as ornamental pieces for making jewellery, ornament toys or for decorations in the different types of arts, crafts and needlework. Includes products such as man-made beads, natural stone pieces and mother of pearl inlay.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-fabrics-textiles",
+              "name": "Arts/Crafts/Needlework Fabrics/Textiles",
+              "gpcCode": "10001699",
+              "gpcDescription": "Includes any products that may be described/observed as fabrics or textiles specifically designed to be used in arts, crafts and needlework. Includes products such as cross stich fabric and upholstery fabric.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-fasteners",
+              "name": "Arts/Crafts/Needlework Fasteners",
+              "gpcCode": "10001710",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to hold together layers of fabric when crafting arts, crafts and needlework. Includes products such as Buttons, Hooks, Press-Studs, Zips and Velcro Tape.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-fibres-yarns",
+              "name": "Arts/Crafts/Needlework Fibres/Yarns",
+              "gpcCode": "10001756",
+              "gpcDescription": "Includes any products that may be described/observed as either fibres that can be spun into yarn, or already spun weaving yarn that is specifically designed to be used for woven crafts such as rug making. Includes products such as Wool Fibres that have not been spun and already spun Linen Yarn.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-lace-ribbons-cords-braids",
+              "name": "Arts/Crafts/Needlework Lace/Ribbons/Cords/Braids",
+              "gpcCode": "10001700",
+              "gpcDescription": "Includes any products that may be described/observed as textile-based adornments for fabric products, which are used in arts, crafts and needlework.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-moulds",
+              "name": "Arts/Crafts/Needlework Moulds",
+              "gpcCode": "10001737",
+              "gpcDescription": "Includes any products that may be described/observed as a cavity or container in which liquid materials are placed to cooling, hardening or drying to give them a particular shape or form. These moulds are used in the craft of making candles, jewellery, decorations, sculptures or soaps.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-sand-supplies",
+              "name": "Arts/Crafts/Needlework Sand Supplies",
+              "gpcCode": "10001683",
+              "gpcDescription": "Includes any products that can be described/observed as an item or substance used in sand art and craft activities. Includes products such as Sculpting Sand and Sand Bottles.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-supplies-accessories",
+              "name": "Arts/Crafts/Needlework Supplies Accessories",
+              "gpcCode": "10008365",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory for supplies used arts, crafts and needlework. Includes products such as brush holders, moulded foam, honeycomb sheets, beeswax, clay, marble and alabaster.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-supplies-variety-packs",
+              "name": "Arts/Crafts/Needlework Supplies Variety Packs",
+              "gpcCode": "10008397",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Arts, Crafts and Needlework supplies sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack, which cross bricks within the arts, crafts and needlework Supplies class. Includes products such as Threads sold with Beads. Items received free with purchases should be removed from the classification decision- making process.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-templates",
+              "name": "Arts/Crafts/Needlework Templates",
+              "gpcCode": "10001713",
+              "gpcDescription": "Includes any products that may be described/observed as pre-printed designs to be followed or copied by the user to create a piece of art, craft and needlework. These designs may be printed on materials, or may be patterns used as guides or could be cut-out shapes. Includes products such as embroidery templates, knitting templates, jewelry templates, burning and engraving templates and all other types of templates used in the different arts and crafts.",
+              "parentId": "arts-crafts-needlework-supplies"
+            },
+            {
+              "id": "arts-crafts-needlework-threads",
+              "name": "Arts/Crafts/Needlework Threads",
+              "gpcCode": "10001701",
+              "gpcDescription": "Includes any products that may be described/observed as a spun cord of twisted fibres, typically of cotton, silk, wool or nylon, specifically designed for arts, crafts and needlework craft. Includes products such as Sewing Thread, Embroidery Thread and Tapestry Thread.",
+              "parentId": "arts-crafts-needlework-supplies"
+            }
+          ]
+        },
+        {
+          "id": "arts-crafts-needlework-tools",
+          "name": "Arts/Crafts/Needlework Tools",
+          "gpcCode": "70011500",
+          "gpcDescription": "Includes any products that may be described/observed as non-powered and powered tools specifically designed for arts, crafts and needlework.",
+          "parentId": "arts-crafts-needlework-supplies",
+          "children": [
+            {
+              "id": "airbrushes-powered",
+              "name": "Airbrushes (Powered)",
+              "gpcCode": "10001686",
+              "gpcDescription": "Includes any products that can be described/observed as a powered machine that scatters paint using air pressure and which is used for design illustrations, fine art and delicate fine spray applications. The machine comprises of a compression or propulsion device to scatter the paint. ",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "arts-crafts-needlework-needles",
+              "name": "Arts/Crafts/Needlework Needles",
+              "gpcCode": "10001702",
+              "gpcDescription": "Includes any products that may be described/observed as a tool to enable the craft of arts, crafts and needlework by hand or machine. Includes products such as hand sewing needles, hand knitting needles, sewing machine needles, crochet hooks and pins.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "arts-crafts-needlework-tools-replacement-parts",
+              "name": "Arts/Crafts/Needlework Tools - Replacement Parts",
+              "gpcCode": "10008399",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part for tools used in arts, crafts and needlework. Includes products such as airbrush control valves and airbrush hoses.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "arts-crafts-needlework-tools-non-powered",
+              "name": "Arts/Crafts/Needlework Tools (Non Powered)",
+              "gpcCode": "10008401",
+              "gpcDescription": "Includes any products that may be described/observed as a non powered tool specifically designed for arts, crafts and needlework and are not classified in existing arts, crafts, needlework tools class. Includes products such as thimbles, sewing machine bobbins, eyelet punches, crochet hooks, pins, weaving combs, thread cutter craft tool.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "arts-crafts-needlework-tools-variety-packs",
+              "name": "Arts/Crafts/Needlework Tools Variety Packs",
+              "gpcCode": "10008400",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Arts, Crafts and Needlework Tools sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack, which cross bricks within the arts, crafts and needlework tools class. Includes products such as needles sold with timble. Items received free with purchases should be removed from the classification decision- making process.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "burning-engraving-craft-tools-non-powered",
+              "name": "Burning/Engraving Craft Tools (Non Powered)",
+              "gpcCode": "10001743",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered tool specifically designed for the craft of burning or engraving. Includes products such as a non-powered burning branding iron and an engraving chisel.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "burning-engraving-craft-tools-powered",
+              "name": "Burning/Engraving Craft Tools (Powered)",
+              "gpcCode": "10001742",
+              "gpcDescription": "Includes any products that may be described/observed as a powered tool specifically designed for the craft of burning or engraving. Includes products such as powered burners and powered engravers.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "kilns-powered",
+              "name": "Kilns (Powered)",
+              "gpcCode": "10001694",
+              "gpcDescription": "Includes any products that may be described/observed as an oven specifically designed for baking, firing or drying crafted ceramics.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "melter-non-powered",
+              "name": "Melter (Non Powered)",
+              "gpcCode": "10008398",
+              "gpcDescription": "Includes any products that may be described/observed as a non powered tool specifically designed for melting a substance from solid to liquid state and used for crafting candles, soaps, glass or metal jewelry. Includes products such as non powered melting pots.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "melter-powered",
+              "name": "Melter (Powered)",
+              "gpcCode": "10001732",
+              "gpcDescription": "Includes any products that may be described/observed as a powered tool specifically designed to melt a substance from solid to liquid state and used for crafting candles, soaps, glass or metal jewelry. Includes products such as wax, glass and metal melters.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "paper-craft-tools-non-powered",
+              "name": "Paper Craft Tools (Non Powered)",
+              "gpcCode": "10001726",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered tool specifically designed for use in paper craft. Includes products such as Paper Crimpers.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "pottery-wheels-non-powered",
+              "name": "Pottery Wheels (Non Powered)",
+              "gpcCode": "10001696",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered revolving wheel on which crafted pottery products are formed and shaped. Non-powered pottery wheels are typically foot operated.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "pottery-wheels-powered",
+              "name": "Pottery Wheels (Powered)",
+              "gpcCode": "10001695",
+              "gpcDescription": "Includes any products that may be described/observed as a powered revolving wheel on which crafted pottery products are formed and shaped.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "printing-craft-tools-non-powered",
+              "name": "Printing Craft Tools (Non Powered)",
+              "gpcCode": "10001748",
+              "gpcDescription": "Includes any products that may be described/observed as tools specifically designed for use in the craft of printing. Includes products such as Barens, Rollers and Inking Plates.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "printing-press-non-powered",
+              "name": "Printing Press (Non Powered)",
+              "gpcCode": "10001750",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device used in printing craft to press a design onto fabric or paper.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "printing-press-powered",
+              "name": "Printing Press (Powered)",
+              "gpcCode": "10001749",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device used in printing craft to press a design onto fabric or paper.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "sculptors-tools-non-powered",
+              "name": "Sculptors Tools (Non Powered)",
+              "gpcCode": "10001692",
+              "gpcDescription": "Includes any products that may be described/ observed as a non-powered sculptor's tool used in the craft of sculpting. Includes products such as Sculptors' Chisels, Sculptors' Hammers, Clay Guns and Pottery Brushes. ",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "sculptors-tools-powered",
+              "name": "Sculptors Tools (Powered)",
+              "gpcCode": "10001693",
+              "gpcDescription": "Includes any products that may be described/observed as a powered tool specifically designed to aid the sculpturing craft. Includes products such as Pneumatic Hammers and Pneumatic Grinders. ",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "sewing-knitting-tools-non-powered",
+              "name": "Sewing/Knitting Tools (Non Powered)",
+              "gpcCode": "10001706",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered tool for the craft of sewing or knitting.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "sewing-knitting-tools-powered",
+              "name": "Sewing/Knitting Tools (Powered)",
+              "gpcCode": "10001707",
+              "gpcDescription": "Includes any products that may be described/observed as a powered tool for the craft of sewing or knitting. Includes products such as powered sewing machines, knitting machines and overlockers.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "spinning-weaving-tools-non-powered",
+              "name": "Spinning/Weaving Tools (Non Powered)",
+              "gpcCode": "10001755",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device specifically designed, in the case of spinning machines, to spin threads to craft yarn, or, in the case of weaving machines, to weave yarn to craft fabrics or rugs. Includes products such as weaving frames and floor looms.",
+              "parentId": "arts-crafts-needlework-tools"
+            },
+            {
+              "id": "spinning-weaving-tools-powered",
+              "name": "Spinning/Weaving Tools (Powered)",
+              "gpcCode": "10001754",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device specifically designed, in the case of spinning machines, to spin threads and thus craft yarn, or, in the case of weaving machines, to weave yarn to craft fabrics or rugs. Includes products such as electronic loom and an electronic spinning sheel.",
+              "parentId": "arts-crafts-needlework-tools"
+            }
+          ]
+        },
+        {
+          "id": "arts-crafts-needlework-variety-packs",
+          "name": "Arts/Crafts/Needlework Variety Packs",
+          "gpcCode": "70011300",
+          "parentId": "arts-crafts-needlework-supplies",
+          "children": [
+            {
+              "id": "arts-crafts-needlework-variety-packs",
+              "name": "Arts/Crafts/Needlework Variety Packs",
+              "gpcCode": "10001760",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Arts, Crafts and Needlework products sold together, which exist within the schema but belong to different classes, that is, two or more products contained within the same pack, which cross classes within the Arts, Crafts and Needlework Family. Includes products such as Needlework Supplies sold with Beads. Items received free with purchases should be removed from the classification decision- making process.",
+              "parentId": "arts-crafts-needlework-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "paper-card-making-craft-supplies",
+          "name": "Paper/Card Making Craft Supplies",
+          "gpcCode": "70010700",
+          "gpcDescription": "Includes any products that may be described/observed as paper and card making materials specifically designed for arts, crafts and needlework.",
+          "parentId": "arts-crafts-needlework-supplies",
+          "children": [
+            {
+              "id": "paper-craft-card-making-supplies",
+              "name": "Paper Craft/Card Making Supplies",
+              "gpcCode": "10001730",
+              "gpcDescription": "Includes any products that may be described/observed as Paper Craft and Card Making Supplies products. Includes products such as quilling strips, raffia paper and origami paper.",
+              "parentId": "paper-card-making-craft-supplies"
+            },
+            {
+              "id": "paper-craft-card-making-supplies-variety-packs",
+              "name": "Paper Craft/Card Making Supplies Variety Packs",
+              "gpcCode": "10001729",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Paper Craft and Card Making Supplies products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack, which cross bricks within the Paper Craft and Card Making Supplies class. Includes products such as Paper Craft Quilling Strip sold with a Quilling Tool. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "paper-card-making-craft-supplies"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

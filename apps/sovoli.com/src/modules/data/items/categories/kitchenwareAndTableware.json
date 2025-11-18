@@ -1,0 +1,999 @@
+{
+  "id": "kitchenware-and-tableware",
+  "name": "Kitchenware and Tableware",
+  "gpcCode": "73000000",
+  "children": [
+    {
+      "id": "kitchenware",
+      "name": "Kitchenware",
+      "gpcCode": "73040000",
+      "parentId": "kitchenware-and-tableware",
+      "children": [
+        {
+          "id": "cookware-bakeware",
+          "name": "Cookware/Bakeware",
+          "gpcCode": "73040400",
+          "parentId": "kitchenware",
+          "children": [
+            {
+              "id": "bakeware-ovenware-grillware-non-disposable",
+              "name": "Bakeware/Ovenware/Grillware (Non Disposable)",
+              "gpcCode": "10002150",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable dish, pot, pan or tray specifically designed to be used for cooking in an oven or underneath a grill. Includes products such as an oven baking tray, grill rack or oven roasting pan. ",
+              "parentId": "cookware-bakeware"
+            },
+            {
+              "id": "cookware-disposable",
+              "name": "Cookware (Disposable)",
+              "gpcCode": "10000554",
+              "gpcDescription": "Includes any products that can be described/observed as cookware made from material specifically designed to be used for one, or a small number of occasions during cooking. Includes products such as aluminium trays. ",
+              "parentId": "cookware-bakeware"
+            },
+            {
+              "id": "cookware-bakeware-accessories-replacement-parts",
+              "name": "Cookware/Bakeware Accessories/Replacement Parts",
+              "gpcCode": "10005675",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part for a non-powered cookware or bakeware product, or an accessory that aids or enhances the use of cookware and bakeware. Includes products such as pan lids, steam baskets, egg rings, pressure cooker valves and gaskets.",
+              "parentId": "cookware-bakeware"
+            },
+            {
+              "id": "cookware-bakeware-other",
+              "name": "Cookware/Bakeware Other",
+              "gpcCode": "10002152",
+              "gpcDescription": "Includes any products that can be described/observed as a cookware or bakeware item, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "cookware-bakeware"
+            },
+            {
+              "id": "fondue-set-non-powered",
+              "name": "Fondue Set (Non Powered)",
+              "gpcCode": "10007239",
+              "gpcDescription": "Includes all the products which can be described/observed as being a set consisting of a non-electric device, intended to maintain the temperature of a liquid to cook and/or coat food. This set includes the accessories necessary for this use such as burner, spade (pike, lance), etc. These items are typically put on a table to allow individuals to prepare their own food. ",
+              "parentId": "cookware-bakeware"
+            },
+            {
+              "id": "fondue-set-non-powered-accessories-spare-parts",
+              "name": "Fondue Set (Non Powered) - Accessories/Spare Parts",
+              "gpcCode": "10007240",
+              "gpcDescription": "Includes all the products which can be described/observed as being accessories or spare parts of a non-electric device, intended to maintain in temperature a liquid to cook or coat food.",
+              "parentId": "cookware-bakeware"
+            },
+            {
+              "id": "hob-pots-pans-woks-cocottes",
+              "name": "Hob Pots/Pans/Woks/Cocottes",
+              "gpcCode": "10002144",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered container used on top of the stove for boiling, steaming, frying and other methods of cooking. Products include non-powered saucepans, woks and pressure cookers. ",
+              "parentId": "cookware-bakeware"
+            },
+            {
+              "id": "hob-pots-pans-woks-cocottes-variety-packs",
+              "name": "Hob Pots/Pans/Woks/Cocottes Variety Packs",
+              "gpcCode": "10007241",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct type of Hob Pots/Pans/Woks/Cocottes sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Cookware/Bakeware class. Includes products such as an oven roasting pan and a hob pot sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "cookware-bakeware"
+            },
+            {
+              "id": "kitchen-cookware-bakeware-variety-packs",
+              "name": "Kitchen Cookware/Bakeware Variety Packs",
+              "gpcCode": "10002151",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct household cookware and bakeware products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Cookware/Bakeware class. Includes products such as an oven roasting pan and a hob pot sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "cookware-bakeware"
+            }
+          ]
+        },
+        {
+          "id": "disposable-food-containers",
+          "name": "Disposable Food Containers",
+          "gpcCode": "73041000",
+          "parentId": "kitchenware",
+          "children": [
+            {
+              "id": "disposable-food-containers",
+              "name": "Disposable Food Containers",
+              "gpcCode": "10006331",
+              "gpcDescription": "Includes any products that can be described/observed as products that are used to contain not prepackaged prepared or semi-prepared product for the purpose of transport. The content may or may not be consumed from the container. Includes Take-Out, Take-Away, Carry-Out or Parcel Containers. The products include bowls with lids, doggie bags, pizza boxes, Chinese food take-out containers, fast food take out bags, etc.",
+              "parentId": "disposable-food-containers"
+            },
+            {
+              "id": "disposable-food-containers-other",
+              "name": "Disposable Food Containers Other",
+              "gpcCode": "10006333",
+              "gpcDescription": "Includes any products that can be described/observed that are used to take prepared or unprepared product from the preparation source to another destination for the purpose of consumption, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "disposable-food-containers"
+            },
+            {
+              "id": "disposable-food-containers-variety-packs",
+              "name": "Disposable Food Containers Variety Packs",
+              "gpcCode": "10006332",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct disposable food container products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Take out Containers class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "disposable-food-containers"
+            }
+          ]
+        },
+        {
+          "id": "food-measuring-equipment",
+          "name": "Food Measuring Equipment",
+          "gpcCode": "73040300",
+          "parentId": "kitchenware",
+          "children": [
+            {
+              "id": "cooking-timers-non-powered",
+              "name": "Cooking Timers (Non Powered)",
+              "gpcCode": "10002136",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device, used for measuring and signaling the end of a selected time to cook a particular food or meal. Includes products such as egg timers.",
+              "parentId": "food-measuring-equipment"
+            },
+            {
+              "id": "food-measuring-equipment-other",
+              "name": "Food Measuring Equipment Other",
+              "gpcCode": "10002142",
+              "gpcDescription": "Includes any products that can be described/observed as food measuring equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "food-measuring-equipment"
+            },
+            {
+              "id": "food-measuring-equipment-variety-packs",
+              "name": "Food Measuring Equipment Variety Packs",
+              "gpcCode": "10002141",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct kitchen measuring tools sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Food Measuring Equipment class. Includes products such as a cooking timer and thermometer sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "food-measuring-equipment"
+            },
+            {
+              "id": "food-thermometers",
+              "name": "Food Thermometers",
+              "gpcCode": "10002140",
+              "gpcDescription": "Includes any products that can be described/observed as an instrument for measuring temperature of food while cooking. Includes products such as digital thermometers, manually operated dial food thermometers, disposable temperature indicators designed for particular foods and pop-ups that are inserted into the food and pop-up when the desired temperature is reached.",
+              "parentId": "food-measuring-equipment"
+            },
+            {
+              "id": "food-volume-measuring-equipment",
+              "name": "Food Volume Measuring Equipment",
+              "gpcCode": "10002139",
+              "gpcDescription": "Includes any products that can be described/observed as kitchen utensils that are specifically designed to measure the volume of food products, typically indicated by spoons, cups and capacity measures such as pints or millilitres. Includes products such as measuring spoons, measuring jugs and measuring bowls.",
+              "parentId": "food-measuring-equipment"
+            },
+            {
+              "id": "kitchen-scales-non-powered",
+              "name": "Kitchen Scales (Non Powered)",
+              "gpcCode": "10002143",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered instrument or machine for weighing food. ",
+              "parentId": "food-measuring-equipment"
+            }
+          ]
+        },
+        {
+          "id": "food-preparation-equipment",
+          "name": "Food Preparation Equipment",
+          "gpcCode": "73040600",
+          "parentId": "kitchenware",
+          "children": [
+            {
+              "id": "baby-feeding-aids-non-powered",
+              "name": "Baby Feeding Aids (Non Powered)",
+              "gpcCode": "10000493",
+              "gpcDescription": "Includes any hardware products that can be described/observed as non-powered cleaning, sterilising, warming or carrying equipment that is specifically designed for bottle feeding or breast feeding. Includes products such as non-powered Breast Milk Extractors, non-powered Sterilisers and Warmers for bottles and sterilisation of bottles and teats. ",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "cookie-guns-food-decorating-syringes-non-powered",
+              "name": "Cookie Guns/Food Decorating Syringes (Non Powered)",
+              "gpcCode": "10005434",
+              "gpcDescription": "Includes any products that can be described/observed as a cylinder that can be filled with dough, which is then dispensed by means of a syringe type action using a hand operated plunger. The dough can be pushed out through a variety of cutting discs or decorating nozzles, which help to enhance the presentation of the pastry or cookies. Includes products that are equipped with thickness regulators and the equipment can be made of metal or plastic.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "corers-peelers",
+              "name": "Corers/Peelers",
+              "gpcCode": "10002169",
+              "gpcDescription": "Includes any products that can be described/observed as a kitchen implement for either removing the central core or stone from fruit and vegetables and/or peeling the rinds or skins from fruit and vegetables. Includes products such as potato peelers, apple corers and olive pitters.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "flour-sugar-shakers",
+              "name": "Flour/Sugar Shakers",
+              "gpcCode": "10005694",
+              "gpcDescription": "Includes any products that can be described/observed as a cup-sized container with a screw-top lid made of a fine mesh or punched with small holes, which enables the even dispensation of flour or sugar from the container when shaken.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "food-funnels",
+              "name": "Food Funnels",
+              "gpcCode": "10005429",
+              "gpcDescription": "Includes any products that can be described/observed as a tube or pipe that is wide at the top and narrow at the bottom, which is used for pouring liquid food into small openings of jars or bottles. Includes products made of food grade plastic or metal.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "food-preparation-bowls",
+              "name": "Food Preparation Bowls",
+              "gpcCode": "10005701",
+              "gpcDescription": "Includes any products that can be described/observed as a bowl used for preparing food. Includes products such as cake mixing bowls, bowls used to whip eggs and cream and bowls used to mix salads and pasta.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "food-preparation-brushes-oil-pumps-baster",
+              "name": "Food Preparation Brushes/Oil Pumps/Baster",
+              "gpcCode": "10005426",
+              "gpcDescription": "Includes any products that can be described/observed as a small brush, pipette or spray pump used for applying glazes to breads, pastries, and cookies, as well as basting meats and vegetables, before or after cooking. Includes products such as pastry brushes made of nylon bristles, sterilized natural bristles or goose feathers.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "food-preparation-equipment-other",
+              "name": "Food Preparation Equipment Other",
+              "gpcCode": "10002178",
+              "gpcDescription": "Includes any products that can be described/observed as kitchen food preparation equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "food-preparation-equipment-variety-packs",
+              "name": "Food Preparation Equipment Variety Packs",
+              "gpcCode": "10002177",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct kitchen utensils or food preparation products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Household Food Preparation Equipment class. Includes products such as kitchen knives and chopping boards sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "kitchen-knife-sharpeners-non-powered",
+              "name": "Kitchen Knife Sharpeners (Non Powered)",
+              "gpcCode": "10005201",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device for sharpening knives. Includes products such as sharpening steel rods, sharpening stones, ceramic rod sharpeners and slotted gadgets with revolving wheels.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "kitchen-knives-cleavers",
+              "name": "Kitchen Knives/Cleavers",
+              "gpcCode": "10002168",
+              "gpcDescription": "Includes any products that can be described/observed as a knife or chopper specifically designed for use in the kitchen during the preparation of food. Includes products such as a meat carving knife, bread slicing knife and a fruit paring knife.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "kitchen-slicers-graters-cutters",
+              "name": "Kitchen Slicers/Graters/Cutters",
+              "gpcCode": "10002172",
+              "gpcDescription": "Includes any products that can be described/observed as a kitchen utensil used for slicing, grating and cutting food. Includes products such as wheel-style pizza cutters.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "mincers-choppers-ricers-pasta-makers-non-powered",
+              "name": "Mincers/Choppers/Ricers/Pasta Makers (Non Powered)",
+              "gpcCode": "10002148",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device specifically designed for mincing meat, ricing potato, manual choppers that are used to chop or slice ingredients prior to cooking, or extruding pasta.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "multifunction-kitchen-tools",
+              "name": "Multifunction Kitchen Tools",
+              "gpcCode": "10002176",
+              "gpcDescription": "Includes any products that can be described/observed as a kitchen device designed to for more than one function, for example, to cut open cans, as well as pry open bottle caps and also to maybe have a slicing facility.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "openers-kitchen",
+              "name": "Openers - Kitchen",
+              "gpcCode": "10002175",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to open food products. Includes products such as tin openers, nut crackers, claw crackers, corkscrews and bottle openers.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "paper-filters",
+              "name": "Paper Filters",
+              "gpcCode": "10000559",
+              "gpcDescription": "Includes any products that can be described/observed as a paper filter specifically designed to filter out and contain sediment, typically intended to capture and retain unwanted particles. Includes products such as cooker hood filters, deep fat fryer filters and coffee machine filters.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "rolling-pins",
+              "name": "Rolling Pins",
+              "gpcCode": "10002173",
+              "gpcDescription": "Includes any products that can be described/observed as a smooth cylinder, usually with a handle at each end, used for rolling out dough, pastries, fondant and marzipan.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "sieves-strainers-colanders",
+              "name": "Sieves/Strainers/Colanders",
+              "gpcCode": "10002146",
+              "gpcDescription": "Includes any products that can be described/observed as a utensil, designed for straining, sifting, or separating liquids from solids.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "skewers-sticks",
+              "name": "Skewers/Sticks",
+              "gpcCode": "10002174",
+              "gpcDescription": "Includes any products that can be described/observed as a long metal or wooden pin used to secure food, such as pieces of meat, during cooking. Includes products such as kebab skewers and cocktail sticks.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "slicing-chopping-boards",
+              "name": "Slicing/Chopping Boards",
+              "gpcCode": "10002147",
+              "gpcDescription": "Includes any products that can be described/observed as a board made of plastic, wood, ceramic or granite, specifically designed as a surface for slicing and chopping food products.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "spatulas-scoops-ladles",
+              "name": "Spatulas/Scoops/Ladles",
+              "gpcCode": "10002170",
+              "gpcDescription": "Includes any products that can be described/observed as a broad, blunt flexible blade or spatula used to mix, spread or lift food; a large spoon-shaped bowl or ladle on the end of a long handle used for transferring food to another dish or server; a utensil for cutting and scooping various shapes from food to enhance presentation. Includes products such as an egg lifter, a soup ladle, and an ice cream scoop.",
+              "parentId": "food-preparation-equipment"
+            },
+            {
+              "id": "tongs-tweezers-mallets-mashers-whisks",
+              "name": "Tongs/Tweezers/Mallets/Mashers/Whisks",
+              "gpcCode": "10002171",
+              "gpcDescription": "Includes any products that can be described/observed as a kitchen implement used in the preparation of food to grasp, mash, pound or whip. Includes products such as sugar tongs, kitchen tweezers, a strawberry huller, a potato masher, a pestle and mortar, a garlic press, a meat mallet/tenderiser, an egg whisk and a milk-frothing whisk.",
+              "parentId": "food-preparation-equipment"
+            }
+          ]
+        },
+        {
+          "id": "food-beverage-presentation-accessories",
+          "name": "Food/Beverage Presentation Accessories",
+          "gpcCode": "73040900",
+          "parentId": "kitchenware",
+          "children": [
+            {
+              "id": "beverage-decorations-accessories-non-edible",
+              "name": "Beverage Decorations/Accessories (Non Edible)",
+              "gpcCode": "10002128",
+              "gpcDescription": "Includes any products that can be described/observed as an article designed to decorate a beverage or an accessory used to assist in the presentation of a beverage. Includes products such as cocktail stirrers, cocktail umbrellas and ice cube trays.",
+              "parentId": "food-beverage-presentation-accessories"
+            },
+            {
+              "id": "cake-pastry-decorations-accessories-non-edible",
+              "name": "Cake/Pastry Decorations/Accessories (Non Edible)",
+              "gpcCode": "10002149",
+              "gpcDescription": "Includes any products that can be described/observed as a non-edible item used as a cake decoration or an accessory to decorate cakes, cookies, biscuits, pastries and puddings. Includes products such as cake candles and holders, non-edible flowers, miniature animals and human figures designed specifically for cake decoration, as well as accessories such as icing cones and pastry bags.",
+              "parentId": "food-beverage-presentation-accessories"
+            },
+            {
+              "id": "food-shaping-moulds",
+              "name": "Food Shaping Moulds",
+              "gpcCode": "10005430",
+              "gpcDescription": "Includes any products that can be described/observed as a hollow container in diverse formats or shapes into which the food or beverage is poured to set or cool into a desired or decorative shape. Includes food and beverages moulds / cutters, products such as butter moulds, jelly moulds and popsicle moulds, pastry cutter and pastry ring. ",
+              "parentId": "food-beverage-presentation-accessories"
+            }
+          ]
+        },
+        {
+          "id": "kitchen-merchandise-variety-packs",
+          "name": "Kitchen Merchandise Variety Packs",
+          "gpcCode": "73040800",
+          "parentId": "kitchenware",
+          "children": [
+            {
+              "id": "kitchen-merchandise-variety-packs",
+              "name": "Kitchen Merchandise Variety Packs",
+              "gpcCode": "10002183",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Household Kitchen Merchandise products sold together, which exist within the schema but belong to different classes, that is, two or more products contained within the same pack which cross classes within the Kitchen Merchandise family. Includes products such as kitchen utensils and kitchen measuring tools sold together. Items that are received free with purchases should be removed from the decision-making process.",
+              "parentId": "kitchen-merchandise-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "kitchen-storage",
+          "name": "Kitchen Storage",
+          "gpcCode": "73040100",
+          "parentId": "kitchenware",
+          "children": [
+            {
+              "id": "disposable-food-bags",
+              "name": "Disposable Food Bags",
+              "gpcCode": "10000692",
+              "gpcDescription": "Includes any products that can be described/observed as a material specifically designed to be used for one, or a small number of occasions, to bag food. These products are designed to store food products. Includes products such as freezer bags. ",
+              "parentId": "kitchen-storage"
+            },
+            {
+              "id": "disposable-food-wrap",
+              "name": "Disposable Food Wrap",
+              "gpcCode": "10000693",
+              "gpcDescription": "Includes any products that can be described/observed as a material specifically designed to be used for one, or a small number of occasions, to wrap food. These products are designed to store food products and may or may not be used in cooking. Includes products such as cling film and aluminium foil. ",
+              "parentId": "kitchen-storage"
+            },
+            {
+              "id": "food-beverage-storage-containers",
+              "name": "Food/Beverage Storage Containers",
+              "gpcCode": "10002122",
+              "gpcDescription": "Includes any products that can be described/observed as a kitchen container such as a carton, bottle, bin or jar in which food or beverages can be stored. Typically these products are designed with lids or some means of closure. Includes products that may or may not be disposable and may or may not be insulated to keep the food/beverage the desired  temperature. Includes products such as Vacuum Flasks.",
+              "parentId": "kitchen-storage"
+            },
+            {
+              "id": "kitchen-storage-replacement-parts-accessories",
+              "name": "Kitchen Storage - Replacement Parts/Accessories",
+              "gpcCode": "10005209",
+              "gpcDescription": "Includes any products that may be described/observed as a replacement part or accessory to kitchen storage items. Includes products such as storage bag clips and replacement caps and lids for food storage bottles and jars.",
+              "parentId": "kitchen-storage"
+            },
+            {
+              "id": "kitchen-storage-other",
+              "name": "Kitchen Storage Other",
+              "gpcCode": "10002124",
+              "gpcDescription": "Includes any products that can be described/observed as a kitchen storage item, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "kitchen-storage"
+            },
+            {
+              "id": "kitchen-storage-racks-stands-holders-dispensers",
+              "name": "Kitchen Storage Racks/Stands/Holders/Dispensers",
+              "gpcCode": "10002121",
+              "gpcDescription": "Includes any products that can be described/observed as a rack, stand, holder or dispenser that is designed to hold, hang, or display household kitchen items. Includes products such as spice racks, egg holders, wine racks, pot racks, cutlery racks and mug holders.",
+              "parentId": "kitchen-storage"
+            },
+            {
+              "id": "kitchen-storage-variety-packs",
+              "name": "Kitchen Storage Variety Packs",
+              "gpcCode": "10002123",
+              "gpcDescription": "Includes any products that can be described/observed as two or more kitchen storage items sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Kitchen Storage class. Includes products such as a spice rack and bread bin sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "kitchen-storage"
+            },
+            {
+              "id": "string-ties",
+              "name": "String/Ties",
+              "gpcCode": "10000541",
+              "gpcDescription": "Includes any products that can be described/observed as a cord usually made out of fibre or a short length of flexible wire or plastic, which is specifically designed for tying and fastening. Includes products made from both natural and synthetic origins, and in a variety of shapes such as ball, cylinder or strip.",
+              "parentId": "kitchen-storage"
+            }
+          ]
+        },
+        {
+          "id": "water-beverage-equipment",
+          "name": "Water/Beverage Equipment",
+          "gpcCode": "73040200",
+          "parentId": "kitchenware",
+          "children": [
+            {
+              "id": "bottle-stoppers-pourers",
+              "name": "Bottle Stoppers/Pourers",
+              "gpcCode": "10002130",
+              "gpcDescription": "Includes any products that can be described/observed as a device designed either to be inserted to close an opening or to make liquid or granular solid stream or flow from a container. Includes products such as carbonated drinks bottle stoppers, wine bottle stoppers or carton pourers and they may be made of glass, plastic or wood.",
+              "parentId": "water-beverage-equipment"
+            },
+            {
+              "id": "bottle-can-insulators",
+              "name": "Bottle/Can Insulators",
+              "gpcCode": "10005470",
+              "gpcDescription": "Includes any products that can be described/observed as a cylindrical cover for a beverage bottle or can that is usually made from foam and cloth. The purpose of the product is to maintain the temperature of the beverage, most usually to keep it cold.",
+              "parentId": "water-beverage-equipment"
+            },
+            {
+              "id": "cappuccino-creamers-non-powered",
+              "name": "Cappuccino Creamers (Non Powered)",
+              "gpcCode": "10005435",
+              "gpcDescription": "Includes any products that can be described/observed as a jug type container with a fitted plunger. Milk is poured into the jug and the plunger is pumped up and down to produce frothy, creamy milk that can be added to coffee, milk shakes or hot chocolate.",
+              "parentId": "water-beverage-equipment"
+            },
+            {
+              "id": "drinking-bottles",
+              "name": "Drinking Bottles",
+              "gpcCode": "10008282",
+              "gpcDescription": "Includes any products that can be described/observed as reusable drinking bottles, designed for repeated use and allowing consumers to refill them with liquids. These products may feature an adapted sport cap, straw, or innovative drinking mechanisms and are commonly used for sports (e.g., cycling, running, fitness) or daily hydration.",
+              "parentId": "water-beverage-equipment"
+            },
+            {
+              "id": "grinders-juicers-ice-crushers-non-powered",
+              "name": "Grinders/Juicers/Ice Crushers (Non Powered)",
+              "gpcCode": "10002133",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device for grinding roasted coffee beans or nuts, extracting juice from fruits and vegetables, or crushing ice to be used in beverages such as iced coffee and cocktails. ",
+              "parentId": "water-beverage-equipment"
+            },
+            {
+              "id": "household-water-testing-kits",
+              "name": "Household Water Testing Kits",
+              "gpcCode": "10005208",
+              "gpcDescription": "Includes any products that can be described/observed as a kit or combination of products used to test for water contamination in the home. Includes products that test for e.coli bacteria, lead, pesticides, chlorine and pH level.",
+              "parentId": "water-beverage-equipment"
+            },
+            {
+              "id": "kettles-non-powered",
+              "name": "Kettles (Non Powered)",
+              "gpcCode": "10002129",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered kettle, usually with a spout, handle and lid, specifically designed for boiling water on top of a stove. ",
+              "parentId": "water-beverage-equipment"
+            },
+            {
+              "id": "water-filters-water-filter-cartridges",
+              "name": "Water Filters/Water Filter Cartridges",
+              "gpcCode": "10002127",
+              "gpcDescription": "Includes any products that can be described/observed as household kitchen equipment that helps to extract impurities from water. Includes products such as water filters and water filter cartridges.",
+              "parentId": "water-beverage-equipment"
+            },
+            {
+              "id": "water-beverage-equipment-other",
+              "name": "Water/Beverage Equipment Other",
+              "gpcCode": "10002135",
+              "gpcDescription": "Includes any products that can be described/observed as water or beverage equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "water-beverage-equipment"
+            },
+            {
+              "id": "water-beverage-equipment-variety-packs",
+              "name": "Water/Beverage Equipment Variety Packs",
+              "gpcCode": "10002134",
+              "gpcDescription": "Includes any products that can be described/observed as two or more water or beverage equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Water/Beverage Equipment class. Includes products such as a teapot and non-powered kettle sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "water-beverage-equipment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tableware",
+      "name": "Tableware",
+      "gpcCode": "73050000",
+      "parentId": "kitchenware-and-tableware",
+      "children": [
+        {
+          "id": "baby-tableware",
+          "name": "Baby Tableware",
+          "gpcCode": "73050100",
+          "parentId": "tableware",
+          "children": [
+            {
+              "id": "baby-feeding-bottles",
+              "name": "Baby Feeding - Bottles",
+              "gpcCode": "10000491",
+              "gpcDescription": "Includes any products that can be described/observed as a small, portable container specifically designed to store and/or serve beverages that are intended for consumption by a baby or infant. Includes products sold with or without a teat (that is a nipple shaped rubber attachment which is attached to the open end of the container to encourage a suckling reflex). ",
+              "parentId": "baby-tableware"
+            },
+            {
+              "id": "baby-feeding-replacement-parts",
+              "name": "Baby Feeding - Replacement Parts",
+              "gpcCode": "10000823",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Baby Feeding products. Includes products such as replacement parts for bottle sterilisers.",
+              "parentId": "baby-tableware"
+            },
+            {
+              "id": "baby-feeding-tableware",
+              "name": "Baby Feeding - Tableware",
+              "gpcCode": "10000490",
+              "gpcDescription": "Includes any products that can be described/observed as a dish or utensil specifically designed for use in feeding babies or infants, and typically intended to provide a degree of safety, convenience or comfort so as to make the product more suitable than regular tableware. Products include items such as plates, bowls, dishes, beakers/trainer cups, made from various materials such as plastic, glass or metal. ",
+              "parentId": "baby-tableware"
+            },
+            {
+              "id": "baby-feeding-teats",
+              "name": "Baby Feeding - Teats",
+              "gpcCode": "10000724",
+              "gpcDescription": "Includes any products that can be described/observed as a nipple shaped rubber attachment that is attached to the open end of the container to encourage a suckling reflex to enable the consumption of liquids by a baby or infant. ",
+              "parentId": "baby-tableware"
+            },
+            {
+              "id": "baby-feeding-accessories",
+              "name": "Baby Feeding Accessories",
+              "gpcCode": "10000492",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory specifically designed for nursing mothers, and typically intended to assist bottle-feeding or breast-feeding or to facilitate the storage of breast milk so that it may be consumed by the baby at a later time. Includes products such as containers for bottles and teats, breast milk bags and nursing pillows.",
+              "parentId": "baby-tableware"
+            },
+            {
+              "id": "baby-infant-cutlery-non-disposable",
+              "name": "Baby/Infant Cutlery (Non Disposable)",
+              "gpcCode": "10006801",
+              "gpcDescription": "Includes any products that can be described/observed as a utensil specifically designed for use during meals, specifically designed for babies or infants, and typically intended to provide a degree of safety, convenience or comfort so as to make the product more suitable than regular cutlery. Products include items such as forks, spoons and knives, made from various materials such as plastic, glass or metal.",
+              "parentId": "baby-tableware"
+            },
+            {
+              "id": "baby-infant-feeding-other",
+              "name": "Baby/Infant Feeding Other",
+              "gpcCode": "10000825",
+              "gpcDescription": "Includes any products that can be described/observed as Baby or Infant Feeding products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "baby-tableware"
+            },
+            {
+              "id": "baby-infant-tableware-variety-packs",
+              "name": "Baby/Infant Tableware Variety Packs",
+              "gpcCode": "10006802",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Baby or Infant Tableware products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Baby Tableware  class.  Includes products such as Baby Feeding Bottles and baby feeding teats sold together. Items that are received free with purchases should be removed from the classification decision-making process. ",
+              "parentId": "baby-tableware"
+            }
+          ]
+        },
+        {
+          "id": "barware-non-disposable",
+          "name": "Barware (Non Disposable)",
+          "gpcCode": "73050500",
+          "parentId": "tableware",
+          "children": [
+            {
+              "id": "bar-and-wine-variety-pack",
+              "name": "Bar and Wine Variety Pack",
+              "gpcCode": "10007255",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct wine and bar accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Bar and Wine class. Includes products such as a wine bucket and a taste-vin sold together. Items that are received free with purchase should be removed from the classification decision-making process.",
+              "parentId": "barware-non-disposable"
+            },
+            {
+              "id": "cocktail-accessories-non-disposable",
+              "name": "Cocktail Accessories (Non Disposable)",
+              "gpcCode": "10007253",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory specifically designed for the preparation of cocktails or for the presentation of cocktails. Includes Shakers, Cocktail Strainers or Cocktail Pestles.",
+              "parentId": "barware-non-disposable"
+            },
+            {
+              "id": "ice-wine-buckets-non-powered",
+              "name": "Ice/Wine Buckets (Non Powered)",
+              "gpcCode": "10002162",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered serving equipment specifically designed to hold ice or keep wine cold.",
+              "parentId": "barware-non-disposable"
+            },
+            {
+              "id": "other-bar-and-wine-accessories",
+              "name": "Other Bar and Wine Accessories",
+              "gpcCode": "10007254",
+              "gpcDescription": "Includes any products that can be described/observed as wine and bar accessories, where the user of the schema is not able to classify the products in existing bricks within the schema in the Class Accessories for wine and bar.",
+              "parentId": "barware-non-disposable"
+            },
+            {
+              "id": "wine-accessories",
+              "name": "Wine Accessories",
+              "gpcCode": "10007252",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory specifically designed for the conservation of wine or for serving wine. Includes Corkscrew Wine Openers, Drop Stopping, Tastevin and Wine Thermometers.",
+              "parentId": "barware-non-disposable"
+            }
+          ]
+        },
+        {
+          "id": "dinnerware-non-disposable",
+          "name": "Dinnerware (Non Disposable)",
+          "gpcCode": "73050200",
+          "parentId": "tableware",
+          "children": [
+            {
+              "id": "bowls-non-disposable",
+              "name": "Bowls (Non Disposable)",
+              "gpcCode": "10002154",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable hollow (concave) container from which to serve and/or eat food in the home.",
+              "parentId": "dinnerware-non-disposable"
+            },
+            {
+              "id": "dinnerware-variety-pack",
+              "name": "Dinnerware Variety Pack",
+              "gpcCode": "10007242",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products of dinnerware sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Dinnerware class. Includes products such as a set of plates and a set of coffee cups with saucer sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "dinnerware-non-disposable"
+            },
+            {
+              "id": "egg-cups-non-disposable",
+              "name": "Egg Cups (Non Disposable)",
+              "gpcCode": "10005427",
+              "gpcDescription": "Includes any products that can be described/observed as a small cup for serving a boiled egg. Includes egg cups made of china, wood or plastic.",
+              "parentId": "dinnerware-non-disposable"
+            },
+            {
+              "id": "plates-non-disposable",
+              "name": "Plates (Non Disposable)",
+              "gpcCode": "10002153",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable flat household plate from which to serve and/or eat food.",
+              "parentId": "dinnerware-non-disposable"
+            }
+          ]
+        },
+        {
+          "id": "drinkware-non-disposable",
+          "name": "Drinkware (Non Disposable)",
+          "gpcCode": "73050300",
+          "parentId": "tableware",
+          "children": [
+            {
+              "id": "bar-cocktail-glasses",
+              "name": "Bar/Cocktail Glasses",
+              "gpcCode": "10007245",
+              "gpcDescription": "Includes any products that can be described/observed as a beverage container specifically designed for the drinking of alcoholic beverages. Includes Beer Glasses, Liquor Glasses, as well as Cocktail Glasses.",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "beer-glasses",
+              "name": "Beer Glasses",
+              "gpcCode": "10007249",
+              "gpcDescription": "Includes any products that can be described/observed as a beverage container specifically designed for the drinking of beer.",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "drinkware-other",
+              "name": "Drinkware Other",
+              "gpcCode": "10007247",
+              "gpcDescription": "Includes any products that can be described/observed as glassware equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "drinkware-variety-pack",
+              "name": "Drinkware Variety Pack",
+              "gpcCode": "10007248",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products for drinking or serving beverages sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Glassware class. Includes products such as glasses and a decanter sold together. Items that are received free with purchase should be removed from the classification decision-making process.",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "mugs-cups-non-disposable",
+              "name": "Mugs/Cups (Non Disposable)",
+              "gpcCode": "10002155",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable mug or cup from which beverages are served and drunk.",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "serving-jugs-pitchers-decanters",
+              "name": "Serving Jugs/Pitchers/Decanters",
+              "gpcCode": "10002158",
+              "gpcDescription": "Includes any products that can be described/observed as a large vessel of glass, earthenware, or metal, from which to serve/pour beverages.",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "set-of-glasses",
+              "name": "Set of Glasses",
+              "gpcCode": "10007246",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct household serving/drinking glassware products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Glassware class. Includes products such as Glasses and a Decanter sold together. Items that are received free with purchase should be removed from the classification decision-making process. ",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "stemmed-glasses-for-wine-water-champagne",
+              "name": "Stemmed Glasses for Wine/Water/Champagne",
+              "gpcCode": "10007243",
+              "gpcDescription": "Includes any products that can be described/observed as a glass container specifically designed for the drinking of beverages, that stands on stems above a base. The stem allows the drinker to hold the glass without affecting the temperature of the drink. Includes mainly the Wine Glasses, and the associates Water Glasses, as well as Sparkling Wine Glasses (Champagne Glasses).",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "tea-coffee-chocolate-accessories",
+              "name": "Tea/Coffee/Chocolate Accessories",
+              "gpcCode": "10007250",
+              "gpcDescription": "Includes any products that can be described/observed as Tea/Coffee/Chocolate accessories.",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "tea-coffee-chocolate-variety-pack",
+              "name": "Tea/Coffee/Chocolate Variety Pack",
+              "gpcCode": "10007251",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct household Tea/Coffee/Chocolate tableware products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Tea/Coffee/Chocolate class. Includes products such as cups with saucers sold with a coffee pot together in a same packaging. Items that are received free with purchase should be removed from the classification decision-making process. ",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "teapots-cafetieres-hot-beverages-carafes",
+              "name": "Teapots/Cafetieres/Hot Beverages Carafes",
+              "gpcCode": "10002131",
+              "gpcDescription": "Includes any products that can be described/observed as equipment specially designed to prepare/serve hot beverages in a cup; such as tea, coffee or chocolate. These carafes products are often, but not always, insulated in order to keep the beverage warm.",
+              "parentId": "drinkware-non-disposable"
+            },
+            {
+              "id": "tumblers",
+              "name": "Tumblers",
+              "gpcCode": "10007244",
+              "gpcDescription": "Includes any products that can be described/observed as a flat-bottomed beverage container, without stem, specifically designed for the serving and drinking of beverages.",
+              "parentId": "drinkware-non-disposable"
+            }
+          ]
+        },
+        {
+          "id": "flatware-non-disposable",
+          "name": "Flatware (Non Disposable)",
+          "gpcCode": "73051000",
+          "parentId": "tableware",
+          "children": [
+            {
+              "id": "fish-shellfish-snail-flatware-non-disposable",
+              "name": "Fish/Shellfish/Snail Flatware (Non Disposable)",
+              "gpcCode": "10007274",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable tableware implement for eating fish/shellfish/snails. Includes products such as knives, forks and spoons specifically designed for eating fish/shellfish/snails.",
+              "parentId": "flatware-non-disposable"
+            },
+            {
+              "id": "flatware-variety-packs-non-disposable",
+              "name": "Flatware Variety Packs (Non Disposable)",
+              "gpcCode": "10007270",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct pieces of flatware sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Flatware class. Includes products such as set of flatware including Table Flatware as well as Dessert Flatware and/or Serving Flatware sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "flatware-non-disposable"
+            },
+            {
+              "id": "other-flatware-non-disposable",
+              "name": "Other Flatware (Non Disposable)",
+              "gpcCode": "10007269",
+              "gpcDescription": "Includes any products that can be described/observed as flatware equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "flatware-non-disposable"
+            },
+            {
+              "id": "serving-flatware-non-disposable",
+              "name": "Serving Flatware (Non Disposable)",
+              "gpcCode": "10007273",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable tableware implement for serving. Includes products such as a salad service set, meat serving set, and soup ladles.",
+              "parentId": "flatware-non-disposable"
+            },
+            {
+              "id": "starter-dessert-cheese-flatware-non-disposable",
+              "name": "Starter/Dessert/Cheese Flatware (Non Disposable)",
+              "gpcCode": "10007275",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable tableware implement for eating a Starter/Dessert/Cheese, many with the same shape as table flatware, but smaller. Includes products such as knives, forks and spoons specifically designed to eat Starters, Desserts or Cheeses.",
+              "parentId": "flatware-non-disposable"
+            },
+            {
+              "id": "table-flatware-non-disposable",
+              "name": "Table Flatware (Non Disposable)",
+              "gpcCode": "10007272",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable tableware implement for eating the main course of a meal. Includes products such as table knives, table forks and table spoons.",
+              "parentId": "flatware-non-disposable"
+            },
+            {
+              "id": "tea-coffee-flatware-non-disposable",
+              "name": "Tea/Coffee Flatware (Non Disposable)",
+              "gpcCode": "10007268",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable tableware implement for hot beverages such as tea or coffee. Includes mainly spoons and non-disposable coffee sticks specifically designed for tea or coffee.",
+              "parentId": "flatware-non-disposable"
+            },
+            {
+              "id": "travel-folding-knives",
+              "name": "Travel Folding Knives",
+              "gpcCode": "10007271",
+              "gpcDescription": "Includes any products that can be described/observed as a foldable knife with one or more blades that fits inside the handle that can still fit in a pocket, and specially designed for eating food. Includes Laguiole folding knives.",
+              "parentId": "flatware-non-disposable"
+            }
+          ]
+        },
+        {
+          "id": "serveware-non-disposable",
+          "name": "Serveware (Non Disposable)",
+          "gpcCode": "73050600",
+          "parentId": "tableware",
+          "children": [
+            {
+              "id": "buffet",
+              "name": "Buffet",
+              "gpcCode": "10007256",
+              "gpcDescription": "Includes any products that can be described/observed as equipment specially designed to present food or beverages on a buffet. Includes products such as display stands for trays of food, chafing-dishes or juice dispensers.",
+              "parentId": "serveware-non-disposable"
+            },
+            {
+              "id": "deep-serving-platters",
+              "name": "Deep Serving Platters",
+              "gpcCode": "10007259",
+              "gpcDescription": "Includes any the product that can be described/observed as deep dishes, allowing to serve the food to table, such as soup, salad or vegetables.",
+              "parentId": "serveware-non-disposable"
+            },
+            {
+              "id": "flat-serving-platters",
+              "name": "Flat Serving Platters",
+              "gpcCode": "10007258",
+              "gpcDescription": "Includes any the product that can be described/observed as being flat dishes with shallow edges, allowing to serve the food to the table, such as fish, meats, tarts or seafoods.",
+              "parentId": "serveware-non-disposable"
+            },
+            {
+              "id": "food-serving-trolleys-non-powered",
+              "name": "Food Serving Trolleys (Non Powered)",
+              "gpcCode": "10002160",
+              "gpcDescription": "Includes any products that can be described/observed as a narrow cart on wheels that can be pushed by hand from one location to another and is used for holding and delivering food and beverages. Includes products such as wooden and metal hostess trolleys.",
+              "parentId": "serveware-non-disposable"
+            },
+            {
+              "id": "food-beverage-warmers-coolers-non-powered",
+              "name": "Food/Beverage Warmers/Coolers (Non Powered)",
+              "gpcCode": "10002161",
+              "gpcDescription": "Includes any products that can be described/observed as tableware or serving equipment specifically designed to keep food warm/cold by means of insulation technology or being made of a material that holds a constant temperature for a prolonged period. Some non-electric food warmers are heated with candles. Includes products such as ceramic plate food warmers, candle burners and Tupperware food warmers.",
+              "parentId": "serveware-non-disposable"
+            },
+            {
+              "id": "serveware-other",
+              "name": "Serveware Other",
+              "gpcCode": "10007260",
+              "gpcDescription": "Includes any products that can be described/observed as product designed to transport food from kitchen to table or to serve at table, where the user of the schema is not able to classify the products in existing bricks within the schema in the class Serving.",
+              "parentId": "serveware-non-disposable"
+            },
+            {
+              "id": "serveware-variety-pack",
+              "name": "Serveware Variety Pack",
+              "gpcCode": "10007257",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct household serving products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Serving class. Includes products such as a Food Serving Trolleys sold with a set of Serving Trays. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "serveware-non-disposable"
+            },
+            {
+              "id": "serving-trays",
+              "name": "Serving Trays",
+              "gpcCode": "10002159",
+              "gpcDescription": "Includes any products that can be described/observed as a shallow flat receptacle with a raised edge or rim, used for carrying, holding or displaying food articles and beverages.",
+              "parentId": "serveware-non-disposable"
+            }
+          ]
+        },
+        {
+          "id": "tableware-disposable",
+          "name": "Tableware (Disposable)",
+          "gpcCode": "73050700",
+          "parentId": "tableware",
+          "children": [
+            {
+              "id": "dinnerware-disposable",
+              "name": "Dinnerware (Disposable)",
+              "gpcCode": "10000635",
+              "gpcDescription": "Includes any products that can be described/observed as a disposable item from which to serve and/or eat food. Includes disposable plates and bowls.",
+              "parentId": "tableware-disposable"
+            },
+            {
+              "id": "drinkware-disposable",
+              "name": "Drinkware (Disposable)",
+              "gpcCode": "10007261",
+              "gpcDescription": "Includes any products that can be described/observed as a container for drinking specifically designed to be used for one, or a small number of occasions.",
+              "parentId": "tableware-disposable"
+            },
+            {
+              "id": "flatware-disposable",
+              "name": "Flatware (Disposable)",
+              "gpcCode": "10007262",
+              "gpcDescription": "Includes any products that can be described/observed as a disposable tableware implement for serving and eating food, specifically designed to be used for one, or a small number of occasions. Includes products such as knives, forks and spoons of various designs.",
+              "parentId": "tableware-disposable"
+            },
+            {
+              "id": "lids-disposable",
+              "name": "Lids (Disposable)",
+              "gpcCode": "10008492",
+              "gpcDescription": "Includes any products that can be described/observed as disposable lids designed to cover or seal containers such as drinkware, dinnerware, or other single-use packaging. These products are intended for use on one or a small number of occasions, providing protection, preventing spills, or facilitating consumption.",
+              "parentId": "tableware-disposable"
+            },
+            {
+              "id": "table-mat-napkins-disposable",
+              "name": "Table Mat/Napkins (Disposable)",
+              "gpcCode": "10007264",
+              "gpcDescription": "Includes any products that can be described/observed as a disposable item to cover fully or partially a table in order to eat, or a disposable item used to wipe your mouth during a meal, specifically designed to be used for one, or a small number of occasions. Includes products such as table mat, place mat or napkins.",
+              "parentId": "tableware-disposable"
+            },
+            {
+              "id": "tableware-accessories-disposable",
+              "name": "Tableware Accessories (Disposable)",
+              "gpcCode": "10007263",
+              "gpcDescription": "Includes any products that can be described/observed as a disposable accessory arranged on a table for a meal, not for decoration, specifically designed to be used for one, or a small number of occasions. Includes products such as ashtrays, serving plates or coasters.",
+              "parentId": "tableware-disposable"
+            }
+          ]
+        },
+        {
+          "id": "tableware-accessories",
+          "name": "Tableware Accessories",
+          "gpcCode": "73050900",
+          "parentId": "tableware",
+          "children": [
+            {
+              "id": "food-stands-displays",
+              "name": "Food Stands/Displays",
+              "gpcCode": "10002165",
+              "gpcDescription": "Includes any products that can be described/observed as a food display stand that is often designed with a pedestal. Includes products such as pizza display stands and cake stands.",
+              "parentId": "tableware-accessories"
+            },
+            {
+              "id": "napkin-rings",
+              "name": "Napkin Rings",
+              "gpcCode": "10005210",
+              "gpcDescription": "Includes any products that can be described/observed as a ring into which a table napkin or serviette is placed. The ring serves to hold the napkin in place and also adds to the dining table décor.",
+              "parentId": "tableware-accessories"
+            },
+            {
+              "id": "salt-pepper-shakers",
+              "name": "Salt/Pepper Shakers",
+              "gpcCode": "10005693",
+              "gpcDescription": "Includes any products that can be described/observed as a small container filled with salt/pepper. Generally, the shakers have several small holes on top of the container, which are small enough to require a shaking action to get an appreciable amount of condiment to pour out.",
+              "parentId": "tableware-accessories"
+            },
+            {
+              "id": "salt-pepper-spice-mills-non-powered",
+              "name": "Salt/Pepper/Spice Mills (Non Powered)",
+              "gpcCode": "10002163",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered utensil for grinding salt crystals, peppercorns or spices. Includes products such as combination salt and pepper mills.",
+              "parentId": "tableware-accessories"
+            },
+            {
+              "id": "tableware-accessories-other",
+              "name": "Tableware Accessories Other",
+              "gpcCode": "10007266",
+              "gpcDescription": "Includes any products that can be described/observed as tableware accessories, where the user of the schema is not able to classify the products in existing bricks within the schema in the class Tableware Accessories.",
+              "parentId": "tableware-accessories"
+            },
+            {
+              "id": "tableware-accessory-variety-packs",
+              "name": "Tableware Accessory Variety Packs",
+              "gpcCode": "10007267",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct table accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Table accessories class. Includes products such as pepper/salt mill sold together with a vinegar/oil cruet. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "tableware-accessories"
+            }
+          ]
+        },
+        {
+          "id": "tableware-variety-packs",
+          "name": "Tableware Variety Packs",
+          "gpcCode": "73050800",
+          "parentId": "tableware",
+          "children": [
+            {
+              "id": "tableware-variety-packs",
+              "name": "Tableware Variety Packs",
+              "gpcCode": "10007265",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct tableware products sold together, which exist within the schema belonging to different bricks and belonging to different classes within the segment Tableware, that is, two or more products contained within the same pack which cross bricks within the Tableware segment. Includes products such as dinnerware sets including plates and serving plates sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "tableware-variety-packs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

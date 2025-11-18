@@ -1,0 +1,220 @@
+{
+  "id": "live-animals",
+  "name": "Live Animals",
+  "gpcCode": "89000000",
+  "children": [
+    {
+      "id": "live-animals",
+      "name": "Live Animals",
+      "gpcCode": "89020000",
+      "parentId": "live-animals",
+      "children": [
+        {
+          "id": "invertebrates",
+          "name": "Invertebrates",
+          "gpcCode": "89020100",
+          "parentId": "live-animals",
+          "children": [
+            {
+              "id": "annelids-worms",
+              "name": "Annelids (Worms)",
+              "gpcCode": "10005448",
+              "gpcDescription": "Includes any products that may be described/observed as usually elongated, segmented invertebrates. They are found in most wet environments, and include many terrestrial, freshwater, and especially marine species (such as the polychaetes), as well as some that are parasitic or mutualistic. These animals can range in length from under a millimetre to over 3 metres long. Includes the well-known earthworms and leeches.",
+              "parentId": "invertebrates"
+            },
+            {
+              "id": "arachnids-spiders-scorpions",
+              "name": "Arachnids (Spiders/Scorpions)",
+              "gpcCode": "10005447",
+              "gpcDescription": "Includes any products that may be described/observed as invertebrates having jointed limbs and a segmented body with an exoskeleton made of chitin. These animals are mainly predatory. Includes products such as spiders and scorpions.",
+              "parentId": "invertebrates"
+            },
+            {
+              "id": "coral-sea-anemone",
+              "name": "Coral/Sea Anemone",
+              "gpcCode": "10005454",
+              "gpcDescription": "Includes any products that may be described/observed as invertebrates that secrete an internal, hard skeleton structure composed of calcium carbonate, which is absorbed from the surrounding water. Includes animals such as sea anemones.",
+              "parentId": "invertebrates"
+            },
+            {
+              "id": "crustaceans",
+              "name": "Crustaceans",
+              "gpcCode": "10005450",
+              "gpcDescription": "Includes any products that may be described/observed as invertebrates that have a segmented body, a hard external skeleton (exoskeleton), two sets of antennae and one pair of legs per body segment. These animas live in marine coastal environment. Includes products such as shrimp, lobster and crabs.",
+              "parentId": "invertebrates"
+            },
+            {
+              "id": "insects",
+              "name": "Insects",
+              "gpcCode": "10005446",
+              "gpcDescription": "Includes any products that may be described/observed as small air-breathing arthropods with three pairs of legs and jaws. These animals have an exoskeleton and thrive in all environments. Includes animals such as ants, beetles and the butterfly.",
+              "parentId": "invertebrates"
+            },
+            {
+              "id": "invertebrates-other",
+              "name": "Invertebrates Other",
+              "gpcCode": "10005475",
+              "gpcDescription": "Includes any products that may be described/observed as an invertebrate animal, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "invertebrates"
+            },
+            {
+              "id": "jelly-fish",
+              "name": "Jelly Fish",
+              "gpcCode": "10005453",
+              "gpcDescription": "Includes any products that may be described/observed as a marine animal with a saucer-shaped, jelly-like body and stinging tentacles. As carnivorous animals these may be dangerous, containing toxins which are used to incapacitate prey. Includes products such as the Portuguese Man-Of-War.",
+              "parentId": "invertebrates"
+            },
+            {
+              "id": "molluscs",
+              "name": "Molluscs",
+              "gpcCode": "10005449",
+              "gpcDescription": "Includes any products that may be described/observed as an invertebrate having a soft unsegmented body usually enclosed in a shell. Includes products such as garden snails, and marine snails.",
+              "parentId": "invertebrates"
+            },
+            {
+              "id": "sea-stars-sea-urchins",
+              "name": "Sea Stars/Sea Urchins",
+              "gpcCode": "10005452",
+              "gpcDescription": "Includes any products that may be described/observed as radially symmetrical marine invertebrates found in the oceans at all depths. These animals can include both creatures that are attached to a fixed object or those that are free swimming. Includes products such as coastal sea stars.",
+              "parentId": "invertebrates"
+            },
+            {
+              "id": "sponges",
+              "name": "Sponges",
+              "gpcCode": "10005451",
+              "gpcDescription": "Includes any products that may be described/observed as primitive, sessile, mostly marine, water dwelling filter feeders that pump water through their matrix to filter out particulates of food matter. Sponges are among the simplest of animals. Includes products such as the Caribbean Red Sponge.",
+              "parentId": "invertebrates"
+            }
+          ]
+        },
+        {
+          "id": "vertebrates",
+          "name": "Vertebrates",
+          "gpcCode": "89020200",
+          "parentId": "live-animals",
+          "children": [
+            {
+              "id": "amphibians",
+              "name": "Amphibians",
+              "gpcCode": "10005458",
+              "gpcDescription": "Includes any products that may be described/observed as cold-blooded vertebrate typically living on land but breeding in water. Includes products such as frogs, toads and salamanders.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "birds",
+              "name": "Birds",
+              "gpcCode": "10005457",
+              "gpcDescription": "Includes any products that may be described/observed as vertebrate animals characterized primarily by feathers and forelimbs modified as wings. Includes products such as chicken, geese and emus.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "bovine-cattle",
+              "name": "Bovine (Cattle)",
+              "gpcCode": "10005461",
+              "gpcDescription": "Includes any products that may be described/observed as dull and slow-moving, stolid mammals. These animals are usually raised as livestock for meat, dairy and leather purposes. Includes animals such as salorn and angus cattle.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "canine-dogs",
+              "name": "Canine (Dogs)",
+              "gpcCode": "10005625",
+              "gpcDescription": "Includes any products that may be described/observed as any of various fissiped mammals with nonretractile claws and typically long muzzles. These animals have evolved into hundreds of different breeds and are a very common domesticated pet around the world. Includes products such as the Alsatian as well as the Pitbull Terrier.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "caprine-goats",
+              "name": "Caprine (Goats)",
+              "gpcCode": "10005462",
+              "gpcDescription": "Includes any products that may be described/observed as being or pertaining to or resembling a goat or goats. These can include any of numerous agile ruminants related to sheep but having a beard and straight horns. Includes mountain goats.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "cetaceans-whales-dolphins-porpoises",
+              "name": "Cetaceans (Whales/Dolphins/Porpoises)",
+              "gpcCode": "10005469",
+              "gpcDescription": "Includes any products that may be described/observed as any of various aquatic, chiefly marine mammals of the order Cetacea, characterized by a nearly hairless body, anterior limbs modified into broad flippers, vestigial posterior limbs, and a flat notched tail. Includes whales, dolphins and porpoises.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "equine-horses-donkeys",
+              "name": "Equine (Horses/Donkeys)",
+              "gpcCode": "10005463",
+              "gpcDescription": "Includes any products that may be described/observed as hoofed mammals having slender legs and a flat coat with a narrow mane along the back of the neck. Includes such products as zebras, stallions and mules.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "feline-cats",
+              "name": "Feline (Cats)",
+              "gpcCode": "10005460",
+              "gpcDescription": "Includes any products that may be described/observed as an animal of the feline species which are small to medium sized cats compared to the big cats or genus Panthera, which refers to Tigers, Lions, Jaguars and Leopards. Cats are carnivorous animals. These animals have evolved into hundreds of different breeds and are a very common domesticated pet around the world. Includes felines such as the Domestic cat and Manx cat.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "fishes",
+              "name": "Fishes",
+              "gpcCode": "10005456",
+              "gpcDescription": "Includes any products that may be described/observed as gilled breathing aquatic vertebrate, generally with fins, which are apt for locomotion and sustentation in the water. Includes products such as the blue shark as well as all colourful tropical fish.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "lagomorphs-hares-rabbits",
+              "name": "Lagomorphs (Hares/Rabbits)",
+              "gpcCode": "10005468",
+              "gpcDescription": "Includes any products that may be described/observed as any of various herbivorous mammals having fully furred feet and two pairs of upper incisors and belonging to the order Lagomorpha. Includes rabbits, hares, and pikas.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "marsupials",
+              "name": "Marsupials",
+              "gpcCode": "10005467",
+              "gpcDescription": "Includes any products that may be described/observed as any of various non-placental mammals of the order Marsupialia. Includes kangaroos, opossums, bandicoots, and wombats.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "ovine-sheep",
+              "name": "Ovine (Sheep)",
+              "gpcCode": "10005465",
+              "gpcDescription": "Includes any products that may be described/observed as any of usually horned ruminant animals of the genus Ovis in the family Bovidae. Includes both wild and domesticated species.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "primates",
+              "name": "Primates",
+              "gpcCode": "10005459",
+              "gpcDescription": "Includes any products that may be described/observed as large-brained, mostly tree-dwelling mammals with three-dimensional colour vision and grasping hands. Includes products such as monkeys and lemurs as well as humans.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "reptiles",
+              "name": "Reptiles",
+              "gpcCode": "10005466",
+              "gpcDescription": "Includes any products that may be described/observed as any of various cold-blooded, usually egg-laying vertebrates of the class Reptilia, having an external covering of scales or horny plates and breathing by means of lungs. Includes snakes, lizards, crocodiles and turtles.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "rodents",
+              "name": "Rodents",
+              "gpcCode": "10005455",
+              "gpcDescription": "Includes any products that may be described/observed as warm-blooded animals that have two incisors in the upper and lower jaw that grow continuously and must be kept worn down by gnawing. Includes products such as rats, mice, squirrels and beavers.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "swine-pigs",
+              "name": "Swine (Pigs)",
+              "gpcCode": "10005464",
+              "gpcDescription": "Includes any products that may be described/observed as any of omnivorous, even-toed animals the family Suidae, which typically have a stout body, thick skin, a short neck, and a movable snout. Includes such products as pigs, hogs and boars.",
+              "parentId": "vertebrates"
+            },
+            {
+              "id": "vertebrates-other",
+              "name": "Vertebrates Other",
+              "gpcCode": "10005476",
+              "gpcDescription": "Includes any products that may be described/observed as an animal with a vertebrate, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "vertebrates"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

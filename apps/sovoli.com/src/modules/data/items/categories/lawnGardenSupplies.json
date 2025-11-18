@@ -1,0 +1,1449 @@
+{
+  "id": "lawn-garden-supplies",
+  "name": "Lawn/Garden Supplies",
+  "gpcCode": "81000000",
+  "children": [
+    {
+      "id": "lawn-garden-supplies",
+      "name": "Lawn/Garden Supplies",
+      "gpcCode": "81010000",
+      "parentId": "lawn-garden-supplies",
+      "children": [
+        {
+          "id": "garden-pools-ponds-water-features-and-ornaments",
+          "name": "Garden Pools/Ponds/Water Features and Ornaments",
+          "gpcCode": "81010100",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "garden-water-features",
+              "name": "Garden Water Features",
+              "gpcCode": "10003215",
+              "gpcDescription": "Includes any products that may be described/observed as a decorative fixture involving the use of, usually moving, water. Typically these products are intended for outdoor use. Includes products such as fountains, waterspouts, container water-gardens, still water features, stone and pebble features, Chinese or other culturally inspired features.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "garden-water-feature-ornaments",
+              "name": "Garden/Water Feature Ornaments",
+              "gpcCode": "10003315",
+              "gpcDescription": "Includes any products that may be described/observed as an ornamental or novelty object designed to be placed in water or to make use of water in order to beautify the garden. Includes products such as cascading waterfalls or statues that can be immersed or placed on the edge of the pond with a fountain in it.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "lawn-garden-pools-ponds-water-features-other",
+              "name": "Lawn/Garden Pools/Ponds/Water Features Other",
+              "gpcCode": "10003225",
+              "gpcDescription": "Includes any products that may be described/observed as Pond and Water Features products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "lawn-garden-pools-ponds-water-features-variety-packs",
+              "name": "Lawn/Garden Pools/Ponds/Water Features Variety Packs",
+              "gpcCode": "10003224",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Ponds and Water Features products sold together, which exist within the schema belonging to different bricks but to the same class that is two or more products contained within the same pack which cross bricks within the Ponds and Water Features class. Includes products such as a water feature sold with a pond/water feature filter. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pond-water-feature-aerators",
+              "name": "Pond/Water Feature Aerators",
+              "gpcCode": "10003220",
+              "gpcDescription": "Includes any products that may be described/observed as a device intended to supply oxygen to pond water through use of a pump in order to reduce the threat of stagnation. Includes products such as fountain aerators, diffusion aerators.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pond-water-feature-foggers",
+              "name": "Pond/Water Feature Foggers",
+              "gpcCode": "10003218",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic device intended to turn water into mist or fog for atmospheric effect. These devices may also include coloured or flashing lights to add to the effect. Includes products such as garden pond foggers, indoor water-feature foggers.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pond-water-feature-substrates-bedding",
+              "name": "Pond/Water Feature Substrates/Bedding",
+              "gpcCode": "10008366",
+              "gpcDescription": "Includes any products that may be described/observed as a product used to cover the bottom of a pond or water feature. Includes products such as nutrient-rich soil, pond gravel, pond lava, and pond substrate, which are specifically designed to provide a suitable base for aquatic plants and promote a healthy ecosystem within the pond.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pool-pond-water-feature-drainage-pipes",
+              "name": "Pool/Pond/Water Feature Drainage Pipes",
+              "gpcCode": "10003222",
+              "gpcDescription": "Includes any products that may be described/observed as a system of drainage pipes to remove water from a garden pond or water feature.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pool-pond-water-feature-filters-powered",
+              "name": "Pool/Pond/Water Feature Filters (Powered)",
+              "gpcCode": "10003216",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device consisting of a closely woven mesh, through which water may pass but larger particles may not, designed to be fitted to a pond or water feature to keep its water clean.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pool-pond-water-feature-protective-covers",
+              "name": "Pool/Pond/Water Feature Protective Covers",
+              "gpcCode": "10003223",
+              "gpcDescription": "Includes any products that may be described/observed as a piece of material intended to be placed over a pond or water feature to protect it from pollution by detritus or to protect the inhabitants of the pond from predators. Typically they are formed from netting, vinyl or PVC but may be of more rigid material. Includes products such as Cover net.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pool-pond-water-feature-shells-liners",
+              "name": "Pool/Pond/Water Feature Shells/Liners",
+              "gpcCode": "10003213",
+              "gpcDescription": "Includes any products that may be described/observed as a synthetic layer designed to keep water seeping out of a pond, pool or other water feature into the soil. These can be rigid and fixed in size, or flexible and adaptable to the shape of the desired pond. Includes products such as rigid pond-liners, flexible (pvc) liners.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pool-pond-water-feature-supplies-accessories-tools",
+              "name": "Pool/Pond/Water Feature Supplies/Accessories/Tools",
+              "gpcCode": "10005253",
+              "gpcDescription": "Includes any products that may be described/observed as a product used to enhance the quality, health, safety or appearance of a swimming pool, pond or other water feature. Includes such products as chlorine tablet dispensers, pool/pond maintenance kits, scoop net, feeding ring, heron repellent, thermometer, mist maker and underwater-lighting.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pool-pond-water-feature-uv-clarifiers-sterilizers",
+              "name": "Pool/Pond/Water Feature UV Clarifiers/Sterilizers",
+              "gpcCode": "10003219",
+              "gpcDescription": "Includes any products that may be described/observed as a device which uses ultraviolet light to cause small particles such as algae spores, bacteria and protozoa, which are present in pond water but pass through regular filters, to clump together so they can be caught in the filter and removed from suspension.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            },
+            {
+              "id": "pool-water-feature-chemicals-treatments",
+              "name": "Pool/Water Feature Chemicals/Treatments",
+              "gpcCode": "10003221",
+              "gpcDescription": "Includes any products that may be described/observed as chemicals or compounds intended to improve the quality of the pond and pond water. Includes products such as bacterial water cleaners, chemical water cleaners.",
+              "parentId": "garden-pools-ponds-water-features-and-ornaments"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-cooking-heating-appliances",
+          "name": "Lawn/Garden Cooking/Heating Appliances",
+          "gpcCode": "81010800",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "barbecues",
+              "name": "Barbecues",
+              "gpcCode": "10003328",
+              "gpcDescription": "Includes any products that can be described/observed as a heat-producing device specifically designed for cooking food outdoors. Includes products such as free-standing barbecues and table-top barbeques. ",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            },
+            {
+              "id": "cooking-islands-lawn-garden",
+              "name": "Cooking Islands (Lawn/Garden)",
+              "gpcCode": "10003330",
+              "gpcDescription": "Includes any products that may be described/observed as a stationary or mobile structure that includes a gas or charcoal grill and potentially other cooking fixtures such as warming drawers or refrigerators.",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            },
+            {
+              "id": "greenhouse-heaters-ventilators",
+              "name": "Greenhouse Heaters/Ventilators",
+              "gpcCode": "10005369",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical heating unit designed specifically for use in the greenhouse or similar structure. These products can create an artificial micro-environment within the greenhouse that will inturn allow plants to develop at an increased growth rate. Includes products such as freestanding greenhouse heaters.",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            },
+            {
+              "id": "lawn-garden-cooking-heating-appliances-other",
+              "name": "Lawn/Garden Cooking/Heating Appliances Other",
+              "gpcCode": "10003335",
+              "gpcDescription": "Includes any products that may be described/observed as Garden Cooking products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            },
+            {
+              "id": "lawn-garden-cooking-heating-appliances-replacement-parts-accessories",
+              "name": "Lawn/Garden Cooking/Heating Appliances Replacement Parts/Accessories",
+              "gpcCode": "10003336",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for Garden Cooking products.",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            },
+            {
+              "id": "lawn-garden-cooking-heating-appliances-variety-packs",
+              "name": "Lawn/Garden Cooking/Heating Appliances Variety Packs",
+              "gpcCode": "10003334",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Garden Cooking products sold together, which exist within the schema belonging to different bricks but to the same class that is two or more products contained within the same pack which cross bricks within the Garden Cooking class. Includes products such as griddles sold with chimeneas. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            },
+            {
+              "id": "outdoor-heaters-non-powered",
+              "name": "Outdoor Heaters (Non Powered)",
+              "gpcCode": "10003324",
+              "gpcDescription": "Includes any products that may be described/observed as a heating unit designed specifically for use outdoors and provide heat by burning wood and charcoal. Includes products such as portable heaters, tabletop heaters, wall-mounted heaters, chimeneas and fire baskets.",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            },
+            {
+              "id": "outdoor-heaters-powered",
+              "name": "Outdoor Heaters (Powered)",
+              "gpcCode": "10003323",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical heating unit designed specifically for use outdoors. Includes products such as portable heaters, heating towers, wall-mounted heaters.",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            },
+            {
+              "id": "smokers-cooking",
+              "name": "Smokers - Cooking",
+              "gpcCode": "10006742",
+              "gpcDescription": "Includes any products that can be described/observed as a heat-producing device specifically designed for smoking food. Includes products such as free-standing smokers, built-in smokers, and barbeque smokers.",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            },
+            {
+              "id": "warmers-drawers-lawn-garden",
+              "name": "Warmers/Drawers (Lawn/Garden)",
+              "gpcCode": "10003332",
+              "gpcDescription": "Includes any products that may be described/observed as a pullout compartment, which can be electrically heated to keep food at, or bring it to, the desired temperature. These products are specifically designed for outdoor cooking. Includes products such as freestanding, built-in food warmer/drawers.",
+              "parentId": "lawn-garden-cooking-heating-appliances"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-equipment-and-tools",
+          "name": "Lawn/Garden Equipment and Tools",
+          "gpcCode": "81011200",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "applicators-feeders-non-powered",
+              "name": "Applicators/Feeders (Non Powered)",
+              "gpcCode": "10003867",
+              "gpcDescription": "Includes any products that may be described/observed as a device for supplying soil with water or fertilisers as required.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "applicators-feeders-powered",
+              "name": "Applicators/Feeders (Powered)",
+              "gpcCode": "10003869",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device for supplying soil with water or fertilisers as needed.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "axes",
+              "name": "Axes",
+              "gpcCode": "10003383",
+              "gpcDescription": "Includes any products that may be described/observed as an edge tool with a heavy bladed head mounted across a handle. Includes products such as single-handed axe, double-handed axe.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "brush-cutters-string-trimmers-edgers-powered",
+              "name": "Brush Cutters/String Trimmers/Edgers (Powered)",
+              "gpcCode": "10003355",
+              "gpcDescription": "Includes any products that may be described/observed as a petrol or electrically-powered garden tool that cuts grass or plants with whirling plastic lines. These products can cut close to trees, rocks etc. and are used to maintain a neat edge along walks and flowerbeds.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "bulb-planters",
+              "name": "Bulb Planters",
+              "gpcCode": "10003398",
+              "gpcDescription": "Includes any products that may be described/observed as a hand-held garden tool consisting of a cylindrical drum and handle, designed to be driven into the earth to the depth required for planting, then removed holding the displaced earth within the drum.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "chain-saws-powered",
+              "name": "Chain Saws (Powered)",
+              "gpcCode": "10003359",
+              "gpcDescription": "Includes any products that may be described/observed as a gas or electrically powered saw with teeth linked around a rotary mechanism to form an endless chain.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "chippers-shredders-mulchers-powered",
+              "name": "Chippers/Shredders/Mulchers (Powered)",
+              "gpcCode": "10003351",
+              "gpcDescription": "Includes any products that may be described/observed as a petrol or electrically-powered appliance designed to reduce garden waste such as twigs and branches into small chippings suitable for mulch, compost or easy disposal.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "cultivators-tillers-non-powered",
+              "name": "Cultivators/Tillers (Non Powered)",
+              "gpcCode": "10003397",
+              "gpcDescription": "Includes any products that may be described/observed as a manual garden tool designed to be propelled across the garden to plough, mulch, furrow, and/or cut roots.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "cultivators-tillers-rotary-hoes-powered",
+              "name": "Cultivators/Tillers/Rotary Hoes (Powered)",
+              "gpcCode": "10003373",
+              "gpcDescription": "Includes any products that may be described/observed as a multi-purpose powered garden tool designed to be propelled across the garden to plough, mulch, furrow, and/or cut roots. Includes products such as rotary hoes.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "digging-bars",
+              "name": "Digging Bars",
+              "gpcCode": "10003846",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered garden tool manufactured from hardened steel with a point on one end to remove rocks from the soil.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "earth-augers-non-powered",
+              "name": "Earth Augers (Non Powered)",
+              "gpcCode": "10003842",
+              "gpcDescription": "Includes any products that may be described/observed as a manual garden tool having a rotating helical shaft for boring into the earth.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "earth-augers-powered",
+              "name": "Earth Augers (Powered)",
+              "gpcCode": "10003365",
+              "gpcDescription": "Includes any products that may be described/observed as a gas or electric powered garden tool for boring holes in the earth.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "edgers-non-powered",
+              "name": "Edgers (Non Powered)",
+              "gpcCode": "10003389",
+              "gpcDescription": "Includes any products that may be described/observed as a cultivating tool with a blade mounted onto a long handle used to break up the surface of the ground. Includes products such as long handle garden edgers.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "forks-lawn-garden",
+              "name": "Forks (Lawn/Garden)",
+              "gpcCode": "10003391",
+              "gpcDescription": "Includes any products that may be described/observed as a garden tool designed for digging. These products may contain a number of prongs that can be pushed into the earth with the foot and used for lifting or moving debris, or a hand-held tool used for lighter work. Includes products such as garden fork used for moving earth.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "garden-carts-non-powered",
+              "name": "Garden Carts (Non Powered)",
+              "gpcCode": "10003404",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered small cart for carrying garden materials, typically having handles and one, two or four wheels. Includes products such as Garden Hoppers.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "garden-carts-powered",
+              "name": "Garden Carts (Powered)",
+              "gpcCode": "10003376",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device for transporting materials in the garden.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "garden-power-tools-other",
+              "name": "Garden Power Tools Other",
+              "gpcCode": "10003408",
+              "gpcDescription": "Includes any products that may be described/observed as Garden Tools and Equipment products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "garden-power-tools-variety-packs",
+              "name": "Garden Power Tools Variety Packs",
+              "gpcCode": "10003407",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Garden Tools and Equipment products sold together, which exist within the schema belonging to different bricks but to the same class that is two or more products contained within the same pack which cross bricks within the Garden Tools and Equipment class. Includes products such as chain saws sold with hedge trimmers. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "garden-shears-non-powered",
+              "name": "Garden Shears (Non Powered)",
+              "gpcCode": "10003381",
+              "gpcDescription": "Includes any products that may be described/observed as non-powered pruning shears with a spring that holds the handles open and with a single blade that closes against a flat surface (anvil) or blades that slide over each other (bypass) used to cut branches or stems during pruning. Can be a small tool as a bigger one with long-handled. Includes products such as grass shears, loppers, pruners, and secateurs.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "garden-shears-powered",
+              "name": "Garden Shears (Powered)",
+              "gpcCode": "10008491",
+              "gpcDescription": "Includes any products that may be described/observed as powered pruning shears with a motor or engine that provides mechanical assistance for cutting, with a single blade that closes against a flat surface (anvil) or blades that slide over each other (bypass) used to cut branches or stems during pruning. Can be a small tool as a bigger one with long-handled. Includes products such as electrical grass shears, powered loppers, pruners, and secateurs.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "garden-tractors",
+              "name": "Garden Tractors",
+              "gpcCode": "10004102",
+              "gpcDescription": "Includes any products that may be described/observed as a powered piece of garden equipment used to pull trailers or wagons in the garden. These products have a variety of functions including cutting and digging that enable less effort from the user, whom controls the appliance from a 'sit-on' position. Includes products such as electric garden tractors.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "garden-vacuums-blowers",
+              "name": "Garden Vacuums/Blowers",
+              "gpcCode": "10003338",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to clear garden detritus through the use of a suction or blowing function. Includes products such as handheld models, walk-behind models.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "harrows",
+              "name": "Harrows",
+              "gpcCode": "10003386",
+              "gpcDescription": "Includes any products that may be described/observed as an agricultural implement with teeth drawn over plouged land to break clods of earth.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "hedge-trimmers-powered",
+              "name": "Hedge Trimmers (Powered)",
+              "gpcCode": "10003870",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device used to cut branches or stems during hedge trimming.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "hoes",
+              "name": "Hoes",
+              "gpcCode": "10003388",
+              "gpcDescription": "Includes any products that may be described/observed as a cultivating tool with a blade mounted onto a long handle used to break up the surface of the ground. Includes products such as hoes, edgers.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-aerators-non-powered",
+              "name": "Lawn Aerators (Non Powered)",
+              "gpcCode": "10003393",
+              "gpcDescription": "Includes any products that may be described/observed as a device used to supply air to soil. Typically these products operate by breaking up ground cover with spikes to allow oxygen access.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-bag-stands-holders",
+              "name": "Lawn Bag Stands/Holders",
+              "gpcCode": "10003868",
+              "gpcDescription": "Includes any products that may be described/observed as a device for holding lawn bags.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-bags",
+              "name": "Lawn Bags",
+              "gpcCode": "10003403",
+              "gpcDescription": "Includes any products that may be described/observed as a refuse bag specifically designed for lawn and garden products.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-mowers-rakers-non-powered",
+              "name": "Lawn Mowers/Rakers (Non Powered)",
+              "gpcCode": "10003387",
+              "gpcDescription": "Includes any products that may be described/observed as a garden tool consisting of rotating blades inside a walk-behind, human-propelled appliance designed to cut lawn grass. Includes products supplied with grass catchers and those with adjustable cutting height.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-mowers-rakers-powered",
+              "name": "Lawn Mowers/Rakers (Powered)",
+              "gpcCode": "10003353",
+              "gpcDescription": "Includes any products that may be described/observed as a powered piece of garden equipment, consisting of rotating blades contained within a protective casing, designed to cut the grass whilst being pushed along on rode upon by the user. Includes products such as ride on lawn mowers and robotic lawn mowers.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-rollers-non-powered",
+              "name": "Lawn Rollers (Non Powered)",
+              "gpcCode": "10003394",
+              "gpcDescription": "Includes any products that may be described/observed as a manual device used to smooth out the lawn and to maintain a level lawn, for example, after a winter season. Includes push along and tow along rollers.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-rollers-powered",
+              "name": "Lawn Rollers (Powered)",
+              "gpcCode": "10003841",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device used to smooth out the lawn and to maintain a level ground, for example, after a winter season.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-scarifiers-aerators-powered",
+              "name": "Lawn Scarifiers/Aerators (Powered)",
+              "gpcCode": "10003347",
+              "gpcDescription": "Includes any products that may be described/observed as a powered implement for breaking up the surface of the topsoil or top layers supplying air to the soil beneath to aid in seed cultivation.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-sweeps-non-powered",
+              "name": "Lawn Sweeps (Non Powered)",
+              "gpcCode": "10003377",
+              "gpcDescription": "Includes any products that may be described/observed as a garden tool that collects grass clippings, leaves and other garden debris from the lawn.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-garden-equipment-accessories",
+              "name": "Lawn/Garden Equipment Accessories",
+              "gpcCode": "10003352",
+              "gpcDescription": "Includes any products that may be described/observed as an item to be used in conjunction with a garden tractor.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-garden-equipment-other",
+              "name": "Lawn/Garden Equipment Other",
+              "gpcCode": "10003872",
+              "gpcDescription": "Includes any products that may be described/observed as Lawn and Garden Equipment products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-garden-equipment-variety-packs",
+              "name": "Lawn/Garden Equipment Variety Packs",
+              "gpcCode": "10003873",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Law and Garden Equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Lawn and Garden Equipment class. Includes products such as food warmers sold with grill islands. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-garden-hand-tools-other",
+              "name": "Lawn/Garden Hand Tools Other",
+              "gpcCode": "10003865",
+              "gpcDescription": "Includes any products that may be described/observed as a Lawn and Garden Hand Tool product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-garden-hand-tools-replacement-parts-accessories",
+              "name": "Lawn/Garden Hand Tools Replacement Parts/Accessories",
+              "gpcCode": "10003864",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to be used in conjunction or as a replacement part for a Lawn and Garden Hand Tool.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-garden-hand-tools-variety-packs",
+              "name": "Lawn/Garden Hand Tools Variety Packs",
+              "gpcCode": "10003866",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Lawn and Garden Hand Tools sold together, which exist within the schema belonging to different bricks but to the same class that is two or more products contained within the same pack which cross bricks within the Lawn and Garden Hand Tool class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-garden-power-tools-replacement-parts-accessories",
+              "name": "Lawn/Garden Power Tools Replacement Parts/Accessories",
+              "gpcCode": "10003402",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for garden power tools. Includes products such as replacement blades and bag catchers.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "lawn-garden-trowels",
+              "name": "Lawn/Garden Trowels",
+              "gpcCode": "10003392",
+              "gpcDescription": "Includes any products that may be described/observed as a small shovel designed for digging or weeding for use in lawn, yard or garden work.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "log-splitters-powered",
+              "name": "Log Splitters (Powered)",
+              "gpcCode": "10003367",
+              "gpcDescription": "Includes any products that may be described/observed as a powered garden tool for used for splitting logs into manageable pieces to store or burn.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "mauls",
+              "name": "Mauls",
+              "gpcCode": "10003385",
+              "gpcDescription": "Includes any products that may be described/observed as a long-handled hammer or mallet used to drive in wedges.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "picks",
+              "name": "Picks",
+              "gpcCode": "10003863",
+              "gpcDescription": "Includes any products that may be described/observed as a heavy iron tool, curved and sometimes pointed at both ends, wielded by means of a wooden handle inserted in the middle, - used for digging the ground.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "post-hole-diggers-non-powered",
+              "name": "Post Hole Diggers (Non Powered)",
+              "gpcCode": "10003844",
+              "gpcDescription": "Includes any products that may be described/observed as a manual device, specifically designed for making holes in the ground to hold a fence post.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "post-hole-diggers-powered",
+              "name": "Post Hole Diggers (Powered)",
+              "gpcCode": "10003861",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device, specifically designed for making holes in the ground to hold a fence post.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "potting-table",
+              "name": "Potting Table",
+              "gpcCode": "10007606",
+              "gpcDescription": "Includes any products that may be described/observed as a table designed to allow the potting of plants. These products can be designed for indoor or outdoor use. These products are sold empty and could be made of wood, metal, or other materials.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "pressure-washer-replacement-parts-accessories",
+              "name": "Pressure Washer Replacement Parts/Accessories",
+              "gpcCode": "10007939",
+              "gpcDescription": "Includes any products that may be described/observed as parts or accessories for Pressure Washers.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "pressure-washers-powered",
+              "name": "Pressure Washers (Powered)",
+              "gpcCode": "10003375",
+              "gpcDescription": "Includes any products that may be described/observed as an electrically powered tool for washing items under pressure. These are typically used to wash down stone patios and pathways.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "pruners-powered",
+              "name": "Pruners (Powered)",
+              "gpcCode": "10003843",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device, that consists of a long-handled edge with a curved blade at the end and sometimes a clipper and used to prune small trees.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "rakes",
+              "name": "Rakes",
+              "gpcCode": "10003399",
+              "gpcDescription": "Includes any products that may be described/observed as a long-handled tool with a row of teeth at its head, designed to move leaves or loosen soil. These products are specifically intended for garden or outdoor use.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "seed-starters",
+              "name": "Seed Starters",
+              "gpcCode": "10003405",
+              "gpcDescription": "Includes all products that can be described/observed as a frame intended to hold and support seed trays or pots. These frames can be made of different materials. The individual seed tray or pot holders are held together by the tray frame.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "shovels-spades",
+              "name": "Shovels/Spades",
+              "gpcCode": "10003390",
+              "gpcDescription": "Includes any products that may be described/observed as a tool to move or shift earth, snow or wet concrete or alternatively to dig garden soil. It is often made of a wooden handle with a metal blade or scoop. Includes products such as snow shovels and agricultural spades.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "sickles-scythes-snaths",
+              "name": "Sickles/Scythes/Snaths",
+              "gpcCode": "10003384",
+              "gpcDescription": "Includes any products that may be described/observed as an edge tool for cutting grass or crops. Typically these products have a curved blade affixed to a handle.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "sifters-lawn-garden",
+              "name": "Sifters (Lawn/Garden)",
+              "gpcCode": "10003396",
+              "gpcDescription": "Includes any products that may be described/observed as a manual garden tool for sieving earth.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "snow-throwers-powered",
+              "name": "Snow Throwers (Powered)",
+              "gpcCode": "10003341",
+              "gpcDescription": "Includes any products that may be described/observed as a powered machine that removes snow by scooping it up and throwing it forcefully through a chute.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "spreaders",
+              "name": "Spreaders",
+              "gpcCode": "10008409",
+              "gpcDescription": "Includes any products that may be described/observed as a garden tool that spread or scatter fertilizer or seed on the lawn.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "stump-grinders-pullers-powered",
+              "name": "Stump Grinders/Pullers (Powered)",
+              "gpcCode": "10003368",
+              "gpcDescription": "Includes any products that may be described/observed as a powered garden tool for grinding and removing extruding tree stumps.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "tampers-non-powered",
+              "name": "Tampers (Non Powered)",
+              "gpcCode": "10003395",
+              "gpcDescription": "Includes any products that may be described/observed as a manual garden tool for pressing down charge in a drill hole or similar functions.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "tampers-powered",
+              "name": "Tampers (Powered)",
+              "gpcCode": "10003370",
+              "gpcDescription": "Includes any products that may be described/observed as a powered garden tool for pressing down charge in a drill hole or functions of a similar nature.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "wedges",
+              "name": "Wedges",
+              "gpcCode": "10003862",
+              "gpcDescription": "Includes any products that may be described/observed as a piece of metal, or other hard material, thick at one end, and tapering to a thin edge at the other, used in splitting wood, rocks, etc., in raising heavy bodies, and the like.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            },
+            {
+              "id": "weed-burners-powered",
+              "name": "Weed Burners (Powered)",
+              "gpcCode": "10003401",
+              "gpcDescription": "Includes any products that may be described/observed as a powered facility for the destruction of weeds by burning.",
+              "parentId": "lawn-garden-equipment-and-tools"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-fencing",
+          "name": "Lawn/Garden Fencing",
+          "gpcCode": "81010500",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "electric-fence-radio-fences",
+              "name": "Electric Fence/Radio Fences",
+              "gpcCode": "10003283",
+              "gpcDescription": "Includes any products that may be described/observed as a fence made up of conductor wires, along which an energizer releases an electric pulse, intended to cause a brief shock to anything that touches it and therefore keep animals in a desired area.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "fence-net-mesh",
+              "name": "Fence Net/Mesh",
+              "gpcCode": "10003281",
+              "gpcDescription": "Includes any products that may be described/observed as an open fabric of string or rope or wire woven together at regular intervals, and intended to be strung between vertical posts to form an enclosure or barrier. Includes products such as wire mesh, synthetic fibre mesh.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "fence-posts-rails",
+              "name": "Fence Posts/Rails",
+              "gpcCode": "10003278",
+              "gpcDescription": "Includes any products that may be described/observed as sturdy verticals usually of precast concrete, metal or timber, between which panels, boards or slats should be fixed to construct an enclosing barrier.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "fence-screens-signs-fences",
+              "name": "Fence Screens/Signs/Fences",
+              "gpcCode": "10003277",
+              "gpcDescription": "Includes any products that may be described/observed as flat pieces of wood or other materials designed to be fixed between posts or rails to form an enclosing barrier.\nIncludes products such as plank fences, wire mesh screens on frames, fences and chestnut fences.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "fence-stays-braces",
+              "name": "Fence Stays/Braces",
+              "gpcCode": "10003279",
+              "gpcDescription": "Includes any products that may be described/observed as a construct intended to strengthen the fence or hold its components perpendicular to each other. Includes products such as single, double, or \"h\" braces.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "gabion",
+              "name": "Gabion",
+              "gpcCode": "10007012",
+              "gpcDescription": "Includes any products that may be described/observed as an iron cage/basket intended to be filled with stone, rock, soil or other material to create a wall or form an enclosing barrier for a garden or lawn.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "garden-borders-edges",
+              "name": "Garden Borders/Edges",
+              "gpcCode": "10003280",
+              "gpcDescription": "Includes any products that may be described/observed as material designed to be placed between areas of a garden, e.g. flowerbeds and lawn, to define and contain them as separate areas. Includes products such as terracotta tile, semi-flexible plastic, stone slabs.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "gates-non-powered",
+              "name": "Gates (Non Powered)",
+              "gpcCode": "10003286",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered door-like movable barrier in a fence or wall. Includes products such as timber gates, metal gates, decorated gates, half-height gates, and openwork gates.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "gates-powered",
+              "name": "Gates (Powered)",
+              "gpcCode": "10003287",
+              "gpcDescription": "Includes any products that may be described/observed as a powered door-like movable barrier in a fence or wall. Includes products such as timber gates, metal gates, decorated gates, half-height gates, and openwork gates.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "lawn-garden-fencing-accessories",
+              "name": "Lawn/Garden Fencing Accessories",
+              "gpcCode": "10005678",
+              "gpcDescription": "Includes any products that may be described/observed as accessories, aids, and direct components of lawn and garden fencing. Includes products such as barbed wire stretchers, wire dispensers or wire caddies.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "lawn-garden-fencing-other",
+              "name": "Lawn/Garden Fencing Other",
+              "gpcCode": "10003289",
+              "gpcDescription": "Includes any products that may be described/observed as Garden Fencing products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "lawn-garden-fencing-variety-packs",
+              "name": "Lawn/Garden Fencing Variety Packs",
+              "gpcCode": "10003288",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Garden Fencing products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Garden Fencing class. Includes products such as fencing sold with non-powered gates. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "razor-barbed-wire-fencing",
+              "name": "Razor/Barbed Wire Fencing",
+              "gpcCode": "10003285",
+              "gpcDescription": "Includes any products that may be described/observed as twisted strands of fence wire with barbs at regular intervals designed to serve security needs. These fences are specifically designed to be used in the garden.",
+              "parentId": "lawn-garden-fencing"
+            },
+            {
+              "id": "trellising",
+              "name": "Trellising",
+              "gpcCode": "10003284",
+              "gpcDescription": "Includes any products that may be described/observed as a frame of small boards (lattice) that trains or supports plants. Includes products such as trellis frames, trellis panels, trellis arches.",
+              "parentId": "lawn-garden-fencing"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-floral-plant-accessories",
+          "name": "Lawn/Garden Floral/Plant Accessories",
+          "gpcCode": "81011800",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "floral-plant-accessories-lawn-garden",
+              "name": "Floral/Plant Accessories (Lawn/Garden)",
+              "gpcCode": "10005366",
+              "gpcDescription": "Includes any products that may be described/observed as accessories to live flowers and plants. These products may include such items as oasis or twine specifically used to enhance the presentation of flowers and or plants in an arrangement. These products are designed to support the cultivation and care of plants. Includes products such as plate and pitch labels for easy plant identification, ground cloth pins to secure coverings and fabrics, peat tablets for seed starting, coconut mats for moisture retention, bio/degradable culture pots for environmentally friendly planting, grow bags for container gardening, binding wire for plant support, plant clips for training and shaping, and tree tape for protecting and stabilizing young trees.",
+              "parentId": "lawn-garden-floral-plant-accessories"
+            },
+            {
+              "id": "plant-supports-stakes",
+              "name": "Plant Supports/Stakes",
+              "gpcCode": "10005220",
+              "gpcDescription": "Includes any products that may be described/observed as a long, thin, rigid structural item used to support plants in their natural form, aiding their growth. Includes products in a variety of shapes and sizes.",
+              "parentId": "lawn-garden-floral-plant-accessories"
+            },
+            {
+              "id": "variety-planters-box-pot",
+              "name": "Variety Planters - Box/Pot",
+              "gpcCode": "10003854",
+              "gpcDescription": "Includes any products that may be described/observed as a movable box or a fixed low, open structure, filled with variety of plants.",
+              "parentId": "lawn-garden-floral-plant-accessories"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-furniture-furnishings",
+          "name": "Lawn/Garden Furniture/Furnishings",
+          "gpcCode": "81010300",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "canopies-tarpaulins-lawn-garden",
+              "name": "Canopies/Tarpaulins (Lawn/Garden)",
+              "gpcCode": "10003321",
+              "gpcDescription": "Includes any products that may be described/observed as a freestanding covering of cloth or other material, supported by verticals, intended to give shade or protection from the weather. These products may also have the additional function of being used as ground cover. Includes products such as plastic tarpaulins.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "flower-plant-pots-replacement-parts-accessories",
+              "name": "Flower/Plant Pots Replacement Parts/Accessories",
+              "gpcCode": "10007934",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for containers designed to hold one or more plants.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "folding-tents",
+              "name": "Folding Tents",
+              "gpcCode": "10007959",
+              "gpcDescription": "Includes any products that can be described/observed as a tent used outdoors. Described as a structure formed of canvas or other material forming a roof with or without walls over supports that can easily be erected.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "garden-benches",
+              "name": "Garden Benches",
+              "gpcCode": "10003248",
+              "gpcDescription": "Includes any products that may be described/observed as a long seat for more than one person, specifically intended for outdoor use. Includes products such as benches with and without backs, and with or without arms.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "garden-chairs",
+              "name": "Garden Chairs",
+              "gpcCode": "10003242",
+              "gpcDescription": "Includes any products that may be described/observed as a seat for one person, with a back, intended specifically for outdoor use. Includes products such as stacking chairs, folding chairs, decorated chairs, children's chairs.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "garden-display-units",
+              "name": "Garden Display Units",
+              "gpcCode": "10003316",
+              "gpcDescription": "Includes any products that may be described/observed as an item of furniture designed to display items such as ornaments and plants in a garden environment.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "garden-footrests",
+              "name": "Garden Footrests",
+              "gpcCode": "10003246",
+              "gpcDescription": "Includes any products that may be described/observed as a unit of furniture intended to support the feet while sitting, and specifically designed for outdoor use. Includes wooden footrests sold separately to loungers but providing a support for the legs.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "garden-kneelers-seats",
+              "name": "Garden Kneelers/Seats",
+              "gpcCode": "10003406",
+              "gpcDescription": "Includes any products that may be described/observed as an item of garden equipment designed to be knelt or sat on to ease comfort while gardening. These products range from mats and cushions to folding frames. Includes products such as kneeling mats, folding seat and kneeler, kneepads.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "garden-ornaments-plaques",
+              "name": "Garden Ornaments/Plaques",
+              "gpcCode": "10005719",
+              "gpcDescription": "Includes any products that may be described/observed as a decorative item designed for a garden environment. Includes products such as statuettes, garden gnomes, decorative stone and outdoor wall plaques.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "garden-shelving-worktops",
+              "name": "Garden Shelving/Worktops",
+              "gpcCode": "10005367",
+              "gpcDescription": "Includes any products that may be described/observed as a practical furnishing designed to control and safely store garden implements and accessories such as hand tools and materials in a workshop/shed or garden environment.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "garden-storage-boxes",
+              "name": "Garden Storage Boxes",
+              "gpcCode": "10007014",
+              "gpcDescription": "Includes any products that can be described/observed as a reusable rigid, three-dimensional container with closed faces that completely encloses its contents and may be made out of any material, specifically designed to be used for the lawn/garden. These can be used to store pillows for garden chairs, or materials that are used to maintain the garden/lawn. ",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "garden-tables",
+              "name": "Garden Tables",
+              "gpcCode": "10003245",
+              "gpcDescription": "Includes any products that may be described/observed as a usually piece of furniture with a flat, usually smooth, top supported by one or more legs. These products are specifically intended for outdoor use. Includes products such as wooden, plastic, or metal tables, children's tables.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "hammocks",
+              "name": "Hammocks",
+              "gpcCode": "10003250",
+              "gpcDescription": "Includes any products that may be described/observed as a hanging bed of canvas or rope netting designed to be suspended between two posts/trees and swing easily. Includes tri-beam, roman arc and guyed post product types.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "lawn-garden-furnishings-other",
+              "name": "Lawn/Garden Furnishings Other",
+              "gpcCode": "10003253",
+              "gpcDescription": "Includes any products that may be described/observed as Garden Furniture products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "lawn-garden-furnishings-replacement-parts-accessories",
+              "name": "Lawn/Garden Furnishings Replacement Parts/Accessories",
+              "gpcCode": "10003251",
+              "gpcDescription": "Includes any products that may be described/observed as accessories, aids, and direct components of garden furniture. Includes products such as garden chair cushions, outdoor tablecloths, tabletops, bases, armrests, parasol cloths, etc.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "lawn-garden-furnishings-variety-packs",
+              "name": "Lawn/Garden Furnishings Variety Packs",
+              "gpcCode": "10003252",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Garden Furniture products sold together, which exist within the schema belonging to different bricks but to the same class that is two or more products contained within the same pack which cross bricks within the Garden Furniture class. Includes products such as garden chairs sold with garden tables. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "mail-post-boxes-lawn-garden",
+              "name": "Mail/Post Boxes (Lawn/Garden)",
+              "gpcCode": "10005361",
+              "gpcDescription": "Includes any products that may be described/observed as a private box for the delivery, and posting, of mail to the intended recipient. These products can either be freestanding lawn boxes or they may be designed to attach to a post or the ground for added security. Includes products such as private metal wall-mounted mail boxes.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "outdoor-loungers",
+              "name": "Outdoor Loungers",
+              "gpcCode": "10003243",
+              "gpcDescription": "Includes any products that may be described/observed as a long seat designed for one person to recline or lie on, specifically designed for outdoor use. Includes products such as wooden loungers, folding loungers, adjustable loungers to be used in the garden, by the pool or on the beach.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "outdoor-swing-benches",
+              "name": "Outdoor Swing Benches",
+              "gpcCode": "10003249",
+              "gpcDescription": "Includes any products that may be described/observed as a long seat designed for more than one person and suspended from raised points to produce a swing motion. These products are specifically designed for outdoor use.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "plant-holders",
+              "name": "Plant Holders",
+              "gpcCode": "10003313",
+              "gpcDescription": "Includes any products that may be described/observed as a container designed to hold one or more growing plants. These products can be designed for indoor or outdoor use. These products are sold empty. Includes products such as outdoor plant holders, indoor plant holders, and window boxes.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "umbrellas-parasols",
+              "name": "Umbrellas/Parasols",
+              "gpcCode": "10005219",
+              "gpcDescription": "Includes any products that may be described/observed as a device used for temporary shade or shelter from precipitation. These products are usually used in conjunction with garden tables or heavy bases which provide the support to allow the parasol to stand upright.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            },
+            {
+              "id": "umbrellas-parasols-stands-bases",
+              "name": "Umbrellas/Parasols Stands/Bases",
+              "gpcCode": "10007036",
+              "gpcDescription": "Includes any products that may be described/observed as a heavy base which provides the support to allow a umbrella/parasol to stand upright.",
+              "parentId": "lawn-garden-furniture-furnishings"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-outdoor-structures",
+          "name": "Lawn/Garden Outdoor Structures",
+          "gpcCode": "81011000",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "archs",
+              "name": "Archs",
+              "gpcCode": "10003414",
+              "gpcDescription": "Includes any products that can be described/observed as a framework for supporting plants that may also encompass similar feature to create a pleasant place.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "conservatories",
+              "name": "Conservatories",
+              "gpcCode": "10003415",
+              "gpcDescription": "Includes any products that can be described/observed as a glass, or predominantly glass, structure either free standing in the garden or attached to a house. These products may be designed for raising plants, or for sitting in.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "event-tents-marquees",
+              "name": "Event Tents/Marquees",
+              "gpcCode": "10003417",
+              "gpcDescription": "Includes any products that can be described/observed as a structure formed of canvas or other material forming a roof and walls over supports. Typically a large tent with open sides, used for outdoor entertainment.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "gazebos-pergola-s-arbours",
+              "name": "Gazebos/Pergola's/Arbours",
+              "gpcCode": "10003412",
+              "gpcDescription": "Includes any products that can be described/observed as a small structure that is freestanding, has a roof and is (half)open-sided. These products are designed for sitting in to provide shade and rest. Includes products such as belvederes on the roof of a house.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "greenhouses-hothouses-complete",
+              "name": "Greenhouses/Hothouses (Complete)",
+              "gpcCode": "10003409",
+              "gpcDescription": "Includes any products that can be described/observed as a complete outdoor structure designed to be able to work indoors for the cultivation and exhibition of plants under controlled conditions. Mainly made of glass, but also other materials could be used.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "greenhouses-hothouses-frames",
+              "name": "Greenhouses/Hothouses Frames",
+              "gpcCode": "10003890",
+              "gpcDescription": "Includes any products that can be described/observed as a frame for a greenhouse/hothouse, specifically designed to be fitted mainly with glass, but also other materials could be used, to allow the cultivation and exhibition of plants under controlled conditions.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "hotbed-frames-cold-frames-propagators-cloches",
+              "name": "Hotbed Frames/Cold Frames/Propagators/Cloches",
+              "gpcCode": "10003421",
+              "gpcDescription": "Includes any products that may be described/observed as a protective covering consisting of a frame with a glass top in which small plants are protected from the cold. Includes products such as aluminium and wooden frames.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "lawn-garden-outdoor-structures-other",
+              "name": "Lawn/Garden Outdoor Structures Other",
+              "gpcCode": "10003418",
+              "gpcDescription": "Includes any products that may be described/observed as lawn and garden outdoor structure products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "lawn-garden-outdoor-structures-replacement-parts-accessories",
+              "name": "Lawn/Garden Outdoor Structures Replacement Parts/Accessories",
+              "gpcCode": "10003419",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for outdoor structural products.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "lawn-garden-outdoor-structures-variety-packs",
+              "name": "Lawn/Garden Outdoor Structures Variety Packs",
+              "gpcCode": "10003891",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Lawn and Garden Outdoor Structures sold together, which exist within the schema belonging to different bricks but to the same class that is two or more products contained within the same pack which cross bricks within the Lawn and Garden Outdoor Structures class. Includes Items such as Cold Frames and Plant Tunnels sold together in the same packaging. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "pagodas-lawn-garden",
+              "name": "Pagodas (Lawn/Garden)",
+              "gpcCode": "10003416",
+              "gpcDescription": "Includes any products that can be described/observed as a prefabricated many-storied, tapering tower structure used in the garden. These products are considered a derivative of Oriental devotional structures.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "plants-fauna-tunnels",
+              "name": "Plants/Fauna Tunnels",
+              "gpcCode": "10003859",
+              "gpcDescription": "Includes any products that may be described/observed as an artificial passage or archway that can also be used for facilitating growth and protecting plants.",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "sheds",
+              "name": "Sheds",
+              "gpcCode": "10003411",
+              "gpcDescription": "Includes any products that can be described/observed as a single storey outbuilding used for storage or shelter. They are specifically composed out of 4 walls and a roof and, may or may not contain a covered extension. ",
+              "parentId": "lawn-garden-outdoor-structures"
+            },
+            {
+              "id": "wildlife-habitat",
+              "name": "Wildlife Habitat",
+              "gpcCode": "10006847",
+              "gpcDescription": "Includes any products that may be described/observed as a habitat or home for wildlife, not intended for housing/protecting pets.  Includes products such as ladybird/ladybug houses, butterfly towers and hedgehog houses.",
+              "parentId": "lawn-garden-outdoor-structures"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-soil-soil-amendments",
+          "name": "Lawn/Garden Soil/Soil Amendments",
+          "gpcCode": "81011500",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "artificial-turf",
+              "name": "Artificial Turf",
+              "gpcCode": "10007009",
+              "gpcDescription": "Includes any products that can be described/observed as a ground cover made of artificial grass (also known as astroturf), and is usually designed for the garden or lawn. Typically these products are made of fabric and plastic, or synthetic materials.",
+              "parentId": "lawn-garden-soil-soil-amendments"
+            },
+            {
+              "id": "gravel",
+              "name": "Gravel",
+              "gpcCode": "10006785",
+              "gpcDescription": "Includes any products that can be described/observed as composed of unconsolidated rock fragments that have a general particle size range and include size classes from granule- to boulder-sized fragments.",
+              "parentId": "lawn-garden-soil-soil-amendments"
+            },
+            {
+              "id": "ground-cover-landscaping-mulching-fabrics",
+              "name": "Ground Cover/Landscaping/Mulching Fabrics",
+              "gpcCode": "10005729",
+              "gpcDescription": "Includes any products that may be described/observed as a porous ground cover or porous mulching fabric or natural such as straw, sawdust, leaves, plastic film, or loose soil and bark chips to be used in the garden. Includes woven black polypropylene for hard landscaping projects as well as black spunbonded polypropylene mulching fabric with UV stabiliser, which acts as a weed barrier for planting areas whilst still allowing moisture through to the plants and which protect the soil and plant roots from the effects of raindrops, soil crusting, freezing, or evaporation. Includes products such as organic mulch, geotextiles, landscape fabrics.",
+              "parentId": "lawn-garden-soil-soil-amendments"
+            },
+            {
+              "id": "lawn-garden-soil-soil-amendments-other",
+              "name": "Lawn/Garden Soil/Soil Amendments Other",
+              "gpcCode": "10004110",
+              "gpcDescription": "Includes any products that may be described/observed as lawn and garden soil and soil amendment products, where the user of the schema is not able to classify the products in existing bricks within the schema. Exludes all currently classified bricks.",
+              "parentId": "lawn-garden-soil-soil-amendments"
+            },
+            {
+              "id": "topsoil",
+              "name": "Topsoil",
+              "gpcCode": "10003236",
+              "gpcDescription": "Includes any products that may be described/observed as the upper, cultivated layer of soil, which may vary in depth from 8 to 45 cm. It can contains organic matter, and a variety of soil organisms, including earthworms. Includes products such as lawn topsoil, potting topsoil, hydrograins and hydropellets.",
+              "parentId": "lawn-garden-soil-soil-amendments"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-testing-diagnostic-equipment",
+          "name": "Lawn/Garden Testing Diagnostic Equipment",
+          "gpcCode": "81011400",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "lawn-garden-testing-diagnostic-equipment-other",
+              "name": "Lawn/Garden Testing Diagnostic Equipment Other",
+              "gpcCode": "10003887",
+              "gpcDescription": "Includes any products that may be described/observed as Lawn and Garden Testing Diagnostic Equipment product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-testing-diagnostic-equipment"
+            },
+            {
+              "id": "lawn-garden-testing-diagnostic-equipment-replacement-parts-accessories",
+              "name": "Lawn/Garden Testing Diagnostic Equipment Replacement Parts/Accessories",
+              "gpcCode": "10003889",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for Lawn and Garden Testing Diagnostic Equipment. Includes replacement gauges and scales for humidity and moisture testers.",
+              "parentId": "lawn-garden-testing-diagnostic-equipment"
+            },
+            {
+              "id": "water-soil-testing-equipment-non-powered",
+              "name": "Water/Soil Testing Equipment (Non Powered)",
+              "gpcCode": "10003238",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device, implement or kit designed to measure the soil or lawn, for example for pH or moisture levels. Includes products such as chemical testers, moisture testers.",
+              "parentId": "lawn-garden-testing-diagnostic-equipment"
+            },
+            {
+              "id": "water-soil-testing-equipment-powered",
+              "name": "Water/Soil Testing Equipment (Powered)",
+              "gpcCode": "10003237",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device, implement or kit designed to measure the soil or lawn, for example for pH or moisture levels. Includes products such as chemical testers, battery-operated testers.",
+              "parentId": "lawn-garden-testing-diagnostic-equipment"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-tiles",
+          "name": "Lawn/Garden Tiles",
+          "gpcCode": "81011900",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "tiles-outdoor-ground",
+              "name": "Tiles - Outdoor Ground",
+              "gpcCode": "10006786",
+              "gpcDescription": "Includes any products that can be described/observed as  attractive, outdoor garden tiles to be used to cover decks, patios or other outdoor surfaces, to upgrade their look and extend their longevity. They are usually made of rot-resistant materials and come in various varieties in multiple colours.",
+              "parentId": "lawn-garden-tiles"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-waste-disposal",
+          "name": "Lawn/Garden Waste Disposal",
+          "gpcCode": "81010700",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "compost-vermiculture-bins",
+              "name": "Compost/Vermiculture Bins",
+              "gpcCode": "10003308",
+              "gpcDescription": "Includes any products that may be described/observed as a refuse receptacle specifically designed for storing compost and/or worms to enhance the breakdown of matter. These products are usually larger, and made of more durable material, than indoor bins.",
+              "parentId": "lawn-garden-waste-disposal"
+            },
+            {
+              "id": "garden-incinerators",
+              "name": "Garden Incinerators",
+              "gpcCode": "10003400",
+              "gpcDescription": "Includes any products that may be described/observed as a furnace or facility for the destruction of waste by burning.",
+              "parentId": "lawn-garden-waste-disposal"
+            },
+            {
+              "id": "lawn-garden-waste-disposal-other",
+              "name": "Lawn/Garden Waste Disposal Other",
+              "gpcCode": "10003311",
+              "gpcDescription": "Includes any products that may be described/observed as Garden Waste Disposal products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-waste-disposal"
+            },
+            {
+              "id": "lawn-garden-waste-disposal-replacement-parts-accessories",
+              "name": "Lawn/Garden Waste Disposal Replacement Parts/Accessories",
+              "gpcCode": "10005368",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for Lawn and Garden Waste Disposal Equipment. Includes products such as replacement handles and stands for bins.",
+              "parentId": "lawn-garden-waste-disposal"
+            },
+            {
+              "id": "outdoor-bins",
+              "name": "Outdoor Bins",
+              "gpcCode": "10003314",
+              "gpcDescription": "Includes any products that may be described/observed as a refuse receptacle specifically designed for outdoor use. These products are usually larger, and made of more durable material, than indoor bins. Includes products such as wheeled bins.",
+              "parentId": "lawn-garden-waste-disposal"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-watering-equipment",
+          "name": "Lawn/Garden Watering Equipment",
+          "gpcCode": "81010400",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "garden-water-storage-supplies",
+              "name": "Garden Water Storage Supplies",
+              "gpcCode": "10003268",
+              "gpcDescription": "Includes any products that may be described/observed as an area where water is stored, prior to use in garden watering.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "hose-connectors",
+              "name": "Hose Connectors",
+              "gpcCode": "10003255",
+              "gpcDescription": "Includes any products that may be described/observed as a device that connects parts of a hose together.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "hose-storage-mobile",
+              "name": "Hose Storage - Mobile",
+              "gpcCode": "10003257",
+              "gpcDescription": "Includes any products that may be described/observed as a mobile item designed to store hoses. Includes products such as hose trolleys.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "hose-storage-stationary",
+              "name": "Hose Storage - Stationary",
+              "gpcCode": "10003256",
+              "gpcDescription": "Includes any products that may be described/observed as a stationary item designed to store hoses. Includes products such as hose reels.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "hoses",
+              "name": "Hoses",
+              "gpcCode": "10003254",
+              "gpcDescription": "Includes any products that may be described/observed as a flexible tube of varying lengths typically constructed of rubber, neoprene or Teflon, used to convey water from one point to another under pressure. Includes products such as a coiled garden hose.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "irrigation-systems",
+              "name": "Irrigation Systems",
+              "gpcCode": "10003264",
+              "gpcDescription": "Includes any products that may be described/observed as a series of component parts that when used together serve the function of irrigating an area.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "irrigation-timers-controllers",
+              "name": "Irrigation Timers/Controllers",
+              "gpcCode": "10003276",
+              "gpcDescription": "Includes any products that may be described/observed as timers to control irrigation devices or systems. Includes products such as water timers for sprinkler systems.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "lawn-garden-watering-equipment-other",
+              "name": "Lawn/Garden Watering Equipment Other",
+              "gpcCode": "10003274",
+              "gpcDescription": "Includes any products that may be described/observed as Garden Watering products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "lawn-garden-watering-equipment-replacement-parts",
+              "name": "Lawn/Garden Watering Equipment Replacement Parts",
+              "gpcCode": "10003273",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Garden Watering products. Includes replacement handles for watering cans.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "lawn-garden-watering-equipment-variety-packs",
+              "name": "Lawn/Garden Watering Equipment Variety Packs",
+              "gpcCode": "10003272",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Garden Watering products sold together, which exist within the schema belonging to different bricks but to the same class that is two or more products contained within the same pack which cross bricks within the Garden Watering class. Includes products such as hoses sold with hose storage. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "sprinklers-misters-non-powered",
+              "name": "Sprinklers/Misters (Non Powered)",
+              "gpcCode": "10003270",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered mechanical device to be attached to a water supply in order to diffuse the water into a lighter and wider-spreading flow.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "sprinklers-misters-powered",
+              "name": "Sprinklers/Misters (Powered)",
+              "gpcCode": "10003271",
+              "gpcDescription": "Includes any products that may be described/observed as a powered mechanical device to be attached to a water supply in order to diffuse the water into a lighter and wider-spreading flow.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "sprinklers-sprayers-misters-hose-end",
+              "name": "Sprinklers/Sprayers/Misters (Hose End)",
+              "gpcCode": "10003262",
+              "gpcDescription": "Includes any products that may be described/observed as an attachment fixed to the end of a hose, specifically designed to enhance the distribution of chemicals or fertilizer.",
+              "parentId": "lawn-garden-watering-equipment"
+            },
+            {
+              "id": "watering-cans",
+              "name": "Watering Cans",
+              "gpcCode": "10003267",
+              "gpcDescription": "Includes any products that may be described/observed as a container with a handle and a spout with a perforated nozzle; used to sprinkle water over plants. Includes products such as \"traditional\" upright cans, plastic cans.",
+              "parentId": "lawn-garden-watering-equipment"
+            }
+          ]
+        },
+        {
+          "id": "lawn-garden-weather-monitoring-observation",
+          "name": "Lawn/Garden Weather Monitoring/Observation",
+          "gpcCode": "81011100",
+          "parentId": "lawn-garden-supplies",
+          "children": [
+            {
+              "id": "anemometers-non-powered",
+              "name": "Anemometers - Non Powered",
+              "gpcCode": "10003430",
+              "gpcDescription": "Includes any products that can be described/observed as an instrument that measures wind speed.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "anemometers-powered",
+              "name": "Anemometers - Powered",
+              "gpcCode": "10005318",
+              "gpcDescription": "Includes any products that can be described/observed as a powered instrument that measures wind speed. The products include solar powered and those equipped with data transmission capabilities.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "barographs-non-powered",
+              "name": "Barographs - Non Powered",
+              "gpcCode": "10003443",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered instrument that continuously records a barometer's reading of atmospheric pressure.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "barometers-non-powered",
+              "name": "Barometers - Non Powered",
+              "gpcCode": "10003441",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered instrument that measures atmospheric pressure, and displays the results using a dial.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "combination-weather-measuring-monitoring-equipment-non-powered",
+              "name": "Combination Weather Measuring/Monitoring Equipment - Non Powered",
+              "gpcCode": "10003444",
+              "gpcDescription": "Includes any products that can be described/observed as an item of non-powered equipment that serves multiple functions of weather monitoring.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "combination-weather-measuring-monitoring-equipment-powered",
+              "name": "Combination Weather Measuring/Monitoring Equipment - Powered",
+              "gpcCode": "10005316",
+              "gpcDescription": "Includes any products that can be described/observed as an item of powered equipment that serves multiple functions of weather monitoring.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "evaporimeters-atmometers-powered",
+              "name": "Evaporimeters/Atmometers - Powered",
+              "gpcCode": "10003434",
+              "gpcDescription": "Includes any products that can be described/observed as a powered instrument that measures the rate of evaporation of water into the atmosphere.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "hygrometers-non-powered",
+              "name": "Hygrometers - Non-Powered",
+              "gpcCode": "10003437",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered instrument used to measure atmospheric humidity.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "hygrometers-powered",
+              "name": "Hygrometers - Powered",
+              "gpcCode": "10005323",
+              "gpcDescription": "Includes any products that can be described/observed as a powered instrument used to measure atmospheric humidity.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "lawn-garden-weather-monitoring-observation-other",
+              "name": "Lawn/Garden Weather Monitoring/Observation Other",
+              "gpcCode": "10003452",
+              "gpcDescription": "Includes any products that may be described/observed as Weather Monitoring/Observation products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "lawn-garden-weather-monitoring-observation-replacement-parts-accessories",
+              "name": "Lawn/Garden Weather Monitoring/Observation Replacement Parts/Accessories",
+              "gpcCode": "10003451",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Weather Monitoring/Observation products. Includes products such as replacement piping.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "lawn-garden-weather-monitoring-observation-variety-packs",
+              "name": "Lawn/Garden Weather Monitoring/Observation Variety Packs",
+              "gpcCode": "10003453",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Weather Monitoring/Observation products sold together, which exist within the schema belonging to different bricks but to the same class that is two or more products contained within the same pack which cross bricks within the Weather Monitoring/Observation. Includes products such as a barograph sold with a barometer. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "light-meters-powered",
+              "name": "Light Meters - Powered",
+              "gpcCode": "10003436",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device that measures the intensity of light.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "psychrometers-powered",
+              "name": "Psychrometers - Powered",
+              "gpcCode": "10003432",
+              "gpcDescription": "Includes any products that can be described/observed as a powered instrument that measures the water vapour content of the atmosphere.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "pyranometers-solarimeters-powered",
+              "name": "Pyranometers/Solarimeters - Powered",
+              "gpcCode": "10003433",
+              "gpcDescription": "Includes any products that can be described/observed as a powered instrument which measures diffuse and direct solar radiation.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "rain-gauges-non-powered",
+              "name": "Rain Gauges - Non Powered",
+              "gpcCode": "10003447",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device that measures time, distribution, and amount of rainfall.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "rain-gauges-powered",
+              "name": "Rain Gauges - Powered",
+              "gpcCode": "10005320",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device that measures time, distribution, and amount of rainfall.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "sunshine-recording-equipment-powered",
+              "name": "Sunshine Recording Equipment - Powered",
+              "gpcCode": "10003435",
+              "gpcDescription": "Includes any products that can be described/observed as a powered instrument for measuring hours of sunshine.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "thermometers-garden-non-powered",
+              "name": "Thermometers - Garden - Non Powered",
+              "gpcCode": "10003440",
+              "gpcDescription": "Includes any products that can be described/observed as a device that measures atmospheric temperature and consists of a sealed tube filled with liquid and a range of differently weighted glass spheres. These products also include thermometers that can be used indoors and outside the home environment.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "thermometers-garden-powered",
+              "name": "Thermometers - Garden - Powered",
+              "gpcCode": "10005319",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device that measures atmospheric temperature and consists of a sealed tube filled with liquid and a range of differently weighted glass spheres. These products also include thermometers that can be used indoors and outside the home environment.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            },
+            {
+              "id": "wind-socks-weather-vanes",
+              "name": "Wind Socks/Weather Vanes",
+              "gpcCode": "10003446",
+              "gpcDescription": "Includes any products that can be described/observed as a tube of material flown from a pole or a metal structure rotating on an axis to indicate the direction of the wind.",
+              "parentId": "lawn-garden-weather-monitoring-observation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

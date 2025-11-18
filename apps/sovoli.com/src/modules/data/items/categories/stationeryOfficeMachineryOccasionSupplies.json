@@ -1,0 +1,978 @@
+{
+  "id": "stationery-office-machinery-occasion-supplies",
+  "name": "Stationery/Office Machinery/Occasion Supplies",
+  "gpcCode": "62000000",
+  "children": [
+    {
+      "id": "greeting-cards-gift-wrap-occasion-supplies",
+      "name": "Greeting Cards/Gift Wrap/Occasion Supplies",
+      "gpcCode": "62050000",
+      "parentId": "stationery-office-machinery-occasion-supplies",
+      "children": [
+        {
+          "id": "gift-wrap-accessories",
+          "name": "Gift Wrap/Accessories",
+          "gpcCode": "62050100",
+          "parentId": "greeting-cards-gift-wrap-occasion-supplies",
+          "children": [
+            {
+              "id": "gift-wrap",
+              "name": "Gift Wrap",
+              "gpcCode": "10001201",
+              "gpcDescription": "Includes any products that may be described/observed as a coloured and/or decorated sheet of paper, box or bag designed to enclose a gift. Gift-wrap paper may be sold in single sheets, multiple sheets or as a roll of paper. Includes products such as gift boxes, gift bags and occasion-specific wrapping paper.",
+              "parentId": "gift-wrap-accessories"
+            },
+            {
+              "id": "gift-wrap-accessories",
+              "name": "Gift Wrap Accessories",
+              "gpcCode": "10001203",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to be used in conjunction with gift-wrap to enhance its performance, in other words to assist in the closure of the gift and also to decorate the gift. Includes products such as gift-wrap ribbon, rosettes, bows, gift tags and gift labels.",
+              "parentId": "gift-wrap-accessories"
+            },
+            {
+              "id": "gift-wrap-accessories-other",
+              "name": "Gift Wrap/Accessories Other",
+              "gpcCode": "10001202",
+              "gpcDescription": "Includes any products that may be described/observed as Gift Wrap/Accessories products, where the user of the schema is unable to classify the products within the schema.",
+              "parentId": "gift-wrap-accessories"
+            },
+            {
+              "id": "gift-wrap-accessories-variety-packs",
+              "name": "Gift Wrap/Accessories Variety Packs",
+              "gpcCode": "10001204",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Gift Wrap/Accessories products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Gift Wrap/Accessories class. Includes products such as gift-wrap paper sold with gift-wrap ribbon. Items received free with purchase should be removed from the classification decision-making process.",
+              "parentId": "gift-wrap-accessories"
+            }
+          ]
+        },
+        {
+          "id": "greeting-cards-gift-wrap-occasion-supplies-variety-packs",
+          "name": "Greeting Cards/Gift Wrap/Occasion Supplies Variety Packs",
+          "gpcCode": "62050200",
+          "parentId": "greeting-cards-gift-wrap-occasion-supplies",
+          "children": [
+            {
+              "id": "greeting-cards-gift-wrap-occasion-supplies-variety-packs",
+              "name": "Greeting Cards/Gift Wrap/Occasion Supplies Variety Packs",
+              "gpcCode": "10001205",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Greeting Cards/Gift Wrap/Occasion Supplies products sold together which exist within the schema but belong to different classes, that is, two or more products contained within the same pack which cross classes within the Greeting Cards/Gift Wrap/Occasion Supplies family. Includes products such as invitation pads sold with party bags and party hats. Items received free with purchase should be removed from the classification decision-making process.",
+              "parentId": "greeting-cards-gift-wrap-occasion-supplies-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "greeting-cards-invitations",
+          "name": "Greeting Cards/Invitations",
+          "gpcCode": "62050300",
+          "parentId": "greeting-cards-gift-wrap-occasion-supplies",
+          "children": [
+            {
+              "id": "gift-card-holder-sleeve",
+              "name": "Gift Card Holder/Sleeve",
+              "gpcCode": "10008022",
+              "gpcDescription": "Includes any products that can be described/observed as a sleeve or holder in which gift card or voucher can be placed.",
+              "parentId": "greeting-cards-invitations"
+            },
+            {
+              "id": "greeting-card-display-holders",
+              "name": "Greeting Card Display Holders",
+              "gpcCode": "10001206",
+              "gpcDescription": "Includes any products that may be described/observed as a holder to display greeting cards.",
+              "parentId": "greeting-cards-invitations"
+            },
+            {
+              "id": "greeting-cards-invitations",
+              "name": "Greeting Cards/Invitations",
+              "gpcCode": "10001209",
+              "gpcDescription": "Includes any products that may be described/observed as a greeting card or invitation that may or may not be designed for a specific occasion.",
+              "parentId": "greeting-cards-invitations"
+            },
+            {
+              "id": "greeting-cards-invitations-other",
+              "name": "Greeting Cards/Invitations Other",
+              "gpcCode": "10001207",
+              "gpcDescription": "Includes any products that may be described/observed as Greeting Cards/Invitations products where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "greeting-cards-invitations"
+            },
+            {
+              "id": "greeting-cards-invitations-variety-packs",
+              "name": "Greeting Cards/Invitations Variety Packs",
+              "gpcCode": "10001208",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Greeting Cards/Invitations products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Greeting Cards/Invitations class. Includes products such as greeting cards sold with greeting card display holders. Items received free with purchase should be removed from the classification decision-making process.",
+              "parentId": "greeting-cards-invitations"
+            },
+            {
+              "id": "invitation-pads-notelets",
+              "name": "Invitation Pads/Notelets",
+              "gpcCode": "10001212",
+              "gpcDescription": "Includes any products that may be described/observed as a number of sheets of paper joined at one edge and printed with an invitation format, or single sheets of paper specifically designed for the writing of short communications. These products may be specific to an occasion such as a party.",
+              "parentId": "greeting-cards-invitations"
+            },
+            {
+              "id": "postcards",
+              "name": "Postcards",
+              "gpcCode": "10001213",
+              "gpcDescription": "Includes any products that may be described/observed as a small card, usually with a picture on one side and a space for a written message and address on the other, These products are specifically intended for use as a mailed message or souvenir.",
+              "parentId": "greeting-cards-invitations"
+            }
+          ]
+        },
+        {
+          "id": "occasion-supplies",
+          "name": "Occasion Supplies",
+          "gpcCode": "62050400",
+          "parentId": "greeting-cards-gift-wrap-occasion-supplies",
+          "children": [
+            {
+              "id": "balloons",
+              "name": "Balloons",
+              "gpcCode": "10001214",
+              "gpcDescription": "Includes any products that may be described/observed as an inflatable rubber bag that can be blown up with air or helium. These products are normally used to decorate or celebrate a specific occasion.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "confetti",
+              "name": "Confetti",
+              "gpcCode": "10001215",
+              "gpcDescription": "Includes any products that may be described/observed as small pieces of coloured paper or dried flower petals, thrown or scattered on festive occasions such as weddings.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "fireworks",
+              "name": "Fireworks",
+              "gpcCode": "10001216",
+              "gpcDescription": "Includes any products that may be described/observed as a device consisting of a combination of explosives and combustibles, set off to generate coloured lights, smoke, and noise for celebration and amusement.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "occasion-supplies-other",
+              "name": "Occasion Supplies Other",
+              "gpcCode": "10001217",
+              "gpcDescription": "Includes any products that may be described/observed as Occasion Supplies products where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "occasion-supplies-variety-packs",
+              "name": "Occasion Supplies Variety Packs",
+              "gpcCode": "10001218",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Occasion Supplies products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Occasion Supplies class. Includes products such as party hats sold with balloons. Items received free with purchase should be removed from the classification decision-making process.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "party-crackers",
+              "name": "Party Crackers",
+              "gpcCode": "10001220",
+              "gpcDescription": "Includes any products that may be described/observed as a small cardboard cylinder, covered with decorative paper that holds a small gift. When the cracker is pulled at both ends it may emit a loud crack whilst spilling the contents upon being torn.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "party-hats",
+              "name": "Party Hats",
+              "gpcCode": "10001221",
+              "gpcDescription": "Includes any products that may be described/observed as a hat, usually of brightly coloured or decorated paper/card, and sometimes adorned with ribbons or other decoration. These non-durable, disposable hats are specifically worn on occasions such as birthday parties.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "party-horns-blowers",
+              "name": "Party Horns/Blowers",
+              "gpcCode": "10005436",
+              "gpcDescription": "Includes any products that can be described/observed as a paper cone or paper tube with a whistle type blower attached. When blown, the whistle emits a piercing noise, which adds to the party fun. Includes products where the paper tube unfurls when blown and products may be decorated with feathers or be designed in the shape of animals or cartoon characters.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "party-poppers",
+              "name": "Party Poppers",
+              "gpcCode": "10001222",
+              "gpcDescription": "Includes any products that may be described/observed as a plastic novelty that emits paper streamers when a cord is pulled.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "pinatas",
+              "name": "Pinatas",
+              "gpcCode": "10001223",
+              "gpcDescription": "Includes any products that may be described/observed as a decorated container filled with sweets and toys suspended from a height, intended to be broken by blindfolded children with sticks.",
+              "parentId": "occasion-supplies"
+            },
+            {
+              "id": "streamers-paper-chains",
+              "name": "Streamers/Paper Chains",
+              "gpcCode": "10001224",
+              "gpcDescription": "Includes any products that may be described/observed as either rolls of thin paper or fabric that can be thrown to create a colourful streamer or a chain of decorative paper designs that can be hung across a room and used on festive occasions.",
+              "parentId": "occasion-supplies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stationery-office-machinery",
+      "name": "Stationery/Office Machinery",
+      "gpcCode": "62060000",
+      "parentId": "stationery-office-machinery-occasion-supplies",
+      "children": [
+        {
+          "id": "office-machinery",
+          "name": "Office Machinery",
+          "gpcCode": "62060300",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "calculators-currency-converters-powered",
+              "name": "Calculators/Currency Converters (Powered)",
+              "gpcCode": "10001242",
+              "gpcDescription": "Includes any products that may be described/observed as a powered machine used for doing mathematical calculations and/or currency conversions.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "cash-money-registers-powered",
+              "name": "Cash/Money Registers (Powered)",
+              "gpcCode": "10001243",
+              "gpcDescription": "Includes any products that may be described/observed as a powered adding machine, which registers sales transactions and normally has a drawer to hold money.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "laminating-machine-consumables",
+              "name": "Laminating Machine Consumables",
+              "gpcCode": "10001246",
+              "gpcDescription": "Includes any products that may be described/observed as products to be used in conjunction with a laminating machine during the laminating process. Includes products such as laminating film sheets and laminating film pouches.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "laminating-machines-powered",
+              "name": "Laminating Machines (Powered)",
+              "gpcCode": "10001247",
+              "gpcDescription": "Includes any products that may be described/observed as a powered machine for applying a transparent plastic film to one or both sides of a piece of paper or card to enhance its appearance and durability. Includes products such as cold laminators and hot laminators.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "multifunctional-devices",
+              "name": "Multifunctional Devices",
+              "gpcCode": "10005229",
+              "gpcDescription": "Includes any products that may be described/observed as office machinery that fulfils at least two functions as a standard in one machine. The functions that can be combined in one machine can be two or more of either of copying, scanning, printing, faxing or telephone and answering machine.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "office-machinery-other",
+              "name": "Office Machinery Other",
+              "gpcCode": "10001248",
+              "gpcDescription": "Includes any products that may be described/observed as Office Machinery products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "office-machinery-variety-packs",
+              "name": "Office Machinery Variety Packs",
+              "gpcCode": "10001250",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Office Machinery products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Office Machinery class. Includes products such as laminating machines sold with laminating machine consumables. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "photocopier-consumables",
+              "name": "Photocopier Consumables",
+              "gpcCode": "10001251",
+              "gpcDescription": "Includes any products that can be described/observed as being specifically designed to periodically replace/refill components of a photocopier that have been depleted or worn out by use. Includes products such as photocopier toner and cartridges.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "photocopiers",
+              "name": "Photocopiers",
+              "gpcCode": "10001252",
+              "gpcDescription": "Includes any products that may be described/observed as a machine that uses a light sensitive printing element, toner and heat to produce duplicates of documents. Includes products such as black and white copiers and colour copiers.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "typewriter-consumables",
+              "name": "Typewriter Consumables",
+              "gpcCode": "10005676",
+              "gpcDescription": "Includes any products that can be described/observed as being specifically designed to periodically replace/refill components of a typewriter that have been depleted or worn out by use. The products include spooled and cassetted ribbons.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "typewriters-non-powered",
+              "name": "Typewriters (Non Powered)",
+              "gpcCode": "10001253",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device for producing printed text by means of a manually operated keyboard that activates a set of raised types, which strike the paper through an inked ribbon.",
+              "parentId": "office-machinery"
+            },
+            {
+              "id": "typewriters-powered",
+              "name": "Typewriters (Powered)",
+              "gpcCode": "10001254",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device for producing printed text by means of a powered keyboard that activates a set of raised types, which strike the paper through an inked ribbon.",
+              "parentId": "office-machinery"
+            }
+          ]
+        },
+        {
+          "id": "organizational-planning-stationery",
+          "name": "Organizational Planning Stationery",
+          "gpcCode": "62060400",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "calendars-planners",
+              "name": "Calendars/Planners",
+              "gpcCode": "10001255",
+              "gpcDescription": "Includes any products that may be described/observed as a tabular array of the days of the year. These products can be in single sheet form or divided into pages for separate months, weeks or days and may have space for the addition of notes and appointments. Includes products such as wall calendars, desktop calendars and planners.",
+              "parentId": "organizational-planning-stationery"
+            },
+            {
+              "id": "contact-information-books-pads",
+              "name": "Contact Information Books/Pads",
+              "gpcCode": "10001256",
+              "gpcDescription": "Includes any products that may be described/observed as a bound book or pad specifically designed to hold contact information. Includes products such as address books.",
+              "parentId": "organizational-planning-stationery"
+            },
+            {
+              "id": "organizational-planning-stationery-replacement-parts-accessories",
+              "name": "Organizational Planning Stationery - Replacement Parts/Accessories",
+              "gpcCode": "10001258",
+              "gpcDescription": "Includes any products that may be described/observed as a replacement part or accessory for organizational planning stationery products. Includes products such as a personal organiser refill, sticky note dispenser and paper cube dispenser.",
+              "parentId": "organizational-planning-stationery"
+            },
+            {
+              "id": "organizational-planning-stationery-other",
+              "name": "Organizational Planning Stationery Other",
+              "gpcCode": "10001257",
+              "gpcDescription": "Includes any products that may be described/observed as Organizational Planning Stationery products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "organizational-planning-stationery"
+            },
+            {
+              "id": "organizational-planning-stationery-variety-packs",
+              "name": "Organizational Planning Stationery Variety Packs",
+              "gpcCode": "10001259",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Organizational Planning Stationery products, that is, two or more products contained within the same pack, which cross bricks within the Organizational Planning Stationery class. Includes products such as personal organisers sold together with personal organizer inserts. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "organizational-planning-stationery"
+            },
+            {
+              "id": "personal-organizers-diaries-non-powered",
+              "name": "Personal Organizers/Diaries (Non Powered)",
+              "gpcCode": "10001260",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered book or a collated series of sheets, marked with the days of the year, into which appointments or other information can be added for purposes of personal organization.",
+              "parentId": "organizational-planning-stationery"
+            },
+            {
+              "id": "sticky-notes-paper-cubes",
+              "name": "Sticky Notes/Paper Cubes",
+              "gpcCode": "10005118",
+              "gpcDescription": "Includes any products that may be described/observed as small squares or rectangles of usually brightly coloured paper, whose main purpose is to record messages or personal reminders. These notes may have an adhesive strip in order that they can be attached in a prominent position.",
+              "parentId": "organizational-planning-stationery"
+            }
+          ]
+        },
+        {
+          "id": "postal-packaging-equipment-aids-accessories",
+          "name": "Postal/Packaging Equipment/Aids/Accessories",
+          "gpcCode": "62060500",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "envelopes-mailers",
+              "name": "Envelopes/Mailers",
+              "gpcCode": "10001261",
+              "gpcDescription": "Includes any products that may be described/observed as a flat paper/card container, usually with a gummed flap and used to enclose and transport items such as letters and documents through the postal system. Includes products such as window envelopes and padded envelopes.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "franking-machines",
+              "name": "Franking Machines",
+              "gpcCode": "10001262",
+              "gpcDescription": "Includes any products that may be described/observed as a machine that stamps a postal item with postage payment, according to destination and weight and also marks the date and place of mailing.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "letter-folders-inserters-sealers",
+              "name": "Letter Folders/Inserters/Sealers",
+              "gpcCode": "10001263",
+              "gpcDescription": "Includes any products that may be described/observed as a machine that folds letters and documents and in addition, may then insert the folded documents into envelopes, which are then sealed, ready for postage.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "letter-openers-non-powered",
+              "name": "Letter Openers (Non Powered)",
+              "gpcCode": "10001264",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device for opening envelopes. Normally these products are sword or knife-shaped.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "letter-openers-powered",
+              "name": "Letter Openers (Powered)",
+              "gpcCode": "10001265",
+              "gpcDescription": "Includes any products that may be described/observed as a powered machine for opening envelopes. These products can handle mixed envelopes, will normally have an adjustable feeder and can be placed on a desktop.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "postage-stamps",
+              "name": "Postage Stamps",
+              "gpcCode": "10006849",
+              "gpcDescription": "Includes any product that is a small adhesive piece of paper of specified value issued by a postal authority to be affixed to a letter or parcel to indicate the amount of postage paid.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "postal-labelling-machines",
+              "name": "Postal Labelling Machines",
+              "gpcCode": "10001245",
+              "gpcDescription": "Includes any products that may be described/observed as a machine, which applies labels to postal envelopes and parcels. Includes products such as semi-automatic labelling machines and automatic labelling machines.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "postal-packaging-wrap",
+              "name": "Postal Packaging/Wrap",
+              "gpcCode": "10001273",
+              "gpcDescription": "Includes any products that may be described/observed as packaging material designed specifically to surround and protect posted products whilst in transit. Includes products such as tissue paper, corrugated paper, bubble wrap and pallet stretch film.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "postal-tubes-boxes",
+              "name": "Postal Tubes/Boxes",
+              "gpcCode": "10001266",
+              "gpcDescription": "Includes any products that may be described/observed as cylinders or boxes, normally constructed of cardboard and specifically designed to contain and protect products in postal transit.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "postal-weighing-scales-non-powered",
+              "name": "Postal Weighing Scales (Non Powered)",
+              "gpcCode": "10001267",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device specifically designed for ascertaining the weight of items to be posted, in order to determine the correct postal fee.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "postal-weighing-scales-powered",
+              "name": "Postal Weighing Scales (Powered)",
+              "gpcCode": "10001268",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device specifically designed for ascertaining the weight of items to be posted, in order to determine the correct postal fee.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "postal-packaging-accessories",
+              "name": "Postal/Packaging Accessories",
+              "gpcCode": "10001269",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to assist in the operation of packing and posting. Includes products such as finger cones and finger damping sponges.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "postal-packaging-equipment-aids-accessories-other",
+              "name": "Postal/Packaging Equipment/Aids/Accessories Other",
+              "gpcCode": "10001270",
+              "gpcDescription": "Includes any products that may be described/observed as Postal/Packaging Equipment/Aids/Accessories, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "postal-packaging-equipment-aids-accessories-variety-packs",
+              "name": "Postal/Packaging Equipment/Aids/Accessories Variety Packs",
+              "gpcCode": "10001272",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Postal/Packaging Equipment/Aids/Accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Postal/Packaging Equipment/Aids/Accessories class. Includes products such as postage boxes or tubes sold with postal wrap. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            },
+            {
+              "id": "stamping-equipment-non-powered",
+              "name": "Stamping Equipment (Non Powered)",
+              "gpcCode": "10001241",
+              "gpcDescription": "Includes any products that may be described/observed as non-powered equipment used to stamp incoming and outgoing post or documents with information such as date of receipt, a reference number, or an address. Includes products such as pre-inked stamps, self-inking stamps and rubber stamps used in conjunction with ink pads and notary seals.",
+              "parentId": "postal-packaging-equipment-aids-accessories"
+            }
+          ]
+        },
+        {
+          "id": "presentation-equipment",
+          "name": "Presentation Equipment",
+          "gpcCode": "62060600",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "flip-chart-stands",
+              "name": "Flip-chart Stands",
+              "gpcCode": "10001275",
+              "gpcDescription": "Includes any products that may be described/observed as an upright frame standing on legs, which is designed to support and display a large pad of paper upon which written notes and explanations can be demonstrated.",
+              "parentId": "presentation-equipment"
+            },
+            {
+              "id": "overhead-projectors",
+              "name": "Overhead Projectors",
+              "gpcCode": "10005445",
+              "gpcDescription": "Includes any products that can be described/observed as a box containing a bright lamp and a large lens that collimates the light, which is projected onto a screen via a mirror positioned above the box. Transparencies containing printed information and graphics are placed on top of the lens and this information is presented on the screen. Includes products that either transmit the light from a bulb placed under the lens (transmissive) or reflect the light from a bulb placed in the head of the projector (reflective).",
+              "parentId": "presentation-equipment"
+            },
+            {
+              "id": "pointers-non-powered",
+              "name": "Pointers (Non Powered)",
+              "gpcCode": "10001276",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered instrument used for directing attention during a presentation. Includes products such as telescopic pointers and non-telescopic pointers.",
+              "parentId": "presentation-equipment"
+            },
+            {
+              "id": "pointers-powered",
+              "name": "Pointers (Powered)",
+              "gpcCode": "10001277",
+              "gpcDescription": "Includes any products that may be described/observed as a powered instrument used for directing attention during a presentation. Includes products such as laser pointers or interactive pointers.",
+              "parentId": "presentation-equipment"
+            },
+            {
+              "id": "presentation-boards-non-powered",
+              "name": "Presentation Boards (Non Powered)",
+              "gpcCode": "10001278",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device for mounting presentations.",
+              "parentId": "presentation-equipment"
+            },
+            {
+              "id": "presentation-boards-powered",
+              "name": "Presentation Boards (Powered)",
+              "gpcCode": "10006406",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device for mounting presentations. Includes products such as powered interactive computer projection screens used in Computing,",
+              "parentId": "presentation-equipment"
+            },
+            {
+              "id": "presentation-equipment-accessories",
+              "name": "Presentation Equipment Accessories",
+              "gpcCode": "10001281",
+              "gpcDescription": "Includes any products that may be described/observed as an accessory that enhances the performance of presentation equipment and assists a professional presentation. Includes products such as board cleaning equipment and pen holders",
+              "parentId": "presentation-equipment"
+            },
+            {
+              "id": "presentation-equipment-other",
+              "name": "Presentation Equipment Other",
+              "gpcCode": "10001280",
+              "gpcDescription": "Includes any products that may be described/observed as Presentation Equipment products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "presentation-equipment"
+            },
+            {
+              "id": "presentation-equipment-variety-packs",
+              "name": "Presentation Equipment Variety Packs",
+              "gpcCode": "10001283",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Presentation Equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Presentation Equipment class. Includes products such as presentation boards sold with board wipes. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "presentation-equipment"
+            },
+            {
+              "id": "projection-tables",
+              "name": "Projection Tables",
+              "gpcCode": "10005766",
+              "gpcDescription": "Includes any products that can be described/observed as a table designed to support a video projector or photographic slides projector. Typically the table will have two platforms, one to hold the projector and one to hold the slides or accompanying presentation equipment. The table may also have one platform and one leg that are adjustable to allow alignment of the projector.",
+              "parentId": "presentation-equipment"
+            }
+          ]
+        },
+        {
+          "id": "stationery-adhesives-binders-fasteners",
+          "name": "Stationery Adhesives/Binders/Fasteners",
+          "gpcCode": "62060700",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "adhesive-paste-glue-removers",
+              "name": "Adhesive Paste/Glue Removers",
+              "gpcCode": "10005444",
+              "gpcDescription": "Includes any products that can be described/observed as a liquid, paste or gel that removes deposits such as sticky tape and label residue, tar, grease, chewing gum, make-up and adhesives from glass, wood, metal, worktops, tiles and fabrics, depending on the specific formulation.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "binding-accessories",
+              "name": "Binding Accessories",
+              "gpcCode": "10001286",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to assist or work in conjunction with stationery binding machines. Includes products such as binding covers and binding rings.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "binding-machines-non-powered",
+              "name": "Binding Machines (Non Powered)",
+              "gpcCode": "10001287",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device for binding documents.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "binding-machines-powered",
+              "name": "Binding Machines (Powered)",
+              "gpcCode": "10001288",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device for binding documents.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "stationery-adhesive-tapes",
+              "name": "Stationery Adhesive Tapes",
+              "gpcCode": "10005126",
+              "gpcDescription": "Includes any products that may be described/observed as an adhesive tape, typically used to attach, fasten or close paper items in an office, home or school environment. Includes products such as invisible tape, double-sided tape and masking tape.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "stationery-adhesives-binders-fasteners-other",
+              "name": "Stationery Adhesives/Binders/Fasteners Other",
+              "gpcCode": "10001295",
+              "gpcDescription": "Includes any products that may be described/observed as Stationery Adhesives/Binders/Fasteners products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "stationery-adhesives-binders-fasteners-variety-packs",
+              "name": "Stationery Adhesives/Binders/Fasteners Variety Packs",
+              "gpcCode": "10001297",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Stationery Adhesives/Binders/Fasteners products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Stationery Adhesives/Binders/Fasteners class. Includes products such as staplers sold with staples. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "stationery-fasteners",
+              "name": "Stationery Fasteners",
+              "gpcCode": "10001289",
+              "gpcDescription": "Includes any products that may be described/observed as a device for fastening or securing stationery items such as paper and documents. Includes products such as treasury tags, paper clips and rubber bands.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "stationery-glues",
+              "name": "Stationery Glues",
+              "gpcCode": "10001292",
+              "gpcDescription": "Includes any products that may be described/observed as an adhesive gel, liquid or solid, typically used to glue or attach paper items in an office, home or school environment. Includes products such as liquid glue, glue pens and glue sticks,",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "stationery-staple-removers",
+              "name": "Stationery Staple Removers",
+              "gpcCode": "10001298",
+              "gpcDescription": "Includes any products that may be described/observed as a device for removing staples from paper documents.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "stationery-staplers-non-powered",
+              "name": "Stationery Staplers (Non Powered)",
+              "gpcCode": "10001299",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device for forcing u-shaped pieces of wire through paper and then closing and fastening the staple to hold multiple sheets of paper in place.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            },
+            {
+              "id": "stationery-staplers-powered",
+              "name": "Stationery Staplers (Powered)",
+              "gpcCode": "10001300",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device for forcing u-shaped pieces of wire through paper and then closing and fastening the staple to hold multiple sheets of paper in place.",
+              "parentId": "stationery-adhesives-binders-fasteners"
+            }
+          ]
+        },
+        {
+          "id": "stationery-cutters-trimmers",
+          "name": "Stationery Cutters/Trimmers",
+          "gpcCode": "62060800",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "hole-paper-punches-non-powered",
+              "name": "Hole Paper Punches (Non Powered)",
+              "gpcCode": "10001311",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device for cutting/punching holes through paper and card. Some punches are designed to cut fancy shapes such as stars, which can then be used to decorate paper or card.",
+              "parentId": "stationery-cutters-trimmers"
+            },
+            {
+              "id": "hole-paper-punches-powered",
+              "name": "Hole Paper Punches (Powered)",
+              "gpcCode": "10001312",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device for cutting/punching holes through paper and card.",
+              "parentId": "stationery-cutters-trimmers"
+            },
+            {
+              "id": "paper-guillotines-trimmers",
+              "name": "Paper Guillotines/Trimmers",
+              "gpcCode": "10001302",
+              "gpcDescription": "Includes any products that may be described/observed as a device that either has a long blade that cuts and trims paper and card in one slicing motion, or a rolling circular blade that travels along the paper as it cuts.",
+              "parentId": "stationery-cutters-trimmers"
+            },
+            {
+              "id": "paper-shredders-non-powered",
+              "name": "Paper Shredders (Non Powered)",
+              "gpcCode": "10001309",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered machine with incorporated blades, which, when rotated, shred paper and card into small pieces. The purpose of such products is to safely destroy confidential documents. Includes products such as cross-cut and strip-cut shredding machines.",
+              "parentId": "stationery-cutters-trimmers"
+            },
+            {
+              "id": "paper-shredders-powered",
+              "name": "Paper Shredders (Powered)",
+              "gpcCode": "10005119",
+              "gpcDescription": "Includes any products that may be described/observed as a powered machine with incorporated blades, which, when rotated, shred paper and card into small pieces. The purpose of such products is to safely destroy confidential documents. Includes products such as cross-cut and strip-cut shredding machines.",
+              "parentId": "stationery-cutters-trimmers"
+            },
+            {
+              "id": "stationery-cutters-trimmers-other",
+              "name": "Stationery Cutters/Trimmers Other",
+              "gpcCode": "10001306",
+              "gpcDescription": "Includes any products that may be described/observed as Stationery Cutters/Trimmers products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "stationery-cutters-trimmers"
+            },
+            {
+              "id": "stationery-cutters-trimmers-variety-packs",
+              "name": "Stationery Cutters/Trimmers Variety Packs",
+              "gpcCode": "10001308",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Stationery Cutters/Trimmers products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Stationery Cutters/Trimmers class. Includes products such as a heavy-duty paper punch sold together with a paper guillotine. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "stationery-cutters-trimmers"
+            }
+          ]
+        },
+        {
+          "id": "stationery-paper-card-film",
+          "name": "Stationery Paper/Card/Film",
+          "gpcCode": "62061100",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "business-forms-paper-pre-printed",
+              "name": "Business Forms/Paper - Pre-printed",
+              "gpcCode": "10001305",
+              "gpcDescription": "Includes any products that may be described/observed as pre-printed paper forms used to conduct business in an office. Includes products such as payslips and invoices",
+              "parentId": "stationery-paper-card-film"
+            },
+            {
+              "id": "exercise-books",
+              "name": "Exercise Books",
+              "gpcCode": "10005893",
+              "gpcDescription": "Includes any products that can be described/observed as a notebook that is used in schools to copy down schoolwork and notes. The exercise book normally contains lined paper but the paper may be plain and the books are also available in many different colours and sizes",
+              "parentId": "stationery-paper-card-film"
+            },
+            {
+              "id": "labels-coupons-tickets",
+              "name": "Labels/Coupons/Tickets",
+              "gpcCode": "10001313",
+              "gpcDescription": "Includes any products that may be described/observed as small, normally rectangular pieces of paper, which may be pre-printed or plain. The printed versions, which have not been customised, can have multiple uses as luggage labels, passes, tokens, vouchers, general admission tickets and raffle tickets. Plain, unprinted labels are mostly self adhesive and can be used to label files and documents. Includes products such as label rolls, sheets, coupon books, strips, sheet tickets and rip cards. ",
+              "parentId": "stationery-paper-card-film"
+            },
+            {
+              "id": "paper-card-unprinted",
+              "name": "Paper/Card - Unprinted",
+              "gpcCode": "10001304",
+              "gpcDescription": "Includes any products that may be described/observed as unprinted sheets of paper or card that may be either loose, individual pieces or bound together as a pad, roll or book. Includes products such as copier paper, computer printout listing paper and coloured card.",
+              "parentId": "stationery-paper-card-film"
+            },
+            {
+              "id": "stationery-paper-card-film-other",
+              "name": "Stationery Paper/Card/Film Other",
+              "gpcCode": "10005120",
+              "gpcDescription": "Includes any products that may be described/observed as Stationery Paper/Card/Film products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "stationery-paper-card-film"
+            },
+            {
+              "id": "stationery-paper-card-film-variety-packs",
+              "name": "Stationery Paper/Card/Film Variety Packs",
+              "gpcCode": "10005121",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Stationery Paper/Card/Film products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Stationery Paper/Card/Film class. Includes products such as copier paper sold together with copier transparencies. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "stationery-paper-card-film"
+            },
+            {
+              "id": "transparencies-acetates",
+              "name": "Transparencies/Acetates",
+              "gpcCode": "10001314",
+              "gpcDescription": "Includes any products that may be described/observed as a transparent sheet that is viewed by light shining through it from behind or by projection. Acetates can be printed upon using a copier or printer, or they can be written upon.",
+              "parentId": "stationery-paper-card-film"
+            }
+          ]
+        },
+        {
+          "id": "stationery-storage-filing",
+          "name": "Stationery Storage/Filing",
+          "gpcCode": "62060900",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "book-covers",
+              "name": "Book Covers",
+              "gpcCode": "10005125",
+              "gpcDescription": "Includes any products that may be described/observed as a sheet of paper, card, plastic, fabric or leather that has been folded and maybe glued or stitched to form a pocket, cover or wallet for a standard sized book.",
+              "parentId": "stationery-storage-filing"
+            },
+            {
+              "id": "cash-money-boxes",
+              "name": "Cash/Money Boxes",
+              "gpcCode": "10001316",
+              "gpcDescription": "Includes any products that may be described/observed as a container specifically designed to store money securely. Includes products such as coin tubes and cash boxes.",
+              "parentId": "stationery-storage-filing"
+            },
+            {
+              "id": "pencil-pen-cases",
+              "name": "Pencil/Pen Cases",
+              "gpcCode": "10006897",
+              "gpcDescription": "Includes any products that may be described/observed as a container used to store pencils/pens with the intent of being able to conveniently transport these items. These products could contain a variety of other stationery items such as erasers, rulers, etc. ",
+              "parentId": "stationery-storage-filing"
+            },
+            {
+              "id": "stationery-files-folders-wallets",
+              "name": "Stationery Files/Folders/Wallets",
+              "gpcCode": "10001318",
+              "gpcDescription": "Includes any products that may be described/observed as storage for organised, collated documents and papers, enabling easy reference. Includes products such as files, folders, document wallets and stamp albums.",
+              "parentId": "stationery-storage-filing"
+            },
+            {
+              "id": "stationery-item-storage-desk-accessories",
+              "name": "Stationery Item Storage/Desk Accessories",
+              "gpcCode": "10001320",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to hold and store stationery items usually found on top of the desk or in the desk drawer. Includes products such as desk tidies, letter trays, pencil holders, and desktop document dividers.",
+              "parentId": "stationery-storage-filing"
+            },
+            {
+              "id": "stationery-storage-filing-replacement-parts-accessories",
+              "name": "Stationery Storage/Filing - Replacement Parts/Accessories",
+              "gpcCode": "10001322",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for stationery storage and filing products. Includes products such as file reinforcement rings, file pockets and file dividers.",
+              "parentId": "stationery-storage-filing"
+            },
+            {
+              "id": "stationery-storage-filing-other",
+              "name": "Stationery Storage/Filing Other",
+              "gpcCode": "10001321",
+              "gpcDescription": "Includes any products that may be described/observed as Stationery Storage/Filing products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "stationery-storage-filing"
+            },
+            {
+              "id": "stationery-storage-filing-variety-packs",
+              "name": "Stationery Storage/Filing Variety Packs",
+              "gpcCode": "10001323",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Stationery Storage/Filing products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Stationery Storage/Filing class. Includes products such as file dividers and index cards sold with files. Items that are received free with purchases should be removed fro the classification decision-making process.",
+              "parentId": "stationery-storage-filing"
+            }
+          ]
+        },
+        {
+          "id": "stationery-office-machinery-other",
+          "name": "Stationery/Office Machinery - Other",
+          "gpcCode": "62061200",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "stationery-office-machinery-other",
+              "name": "Stationery/Office Machinery - Other",
+              "gpcCode": "10006898",
+              "gpcDescription": "Includes any products that may be described/observed as Stationery/Office Machinery products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "stationery-office-machinery-other"
+            }
+          ]
+        },
+        {
+          "id": "stationery-office-machinery-variety-packs",
+          "name": "Stationery/Office Machinery Variety Packs",
+          "gpcCode": "62061000",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "stationery-office-machinery-variety-packs",
+              "name": "Stationery/Office Machinery Variety Packs",
+              "gpcCode": "10001325",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Stationery/Office Machinery products sold together which exist within the schema but belong to different classes, that is, two or more products contained within the same pack which cross classes within the Stationery/Office Machinery family. Includes products such as pens and personal organiser variety packs. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "stationery-office-machinery-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "writing-design-implements-aids",
+          "name": "Writing/Design Implements/Aids",
+          "gpcCode": "62060100",
+          "parentId": "stationery-office-machinery",
+          "children": [
+            {
+              "id": "correction-aids",
+              "name": "Correction Aids",
+              "gpcCode": "10001226",
+              "gpcDescription": "Includes any products that may be described/observed as a device for correcting errors in written or printed material. Includes products such as correcting fluid, correction tape, correction pens, correction fluid thinner and erasers.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "desktop-mats",
+              "name": "Desktop Mats",
+              "gpcCode": "10005206",
+              "gpcDescription": "Includes any products that may be described/observed as a desktop mat that provides a smooth surface for writing/drawing without damage to the desktop. Some desktop mats have an anti-skid backing and a self-healing writing surface. Includes products that are printed with graphical lines to aid design work and products that have pockets for paper storage.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "highlighter",
+              "name": "Highlighter",
+              "gpcCode": "10007629",
+              "gpcDescription": "Includes any products that may be described/observed to draw attention to sections of text by marking them with a vivid, translucent colour.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "ink",
+              "name": "Ink",
+              "gpcCode": "10001225",
+              "gpcDescription": "Includes any products that may be described/observed as a coloured liquid used for writing and printing. Includes products such as fountain pen ink.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "measuring-geometrical-equipment",
+              "name": "Measuring/Geometrical Equipment",
+              "gpcCode": "10001231",
+              "gpcDescription": "Includes any products that may be described/observed as an item for measuring, designing and constructing geometrical lines, angles, surfaces and solids in a school or office environment. Includes products such as rulers, triangles, set squares, compasses, protractors and callipers.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "pencil-sharpeners-non-powered",
+              "name": "Pencil Sharpeners (Non Powered)",
+              "gpcCode": "10001232",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered device into which a pencil can be inserted to have its writing tip sharpened against an internal blade. These products may be hand-held or set upon a table. Includes products such as hand-held pencil sharpeners and tabletop pencil sharpeners.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "pencil-sharpeners-powered",
+              "name": "Pencil Sharpeners (Powered)",
+              "gpcCode": "10001233",
+              "gpcDescription": "Includes any products that may be described/observed as a powered device into which a pencil can be inserted to have its writing tip sharpened against an internal blade.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "pencils",
+              "name": "Pencils",
+              "gpcCode": "10001234",
+              "gpcDescription": "Includes any products that may be described/observed as a thin rod of graphite encased in wood or held in a mechanical propeller that moves the lead forward. Includes products such as wood pencils and propelling pencils.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "pens",
+              "name": "Pens",
+              "gpcCode": "10001235",
+              "gpcDescription": "Includes any products that may be described/observed as an instrument for writing or drawing with ink.Includes products such as ballpoint pens, rollerball pens, fountain pens and fibre-tip pens.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "stencils",
+              "name": "Stencils",
+              "gpcCode": "10001236",
+              "gpcDescription": "Includes any products that may be described/observed as a sheet of metal, plastic or card with a design cut out, through which ink can be applied to create a desired pattern or letters.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "writing-implements-replacement-parts",
+              "name": "Writing Implements - Replacement Parts",
+              "gpcCode": "10001229",
+              "gpcDescription": "Includes any products that may be described/observed as a replacement part for writing implements. Includes products such as ink cartridge refills for pens, mechanical pencil refills and rollerball refills.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "writing-design-implements-aids-other",
+              "name": "Writing/Design Implements/Aids Other",
+              "gpcCode": "10001228",
+              "gpcDescription": "Includes any products that may be described/observed as Writing/Design Implements/Aids where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "writing-design-implements-aids"
+            },
+            {
+              "id": "writing-design-implements-aids-variety-packs",
+              "name": "Writing/Design Implements/Aids Variety Packs",
+              "gpcCode": "10001230",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Writing/Design Implements/Aids products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Writing/Design Implements/Aids class. Includes products such as pens and pencils sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "writing-design-implements-aids"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stationery-office-machinery-occasion-supplies-variety-packs",
+      "name": "Stationery/Office Machinery/Occasion Supplies Variety Packs",
+      "gpcCode": "62070000",
+      "parentId": "stationery-office-machinery-occasion-supplies",
+      "children": [
+        {
+          "id": "stationery-office-machinery-occasion-supplies-variety-packs",
+          "name": "Stationery/Office Machinery/Occasion Supplies Variety Packs",
+          "gpcCode": "62070100",
+          "parentId": "stationery-office-machinery-occasion-supplies-variety-packs",
+          "children": [
+            {
+              "id": "stationery-office-machinery-occasion-supplies-variety-packs",
+              "name": "Stationery/Office Machinery/Occasion Supplies Variety Packs",
+              "gpcCode": "10003771",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Stationery, Office Machinery and Occasion Supply products sold together which exist within the schema but belong to different families, that is, two or more products contained within the same pack which cross families within the Stationery, Office Machinery and Occasion Supplies segment. Includes products such as greeting cards sold together with a pen. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "stationery-office-machinery-occasion-supplies-variety-packs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

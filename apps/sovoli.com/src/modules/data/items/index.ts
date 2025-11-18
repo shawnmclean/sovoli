@@ -1,5 +1,4 @@
 import type { Item } from "~/modules/core/items/types";
-import { BEDDING_ITEMS } from "./bedding";
 import { BOOKS } from "./book";
 import { ELECTRONICS_ITEMS } from "./electronics";
 import { EQUIPMENT_ITEMS } from "./equipment";
@@ -21,7 +20,6 @@ export const ALL_ITEMS: Item[] = [
   ...EQUIPMENT_ITEMS,
   ...ELECTRONICS_ITEMS,
   ...FOOD_ITEMS,
-  ...BEDDING_ITEMS,
   ...OTHER_ITEMS,
 ];
 
@@ -34,7 +32,6 @@ export function findItemsByIds(ids: string[]): Item[] {
 }
 
 export {
-  BEDDING_ITEMS,
   BOOKS,
   BUILDING_ITEMS,
   ELECTRONICS_ITEMS,

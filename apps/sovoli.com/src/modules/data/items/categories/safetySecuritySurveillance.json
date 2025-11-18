@@ -1,0 +1,656 @@
+{
+  "id": "safety-security-surveillance",
+  "name": "Safety/Security/Surveillance",
+  "gpcCode": "91000000",
+  "children": [
+    {
+      "id": "baby-safety-security-surveillance",
+      "name": "Baby Safety/Security/Surveillance",
+      "gpcCode": "91050000",
+      "parentId": "safety-security-surveillance",
+      "children": [
+        {
+          "id": "baby-safety-security-surveillance",
+          "name": "Baby Safety/Security/Surveillance",
+          "gpcCode": "91050100",
+          "parentId": "baby-safety-security-surveillance",
+          "children": [
+            {
+              "id": "baby-harnesses-reins",
+              "name": "Baby Harnesses/Reins",
+              "gpcCode": "10000796",
+              "gpcDescription": "Includes any products that can be described/observed as a device intended to be secured and fixed around the baby either to prevent the baby from climbing/falling out the highchair/pram or the strap can be fixed around the babies and carer's wrist to stop the baby from running away. Includes products such as wrist loop reins, waist straps and shoulder straps.",
+              "parentId": "baby-safety-security-surveillance"
+            },
+            {
+              "id": "baby-play-pens-dens",
+              "name": "Baby Play Pens/Dens",
+              "gpcCode": "10000788",
+              "gpcDescription": "Includes any products that can be described/observed as a safe structure in which a baby can play safely. Includes products such as play pens or dens with soft mesh sides, durable wooden sides or plastic bars that enclose the baby preventing it wandering out of sight or into danger.",
+              "parentId": "baby-safety-security-surveillance"
+            },
+            {
+              "id": "baby-safety-monitoring-non-powered",
+              "name": "Baby Safety Monitoring (Non Powered)",
+              "gpcCode": "10000634",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered monitoring device that is specifically designed to monitor a baby for movement, sound or the temperature of a baby's room. Includes devices to track babies and to monitor breathing. ",
+              "parentId": "baby-safety-security-surveillance"
+            },
+            {
+              "id": "baby-safety-monitoring-powered",
+              "name": "Baby Safety Monitoring (Powered)",
+              "gpcCode": "10000791",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device intended to monitor a baby remotely. Products are designed to detect any sound and/or movement made from the baby while the baby is in a separate room. Includes products such as baby sound monitors, baby visual monitors. ",
+              "parentId": "baby-safety-security-surveillance"
+            },
+            {
+              "id": "baby-safety-protection-non-powered",
+              "name": "Baby Safety Protection (Non Powered)",
+              "gpcCode": "10000503",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered safety device that is specifically designed to prevent domestic accidents involving babies or to protect a baby from serious harm in the event that a domestic accident takes place. Includes non-powered devices to prevent a baby or infant in gaining access to dangerous areas or objects in the home such as safety rails, corner protectors. ",
+              "parentId": "baby-safety-security-surveillance"
+            },
+            {
+              "id": "baby-safety-security-surveillance-other",
+              "name": "Baby Safety/Security/Surveillance - Other",
+              "gpcCode": "10006820",
+              "gpcDescription": "Includes any products that can be described/observed as Baby Safety/Security/Surveillance, where the user of the schema is not able to classify the products in existing bricks within the schema. ",
+              "parentId": "baby-safety-security-surveillance"
+            },
+            {
+              "id": "baby-safety-security-surveillance-replacement-parts",
+              "name": "Baby Safety/Security/Surveillance - Replacement Parts",
+              "gpcCode": "10006819",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Baby Safety/Security/Surveillance.Includes products such as replacement parts for Baby Safety Protection (Non Powered).",
+              "parentId": "baby-safety-security-surveillance"
+            },
+            {
+              "id": "baby-safety-security-surveillance-variety-packs",
+              "name": "Baby Safety/Security/Surveillance Variety Packs",
+              "gpcCode": "10006818",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Baby Safety/Security/Surveillance products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Baby Safety/Security/Surveillance class. Includes products such as Baby Safety Monitoring (Non Powered) and Baby Harnesses/Reins sold together. Items that are received free with purchases should be removed from the classification decision-making process. ",
+              "parentId": "baby-safety-security-surveillance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "environmental-safety-security",
+      "name": "Environmental Safety/Security",
+      "gpcCode": "91020000",
+      "parentId": "safety-security-surveillance",
+      "children": [
+        {
+          "id": "environmental-fire-chemical-safety-products",
+          "name": "Environmental Fire/Chemical Safety Products",
+          "gpcCode": "91020100",
+          "parentId": "environmental-safety-security",
+          "children": [
+            {
+              "id": "environmental-fire-chemical-safety-products-variety-packs",
+              "name": "Environmental Fire/Chemical Safety Products Variety Packs",
+              "gpcCode": "10005387",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct combinations of environmental fire or chemical safety products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Environmental Fire/Chemical Safety Products class. Includes products such as a fire chute sold with a smoke hood. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "environmental-fire-chemical-safety-products"
+            },
+            {
+              "id": "fire-escape-chutes-ladders",
+              "name": "Fire Escape Chutes/Ladders",
+              "gpcCode": "10005384",
+              "gpcDescription": "Includes any products that can be described/observed either as a sloping or vertical channel down which people and possessions can slide to escape a fire, or as a set of rungs used as a means of climbing down from a window of a building on fire. These products come with flame resistant, tangle free deployment mechanisms to enable rapid release in the case of emergencies.",
+              "parentId": "environmental-fire-chemical-safety-products"
+            },
+            {
+              "id": "fire-retardants-suppressants",
+              "name": "Fire Retardants/Suppressants",
+              "gpcCode": "10005383",
+              "gpcDescription": "Includes any products that can be described/observed as a treatment that either retards a fire by reacting with the fuel to stop combustion, or suppresses the fire through asphyxiation causing lack of oxygen. Includes products such as fire retardant fabric treatments, fire retardant resins and water-based foams.",
+              "parentId": "environmental-fire-chemical-safety-products"
+            },
+            {
+              "id": "public-fire-alarms",
+              "name": "Public Fire Alarms",
+              "gpcCode": "10005385",
+              "gpcDescription": "Includes any products that can be described/observed as a device that emits a piercing sound, warning the public of a fire hazard. Includes products such as a bell, horn or siren.",
+              "parentId": "environmental-fire-chemical-safety-products"
+            },
+            {
+              "id": "smoke-hoods-respirators",
+              "name": "Smoke Hoods/Respirators",
+              "gpcCode": "10005386",
+              "gpcDescription": "Includes any products that can be described/observed as a device that protects the head and respiratory system from toxic smoke. These products combine heat resistant properties with filtration functions.",
+              "parentId": "environmental-fire-chemical-safety-products"
+            }
+          ]
+        },
+        {
+          "id": "weather-natural-disaster-safety-products",
+          "name": "Weather/Natural Disaster Safety Products",
+          "gpcCode": "91020200",
+          "parentId": "environmental-safety-security",
+          "children": [
+            {
+              "id": "air-fog-horns",
+              "name": "Air/Fog Horns",
+              "gpcCode": "10005388",
+              "gpcDescription": "Includes any products that can be described/observed as a portable air siren that can be heard at a distance over water. These products are used by boating and sailing enthusiasts to warn other shipping in the event of bad and foggy weather.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "lifebelts-life-jackets-lifesuits",
+              "name": "Lifebelts/Life-Jackets/Lifesuits",
+              "gpcCode": "10005389",
+              "gpcDescription": "Includes any products that can be described/observed as a personal flotation device, which is worn by an individual and is made of buoyant or inflatable material to support a person's body in water. Products may be automatically or manually inflated and may be supplied with a 'd ring' for attaching to a lifeline. Includes products such as a flotation collar which keeps the head above water, a vest or jacket, or a buoyant full wet suit, all made in a wide range of sizes from baby to adult.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "liferafts-life-buoys-flotation-cushions",
+              "name": "Liferafts/Life-Buoys/Flotation Cushions",
+              "gpcCode": "10005390",
+              "gpcDescription": "Includes any products that can be described/observed as a buoyant platform or prop designed to keep people afloat and prevent them from drowning. A liferaft can be designed to accommodate one person or many and may be equipped with boarding ladders, a canopy and locator lights. A lifebuoy is usually ring-shaped or horseshoe-shaped and has a connecting line allowing the casualty to be pulled to the rescuer. A flotation cushion, upon which a body can float, is simply a cushion made of flotation foam covered in a waterproof material and has straps to enable rescue.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "lightning-detectors-powered",
+              "name": "Lightning Detectors - Powered",
+              "gpcCode": "10003427",
+              "gpcDescription": "Includes any products that can be described/observed as either a fixed or portable, powered device specifically designed to detect lightning.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "lightning-rods-accessories",
+              "name": "Lightning Rods/Accessories",
+              "gpcCode": "10005391",
+              "gpcDescription": "Includes any products that can be described/observed as a metal strip or rod and accessories made of conductive material that diverts the electrical current of a lightning strike to an earthed ground. Such rods are used as part of lightning safety to protect tall or isolated structures such as the roof of a building or the mast of a vessel from a lightning strike. Includes products such as ground rods, roof rods and chimney rods and accessories such as conductive cables, fasteners, clamps and mounts.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "marine-electronic-chartplotters",
+              "name": "Marine Electronic Chartplotters",
+              "gpcCode": "10005872",
+              "gpcDescription": "Includes any products that can be described/observed as a device used in marine navigation that integrates GPS data with an electronic navigational chart to compute an accurate position of the vessel. These marine electronics devices are continuously evolving with larger screens, increased processing power, and multi-function capabilities that allow them to display data from a connected radar, fish finder, weather receiver, or be coupled to another marine chartplotter via a marine network.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "marine-navigation-radar-systems",
+              "name": "Marine Navigation Radar Systems",
+              "gpcCode": "10005874",
+              "gpcDescription": "Includes any products that can be described/observed as a system that provides navigation information when the vessel is within radar range of land or special radar aids. Distances and angular bearings are used to establish arcs of position and lines of position on a navigation chart.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "marine-navigation-software",
+              "name": "Marine Navigation Software",
+              "gpcCode": "10005873",
+              "gpcDescription": "Includes any products that can be descrbed/observed as a computer-based navigation information system that complies with International Maritime Organization (IMO) regulations and can be used as an alternative to paper navigation charts. The system displays the information from electronic navigational charts and integrates position information from the Global Positioning System (GPS) and other navigational sensors, such as radar and automatic identification systems. It may also display additional navigation-related information, such as sailing directions and fathometer.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "rock-salt-ice-melting-products",
+              "name": "Rock Salt/Ice Melting Products",
+              "gpcCode": "10005474",
+              "gpcDescription": "Includes any products that can be described/observed as a chemical that causes ice to melt on paths and roadways. Includes products such as sodium chloride known as rock salt and calcium chloride.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "sandbags-flood-guards",
+              "name": "Sandbags/Flood-guards",
+              "gpcCode": "10005392",
+              "gpcDescription": "Includes any products that can be described/observed as either a large bag that can be filled with sand or earth, or an interlocking panelled barrier, both of which are used as a barricade against flood-water.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "storm-shelters",
+              "name": "Storm Shelters",
+              "gpcCode": "10005393",
+              "gpcDescription": "Includes any products that can be described/observed as a shelter from tornadoes, high winds, flying debris, ground strike lightning, intruders and extreme events. Includes products such as pre-constructed solid steel safe rooms and concrete underground shelters intended for the home.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "transponders",
+              "name": "Transponders",
+              "gpcCode": "10005394",
+              "gpcDescription": "Includes any products that can be described/observed as a wireless communications, monitoring or control device that picks up and automatically responds to an incoming signal. These devices are employed in location, identification and navigation systems especially assisting in air/sea ship or survival craft rescue operations.",
+              "parentId": "weather-natural-disaster-safety-products"
+            },
+            {
+              "id": "weather-natural-disaster-safety-product-variety-packs",
+              "name": "Weather/Natural Disaster Safety Product Variety Packs",
+              "gpcCode": "10005395",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct combinations of weather/natural disaster safety products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Weather/Natural Disaster Safety Products class. Includes products such as a life jacket sold with a life raft. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "weather-natural-disaster-safety-products"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "home-business-safety-security-surveillance",
+      "name": "Home/Business Safety/Security/Surveillance",
+      "gpcCode": "91030000",
+      "parentId": "safety-security-surveillance",
+      "children": [
+        {
+          "id": "alarm-systems",
+          "name": "Alarm Systems",
+          "gpcCode": "91030100",
+          "parentId": "home-business-safety-security-surveillance",
+          "children": [
+            {
+              "id": "alarm-systems-replacement-parts-accessories",
+              "name": "Alarm Systems Replacement Parts/Accessories",
+              "gpcCode": "10005473",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory for an alarm system. Includes products such as smoke detector masks and glass shields for breakpoint alarms.",
+              "parentId": "alarm-systems"
+            },
+            {
+              "id": "burglar-alarms",
+              "name": "Burglar Alarms",
+              "gpcCode": "10005396",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic system of sensors connected to a unit that will emit a warning sound or ultrasonic signal when activated by some form of intrusion. Includes products such as self-contained wireless noisemakers, breakpoint alarms and multi-zoned, digital systems.",
+              "parentId": "alarm-systems"
+            },
+            {
+              "id": "gas-heat-smoke-detectors",
+              "name": "Gas/Heat/Smoke Detectors",
+              "gpcCode": "10005397",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic sensor that detects gas leaks or heat or smoke emissions and sends out an alert with a visual, audible or vibrating alarm. Includes products such as self contained battery operated alarms and those operated by mains electricity.",
+              "parentId": "alarm-systems"
+            },
+            {
+              "id": "glass-break-detector",
+              "name": "Glass Break Detector",
+              "gpcCode": "10007008",
+              "gpcDescription": "Includes any products that can be described/observed as a sensor that detects when glass is broken/shattered. These devices can also be used for other purposes than to prevent burglary. These sensors are commonly used near glass doors or glass store-front windows.",
+              "parentId": "alarm-systems"
+            }
+          ]
+        },
+        {
+          "id": "crowd-control",
+          "name": "Crowd Control",
+          "gpcCode": "91030700",
+          "gpcDescription": "Products Used To Control/Contain/Secure A Local Area",
+          "parentId": "home-business-safety-security-surveillance",
+          "children": [
+            {
+              "id": "stanchions",
+              "name": "Stanchions",
+              "gpcCode": "10006231",
+              "gpcDescription": "Includes any products that can be described/observed as a device designed to manage lines or queues. The device is comprised of poles with ropes, belts, or chains to direct users to follow a certain path. It may be a movable or mounted device.",
+              "parentId": "crowd-control"
+            }
+          ]
+        },
+        {
+          "id": "door-window-perimeter-security-products",
+          "name": "Door/Window/Perimeter Security Products",
+          "gpcCode": "91030200",
+          "parentId": "home-business-safety-security-surveillance",
+          "children": [
+            {
+              "id": "access-control-security-systems",
+              "name": "Access Control Security Systems",
+              "gpcCode": "10005398",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic system situated at the entry door or gate of a property that identifies the person through the use of a security code, business related personnel information or personal recognition factors such as a fingerprint or the iris of the eye. Includes products such as keypad entry that requires a security code, swipe card control that incorporates personnel information and biometric scan-in access control that recognises fingerprints.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "anti-climb-deterrent-security-product",
+              "name": "Anti-Climb/Deterrent Security Product",
+              "gpcCode": "10007007",
+              "gpcDescription": "Includes any products that can be described/observed as a strip of spikes, spinners or collars that discourage climbing. These products can be secured to a garden fence, wall or roof to discourage intruders (animal or human) from touching or climbing.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "axe-gates",
+              "name": "Axe Gates",
+              "gpcCode": "10008498",
+              "gpcDescription": "Includes any products that can be described/observed as an industrial safety gate made of a robust material that prevents falls and access to secure machines in chemical industry and offshore drilling rigs.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "door-chains-door-guards",
+              "name": "Door Chains/Door Guards",
+              "gpcCode": "10005401",
+              "gpcDescription": "Includes any products that can be described/observed as a chain or door guard devices that restricts a door from opening fully and enables conversation with the caller without gaining access. Includes products such as a standard chain and sliding channel, as well as chains that are incorporated with either a bolt or locking mechanism. Some products will automatically be engaged or released by means of a push button.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "door-gate-entry-intercoms",
+              "name": "Door/Gate Entry Intercoms",
+              "gpcCode": "10005399",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic audio communication system situated at the entry door or gate of a property. The system allows two-way verbal communication between the caller outside and the occupant inside and is a safety measure to prevent unwanted callers or intruders. Includes products such as corded and cordless sets as well as systems with automatic answering and door unlocking facilities.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "door-gate-viewers",
+              "name": "Door/Gate Viewers",
+              "gpcCode": "10005402",
+              "gpcDescription": "Includes any products that can be described/observed as an optical device that is mounted into the entrance door of a home or building so that one can see an outside visitor before opening the door. Includes products that require the eye to be placed on the viewer and products that can provide a view when the observer is at a short distance from the door.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "door-gate-window-bolts-keys",
+              "name": "Door/Gate/Window Bolts/Keys",
+              "gpcCode": "10005400",
+              "gpcDescription": "Includes any products that can be described/observed as a mechanism that secures the closure of a door, gate or window. Includes products such as hinge bolts, deadlocks and control keys.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "door-window-perimeter-security-products-variety-packs",
+              "name": "Door/Window/Perimeter Security Products Variety Packs",
+              "gpcCode": "10005406",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct combinations of door/window/perimeter security products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Door/Window/Perimeter Security Products class. Includes products such as a security door sold with a door intercom. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "parking-barrier",
+              "name": "Parking Barrier",
+              "gpcCode": "10007278",
+              "gpcDescription": "Includes any product that may be described/observed as a barrier that controls use of a parking space.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "safety-collision-protection",
+              "name": "Safety Collision Protection",
+              "gpcCode": "10008497",
+              "gpcDescription": "Includes any products that can be described/observed as an safety material that prevents protection against collisions with forklifts, other vehicles, walls, materials or pedestrian. This kind of material is fix (can't open it). Includes products such as safety barriers, bollards, column and corner protection, handrails, kick rails, rack protection, protective bumpers, loading dock bumpers, wheel stops.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "safety-marking-tape",
+              "name": "Safety Marking Tape",
+              "gpcCode": "10005725",
+              "gpcDescription": "Includes any products that can be described/observed as a robust supple or adhesive plastic tape used to cordon off or barricade a potentially hazardous area or define a safe working environment. The tapes come in different colours, may be printed with cautionary words and some are reflective so that they can be seen in the dark.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "smart-doorbells",
+              "name": "Smart Doorbells",
+              "gpcCode": "10008069",
+              "gpcDescription": "Includes any products that can be described/observed as an optical device that is mounted next to the entrance door or gate of a home or building so that one can see and speak to an outside visitor on their smartphone before opening the door. Often the function of the bell can be  linked to other devices via an app.",
+              "parentId": "door-window-perimeter-security-products"
+            },
+            {
+              "id": "window-burglar-bars-panels-shutters",
+              "name": "Window Burglar Bars/Panels/Shutters",
+              "gpcCode": "10005405",
+              "gpcDescription": "Includes any products that can be described/observed as a grille, panel or shutter that covers the window and acts as a deterrent to an intruder wanting to break through the window. Includes products such as fixed burglar bars, mesh panel grilles and roller shutters.",
+              "parentId": "door-window-perimeter-security-products"
+            }
+          ]
+        },
+        {
+          "id": "home-business-fire-extinguishers",
+          "name": "Home/Business Fire Extinguishers",
+          "gpcCode": "91030300",
+          "parentId": "home-business-safety-security-surveillance",
+          "children": [
+            {
+              "id": "fire-blankets",
+              "name": "Fire Blankets",
+              "gpcCode": "10005407",
+              "gpcDescription": "Includes any products that can be described/observed as a blanket made of fire resistant material such as woven glass fibre. They are particularly useful for smothering fat pan fires or for wrapping round a person whose clothing is on fire.",
+              "parentId": "home-business-fire-extinguishers"
+            },
+            {
+              "id": "fire-extinguishers-pressurised",
+              "name": "Fire Extinguishers - Pressurised",
+              "gpcCode": "10005408",
+              "gpcDescription": "Includes any products that can be described/observed as a pressurised cylindrical device, kept in the home or office to put out a fire, often in an emergency situation. The container is filled with fire retardant chemicals or water that, when discharged, can put out a small fire. Includes products such as manually operated or automatic extinguishers.",
+              "parentId": "home-business-fire-extinguishers"
+            },
+            {
+              "id": "fire-hoses",
+              "name": "Fire Hoses",
+              "gpcCode": "10005409",
+              "gpcDescription": "Includes any products that can be described/observed as a large hose that conveys water from a fire hydrant to a fire. They are made from a fire resistant material normally consisting of a woven jacket covered in rubber. Includes products such as manually operated or automatically dispensed hoses that may/may not be wall-mounted and may/may not have an incorporated jet sprayer.",
+              "parentId": "home-business-fire-extinguishers"
+            },
+            {
+              "id": "home-business-fire-extinguishers-variety-packs",
+              "name": "Home/Business Fire Extinguishers Variety Packs",
+              "gpcCode": "10005410",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct combinations of home/business fire extinguisher products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Home/Business Fire Extinguishers class. Includes products such as a fire blanket sold with a pressurised fire extinguisher. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "home-business-fire-extinguishers"
+            }
+          ]
+        },
+        {
+          "id": "home-business-safety-security-surveillance-variety-packs",
+          "name": "Home/Business Safety/Security/Surveillance Variety Packs",
+          "gpcCode": "91030600",
+          "parentId": "home-business-safety-security-surveillance",
+          "children": [
+            {
+              "id": "home-business-safety-security-surveillance-variety-packs",
+              "name": "Home/Business Safety/Security/Surveillance Variety Packs",
+              "gpcCode": "10005417",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct home or business safety/security/surveillance products sold together which exist within the schema but belong to different classes that is two or more products contained within the same pack which cross classes within the Home/Business Safety/Security/Surveillance family. Includes products such as burglar alarm and security lights variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "home-business-safety-security-surveillance-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "home-business-surveillance-equipment",
+          "name": "Home/Business Surveillance Equipment",
+          "gpcCode": "91030400",
+          "parentId": "home-business-safety-security-surveillance",
+          "children": [
+            {
+              "id": "bugging-debugging-equipment",
+              "name": "Bugging/Debugging Equipment",
+              "gpcCode": "10005411",
+              "gpcDescription": "Includes any products that can be described/observed as, in the case of bugging equipment, a small hidden microphone and/or camera that secretly monitors conversation and activity from a distance and in the case of debugging equipment, a detecting/protecting/scrambling device that provides an effective countermeasure to bugging. Includes products such as wireless cameras and receivers that can be disguised as pens and credit cards, as well as camera detectors, phone protectors and portable scramblers.",
+              "parentId": "home-business-surveillance-equipment"
+            },
+            {
+              "id": "exterior-convex-mirrors",
+              "name": "Exterior Convex Mirrors",
+              "gpcCode": "10005709",
+              "gpcDescription": "Includes any products that can be described/observed as a convex mirror for use in car parks, delivery bays, driveways and elsewhere. They can be wall or post mounted for security, safety and traffic surveillance. All are weather resistant and are available in various sizes. Includes products finished in acrylic, polycarbonate or stainless steel.",
+              "parentId": "home-business-surveillance-equipment"
+            },
+            {
+              "id": "home-business-surveillance-equipment-variety-packs",
+              "name": "Home/Business Surveillance Equipment Variety Packs",
+              "gpcCode": "10005415",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct combinations of home/business surveillance products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Home/Business Surveillance Equipment class. Includes products such as a light motion sensor sold with a floodlight. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "home-business-surveillance-equipment"
+            },
+            {
+              "id": "light-motion-sound-sensors",
+              "name": "Light/Motion/Sound Sensors",
+              "gpcCode": "10005412",
+              "gpcDescription": "Includes any products that can be described/observed as an automatic light controller with sound and/or motion activation to detect intruders. A motion sensor detects \"warm\" infrared movement and a sound sensor detects voices several metres away. Includes products such as sensors with adjustable sound and motion lights, manual and automatic options and weather resistant casings.",
+              "parentId": "home-business-surveillance-equipment"
+            },
+            {
+              "id": "security-lights",
+              "name": "Security Lights",
+              "gpcCode": "10005413",
+              "gpcDescription": "Includes any products that can be described/observed as an exterior light, which illuminates the building exterior and property thus acting as a deterrent to intruders. Includes products such as low energy lights that can be left burning all night as well as floodlights that are more often used on business premises.",
+              "parentId": "home-business-surveillance-equipment"
+            },
+            {
+              "id": "surveillance-cameras-recorders",
+              "name": "Surveillance Cameras/Recorders",
+              "gpcCode": "10005414",
+              "gpcDescription": "Includes any products that can be described/observed as a camera with/without a video imaging that can be mounted on an internal or external wall to monitor activity either within premises or outside a building and the surrounding property. Includes products such as day/night vision cameras and systems with multi-screen viewing and recording.",
+              "parentId": "home-business-surveillance-equipment"
+            }
+          ]
+        },
+        {
+          "id": "safes",
+          "name": "Safes",
+          "gpcCode": "91030500",
+          "parentId": "home-business-safety-security-surveillance",
+          "children": [
+            {
+              "id": "safes",
+              "name": "Safes",
+              "gpcCode": "10005416",
+              "gpcDescription": "Includes any products that can be described/observed as a secure lockable box used for securing valuable objects against theft or damage. A safe is usually a hollow cuboid or cylinder, with one face removable or hinged to form a door. The body and door are usually cast from a metal such as steel. Includes products such as fireproof data safes, security safes for valuables and cash and gun safes. The safes may be built-in to a wall, built-in underground or may be free-standing.",
+              "parentId": "safes"
+            }
+          ]
+        },
+        {
+          "id": "security-devices",
+          "name": "Security Devices",
+          "gpcCode": "91030900",
+          "parentId": "home-business-safety-security-surveillance",
+          "children": [
+            {
+              "id": "lock-padlock",
+              "name": "Lock/Padlock",
+              "gpcCode": "10008396",
+              "gpcDescription": "Includes any products that can be described/observed as a mechanism that secures the closure and prevent unauthorised access to a certain area. Includes products such as locks/padlocks for doors, gates, windows but also bikes, garden fences, garbage containers or luggage. These are with or without a chain, with keys or numbers or fingerprint.",
+              "parentId": "security-devices"
+            },
+            {
+              "id": "wheel-speed-control",
+              "name": "Wheel Speed Control",
+              "gpcCode": "10008496",
+              "gpcDescription": "Includes any product that may be described/observed as a bump made of robust material limiting the vehicle speed.",
+              "parentId": "security-devices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "personal-safety-security",
+      "name": "Personal Safety/Security",
+      "gpcCode": "91010000",
+      "parentId": "safety-security-surveillance",
+      "children": [
+        {
+          "id": "personal-safety-devices",
+          "name": "Personal Safety Devices",
+          "gpcCode": "91010100",
+          "parentId": "personal-safety-security",
+          "children": [
+            {
+              "id": "body-alarms",
+              "name": "Body Alarms",
+              "gpcCode": "10005373",
+              "gpcDescription": "Includes any products that can be described/observed as a device worn on the body that can be activated by pulling a lanyard which results in a piercing blast of sound to attract attention and summon help and encourage the would be assailant to retreat. Some may also have a built-in flashlight.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "emergency-survival-blankets-sleeping-bags",
+              "name": "Emergency Survival Blankets/Sleeping Bags",
+              "gpcCode": "10005472",
+              "gpcDescription": "Includes any products that can be described/observed as a cover or bag used to protect an individual from cold, wet weather. The products are made of polyester plastic film sprayed with an aluminium coating, which prevents radiant heat loss and are only intended for limited use in the case of an emergency.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "emergency-whistles",
+              "name": "Emergency Whistles",
+              "gpcCode": "10005374",
+              "gpcDescription": "Includes any products that can be described/observed as a small, hand-held device that produces a shrill sound when air is blown into it. Typically these products are used in an emergency, where the situation poses an immediate threat to human life or property.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "key-ring-alarms",
+              "name": "Key-ring Alarms",
+              "gpcCode": "10005375",
+              "gpcDescription": "Includes any products that can be described/observed as a key-ring with a button that can be activated to produce a piercing sound to summon help and cause an assailant to retreat. Some may also have a built-in flashlight.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "personal-luggage-alarms",
+              "name": "Personal Luggage Alarms",
+              "gpcCode": "10005376",
+              "gpcDescription": "Includes any products that can be described/observed as a personal security device for bags, suitcases and luggage in general. Includes simple alarms that look like luggage tags, which are touch sensitive and sound a piercing alarm when activated. Also includes devices that consist of a transmitter and signal receiver, which can be activated at a distance thus enabling scrutiny when luggage may be out of sight.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "personal-safety-devices-variety-packs",
+              "name": "Personal Safety Devices Variety Packs",
+              "gpcCode": "10005382",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct combinations of personal safety products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Personal Safety Devices class. Includes products such as a personal safety flare sold with a personal safety light. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "personal-safety-flares-signals",
+              "name": "Personal Safety Flares/Signals",
+              "gpcCode": "10005377",
+              "gpcDescription": "Includes any products that can be described/observed as a device that can be used as a distress signal that pinpoints an individual's position or location. Includes products such as hand-held and aerial flares or smoke signals and fluorescent dye markers.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "personal-safety-lights",
+              "name": "Personal Safety Lights",
+              "gpcCode": "10005378",
+              "gpcDescription": "Includes any products that can be described/observed as a portable light that emits a powerful beam and can be used to disconcert a would be attacker or as a distress signal that pinpoints an individual's position or location. Includes products that have a strobe capability and some lights may be combined with an air horn.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "remote-controlled-vehicles",
+              "name": "Remote Controlled Vehicles",
+              "gpcCode": "10006850",
+              "gpcDescription": "Includes any products that can be described/observed as a remotely piloted vehicle used for photographing/filming areas not accessible to the pilot/driver. These products can traverse several types of terrain or only specific types.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "remotely-controlled-vehicle-replacement-parts-and-accessories",
+              "name": "Remotely Controlled Vehicle Replacement Parts and Accessories",
+              "gpcCode": "10006851",
+              "gpcDescription": "Includes any replacement parts or accessories for products that can be described/observed as a remotely controlled vehicle.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "self-defence-sprays",
+              "name": "Self-defence Sprays",
+              "gpcCode": "10005379",
+              "gpcDescription": "Includes any products that can be described/observed as an irritant pepper spray or foul-smelling spray that can be used as a deterrent against both human and animal attack. Some sprays contain ultraviolet dye for police identification. Includes products that are activated with the help of a refillable gas canister as well as defence sprays with an incorporated alarm.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "stun-guns",
+              "name": "Stun Guns",
+              "gpcCode": "10005380",
+              "gpcDescription": "Includes any products that can be described/observed as a device, which emits high voltage electric current when applied to an attackers muscle, causing temporary weakness and loss of balance. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products that are rechargeable and products that come with added features such as a flashlight and/or an alarm.",
+              "parentId": "personal-safety-devices"
+            },
+            {
+              "id": "wearable-wireless-webcams-inverse-surveillance",
+              "name": "Wearable Wireless Webcams (Inverse Surveillance)",
+              "gpcCode": "10005381",
+              "gpcDescription": "Includes any products that can be described/observed as an audio visual aid that is worn or carried by an individual and serves as a personal record of what happens before and after an accident, personal injury, or assault. The practice is known as personal sousveillance or inverse surveillance. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products that make recordings through assisted technologies such as a visual memory prosthetic, or a seeing aid that links to remote computational or human elements.",
+              "parentId": "personal-safety-devices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "safety-security-surveillance-variety-packs",
+      "name": "Safety/Security/Surveillance Variety Packs",
+      "gpcCode": "91040000",
+      "parentId": "safety-security-surveillance",
+      "children": [
+        {
+          "id": "safety-security-surveillance-variety-packs",
+          "name": "Safety/Security/Surveillance Variety Packs",
+          "gpcCode": "91040100",
+          "parentId": "safety-security-surveillance-variety-packs",
+          "children": [
+            {
+              "id": "safety-security-surveillance-variety-packs",
+              "name": "Safety/Security/Surveillance Variety Packs",
+              "gpcCode": "10005418",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct safety/security/surveillance products sold together which exist within the schema but belong to different families that is two or more products contained within the same pack which cross families within the Safety/Security/Surveillance segment. Includes products such as self-defence spray and burglar alarm variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "safety-security-surveillance-variety-packs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

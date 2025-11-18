@@ -1,0 +1,681 @@
+{
+  "id": "toys-games",
+  "name": "Toys/Games",
+  "gpcCode": "86000000",
+  "children": [
+    {
+      "id": "service-provided-gambling-products",
+      "name": "Service Provided Gambling Products",
+      "gpcCode": "86020000",
+      "parentId": "toys-games",
+      "children": [
+        {
+          "id": "service-provided-gambling-products",
+          "name": "Service Provided Gambling Products",
+          "gpcCode": "86020100",
+          "parentId": "service-provided-gambling-products",
+          "children": [
+            {
+              "id": "lottery-and-scratch-cards",
+              "name": "Lottery and Scratch Cards",
+              "gpcCode": "10006755",
+              "gpcDescription": "Includes any product that may be described/observed as pre-printed form/receipt used for a ticket or entry form for gambling games or method of raising money in which a large number of tickets are sold  which provide a chance to win prizes. Includes products such as a card (as a lottery ticket) having a small area covered by an opaque coating which may be scraped away to reveal hidden information.  ",
+              "parentId": "service-provided-gambling-products"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toys-games",
+      "name": "Toys/Games",
+      "gpcCode": "86010000",
+      "parentId": "toys-games",
+      "children": [
+        {
+          "id": "board-games-cards-puzzles",
+          "name": "Board Games/Cards/Puzzles",
+          "gpcCode": "86010100",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "board-games-non-powered",
+              "name": "Board Games (Non Powered)",
+              "gpcCode": "10005133",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered pre-marked board with counters or pieces specifically designed for game playing, typically intended as a recreational activity. Includes products designed for adults or children. ",
+              "parentId": "board-games-cards-puzzles"
+            },
+            {
+              "id": "board-games-powered",
+              "name": "Board Games (Powered)",
+              "gpcCode": "10005134",
+              "gpcDescription": "Includes any products that can be described/observed as a game supported by a power source, specifically designed for game playing and typically intended as a recreational activity. Includes products designed for adults or children. ",
+              "parentId": "board-games-cards-puzzles"
+            },
+            {
+              "id": "board-games-cards-puzzles-accessories-replacement-parts",
+              "name": "Board Games/Cards/Puzzles - Accessories/Replacement Parts",
+              "gpcCode": "10005135",
+              "gpcDescription": "Includes any products that can be described/observed as an item specifically designed as an accessory or replacement part for a board game, card game or puzzle that is typically sold separately or in addition to the game set. Includes products such as chess pieces, dice and a card shuffler.",
+              "parentId": "board-games-cards-puzzles"
+            },
+            {
+              "id": "board-games-cards-puzzles-other",
+              "name": "Board Games/Cards/Puzzles Other",
+              "gpcCode": "10005136",
+              "gpcDescription": "Includes any products that can be described/observed as a board game, card game or puzzle where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "board-games-cards-puzzles"
+            },
+            {
+              "id": "board-games-cards-puzzles-variety-packs",
+              "name": "Board Games/Cards/Puzzles Variety Packs",
+              "gpcCode": "10005137",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct combinations of a board game sold together with a card game and/or a puzzle, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Board Games/Cards/Puzzles class. Includes products such as a chess game sold with extra chess pieces. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "board-games-cards-puzzles"
+            },
+            {
+              "id": "card-games-non-powered",
+              "name": "Card Games (Non Powered)",
+              "gpcCode": "10005138",
+              "gpcDescription": "Includes any products that can be described/observed as non-electronic cards used for games of mental skill and recreational activity.",
+              "parentId": "board-games-cards-puzzles"
+            },
+            {
+              "id": "card-games-powered",
+              "name": "Card Games (Powered)",
+              "gpcCode": "10005139",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic card game, typically played using a computerised screen.",
+              "parentId": "board-games-cards-puzzles"
+            },
+            {
+              "id": "puzzles-non-powered",
+              "name": "Puzzles (Non Powered)",
+              "gpcCode": "10005140",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered problem or enigma specifically designed as recreational activity. Includes products designed for adults or children. ",
+              "parentId": "board-games-cards-puzzles"
+            },
+            {
+              "id": "puzzles-powered",
+              "name": "Puzzles (Powered)",
+              "gpcCode": "10005141",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic puzzle, problem or enigma specifically designed as recreational activity. Includes products designed for adults or children. ",
+              "parentId": "board-games-cards-puzzles"
+            }
+          ]
+        },
+        {
+          "id": "developmental-educational-toys",
+          "name": "Developmental/Educational Toys",
+          "gpcCode": "86010400",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "baby-infant-stimulation-toys-non-powered",
+              "name": "Baby/Infant Stimulation Toys (Non Powered)",
+              "gpcCode": "10005153",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered toy to stimulate and amuse a baby. Includes products such as a baby mobile and baby activity mat.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "baby-infant-stimulation-toys-powered",
+              "name": "Baby/Infant Stimulation Toys (Powered)",
+              "gpcCode": "10005154",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic toy to stimulate and amuse a baby. Includes products such as a baby mobile, which can be operated by a remote control and electronic crawling toys with flashing lights and sounds.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "bath-pool-water-toys",
+              "name": "Bath/Pool Water Toys",
+              "gpcCode": "10005155",
+              "gpcDescription": "Includes any products that can be described/observed as a toy, which is designed to be played with in the bath or in association with water. Typically, bath toys such as a rubber duck or a pool dolphin, are waterproof and will float in water, so are usually made of a lightweight rubber, plastic or wood and may be inflatable. Water toys that require the use of water to function, such as water pistols and blow bubbles, can be played with in the bath or outdoors.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "communication-toys-non-powered",
+              "name": "Communication Toys (Non Powered)",
+              "gpcCode": "10005156",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered educational toy designed to encourage interest and learning in communication through recreational activity. Includes products such as a non-electronic toy phone and toy typwewriter.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "communication-toys-powered",
+              "name": "Communication Toys (Powered)",
+              "gpcCode": "10005157",
+              "gpcDescription": "Includes any products that can be described/observed as a powered educational toy designed to encourage interest and learning in communication through recreational activity. Includes products such as an electronic toy phone and toy typwewriter.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "developmental-educational-toys-other",
+              "name": "Developmental/Educational Toys Other",
+              "gpcCode": "10005159",
+              "gpcDescription": "Includes any products that can be described/observed as a developmental or educational toy designed for learning through recreational activities, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "developmental-educational-toys-variety-packs",
+              "name": "Developmental/Educational Toys Variety Packs",
+              "gpcCode": "10005160",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct developmental or educational toys sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Developmental/Educational Toys class. Includes products such as a baby mobile and squeeze bath toy sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "push-pull-along-toys-non-powered",
+              "name": "Push/Pull-along Toys (Non Powered)",
+              "gpcCode": "10005161",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered toy animal or vehicle that can be pushed or pulled along by means of a handle or rope.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "push-pull-along-toys-powered",
+              "name": "Push/Pull-along Toys (Powered)",
+              "gpcCode": "10005162",
+              "gpcDescription": "Includes any products that can be described/observed as a powered toy animal or vehicle that can be pushed or pulled along by means of a handle or rope. The battery power enables flashing lights and sounds to amuse a young child.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "scientific-toys-non-powered",
+              "name": "Scientific Toys (Non Powered)",
+              "gpcCode": "10005163",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered educational item or set specifically designed to encourage interest and learning in science through recreational activity. Includes products such as a chemistry set and an abacus.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "scientific-toys-powered",
+              "name": "Scientific Toys (Powered)",
+              "gpcCode": "10005164",
+              "gpcDescription": "Includes any products that can be described/observed as a powered educational item or set specifically designed to encourage interest and learning in science through recreational activity. Includes products such as a chemistry set with a power source to help conduct experiments.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "spinning-tops-yo-yos",
+              "name": "Spinning Tops/Yo-Yos",
+              "gpcCode": "10005165",
+              "gpcDescription": "Includes any products that can be described/observed as a toy that spins when set in motion by hand or by an attached coiled string, which is jerked away quickly to initiate a spinning motion. Tops spin on a point, which comes into contact with a surface or the ground. Some tops are designed with a spring that aids the spinning movement. As Yo-Yos spin they remain attached to their string and can be made to rise and fall when the player jerks the string.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "toy-building-blocks-non-powered",
+              "name": "Toy Building Blocks (Non Powered)",
+              "gpcCode": "10005166",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered set of stackable or connectable items which help to develop a young child's perception of shapes, colour, letters and related items. Includes products such as alphabet blocks and wooden blocks.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "toy-building-blocks-powered",
+              "name": "Toy Building Blocks (Powered)",
+              "gpcCode": "10005167",
+              "gpcDescription": "Includes any products that can be described/observed as a powered set of stackable or connectable items, which are put together in some form of related order. These recreational toys stimulate and develop the mind. Includes products such as denshi blocks.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "toy-computer-accessories",
+              "name": "Toy Computer Accessories",
+              "gpcCode": "10005712",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory to an electronic toy computer that is purchased separately from the toy computer. These accessories are often themed to a particular cartoon character and colour. Includes products such as an electronic toy mouse and an electronic toy keyboard.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "toy-computers",
+              "name": "Toy Computers",
+              "gpcCode": "10005158",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic toy computer designed to teach children the concepts of computing through the use of a rudimentary keyboard and software specifically designed to entertain a young user. These computers are often themed to a particular cartoon character and colour.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "toy-drawing-boards-accessories",
+              "name": "Toy Drawing Boards/Accessories",
+              "gpcCode": "10005442",
+              "gpcDescription": "Includes any products that can be described/observed as a portable surface or board upon which children can create pictures and designs with the aid of special pens and shapes. Includes magnetic drawing boards that contain magnetic particles within the board, which are activated with a magnetic pen, magnetic boards that are used in conjunction with manetic shapes and dry-erase boards used in conjunction with dry-erase markers that can be wiped clean without a trace. ",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "toy-model-construction-non-powered",
+              "name": "Toy Model Construction (Non Powered)",
+              "gpcCode": "10005168",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered set of pieces or formations designed to be assembled to recreate a miniaturised structure, item or being. Includes products such as model boat, car and plane kits.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "toy-model-construction-powered",
+              "name": "Toy Model Construction (Powered)",
+              "gpcCode": "10005169",
+              "gpcDescription": "Includes any products that can be described/observed as a powered set of pieces or formations designed to be assembled to recreate a structure, item or being. Includes products such as radio-controlled model boat, car and plane kits.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "viewing-toys-non-powered",
+              "name": "Viewing Toys (Non Powered)",
+              "gpcCode": "10005170",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered educational toy designed to entertain and encourage learning by viewing changing scenes or patterns, mostly in 3D, through a viewing device or tube. Includes products such as a non-powered viewer, picture slides/reels and a kaleidoscope.",
+              "parentId": "developmental-educational-toys"
+            },
+            {
+              "id": "viewing-toys-powered",
+              "name": "Viewing Toys (Powered)",
+              "gpcCode": "10005171",
+              "gpcDescription": "Includes any products that can be described/observed as a powered educational toy designed to entertain and encourage learning by viewing changing scenes or patterns, mostly in 3D, through a viewing device or tube. The power source lights up the scenes being viewed. Some products are supplied with an infrared remote control that advances the picture reels to the next picture whenever the player is ready. The viewing device may be combined with a simple projector so that the images can be projected onto a wall or ceiling and some reels are sold with a sound cartridge that provides sound synchronised with the images being viewed.",
+              "parentId": "developmental-educational-toys"
+            }
+          ]
+        },
+        {
+          "id": "dolls-puppets-action-figures-soft-toys",
+          "name": "Dolls/Puppets/Action Figures/Soft Toys",
+          "gpcCode": "86010200",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "action-figures-non-powered",
+              "name": "Action Figures (Non Powered)",
+              "gpcCode": "10006395",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered action figure with the likeness of a human, character or animal specifically designed to be used for recreational activities. They possess a certain amount of posability, often referred to as \"points of articulation\". These figures will have moving parts that can be manipulated into various poses. Often they come with interchangeable accessories such as weapons or snap-on backpacks. Most action figures will be built entirely of moulded plastic, including its clothing and accessories, although occasionally some will come with one piece of cloth clothing (e.g. a robe or cape). ",
+              "parentId": "dolls-puppets-action-figures-soft-toys"
+            },
+            {
+              "id": "action-figures-powered",
+              "name": "Action Figures (Powered)",
+              "gpcCode": "10006396",
+              "gpcDescription": "Includes any products that can be described/observed as a powered action figure with the likeness of a human, character or animal specifically designed to be used for recreational activities. They possess a certain amount of posability, often referred to as \"points of articulation\". These figures will have moving parts that can be manipulated into various poses. Often they come with interchangeable accessories such as weapons or snap-on backpacks. Most action figures will be built entirely of moulded plastic, including its clothing and accessories, although occasionally some will come with one piece of cloth clothing (e.g. a robe or cape). ",
+              "parentId": "dolls-puppets-action-figures-soft-toys"
+            },
+            {
+              "id": "dolls-puppets-soft-toys-other",
+              "name": "Dolls/Puppets/Soft Toys Other",
+              "gpcCode": "10005144",
+              "gpcDescription": "Includes any products that can be described/observed as a doll, puppet or soft toy where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "dolls-puppets-action-figures-soft-toys"
+            },
+            {
+              "id": "dolls-soft-toys-non-powered",
+              "name": "Dolls/Soft Toys (Non Powered)",
+              "gpcCode": "10005142",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered doll, figure or soft toy with the likeness of a human, character or animal specifically designed to be used for recreational activities. A doll will often come with clothing that can be removed almost completely. They possess a certain amount of posability, but the emphasis on posability is often second to the realism of the sculpts and accessories. Includes products designed to resemble fantasy or fictional characters. ",
+              "parentId": "dolls-puppets-action-figures-soft-toys"
+            },
+            {
+              "id": "dolls-soft-toys-powered",
+              "name": "Dolls/Soft Toys (Powered)",
+              "gpcCode": "10005143",
+              "gpcDescription": "Includes any products that can be described/observed as a powered doll, figure or soft toy with the likeness of a human, character or animal specifically designed to be used for recreational activities. A doll will often come with clothing that can be removed almost completely. They possess a certain amount of posability, but the emphasis on posability is often second to the realism of the sculpts and accessories. Includes products designed to resemble fantasy or fictional characters.",
+              "parentId": "dolls-puppets-action-figures-soft-toys"
+            },
+            {
+              "id": "puppets",
+              "name": "Puppets",
+              "gpcCode": "10005145",
+              "gpcDescription": "Includes any products that can be described/observed as a figure of a person or animal designed to fit over the hand and be manipulated, or alternatively, be attached to strings and rods which are manoeuvered by hand to make the figure move. Includes products such as marionettes.",
+              "parentId": "dolls-puppets-action-figures-soft-toys"
+            }
+          ]
+        },
+        {
+          "id": "dolls-puppets-action-figures-soft-toys-accessories",
+          "name": "Dolls/Puppets/Action Figures/Soft Toys Accessories",
+          "gpcCode": "86010300",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "action-figure-accessories",
+              "name": "Action Figure Accessories",
+              "gpcCode": "10006397",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory specifically designed for an action figure and that helps to enhance the realism of play. Includes products such as action figure equipment and action figure vehicles.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            },
+            {
+              "id": "dolls-beauty-cosmetic-accessories",
+              "name": "Dolls Beauty/Cosmetic Accessories",
+              "gpcCode": "10005146",
+              "gpcDescription": "Includes any products that can be described/observed as a beauty or cosmetic accessory specifically designed for a fashion doll, and that helps to enhance the realism of play. Includes products such as a doll's brush, comb and mirror.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            },
+            {
+              "id": "dolls-buildings-settings",
+              "name": "Dolls Buildings/Settings",
+              "gpcCode": "10005147",
+              "gpcDescription": "Includes any products that can be described/observed as a miniaturised building or setting designed to be used while playing with a soft toy, doll, or toy animal. Includes building settings for fantasy and fictional doll characters.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            },
+            {
+              "id": "dolls-clothing",
+              "name": "Dolls Clothing",
+              "gpcCode": "10005148",
+              "gpcDescription": "Includes any products that can be described/observed as an item of clothing specifically designed for a fashion doll or soft toy. Includes products such as a doll's dress, jacket, trousers, swimwear and uniform.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            },
+            {
+              "id": "dolls-furniture",
+              "name": "Dolls Furniture",
+              "gpcCode": "10005149",
+              "gpcDescription": "Includes any products that can be described/observed as miniaturised furniture intended to be used while playing with a doll or soft toy. Includes products such as a doll's bed, doll's pram or doll's furniture set.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            },
+            {
+              "id": "dolls-puppets-soft-toys-accessories-other",
+              "name": "Dolls/Puppets/Soft Toys Accessories Other",
+              "gpcCode": "10005150",
+              "gpcDescription": "Includes any products that can be described/observed as a doll, puppet or soft toy accessory where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            },
+            {
+              "id": "dolls-puppets-soft-toys-accessories-variety-packs",
+              "name": "Dolls/Puppets/Soft Toys Accessories Variety Packs",
+              "gpcCode": "10005151",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct dolls/puppets/soft toys accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Dolls/Puppets/Soft Toys Accessories class. Includes products such as dolls' beauty accessories and dolls' clothing sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            },
+            {
+              "id": "puppet-theatres",
+              "name": "Puppet Theatres",
+              "gpcCode": "10005152",
+              "gpcDescription": "Includes any products that can be described/observed as a freestanding structure specifically designed for use as a puppet theatre.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            },
+            {
+              "id": "styling-dolls-heads-non-powered",
+              "name": "Styling Dolls Heads (Non Powered)",
+              "gpcCode": "10005439",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered dolls head on a stand or base. Children use the head to imitate the actions of a hair or beauty stylist, brushing the hair and applying imitation jewellery and cosmetics. Includes products that have incorporated beauty accessories such as a brush and make up together with the styling head.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            },
+            {
+              "id": "styling-dolls-heads-powered",
+              "name": "Styling Dolls Heads (Powered)",
+              "gpcCode": "10005440",
+              "gpcDescription": "Includes any products that can be described/observed as a powered dolls head on a stand or base. Children use the head to imitate the actions of a hair or beauty stylist, brushing the hair and applying imitation jewellery and cosmetics. The electronic head talks, emitting pre-recorded phrases. Includes products that have incorporated beauty accessories such as a brush and make up together with the styling head.",
+              "parentId": "dolls-puppets-action-figures-soft-toys-accessories"
+            }
+          ]
+        },
+        {
+          "id": "fancy-dress-costumes-accessories",
+          "name": "Fancy Dress Costumes/Accessories",
+          "gpcCode": "86010500",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "fancy-dress-accessories-non-powered",
+              "name": "Fancy Dress Accessories (Non Powered)",
+              "gpcCode": "10005175",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered toy worn as an accessory to a fancy dress costume. Includes products such as a toy weapon or fake costume jewellery.",
+              "parentId": "fancy-dress-costumes-accessories"
+            },
+            {
+              "id": "fancy-dress-accessories-powered",
+              "name": "Fancy Dress Accessories (Powered)",
+              "gpcCode": "10005176",
+              "gpcDescription": "Includes any products that can be described/observed as a powered toy worn as an accessory to a fancy dress costume. Includes products such as a toy weapon with flashing lights and sound.",
+              "parentId": "fancy-dress-costumes-accessories"
+            },
+            {
+              "id": "fancy-dress-costumes",
+              "name": "Fancy Dress Costumes",
+              "gpcCode": "10005172",
+              "gpcDescription": "Includes any products that can be described/observed as a costume which enables the wearer to take part in imitation role play, Such costumes are also worn to parties or special occasions as a disguise or representation of a certain type of character.",
+              "parentId": "fancy-dress-costumes-accessories"
+            },
+            {
+              "id": "fancy-dress-costumes-accessories-other",
+              "name": "Fancy Dress Costumes/Accessories Other",
+              "gpcCode": "10005173",
+              "gpcDescription": "Includes any products that can be described/observed as fancy dress costume accessories, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "fancy-dress-costumes-accessories"
+            },
+            {
+              "id": "fancy-dress-costumes-accessories-variety-packs",
+              "name": "Fancy Dress Costumes/Accessories Variety Packs",
+              "gpcCode": "10005174",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct fancy dress costumes and accessories products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Fancy Dress Costumes/Accessories class. Includes products such as a fairy costume and wand sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "fancy-dress-costumes-accessories"
+            }
+          ]
+        },
+        {
+          "id": "indoor-outdoor-games-play-structures",
+          "name": "Indoor/Outdoor Games/Play Structures",
+          "gpcCode": "86010700",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "indoor-outdoor-games",
+              "name": "Indoor/Outdoor Games",
+              "gpcCode": "10005181",
+              "gpcDescription": "Includes any products that can be described/observed as game or activity designed for playing indoors or outdoors. Includes products such as pogo sticks and ball hoppers.",
+              "parentId": "indoor-outdoor-games-play-structures"
+            },
+            {
+              "id": "outdoor-games-play-structures-other",
+              "name": "Outdoor Games/Play Structures Other",
+              "gpcCode": "10005180",
+              "gpcDescription": "Includes any products that can be described/observed as an outdoor game or play structure, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "indoor-outdoor-games-play-structures"
+            },
+            {
+              "id": "outdoor-play-structures",
+              "name": "Outdoor Play Structures",
+              "gpcCode": "10005182",
+              "gpcDescription": "Includes any products that can be described/observed as a temporary structure that can be erected in the garden or outdoors to encourage physical activity during play. Includes products such as swings, slides and inflatable pools.",
+              "parentId": "indoor-outdoor-games-play-structures"
+            }
+          ]
+        },
+        {
+          "id": "musical-toys",
+          "name": "Musical Toys",
+          "gpcCode": "86010600",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "musical-toys-non-powered",
+              "name": "Musical Toys (Non Powered)",
+              "gpcCode": "10005177",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered toy musical instrument designed as a miniaturised version of an adult equivalent. Musical toys are intended to provide amusement and very basic developmental skills. Includes products such as toy pianos.",
+              "parentId": "musical-toys"
+            },
+            {
+              "id": "musical-toys-powered",
+              "name": "Musical Toys (Powered)",
+              "gpcCode": "10005178",
+              "gpcDescription": "Includes any products that can be described/observed as a powered toy musical instrument designed as a miniaturised electronic version of an adult equivalent. Musical toys are intended to provide amusement and very basic developmental skills. Includes products such as electronic toy pianos.",
+              "parentId": "musical-toys"
+            },
+            {
+              "id": "musical-toys-other",
+              "name": "Musical Toys Other",
+              "gpcCode": "10005179",
+              "gpcDescription": "Includes any products that can be described/observed as a musical toy, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "musical-toys"
+            }
+          ]
+        },
+        {
+          "id": "role-play-toys",
+          "name": "Role Play Toys",
+          "gpcCode": "86011200",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "role-play-housekeeping-gardening-diy-toys",
+              "name": "Role Play - Housekeeping/Gardening/DIY Toys",
+              "gpcCode": "10005684",
+              "gpcDescription": "Includes any products that can be described/observed as a toy item or set of toy items that encourage a child to imitate activity in a home environment, such as cleaning, gardening or DIY. The toys may be powered to effect sounds and lights that create a realistic simulation of an appliance or tool used in the home. Includes products such as a toy vacuum cleaner, a toy lawnmower and a toy tool kit. ",
+              "parentId": "role-play-toys"
+            },
+            {
+              "id": "role-play-kitchen-toys",
+              "name": "Role Play - Kitchen Toys",
+              "gpcCode": "10005250",
+              "gpcDescription": "Includes any products that can be described/observed as a toy item or set of toy items that encourage a child to imitate activity in a kitchen. The toys may be powered to effect sounds and lights that create a realistic simulation of a household kitchen. Includes products such as a toy oven, toy pots and pans and toy food. ",
+              "parentId": "role-play-toys"
+            },
+            {
+              "id": "role-play-shopping-office-business-toys",
+              "name": "Role Play - Shopping/Office/Business Toys",
+              "gpcCode": "10005685",
+              "gpcDescription": "Includes any products that can be described/observed as a toy item or set of toy items that encourage a child to imitate activity in a shopping environment or office, or role-play as a professional worker or business person. The toys may be powered to effect sounds and lights that create a realistic simulation of such an environment. Includes products such as a toy cash register, toy money or a toy shopping trolley, as well as a toy set of doctors implements or a firemans kit. ",
+              "parentId": "role-play-toys"
+            }
+          ]
+        },
+        {
+          "id": "table-games",
+          "name": "Table Games",
+          "gpcCode": "86010800",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "table-games-non-powered",
+              "name": "Table Games (Non Powered)",
+              "gpcCode": "10005183",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered table game. Includes products such as table soccer.",
+              "parentId": "table-games"
+            },
+            {
+              "id": "table-games-powered",
+              "name": "Table Games (Powered)",
+              "gpcCode": "10005184",
+              "gpcDescription": "Includes any products that can be described/observed as a powered table/tabletop game. Includes products such as pin ball.",
+              "parentId": "table-games"
+            },
+            {
+              "id": "table-games-other",
+              "name": "Table Games Other",
+              "gpcCode": "10005185",
+              "gpcDescription": "Includes any products that can be described/observed as a table game, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "table-games"
+            }
+          ]
+        },
+        {
+          "id": "toy-vehicles-non-ride",
+          "name": "Toy Vehicles - Non-ride",
+          "gpcCode": "86011100",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "car-train-set-replacement-parts-accessories",
+              "name": "Car/Train Set - Replacement Parts/Accessories",
+              "gpcCode": "10005192",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory for a car or train set. Includes products such as replacement tracks and miniaturised settings.",
+              "parentId": "toy-vehicles-non-ride"
+            },
+            {
+              "id": "car-train-sets-non-powered",
+              "name": "Car/Train Sets (Non Powered)",
+              "gpcCode": "10005190",
+              "gpcDescription": "Includes any products that can be described/observed as set comprising of non-powered toy cars or toy trains, that sometimes come with a surface specifically designed as a road or track for these toy vehicles to run on.",
+              "parentId": "toy-vehicles-non-ride"
+            },
+            {
+              "id": "car-train-sets-powered",
+              "name": "Car/Train Sets (Powered)",
+              "gpcCode": "10005191",
+              "gpcDescription": "Includes any products that can be described/observed as set comprising of powered toy cars or toy trains, that come with a surface specifically designed as a road or track for these toy vehicles to run on.",
+              "parentId": "toy-vehicles-non-ride"
+            },
+            {
+              "id": "toy-vehicles-non-ride-non-powered",
+              "name": "Toy Vehicles - Non-ride (Non Powered)",
+              "gpcCode": "10005193",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered toy vehicle that is not to be ridden on by a child. Typically, they can be miniaturised replicas of actual road vehicles. They may also be an accessory to a fashion doll or an action doll.",
+              "parentId": "toy-vehicles-non-ride"
+            },
+            {
+              "id": "toy-vehicles-non-ride-powered",
+              "name": "Toy Vehicles - Non-ride (Powered)",
+              "gpcCode": "10005194",
+              "gpcDescription": "Includes any products that can be described/observed as a powered toy vehicle that is not to be ridden on by a child. This includes any type of individual toy such as helicopter, boats, planes, cars, trucks, drones, etc.  Typically, they can be miniaturised replicas of actual vehicles. They may also be an accessory to a fashion doll or an action doll. Includes radio controlled toy vehicle except for kits and sets.",
+              "parentId": "toy-vehicles-non-ride"
+            },
+            {
+              "id": "toy-vehicles-non-ride-other",
+              "name": "Toy Vehicles - Non-ride Other",
+              "gpcCode": "10005195",
+              "gpcDescription": "Includes any products that can be described/observed as a non-ride toy vehicle, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "toy-vehicles-non-ride"
+            },
+            {
+              "id": "toy-vehicles-non-ride-variety-packs",
+              "name": "Toy Vehicles - Non-ride Variety Packs",
+              "gpcCode": "10005196",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct non-ride toy vehicles sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Toy Vehicles (Non-ride) class. Includes products such as a train set and replacement tracks sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "toy-vehicles-non-ride"
+            }
+          ]
+        },
+        {
+          "id": "toys-ride-on",
+          "name": "Toys - Ride-on",
+          "gpcCode": "86011000",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "toys-ride-on-non-powered",
+              "name": "Toys - Ride-on (Non Powered)",
+              "gpcCode": "10005187",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered toy specifically designed to be ridden on by the user. Includes products such as scooters and rocking horses.",
+              "parentId": "toys-ride-on"
+            },
+            {
+              "id": "toys-ride-on-powered",
+              "name": "Toys - Ride-on (Powered)",
+              "gpcCode": "10005188",
+              "gpcDescription": "Includes any products that can be described/observed as a powered toy specifically designed to be ridden on by the user. Includes products such as a battery operated car or motorbike.",
+              "parentId": "toys-ride-on"
+            },
+            {
+              "id": "toys-ride-on-accessories",
+              "name": "Toys - Ride-on Accessories",
+              "gpcCode": "10005441",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory to a ride-on toy. Includes products such as characterised toy bicycle bells and handlebar streamers.",
+              "parentId": "toys-ride-on"
+            },
+            {
+              "id": "toys-ride-on-other",
+              "name": "Toys - Ride-on Other",
+              "gpcCode": "10005189",
+              "gpcDescription": "Includes any products that can be described/observed as a ride-on toy, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "toys-ride-on"
+            }
+          ]
+        },
+        {
+          "id": "toys-games-other",
+          "name": "Toys/Games - Other",
+          "gpcCode": "86011300",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "practical-jokes",
+              "name": "Practical Jokes",
+              "gpcCode": "10005443",
+              "gpcDescription": "Includes any products that can be described/observed as an item that creates an unexpected occurrence which is intended to create amusement and fun. Includes products such as whoopee cushions and itching powder.",
+              "parentId": "toys-games-other"
+            },
+            {
+              "id": "toys-games-other",
+              "name": "Toys/Games - Other",
+              "gpcCode": "10006899",
+              "gpcDescription": "Includes any products that may be described/observed as a toy/game, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "toys-games-other"
+            }
+          ]
+        },
+        {
+          "id": "toys-games-variety-packs",
+          "name": "Toys/Games Variety Packs",
+          "gpcCode": "86010900",
+          "parentId": "toys-games",
+          "children": [
+            {
+              "id": "toys-games-variety-packs",
+              "name": "Toys/Games Variety Packs",
+              "gpcCode": "10005186",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Toys/Games products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Toys/Games family. Includes products such as dolls and dolls accessories sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "toys-games-variety-packs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "id": "music",
+  "name": "Music",
+  "gpcCode": "61000000",
+  "children": [
+    {
+      "id": "musical-instruments-accessories",
+      "name": "Musical Instruments/Accessories",
+      "gpcCode": "61010000",
+      "parentId": "music",
+      "children": [
+        {
+          "id": "musical-instrument-accessories",
+          "name": "Musical Instrument Accessories",
+          "gpcCode": "61010400",
+          "parentId": "musical-instruments-accessories",
+          "children": [
+            {
+              "id": "brasswind-musical-instrument-accessories-non-powered",
+              "name": "Brasswind Musical Instrument Accessories (Non Powered)",
+              "gpcCode": "10004116",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered accessory for a brasswind musical instrument. Includes products such as Mouthpieces and Mutes for a variety of brasswind instruments.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "keyboard-piano-accessories-powered",
+              "name": "Keyboard/Piano Accessories (Powered)",
+              "gpcCode": "10004117",
+              "gpcDescription": "Includes any products that can be described/observed as a powered accessory for a keyboard or piano. Includes products such as Keyboard Amplifiers and Expansion Boards, as well as Footswitch Pedals.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "metronomes-tuners-non-powered",
+              "name": "Metronomes/Tuners (Non Powered)",
+              "gpcCode": "10004125",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered device which, in the case of a metronome, indicates the tempo for a person playing music by emitting a click at regular intervals, or, in the case of a tuner, produces the correct pitch of a musical note, thus allowing the operator to adjust the musical instrument accordingly. Includes products such as Pitch Pipes, Tuning Forks and Pendulum Metronomes.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "metronomes-tuners-powered",
+              "name": "Metronomes/Tuners (Powered)",
+              "gpcCode": "10004123",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device, which, in the case of a metronome, indicates the tempo for a person playing music by emitting a click at regular intervals, or, in the case of a tuner, detects the pitch of a musical note, thus allowing the operator to adjust the musical instrument accordingly. Metronomes and Tuners may be incorporated together in a single product or may be separate devices sold individually. Includes products such as Drum Tuners, Guitar Tuners, Digital Metronomes and combined Metronome/Tuners.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "musical-instrument-accessories-other",
+              "name": "Musical Instrument Accessories Other",
+              "gpcCode": "10004128",
+              "gpcDescription": "Includes any products that can be described/observed as musical instrument accessories, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "musical-instrument-accessories-variety-packs",
+              "name": "Musical Instrument Accessories Variety Packs",
+              "gpcCode": "10004127",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct musical instrument accessories products sold together, which exist within the schema but belong to different bricks, that is, two or more products contained within the same pack, which cross bricks within the Musical Instrument Accessories class. Includes products such as a Guitar Case and Guitar Stand sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "musical-instrument-cases-bags-covers",
+              "name": "Musical Instrument Cases/Bags/Covers",
+              "gpcCode": "10004121",
+              "gpcDescription": "Includes any products that can be described/observed as a case, bag or cover specifically designed for a particular musical instrument and sold separately from the musical instrument. Includes products such as a guitar case or keyboard cover.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "musical-instrument-cleaning-products",
+              "name": "Musical Instrument Cleaning Products",
+              "gpcCode": "10004122",
+              "gpcDescription": "Includes any products that can be described/observed as a cleaning product designed specifically to clean a particular musical instrument. Includes products such as mouthpiece brushes and specific lubricating oils such as brass instrument lubricants.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "musical-instrument-holders-stands-lyres",
+              "name": "Musical Instrument Holders/Stands/Lyres",
+              "gpcCode": "10004124",
+              "gpcDescription": "Includes any products that can be described/observed as a holder or stand designed specifically to support a particular musical instrument or musical score. Includes products such as a Guitar Stand and a Music Stand or Lyre.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "percussion-musical-instrument-accessories-non-powered",
+              "name": "Percussion Musical Instrument Accessories (Non Powered)",
+              "gpcCode": "10004118",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered accessory for a percussion musical instrument. Includes products such as Drum Sticks, Drum Pedals, Drum Heads, Drum Keys and Drum Sound Shields.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "string-musical-instrument-accessories-non-powered",
+              "name": "String Musical Instrument Accessories (Non Powered)",
+              "gpcCode": "10004119",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered accessory for a string musical instrument. Includes products such as Strings, Picks and Slides.",
+              "parentId": "musical-instrument-accessories"
+            },
+            {
+              "id": "woodwind-musical-instrument-accessories-non-powered",
+              "name": "Woodwind Musical Instrument Accessories (Non Powered)",
+              "gpcCode": "10004120",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered accessory for a woodwind musical instrument. Includes products such as Mouthpieces, Reeds, Ligatures and Caps.",
+              "parentId": "musical-instrument-accessories"
+            }
+          ]
+        },
+        {
+          "id": "musical-instruments-non-powered",
+          "name": "Musical Instruments (Non Powered)",
+          "gpcCode": "61010200",
+          "parentId": "musical-instruments-accessories",
+          "children": [
+            {
+              "id": "brasswind-musical-instruments-non-powered",
+              "name": "Brasswind Musical Instruments (Non Powered)",
+              "gpcCode": "10000933",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered musical instrument fashioned from brass and played by blowing air into the instrument. Includes products such as non-powered Trumpets, Cornets, French Horns, Trombones and Tubas.",
+              "parentId": "musical-instruments-non-powered"
+            },
+            {
+              "id": "keyboards-pianos-non-powered",
+              "name": "Keyboards/Pianos (Non Powered)",
+              "gpcCode": "10000934",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered musical instrument consisting of metal strings, which are struck by hammers that are operated by a player pressing keys of a keyboard with the fingers. Includes products such as non-powered Pianos, Accordions, Concertinas, Organs and Harpsichords.",
+              "parentId": "musical-instruments-non-powered"
+            },
+            {
+              "id": "musical-instruments-other-non-powered",
+              "name": "Musical Instruments Other (Non Powered)",
+              "gpcCode": "10001375",
+              "gpcDescription": "Includes any products that can be described/observed as non-powered musical instruments, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "musical-instruments-non-powered"
+            },
+            {
+              "id": "percussion-musical-instruments-non-powered",
+              "name": "Percussion Musical Instruments (Non Powered)",
+              "gpcCode": "10000935",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered musical instrument, which is played by striking the instrument with either an object or the hand. Includes products such as non-powered Cymbals, Drums, Triangles, Tambourines, Bells and Castanets.",
+              "parentId": "musical-instruments-non-powered"
+            },
+            {
+              "id": "string-musical-instruments-non-powered",
+              "name": "String Musical Instruments (Non Powered)",
+              "gpcCode": "10000936",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered musical instrument, which produces sound when its variety of strings are plucked or played with a bow. Includes products such as non-powered Violins, Cellos, Harps, Banjos and Mandolins.",
+              "parentId": "musical-instruments-non-powered"
+            },
+            {
+              "id": "woodwind-musical-instruments-non-powered",
+              "name": "Woodwind Musical Instruments (Non Powered)",
+              "gpcCode": "10000937",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered musical instrument fashioned mostly of wood but also sometimes of a synthetic material or metal other than brass. The instrument is played by blowing air into it. Includes products such as non-powered Oboes, Clarinets, Flutes and Recorders.",
+              "parentId": "musical-instruments-non-powered"
+            }
+          ]
+        },
+        {
+          "id": "musical-instruments-powered",
+          "name": "Musical Instruments (Powered)",
+          "gpcCode": "61010300",
+          "parentId": "musical-instruments-accessories",
+          "children": [
+            {
+              "id": "brasswind-musical-instruments-powered",
+              "name": "Brasswind Musical Instruments (Powered)",
+              "gpcCode": "10000938",
+              "gpcDescription": "Includes any products that can be described/observed as a powered musical instrument fashioned from brass and played by blowing air into the instrument. Includes products such as powered Electric Trumpets.",
+              "parentId": "musical-instruments-powered"
+            },
+            {
+              "id": "keyboards-pianos-powered",
+              "name": "Keyboards/Pianos (Powered)",
+              "gpcCode": "10000940",
+              "gpcDescription": "Includes any products that can be described/observed as a powered musical instrument consisting of a series of keys that are designed to be played by using the fingers. Includes products such as Electric Pianos and Electric Organs.",
+              "parentId": "musical-instruments-powered"
+            },
+            {
+              "id": "musical-instrument-aids-powered",
+              "name": "Musical Instrument Aids (Powered)",
+              "gpcCode": "10000939",
+              "gpcDescription": "Includes any products that can be described/observed as a powered musical instrument aid that is specifically designed for use while playing a powered musical instrument and which enhances the performance and function of the instrument. Includes products such as powered Drum Loops and Reverbs.",
+              "parentId": "musical-instruments-powered"
+            },
+            {
+              "id": "musical-instruments-other-powered",
+              "name": "Musical Instruments Other (Powered)",
+              "gpcCode": "10001377",
+              "gpcDescription": "Includes any products that can be described/observed as powered musical instruments products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "musical-instruments-powered"
+            },
+            {
+              "id": "percussion-musical-instruments-powered",
+              "name": "Percussion Musical Instruments (Powered)",
+              "gpcCode": "10000941",
+              "gpcDescription": "Includes any products that can be described/observed as a powered musical instrument which is played by striking the instrument with either an object or the hand. Includes products such as Electric Bells and powered Drum-Sets.",
+              "parentId": "musical-instruments-powered"
+            },
+            {
+              "id": "string-musical-instruments-powered",
+              "name": "String Musical Instruments (Powered)",
+              "gpcCode": "10000942",
+              "gpcDescription": "Includes any products that can be described/observed as a powered musical instrument which produces sound when its variety of strings are plucked or played with a bow. Includes products such as Electric Guitars.",
+              "parentId": "musical-instruments-powered"
+            },
+            {
+              "id": "woodwind-musical-instruments-powered",
+              "name": "Woodwind Musical Instruments (Powered)",
+              "gpcCode": "10000943",
+              "gpcDescription": "Includes any products that can be described/observed as a powered musical instrument fashioned mostly of wood but also sometimes of a synthetic material or metal other than brass. The instrument is played by blowing air into it. Includes products such as powered Electric Oboes and Electric Clarinets.",
+              "parentId": "musical-instruments-powered"
+            }
+          ]
+        },
+        {
+          "id": "musical-instruments-accessories-variety-packs",
+          "name": "Musical Instruments/Accessories Variety Packs",
+          "gpcCode": "61010500",
+          "parentId": "musical-instruments-accessories",
+          "children": [
+            {
+              "id": "musical-instruments-accessories-variety-packs",
+              "name": "Musical Instruments/Accessories Variety Packs",
+              "gpcCode": "10004126",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct musical instruments and musical accessories products sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack which cross bricks within the Musical Instruments and Accessories class. Includes products such as a Guitar and Guitar Case sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "musical-instruments-accessories-variety-packs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

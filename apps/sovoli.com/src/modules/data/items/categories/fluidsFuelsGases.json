@@ -1,0 +1,192 @@
+{
+  "id": "fluids-fuels-gases",
+  "name": "Fluids/Fuels/Gases",
+  "gpcCode": "87000000",
+  "children": [
+    {
+      "id": "fluids-fuel-storage-transfer",
+      "name": "Fluids/Fuel Storage/Transfer",
+      "gpcCode": "87020000",
+      "parentId": "fluids-fuels-gases",
+      "children": [
+        {
+          "id": "fluids-fuel-storage",
+          "name": "Fluids/Fuel Storage",
+          "gpcCode": "87020200",
+          "parentId": "fluids-fuel-storage-transfer",
+          "children": [
+            {
+              "id": "fluids-liquid-fuel-bottles-containers-empty",
+              "name": "Fluids/Liquid Fuel Bottles/Containers (Empty)",
+              "gpcCode": "10005306",
+              "gpcDescription": "Includes any products that can be described/observed as an empty storage container, which has been specifically designed to be refillable and hold and dispense a volume of liquid fuel and other fluids. Includes products such as Refillable Liquid Fluid and Fuel Bottles/Canisters that are used in conjunction with camping stoves and Petrol/Gasoline Cans. ",
+              "parentId": "fluids-fuel-storage"
+            },
+            {
+              "id": "pressurized-gas-fuel-bottles-canisters-empty",
+              "name": "Pressurized Gas Fuel Bottles/Canisters (Empty)",
+              "gpcCode": "10005258",
+              "gpcDescription": "Includes any products that can be described/observed as an empty storage container, which has been specifically designed to be refillable and hold and dispense pressurized gas fuel. Includes products such as Refillable Gas Bottles/Canisters that are used with camping stoves and blowtorches. ",
+              "parentId": "fluids-fuel-storage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fuels-fuel-additives",
+      "name": "Fuels/Fuel Additives",
+      "gpcCode": "87010000",
+      "parentId": "fluids-fuels-gases",
+      "children": [
+        {
+          "id": "fuel-additives",
+          "name": "Fuel Additives",
+          "gpcCode": "87010200",
+          "parentId": "fuels-fuel-additives",
+          "children": [
+            {
+              "id": "fuel-additives",
+              "name": "Fuel Additives",
+              "gpcCode": "10005255",
+              "gpcDescription": "Includes any products that can be described/observed as a chemical substance that is added, usually in small amounts, directly to a fuel to enhance, improve or strengthen performance characteristics, such as its viscosity. It can also add new properties to a fuel, giving it features that it would not normally have. Includes products such as Fuel Thickeners and Anti-wear Additives. ",
+              "parentId": "fuel-additives"
+            }
+          ]
+        },
+        {
+          "id": "fuels-fuel-additives-variety-packs",
+          "name": "Fuels/Fuel Additives Variety Packs",
+          "gpcCode": "87010500",
+          "parentId": "fuels-fuel-additives",
+          "children": [
+            {
+              "id": "fuels-fuel-additives-variety-packs",
+              "name": "Fuels/Fuel Additives Variety Packs",
+              "gpcCode": "10005262",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Fuels/Fuel Additives products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Fuels/Fuel Additives Family. Includes products such as Liquid Fuel and Fuel Additive variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "fuels-fuel-additives-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "fuels-ignition-aids",
+          "name": "Fuels/Ignition Aids",
+          "gpcCode": "87010100",
+          "parentId": "fuels-fuel-additives",
+          "children": [
+            {
+              "id": "firelighting-tools-matches",
+              "name": "Firelighting Tools/Matches",
+              "gpcCode": "10000543",
+              "gpcDescription": "Includes any products that can be described/observed as a tool/implement with which to light a fire. Includes products such as lighters, matches and gas barbecue lighters.",
+              "parentId": "fuels-ignition-aids"
+            },
+            {
+              "id": "firelighting-tools-matches-accessories",
+              "name": "Firelighting Tools/Matches Accessories",
+              "gpcCode": "10006842",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory to firelighting tools/matches. Specifically includes lighter cleaners, lighter fluid and other accessories. ",
+              "parentId": "fuels-ignition-aids"
+            },
+            {
+              "id": "fuels-ignition-aids-variety-packs",
+              "name": "Fuels/Ignition Aids Variety Packs",
+              "gpcCode": "10000703",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Fuels/Ignition Aids products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Fuels/Ignition Aids class. Includes products such as Firelighters and Solid Fuels variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "fuels-ignition-aids"
+            },
+            {
+              "id": "gas-canister-replacement-parts-accessories",
+              "name": "Gas Canister Replacement Parts/Accessories",
+              "gpcCode": "10007942",
+              "gpcDescription": "Bitmap Includes any products that can be described/observed as an accessory or replacement part for Gas Canisters.",
+              "parentId": "fuels-ignition-aids"
+            },
+            {
+              "id": "gas-fuels",
+              "name": "Gas Fuels",
+              "gpcCode": "10005264",
+              "gpcDescription": "Includes any products that can be described/observed as a combustible gas that is used specifically to be ignited and burned to produce heat and/or light energy. In some cases fuel gases are stored under high pressure in a liquid form but vaporize immediately they leave the storage bottle, so they arrive at the burner as a gas. These products can be purchased in refillable bottles/canisters, often in exchange for empty ones. Includes products such as Non-refillable Canisters of Butane Gas for camping stoves. ",
+              "parentId": "fuels-ignition-aids"
+            },
+            {
+              "id": "gel-fuels",
+              "name": "Gel Fuels",
+              "gpcCode": "10005265",
+              "gpcDescription": "Includes any products that can be described/observed as a combustible gel, with a fixed volume but no permanently fixed shape, (being neither solid to touch or free flowing such as a liquid), that is used specifically to be ignited and burned to produce heat and/or light energy. In some cases gel fuels are used to give the appearance of fire, such as those used in a fireplace. Includes products such as gel kindling fuels and those with a base ingredient of ethanol or paraffin. ",
+              "parentId": "fuels-ignition-aids"
+            },
+            {
+              "id": "liquid-fuels",
+              "name": "Liquid Fuels",
+              "gpcCode": "10005263",
+              "gpcDescription": "Includes any products that can be described/observed as a free flowing combustible liquid, with a fixed volume but no fixed shape (except that of its container), that is used specifically to be ignited and burned to produce heat and/or light energy. Includes products such as liquid kindling fuels as well as Petrol, White Gas and Lamp Oil. ",
+              "parentId": "fuels-ignition-aids"
+            },
+            {
+              "id": "solid-fuels",
+              "name": "Solid Fuels",
+              "gpcCode": "10005266",
+              "gpcDescription": "Includes any products that can be described/observed as a combustible solid, with a fixed shape and volume, which is used specifically to be ignited and burned to produce heat and/or light energy. Typically these products are used to make an open fire, such as those in a fireplace grate. Includes products such as Kindling Cubes, Smoke Pellets, Fire Logs, Coal and Hexamine. ",
+              "parentId": "fuels-ignition-aids"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gases-not-used-as-fuels",
+      "name": "Gases Not Used As Fuels",
+      "gpcCode": "87030000",
+      "gpcDescription": "Gases that are used in items and are not used as a combustible fuel source.",
+      "parentId": "fluids-fuels-gases",
+      "children": [
+        {
+          "id": "technical-gases",
+          "name": "Technical Gases",
+          "gpcCode": "87030100",
+          "gpcDescription": "Technical gases are a group of gases that are specifically manufactured for use in a wide range of industries.",
+          "parentId": "gases-not-used-as-fuels",
+          "children": [
+            {
+              "id": "carbon-dioxide-gas",
+              "name": "Carbon Dioxide Gas",
+              "gpcCode": "10006407",
+              "gpcDescription": "Includes any products that can be described/observed as carbon dioxide (CO2). CO2 is used as a pressurising agent for items such as beverages or model/remote control vehicles, and pellet/paintball guns.",
+              "parentId": "technical-gases"
+            },
+            {
+              "id": "helium-gas",
+              "name": "Helium Gas",
+              "gpcCode": "10006411",
+              "gpcDescription": "Includes any products that can be described/observed as Helium (He). \"He\" is used for items such as balloons, and some scuba applications.",
+              "parentId": "technical-gases"
+            },
+            {
+              "id": "nitrogen-gas",
+              "name": "Nitrogen Gas",
+              "gpcCode": "10006408",
+              "gpcDescription": "Includes any products that can be described/observed as Nitrogen (N2). Nitrogen can be used for pressurising tyres.",
+              "parentId": "technical-gases"
+            },
+            {
+              "id": "nitrous-oxide-gas",
+              "name": "Nitrous Oxide Gas",
+              "gpcCode": "10006409",
+              "gpcDescription": "Includes any products that can be described/observed as a food additive version of nitrous oxide (N2O). N2O is used as a pressurising agent for items such as whipping cream canisters.",
+              "parentId": "technical-gases"
+            },
+            {
+              "id": "technical-gases-other",
+              "name": "Technical Gases Other",
+              "gpcCode": "10006410",
+              "gpcDescription": "Includes any products that can be described/observed as Technical Gases where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "technical-gases"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "id": "monetary-assets",
+  "name": "Monetary Assets",
+  "gpcCode": "96000000",
+  "children": [
+    {
+      "id": "currency-postage-certificates",
+      "name": "Currency/Postage/Certificates",
+      "gpcCode": "96010000",
+      "parentId": "monetary-assets",
+      "children": [
+        {
+          "id": "currency-certificates",
+          "name": "Currency/Certificates",
+          "gpcCode": "96010100",
+          "gpcDescription": "Includes products that represent a medium of exchange, measure of wealth, or means of payment.",
+          "parentId": "currency-postage-certificates",
+          "children": [
+            {
+              "id": "bank-notes-cheques",
+              "name": "Bank Notes/Cheques",
+              "gpcCode": "10007970",
+              "gpcDescription": "Includes any products that can be described as a type of negotiable promissory note, made by a legal entity, payable to the bearer on demand.",
+              "parentId": "currency-certificates"
+            },
+            {
+              "id": "bills",
+              "name": "Bills",
+              "gpcCode": "10007969",
+              "gpcDescription": "Includes any products that can be described as a type of negotiable promissory note, made by a legal entity, payable to the bearer on demand.",
+              "parentId": "currency-certificates"
+            },
+            {
+              "id": "coins",
+              "name": "Coins",
+              "gpcCode": "10007971",
+              "gpcDescription": "Includes any products that can be described as a type of negotiable unit, made by a legal entity, payable to the bearer on demand.",
+              "parentId": "currency-certificates"
+            },
+            {
+              "id": "digital-currency",
+              "name": "Digital Currency",
+              "gpcCode": "10007972",
+              "gpcDescription": "Includes any products that can be described as a type of negotiable virtual unit, such as cryptocurrency, virtual currency.",
+              "parentId": "currency-certificates"
+            }
+          ]
+        },
+        {
+          "id": "prepaid-cards-gift-cards-vouchers",
+          "name": "PrePaid Cards/Gift Cards/Vouchers",
+          "gpcCode": "96010200",
+          "gpcDescription": "Includes any products which may be observed as being a prepaid credit for use towards items or services; or future purchases. ",
+          "parentId": "currency-postage-certificates",
+          "children": [
+            {
+              "id": "prepaid-cards-gift-cards-vouchers",
+              "name": "PrePaid Cards/Gift Cards/Vouchers",
+              "gpcCode": "10008028",
+              "gpcDescription": "Includes any products which may be observed as being a prepaid credit for use towards items or services; or future purchases. This includes store specific gift cards; prepaid credit cards; vouchers for services; prepaid mobile communication. These may be represented as either a physical or digital object. ",
+              "parentId": "prepaid-cards-gift-cards-vouchers"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

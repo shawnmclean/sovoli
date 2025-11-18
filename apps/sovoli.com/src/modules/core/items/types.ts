@@ -1,4 +1,5 @@
 import type { Photo } from "../photos/types";
+import { z } from "zod";
 
 export interface CategoryDefinition {
   id: string;
@@ -8,6 +9,19 @@ export interface CategoryDefinition {
   parentId?: string;
   children?: CategoryDefinition[];
 }
+
+// Zod schema for CategoryDefinition (recursive)
+export const categoryDefinitionSchema: z.ZodType<CategoryDefinition> = z.lazy(
+  () =>
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      gpcCode: z.string().optional(),
+      gpcDescription: z.string().optional(),
+      parentId: z.string().optional(),
+      children: z.array(categoryDefinitionSchema).optional(),
+    }),
+);
 
 export interface ItemCategory {
   id: string;

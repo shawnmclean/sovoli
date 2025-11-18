@@ -1,0 +1,124 @@
+{
+  "id": "textual-printed-reference-materials",
+  "name": "Textual/Printed/Reference Materials",
+  "gpcCode": "60000000",
+  "children": [
+    {
+      "id": "textual-printed-reference-materials",
+      "name": "Textual/Printed/Reference Materials",
+      "gpcCode": "60010000",
+      "parentId": "textual-printed-reference-materials",
+      "children": [
+        {
+          "id": "books",
+          "name": "Books",
+          "gpcCode": "60010200",
+          "parentId": "textual-printed-reference-materials",
+          "children": [
+            {
+              "id": "audio-books",
+              "name": "Audio Books",
+              "gpcCode": "10004103",
+              "gpcDescription": "Includes any products that can be described/observed as a written work produced in audio format for the listener. Includes audio books pre-recorded on an audio cassette or audio CD and audio books downloadable from the internet.",
+              "parentId": "books"
+            },
+            {
+              "id": "books-variety-packs",
+              "name": "Books Variety Packs",
+              "gpcCode": "10004107",
+              "gpcDescription": "Includes any products than can be described/observed as two or more book products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Books class. Includes products such as a Printed Book and Audio Book sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "books"
+            },
+            {
+              "id": "digital-ebook-content",
+              "name": "Digital eBook Content",
+              "gpcCode": "10000925",
+              "gpcDescription": "Includes any products that can be described/observed as a book that is published in electronic form, which can be either downloaded from the internet or produced on a disk. Includes both fictional and non-fictional Electronic Books.",
+              "parentId": "books"
+            },
+            {
+              "id": "printed-books-compositions",
+              "name": "Printed Books/Compositions",
+              "gpcCode": "10000926",
+              "gpcDescription": "Includes any products that can be described/observed as a written work published in printed form. Includes paperback books, hardcover books, rag books, and leaflets. The book content ranges from non-fiction subjects such as biographies and music instruction to fictional thrillers and romantic novels.",
+              "parentId": "books"
+            }
+          ]
+        },
+        {
+          "id": "maps",
+          "name": "Maps",
+          "gpcCode": "60010400",
+          "parentId": "textual-printed-reference-materials",
+          "children": [
+            {
+              "id": "electronic-maps",
+              "name": "Electronic Maps",
+              "gpcCode": "10004106",
+              "gpcDescription": "Includes any products that can be described/observed as a representation of the earth's surface or sub-structure, or a part of thereof, drawn to scale and available in electronic format. Also includes astronomical charts available in electronic format. Includes products such as maps that can be downloaded from the internet or maps available on disk.",
+              "parentId": "maps"
+            },
+            {
+              "id": "printed-maps",
+              "name": "Printed Maps",
+              "gpcCode": "10004105",
+              "gpcDescription": "Includes any products that can be described/observed as a printed representation of the earth's surface or sub-structure, or a part thereof, drawn to scale. Also includes astronomical charts and planispheres. Includes products such as a rolled or flat map, or a map represented in globe form.",
+              "parentId": "maps"
+            }
+          ]
+        },
+        {
+          "id": "periodicals",
+          "name": "Periodicals",
+          "gpcCode": "60010300",
+          "parentId": "textual-printed-reference-materials",
+          "children": [
+            {
+              "id": "audio-periodicals",
+              "name": "Audio Periodicals",
+              "gpcCode": "10004104",
+              "gpcDescription": "Includes any products that can be described/observed as a magazine, newspaper or journal produced in an audio format for the listener. Typically, the periodicals are produced at regular or irregular intervals. Includes audio periodicals downloadable from the internet and pre-recorded periodicals available on an audio cassette or audio CD.",
+              "parentId": "periodicals"
+            },
+            {
+              "id": "digital-periodical-content",
+              "name": "Digital Periodical Content",
+              "gpcCode": "10000927",
+              "gpcDescription": "Includes any products that can be described/observed as a magazine, newspaper or journal in an electronic format. Typically, these products are produced at regular and irregular intervals. Includes periodicals downloadable from the internet and periodicals available on disk.",
+              "parentId": "periodicals"
+            },
+            {
+              "id": "periodicals-variety-packs",
+              "name": "Periodicals Variety Packs",
+              "gpcCode": "10004108",
+              "gpcDescription": "Includes any products than can be described/observed as two or more periodicals products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Periodicals class. Includes products such as a Printed Periodical and an Electronic Periodical sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "periodicals"
+            },
+            {
+              "id": "printed-periodicals",
+              "name": "Printed Periodicals",
+              "gpcCode": "10000928",
+              "gpcDescription": "Includes any products that can be described/observed as a magazine, newspaper or journal that is typically published at regular and irregular intervals in print format. Includes all types of non-electronic periodicals published over a wide range of periodic frequencies.",
+              "parentId": "periodicals"
+            }
+          ]
+        },
+        {
+          "id": "textual-printed-reference-materials-variety-packs",
+          "name": "Textual/Printed/Reference Materials Variety Packs",
+          "gpcCode": "60010100",
+          "parentId": "textual-printed-reference-materials",
+          "children": [
+            {
+              "id": "textual-printed-reference-materials-variety-packs",
+              "name": "Textual/Printed/Reference Materials Variety Packs",
+              "gpcCode": "10002103",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Textual, Printed and Reference Materials products sold together which exist within the schema but belong to different classes, that is, two or more products contained within the same pack which cross classes within the Textual, Printed and Reference Materials Family. Includes products such as Printed Books and Printed Periodicals variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "textual-printed-reference-materials-variety-packs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

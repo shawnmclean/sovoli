@@ -5,7 +5,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-123-starters-coloring",
     name: "123 Starters Coloring Book",
-    category: hydrateCategory("workbooks"),
+    category: hydrateCategory("books"),
     tags: ["exercise", "coloring", "numbers"],
   },
   {
@@ -22,7 +22,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-animal-friends-level-1a-workbook-1",
     name: "Animal Friends Level 1A Workbook 1",
-    category: hydrateCategory("workbooks"),
+    category: hydrateCategory("books"),
     tags: ["workbook", "level-1a", "animal-friends"],
     attributes: {
       series: "Animal Friends",
@@ -33,7 +33,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-animal-friends-level-1a-workbook-2",
     name: "Animal Friends Level 1A Workbook 2",
-    category: hydrateCategory("workbooks"),
+    category: hydrateCategory("books"),
     tags: ["workbook", "level-1a", "animal-friends"],
     attributes: {
       series: "Animal Friends",
@@ -44,7 +44,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-animal-friends-level-1a-workbook-3",
     name: "Animal Friends Level 1A Workbook 3",
-    category: hydrateCategory("workbooks"),
+    category: hydrateCategory("books"),
     tags: ["workbook", "level-1a", "animal-friends"],
     attributes: {
       series: "Animal Friends",
@@ -55,7 +55,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-big-easy-coloring",
     name: "Big and Easy Coloring Book",
-    category: hydrateCategory("workbooks"),
+    category: hydrateCategory("books"),
     tags: ["exercise", "coloring"],
   },
   {
@@ -81,7 +81,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-workbook-1-writing",
     name: "Roraima Reader Workbook 1 (Writing Skills)",
-    category: hydrateCategory("workbooks"),
+    category: hydrateCategory("books"),
     tags: ["workbook", "roraima-readers", "writing-skills"],
     attributes: {
       series: "Roraima Readers",
@@ -91,7 +91,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-roraima-numeracy-workbook-book-2",
     name: "Roraima Reader Numeracy Workbook (Book 2)",
-    category: hydrateCategory("workbooks"),
+    category: hydrateCategory("books"),
     tags: ["workbook", "roraima-readers", "book-2"],
     attributes: {
       series: "Roraima Readers",

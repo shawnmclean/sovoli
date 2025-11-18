@@ -1,95 +1,100 @@
-import { ARTS_CRAFTS_NEEDLEWORK_CATEGORY_TREE } from "./artsCraftsNeedlework";
-import { AUDIO_VISUAL_PHOTOGRAPHY_CATEGORY_TREE } from "./audioVisualPhotography";
-import { BEAUTY_PERSONAL_CARE_HYGIENE_CATEGORY_TREE } from "./beautyPersonalCareHygiene";
-import { BUILDING_PRODUCTS_CATEGORY_TREE } from "./buildingProducts";
-import { CAMPING_CATEGORY_TREE } from "./camping";
-import { CLEANING_HYGIENE_PRODUCTS_CATEGORY_TREE } from "./cleaningHygieneProducts";
-import { CLOTHING_CATEGORY_TREE } from "./clothing";
-import { COMMUNICATIONS_CATEGORY_TREE } from "./communications";
-import { COMPUTING_CATEGORY_TREE } from "./computing";
-import { CROPS_CATEGORY_TREE } from "./crops";
-import { CROSS_SEGMENT_CATEGORY_TREE } from "./crossSegment";
-import { ELECTRICAL_SUPPLIES_CATEGORY_TREE } from "./electricalSupplies";
-import { FLUIDS_FUELS_GASES_CATEGORY_TREE } from "./fluidsFuelsGases";
-import { FOOD_BEVERAGE_CATEGORY_TREE } from "./foodBeverage";
-import { FOOTWEAR_CATEGORY_TREE } from "./footwear";
-import { HEALTHCARE_CATEGORY_TREE } from "./healthcare";
-import { HOME_APPLIANCES_CATEGORY_TREE } from "./homeAppliances";
-import { HORTICULTURE_PLANTS_CATEGORY_TREE } from "./horticulturePlants";
-import { HOUSEHOLD_OFFICE_FURNITURE_FURNISHINGS_CATEGORY_TREE } from "./householdOfficeFurnitureFurnishings";
-import { INDUSTRIAL_FLUID_PUMPS_SYSTEMS_CATEGORY_TREE } from "./industrialFluidPumpsSystems";
-import { KITCHENWARE_AND_TABLEWARE_CATEGORY_TREE } from "./kitchenwareAndTableware";
-import { LAWN_GARDEN_SUPPLIES_CATEGORY_TREE } from "./lawnGardenSupplies";
-import { LIGHTING_CATEGORY_TREE } from "./lighting";
-import { LIVE_ANIMALS_CATEGORY_TREE } from "./liveAnimals";
-import { LUBRICANTS_CATEGORY_TREE } from "./lubricants";
-import { MONETARY_ASSETS_CATEGORY_TREE } from "./monetaryAssets";
-import { MUSIC_CATEGORY_TREE } from "./music";
-import { PERSONAL_ACCESSORIES_CATEGORY_TREE } from "./personalAccessories";
-import { PEST_PLANT_CONTROL_PRODUCTS_CATEGORY_TREE } from "./pestPlantControlProducts";
-import { PET_CARE_FOOD_CATEGORY_TREE } from "./petCareFood";
-import { PLUMBING_HEATING_VENTILATION_AIR_CONDITIONING_CATEGORY_TREE } from "./plumbingHeatingVentilationAirConditioning";
-import { POSTMORTEM_PRODUCTS_CATEGORY_TREE } from "./postmortemProducts";
-import { RAW_MATERIALS_NON_FOOD_CATEGORY_TREE } from "./rawMaterialsNonFood";
-import { SAFETY_PROTECTION_DIY_CATEGORY_TREE } from "./safetyProtectionDiy";
-import { SAFETY_SECURITY_SURVEILLANCE_CATEGORY_TREE } from "./safetySecuritySurveillance";
-import { SERVICES_VENDING_MACHINES_CATEGORY_TREE } from "./servicesVendingMachines";
-import { SPORTS_EQUIPMENT_CATEGORY_TREE } from "./sportsEquipment";
-import { STATIONERY_OFFICE_MACHINERY_OCCASION_SUPPLIES_CATEGORY_TREE } from "./stationeryOfficeMachineryOccasionSupplies";
-import { STORAGE_HAULAGE_CONTAINERS_CATEGORY_TREE } from "./storageHaulageContainers";
-import { TEXTUAL_PRINTED_REFERENCE_MATERIALS_CATEGORY_TREE } from "./textualPrintedReferenceMaterials";
-import { TOBACCO_CANNABIS_CATEGORY_TREE } from "./tobaccoCannabis";
-import { TOOL_STORAGE_WORKSHOP_AIDS_CATEGORY_TREE } from "./toolStorageWorkshopAids";
-import { TOOLS_EQUIPMENT_CATEGORY_TREE } from "./toolsEquipment";
-import { TOYS_GAMES_CATEGORY_TREE } from "./toysGames";
-import { VEHICLE_CATEGORY_TREE } from "./vehicle";
+import artsCraftsNeedleworkData from "./artsCraftsNeedlework.json";
+import audioVisualPhotographyData from "./audioVisualPhotography.json";
+import beautyPersonalCareHygieneData from "./beautyPersonalCareHygiene.json";
+import buildingProductsData from "./buildingProducts.json";
+import campingData from "./camping.json";
+import cleaningHygieneProductsData from "./cleaningHygieneProducts.json";
+import clothingData from "./clothing.json";
+import communicationsData from "./communications.json";
+import computingData from "./computing.json";
+import cropsData from "./crops.json";
+import crossSegmentData from "./crossSegment.json";
+import electricalSuppliesData from "./electricalSupplies.json";
+import fluidsFuelsGasesData from "./fluidsFuelsGases.json";
+import foodBeverageData from "./foodBeverage.json";
+import footwearData from "./footwear.json";
+import healthcareData from "./healthcare.json";
+import homeAppliancesData from "./homeAppliances.json";
+import horticulturePlantsData from "./horticulturePlants.json";
+import householdOfficeFurnitureFurnishingsData from "./householdOfficeFurnitureFurnishings.json";
+import industrialFluidPumpsSystemsData from "./industrialFluidPumpsSystems.json";
+import kitchenwareAndTablewareData from "./kitchenwareAndTableware.json";
+import lawnGardenSuppliesData from "./lawnGardenSupplies.json";
+import lightingData from "./lighting.json";
+import liveAnimalsData from "./liveAnimals.json";
+import lubricantsData from "./lubricants.json";
+import monetaryAssetsData from "./monetaryAssets.json";
+import musicData from "./music.json";
+import personalAccessoriesData from "./personalAccessories.json";
+import pestPlantControlProductsData from "./pestPlantControlProducts.json";
+import petCareFoodData from "./petCareFood.json";
+import plumbingHeatingVentilationAirConditioningData from "./plumbingHeatingVentilationAirConditioning.json";
+import postmortemProductsData from "./postmortemProducts.json";
+import rawMaterialsNonFoodData from "./rawMaterialsNonFood.json";
+import safetyProtectionDiyData from "./safetyProtectionDiy.json";
+import safetySecuritySurveillanceData from "./safetySecuritySurveillance.json";
+import servicesVendingMachinesData from "./servicesVendingMachines.json";
+import sportsEquipmentData from "./sportsEquipment.json";
+import stationeryOfficeMachineryOccasionSuppliesData from "./stationeryOfficeMachineryOccasionSupplies.json";
+import storageHaulageContainersData from "./storageHaulageContainers.json";
+import textualPrintedReferenceMaterialsData from "./textualPrintedReferenceMaterials.json";
+import tobaccoCannabisData from "./tobaccoCannabis.json";
+import toolStorageWorkshopAidsData from "./toolStorageWorkshopAids.json";
+import toolsEquipmentData from "./toolsEquipment.json";
+import toysGamesData from "./toysGames.json";
+import vehicleData from "./vehicle.json";
 
 import type { CategoryDefinition } from "~/modules/core/items/types";
+import { categoryDefinitionSchema } from "~/modules/core/items/types";
 
-export const ITEM_CATEGORY_TREE: CategoryDefinition[] = [
-  ARTS_CRAFTS_NEEDLEWORK_CATEGORY_TREE,
-  AUDIO_VISUAL_PHOTOGRAPHY_CATEGORY_TREE,
-  BEAUTY_PERSONAL_CARE_HYGIENE_CATEGORY_TREE,
-  BUILDING_PRODUCTS_CATEGORY_TREE,
-  CAMPING_CATEGORY_TREE,
-  CLEANING_HYGIENE_PRODUCTS_CATEGORY_TREE,
-  CLOTHING_CATEGORY_TREE,
-  COMMUNICATIONS_CATEGORY_TREE,
-  COMPUTING_CATEGORY_TREE,
-  CROPS_CATEGORY_TREE,
-  CROSS_SEGMENT_CATEGORY_TREE,
-  ELECTRICAL_SUPPLIES_CATEGORY_TREE,
-  FLUIDS_FUELS_GASES_CATEGORY_TREE,
-  FOOD_BEVERAGE_CATEGORY_TREE,
-  FOOTWEAR_CATEGORY_TREE,
-  HEALTHCARE_CATEGORY_TREE,
-  HOME_APPLIANCES_CATEGORY_TREE,
-  HORTICULTURE_PLANTS_CATEGORY_TREE,
-  HOUSEHOLD_OFFICE_FURNITURE_FURNISHINGS_CATEGORY_TREE,
-  INDUSTRIAL_FLUID_PUMPS_SYSTEMS_CATEGORY_TREE,
-  KITCHENWARE_AND_TABLEWARE_CATEGORY_TREE,
-  LAWN_GARDEN_SUPPLIES_CATEGORY_TREE,
-  LIGHTING_CATEGORY_TREE,
-  LIVE_ANIMALS_CATEGORY_TREE,
-  LUBRICANTS_CATEGORY_TREE,
-  MONETARY_ASSETS_CATEGORY_TREE,
-  MUSIC_CATEGORY_TREE,
-  PERSONAL_ACCESSORIES_CATEGORY_TREE,
-  PEST_PLANT_CONTROL_PRODUCTS_CATEGORY_TREE,
-  PET_CARE_FOOD_CATEGORY_TREE,
-  PLUMBING_HEATING_VENTILATION_AIR_CONDITIONING_CATEGORY_TREE,
-  POSTMORTEM_PRODUCTS_CATEGORY_TREE,
-  RAW_MATERIALS_NON_FOOD_CATEGORY_TREE,
-  SAFETY_PROTECTION_DIY_CATEGORY_TREE,
-  SAFETY_SECURITY_SURVEILLANCE_CATEGORY_TREE,
-  SERVICES_VENDING_MACHINES_CATEGORY_TREE,
-  SPORTS_EQUIPMENT_CATEGORY_TREE,
-  STATIONERY_OFFICE_MACHINERY_OCCASION_SUPPLIES_CATEGORY_TREE,
-  STORAGE_HAULAGE_CONTAINERS_CATEGORY_TREE,
-  TEXTUAL_PRINTED_REFERENCE_MATERIALS_CATEGORY_TREE,
-  TOBACCO_CANNABIS_CATEGORY_TREE,
-  TOOL_STORAGE_WORKSHOP_AIDS_CATEGORY_TREE,
-  TOOLS_EQUIPMENT_CATEGORY_TREE,
-  TOYS_GAMES_CATEGORY_TREE,
-  VEHICLE_CATEGORY_TREE,
-];
+const categoryData = [
+  artsCraftsNeedleworkData,
+  audioVisualPhotographyData,
+  beautyPersonalCareHygieneData,
+  buildingProductsData,
+  campingData,
+  cleaningHygieneProductsData,
+  clothingData,
+  communicationsData,
+  computingData,
+  cropsData,
+  crossSegmentData,
+  electricalSuppliesData,
+  fluidsFuelsGasesData,
+  foodBeverageData,
+  footwearData,
+  healthcareData,
+  homeAppliancesData,
+  horticulturePlantsData,
+  householdOfficeFurnitureFurnishingsData,
+  industrialFluidPumpsSystemsData,
+  kitchenwareAndTablewareData,
+  lawnGardenSuppliesData,
+  lightingData,
+  liveAnimalsData,
+  lubricantsData,
+  monetaryAssetsData,
+  musicData,
+  personalAccessoriesData,
+  pestPlantControlProductsData,
+  petCareFoodData,
+  plumbingHeatingVentilationAirConditioningData,
+  postmortemProductsData,
+  rawMaterialsNonFoodData,
+  safetyProtectionDiyData,
+  safetySecuritySurveillanceData,
+  servicesVendingMachinesData,
+  sportsEquipmentData,
+  stationeryOfficeMachineryOccasionSuppliesData,
+  storageHaulageContainersData,
+  textualPrintedReferenceMaterialsData,
+  tobaccoCannabisData,
+  toolStorageWorkshopAidsData,
+  toolsEquipmentData,
+  toysGamesData,
+  vehicleData,
+] as const;
+
+export const ITEM_CATEGORY_TREE: CategoryDefinition[] = categoryDefinitionSchema
+  .array()
+  .parse(categoryData);

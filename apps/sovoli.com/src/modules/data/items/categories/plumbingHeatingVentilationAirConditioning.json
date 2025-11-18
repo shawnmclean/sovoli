@@ -1,0 +1,936 @@
+{
+  "id": "plumbing-heating-ventilation-air-conditioning",
+  "name": "Plumbing/Heating/Ventilation/Air Conditioning",
+  "gpcCode": "79000000",
+  "children": [
+    {
+      "id": "plumbing-heating-ventilation-air-conditioning",
+      "name": "Plumbing/Heating/Ventilation/Air Conditioning",
+      "gpcCode": "79010000",
+      "parentId": "plumbing-heating-ventilation-air-conditioning",
+      "children": [
+        {
+          "id": "air-conditioning-cooling-ventilation-equipment",
+          "name": "Air Conditioning/Cooling/Ventilation Equipment",
+          "gpcCode": "79010600",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "air-conditioners-coolers-fixed",
+              "name": "Air Conditioners/Coolers - Fixed",
+              "gpcCode": "10003982",
+              "gpcDescription": "Includes any products that can be described/observed as a fixed or installed device for controlling, especially lowering, the temperature and humidity of an enclosed space.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "air-conditioning-equipment-multifunction-fixed",
+              "name": "Air Conditioning Equipment - Multifunction - Fixed",
+              "gpcCode": "10004063",
+              "gpcDescription": "Includes any products that can be described/observed as a fixed or installed unit that combines the work of several appliances such as, for example, air conditioner, dehumidifier and fan.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "air-conditioning-cooling-ventilation-equipment-replacement-parts-accessories",
+              "name": "Air Conditioning/Cooling/Ventilation Equipment Replacement Parts/Accessories",
+              "gpcCode": "10003984",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory for an installed air conditioning system. Includes products such as air filters for an air conditioner or a wall bracket to hold a ventilator.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "air-conditioning-cooling-ventilation-equipment-variety-packs",
+              "name": "Air Conditioning/Cooling/Ventilation Equipment Variety Packs",
+              "gpcCode": "10003985",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct air conditioning/cooling/ventilation products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Air Conditioning/Cooling/Ventilation Equipment class. Includes products such as an air ventilation system sold with ducting and ducting boosters. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "air-dehumidifiers-fixed",
+              "name": "Air Dehumidifiers - Fixed",
+              "gpcCode": "10003990",
+              "gpcDescription": "Includes any products that can be described/observed as a fixed or installed device for decreasing the humidity in a room.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "air-humidifiers-fixed",
+              "name": "Air Humidifiers - Fixed",
+              "gpcCode": "10003993",
+              "gpcDescription": "Includes any products that can be described/observed as a fixed or installed device for increasing the humidity or moisture in a room.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "air-monitors",
+              "name": "Air Monitors",
+              "gpcCode": "10006274",
+              "gpcDescription": "Includes self contained, portable unit that measures the cleanliness of the air inside hoods, isolators and other cleanroom areas to ensure than neither the environment nor personnel are harmed by sources of contamination.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "air-purifiers-ionisers-fixed",
+              "name": "Air Purifiers/Ionisers - Fixed",
+              "gpcCode": "10003988",
+              "gpcDescription": "Includes any products that can be described/observed as a fixed or installed device, which aims to free air from contaminants. Techniques used to purify the air include mechanical absorbents like charcoal and electrostatic charges or ionisers.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "duct-boosters",
+              "name": "Duct Boosters",
+              "gpcCode": "10003996",
+              "gpcDescription": "Includes any products that can be described/observed as an exhaust fan, fitted in a duct, that helps to boost the flow of air through the ventilation ducting system.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "ducting",
+              "name": "Ducting",
+              "gpcCode": "10003997",
+              "gpcDescription": "Includes any products that can be described/observed as a pipe that transfers air between spaces in a building.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "fans-ceiling",
+              "name": "Fans - Ceiling",
+              "gpcCode": "10003995",
+              "gpcDescription": "Includes any products that can be described/observed as a fan suspended from the ceiling of a room. These devices create a breeze that has a cooling effect but also help to redistribute warm air. Includes products that are fitted with an incorporated light.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "fans-extractor",
+              "name": "Fans - Extractor",
+              "gpcCode": "10003998",
+              "gpcDescription": "Includes any products that can be described/observed as a built-in device containing an electric fan that helps to vent steam, smoke, gas or odours from a room or building. These products are used in small rooms where air flow is limited, such as in a bathroom or kitchen. Includes products that have an incorporated light.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            },
+            {
+              "id": "fans-window-exhaust",
+              "name": "Fans - Window/Exhaust",
+              "gpcCode": "10004064",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is built into a window frame to pump stale air out of the room or bring in fresh air from outside.",
+              "parentId": "air-conditioning-cooling-ventilation-equipment"
+            }
+          ]
+        },
+        {
+          "id": "backflow-prevention-devices",
+          "name": "Backflow Prevention Devices",
+          "gpcCode": "79011000",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "backflow-preventer-parts-accessories",
+              "name": "Backflow Preventer Parts/Accessories",
+              "gpcCode": "10005865",
+              "gpcDescription": "Includes products that can be described/observed as a part or accessory such as a cap, flange or valve for use specifically with a backflow prevention device.",
+              "parentId": "backflow-prevention-devices"
+            },
+            {
+              "id": "backflow-preventers",
+              "name": "Backflow Preventers",
+              "gpcCode": "10005866",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to protect water supplies from contamination or pollution. A backflow assembly has test cocks and shut-off valves so that they can be tested or examined to ensure that they are functioning properly. A backflow preventer can be manufactured to include devices such as a double check assembly, reduce pressure zone assembly, test kits and backflow prevention accessories.",
+              "parentId": "backflow-prevention-devices"
+            },
+            {
+              "id": "backflow-test-kits",
+              "name": "Backflow Test Kits",
+              "gpcCode": "10005863",
+              "gpcDescription": "Includes any products that can be described/observed as a battery-powered, hand-held instrument designed to test a backflow device to ensure it is functioning correctly.",
+              "parentId": "backflow-prevention-devices"
+            },
+            {
+              "id": "vacuum-breakers",
+              "name": "Vacuum Breakers",
+              "gpcCode": "10005864",
+              "gpcDescription": "Includes any products that can be described/observed as an attachment commonly placed on a bibcock valve or toilet or urinal flush valve, that prevents water from being siphoned backward into the public water system. This prevents contamination should the public water system's pressure drop.",
+              "parentId": "backflow-prevention-devices"
+            }
+          ]
+        },
+        {
+          "id": "bathroom-fittings",
+          "name": "Bathroom Fittings",
+          "gpcCode": "79010300",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "bath-lifts",
+              "name": "Bath Lifts",
+              "gpcCode": "10002624",
+              "gpcDescription": "Includes any products that can be described/observed as a device intended to assist the aged or disabled to get in and out of a bathtub. These products lower a person into the bath, and also provide support while they are bathing. Includes products such as belt-style lifts and inflatable lifts.",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "bath-seats",
+              "name": "Bath Seats",
+              "gpcCode": "10004027",
+              "gpcDescription": "Includes any products that can be described/observed as a seat or stool, normally made of plastic, that can be placed in the bath to enable the elderly and disabled to sit comfortably in a bath tub. The seat may be freestanding or suspended from the sides of the tub and may have the facility to swivel, thus allowing easier entry and exit from the bath.",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "bath-shower-caddies-fixed",
+              "name": "Bath/Shower Caddies - Fixed",
+              "gpcCode": "10004032",
+              "gpcDescription": "Includes any products that can be described/observed as a container fixed to a bathroom or shower wall that helps to store and organise toiletries such as soaps, sponges, toothpastes and toothbrushes. Includes products that are mounted with the aid of suction pads, self-adhesive strips or screw fittings.",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "bathroom-fittings-variety-packs",
+              "name": "Bathroom Fittings Variety Packs",
+              "gpcCode": "10002627",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct bathroom fittings products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Bathroom Fittings class. Includes products such as grab bars and bath lifts sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "grab-bars",
+              "name": "Grab Bars",
+              "gpcCode": "10004028",
+              "gpcDescription": "Includes any products that can be described/observed as a cylindrical bar that is mounted on a wall close to a toilet or bath tub and in the shower, to enable the elderly and disabled to rise from the toilet or bath and also help prevent slipping on a wet floor. The bars are normally made of metal and can be covered with rubber or plastic for better grip. The bars can be mounted horizontally, vertically or diagonally.",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "hand-dryers",
+              "name": "Hand Dryers",
+              "gpcCode": "10006232",
+              "gpcDescription": "Includes any products that can be described/observed as a device designed to dry a users hands through the use of forced air. The device may be activated manually or automatically (sensors are used to activate the system).",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "shower-safety-strips",
+              "name": "Shower Safety Strips",
+              "gpcCode": "10004026",
+              "gpcDescription": "Includes any products that can be described/observed as a non-slip adhesive vinyl strip that can be stuck to the floor of a shower or bathtub to help prevent a person slipping on the wet surface. The product comes in a variety of colours.",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "shower-thermo-alarms",
+              "name": "Shower Thermo Alarms",
+              "gpcCode": "10002623",
+              "gpcDescription": "Includes any products that can be described/observed as a device that displays the shower water temperature and emits an audible alarm when the water is either too hot or too cold. The alarm is installed between the shower unit and the shower hose. Upper and lower temperatures are programmable and a clock may also be displayed.",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "toilet-seats-lids",
+              "name": "Toilet Seats/Lids",
+              "gpcCode": "10004062",
+              "gpcDescription": "Includes any products that can be described/observed as a seat and lid fitted to a toilet bowl. Includes products such as an ovate-shaped seat and an opened-front seat. They can be made of porcelain, plastic, steel or wood and come in a variety of colours and designs.",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "towel-bars-hooks-rings-fixed",
+              "name": "Towel Bars/Hooks/Rings - Fixed",
+              "gpcCode": "10004033",
+              "gpcDescription": "Includes any products that can be described/observed as a rail, hook or ring fixed to a bathroom wall upon which a bath/hand towel can be hung.Includes products such as single and double towel rails as well as gas or electrically heated towel rails. Specifically",
+              "parentId": "bathroom-fittings"
+            },
+            {
+              "id": "towel-bars-hooks-rings-not-fixed",
+              "name": "Towel Bars/Hooks/Rings - Not Fixed",
+              "gpcCode": "10008026",
+              "gpcDescription": "Includes any products that can be described/observed as a freestanding rail, hook or ring  upon which a bath/hand towel can be hung. Includes products such as single and double towel rails as well as gas or electrically heated towel rails.  ",
+              "parentId": "bathroom-fittings"
+            }
+          ]
+        },
+        {
+          "id": "health-and-wellness",
+          "name": "Health and Wellness",
+          "gpcCode": "79011400",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "hammam-cabin",
+              "name": "Hammam Cabin",
+              "gpcCode": "10007645",
+              "gpcDescription": "Includes any products that can be described/observed as a small room or cabin designed as a place to experience steam sessions. Typically these cabins are made of wood. Sometimes these cabins can be called Turkish baths. ",
+              "parentId": "health-and-wellness"
+            },
+            {
+              "id": "health-and-wellness-fittings-accessories-and-replacement-parts",
+              "name": "Health and Wellness Fittings - Accessories and Replacement Parts",
+              "gpcCode": "10007649",
+              "gpcDescription": "Includes any products that can be described/observed as a an accessory or replacement part for a wellness fitting. Specifically includes wooden buckets, laddles, thermometers, hourglasses, tanning goggles and lava stones designed to be used in a health and wellness fitting.",
+              "parentId": "health-and-wellness"
+            },
+            {
+              "id": "health-and-wellness-multi-purpose-cabin",
+              "name": "Health and Wellness Multi-Purpose Cabin",
+              "gpcCode": "10007650",
+              "gpcDescription": "Includes any products that can be described/observed as a small room or cabin designed as a place to experience steam and/or dry or wet heat sessions. Typically these cabins are made of wood. Specifically includes sauna cabins also having an infrared functionality. ",
+              "parentId": "health-and-wellness"
+            },
+            {
+              "id": "infrared-cabin",
+              "name": "Infrared Cabin",
+              "gpcCode": "10007646",
+              "gpcDescription": "Includes any products that can be described/observed as a small room or cabin designed as a place to experience heat sessions through the use of infrared technology. Typically these cabins are made of wood. ",
+              "parentId": "health-and-wellness"
+            },
+            {
+              "id": "sauna-cabin",
+              "name": "Sauna Cabin",
+              "gpcCode": "10007647",
+              "gpcDescription": "Includes any products that can be described/observed as a small room or cabin designed as a place to experience dry or wet heat sessions. Typically these cabins are made of wood and sometimes described as the Finnish sauna. ",
+              "parentId": "health-and-wellness"
+            },
+            {
+              "id": "sunbed-structure",
+              "name": "Sunbed Structure",
+              "gpcCode": "10007648",
+              "gpcDescription": "Includes any products that can be described/observed as a device that emits ultraviolet radiation to produce a cosmetic tan. Also called tanning beds. ",
+              "parentId": "health-and-wellness"
+            }
+          ]
+        },
+        {
+          "id": "heating-equipment",
+          "name": "Heating Equipment",
+          "gpcCode": "79010500",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "central-heating-replacement-parts-accessories",
+              "name": "Central Heating Replacement Parts/Accessories",
+              "gpcCode": "10002660",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for central heating products. Includes products such as replacement temperature pressure relief valves for boilers, radiator valves, gas connectors and accessories such as radiator covers and water heater blankets.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "fireplace-fuel-storage",
+              "name": "Fireplace Fuel Storage",
+              "gpcCode": "10006402",
+              "gpcDescription": "Includes any items used as a storage container for fuel for a fireplace or hearth.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "fireplace-grates",
+              "name": "Fireplace Grates",
+              "gpcCode": "10006400",
+              "gpcDescription": "Includes items used with a fireplace or hearth which are frames of metal bars for holding fuel when burning.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "fireplace-screens",
+              "name": "Fireplace Screens",
+              "gpcCode": "10006401",
+              "gpcDescription": "Includes any items used as a screen for a fireplace or hearth.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "fireplace-tools",
+              "name": "Fireplace Tools",
+              "gpcCode": "10006399",
+              "gpcDescription": "Includes any items used with a fireplace or hearth, such as poker, fire irons, tongs and brush.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "fireplace-treatments-cleaning-products",
+              "name": "Fireplace Treatments/Cleaning Products",
+              "gpcCode": "10007004",
+              "gpcDescription": "Includes any products that can be described/observed as a fireplace treatment or fireplace cleaning product. These products can prevent fire by eliminating soot in the duct or to clean the Fireplace screen. ",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "fireplaces-fireplace-surrounds-mantels",
+              "name": "Fireplaces/Fireplace Surrounds/Mantels",
+              "gpcCode": "10005478",
+              "gpcDescription": "Includes any products that can be described/observed as an appliance built into a home, consisting of a space designed to contain an open fire, generally for heating but sometimes also for cooking. A chimney or other vent allows gas and particulate exhaust to escape the building and a fireplace will normally be surrounded by decorative panels and a mantelshelf. Includes products such as wood/coal-burning fireplaces with a chimney and gas fires installed with a gas flue, as well as installed electric fires.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "heating-cable-heat-tape-heating-cord",
+              "name": "Heating Cable/Heat Tape/Heating Cord",
+              "gpcCode": "10007003",
+              "gpcDescription": "Includes any products that can be described/observed as a heating cable, heat tape or heating cord. These products can be used in the tracing of pipes, protecting the pipes from freezing, maintaining the temperature process, and viscosity control of crude and petroleum products.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "heating-equipment-variety-packs",
+              "name": "Heating Equipment Variety Packs",
+              "gpcCode": "10002662",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct heating equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack, which cross bricks within the Heating Equipment class. Includes products such as radiators sold with radiator valves. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "heating-system-controls",
+              "name": "Heating System Controls",
+              "gpcCode": "10002653",
+              "gpcDescription": "Includes any products that can be described/observed as a mechanical or electronic device that controls a heating system within a building. It is capable of increasing comfort for personnel while delivering real cost savings through the use of a programmed time switch and thermostat. Time and temperature can be set according to building and user needs.Includes products that have control options for heating only, ventilation only, frost protection, seven-day programming, three on/off periods per day, holiday mode and overtime mode.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "household-boilers-furnaces-tank-water-heaters",
+              "name": "Household Boilers/Furnaces/Tank Water Heaters",
+              "gpcCode": "10002658",
+              "gpcDescription": "Includes any products that can be described/observed as a household appliance that provides heat to an interior space through intermediary fluid movement of air, steam, or hot water. Includes products such as boilers, furnaces or tank water heaters that are powered by solar energy, electricity, natural gas, coal, wood or heating oil.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "household-boilers-furnaces-tank-water-heaters-replacement-parts-accessories",
+              "name": "Household Boilers/Furnaces/Tank Water Heaters Replacement Parts/Accessories",
+              "gpcCode": "10007005",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory or replacement part for either a household boiler, furnace or tank water heater. Specifically includes socles/bases for household boilers.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "immersion-heaters",
+              "name": "Immersion Heaters",
+              "gpcCode": "10002657",
+              "gpcDescription": "Includes any products that can be described/observed as a heating element that is submerged in water to be heated. These products may be sold as separate units or may be incorporated into the overall design of a boiler. Includes products such as screw-plug immersion heaters, flanged heaters and over-the-side heaters, where easy access for cleaning is required.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "radiators",
+              "name": "Radiators",
+              "gpcCode": "10002654",
+              "gpcDescription": "Includes any products that can be described/observed as an installed heating device consisting of a sealed metal container or designer arrangement of pipes, which are warmed by steam from a boiler or hot water pumped from a water heater. Includes products such as the classic cast-iron radiators and modern designer radiators.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "room-heaters",
+              "name": "Room Heaters",
+              "gpcCode": "10005717",
+              "gpcDescription": "Includes any products that can be described/observed as a room heating appliance that is powered by either electricity, gas, coal or wood. Includes products such as freestanding space heaters and stoves as well as mounted baseboard and wall heaters.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "tankless-water-heaters",
+              "name": "Tankless Water Heaters",
+              "gpcCode": "10005479",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is fitted to a water pipe close to where the water is being used and which heats the water as the water flows through the device. The water is heated instantaneously, on demand by the user, which saves water and because it is not necessary to store the water, power is also conserved. Includes products powered by electricity or gas.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "thermostats",
+              "name": "Thermostats",
+              "gpcCode": "10004002",
+              "gpcDescription": "Includes any products that can be described/observed as a device that automatically regulates temperature in a room or building by cutting off and restoring the supply of heat from the central heating system. Includes mechanical thermostats and digital thermostats that can be remotely controlled by a home automation system.",
+              "parentId": "heating-equipment"
+            },
+            {
+              "id": "underfloor-heating-systems",
+              "name": "Underfloor Heating Systems",
+              "gpcCode": "10004003",
+              "gpcDescription": "Includes any products that can be described/observed as a network of pipes or heating cables laid into the floor of a building or home. Heat is generated by either hot water flowing through the pipes or electrically heated cables, effectively warming the room or building.",
+              "parentId": "heating-equipment"
+            }
+          ]
+        },
+        {
+          "id": "plumbing-heating-ventilation-air-conditioning",
+          "name": "Plumbing/Heating/Ventilation/Air Conditioning",
+          "gpcCode": "79011300",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "air-conduits-accessories-and-replacement-parts",
+              "name": "Air Conduits Accessories and Replacement Parts",
+              "gpcCode": "10008060",
+              "gpcDescription": "Includes any products that can be described/observed as part or accessory of air conduits and smoke extraction. Includes products such as brackets/rings and chimney plates/shells (rosettes) for smoke extraction applications.",
+              "parentId": "plumbing-heating-ventilation-air-conditioning"
+            },
+            {
+              "id": "air-conduits-variety-pack",
+              "name": "Air Conduits Variety Pack",
+              "gpcCode": "10007628",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Air Conduits products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Plumbing/Heating/Ventilation/Air Conditioning class.",
+              "parentId": "plumbing-heating-ventilation-air-conditioning"
+            },
+            {
+              "id": "air-conduits-air-conduit-fittings",
+              "name": "Air Conduits/Air Conduit Fittings",
+              "gpcCode": "10007610",
+              "gpcDescription": "Includes any products that can be described/observed as a hollow pipe/tube through which air/gas/smoke can flow or be conveyed, such as an air duct or chimney. These products may be ridged or flexible and may be straight or bent. These products can be made out of materials such as PVC or metal.",
+              "parentId": "plumbing-heating-ventilation-air-conditioning"
+            },
+            {
+              "id": "chimney-cap-rain-cap",
+              "name": "Chimney Cap/Rain Cap",
+              "gpcCode": "10007609",
+              "gpcDescription": "Includes any product that is designed to be put at the end of a pipe/tube which allows for the extraction of air. May or may not include a protective mesh.",
+              "parentId": "plumbing-heating-ventilation-air-conditioning"
+            }
+          ]
+        },
+        {
+          "id": "plumbing-heating-ventilation-air-conditioning-variety-packs",
+          "name": "Plumbing/Heating/Ventilation/Air Conditioning Variety Packs",
+          "gpcCode": "79010700",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "plumbing-heating-ventilation-air-conditioning-variety-packs",
+              "name": "Plumbing/Heating Ventilation/Air Conditioning Variety Packs",
+              "gpcCode": "10003994",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Plumbing/Heating Ventilation/Air Conditioning products sold together, which exist within the schema belonging to different classes but to the same family, that is two or more products contained within the same pack which cross classes within the Plumbing/Heating Ventilation/Air Conditioning family. Includes products such as a toilet sold with a toilet seat. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "plumbing-heating-ventilation-air-conditioning-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "sanitary-ware",
+          "name": "Sanitary Ware",
+          "gpcCode": "79010100",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "basin-sink-pedestals",
+              "name": "Basin/Sink Pedestals",
+              "gpcCode": "10002609",
+              "gpcDescription": "Includes any products that can be described/observed as a supporting base or stand, upon which a basin/sink rests. Typically they are an open backed column which is secured to the floor and any plumbing will fit inside the open space, so it cannot be seen when looking from the front at the pedestal Includes products such as open back marble columns and metal stands.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "basins-sinks",
+              "name": "Basins/Sinks",
+              "gpcCode": "10002592",
+              "gpcDescription": "Includes any products that can be described/observed as a water basin that is fixed either to a wall or its base unit. Water is delivered to the basin/sink through one or more faucets/taps that are either attached or adjacent to it. Used or grey water is expelled from the basin/sink via a hole in the bottom of the basin/sink into a drainpipe. Typically these products are used for washing hands or small objects such as food, dishes and undergarments. Includes products such as bathroom basins/sinks and sinks with attached draining boards.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "bathroom-sink-accessories",
+              "name": "Bathroom Sink Accessories",
+              "gpcCode": "10006962",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory specifically designed to be used or placed at the wash basin. Includes products such as a toothbrush holder, razor holder, toothbrush cup, and soap dish.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "bathroom-suites",
+              "name": "Bathroom Suites",
+              "gpcCode": "10002610",
+              "gpcDescription": "Includes any products that can be described/observed as a set of co-ordinated bathroom fixtures sold as a unit. The items making up the suite are generally of a matching design and material. Includes products such as bath, toilet and sink suites.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "bathtub-shower-doors",
+              "name": "Bathtub/Shower Doors",
+              "gpcCode": "10002600",
+              "gpcDescription": "Includes any products that can be described/observed as a door or set of doors intended to enclose a bathtub or shower to provide privacy, and contain any water spray to the bathing or showering area. These products may slide, fold or pivot to enable entry into the bathtub or shower.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "bathtub-shower-enclosure-panels",
+              "name": "Bathtub/Shower Enclosure Panels",
+              "gpcCode": "10002601",
+              "gpcDescription": "Includes any products that may be described/observed as a one-piece panel intended to enclose a bathtub or shower to provide privacy.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "bathtub-shower-modules",
+              "name": "Bathtub/Shower Modules",
+              "gpcCode": "10002590",
+              "gpcDescription": "Includes any products that can be described/observed as a self-contained one-piece installation that comprises of both a bathtub and shower facilities. ",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "bathtub-shower-modules-jetted",
+              "name": "Bathtub/Shower Modules - Jetted",
+              "gpcCode": "10004029",
+              "gpcDescription": "Includes any products that can be described/observed as a self contained one-piece installation that comprises of both a bathtub and shower facilities. These products are fitted with small openings from which powered streams of water are emitted to produce a massaging effect on the body. ",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "bathtubs-jetted-hot-tubs-spas",
+              "name": "Bathtubs - Jetted (Hot Tubs/Spas)",
+              "gpcCode": "10002596",
+              "gpcDescription": "Includes any products that can be described/observed as a large open container that is used for bathing and massaging. These products are fitted with small openings from which powered streams of water are emitted to produce a massaging effect on the body. Typically these products have one or more faucets/taps that are attached in order to fill it with water, and a hole in the bottom through which used or grey water is expelled once it is no longer required. These bathtubs and spas are large enough that one or more adult persons can get into it and submerge themselves in the water. Includes products such as outdoor hot tubs. ",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "bathtubs-soaking",
+              "name": "Bathtubs - Soaking",
+              "gpcCode": "10002595",
+              "gpcDescription": "Includes any products that can be described/observed as a large open container that is used for bathing. Typically these products have one or more faucets/taps that are attached in order to fill it with water, and a hole in the bottom through which used or grey water is expelled once it is no longer required. These bathtubs are large enough that an adult person can get into it and submerge themselves in the bath water. Includes products such as free standing and sunken baths. ",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "bidets",
+              "name": "Bidets",
+              "gpcCode": "10002585",
+              "gpcDescription": "Includes any products that can be described/observed as a low basin equipped with cold and hot running water which is used for genital and perineal cleanliness.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "faucet-replacement-parts-accessories",
+              "name": "Faucet Replacement Parts/Accessories",
+              "gpcCode": "10007941",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part/accessory for faucets. Includes products such as thread aerators, flow controls and faucet/tap washers and nozzles.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "faucets-taps",
+              "name": "Faucets/Taps",
+              "gpcCode": "10002602",
+              "gpcDescription": "Includes any products that can be described/observed as a plumbing fixture used to direct and control the flow of cold/hot water. They are typically attached to basins/sinks or bathtubs so they can be quickly and conveniently filled with water. These products may be manually operated or powered and may involve other powered fixtures, such as sensors to detect hands in order to start the flow water automatically. Includes products such as single temperature faucet/taps and mixers (a single faucet/tap through which both cold and hot water flows)",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "flush-wall-plate",
+              "name": "Flush Wall Plate",
+              "gpcCode": "10007723",
+              "gpcDescription": "Includes any products that can be described/observed as a plate used to flush the contents of a toilet cistern into a waste pipe. The flush mechanism inside the cistern is activated when a handle or button attached to the outside is pulled or pushed. The flushing mechanism can also be activated automatically by sensors removing the need for a handle or button. Includes wall-mounted Flush plates. ",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "sanitary-ware-replacement-parts-accessories",
+              "name": "Sanitary Ware - Replacement Parts/Accessories",
+              "gpcCode": "10002612",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for sanitary ware products. Includes products such as shower tray riser kits, rods to hold freestanding shower walls and bath headrests.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "sanitary-ware-variety-packs",
+              "name": "Sanitary Ware Variety Packs",
+              "gpcCode": "10002614",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct sanitary ware products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sanitary Ware class. Includes products such as separate shower doors sold with shower trays and separate toilets and urinals sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-arms",
+              "name": "Shower Arms",
+              "gpcCode": "10007724",
+              "gpcDescription": "Includes any products that may be described/observed as a pipe fitting made to connect the water supply in your shower wall to a shower head.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-curtain",
+              "name": "Shower Curtain",
+              "gpcCode": "10007973",
+              "gpcDescription": "Includes any products that may be described/observed as a curtain specifically designed to be used in the shower.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-curtain-accessories-and-replacement-parts",
+              "name": "Shower Curtain - Accessories and Replacement Parts",
+              "gpcCode": "10007974",
+              "gpcDescription": "Includes any products that may be described/observed as an accessory or replacement part for shower curtains. Specifically includes rings to attach the curtain to the bar or the bar itself.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-enclosures-suites",
+              "name": "Shower Enclosures/Suites",
+              "gpcCode": "10002597",
+              "gpcDescription": "Includes any products that can be described/observed as a complete enclosure in which to have a shower. The suite, sold as a unit, will consist of a shower pan/tray, shower surround panels and shower door. The suite may or may not include showerheads and hydro massage jets.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-heads",
+              "name": "Shower Heads",
+              "gpcCode": "10002608",
+              "gpcDescription": "Includes any products that can be described/observed as a perforated nozzle that showers water on a bather. Includes products such as fixed showerheads and adjustable showerheads.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-hose",
+              "name": "Shower Hose",
+              "gpcCode": "10007725",
+              "gpcDescription": "Includes any products that can be described/observed as a hose that extends the shower head from the shower outlet. It is specifically designed to be used in the shower.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-pans-trays",
+              "name": "Shower Pans/Trays",
+              "gpcCode": "10002599",
+              "gpcDescription": "Includes any products that can be described/observed as the base of a shower unit, which is sunk lower than the doors. These products are intended to contain the water from the showerhead, which then drains away through the shower trap. Includes products in a variety of sizes and shapes.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-sets",
+              "name": "Shower Sets",
+              "gpcCode": "10007726",
+              "gpcDescription": "Includes any products that can be described/observed as a set made of a combination of the following products: shower slide bar, shower head, thermostat, etc.These sets can also be called all-in-one packs.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-slide-bars",
+              "name": "Shower Slide Bars",
+              "gpcCode": "10007727",
+              "gpcDescription": "Includes any products that can be described/observed as a bar that is used to adjust a hand shower height.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "shower-spas",
+              "name": "Shower Spas",
+              "gpcCode": "10004044",
+              "gpcDescription": "Includes any products that can be described/observed as a system of whirlpool jets within a shower enclosure, where the drain is closed while a pump is running and the water is recirculated, creating a massage effect for a person standing in the shower. An electronic touch pad allows the user to adjust the water flow for the desired massaging action and an integral heater helps maintain the original water temperature.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "sink-base-combinations",
+              "name": "Sink/Base Combinations",
+              "gpcCode": "10002593",
+              "gpcDescription": "Includes any products that may be described/observed as a water basin/sink and base unit in combination. These products can be freestanding, wall or floor mounted.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "toilet-accessories",
+              "name": "Toilet Accessories",
+              "gpcCode": "10006961",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory specifically designed for use near the toilet. Includes products such as toilet roll holders, toilet brushes, toilet brush holder.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "toilet-bidet-frames",
+              "name": "Toilet/Bidet Frames",
+              "gpcCode": "10007015",
+              "gpcDescription": "Includes any products that can be described/observed as a system for toilet/bidet to be hidden behind the wall of the toilet.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "toilet-bidet-kits",
+              "name": "Toilet/Bidet Kits",
+              "gpcCode": "10007016",
+              "gpcDescription": "Includes any products that can be described/observed as a complete toilet/bidet kit including frame and the toilet/bidet itself.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "toilet-bidet-wall-covers",
+              "name": "Toilet/Bidet Wall Covers",
+              "gpcCode": "10007018",
+              "gpcDescription": "Includes any products that can be described/observed as a plaque to be applied to the wall in between the wall and the toilet/bidet structure, it might include a push button to operate the flush.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "toilet-bidet-urinals-replacement-parts-accessories",
+              "name": "Toilet/Bidet/Urinals Replacement Parts/Accessories",
+              "gpcCode": "10007017",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part/accessory for toilets/bidets/urinals. Includes products such as fixing material, connectors and hinges for toilets or toilet seats and flush mechanisms, cords, buttons and handles. ",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "toilet-urinal-cisterns",
+              "name": "Toilet/Urinal Cisterns",
+              "gpcCode": "10002589",
+              "gpcDescription": "Includes any products that can be described/observed as a tank that holds a specified volume of water used to flush the contents of a toilet bowl into a waste pipe. The flush mechanism inside the cistern is activated when a handle or button attached to the outside is pulled or pushed. The flushing mechanism can also be activated automatically by sensors removing the need for a handle or button. Includes products such as high, low, concealed and closed couple cisterns.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "toilets",
+              "name": "Toilets",
+              "gpcCode": "10002586",
+              "gpcDescription": "Includes any products that can be described/observed as a plumbing fixture that is specifically designed for the disposal of bodily wastes such as urine and faecal matter. Typically these products are connected to a running water supply and a drainage system, and the user either sits on or squats over them. Includes products such as flushing toilets, commodes and squat toilets. ",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "urinal-partitions",
+              "name": "Urinal Partitions",
+              "gpcCode": "10002588",
+              "gpcDescription": "Includes any products that can be described/observed as a screen or wall-mounted panel designed to be placed between urinals to give privacy when urinating.",
+              "parentId": "sanitary-ware"
+            },
+            {
+              "id": "urinals",
+              "name": "Urinals",
+              "gpcCode": "10002587",
+              "gpcDescription": "Includes any products that can be described/observed as a plumbing fixture that has been specifically designed for urination, and typically by a standing male. These products may be designed for use by one or more people, and are typically a wall-mounted bowl. They may or may not have a flushing system to rinse the urine from the bowl.",
+              "parentId": "sanitary-ware"
+            }
+          ]
+        },
+        {
+          "id": "waste-sewage-equipment",
+          "name": "Waste/Sewage Equipment",
+          "gpcCode": "79010900",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "macerators",
+              "name": "Macerators",
+              "gpcCode": "10002611",
+              "gpcDescription": "Includes any products that can be described/observed as a device installed in a drain line from a toilet or kitchen sink, which utilises a pump to grind waste and dispatch it safely into the sewer system.",
+              "parentId": "waste-sewage-equipment"
+            },
+            {
+              "id": "plungers",
+              "name": "Plungers",
+              "gpcCode": "10003565",
+              "gpcDescription": "Includes any products that can be described/observed as a rubber suction cup on a handle used to free plumbing traps and waste outlets of obstructions.",
+              "parentId": "waste-sewage-equipment"
+            },
+            {
+              "id": "septic-tanks",
+              "name": "Septic Tanks",
+              "gpcCode": "10004049",
+              "gpcDescription": "Includes any products that can be described/observed as a sealed tank for the reception and temporary storage of sewage where access to the sewer network is extremely limited. Installation is normally governed by building regulations. Includes products that cater for single dwellings of up to six people as well as products that cater for dwellings of up to fifty people.",
+              "parentId": "waste-sewage-equipment"
+            },
+            {
+              "id": "waste-traps-drains",
+              "name": "Waste Traps/Drains",
+              "gpcCode": "10005480",
+              "gpcDescription": "Includes any products that can be described/observed as a device that either prevents sewer gasses and odours from entering the house, or prevents waste such as grease and kitchen solids from entering the sewage system. Includes products such as sink traps, grease traps, shower traps and bath plumbing wastes.",
+              "parentId": "waste-sewage-equipment"
+            },
+            {
+              "id": "waste-traps-drains-replacement-parts-accessories",
+              "name": "Waste Traps/Drains - Replacement Parts/Accessories",
+              "gpcCode": "10008062",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory of waste traps and drains. ",
+              "parentId": "waste-sewage-equipment"
+            }
+          ]
+        },
+        {
+          "id": "water-storage-treatment",
+          "name": "Water Storage/Treatment",
+          "gpcCode": "79010400",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "de-scalers-diy",
+              "name": "De-scalers (DIY)",
+              "gpcCode": "10004006",
+              "gpcDescription": "Includes any products that can be described/observed as a high strength/concentrated preparation, specifically designed for DIY use, to remove lime scale deposits caused by hard water. Typically these products are used to de-scale pipes and water storage/heating systems. ",
+              "parentId": "water-storage-treatment"
+            },
+            {
+              "id": "scale-inhibitors",
+              "name": "Scale Inhibitors",
+              "gpcCode": "10002649",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is connected to a water supply pipe to specifically inhibit/prevent scale, either temporarily or permanently. By altering the structure or characteristics of the scale particles these devices prevent them from adhering or being deposited on plumbing fixtures, pipe work or heat exchangers. These products are either integrated as part of the pipe system or attached externally. Includes products such as magnetic scale inhibitors and electrical scale inhibitors. ",
+              "parentId": "water-storage-treatment"
+            },
+            {
+              "id": "water-filtration-machines-systems",
+              "name": "Water Filtration Machines/Systems",
+              "gpcCode": "10004016",
+              "gpcDescription": "Includes any products than can be described/observed as a machine/system, which is fixed in place to filter water from a connected water supply. The water is passed through one or more filters within the machine/system to remove impurities such as, metals, water sediment, chlorine, herbicides and pesticides. Includes products that use ultraviolet (UV) and reverse osmosis filters. ",
+              "parentId": "water-storage-treatment"
+            },
+            {
+              "id": "water-meters",
+              "name": "Water Meters",
+              "gpcCode": "10004012",
+              "gpcDescription": "Includes any products than can be described/observed as a device, which measure the volume of water that a household takes from a main supply to be used in the home. Includes products with a digital display to show the volume of water used.",
+              "parentId": "water-storage-treatment"
+            },
+            {
+              "id": "water-softeners-diy",
+              "name": "Water Softeners (DIY)",
+              "gpcCode": "10004008",
+              "gpcDescription": "Includes any products than can be described/observed as a device which is fixed in place to soften water from a connected water supply. These devices soften the water by reducing the calcium or magnesium ion concentration in hard water. The water is passed through an ion-exchange resin in which the ions causing the hardness trade places with sodium ions, these are then released into the water making it much softer. ",
+              "parentId": "water-storage-treatment"
+            },
+            {
+              "id": "water-softeners-replacement-parts-accessories",
+              "name": "Water Softeners Replacement Parts/Accessories",
+              "gpcCode": "10007038",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part/accessory to a device which is fixed in place to soften water from a connected water supply.",
+              "parentId": "water-storage-treatment"
+            },
+            {
+              "id": "water-storage-treatment-accessories-replacement-parts",
+              "name": "Water Storage/Treatment - Accessories/Replacement Parts",
+              "gpcCode": "10002650",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory/replacement part for Water Storage/Treatment products. Includes products such as replacement lid-seals, tank fittings and replacement water filters.",
+              "parentId": "water-storage-treatment"
+            },
+            {
+              "id": "water-storage-treatment-variety-packs",
+              "name": "Water Storage/Treatment Variety Packs",
+              "gpcCode": "10002652",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Water Storage/Treatment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Water Storage/Treatment class. Includes products such as water tanks sold with water filters. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "water-storage-treatment"
+            },
+            {
+              "id": "water-tanks",
+              "name": "Water Tanks",
+              "gpcCode": "10002646",
+              "gpcDescription": "Includes any products that can be described/observed as a large storage container that is fixed in place, for holding fresh water before use in the home. Typically these products can be found in the attic of a house. ",
+              "parentId": "water-storage-treatment"
+            },
+            {
+              "id": "water-treatments-diy",
+              "name": "Water Treatments (DIY)",
+              "gpcCode": "10002648",
+              "gpcDescription": "Includes any products that can be described/observed as chemical preparation that is used to specifically treat a household water supply from contaminants. Includes products such as pH conditioners, biocides and antifoamers and defoamers. ",
+              "parentId": "water-storage-treatment"
+            }
+          ]
+        },
+        {
+          "id": "water-gas-supply-central-heating",
+          "name": "Water/Gas Supply/Central Heating",
+          "gpcCode": "79010800",
+          "parentId": "plumbing-heating-ventilation-air-conditioning",
+          "children": [
+            {
+              "id": "connecting-hoses-water-gas-central-heating",
+              "name": "Connecting Hoses - Water, Gas, Central Heating",
+              "gpcCode": "10004022",
+              "gpcDescription": "Includes any products that can be described/observed as a connecting hose that has been specifically designed with connectors at each end in order to join plumbing fixtures such as gas heaters, faucets/taps or shower devices to water, gas and central heating supply system. Once joined to the supply system, water or gas can then flow through the connector into the attached fixture. These products can also be used as a method of extending existing pipes in the water system.",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "connectors-water-gas-central-heating-and-air-conduits",
+              "name": "Connectors - Water, Gas, Central Heating and Air Conduits",
+              "gpcCode": "10008009",
+              "gpcDescription": "Includes any products that may be described/observed as a water, gas, central heating or air conduit hose coupling, nipple, socket or any type of connector.",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "connectors-accessories-replacement-parts-water-gas-central-heating",
+              "name": "Connectors Accessories/Replacement Parts - Water, Gas, Central Heating",
+              "gpcCode": "10008010",
+              "gpcDescription": "Includes any products that may be described/observed as an accessory or replacement part for connectors. Includes products such as closing plugs, sealing wires, pinch nuts, cutting rings and gradient sets.",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "hose-clamps",
+              "name": "Hose Clamps",
+              "gpcCode": "10008008",
+              "gpcDescription": "Includes any products that may be described/observed as a device used to attach and seal a hose onto a fitting such as a barb or nipple.",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "pipes-tubing-accessories-replacement-parts",
+              "name": "Pipes/Tubing - Accessories/Replacement Parts",
+              "gpcCode": "10004057",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory/replacement part for Water/Gas Supply products. Includes products such as pipe hangers and clips, tubing brackets, rosettes and saddles.",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "pipes-tubing-water-gas-central-heating",
+              "name": "Pipes/Tubing - Water, Gas, Central heating",
+              "gpcCode": "10004054",
+              "gpcDescription": "Includes any products that can be described/observed as a long hollow cylinder through which water/gas/central heating can flow or be conveyed in a water/gas system. These products may be ridged or flexible and can be made out of materials such as PVC, iron or copper. ",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "pipes-tubing-flanges",
+              "name": "Pipes/Tubing Flanges",
+              "gpcCode": "10005867",
+              "gpcDescription": "Includes any product that can be described/observed as an external or internal rib or rim, used to connect to another pipe or flange; to  close a pipe; to add strength to a pipe or to hold a pipe in place. Includes products such as closet flanges, orifice flanges, long weld necks and reducing flanges.",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "pipes-tubing-supply-variety-packs",
+              "name": "Pipes/Tubing Supply Variety Packs",
+              "gpcCode": "10004058",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Water Supply products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Pipes/Tubing Supply class. Includes products such as plumbing pipes/tubing sold with valves. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "pumps",
+              "name": "Pumps",
+              "gpcCode": "10004055",
+              "gpcDescription": "Includes any products that can be described/observed as a pump that has been specifically designed for the raising, compressing and/or transferring of water and/or gas. ",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "valves-fittings-water-and-gas",
+              "name": "Valves/Fittings - Water and Gas",
+              "gpcCode": "10004024",
+              "gpcDescription": "Includes any products that can be described/observed as a valve or fitting that regulates the flow of water and/or gas  (i.e. propane; pneumatics; etc.) by opening, closing or partially obstructing the passageway within a water/gas supply system. ",
+              "parentId": "water-gas-supply-central-heating"
+            },
+            {
+              "id": "valves-fittings-accessories-replacement-parts-water-and-gas",
+              "name": "Valves/Fittings Accessories/Replacement Parts - Water and Gas",
+              "gpcCode": "10008011",
+              "gpcDescription": "Includes any products that may be described/observed as an accessory or replacement part for valves and fittings. Includes products such as drains for water and gas.",
+              "parentId": "water-gas-supply-central-heating"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

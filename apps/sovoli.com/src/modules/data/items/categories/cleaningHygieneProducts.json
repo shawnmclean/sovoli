@@ -1,0 +1,685 @@
+{
+  "id": "cleaning-hygiene-products",
+  "name": "Cleaning/Hygiene Products",
+  "gpcCode": "47000000",
+  "gpcDescription": "All products that are used to clean or improve hygiene including suppliers and dispensers for cleaning / hygiene products. Excludes products used for Personal Hygiene.",
+  "children": [
+    {
+      "id": "cleaning-products",
+      "name": "Cleaning Products",
+      "gpcCode": "47100000",
+      "parentId": "cleaning-hygiene-products",
+      "children": [
+        {
+          "id": "cleaners",
+          "name": "Cleaners",
+          "gpcCode": "47101600",
+          "parentId": "cleaning-products",
+          "children": [
+            {
+              "id": "baby-surface-cleaners",
+              "name": "Baby Surface Cleaners",
+              "gpcCode": "10000505",
+              "gpcDescription": "Includes any products that can be described/observed as an article, implement or device specifically designed to sterilise or disinfect any surfaces with which the baby may come into contact. Products may include Antiseptics/Sterilisers.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "biological-activator",
+              "name": "Biological Activator",
+              "gpcCode": "10007932",
+              "gpcDescription": "Includes any products that can be described/observed a product which  accelerates and improves purification of the septic tank. Prevents risks of clogging and avoid bad odors.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "bleach",
+              "name": "Bleach",
+              "gpcCode": "10000531",
+              "gpcDescription": "Includes any products that can be described/observed as a bleach specifically designed for household cleaning. Thin bleach is generally less concentrated than thick bleach and can be used around the house. Products available include scented and unscented versions. ",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "cleaners-other",
+              "name": "Cleaners Other",
+              "gpcCode": "10000746",
+              "gpcDescription": "Includes any products that can be described/observed as Cleaners, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "cleaners-variety-packs",
+              "name": "Cleaners Variety Packs",
+              "gpcCode": "10000698",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Cleaners products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Cleaners class. Includes products such as Bathroom Cleaners and Mildew Removers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "descalers",
+              "name": "Descalers",
+              "gpcCode": "10000442",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, which is typically diluted in water and employed to remove lime scale deposits caused by hard water or dissolves and removes the build-up of lime, calcium, coffee bean oils and other water deposits that are found in automatic drip coffee makers. Includes products and appliances (such as Kettles, Steam Irons, Baths, Coffee Makers, Dishwashers, Shower Jets and Taps). ",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "disinfectants",
+              "name": "Disinfectants",
+              "gpcCode": "10000441",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation typically intended to be directly applied to surfaces in order to destroy/kill or inactivates the growth of both the bacteria and viruses. Products are available as a variety of application methods, formations and fragrances.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "drain-treatments-pipe-unblockers",
+              "name": "Drain Treatments/Pipe Unblockers",
+              "gpcCode": "10000423",
+              "gpcDescription": "Includes any products that can be described/observed as a cream, gel or liquid, specifically designed for household use, and employed solely for the purpose of clearing or unblocking household drains or drain pipes. Also includes products specifically for sanitizing and/or preventing grease build-up in drains. Specifically includes Caustic Soda.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "food-treatments",
+              "name": "Food Treatments",
+              "gpcCode": "10006233",
+              "gpcDescription": "Includes products used in food preparation and processing/packaging that are designed to help reduce microorganisms from the surfaces of meat, produce and other foods prior to packaging or serving.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "mould-mildew-removers",
+              "name": "Mould/Mildew Removers",
+              "gpcCode": "10000440",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, specifically designed for household use, and typically employed to remove unwanted deposits of mould or mildew that may occur around the home.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "sanitizers",
+              "name": "Sanitizers",
+              "gpcCode": "10006234",
+              "gpcDescription": "Includes products that can be described/observed as a preparation intended to be applied to surfaces in order to reduce the bacteria on the surface by at least 99.9%. ",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "stain-removers",
+              "name": "Stain Removers",
+              "gpcCode": "10000443",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to penetrate, absorb and remove unwanted deposits and stains. Products include those that can be applied to the stain either prior to the laundering process, those that can be used as washing enhancers, and those that are applied without the need of washing.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "surface-cleaners",
+              "name": "Surface Cleaners",
+              "gpcCode": "10000405",
+              "gpcDescription": "Includes any products that may be observed/described as a preparation specifically designed to clean surfaces, appliances and equipment (such as Dishwashers). Includes products such as cleaning liquids/gels/powders/solids and wipes; these are available for multi or specific surfaces/appliances/equipment. Also includes products that remove/neutralize grease on surfaces and appliances. ",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "toilet-cleaning-products",
+              "name": "Toilet Cleaning Products",
+              "gpcCode": "10000426",
+              "gpcDescription": "Includes any products that may be observed/described as a preparation specifically designed for use in cleaning, deodorizing or maintaining the hygiene of toilets. Products include all liquids, solids, powders and foams as well as all in-cistern/in-rim continuous cleaners/fresheners.",
+              "parentId": "cleaners"
+            },
+            {
+              "id": "water-softeners",
+              "name": "Water Softeners",
+              "gpcCode": "10000446",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, specifically designed to chemically soften hard water, enhance the foaming qualities and cleansing properties of detergents, eliminate hard-water residue, and prevent rusting. For use in appliances (such as Dishwashers).",
+              "parentId": "cleaners"
+            }
+          ]
+        },
+        {
+          "id": "cleaning-variety-packs",
+          "name": "Cleaning Variety Packs",
+          "gpcCode": "47102000",
+          "parentId": "cleaning-products",
+          "children": [
+            {
+              "id": "cleaning-variety-packs",
+              "name": "Cleaning Variety Packs",
+              "gpcCode": "10000702",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Cleaning products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Cleaning Family. Includes products such as Bathroom Cleaners with Pot Pourri variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "cleaning-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "dish-care",
+          "name": "Dish Care",
+          "gpcCode": "47102100",
+          "gpcDescription": "Includes any products that may be described/observed as a cleaning agent designed to be used for hand or machine dishwashing.",
+          "parentId": "cleaning-products",
+          "children": [
+            {
+              "id": "automatic-dishwasher-additives-booster",
+              "name": "Automatic Dishwasher - Additives/Booster",
+              "gpcCode": "10008148",
+              "gpcDescription": "Includes any products that can be described/observed as a Dish Wash Additive or Booster, especially designed to use in conjunction with detergent. It is used for removing hard water films or/and the cleaning of particularly dirty dishes and pans. These products enhance the action of auto dishwasher detergent in the removal of deposits of encrusted traces of food on crockery, utensils & cookware. Includes All-in-One Booster with additional function like Dishwasher Machine cleaning or/and Rinsing Aid.",
+              "parentId": "dish-care"
+            },
+            {
+              "id": "automatic-dishwasher-detergent",
+              "name": "Automatic Dishwasher - Detergent ",
+              "gpcCode": "10008119",
+              "gpcDescription": "Includes any products that can be described/observed as an automatic dishwashing detergent-based preparation, specifically designed to clean dishes and to be used in an automatic dishwasher. Products are typically intended to soften dried-on food and tough stains and grease to clean glassware, dishes and utensils.",
+              "parentId": "dish-care"
+            },
+            {
+              "id": "automatic-dishwasher-fresheners-deodorants",
+              "name": "Automatic Dishwasher - Fresheners/Deodorants",
+              "gpcCode": "10008144",
+              "gpcDescription": "Includes any products that can be described/observed as a freshener or Deodorant specifically designed to be used in a dishwasher to remove bad smells, which arise as a result of food residue remaining in the machine. These products are usually hung from the washing baskets and are in the form of a plastic hanger.",
+              "parentId": "dish-care"
+            },
+            {
+              "id": "automatic-dishwasher-glass-care",
+              "name": "Automatic Dishwasher - Glass Care",
+              "gpcCode": "10000445",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, specially designed for use with a dishwasher to protect glass and plastic ware from corrosion. Products include plastic dispenser intended to be hung in a dishwasher during the wash cycle so as to release the zinc additive during the washing process and granular salts in polythene bags or soluble tablets in boxes.",
+              "parentId": "dish-care"
+            },
+            {
+              "id": "automatic-dishwasher-rinse-aid",
+              "name": "Automatic Dishwasher - Rinse Aid",
+              "gpcCode": "10008147",
+              "gpcDescription": "Includes any products that can be described/observed as a rinse additive specifically designed for use with an automatic dishwasher, and typically intended to be dispersed during the rinse cycle, to remove detergent, aid quick drying and prevent filming and water marks, in order to give glassware, dishes and utensils a clean, clear and sparkling shine.",
+              "parentId": "dish-care"
+            },
+            {
+              "id": "automatic-dishwasher-salt",
+              "name": "Automatic Dishwasher - Salt",
+              "gpcCode": "10008146",
+              "gpcDescription": "Includes any products that can be described/observed as a Dishwasher salt intended for regenerating the water softener circuit of household or industrial dishwashers. Dishwasher salt regenerates ion exchange resins, expelling the therein trapped calcium and magnesium ions that characterize hard water. Dishwater salt granules are larger than those of table salt. The granule size ensures that the salt dissolves slowly, and that fine particles do not block the softener unit.",
+              "parentId": "dish-care"
+            },
+            {
+              "id": "dish-pre-wash-treatment",
+              "name": "Dish Pre Wash Treatment",
+              "gpcCode": "10008149",
+              "gpcDescription": "Includes any products that can be described/observed as pre wash treatment or booster specially designed for cleaning of dishes in conjunction with Dish Wash Detergent. These products assist in the removal of deposits of encrusted traces of food on crockery, utensils & cookware. Specially include Pre-Wash designed for both Hand Wash and Automatic Dish Washing.",
+              "parentId": "dish-care"
+            },
+            {
+              "id": "hand-dish-detergent",
+              "name": "Hand Dish - Detergent",
+              "gpcCode": "10008145",
+              "gpcDescription": "Includes any products that can be described/observed as a hand dishwashing detergent-based preparation, specifically designed to clean dishes, aid quick drying and prevent filming or to soften water and prevent lime scale. Includes products such as detergents and rinse agents for hand dishwashing and products in all the forms such as Liquid, gel, solid, paste, wipes forms.",
+              "parentId": "dish-care"
+            }
+          ]
+        },
+        {
+          "id": "fresheners-deodorisers",
+          "name": "Fresheners/Deodorisers",
+          "gpcCode": "47101500",
+          "parentId": "cleaning-products",
+          "children": [
+            {
+              "id": "air-fresheners-deodorisers-non-powered",
+              "name": "Air Fresheners/Deodorisers (Non Powered)",
+              "gpcCode": "10000402",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered air freshener, specifically designed to remove or mask odours from the air and/or impart a pleasant fragrance. Includes products for use in various locations and in different forms such as gel or liquid. ",
+              "parentId": "fresheners-deodorisers"
+            },
+            {
+              "id": "air-fresheners-deodorisers-powered",
+              "name": "Air Fresheners/Deodorisers (Powered)",
+              "gpcCode": "10000696",
+              "gpcDescription": "Includes any products that can be described/observed as a powered air freshener, specifically designed to remove odours from the air and impart a pleasant fragrance. Includes products for use in various locations and in different forms such as gel or liquid. ",
+              "parentId": "fresheners-deodorisers"
+            },
+            {
+              "id": "fresheners-fabric",
+              "name": "Fresheners - Fabric",
+              "gpcCode": "10000740",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation that is used to freshen and add fragrances to all types of fabrics. Fabric fresheners can either be added directly to the fabrics such as laundry, carpets, upholstery or they can be added at the start of a wash cycle or when the wash cycle is complete such as fresheners used when ironing. Includes products such as Clothes Sprays, Liquid Fabric Fresheners, Carpet Fresheners that are specifically designed to be used in an appliance such as Vacuum and Shoe Fresheners.",
+              "parentId": "fresheners-deodorisers"
+            },
+            {
+              "id": "fresheners-deodorisers-other",
+              "name": "Fresheners/Deodorisers Other",
+              "gpcCode": "10000745",
+              "gpcDescription": "Includes any products that can be described/observed as Fresheners and Deodorisers, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "fresheners-deodorisers"
+            },
+            {
+              "id": "fresheners-deodorisers-variety-packs",
+              "name": "Fresheners/Deodorisers Variety Packs",
+              "gpcCode": "10000697",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Fresheners and Deodorisers sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Fresheners and Deodorisers class. Includes products such as Pot Pourri and Aromatic Oils sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "fresheners-deodorisers"
+            }
+          ]
+        },
+        {
+          "id": "laundry",
+          "name": "Laundry",
+          "gpcCode": "47101700",
+          "parentId": "cleaning-products",
+          "children": [
+            {
+              "id": "detergent-boosters-laundry-bleaches",
+              "name": "Detergent Boosters/Laundry Bleaches",
+              "gpcCode": "10000743",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation that is added to the wash as an aid to enhance or brighten laundry, fabrics and other textiles. Includes products such as silk bleach, fragrance additive/enhancer, and white laundry colour booster. Includes products of various forms such as powders and liquids.",
+              "parentId": "laundry"
+            },
+            {
+              "id": "fabric-finishers-starch",
+              "name": "Fabric Finishers/Starch",
+              "gpcCode": "10000742",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation that is added during the finishing of the laundering process, to enhance soil resistance, facilitate soil removal and ease the ironing process. Fabric starch products are more effective on cotton or cotton blend-fabrics, whereas finishers are specifically targeted to be used on synthetic fabrics or blended fabrics with a high fabric content. Includes products of various forms such as liquid, spray, powder and tablets.",
+              "parentId": "laundry"
+            },
+            {
+              "id": "fabric-protectors",
+              "name": "Fabric Protectors",
+              "gpcCode": "10000741",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation that is used to prevent laundry, fabrics and other textiles becoming permanently stained from water or oil based solutions. Products may claim to protect and enhance the life of laundry, fabrics and other textiles. Includes products such as liquids, powders and sprays.",
+              "parentId": "laundry"
+            },
+            {
+              "id": "fabric-softeners-conditioners",
+              "name": "Fabric Softeners/Conditioners",
+              "gpcCode": "10000744",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation that softens, reduces static electricity within fabrics and other textiles or eases ironing. They are designed to be added to the fabric during the wash or drying cycle. Includes products such as Liquids and Tumble Drier Sheets.",
+              "parentId": "laundry"
+            },
+            {
+              "id": "laundry-colour-care",
+              "name": "Laundry Colour Care",
+              "gpcCode": "10000427",
+              "gpcDescription": "Includes any products that may be observed/described as a preparation specifically designed to provide colour care to laundry, to add or remove fabric colourings and are typically intended to be used during manual or automatic laundering processes. Includes products such as fabric dyes and colour treatments available in liquid, powder and sheet format.",
+              "parentId": "laundry"
+            },
+            {
+              "id": "laundry-detergents",
+              "name": "Laundry Detergents",
+              "gpcCode": "10000424",
+              "gpcDescription": "Includes any products that can be described/observed as a detergent, specifically designed to cleanse laundered fabrics by acting to remove unwanted deposits and odours from clothes and linen, and should be added or applied during the laundering process. Includes products with fabric/colour protection properties.",
+              "parentId": "laundry"
+            },
+            {
+              "id": "laundry-dry-cleaning",
+              "name": "Laundry Dry Cleaning",
+              "gpcCode": "10000444",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, designed to allow the moisture-free cleansing of fabrics. Products include Dry Cleaning Sheets, highly evaporative Liquid Solvent or sealed Dry Cleaning Bags.",
+              "parentId": "laundry"
+            },
+            {
+              "id": "laundry-other",
+              "name": "Laundry Other",
+              "gpcCode": "10000747",
+              "gpcDescription": "Includes any products that can be described/observed as Laundry products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "laundry"
+            },
+            {
+              "id": "laundry-variety-packs",
+              "name": "Laundry Variety Packs",
+              "gpcCode": "10000699",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Laundry products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Laundry class. Includes products such as Laundry Starch and Laundry Detergents sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "laundry"
+            }
+          ]
+        },
+        {
+          "id": "surface-care",
+          "name": "Surface Care",
+          "gpcCode": "47101900",
+          "parentId": "cleaning-products",
+          "children": [
+            {
+              "id": "scratch-remover-kit-repairs",
+              "name": "Scratch Remover Kit/Repairs",
+              "gpcCode": "10000556",
+              "gpcDescription": "Includes any products that can be described/observed as a brush or liquid specifically designed to be applied to a scratch upon a wooden/metal surface to remove or cover its visibility.",
+              "parentId": "surface-care"
+            },
+            {
+              "id": "surface-care-other",
+              "name": "Surface Care Other",
+              "gpcCode": "10000749",
+              "gpcDescription": "Includes any products that can be described/observed as Surface Care products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "surface-care"
+            },
+            {
+              "id": "surface-care-variety-packs",
+              "name": "Surface Care Variety Packs",
+              "gpcCode": "10000701",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Surface Care products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Surface Care class. Includes products such as Scratch Removers and Surface Polish sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "surface-care"
+            },
+            {
+              "id": "surface-care-protection",
+              "name": "Surface Care/Protection",
+              "gpcCode": "10000434",
+              "gpcDescription": "Includes any products that may be observed/described as a preparation specifically designed to protect, add shine or anti-slip properties to metal (copper, brass), plastic, linoleum, laminate or wood surfaces.",
+              "parentId": "surface-care"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cleaning-hygiene-products-variety-packs",
+      "name": "Cleaning/Hygiene Products Variety Packs",
+      "gpcCode": "47190000",
+      "parentId": "cleaning-hygiene-products",
+      "children": [
+        {
+          "id": "cleaning-hygiene-products-variety-packs",
+          "name": "Cleaning/Hygiene Products Variety Packs",
+          "gpcCode": "47190100",
+          "parentId": "cleaning-hygiene-products-variety-packs",
+          "children": [
+            {
+              "id": "cleaning-hygiene-products-variety-packs",
+              "name": "Cleaning/Hygiene Products Variety Packs",
+              "gpcCode": "10000694",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Cleaning/Hygiene Products sold together which exist within the schema but belong to different Families, that is two or more products contained within the same pack which cross Families within the Cleaning/Hygiene Products Segment. Includes products such as Mildew Removers and Insect Repellents variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "cleaning-hygiene-products-variety-packs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cleaning-hygiene-supplies",
+      "name": "Cleaning/Hygiene Supplies",
+      "gpcCode": "47200000",
+      "parentId": "cleaning-hygiene-products",
+      "children": [
+        {
+          "id": "cleaning-aids",
+          "name": "Cleaning Aids",
+          "gpcCode": "47200200",
+          "parentId": "cleaning-hygiene-supplies",
+          "children": [
+            {
+              "id": "brooms-brushes",
+              "name": "Brooms/ Brushes",
+              "gpcCode": "10008122",
+              "gpcDescription": "Includes any products that may be described/observed as a cleaning tool consisting of usually stiff fibres (often made of materials such as plastic, hair, or corn husks) with an attached handle or broomstick.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "buckets",
+              "name": "Buckets",
+              "gpcCode": "10008123",
+              "gpcDescription": "Includes any products that may be described/observed as a watertight container which may have a handle attached. Without wheels or strainer attachments.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "carpet-beaters",
+              "name": "Carpet Beaters",
+              "gpcCode": "10008124",
+              "gpcDescription": "Includes any products that may be described/observed as a housecleaning tool used to beat carpets in order to shake dust and dirt out of them.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "cleaning-aid-variety-packs",
+              "name": "Cleaning Aid Variety Packs",
+              "gpcCode": "10008130",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Cleaning Aids sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Cleaning Aids class. Includes any products that can be described/observed as a general or specific-purpose implement or device specifically designed to provide a manual tool to facilitate the cleaning process sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "cleaning-aids-accessories",
+              "name": "Cleaning Aids Accessories",
+              "gpcCode": "10000397",
+              "gpcDescription": "Includes any products that can be described/observed as a general or specific-purpose implement or device specifically designed to provide a manual tool to facilitate or enhance the performance of the cleaning process. Includes products such as Dusters.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "cleaning-cloths",
+              "name": "Cleaning Cloths",
+              "gpcCode": "10008125",
+              "gpcDescription": "Includes any products that may be described/observed as a piece of cloth which can be used for a particular purpose, such as cleaning.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "cleaning-squeegees",
+              "name": "Cleaning Squeegees",
+              "gpcCode": "10008127",
+              "gpcDescription": "Includes any products that may be described/observed as a scraping implement with a silicone/rubber-edged blade set on a handle, typically used for cleaning windows.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "household-sponges",
+              "name": "Household Sponges",
+              "gpcCode": "10008129",
+              "gpcDescription": "Includes any products that may be described/observed as a tool or cleaning aid made of soft, porous material. Typically used for cleaning impervious surfaces, sponges are especially good at absorbing water and water-based solutions.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "mop-bucket-assembly",
+              "name": "Mop Bucket Assembly",
+              "gpcCode": "10008128",
+              "gpcDescription": "Includes any products that may be described/observed as a bucket and ringer assembly that allows its user to wring out a wet mop without getting the hands dirty. May be wheeled and have separate containment or ringer mechanism.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "mops",
+              "name": "Mops",
+              "gpcCode": "10008126",
+              "gpcDescription": "Includes any products that may be described/observed as a cleaning tool consisting of foam, cloth, cloth strips, pads or yarn strands with an attached handle or broomstick, generally used with water or cleaning solution.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "paper-towels",
+              "name": "Paper Towels",
+              "gpcCode": "10000447",
+              "gpcDescription": "Includes any products that can be described/observed as a disposable, absorbent paper or non-woven towel, specifically designed for household cleaning or food preparation. It is typically intended for use in wiping spilled liquid or drying wet items, or as a substitute for non-disposable cleaning cloths. Products include printed, plain, recycled, non-recycled varieties.",
+              "parentId": "cleaning-aids"
+            },
+            {
+              "id": "sweepers-non-powered",
+              "name": "Sweepers (Non Powered)",
+              "gpcCode": "10005811",
+              "gpcDescription": "Includes any products that may be described/observed as a non-powered mechanical device designed to clean floors or carpets by the application of revolving or moving brushes.",
+              "parentId": "cleaning-aids"
+            }
+          ]
+        },
+        {
+          "id": "laundry-and-ironing-aids",
+          "name": "Laundry and Ironing Aids",
+          "gpcCode": "47200300",
+          "parentId": "cleaning-hygiene-supplies",
+          "children": [
+            {
+              "id": "clothes-folder-non-powered",
+              "name": "Clothes Folder (Non Powered)",
+              "gpcCode": "10008277",
+              "gpcDescription": "Includes any products that may be described/observed as a manual/non-powered folding board, designed to fold a coat, jacket, sweater, shirt or blouse in a manner that prevents wrinkles and facilitate the clothes folding process.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "clothes-folder-powered",
+              "name": "Clothes Folder (Powered)",
+              "gpcCode": "10008278",
+              "gpcDescription": "Includes any products that may be described/observed as a electric appliance designed to fold clothes.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "clothes-hangers",
+              "name": "Clothes Hangers",
+              "gpcCode": "10008131",
+              "gpcDescription": "Includes any products that may be described/observed as a hanging device in the shape/contour of human shoulders designed to facilitate the hanging of a coat, jacket, sweater, shirt, blouse or dress in a manner that prevents wrinkles, with or without a lower bar for the hanging of trousers or skirts.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "clothes-irons-powered",
+              "name": "Clothes Irons (Powered)",
+              "gpcCode": "10002023",
+              "gpcDescription": "Includes any products that may be described/observed as a hand-held electric appliance designed to be run over clean laundry to remove creases by the use of heat and weight and/or steam. Includes products such as cordless Irons and steam Irons.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "clothes-presses",
+              "name": "Clothes Presses",
+              "gpcCode": "10002025",
+              "gpcDescription": "Includes any products that may be described/observed as a device consisting of two flat surfaces hinged together, between which clothes can be placed for the purpose of pressing out creases. Electric models offer varying temperatures and levels of downward pressure, and/or the application of steam. Includes products such as Table-Top Presses and Wall-Mounted Presses.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "clothing-lint-remover-roller-brush",
+              "name": "Clothing Lint Remover Roller/Brush",
+              "gpcCode": "10008132",
+              "gpcDescription": "Includes any products that may be described/observed as a roller or brush designed to facilitate the removal of lint or other small fibres from most materials. These may consist of one-sided adhesive paper, adhesive gel or brushes with stiff bristles that is mounted on a central spindle, with an attached handle. Also called a lint roller or lint brush.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "ironing-boards-non-powered",
+              "name": "Ironing Boards (Non-Powered)",
+              "gpcCode": "10008133",
+              "gpcDescription": "Includes any products that may be described/observed as a narrow board, often on collapsible supports, intended for ironing clothes.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "ironing-boards-powered",
+              "name": "Ironing Boards (Powered)",
+              "gpcCode": "10002024",
+              "gpcDescription": "Includes any products that may be described/observed as a narrow board, often on collapsible supports, intended for ironing clothes. These products are electrically powered to provide extra functions, such as warming.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "ironing-steam-station",
+              "name": "Ironing Steam Station",
+              "gpcCode": "10005830",
+              "gpcDescription": "Includes any products that can be descibed/observed as an electrically powered steam generator that feeds into an electrical iron, maintaining ultimate steam output to enable professionally executed ironing.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "laundry-bags",
+              "name": "Laundry Bags",
+              "gpcCode": "10008135",
+              "gpcDescription": "Includes any products that may be described/observed as a closable mesh bag to protect delicate fabrics in the wash, also known as a wash bag or in-wash bag. Placing items inside a laundry bag prevents them from getting damaged.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "laundry-baskets",
+              "name": "Laundry Baskets",
+              "gpcCode": "10008134",
+              "gpcDescription": "Includes any products that may be described/observed as a container, often made of plastic, for holding and transporting clothing and household textiles, especially before and after being laundered.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "laundry-dryers-non-powered",
+              "name": "Laundry Dryers (Non-Powered)",
+              "gpcCode": "10008137",
+              "gpcDescription": "Includes any products that may be described/observed as a item designed for drying clothes. These products are non-powered.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "laundry-hanging-aids",
+              "name": "Laundry Hanging Aids",
+              "gpcCode": "10008136",
+              "gpcDescription": "Includes any products that may be described/observed as an aid or tool for hanging the wet laundry such as clothes pegs.",
+              "parentId": "laundry-and-ironing-aids"
+            },
+            {
+              "id": "steam-cleaners",
+              "name": "Steam Cleaners",
+              "gpcCode": "10002031",
+              "gpcDescription": "Includes any products that may be described/observed as an electrical appliance designed to clean floors and fabrics through the use of steam. Typically also uses brush heads and cleaning solution to achieve this. Includes products such as handheld and cylinder Cleaners.",
+              "parentId": "laundry-and-ironing-aids"
+            }
+          ]
+        },
+        {
+          "id": "product-supplies-dispensers",
+          "name": "Product Supplies Dispensers",
+          "gpcCode": "47200100",
+          "parentId": "cleaning-hygiene-supplies",
+          "children": [
+            {
+              "id": "dispensers-for-cleaning-hygiene-products",
+              "name": "Dispensers for Cleaning/Hygiene Products",
+              "gpcCode": "10006215",
+              "gpcDescription": "Indicates any products that can be described as dispensing container for cleaning/hygiene products. These products can to be used in home or in away from home locations (such as offices, factories, hospitals, schools, restaurants, transport terminals, petrol stations and hotels). The product dispenses and protects hygiene products. Normally wall or surface mounted in-counter top or freestanding but also available for table tops. Products tend to be refilled and can be manually or power operated. Hygiene products dispensed include: napkins, hand towels, toilet paper, soap, lotion, sanitizers, hand creams, alcogel, air freshener, toilet seat cleaner, toilet seat covers, facial tissues, wipers, cloths, rolls, and wet wipes.",
+              "parentId": "product-supplies-dispensers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "industrial-cleaning",
+      "name": "Industrial Cleaning",
+      "gpcCode": "47220000",
+      "parentId": "cleaning-hygiene-products",
+      "children": [
+        {
+          "id": "industrial-floor-cleaning",
+          "name": "Industrial Floor Cleaning",
+          "gpcCode": "47220100",
+          "parentId": "industrial-cleaning",
+          "children": [
+            {
+              "id": "industrial-floor-cleaner-powered",
+              "name": "Industrial Floor Cleaner - Powered",
+              "gpcCode": "10008006",
+              "gpcDescription": "Includes any products that can be described/observed as a powered floor cleaner, specifically designed to clean or polish hard surface floors.",
+              "parentId": "industrial-floor-cleaning"
+            },
+            {
+              "id": "industrial-floor-cleaner-accessories",
+              "name": "Industrial Floor Cleaner Accessories",
+              "gpcCode": "10008007",
+              "gpcDescription": "Includes any products that can be described/observed as a powered floor cleaner accessories, such as pads,  specifically designed to clean or polish hard surface floors.",
+              "parentId": "industrial-floor-cleaning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "waste-management-products",
+      "name": "Waste Management Products",
+      "gpcCode": "47210000",
+      "parentId": "cleaning-hygiene-products",
+      "children": [
+        {
+          "id": "waste-storage-products",
+          "name": "Waste Storage Products",
+          "gpcCode": "47210100",
+          "gpcDescription": "Includes any products that can be described as containers used to dispose of waste.",
+          "parentId": "waste-management-products",
+          "children": [
+            {
+              "id": "refuse-waste-bins",
+              "name": "Refuse / Waste Bins",
+              "gpcCode": "10002125",
+              "gpcDescription": "Includes any products that may be described/observed as a container for household waste, typically with a lid. Includes products such as freestanding refuse bins and refuse bins mounted or fixed to a wall or cupboard. ",
+              "parentId": "waste-storage-products"
+            },
+            {
+              "id": "refuse-bags",
+              "name": "Refuse Bags",
+              "gpcCode": "10001761",
+              "gpcDescription": "Includes any products that can be described/observed as a plastic or paper bag/sack specifically designed for the disposal of unwanted or discarded household and/or garden refuse. They are typically intended to provide a disposable receptacle that may be discarded along with its contents when full. Includes products such as household bin liners in a variety of sizes.",
+              "parentId": "waste-storage-products"
+            },
+            {
+              "id": "waste-storage-products-other",
+              "name": "Waste Storage Products - Other",
+              "gpcCode": "10006817",
+              "gpcDescription": "Includes any products that can be described/observed as Waste Storage products, where the user of the schema is not able to classify the products in existing bricks within the schema. ",
+              "parentId": "waste-storage-products"
+            },
+            {
+              "id": "waste-storage-products-replacement-parts",
+              "name": "Waste Storage Products - Replacement Parts",
+              "gpcCode": "10006816",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Waste Storage Products.Includes products such as replacement parts for bin.",
+              "parentId": "waste-storage-products"
+            },
+            {
+              "id": "waste-storage-products-variety-packs",
+              "name": "Waste Storage Products Variety Packs",
+              "gpcCode": "10006815",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Waste Storage Products products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Waste Storage Products class. Includes products such as diaper disposal bag and dustbin sold together. Items that are received free with purchases should be removed from the classification decision-making process. ",
+              "parentId": "waste-storage-products"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

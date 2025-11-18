@@ -1,0 +1,205 @@
+{
+  "id": "storage-haulage-containers",
+  "name": "Storage/Haulage Containers",
+  "gpcCode": "92000000",
+  "children": [
+    {
+      "id": "storage-bottles-cylinders-barrels-empty",
+      "name": "Storage Bottles/Cylinders/Barrels (Empty)",
+      "gpcCode": "92010000",
+      "parentId": "storage-haulage-containers",
+      "children": [
+        {
+          "id": "storage-barrels-drums-empty",
+          "name": "Storage Barrels/Drums (Empty)",
+          "gpcCode": "92010300",
+          "parentId": "storage-bottles-cylinders-barrels-empty",
+          "children": [
+            {
+              "id": "storage-barrels-kegs-empty",
+              "name": "Storage Barrels/Kegs (Empty)",
+              "gpcCode": "10005846",
+              "gpcDescription": "Includes any products that may be described/observed as a cylindrical, usually convex, container whose bottom end is permanently fixed to the body and top end (head) is either removable or non-removable. These reusable containers have been designed to carry mostly liquids, may be made out of a number of materials or combinations of them and are normally transported on a barrel/drum pallet.",
+              "parentId": "storage-barrels-drums-empty"
+            },
+            {
+              "id": "storage-drums-empty",
+              "name": "Storage Drums (Empty)",
+              "gpcCode": "10005847",
+              "gpcDescription": "Includes any products that may be described/observed as a reusable cylindrical container with straight sides used for shipping or storing liquids, may be made out of a number of materials or combinations of them and are normally transported on a barrel/drum pallet.",
+              "parentId": "storage-barrels-drums-empty"
+            }
+          ]
+        },
+        {
+          "id": "storage-bottles-cylinders-empty",
+          "name": "Storage Bottles/Cylinders (Empty)",
+          "gpcCode": "92010100",
+          "parentId": "storage-bottles-cylinders-barrels-empty",
+          "children": [
+            {
+              "id": "portable-storage-cylinders-empty",
+              "name": "Portable Storage Cylinders (Empty)",
+              "gpcCode": "10005852",
+              "gpcDescription": "Includes any products that may be described/observed as a portable, reusable rigid cylindrical container with straight sides and circular, sometimes convex ends of equal size. These reusable containers can be designed to hold and dispense pressurised gas and may be made out of a number of materials or combinations of them.",
+              "parentId": "storage-bottles-cylinders-empty"
+            },
+            {
+              "id": "storage-bottles-empty",
+              "name": "Storage Bottles (Empty)",
+              "gpcCode": "10005851",
+              "gpcDescription": "Includes any products that may be described/observed as a reusable container having a round neck of relatively smaller diameter than the body and an opening capable of holding a closure for retention of the contents. Specifically, a narrow-necked container as compared with a wide-mouth container such as a cylinder or drum. These products are specifically intended to be reused after contents are consumed when they are refilled, sealed and returned to the retail supply chain. They may be made out of a number of materials or combinations of them. Includes reusable empty bottles that can contain non alcoholic beverages such as milk or soda or alcoholic beverages such as wine or beer.",
+              "parentId": "storage-bottles-cylinders-empty"
+            },
+            {
+              "id": "storage-cans-empty",
+              "name": "Storage Cans (Empty)",
+              "gpcCode": "10008307",
+              "gpcDescription": "Includes any products that may be described/observed as a reusable cylindrical container. This reusable metal container is designed to hold non alcoholic beverages such as milk or soda or alcoholic beverages such as wine or beer.",
+              "parentId": "storage-bottles-cylinders-empty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "storage-haulage-aids",
+      "name": "Storage/Haulage Aids",
+      "gpcCode": "92040000",
+      "parentId": "storage-haulage-containers",
+      "children": [
+        {
+          "id": "platform-handling-supports-converters",
+          "name": "Platform Handling Supports/Converters",
+          "gpcCode": "92040100",
+          "parentId": "storage-haulage-aids",
+          "children": [
+            {
+              "id": "pallet-converters-frames",
+              "name": "Pallet Converters/Frames",
+              "gpcCode": "10005857",
+              "gpcDescription": "Includes any product that can be described/observed as a frame that turns a pallet into a storage container. The frame structure can be adapted to fit around the periphery of a load. Each frame wall is an openwork structure formed from metal bars, which are interconnected by hinge joints so that the frame structure can be folded flat for storage when not in use.",
+              "parentId": "platform-handling-supports-converters"
+            },
+            {
+              "id": "pallets",
+              "name": "Pallets",
+              "gpcCode": "10005854",
+              "gpcDescription": "Includes any products that can be described/observed as a platform used to hold or transport unit loads. The flat transport structure supports goods in a stable fashion while being lifted by a forklift, pallet jack, front loader or other jacking device. A pallet is the structural foundation of a unit load which allows handling and storage efficiencies. Goods or shipping containers are often placed on a pallet secured with strapping, stretch wrap or shrink wrap and shipped. Pallets may be made out of a number of materials or combinations of them.",
+              "parentId": "platform-handling-supports-converters"
+            },
+            {
+              "id": "racks",
+              "name": "Racks",
+              "gpcCode": "10005858",
+              "gpcDescription": "Includes any products that can be described/observed as a framework or stand for carrying, holding, or storing items. Commonly on wheels and primarily used in logistical functions to deliver items such as hanging garments, or items on shelves such as dairy products and bakery items and flowers. They may be made out of a number of materials or combinations of them.",
+              "parentId": "platform-handling-supports-converters"
+            },
+            {
+              "id": "slip-sheets",
+              "name": "Slip Sheets",
+              "gpcCode": "10005856",
+              "gpcDescription": "Includes any products that can be described/observed as firm sheet of plastic, cardboard or other material which may be hooked or attached to a forklift or other transportation equipment. The slip sheet is used to pull products stacked on top of it.",
+              "parentId": "platform-handling-supports-converters"
+            },
+            {
+              "id": "transport-dollies",
+              "name": "Transport Dollies",
+              "gpcCode": "10005855",
+              "gpcDescription": "Includes any product that can be described/observed as a low mobile platform that rolls on casters and is used as a base for assembling, storing, stacking, handling and transporting goods as a unit, and suitable for manually positioning.",
+              "parentId": "platform-handling-supports-converters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "storage-haulage-boxes-crates-trays-empty",
+      "name": "Storage/Haulage Boxes/Crates/Trays (Empty)",
+      "gpcCode": "92020000",
+      "parentId": "storage-haulage-containers",
+      "children": [
+        {
+          "id": "storage-haulage-boxes-crates-trays-empty",
+          "name": "Storage/Haulage Boxes/Crates/Trays (Empty)",
+          "gpcCode": "92020100",
+          "parentId": "storage-haulage-boxes-crates-trays-empty",
+          "children": [
+            {
+              "id": "storage-haulage-boxes-empty",
+              "name": "Storage/Haulage Boxes (Empty)",
+              "gpcCode": "10005848",
+              "gpcDescription": "Includes any products that can be described/observed as a reusable rigid, three-dimensional container with closed faces that completely enclose its contents and may be made out of any material.",
+              "parentId": "storage-haulage-boxes-crates-trays-empty"
+            },
+            {
+              "id": "storage-haulage-crates-empty",
+              "name": "Storage/Haulage Crates (Empty)",
+              "gpcCode": "10005849",
+              "gpcDescription": "Includes any products that can be described/observed as a reusable rigid three-dimensional container with slatted sides that enclose its contents for shipment or storage. Crates could have an open or closed top and may have internal dividers. They may be made out of a number of materials or combinations of them.",
+              "parentId": "storage-haulage-boxes-crates-trays-empty"
+            },
+            {
+              "id": "storage-haulage-trays-empty",
+              "name": "Storage/Haulage Trays (Empty)",
+              "gpcCode": "10005850",
+              "gpcDescription": "Includes any product that can be described/observed as a reusable shallow container, which may or may not have a cover, used for displaying or carrying items.",
+              "parentId": "storage-haulage-boxes-crates-trays-empty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "storage-haulage-freight-containers-empty",
+      "name": "Storage/Haulage Freight Containers (Empty)",
+      "gpcCode": "92030000",
+      "parentId": "storage-haulage-containers",
+      "children": [
+        {
+          "id": "bulk-freight-containers-empty",
+          "name": "Bulk Freight Containers (Empty)",
+          "gpcCode": "92030100",
+          "parentId": "storage-haulage-freight-containers-empty",
+          "children": [
+            {
+              "id": "air-freight-containers-empty",
+              "name": "Air Freight Containers (Empty)",
+              "gpcCode": "10005860",
+              "gpcDescription": "Includes any products that can be described/observed as a unit load device (ULD), either a pallet or container, used specifically to load luggage, freight, and mail onto a wide-body aircraft or specifically a narrow-body aircraft. The air freight containers allow a large quantity of cargo to be bundled into a single unit and facilitate a one-time load.",
+              "parentId": "bulk-freight-containers-empty"
+            },
+            {
+              "id": "flexible-bulk-containers-empty",
+              "name": "Flexible Bulk Containers (Empty)",
+              "gpcCode": "10005861",
+              "gpcDescription": "Includes any products that can be described/observed as a reusable non-rigid container used for transport and storage of fluids and other bulk materials. The construction of the Flexible Intermediate Bulk Container (FIBC) and the materials used are chosen depending on the application.",
+              "parentId": "bulk-freight-containers-empty"
+            },
+            {
+              "id": "ocean-intermodal-freight-containers-empty",
+              "name": "Ocean Intermodal Freight Containers (Empty)",
+              "gpcCode": "10005859",
+              "gpcDescription": "Includes any products that can be described/observed as a large ocean container that is suitable for multiple modes of transportation (rail, ship, and truck) without any handling of the freight itself when changing modes. The method reduces cargo handling, and so improves security, reduces damages and losses, and allows freight to be transported faster. Reduced costs versus over road trucking is the key benefit for intercontinental use.",
+              "parentId": "bulk-freight-containers-empty"
+            },
+            {
+              "id": "rigid-intermediate-bulk-containers-empty",
+              "name": "Rigid Intermediate Bulk Containers (Empty)",
+              "gpcCode": "10005862",
+              "gpcDescription": "Includes any products that can be described/observed as a rigid container used for transport and storage of bulk materials. The construction of the IBC container and the materials used are chosen depending on the application.",
+              "parentId": "bulk-freight-containers-empty"
+            },
+            {
+              "id": "storage-haulage-tanks-empty",
+              "name": "Storage/Haulage Tanks (Empty)",
+              "gpcCode": "10005853",
+              "gpcDescription": "Includes any products that can be described/observed as a very large, often customised container that may hold water, foodstuffs, hydrogen peroxide, gases and other materials both hazardous and non-hazardous. Common types of ISO tanks include dry tanks, insulated or heated ISO containers, open-top and flat-rock ISO tanks. These reusable containers are mostly transported by road or rail and may be made out of a number of materials or combinations of them.",
+              "parentId": "bulk-freight-containers-empty"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

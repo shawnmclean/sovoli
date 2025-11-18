@@ -1,0 +1,354 @@
+{
+  "id": "pet-care-food",
+  "name": "Pet Care/Food",
+  "gpcCode": "10000000",
+  "children": [
+    {
+      "id": "pet-care",
+      "name": "Pet Care",
+      "gpcCode": "10100000",
+      "parentId": "pet-care-food",
+      "children": [
+        {
+          "id": "pet-accessories",
+          "name": "Pet Accessories",
+          "gpcCode": "10101700",
+          "parentId": "pet-care",
+          "children": [
+            {
+              "id": "aquarium-aids-accessories",
+              "name": "Aquarium Aids/Accessories",
+              "gpcCode": "10000516",
+              "gpcDescription": "Includes any products that can be described/observed as an aid or accessory designed to equip and maintain an aquarium environment. Includes products such as gravel, aquarium plants and their treatments, aquarium thermometers, aquarium ornaments, water pumps, filters and lighting.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "aquarium-vivarium-terrarium",
+              "name": "Aquarium/Vivarium/Terrarium",
+              "gpcCode": "10007768",
+              "gpcDescription": "Includes any products that can be described/observed as a housing for animals where animals are kept and raised in an ecosystem that suits the specific animal that resides in it and conditions can be carefully regulated.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "insect-housing-sheltering",
+              "name": "Insect Housing/Sheltering",
+              "gpcCode": "10008455",
+              "gpcDescription": "Includes any products that can be described/observed as a structure created to provide a housing or sheltering environment for insects. These products are also known as insect hotels or insect/bug shelters.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-accessories-other",
+              "name": "Pet Accessories Other",
+              "gpcCode": "10000736",
+              "gpcDescription": "Includes any products that can be described/observed as Pet Accessories products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-accessory-variety-packs",
+              "name": "Pet Accessory Variety Packs",
+              "gpcCode": "10000659",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Pet Accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Pet Accessories class. Includes products such as Pet Collars and Pet Identification Tags sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-attire",
+              "name": "Pet Attire",
+              "gpcCode": "10000643",
+              "gpcDescription": "Includes any products that can be described/observed as a product specifically designed to be worn by a pet. Includes products such as Pet Coats, Horse Blankets and Rugs, Identification Tags, Earmuffs, Bandanas, Life Jackets, and T-shirts.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-baskets-benches-cushions",
+              "name": "Pet Baskets/Benches/Cushions",
+              "gpcCode": "10008287",
+              "gpcDescription": "Includes any products that can be described/observed as a product specifically designed to give pets a comfortable place to retreat to. Includes products such as dog baskets, hanging baskets for cats. ",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-bedding",
+              "name": "Pet Bedding",
+              "gpcCode": "10000572",
+              "gpcDescription": "Includes any products that can be described/observed as a disposable product specifically designed to provide comfort within the housing for a pet. Includes products such as straw, hay, wood shavings and disposable birds nests.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-food-drink-dispenser",
+              "name": "Pet Food/Drink Dispenser",
+              "gpcCode": "10000660",
+              "gpcDescription": "Includes any products that can be described/observed as a product specifically designed to dispense food and drinks for pets. Includes products such as automated feeders from which food or drink are dispensed at specific times or intervals and pet fountains from which animals can drink.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-housing",
+              "name": "Pet Housing",
+              "gpcCode": "10000662",
+              "gpcDescription": "Includes any products that can be described/observed as a non-disposable product specifically designed to house, shelter and provide comfort within the housing for a pet. Includes products such as pet cages and hutches.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-leads-collars-harnesses-non-powered",
+              "name": "Pet Leads/Collars/Harnesses (Non Powered)",
+              "gpcCode": "10008290",
+              "gpcDescription": "Includes any products that can be described/observed as a non powered product specifically designed to prevent an animal from leaving whilst walking or training them. Includes products such as leads, collars, horse tacks, muzzles, tethers.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-toys-non-powered",
+              "name": "Pet Toys (Non Powered)",
+              "gpcCode": "10000641",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered product specifically designed to entertain a pet. Includes balls, ropes, activity centres, synthetic chews. ",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-toys-powered",
+              "name": "Pet Toys (Powered)",
+              "gpcCode": "10000661",
+              "gpcDescription": "Includes any products that can be described/observed as a powered product specifically designed to entertain a pet. Includes battery and mains/current powered toys.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-training-accessories-non-powered",
+              "name": "Pet Training/Accessories (Non Powered)",
+              "gpcCode": "10000640",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered product specifically designed to modify pet behaviour and aid in their mobility. Includes products such as whistles, clickers, deterrent scents, vehicle guards, saddles, ramps.",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-training-control-aids-accessories-powered",
+              "name": "Pet Training/Control Aids/Accessories (Powered)",
+              "gpcCode": "10000652",
+              "gpcDescription": "Includes any products that can be described/observed as a powered product specifically designed to modify pet behaviour, assist in their obedience training, aid in their mobility and contain them within their home environment. Includes products such as pet boundary radio transmission systems, ultrasonic pet training devices, ultrasonic dog deterrents and bark collars. ",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "pet-transportation-means",
+              "name": "Pet Transportation Means",
+              "gpcCode": "10008288",
+              "gpcDescription": "Includes any products that can be described/observed as a product specifically designed for transporting pets away from their normal residence. Includes pet travel bags/cases for normal use (for instance when visiting family or vets) but also special transport means when travelling by plane. ",
+              "parentId": "pet-accessories"
+            },
+            {
+              "id": "terrarium-aids-accessories",
+              "name": "Terrarium Aids/Accessories",
+              "gpcCode": "10006843",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory designed to equip and maintain a terrarium environment. Includes products such as gravel, terrarium plants and their treatments, terrarium thermometers, terrarium ornaments, water pumps, filters and lighting.",
+              "parentId": "pet-accessories"
+            }
+          ]
+        },
+        {
+          "id": "pet-care-variety-packs",
+          "name": "Pet Care Variety Packs",
+          "gpcCode": "10101800",
+          "parentId": "pet-care",
+          "children": [
+            {
+              "id": "pet-care-variety-packs",
+              "name": "Pet Care Variety Packs",
+              "gpcCode": "10000653",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Pet Care products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Pet Care Family. Includes products such as Pet Collars with Pet Vitamins variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "pet-care-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "pet-nutritional-supplements",
+          "name": "Pet Nutritional Supplements",
+          "gpcCode": "10101600",
+          "parentId": "pet-care",
+          "children": [
+            {
+              "id": "pet-nutritional-supplements",
+              "name": "Pet Nutritional Supplements",
+              "gpcCode": "10000513",
+              "gpcDescription": "Includes any products that can be described/observed as a dietary supplement, specifically designed for pets, and typically formulated to help promote optimum health and growth. These include natural and synthetic products that are given to the animal with or without food. Includes products such as minerals, vitamin drops, tablets and capsules and those that are disguised as a treat.",
+              "parentId": "pet-nutritional-supplements"
+            },
+            {
+              "id": "pet-nutritional-supplements-other",
+              "name": "Pet Nutritional Supplements Other",
+              "gpcCode": "10000737",
+              "gpcDescription": "Includes any products that can be described/observed as Pet Nutritional Supplements, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "pet-nutritional-supplements"
+            },
+            {
+              "id": "pet-nutritional-supplements-variety-packs",
+              "name": "Pet Nutritional Supplements Variety Packs",
+              "gpcCode": "10000658",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Pet Nutritional Supplements products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Pet Nutritional Supplements class. Includes products such as Pet Joint Treatments and Pet Vitamins sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "pet-nutritional-supplements"
+            }
+          ]
+        },
+        {
+          "id": "pet-welfare-hygiene",
+          "name": "Pet Welfare/Hygiene",
+          "gpcCode": "10101500",
+          "parentId": "pet-care",
+          "children": [
+            {
+              "id": "pet-grooming-aids",
+              "name": "Pet Grooming Aids",
+              "gpcCode": "10000508",
+              "gpcDescription": "Includes any products that can be described/observed as a tool specifically labelled and marketed to clean, trim and brush a pet or to maintain their appearance. Includes products such as animal brushes, baths tubs, clippers, scissors, shampoo, soap, bath towels.",
+              "parentId": "pet-welfare-hygiene"
+            },
+            {
+              "id": "pet-hygiene-sanitary-protection",
+              "name": "Pet Hygiene/Sanitary Protection",
+              "gpcCode": "10000510",
+              "gpcDescription": "Includes any products that can be described/observed as ensuring a clean/hygienic pet/owner environment, or a sanitary protection product specifically designed for pets. Includes products such as litter and litter accessories, deodorant, oral hygiene products, pet sanitary pants and sanitary towels, disinfectants, food mats.",
+              "parentId": "pet-welfare-hygiene"
+            },
+            {
+              "id": "pet-parasite-treatment",
+              "name": "Pet Parasite Treatment",
+              "gpcCode": "10000515",
+              "gpcDescription": "Includes any products that can be observed/described as a treatment specifically designed to prevent or eliminate parasites such as fleas, ticks, or worms in and around domestic pets or exotic animals and fish. Includes products in the form of collars, sprays, powders, liquids, tablets and flea combs. Also includes Flea Combs and products specifically designed to treat fish.",
+              "parentId": "pet-welfare-hygiene"
+            },
+            {
+              "id": "pet-welfare-hygiene-other",
+              "name": "Pet Welfare/Hygiene Other",
+              "gpcCode": "10000738",
+              "gpcDescription": "Includes any products that can be described/observed as Pet Welfare and Hygiene products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "pet-welfare-hygiene"
+            },
+            {
+              "id": "pet-welfare-hygiene-variety-packs",
+              "name": "Pet Welfare/Hygiene Variety Packs",
+              "gpcCode": "10000657",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Pet Welfare and Hygiene products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Pet Welfare and Hygiene class. Includes products such as Pet Brushes and Pet Litter Trays sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "pet-welfare-hygiene"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pet-care-food-variety-packs",
+      "name": "Pet Care/Food Variety Packs",
+      "gpcCode": "10120000",
+      "parentId": "pet-care-food",
+      "children": [
+        {
+          "id": "pet-care-food-variety-packs",
+          "name": "Pet Care/Food Variety Packs",
+          "gpcCode": "10120100",
+          "parentId": "pet-care-food-variety-packs",
+          "children": [
+            {
+              "id": "pet-care-food-variety-packs",
+              "name": "Pet Care/Food Variety Packs",
+              "gpcCode": "10000654",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Pet Care and Food products sold together which exist within the schema but belong to different Families, that is two or more products contained within the same pack which cross Families within the Pet Care and Food Segment. Includes products such as Bird Food and Bird Feeders variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "pet-care-food-variety-packs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pet-food-drinks",
+      "name": "Pet Food/Drinks",
+      "gpcCode": "10110000",
+      "parentId": "pet-care-food",
+      "children": [
+        {
+          "id": "pet-drinks",
+          "name": "Pet Drinks",
+          "gpcCode": "10111500",
+          "parentId": "pet-food-drinks",
+          "children": [
+            {
+              "id": "pet-drinks-frozen",
+              "name": "Pet Drinks (Frozen)",
+              "gpcCode": "10000506",
+              "gpcDescription": "Includes any products that can be described/observed as a beverage, specifically designed and solely intended for consumption by pets. These products can be dairy or non-dairy based and may contain additional vitamins/minerals. These products are frozen to extend their consumable life.",
+              "parentId": "pet-drinks"
+            },
+            {
+              "id": "pet-drinks-perishable",
+              "name": "Pet Drinks (Perishable)",
+              "gpcCode": "10000523",
+              "gpcDescription": "Includes any products that can be described/observed as a beverage, specifically designed and solely intended for consumption by pets. These products can be dairy or non-dairy based and may contain additional vitamins/minerals. These products must be refrigerated to extend their consumable life.",
+              "parentId": "pet-drinks"
+            },
+            {
+              "id": "pet-drinks-shelf-stable",
+              "name": "Pet Drinks (Shelf Stable)",
+              "gpcCode": "10000524",
+              "gpcDescription": "Includes any products that can be described/observed as a beverage, specifically designed and solely intended for consumption by pets. These products can be dairy or non-dairy based and may contain additional vitamins/minerals. These products have been treated or packaged in such a way as to extend their consumable life.",
+              "parentId": "pet-drinks"
+            }
+          ]
+        },
+        {
+          "id": "pet-food",
+          "name": "Pet Food",
+          "gpcCode": "10111600",
+          "parentId": "pet-food-drinks",
+          "children": [
+            {
+              "id": "pet-food-frozen",
+              "name": "Pet Food (Frozen)",
+              "gpcCode": "10000507",
+              "gpcDescription": "Includes any products that may be observed/described as a food product, specifically designed and solely intended for consumption by pets. These products must be frozen to extend their consumable life.",
+              "parentId": "pet-food"
+            },
+            {
+              "id": "pet-food-perishable",
+              "name": "Pet Food (Perishable)",
+              "gpcCode": "10000521",
+              "gpcDescription": "Includes any products that may be observed/described as a food product, specifically designed and solely intended for consumption by pets. These products must be refrigerated to extend their consumable life.",
+              "parentId": "pet-food"
+            },
+            {
+              "id": "pet-food-shelf-stable",
+              "name": "Pet Food (Shelf Stable)",
+              "gpcCode": "10000522",
+              "gpcDescription": "Includes any products that may be observed/described as a food product, specifically designed and solely intended for consumption by pets.These products have been treated or packaged in such a way as extend their consumable life. ",
+              "parentId": "pet-food"
+            },
+            {
+              "id": "pet-treats-condiments-complementary-edible-products-shelf-stable",
+              "name": "Pet Treats/ Condiments (Complementary edible products) Shelf Stable",
+              "gpcCode": "10008038",
+              "gpcDescription": "Includes any products that may be observed/described as a treat, which on its own is insufficient to support the nutritional requirements of the pet, specifically designed and solely intended for consumption by pets. These products have been treated or packaged in such a way as extend their consumable life.",
+              "parentId": "pet-food"
+            },
+            {
+              "id": "pet-treats-condiments-complementary-edible-products-frozen",
+              "name": "Pet Treats/Condiments (Complementary edible products) Frozen",
+              "gpcCode": "10008036",
+              "gpcDescription": "Includes any products that may be observed/described as a treat, which on its own is insufficient to support the nutritional requirements of the pet, specifically designed and solely intended for consumption by pets. These products must be frozen to extend their consumable life.",
+              "parentId": "pet-food"
+            },
+            {
+              "id": "pet-treats-condiments-complementary-edible-products-perishable",
+              "name": "Pet Treats/Condiments (Complementary edible products) Perishable",
+              "gpcCode": "10008037",
+              "gpcDescription": "Includes any products that may be observed/described as a treat, which on its own is insufficient to support the nutritional requirements of the pet, specifically designed and solely intended for consumption by pets. These products must be refrigerated to extend their consumable life.",
+              "parentId": "pet-food"
+            }
+          ]
+        },
+        {
+          "id": "pet-food-drinks-variety-packs",
+          "name": "Pet Food/Drinks Variety Packs",
+          "gpcCode": "10111700",
+          "parentId": "pet-food-drinks",
+          "children": [
+            {
+              "id": "pet-food-drinks-variety-packs",
+              "name": "Pet Food/Drinks Variety Packs",
+              "gpcCode": "10000663",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Pet Food and Drink products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Pet Food and Drinks Family. Includes products such as Cat Food with Cat Drinks variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "pet-food-drinks-variety-packs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

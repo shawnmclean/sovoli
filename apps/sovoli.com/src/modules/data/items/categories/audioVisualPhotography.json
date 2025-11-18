@@ -1,0 +1,1338 @@
+{
+  "id": "audio-visual-photography",
+  "name": "Audio Visual/Photography",
+  "gpcCode": "68000000",
+  "children": [
+    {
+      "id": "audio-visual-equipment",
+      "name": "Audio Visual Equipment",
+      "gpcCode": "68010000",
+      "parentId": "audio-visual-photography",
+      "children": [
+        {
+          "id": "audio-visual-accessories",
+          "name": "Audio Visual Accessories",
+          "gpcCode": "68010700",
+          "parentId": "audio-visual-equipment",
+          "children": [
+            {
+              "id": "analogue-digital-converters",
+              "name": "Analogue/Digital Converters",
+              "gpcCode": "10005726",
+              "gpcDescription": "Includes any products that can be described/observed as a device which converts a standard analogue signal from a cd player, games console or cassette to a digital output, both optical and coaxial.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "audio-headsets",
+              "name": "Audio Headsets",
+              "gpcCode": "10001467",
+              "gpcDescription": "Includes any products that can be described/observed as an audio receiver with small speakers that can be held to each ear by a headband or inserted into the ear, in order for one to listen to audio sounds. ",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "audio-visual-accessories-replacement-parts",
+              "name": "Audio Visual Accessories - Replacement Parts",
+              "gpcCode": "10001483",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for Audio-Visual Accessories products.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "audio-visual-accessories-other",
+              "name": "Audio Visual Accessories Other",
+              "gpcCode": "10001484",
+              "gpcDescription": "Includes any products that can be described/observed as Audio-Visual Accessories products, where the user of the schema is unable to classify the products in existing bricks within the schema.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "audio-visual-accessories-variety-packs",
+              "name": "Audio Visual Accessories Variety Packs",
+              "gpcCode": "10001482",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Audio-Visual Accessories products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Audio-Visual Accessories class. Includes products such as Headphones and Microphones sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "audio-visual-bags-boxes-cases-wallets",
+              "name": "Audio Visual Bags/Boxes/Cases/Wallets",
+              "gpcCode": "10001478",
+              "gpcDescription": "Includes any products that can be described/observed as a box, case, bag or wallet that is used to carry and/or store audio-visual equipment. Includes products such as a CD/DVD box, wallet or record bag.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "audio-visual-cleaning-products",
+              "name": "Audio Visual Cleaning Products",
+              "gpcCode": "10001480",
+              "gpcDescription": "Includes any products that can be described/observed as a product specifically used to clean, polish and restore audio-visual equipment. Includes products such as cassette cleaner and repair polish for a CD or DVD.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "audio-visual-labelling-systems",
+              "name": "Audio Visual Labelling Systems",
+              "gpcCode": "10005744",
+              "gpcDescription": "Includes any products that can be described/observed as equipment or a means of labelling audio visual media such as CDs or DVDs.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "audio-visual-stands-brackets",
+              "name": "Audio Visual Stands/Brackets",
+              "gpcCode": "10001477",
+              "gpcDescription": "Includes any products that can be described/observed as an item that is specifically designed to support or house a particular brand of audio-visual device. ",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "converter-cassettes",
+              "name": "Converter Cassettes",
+              "gpcCode": "10001475",
+              "gpcDescription": "Includes any products that can be described/observed as a device into which you place camcorder tapes so that they can be played through a video cassette player.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "megaphones",
+              "name": "Megaphones",
+              "gpcCode": "10005204",
+              "gpcDescription": "Includes any products that can be described/observed as a funnel-shaped device used to direct and amplify the voice. The device is handheld and portable and may have a built in amplifier as well as an attached microphone. Some products also have a built in switchable siren function.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "microphones",
+              "name": "Microphones",
+              "gpcCode": "10001476",
+              "gpcDescription": "Includes any products that can be described/observed as a device that you speak into to make your voice louder, or to record your voice or other sounds.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "mp3-docking-stations",
+              "name": "MP3 Docking Stations",
+              "gpcCode": "10005747",
+              "gpcDescription": "Includes any products that can be described/observed as a digital music system used in the home, connected to mains electricity, that supports MP3 players with a dock connector and is specifically designed to enhance music stored on an MP3 player. These products may also double as an MP3 charger.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "signal-boosters",
+              "name": "Signal Boosters",
+              "gpcCode": "10001468",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to prevent and/or enhance distorted pictures or sound through the use of long cables or multiple devices.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "sound-active-effect-lighting",
+              "name": "Sound-active Effect Lighting",
+              "gpcCode": "10005809",
+              "gpcDescription": "Includes any products that can be described/observed as sound-active lighting that creates multi-dichroic coloured beams which rotate and reflect back and forth in time to the music. The portable product is used by mobile disc jockeys (DJs) and provides colourful lighting action in music clubs.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "switch-boxes",
+              "name": "Switch-boxes",
+              "gpcCode": "10001472",
+              "gpcDescription": "Includes any products that can be described/observed as a box to which several audio/video devices can be connected and then switches are used to select which particular unit to use. Includes products that can be remotely controlled by a home automation system.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "television-internet-packs",
+              "name": "Television Internet Packs",
+              "gpcCode": "10001479",
+              "gpcDescription": "Includes any products that can be described/observed as a set of television accessories that enable the internet to be accessed through the television using a browser, set-top box and keyboard.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "universal-remote-controls",
+              "name": "Universal Remote Controls",
+              "gpcCode": "10001470",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device specifically designed as a remote control for sound and vision appliances. The controls are useable across multiple brands and types of devices such as televisions and audio systems.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "vibration-absorbers-dampers",
+              "name": "Vibration Absorbers/Dampers",
+              "gpcCode": "10005746",
+              "gpcDescription": "Includes any products that can be described/observed as a device that prevents the transmission of vibrations and resonances on hifi-components and hifi speakers.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "visual-distribution-amplifiers",
+              "name": "Visual Distribution Amplifiers",
+              "gpcCode": "10005735",
+              "gpcDescription": "Includes any products that can be described/observed as an audio visual accessory that enables a single standard or high-definition multimedia interface (HDMI) signal to be displayed on multiple suitably equipped displays (plasma/LCD or projector). The distribution amplifier is 'HD Ready' so high definition satellite or cable boxes and games consoles can be viewed in true HD on all connected displays.",
+              "parentId": "audio-visual-accessories"
+            },
+            {
+              "id": "wireless-television-links",
+              "name": "Wireless Television Links",
+              "gpcCode": "10001469",
+              "gpcDescription": "Includes any products that can be described/observed as a device that transmits signals from one location to another, without the need for any connecting wires.",
+              "parentId": "audio-visual-accessories"
+            }
+          ]
+        },
+        {
+          "id": "audio-visual-equipment-variety-packs",
+          "name": "Audio Visual Equipment Variety Packs",
+          "gpcCode": "68010800",
+          "parentId": "audio-visual-equipment",
+          "children": [
+            {
+              "id": "audio-visual-equipment-variety-packs",
+              "name": "Audio Visual Equipment Variety Packs",
+              "gpcCode": "10001485",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Audio-Visual Equipment products sold together, which exist within the schema belonging to different classes but to the same family, that is two or more products contained within the same pack which cross classes within the Audio-Visual Equipment family Includes products such as Televisions and Aerials sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "audio-visual-equipment-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "home-audio-equipment",
+          "name": "Home Audio Equipment",
+          "gpcCode": "68010400",
+          "parentId": "audio-visual-equipment",
+          "children": [
+            {
+              "id": "home-audio-amplifiers-preamplifiers",
+              "name": "Home Audio Amplifiers/Preamplifiers",
+              "gpcCode": "10001429",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic device that increases the voltage, current or power of an audio signal. Amplifiers are used in wireless communication and audio equipment to improve sound levels and quality. Includes multi channel amplifiers and preamplifiers.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-cassette-decks",
+              "name": "Home Audio Cassette Decks",
+              "gpcCode": "10001432",
+              "gpcDescription": "Includes any products that can be described/observed as a home audio device specifically designed for playing back and/or recording sound signals onto audio cassettes in the home.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-cd-decks",
+              "name": "Home Audio CD Decks",
+              "gpcCode": "10001433",
+              "gpcDescription": "Includes any products that can be described/observed as a device specifically designed for playing back and/or recording audio CDs in the home.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-effects-equipment",
+              "name": "Home Audio Effects Equipment",
+              "gpcCode": "10001443",
+              "gpcDescription": "Includes any products that can be described/observed as a home audio device that can be used to process the signals entering a secondary audio device in order to create the required sound effect. The product may also be able to directly record sound from an external source and play this back. This effects equipment is used in conjunction with guitars, microphones, synthesisers and keyboards as well as other musical instruments and equipment. Includes Digital Injection Units as well as Sampling Units.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-equipment-replacement-parts-accessories",
+              "name": "Home Audio Equipment - Replacement Parts/Accessories",
+              "gpcCode": "10001447",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for Home Audio Equipment products. Includes products such as Cartridges and Slip Mats connected with home audio equipment.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-equipment-other",
+              "name": "Home Audio Equipment Other",
+              "gpcCode": "10001448",
+              "gpcDescription": "Includes any products that can be described/observed as Home Audio Equipment products, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-equipment-variety-packs",
+              "name": "Home Audio Equipment Variety Packs",
+              "gpcCode": "10001446",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Home Audio Equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Home Audio Equipment class. Includes products such as Audio Mixers and Audio Amplifiers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-jukeboxes",
+              "name": "Home Audio Jukeboxes",
+              "gpcCode": "10001440",
+              "gpcDescription": "Includes any products that can be described/observed as a non-portable home audio device for holding a large amount of audio CDs or records, which can be played back as selected. Some jukeboxes may store the data on an internal hard disc.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-karaoke-systems",
+              "name": "Home Audio Karaoke Systems",
+              "gpcCode": "10001441",
+              "gpcDescription": "Includes any products that can be described/observed as a home audio device that plays the backing track to a song allowing the person to sing the lead vocals, through a connected microphone. Some karaoke systems contain a built-in screen that displays the lyrics of the song in time with the tune.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-md-decks",
+              "name": "Home Audio MD Decks",
+              "gpcCode": "10001434",
+              "gpcDescription": "Includes any products that can be described/observed as a home audio device specifically designed for playing back audio mini-discs at home. This includes all MD players that have a recording function.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-receivers-tuners-radios",
+              "name": "Home Audio Receivers/Tuners/Radios",
+              "gpcCode": "10001437",
+              "gpcDescription": "Includes any products that can be described/observed as a home audio device that receives audio signals from a wide range of frequencies and converts these to sounds that are amplified.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-speaker-systems",
+              "name": "Home Audio Speaker Systems",
+              "gpcCode": "10001436",
+              "gpcDescription": "Includes any products that can be described/observed as a set of interconnected devices used to convert electrical signals into audible sounds and enhance audio playback. Includes products such as 4.1 (four dot one) systems, which contain four speakers for positioning in front and behind the listener, plus a separate floor unit (subwoofer).",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-speakers-individual",
+              "name": "Home Audio Speakers - Individual",
+              "gpcCode": "10001435",
+              "gpcDescription": "Includes any products that can be described/observed as a single device used to convert electrical signals into audible sounds and enhance audio playback.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-audio-visual-mixers",
+              "name": "Home Audio/Visual Mixers",
+              "gpcCode": "10001442",
+              "gpcDescription": "Includes any products that can be described/observed as a home audio device that combines audio or visual signals from a number of electrical sources (such as guitars and microphones) and routes them either in mono or stereo to the required destination (such as PA amplifiers or recording equipment). Mixers can be used to individually control the level of each electrical input. The main distinguishing feature of this product is the number of channels it can combine (that is the number of different audio inputs). Includes desktop mixers.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-stereo-systems",
+              "name": "Home Stereo Systems",
+              "gpcCode": "10001430",
+              "gpcDescription": "Includes any products that can be described/observed as a set of electronic equipment used to play recorded audio-media or radio in the home.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "home-theatre-systems",
+              "name": "Home Theatre Systems",
+              "gpcCode": "10001431",
+              "gpcDescription": "Includes any products that can be described/observed as a possible combination of surround sound speakers, DVD player/recorder, remote control, subwoofer and radio tuner to create home cinema effect. Includes home cinema systems that can be fixed to the wall and can generate surround sound without the need for satellite speakers and mounds of cables.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "turntables-cd",
+              "name": "Turntables - CD",
+              "gpcCode": "10001444",
+              "gpcDescription": "Includes any products that can be described/observed as audio equipment used to play CDs, separate from home use CD players.",
+              "parentId": "home-audio-equipment"
+            },
+            {
+              "id": "turntables-vinyl",
+              "name": "Turntables - Vinyl",
+              "gpcCode": "10001439",
+              "gpcDescription": "Includes any products that can be described/observed as a circular surface on a record player on which a vinyl recording is played. ",
+              "parentId": "home-audio-equipment"
+            }
+          ]
+        },
+        {
+          "id": "portable-audio-video",
+          "name": "Portable Audio/Video",
+          "gpcCode": "68010300",
+          "parentId": "audio-visual-equipment",
+          "children": [
+            {
+              "id": "clock-radios",
+              "name": "Clock Radios",
+              "gpcCode": "10001424",
+              "gpcDescription": "Includes any products that can be described/observed as a dual function electronic device combining a radio with a clock in a single unit. Typically the radio can be switched on by a clock at a particular time thereby providing an alarm function.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "dictation-machines",
+              "name": "Dictation Machines",
+              "gpcCode": "10001425",
+              "gpcDescription": "Includes any products that can be described/observed as a device that electronically records the words spoken by a person so that they can be played back. Includes products such as Dictaphones.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-audio-cassette-players",
+              "name": "Portable Audio Cassette Players",
+              "gpcCode": "10001419",
+              "gpcDescription": "Includes any products that can be described/observed as a portable device that plays back audio cassettes. Includes products such as a Walkman.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-audio-video-replacement-parts-accessories",
+              "name": "Portable Audio/Video - Replacement Parts/Accessories",
+              "gpcCode": "10001427",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for Portable Audio/Video products.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-audio-video-other",
+              "name": "Portable Audio/Video Other",
+              "gpcCode": "10001428",
+              "gpcDescription": "Includes any products that can be described/observed as Portable Audio/Video products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-audio-video-variety-packs",
+              "name": "Portable Audio/Video Variety Packs",
+              "gpcCode": "10001426",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Portable Audio/Video products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Portable Audio/Video class. Includes products such as Portable DVD Players and MP3 Players sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-cd-players",
+              "name": "Portable CD Players",
+              "gpcCode": "10001416",
+              "gpcDescription": "Includes any products that can be described/observed as portable devices that playback CDs.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-digital-video-players",
+              "name": "Portable Digital Video Players",
+              "gpcCode": "10001421",
+              "gpcDescription": "Includes any products that can be described/observed as a portable video player able to play one or more computer video types such as MPEG1 and MPEG2.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-dvd-players",
+              "name": "Portable DVD Players",
+              "gpcCode": "10001420",
+              "gpcDescription": "Includes any products that can be described/observed as portable devices that playback DVDs. ",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-fm-frequency-modulation-transmitters",
+              "name": "Portable FM (Frequency Modulation) Transmitters",
+              "gpcCode": "10005765",
+              "gpcDescription": "Includes any products that can be described/observed as a portable low powered FM (Frequency Modulation) transmitter specifically designed for interfacing with personal audio devices. The transmitter generally plugs into an audio output and converts the signal into an FM radio signal, which can then be transmitted to a car radio, a portable radio, a media player such as a CD player, or a satellite radio system.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-md-players",
+              "name": "Portable MD Players",
+              "gpcCode": "10001417",
+              "gpcDescription": "Includes any products that can be described/observed as portable devices that playback mini-discs.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-mp3-players",
+              "name": "Portable MP3 Players",
+              "gpcCode": "10001418",
+              "gpcDescription": "Includes any products that can be described/observed as portable devices that playback MP3s.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-pa-public-address-music-systems",
+              "name": "Portable PA (Public Address) Music Systems",
+              "gpcCode": "10005807",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic amplification system with a mixer, amplifier and loudspeakers, used to reinforce both live music and recorded music.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-radio-recorders",
+              "name": "Portable Radio-recorders",
+              "gpcCode": "10001423",
+              "gpcDescription": "Includes any products that can be described/observed as portable devices that playback/record radio signals. Products may also be able to play CDs or MP3s.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-radios",
+              "name": "Portable Radios",
+              "gpcCode": "10001422",
+              "gpcDescription": "Includes any products that can be described/observed as portable devices that receive and playback radio signals.",
+              "parentId": "portable-audio-video"
+            },
+            {
+              "id": "portable-speakers",
+              "name": "Portable Speakers",
+              "gpcCode": "10005710",
+              "gpcDescription": "Includes any products that can be described/observed as a portable device or system used to convert electrical signals into audible sounds and enhance audio playback. These speakers may be compatible with a mobile phone, iPod, MP3, CD player. Includes products that fold easily for storage and may be supplied with a protective carry case.",
+              "parentId": "portable-audio-video"
+            }
+          ]
+        },
+        {
+          "id": "televisions",
+          "name": "Televisions",
+          "gpcCode": "68010100",
+          "parentId": "audio-visual-equipment",
+          "children": [
+            {
+              "id": "television-combinations",
+              "name": "Television Combinations",
+              "gpcCode": "10001401",
+              "gpcDescription": "Includes any products that can be described/observed as a combination of devices for electronic reproduction of television/video signals, and the playback of video cassettes/DVD's/HDD's and recording of television programmes and films onto them Includes products such as Televisions with in-built VCR players/recorders.",
+              "parentId": "televisions"
+            },
+            {
+              "id": "televisions",
+              "name": "Televisions",
+              "gpcCode": "10001400",
+              "gpcDescription": "Includes any products that can be described/observed as a device specifically designed to receive and display television broadcasts by means of decoding the television signal and relaying the images/sound via a picture tube and built in speakers. They can also typically display signals received from video cassette and DVD players/recorders and camcorders. Includes products such as plasma, LCD, CRT, LED, OLED, rear projection and front projection televisions.",
+              "parentId": "televisions"
+            },
+            {
+              "id": "televisions-hand-held",
+              "name": "Televisions - Hand-held",
+              "gpcCode": "10001402",
+              "gpcDescription": "Includes any products that can be described/observed as televisions that have been designed so they can be hand-held and used easily with one or two hands.",
+              "parentId": "televisions"
+            },
+            {
+              "id": "televisions-replacement-parts-accessories",
+              "name": "Televisions - Replacement Parts/Accessories",
+              "gpcCode": "10001404",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for Televisions.",
+              "parentId": "televisions"
+            },
+            {
+              "id": "televisions-other",
+              "name": "Televisions Other",
+              "gpcCode": "10001405",
+              "gpcDescription": "Includes any products that can be described/observed as Televisions, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "televisions"
+            },
+            {
+              "id": "televisions-variety-packs",
+              "name": "Televisions Variety Packs",
+              "gpcCode": "10001403",
+              "gpcDescription": "Includes any products that can be described/observed as two or more Television products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Televisions class. Includes products such as Televisions and Hand-held Televisions sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "televisions"
+            }
+          ]
+        },
+        {
+          "id": "video-receiving-installation",
+          "name": "Video Receiving/Installation",
+          "gpcCode": "68010900",
+          "parentId": "audio-visual-equipment",
+          "children": [
+            {
+              "id": "aerials",
+              "name": "Aerials",
+              "gpcCode": "10001411",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is used for receiving television or radio signals. Includes a variety of radio antennas as well as television aerials that can either be connected by cable from the television to an external aerial, or be a portable plug-in aerial that is normally placed on top of the television.",
+              "parentId": "video-receiving-installation"
+            },
+            {
+              "id": "audio-visual-receivers",
+              "name": "Audio/Visual Receivers",
+              "gpcCode": "10005841",
+              "gpcDescription": "Includes any products that can be described/observed as a consumer electronics component typically found within a home theatre system. Their primary purpose is to amplify sound from a multitude of possible audio sources as well as route video signals to a TV from various sources. The user may program and configure a unit to take inputs from devices such as DVD players and video recorders and can select which source to route to the TV and have sound output. Includes products that offer specialised Digital Signal Processors (DSP) made for handling various presets and audio effects.",
+              "parentId": "video-receiving-installation"
+            },
+            {
+              "id": "low-noise-block-lnb-converters",
+              "name": "Low-noise Block (LNB) Converters",
+              "gpcCode": "10005736",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic converter that is usually fixed on or in a satellite dish. The LNB uses special electronic engineering techniques of amplification and mixing before cable attenuation. The block is free of additional electronics like a power supply or a digital receiver and this results in a signal which has less noise and unwanted signals.",
+              "parentId": "video-receiving-installation"
+            },
+            {
+              "id": "satellite-reception-accessories",
+              "name": "Satellite Reception Accessories",
+              "gpcCode": "10005760",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory or aid to improving satellite reception. Includes products such as satellite inline amplifiers and aerial resistors.",
+              "parentId": "video-receiving-installation"
+            },
+            {
+              "id": "satellite-terrestrial-antenna-systems",
+              "name": "Satellite/Terrestrial Antenna Systems",
+              "gpcCode": "10005829",
+              "gpcDescription": "Includes any products that can be described/observed as a combined satellite and terrestrial antenna comprising:(a) a reflector dish formed of a conducting metal;(b) a satellite signal pick-up for receiving satellite transmission signals reflected from the reflector dish;(c) support structure connected to and supporting the reflector dish and the satellite signal pick-up with the pick-up in a desired position with respect to the dish reflector;(d) electrical insulation between the reflector dish and the support structure to electrically insulate the reflector dish from the support structure; and(e) a connector attached to the dish and in electrical contact therewith, and a signal transmission line connected to the connector to carry UHF/VHF signals absorbed by the reflector dish.",
+              "parentId": "video-receiving-installation"
+            },
+            {
+              "id": "set-top-boxes",
+              "name": "Set-top Boxes",
+              "gpcCode": "10001409",
+              "gpcDescription": "Includes any products that can be described/observed as devices separate from television or video sets which receive television signals and transfer them to any television/video units they are connected to.",
+              "parentId": "video-receiving-installation"
+            },
+            {
+              "id": "video-receiving-installation-accessories",
+              "name": "Video Receiving/Installation Accessories",
+              "gpcCode": "10005738",
+              "gpcDescription": "Includes any products that can be described/observed as accessories for Video Receiving/Installation products. Includes products such as aerial clamps and sleeves.",
+              "parentId": "video-receiving-installation"
+            },
+            {
+              "id": "video-receiving-installation-variety-packs",
+              "name": "Video Receiving/Installation Variety Packs",
+              "gpcCode": "10005739",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Video Receiving/Installation products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack, which cross bricks within the Video Receiving/Installation class. Includes products such as satellite aerials and mast clamps sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "video-receiving-installation"
+            }
+          ]
+        },
+        {
+          "id": "video-recording-playback",
+          "name": "Video Recording/Playback",
+          "gpcCode": "68010200",
+          "parentId": "audio-visual-equipment",
+          "children": [
+            {
+              "id": "audiograms",
+              "name": "Audiograms",
+              "gpcCode": "10005808",
+              "gpcDescription": "Includes any products that can be described/observed as an audio interface system that can transform any USB equipped computer into a complete and comprehensive recording studio. Includes products which can also deliver a wide range of simple solutions for recording performances and producing audio CD's for the growing number of musicians and Podcasters using the internet as a way to market their material.",
+              "parentId": "video-recording-playback"
+            },
+            {
+              "id": "camcorders",
+              "name": "Camcorders",
+              "gpcCode": "10001406",
+              "gpcDescription": "Includes any products that can be described/observed as a handheld television camera specifically designed to capture or record moving images and sound onto a video cassette, DVD or electronic memory, and typically intended for domestic or recreational purposes.",
+              "parentId": "video-recording-playback"
+            },
+            {
+              "id": "combination-players-recorders",
+              "name": "Combination Players/Recorders",
+              "gpcCode": "10001408",
+              "gpcDescription": "Includes any products that can be described/observed as a combination of two or more different types of product for electronic playback and/or recording of television/video signals in a single unit. Includes products such as DVD and Video Cassette Players/Recorders and DVD and HDD Players/Recorders.",
+              "parentId": "video-recording-playback"
+            },
+            {
+              "id": "dvd-players-recorders",
+              "name": "DVD Players/Recorders",
+              "gpcCode": "10001407",
+              "gpcDescription": "Includes any products that can be described/observed as a device specifically designed to display/play the contents of a pre-recorded DVD onto a television or screen, and/or for recording televisions programs or other signals onto DVD. ",
+              "parentId": "video-recording-playback"
+            },
+            {
+              "id": "memory-card-recorders",
+              "name": "Memory Card Recorders",
+              "gpcCode": "10005748",
+              "gpcDescription": "Includes any products that can be described/observed as a portable digital recorder of TV, DVDs and videos directly onto memory cards. The video-out connection enables play back of videos on mobile phones, notebooks and other portable media players.",
+              "parentId": "video-recording-playback"
+            },
+            {
+              "id": "video-cassette-players-recorders",
+              "name": "Video Cassette Players/Recorders",
+              "gpcCode": "10001412",
+              "gpcDescription": "Includes any products that can be described/observed as a device specifically designed to show or display the contents of pre-recorded video cassettes on a television, and/or for recording televisions programs or other signals onto video cassette. ",
+              "parentId": "video-recording-playback"
+            },
+            {
+              "id": "video-hard-disc-recorders",
+              "name": "Video Hard Disc Recorders",
+              "gpcCode": "10001410",
+              "gpcDescription": "Includes any products that can be described/observed as a device that can record television programmes/films on to hard disc and play back from the hard disc.",
+              "parentId": "video-recording-playback"
+            },
+            {
+              "id": "video-recording-playback-replacement-parts-accessories",
+              "name": "Video Recording/Playback - Replacement Parts/Accessories",
+              "gpcCode": "10001414",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for Video Recording/Playback products.",
+              "parentId": "video-recording-playback"
+            },
+            {
+              "id": "video-recording-playback-variety-packs",
+              "name": "Video Recording/Playback Variety Packs",
+              "gpcCode": "10001413",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Video Recording/Playback products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack, which cross bricks within the Video Recording/Playback class. Includes products such as DVD Players and Camcorders sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "video-recording-playback"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audio-visual-media",
+      "name": "Audio Visual Media",
+      "gpcCode": "68040000",
+      "parentId": "audio-visual-photography",
+      "children": [
+        {
+          "id": "pre-recorded-or-digital-content-media",
+          "name": "Pre-Recorded or Digital Content Media",
+          "gpcCode": "68040100",
+          "parentId": "audio-visual-media",
+          "children": [
+            {
+              "id": "audio-non-music-digital",
+              "name": "Audio (Non-Music) - Digital",
+              "gpcCode": "10006240",
+              "gpcDescription": "Includes any products that can be described/observed as digital audio content which is downloaded or streamed to a audio playing device. They are typically intended for use in conjunction with an MP3 player, smart phone, or computer. Includes digital audio content for instruction, inspiration, audio books, and radio podcasts.",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "audio-cassettes-pre-recorded",
+              "name": "Audio Cassettes - Pre-recorded",
+              "gpcCode": "10001464",
+              "gpcDescription": "Includes any products that can be described/observed as a pre-recorded audio cassette consisting of a plastic case containing magnetic tape. They are specifically designed to store and replay recorded sound and are typically intended for use in conjunction with an audio cassette player. Includes products such as music recorded on to Audio Cassette. ",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "blu-ray",
+              "name": "Blu-ray",
+              "gpcCode": "10008494",
+              "gpcDescription": "Includes any products that can be described/observed as a digital optical disc data storage format designed to supersede the DVD format for an high-definition video and data. Often used for playback of (HD) video. The data is read by a blue-violet laser.",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "cd-md-pre-recorded",
+              "name": "CD/MD - Pre-recorded",
+              "gpcCode": "10001459",
+              "gpcDescription": "Includes any products that can be described/observed as a small disc specifically designed to store and replay pre-recorded music and/or spoken information. They are typically intended for use in conjunction with a CD/MD player. Includes products such as Music CDs, MDs and Language Learning Programmes recorded on to CD, books and electronic periodicals on CD, and books and electronic periodicals on CD. ",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "dual-discs-pre-recorded",
+              "name": "Dual Discs - Pre-recorded",
+              "gpcCode": "10003718",
+              "gpcDescription": "Includes any products that can be described/observed as a small pre-recorded dual-sided disc specifically designed to store and replay sound and visual information, with pre-recorded DVD content on one side and pre-recorded CD content on the other side. Includes products with music albums recorded on the CD side and music videos onto the DVD side.",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "dvd-pre-recorded",
+              "name": "DVD - Pre-recorded",
+              "gpcCode": "10001460",
+              "gpcDescription": "Includes any products that can be described/observed as a small pre-recorded disc specifically designed to store and replay visual information. They are typically intended for use in conjunction with a DVD player. Includes products such as film and television shows recorded on to DVD for home viewing and electronic periodicals or books recorded on DVDs. ",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "graphics-digital",
+              "name": "Graphics - Digital",
+              "gpcCode": "10006245",
+              "gpcDescription": "Includes any products that can be described/observed as a graphic which is downloaded or streamed to a reader. They are typically intended for use in conjunction with a smart phone or computer including tablet computers. Includes content that is a photograph, drawing, cartoon, logo, picture, or computer/mobile phone wall paper.",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "movies-digital",
+              "name": "Movies - Digital",
+              "gpcCode": "10006241",
+              "gpcDescription": "Includes any products that can be described/observed as a movie which is downloaded or streamed to a video playing device. They are typically intended for use in conjunction with a television, MP3 player, smart phone, or computer. Includes movies and movie trailers. ",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "music-digital",
+              "name": "Music - Digital",
+              "gpcCode": "10006239",
+              "gpcDescription": "Includes any products that can be described/observed as music which is downloaded or streamed to a audio playing device. They are typically intended for use in conjunction with an MP3 player, smart phone, or computer. Includes digital music video content which may have a video component but whose primary focus is a song or songs.",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "pre-recorded-media-other",
+              "name": "Pre-recorded Media Other",
+              "gpcCode": "10001466",
+              "gpcDescription": "Includes any products that can be described/observed as Pre-Recorded Media products, where the user of the schema is not able to classify the products in existing bricks within the schema. ",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "pre-recorded-media-variety-packs",
+              "name": "Pre-recorded Media Variety Packs",
+              "gpcCode": "10001465",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Pre-Recorded Media products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Pre-Recorded Media class. Includes products such as Pre-recorded Audio Cassettes and Pre-recorded DVDs sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "ring-tones-digital",
+              "name": "Ring Tones - Digital",
+              "gpcCode": "10006243",
+              "gpcDescription": "Includes any products that can be described/observed as digital audio content which is downloaded or streamed to a mobile/cell phone to alert the user to an incoming phone call, text message, alarm clock, etc.",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "television-shows-digital",
+              "name": "Television Shows - Digital",
+              "gpcCode": "10006244",
+              "gpcDescription": "Includes any products that can be described/observed as a television show which is downloaded or streamed to a video playing device. They are typically intended for use in conjunction with a television, MP3 player, smart phone, or computer. Includes TV shows in whole or part or a specific series of TV shows.",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "video-non-movies-digital",
+              "name": "Video (Non-Movies) - Digital",
+              "gpcCode": "10006242",
+              "gpcDescription": "Includes any products that can be described/observed as digital video content which is downloaded or streamed to a video playing device. They are typically intended for use in conjunction with a television, MP3 player, smart phone, or computer. Includes videos that may be instructional, inspirational, or those demonstrating exercise or DIY techniques. ",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "video-cassettes-pre-recorded",
+              "name": "Video Cassettes - Pre-recorded",
+              "gpcCode": "10001463",
+              "gpcDescription": "Includes any products that can be described/observed as a pre-recorded video cassette consisting of a plastic case containing magnetic tape. They are specifically designed to store and replay recorded visual information and are typically intended for use in conjunction with a video cassette player. Includes products such as films and television shows recorded on to Video Cassettes.",
+              "parentId": "pre-recorded-or-digital-content-media"
+            },
+            {
+              "id": "vinyl-pre-recorded",
+              "name": "Vinyl - Pre-recorded",
+              "gpcCode": "10001462",
+              "gpcDescription": "Includes any products that can be described/observed as a flat, circular disc that is specifically designed to play pre-recorded music using a phonograph or turntable. They generate sound vibrations when a stylus traverses a spiral groove that covers the disc surface. This sound is then amplified. ",
+              "parentId": "pre-recorded-or-digital-content-media"
+            }
+          ]
+        },
+        {
+          "id": "recordable-media",
+          "name": "Recordable Media",
+          "gpcCode": "68040200",
+          "parentId": "audio-visual-media",
+          "children": [
+            {
+              "id": "audio-cassettes-recordable",
+              "name": "Audio Cassettes - Recordable",
+              "gpcCode": "10001449",
+              "gpcDescription": "Includes any products that can be described/observed as a blank recordable audio cassette consisting of a plastic case containing magnetic tape. They are specifically designed to record and replay recorded sound and are typically intended for use in conjunction with an audio cassette player. Includes microcassettes mostly used for recording voice in dictation machines and answering machines. ",
+              "parentId": "recordable-media"
+            },
+            {
+              "id": "cd-md-recordable",
+              "name": "CD/MD - Recordable",
+              "gpcCode": "10001450",
+              "gpcDescription": "Includes any products that can be described/observed as a small recordable blank disc specifically designed to record and replay music/sound and spoken information. They are typically intended for use in conjunction with a CD/MD player. ",
+              "parentId": "recordable-media"
+            },
+            {
+              "id": "dvd-recordable",
+              "name": "DVD - Recordable",
+              "gpcCode": "10001451",
+              "gpcDescription": "Includes any products that can be described/observed as a small recordable blank disc specifically designed to record and replay visual information. They are typically intended for use in conjunction with a DVD player. ",
+              "parentId": "recordable-media"
+            },
+            {
+              "id": "floppy-discs",
+              "name": "Floppy Discs",
+              "gpcCode": "10001456",
+              "gpcDescription": "Includes any products that can be described as a flat circular device, usually stored in a square plastic case, which has a magnetic covering and is used for storing computer information.",
+              "parentId": "recordable-media"
+            },
+            {
+              "id": "memory-cards",
+              "name": "Memory Cards",
+              "gpcCode": "10001452",
+              "gpcDescription": "Includes any products that can be described/observed as a computer chip on which electronic information can be stored and accessed quickly. Memory cards may be installed in equipment such as phones or cameras. These products can hold various capacities of data and can transfer this data at various speeds to or from an external device. Includes products such as Games Console Memory Cards as well as Universal SD, and Smart Media Cards, which can be used with a number of electronic products.",
+              "parentId": "recordable-media"
+            },
+            {
+              "id": "recordable-media-other",
+              "name": "Recordable Media Other",
+              "gpcCode": "10001458",
+              "gpcDescription": "Includes any products that can be described/observed as Recordable Media products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "recordable-media"
+            },
+            {
+              "id": "recordable-media-variety-packs",
+              "name": "Recordable Media Variety Packs",
+              "gpcCode": "10001457",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Recordable Media products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Recordable Media class. Includes products such as Recordable CD's and Recordable DVD's sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "recordable-media"
+            },
+            {
+              "id": "usb-flash-drives-thumb-drives",
+              "name": "USB Flash Drives/Thumb Drives",
+              "gpcCode": "10006398",
+              "gpcDescription": "Includes any products that can be described/observed a solid state device with a computer chip on which electronic information can be stored and accessed quickly. A USB flash drive(also called a thumb drive) is a data storage device that includes flash memory with an integrated Universal Serial Bus (USB) interface. These products are typically removable and rewritable and can be linked to a computer's USB port. These products can hold various capacities of data and can transfer this data at various speeds to or from another device.  ",
+              "parentId": "recordable-media"
+            },
+            {
+              "id": "video-cassettes-recordable",
+              "name": "Video Cassettes - Recordable",
+              "gpcCode": "10001455",
+              "gpcDescription": "Includes any products that can be described/observed as a blank recordable video cassette, which consists of a plastic case containing a magnetic tape. They are specifically designed to record and replay recorded visual information and are typically intended for use in conjunction with a video cassette player.",
+              "parentId": "recordable-media"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audio-visual-photography-variety-packs",
+      "name": "Audio Visual/Photography Variety Packs",
+      "gpcCode": "68050000",
+      "parentId": "audio-visual-photography",
+      "children": [
+        {
+          "id": "audio-visual-photography-variety-packs",
+          "name": "Audio Visual/Photography Variety Packs",
+          "gpcCode": "68050100",
+          "parentId": "audio-visual-photography-variety-packs",
+          "children": [
+            {
+              "id": "audio-visual-photography-variety-packs",
+              "name": "Audio Visual/Photography Variety Packs",
+              "gpcCode": "10003777",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Audio-Visual and Photography products sold together which exist within the schema but belong to different families, that is two or more products contained within the same pack which cross families within the Audio-Visual and Photography segment. Includes products such as DVD Players and Pre-recorded DVDs sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "audio-visual-photography-variety-packs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-car-electronics",
+      "name": "In-car Electronics",
+      "gpcCode": "68030000",
+      "parentId": "audio-visual-photography",
+      "children": [
+        {
+          "id": "car-audio",
+          "name": "Car Audio",
+          "gpcCode": "68030200",
+          "parentId": "in-car-electronics",
+          "children": [
+            {
+              "id": "car-audio-replacement-parts-accessories",
+              "name": "Car Audio - Replacement Parts/Accessories",
+              "gpcCode": "10001533",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for Car Audio products.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-aerials",
+              "name": "Car Audio Aerials",
+              "gpcCode": "10001531",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is used for receiving radio signals in a car.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-amplifiers",
+              "name": "Car Audio Amplifiers",
+              "gpcCode": "10001530",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device for use in the car that amplifies sound emitted from car audio equipment",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-cassette-players-changers",
+              "name": "Car Audio Cassette Players/Changers",
+              "gpcCode": "10005205",
+              "gpcDescription": "Includes any products that can be described/observed as an audio device for a car, which holds and plays back cassettes consisting of a reel-to-reel tape format held within a protective plastic case. These products may come with a detachable faceplate and some of the common features are an auto reverse function and changer controls, which enable the receiver to control an external CD, MD or MP3 player through its front panel controls.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-cd-players-changers",
+              "name": "Car Audio CD Players/Changers",
+              "gpcCode": "10001527",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is used in a car to hold and play back single or multiple CDs.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-head-units",
+              "name": "Car Audio Head Units",
+              "gpcCode": "10001525",
+              "gpcDescription": "Includes any products that can be described/observed as a car audio component that controls all the functions of a car audio system such as volume or tone output. Due to space limitations, the head unit may incorporate other systems within its casing such as a tuner or amplifier, but the main function of the head unit is as a central processing device.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-md-players-changers",
+              "name": "Car Audio MD Players/Changers",
+              "gpcCode": "10001528",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is used in a car to hold and play back single or multiple Mini Discs.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-other",
+              "name": "Car Audio Other",
+              "gpcCode": "10001534",
+              "gpcDescription": "Includes any products that can be described/observed as Car Audio products, where the user of the schema is not able to classify the product in existing bricks within the schema.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-speakers",
+              "name": "Car Audio Speakers",
+              "gpcCode": "10001529",
+              "gpcDescription": "Includes any products that can be described/observed as a device used in cars to convert electromagnetic signals into audible sounds.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-subwoofers",
+              "name": "Car Audio Subwoofers",
+              "gpcCode": "10005828",
+              "gpcDescription": "Includes any products that can be described/observed as a complete loudspeaker dedicated to the reproduction of bass audio frequencies. These are used to augment the low frequency performance of main loudspeakers.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-tuners-receivers",
+              "name": "Car Audio Tuners/Receivers",
+              "gpcCode": "10001526",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of car audio equipment that receives electromagnetic sound waves that are transformed by Car Audio Speakers into audible sound.",
+              "parentId": "car-audio"
+            },
+            {
+              "id": "car-audio-variety-packs",
+              "name": "Car Audio Variety Packs",
+              "gpcCode": "10001532",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Car Audio products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Car Audio class. Includes products such as Car Audio CD Players and Car Speakers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "car-audio"
+            }
+          ]
+        },
+        {
+          "id": "car-video-navigation",
+          "name": "Car Video/Navigation",
+          "gpcCode": "68030100",
+          "parentId": "in-car-electronics",
+          "children": [
+            {
+              "id": "automotive-gps-mounts-and-cradles",
+              "name": "Automotive GPS Mounts and Cradles",
+              "gpcCode": "10006403",
+              "gpcDescription": "Includes any items used together with a handheld or Automotive/Marine GSP unit as a mount or cradle.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-dvd-players",
+              "name": "Car DVD Players",
+              "gpcCode": "10001519",
+              "gpcDescription": "Includes any products that can be described/observed as a device specifically designed for use in the car to display/play the contents of a pre-recorded DVD onto a television or screen.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-gps-antennae",
+              "name": "Car GPS Antennae",
+              "gpcCode": "10005749",
+              "gpcDescription": "Includes any products that can be described/observed as a car antenna for satellite navigation. It may be used both inside and outside the automobile.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-navigation-equipment",
+              "name": "Car Navigation Equipment",
+              "gpcCode": "10001517",
+              "gpcDescription": "Includes any products that can be described/observed as a car audio visual system that uses a combination of information received from several Global Positioning System (GPS) satellites, an internal gyroscope and connections to the Vehicle Speed Sensor (VSS) to navigate the car. The system is capable of planning the optimum route and guiding the driver with audible instructions, including warnings of traffic congestion and accident black spots. Includes integrated and portable systems.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-radar-detectors",
+              "name": "Car Radar Detectors",
+              "gpcCode": "10005728",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic device used by motorists to determine if their speed is being monitored by a radar unit. The detector may give verbal as well as visual warnings. Includes products that are fixed within the instrument panel of the vehicle and portable products that can be plugged into the cigarette lighter socket.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-video-cassette-players",
+              "name": "Car Video Cassette Players",
+              "gpcCode": "10001520",
+              "gpcDescription": "Includes any products that can be described/observed as a device for use in a car that is specifically designed to show or display the contents of pre-recorded video cassettes on a screen or monitor.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-video-monitors",
+              "name": "Car Video Monitors",
+              "gpcCode": "10001518",
+              "gpcDescription": "Includes any products that can be described/observed as a device with a screen, which converts signals from sources such as the car video player and car DVD player into visual images.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-video-receiving-equipment",
+              "name": "Car Video Receiving Equipment",
+              "gpcCode": "10001521",
+              "gpcDescription": "Includes any products that can be described/observed as a device for receiving television/video signals in a car.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-video-navigation-replacement-parts-accessories",
+              "name": "Car Video/Navigation - Replacement Parts/Accessories",
+              "gpcCode": "10001523",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for Car Video/Navigation products.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-video-navigation-other",
+              "name": "Car Video/Navigation Other",
+              "gpcCode": "10001524",
+              "gpcDescription": "Includes any products that can be described/observed as Car Video/Navigation products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "car-video-navigation"
+            },
+            {
+              "id": "car-video-navigation-variety-packs",
+              "name": "Car Video/Navigation Variety Packs",
+              "gpcCode": "10001522",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Car Video/Navigation products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Car Video/Navigation class. Includes products such as Car DVD Players and Car Navigation Systems sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "car-video-navigation"
+            }
+          ]
+        },
+        {
+          "id": "in-car-electronics-variety-packs",
+          "name": "In-car Electronics Variety Packs",
+          "gpcCode": "68030300",
+          "parentId": "in-car-electronics",
+          "children": [
+            {
+              "id": "in-car-electronics-variety-packs",
+              "name": "In-car Electronics Variety Packs",
+              "gpcCode": "10003685",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct In-Car Electronics products sold together, which exist within the schema belonging to different classes but to the same family, that is two or more products contained within the same pack which cross classes within the In-Car Electronics products family. Includes products such as Car Aerials and Car Navigation Systems sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "in-car-electronics-variety-packs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photography-optics",
+      "name": "Photography/Optics",
+      "gpcCode": "68020000",
+      "parentId": "audio-visual-photography",
+      "children": [
+        {
+          "id": "optics",
+          "name": "Optics",
+          "gpcCode": "68020200",
+          "parentId": "photography-optics",
+          "children": [
+            {
+              "id": "binoculars",
+              "name": "Binoculars",
+              "gpcCode": "10001499",
+              "gpcDescription": "Includes any products that can be described/observed as a portable, optical instrument consisting of a pair of tubes with lenses at either end, specifically designed to magnify vision and typically intended to provide the user with an enhanced image of distant objects.",
+              "parentId": "optics"
+            },
+            {
+              "id": "magnifying-glasses",
+              "name": "Magnifying Glasses",
+              "gpcCode": "10003776",
+              "gpcDescription": "Includes any products that can be described/observed as a portable, curved, single-lensed optical instrument, specifically designed to magnify vision, and typically intended to provide the user with an enhanced image of near objects and print.",
+              "parentId": "optics"
+            },
+            {
+              "id": "microscopes",
+              "name": "Microscopes",
+              "gpcCode": "10001502",
+              "gpcDescription": "Includes any products that can be described/observed as a multi-lens optical instrument designed to magnify vision and provide the user with a highly enhanced image of very small objects, which are often not visible to the naked eye. In order to view the objects, they need to be mounted on a prepared slide, which is placed under the lenses. These products typically have a scientific application.",
+              "parentId": "optics"
+            },
+            {
+              "id": "monoculars-telescopes",
+              "name": "Monoculars/Telescopes",
+              "gpcCode": "10001501",
+              "gpcDescription": "Includes any products that can be described/observed as a cylindrical device containing a system of lenses and mirrors that collect and focus light to produce an image. They are specifically designed to magnify vision and intended to provide the user with an enhanced image of very distant objects. The image is viewed by one eye only. Products include hand held monoculars and astronomical telescopes mounted on tripods.",
+              "parentId": "optics"
+            },
+            {
+              "id": "optics-replacement-parts-accessories",
+              "name": "Optics - Replacement Parts/Accessories",
+              "gpcCode": "10001505",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for products within the Optics class.",
+              "parentId": "optics"
+            },
+            {
+              "id": "optics-other",
+              "name": "Optics Other",
+              "gpcCode": "10001506",
+              "gpcDescription": "Includes any products that can be described/observed as Optics products, where the user of the schema is not able to classify the products in any existing bricks within the schema.",
+              "parentId": "optics"
+            },
+            {
+              "id": "optics-variety-packs",
+              "name": "Optics Variety Packs",
+              "gpcCode": "10001504",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Optics products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Optics class. Includes products such as Binoculars and Magnifying Glasses sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "optics"
+            }
+          ]
+        },
+        {
+          "id": "photography",
+          "name": "Photography",
+          "gpcCode": "68020100",
+          "parentId": "photography-optics",
+          "children": [
+            {
+              "id": "analogue-cameras",
+              "name": "Analogue Cameras",
+              "gpcCode": "10001486",
+              "gpcDescription": "Includes any products that can be described/observed as an analogue device specifically designed to produce a permanent image of a person, location or event. Typically it is composed of a lens system contained within a lightproof box or compartment containing a light sensitive film that is positioned behind a shutter, so that when the shutter is opened/released an image is captured upon the film. The film is replaceable and can be exchanged for a new one once all the film has been exposed.",
+              "parentId": "photography"
+            },
+            {
+              "id": "camera-flash-accessories",
+              "name": "Camera Flash Accessories",
+              "gpcCode": "10005750",
+              "gpcDescription": "Includes any products that can be described/observed as an aid or accessory to the use of camera flashes. Includes products such as a flash ball or flash holder.",
+              "parentId": "photography"
+            },
+            {
+              "id": "camera-flashes",
+              "name": "Camera Flashes",
+              "gpcCode": "10001489",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to produce a bright light for a short time when taking a photograph.",
+              "parentId": "photography"
+            },
+            {
+              "id": "digital-cameras",
+              "name": "Digital Cameras",
+              "gpcCode": "10001487",
+              "gpcDescription": "Includes any products that can be described/observed as a digital device specifically designed for taking photographs that are stored on either an internal memory or memory cards/chips. Images taken on a digital camera can be viewed on products such as televisions or computers. Unwanted images can be erased from the memory.",
+              "parentId": "photography"
+            },
+            {
+              "id": "digital-photo-frames",
+              "name": "Digital Photo Frames",
+              "gpcCode": "10005700",
+              "gpcDescription": "Includes any products that can be described/observed as a picture frame that displays digital photos without the need to print them or use a computer. Digital photo frames typically display the pictures directly from a camera's memory card. Includes digital photo frames that can also display the photos in a TV set.",
+              "parentId": "photography"
+            },
+            {
+              "id": "interchangeable-lenses",
+              "name": "Interchangeable Lenses",
+              "gpcCode": "10001491",
+              "gpcDescription": "Includes any products that can be described/observed as an interchangeable piece of glass or plastic that can make distant objects seem closer when taking a photograph.",
+              "parentId": "photography"
+            },
+            {
+              "id": "mobile-photo-storage",
+              "name": "Mobile Photo Storage",
+              "gpcCode": "10005842",
+              "gpcDescription": "Includes any products that can be described/observed as a picture storage device with ultrafast transfer speed, hard disks up to 250 GB, large, high resolution colour display and numerous picture functions such as a thumbnail view of pictures, slide show, picture rotation, picture deletion and a multi-level zoom function.",
+              "parentId": "photography"
+            },
+            {
+              "id": "photograph-albums-replacement-parts-accessories",
+              "name": "Photograph Albums - Replacement Parts/Accessories",
+              "gpcCode": "10005207",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory to a photograph album. Includes products such as photograph album inserts and adhesive photograph corners.",
+              "parentId": "photography"
+            },
+            {
+              "id": "photograph-albums-cubes",
+              "name": "Photograph Albums/Cubes",
+              "gpcCode": "10001495",
+              "gpcDescription": "Includes any products that can be described/observed as a book, box or cube on a pedestal, which is specifically designed for the storage and display of photographs. The photographs may be placed behind plastic film or be displayed within a frame.",
+              "parentId": "photography"
+            },
+            {
+              "id": "photographic-camera-filters",
+              "name": "Photographic Camera Filters",
+              "gpcCode": "10005755",
+              "gpcDescription": "Includes any products that can be described/observed as a camera accessory consisting of an optical filter that can be inserted in the optical path of a camera allowing added control for the photographer of the images being produced. The filter can be a square or rectangle shape mounted in a holder accessory, or a glass or plastic disk with a metal or plastic ring frame, which can be screwed in front of the lens.",
+              "parentId": "photography"
+            },
+            {
+              "id": "photographic-film",
+              "name": "Photographic Film",
+              "gpcCode": "10001490",
+              "gpcDescription": "Includes any products that can be described/observed as a dark, transparent, plastic material coated in photographic emulsion, which can record images as photographs. ",
+              "parentId": "photography"
+            },
+            {
+              "id": "photographic-slide-projectors",
+              "name": "Photographic Slide Projectors",
+              "gpcCode": "10001492",
+              "gpcDescription": "Includes any products that can be described/observed as a device which projects images from photographic slides on to a white screen or wall. ",
+              "parentId": "photography"
+            },
+            {
+              "id": "photographic-slide-storage",
+              "name": "Photographic Slide Storage",
+              "gpcCode": "10005752",
+              "gpcDescription": "Includes any products that can be described/observed as a storage medium for photographic slides. Includes products such as slide covers and a slide magazine, which is a box adapted to present slides accurately to a slide projector in a horizontal plane and to provide a convenient storage device for photographic slides.",
+              "parentId": "photography"
+            },
+            {
+              "id": "photographic-slides",
+              "name": "Photographic Slides",
+              "gpcCode": "10001493",
+              "gpcDescription": "Includes any products that can be described/observed as a small piece of photographic film in a frame which, when light is passed through it, shows a larger image on a screen or plain surface.",
+              "parentId": "photography"
+            },
+            {
+              "id": "photographic-slides-replacement-parts-accessories",
+              "name": "Photographic Slides - Replacement Parts/Accessories",
+              "gpcCode": "10005751",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory used when putting together photographic slides. Includes products such as a slide cutter or slide frame.",
+              "parentId": "photography"
+            },
+            {
+              "id": "photographic-studio-flash-gun",
+              "name": "Photographic Studio Flash Gun",
+              "gpcCode": "10005753",
+              "gpcDescription": "Includes any products that can be described/observed as a dry-cell powered photographic apparatus, not incorporated in a camera, that holds and electrically triggers a flashbulb simultaneously with the opening of a camera shutter. The effect is to provide momentary light while taking a photograph in a photographic studio.",
+              "parentId": "photography"
+            },
+            {
+              "id": "photography-replacement-parts-accessories",
+              "name": "Photography - Replacement Parts/Accessories",
+              "gpcCode": "10001494",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory used when taking a photograph with a camera. Includes products such as Cases, Cleaning Equipment, Tripods, Meters and Lights",
+              "parentId": "photography"
+            },
+            {
+              "id": "photography-other",
+              "name": "Photography Other",
+              "gpcCode": "10001498",
+              "gpcDescription": "Includes any products that can be described/observed as Photography products, where the user of the schema is not able to classify the products in any existing bricks within the schema.",
+              "parentId": "photography"
+            },
+            {
+              "id": "photography-variety-packs",
+              "name": "Photography Variety Packs",
+              "gpcCode": "10001496",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Photography products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack, which cross bricks within the Photography class. Includes products such as Disposable Cameras and Photograph Albums sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "photography"
+            }
+          ]
+        },
+        {
+          "id": "photography-printing-dark-room-equipment",
+          "name": "Photography Printing/Dark Room Equipment",
+          "gpcCode": "68020300",
+          "parentId": "photography-optics",
+          "children": [
+            {
+              "id": "photograph-developing-chemicals",
+              "name": "Photograph Developing Chemicals",
+              "gpcCode": "10001507",
+              "gpcDescription": "Includes any products that can be described/observed as chemicals used in the process of developing film into photographs.",
+              "parentId": "photography-printing-dark-room-equipment"
+            },
+            {
+              "id": "photograph-enlargers",
+              "name": "Photograph Enlargers",
+              "gpcCode": "10001508",
+              "gpcDescription": "Includes any products that can be described/observed as a device consisting of a light source, lens and a photographic film negative holder. When the light source is passed through the negative and lens an enlarged image of the photograph is projected onto photographic paper.",
+              "parentId": "photography-printing-dark-room-equipment"
+            },
+            {
+              "id": "photographic-paper",
+              "name": "Photographic Paper",
+              "gpcCode": "10001510",
+              "gpcDescription": "Includes any products that can be described/observed as specialised paper on to which photographic images can be printed.",
+              "parentId": "photography-printing-dark-room-equipment"
+            },
+            {
+              "id": "photography-dark-room-safelights",
+              "name": "Photography Dark Room Safelights",
+              "gpcCode": "10001512",
+              "gpcDescription": "Includes any products that can be described/observed as a lamp used in an enclosed darkroom where photographic film is developed. The lamp is fitted with a filter to screen out light rays to which film and paper are sensitive.",
+              "parentId": "photography-printing-dark-room-equipment"
+            },
+            {
+              "id": "photography-dark-room-tanks-trays-reels",
+              "name": "Photography Dark Room Tanks/Trays/Reels",
+              "gpcCode": "10001513",
+              "gpcDescription": "Includes any products that can be described/observed as tanks, trays or reels used in dark rooms to aid the processing of photographic films.",
+              "parentId": "photography-printing-dark-room-equipment"
+            },
+            {
+              "id": "photography-drying-equipment",
+              "name": "Photography Drying Equipment",
+              "gpcCode": "10001511",
+              "gpcDescription": "Includes any products that can be described/observed as devices used for the processing and drying of photographic prints.",
+              "parentId": "photography-printing-dark-room-equipment"
+            },
+            {
+              "id": "photography-printing-dark-room-equipment-replacement-parts-accessories",
+              "name": "Photography Printing/Dark Room Equipment - Replacement Parts/Accessories",
+              "gpcCode": "10001515",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for Photography Printing/Dark Room products.",
+              "parentId": "photography-printing-dark-room-equipment"
+            },
+            {
+              "id": "photography-printing-dark-room-equipment-other",
+              "name": "Photography Printing/Dark Room Equipment Other",
+              "gpcCode": "10001516",
+              "gpcDescription": "Includes any products that can be described/observed as Photography Printing/Dark Room Equipment products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "photography-printing-dark-room-equipment"
+            },
+            {
+              "id": "photography-printing-dark-room-equipment-variety-packs",
+              "name": "Photography Printing/Dark Room Equipment Variety Packs",
+              "gpcCode": "10001514",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Photography Printing/Dark Room Equipment products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Photography Printing/Dark Room Equipment class. Includes products such as Photograph Developing Chemicals and Photographic Paper sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "photography-printing-dark-room-equipment"
+            }
+          ]
+        },
+        {
+          "id": "photography-optics-variety-packs",
+          "name": "Photography/Optics Variety Packs",
+          "gpcCode": "68020400",
+          "parentId": "photography-optics",
+          "children": [
+            {
+              "id": "photography-optics-variety-packs",
+              "name": "Photography/Optics Variety Packs",
+              "gpcCode": "10003686",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Photography and Optics products sold together, which exist within the schema belonging to different classes but the same family, that is two or more products contained within the same pack which cross classes within the Photography and Optics family. Includes products such as a Digital Camera and Photographic Paper sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "photography-optics-variety-packs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

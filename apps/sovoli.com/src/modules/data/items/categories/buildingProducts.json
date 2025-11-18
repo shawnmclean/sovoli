@@ -1,0 +1,1964 @@
+{
+  "id": "building-products",
+  "name": "Building Products",
+  "gpcCode": "83000000",
+  "children": [
+    {
+      "id": "building-products",
+      "name": "Building Products",
+      "gpcCode": "83010000",
+      "parentId": "building-products",
+      "children": [
+        {
+          "id": "abrasives",
+          "name": "Abrasives",
+          "gpcCode": "83011800",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "abrasive-pads-steel-wool",
+              "name": "Abrasive Pads/Steel Wool",
+              "gpcCode": "10003157",
+              "gpcDescription": "Includes any products that may be described/observed as a pad of woven steel fibres or a loosely assembled ball of steel fibres that are used as an abrasive to remove rust, prepare surfaces and give a smooth finish to metal, plastic and wood.",
+              "parentId": "abrasives"
+            },
+            {
+              "id": "abrasives-other",
+              "name": "Abrasives Other",
+              "gpcCode": "10003163",
+              "gpcDescription": "Includes any products that may be described/observed as Abrasives products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "abrasives"
+            },
+            {
+              "id": "abrasives-replacement-parts-accessories",
+              "name": "Abrasives Replacement Parts-Accessories",
+              "gpcCode": "10005124",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an individual component for abrasives. The products also include accessories specifically designed to enhance the performance of an abrasive.",
+              "parentId": "abrasives"
+            },
+            {
+              "id": "abrasives-variety-packs",
+              "name": "Abrasives Variety Packs",
+              "gpcCode": "10003164",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Abrasives products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Abrasives class. Includes products such as Mineral Abrasives sold with Sandpaper. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "abrasives"
+            },
+            {
+              "id": "emery-cloths-sheets",
+              "name": "Emery Cloths/Sheets",
+              "gpcCode": "10003159",
+              "gpcDescription": "Includes any products that may be described/observed as a cloth covered in fragments of the hard grey-black mineral emery, which consists of corundum and either haematite or magnetite. These products are used for removing burrs and cleaning metalwork.",
+              "parentId": "abrasives"
+            },
+            {
+              "id": "floor-screeds",
+              "name": "Floor Screeds",
+              "gpcCode": "10003766",
+              "gpcDescription": "Includes any products that may be described/observed as abrasive product that looks like a mesh you would see on your door or window and can be round or rectangular. These products are placed on a floor or a pavement as a guide for even application of plaster or concrete. These products may come in grits ranging from 60 to 180.",
+              "parentId": "abrasives"
+            },
+            {
+              "id": "mineral-abrasives",
+              "name": "Mineral Abrasives",
+              "gpcCode": "10003162",
+              "gpcDescription": "Includes any products that may be described/observed as an abrasive made of minerals such as silica sand or quartz sand.",
+              "parentId": "abrasives"
+            },
+            {
+              "id": "polishing-compound",
+              "name": "Polishing Compound",
+              "gpcCode": "10003765",
+              "gpcDescription": "Includes any products that may be described/observed as fine abrasives used to improve surface finish or flatness by facilitating the particles bonding together to form larger particles and manufactured in slurry, bar, powder or paste forms.",
+              "parentId": "abrasives"
+            },
+            {
+              "id": "sandpaper",
+              "name": "Sandpaper",
+              "gpcCode": "10003156",
+              "gpcDescription": "Includes any products that may be described/observed as a stiff paper coated with powdered emery or sand, used for smoothing or polishing surfaces.",
+              "parentId": "abrasives"
+            },
+            {
+              "id": "wire-brushes",
+              "name": "Wire Brushes",
+              "gpcCode": "10005715",
+              "gpcDescription": "Includes any products that may be described/observed as a brush made from a large number of wire bristles. The wire brush is primarily an abrasive implement, used for cleaning rust and removing paint.",
+              "parentId": "abrasives"
+            }
+          ]
+        },
+        {
+          "id": "access-covers-panels",
+          "name": "Access Covers/Panels",
+          "gpcCode": "83012500",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "access-covers-panels",
+              "name": "Access Covers/Panels",
+              "gpcCode": "10006900",
+              "gpcDescription": "Includes any products that may be described/observed as products that cover an opening/access. Includes products such as manhole covers, access doors, access panels, cable chambers and utility vaults.",
+              "parentId": "access-covers-panels"
+            }
+          ]
+        },
+        {
+          "id": "asphalt-concrete-masonry",
+          "name": "Asphalt/Concrete/Masonry",
+          "gpcCode": "83010600",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "aggregate",
+              "name": "Aggregate",
+              "gpcCode": "10002521",
+              "gpcDescription": "Includes any products that may be described/observed as a coarse material, such as gravel or broken stone with which cement and water are mixed to form concrete. Crushed stone is usually designated as coarse aggregate and gravel is broken down further to form the majority of finer aggregate. Includes products such as aggregate used in construction.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "asphalt-concrete-patching",
+              "name": "Asphalt/Concrete Patching",
+              "gpcCode": "10003898",
+              "gpcDescription": "Includes any products that may be described/observed as a mix of either cement, bituminous pitch, sand, gravel or stone, which is premixed and designed to patch or repair asphalt or concrete surfaces.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "asphalt-concrete-masonry-other",
+              "name": "Asphalt/Concrete/Masonry Other",
+              "gpcCode": "10003904",
+              "gpcDescription": "Includes any products that may be described/observed as asphalt, concrete or masonry products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "asphalt-concrete-masonry-replacement-parts-accessories",
+              "name": "Asphalt/Concrete/Masonry Replacement Parts/Accessories",
+              "gpcCode": "10005632",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory or replacement part for asphalt, concrete or masonry items. Includes products such as mortar mixing boards and asphalt brushes.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "asphalt-concrete-masonry-variety-packs",
+              "name": "Asphalt/Concrete/Masonry Variety Packs",
+              "gpcCode": "10003903",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct asphalt, concrete or masonry products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Asphalt/Concrete/Masonry class. Includes products such as Asphalt/Concrete Patching and Asphalt/Concrete/Masonry Replacement Parts/Accessories sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "brick-block",
+              "name": "Brick/Block",
+              "gpcCode": "10002525",
+              "gpcDescription": "Includes any product that may be described/observed as a basic building unit which are used to build bearing and non-bearing walls. Includes products such as manufactured building blocks as well as naturally produced building stone.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "cement",
+              "name": "Cement",
+              "gpcCode": "10002526",
+              "gpcDescription": "Includes any products that may be described/observed as a building material that is a powder made of a mixture of oxides of calcium, silicon and aluminium by heating limestone (as source of calcium) with clay or sand (as source of silicon) and grinding the product, with a source of sulphate (most commonly gypsum). The resulting powder, when mixed with water, will become a hydrated solid over time; used with water and sand or gravel to make concrete and mortar. Includes Portland cement and plastic cement to which a plasticising material (limestone or hydrated lime), as well as other materials has been added to reduce setting time and facilitate workability.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "concrete-air-entraining-agents",
+              "name": "Concrete Air-entraining Agents",
+              "gpcCode": "10003901",
+              "gpcDescription": "Includes any products that may be described/observed as an agent that entrains microscopic air bubbles in the concrete: when the hardened concrete freezes, the frozen water inside the concrete expands into these air bubbles instead of damaging the concrete. These products must be used whenever concrete is exposed to freezing and thawing, as well as to de-icing salts.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "concrete-bonding-agents",
+              "name": "Concrete Bonding Agents",
+              "gpcCode": "10003899",
+              "gpcDescription": "Includes any products that may be described/observed as agents, specifically designed to help bond new concrete to old or, when mixed with sand, to make a patching mortar or machinery base plate grout. Products include those that come complete with a slow setting bonding agents and aggregate that can be blended to a mortar for filling large voids and grouting large plates of heavy equipment.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "concrete-colouring-agents-dyes",
+              "name": "Concrete Colouring Agents/Dyes",
+              "gpcCode": "10003900",
+              "gpcDescription": "Includes any products that may be described/observed as an agent that can either be added to concrete as it is mixed using special integral colourants, or a dye that can be added to freshly poured concrete as it is drying using powered colour hardeners. These products also include agents or dyes that can be added after the concrete has hardened.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "concrete-mixes",
+              "name": "Concrete Mixes",
+              "gpcCode": "10002522",
+              "gpcDescription": "Includes any product that may be described/observed as a blend of portland cement, sand and gravel or stone, premixed and ready to be added with water to form concrete. Includes products such as normal, heavyweight, mass concrete mix.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "gypsum-cement-board-repair-kit",
+              "name": "Gypsum/Cement Board Repair Kit",
+              "gpcCode": "10008047",
+              "gpcDescription": "Includes any products that can be described/observed as a repair product for damaged plasterboard in walls and ceilings.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "leveling-cement-mortar",
+              "name": "Leveling Cement/Mortar",
+              "gpcCode": "10007760",
+              "gpcDescription": "Includes any products that may be described/observed as a cement that has high flow characteristics and, in contrast to traditional concrete, does not require the addition of excessive amounts of water for placement. Self-leveling concrete is typically used to create a flat and smooth surface with a compressive strength similar to or higher than that of traditional concrete prior to installing interior floor coverings.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "lime-diy",
+              "name": "Lime (DIY)",
+              "gpcCode": "10002529",
+              "gpcDescription": "Includes any products that may be described/observed as a chemical substance containing the element calcium. This product is used in making mortar and cement.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "mortar-mixes",
+              "name": "Mortar Mixes",
+              "gpcCode": "10003902",
+              "gpcDescription": "Includes any products that may be described/observed as a blend of cement and sand. The products may contain other agents, such as plasticisers. Mortar is a material used in masonry to fill the gaps between blocks in construction and bind the blocks together. The blocks may be stone, brick, breezeblocks (cinder blocks).",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "mortar-tubs-builders-buckets",
+              "name": "Mortar Tubs/Builders Buckets",
+              "gpcCode": "10007546",
+              "gpcDescription": "Includes any products that may be described/observed as a tub or bucket that is used to mix mortar, cement, plaster and other masonry mixes.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "mortar-cement-plaster-grout-additives",
+              "name": "Mortar/Cement/Plaster/Grout Additives",
+              "gpcCode": "10008045",
+              "gpcDescription": "Includes all products that can be described/observed as an additive for mortar, leveling compound, universal equalizer, tile adhesive.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "pavers",
+              "name": "Pavers",
+              "gpcCode": "10002518",
+              "gpcDescription": "Includes any product that may be described/observed as a brick in a variety of sizes and shapes that is used in constructing sidewalks, patios, and driveways. These products are made from natural stone (such as granite, limestone, or slate), manufactured stone, or other composed materials (including but not limited to concrete or clay). Includes products such as traditional-cut (square) pavers, shaped pavers.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "plaster-mixes-plasterboard-jointing",
+              "name": "Plaster Mixes/Plasterboard Jointing",
+              "gpcCode": "10002528",
+              "gpcDescription": " Includes any products that may be described/observed as a mixture of lime or gypsum and water with or without sand which hardens into a smooth solid and is used to cover walls and ceilings.Includes products such as quick-setting lightweight plaster, cement plaster, lime plaster, earthen plaster.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "plaster-of-paris-moulding-plaster",
+              "name": "Plaster of Paris (Moulding Plaster)",
+              "gpcCode": "10003896",
+              "gpcDescription": "Includes any products that may be described/observed as powdered and heat-treated gypsum, which can be mixed with water (about 2 parts plaster to each part of water), hardening to a smooth solid which does not shrink or lose volume because it hardens before all the water can evaporate.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "sand-cement",
+              "name": "Sand - Cement",
+              "gpcCode": "10008064",
+              "gpcDescription": "Contains all products that can be described as mixtures of Portland cement, sand and water.  It is used as a foundation for pavements for driveways, terraces and garden paths. Excluding products such as concrete or screed.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "sand-diy",
+              "name": "Sand (DIY)",
+              "gpcCode": "10003897",
+              "gpcDescription": "Includes any products that may be described/observed as a loose granular material that results from the disintegration of rocks and coral. Sand consists of particles smaller than gravel but coarser than silt and can be engineered for a specific purpose. Includes products commonly used for road fill, mixing into aggregate products as well as concrete in construction.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "screed",
+              "name": "Screed",
+              "gpcCode": "10008063",
+              "gpcDescription": "Contains all products that can be described as mixtures of Portland cement, sand and water.  It is used as a foundation for indoor floor coverings. Excluding products such as concrete or sand/cement.",
+              "parentId": "asphalt-concrete-masonry"
+            },
+            {
+              "id": "stucco",
+              "name": "Stucco",
+              "gpcCode": "10002527",
+              "gpcDescription": "Includes any products that may be described/observed as a plaster made mostly from Portland cement and water or from sand, lime and water. It is applied while soft to cover exterior walls or surfaces and often spread in a decorative pattern.",
+              "parentId": "asphalt-concrete-masonry"
+            }
+          ]
+        },
+        {
+          "id": "building-products-other",
+          "name": "Building Products - Other",
+          "gpcCode": "83012400",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "building-products-other",
+              "name": "Building Products - Other",
+              "gpcCode": "10006895",
+              "gpcDescription": "Includes any products that may be described/observed as Building Products products, where the user of the schema is not able to classify the products in existing bricks within the schema. ",
+              "parentId": "building-products-other"
+            }
+          ]
+        },
+        {
+          "id": "building-products-variety-packs",
+          "name": "Building Products Variety Packs",
+          "gpcCode": "83010500",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "building-products-variety-packs",
+              "name": "Building Products Variety Packs",
+              "gpcCode": "10002506",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Building Product items sold together which exist within the schema but belong to different classes that is two or more products contained within the same pack which cross classes within the Building Products Family. Includes products such as Flooring and Adhesive variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "building-products-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "curtain-parts-accessories",
+          "name": "Curtain Parts/Accessories",
+          "gpcCode": "83012000",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "curtain-holdbacks",
+              "name": "Curtain Holdbacks",
+              "gpcCode": "10005688",
+              "gpcDescription": "Includes any products that may be described/observed as the means by which a curtain is held in position, whenever the curtain is not drawn. Curtain Holdbacks are fixed directly to the wall. These items are available in various designs and materials. Includes products such as Bronze Curtain Holdbacks and Magnetic Curtain Holdbacks.",
+              "parentId": "curtain-parts-accessories"
+            },
+            {
+              "id": "curtain-parts-accessories-other",
+              "name": "Curtain Parts/Accessories Other",
+              "gpcCode": "10003201",
+              "gpcDescription": "Includes any products that may be described/observed as Curtain Accessories products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "curtain-parts-accessories"
+            },
+            {
+              "id": "curtain-parts-accessories-variety-packs",
+              "name": "Curtain Parts/Accessories Variety Packs",
+              "gpcCode": "10003202",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Curtain Accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Curtain Accessories class. Includes products such as Curtain Tracks sold with Curtain Hooks. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "curtain-parts-accessories"
+            },
+            {
+              "id": "curtain-pole-rod-accessories",
+              "name": "Curtain Pole/Rod Accessories",
+              "gpcCode": "10003767",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically to work with curtain poles/rods. Includes all curtain rod fittings.",
+              "parentId": "curtain-parts-accessories"
+            },
+            {
+              "id": "curtain-poles-rods",
+              "name": "Curtain Poles/Rods",
+              "gpcCode": "10003196",
+              "gpcDescription": "Includes any products that may be described/observed as a cylindrical rod which may or may not be fixed horizontally by brackets to a wall, ceiling or other surface and from which a curtain is hung. Includes products such as Baton Pole, Bullet Pole, Collar Cap Pole and Slice Pole.",
+              "parentId": "curtain-parts-accessories"
+            },
+            {
+              "id": "curtain-track-accessories",
+              "name": "Curtain Track Accessories",
+              "gpcCode": "10007277",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed for use with curtain tracks. Includes all curtain track fittings.",
+              "parentId": "curtain-parts-accessories"
+            },
+            {
+              "id": "curtain-tracks",
+              "name": "Curtain Tracks",
+              "gpcCode": "10003197",
+              "gpcDescription": "Includes any products that may be described/observed as a device which is fixed horizontally by brackets to a wall, ceiling or other surface and from which a curtain is hung and can be controlled mechanically. ",
+              "parentId": "curtain-parts-accessories"
+            }
+          ]
+        },
+        {
+          "id": "decking-railing",
+          "name": "Decking/Railing",
+          "gpcCode": "83011500",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "balustrade-railing-systems",
+              "name": "Balustrade/Railing Systems",
+              "gpcCode": "10003961",
+              "gpcDescription": "Includes any products that may be described/observed as a fence-like barrier intended to be erected around a staircase for protection of users. These products include balustrade and are made of wood, metal, plastic, fibreglass or other non-wood materials.",
+              "parentId": "decking-railing"
+            },
+            {
+              "id": "deck-drainage-systems",
+              "name": "Deck Drainage Systems",
+              "gpcCode": "10002672",
+              "gpcDescription": "Includes any products that may be described/observed as decking drainage items sold together and intended to be used in conjunction with each other.",
+              "parentId": "decking-railing"
+            },
+            {
+              "id": "deck-railing-parts",
+              "name": "Deck Railing Parts",
+              "gpcCode": "10002668",
+              "gpcDescription": "Includes any products that may be described/observed as a fence-like barrier intended to be erected around a decking area to delineate and enclose it. Includes products such as Wooden Railing and Composite Railing.",
+              "parentId": "decking-railing"
+            },
+            {
+              "id": "deck-railing-systems",
+              "name": "Deck Railing Systems",
+              "gpcCode": "10002671",
+              "gpcDescription": "Includes any products that may be described/observed as floor decking and railings sold together and intended to be used in conjunction with each other.",
+              "parentId": "decking-railing"
+            },
+            {
+              "id": "decking",
+              "name": "Decking",
+              "gpcCode": "10002669",
+              "gpcDescription": "Includes any products that may be described/observed as outdoor flooring manufactured from wood or a combination of recycled and other materials intended to imitate wood.",
+              "parentId": "decking-railing"
+            },
+            {
+              "id": "decking-accessories",
+              "name": "Decking Accessories",
+              "gpcCode": "10002670",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to ornament or enhance the performance of outdoor lumber flooring. Includes products such as Membrane Deck Covering and Deck Carpet Strips.",
+              "parentId": "decking-railing"
+            },
+            {
+              "id": "decking-railing-other",
+              "name": "Decking/Railing Other",
+              "gpcCode": "10002673",
+              "gpcDescription": "Includes any products that may be described/observed as Decking/Railing products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "decking-railing"
+            },
+            {
+              "id": "decking-railing-variety-packs",
+              "name": "Decking/Railing Variety Packs",
+              "gpcCode": "10002674",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Decking/Railing products sold together, which exist within the schema belonging to different bricks but to the same class, such as two or more products contained within the same pack which cross bricks within the Decking/Railing class. Includes products such as Deck Railing sold with Decking Accessories. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "decking-railing"
+            },
+            {
+              "id": "stair-railing-systems",
+              "name": "Stair Railing Systems",
+              "gpcCode": "10003960",
+              "gpcDescription": "Includes any products that may be described/observed as a fence-like barrier intended to be erected around a staircase for protection of users. These products are made of wood, metal, plastic, fibreglass or other non-wood materials.",
+              "parentId": "decking-railing"
+            }
+          ]
+        },
+        {
+          "id": "door-hardware",
+          "name": "Door Hardware",
+          "gpcCode": "83011200",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "bells-chimes-buzzers",
+              "name": "Bells/Chimes/Buzzers",
+              "gpcCode": "10005560",
+              "gpcDescription": "Includes any product that may be described/observed as a device used to announce the presence of a visitor. Includes a non-electrical bell placed at an outer door that gives a ringing or buzzing signal when pushed and an electrical device with the a button placed at an outer door.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "door-closers",
+              "name": "Door Closers",
+              "gpcCode": "10002574",
+              "gpcDescription": "Includes any product that may be described/observed as a device which is fixed to the top of the door and the door frame, and which pulls the door closed after it has been opened. Includes products such as parallel arm, push side, pull side in left hand, right hand and non-handed models.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "door-handles-knobs-levers",
+              "name": "Door Handles/Knobs/Levers",
+              "gpcCode": "10002573",
+              "gpcDescription": "Includes any product that may be described/observed as an appendage to a door that is designed to be held in order to use or move it. These products may be round and designed to be turned or pulled (knob), or long and intended to be depressed at one end or pulled (handle). Includes products such as lever handles, pull handles, knobs.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "door-hardware-other",
+              "name": "Door Hardware Other",
+              "gpcCode": "10003918",
+              "gpcDescription": "Includes any products that may be described/observed as Door Hardware products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "door-hardware-variety-packs",
+              "name": "Door Hardware Variety Packs",
+              "gpcCode": "10003919",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Door Hardware products sold together, which exist within the schema belonging to different classes but to the same family.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "door-knockers",
+              "name": "Door Knockers",
+              "gpcCode": "10002581",
+              "gpcDescription": "Includes any product that may be described/observed as a hinged device attached to a door, intended to signal a desire for admittance. These products consist of a movable section which is rapped against a plate or back. These products are typically metal and often decorative as well as functional.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "door-plates",
+              "name": "Door Plates",
+              "gpcCode": "10002572",
+              "gpcDescription": "Includes any product that may be described/observed as a thin, flat product, usually made of metal, designed to be fixed to a door. These products may be polished to a high shine.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "door-thresholds",
+              "name": "Door Thresholds",
+              "gpcCode": "10003906",
+              "gpcDescription": "Includes any products that may be described/observed as a horizontal strip specifically designed to serve as the sill of a door to form the bottom of a doorway and offer support when passing through a doorway.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "door-weather-excluders",
+              "name": "Door Weather Excluders",
+              "gpcCode": "10002575",
+              "gpcDescription": "Includes any products that may be described/observed as a means of keeping rain, wind or other weather effects out of a house or room. Includes products such as draught excluders, sealants and door sweeps.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "hinges-door",
+              "name": "Hinges - Door",
+              "gpcCode": "10003191",
+              "gpcDescription": "Includes any products that may be described/observed as two jointed plates hinged together and attached to a door, or window etc and its frame. Serves to support the door and allows the door to swing or move. Includes products such as Adjustable Hinges, Hinges with non-removable Pins and Ball-bearing Hinges.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "house-identification-numbers-letters",
+              "name": "House Identification - Numbers/Letters",
+              "gpcCode": "10002579",
+              "gpcDescription": "Includes any product that may be described/observed as a letter or number shape formed from metal, ceramic or other materials, or a piece of metal, ceramic or other materials with a letter or number marked on it, intended to be fixed to the outside of a house. Includes products such as tiles, shapes, engraved metal.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "keys",
+              "name": "Keys",
+              "gpcCode": "10003914",
+              "gpcDescription": "Includes any products that may be described/observed as an implement that is turned to open or close a door lock. They are normally made of metal and can be purchased already cut with grooves and notches or may be uncut.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "letter-boxes",
+              "name": "Letter Boxes",
+              "gpcCode": "10002578",
+              "gpcDescription": "Includes any products that may be described/observed as a small rectangular frame, with or without a hinged door attached, intended to be placed in the surface of an entry door or porch to allow delivery of mail.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "mezzanine-attic-ladders",
+              "name": "Mezzanine/Attic Ladders",
+              "gpcCode": "10002515",
+              "gpcDescription": "Includes any product that may be described/observed as a ladder specifically designed to give access to an attic or the intermediate level between the floor and ceiling of any room or space. Includes products such as single section ladders, rolling ladders, safety ladders.",
+              "parentId": "door-hardware"
+            },
+            {
+              "id": "storm-screen-door-replacement-hardware",
+              "name": "Storm/Screen Door Replacement Hardware",
+              "gpcCode": "10003916",
+              "gpcDescription": "Includes any products that may be described/observed as a screen or glass panel that are specifically designed to be used in combination with a storm door and can be removed and changed depending on the season.",
+              "parentId": "door-hardware"
+            }
+          ]
+        },
+        {
+          "id": "doors",
+          "name": "Doors",
+          "gpcCode": "83011100",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "cat-dog-flaps",
+              "name": "Cat/Dog Flaps",
+              "gpcCode": "10002577",
+              "gpcDescription": "Includes any products that may be described/observed as a hinged door fixed to a frame, designed to be placed in the surface of an entry door to allow access and exit by a domestic animal.",
+              "parentId": "doors"
+            },
+            {
+              "id": "doors",
+              "name": "Doors",
+              "gpcCode": "10002567",
+              "gpcDescription": "Includes any products that may be described/observed as a movable, hinged barrier that will close the entrance to a room or building. This includes products such as interior doors, exterior doors, patio doors, and bulkhead (basement) doors.",
+              "parentId": "doors"
+            },
+            {
+              "id": "doors-replacement-parts-accessories",
+              "name": "Doors - Replacement Parts/Accessories",
+              "gpcCode": "10005471",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to enhance or improve the performance of doors.",
+              "parentId": "doors"
+            },
+            {
+              "id": "doors-other",
+              "name": "Doors Other",
+              "gpcCode": "10003923",
+              "gpcDescription": "Includes any products that may be described/observed as Door products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "doors"
+            },
+            {
+              "id": "doors-variety-packs",
+              "name": "Doors Variety Packs",
+              "gpcCode": "10003924",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Door products sold together, which exist within the schema belonging to different classes but to the same family.",
+              "parentId": "doors"
+            },
+            {
+              "id": "gate-garage-door-opening-systems-replacement-parts-accessories",
+              "name": "Gate/Garage Door Opening Systems - Replacement Parts/Accessories",
+              "gpcCode": "10005673",
+              "gpcDescription": "Includes any products that may be described/observed as a device that is designed to open and close, either a gate or garage door via a remote control. These systems are bought complete and can be attached universally to most gates and garage doors. These products are available in various designs and mechanical systems dependent on the user requirements. Includes products such as Chain Driven Garage Door Openers, Belt Driven Gate Openers,  keypads, receivers or transmitters and any item used together with a automatic garage door or gate.",
+              "parentId": "doors"
+            },
+            {
+              "id": "gate-garage-doors",
+              "name": "Gate/Garage Doors",
+              "gpcCode": "10002568",
+              "gpcDescription": "Includes any product that may be described/observed as a movable barrier that will close the entrance to a garage. These products may be made of wood or metal or plastic or similar materials. These products are designed specifically for garage use. Includes products such as sliding doors, folding doors, hinged doors, rolling doors.",
+              "parentId": "doors"
+            }
+          ]
+        },
+        {
+          "id": "fixings-fasteners-hardware",
+          "name": "Fixings/Fasteners Hardware",
+          "gpcCode": "83011900",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "anchors-wall-plugs-fixings-fasteners",
+              "name": "Anchors/Wall Plugs (Fixings/Fasteners)",
+              "gpcCode": "10003179",
+              "gpcDescription": "Includes any products that may be described/observed as a fastening which penetrates and allows you to fix objects to brick, masonry, concrete, plasterboard or plaster block.  These products are available in range of different sizes and materials based on the consumers requirements. Includes products such as Plastic Wall Plugs as well as Stainless Steel Shield Anchors and Hollow Wall Anchors.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "bearings-bushings",
+              "name": "Bearings/Bushings",
+              "gpcCode": "10003170",
+              "gpcDescription": "Includes any products that may be described/observed as a rotating support placed between moving parts to allow them to move easily. A bearing is a component used to reduce friction in a machine. A bushing can be described as an insulator found on electrical equipment. A bushing is a metal sleeve or lining that acts as a bearing between rotating or moving electrical surfaces. Includes products such as Bearings and Bushings.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "biscuits-diy",
+              "name": "Biscuits (DIY)",
+              "gpcCode": "10007002",
+              "gpcDescription": "Includes any products that can be described/observed as a biscuit, typically used with a biscuit joiner powered tool. Biscuits are predominantly used in joining sheet goods such as plywood, particle board and medium-density fibreboard. They are sometimes used with solid wood, replacing mortise and tenon joints as they are easier to make and almost as strong. Biscuits are also used to align edges of work pieces, such as when forming a 90 degree angle between work pieces. The biscuit provides a quick means of getting a perfectly flush joint, while at the same time reinforcing the joint.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "bolts-threaded-rods",
+              "name": "Bolts/Threaded Rods",
+              "gpcCode": "10003185",
+              "gpcDescription": "Includes any products that may be described/observed as a threaded fastener, which may or may not have a head designed to be used in conjunction with a nut to form a secure type of fastening. They are available in many different sizes and materials. Includes products such as hexagon bolts, high tensile bolts and threaded rods.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "brackets-braces",
+              "name": "Brackets/Braces",
+              "gpcCode": "10003186",
+              "gpcDescription": "Includes any products that may be described/observed as a structural support projecting from a wall or column and used for supporting another item which may be structural, functional, or decorative. These products are not used specifically for any particular type of item but can be applied universally across a range of products. Includes products such as Canopy Brackets, Lean-to Brackets, Crane Runway Brackets, Shelving Brackets, Hand Rail Brackets and Universal Appliance Brackets.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "catches-fixings-fasteners",
+              "name": "Catches (Fixings/Fasteners)",
+              "gpcCode": "10003187",
+              "gpcDescription": "Includes any products that may be described/observed as a fastener designed to hold something closed, such as a door or window. These products secure the materials in place using a range of methods and are available in varying materials dependent on their required usage. Includes products such as Magnetic Catches, Roller Catches and Bales Catches.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "dowel-pins",
+              "name": "Dowel Pins",
+              "gpcCode": "10007001",
+              "gpcDescription": "Includes any products that can be described/observed as a solid rod usually made from wood, plastic or metal and is inserted into receiving holes. Dowel pins hold together parts of an assembly with friction. They may also be used as location pins. These pins are common in furniture making.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "fixings-fasteners-hardware-accessories",
+              "name": "Fixings/Fasteners Hardware Accessories",
+              "gpcCode": "10005670",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to enhance the performance or appearance of Fixings or Fasteners. These products may offer protection or aid the securing ability of existing fixings or fasteners. Includes products such as Plastic Screw Caps, Bronze Cups and Clips.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "fixings-fasteners-hardware-other",
+              "name": "Fixings/Fasteners Hardware Other",
+              "gpcCode": "10003194",
+              "gpcDescription": "Includes any products that may be described/observed as Fixings/Fasteners Hardware products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "fixings-fasteners-hardware-variety-packs",
+              "name": "Fixings/Fasteners Hardware Variety Packs",
+              "gpcCode": "10003195",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Fixings/Fasteners Hardware products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Fixings/Fasteners Hardware class. Includes products such as Nuts sold with Bolts. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "hooks-fixings-fasteners",
+              "name": "Hooks (Fixings/Fasteners)",
+              "gpcCode": "10003171",
+              "gpcDescription": "Includes any products that may be described/observed as a curved or bent implement for suspending or pulling another object. These products are available in a variety of materials and sizes dependent on the user requirements. Includes products such as Plastic Hooks and Metal Hooks.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "mounting-rails",
+              "name": "Mounting Rails",
+              "gpcCode": "10006794",
+              "gpcDescription": "Includes any products that may be described/observed as a open rectangular unit of extruded plastic or metallic material. These products can be applied to a variety of uses and due to their general nature as available in a variety of sizes. Includes products such as Fastening rails for paintings.  ",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "nails-pins-fixings-fasteners",
+              "name": "Nails/Pins (Fixings/Fasteners)",
+              "gpcCode": "10003182",
+              "gpcDescription": "Includes any products that may be described/observed as a fastener made from endless wire by cutting a point and forming a head at the shank end opposite the point. These products are therefore a thin pointed piece of metal that is hammered into materials as a type of permanent fixing. Includes products such as Masonry Nails, Roofing Nails, Outdoor Ringed Nails and Square Twist Nails.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "nuts-fixings-fasteners",
+              "name": "Nuts (Fixings/Fasteners)",
+              "gpcCode": "10003184",
+              "gpcDescription": "Includes any products that may be described/observed as a metal block with an internal screw thread to be fitted onto a bolt. Nuts are usually hexagonal to allow easy tightening with a wrench but may also be winged, knurled or another shape. Along with a bolt nuts are designed to capture and fasten objects together. Includes products such as Hexagonal Nuts, Flanged Nuts and Wing Nuts.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "rings-grommets",
+              "name": "Rings/Grommets",
+              "gpcCode": "10003166",
+              "gpcDescription": "Includes any products that may be described/observed as an eyelet that protects an opening or hole in material such as Cloth and Leather. These products can be used to reinforce the material in which they are placed or to shield a material from the sharp edges of a hole. Includes products such as Metal Rings, Rubber Rings and Weatherproof Grommets.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "rivets-fixings-fasteners",
+              "name": "Rivets (Fixings/Fasteners)",
+              "gpcCode": "10003190",
+              "gpcDescription": "Includes any products that may be described/observed as a metal bolt or pin which has a head on one end and is inserted through aligned holes in the material pieces to be joined and then hammered on the plain end so as to form a second head. Generally one head of a rivet is factory formed and, dependent on the material type, the user may have to heat the rivet to create the second binding head. These products are a permanent fixing. Includes products such as Blind Rivets and Lazy Tongue Rivets as well as Dome Head Rivets.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "ropes-chains-cables-fixings-fasteners",
+              "name": "Ropes/Chains/Cables (Fixings/Fasteners)",
+              "gpcCode": "10003167",
+              "gpcDescription": "Includes any products that may be described/observed as a length of tough metal links or a length of fibres twisted and braided together for extra strength. These products are general purpose items and can be used in a variety of situations. Includes products such as pull chains and non-electrical cables and cord.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "screws",
+              "name": "Screws",
+              "gpcCode": "10003181",
+              "gpcDescription": "Includes any products that may be described/observed as a spirally threaded cylindrical rod that engages with a similarly threaded hole. These products are used as fasteners in carpentry and home improvement. These products can be specifically designed for use with an auto-feed screw gun. Screws are available in a variety of sizes and materials to suit the consumers required functionality. Includes products such as Strip/Auto-feed Screws, Flat Head Screws, Round Head Steel Screws and Standard Slotted Screws.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "springs",
+              "name": "Springs",
+              "gpcCode": "10003168",
+              "gpcDescription": "Includes any products that may be described/observed as an elastic metal coil, which returns to its original shape or position after being pushed, pulled or pressed. These products are usually made out of hardened steel. Includes products such as Coil Springs.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "staples-fixings-fasteners",
+              "name": "Staples (Fixings/Fasteners)",
+              "gpcCode": "10003183",
+              "gpcDescription": "Includes any products that may be described/observed as a short U-shaped wire nail for securing cables and fixing materials to a base. These products can be insulated and are either manually driven or machine driven. These products are available in variety of sizes and materials dependent on the user requirements. Includes products such as Insulated Steel Staples and Machine Driven Steel Staples.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "tubing",
+              "name": "Tubing",
+              "gpcCode": "10003173",
+              "gpcDescription": "Includes any products that may be described/observed as a hollow cylindrical unit of extruded non-supported plastic or metallic material. These products can be applied to a variety of uses and due to their general nature as available in a variety of sizes. Includes products such as Plastic Tubes and Aluminium Tubes.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "turnbuckles-fixings-fasteners",
+              "name": "Turnbuckles (Fixings/Fasteners)",
+              "gpcCode": "10003165",
+              "gpcDescription": "Includes any products that may be described/observed as a long, cylindrical, internally threaded nut used to connect the elements of adjustable rod and bar members. This hardware is installed between stretched cables or ropes and used to adjust these to the required tension. Includes products such as Zinc Plated Turnbuckles.",
+              "parentId": "fixings-fasteners-hardware"
+            },
+            {
+              "id": "washers-fixings-fasteners",
+              "name": "Washers (Fixings/Fasteners)",
+              "gpcCode": "10003180",
+              "gpcDescription": "Includes any products that may be described/observed as a seal consisting of a flat disk placed to prevent leakage and provide added protection to the target material to which it is secured. Washers can either be locked for increased strength to a fixing or flat. These products are available in a variety of sizes and forms dependent on the specific use. Includes products such as Locking Steel Washers and Flat Aluminium Washers.",
+              "parentId": "fixings-fasteners-hardware"
+            }
+          ]
+        },
+        {
+          "id": "glass",
+          "name": "Glass",
+          "gpcCode": "83011300",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "decorative-glass-inserts",
+              "name": "Decorative Glass Inserts",
+              "gpcCode": "10003926",
+              "gpcDescription": "Includes any products that may be described/observed as a glass section placed in a door or window to enhance its appearance. Includes stained glass, lead came glass and textured glass inserts.",
+              "parentId": "glass"
+            },
+            {
+              "id": "glass",
+              "name": "Glass",
+              "gpcCode": "10002584",
+              "gpcDescription": "Includes any product that may be described/observed as an amorphous solid obtained when silica is mixed with other compounds, heated above its melting point, and then cooled rapidly. Includes products such as windowpanes, sheet glass as well as bulletproof glass.",
+              "parentId": "glass"
+            },
+            {
+              "id": "glass-block-grid-systems",
+              "name": "Glass Block (Grid Systems)",
+              "gpcCode": "10003925",
+              "gpcDescription": "Includes any products that may be described/observed as a translucent glass blocks that are held together with mortar or plastic strips with silicon sealant and used to build non-bearing walls or partitions.",
+              "parentId": "glass"
+            },
+            {
+              "id": "transparent-thermoplastic",
+              "name": "Transparent Thermoplastic",
+              "gpcCode": "10008143",
+              "gpcDescription": "Includes any product that may be described/observed as a transparent thermoplastic. Includes products such as acrylic and polycarbonate plates.",
+              "parentId": "glass"
+            }
+          ]
+        },
+        {
+          "id": "guttering-drainage",
+          "name": "Guttering/Drainage",
+          "gpcCode": "83011400",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "channel-guttering-drainage",
+              "name": "Channel (Guttering/Drainage)",
+              "gpcCode": "10006902",
+              "gpcDescription": "Includes any products that may be described/observed as channel specifically designed to divert excess surface water. Includes drainage for roadways, buildings, rooftops.",
+              "parentId": "guttering-drainage"
+            },
+            {
+              "id": "down-spout-parts-fittings",
+              "name": "Down Spout Parts/Fittings",
+              "gpcCode": "10003956",
+              "gpcDescription": "Includes any products that may be described/observed as a system of pipes and parts that allows for the controlled flow of waste water vertically, towards a drain or underground water disposal system. Includes products such as Wood, Galvanized Sheet Metal, Copper, Aluminium and Vinyl products.",
+              "parentId": "guttering-drainage"
+            },
+            {
+              "id": "drain-covers-guttering-drainage",
+              "name": "Drain Covers (Guttering/Drainage)",
+              "gpcCode": "10005668",
+              "gpcDescription": "Includes any products that may be described/observed as a covering or grate specifically designed to be placed over a pipe or tube which allows for the complete drainage of any excess water in an area. These products are usually temporary covers and can be removed to allow for unblocking of a pipe. Includes products such as Metal Drainage Grates and Composite Wooden Drain Covers.",
+              "parentId": "guttering-drainage"
+            },
+            {
+              "id": "drain-grids-guttering-drainage",
+              "name": "Drain Grids (Guttering/Drainage)",
+              "gpcCode": "10007013",
+              "gpcDescription": "Includes any products that may be described/observed as an open drain cover, specifically designed to prevent material such as leaves to get in the drain, while still allowing fluids to pass.",
+              "parentId": "guttering-drainage"
+            },
+            {
+              "id": "drop-outlets-guttering-drainage",
+              "name": "Drop Outlets (Guttering/Drainage)",
+              "gpcCode": "10003955",
+              "gpcDescription": "Includes any products that may be described/observed as a structural unit that is used to divert water further away from a building to prevent damage to the foundations and exterior walls. These products swing up to allow for mowing around their immediate vicinity. Includes products such as Wood, Galvanized Sheet Metal, Copper, Aluminium and Vinyl products.",
+              "parentId": "guttering-drainage"
+            },
+            {
+              "id": "guttering-parts-fittings",
+              "name": "Guttering Parts/Fittings",
+              "gpcCode": "10002665",
+              "gpcDescription": "Includes any products that may be described/observed as a length of piping fixed horizontally to a wall or eaves of a building to carry rainwater away from the exterior where it could potentially cause damage. Guttering parts assist in carrying rainwater towards the downspouts or drains where the water is safely disposed of. These products are available in different sizes and materials and with many different parts can be adapted for use on most building. Includes products such as Plastic Household Guttering Pipes/Tubes and Ceramic Guttering Bends and Connectors.",
+              "parentId": "guttering-drainage"
+            },
+            {
+              "id": "guttering-drainage-other",
+              "name": "Guttering/Drainage Other",
+              "gpcCode": "10002666",
+              "gpcDescription": "Includes any products that may be described/observed as Guttering/Drainage products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "guttering-drainage"
+            },
+            {
+              "id": "guttering-drainage-variety-packs",
+              "name": "Guttering/Drainage Variety Packs",
+              "gpcCode": "10002664",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Guttering or Draining products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Guttering/Drainage class. Includes products such as Down Spout Parts and Guttering Parts sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "guttering-drainage"
+            },
+            {
+              "id": "lawn-ground-level-drainage-parts-fittings",
+              "name": "Lawn/Ground-Level Drainage Parts/Fittings",
+              "gpcCode": "10002663",
+              "gpcDescription": "Includes any products that may be described/observed as a pipes specifically designed to remove excess water from the ground or soil of a defined area. These products collect and channel the water through pipes into a domestic water holder or into the ground water supply. Includes products such as Wood, Galvanized Sheet Metal, Copper, Aluminium and Vinyl Lawn Pipes as well as Plastic or Composite Underground Drainage Pipes.",
+              "parentId": "guttering-drainage"
+            }
+          ]
+        },
+        {
+          "id": "insulation",
+          "name": "Insulation",
+          "gpcCode": "83010300",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "floor-door",
+              "name": "Floor Door",
+              "gpcCode": "10007930",
+              "gpcDescription": "Includes any products that may be described/observed as a movable, hinged barrier placed on the floor that will close the entrance to a room or building. These products can be designed for interior or external use.",
+              "parentId": "insulation"
+            },
+            {
+              "id": "insulation-boards-rolls-blankets",
+              "name": "Insulation - Boards/Rolls/Blankets",
+              "gpcCode": "10002454",
+              "gpcDescription": "Includes any products that may be described/observed as either a thick blanket that consists of flexible fibres (most commonly mineral wool, plastic fibres, and natural fibres, such as cotton and sheep's wool) or a rigid or soft board comprised of foam (extruded, expanded or foam wether or not between fixed layers). These products are designed for thermal and/or acoustic insulation purposes.",
+              "parentId": "insulation"
+            },
+            {
+              "id": "insulation-loose-fill-spray-foam",
+              "name": "Insulation - Loose Fill/Spray Foam",
+              "gpcCode": "10002456",
+              "gpcDescription": "Includes any products that may be described/observed as a form of insulation poured or blown into cavities to reduce heat loss or to enhance acoustic insulation properties. These products when applied correctly can virtually eliminate energy wasting air filtration in lofts.",
+              "parentId": "insulation"
+            },
+            {
+              "id": "insulation-pipe-lagging-wrapping",
+              "name": "Insulation - Pipe Lagging/Wrapping",
+              "gpcCode": "10005733",
+              "gpcDescription": "Includes any products that may be described/observed as a lagging material to wrap one or multiple pipes to reduce heat loss and condensation or to enhance acoustic insulation properties.",
+              "parentId": "insulation"
+            },
+            {
+              "id": "insulation-radiant-barriers-heat-shields",
+              "name": "Insulation - Radiant Barriers/Heat Shields",
+              "gpcCode": "10005342",
+              "gpcDescription": "Includes any products that may be described/observed as a layer of metal such as aluminium, placed in an airspace to block radiant heat transfer between a heat-radiating surface, for example, a hot roof and a heat-absorbing surface, for example, conventional attic insulation.",
+              "parentId": "insulation"
+            },
+            {
+              "id": "insulation-other",
+              "name": "Insulation Other",
+              "gpcCode": "10002460",
+              "gpcDescription": "Includes any products that may be described/observed as Insulation products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "insulation"
+            },
+            {
+              "id": "insulation-supports-anchors",
+              "name": "Insulation Supports/Anchors",
+              "gpcCode": "10005345",
+              "gpcDescription": "Includes any products that may be described/observed as a device that is used to support insulation materials and to ensure a tight fit when installed between joists.",
+              "parentId": "insulation"
+            },
+            {
+              "id": "insulation-variety-packs",
+              "name": "Insulation Variety Packs",
+              "gpcCode": "10002461",
+              "gpcDescription": "Includes any product that may be described/observed as two or more distinct Insulation products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Insulation class. Includes products such as Insulation Boards and Insulation Spray foam sold together. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "insulation"
+            },
+            {
+              "id": "vapour-barriers-and-insulating-foles",
+              "name": "Vapour Barriers and Insulating Foles",
+              "gpcCode": "10007928",
+              "gpcDescription": "Includes any product that may be described/observed as sheets applied to a wall or a ceiling that prevent dampness or vapour to go through. Sometimes these sheets or foils also have an insulating function. These products may be made of plastic or similar materials. Includes products like vapour barriers, radiator foil.",
+              "parentId": "insulation"
+            },
+            {
+              "id": "waterproofing-sprays-impregnation-agents",
+              "name": "Waterproofing Sprays / Impregnation Agents",
+              "gpcCode": "10007929",
+              "gpcDescription": "Includes any products that may be described/observed as an additional layer designed to be applied over existing material for purposes of waterproofing. These products are designed to increase the efficiency of existing materials.",
+              "parentId": "insulation"
+            }
+          ]
+        },
+        {
+          "id": "lumber-wood-panel-gypsum",
+          "name": "Lumber/Wood Panel/Gypsum",
+          "gpcCode": "83010800",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "dimension-structural-lumber-timber",
+              "name": "Dimension/Structural Lumber/Timber",
+              "gpcCode": "10002536",
+              "gpcDescription": "Includes any products that may be described/observed as produced from wood primarily for use in construction or other activities where strength is the key measure of functionality.",
+              "parentId": "lumber-wood-panel-gypsum"
+            },
+            {
+              "id": "engineered-wood-dimension-structural",
+              "name": "Engineered Wood (Dimension/Structural)",
+              "gpcCode": "10002537",
+              "gpcDescription": "Includes any product that may be described/observed as recycled/reconstituted wood products that are laminated or \"finger-jointed.\" The wood may contain contaminants such as cured adhesives, laminates, and fasteners. Includes products such as particleboard, fibreboard, laminated beams, and I-joists.",
+              "parentId": "lumber-wood-panel-gypsum"
+            },
+            {
+              "id": "gypsum-cement-board",
+              "name": "Gypsum/Cement Board",
+              "gpcCode": "10002540",
+              "gpcDescription": "Includes any products that may be described/observed as an interior or exterior facing panel consisting of a gypsum core sandwiched between paper faces or a cement based wood fibre product used as a backing board. Also known as drywall or plasterboard, these products can also be used in the construcion of ceilings. Includes cement tile backer board, or interior gypsum board.",
+              "parentId": "lumber-wood-panel-gypsum"
+            },
+            {
+              "id": "laths",
+              "name": "Laths",
+              "gpcCode": "10005721",
+              "gpcDescription": "Includes any products that may be described/observed as thin flat strips of wood used in building to form a base or groundwork for plaster, tiles or slates.",
+              "parentId": "lumber-wood-panel-gypsum"
+            },
+            {
+              "id": "lumber-wood-panel-gypsum-other",
+              "name": "Lumber/Wood Panel/Gypsum Other",
+              "gpcCode": "10003932",
+              "gpcDescription": "Includes any products that may be described/observed as Lumber, Wood Panel or Gypsum products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "lumber-wood-panel-gypsum"
+            },
+            {
+              "id": "lumber-wood-panel-gypsum-variety-packs",
+              "name": "Lumber/Wood Panel/Gypsum Variety Packs",
+              "gpcCode": "10003933",
+              "gpcDescription": "Includes any product that may be described/observed as two or more distinct lumber/wood panel/gypsum products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the lumber/wood panel/gypsum class. Includes products such as plywood panels and structural beams sold together. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lumber-wood-panel-gypsum"
+            },
+            {
+              "id": "plywood-osb-softwood",
+              "name": "Plywood/OSB/Softwood",
+              "gpcCode": "10002538",
+              "gpcDescription": "Includes any products that may be described/observed as a piece of wood used for construction or decoration. Includes products such as interior and exterior formed plywood.",
+              "parentId": "lumber-wood-panel-gypsum"
+            },
+            {
+              "id": "poles-pilings-rods",
+              "name": "Poles/Pilings/Rods",
+              "gpcCode": "10005424",
+              "gpcDescription": "Includes any products that may be described/observed as a wooden pole, pile or rod that is typically long and round and used primarily in construction, particularly as supports for other structural members in a building, but also as general multipurpose supports in both the home and garden. Includes products such as pilings, which are driven into the ground to support the foundations of a structure as well as multipurpose dowel rods.",
+              "parentId": "lumber-wood-panel-gypsum"
+            },
+            {
+              "id": "xps-construction-boards-and-tile-elements",
+              "name": "XPS Construction Boards and Tile Elements",
+              "gpcCode": "10007958",
+              "gpcDescription": "Includes any products that may be described/observed as thin flat panel of polystrene used in building to form a base or groundwork for plaster, tiles, slates, etc. Also includes XPS tile elements.",
+              "parentId": "lumber-wood-panel-gypsum"
+            }
+          ]
+        },
+        {
+          "id": "mouldings-millwork-stair-parts",
+          "name": "Mouldings/Millwork/Stair Parts",
+          "gpcCode": "83011000",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "iron-on-edging-strip-banding",
+              "name": "Iron on Edging Strip/Banding",
+              "gpcCode": "10006793",
+              "gpcDescription": "Includes any products that may be described/observed as a  banding to create a smooth, finished edge on woodworking projects especially those that use a laminate product such as plywood. A hot clothes iron activates the adhesive on the banding which causes it to stick to the wood.",
+              "parentId": "mouldings-millwork-stair-parts"
+            },
+            {
+              "id": "jambs-mouldings-millwork",
+              "name": "Jambs (Mouldings/Millwork)",
+              "gpcCode": "10005428",
+              "gpcDescription": "Includes any products that may be described/observed as the vertical framing members located at the sides of an opening. The opening may be that of a door, window or portal entranceway. The products are provided in a range of different finishes and are machined according to the installation requirements. Includes products such as a hinge jamb or strike jamb.",
+              "parentId": "mouldings-millwork-stair-parts"
+            },
+            {
+              "id": "millwork-ornaments",
+              "name": "Millwork - Ornaments",
+              "gpcCode": "10003939",
+              "gpcDescription": "Includes any products that may be described/observed as an accessory used to compliment mouldings, door trim and window trim. These products can either be made from wood or a composite material and some may be used externally to the home. Includes products such as plinth blocks and rosettes.",
+              "parentId": "mouldings-millwork-stair-parts"
+            },
+            {
+              "id": "mouldings",
+              "name": "Mouldings",
+              "gpcCode": "10003934",
+              "gpcDescription": "Includes any products that may be described/observed as ornamental trimmings added to flat surfaces, columns and cornices. These products are installed either internally or externally dependent on their weather resistant properties. Includes products such as a primed panel mould, door finishing list or door trim, end profile, corner profile, crown, door/window frame, panel, stair nosing or stair list, window sill, folding corner.",
+              "parentId": "mouldings-millwork-stair-parts"
+            },
+            {
+              "id": "mouldings-millwork-stair-parts-other",
+              "name": "Mouldings/Millwork/Stair Parts Other",
+              "gpcCode": "10005431",
+              "gpcDescription": "Includes any products that may be described/observed as a moulding, millwork or stairpart product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "mouldings-millwork-stair-parts"
+            },
+            {
+              "id": "mouldings-millwork-stair-parts-variety-packs",
+              "name": "Mouldings/Millwork/Stair Parts Variety Packs",
+              "gpcCode": "10005432",
+              "gpcDescription": "Includes any product that may be described/observed as two or more distinct moulding/millwork or stair part products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the moulding/millwork or stair parts class. Includes products such as wooden mouldings and stair parts sold together. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "mouldings-millwork-stair-parts"
+            },
+            {
+              "id": "newel-posts",
+              "name": "Newel Posts",
+              "gpcCode": "10002512",
+              "gpcDescription": "Includes any product that may be described/observed as the pillars or posts which support the handrail and are rounded or curved at the top and the bottom of the stairs. These posts are larger than any of the verticals in the handrail and may be very ornate. Includes products such as plain or ornate newell posts.",
+              "parentId": "mouldings-millwork-stair-parts"
+            },
+            {
+              "id": "stair-replacement-parts-fittings",
+              "name": "Stair Replacement Parts/Fittings",
+              "gpcCode": "10005425",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts for stairs. Includes products such as treads, risers and balusters required to form stairs as well as gooseneck, end volute and upeasing fittings to stabalise these.",
+              "parentId": "mouldings-millwork-stair-parts"
+            },
+            {
+              "id": "stairs-prefabricated",
+              "name": "Stairs - Prefabricated",
+              "gpcCode": "10002507",
+              "gpcDescription": "Includes any products that may be described/observed as staircase bought pre-made and fitted to the property, instead of constructed at the site. Includes wooden, iron and composite prefabricated stairs.",
+              "parentId": "mouldings-millwork-stair-parts"
+            }
+          ]
+        },
+        {
+          "id": "outdoor-roof-shelter-structures",
+          "name": "Outdoor Roof/Shelter Structures",
+          "gpcCode": "83012600",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "carport",
+              "name": "Carport",
+              "gpcCode": "10006998",
+              "gpcDescription": "Includes any products that can be described/observed as a single story open or semi-open outbuilding used to park cars and offer protection from bad weather. The structure can either be free standing or attached to a wall. Unlike most structures a carport does not have four walls, and usually has one or two.",
+              "parentId": "outdoor-roof-shelter-structures"
+            },
+            {
+              "id": "garage",
+              "name": "Garage",
+              "gpcCode": "10007000",
+              "gpcDescription": "Includes any products that can be described/observed as a closed outdoor structure with a roof, specifically designed to protect vehicles from the weather.",
+              "parentId": "outdoor-roof-shelter-structures"
+            },
+            {
+              "id": "patio-roof-shelter",
+              "name": "Patio Roof/Shelter",
+              "gpcCode": "10006999",
+              "gpcDescription": "Includes any products that can be described/observed as an open or semi-open outdoor structure with a roof, specifically designed for covering a patio or terrace to provide shelter from the weather or provide shade.",
+              "parentId": "outdoor-roof-shelter-structures"
+            }
+          ]
+        },
+        {
+          "id": "painting",
+          "name": "Painting",
+          "gpcCode": "83010400",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "air-hopper-guns-sprayers",
+              "name": "Air Hopper Guns/Sprayers",
+              "gpcCode": "10005805",
+              "gpcDescription": "Includes any products that can be described/observed as a spray gun and large capacity hopper for applying texture on ceilings and walls. The spray gun is regulated by air pressure and uses gravity fed paints and textured materials. Includes a variety of air nozzle tips and orifice dial plates that achieve different spray patterns.",
+              "parentId": "painting"
+            },
+            {
+              "id": "decorative-faux-painting-equipment",
+              "name": "Decorative (Faux) Painting Equipment",
+              "gpcCode": "10005730",
+              "gpcDescription": "Includes any products that may be described/observed as equipment specifically designed to be used for a wide range of decorative painting techniques that achieve a replication of materials such as marble and wood with paint, but also encompasses many other decorative finishes for walls and furniture. Includes products such as a softening brush, stippling brush and dragging brush as well as faux painting kits.",
+              "parentId": "painting"
+            },
+            {
+              "id": "dust-paint-protection-paper-sheets-film",
+              "name": "Dust/Paint Protection Paper/Sheets/Film",
+              "gpcCode": "10005724",
+              "gpcDescription": "Includes any products that may be described/observed as a roll of paper, plastic film or dust sheet that comes with masking tape already fitted to one edge. The product is used to cover and protect furniture, carpets, windows and doors during the painting of a room especially when spray paint is used or against dust etc. It can also include cardboard sheets used to prevent damage from equipment being rolled in, etc.",
+              "parentId": "painting"
+            },
+            {
+              "id": "household-paint-brushes-rollers-applicators",
+              "name": "Household Paint Brushes/Rollers/Applicators",
+              "gpcCode": "10005708",
+              "gpcDescription": "Includes any products that can be described/observed as a brush, roller or applicator on a handle, which is used to apply paint or varnish to surfaces such as walls, floors, doors, windows and roofs. Includes products such as bristle brushes and rollers as well as foam and fabric applicators.",
+              "parentId": "painting"
+            },
+            {
+              "id": "household-paints",
+              "name": "Household Paints",
+              "gpcCode": "10003874",
+              "gpcDescription": "Includes any products that may be described/observed as a general coverage paint used for interior walls and ceilings as well as exterior surfaces. These paints are either emulsion or solvent based and are used as 'general purpose' paints around the consumer household. Includes products such as Matt Wall Paints.",
+              "parentId": "painting"
+            },
+            {
+              "id": "paint-additives-enhancers",
+              "name": "Paint Additives/Enhancers",
+              "gpcCode": "10005655",
+              "gpcDescription": "Includes any products that may be described/observed as substances that when added to paint enhance a certain property. These products can either slightly adjust the colour or improve the texture as examples of their range of capabilities. Includes products such as Paint Tints, Effect Wax, Paint Decals, Paint Dyes as well as Anti-Slip Additive and Paint Calcimines.",
+              "parentId": "painting"
+            },
+            {
+              "id": "paint-stain-strainers",
+              "name": "Paint/Stain Strainers",
+              "gpcCode": "10005706",
+              "gpcDescription": "Includes any products that may be described/observed as a device designed to filter out particles from paints or stains, thus ensuring a smooth application of the paint or stain. Includes conical and beaker strainers with fine mesh inserts and spraygun strainers that fit onto the suction pipe of a spraygun.",
+              "parentId": "painting"
+            },
+            {
+              "id": "paint-varnish-removers-cleaners",
+              "name": "Paint/Varnish Removers/Cleaners",
+              "gpcCode": "10002501",
+              "gpcDescription": "Includes any products that may be described/observed as a chemical substance designed to break down paint or varnish to facilitate its removal from a surface. These products are designed for both indoor or outdoor use and can be used to remove varnish or paint from any chosen surface. Includes products such as Paint Stripper, Cleaning Solvents and Paint Solvents.",
+              "parentId": "painting"
+            },
+            {
+              "id": "painting-other",
+              "name": "Painting Other",
+              "gpcCode": "10002505",
+              "gpcDescription": "Includes any products that may be described/observed as Painting products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "painting"
+            },
+            {
+              "id": "painting-variety-packs",
+              "name": "Painting Variety Packs",
+              "gpcCode": "10002504",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Painting products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Painting class. Includes products such as Paint Brushes sold with Paint. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "painting"
+            },
+            {
+              "id": "preservers-preservatives",
+              "name": "Preservers/Preservatives",
+              "gpcCode": "10005657",
+              "gpcDescription": "Includes any products that may be described/observed as a substance used to coat a surface directly protecting and preserving the target material from destruction and decomposition. These products can be applied to wood to protect against wet and dry rot as well as insects. Includes products such as floorboard preserver, timber preserver and universal wood preservative.",
+              "parentId": "painting"
+            },
+            {
+              "id": "special-purpose-paints",
+              "name": "Special Purpose Paints",
+              "gpcCode": "10002462",
+              "gpcDescription": "Includes any products that may be described/observed as a substance used as a coating to protect or decorate a surface. These products may either be emulsion or solvent based and have been specifically manufactured to be applied to a particular surface. Includes products such as Textured Paints, Bitumous Paints, Metal Care Paints, Anti-slip Floor Paints, Blackboard Paint and Tile Paint, Furniture Paint as well as Marine Paints.",
+              "parentId": "painting"
+            },
+            {
+              "id": "trim-paints",
+              "name": "Trim Paints",
+              "gpcCode": "10005687",
+              "gpcDescription": "Includes any products that may be described/observed as a substance used as a coating to protect or decorate a surface. These paints are based on synthetic resin or acrylic for an opaque finish on a variety of surfaces, mainly wood and metal. Trim Paints are available in both matt and gloss finishes. Includes products such as Matt Trim Paint and Gloss Trim Paint.",
+              "parentId": "painting"
+            },
+            {
+              "id": "undercoats-primers",
+              "name": "Undercoats/Primers",
+              "gpcCode": "10008048",
+              "gpcDescription": "Includes any products that may be described/observed as an Undercoats/Primer used to seal surfaces for finish painting. These coatings are either emulsion or solvent based and are used to prepare surfaces for painting. ",
+              "parentId": "painting"
+            },
+            {
+              "id": "wood-finish-treatments-coatings",
+              "name": "Wood Finish/Treatments/Coatings",
+              "gpcCode": "10002466",
+              "gpcDescription": "Includes any products that may be described/observed as a substance used as a coating to protect and/or achieve a particular effect, or finish, on wood. These products are available as sprays and as liquids and pastes applied to the desired surface. Includes products such as Woodstain, Wood Dye, Varnish and Shellac.",
+              "parentId": "painting"
+            }
+          ]
+        },
+        {
+          "id": "roofing",
+          "name": "Roofing",
+          "gpcCode": "83011700",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "roll-roofing",
+              "name": "Roll Roofing",
+              "gpcCode": "10002684",
+              "gpcDescription": "Includes any products that may be described/observed as sheets of material, in roll form, used to waterproof and insulate a flat roof. These products are typically made of asphalt saturated felt or similar materials. These roofing sheets are sold as continuous rolls of a particular size, usually 36 inches wide, and are secured to the roof through the use of tar. Includes products such as asphalt roll roofing.",
+              "parentId": "roofing"
+            },
+            {
+              "id": "roof-coatings",
+              "name": "Roof Coatings",
+              "gpcCode": "10002688",
+              "gpcDescription": "Includes any products that may be described/observed as an additional layer designed to be applied over existing roofing material for purposes of waterproofing and heat reflection. These products are designed to increase the efficiency of existing roofing materials. Includes products such as White Latex Coating and Asphalt-based Coating.",
+              "parentId": "roofing"
+            },
+            {
+              "id": "roof-vent-flashing-trim-coils",
+              "name": "Roof/Vent Flashing/Trim Coils",
+              "gpcCode": "10002689",
+              "gpcDescription": "Includes any products that may be described/observed as sheet metal or other rigid and semi-flexible material pieces fitted to the joint of any roof intersection, penetration or projection in order to prevent water leakage as well as general weather protection. These products may have the additional benefit of acting as a heat barrier and providing extra strength to an intersection as well as also improving the general appearance of a building. Includes products such as Skylight Flashing and Chimney Flashing.",
+              "parentId": "roofing"
+            },
+            {
+              "id": "roofing-thatch",
+              "name": "Roofing - Thatch",
+              "gpcCode": "10003974",
+              "gpcDescription": "Includes any products that may be described/observed as straw, reeds or similar vegetative materials that are bound together and used as a roof covering. These products are available in various size bundles and often require construction from a skilled Thatcher.",
+              "parentId": "roofing"
+            },
+            {
+              "id": "roofing-accessories",
+              "name": "Roofing Accessories",
+              "gpcCode": "10003977",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to enhance the performance or appearance of Roofing or Exterior Trim products. Includes products such as Roofing Brushes, Roofing Drains, Soffits, Roofing Mops, Roof Curbs and Roof Rippers as well as Roofing Fabric and Roofing Felt.",
+              "parentId": "roofing"
+            },
+            {
+              "id": "roofing-membranes",
+              "name": "Roofing Membranes",
+              "gpcCode": "10002687",
+              "gpcDescription": "Includes any products that may be described/observed as a thin pliable sheet of material applied to roofs, typically for weatherproofing, as well as increasing the insulating properties of the complete roof structure. These products may be made from rubber, asphalt, PVC or similar polymeric material. Includes products such as PVC Roof Membranes.",
+              "parentId": "roofing"
+            },
+            {
+              "id": "roofing-other",
+              "name": "Roofing Other",
+              "gpcCode": "10002692",
+              "gpcDescription": "Includes any products that may be described/observed as Roofing/Exterior Trim products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "roofing"
+            },
+            {
+              "id": "roofing-panels-slabs",
+              "name": "Roofing Panels/Slabs",
+              "gpcCode": "10002686",
+              "gpcDescription": "Includes any products that may be described/observed as large rectangles of roofing materials that are fitted together to form a roof. These panels are larger than slates or tiles and when fitted form a rigid enhancement to the existing structure beneath them. These products may be metal, plastic or imitation slate. Includes products such as rigid metal roofing panels.",
+              "parentId": "roofing"
+            },
+            {
+              "id": "roofing-tiles-slates-shingles-shakes",
+              "name": "Roofing Tiles/Slates/Shingles/Shakes",
+              "gpcCode": "10002683",
+              "gpcDescription": "Includes any products that may be described/observed as interconnecting/overlapping, mostly thin, sometimes wedge-shaped, rectangles of material used to cover a roof.Includes products made from clay, cement, metal, plastic, glass fibre, natural stone or wood or flat rectangular pieces of slate, mineral fibre, glass fibre or composition asphalt installed on a roof primarily to prevent water seepage.",
+              "parentId": "roofing"
+            },
+            {
+              "id": "roofing-variety-packs",
+              "name": "Roofing Variety Packs",
+              "gpcCode": "10002693",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Roofing/Exterior Trim products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Roofing/Exterior Trim class. Includes products such as Roofing Membranes sold with Roofing Panels. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "roofing"
+            }
+          ]
+        },
+        {
+          "id": "sealants-fillers-adhesives-defect-agents",
+          "name": "Sealants/Fillers/Adhesives/Defect Agents",
+          "gpcCode": "83012100",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "caulking",
+              "name": "Caulking",
+              "gpcCode": "10003208",
+              "gpcDescription": "Includes any products that may be described/observed as a mastic or asphalt plastic cement used to fill gaps and joints to prevent leaks. Caulking is a flexible material that can be used to seal a gap between two surfaces such as siding panels or the corners in bath tub walls. Includes products such as Exterior Caulking and Interior Caulking.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "construction-compound",
+              "name": "Construction Compound",
+              "gpcCode": "10008000",
+              "gpcDescription": "Includes any products that may be described/observed as a  bonding compound to directly bond plaster boards to flat and secure walls, such as masonry and bricks, by applying the compound in evenly spaced dots and dabs across the surface of the wall or plasterboard.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "defect-crack-examination-agents",
+              "name": "Defect/Crack Examination Agents",
+              "gpcCode": "10007722",
+              "gpcDescription": "Includes any products that may be described/observed as an agent for the detection of material defects. Specifically designed to detect cure cracks, fatigue cracks, porosity, grinding cracks, welding faults and other surface defects.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "fillers",
+              "name": "Fillers",
+              "gpcCode": "10003205",
+              "gpcDescription": "Includes any products that may be described/observed as a filler for gaps and holes, which creates an even, uninterrupted surface. Includes products such as a ready-made paste, or a powder that is mixed before applying to the target surface, or wooden strips used to fill gaps when cabinet-making.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "glue-adhesive",
+              "name": "Glue/Adhesive",
+              "gpcCode": "10003207",
+              "gpcDescription": "Includes any products that may be described/observed as a contact adhesive. These products are available in many different forms and can either be specifically designed for a particular surface or can be multi-purpose. Includes products such as Solid Glue and Liquid Glue, Contact Adhesive and Glue ready to use.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "grout",
+              "name": "Grout",
+              "gpcCode": "10003203",
+              "gpcDescription": "Includes any products that may be described/observed as a thin mortar used in masonry work to fill joints between bricks, blocks and tiles. These products are a mixture of cement, sand and water and are sometimes used under base plates to obtain uniform bearing surfaces. Includes products such as Tiling Grout and Resin Grout.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "preprocessing-solution",
+              "name": "Preprocessing Solution",
+              "gpcCode": "10008001",
+              "gpcDescription": "Includes any products that can be applied on porous or non-porous surfaces in order to make it more suitable for coating, glue, etc.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "sealants",
+              "name": "Sealants",
+              "gpcCode": "10003204",
+              "gpcDescription": "Includes any products that may be described/observed as a compound used to fill and seal a joint. These products contain a base material, which changes, based on the target surface of application. Sealants are either specified for Indoor or Outdoor usage but can, in some instances, be applied in both environments. Includes products such as Mould Resistant Outdoor Sealant and Water-based Sealant, sealing membranes and sealing strips.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "sealants-fillers-adhesives-defect-agents-other",
+              "name": "Sealants/Fillers/Adhesives/Defect Agents Other",
+              "gpcCode": "10003210",
+              "gpcDescription": "Includes any products that may be described/observed as a sealant, filler or adhesive, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "sealants-fillers-adhesives-defect-agents-variety-packs",
+              "name": "Sealants/Fillers/Adhesives/Defect Agents Variety Packs",
+              "gpcCode": "10003211",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct sealant, filler or adhesive products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the sealant fillers/adhesive class. Includes products such as Glue sold with Tape. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            },
+            {
+              "id": "tape-diy",
+              "name": "Tape (DIY)",
+              "gpcCode": "10003206",
+              "gpcDescription": "Includes any products that may be described/observed as a long thin piece of cloth or paper as used for binding or fastening, often coated in an adhesive substance on one or both sides. Includes products such as Duct Tape and Masking Tape.",
+              "parentId": "sealants-fillers-adhesives-defect-agents"
+            }
+          ]
+        },
+        {
+          "id": "siding-exterior-trim",
+          "name": "Siding/Exterior Trim",
+          "gpcCode": "83012300",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "exterior-trim-corbels-pediments",
+              "name": "Exterior Trim - Corbels/Pediments",
+              "gpcCode": "10003966",
+              "gpcDescription": "Includes any products that may be described/observed as a projecting block of stone built into a wall or roof during construction; step-wise construction, as in an arch. Corbels are either used to support other projections above them (such as cornices, window hoods) or for purely ornamental reasons. Pediments are peaked, rounded or other decorative panels above doorways, usually triangular in shape but can be scrolled or segmental. Includes products such as Gables, Decorative Corbels or Scrolled Pediments.",
+              "parentId": "siding-exterior-trim"
+            },
+            {
+              "id": "exterior-trim-siding",
+              "name": "Exterior Trim - Siding",
+              "gpcCode": "10002677",
+              "gpcDescription": "Includes any products that may be described/observed as a covering applied to the outside of a building to make it weatherproof as well as improve the aesthetics of the building exterior. Includes products made from engineered wood, natural wood, aluminium and vinyl, that are assembled together with joiners, couplers and corner beading.",
+              "parentId": "siding-exterior-trim"
+            },
+            {
+              "id": "exterior-trim-siding-accessories",
+              "name": "Exterior Trim - Siding Accessories",
+              "gpcCode": "10005705",
+              "gpcDescription": "Includes any products that may be described/observed as an accessory used in the assembly of exterior wall siding. Includes products such as joiners, couplers and corner beading.",
+              "parentId": "siding-exterior-trim"
+            },
+            {
+              "id": "exterior-trim-skirting-underpinning",
+              "name": "Exterior Trim - Skirting/Underpinning",
+              "gpcCode": "10005731",
+              "gpcDescription": "Includes any products that may be described/observed as a panel of wood, stone or vinyl adhered to the base of an elevated building or structure such as a mobile home or shed. These products add stylish finish, keep animals out and help to insulate mobile homes.",
+              "parentId": "siding-exterior-trim"
+            },
+            {
+              "id": "exterior-trim-veneers",
+              "name": "Exterior Trim - Veneers",
+              "gpcCode": "10003969",
+              "gpcDescription": "Includes any products that may be described/observed as a fine layer of wood or stone adhered to the face of a substrate. These very thin sheets of wood, stone or brick literally are sliced from their parent material and used to cover the exterior of a home wall, to create the illusion of a more \"solid\" structure. Includes products such as Brick and Stone Veneer as well as Wood Veneer.",
+              "parentId": "siding-exterior-trim"
+            }
+          ]
+        },
+        {
+          "id": "structural-components-assemblies",
+          "name": "Structural Components/Assemblies",
+          "gpcCode": "83010700",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "columns-structural",
+              "name": "Columns (Structural)",
+              "gpcCode": "10002530",
+              "gpcDescription": "Includes any products that may be described/observed as slender verticals designed to carry a superimposed load. Columns are frequently used to support beams or arches on which the upper parts of walls or ceilings rest. Includes products such as reinforced columns, decorative columns.",
+              "parentId": "structural-components-assemblies"
+            },
+            {
+              "id": "floor-trusses",
+              "name": "Floor Trusses",
+              "gpcCode": "10002533",
+              "gpcDescription": "Includes any products that may be described/observed as engineered structural members used to construct floors. These products support the weight of everything above them. Includes products such as open-web trusses.",
+              "parentId": "structural-components-assemblies"
+            },
+            {
+              "id": "metal-components-dimension-structural",
+              "name": "Metal Components (Dimension/Structural)",
+              "gpcCode": "10008281",
+              "gpcDescription": "Includes any products that may be described/observed as a thin metal component (profiles or hangers) prepared for use as building material. These products can be used as a frame for non-loadbearing gypsum board systems such as partition walls, wall linings and ceilings.",
+              "parentId": "structural-components-assemblies"
+            },
+            {
+              "id": "mobile-home-assembly-set-up-equipment",
+              "name": "Mobile Home Assembly/Set-up Equipment",
+              "gpcCode": "10005732",
+              "gpcDescription": "Includes any products that can be described/observed as specific equipment used in the assembly and positioning of a mobile home. Includes products such as mobile home anchors, equalisers, strapping and wedges.",
+              "parentId": "structural-components-assemblies"
+            },
+            {
+              "id": "roof-trusses",
+              "name": "Roof Trusses",
+              "gpcCode": "10005659",
+              "gpcDescription": "Includes any products that may be described/observed as a structural network of timbers that form a rigid structure to support the roof of a building. These engineered building components support the roof in place of rafters. Roof trusses are usually constructed in a triangular shape with a number of interconnected pieces that spread a load evenly across the truss. Includes products such as Triangular Oak Roof Trusses and Raised Tie Roof Trusses.",
+              "parentId": "structural-components-assemblies"
+            },
+            {
+              "id": "structural-beams",
+              "name": "Structural Beams",
+              "gpcCode": "10002534",
+              "gpcDescription": "Includes any products that may be described/observed as a structural beam which is a component used in construction to add strength to any structure or design. Manufactured of steel, concrete or wood, the structural beam is typically used to span an open element of a structure, as well as to give support underneath a very heavy component of a structure. Includes products such as Steel I-Beams and concrete lintels etc.",
+              "parentId": "structural-components-assemblies"
+            },
+            {
+              "id": "structural-components-assemblies-other",
+              "name": "Structural Components/Assemblies Other",
+              "gpcCode": "10003942",
+              "gpcDescription": "Includes any products that may be described/observed as Structural Hardware products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "structural-components-assemblies"
+            },
+            {
+              "id": "structural-components-assemblies-replacement-parts-accessories",
+              "name": "Structural Components/Assemblies Replacement Parts/Accessories",
+              "gpcCode": "10003943",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory or replacement part for Structural Hardware. Includes products such as Hurricane Ties, Shims and Spacers.",
+              "parentId": "structural-components-assemblies"
+            }
+          ]
+        },
+        {
+          "id": "wall-ceiling-flooring-coverings",
+          "name": "Wall/Ceiling/Flooring Coverings",
+          "gpcCode": "83010100",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "baseboards-crown-moldings",
+              "name": "Baseboards/Crown Moldings",
+              "gpcCode": "10007607",
+              "gpcDescription": "Includes any products that may be used at the connection point between a wall and the floor or a wall and the ceiling for aesthetic or performance purposes.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "baseboards-crown-moldings-accessories",
+              "name": "Baseboards/Crown Moldings Accessories",
+              "gpcCode": "10008452",
+              "gpcDescription": "Includes any products that may be used as an accessory for crown moldings or baseboards.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "ceiling-grid-systems",
+              "name": "Ceiling Grid Systems",
+              "gpcCode": "10003981",
+              "gpcDescription": "Includes any products that may be described/observed as a system of supports that can either be suspended or directly connected to the existing ceiling structure in place. These supports are designed to hold ceiling tiles in place and present an aesthetically pleasing environment for the occupier. Lighting cables and network cables are kept out of sight, contained above the grid system. These products are available in a variety of designs dependent on the user requirements. Includes products such as Suspended Plastic Ceiling Grid Systems and Direct Connection Ceiling Grid Systems.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "coping-stones",
+              "name": "Coping Stones",
+              "gpcCode": "10006791",
+              "gpcDescription": "Includes any products that may be described/observed as the highest stone in a wall or structure that is a covering of a wall, different from the used stones in the wall of structure. It is considered to be the finishing touch. ",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "corner-edging-plastering-conductor-profile",
+              "name": "Corner Edging/Plastering Conductor Profile",
+              "gpcCode": "10008046",
+              "gpcDescription": "Includes all products that can be described/observed as a guide that can be used for plastering.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "corner-guards",
+              "name": "Corner Guards",
+              "gpcCode": "10005722",
+              "gpcDescription": "Includes any products that may be described/observed as a product that protects painted and wallpapered corners from dirt and chipping. Includes products made from clear plastic for interior corners and wooden products for exterior corners.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "edge-trims",
+              "name": "Edge Trims",
+              "gpcCode": "10007608",
+              "gpcDescription": "Includes any products that may be used to smooth the edge of a corner formed by two or more surfaces for design or performance purposes. Item could be made of wood, plastic and other materials.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "entrance-grid-mat-frame",
+              "name": "Entrance Grid/Mat Frame",
+              "gpcCode": "10006901",
+              "gpcDescription": "Includes any products that may be described/observed as a product that is intended to help remove dirt and other unwanted materials from entering a building when a person walks over it. These products are usually outside of a building, but can also be found inside of a doorway. ",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "finishing-and-texture-coatings",
+              "name": "Finishing and Texture Coatings",
+              "gpcCode": "10008116",
+              "gpcDescription": "Includes all products that can be described or observed as a substance used as a wall and ceiling finishing. Examples include trowel or roll-on texture finishes like Venetian plaster, polymer textured finishing plaster, etc.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-carpet",
+              "name": "Flooring - Carpet",
+              "gpcCode": "10002446",
+              "gpcDescription": "Includes any products that can be described/observed as a floor covering formed of textile fibres installed around the home. These products can be internal or external to the home and are available in many different styles. Includes products such as wool carpets. ",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-ceramic-porcelain-tiles",
+              "name": "Flooring - Ceramic/Porcelain Tiles",
+              "gpcCode": "10002443",
+              "gpcDescription": "Includes any products that may be described/observed as a flat slab or tile, typically of fired clay, used to cover the floor. The tiles are designed for use on the floor, hence their resilient structure, but can be applied to walls as a decorative covering. These products are available for both indoor and outdoor application. ",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-cork-bamboo",
+              "name": "Flooring - Cork/Bamboo",
+              "gpcCode": "10002449",
+              "gpcDescription": "Includes any products that may be described/observed as a floor covering formed of the bark of the cork oak tree or the hard stems of bamboo grass. These products are used in used in numbers to form patterns across a designated area.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-engineered-wood",
+              "name": "Flooring - Engineered Wood",
+              "gpcCode": "10005370",
+              "gpcDescription": "Includes any products that may be described/observed as a floor covering formed of semi-solid wood. Engineered wood flooring comprises of several layers, with a hard wood top layer.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-laminate",
+              "name": "Flooring - Laminate",
+              "gpcCode": "10002451",
+              "gpcDescription": "Includes any products that may be described/observed as a floor covering formed of a composite material made of different materials bonded together.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-solid-wood",
+              "name": "Flooring - Solid Wood",
+              "gpcCode": "10002447",
+              "gpcDescription": "Includes any products that may be described/observed as indoor or outdoor floor covering formed of solid planks, strips and tiles of wood. Solid wood flooring is usually made from hard wood species and is available with or without patterns and mosaics.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-stone-marble",
+              "name": "Flooring - Stone/Marble",
+              "gpcCode": "10002450",
+              "gpcDescription": "Includes any products that may be described/observed as a floor covering formed of stone or marble. Includes products such as prefinished marble slabs.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-underlay",
+              "name": "Flooring - Underlay",
+              "gpcCode": "10006841",
+              "gpcDescription": "Includes any product that may be described/observed as a floor underlay. These products may be supplied as a roll, sheet or tiles and are used to go underneath floors in the home, office or workshop.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-vinyl-rubber-linoleum",
+              "name": "Flooring - Vinyl/Rubber/Linoleum",
+              "gpcCode": "10002448",
+              "gpcDescription": "Includes any products that may be described/observed as a floor covering made of vinyl, plastic, rubber or linoleum. These products may be supplied as a roll, sheet, slats or tiles and are used to cover floors in the home, office or workshop.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-accessories",
+              "name": "Flooring Accessories",
+              "gpcCode": "10002444",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to enhance the performance or appearance of flooring products or to assemble the flooring product. Includes products such as rosettes, spacers, and tile carriers.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-other",
+              "name": "Flooring Other",
+              "gpcCode": "10002452",
+              "gpcDescription": "Includes any products that may be described/observed as Flooring products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "flooring-variety-packs",
+              "name": "Flooring Variety Packs",
+              "gpcCode": "10002453",
+              "gpcDescription": "Includes any product that may be described/observed as two or more distinct flooring products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the flooring class. Includes products such as Floor Tiles and Floor Tile Accessories sold together. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "shims-spacers",
+              "name": "Shims/Spacers",
+              "gpcCode": "10002532",
+              "gpcDescription": "Includes any product that may be described/observed as a thin, often tapered, piece of material, such as metal, used to fill in space between things for support, adjustment, or levelling. Includes products such as adjustable spacer, spindle spacer.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "wall-and-ceiling-coverings-sheets-panels-slabs",
+              "name": "Wall and ceiling Coverings - Sheets/Panels/Slabs",
+              "gpcCode": "10002433",
+              "gpcDescription": "Includes any products that may be described/observed as a sheet, panel or slab designed to be mounted on interior walls or ceilings to enhance the appeal. These products are available in a variety of materials and sizes dependent on the user requirements. Includes products such as wooden interior wall panels, interior metal decorative sheets, decorative cork sheets and polycarbonate interior panels as well as interior stone cladding slabs or panels.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "wall-coverings-rolls",
+              "name": "Wall Coverings - Rolls",
+              "gpcCode": "10002429",
+              "gpcDescription": "Includes any products that may be described/observed as a non-rigid decorative covering for walls. These products are presented in Rolls before being cut to the required length and applied as a wall covering. These products are available in a variety of different materials dependent required effect.  This includes products such as wallpaper rolls with patterns, non-woven wallpaper, paper wallpaper, foam vinyl, photo wallpaper, fiberglass wallpaper, vinyl wallpaper, renovation fleece, cork wallpaper, textile wallpaper, acrylic wallpaper, wallpaper borders, and smooth fabric wall covering rolls.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "wall-coverings-tiles",
+              "name": "Wall Coverings - Tiles",
+              "gpcCode": "10002431",
+              "gpcDescription": "Includes any products that may be described/observed as a thin flat slab, typically of fired clay, used to cover surfaces. These products are specifically designed to be used on walls. Wall Tiles have four sides of the same length joined at right angles. Wall tiles are used as decoration, most commonly, in the kitchen or bathroom. Includes products such as Ceramic Wall Tiles and Cork Wall Tiles.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "wall-ceiling-covering-accessories",
+              "name": "Wall/Ceiling Covering Accessories",
+              "gpcCode": "10002432",
+              "gpcDescription": "Includes any products that may be described/observed as an item designed to enhance the performance or appearance of Wall/Ceiling/Shelf Coverings. Includes products such as Paper Borders and Paper Murals.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "wall-ceiling-coverings-other",
+              "name": "Wall/Ceiling Coverings Other",
+              "gpcCode": "10002441",
+              "gpcDescription": "Includes any products that may be described/observed as Wall, Ceiling or Shelf Coverings products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            },
+            {
+              "id": "wall-ceiling-coverings-variety-packs",
+              "name": "Wall/Ceiling Coverings Variety Packs",
+              "gpcCode": "10002442",
+              "gpcDescription": "Includes any product that may be described/observed as two or more distinct Wall Coverings products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Wall Coverings class. Includes products such as wallpaper sold with paper borders. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "wall-ceiling-flooring-coverings"
+            }
+          ]
+        },
+        {
+          "id": "window-parts-accessories",
+          "name": "Window Parts/Accessories",
+          "gpcCode": "83010900",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "awnings-non-powered",
+              "name": "Awnings - Non Powered",
+              "gpcCode": "10005291",
+              "gpcDescription": "Includes any products that may be described/observed as a shelter constructed of non-rigid materials on a supporting framework which projects from and is supported by an exterior wall of a building. Includes products such as manually-operated collapsible awnings.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "awnings-powered",
+              "name": "Awnings - Powered",
+              "gpcCode": "10002551",
+              "gpcDescription": "Includes any products that may be described/observed as an electrically-operated shelter constructed of non-rigid materials on a supporting framework which projects from and is supported by an exterior wall of a building. Includes products such as collapsible awnings.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "insect-screens-insect-curtains",
+              "name": "Insect Screens/Insect Curtains",
+              "gpcCode": "10002550",
+              "gpcDescription": "Includes any products that may be described/observed as a woven mesh screen to keep insects from entering a building through an open window or door. These products may be decorated. Includes products such as metal screens, wooden screens, window screens, door screens, screens with frames, screens with hook and loop or magnets, separate strips.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-balances",
+              "name": "Window Balances",
+              "gpcCode": "10002557",
+              "gpcDescription": "Includes any products that may be described/observed as a regulator for the movement sliding sash windows.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-film",
+              "name": "Window Film",
+              "gpcCode": "10002547",
+              "gpcDescription": "Includes any products that may be described/observed as a film composed of a polyester substrate to which a scratch resistant coating is applied on one side, and a mounting adhesive layer to the other side. These products may be decorative in purpose, or functional, i.e. designed to improve heat retention, protect glass and/or reduce UV rays. Includes products such as metallized/solar control film, standard film.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-frames",
+              "name": "Window Frames",
+              "gpcCode": "10002543",
+              "gpcDescription": "Includes any products that may be described/observed as the framework that supports a window. Typically these products are manufactured from wood, metal, UPVC or similar materials.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-handles",
+              "name": "Window Handles",
+              "gpcCode": "10002552",
+              "gpcDescription": "Includes any products that may be described/observed as an appendage to a window designed to be held in order to use or move the window. Includes products such as knobs, pull-handles, twist-handles, slide-handles, locking handles.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-locks-bolts",
+              "name": "Window Locks/Bolts",
+              "gpcCode": "10002548",
+              "gpcDescription": "Includes any products that may be described/observed as a fastener fitted to a window to keep it firmly closed. Includes products such as crescent window lock, sash window lock, sliding bolt.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-operators",
+              "name": "Window Operators",
+              "gpcCode": "10005298",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to assist in opening difficult our of reach windows. Includes products that can be installed to conventional side hung, top hung and bottom hung casements, skylights and roof windows.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-parts-accessories-other",
+              "name": "Window Parts/Accessories Other",
+              "gpcCode": "10005292",
+              "gpcDescription": "Includes any products that may be described/observed as window parts or accessories, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-parts-accessories-variety-packs",
+              "name": "Window Parts/Accessories Variety Packs",
+              "gpcCode": "10003944",
+              "gpcDescription": "Includes any product that may be described/observed as two or more distinct window parts or accessories products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Window Parts/Accessories class. Includes products such as Window locks sold with Window handles. Items received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-screens-replacement-parts-accessories",
+              "name": "Window Screens - Replacement Parts/Accessories",
+              "gpcCode": "10008286",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for window screens. Includes products such as mesh, rollers and mounting sets.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-shutter-motorisation",
+              "name": "Window Shutter Motorisation",
+              "gpcCode": "10007039",
+              "gpcDescription": "Includes any products that may be described/observed as a motorisation element to windows shutters. A window shutter is an accessory featuring flat, louvred or corrugated panels that may be singular or paired and are attached to the exterior or interior frame of a window. It only concerns the motorisation mechanism as a separate item.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-shutters",
+              "name": "Window Shutters",
+              "gpcCode": "10003968",
+              "gpcDescription": "Includes any products that may be described/observed as a window accessory featuring flat, louvred or corrugated panels that may be singular or paired and are attached to the exterior or interior frame of a window. Depending on design, the shutters provide control of air and light into the building and some products are designed to provide protection from storms and hurricanes. Includes products made of wood, metal or plastic and the products may be fixed or fold-away.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "window-wells",
+              "name": "Window Wells",
+              "gpcCode": "10002554",
+              "gpcDescription": "Includes any products that may be described/observed as the installation fitted in the well outside a basement window to allow light and ventilation.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "windows-replacement-sash-non-wood",
+              "name": "Windows - Replacement Sash - Non Wood",
+              "gpcCode": "10005293",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for non-wood sach window.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "windows-replacement-sash-wood",
+              "name": "Windows - Replacement Sash - Wood",
+              "gpcCode": "10005294",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for wood sach window.",
+              "parentId": "window-parts-accessories"
+            },
+            {
+              "id": "windowsill",
+              "name": "Windowsill",
+              "gpcCode": "10006792",
+              "gpcDescription": "Includes any products that may be described/observed as a flat, usually rectangular structure placed under a window, composed of a rigid material, such as wood, stone or vinyl.",
+              "parentId": "window-parts-accessories"
+            }
+          ]
+        },
+        {
+          "id": "windows",
+          "name": "Windows",
+          "gpcCode": "83012200",
+          "parentId": "building-products",
+          "children": [
+            {
+              "id": "skylights-clad-wood",
+              "name": "Skylights - Clad Wood",
+              "gpcCode": "10005289",
+              "gpcDescription": "Includes any products that may be described/observed as a window in a roof to admit daylight. Includes wood clad plastic or metal framed skylights.",
+              "parentId": "windows"
+            },
+            {
+              "id": "skylights-non-wood",
+              "name": "Skylights - Non Wood",
+              "gpcCode": "10002544",
+              "gpcDescription": "Includes any products that may be described/observed as a window in a roof to admit daylight. Includes plastic or metal framed skylights.",
+              "parentId": "windows"
+            },
+            {
+              "id": "skylights-tubular",
+              "name": "Skylights - Tubular",
+              "gpcCode": "10005288",
+              "gpcDescription": "Includes any products that may be described/observed as a window in a roof to admit daylight. Such products have a roof-mounted light collector consisting of an acrylic lens set in a metal frame.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-bay-bow-clad-wood",
+              "name": "Windows - Bay/Bow - Clad Wood",
+              "gpcCode": "10005297",
+              "gpcDescription": "Includes any products that may be described/observed as a large wood-clad frame window or series of windows projecting from the outer wall of a building and forming a recess within.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-bay-bow-non-wood",
+              "name": "Windows - Bay/Bow - Non Wood",
+              "gpcCode": "10005296",
+              "gpcDescription": "Includes any products that may be described/observed as a large plastic or metal frame window or series of windows projecting from the outer wall of a building and forming a recess within.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-bay-bow-wood",
+              "name": "Windows - Bay/Bow - Wood",
+              "gpcCode": "10005295",
+              "gpcDescription": "Includes any products that may be described/observed as a large wood frame window or series of windows projecting from the outer wall of a building and forming a recess within.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-combination-units-clad-wood",
+              "name": "Windows - Combination Units - Clad Wood",
+              "gpcCode": "10005287",
+              "gpcDescription": "Includes any products that may be described/observed as a glass multipanel windowpane contained in a wood-clad frame, pre-assembled and ready to be built into the wall or roof of a building in order to admit light and air.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-combination-units-non-wood",
+              "name": "Windows - Combination Units - Non Wood",
+              "gpcCode": "10005286",
+              "gpcDescription": "Includes any products that may be described/observed as a glass multipanel windowpane contained in a plastic or metal frame, pre-assembled and ready to be built into the wall or roof of a building in order to admit light and air.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-combination-units-wood",
+              "name": "Windows - Combination Units - Wood",
+              "gpcCode": "10002542",
+              "gpcDescription": "Includes any products that may be described/observed as a glass multipanel windowpane contained in a wood frame, pre-assembled and ready to be built into the wall or roof of a building in order to admit light and air.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-other",
+              "name": "Windows - Other",
+              "gpcCode": "10005290",
+              "gpcDescription": "Includes any products that may be described/observed as windows, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-single-units-clad-wood",
+              "name": "Windows - Single Units - Clad Wood",
+              "gpcCode": "10005284",
+              "gpcDescription": "Includes any products that may be described/observed as a single framework of wood-clad plastic or metal that contains a glass windowpane and is built into a wall or roof to admit light or air.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-single-units-non-wood",
+              "name": "Windows - Single Units - Non Wood",
+              "gpcCode": "10005285",
+              "gpcDescription": "Includes any products that may be described/observed as a single framework of plastic or metal that contains a glass windowpane and is built into a wall or roof to admit light or air.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-single-units-wood",
+              "name": "Windows - Single Units - Wood",
+              "gpcCode": "10003946",
+              "gpcDescription": "Includes any products that may be described/observed as a glass single windowpane contained in a solid wood frame, pre-assembled and ready to be built into the wall or roof of a building in order to admit light and air.",
+              "parentId": "windows"
+            },
+            {
+              "id": "windows-storm",
+              "name": "Windows - Storm",
+              "gpcCode": "10002553",
+              "gpcDescription": "Includes any products that may be described/observed as a second set of windows installed outside or inside the primary windows to provide additional insulation and wind protection.",
+              "parentId": "windows"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

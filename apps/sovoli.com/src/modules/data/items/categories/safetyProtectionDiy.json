@@ -1,0 +1,65 @@
+{
+  "id": "safety-protection-diy",
+  "name": "Safety/Protection - DIY",
+  "gpcCode": "85000000",
+  "children": [
+    {
+      "id": "safety-protection-diy",
+      "name": "Safety/Protection - DIY",
+      "gpcCode": "85010000",
+      "parentId": "safety-protection-diy",
+      "children": [
+        {
+          "id": "protective-collective-aids-diy",
+          "name": "Protective Collective Aids - DIY",
+          "gpcCode": "85010200",
+          "parentId": "safety-protection-diy",
+          "children": [
+            {
+              "id": "absorbents-diy",
+              "name": "Absorbents (DIY)",
+              "gpcCode": "10005626",
+              "gpcDescription": "Includes any products that may be described/observed as a material having the capacity or tendency to absorb another substance. These products have the ability to attract dissolved or finely dispersed substances from another medium thus separating the two. Absorbents are used in environmental clean up to control oil spills and can take various physical forms with which to achieve their objective. Includes products such as absorbent pads, sheets and pillows.",
+              "parentId": "protective-collective-aids-diy"
+            },
+            {
+              "id": "antifatigue-aids-diy",
+              "name": "Antifatigue Aids (DIY)",
+              "gpcCode": "10005627",
+              "gpcDescription": "Includes any products that may be described/observed as a workers aid to eliminating tiredness through encouraging correct posture or generally improving comfort for the worker. These products are available in various styles and forms but are specifically introduced to help eradicate any aches or tiredness. Includes products such as Antifatigue Mats and Antifatigue Flooring.",
+              "parentId": "protective-collective-aids-diy"
+            },
+            {
+              "id": "antislip-aids-diy",
+              "name": "Antislip Aids (DIY)",
+              "gpcCode": "10005628",
+              "gpcDescription": "Includes any products that may be described/observed as a, rigid or flexible, object specifically designed to provide extra grip for the user as they walk over a surface. These products may take various physical forms and provide different amounts of grip. Includes products such as mats with adhesive properties and anti-slip panels. ",
+              "parentId": "protective-collective-aids-diy"
+            },
+            {
+              "id": "protective-collective-aids-other",
+              "name": "Protective Collective Aids Other",
+              "gpcCode": "10005646",
+              "gpcDescription": "Includes any products that can be described/observed as protective collective aids, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "protective-collective-aids-diy"
+            },
+            {
+              "id": "protective-collective-aids-replacement-parts-accessories",
+              "name": "Protective Collective Aids Replacement Parts/Accessories",
+              "gpcCode": "10005631",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for Protective Collective Aid products. Includes products such as replacement parts for anti fatigue mats and pillows.",
+              "parentId": "protective-collective-aids-diy"
+            },
+            {
+              "id": "safety-nets-curtains-barriers",
+              "name": "Safety Nets/Curtains/Barriers",
+              "gpcCode": "10005630",
+              "gpcDescription": "Includes any products that may be described/observed as a barrier, either flexible or rigid, to protect against sparks, chippings when carrying out home improvement activities. These products are not directly worn by the user but form a sealed, enclosed environment in which they can safely operate. Includes products such as safety meshes and safety curtains as well as rigid safety barriers.",
+              "parentId": "protective-collective-aids-diy"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

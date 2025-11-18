@@ -1,0 +1,350 @@
+{
+  "id": "communications",
+  "name": "Communications",
+  "gpcCode": "66000000",
+  "children": [
+    {
+      "id": "communications",
+      "name": "Communications",
+      "gpcCode": "66010000",
+      "parentId": "communications",
+      "children": [
+        {
+          "id": "communication-accessories",
+          "name": "Communication Accessories",
+          "gpcCode": "66010100",
+          "parentId": "communications",
+          "children": [
+            {
+              "id": "caller-id-displays",
+              "name": "Caller ID Displays",
+              "gpcCode": "10001174",
+              "gpcDescription": "Includes any products that may be described/observed as a device designed to be attached to a telephone to display or announce the number of an incoming caller. Includes products such as Caller IDs with digital displays and audio announcements. ",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "communication-accessories-other",
+              "name": "Communication Accessories Other",
+              "gpcCode": "10001379",
+              "gpcDescription": "Includes any products that may be described/observed as Communication Accessories products, where the user of the schema is not able to classify the products in existing bricks within the schema. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "communication-accessories-variety-packs",
+              "name": "Communication Accessories Variety Packs",
+              "gpcCode": "10001380",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Communications Accessory products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Communication Accessories class. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as a Hands-Free Set sold with a Mobile Phone Radiation Guard. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "communication-headphones-replacement-parts-accessories",
+              "name": "Communication Headphones Replacement Parts/Accessories",
+              "gpcCode": "10005745",
+              "gpcDescription": "Includes any products that may be described/observed as a replacement part or accessory for communication headphones that incorporate equipment such as earphones and a microphone. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as ear pads and headbands.",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "communications-hands-free-kits-headphones",
+              "name": "Communications Hands Free Kits/Headphones",
+              "gpcCode": "10001181",
+              "gpcDescription": "Includes any products that may be described/observed as a piece of equipment designed to allow an individal to use a phone or other audio communication device without having to hold it to the ear, either by using a stand-alone microphone or a microphone incorporated into headphones. Includes products such as mobile phone hands free kits. ",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "digital-enhanced-cordless-telecommunications-dect-repeaters",
+              "name": "Digital Enhanced Cordless Telecommunications (DECT) Repeaters",
+              "gpcCode": "10005740",
+              "gpcDescription": "Includes any products that can be described/observed as a device that can double the range of a digital DECT cordless phone. These devices are extremely useful for those users who have larger dwellings or particularly thick walls.",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "mobile-phone-cases",
+              "name": "Mobile Phone Cases",
+              "gpcCode": "10001178",
+              "gpcDescription": "Includes any products that may be described/observed as casing designed to cover and protect mobile phones. ",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "mobile-phone-fascias",
+              "name": "Mobile Phone Fascias",
+              "gpcCode": "10001182",
+              "gpcDescription": "Includes any products that may be described/observed as a detachable cover or casing specifically designed for mobile phones and are sold independently from the mobile phones.",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "mobile-phone-radiation-guards",
+              "name": "Mobile Phone Radiation Guards",
+              "gpcCode": "10001183",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to significantly reduce the exposure a user has to radiation that may be emitted or received by a mobile phone.",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "phone-holders",
+              "name": "Phone Holders",
+              "gpcCode": "10001177",
+              "gpcDescription": "Includes any products that may be described/observed as a device intended to hold a mobile phone in place. Includes products such as car phone holders and mobile phone belt clips.",
+              "parentId": "communication-accessories"
+            },
+            {
+              "id": "telephone-wipes",
+              "name": "Telephone Wipes",
+              "gpcCode": "10005680",
+              "gpcDescription": "Includes any products that can be described/observed as a wipe specifically designed to clean fixed and mobile phones. Includes products dispensed from tubs or sachets and may contain bactericide to kill common germs.",
+              "parentId": "communication-accessories"
+            }
+          ]
+        },
+        {
+          "id": "communication-variety-packs",
+          "name": "Communication Variety Packs",
+          "gpcCode": "66010400",
+          "parentId": "communications",
+          "children": [
+            {
+              "id": "communication-variety-packs",
+              "name": "Communication Variety Packs",
+              "gpcCode": "10001382",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Communications products sold together which exist within the schema but belong to different classes, that is two or more products contained within the same pack which cross classes within the Communications family. Includes products such as a Mobile Phone sold with a Hands-Free Kit. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "communication-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "fixed-communication-devices",
+          "name": "Fixed Communication Devices",
+          "gpcCode": "66010200",
+          "parentId": "communications",
+          "children": [
+            {
+              "id": "answering-machines",
+              "name": "Answering Machines",
+              "gpcCode": "10001184",
+              "gpcDescription": "Includes any products that may be described/observed as a fixed electronic device that, in the absence of the called party, automatically answers incoming calls with a pre-recorded message and records messages from callers for later playback. Includes products such as digital answering machines and tape answering machines.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "conferencing-systems",
+              "name": "Conferencing Systems",
+              "gpcCode": "10001185",
+              "gpcDescription": "Includes any products that may be described/observed as the means by which phones are connected to allow people in different locations to speak to and be heard by one another simultaneously. These systems may also incorporate a small visual screen.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "fax-machine-consumables",
+              "name": "Fax Machine Consumables",
+              "gpcCode": "10005677",
+              "gpcDescription": "Includes any products that can be described/observed as being specifically designed to periodically replace/refill components of a fax machine that have been depleted or worn out by use, such as ink films. The products include Drum Cartridges, Film Cartridges and kits which contain multiple replacement items such as toner, drum, and imaging unit.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "fax-machines",
+              "name": "Fax Machines",
+              "gpcCode": "10001186",
+              "gpcDescription": "Includes any products that may be described/observed as a fixed electronic device that can transmit or receive copies of pictures, text and photographs through a telephone line.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "fixed-communication-devices-accessories",
+              "name": "Fixed Communication Devices Accessories",
+              "gpcCode": "10005681",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory to a fixed communication device that is not incorporated into the main communication device selling unit but is sold separately. Includes products such as telephone bell ringers to enable one to hear a telephone in another room and line sharing devices for telephones.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "fixed-communication-devices-other",
+              "name": "Fixed Communication Devices Other",
+              "gpcCode": "10001383",
+              "gpcDescription": "Includes any products that may be described/observed as a Fixed Communication Device, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "fixed-communication-devices-variety-packs",
+              "name": "Fixed Communication Devices Variety Packs",
+              "gpcCode": "10001384",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Fixed Communication Device products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Fixed Communication Devices class. Includes products such as a Telephone sold with a separate Answering Machine. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "fixed-communication-pre-pay-vouchers-calling-cards",
+              "name": "Fixed Communication Pre-pay Vouchers/Calling Cards",
+              "gpcCode": "10001188",
+              "gpcDescription": "Includes any products that can be described/observed as a card/voucher that is purchased from a retailer, which allows the purchaser to make phone calls from fixed communication devices up to the value of the card or voucher.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "intercoms",
+              "name": "Intercoms",
+              "gpcCode": "10001189",
+              "gpcDescription": "Includes any products that may be described/observed as a fixed system comprising of a series of connected electronic communication base sets and hand sets that can be used for intercommunication between different localities.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "telephone-switchboards",
+              "name": "Telephone Switchboards",
+              "gpcCode": "10001190",
+              "gpcDescription": "Includes any products that may be described/observed as an apparatus containing switches by means of which a connection may be made from an incoming telephone line to any one of a series of outgoing lines. The switches can be either mechanical or electronic with the switching action being automatic, controlled by signals in the incoming call or manually controlled by a an operator.",
+              "parentId": "fixed-communication-devices"
+            },
+            {
+              "id": "telephones",
+              "name": "Telephones",
+              "gpcCode": "10001191",
+              "gpcDescription": "Includes any products that may be described/observed as a fixed electronic device that converts sound into electrical signals to be transmitted over distances and then converts received signals back into sounds. These products must be connected to telephone wire networks through a connection point, which is usually wall-mounted. Includes products such as cordless telephones and corded telephones as well as telephones with an incorporated answering machine.",
+              "parentId": "fixed-communication-devices"
+            }
+          ]
+        },
+        {
+          "id": "mobile-communication-devices-services",
+          "name": "Mobile Communication Devices/Services",
+          "gpcCode": "66010300",
+          "parentId": "communications",
+          "children": [
+            {
+              "id": "communication-radio-sets",
+              "name": "Communication Radio Sets",
+              "gpcCode": "10001192",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic receiver that detects, demodulates and amplifies transmitted electromagnetic signals over great distances, such as across a country, around the world and into space. Communications typically cover a wide frequency spectrum and can be Morse code, radio, data and voice signals.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as Amateur (Ham) Radio Sets and Nautical Radio Sets.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "gps-equipment-mobile-communications",
+              "name": "GPS Equipment - Mobile Communications",
+              "gpcCode": "10001193",
+              "gpcDescription": "Includes any products that may be described/observed as any of the hardware used in the Global Positioning System, which uses satellites, receivers and software to allow users to determine their exact geographic position. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "gps-software-mobile-communications",
+              "name": "GPS Software - Mobile Communications",
+              "gpcCode": "10001194",
+              "gpcDescription": "Includes any products that may be described/observed as any of the programmes or data used in the Global Positioning System, which uses satellites, receivers and software to allow users to determine their exact geographic position. Includes GPS software and maps for marine, auto or a personal GPS device.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "gps-software-mobile-communications-digital",
+              "name": "GPS Software - Mobile Communications - Digital",
+              "gpcCode": "10006237",
+              "gpcDescription": "Includes any products that may be described/observed as any of the programmes or data which are downloaded or streamed, used in a Global Positioning System device, which uses satellites, receivers and software to allow users to determine their exact geographic position. Includes GPS software and maps for marine, auto or a personal GPS device.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "mobile-communication-devices-services-replacement-parts",
+              "name": "Mobile Communication Devices/Services - Replacement Parts",
+              "gpcCode": "10003779",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Mobile Communication Devices and Services products.Includes products such replacement Keypads and LCD Displays for mobile phones. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. ",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "mobile-communication-devices-services-other",
+              "name": "Mobile Communication Devices/Services Other",
+              "gpcCode": "10001385",
+              "gpcDescription": "Includes any products that may be described/observed as Mobile Communication Devices and Services products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "mobile-communication-devices-services-variety-packs",
+              "name": "Mobile Communication Devices/Services Variety Packs",
+              "gpcCode": "10001386",
+              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Mobile Communication Devices and Services products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Mobile Communication Devices and Services class. Includes products such as Mobile Phones and SIM Cards sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "mobile-phone-sim-cards-sim-card-adapters",
+              "name": "Mobile Phone SIM Cards/SIM Card Adapters",
+              "gpcCode": "10001196",
+              "gpcDescription": "Includes any products that may be described/observed as a subscriber identity module (SIM) on a removable card that can be inserted in any GSM-based mobile phone, which securely stores the service-subscriber key (IMSI) used to identify a subscriber on mobile telephony devices (such as computers and mobile phones). The small printed circuit board, also contains memory for a personal directory of numbers. A SIM card adapter combines SIM cards from different areas, countries or different network numbers in just one SIM card.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "mobile-phone-software",
+              "name": "Mobile Phone Software",
+              "gpcCode": "10001197",
+              "gpcDescription": "Includes any products that may be described/observed as a set of programmes/apps or data specifically designed to operate a mobile phone or give users entrance to all kinds of social/financial or otherwise services in the device itself or in the cloud. Includes products such as web-surfer software, social media, financial software, games and ring-tones.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "mobile-phone-smartphone-accessories",
+              "name": "Mobile Phone/Smartphone Accessories",
+              "gpcCode": "10007020",
+              "gpcDescription": "Includes any products that may be described/observed as an accessory to mobile phones/smartphones. For example a separate horn to attach to the phone (not to be confused with a hands free kit).",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "mobile-phones-smartphones",
+              "name": "Mobile Phones/Smartphones",
+              "gpcCode": "10001198",
+              "gpcDescription": "Includes any products that may be described/observed as a handheld cordless device that converts sound into electrical signals to be transmitted over distances and then converts received signals back into sounds. These devices do not need to be attached to a phone connection point. Includes mobile phones with features such as colour screens, video messaging, photo messaging, dual band and tri band as well as smartphones that can offer advanced functionalities such as email and a personal organiser.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "pagers",
+              "name": "Pagers",
+              "gpcCode": "10001199",
+              "gpcDescription": "Includes any products that may be described/observed as a device containing a digital radio receiver, which is permanently tuned to a single frequency. Each device has a unique identity code, so when the code is transmitted on the correct radio frequency, the device recognises it and can bleep and/or display numeric or alpha-numeric messages.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "personal-digital-broadcasters-trackers",
+              "name": "Personal Digital Broadcasters/Trackers",
+              "gpcCode": "10005711",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic reporting device that can digitally track the stock market, forecast weather, display headline news and may also operate as a calendar. Includes products that stand alone on a table or desktop as well as self adhesive versions that may be placed on a wall.",
+              "parentId": "mobile-communication-devices-services"
+            },
+            {
+              "id": "two-way-radios",
+              "name": "Two-way Radios",
+              "gpcCode": "10001200",
+              "gpcDescription": "Includes any products that may be described/observed as a portable bi-directional device for communication by electromagnetic waves, without a connecting wire. These products can only send and receive verbal messages across a limited range of radio frequencies. Includes products such as Walkie-Talkies. ",
+              "parentId": "mobile-communication-devices-services"
+            }
+          ]
+        },
+        {
+          "id": "signage",
+          "name": "Signage",
+          "gpcCode": "66010500",
+          "gpcDescription": "Signs collectively , especially commercial or public display signs or accessories for signs to enable public written/verbal communication to broadcast announcements to inform, warn, or protect.",
+          "parentId": "communications",
+          "children": [
+            {
+              "id": "sign-replacement-part-accessory",
+              "name": "Sign - Replacement Part/Accessory",
+              "gpcCode": "10006227",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or an accessory for Sign products.",
+              "parentId": "signage"
+            },
+            {
+              "id": "sign-holders",
+              "name": "Sign Holders",
+              "gpcCode": "10006226",
+              "gpcDescription": "Includes any products that can be described/observed as a device designed to the hold a sign. The holder keeps the sign protected, but visible to users. It may be mounted on a wall set upon a surface or stand on its own.",
+              "parentId": "signage"
+            },
+            {
+              "id": "signs-combination",
+              "name": "Signs, Combination",
+              "gpcCode": "10006225",
+              "gpcDescription": "Includes any products that can be described/observed as a sign which has some preprinted elements, but also has an unprinted or blank area for the user to provide information, instructions, or decorative content.  Images or wording can be added to the sign to convey a message. They may also be powered to provide lighting, such as back lighting or neon. ",
+              "parentId": "signage"
+            },
+            {
+              "id": "signs-preprinted",
+              "name": "Signs, Preprinted",
+              "gpcCode": "10006223",
+              "gpcDescription": "Includes any products that can be described/observed as a printed sign which provides information, instructions, or decorative content. These signs have images or wording preprinted to convey their message. They may also be powered to provide lighting, such as neon. ",
+              "parentId": "signage"
+            },
+            {
+              "id": "signs-unprinted",
+              "name": "Signs, Unprinted",
+              "gpcCode": "10006224",
+              "gpcDescription": "Includes any products that can be described/observed as an unprinted or blank sign which provides information, instructions, or decorative content. Images or wording can be placed on the sign to convey a message. The sign may have preprinted letters which can be arranged to convey the message. They may also be powered to provide lighting, such as back lighting. Includes powered digital signs where the users enters wording to be displayed.Specifically",
+              "parentId": "signage"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

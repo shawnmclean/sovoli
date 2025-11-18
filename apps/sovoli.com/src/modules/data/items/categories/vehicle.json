@@ -1,0 +1,2651 @@
+{
+  "id": "vehicle",
+  "name": "Vehicle",
+  "gpcCode": "77000000",
+  "children": [
+    {
+      "id": "agricultural-machinery",
+      "name": "Agricultural Machinery",
+      "gpcCode": "77070000",
+      "parentId": "vehicle",
+      "children": [
+        {
+          "id": "agricultural-machinery",
+          "name": "Agricultural Machinery",
+          "gpcCode": "77070100",
+          "parentId": "agricultural-machinery",
+          "children": [
+            {
+              "id": "agricultural-machinery",
+              "name": "Agricultural Machinery",
+              "gpcCode": "10008456",
+              "gpcDescription": "Includes any products that can be described/observed as powered or non-powered mechanical device used on a farm to assist in agricultural work. Includes products such as tractors, ploughs and combine harvesters.",
+              "parentId": "agricultural-machinery"
+            },
+            {
+              "id": "agricultural-machinery-replacement-parts-accessories",
+              "name": "Agricultural Machinery - Replacement Parts/Accessories",
+              "gpcCode": "10008457",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part or accessory for mechanical device used on a farm to assist in agricultural work.",
+              "parentId": "agricultural-machinery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aircraft",
+      "name": "Aircraft",
+      "gpcCode": "77040000",
+      "parentId": "vehicle",
+      "children": [
+        {
+          "id": "aircraft",
+          "name": "Aircraft",
+          "gpcCode": "77040100",
+          "parentId": "aircraft",
+          "children": [
+            {
+              "id": "aircraft",
+              "name": "Aircraft",
+              "gpcCode": "10008049",
+              "gpcDescription": "Includes any vehicles that can be described/observed as an aircraft. Includes products such as airplanes, helicopters, jet packs.",
+              "parentId": "aircraft"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "automotive-accessories-and-maintenance",
+      "name": "Automotive Accessories and Maintenance",
+      "gpcCode": "77010000",
+      "parentId": "vehicle",
+      "children": [
+        {
+          "id": "automotive-anti-theft-products",
+          "name": "Automotive Anti-theft Products",
+          "gpcCode": "77013500",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "anti-theft-products-other",
+              "name": "Anti-theft Products Other",
+              "gpcCode": "10003009",
+              "gpcDescription": "Includes any products that can be described/observed as an anti-theft product designed to prevent a car theft, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-anti-theft-products"
+            },
+            {
+              "id": "anti-theft-products-replacement-parts-accessories",
+              "name": "Anti-theft Products Replacement Parts/Accessories",
+              "gpcCode": "10005129",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for Anti-theft products. Includes products such as Wheel Locking Nuts and Kill Switches.",
+              "parentId": "automotive-anti-theft-products"
+            },
+            {
+              "id": "anti-theft-products-variety-packs",
+              "name": "Anti-theft Products Variety Packs",
+              "gpcCode": "10003010",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct anti-theft products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Anti-Theft Products class. Includes products such as car alarms and locking devices sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-anti-theft-products"
+            },
+            {
+              "id": "car-alarms-anti-jacking-alarms",
+              "name": "Car Alarms/Anti-jacking Alarms",
+              "gpcCode": "10003004",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical, electronic, or mechanical device that serves to warn of danger by means of a sound or signal. Includes car alarms equipped with a tracking device as a secondary function.",
+              "parentId": "automotive-anti-theft-products"
+            },
+            {
+              "id": "immobilisers-automotive",
+              "name": "Immobilisers (Automotive)",
+              "gpcCode": "10005241",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic device that prevents a vehicles engine from being started during an attempted theft. Includes devices which require a key to provide a coded pulse to the immobiliser device allowing the engine to start.",
+              "parentId": "automotive-anti-theft-products"
+            },
+            {
+              "id": "locking-devices",
+              "name": "Locking Devices",
+              "gpcCode": "10003755",
+              "gpcDescription": "Includes any products that can be described/observed as a device operated by a key, combination, or keycard and is used for closing, or securing components of a car. Products include column locks, spare tyre locks, steering wheel locks and pedal locks.",
+              "parentId": "automotive-anti-theft-products"
+            },
+            {
+              "id": "tracking-devices",
+              "name": "Tracking Devices",
+              "gpcCode": "10003008",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic device that allows the vehicle to be tracked in the event that it is stolen or misplaced.",
+              "parentId": "automotive-anti-theft-products"
+            }
+          ]
+        },
+        {
+          "id": "automotive-antifreeze",
+          "name": "Automotive Antifreeze",
+          "gpcCode": "77015100",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "antifreeze-coolants-automotive",
+              "name": "Antifreeze/Coolants (Automotive)",
+              "gpcCode": "10005234",
+              "gpcDescription": "Includes any products that can be described/observed as a liquid preparation added to the water of a vehicle to lower its freezing point or to increase the boiling point.",
+              "parentId": "automotive-antifreeze"
+            }
+          ]
+        },
+        {
+          "id": "automotive-appearance-chemicals",
+          "name": "Automotive Appearance Chemicals",
+          "gpcCode": "77010400",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "appearance-chemicals-other-automotive",
+              "name": "Appearance Chemicals Other (Automotive)",
+              "gpcCode": "10002776",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, specifically designed to enhance a car appearance, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-appearance-chemicals"
+            },
+            {
+              "id": "appearance-chemicals-variety-packs-automotive",
+              "name": "Appearance Chemicals Variety Packs (Automotive)",
+              "gpcCode": "10002777",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct preparations, specifically designed to enhance a car appearance, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Appearance Chemicals class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-appearance-chemicals"
+            },
+            {
+              "id": "automotive-paint",
+              "name": "Automotive Paint",
+              "gpcCode": "10006378",
+              "gpcDescription": "Includes any products that can be described/observed as paint products, specifically designed for repairing or minimizing a scratch or a peel off on an automotive vehicles.",
+              "parentId": "automotive-appearance-chemicals"
+            },
+            {
+              "id": "car-body-care-washes-waxes-protectors-removers",
+              "name": "Car Body Care - Washes/Waxes/Protectors/Removers",
+              "gpcCode": "10002767",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to clean the car, repel dirt, protect from chemicals, and add lustre and shine at the interior or exterior of a car. Products may be manufactured in various formations for all types of surface materials and may include those enhanced with conditioners to reduce drying time. Products include those used for general and specific surfaces, such as glass and may include specific purpose cleaners, such as bug, tar and sap removers.",
+              "parentId": "automotive-appearance-chemicals"
+            },
+            {
+              "id": "car-interior-cleaning-kit",
+              "name": "Car Interior Cleaning Kit",
+              "gpcCode": "10006375",
+              "gpcDescription": "Includes any products that can be described/observed as a kit that may contain dusters, sponges, chemical cleaning fluids, etc. specifically designed to clean interior surfaces of the car.",
+              "parentId": "automotive-appearance-chemicals"
+            },
+            {
+              "id": "car-tyre-care-cleaners-foams-shines",
+              "name": "Car Tyre Care - Cleaners/Foams/Shines",
+              "gpcCode": "10002764",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to wash, condition and add lustre to the vehicle tyres. Includes products such as tyre cleaners, foams and shines in various formations.",
+              "parentId": "automotive-appearance-chemicals"
+            },
+            {
+              "id": "car-wheel-care-cleaners-shines",
+              "name": "Car Wheel Care - Cleaners/Shines",
+              "gpcCode": "10002773",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to both clean the car wheel and to add lustre and shine.",
+              "parentId": "automotive-appearance-chemicals"
+            },
+            {
+              "id": "car-window-preparation-automotive",
+              "name": "Car Window Preparation (Automotive)",
+              "gpcCode": "10002757",
+              "gpcDescription": "Includes any products than can be described/observed as a preparation applied to vehicle windows either internally or externally. These products will enhance visibility and aid safe driving in adverse conditions. Includes products such as Anti-fog Chemicals and Rain Repellent.",
+              "parentId": "automotive-appearance-chemicals"
+            }
+          ]
+        },
+        {
+          "id": "automotive-appearance-fragrance-accessories",
+          "name": "Automotive Appearance/Fragrance Accessories",
+          "gpcCode": "77012900",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "air-fresheners-non-powered-automotive",
+              "name": "Air Fresheners - Non Powered (Automotive)",
+              "gpcCode": "10003753",
+              "gpcDescription": "Includes any products that can be described/observed as a non-powered air freshener, specifically designed to remove odours in the car and impart a pleasant fragrance.",
+              "parentId": "automotive-appearance-fragrance-accessories"
+            },
+            {
+              "id": "air-fresheners-powered-automotive",
+              "name": "Air Fresheners - Powered (Automotive)",
+              "gpcCode": "10003752",
+              "gpcDescription": "Includes any products that can be described/observed as a powered air freshener, specifically designed to remove odours in the car and impart a pleasant fragrance.",
+              "parentId": "automotive-appearance-fragrance-accessories"
+            },
+            {
+              "id": "appearance-fragrance-accessories-other",
+              "name": "Appearance/Fragrance Accessories Other",
+              "gpcCode": "10002949",
+              "gpcDescription": "Includes any products that can be described/observed as a product, specifically designed to enhance a car appearance or fragrance, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-appearance-fragrance-accessories"
+            },
+            {
+              "id": "appearance-fragrance-accessories-variety-packs-automotive",
+              "name": "Appearance/Fragrance Accessories Variety Packs (Automotive)",
+              "gpcCode": "10002950",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products, specifically designed to enhance a car appearance, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Appearance/Fragrance Accessories class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-appearance-fragrance-accessories"
+            },
+            {
+              "id": "automotive-appearance-fragrance-accessories-replacement-parts",
+              "name": "Automotive Appearance/Fragrance - Accessories/Replacement Parts",
+              "gpcCode": "10005127",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Automotive Appearance/Fragrance Accessories.",
+              "parentId": "automotive-appearance-fragrance-accessories"
+            },
+            {
+              "id": "automotive-applicators-brushes",
+              "name": "Automotive Applicators/Brushes",
+              "gpcCode": "10005249",
+              "gpcDescription": "Includes any products that can be described/observed as a device, specifically designed for finishing, applying paint, polish, wax, washing liquid or other automotive chemicals at the interior or exterior of a car. Includes items such as detail brushes.",
+              "parentId": "automotive-appearance-fragrance-accessories"
+            },
+            {
+              "id": "buffers-polishing-machines-automotive",
+              "name": "Buffers/Polishing Machines (Automotive)",
+              "gpcCode": "10002944",
+              "gpcDescription": "Includes any products than can be described/observed as buffers and polishing machines that are used to buff or improve the brightness or finish of a vehicle surface. Products include buffers with either a non-woven abrasive pad or a buffing pad that is loaded with buffing or polishing compounds. Products include buffers that use a combination of rotary and orbital or oscillatory actions.",
+              "parentId": "automotive-appearance-fragrance-accessories"
+            },
+            {
+              "id": "ice-scrapers-automotive",
+              "name": "Ice Scrapers (Automotive)",
+              "gpcCode": "10003757",
+              "gpcDescription": "Includes any products that can be described/observed as a device, specifically designed to scrape the ice off the car windows.",
+              "parentId": "automotive-appearance-fragrance-accessories"
+            },
+            {
+              "id": "washing-cleaning-systems-powered-automotive",
+              "name": "Washing/Cleaning Systems - Powered (Automotive)",
+              "gpcCode": "10002940",
+              "gpcDescription": "Includes any products that can be described/observed as a powered device, specifically designed to wash or clean the interior and exterior of a car.",
+              "parentId": "automotive-appearance-fragrance-accessories"
+            }
+          ]
+        },
+        {
+          "id": "automotive-batteries",
+          "name": "Automotive Batteries",
+          "gpcCode": "77015000",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "batteries-automotive",
+              "name": "Batteries (Automotive)",
+              "gpcCode": "10005232",
+              "gpcDescription": "Includes any products that can be described/observed as a lead-acid storage device designed as the heart of the electrical system in a motor vehicle. Includes a 12-volt battery of six cells.",
+              "parentId": "automotive-batteries"
+            },
+            {
+              "id": "battery-accessories-automotive",
+              "name": "Battery Accessories (Automotive)",
+              "gpcCode": "10005233",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory used in conjunction with a car battery. Includes products such as battery cables.",
+              "parentId": "automotive-batteries"
+            },
+            {
+              "id": "battery-booster",
+              "name": "Battery Booster",
+              "gpcCode": "10006383",
+              "gpcDescription": "Includes any products that can be described/observed as portable motor vehicle battery, including battery cables which will be used to boost a battery in a similar way as it is done by connecting an automotive battery to a dead battery to boost the start of the automotive.",
+              "parentId": "automotive-batteries"
+            },
+            {
+              "id": "starter",
+              "name": "Starter",
+              "gpcCode": "10006382",
+              "gpcDescription": "Includes any products that can be described/observed as a device designed as a motor electric, pneumatic or hydraulic for initiating the rotation in a motor vehicle. Hence to initiate the engine's operation under its own power.",
+              "parentId": "automotive-batteries"
+            }
+          ]
+        },
+        {
+          "id": "automotive-body-repair",
+          "name": "Automotive Body Repair",
+          "gpcCode": "77010200",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "automotive-body-repair-variety-packs",
+              "name": "Automotive Body Repair Variety Packs",
+              "gpcCode": "10003834",
+              "gpcDescription": "Includes any products than can be described/observed as two or more automotive body repair products, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Automotive Body Repair class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-body-repair"
+            },
+            {
+              "id": "body-plug-patch",
+              "name": "Body Plug/Patch",
+              "gpcCode": "10002713",
+              "gpcDescription": "Includes any products that can be described/observed as body repair products sold as a kit, specifically designed for automotive vehicles.",
+              "parentId": "automotive-body-repair"
+            },
+            {
+              "id": "body-repair-other-automotive",
+              "name": "Body Repair Other (Automotive)",
+              "gpcCode": "10003761",
+              "gpcDescription": "Includes any products that can be described/observed as a car body repair product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-body-repair"
+            },
+            {
+              "id": "pin-striping-automotive",
+              "name": "Pin Striping (Automotive)",
+              "gpcCode": "10002728",
+              "gpcDescription": "Includes any products that can be described/observed as a decorative reflective tape, specifically designed to be applied to the car to enhance its appearance and define its outline at night.",
+              "parentId": "automotive-body-repair"
+            },
+            {
+              "id": "reducers-retarders-automotive",
+              "name": "Reducers/Retarders (Automotive)",
+              "gpcCode": "10002723",
+              "gpcDescription": "Includes any products that can be described/observed as a chemical preparation that delays the initial set of the automotive paint or lowers the amount of water contained in the automotive paint.",
+              "parentId": "automotive-body-repair"
+            },
+            {
+              "id": "replacement-moulding-trim-pieces-automotive",
+              "name": "Replacement Moulding/Trim Pieces (Automotive)",
+              "gpcCode": "10002726",
+              "gpcDescription": "Includes any products that can be described/observed as a rubber or plastic trimming that provides protection and gives a finished look. Includes products designed as a replacement trim part, ranging from door handles to front grills, specifically designed for automotive vehicles.",
+              "parentId": "automotive-body-repair"
+            },
+            {
+              "id": "scratch-fill-plastic-repair-preparations-automotive",
+              "name": "Scratch Fill/Plastic Repair Preparations (Automotive)",
+              "gpcCode": "10002720",
+              "gpcDescription": "Includes any products that can be described/observed as a chemical preparation, specifically designed to repair surface of the car or remove and fill surface scratch marks. Includes products specifically designed for plastic surfaces as well as metal surfaces.",
+              "parentId": "automotive-body-repair"
+            },
+            {
+              "id": "weather-strip-automotive",
+              "name": "Weather-strip (Automotive)",
+              "gpcCode": "10002727",
+              "gpcDescription": "Includes any products that can be described/observed as a seal, specifically designed to offer protection for moveable and non-moveable glass against water, dust and noise penetration entering the vehicle cabin.",
+              "parentId": "automotive-body-repair"
+            }
+          ]
+        },
+        {
+          "id": "automotive-brakes",
+          "name": "Automotive Brakes",
+          "gpcCode": "77015300",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "brake-disc",
+              "name": "Brake Disc",
+              "gpcCode": "10006385",
+              "gpcDescription": "Includes any products that can be described/observed as a component of disk brake, more specifically it is the part against which the brake pads are applied, designed to be, for example, used to slow down or stop a car with the breaking system. ",
+              "parentId": "automotive-brakes"
+            },
+            {
+              "id": "brake-disc-clip",
+              "name": "Brake Disc Clip",
+              "gpcCode": "10006386",
+              "gpcDescription": "Includes any products that can be described/observed as a component of disk brake, which is housing the brake pads/linings. It is usually made of aluminium or chrome plated steel. ",
+              "parentId": "automotive-brakes"
+            },
+            {
+              "id": "brake-drum-brake-drum-parts",
+              "name": "Brake Drum/Brake Drum Parts",
+              "gpcCode": "10006389",
+              "gpcDescription": "Includes any products than can be described/observed as a part of a brake drum, or a complete brake drum.",
+              "parentId": "automotive-brakes"
+            },
+            {
+              "id": "brake-pads-lining",
+              "name": "Brake Pads/Lining",
+              "gpcCode": "10006384",
+              "gpcDescription": "Includes any products that can be described/observed as a component of disk brake, more specifically the part in contact with the surface of the braking disc, designed to be for example, used to slow down or stop a car with the breaking system. ",
+              "parentId": "automotive-brakes"
+            },
+            {
+              "id": "drum-brakes-kit",
+              "name": "Drum Brakes Kit",
+              "gpcCode": "10006387",
+              "gpcDescription": "Includes any products than can be described/observed as drum brake kit, including brake shoe, and linings, mechanisms cylinders, springs, sold together, which exists. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-brakes"
+            },
+            {
+              "id": "other-parts-for-brake-systems",
+              "name": "Other Parts for Brake Systems",
+              "gpcCode": "10006388",
+              "gpcDescription": "Includes any products than can be described/observed as part of brake system, such as commanding cylinder, joints, connectors/adapters cables, brake plate specifically designed for brakes.",
+              "parentId": "automotive-brakes"
+            }
+          ]
+        },
+        {
+          "id": "automotive-cargo-management",
+          "name": "Automotive Cargo Management",
+          "gpcCode": "77010300",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "cargo-management-replacement-parts-accessories",
+              "name": "Cargo Management - Replacement Parts/Accessories",
+              "gpcCode": "10005130",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for Cargo Management Products. Includes products such as Cargo Bars and Cargo Dividers.",
+              "parentId": "automotive-cargo-management"
+            },
+            {
+              "id": "cargo-management-other-automotive",
+              "name": "Cargo Management Other (Automotive)",
+              "gpcCode": "10002750",
+              "gpcDescription": "Includes any products that can be described/observed as a cargo management product, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-cargo-management"
+            },
+            {
+              "id": "cargo-management-ramps-ramp-accessories-automotive",
+              "name": "Cargo Management Ramps/Ramp Accessories (Automotive)",
+              "gpcCode": "10005819",
+              "gpcDescription": "Includes any products that can be described/observed as a ramp or sloping platform that aids the loading/offloading of cargo and people from a vehicle. Such ramps may come equipped with rails to ensure the direction of cargo loading/offloading and are particularly useful in aiding the entry and exit of wheelchairs.",
+              "parentId": "automotive-cargo-management"
+            },
+            {
+              "id": "cargo-securing-equipment-automotive",
+              "name": "Cargo Securing Equipment (Automotive)",
+              "gpcCode": "10002733",
+              "gpcDescription": "Includes any products that can be described/observed as a device designed to fasten and secure automotive cargo. Includes hooks, buckles, straps, ropes, shock cords and web slings, all designed to keep cargo secure and help lift or move the cargo.",
+              "parentId": "automotive-cargo-management"
+            },
+            {
+              "id": "equipment-racks-carriers-automotive",
+              "name": "Equipment Racks/Carriers (Automotive)",
+              "gpcCode": "10002734",
+              "gpcDescription": "Includes any products that can be described/observed as a frame, attached to the roof, boot or back door of an automotive vehicle and specifically designed to transport cargo, such as tyres, bikes, canoes, ladders, skis or surfboards. Includes racks specifically designed to transport guns safely, such as under seat, back seat, over-head, floor mount car gun racks.",
+              "parentId": "automotive-cargo-management"
+            },
+            {
+              "id": "extenders-bumper-packs-automotive",
+              "name": "Extenders/Bumper Packs (Automotive)",
+              "gpcCode": "10002743",
+              "gpcDescription": "Includes any products that can be described/observed as a device, specifically designed to increase boot capacity, to expand the volume of the truck bed for more loading capacity and folds away. The products include devices that keep open boots secure over bulky items and those designed to be mounted on the bumper of an automotive vehicle to transport heavy objects.",
+              "parentId": "automotive-cargo-management"
+            },
+            {
+              "id": "exterior-storage-carriers-bags-automotive",
+              "name": "Exterior Storage Carriers/Bags (Automotive)",
+              "gpcCode": "10005128",
+              "gpcDescription": "Includes any products that can be described/observed as a flexible container, attached to the car roof via a luggage rack, sports bar or car clips on vehicles without a luggage rack.",
+              "parentId": "automotive-cargo-management"
+            },
+            {
+              "id": "interior-storage-boxes-trays-baskets-automotive",
+              "name": "Interior Storage Boxes/Trays/Baskets (Automotive)",
+              "gpcCode": "10002748",
+              "gpcDescription": "Includes any products that can be described/observed as a container, constructed with four sides perpendicular to the base and often having a lid or covers, specifically designed to store objects in the car. Includes car tool boxes and boot organisers.",
+              "parentId": "automotive-cargo-management"
+            },
+            {
+              "id": "wheel-chocks-automotive",
+              "name": "Wheel Chocks (Automotive)",
+              "gpcCode": "10005818",
+              "gpcDescription": "Includes any products that can be described/observed as triangular blocks that are placed under the wheels of a car or truck to prevent the vehicle moving when loading/unloading heavy cargo. These products normally have anti-slip traction pads underneath the blocks and may be designed with optional mounting brackets.",
+              "parentId": "automotive-cargo-management"
+            }
+          ]
+        },
+        {
+          "id": "automotive-decorative-lighting",
+          "name": "Automotive Decorative Lighting",
+          "gpcCode": "77014100",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "accent-lighting-automotive",
+              "name": "Accent Lighting (Automotive)",
+              "gpcCode": "10003056",
+              "gpcDescription": "Includes any products that can be described/observed as a loose functional or decorative neon light kit, often complete with a built-in transformer and a wire hook-up, specifically designed to accentuate interior or exterior parts of the car, such as, for example, licence plates.",
+              "parentId": "automotive-decorative-lighting"
+            },
+            {
+              "id": "decorative-lighting-other-automotive",
+              "name": "Decorative Lighting Other (Automotive)",
+              "gpcCode": "10003057",
+              "gpcDescription": "Includes any products that can be described/observed as a light, specifically designed to enhance a car appearance, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-decorative-lighting"
+            },
+            {
+              "id": "decorative-lighting-variety-packs-automotive",
+              "name": "Decorative Lighting Variety Packs (Automotive)",
+              "gpcCode": "10003058",
+              "gpcDescription": "Includes any products than can be described/observed as two or more automotive decorative lighting products, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the automotive decorative lighting class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-decorative-lighting"
+            },
+            {
+              "id": "strobe-lighting-automotive",
+              "name": "Strobe Lighting (Automotive)",
+              "gpcCode": "10003055",
+              "gpcDescription": "Includes any products that can be described/observed as an automotive flash lamp that produces high-intensity short-duration light pulses by electric discharge in a gas.",
+              "parentId": "automotive-decorative-lighting"
+            },
+            {
+              "id": "under-car-lighting",
+              "name": "Under-Car Lighting",
+              "gpcCode": "10003054",
+              "gpcDescription": "Includes any products that can be described/observed as an under car light kit, often complete with an in-car mounted digital control.",
+              "parentId": "automotive-decorative-lighting"
+            }
+          ]
+        },
+        {
+          "id": "automotive-electrical",
+          "name": "Automotive Electrical",
+          "gpcCode": "77014300",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "automotive-electrical-replacement-parts-accessories",
+              "name": "Automotive Electrical - Replacement Parts/Accessories",
+              "gpcCode": "10005131",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for Automotive Electrical products. Includes products such as Fuse Blocks and Fuse Holders.",
+              "parentId": "automotive-electrical"
+            },
+            {
+              "id": "automotive-instruments-and-measurement-systems",
+              "name": "Automotive Instruments and Measurement Systems",
+              "gpcCode": "10006846",
+              "gpcDescription": "Includes any products that can be described/observed as automotive instrument systems or measurement systems.",
+              "parentId": "automotive-electrical"
+            },
+            {
+              "id": "automotive-switches",
+              "name": "Automotive Switches",
+              "gpcCode": "10005132",
+              "gpcDescription": "Includes any products that can be described/observed as an automotive device used to break or open an electric circuit or to divert current from one conductor to another. Includes products such as disconnectors and relays of various types designed for all types of cars.",
+              "parentId": "automotive-electrical"
+            },
+            {
+              "id": "cigarette-lighters-adaptors-automotive",
+              "name": "Cigarette Lighters/Adaptors (Automotive)",
+              "gpcCode": "10003081",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device for lighting a cigarette. The products also include a unit for connecting other devices to the car cigarette lighter.",
+              "parentId": "automotive-electrical"
+            },
+            {
+              "id": "electrical-other-automotive",
+              "name": "Electrical Other (Automotive)",
+              "gpcCode": "10003084",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device, specifically designed for use in the car, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-electrical"
+            },
+            {
+              "id": "electrical-variety-packs-automotive",
+              "name": "Electrical Variety Packs (Automotive)",
+              "gpcCode": "10003083",
+              "gpcDescription": "Includes any products than can be described/observed as two or more electrical devices, specifically designed for use in the car, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Electrical class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-electrical"
+            },
+            {
+              "id": "flex-tube-wire-loom-automotive",
+              "name": "Flex Tube/Wire Loom (Automotive)",
+              "gpcCode": "10003080",
+              "gpcDescription": "Includes any products that can be described/observed as tubing or loom designed to be installed in a car to organise multiple tangled wires and cables into one neat cable bundle.",
+              "parentId": "automotive-electrical"
+            },
+            {
+              "id": "fuses-automotive",
+              "name": "Fuses (Automotive)",
+              "gpcCode": "10003067",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device that can interrupt the flow of an electrical current when it is overloaded.",
+              "parentId": "automotive-electrical"
+            },
+            {
+              "id": "horns-sirens-automotive",
+              "name": "Horns/Sirens (Automotive)",
+              "gpcCode": "10003758",
+              "gpcDescription": "Includes any products that can be described/observed as a car device for making a loud sound as a warning or signal.",
+              "parentId": "automotive-electrical"
+            },
+            {
+              "id": "sockets-pigtails-automotive",
+              "name": "Sockets/Pigtails (Automotive)",
+              "gpcCode": "10003074",
+              "gpcDescription": "Includes any products that can be described/observed as a device in a wall designed to be put into a car cigarette lighter in order to connect electrical equipment to the power supply.",
+              "parentId": "automotive-electrical"
+            }
+          ]
+        },
+        {
+          "id": "automotive-exterior-accessories-coverings-protection",
+          "name": "Automotive Exterior Accessories - Coverings/Protection",
+          "gpcCode": "77012500",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "coverings-protection-other-automotive",
+              "name": "Coverings/Protection Other (Automotive)",
+              "gpcCode": "10002909",
+              "gpcDescription": "Includes any products that can be described/observed as a covering, specifically designed to protect car parts, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "door-guards-automotive",
+              "name": "Door Guards (Automotive)",
+              "gpcCode": "10002901",
+              "gpcDescription": "Includes any products that can be described/observed as a covering that is permanently attached to and specifically designed to protect car doors from scratches and damage.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "lens-covers-automotive",
+              "name": "Lens Covers (Automotive)",
+              "gpcCode": "10002902",
+              "gpcDescription": "Includes any products that can be described/observed as a covering, specifically designed to protect car light lenses from scratches and rocks.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "license-plate-frame-shields",
+              "name": "License Plate Frame/Shields",
+              "gpcCode": "10002903",
+              "gpcDescription": "Includes any products that can be described/observed as a metal, rubber or plastic frame, specifically designed to protect a car licence plate and enhance its appearance",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "license-plates-decorative",
+              "name": "License Plates - Decorative",
+              "gpcCode": "10002904",
+              "gpcDescription": "Includes any products that can be described/observed as a novelty frame, sign or accessory, specifically designed to enhance appearance of the licence plate.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "paint-protection-films-automotive",
+              "name": "Paint Protection Films (Automotive)",
+              "gpcCode": "10002906",
+              "gpcDescription": "Includes any products that can be described/observed as a film, specifically designed to enhance appearance of the car and provide protection to the paint.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "spare-tyre-covers",
+              "name": "Spare Tyre Covers",
+              "gpcCode": "10002905",
+              "gpcDescription": "Includes any products that can be described/observed as a flexible container that can also be attached to the car back door, specifically designed for transporting a spare car tyre.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "splash-guards-mud-flaps",
+              "name": "Splash Guards/Mud Flaps",
+              "gpcCode": "10002899",
+              "gpcDescription": "Includes any products that can be described/observed as a flexible panel, specifically designed to guard the body of the car from mud, snow, slush and road debris contained within the vehicles wheel.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "tops-skins-replacement-parts-accessories-automotive",
+              "name": "Tops/Skins - Replacement Parts/Accessories (Automotive)",
+              "gpcCode": "10002908",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory to a flexible top that is specifically designed to replace a worn car top.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "truck-hardware-kits",
+              "name": "Truck Hardware/Kits",
+              "gpcCode": "10002907",
+              "gpcDescription": "Includes any products that can be described/observed as a fastener or bolt that can be sold as kits.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            },
+            {
+              "id": "vehicle-covers",
+              "name": "Vehicle Covers",
+              "gpcCode": "10002900",
+              "gpcDescription": "Includes any products that can be described/observed as a cover, specifically designed to protect car parts, such as bumpers or mirrors from scratches and damage. These can include complete car covers and part specific covers.",
+              "parentId": "automotive-exterior-accessories-coverings-protection"
+            }
+          ]
+        },
+        {
+          "id": "automotive-exterior-accessories-grills-bumpers",
+          "name": "Automotive Exterior Accessories - Grills/Bumpers",
+          "gpcCode": "77012300",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "brush-grill-guards",
+              "name": "Brush/Grill Guards",
+              "gpcCode": "10002888",
+              "gpcDescription": "Includes any products that can be described/observed as a bar or a frame, specifically designed to protect the car front end.",
+              "parentId": "automotive-exterior-accessories-grills-bumpers"
+            },
+            {
+              "id": "bumpers",
+              "name": "Bumpers",
+              "gpcCode": "10002887",
+              "gpcDescription": "Includes any products that can be described/observed as a metal or rubber bar attached to either end of a motor vehicle, such as a truck or car, to absorb impact in a collision.",
+              "parentId": "automotive-exterior-accessories-grills-bumpers"
+            },
+            {
+              "id": "decorative-custom-grills",
+              "name": "Decorative/Custom Grills",
+              "gpcCode": "10002890",
+              "gpcDescription": "Includes any products that can be described/observed as a bar or a frame, specifically designed to enhance appearance of the front end.",
+              "parentId": "automotive-exterior-accessories-grills-bumpers"
+            },
+            {
+              "id": "grill-inserts",
+              "name": "Grill Inserts",
+              "gpcCode": "10002891",
+              "gpcDescription": "Includes any products that can be described/observed as a custom made insert, specifically designed to enhance the appearance of the front end of the car. The products include cut-out and bolt over inserts",
+              "parentId": "automotive-exterior-accessories-grills-bumpers"
+            },
+            {
+              "id": "push-a-bars-automotive",
+              "name": "Push/A Bars (Automotive)",
+              "gpcCode": "10002889",
+              "gpcDescription": "Includes any products that can be described/observed as a steel bar or a frame, specifically designed to give a car an \"off road\" look and added strength.",
+              "parentId": "automotive-exterior-accessories-grills-bumpers"
+            },
+            {
+              "id": "skid-plates",
+              "name": "Skid Plates",
+              "gpcCode": "10002892",
+              "gpcDescription": "Includes any products that can be described/observed as a metal plate, specifically designed to protect the engine, sump or exhaust headers from damage caused when driving.",
+              "parentId": "automotive-exterior-accessories-grills-bumpers"
+            }
+          ]
+        },
+        {
+          "id": "automotive-exterior-accessories-running-boards-steps",
+          "name": "Automotive Exterior Accessories - Running Boards/Steps",
+          "gpcCode": "77012200",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "extruded-cast-steps-automotive",
+              "name": "Extruded/Cast Steps (Automotive)",
+              "gpcCode": "10002886",
+              "gpcDescription": "Includes any products that can be described/observed as a metal or plastic plate attached to either side of a motor vehicle, such as a truck or car, to serve as an aid to get in and out of the car. Products also include those designed to lower and retract automatically when the doors are opened or closed.",
+              "parentId": "automotive-exterior-accessories-running-boards-steps"
+            },
+            {
+              "id": "nerf-step-bars-automotive",
+              "name": "Nerf/Step Bars (Automotive)",
+              "gpcCode": "10002885",
+              "gpcDescription": "Includes any products that can be described/observed as a metal bar attached to either side of a motor vehicle, such as a truck or car, to protect the paint and to enhance appearance. These products also have a secondary function in that they serve as an aid to get in and out of the car.",
+              "parentId": "automotive-exterior-accessories-running-boards-steps"
+            },
+            {
+              "id": "running-boards-automotive",
+              "name": "Running Boards (Automotive)",
+              "gpcCode": "10002884",
+              "gpcDescription": "Includes any products that can be described/observed as a metal or plastic board attached to either side of a motor vehicle, such as a truck or car. The products serve as an aid to get in and out of the car.",
+              "parentId": "automotive-exterior-accessories-running-boards-steps"
+            }
+          ]
+        },
+        {
+          "id": "automotive-exterior-accessories-shields-deflectors",
+          "name": "Automotive Exterior Accessories - Shields/Deflectors",
+          "gpcCode": "77012400",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "bug-hood-shields-automotive",
+              "name": "Bug/Hood Shields (Automotive)",
+              "gpcCode": "10002893",
+              "gpcDescription": "Includes any products that can be described/observed as a metal or fibreglass plate, specifically designed to change the shape of the front of the vehicle, thereby altering the flow of air up and over the windshield as the vehicle moves.",
+              "parentId": "automotive-exterior-accessories-shields-deflectors"
+            },
+            {
+              "id": "cab-fairings",
+              "name": "Cab Fairings",
+              "gpcCode": "10002898",
+              "gpcDescription": "Includes any products that can be described/observed as a fibreglass plate, specifically designed to extend the lines of the cab and to act as a sunshade, shading the rear window and cargo area.",
+              "parentId": "automotive-exterior-accessories-shields-deflectors"
+            },
+            {
+              "id": "front-windshield-visors",
+              "name": "Front Windshield Visors",
+              "gpcCode": "10002894",
+              "gpcDescription": "Includes any products that can be described/observed as a panel, attached to the windshield, specifically designed to reduce sunglare at daytime or headlight glare of oncoming traffic and reduce eye strain at night.",
+              "parentId": "automotive-exterior-accessories-shields-deflectors"
+            },
+            {
+              "id": "rear-window-deflector-roof-visors-automotive",
+              "name": "Rear Window Deflector/Roof Visors (Automotive)",
+              "gpcCode": "10002896",
+              "gpcDescription": "Includes any products that can be described/observed as a panel, attached to the roof or rear window, specifically designed to reduce sunglare at daytime.",
+              "parentId": "automotive-exterior-accessories-shields-deflectors"
+            },
+            {
+              "id": "side-window-deflector-visors",
+              "name": "Side Window Deflector/Visors",
+              "gpcCode": "10002895",
+              "gpcDescription": "Includes any products that can be described/observed as a panel, attached to the side window, specifically designed to reduce sunglare.",
+              "parentId": "automotive-exterior-accessories-shields-deflectors"
+            },
+            {
+              "id": "sunroof-deflectors",
+              "name": "Sunroof Deflectors",
+              "gpcCode": "10002897",
+              "gpcDescription": "Includes any products that can be described/observed as a panel, mounted to the vehicle's roof, specifically designed to reduce sunglare and wind noise when open air driving.",
+              "parentId": "automotive-exterior-accessories-shields-deflectors"
+            }
+          ]
+        },
+        {
+          "id": "automotive-exterior-appearance-accessories",
+          "name": "Automotive Exterior Appearance Accessories",
+          "gpcCode": "77012600",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "custom-hoods",
+              "name": "Custom Hoods",
+              "gpcCode": "10002916",
+              "gpcDescription": "Includes any products that can be described/observed as a custom-fit hardware designed to replace a car's hood that is specifically designed to enhance a car's performance and appearance and is specifically coated to prevent rust and is normally reinforced for maximum strength.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "emblems-graphics-decorative-automotive",
+              "name": "Emblems/Graphics - Decorative (Automotive)",
+              "gpcCode": "10002920",
+              "gpcDescription": "Includes any products that can be described/observed as a distinctive badge, design or device, designed to mark an automotive vehicle with the company emblem or just to enhance its appearance.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "exterior-appearance-accessories-other-automotive",
+              "name": "Exterior Appearance Accessories Other (Automotive)",
+              "gpcCode": "10002922",
+              "gpcDescription": "Includes any products that can be described/observed as a covering, specifically designed to enhance the exterior appearance of the car, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "exterior-appearance-accessories-variety-packs",
+              "name": "Exterior Appearance Accessories Variety Packs",
+              "gpcCode": "10002923",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products, specifically designed to enhance an exterior appearance of the car, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Exterior Appearance products class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "fenders-fender-flares",
+              "name": "Fenders/Fender Flares",
+              "gpcCode": "10002914",
+              "gpcDescription": "Includes any products that can be described/observed as a custom-fit hardware designed to accentuate the wheel, to add a tyre coverage and to stop tyre-flung rocks and debris. Includes products such as fenders, fender trims and fender flares.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "light-lens-mouldings-automotive",
+              "name": "Light/Lens Mouldings (Automotive)",
+              "gpcCode": "10002919",
+              "gpcDescription": "Includes any products that can be described/observed as a custom-fit hardware designed to accentuate the car lights and lenses and to add coverage and protection.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "louvres-automotive",
+              "name": "Louvres (Automotive)",
+              "gpcCode": "10002913",
+              "gpcDescription": "Includes any products that can be described/observed as a slatted panel, designed for ventilation, e.g. on the hood of a motor vehicle. The products include louvres that are specifically designed for car windows to reduce the sun glare.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "scoops-vents-automotive",
+              "name": "Scoops/Vents (Automotive)",
+              "gpcCode": "10002911",
+              "gpcDescription": "Includes any products that can be described/observed as car hardware, designed for ventilation of the engine.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "side-window-mouldings-covers-automotive",
+              "name": "Side Window Mouldings/Covers (Automotive)",
+              "gpcCode": "10002915",
+              "gpcDescription": "Includes any products that can be described/observed as a custom-fit hardware designed to accentuate the side windows and to reduce sunglare.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "sunroofs-moonroofs-t-tops-automotive",
+              "name": "Sunroofs/Moonroofs/T-tops (Automotive)",
+              "gpcCode": "10002910",
+              "gpcDescription": "Includes any products that can be described/observed as a sliding panel, designed to be installed in a car roof and increase ventilation.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            },
+            {
+              "id": "wings-spoilers-automotive",
+              "name": "Wings/Spoilers (Automotive)",
+              "gpcCode": "10002912",
+              "gpcDescription": "Includes any products that can be described/observed as car hardware, designed as an air deflector mounted usually at the rear of a car to reduce lift at high speeds.",
+              "parentId": "automotive-exterior-appearance-accessories"
+            }
+          ]
+        },
+        {
+          "id": "automotive-filters",
+          "name": "Automotive Filters",
+          "gpcCode": "77013800",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "air-dust-filter-cleaner",
+              "name": "Air/Dust Filter Cleaner",
+              "gpcCode": "10006328",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to clean the air/dust filter. Specifically includes chemicals that are designed to clean air/dust filters.",
+              "parentId": "automotive-filters"
+            },
+            {
+              "id": "exhaust-filter-cleaner",
+              "name": "Exhaust Filter Cleaner",
+              "gpcCode": "10006329",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to clean the exhaust filter or catalytic converter. Specifically includes chemicals that are designed to clean exhaust filters for example by addition in the fuel tank.",
+              "parentId": "automotive-filters"
+            },
+            {
+              "id": "filter-accessories-automotive",
+              "name": "Filter Accessories (Automotive)",
+              "gpcCode": "10003026",
+              "gpcDescription": "Includes any products that can be described/observed as a device, used in conjunction with any type of automotive filter to enhance its performance.",
+              "parentId": "automotive-filters"
+            },
+            {
+              "id": "filters-air-automotive",
+              "name": "Filters - Air (Automotive)",
+              "gpcCode": "10003022",
+              "gpcDescription": "Includes any products that can be described/observed as a device, containing a material, to extract impurities from air.",
+              "parentId": "automotive-filters"
+            },
+            {
+              "id": "filters-fluid-automotive",
+              "name": "Filters - Fluid (Automotive)",
+              "gpcCode": "10003762",
+              "gpcDescription": "Includes any products that can be described/observed as a device, containing such a material, used to extract impurities from automotive fluids. These will include water filters used within automobiles.",
+              "parentId": "automotive-filters"
+            },
+            {
+              "id": "filters-other-automotive",
+              "name": "Filters Other (Automotive)",
+              "gpcCode": "10003029",
+              "gpcDescription": "Includes any products that can be described/observed as a product, specifically designed to be used in a car part to remove impurities from air and fluid, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-filters"
+            },
+            {
+              "id": "filters-variety-packs-automotive",
+              "name": "Filters Variety Packs (Automotive)",
+              "gpcCode": "10003030",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products, specifically designed to be used as or in conjunction with any type of an automotive filter, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Automotive Filters class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-filters"
+            },
+            {
+              "id": "performance-filter-kits-accessories-automotive",
+              "name": "Performance Filter Kits/Accessories (Automotive)",
+              "gpcCode": "10003028",
+              "gpcDescription": "Includes any products that can be described/observed as a set of devices used as or in conjunction with a filter. A kit may contain a filter and various accessories.",
+              "parentId": "automotive-filters"
+            },
+            {
+              "id": "transmission-filters-automotive",
+              "name": "Transmission Filters (Automotive)",
+              "gpcCode": "10003024",
+              "gpcDescription": "Includes any products that can be described/observed as a device, containing a material, which extracts impurities from transmission fluid.",
+              "parentId": "automotive-filters"
+            }
+          ]
+        },
+        {
+          "id": "automotive-fluid-change-items",
+          "name": "Automotive Fluid Change Items",
+          "gpcCode": "77014700",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "fluid-change-items-other-automotive",
+              "name": "Fluid Change Items Other (Automotive)",
+              "gpcCode": "10003114",
+              "gpcDescription": "Includes any products that can be described/observed as a product, specifically designed to be used to aid automotive fluid change, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-fluid-change-items"
+            },
+            {
+              "id": "fluid-change-items-variety-packs-automotive",
+              "name": "Fluid Change Items Variety Packs (Automotive)",
+              "gpcCode": "10003115",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products, specifically designed to aid automotive fluid change, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Fluid Change class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-fluid-change-items"
+            },
+            {
+              "id": "oil-mats-automotive",
+              "name": "Oil Mats (Automotive)",
+              "gpcCode": "10003113",
+              "gpcDescription": "Includes any products that can be described/observed as a mat, specifically designed to absorb oil stains.",
+              "parentId": "automotive-fluid-change-items"
+            }
+          ]
+        },
+        {
+          "id": "automotive-fluid-management-accessories",
+          "name": "Automotive Fluid Management Accessories",
+          "gpcCode": "77014500",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "drain-plugs-automotive",
+              "name": "Drain Plugs (Automotive)",
+              "gpcCode": "10003095",
+              "gpcDescription": "Includes any products that can be described/observed as a car device, specifically designed as a removable plug for holding oil.",
+              "parentId": "automotive-fluid-management-accessories"
+            },
+            {
+              "id": "filter-wrenches-automotive",
+              "name": "Filter Wrenches (Automotive)",
+              "gpcCode": "10003092",
+              "gpcDescription": "Includes any products that can be described/observed as a metal ring with a handle specifically designed to fit an oil filter.",
+              "parentId": "automotive-fluid-management-accessories"
+            },
+            {
+              "id": "fluid-change-kits-accessories",
+              "name": "Fluid Change Kits/Accessories",
+              "gpcCode": "10003097",
+              "gpcDescription": "Includes any products that can be described/observed as a set of devices used as or in conjunction with a fluid change device. A kit may contain various fluid change devices and accessories.",
+              "parentId": "automotive-fluid-management-accessories"
+            },
+            {
+              "id": "fluid-management-accessories-other-automotive",
+              "name": "Fluid Management/Accessories Other (Automotive)",
+              "gpcCode": "10003105",
+              "gpcDescription": "Includes any products that can be described/observed as a product, specifically designed to be used to aid fluid management procedures, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-fluid-management-accessories"
+            },
+            {
+              "id": "fluid-management-accessories-variety-packs-automotive",
+              "name": "Fluid Management/Accessories Variety Packs (Automotive)",
+              "gpcCode": "10003106",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products, specifically designed to aid automotive fluid management, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Fluid Management Accessories class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-fluid-management-accessories"
+            },
+            {
+              "id": "fluid-mixers-automotive",
+              "name": "Fluid Mixers (Automotive)",
+              "gpcCode": "10003099",
+              "gpcDescription": "Includes any products that can be described/observed as a device, specifically designed to agitate fluids with high viscosity.",
+              "parentId": "automotive-fluid-management-accessories"
+            }
+          ]
+        },
+        {
+          "id": "automotive-interior-accessories-convenience",
+          "name": "Automotive Interior Accessories - Convenience",
+          "gpcCode": "77011600",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "ash-trays-automotive",
+              "name": "Ash Trays (Automotive)",
+              "gpcCode": "10002847",
+              "gpcDescription": "Includes any products that may be described/observed as a receptacle installed in the car for tobacco ashes and cigarette butts.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "clocks-automotive",
+              "name": "Clocks (Automotive)",
+              "gpcCode": "10002848",
+              "gpcDescription": "Includes any products that may be described/observed as a device that indicates measurement of time.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "clothes-bars-automotive",
+              "name": "Clothes Bars (Automotive)",
+              "gpcCode": "10002849",
+              "gpcDescription": "Includes any products that may be described/observed as an adjustable clothes bar or hooks for the side window or the back seat of the car.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "compasses-automotive",
+              "name": "Compasses (Automotive)",
+              "gpcCode": "10002850",
+              "gpcDescription": "Includes any products that may be described/observed as an electronic device that provides directional guidance and monitoring of surroundings such as internal and external temperature display and warnings of road conditions. The product may be mounted on the dashboard.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "cup-holders-automotive",
+              "name": "Cup Holders (Automotive)",
+              "gpcCode": "10002851",
+              "gpcDescription": "Includes any products that may be described/observed as a folding device specifically designed to hold a cup or a bottle of water in a car.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "fans-automotive",
+              "name": "Fans (Automotive)",
+              "gpcCode": "10002857",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to provide instant warmth or air circulation. The products include those that are bracket mounted and those powered directly from the cigarette lighter.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "interior-accessory-combination-units-automotive",
+              "name": "Interior Accessory Combination Units (Automotive)",
+              "gpcCode": "10002856",
+              "gpcDescription": "Includes any products that may be described/observed as a system that provides complex directional guidance and monitoring of surroundings. Includes units combining a compass, an indoor/outdoor thermometer, an altimeter, a barometer, and a weather forecaster in a single casing.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "key-holders-automotive",
+              "name": "Key Holders (Automotive)",
+              "gpcCode": "10002852",
+              "gpcDescription": "Includes any products that may be described/observed as a folding device specifically designed to hold a set of keys in a car.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "map-lights-automotive",
+              "name": "Map Lights (Automotive)",
+              "gpcCode": "10002854",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to provide light for map reading while night driving. The products include those operated on standard cigarette lighter.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "refrigeration-warmer-units-automotive",
+              "name": "Refrigeration/Warmer Units (Automotive)",
+              "gpcCode": "10002858",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to keep your food or drink cold or warm in the car.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "snack-drink-trays-automotive",
+              "name": "Snack/Drink Trays (Automotive)",
+              "gpcCode": "10002853",
+              "gpcDescription": "Includes any products that may be described/observed as a folding device or a panel specifically designed to hold a snack or a drink in a car.",
+              "parentId": "automotive-interior-accessories-convenience"
+            },
+            {
+              "id": "thermometers-automotive",
+              "name": "Thermometers (Automotive)",
+              "gpcCode": "10002855",
+              "gpcDescription": "Includes any products that may be described/observed as a device or a system that provides measurement of air temperature. The products include those designed for indoor and outdoor measurement.",
+              "parentId": "automotive-interior-accessories-convenience"
+            }
+          ]
+        },
+        {
+          "id": "automotive-interior-accessories-decorative",
+          "name": "Automotive Interior Accessories - Decorative",
+          "gpcCode": "77012100",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "decorative-accessories-hardware-other-automotive",
+              "name": "Decorative Accessories/Hardware Other (Automotive)",
+              "gpcCode": "10002880",
+              "gpcDescription": "Includes any products that can be described/observed as a device or a piece of car hardware, specifically designed to enhance a car appearance, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-interior-accessories-decorative"
+            },
+            {
+              "id": "decorative-accessory-knobs-buttons",
+              "name": "Decorative Accessory Knobs/Buttons",
+              "gpcCode": "10002878",
+              "gpcDescription": "Includes any products that can be described/observed as a knob or button, specifically designed to enhance a car appearance.",
+              "parentId": "automotive-interior-accessories-decorative"
+            },
+            {
+              "id": "decorative-handles-cranks",
+              "name": "Decorative Handles/Cranks",
+              "gpcCode": "10002879",
+              "gpcDescription": "Includes any products that can be described/observed as a handle or crank, specifically designed to enhance a car appearance.",
+              "parentId": "automotive-interior-accessories-decorative"
+            },
+            {
+              "id": "headliners-kits-automotive",
+              "name": "Headliners/Kits (Automotive)",
+              "gpcCode": "10002881",
+              "gpcDescription": "Includes any products that can be described/observed as a liner, specifically designed to replace an old car headliner. The products may include kits containing tacks, glue or a barbed strip.",
+              "parentId": "automotive-interior-accessories-decorative"
+            },
+            {
+              "id": "interior-accessories-decorative-other-automotive",
+              "name": "Interior Accessories - Decorative Other (Automotive)",
+              "gpcCode": "10002883",
+              "gpcDescription": "Includes any products that can be described/observed as a device or a piece of car hardware, specifically designed to enhance a car interior, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-interior-accessories-decorative"
+            },
+            {
+              "id": "interior-accessories-decorative-variety-packs-automotive",
+              "name": "Interior Accessories - Decorative Variety Packs (Automotive)",
+              "gpcCode": "10002882",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct preparations, specifically designed to enhance appearance of car interior, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Interior Accessories - Decorative class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-interior-accessories-decorative"
+            },
+            {
+              "id": "interior-gauges-automotive",
+              "name": "Interior Gauges (Automotive)",
+              "gpcCode": "10002873",
+              "gpcDescription": "Includes any products that can be described/observed as a panel, specifically designed to enhance appearance of the car instruments. The products include those that allow the user to choose colour of the light backing.",
+              "parentId": "automotive-interior-accessories-decorative"
+            },
+            {
+              "id": "pedal-covers-sets-automotive",
+              "name": "Pedal Covers/Sets (Automotive)",
+              "gpcCode": "10002877",
+              "gpcDescription": "Includes any products that can be described/observed as a cover, specifically designed to enhance the appearance of car pedals. The products include sets of pedal covers.",
+              "parentId": "automotive-interior-accessories-decorative"
+            },
+            {
+              "id": "shifter-boots-kits-automotive",
+              "name": "Shifter Boots/Kits (Automotive)",
+              "gpcCode": "10002876",
+              "gpcDescription": "Includes any products that can be described/observed as a boot, specifically designed to enhance shift appearance and to offer smooth shifting. The products include kits containing shift knobs or hardware.",
+              "parentId": "automotive-interior-accessories-decorative"
+            },
+            {
+              "id": "shifter-knobs-handles-automotive",
+              "name": "Shifter Knobs/Handles (Automotive)",
+              "gpcCode": "10002875",
+              "gpcDescription": "Includes any products that can be described/observed as a knob or a handle, specifically designed to enhance a car appearance and to offer smooth shifting.",
+              "parentId": "automotive-interior-accessories-decorative"
+            }
+          ]
+        },
+        {
+          "id": "automotive-interior-accessories-interior-dash",
+          "name": "Automotive Interior Accessories - Interior Dash",
+          "gpcCode": "77012000",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "dash-mats-covers",
+              "name": "Dash Mats/Covers",
+              "gpcCode": "10002871",
+              "gpcDescription": "Includes any products that can be described/observed as a carpet or mat with pre-cut openings, specifically designed to enhance appearance of the dashboard, to protect it from cracking and to reduce glare.",
+              "parentId": "automotive-interior-accessories-interior-dash"
+            },
+            {
+              "id": "dash-trim-kits",
+              "name": "Dash Trim Kits",
+              "gpcCode": "10002870",
+              "gpcDescription": "Includes any products that can be described/observed as a kit, specifically designed for the dash boards to add fashionable look to the car interior design.",
+              "parentId": "automotive-interior-accessories-interior-dash"
+            },
+            {
+              "id": "instrument-panels-bezels",
+              "name": "Instrument Panels/Bezels",
+              "gpcCode": "10002872",
+              "gpcDescription": "Includes any products that can be described/observed as a frame or a panel, specifically designed to enhance appearance of the car instruments.",
+              "parentId": "automotive-interior-accessories-interior-dash"
+            }
+          ]
+        },
+        {
+          "id": "automotive-interior-accessories-interior-flooring",
+          "name": "Automotive Interior Accessories - Interior Flooring",
+          "gpcCode": "77011900",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "door-steps-kick-plates-automotive",
+              "name": "Door Steps/Kick Plates (Automotive)",
+              "gpcCode": "10002866",
+              "gpcDescription": "Includes any products that may be described/observed as a plate, specifically designed as a car doorsill to add comfort and enhance appearance of the car.",
+              "parentId": "automotive-interior-accessories-interior-flooring"
+            },
+            {
+              "id": "floor-mats-automotive",
+              "name": "Floor Mats (Automotive)",
+              "gpcCode": "10002867",
+              "gpcDescription": "Includes any products that may be described/observed as a flat piece of coarse fabric or other material, such as rubber, used to protect the car floor covering.",
+              "parentId": "automotive-interior-accessories-interior-flooring"
+            },
+            {
+              "id": "interior-cargo-liner-trays-automotive",
+              "name": "Interior Cargo Liner/Trays (Automotive)",
+              "gpcCode": "10002868",
+              "gpcDescription": "Includes any products that may be described/observed as a flat piece of material, used a covering to protect the car interiors when transporting any cargo.",
+              "parentId": "automotive-interior-accessories-interior-flooring"
+            },
+            {
+              "id": "interior-flooring-other-automotive",
+              "name": "Interior Flooring Other (Automotive)",
+              "gpcCode": "10002869",
+              "gpcDescription": "Includes any products that can be described/observed as a flat piece of coarse fabric or other material, used a car floor covering or specifically designed to enhance a car appearance, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-interior-accessories-interior-flooring"
+            },
+            {
+              "id": "replacement-carpet-automotive",
+              "name": "Replacement Carpet (Automotive)",
+              "gpcCode": "10002865",
+              "gpcDescription": "Includes any products that may be described/observed as fabric or other material, used to cover the car floor.",
+              "parentId": "automotive-interior-accessories-interior-flooring"
+            }
+          ]
+        },
+        {
+          "id": "automotive-interior-accessories-organisation",
+          "name": "Automotive Interior Accessories - Organisation",
+          "gpcCode": "77011500",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "consoles-automotive",
+              "name": "Consoles (Automotive)",
+              "gpcCode": "10002844",
+              "gpcDescription": "Includes any products that may be described/observed as a small storage compartment mounted between bucket seats in a car.",
+              "parentId": "automotive-interior-accessories-organisation"
+            },
+            {
+              "id": "interior-storage-other-automotive",
+              "name": "Interior Storage Other (Automotive)",
+              "gpcCode": "10002846",
+              "gpcDescription": "Includes any products that can be described/observed as a car storage container, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-interior-accessories-organisation"
+            },
+            {
+              "id": "litter-bags-baskets-automotive",
+              "name": "Litter Bags/Baskets (Automotive)",
+              "gpcCode": "10002845",
+              "gpcDescription": "Includes any products that may be described/observed as a storage bag or a basket used for disposal of rubbish in a car.",
+              "parentId": "automotive-interior-accessories-organisation"
+            },
+            {
+              "id": "tax-disc-holders-automotive",
+              "name": "Tax Disc Holders (Automotive)",
+              "gpcCode": "10005122",
+              "gpcDescription": "Includes any products that can be described/observed as a tax holder specifically designed for use in the car.",
+              "parentId": "automotive-interior-accessories-organisation"
+            }
+          ]
+        },
+        {
+          "id": "automotive-interior-accessories-seats",
+          "name": "Automotive Interior Accessories - Seats",
+          "gpcCode": "77011400",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "automotive-interior-accessories-seats-variety-packs",
+              "name": "Automotive Interior Accessories - Seats Variety Packs",
+              "gpcCode": "10006814",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct preparations, specifically designed to specifically designed to improve the seating comfort in an automotive, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Automotive Interior Accessories - Seats class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-interior-accessories-seats"
+            },
+            {
+              "id": "baby-car-booster-seats",
+              "name": "Baby Car/Booster Seats",
+              "gpcCode": "10000792",
+              "gpcDescription": "Includes any products that can be described/observed as a seat intended to transport babies while in a motor vehicle such as a car. Car seats are fixed securely in the motor vehicle; they may be rear or forward facing. Car Seats for babies usually incorporate a carry handle, which would allow for the baby to be transported by hand. Booster Seats are seats for young children, which raise the child to a higher level in the car. ",
+              "parentId": "automotive-interior-accessories-seats"
+            },
+            {
+              "id": "head-neck-cushions-automotive",
+              "name": "Head/Neck Cushions (Automotive)",
+              "gpcCode": "10002842",
+              "gpcDescription": "Includes any products that may be described/observed as a cushion specifically designed for a car seat for additional comfort and neck and head support.",
+              "parentId": "automotive-interior-accessories-seats"
+            },
+            {
+              "id": "seat-belt-pads",
+              "name": "Seat Belt Pads",
+              "gpcCode": "10002841",
+              "gpcDescription": "Includes any products that may be described/observed as a pad, specifically designed to relieve a user from seat belt rubbing.",
+              "parentId": "automotive-interior-accessories-seats"
+            },
+            {
+              "id": "seat-belts-extenders",
+              "name": "Seat Belts/Extenders",
+              "gpcCode": "10002840",
+              "gpcDescription": "Includes any products that may be described/observed as a safety strap or harness designed to hold a person securely in a seat. The products include seat belt extenders.",
+              "parentId": "automotive-interior-accessories-seats"
+            },
+            {
+              "id": "seat-covers-automotive",
+              "name": "Seat Covers (Automotive)",
+              "gpcCode": "10002838",
+              "gpcDescription": "Includes any products that may be described/observed as a cover specifically designed for a car seat for additional protection, comfort or ergonomics.",
+              "parentId": "automotive-interior-accessories-seats"
+            },
+            {
+              "id": "seat-cushions-automotive",
+              "name": "Seat Cushions (Automotive)",
+              "gpcCode": "10002839",
+              "gpcDescription": "Includes any products that may be described/observed as a cushion specifically designed for a car seat for additional comfort.",
+              "parentId": "automotive-interior-accessories-seats"
+            },
+            {
+              "id": "seat-hardware-accessories-automotive",
+              "name": "Seat Hardware/Accessories (Automotive)",
+              "gpcCode": "10002843",
+              "gpcDescription": "Includes any products that can be described/observed as a car accessory, specifically designed to be used in conjunction with the car seat.",
+              "parentId": "automotive-interior-accessories-seats"
+            },
+            {
+              "id": "seats-automotive",
+              "name": "Seats (Automotive)",
+              "gpcCode": "10002837",
+              "gpcDescription": "Includes any products that may be described/observed as a seat specifically designed to be installed in a car for additional comfort or ergonomics. The products may include hardware for fitting.",
+              "parentId": "automotive-interior-accessories-seats"
+            }
+          ]
+        },
+        {
+          "id": "automotive-interior-accessories-steering",
+          "name": "Automotive Interior Accessories - Steering",
+          "gpcCode": "77011800",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "steering-wheel-covers",
+              "name": "Steering Wheel Covers",
+              "gpcCode": "10002863",
+              "gpcDescription": "Includes any products that may be described/observed as a cover specifically designed to increase comfort and appearance of the steering wheel.",
+              "parentId": "automotive-interior-accessories-steering"
+            },
+            {
+              "id": "steering-wheel-hardware-accessories",
+              "name": "Steering Wheel Hardware/Accessories",
+              "gpcCode": "10002864",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to use in conjunction with a steering wheel to increase its comfort and appearance.",
+              "parentId": "automotive-interior-accessories-steering"
+            },
+            {
+              "id": "steering-wheels",
+              "name": "Steering Wheels",
+              "gpcCode": "10002862",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to replace a factory steering wheel for additional comfort and comfortable grip.",
+              "parentId": "automotive-interior-accessories-steering"
+            }
+          ]
+        },
+        {
+          "id": "automotive-interior-accessories-sun-protection",
+          "name": "Automotive Interior Accessories - Sun Protection",
+          "gpcCode": "77011700",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "window-tints",
+              "name": "Window Tints",
+              "gpcCode": "10002860",
+              "gpcDescription": "Includes any products that can be described/observed as a transparent dimming tape or film, attached to the car window, specifically designed to reduce sunglare.",
+              "parentId": "automotive-interior-accessories-sun-protection"
+            },
+            {
+              "id": "window-door-visors",
+              "name": "Window/Door Visors",
+              "gpcCode": "10002861",
+              "gpcDescription": "Includes any products that can be described/observed as a panel, attached to the interior of the car door or window, specifically designed to reduce sunglare at daytime or headlight glare of oncoming traffic and reduce eye strain at night.",
+              "parentId": "automotive-interior-accessories-sun-protection"
+            },
+            {
+              "id": "windshield-shades",
+              "name": "Windshield Shades",
+              "gpcCode": "10002859",
+              "gpcDescription": "Includes any products that can be described/observed as a transparent dimming panel, attached to the car windshield, specifically designed to reduce sunglare.",
+              "parentId": "automotive-interior-accessories-sun-protection"
+            }
+          ]
+        },
+        {
+          "id": "automotive-light-assemblies",
+          "name": "Automotive Light Assemblies",
+          "gpcCode": "77014000",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "assemblies-headlight",
+              "name": "Assemblies - Headlight",
+              "gpcCode": "10003049",
+              "gpcDescription": "Includes any products that can be described/observed as a front headlight assembly, complete with the housing, lenses and bulbs.",
+              "parentId": "automotive-light-assemblies"
+            },
+            {
+              "id": "assemblies-taillight",
+              "name": "Assemblies - Taillight",
+              "gpcCode": "10003050",
+              "gpcDescription": "Includes any products that can be described/observed as a taillight kit, complete with the housing, lenses and bulbs",
+              "parentId": "automotive-light-assemblies"
+            },
+            {
+              "id": "light-assemblies-other-automotive",
+              "name": "Light Assemblies Other (Automotive)",
+              "gpcCode": "10003052",
+              "gpcDescription": "Includes any products that can be described/observed as a car light kit, complete with the housing, lenses and bulbs, specifically designed for use in the car, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-light-assemblies"
+            }
+          ]
+        },
+        {
+          "id": "automotive-lights-bulbs",
+          "name": "Automotive Lights/Bulbs",
+          "gpcCode": "77013900",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "back-up-lights-automotive",
+              "name": "Back Up Lights (Automotive)",
+              "gpcCode": "10003037",
+              "gpcDescription": "Includes any products that can be described/observed as a pair of lights, which when operated, indicate that the vehicle's transmission has been placed in the reverse gear, warning anyone behind the vehicle that it is moving backwards, or about to do so.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "clearance-marker-running-lights-automotive",
+              "name": "Clearance/Marker/Running Lights (Automotive)",
+              "gpcCode": "10003041",
+              "gpcDescription": "Includes any products that can be described/observed as lights, which when lit, are used to indicate the vehicle's position and size to the other drivers.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "driving-lights",
+              "name": "Driving Lights",
+              "gpcCode": "10003038",
+              "gpcDescription": "Includes any products that can be described/observed as the main front and back lights of a vehicle, which assist visibility when driving in poor light or at night.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "emergency-lights-automotive",
+              "name": "Emergency Lights (Automotive)",
+              "gpcCode": "10002830",
+              "gpcDescription": "Includes any products that can be described/observed as a flashing light used as a warning signal in case of a car breakage.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "fog-lights-automotive",
+              "name": "Fog Lights (Automotive)",
+              "gpcCode": "10003036",
+              "gpcDescription": "Includes any products that can be described/observed as a lighting device used to provide illumination forward and/or backward of the vehicle that enhances visibility in fog, rain, snow, or dust.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "headlights-automotive",
+              "name": "Headlights (Automotive)",
+              "gpcCode": "10003031",
+              "gpcDescription": "Includes any products that can be described/observed as a pair of white or yellow lights placed in the front of the vehicle, designed to illuminate the upcoming road and to make the vehicle more visible.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "lights-bulbs-other-automotive",
+              "name": "Lights/Bulbs Other (Automotive)",
+              "gpcCode": "10003047",
+              "gpcDescription": "Includes any products that can be described/observed as a light/bulb, specifically designed for use in the car, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "lights-bulbs-variety-packs-automotive",
+              "name": "Lights/Bulbs Variety Packs (Automotive)",
+              "gpcCode": "10003048",
+              "gpcDescription": "Includes any products than can be described/observed as two or more lights or bulbs, specifically designed for use in the car, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Automotive Lights/Bulbs class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "reflectors-automotive",
+              "name": "Reflectors (Automotive)",
+              "gpcCode": "10003046",
+              "gpcDescription": "Includes any products that can be described/observed as a shiny surface that helps to intensify the beam and is used to increase car security and visibility.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "replacement-bulbs",
+              "name": "Replacement Bulbs",
+              "gpcCode": "10003034",
+              "gpcDescription": "Includes any products that can be described/observed as a bulb specifically designed to be used as replacement for any type of automotive lights.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "replacement-lenses-automotive",
+              "name": "Replacement Lenses (Automotive)",
+              "gpcCode": "10003045",
+              "gpcDescription": "Includes any products that can be described/observed as a lens specifically designed to be used as replacement for any type of automotive lights.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "siren-lights",
+              "name": "Siren Lights",
+              "gpcCode": "10003042",
+              "gpcDescription": "Includes any products that can be described/observed as a car electric horn with lighting effects.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "spot-lights-automotive",
+              "name": "Spot Lights (Automotive)",
+              "gpcCode": "10003759",
+              "gpcDescription": "Includes any products that can be described/observed as a light with reflectors for projecting a powerful beam of light of approximately parallel rays in a particular direction.",
+              "parentId": "automotive-lights-bulbs"
+            },
+            {
+              "id": "stop-turn-tail-lights",
+              "name": "Stop/Turn/Tail Lights",
+              "gpcCode": "10003044",
+              "gpcDescription": "Includes any products that can be described/observed as a light that is found at the rear end of the car. It usually emits red light when the brake is stepped on, thereby warning the vehicle at the back that the car would stop.",
+              "parentId": "automotive-lights-bulbs"
+            }
+          ]
+        },
+        {
+          "id": "automotive-maintenance-repair",
+          "name": "Automotive Maintenance/Repair",
+          "gpcCode": "77011200",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "air-conditioning-refrigerants",
+              "name": "Air Conditioning Refrigerants",
+              "gpcCode": "10005761",
+              "gpcDescription": "Includes any products that can be described/observed as a an inert gas used primarily as a refrigerant to restore automobile air conditioners. It is usually used to replace or refill refrigerant to Air Conditioning (A/C) Systems. The product can be packaged in aerosol cans which when inverted, become effective freeze sprays. Some items also include additional properties such as sealing leaks and cleaning the Air Conditioning (A/C) System. ",
+              "parentId": "automotive-maintenance-repair"
+            },
+            {
+              "id": "auto-repair-crawlers-creepers",
+              "name": "Auto Repair Crawlers/Creepers",
+              "gpcCode": "10005720",
+              "gpcDescription": "Includes any products that can be described/observed as a low profile seat or trolley on rollers that allows an auto mechanic to sit or lie down and gain easy access to repair of the engine or underside of the automobile.",
+              "parentId": "automotive-maintenance-repair"
+            },
+            {
+              "id": "fuel-tank-line-repair-kits",
+              "name": "Fuel Tank/Line Repair/Kits",
+              "gpcCode": "10002820",
+              "gpcDescription": "Includes any products that can be described/observed as a set of devices and accessories, specifically designed to repair a car fuel tank.",
+              "parentId": "automotive-maintenance-repair"
+            },
+            {
+              "id": "glass-repair-kits",
+              "name": "Glass Repair/Kits",
+              "gpcCode": "10002824",
+              "gpcDescription": "Includes any products that can be described/observed as a set of devices and accessories, specifically designed to repair any type of car glass.",
+              "parentId": "automotive-maintenance-repair"
+            },
+            {
+              "id": "maintenance-repair-other",
+              "name": "Maintenance/Repair Other",
+              "gpcCode": "10002825",
+              "gpcDescription": "Includes any products that can be described/observed as a car maintenance or repair device or accessory, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-maintenance-repair"
+            },
+            {
+              "id": "muffler-exhaust-repair",
+              "name": "Muffler/Exhaust Repair",
+              "gpcCode": "10002817",
+              "gpcDescription": "Includes any products that can be described/observed as a set of devices and accessories, specifically designed to repair a car muffler/exhaust.",
+              "parentId": "automotive-maintenance-repair"
+            },
+            {
+              "id": "radiator-repair-kits",
+              "name": "Radiator Repair/Kits",
+              "gpcCode": "10002821",
+              "gpcDescription": "Includes any products that can be described/observed as a set of devices and accessories, specifically designed to repair a car radiator.",
+              "parentId": "automotive-maintenance-repair"
+            },
+            {
+              "id": "rear-view-mirror-repair-kits",
+              "name": "Rear-view Mirror Repair/Kits",
+              "gpcCode": "10002822",
+              "gpcDescription": "Includes any products that can be described/observed as a set of devices and accessories, specifically designed to repair a car rear-view mirror.",
+              "parentId": "automotive-maintenance-repair"
+            },
+            {
+              "id": "vehicle-servicing-ramps-lifts-automotive",
+              "name": "Vehicle Servicing Ramps/Lifts (Automotive)",
+              "gpcCode": "10002746",
+              "gpcDescription": "Includes any products that can be described/observed as a device specifically designed to aid car repair and is used to raise the car so that the chassis is above the garage floor, where the user of the schema is not able to classify the products in existing bricks within the schema. Includes car ramps designed as inclined devices, via which cars can move from one level to another.",
+              "parentId": "automotive-maintenance-repair"
+            },
+            {
+              "id": "window-defogger-repair-kits",
+              "name": "Window Defogger Repair/Kits",
+              "gpcCode": "10002823",
+              "gpcDescription": "Includes any products that can be described/observed as a set of devices and accessories, specifically designed to repair a window defogger.",
+              "parentId": "automotive-maintenance-repair"
+            }
+          ]
+        },
+        {
+          "id": "automotive-performance-chemicals",
+          "name": "Automotive Performance Chemicals",
+          "gpcCode": "77010500",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "brake-cleaners",
+              "name": "Brake Cleaners",
+              "gpcCode": "10002778",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to clean the car brakes.",
+              "parentId": "automotive-performance-chemicals"
+            },
+            {
+              "id": "carburettor-choke-sprays",
+              "name": "Carburettor/Choke Sprays",
+              "gpcCode": "10002779",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to keep injectors, intake valves, port and fuel systems clean and to help reduce power loss due to spark plug fouling. These products are packaged in an aerosol container.",
+              "parentId": "automotive-performance-chemicals"
+            },
+            {
+              "id": "carburettor-parts-dip-cleaner",
+              "name": "Carburettor/Parts Dip Cleaner",
+              "gpcCode": "10002780",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to keep injectors, intake valves, port and fuel systems clean and to help reduce power loss due to spark plug fouling. These products are packaged in a bottle.",
+              "parentId": "automotive-performance-chemicals"
+            },
+            {
+              "id": "electric-parts-cleaner-automotive",
+              "name": "Electric Parts Cleaner (Automotive)",
+              "gpcCode": "10003775",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to clean the car electric equipment.",
+              "parentId": "automotive-performance-chemicals"
+            },
+            {
+              "id": "engine-degreasers-pollution-control",
+              "name": "Engine Degreasers/Pollution Control",
+              "gpcCode": "10002781",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation specifically designed to clean and degrease the car engine or to provide pollution control. The products ensure longer engine life by keeping cylinder walls corrosion free.",
+              "parentId": "automotive-performance-chemicals"
+            }
+          ]
+        },
+        {
+          "id": "automotive-safety",
+          "name": "Automotive Safety",
+          "gpcCode": "77011300",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "automotive-fire-extinguishers",
+              "name": "Automotive Fire Extinguishers",
+              "gpcCode": "10006904",
+              "gpcDescription": "Includes any products that are kept in an automobile, used to extinguish a fire, often in an emergency situation. The container is filled with fire retardant chemicals or water that can put out a small fire. Includes products such as manually operated or automatic extinguishers.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "back-up-alarms-sensors",
+              "name": "Back-up Alarms/Sensors",
+              "gpcCode": "10002829",
+              "gpcDescription": "Includes any products that can be described/observed as a device consisting of a sensor mounted on the back of a vehicle which is engaged when the vehicle is put into reverse gear by giving a visual and audio warning.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "emergency-fuel-aids",
+              "name": "Emergency Fuel Aids",
+              "gpcCode": "10002826",
+              "gpcDescription": "Includes any products that can be described/observed as a set comprising a fuel can and/or hose and/or a device/funnel designed specifically to filter and remove condensation and contamination from any fuel stored in the fuel can.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "emergency-road-side-kits",
+              "name": "Emergency Road Side Kits",
+              "gpcCode": "10002834",
+              "gpcDescription": "Includes any products that can be described/observed as a kit that contains essential tools necessary for a road emergency, such as spot light, emergency red light, tools, power supply, an assortment of auto fuses, a tyre pressure gauge or any others.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "mirrors-automotive",
+              "name": "Mirrors (Automotive)",
+              "gpcCode": "10003774",
+              "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to be installed inside of the car for rear view or those that are attached to the back of a visor. The products include those with additional features, such as a clock. Also includes auto-dimming mirrors supplied with sensors to recognise and eliminate rear approaching light.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "parking-protections",
+              "name": "Parking Protections",
+              "gpcCode": "10006376",
+              "gpcDescription": "Includes any products that can be described/observed as device that can be placed on a wall or on a pillar, to protect the vehicle and may enhance the visibility of the obstacle to the driver. Specifically includes rectangular or any shape of white and red stripped box, designed to prevent scratching a vehicle in a garage during a parking manoeuvre.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "protective-hose-bridges-automotive",
+              "name": "Protective Hose Bridges (Automotive)",
+              "gpcCode": "10005821",
+              "gpcDescription": "Includes products that can be described/observed as a heavy duty ramped construction that provides protection for valuable cable and hose lines while ensuring a method of safe passage for vehicles.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "safety-other-automotive",
+              "name": "Safety Other (Automotive)",
+              "gpcCode": "10002835",
+              "gpcDescription": "Includes any products that can be described/observed as a car safety device or accessory, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "safety-replacement-parts-accessories-automotive",
+              "name": "Safety Replacement Parts/Accessories (Automotive)",
+              "gpcCode": "10003760",
+              "gpcDescription": "Includes any products that can be described/observed as a car safety replacement part or accessory.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "safety-variety-packs-automotive",
+              "name": "Safety Variety Packs (Automotive)",
+              "gpcCode": "10002836",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct devices or accessories, specifically designed to enhance car safety, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Car Safety class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "warning-flags-flag-staffs-automotive",
+              "name": "Warning Flags/Flag Staffs (Automotive)",
+              "gpcCode": "10005820",
+              "gpcDescription": "Includes any products that can be described as a heavy duty flag and flagstaff attached to a vehicle to warn motorists of a stationery vehicle or of a vehicle carrying an excessive load. The flags are normally made of a highly visible material and the flagstaffs may also hold a flashing light to warn motorists.",
+              "parentId": "automotive-safety"
+            },
+            {
+              "id": "warning-signs-triangles-automotive",
+              "name": "Warning Signs/Triangles (Automotive)",
+              "gpcCode": "10002833",
+              "gpcDescription": "Includes any products that can be described/observed as a triangle sign that can be placed of the side of the road to show that there is a breakdown or crash ahead.",
+              "parentId": "automotive-safety"
+            }
+          ]
+        },
+        {
+          "id": "automotive-spark-plugs-glow-plugs-injectors",
+          "name": "Automotive Spark Plugs/Glow Plugs/ Injectors",
+          "gpcCode": "77013700",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "fuel-injectors",
+              "name": "Fuel Injectors",
+              "gpcCode": "10006379",
+              "gpcDescription": "Includes any products that can be described/observed as a device inserted in the head of an internal-combustion engine cylinder that ignites the fuel mixture by means of an electric spark.",
+              "parentId": "automotive-spark-plugs-glow-plugs-injectors"
+            },
+            {
+              "id": "glow-plug-variety-packs",
+              "name": "Glow Plug Variety Packs",
+              "gpcCode": "10006381",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products, specifically designed to be used as or with a glow plug, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Glow Plug class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-spark-plugs-glow-plugs-injectors"
+            },
+            {
+              "id": "glow-plugs",
+              "name": "Glow Plugs",
+              "gpcCode": "10006380",
+              "gpcDescription": "Includes any products that can be described/observed as a heating device used to aid starting diesel engines.",
+              "parentId": "automotive-spark-plugs-glow-plugs-injectors"
+            },
+            {
+              "id": "spark-plugs",
+              "name": "Spark Plugs",
+              "gpcCode": "10003763",
+              "gpcDescription": "Includes any products that can be described/observed as a device inserted in the head of an internal-combustion engine cylinder that ignites the fuel mixture by means of an electric spark.",
+              "parentId": "automotive-spark-plugs-glow-plugs-injectors"
+            },
+            {
+              "id": "spark-plugs-other",
+              "name": "Spark Plugs Other",
+              "gpcCode": "10003018",
+              "gpcDescription": "Includes any products that can be described/observed as a car spark plug device or accessory, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-spark-plugs-glow-plugs-injectors"
+            },
+            {
+              "id": "spark-plugs-variety-packs",
+              "name": "Spark Plugs Variety Packs",
+              "gpcCode": "10003019",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products, specifically designed to be used as or with a spark plug, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Spark Plug class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-spark-plugs-glow-plugs-injectors"
+            }
+          ]
+        },
+        {
+          "id": "automotive-towing-hitch",
+          "name": "Automotive Towing/Hitch",
+          "gpcCode": "77013100",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "adaptors-hitch-automotive",
+              "name": "Adaptors - Hitch (Automotive)",
+              "gpcCode": "10002962",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to convert a hitch receiver to accommodate hitch mounted accessories, bike rack or any other cargo carriers.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "draw-bars-trailer-ball-mounts-automotive",
+              "name": "Draw Bars/Trailer Ball Mounts (Automotive)",
+              "gpcCode": "10002973",
+              "gpcDescription": "Includes any products that can be described/observed as a device specifically designed to set up the trailer to tow on a level plane.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "hitch-covers-automotive",
+              "name": "Hitch Covers (Automotive)",
+              "gpcCode": "10002968",
+              "gpcDescription": "Includes any products that can be described/observed as a cover, attached to the hitch receiver with a built in adapter to protect from water and to enhance its appearance.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "hitch-hardware-assemblies-automotive",
+              "name": "Hitch Hardware/Assemblies (Automotive)",
+              "gpcCode": "10002960",
+              "gpcDescription": "Includes any products that can be described/observed as a kit, complete with the hitch receiver, draw bar, tow ball and other towing and hitch hardware or accessories.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "hitch-steps-automotive",
+              "name": "Hitch Steps (Automotive)",
+              "gpcCode": "10002969",
+              "gpcDescription": "Includes any products that can be described/observed as a panel or a tube, attached to the hitch receiver with a plastic step pad.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "hitches-automotive",
+              "name": "Hitches (Automotive)",
+              "gpcCode": "10002959",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to connect a trailer to an automotive vehicle.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "pins-clips-hitch-automotive",
+              "name": "Pins/Clips - Hitch (Automotive)",
+              "gpcCode": "10002963",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to secure ball mount to receiver.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "receiver-tubes-collars-automotive",
+              "name": "Receiver Tubes/Collars (Automotive)",
+              "gpcCode": "10002961",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to extend the hitch. The products may contain reinforced collars for additional strength.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "safety-chains-cables-towing-automotive",
+              "name": "Safety Chains/Cables - Towing (Automotive)",
+              "gpcCode": "10002971",
+              "gpcDescription": "Includes any products that can be described/observed as a chain or a cable, used to prevent the trailer from separating from the tow vehicle in event of hitch failure such as a hitch ball that has loosened.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "tow-bars-automotive",
+              "name": "Tow Bars (Automotive)",
+              "gpcCode": "10002966",
+              "gpcDescription": "Includes any products that can be described/observed as a towing structure that is connected to a semi-trailer, trailer or converter and which includes an eye or equivalent device for the purpose of coupling with a trailer hitch. The products include \"Rigid A-Frame\" and \"Collapsible\" tow bars.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "tow-hooks-automotive",
+              "name": "Tow Hooks (Automotive)",
+              "gpcCode": "10002965",
+              "gpcDescription": "Includes any products that can be described/observed as a device, attached to the vehicle's frame that is used to provide an attachment point for wire hooks.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "tow-ropes-straps-automotive",
+              "name": "Tow Ropes/Straps (Automotive)",
+              "gpcCode": "10002964",
+              "gpcDescription": "Includes any products that can be described/observed as a line, chain or strap, attached to the vehicle's towing hook that is used for towing vehicles.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "towing-components-heavy-duty",
+              "name": "Towing Components - Heavy Duty",
+              "gpcCode": "10002974",
+              "gpcDescription": "Includes any products that can be described/observed as a product, specifically designed according to the legal standards for towing or hitch of trailers above a certain standard in tension and compression.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "towing-locking-accessories",
+              "name": "Towing Locking Accessories",
+              "gpcCode": "10002967",
+              "gpcDescription": "Includes any products that can be described/observed as a device, used to lock a towing receiver or a coupler.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "towing-mirrors-automotive",
+              "name": "Towing Mirrors (Automotive)",
+              "gpcCode": "10002970",
+              "gpcDescription": "Includes any products that can be described/observed as a mirror that is specifically designed for added vision for towing. The products include those sliding over the existing car mirror.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "towing-hitch-other",
+              "name": "Towing/Hitch Other",
+              "gpcCode": "10002976",
+              "gpcDescription": "Includes any products that can be described/observed as a product, specifically designed for towing or hitch, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "towing-hitch-variety-packs",
+              "name": "Towing/Hitch Variety Packs",
+              "gpcCode": "10002977",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products, specifically designed for towing or hitch, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Towing/Hitch class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-towing-hitch"
+            },
+            {
+              "id": "trailer-hitch-balls-automotive",
+              "name": "Trailer/Hitch Balls (Automotive)",
+              "gpcCode": "10002972",
+              "gpcDescription": "Includes any products that can be described/observed as a round device, specifically designed for the couple of the trailer for the safe transporting.",
+              "parentId": "automotive-towing-hitch"
+            }
+          ]
+        },
+        {
+          "id": "automotive-towing-hitch-electrical",
+          "name": "Automotive Towing/Hitch - Electrical",
+          "gpcCode": "77013200",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "brake-controls",
+              "name": "Brake Controls",
+              "gpcCode": "10002979",
+              "gpcDescription": "Includes any products that can be described/observed as an electric device, specifically designed to provide smooth breaking and good feel by responding to the length that the tow vehicle brake pedal is depressed until the pre-set brake power setting is reached.",
+              "parentId": "automotive-towing-hitch-electrical"
+            },
+            {
+              "id": "connectors-towing",
+              "name": "Connectors - Towing",
+              "gpcCode": "10002978",
+              "gpcDescription": "Includes any products that can be described/observed as an electric device, specifically designed to provide detachable electrical connections between motor vehicles and trailers.",
+              "parentId": "automotive-towing-hitch-electrical"
+            },
+            {
+              "id": "power-modules",
+              "name": "Power Modules",
+              "gpcCode": "10002980",
+              "gpcDescription": "Includes any products that can be described/observed as an electric module, specifically designed to tune the engine for maximum power and performance for safe towing even at the highest horsepower gains.",
+              "parentId": "automotive-towing-hitch-electrical"
+            },
+            {
+              "id": "tow-lights",
+              "name": "Tow Lights",
+              "gpcCode": "10002984",
+              "gpcDescription": "Includes any products that can be described/observed as a light, specifically designed for safer towing.",
+              "parentId": "automotive-towing-hitch-electrical"
+            },
+            {
+              "id": "towing-hitch-electrical-other",
+              "name": "Towing/Hitch - Electrical Other",
+              "gpcCode": "10002985",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device, specifically designed for towing or hitch, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-towing-hitch-electrical"
+            },
+            {
+              "id": "towing-hitch-electrical-variety-packs",
+              "name": "Towing/Hitch - Electrical Variety Packs",
+              "gpcCode": "10002986",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct electrical devices, specifically designed for towing or hitch, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Towing/Hitch Electrical class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-towing-hitch-electrical"
+            },
+            {
+              "id": "wiring-adapters-converters",
+              "name": "Wiring Adapters/Converters",
+              "gpcCode": "10002981",
+              "gpcDescription": "Includes any products that can be described/observed as an electric device, used when the towing vehicle has separate wires for brake lights and turn signals. The products also include those used to adapt the trailer connector at the rear of the vehicle to a cigarette lighter plug receptacles.",
+              "parentId": "automotive-towing-hitch-electrical"
+            },
+            {
+              "id": "wiring-kits-harnesses",
+              "name": "Wiring Kits/Harnesses",
+              "gpcCode": "10002982",
+              "gpcDescription": "Includes any products that can be described/observed as a wiring kit, complete with the wires, converters and adaptors, specifically designed for towing.",
+              "parentId": "automotive-towing-hitch-electrical"
+            }
+          ]
+        },
+        {
+          "id": "automotive-trailers-trailer-accessories",
+          "name": "Automotive Trailers/Trailer Accessories",
+          "gpcCode": "77013300",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "couplers-trailer-automotive",
+              "name": "Couplers - Trailer (Automotive)",
+              "gpcCode": "10002988",
+              "gpcDescription": "Includes any products that can be described/observed as a mechanical device, specifically designed to serve to connect the trailer.",
+              "parentId": "automotive-trailers-trailer-accessories"
+            },
+            {
+              "id": "levelling-devices-automotive",
+              "name": "Levelling Devices (Automotive)",
+              "gpcCode": "10002992",
+              "gpcDescription": "Includes any products that can be described/observed as a mechanical device, specifically designed to remove mis-match of the levels of the fittings or an unbalanced load.",
+              "parentId": "automotive-trailers-trailer-accessories"
+            },
+            {
+              "id": "trailer-brakes",
+              "name": "Trailer Brakes",
+              "gpcCode": "10002989",
+              "gpcDescription": "Includes any products that can be described/observed as a device, consisting of a combination of interacting parts that work to slow a motor vehicle, specifically designed for a trailer.",
+              "parentId": "automotive-trailers-trailer-accessories"
+            },
+            {
+              "id": "trailer-hardware",
+              "name": "Trailer Hardware",
+              "gpcCode": "10002994",
+              "gpcDescription": "Includes any products that can be described/observed as any device, specifically designed to aid usage or enhance appearance of an automotive trailer. Products include such as roll up door panels or locks, hinges or fixtures, handles, steps or bolts.",
+              "parentId": "automotive-trailers-trailer-accessories"
+            },
+            {
+              "id": "trailer-jacks-stands",
+              "name": "Trailer Jacks/Stands",
+              "gpcCode": "10002987",
+              "gpcDescription": "Includes any products that can be described/observed as a portable mechanical device, specifically designed to raise or hold a trailer.",
+              "parentId": "automotive-trailers-trailer-accessories"
+            },
+            {
+              "id": "trailer-lighting-reflectors",
+              "name": "Trailer Lighting/Reflectors",
+              "gpcCode": "10002991",
+              "gpcDescription": "Includes any products that can be described/observed as a light or reflector, designed to illuminate a trailer to make it more visible.",
+              "parentId": "automotive-trailers-trailer-accessories"
+            },
+            {
+              "id": "trailer-trailer-accessories-other",
+              "name": "Trailer/Trailer Accessories Other",
+              "gpcCode": "10002996",
+              "gpcDescription": "Includes any products that can be described/observed as a trailer accessory, specifically designed for towing or hitch, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-trailers-trailer-accessories"
+            },
+            {
+              "id": "trailer-trailer-accessories-variety-packs",
+              "name": "Trailer/Trailer Accessories Variety Packs",
+              "gpcCode": "10002995",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct accessories, specifically designed for towing or hitch, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Trailer/Trailer Accessories class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-trailers-trailer-accessories"
+            },
+            {
+              "id": "trailers",
+              "name": "Trailers",
+              "gpcCode": "10002993",
+              "gpcDescription": "Includes any products that can be described/observed as a large transport vehicle designed to be hauled by a car, truck or tractor. Includes house trailers that can be used for residency",
+              "parentId": "automotive-trailers-trailer-accessories"
+            },
+            {
+              "id": "wheel-bearing-protectors",
+              "name": "Wheel Bearing Protectors",
+              "gpcCode": "10002990",
+              "gpcDescription": "Includes any products that can be described/observed as a device, designed to replace original equipment dust caps on trailer wheel hubs to provide permanent protection against damage from water and dirt entering the wheel bearings.",
+              "parentId": "automotive-trailers-trailer-accessories"
+            }
+          ]
+        },
+        {
+          "id": "automotive-transmission-fluid",
+          "name": "Automotive Transmission Fluid",
+          "gpcCode": "77010900",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "transmission-fluid",
+              "name": "Transmission Fluid",
+              "gpcCode": "10002799",
+              "gpcDescription": "Includes any products that can be described/observed as an oil used to create hydraulic pressure and to cool and lubricate the internal parts of a car transmission.",
+              "parentId": "automotive-transmission-fluid"
+            },
+            {
+              "id": "transmission-fluid-other",
+              "name": "Transmission Fluid Other",
+              "gpcCode": "10002800",
+              "gpcDescription": "Includes any products that can be described/observed as a preparation, specifically designed to cool and lubricate the internal parts of a car transmission, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-transmission-fluid"
+            },
+            {
+              "id": "transmission-fluid-variety-packs",
+              "name": "Transmission Fluid Variety Packs",
+              "gpcCode": "10002801",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct preparations, specifically designed to specifically designed to cool and lubricate the internal parts of a car transmission, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Transmission Fluid class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-transmission-fluid"
+            }
+          ]
+        },
+        {
+          "id": "automotive-tyres-wheels",
+          "name": "Automotive Tyres/Wheels",
+          "gpcCode": "77012700",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "tyres",
+              "name": "Tyres",
+              "gpcCode": "10002924",
+              "gpcDescription": "Includes any products that can be described/observed as a covering for a wheel, usually made of rubber reinforced with cords of nylon, fibreglass, or other material may be filled with compressed gas such as air or nitrogen or may be a solid tyre.",
+              "parentId": "automotive-tyres-wheels"
+            },
+            {
+              "id": "wheels",
+              "name": "Wheels",
+              "gpcCode": "10002926",
+              "gpcDescription": "Includes any products that can be described/observed as a device consisting of a circular frame with spokes (or a solid disc) that can rotate on a shaft or axle.",
+              "parentId": "automotive-tyres-wheels"
+            }
+          ]
+        },
+        {
+          "id": "automotive-tyres-wheels-accessories",
+          "name": "Automotive Tyres/Wheels Accessories",
+          "gpcCode": "77012800",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "air-compressors-automotive",
+              "name": "Air Compressors (Automotive)",
+              "gpcCode": "10002929",
+              "gpcDescription": "Includes any products that can be described/observed as a device that compresses or pressurises air to create a force of air to inflate car tyres. Includes electrical car tyre pumps.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "beauty-trim-rings",
+              "name": "Beauty/Trim Rings",
+              "gpcCode": "10002935",
+              "gpcDescription": "Includes any products that can be described/observed as a metal ring, designed to be installed in a wheel to enhance its look.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "disc-brake-simulators",
+              "name": "Disc Brake Simulators",
+              "gpcCode": "10002934",
+              "gpcDescription": "Includes any products that can be described/observed as a device fitted on car wheels to reduce brake dust build-up on wheels and to enhance appearance of the wheel.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "flat-tyre-repair-kits",
+              "name": "Flat Tyre Repair Kits",
+              "gpcCode": "10002930",
+              "gpcDescription": "Includes any products that can be described/observed as flat tyre repair products sold as a kit, specifically designed for automotive vehicles.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "inner-tube",
+              "name": "Inner Tube",
+              "gpcCode": "10008104",
+              "gpcDescription": "Includes any products that can be described/observed as an item specifically designed to be the inner inflatable bladder for tyres. ",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "jumper-cables",
+              "name": "Jumper Cables",
+              "gpcCode": "10006838",
+              "gpcDescription": "Includes any products that can be described/observed as cables by which the battery of a car can be recharged from an external source.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "tyre-bag",
+              "name": "Tyre Bag",
+              "gpcCode": "10008103",
+              "gpcDescription": "Includes any products that can be described/observed as an item specifically designed carry/cover car tyres for storage or transport after removal. ",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "tyre-holder",
+              "name": "Tyre Holder",
+              "gpcCode": "10006839",
+              "gpcDescription": "Includes any products that can be described/observed as a vertical stand on which wheels can be stored in a store or warehouse.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "tyre-inflators-chemical-automotive",
+              "name": "Tyre Inflators - Chemical (Automotive)",
+              "gpcCode": "10002932",
+              "gpcDescription": "Includes any products that can be described/observed as a canned preparation that an applicator that is used to inflate tyres. Products include those combined with a sealer.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "tyre-pressure-meter",
+              "name": "Tyre Pressure Meter",
+              "gpcCode": "10006775",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to measure the pressure of tires on a vehicle to be able to keep the pressure of the tire at the optimal amount.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "tyre-pumps-automotive",
+              "name": "Tyre Pumps (Automotive)",
+              "gpcCode": "10002928",
+              "gpcDescription": "Includes any products that can be described/observed as a manual device that fills an automobiles tyres with air.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "tyre-wheel-hardware",
+              "name": "Tyre/Wheel Hardware",
+              "gpcCode": "10002931",
+              "gpcDescription": "Includes any products that can be described/observed as a set or kit of devices that includes accessories specifically designed to be used in conjunction with car wheels. The products may include tyre studs, bolts, Snow Chains, Snow Socks and other products.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "wheel-covers",
+              "name": "Wheel Covers",
+              "gpcCode": "10002933",
+              "gpcDescription": "Includes any products that can be described/observed as a hubcap or wheel cover is a decorative disk on an automobile wheel that covers all of the lug nuts that attach the wheel to its axle.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            },
+            {
+              "id": "wheel-rim",
+              "name": "Wheel Rim",
+              "gpcCode": "10006377",
+              "gpcDescription": "Includes any products that can be described/observed as an item specifically designed to be the inner side of car wheels.",
+              "parentId": "automotive-tyres-wheels-accessories"
+            }
+          ]
+        },
+        {
+          "id": "automotive-winches-winch-accessories",
+          "name": "Automotive Winches/Winch Accessories",
+          "gpcCode": "77013400",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "winch-parts-components",
+              "name": "Winch Parts/Components",
+              "gpcCode": "10002999",
+              "gpcDescription": "Includes any products that can be described/observed as a device or piece of equipment, specifically designed to replace a faulty part in an automotive winch.",
+              "parentId": "automotive-winches-winch-accessories"
+            },
+            {
+              "id": "winch-winch-accessories-other-automotive",
+              "name": "Winch/Winch Accessories Other (Automotive)",
+              "gpcCode": "10003000",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory, specifically designed for automotive winches, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-winches-winch-accessories"
+            },
+            {
+              "id": "winch-winch-accessories-variety-packs",
+              "name": "Winch/Winch Accessories Variety Packs",
+              "gpcCode": "10003001",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct accessories, specifically designed for automotive winches, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Automotive Winches/Winch Accessories class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-winches-winch-accessories"
+            },
+            {
+              "id": "winches-automotive",
+              "name": "Winches (Automotive)",
+              "gpcCode": "10002998",
+              "gpcDescription": "Includes any products that can be described/observed as manual or powered device for lifting and pulling cargo, that use a cable, rope, or chain to move or lift a load. The products include those operated manually or powered by electric, pneumatic, or hydraulic motors.",
+              "parentId": "automotive-winches-winch-accessories"
+            }
+          ]
+        },
+        {
+          "id": "automotive-window-washer-fluid",
+          "name": "Automotive Window Washer Fluid",
+          "gpcCode": "77014900",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "washer-fluid-automotive",
+              "name": "Washer Fluid (Automotive)",
+              "gpcCode": "10003764",
+              "gpcDescription": "Includes any products that may be described/observed as a preparation, specifically designed to clean car windows.",
+              "parentId": "automotive-window-washer-fluid"
+            }
+          ]
+        },
+        {
+          "id": "automotive-wipers-wiper-parts",
+          "name": "Automotive Wipers/Wiper Parts",
+          "gpcCode": "77013600",
+          "parentId": "automotive-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "wiper-arms-automotive",
+              "name": "Wiper Arms (Automotive)",
+              "gpcCode": "10003142",
+              "gpcDescription": "Includes any products that can be described/observed as a metal bar pivoting at one end and leaning against the windshield, intended to hold a wiper frame.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-blade-refills",
+              "name": "Wiper Blade Refills",
+              "gpcCode": "10003012",
+              "gpcDescription": "Includes any products that can be described/observed as a refill for a wiper blade consisting of a strip of material that is directly in contact with the windscreen of a vehicle and attached to the wiper frame.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-blades",
+              "name": "Wiper Blades",
+              "gpcCode": "10003011",
+              "gpcDescription": "Includes any products that can be described/observed as a complete wiper blade consisting of a frame, the rubber and an adaptor to connect this into position and is typically intended to be used for the clearance of water from the windshield of an automobile.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-boots-automotive",
+              "name": "Wiper Boots (Automotive)",
+              "gpcCode": "10003143",
+              "gpcDescription": "Includes any products that can be described/observed as a plastic or rubber cover used to enhance appearance of the wiper arms and protect it from rust.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-components-other",
+              "name": "Wiper Components Other",
+              "gpcCode": "10003150",
+              "gpcDescription": "Includes any products that can be described/observed as a car wiper component, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-components-variety-packs",
+              "name": "Wiper Components Variety Packs",
+              "gpcCode": "10003151",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct products, specifically designed to be used as or with car wipers, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Wiper Components class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-cowls",
+              "name": "Wiper Cowls",
+              "gpcCode": "10003839",
+              "gpcDescription": "Includes any products that can be described/observed as a plastic or fibreglass cap used to replace the factory grate between the good and windscreen to enhance its appearance. The products include those that hide and protect wipers.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-motors",
+              "name": "Wiper Motors",
+              "gpcCode": "10003144",
+              "gpcDescription": "Includes any products that can be described/observed as an electric motor that is used for powering wipers through a series of mechanical components, typically two 4-bar linkages in series or parallel.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-motors-cores",
+              "name": "Wiper Motors (Cores)",
+              "gpcCode": "10003145",
+              "gpcDescription": "Includes any products that can be described/observed as a pair of stator coils wound on a soft iron core attached to the casing of the motor to produce and concentrate a magnetic field in an electric motor.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-nozzles",
+              "name": "Wiper Nozzles",
+              "gpcCode": "10003146",
+              "gpcDescription": "Includes any products that can be described/observed as a device, mounted on the hood/bonnet that is used for controlling water flow supplied from a tank to the windscreen.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-pumps",
+              "name": "Wiper Pumps",
+              "gpcCode": "10003147",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is used for supplying water and detergent from a tank to the windscreen through small nozzles, mounted on the hood/bonnet.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wiper-tubes-hoses",
+              "name": "Wiper Tubes/Hoses",
+              "gpcCode": "10003149",
+              "gpcDescription": "Includes any products that can be described/observed as a tube, mounted on the hood/bonnet that is used for connecting water flow supplied by a pump to the windscreen.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wipers-wiper-parts-other",
+              "name": "Wipers/Wiper Parts Other",
+              "gpcCode": "10003013",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory, specifically designed for automotive wipers, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "automotive-wipers-wiper-parts"
+            },
+            {
+              "id": "wipers-wiper-parts-variety-packs",
+              "name": "Wipers/Wiper Parts Variety Packs",
+              "gpcCode": "10003014",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct accessories, specifically designed for automotive wipers, sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Automotive Wipers/Wiper Accessories class. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "automotive-wipers-wiper-parts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cars-and-motorcycles",
+      "name": "Cars and Motorcycles",
+      "gpcCode": "77030000",
+      "parentId": "vehicle",
+      "children": [
+        {
+          "id": "cars",
+          "name": "Cars",
+          "gpcCode": "77030100",
+          "parentId": "cars-and-motorcycles",
+          "children": [
+            {
+              "id": "cars-vans-sport-utility-vehicles-light-trucks",
+              "name": "Cars/Vans/Sport Utility Vehicles/Light Trucks",
+              "gpcCode": "10006374",
+              "gpcDescription": "Includes any products that can be described/observed as a light vehicle, usually used for person transportation, usually with 4 wheels. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "cars"
+            }
+          ]
+        },
+        {
+          "id": "motorcycles-all-terrain-vehicles-utility-task-vehicles",
+          "name": "Motorcycles/ All Terrain Vehicles/ Utility Task Vehicles",
+          "gpcCode": "77030200",
+          "parentId": "cars-and-motorcycles",
+          "children": [
+            {
+              "id": "all-terrain-vehicles-atvs",
+              "name": "All Terrain Vehicles (ATVs)",
+              "gpcCode": "10006772",
+              "gpcDescription": "An All-Terrain Vehicle (ATV) is a vehicle that travels on low-pressure tires, with a seat that is straddled by the operator, along with handlebars for steering control. It is designed as a vehicle which can handle any variety of terrain better than most other vehicles. While it might be \"street-legal\", it has been designed for off-road applications at its core. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "motorcycles-all-terrain-vehicles-utility-task-vehicles"
+            },
+            {
+              "id": "all-terrain-vehicles-atvs-utility-task-vehicles-utvs-equipment-accessories",
+              "name": "All Terrain Vehicles (ATVs)/ Utility Task Vehicles(UTVs) - Equipment/Accessories",
+              "gpcCode": "10008291",
+              "gpcDescription": "Includes any products that may be described/observed as an equipment or accessories for All Terrain Vehicles(ATV) and Utility Task Vehicles(UTV). Includes products such as skid plates and Plows specifically designed for ATVs and UTVs. ",
+              "parentId": "motorcycles-all-terrain-vehicles-utility-task-vehicles"
+            },
+            {
+              "id": "motorcycles",
+              "name": "Motorcycles",
+              "gpcCode": "10006373",
+              "gpcDescription": "Includes any products that can be described/observed as a motorcycle, scooter, or moped having a number of wheels to  vehicle. Includes all off-road motorcycles.Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "motorcycles-all-terrain-vehicles-utility-task-vehicles"
+            },
+            {
+              "id": "utility-task-vehicles-utvs-recreational-off-road-vehicles-rovs",
+              "name": "Utility Task Vehicles (UTVs)/ Recreational Off-Road Vehicles (ROVs)",
+              "gpcCode": "10006773",
+              "gpcDescription": "An Utility Task Vehicle (UTV) or Recreational Off-Road Vehicle (ROV) is a vehicle that travels on low-pressure tires, with side by side seating for the driver and passengers. Many have safety features such as seat belts and roll over protection and most have a cargo area for haulage. UTVs are designed as a vehicle which can handle any variety of terrain while carrying equipment and/or materials to perform a job or task. While they might be \"street-legal\", they have been designed for off-road task applications as a core. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "motorcycles-all-terrain-vehicles-utility-task-vehicles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "motorcycle-accessories-and-maintenance",
+      "name": "Motorcycle Accessories and Maintenance",
+      "gpcCode": "77080000",
+      "gpcDescription": "Includes tools and equipment used to enhance, repair, or maintain a motorcycle's performance, safety, and aesthetics.",
+      "parentId": "vehicle",
+      "children": [
+        {
+          "id": "motorcycle-controls",
+          "name": "Motorcycle Controls",
+          "gpcCode": "77080300",
+          "gpcDescription": "Includes components that assist the rider in managing and navigating the motorcycle, providing comfort and control while riding.",
+          "parentId": "motorcycle-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "motorcycle-handlebar",
+              "name": "Motorcycle Handlebar",
+              "gpcCode": "10008479",
+              "gpcDescription": "Includes any products that can be described/observed as a motorcycle handlebars, providing comfort and control for the rider while enhancing the motorcycle overall appearance.",
+              "parentId": "motorcycle-controls"
+            },
+            {
+              "id": "motorcycle-rearview-mirrors",
+              "name": "Motorcycle Rearview Mirrors",
+              "gpcCode": "10008478",
+              "gpcDescription": "Includes any products that can be described/observed as a motorcycle mirrors mounted on the motorcycle to provide visibility of the road behind the rider.",
+              "parentId": "motorcycle-controls"
+            }
+          ]
+        },
+        {
+          "id": "motorcycle-engine",
+          "name": "Motorcycle Engine",
+          "gpcCode": "77080200",
+          "gpcDescription": "Includes components of the motorcycle engine system, as well as parts and accessories designed to repair, replace, or enhance engine performance.",
+          "parentId": "motorcycle-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "motorcycle-engine",
+              "name": "Motorcycle Engine",
+              "gpcCode": "10008476",
+              "gpcDescription": "Includes any products that can be described/observed as a motorcycle engine.",
+              "parentId": "motorcycle-engine"
+            },
+            {
+              "id": "motorcycle-engine-replacement-parts-accessories",
+              "name": "Motorcycle Engine - Replacement Parts/Accessories",
+              "gpcCode": "10008477",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts or accessories for motorcycle engine.",
+              "parentId": "motorcycle-engine"
+            }
+          ]
+        },
+        {
+          "id": "motorcycle-lighting",
+          "name": "Motorcycle Lighting",
+          "gpcCode": "77080100",
+          "gpcDescription": "Includes motorcycle lights, used for visibility, signaling, and safety while riding.",
+          "parentId": "motorcycle-accessories-and-maintenance",
+          "children": [
+            {
+              "id": "motorcycle-flashers-indicators",
+              "name": "Motorcycle Flashers/Indicators",
+              "gpcCode": "10008475",
+              "gpcDescription": "Includes any products that can be described/observed as lights designed to blink, informing others of the motorcycle's intended direction or alerting drivers to potential dangers.",
+              "parentId": "motorcycle-lighting"
+            },
+            {
+              "id": "motorcycle-headlight",
+              "name": "Motorcycle Headlight",
+              "gpcCode": "10008474",
+              "gpcDescription": "Includes any products that can be described/observed as a motorcycle headlight, complete with the housing, lenses and bulbs.",
+              "parentId": "motorcycle-lighting"
+            },
+            {
+              "id": "motorcycle-turning-light",
+              "name": "Motorcycle Turning Light",
+              "gpcCode": "10008473",
+              "gpcDescription": "Includes any products that can be described/observed as a motorcycle turning light, complete with the housing, lenses and bulbs.",
+              "parentId": "motorcycle-lighting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rail-equipment",
+      "name": "Rail Equipment",
+      "gpcCode": "77060000",
+      "parentId": "vehicle",
+      "children": [
+        {
+          "id": "rail-equipment",
+          "name": "Rail Equipment",
+          "gpcCode": "77060100",
+          "parentId": "rail-equipment",
+          "children": [
+            {
+              "id": "rail-equipment",
+              "name": "Rail Equipment",
+              "gpcCode": "10008339",
+              "gpcDescription": "Includes all vehicles that can be described/observed as trains. Includes products such as wagons or locomotives, train accessories and spare parts, rail and rail accessories, and maintenance for the railway industry.",
+              "parentId": "rail-equipment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "specialty-vehicles",
+      "name": "Specialty Vehicles",
+      "gpcCode": "77050000",
+      "parentId": "vehicle",
+      "children": [
+        {
+          "id": "specialty-vehicles",
+          "name": "Specialty Vehicles",
+          "gpcCode": "77050100",
+          "parentId": "specialty-vehicles",
+          "children": [
+            {
+              "id": "specialty-vehicles",
+              "name": "Specialty Vehicles",
+              "gpcCode": "10008050",
+              "gpcDescription": "Includes any vehicle that can be described/observed as a specialty vehicle. Includes vehicles such as amphibious vehicles and hovercraft.",
+              "parentId": "specialty-vehicles"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

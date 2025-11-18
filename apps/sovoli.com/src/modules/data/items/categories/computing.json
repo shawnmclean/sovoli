@@ -1,0 +1,725 @@
+{
+  "id": "computing",
+  "name": "Computing",
+  "gpcCode": "65000000",
+  "children": [
+    {
+      "id": "computers-video-games",
+      "name": "Computers/Video Games",
+      "gpcCode": "65010000",
+      "parentId": "computing",
+      "children": [
+        {
+          "id": "computer-components",
+          "name": "Computer Components",
+          "gpcCode": "65010200",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "computer-casing-housing",
+              "name": "Computer Casing/Housing",
+              "gpcCode": "10001117",
+              "gpcDescription": "Includes any products that can be described/observed as a plastic box specifically designed to hold a Central Processing Unit (CPU) or Uninterruptible Power Supply (UPS). Includes products such as Casing/Housing used to enhance or change the appearance of a Computer.",
+              "parentId": "computer-components"
+            },
+            {
+              "id": "computer-components-replacement-parts-accessories",
+              "name": "Computer Components - Replacement Parts/Accessories",
+              "gpcCode": "10001118",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts and accessories that can be applied to various computer components.",
+              "parentId": "computer-components"
+            },
+            {
+              "id": "computer-components-other",
+              "name": "Computer Components Other",
+              "gpcCode": "10001119",
+              "gpcDescription": "Includes any products that can be described/observed as a Computer Component, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "computer-components"
+            },
+            {
+              "id": "computer-components-variety-packs",
+              "name": "Computer Components Variety Packs",
+              "gpcCode": "10001120",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Computer Component products sold together which exist within the schema but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Computer Components class. Includes products such as Computer Memory and Computer Motherboards sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "computer-components"
+            },
+            {
+              "id": "computer-cooling",
+              "name": "Computer Cooling",
+              "gpcCode": "10001121",
+              "gpcDescription": "Includes any products that can be described/observed as a device for cooling computer equipment, including products that create a current of air or a breeze for cooling.",
+              "parentId": "computer-components"
+            },
+            {
+              "id": "computer-memory",
+              "name": "Computer Memory",
+              "gpcCode": "10001122",
+              "gpcDescription": "Includes any products that can be described/observed as an integrated circuit memory chip, which can be used by programs to perform necessary tasks while the computer is on or which allows information to be stored or accessed. This information can be stored or accessed in any order and all storage locations are equally accessible.",
+              "parentId": "computer-components"
+            },
+            {
+              "id": "computer-motherboards",
+              "name": "Computer Motherboards",
+              "gpcCode": "10001123",
+              "gpcDescription": "Includes any products that can be described/observed as the primary printed circuit board in a PC, which contains all of the basic circuitry and components required for a PC to function. The motherboard typically contains the system bus, processor and coprocessor sockets, memory sockets, serial and parallel ports, expansion slots and peripheral controllers but can be sold with or without these components attached.",
+              "parentId": "computer-components"
+            },
+            {
+              "id": "computer-processors",
+              "name": "Computer Processors",
+              "gpcCode": "10001125",
+              "gpcDescription": "Includes any products that are described/observed as processors used to interpret commands.",
+              "parentId": "computer-components"
+            },
+            {
+              "id": "computer-video-games-mass-storage",
+              "name": "Computer/Video Games Mass Storage",
+              "gpcCode": "10005683",
+              "gpcDescription": "Includes any products that can be described/observed as a mass storage device on which data is held and from which data can be retrieved. Includes devices such as tapes, cartridges and disks specifically for use with computers and video consoles. Includes products such as ZIP and JAZZ disks.",
+              "parentId": "computer-components"
+            },
+            {
+              "id": "expansion-boards-cards",
+              "name": "Expansion Boards/Cards",
+              "gpcCode": "10001126",
+              "gpcDescription": "Includes any products that can be described/observed as a printed circuit board that can be inserted into an expansion slot of a computer in order to add additional graphic and/or sound functionality so that one can view TV or play music on the computer. Includes products such as a graphics expansion card, a sound card and a TV card.",
+              "parentId": "computer-components"
+            }
+          ]
+        },
+        {
+          "id": "computer-drives",
+          "name": "Computer Drives",
+          "gpcCode": "65010300",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "computer-drives-replacement-parts-accessories",
+              "name": "Computer Drives - Replacement Parts/Accessories",
+              "gpcCode": "10001129",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts and accessories that can be applied to various computer drives.",
+              "parentId": "computer-drives"
+            },
+            {
+              "id": "computer-drives-other",
+              "name": "Computer Drives Other",
+              "gpcCode": "10001130",
+              "gpcDescription": "Includes any products that can be described/observed as a Computer Drive, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "computer-drives"
+            },
+            {
+              "id": "computer-drives-variety-packs",
+              "name": "Computer Drives Variety Packs",
+              "gpcCode": "10001131",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Computer Drive products sold together which exist within the schema but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Computer Drives class. Includes products such as Floppy Disc Drives and CD Drives sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "computer-drives"
+            },
+            {
+              "id": "floppy-disc-drives",
+              "name": "Floppy Disc Drives",
+              "gpcCode": "10001132",
+              "gpcDescription": "Includes any products that can be described/observed as a drive that can read and write onto floppy discs.",
+              "parentId": "computer-drives"
+            },
+            {
+              "id": "hard-disc-drives",
+              "name": "Hard Disc Drives",
+              "gpcCode": "10001133",
+              "gpcDescription": "Includes any products that can be described/observed as a storage device that uses a set of rotating, magnetically coated discs called platters to store data or programs, hermetically sealed to prevent airborne contaminants from entering and interfering with these close tolerances.",
+              "parentId": "computer-drives"
+            },
+            {
+              "id": "optical-drives-reading-only",
+              "name": "Optical Drives - Reading Only",
+              "gpcCode": "10001128",
+              "gpcDescription": "Includes any products that can be described/observed as a device that slots into or attaches externally to a computer, designed only to play and not record any CD or DVD.",
+              "parentId": "computer-drives"
+            },
+            {
+              "id": "optical-drives-reading-writing",
+              "name": "Optical Drives - Reading/Writing",
+              "gpcCode": "10001127",
+              "gpcDescription": "Includes any products that can be described/observed as a device that slots into or attaches externally to a computer, designed to play and create CDs or DVDs.",
+              "parentId": "computer-drives"
+            },
+            {
+              "id": "swap-drives",
+              "name": "Swap Drives",
+              "gpcCode": "10001134",
+              "gpcDescription": "Includes any products that can be described/observed as a peripheral data storage device, which can enable a computer to process data and execute programs requiring a greater amount of storage than that which is available in the main memory. Once the main memory is full the excess data remains on the storage device but is exchanged with data on the main memory when the operating system requires the data in order to execute a specific program or function.",
+              "parentId": "computer-drives"
+            },
+            {
+              "id": "tape-drives-streamers",
+              "name": "Tape Drives/Streamers",
+              "gpcCode": "10001135",
+              "gpcDescription": "Includes any products that can be described/observed as a peripheral device that reads stored data from and writes data to a magnetic tape or a punched tape.",
+              "parentId": "computer-drives"
+            },
+            {
+              "id": "zip-jaz-disk-drives",
+              "name": "Zip/Jaz Disk Drives",
+              "gpcCode": "10001136",
+              "gpcDescription": "Includes any products that can be described/observed as a high-capacity floppy disk drive.",
+              "parentId": "computer-drives"
+            }
+          ]
+        },
+        {
+          "id": "computer-networking-equipment",
+          "name": "Computer Networking Equipment",
+          "gpcCode": "65010800",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "computer-networking-equipment-replacement-parts-accessories",
+              "name": "Computer Networking Equipment - Replacement Parts/Accessories",
+              "gpcCode": "10001172",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts and accessories that can be applied to various Computer Networking Equipment.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "computer-networking-equipment-other",
+              "name": "Computer Networking Equipment Other",
+              "gpcCode": "10001170",
+              "gpcDescription": "Includes any products that can be described/observed as Computer Network Equipment, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "computer-networking-equipment-variety-packs",
+              "name": "Computer Networking Equipment Variety Packs",
+              "gpcCode": "10001171",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Computer Networking Equipment products sold together which exist within the schema but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Computer Networking Equipment class. Includes products such as Computer Firewalls and Gateways sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "firewalls",
+              "name": "Firewalls",
+              "gpcCode": "10001162",
+              "gpcDescription": "Includes any products that can be described/observed as a set of related programmes, located at a network gateway server, which protects the resources of a private network from users from other networks.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "gateways",
+              "name": "Gateways",
+              "gpcCode": "10001163",
+              "gpcDescription": "Includes any products that can be described/observed as a device that enables two dissimilar systems that have similar functions to communicate with each other.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "modems",
+              "name": "Modems",
+              "gpcCode": "10001164",
+              "gpcDescription": "Includes any products that can be described/observed as a device that transmits and receives encoded digital data via telephone lines, converting digital signals to analogue signals and vice versa. Includes both internal and external modems. Products include Computer Modems, Laptop Modems and Personal Digital Assistants Modems.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "network-access-points",
+              "name": "Network Access Points",
+              "gpcCode": "10001165",
+              "gpcDescription": "Includes any products that can be described/observed as a point of access to the internet used by Internet Service Providers (ISP's) and providers of internet regional and local subnets.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "network-interface-cards",
+              "name": "Network Interface Cards",
+              "gpcCode": "10001167",
+              "gpcDescription": "Includes any products that can be described/observed as an expansion circuit board that is inserted into a computer or externally attached to a computer so the computer can be connected to a network that may be wired or wireless.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "network-routers",
+              "name": "Network Routers",
+              "gpcCode": "10001168",
+              "gpcDescription": "Includes any products that can be described/observed as a device that determines the next network point to which a data packet should be forwarded enroute toward its destination.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "network-switches",
+              "name": "Network Switches",
+              "gpcCode": "10001169",
+              "gpcDescription": "Includes any products that can be described/observed as a computer networking device that filters information/data between network segments.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "network-usb-hubs",
+              "name": "Network/USB Hubs",
+              "gpcCode": "10001166",
+              "gpcDescription": "Includes any products that can be described/observed as a \"sharing\" device used to connect computers in a network together to a single peripheral, or alternatively a USB hub will allow many USB devices such as a printer, scanner or camera to be connected to a single USB port on a host computer.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "repeaters",
+              "name": "Repeaters",
+              "gpcCode": "10001173",
+              "gpcDescription": "Includes any products that can be described/observed as a network device that replicates or regenerates signals from one cable onto one or more other cables, while restoring signal timing and waveforms. Includes products such as Analogue Repeaters, which amplify signals and Digital Repeaters, which reconstruct signals.",
+              "parentId": "computer-networking-equipment"
+            },
+            {
+              "id": "usb-internet-stick",
+              "name": "USB Internet Stick",
+              "gpcCode": "10005831",
+              "gpcDescription": "Includes any products that can be described/observed as a portable USB device that can be attached to a laptop computer to enable internet access.",
+              "parentId": "computer-networking-equipment"
+            }
+          ]
+        },
+        {
+          "id": "computer-video-game-accessories",
+          "name": "Computer/Video Game Accessories",
+          "gpcCode": "65010100",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "card-readers",
+              "name": "Card Readers",
+              "gpcCode": "10001115",
+              "gpcDescription": "Includes any products that can be described/observed as a compact portable device that allows for fast viewing, sharing, transferring and e-mailing of various data, such as pictures.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-casing-housing-accessories",
+              "name": "Computer Casing/Housing Accessories",
+              "gpcCode": "10001116",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory that can be applied to computer casing/housing. Includes products such as Computer Lights.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-docking-ports-cradles",
+              "name": "Computer Docking Ports/Cradles",
+              "gpcCode": "10001109",
+              "gpcDescription": "Includes any products that can be described/observed as a desktop device into which portable products such as laptops and personal digital assistants can be fitted. Fixed connectors at the rear of the portable product and in the docking port/cradle provide a quick and convenient means of connection to peripheral devices such as printers, keyboards, mice and monitors, which are connected directly to the docking port/cradle.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-power-supplies",
+              "name": "Computer Power Supplies",
+              "gpcCode": "10001124",
+              "gpcDescription": "Includes any products that can be described/observed as a device that supplies power throughout the computer.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-stands-supports",
+              "name": "Computer Stands/Supports",
+              "gpcCode": "10005438",
+              "gpcDescription": "Includes any products that can be described/observed as a freestanding support for a computer. These products are normally equipped with flexible support arms and legs that can be adjusted to suit the computer user.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-tools-tool-kits",
+              "name": "Computer Tools/Tool Kits",
+              "gpcCode": "10001112",
+              "gpcDescription": "Includes any products that can be described/observed as a collection of tools specifically designed to be used with computer equipment.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-video-game-accessories-other",
+              "name": "Computer/Video Game Accessories Other",
+              "gpcCode": "10001362",
+              "gpcDescription": "Includes any products that can be described/observed as Computer/Video Games Accessories, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-video-game-accessories-variety-packs",
+              "name": "Computer/Video Game Accessories Variety Packs",
+              "gpcCode": "10001363",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Computer/Video Game Accessories products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Computer/Video Game Accessories class. Includes products such as a Computer Mat and Computer Rest sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-video-game-cases-carriers",
+              "name": "Computer/Video Game Cases/Carriers",
+              "gpcCode": "10001107",
+              "gpcDescription": "Includes any products that can be described/observed as a container or receptacle specifically designed to hold or carry computer and video game console products.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-video-game-cleaning-products",
+              "name": "Computer/Video Game Cleaning Products",
+              "gpcCode": "10001108",
+              "gpcDescription": "Includes any products that can be described/observed as a product specifically designed to clean computer and video game related products and accessories such as monitors, mice and keyboards.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-video-game-headsets",
+              "name": "Computer/Video Game Headsets",
+              "gpcCode": "10005741",
+              "gpcDescription": "Includes any products that may be described/observed as An audio receiver with small speakers that can be held to each ear by headband or inserted into the ear in piece of equipment designed to allow the user to use device without having to hold it to his/her ear, by using an earpiece/headphones/earphones and a microphone. Includes products such as computer Headsets and videogame Headsets. ",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "computer-video-game-security-products",
+              "name": "Computer/Video Game Security Products",
+              "gpcCode": "10001111",
+              "gpcDescription": "Includes any products that can be described/observed as a device specifically designed to prevent the theft of or access to computer or video game products.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "filters-covers-electronic-equipment",
+              "name": "Filters/Covers (Electronic Equipment)",
+              "gpcCode": "10001110",
+              "gpcDescription": "Includes any products that can be described/observed as an article specifically designed to reduce monitor glare, to prevent static and dust build-up, to block radiation and to prevent scratches and in some cases provide protection against wind and water. The products include those designed to protect Video Game Consoles, Monitors, Central Processing Units and Keyboards against dust and spills as well as covers for MP3 players, GPS equipment, eBook Readers and PDAs. The products can be made with anti-static materials.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "mats-rests-computing",
+              "name": "Mats/Rests - Computing",
+              "gpcCode": "10001113",
+              "gpcDescription": "Includes any products that can be described/observed as a device that allows easy navigation of computer mice. This also includes all computer rests that are designed to aid and support the user of a computer.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "personal-data-assistant-organiser-stylus",
+              "name": "Personal Data Assistant/Organiser Stylus",
+              "gpcCode": "10001114",
+              "gpcDescription": "Includes any products that can be described/observed as a pointed instrument used as an input device on a pressure-sensitive screen.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "personal-video-recorder",
+              "name": "Personal Video Recorder",
+              "gpcCode": "10006744",
+              "gpcDescription": "Includes any products that can be described/observed as a device for electronic playback and/or recording of video signals to a computer file. These devices are typically used for video capture of computer/video game sessions, but can be used to capture other such activity.",
+              "parentId": "computer-video-game-accessories"
+            },
+            {
+              "id": "video-editor",
+              "name": "Video Editor",
+              "gpcCode": "10005843",
+              "gpcDescription": "Includes any product that can be described/observed as a device fitted with a USB connector that transfers video recordings to a PC/notebook and enables direct recording of films onto DVD, VCD, SVCD or hard disk and enables film editing such as intros, background music, comments, effects and transitions.",
+              "parentId": "computer-video-game-accessories"
+            }
+          ]
+        },
+        {
+          "id": "computer-video-game-control-input-devices",
+          "name": "Computer/Video Game Control/Input Devices",
+          "gpcCode": "65010600",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "computer-graphics-tablets",
+              "name": "Computer Graphics Tablets",
+              "gpcCode": "10001149",
+              "gpcDescription": "Includes any products that can be described/observed as a computer input device that transfers information into a computer in real time. These products typically consist of a large flat surface for drawing on, with an attached \"stylus\" for drawing on the surface.",
+              "parentId": "computer-video-game-control-input-devices"
+            },
+            {
+              "id": "computer-keyboards",
+              "name": "Computer Keyboards",
+              "gpcCode": "10001150",
+              "gpcDescription": "Includes any products that can be described/observed as an input device for personal computers, which contains alphanumeric keys and is used for typing data into a computer.",
+              "parentId": "computer-video-game-control-input-devices"
+            },
+            {
+              "id": "computer-pointing-devices",
+              "name": "Computer Pointing Devices",
+              "gpcCode": "10001151",
+              "gpcDescription": "Includes any products that can be described/observed as a hand-operated electronic device that controls the coordinates of a cursor on computer screen as it is moved around on a pad. Products include corded and cordless computer mice, trackballs and pointers.",
+              "parentId": "computer-video-game-control-input-devices"
+            },
+            {
+              "id": "computer-video-game-control-devices",
+              "name": "Computer/Video Game Control Devices",
+              "gpcCode": "10001148",
+              "gpcDescription": "Includes any products that can be described/observed as a physical device typically used to control objects on a computer screen. It is frequently used for games and sometimes used in place of a mouse.",
+              "parentId": "computer-video-game-control-input-devices"
+            },
+            {
+              "id": "computer-video-game-control-input-devices-replacement-parts-accessories",
+              "name": "Computer/Video Game Control/Input Devices - Replacement Parts/Accessories",
+              "gpcCode": "10001152",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts and accessories that can be applied to various Computer/Video Game Console Control and Input Devices.",
+              "parentId": "computer-video-game-control-input-devices"
+            },
+            {
+              "id": "computer-video-game-control-input-devices-other",
+              "name": "Computer/Video Game Control/Input Devices Other",
+              "gpcCode": "10001364",
+              "gpcDescription": "Includes any products that can be described/observed as Computer/Video Game Control and Input Devices, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "computer-video-game-control-input-devices"
+            },
+            {
+              "id": "computer-video-game-control-input-devices-variety-packs",
+              "name": "Computer/Video Game Control/Input Devices Variety Packs",
+              "gpcCode": "10001365",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Computer/Video Game Control and Input Device products sold together which exist within the schema but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Computer/Video Game Control and Input Devices class. Includes products such as Computer Keyboards and Mice sold together. Items that are received free with purchases should be removed from the decision-making process.",
+              "parentId": "computer-video-game-control-input-devices"
+            },
+            {
+              "id": "digital-pens",
+              "name": "Digital Pens",
+              "gpcCode": "10005686",
+              "gpcDescription": "Includes any products that can be described/observed as a pen that is used for transmitting handwritings or pictures to a computer, mobile phone or other computing device. A tiny camera next to the nib of the pen takes continual pictures when writing, this information is then stored in the pen for downloading at a later time. Includes products that use bluetooth for transmitting/downloading information. ",
+              "parentId": "computer-video-game-control-input-devices"
+            }
+          ]
+        },
+        {
+          "id": "computer-video-game-peripherals",
+          "name": "Computer/Video Game Peripherals",
+          "gpcCode": "65010700",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "computer-speakers-mini-speakers",
+              "name": "Computer Speakers/Mini Speakers",
+              "gpcCode": "10001154",
+              "gpcDescription": "Includes any products that can be described/observed as a device that can be connected to a computer and play music or sound from sources such as audio and video files.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "computer-video-game-monitors",
+              "name": "Computer/Video Game Monitors",
+              "gpcCode": "10001153",
+              "gpcDescription": "Includes any products that can be described/observed as a monitor used to display information such as computer data.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "computer-video-game-peripherals-replacement-parts-accessories",
+              "name": "Computer/Video Game Peripherals - Replacement Parts/Accessories",
+              "gpcCode": "10001155",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts and accessories that can be applied to various Computer/Video Game Peripherals.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "computer-video-game-peripherals-other",
+              "name": "Computer/Video Game Peripherals Other",
+              "gpcCode": "10001366",
+              "gpcDescription": "Includes any products that can be described/observed as Computer/Video Games Peripherals, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "computer-video-game-peripherals-variety-packs",
+              "name": "Computer/Video Game Peripherals Variety Packs",
+              "gpcCode": "10001367",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Computer/Video Game Peripheral products sold together which exist within the schema but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Computing/Video Game Peripherals class. Includes products such as Computer Printers and Scanners sold together. Items that are received free with purchases should be removed from decision-making process.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "keyboard-voice-mouse-kvm-switch",
+              "name": "Keyboard, Voice, Mouse (KVM) Switch",
+              "gpcCode": "10006745",
+              "gpcDescription": "Includes any products that can be described/observed as a device which allows for the control of multiple computers from one or more keyboard, video monitor, and mouse. Although multiple computers are connected to the Keyboard, Voice, Mouse (KVM) switch, typically a smaller number of computers can be controlled at any given time. These devices may also have the added ability to share other peripherals like USB devices and audio.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "printer-consumables",
+              "name": "Printer Consumables",
+              "gpcCode": "10001156",
+              "gpcDescription": "Includes any products that can be described/observed as being specifically designed to periodically replace/refill components of a printer that have been depleted or worn out by use, such as ink cartridges. These products also includes refills such as ink, which is just added to the original cartridge in order to refill it rather than replace it. Cartridges may contain only black ink or one to five colours of ink. The products include Photo Ink Cartridges that contain special lighter Cyan and Magenta Inks, which help re-create more lifelike flesh tones.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "printers",
+              "name": "Printers",
+              "gpcCode": "10001158",
+              "gpcDescription": "Includes any products that can be described/observed as a computer/games console printer that produces hard copies. Includes products such as photo printers and video games printers.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "projection-systems",
+              "name": "Projection Systems",
+              "gpcCode": "10001159",
+              "gpcDescription": "Includes any products that can be described/observed as a specialized computer display that projects an enlarged image onto an interactive screen. These projector systems can be used in the office or conference room as well as in the home cinema. Includes products such as digital light processing (DLP) projection systems and liquid crystal display (LCD) projection systems. The projector can be portable or a fixed installation. Screens are linked to the computer to display web pages and videos and if touch sensitive, allow the presenter to control the program with the use of a finger or pointer.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "scanners",
+              "name": "Scanners",
+              "gpcCode": "10001160",
+              "gpcDescription": "Includes any products that can be described/observed as a device that can read text or illustrations and translate the information into a form the computer can use, by \"digitising\" an image and placing it on the computer as a file. Includes products such as handheld and flatbed scanners.",
+              "parentId": "computer-video-game-peripherals"
+            },
+            {
+              "id": "web-cameras",
+              "name": "Web-cameras",
+              "gpcCode": "10001161",
+              "gpcDescription": "Includes any products that can be described/observed as a camera that records moving pictures and sound and allows these to be broadcast on the Internet and to other computer users in real time.",
+              "parentId": "computer-video-game-peripherals"
+            }
+          ]
+        },
+        {
+          "id": "computer-video-game-software",
+          "name": "Computer/Video Game Software",
+          "gpcCode": "65010400",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "computer-software-non-games",
+              "name": "Computer Software (Non Games)",
+              "gpcCode": "10001138",
+              "gpcDescription": "Includes any products that can be described/observed as a program that instructs a computer how to process data and documentation and that explains how these programs should be used. Includes products such as Word Processing Software, Spreadsheet Software, Presentation Software and Desktop Publishing Software.",
+              "parentId": "computer-video-game-software"
+            },
+            {
+              "id": "computer-software-non-games-digital",
+              "name": "Computer Software (Non Games) - Digital",
+              "gpcCode": "10006236",
+              "gpcDescription": "Includes any products that can be described/observed as a programme which is downloaded or streamed that instructs a computer how to process data along with documentation that explains how these programs should be used. Includes products such as Word Processing Software, Spreadsheet Software, Presentation Software, Fonts, and Desktop Publishing Software.",
+              "parentId": "computer-video-game-software"
+            },
+            {
+              "id": "computer-video-game-gaming-software",
+              "name": "Computer/Video Game Gaming Software",
+              "gpcCode": "10001137",
+              "gpcDescription": "Includes any products that can be described/observed as computer software designed to provide activity for entertainment or amusement. Includes all games software on various media such as CD-ROM and Floppy Disc.",
+              "parentId": "computer-video-game-software"
+            },
+            {
+              "id": "computer-video-game-gaming-software-digital",
+              "name": "Computer/Video Game Gaming Software - Digital",
+              "gpcCode": "10006235",
+              "gpcDescription": "Includes any products that can be described/observed as digital game content designed to provide activity for entertainment or amusement which is downloaded or streamed. They are typically intended for use in conjunction with a gaming console and/or a television or computer and may be a new game, an update to an existing game or a small portion of a game such as a new character, map or level. Includes traditional video games, sports games such as golf, DIY instructions and exercising.",
+              "parentId": "computer-video-game-software"
+            },
+            {
+              "id": "computer-video-game-software-other",
+              "name": "Computer/Video Game Software Other",
+              "gpcCode": "10001139",
+              "gpcDescription": "Includes any products that can be described/observed as Computer/Video Game Software, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "computer-video-game-software"
+            },
+            {
+              "id": "computer-video-game-software-variety-packs",
+              "name": "Computer/Video Game Software Variety Packs",
+              "gpcCode": "10001140",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Computer/Video Game Software products sold together which exist within the schema but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Computer/Video Game Software class. Includes products such as Computer Educational and Games software sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "computer-video-game-software"
+            }
+          ]
+        },
+        {
+          "id": "computers",
+          "name": "Computers",
+          "gpcCode": "65010500",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "computers-replacement-parts-accessories",
+              "name": "Computers - Replacement Parts/Accessories",
+              "gpcCode": "10001141",
+              "gpcDescription": "Includes any products that can be described/observed as replacement parts and accessories that can be applied to various computer products.",
+              "parentId": "computers"
+            },
+            {
+              "id": "computers-other",
+              "name": "Computers Other",
+              "gpcCode": "10001142",
+              "gpcDescription": "Includes any products that can be described/observed as a Computer article, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "computers"
+            },
+            {
+              "id": "electronic-organisers",
+              "name": "Electronic Organisers",
+              "gpcCode": "10001143",
+              "gpcDescription": "Includes any products that can be described/observed as a portable computing device like databases, organisers, dictionaries or translators that have no open (programmable) operating system.",
+              "parentId": "computers"
+            },
+            {
+              "id": "personal-computers-all-in-one",
+              "name": "Personal Computers - All-in-One",
+              "gpcCode": "10006405",
+              "gpcDescription": "Personal Computer/All-in-One - Includes any products that can be described/observed as a desktop personal computer with enough processing power and storage capacity for home and office use.",
+              "parentId": "computers"
+            },
+            {
+              "id": "personal-computers-desktop-internet-terminal",
+              "name": "Personal Computers - Desktop/Internet Terminal",
+              "gpcCode": "10001144",
+              "gpcDescription": "Includes any products that can be described/observed as a desktop personal computer with enough processing power and storage capacity for home and office use. Specifically includes product such as Desktop Internet Terminals.",
+              "parentId": "computers"
+            },
+            {
+              "id": "personal-computers-portable",
+              "name": "Personal Computers - Portable",
+              "gpcCode": "10001145",
+              "gpcDescription": "Includes any products that can be described/observed as a small personal computer that can easily be used in various locations and carried around easily.",
+              "parentId": "computers"
+            },
+            {
+              "id": "personal-computers-tablets-e-book-readers",
+              "name": "Personal Computers - Tablets/E-Book Readers",
+              "gpcCode": "10006276",
+              "gpcDescription": "Includes any products that can be described/observed as a tablet that can be used in transit (walking, etc.); it uses a virtual keyboard primarily; may make use of Cloud Storage. Generally operates on a different Operating System than laptops, desktops or smartphones. A tablet generally runs \"Apps\" not \"programs\". The screen is usually 6 to 13 inches. Includes products like Tablets, E-Book Readers and Slates.",
+              "parentId": "computers"
+            },
+            {
+              "id": "personal-digital-assistants",
+              "name": "Personal Digital Assistants",
+              "gpcCode": "10001146",
+              "gpcDescription": "Includes any products that can be described/observed as a handheld or palm sized device. Personal Digital Assistants are small computers that can be carried around and used for storing information. They may also combine computing, telephone/fax, Internet and networking features.",
+              "parentId": "computers"
+            },
+            {
+              "id": "servers",
+              "name": "Servers",
+              "gpcCode": "10001147",
+              "gpcDescription": "Includes any products that can be described/observed as a computer in a network that provides access to other computers in the network to programs, web pages, data, or other files and services, such as printer access or communications access.",
+              "parentId": "computers"
+            },
+            {
+              "id": "smart-watches",
+              "name": "Smart Watches",
+              "gpcCode": "10006743",
+              "gpcDescription": "Includes any products that may be described/observed as a smart watch. This type of device is a computerized wrist or pocket watch with functionality which is enhanced beyond timekeeping.  Some typical functionality might include, but is not limited to, ability to run mobile apps or a mobile operating system, portable media player (radio, audio and video files), and mobile telephony capability.",
+              "parentId": "computers"
+            }
+          ]
+        },
+        {
+          "id": "computers-video-games-variety-packs",
+          "name": "Computers/Video Games Variety Packs",
+          "gpcCode": "65010900",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "computers-video-games-variety-packs",
+              "name": "Computers/Video Games Variety Packs",
+              "gpcCode": "10001370",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Computer/Video Game products sold together, which exist within the schema belonging to different classes but to the same family, that is two or more products contained within the same pack which cross classes within the Computers/Video Games family. Includes products such as Personal Computers and Computer Software sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "computers-video-games-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "video-game-consoles",
+          "name": "Video Game Consoles",
+          "gpcCode": "65011000",
+          "parentId": "computers-video-games",
+          "children": [
+            {
+              "id": "console-accessories",
+              "name": "Console Accessories",
+              "gpcCode": "10005763",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory that can be applied to computer video game consoles. Includes products such as a computer video game console sticker or console charger.",
+              "parentId": "video-game-consoles"
+            },
+            {
+              "id": "video-game-consoles-non-portable",
+              "name": "Video Game Consoles - Non Portable",
+              "gpcCode": "10003817",
+              "gpcDescription": "Includes any products that can be described/observed as a non-portable electronic video games console that is specifically designed to display/play the interactive contents of video game gaming software through a television screen or monitor. ",
+              "parentId": "video-game-consoles"
+            },
+            {
+              "id": "video-game-consoles-portable",
+              "name": "Video Game Consoles - Portable",
+              "gpcCode": "10003818",
+              "gpcDescription": "Includes any products that can be described/observed as a portable electronic video games console that is specifically designed to display/play the interactive contents of video game gaming software. Includes products such as Hand-held Video Game Consoles with in-built screens. ",
+              "parentId": "video-game-consoles"
+            },
+            {
+              "id": "video-game-consoles-replacement-parts",
+              "name": "Video Game Consoles - Replacement Parts",
+              "gpcCode": "10003819",
+              "gpcDescription": "Includes any products that may be described/observed as replacement parts for Video Game Consoles products.",
+              "parentId": "video-game-consoles"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
