@@ -231,7 +231,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-oxford-dictionary-thesaurus",
     name: "Oxford Dictionary & Thesaurus",
-    category: hydrateCategory("teacher-resources"),
+    category: hydrateCategory("references"),
     tags: ["reference", "dictionary", "thesaurus", "oxford"],
     attributes: {
       brand: "Oxford",
@@ -307,7 +307,7 @@ export const BOOKS: Item[] = [
   {
     id: "book-oxford-primary-school-dictionary",
     name: "Oxford Primary School Dictionary",
-    category: hydrateCategory("teacher-resources"),
+    category: hydrateCategory("references"),
     tags: ["reference", "dictionary", "oxford", "primary"],
     attributes: {
       brand: "Oxford",

@@ -1,20 +1,6 @@
 import type { ProjectsModule } from "~/modules/projects/types";
 import { GINGER_HILL_ALL_AGE_NEEDS } from "./needs";
 
-function findNeedBySlug(slug: string) {
-  const need = GINGER_HILL_ALL_AGE_NEEDS.needs.find(
-    (entry) => entry.slug === slug,
-  );
-
-  if (!need) {
-    throw new Error(
-      `${slug} need is missing from Ginger Hill All Age needs configuration.`,
-    );
-  }
-
-  return need;
-}
-
 export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
   projects: [
     {
@@ -29,13 +15,7 @@ export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
       startDate: "2025-11-15",
       endDate: "2025-12-20",
       internal: false,
-      needs: [
-        findNeedBySlug("ghaa-zinc-roof-sheet-2025"),
-        findNeedBySlug("ghaa-heavy-duty-tarps-2025"),
-        findNeedBySlug("ghaa-roof-sealant-2025"),
-        findNeedBySlug("ghaa-roof-fastener-kits-2025"),
-        findNeedBySlug("ghaa-roofing-tool-kits-2025"),
-      ],
+      // needs: [findNeedBySlug("ghaa-zinc-roof-sheet-2025")],
       tags: ["hurricane-mellissa"],
       photos: [
         {

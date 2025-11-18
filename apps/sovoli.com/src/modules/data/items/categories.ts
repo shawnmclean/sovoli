@@ -24,14 +24,29 @@ export function flattenCategoryTree(
 
 export const CATEGORY_INDEX = flattenCategoryTree(ITEM_CATEGORY_TREE);
 
-export function hydrateCategory(categoryId: string): ItemCategory {
+export function hydrateCategory(
+  categoryId: string,
+  visited: Set<string> = new Set(),
+): ItemCategory {
   const def = CATEGORY_INDEX[categoryId];
   if (!def) throw new Error(`Unknown category: ${categoryId}`);
+
+  // Detect circular references
+  if (visited.has(categoryId)) {
+    throw new Error(
+      `Circular reference detected in category hierarchy: ${categoryId}`,
+    );
+  }
+
+  const newVisited = new Set(visited);
+  newVisited.add(categoryId);
 
   return {
     id: def.id,
     name: def.name,
-    parent: def.parentId ? hydrateCategory(def.parentId) : undefined,
+    parent: def.parentId
+      ? hydrateCategory(def.parentId, newVisited)
+      : undefined,
   };
 }
 
@@ -53,14 +68,29 @@ function findCategoryInTree(
 }
 
 // Hydrate a category from GPC categories (ITEM_CATEGORY_TREE)
-export function hydrateGpcCategory(categoryId: string): ItemCategory {
+export function hydrateGpcCategory(
+  categoryId: string,
+  visited: Set<string> = new Set(),
+): ItemCategory {
+  // Detect circular references
+  if (visited.has(categoryId)) {
+    throw new Error(
+      `Circular reference detected in GPC category hierarchy: ${categoryId}`,
+    );
+  }
+
   for (const gpcTree of ITEM_CATEGORY_TREE) {
     const found = findCategoryInTree(gpcTree, categoryId);
     if (found) {
+      const newVisited = new Set(visited);
+      newVisited.add(categoryId);
+
       return {
         id: found.id,
         name: found.name,
-        parent: found.parentId ? hydrateGpcCategory(found.parentId) : undefined,
+        parent: found.parentId
+          ? hydrateGpcCategory(found.parentId, newVisited)
+          : undefined,
       };
     }
   }

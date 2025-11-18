@@ -7,12 +7,12 @@ export const TAGSET_ROOF_REPAIR: ItemTagSet = {
   description:
     "Materials required for temporary or permanent building roof restoration.",
   items: [
-    findItemById("maintenance-plyboard"),
-    findItemById("zinc-roof-sheet"),
-    findItemById("roof-sealant"),
-    findItemById("relief-screws"),
-    findItemById("relief-basic-hand-tools"),
-    findItemById("tarpaulin-heavy-duty"),
+    // findItemById("maintenance-plyboard"),
+    // findItemById("zinc-roof-sheet"),
+    // findItemById("roof-sealant"),
+    // findItemById("relief-screws"),
+    // findItemById("relief-basic-hand-tools"),
+    // findItemById("tarpaulin-heavy-duty"),
   ].filter((i): i is Item => i !== undefined),
 };
 

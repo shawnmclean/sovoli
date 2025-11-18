@@ -3,14 +3,9 @@ import { findItemById } from "~/modules/data/items";
 import { PRIMARY_TEACHER } from "./workforceMeta";
 
 const AC_UNIT_ITEM = findItemById("equipment-ac-unit");
-const PLYBOARD_ITEM = findItemById("maintenance-plyboard");
 
 if (!AC_UNIT_ITEM) {
   throw new Error("equipment-ac-unit item is missing from core items.");
-}
-
-if (!PLYBOARD_ITEM) {
-  throw new Error("maintenance-plyboard item is missing from core items.");
 }
 
 const PRIMARY_TEACHER_NEED: Need = {
@@ -53,36 +48,6 @@ export const MODERN_ACADEMY_NEEDS: NeedsModule = {
         currency: "GYD",
         status: "quoted",
         notes: "Awaiting supplier confirmation for installation package.",
-      },
-    },
-    {
-      slug: "magy-building-plyboards-2025",
-      title: "Plyboards for Building Repairs",
-      description:
-        "Purchase plyboards to repair classroom walls and prevent further weather damage.",
-      item: PLYBOARD_ITEM,
-      quantity: 10,
-      type: "material",
-      source: "external",
-      priority: "medium",
-      neededBy: {
-        type: "asap",
-        requestedAt: "2025-06-10",
-        reason: "Urgent building maintenance",
-      },
-      requestingUnit: {
-        locationKey: "main-campus",
-      },
-      status: "planned",
-      notes:
-        "Coordinate with maintenance team to schedule repairs once delivered.",
-      createdAt: "2025-06-07",
-      updatedAt: "2025-06-07",
-      procurement: {
-        estimatedCost: 24000,
-        currency: "GYD",
-        status: "quoted",
-        notes: "Pending approval before ordering.",
       },
     },
   ],
