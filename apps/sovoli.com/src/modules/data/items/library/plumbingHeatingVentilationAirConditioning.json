@@ -1,0 +1,10 @@
+[
+  {
+    "id": "equipment-ac-unit",
+    "name": "Air Conditioning Unit",
+    "category": "air-conditioners-coolers-fixed",
+    "tags": ["facilities", "classroom", "cooling"],
+    "unitLabel": "unit",
+    "description": "Standard split-system AC unit suitable for classroom environments."
+  }
+]

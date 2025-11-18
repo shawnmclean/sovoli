@@ -53,6 +53,56 @@ interface Dimensions {
   heightCm: number;
 }
 
+// Zod schema for Dimensions
+const dimensionsSchema = z.object({
+  lengthCm: z.number(),
+  widthCm: z.number(),
+  heightCm: z.number(),
+});
+
+// Zod schema for Photo
+const photoSchema = z.object({
+  category: z.enum([
+    "environment",
+    "classroom",
+    "activities",
+    "events",
+    "awards",
+    "default",
+  ]),
+  url: z.string(),
+  caption: z.string().optional(),
+  alt: z.string().optional(),
+  assetId: z.string().optional(),
+  publicId: z.string(),
+  bucket: z.string().optional(),
+  id: z.string().optional(),
+  path: z.string().nullable().optional(),
+  width: z.number().optional(),
+  height: z.number().optional(),
+  format: z.string().optional(),
+  bytes: z.number().optional(),
+  version: z.number().optional(),
+  uploadedAt: z.string().optional(),
+});
+
+// Zod schema for Item (used for parsing JSON files where category is stored as string ID)
+// The category will be hydrated to ItemCategory when loaded
+export const itemJsonSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  description: z.string().optional(),
+  category: z.string(), // Category ID in JSON, will be hydrated to ItemCategory
+  brand: z.string().optional(),
+  modelNumber: z.string().optional(),
+  attributes: z.record(z.string(), z.string()).optional(),
+  tags: z.array(z.string()).optional(),
+  unitLabel: z.string().optional(),
+  dimensions: dimensionsSchema.optional(),
+  weightInGrams: z.number().optional(),
+  photos: z.array(photoSchema).optional(),
+});
+
 /**
  * A policy-defined set of items that can be used to filter items.
  * ie. Used for "Hurricane Mellissa Building Repair Needs"
