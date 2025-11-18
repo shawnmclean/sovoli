@@ -31,7 +31,8 @@ function collectNeedEntries(): NeedsExplorerEntry[] {
       return [] as NeedsExplorerEntry[];
     }
 
-    const siteName = orgInstance.websiteModule?.website.siteName ?? orgInstance.org.name;
+    const siteName =
+      orgInstance.websiteModule?.website.siteName ?? orgInstance.org.name;
     const locationMap = new Map(
       orgInstance.org.locations.map((location) => [location.key, location]),
     );
@@ -47,7 +48,7 @@ function collectNeedEntries(): NeedsExplorerEntry[] {
       let isReliefNeed = false;
 
       if (isMaterialNeed(need)) {
-        categoryKey = `item:${need.item.category}`;
+        categoryKey = `item:${need.item.category.id}`;
         categoryLabel = formatItemCategoryLabel(need.item.category);
         categoryType = "item";
         const tags = need.item.tags ?? [];
@@ -80,7 +81,8 @@ function collectNeedEntries(): NeedsExplorerEntry[] {
 export default function NeedsDirectoryPage() {
   const entries = collectNeedEntries();
   const totalNeeds = entries.length;
-  const organisationCount = new Set(entries.map((entry) => entry.orgUsername)).size;
+  const organisationCount = new Set(entries.map((entry) => entry.orgUsername))
+    .size;
 
   return (
     <main className="flex min-h-screen flex-col bg-background">
@@ -95,19 +97,23 @@ export default function NeedsDirectoryPage() {
             </h1>
             <p className="max-w-3xl text-base text-muted-foreground">
               Browse active supply, service, and staffing requests submitted by
-              Sovoli partner schools. Relief-focused categories are pre-selected so
-              you can prioritise immediate hurricane recovery work.
+              Sovoli partner schools. Relief-focused categories are pre-selected
+              so you can prioritise immediate hurricane recovery work.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <span>
-              {totalNeeds} need{totalNeeds === 1 ? "" : "s"} from {organisationCount}{" "}
-              organisation{organisationCount === 1 ? "" : "s"}
+              {totalNeeds} need{totalNeeds === 1 ? "" : "s"} from{" "}
+              {organisationCount} organisation
+              {organisationCount === 1 ? "" : "s"}
             </span>
-            <span className="hidden h-1 w-1 rounded-full bg-muted-foreground/60 sm:block" aria-hidden />
+            <span
+              className="hidden h-1 w-1 rounded-full bg-muted-foreground/60 sm:block"
+              aria-hidden
+            />
             <span>
-              Filters default to hurricane relief supplies — toggle categories to
-              explore every request.
+              Filters default to hurricane relief supplies — toggle categories
+              to explore every request.
             </span>
           </div>
         </div>
