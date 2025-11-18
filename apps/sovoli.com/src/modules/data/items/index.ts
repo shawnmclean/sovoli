@@ -1,10 +1,5 @@
 import type { Item } from "~/modules/core/items/types";
 import { itemJsonSchema } from "~/modules/core/items/types";
-import { FOOD_ITEMS } from "./food";
-import { HYGIENE_ITEMS } from "./hygiene";
-import { OTHER_ITEMS } from "./other";
-import { STATIONERY_ITEMS } from "./stationery";
-import { BUILDING_ITEMS } from "./building";
 import { hydrateCategory } from "./categories";
 import plumbingHeatingVentilationAirConditioningData from "./library/plumbingHeatingVentilationAirConditioning.json";
 import workbooksData from "./library/textualPrintedReferenceMaterials/workbooks.json";
@@ -21,6 +16,8 @@ import cuttingToolsData from "./library/toolsEquipment/cuttingTools.json";
 import powerToolsData from "./library/toolsEquipment/powerTools.json";
 import artSuppliesData from "./library/artsCraftsNeedlework/artSupplies.json";
 import educationalToysData from "./library/toysGames/educationalToys.json";
+import pencilsData from "./library/stationeryOfficeMachineryOccasionSupplies/pencils.json";
+import exerciseBooksData from "./library/stationeryOfficeMachineryOccasionSupplies/exerciseBooks.json";
 
 // Parse and hydrate items from JSON files
 function hydrateItemsFromJson(jsonData: unknown[]): Item[] {
@@ -56,14 +53,19 @@ const ARTS_CRAFTS_ITEMS = [...hydrateItemsFromJson(artSuppliesData)];
 
 const TOYS_GAMES_ITEMS = [...hydrateItemsFromJson(educationalToysData)];
 
+const STATIONERY_ITEMS = [
+  ...hydrateItemsFromJson(pencilsData),
+  ...hydrateItemsFromJson(exerciseBooksData),
+];
+
 export const ALL_ITEMS: Item[] = [
   ...BOOKS,
   ...PLUMBING_HEATING_VENTILATION_AIR_CONDITIONING_ITEMS,
   ...HARDWARE_ITEMS,
   ...ARTS_CRAFTS_ITEMS,
   ...TOYS_GAMES_ITEMS,
+  ...STATIONERY_ITEMS,
   // ...BUILDING_ITEMS,
-  // ...STATIONERY_ITEMS,
   // ...HYGIENE_ITEMS,
   // ...EQUIPMENT_ITEMS,
   // ...FOOD_ITEMS,

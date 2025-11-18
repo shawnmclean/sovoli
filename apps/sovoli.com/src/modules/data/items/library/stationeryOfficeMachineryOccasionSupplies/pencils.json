@@ -1,0 +1,15 @@
+[
+  {
+    "id": "supply-fat-pencil",
+    "name": "Fat Pencil",
+    "category": "pencils",
+    "tags": ["stationery", "pencil"]
+  },
+  {
+    "id": "supply-pencils-pack-12",
+    "name": "Pencils pack of 12",
+    "category": "pencils",
+    "tags": ["stationery", "pencil"],
+    "unitLabel": "pack"
+  }
+]

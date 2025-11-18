@@ -1,0 +1,23 @@
+[
+  {
+    "id": "supply-exercise-book-small-fine-line",
+    "name": "Exercise Book Small Fine line",
+    "category": "exercise-books",
+    "tags": ["stationery", "copybook", "exercise"],
+    "unitLabel": "book"
+  },
+  {
+    "id": "supply-exercise-book-big",
+    "name": "Exercise Book Big",
+    "category": "exercise-books",
+    "tags": ["stationery", "copybook", "exercise"],
+    "unitLabel": "book"
+  },
+  {
+    "id": "supply-double-line-book",
+    "name": "Double Line Book",
+    "category": "exercise-books",
+    "tags": ["stationery", "copybook", "double-line"],
+    "unitLabel": "book"
+  }
+]
