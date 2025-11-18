@@ -21,5 +21,13 @@
     "unitLabel": "container",
     "tags": ["relief", "power", "storage"],
     "description": "Certified fuel cans for transporting gasoline or butane during response."
+  },
+  {
+    "id": "exterior-door-36x80",
+    "name": "Exterior Door - 36x80",
+    "category": "fixings-fasteners-hardware-other",
+    "tags": ["facilities", "maintenance", "relief"],
+    "unitLabel": "door",
+    "description": "Standard 36x80 exterior door for securing repaired classrooms and offices."
   }
 ]
