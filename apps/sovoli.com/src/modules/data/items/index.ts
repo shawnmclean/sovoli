@@ -19,6 +19,8 @@ import hardwareData from "./library/buildingProducts/hardware.json";
 import handToolsData from "./library/toolsEquipment/handTools.json";
 import cuttingToolsData from "./library/toolsEquipment/cuttingTools.json";
 import powerToolsData from "./library/toolsEquipment/powerTools.json";
+import artSuppliesData from "./library/artsCraftsNeedlework/artSupplies.json";
+import educationalToysData from "./library/toysGames/educationalToys.json";
 
 // Parse and hydrate items from JSON files
 function hydrateItemsFromJson(jsonData: unknown[]): Item[] {
@@ -50,10 +52,16 @@ const HARDWARE_ITEMS = [
   ...hydrateItemsFromJson(powerToolsData),
 ];
 
+const ARTS_CRAFTS_ITEMS = [...hydrateItemsFromJson(artSuppliesData)];
+
+const TOYS_GAMES_ITEMS = [...hydrateItemsFromJson(educationalToysData)];
+
 export const ALL_ITEMS: Item[] = [
   ...BOOKS,
   ...PLUMBING_HEATING_VENTILATION_AIR_CONDITIONING_ITEMS,
   ...HARDWARE_ITEMS,
+  ...ARTS_CRAFTS_ITEMS,
+  ...TOYS_GAMES_ITEMS,
   // ...BUILDING_ITEMS,
   // ...STATIONERY_ITEMS,
   // ...HYGIENE_ITEMS,

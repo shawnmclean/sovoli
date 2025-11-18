@@ -1,0 +1,83 @@
+[
+  {
+    "id": "supply-crayola-crayons-fat",
+    "name": "Crayola Crayons (Fat)",
+    "category": "pastels-charcoal-crayons-chalk",
+    "tags": ["stationery", "crayons", "crayola"],
+    "brand": "Crayola"
+  },
+  {
+    "id": "supply-crayola-crayons-fine",
+    "name": "Crayola Crayons Fine",
+    "category": "pastels-charcoal-crayons-chalk",
+    "tags": ["stationery", "crayons", "crayola"],
+    "brand": "Crayola"
+  },
+  {
+    "id": "supply-crayola-paint-6pcs",
+    "name": "Crayola Paint 6pcs",
+    "category": "artists-paints-dyes",
+    "tags": ["craft", "paint"],
+    "brand": "Crayola"
+  },
+  {
+    "id": "supply-glue-elmers",
+    "name": "Glue Elmer's",
+    "category": "arts-crafts-needlework-supplies",
+    "tags": ["craft", "adhesive"],
+    "brand": "Elmer's"
+  },
+  {
+    "id": "supply-cardboard-lg",
+    "name": "Cardboard Lg",
+    "category": "paper-craft-card-making-supplies",
+    "tags": ["craft", "cardboard"],
+    "unitLabel": "sheet"
+  },
+  {
+    "id": "supply-cardboard-sml",
+    "name": "Cardboard sml",
+    "category": "paper-craft-card-making-supplies",
+    "tags": ["craft", "cardboard"],
+    "unitLabel": "sheet"
+  },
+  {
+    "id": "supply-drawing-book",
+    "name": "Drawing Book",
+    "category": "artists-painting-drawing-supplies",
+    "tags": ["stationery", "art-book", "drawing"],
+    "unitLabel": "book"
+  },
+  {
+    "id": "supply-drawing-book-8.5x13",
+    "name": "Drawing Book 8 1/2 by 13",
+    "category": "artists-painting-drawing-supplies",
+    "tags": ["stationery", "art-book", "drawing"],
+    "unitLabel": "book"
+  },
+  {
+    "id": "supply-drawing-book-8.5x11",
+    "name": "Drawing Book 8 1/2 by 11",
+    "category": "artists-painting-drawing-supplies",
+    "tags": ["stationery", "art-book", "drawing"],
+    "unitLabel": "book"
+  },
+  {
+    "id": "supply-tailors-chalk-blue",
+    "name": "Tailor's Chalk (Blue)",
+    "category": "pastels-charcoal-crayons-chalk",
+    "tags": ["sewing", "chalk", "blue"]
+  },
+  {
+    "id": "supply-tailors-chalk-red",
+    "name": "Tailor's Chalk (Red)",
+    "category": "pastels-charcoal-crayons-chalk",
+    "tags": ["sewing", "chalk", "red"]
+  },
+  {
+    "id": "supply-drafting-paper",
+    "name": "Drafting Paper",
+    "category": "paper-craft-card-making-supplies",
+    "tags": ["drafting", "paper"]
+  }
+]

@@ -107,97 +107,88 @@
           ]
         },
         {
-          "id": "arts-crafts-needlework-supplies",
-          "name": "Arts/Crafts/Needlework Supplies",
-          "gpcCode": "70011400",
-          "gpcDescription": "Includes any products that may be described/observed as supplies specifically designed for arts, crafts and needlework.",
-          "parentId": "arts-crafts-needlework-supplies",
-          "children": [
-            {
-              "id": "arts-crafts-needlework-adornments",
-              "name": "Arts/Crafts/Needlework Adornments",
-              "gpcCode": "10001714",
-              "gpcDescription": "Includes any products that can be described/observed as a device designed to enhance arts, crafts and needlework craft. Includes products such as boning/wiring and sequins.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-beads-stones",
-              "name": "Arts/Crafts/Needlework Beads/Stones",
-              "gpcCode": "10001717",
-              "gpcDescription": "Includes any products that can be described/observed as a bead or stone material used as ornamental pieces for making jewellery, ornament toys or for decorations in the different types of arts, crafts and needlework. Includes products such as man-made beads, natural stone pieces and mother of pearl inlay.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-fabrics-textiles",
-              "name": "Arts/Crafts/Needlework Fabrics/Textiles",
-              "gpcCode": "10001699",
-              "gpcDescription": "Includes any products that may be described/observed as fabrics or textiles specifically designed to be used in arts, crafts and needlework. Includes products such as cross stich fabric and upholstery fabric.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-fasteners",
-              "name": "Arts/Crafts/Needlework Fasteners",
-              "gpcCode": "10001710",
-              "gpcDescription": "Includes any products that may be described/observed as an item designed to hold together layers of fabric when crafting arts, crafts and needlework. Includes products such as Buttons, Hooks, Press-Studs, Zips and Velcro Tape.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-fibres-yarns",
-              "name": "Arts/Crafts/Needlework Fibres/Yarns",
-              "gpcCode": "10001756",
-              "gpcDescription": "Includes any products that may be described/observed as either fibres that can be spun into yarn, or already spun weaving yarn that is specifically designed to be used for woven crafts such as rug making. Includes products such as Wool Fibres that have not been spun and already spun Linen Yarn.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-lace-ribbons-cords-braids",
-              "name": "Arts/Crafts/Needlework Lace/Ribbons/Cords/Braids",
-              "gpcCode": "10001700",
-              "gpcDescription": "Includes any products that may be described/observed as textile-based adornments for fabric products, which are used in arts, crafts and needlework.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-moulds",
-              "name": "Arts/Crafts/Needlework Moulds",
-              "gpcCode": "10001737",
-              "gpcDescription": "Includes any products that may be described/observed as a cavity or container in which liquid materials are placed to cooling, hardening or drying to give them a particular shape or form. These moulds are used in the craft of making candles, jewellery, decorations, sculptures or soaps.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-sand-supplies",
-              "name": "Arts/Crafts/Needlework Sand Supplies",
-              "gpcCode": "10001683",
-              "gpcDescription": "Includes any products that can be described/observed as an item or substance used in sand art and craft activities. Includes products such as Sculpting Sand and Sand Bottles.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-supplies-accessories",
-              "name": "Arts/Crafts/Needlework Supplies Accessories",
-              "gpcCode": "10008365",
-              "gpcDescription": "Includes any products that can be described/observed as an accessory for supplies used arts, crafts and needlework. Includes products such as brush holders, moulded foam, honeycomb sheets, beeswax, clay, marble and alabaster.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-supplies-variety-packs",
-              "name": "Arts/Crafts/Needlework Supplies Variety Packs",
-              "gpcCode": "10008397",
-              "gpcDescription": "Includes any products that may be described/observed as two or more distinct Arts, Crafts and Needlework supplies sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack, which cross bricks within the arts, crafts and needlework Supplies class. Includes products such as Threads sold with Beads. Items received free with purchases should be removed from the classification decision- making process.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-templates",
-              "name": "Arts/Crafts/Needlework Templates",
-              "gpcCode": "10001713",
-              "gpcDescription": "Includes any products that may be described/observed as pre-printed designs to be followed or copied by the user to create a piece of art, craft and needlework. These designs may be printed on materials, or may be patterns used as guides or could be cut-out shapes. Includes products such as embroidery templates, knitting templates, jewelry templates, burning and engraving templates and all other types of templates used in the different arts and crafts.",
-              "parentId": "arts-crafts-needlework-supplies"
-            },
-            {
-              "id": "arts-crafts-needlework-threads",
-              "name": "Arts/Crafts/Needlework Threads",
-              "gpcCode": "10001701",
-              "gpcDescription": "Includes any products that may be described/observed as a spun cord of twisted fibres, typically of cotton, silk, wool or nylon, specifically designed for arts, crafts and needlework craft. Includes products such as Sewing Thread, Embroidery Thread and Tapestry Thread.",
-              "parentId": "arts-crafts-needlework-supplies"
-            }
-          ]
+          "id": "arts-crafts-needlework-adornments",
+          "name": "Arts/Crafts/Needlework Adornments",
+          "gpcCode": "10001714",
+          "gpcDescription": "Includes any products that can be described/observed as a device designed to enhance arts, crafts and needlework craft. Includes products such as boning/wiring and sequins.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-beads-stones",
+          "name": "Arts/Crafts/Needlework Beads/Stones",
+          "gpcCode": "10001717",
+          "gpcDescription": "Includes any products that can be described/observed as a bead or stone material used as ornamental pieces for making jewellery, ornament toys or for decorations in the different types of arts, crafts and needlework. Includes products such as man-made beads, natural stone pieces and mother of pearl inlay.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-fabrics-textiles",
+          "name": "Arts/Crafts/Needlework Fabrics/Textiles",
+          "gpcCode": "10001699",
+          "gpcDescription": "Includes any products that may be described/observed as fabrics or textiles specifically designed to be used in arts, crafts and needlework. Includes products such as cross stich fabric and upholstery fabric.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-fasteners",
+          "name": "Arts/Crafts/Needlework Fasteners",
+          "gpcCode": "10001710",
+          "gpcDescription": "Includes any products that may be described/observed as an item designed to hold together layers of fabric when crafting arts, crafts and needlework. Includes products such as Buttons, Hooks, Press-Studs, Zips and Velcro Tape.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-fibres-yarns",
+          "name": "Arts/Crafts/Needlework Fibres/Yarns",
+          "gpcCode": "10001756",
+          "gpcDescription": "Includes any products that may be described/observed as either fibres that can be spun into yarn, or already spun weaving yarn that is specifically designed to be used for woven crafts such as rug making. Includes products such as Wool Fibres that have not been spun and already spun Linen Yarn.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-lace-ribbons-cords-braids",
+          "name": "Arts/Crafts/Needlework Lace/Ribbons/Cords/Braids",
+          "gpcCode": "10001700",
+          "gpcDescription": "Includes any products that may be described/observed as textile-based adornments for fabric products, which are used in arts, crafts and needlework.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-moulds",
+          "name": "Arts/Crafts/Needlework Moulds",
+          "gpcCode": "10001737",
+          "gpcDescription": "Includes any products that may be described/observed as a cavity or container in which liquid materials are placed to cooling, hardening or drying to give them a particular shape or form. These moulds are used in the craft of making candles, jewellery, decorations, sculptures or soaps.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-sand-supplies",
+          "name": "Arts/Crafts/Needlework Sand Supplies",
+          "gpcCode": "10001683",
+          "gpcDescription": "Includes any products that can be described/observed as an item or substance used in sand art and craft activities. Includes products such as Sculpting Sand and Sand Bottles.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-supplies-accessories",
+          "name": "Arts/Crafts/Needlework Supplies Accessories",
+          "gpcCode": "10008365",
+          "gpcDescription": "Includes any products that can be described/observed as an accessory for supplies used arts, crafts and needlework. Includes products such as brush holders, moulded foam, honeycomb sheets, beeswax, clay, marble and alabaster.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-supplies-variety-packs",
+          "name": "Arts/Crafts/Needlework Supplies Variety Packs",
+          "gpcCode": "10008397",
+          "gpcDescription": "Includes any products that may be described/observed as two or more distinct Arts, Crafts and Needlework supplies sold together, which exist within the schema belonging to different bricks but to the same class, that is, two or more products contained within the same pack, which cross bricks within the arts, crafts and needlework Supplies class. Includes products such as Threads sold with Beads. Items received free with purchases should be removed from the classification decision- making process.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-templates",
+          "name": "Arts/Crafts/Needlework Templates",
+          "gpcCode": "10001713",
+          "gpcDescription": "Includes any products that may be described/observed as pre-printed designs to be followed or copied by the user to create a piece of art, craft and needlework. These designs may be printed on materials, or may be patterns used as guides or could be cut-out shapes. Includes products such as embroidery templates, knitting templates, jewelry templates, burning and engraving templates and all other types of templates used in the different arts and crafts.",
+          "parentId": "arts-crafts-needlework-supplies"
+        },
+        {
+          "id": "arts-crafts-needlework-threads",
+          "name": "Arts/Crafts/Needlework Threads",
+          "gpcCode": "10001701",
+          "gpcDescription": "Includes any products that may be described/observed as a spun cord of twisted fibres, typically of cotton, silk, wool or nylon, specifically designed for arts, crafts and needlework craft. Includes products such as Sewing Thread, Embroidery Thread and Tapestry Thread.",
+          "parentId": "arts-crafts-needlework-supplies"
         },
         {
           "id": "arts-crafts-needlework-tools",

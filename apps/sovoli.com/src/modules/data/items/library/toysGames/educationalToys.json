@@ -1,0 +1,28 @@
+[
+  {
+    "id": "supply-building-blocks",
+    "name": "Building Blocks",
+    "category": "toy-building-blocks-non-powered",
+    "tags": ["learning-aid", "blocks"]
+  },
+  {
+    "id": "supply-pack-blocks",
+    "name": "Pack Blocks",
+    "category": "toy-building-blocks-non-powered",
+    "tags": ["learning-aid", "blocks"],
+    "unitLabel": "pack"
+  },
+  {
+    "id": "supply-crayola-play-dough",
+    "name": "Crayola Play Dough",
+    "category": "developmental-educational-toys-other",
+    "tags": ["craft", "play-dough", "crayola"],
+    "brand": "Crayola"
+  },
+  {
+    "id": "supply-pack-letters-numbers",
+    "name": "Pk letters n Numbers",
+    "category": "developmental-educational-toys-other",
+    "tags": ["learning-aid", "letters", "numbers"]
+  }
+]

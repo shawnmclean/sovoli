@@ -204,17 +204,6 @@
     }
   },
   {
-    "id": "book-rainbow-readers-book-3",
-    "name": "Rainbow Readers Book 3",
-    "category": "textbooks",
-    "tags": ["textbook", "reading", "grade-3"],
-    "attributes": {
-      "series": "Rainbow Readers",
-      "level": "Grade 3",
-      "kind": "textbook"
-    }
-  },
-  {
     "id": "book-fun-with-language-book-4",
     "name": "Fun with Language Book 4",
     "category": "textbooks",
@@ -265,17 +254,6 @@
     "tags": ["textbook", "spelling", "grade-4"],
     "attributes": {
       "series": "Word Perfect Spelling",
-      "level": "Grade 4",
-      "kind": "textbook"
-    }
-  },
-  {
-    "id": "book-rainbow-readers-book-4",
-    "name": "Rainbow Readers Book 4",
-    "category": "textbooks",
-    "tags": ["textbook", "reading", "grade-4"],
-    "attributes": {
-      "series": "Rainbow Readers",
       "level": "Grade 4",
       "kind": "textbook"
     }

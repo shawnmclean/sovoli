@@ -14,44 +14,66 @@
     "id": "book-atlantic-reader-book-1",
     "name": "Atlantic Reader Book 1",
     "category": "readers",
-    "tags": ["textbook", "reading", "grade-1"],
+    "tags": ["reader", "reading", "grade-1"],
     "attributes": {
       "series": "Atlantic Reader",
       "level": "Book 1",
-      "kind": "textbook"
+      "kind": "reader"
     }
   },
   {
     "id": "book-atlantic-reader-book-2",
     "name": "Atlantic Reader Book 2",
     "category": "readers",
-    "tags": ["textbook", "reading", "grade-2"],
+    "tags": ["reader", "reading", "grade-2"],
     "attributes": {
       "series": "Atlantic Reader",
       "level": "Book 2",
-      "kind": "textbook"
+      "kind": "reader"
     }
   },
   {
     "id": "book-nelson-west-indian-readers-book-2",
     "name": "New Nelson West Indian Readers Book 2",
     "category": "readers",
-    "tags": ["textbook", "nelson", "west-indian", "grade-2"],
+    "tags": ["reader", "nelson", "west-indian", "grade-2"],
     "attributes": {
       "series": "Nelson West Indian Readers",
       "level": "Book 2",
-      "kind": "textbook"
+      "kind": "reader"
     }
   },
   {
     "id": "book-nelson-west-indian-readers-book-3",
     "name": "New Nelson West Indian Readers Book 3",
     "category": "readers",
-    "tags": ["textbook", "nelson", "west-indian", "grade-3"],
+    "tags": ["reader", "nelson", "west-indian", "grade-3"],
     "attributes": {
       "series": "Nelson West Indian Readers",
       "level": "Book 3",
-      "kind": "textbook"
+      "kind": "reader"
+    }
+  },
+  {
+    "id": "book-rainbow-readers-book-3",
+    "name": "Rainbow Readers Book 3",
+    "category": "readers",
+    "tags": ["reader", "reading", "grade-3"],
+    "attributes": {
+      "series": "Rainbow Readers",
+      "level": "Grade 3",
+      "kind": "reader"
+    }
+  },
+  {
+    "id": "book-rainbow-readers-book-4",
+    "name": "Rainbow Readers Book 4",
+    "category": "readers",
+    "tags": ["reader", "reading", "grade-4"],
+    "attributes": {
+      "series": "Rainbow Readers",
+      "level": "Grade 4",
+      "kind": "reader"
     }
   }
 ]
