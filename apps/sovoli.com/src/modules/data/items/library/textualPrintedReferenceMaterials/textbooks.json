@@ -1,0 +1,459 @@
+[
+  {
+    "id": "book-roraima-nursery-year-1-literacy",
+    "name": "Roraima Readers Nursery Year 1 Literacy",
+    "category": "textbooks",
+    "tags": ["textbook", "roraima-readers", "nursery-year-1"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-roraima-nursery-year-1-numeracy",
+    "name": "Roraima Readers Nursery Year 1 Numeracy",
+    "category": "textbooks",
+    "tags": ["textbook", "roraima-readers", "nursery-year-1"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-roraima-literacy-nursery-year-2",
+    "name": "Roraima Reader Literacy Nursery Year 2",
+    "category": "textbooks",
+    "tags": ["textbook", "roraima-readers", "nursery-year-2"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "level": "Nursery Year 2",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-fun-with-language-book-5",
+    "name": "Fun with Language Book 5",
+    "category": "textbooks",
+    "tags": ["textbook", "language", "grade-5"],
+    "attributes": {
+      "series": "Fun with Language",
+      "level": "Grade 5",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-fun-with-language-book-6",
+    "name": "Fun with Language Book 6",
+    "category": "textbooks",
+    "tags": ["textbook", "language", "grade-6"],
+    "attributes": {
+      "series": "Fun with Language",
+      "level": "Grade 6",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-new-junior-english-revised",
+    "name": "New Junior English Revised",
+    "category": "textbooks",
+    "tags": ["textbook", "english"],
+    "attributes": {
+      "series": "New Junior English",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-new-first-aid-in-english",
+    "name": "New First Aid in English",
+    "category": "textbooks",
+    "tags": ["textbook", "english", "first-aid"],
+    "attributes": {
+      "series": "New First Aid",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-lets-do-mathematics-book-5",
+    "name": "Let's Do Math Book 5",
+    "category": "textbooks",
+    "tags": ["textbook", "mathematics", "grade-5"],
+    "attributes": {
+      "series": "Let's Do Math",
+      "level": "Grade 5",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-lets-do-mathematics-book-6",
+    "name": "Let's Do Math Book 6",
+    "category": "textbooks",
+    "tags": ["textbook", "mathematics", "grade-6"],
+    "attributes": {
+      "series": "Let's Do Math",
+      "level": "Grade 6",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-science-around-us-book-5",
+    "name": "Science Around Us Book 5",
+    "category": "textbooks",
+    "tags": ["textbook", "science", "grade-5"],
+    "attributes": {
+      "series": "Science Around Us",
+      "level": "Grade 5",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-science-around-us-book-6",
+    "name": "Science Around Us Book 6",
+    "category": "textbooks",
+    "tags": ["textbook", "science", "grade-6"],
+    "attributes": {
+      "series": "Science Around Us",
+      "level": "Grade 6",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-social-studies-for-our-children-book-5",
+    "name": "Social Studies for Our Children Book 5",
+    "category": "textbooks",
+    "tags": ["textbook", "social-studies", "grade-5"],
+    "attributes": {
+      "series": "Social Studies for Our Children",
+      "level": "Grade 5",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-social-studies-for-our-children-book-6",
+    "name": "Social Studies for Our Children Book 6",
+    "category": "textbooks",
+    "tags": ["textbook", "social-studies", "grade-6"],
+    "attributes": {
+      "series": "Social Studies for Our Children",
+      "level": "Grade 6",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-guyana-our-country-our-home",
+    "name": "Guyana our Country our Home",
+    "category": "textbooks",
+    "tags": ["textbook", "social-studies", "guyana", "geography"],
+    "attributes": {
+      "series": "Guyana Studies",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-fun-with-language-book-3",
+    "name": "Fun with Language Book 3",
+    "category": "textbooks",
+    "tags": ["textbook", "language", "grade-3"],
+    "attributes": {
+      "series": "Fun with Language",
+      "level": "Grade 3",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-lets-do-mathematics-book-3",
+    "name": "Let's Do Math Book 3",
+    "category": "textbooks",
+    "tags": ["textbook", "mathematics", "grade-3"],
+    "attributes": {
+      "series": "Let's Do Math",
+      "level": "Grade 3",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-science-around-us-book-3",
+    "name": "Science Around Us Book 3",
+    "category": "textbooks",
+    "tags": ["textbook", "science", "grade-3"],
+    "attributes": {
+      "series": "Science Around Us",
+      "level": "Grade 3",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-social-studies-for-our-children-book-3",
+    "name": "Social Studies for Our Children Book 3",
+    "category": "textbooks",
+    "tags": ["textbook", "social-studies", "grade-3"],
+    "attributes": {
+      "series": "Social Studies for Our Children",
+      "level": "Grade 3",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-word-perfect-spelling-book-3",
+    "name": "Word Perfect Spelling Book 3",
+    "category": "textbooks",
+    "tags": ["textbook", "spelling", "grade-3"],
+    "attributes": {
+      "series": "Word Perfect Spelling",
+      "level": "Grade 3",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-rainbow-readers-book-3",
+    "name": "Rainbow Readers Book 3",
+    "category": "textbooks",
+    "tags": ["textbook", "reading", "grade-3"],
+    "attributes": {
+      "series": "Rainbow Readers",
+      "level": "Grade 3",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-fun-with-language-book-4",
+    "name": "Fun with Language Book 4",
+    "category": "textbooks",
+    "tags": ["textbook", "language", "grade-4"],
+    "attributes": {
+      "series": "Fun with Language",
+      "level": "Grade 4",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-lets-do-mathematics-book-4",
+    "name": "Let's Do Math Book 4",
+    "category": "textbooks",
+    "tags": ["textbook", "mathematics", "grade-4"],
+    "attributes": {
+      "series": "Let's Do Math",
+      "level": "Grade 4",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-science-around-us-book-4",
+    "name": "Science Around Us Book 4",
+    "category": "textbooks",
+    "tags": ["textbook", "science", "grade-4"],
+    "attributes": {
+      "series": "Science Around Us",
+      "level": "Grade 4",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-social-studies-for-our-children-book-4",
+    "name": "Social Studies for Our Children Book 4",
+    "category": "textbooks",
+    "tags": ["textbook", "social-studies", "grade-4"],
+    "attributes": {
+      "series": "Social Studies for Our Children",
+      "level": "Grade 4",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-word-perfect-spelling-book-4",
+    "name": "Word Perfect Spelling Book 4",
+    "category": "textbooks",
+    "tags": ["textbook", "spelling", "grade-4"],
+    "attributes": {
+      "series": "Word Perfect Spelling",
+      "level": "Grade 4",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-rainbow-readers-book-4",
+    "name": "Rainbow Readers Book 4",
+    "category": "textbooks",
+    "tags": ["textbook", "reading", "grade-4"],
+    "attributes": {
+      "series": "Rainbow Readers",
+      "level": "Grade 4",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-mathematics-made-easy-2",
+    "name": "Mathematics Made Easy Grade 2",
+    "category": "textbooks",
+    "tags": ["textbook", "mathematics", "grade-2"],
+    "attributes": {
+      "series": "Mathematics Made Easy",
+      "level": "Grade 2",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-process-of-learning-language-arts-infant-second-year",
+    "name": "A Process of Learning Language Arts Infant 2nd Year",
+    "category": "textbooks",
+    "tags": ["textbook", "language-arts", "infant-second-year"],
+    "attributes": {
+      "series": "A Process of Learning",
+      "level": "Infant 2nd Year",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-process-of-learning-composition-writing-infant-second-year",
+    "name": "A Process of Learning Composition Writing 2nd Year",
+    "category": "textbooks",
+    "tags": ["textbook", "composition", "infant-second-year"],
+    "attributes": {
+      "series": "A Process of Learning",
+      "level": "2nd Year",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-fun-with-language-book-2-parts-1-2-3",
+    "name": "Fun with Language Book 2 Pt 1,2,3",
+    "category": "textbooks",
+    "tags": ["textbook", "language", "grade-2"],
+    "attributes": {
+      "series": "Fun with Language",
+      "level": "Grade 2",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-mathematics-made-easy-1",
+    "name": "Mathematics Made Easy Grade 1",
+    "category": "textbooks",
+    "tags": ["textbook", "mathematics", "grade-1"],
+    "attributes": {
+      "series": "Mathematics Made Easy",
+      "level": "Grade 1",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-process-of-learning-language-arts-infant-first-year",
+    "name": "A Process of Learning Language Arts Infant 1st Year",
+    "category": "textbooks",
+    "tags": ["textbook", "language-arts", "infant-first-year"],
+    "attributes": {
+      "series": "A Process of Learning",
+      "level": "Infant 1st Year",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-process-of-learning-composition-writing-infant-first-year",
+    "name": "A Process of Learning Composition Writing Infant 1st Year",
+    "category": "textbooks",
+    "tags": ["textbook", "composition", "infant-first-year"],
+    "attributes": {
+      "series": "A Process of Learning",
+      "level": "Infant 1st Year",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-fun-with-language-book-1-parts-1-2-3",
+    "name": "Fun with Language Book 1 Pt 1,2,3",
+    "category": "textbooks",
+    "tags": ["textbook", "language", "grade-1"],
+    "attributes": {
+      "series": "Fun with Language",
+      "level": "Grade 1",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-roraima-reader-literacy-year-2",
+    "name": "Roraima Reader Literacy Year 2",
+    "category": "textbooks",
+    "tags": ["textbook", "roraima-readers", "literacy", "year-2"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "level": "Year 2",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-roraima-reader-literacy-year-1",
+    "name": "Roraima Reader Literacy Year 1",
+    "category": "textbooks",
+    "tags": ["textbook", "roraima-readers", "literacy", "year-1"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "level": "Year 1",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-roraima-reader-numeracy-year-2",
+    "name": "Roraima Reader Numeracy Year 2",
+    "category": "textbooks",
+    "tags": ["textbook", "roraima-readers", "numeracy", "year-2"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "level": "Year 2",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-roraima-reader-numeracy-year-1",
+    "name": "Roraima Reader Numeracy Year 1",
+    "category": "textbooks",
+    "tags": ["textbook", "roraima-readers", "numeracy", "year-1"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "level": "Year 1",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-roraima-reader-writing-skills-book-1-2",
+    "name": "Roraima Reader Writing Skills Book 1&2",
+    "category": "textbooks",
+    "tags": ["textbook", "roraima-readers", "writing-skills"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "level": "Book 1&2",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-step-to-common-entrance-book-1",
+    "name": "Step to Common Entrance Book 1",
+    "category": "textbooks",
+    "tags": ["textbook", "common-entrance", "grade-1"],
+    "attributes": {
+      "series": "Step to Common Entrance",
+      "level": "Book 1",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-step-to-common-entrance-book-2",
+    "name": "Step to Common Entrance Book 2",
+    "category": "textbooks",
+    "tags": ["textbook", "common-entrance", "grade-2"],
+    "attributes": {
+      "series": "Step to Common Entrance",
+      "level": "Book 2",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-step-to-common-entrance-book-3",
+    "name": "Step to Common Entrance Book 3",
+    "category": "textbooks",
+    "tags": ["textbook", "common-entrance", "grade-3"],
+    "attributes": {
+      "series": "Step to Common Entrance",
+      "level": "Book 3",
+      "kind": "textbook"
+    }
+  }
+]

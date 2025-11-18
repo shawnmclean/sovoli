@@ -1,14 +1,24 @@
 import type { Item } from "~/modules/core/items/types";
 import { itemJsonSchema } from "~/modules/core/items/types";
-import { BOOKS } from "./book";
 import { FOOD_ITEMS } from "./food";
-import { HARDWARE_ITEMS } from "./hardware";
 import { HYGIENE_ITEMS } from "./hygiene";
 import { OTHER_ITEMS } from "./other";
 import { STATIONERY_ITEMS } from "./stationery";
 import { BUILDING_ITEMS } from "./building";
 import { hydrateCategory } from "./categories";
 import plumbingHeatingVentilationAirConditioningData from "./library/plumbingHeatingVentilationAirConditioning.json";
+import workbooksData from "./library/textualPrintedReferenceMaterials/workbooks.json";
+import readersData from "./library/textualPrintedReferenceMaterials/readers.json";
+import textbooksData from "./library/textualPrintedReferenceMaterials/textbooks.json";
+import referencesData from "./library/textualPrintedReferenceMaterials/references.json";
+import roofingData from "./library/buildingProducts/roofing.json";
+import fastenersData from "./library/buildingProducts/fasteners.json";
+import lumberData from "./library/buildingProducts/lumber.json";
+import adhesivesSealantsData from "./library/buildingProducts/adhesivesSealants.json";
+import hardwareData from "./library/buildingProducts/hardware.json";
+import handToolsData from "./library/toolsEquipment/handTools.json";
+import cuttingToolsData from "./library/toolsEquipment/cuttingTools.json";
+import powerToolsData from "./library/toolsEquipment/powerTools.json";
 
 // Parse and hydrate items from JSON files
 function hydrateItemsFromJson(jsonData: unknown[]): Item[] {
@@ -22,13 +32,31 @@ function hydrateItemsFromJson(jsonData: unknown[]): Item[] {
 const PLUMBING_HEATING_VENTILATION_AIR_CONDITIONING_ITEMS =
   hydrateItemsFromJson(plumbingHeatingVentilationAirConditioningData);
 
+const BOOKS = [
+  ...hydrateItemsFromJson(workbooksData),
+  ...hydrateItemsFromJson(readersData),
+  ...hydrateItemsFromJson(textbooksData),
+  ...hydrateItemsFromJson(referencesData),
+];
+
+const HARDWARE_ITEMS = [
+  ...hydrateItemsFromJson(roofingData),
+  ...hydrateItemsFromJson(fastenersData),
+  ...hydrateItemsFromJson(lumberData),
+  ...hydrateItemsFromJson(adhesivesSealantsData),
+  ...hydrateItemsFromJson(hardwareData),
+  ...hydrateItemsFromJson(handToolsData),
+  ...hydrateItemsFromJson(cuttingToolsData),
+  ...hydrateItemsFromJson(powerToolsData),
+];
+
 export const ALL_ITEMS: Item[] = [
   ...BOOKS,
   ...PLUMBING_HEATING_VENTILATION_AIR_CONDITIONING_ITEMS,
+  ...HARDWARE_ITEMS,
   // ...BUILDING_ITEMS,
   // ...STATIONERY_ITEMS,
   // ...HYGIENE_ITEMS,
-  // ...HARDWARE_ITEMS,
   // ...EQUIPMENT_ITEMS,
   // ...FOOD_ITEMS,
   // ...OTHER_ITEMS,

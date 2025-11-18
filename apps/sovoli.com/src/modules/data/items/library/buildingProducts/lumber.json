@@ -1,0 +1,50 @@
+[
+  {
+    "id": "maintenance-plyboard",
+    "name": "Plyboard Sheet",
+    "category": "plywood-osb-softwood",
+    "tags": ["facilities", "maintenance", "construction"],
+    "unitLabel": "sheet",
+    "description": "3/4-inch plywood sheet for building repairs and maintenance."
+  },
+  {
+    "id": "plywood-3-4-4x8",
+    "name": "3/4 in Plywood - 4x8 ft",
+    "category": "plywood-osb-softwood",
+    "unitLabel": "sheet",
+    "tags": ["relief", "building", "lumber"],
+    "description": "Thick sheet stock for decking repairs and roof sheathing replacement."
+  },
+  {
+    "id": "lumber-2x2x12",
+    "name": "2x2x12 ft Treated Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "board",
+    "tags": ["relief", "building", "lumber"],
+    "description": "Used for batten strips and roof bracing in local Jamaican builds."
+  },
+  {
+    "id": "purlin-1x4x12",
+    "name": "1x4x12 ft Purlin Board",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "board",
+    "tags": ["relief", "building", "roofing"],
+    "description": "Treated purlin used under zinc sheets for fastening and ventilation."
+  },
+  {
+    "id": "lumber-2x4x12",
+    "name": "2x4x12 ft Framing Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "board",
+    "tags": ["relief", "building", "framing"],
+    "description": "Common stud length carried by hardware suppliers across Jamaica."
+  },
+  {
+    "id": "lumber-2x6x12",
+    "name": "2x6x12 ft Framing Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "board",
+    "tags": ["relief", "building", "framing"],
+    "description": "Sized for rafters and ridge boards in replacement roof structures."
+  }
+]

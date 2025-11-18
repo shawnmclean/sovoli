@@ -1,0 +1,10 @@
+[
+  {
+    "id": "tin-snips",
+    "name": "Tin Snips",
+    "category": "heavy-duty-shears-non-powered",
+    "unitLabel": "tool",
+    "tags": ["relief", "building", "cutting"],
+    "description": "Left/right cut snips for trimming corrugated zinc sheets on site."
+  }
+]

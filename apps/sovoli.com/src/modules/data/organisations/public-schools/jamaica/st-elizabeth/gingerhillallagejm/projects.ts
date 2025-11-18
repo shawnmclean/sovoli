@@ -15,7 +15,17 @@ export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
       startDate: "2025-11-15",
       endDate: "2025-12-20",
       internal: false,
-      // needs: [findNeedBySlug("ghaa-zinc-roof-sheet-2025")],
+      needs: (() => {
+        const need = GINGER_HILL_ALL_AGE_NEEDS.needs.find(
+          (need) => need.slug === "ghaa-zinc-roof-sheet-2025",
+        );
+        if (!need) {
+          throw new Error(
+            `Need with slug "ghaa-zinc-roof-sheet-2025" not found`,
+          );
+        }
+        return [need];
+      })(),
       tags: ["hurricane-mellissa"],
       photos: [
         {

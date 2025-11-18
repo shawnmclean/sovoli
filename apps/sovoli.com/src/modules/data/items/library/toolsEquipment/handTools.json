@@ -1,0 +1,18 @@
+[
+  {
+    "id": "roofing-hammer",
+    "name": "Roofing Claw Hammer",
+    "category": "hammers-diy-non-powered",
+    "unitLabel": "tool",
+    "tags": ["relief", "building", "tooling"],
+    "description": "16 oz straight-claw hammer suited for zinc work and nail removal."
+  },
+  {
+    "id": "measuring-tape-25ft",
+    "name": "25 ft Measuring Tape",
+    "category": "tape-measures-diy-non-powered",
+    "unitLabel": "tool",
+    "tags": ["relief", "building", "layout"],
+    "description": "Steel tape for verifying spans and cut lengths during roof rebuilds."
+  }
+]

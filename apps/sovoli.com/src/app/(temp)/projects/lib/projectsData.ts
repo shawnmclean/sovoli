@@ -110,12 +110,22 @@ function formatAddress(location: OrgLocation | undefined) {
 }
 
 function summarizeNeeds(needs: Need[]): ProjectNeedSummary[] {
-  return needs.map((need) => ({
-    slug: need.slug,
-    title: need.title,
-    quantity: need.quantity,
-    type: need.type,
-    status: need.status,
-    priority: need.priority,
-  }));
+  return needs.map((need) => {
+    if (need.type === "material") {
+      return {
+        slug: need.slug,
+        title: need.title,
+        quantity: need.quantity,
+        type: need.type,
+        status: need.status,
+        priority: need.priority,
+        item: need.item,
+      };
+    }
+    // For non-material needs, we still need to provide an item
+    // This might need to be handled differently based on your requirements
+    throw new Error(
+      `Non-material need with slug "${need.slug}" cannot be included in project summary without an item`,
+    );
+  });
 }

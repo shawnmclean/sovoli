@@ -1,0 +1,68 @@
+[
+  {
+    "id": "book-123-starters-coloring",
+    "name": "123 Starters Coloring Book",
+    "category": "workbooks",
+    "tags": ["exercise", "coloring", "numbers"]
+  },
+  {
+    "id": "book-animal-friends-level-1a-workbook-1",
+    "name": "Animal Friends Level 1A Workbook 1",
+    "category": "workbooks",
+    "tags": ["workbook", "level-1a", "animal-friends"],
+    "attributes": {
+      "series": "Animal Friends",
+      "level": "Level 1A",
+      "kind": "workbook"
+    }
+  },
+  {
+    "id": "book-animal-friends-level-1a-workbook-2",
+    "name": "Animal Friends Level 1A Workbook 2",
+    "category": "workbooks",
+    "tags": ["workbook", "level-1a", "animal-friends"],
+    "attributes": {
+      "series": "Animal Friends",
+      "level": "Level 1A",
+      "kind": "workbook"
+    }
+  },
+  {
+    "id": "book-animal-friends-level-1a-workbook-3",
+    "name": "Animal Friends Level 1A Workbook 3",
+    "category": "workbooks",
+    "tags": ["workbook", "level-1a", "animal-friends"],
+    "attributes": {
+      "series": "Animal Friends",
+      "level": "Level 1A",
+      "kind": "workbook"
+    }
+  },
+  {
+    "id": "book-big-easy-coloring",
+    "name": "Big and Easy Coloring Book",
+    "category": "workbooks",
+    "tags": ["exercise", "coloring"]
+  },
+  {
+    "id": "book-roraima-workbook-1-writing",
+    "name": "Roraima Reader Workbook 1 (Writing Skills)",
+    "category": "workbooks",
+    "tags": ["workbook", "roraima-readers", "writing-skills"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "kind": "workbook"
+    }
+  },
+  {
+    "id": "book-roraima-numeracy-workbook-book-2",
+    "name": "Roraima Reader Numeracy Workbook (Book 2)",
+    "category": "workbooks",
+    "tags": ["workbook", "roraima-readers", "book-2"],
+    "attributes": {
+      "series": "Roraima Readers",
+      "level": "Book 2",
+      "kind": "workbook"
+    }
+  }
+]

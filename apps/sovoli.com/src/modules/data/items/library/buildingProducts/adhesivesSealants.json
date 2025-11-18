@@ -1,0 +1,11 @@
+[
+  {
+    "id": "door-trim-adhesive",
+    "name": "Door Trim Adhesive Protection",
+    "category": "glue-adhesive",
+    "tags": ["relief", "building", "adhesive"],
+    "attributes": {
+      "source": "Amazon"
+    }
+  }
+]

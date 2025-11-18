@@ -193,7 +193,7 @@ export default async function ProjectDetailsPage({
                           )}
                         </div>
                         <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                          {need.type}
+                          {need.type} - {need.item.category.name}
                         </span>
                       </div>
                     </li>

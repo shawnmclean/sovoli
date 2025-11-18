@@ -1,0 +1,42 @@
+[
+  {
+    "id": "maintenance-zinc-roof-screws-2-5in",
+    "name": "Roofing Screws w/ Washers - 2.5 in",
+    "category": "screws",
+    "tags": ["facilities", "maintenance", "roofing", "relief"],
+    "unitLabel": "box",
+    "description": "Self-drilling screws with neoprene washers for fastening zinc sheets to purlins."
+  },
+  {
+    "id": "relief-screws",
+    "name": "Roofing Screws",
+    "category": "screws",
+    "tags": ["relief", "building", "roofing", "fastener"],
+    "unitLabel": "box",
+    "description": "Self-drilling screws with washers for fastening roofing materials during relief and repair work."
+  },
+  {
+    "id": "structural-screws-4in",
+    "name": "Structural Screws - 4 in",
+    "category": "screws",
+    "unitLabel": "box",
+    "tags": ["relief", "building", "framing"],
+    "description": "Heavy-duty coated screws for fastening rafters and wall plates."
+  },
+  {
+    "id": "roofing-nails-2-5in",
+    "name": "Galvanized Roofing Nails - 2.5 in",
+    "category": "nails-pins-fixings-fasteners",
+    "unitLabel": "box",
+    "tags": ["relief", "building", "roofing"],
+    "description": "Ring-shank nails sized for batten strips and hurricane strapping on roofs."
+  },
+  {
+    "id": "strap-nails-3in",
+    "name": "Hurricane Strap Nails - 3 in",
+    "category": "nails-pins-fixings-fasteners",
+    "unitLabel": "box",
+    "tags": ["relief", "building", "fastener"],
+    "description": "Hot-dip galvanized nails sized for metal straps and connectors."
+  }
+]

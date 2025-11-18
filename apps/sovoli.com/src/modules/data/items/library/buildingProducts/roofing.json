@@ -1,0 +1,51 @@
+[
+  {
+    "id": "corrugated-zinc-12ft",
+    "name": "Corrugated Zinc Sheet - 12 ft (28 gauge)",
+    "category": "roofing-panels-slabs",
+    "tags": ["facilities", "maintenance", "roofing", "relief"],
+    "unitLabel": "sheet",
+    "description": "Standard 12-foot galvanized sheet for replacing damaged classroom roofs."
+  },
+  {
+    "id": "zinc-roof-sheet",
+    "name": "Zinc Roof Sheet",
+    "category": "roofing-panels-slabs",
+    "tags": ["facilities", "maintenance", "roofing", "relief"],
+    "unitLabel": "sheet",
+    "description": "Corrugated galvanized zinc sheet for replacing damaged classroom roofs."
+  },
+  {
+    "id": "maintenance-zinc-roof-sheet",
+    "name": "Zinc Roof Sheet - Maintenance",
+    "category": "roofing-panels-slabs",
+    "tags": ["facilities", "maintenance", "roofing", "relief"],
+    "unitLabel": "sheet",
+    "description": "Corrugated galvanized zinc sheet for maintenance and repair of classroom roofs."
+  },
+  {
+    "id": "ridge-cap-12ft",
+    "name": "Zinc Ridge Cap - 12 ft",
+    "category": "roof-vent-flashing-trim-coils",
+    "tags": ["facilities", "maintenance", "roofing", "relief"],
+    "unitLabel": "length",
+    "description": "Pre-bent ridge flashing for sealing corrugated zinc roof peaks."
+  },
+  {
+    "id": "roof-flashing-12ft",
+    "name": "Galvanized Roof Flashing - 12 ft",
+    "category": "roof-vent-flashing-trim-coils",
+    "tags": ["facilities", "maintenance", "roofing"],
+    "unitLabel": "length",
+    "description": "Sidewall flashing for tying zinc sheets into parapets and gutters."
+  },
+  {
+    "id": "roof-sealant",
+    "name": "Roof Sealant",
+    "category": "sealants",
+    "tags": ["relief", "building", "roofing"],
+    "attributes": {
+      "source": "Local"
+    }
+  }
+]

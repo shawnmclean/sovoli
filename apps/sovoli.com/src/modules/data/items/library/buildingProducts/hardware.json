@@ -1,0 +1,25 @@
+[
+  {
+    "id": "tarpaulin-heavy-duty",
+    "name": "Heavy-Duty Tarpaulin",
+    "category": "fixings-fasteners-hardware-other",
+    "tags": ["relief", "shelter", "weatherproofing"],
+    "unitLabel": "tarp",
+    "description": "Reinforced tarpaulin for temporary coverage of damaged classrooms and walkways."
+  },
+  {
+    "id": "tarps",
+    "name": "Tarps",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "tarp",
+    "tags": ["relief", "building", "weatherproofing"]
+  },
+  {
+    "id": "fuel-containers",
+    "name": "Fuel Containers",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "container",
+    "tags": ["relief", "power", "storage"],
+    "description": "Certified fuel cans for transporting gasoline or butane during response."
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "book-animal-friends-level-1a-reader",
+    "name": "Animal Friends Level 1A Reader",
+    "category": "readers",
+    "tags": ["reader", "level-1a", "animal-friends"],
+    "attributes": {
+      "series": "Animal Friends",
+      "level": "Level 1A",
+      "kind": "reader"
+    }
+  },
+  {
+    "id": "book-atlantic-reader-book-1",
+    "name": "Atlantic Reader Book 1",
+    "category": "readers",
+    "tags": ["textbook", "reading", "grade-1"],
+    "attributes": {
+      "series": "Atlantic Reader",
+      "level": "Book 1",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-atlantic-reader-book-2",
+    "name": "Atlantic Reader Book 2",
+    "category": "readers",
+    "tags": ["textbook", "reading", "grade-2"],
+    "attributes": {
+      "series": "Atlantic Reader",
+      "level": "Book 2",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-nelson-west-indian-readers-book-2",
+    "name": "New Nelson West Indian Readers Book 2",
+    "category": "readers",
+    "tags": ["textbook", "nelson", "west-indian", "grade-2"],
+    "attributes": {
+      "series": "Nelson West Indian Readers",
+      "level": "Book 2",
+      "kind": "textbook"
+    }
+  },
+  {
+    "id": "book-nelson-west-indian-readers-book-3",
+    "name": "New Nelson West Indian Readers Book 3",
+    "category": "readers",
+    "tags": ["textbook", "nelson", "west-indian", "grade-3"],
+    "attributes": {
+      "series": "Nelson West Indian Readers",
+      "level": "Book 3",
+      "kind": "textbook"
+    }
+  }
+]

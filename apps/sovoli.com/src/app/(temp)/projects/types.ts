@@ -5,6 +5,7 @@ import type {
   ProjectPriority,
   ProjectStatus,
 } from "~/modules/projects/types";
+import type { Item } from "~/modules/core/items/types";
 
 export interface ProjectNeedSummary {
   slug: string;
@@ -13,6 +14,7 @@ export interface ProjectNeedSummary {
   type: NeedType;
   status?: NeedStatus;
   priority?: NeedPriority;
+  item: Item;
 }
 
 export interface ProjectDirectoryEntry {

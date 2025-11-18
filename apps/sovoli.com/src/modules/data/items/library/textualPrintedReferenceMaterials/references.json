@@ -1,0 +1,22 @@
+[
+  {
+    "id": "book-oxford-dictionary-thesaurus",
+    "name": "Oxford Dictionary & Thesaurus",
+    "category": "references",
+    "tags": ["reference", "dictionary", "thesaurus", "oxford"],
+    "attributes": {
+      "brand": "Oxford",
+      "kind": "reference"
+    }
+  },
+  {
+    "id": "book-oxford-primary-school-dictionary",
+    "name": "Oxford Primary School Dictionary",
+    "category": "references",
+    "tags": ["reference", "dictionary", "oxford", "primary"],
+    "attributes": {
+      "brand": "Oxford",
+      "kind": "reference"
+    }
+  }
+]
