@@ -24,6 +24,14 @@
     "description": "Corrugated galvanized zinc sheet for maintenance and repair of classroom roofs."
   },
   {
+    "id": "industrial-roof-sheeting",
+    "name": "Industrial Roof Sheeting (Square)",
+    "category": "roofing-panels-slabs",
+    "tags": ["facilities", "maintenance", "roofing", "relief"],
+    "unitLabel": "square",
+    "description": "Industrial-grade roof sheeting measured in squares (100 sq ft) for full building coverage."
+  },
+  {
     "id": "ridge-cap-12ft",
     "name": "Zinc Ridge Cap - 12 ft",
     "category": "roof-vent-flashing-trim-coils",

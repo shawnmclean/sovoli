@@ -73,6 +73,7 @@ import { ROGER_CLARKE_HIGH_ORG } from "./balaclavahighjm";
 import { ROSE_HALL_PRIMARY_ORG } from "./rosehallallagejm";
 import { ROSES_VALLEY_PRIMARY_ORG } from "./rosesvalleyprimaryjm";
 import { RUSSELLS_PRIMARY_ORG } from "./russellsprimaryjm";
+import { SANDY_BANK_INFANT_SCHOOL_ORG } from "./sandybankinfantjm";
 import { SANDY_BANK_PRIMARY_ORG } from "./sandybankprimaryjm";
 import { SANTA_CRUZ_PRIMARY_JUNIOR_HIGH_ORG } from "./santacruzprimaryjm";
 import { SCHOOLFIELD_PRIMARY_AND_INFANT_ORG } from "./schoolfieldprimaryjm";
@@ -163,6 +164,7 @@ export const ST_ELIZABETH_PUBLIC_SCHOOLS_JAMAICA: OrgInstance[] = [
   ROSE_HALL_PRIMARY_ORG,
   ROSES_VALLEY_PRIMARY_ORG,
   RUSSELLS_PRIMARY_ORG,
+  SANDY_BANK_INFANT_SCHOOL_ORG,
   SANDY_BANK_PRIMARY_ORG,
   SANTA_CRUZ_PRIMARY_JUNIOR_HIGH_ORG,
   SCHOOLFIELD_PRIMARY_AND_INFANT_ORG,
