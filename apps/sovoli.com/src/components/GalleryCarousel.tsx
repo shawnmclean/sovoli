@@ -47,7 +47,7 @@ export function GalleryCarousel({
 
     // Track initial gallery view
     if (!viewedRef.current) {
-      posthog.capture("gallery_viewed", {
+      posthog.capture("GalleryViewed", {
         mode: "normal",
       });
       viewedRef.current = true;
@@ -64,7 +64,7 @@ export function GalleryCarousel({
           newIndex,
           photos.length,
         );
-        posthog.capture("gallery_swipe", {
+        posthog.capture("GallerySwipe", {
           mode: "normal",
           direction,
           from_index: oldIndex,
@@ -80,7 +80,7 @@ export function GalleryCarousel({
   const handleOpenFullscreen = () => {
     const currentPhoto = photos[current];
     if (currentPhoto) {
-      posthog.capture("gallery_open_fullscreen", {
+      posthog.capture("GalleryOpenFullscreen", {
         index: current,
         url: currentPhoto.publicId,
       });
@@ -196,7 +196,7 @@ function FullScreenGallery({
         const dwellTime = Date.now() - imageStartTimeRef.current;
         if (dwellTime > 0) {
           // Log dwell time event for this viewing session
-          posthog.capture("gallery_image_dwell_time", {
+          posthog.capture("GalleryImageDwellTime", {
             mode: "fullscreen",
             image_index: oldIndex,
             duration_ms: dwellTime,
@@ -209,7 +209,7 @@ function FullScreenGallery({
           newIndex,
           photos.length,
         );
-        posthog.capture("gallery_swipe", {
+        posthog.capture("GallerySwipe", {
           mode: "fullscreen",
           direction,
           from_index: oldIndex,
@@ -234,7 +234,7 @@ function FullScreenGallery({
       // Track final dwell time
       const dwellTime = Date.now() - imageStartTimeRef.current;
       if (dwellTime > 0) {
-        posthog.capture("gallery_image_dwell_time", {
+        posthog.capture("GalleryImageDwellTime", {
           mode: "fullscreen",
           image_index: currentIndex,
           duration_ms: dwellTime,
@@ -242,7 +242,7 @@ function FullScreenGallery({
       }
 
       // Track fullscreen close
-      posthog.capture("gallery_close_fullscreen", {
+      posthog.capture("GalleryCloseFullscreen", {
         index: currentIndex,
         url: currentPhoto?.publicId,
       });
