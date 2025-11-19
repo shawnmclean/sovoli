@@ -13,26 +13,94 @@ import {
   TagIcon,
 } from "lucide-react";
 
+import { bus } from "~/services/core/bus";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { config } from "~/utils/config";
-import { ProjectGalleryCarousel } from "../components/ProjectGalleryCarousel";
-import { getProjectById } from "../lib/projectsData";
-import { formatDate, formatTimeline } from "../lib/formatters";
+import { slugify } from "~/utils/slugify";
+import { ProjectGalleryCarousel } from "~/app/(temp)/projects/components/ProjectGalleryCarousel";
+import {
+  formatDate,
+  formatTimeline,
+} from "~/app/(temp)/projects/lib/formatters";
 import {
   getPriorityBadgeClass,
   getPriorityLabel,
   getPriorityTextClass,
-} from "../lib/priorities";
+} from "~/app/(temp)/projects/lib/priorities";
+import type { OrgLocation } from "~/modules/organisations/types";
+import type { Need } from "~/modules/needs/types";
+import type { ProjectNeedSummary } from "~/app/(temp)/projects/types";
+import type { Item } from "~/modules/core/items/types";
+import type { Project, ProjectsModule } from "~/modules/projects/types";
 
 interface ProjectDetailsPageProps {
-  params: Promise<{ projectId: string }>;
+  params: Promise<{ username: string; slug: string }>;
+}
+
+const retrieveOrgInstance = async (username: string) => {
+  const result = await bus.queryProcessor.execute(
+    new GetOrgInstanceByUsernameQuery(username),
+  );
+  if (!result.orgInstance) return notFound();
+  return result.orgInstance;
+};
+
+function findProjectBySlug(
+  projectsModule: ProjectsModule | null | undefined,
+  slug: string,
+): Project | null {
+  if (!projectsModule) return null;
+
+  return (
+    projectsModule.projects.find(
+      (project) => slugify(project.title) === slug || project.id === slug,
+    ) ?? null
+  );
+}
+
+function resolveProjectLocation(
+  locationKey: string | undefined,
+  orgInstance: { org: { locations: OrgLocation[] } },
+): OrgLocation | undefined {
+  if (locationKey) {
+    const match = orgInstance.org.locations.find(
+      (location) => location.key === locationKey,
+    );
+    if (match) return match;
+  }
+
+  return (
+    orgInstance.org.locations.find((location) => location.isPrimary) ??
+    orgInstance.org.locations[0]
+  );
+}
+
+function summarizeNeeds(needs: Need[]): ProjectNeedSummary[] {
+  return needs
+    .filter((need): need is Need & { type: "material"; item: Item } => {
+      return need.type === "material" && "item" in need;
+    })
+    .map((need) => {
+      const materialNeed = need as Need & { type: "material"; item: Item };
+      return {
+        slug: materialNeed.slug,
+        title: materialNeed.title,
+        quantity: materialNeed.quantity,
+        type: materialNeed.type,
+        status: materialNeed.status,
+        priority: materialNeed.priority,
+        item: materialNeed.item,
+      };
+    });
 }
 
 export async function generateMetadata({
   params,
 }: ProjectDetailsPageProps): Promise<Metadata> {
-  const { projectId } = await params;
-  const project = getProjectById(projectId);
+  const { username, slug } = await params;
+  const orgInstance = await retrieveOrgInstance(username);
+  const project = findProjectBySlug(orgInstance.projectsModule, slug);
 
   if (!project) {
     return {
@@ -41,7 +109,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${project.title} | ${project.orgName}`,
+    title: `${project.title} | ${orgInstance.org.name}`,
     description:
       project.description ??
       "Explore the latest recovery projects shared by school leaders on Sovoli.",
@@ -51,34 +119,42 @@ export async function generateMetadata({
 export default async function ProjectDetailsPage({
   params,
 }: ProjectDetailsPageProps) {
-  const { projectId } = await params;
-  const project = getProjectById(projectId);
+  const { username, slug } = await params;
+  const orgInstance = await retrieveOrgInstance(username);
+  const project = findProjectBySlug(orgInstance.projectsModule, slug);
 
   if (!project) {
     notFound();
   }
 
+  const location = resolveProjectLocation(project.locationKey, orgInstance);
+  const fallbackPhotos = orgInstance.org.photos ?? [];
+  const photos =
+    project.photos && project.photos.length > 0
+      ? project.photos
+      : fallbackPhotos;
+
   const timeline = formatTimeline(project.startDate, project.endDate);
   const updatedAt = formatDate(project.updatedAt ?? project.createdAt);
-  const needsCount = project.needs.length;
-  const whatsappMessage = `Hi Sovoli team, I'd like to pledge supplies for ${project.title} at ${project.orgName}.`;
+  const needsCount = project.needs?.length ?? 0;
+  const whatsappMessage = `Hi Sovoli team, I'd like to pledge supplies for ${project.title} at ${orgInstance.org.name}.`;
 
   return (
     <div className="min-h-screen bg-background">
       <div className="relative">
-        <ProjectGalleryCarousel photos={project.photos} title={project.title} />
+        <ProjectGalleryCarousel photos={photos} title={project.title} />
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
         <div className="absolute left-4 top-4 z-20 flex flex-wrap gap-3">
           <Button
             as={Link}
-            href="/projects"
+            href={`/${username}`}
             variant="light"
             startContent={<ArrowLeftIcon className="h-4 w-4" />}
             className="pointer-events-auto bg-background/80 text-foreground backdrop-blur"
           >
-            Back to projects
+            Back to profile
           </Button>
         </div>
 
@@ -99,7 +175,7 @@ export default async function ProjectDetailsPage({
             <div className="space-y-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                  {project.orgName}
+                  {orgInstance.org.name}
                 </p>
                 <h1 className="text-3xl font-semibold text-foreground sm:text-4xl">
                   {project.title}
@@ -111,10 +187,10 @@ export default async function ProjectDetailsPage({
                 </p>
               )}
               <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                {project.locationLabel && (
+                {location?.label && (
                   <span className="inline-flex items-center gap-2">
                     <MapPinIcon className="h-4 w-4 text-muted-foreground" />
-                    {project.locationLabel}
+                    {location.label}
                   </span>
                 )}
                 {timeline && (
@@ -142,8 +218,8 @@ export default async function ProjectDetailsPage({
                 event="Contact"
                 eventProperties={{
                   source: "project-details",
-                  project_id: project.projectId,
-                  org_username: project.orgUsername,
+                  project_id: project.id,
+                  org_username: username,
                 }}
               >
                 <SiWhatsapp className="h-4 w-4" />
@@ -151,7 +227,7 @@ export default async function ProjectDetailsPage({
               </Button>
               <Button
                 as={Link}
-                href={`/${project.orgUsername}`}
+                href={`/${username}`}
                 variant="bordered"
                 className="w-full"
               >
@@ -176,7 +252,7 @@ export default async function ProjectDetailsPage({
                 </p>
               ) : (
                 <ul className="space-y-3">
-                  {project.needs.map((need) => (
+                  {summarizeNeeds(project.needs ?? []).map((need) => (
                     <li
                       key={need.slug}
                       className="rounded-2xl border border-divider bg-muted px-4 py-3"
@@ -240,7 +316,7 @@ export default async function ProjectDetailsPage({
                   <div>
                     <dt className="text-muted-foreground">Tags</dt>
                     <dd className="mt-2 flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
+                      {project.tags.map((tag: string) => (
                         <span
                           key={tag}
                           className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground"

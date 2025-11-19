@@ -14,6 +14,7 @@ import type { ProjectDirectoryEntry } from "../types";
 import { formatTimeline, formatDate } from "../lib/formatters";
 import { getPriorityLabel, getPriorityTextClass } from "../lib/priorities";
 import { ProjectCarousel } from "./ProjectCarousel";
+import { slugify } from "~/utils/slugify";
 interface ListViewProps {
   projects: ProjectDirectoryEntry[];
 }
@@ -46,6 +47,8 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
   const timeline = formatTimeline(project.startDate, project.endDate);
   const needsCount = project.needs.length;
   const photos = useMemo(() => project.photos, [project.photos]);
+  const projectSlug = slugify(project.title);
+  const projectHref = `/${project.orgUsername}/projects/${projectSlug}`;
 
   return (
     <Card className="group overflow-hidden border border-divider shadow-sm transition duration-200 hover:shadow-2xl">
@@ -53,7 +56,7 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
         <ProjectCarousel
           photos={photos}
           title={project.title}
-          href={`/projects/${project.id}`}
+          href={projectHref}
         />
         <div className="absolute top-3 left-3 z-20">
           <div className="rounded-full border border-foreground/20 bg-background/60 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-foreground backdrop-blur-sm shadow-lg">
@@ -66,7 +69,7 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
 
       <CardBody className="space-y-4">
         <Link
-          href={`/projects/${project.id}`}
+          href={projectHref}
           className="block space-y-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label={`View project ${project.title}`}
         >
@@ -138,7 +141,7 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
           {formatDate(project.updatedAt ?? project.createdAt) ?? "recently"}
         </span>
         <Link
-          href={`/projects/${project.id}`}
+          href={projectHref}
           className="flex items-center gap-1 text-primary transition hover:gap-2"
         >
           View impact
