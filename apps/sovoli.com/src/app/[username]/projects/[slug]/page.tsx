@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
-import { Link } from "@sovoli/ui/components/link";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { AlertCircleIcon, ClipboardListIcon, TagIcon } from "lucide-react";
 
@@ -179,9 +178,9 @@ export default async function ProjectDetailsPage({
           backHref={backHref}
         />
 
-        <div className="absolute bottom-6 left-6 z-20">
+        <div className="absolute bottom-4 left-4 z-20 sm:bottom-6 sm:left-6">
           <span
-            className={`rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-wide shadow-lg ${getPriorityBadgeClass(
+            className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide shadow-lg sm:px-4 ${getPriorityBadgeClass(
               project.priority,
             )}`}
           >
@@ -190,72 +189,45 @@ export default async function ProjectDetailsPage({
         </div>
       </div>
 
-      <main className="mx-auto flex w-full max-w-5xl flex-col px-4 py-4 sm:px-6">
+      <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
         <ProjectHeroSection
           orgInstance={orgInstance}
           project={project}
           location={location}
         />
 
-        <OrgBadgeSection orgInstance={orgInstance} />
+        <div className="mb-6 sm:mb-8">
+          <OrgBadgeSection orgInstance={orgInstance} />
+        </div>
 
-        <section className="rounded-3xl bg-card p-6 shadow-sm">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+        {project.description && (
+          <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">
             <div className="space-y-4">
-              {project.description && (
-                <p className="text-lg text-default-600">
-                  {project.description}
-                </p>
-              )}
+              <p className="text-base leading-relaxed text-default-600 sm:text-lg">
+                {project.description}
+              </p>
               {updatedAt && (
-                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                   <span className="inline-flex items-center gap-2">
-                    <ClipboardListIcon className="h-4 w-4 text-muted-foreground" />
+                    <ClipboardListIcon className="h-4 w-4" />
                     Updated {updatedAt}
                   </span>
                 </div>
               )}
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Button
-                as={WhatsAppLink}
-                phoneNumber={config.contact.whatsapp}
-                message={whatsappMessage}
-                color="primary"
-                className="w-full"
-                size="lg"
-                event="Contact"
-                eventProperties={{
-                  source: "project-details",
-                  project_id: project.id,
-                  org_username: username,
-                }}
-              >
-                <SiWhatsapp className="h-4 w-4" />
-                <span className="ml-2">Message to pledge support</span>
-              </Button>
-              <Button
-                as={Link}
-                href={`/${username}`}
-                variant="bordered"
-                className="w-full"
-              >
-                Visit organisation profile
-              </Button>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-          <Card className="rounded-3xl shadow-sm">
-            <CardBody className="space-y-4">
-              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+          <Card className="rounded-2xl shadow-sm sm:rounded-3xl">
+            <CardBody className="space-y-4 p-4 sm:p-6">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:text-sm">
                 <AlertCircleIcon className="h-4 w-4" />
-                Linked needs
+                Needs
                 <span className="text-muted-foreground">({needsCount})</span>
               </div>
               {needsCount === 0 ? (
-                <p className="text-muted-foreground">
+                <p className="text-sm text-muted-foreground sm:text-base">
                   School leaders are still finalizing the scoped needs for this
                   project.
                 </p>
@@ -264,57 +236,74 @@ export default async function ProjectDetailsPage({
                   {summarizeNeeds(project.needs ?? []).map((need) => (
                     <li
                       key={need.slug}
-                      className="rounded-2xl border border-divider bg-muted px-4 py-3"
+                      className="rounded-xl border border-divider bg-muted px-3 py-2.5 sm:rounded-2xl sm:px-4 sm:py-3"
                     >
-                      <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div>
-                          <p className="text-base font-semibold text-foreground">
+                      <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-semibold text-foreground sm:text-base">
                             {need.title}
                           </p>
                           {need.quantity && (
-                            <p className="text-sm text-muted-foreground">
+                            <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
                               Quantity: {need.quantity}
                             </p>
                           )}
                         </div>
-                        <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                          {need.type} - {need.item.category.name}
-                        </span>
                       </div>
                     </li>
                   ))}
                 </ul>
               )}
+
+              <div className="pt-2">
+                <Button
+                  as={WhatsAppLink}
+                  phoneNumber={config.contact.whatsapp}
+                  message={whatsappMessage}
+                  color="primary"
+                  className="w-full"
+                  size="lg"
+                  event="Contact"
+                  eventProperties={{
+                    source: "project-details",
+                    project_id: project.id,
+                    org_username: username,
+                  }}
+                >
+                  <SiWhatsapp className="h-4 w-4" />
+                  <span className="ml-2">Donate Now</span>
+                </Button>
+              </div>
             </CardBody>
           </Card>
 
-          <Card className="rounded-3xl shadow-sm">
-            <CardBody className="space-y-4">
-              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+          <Card className="rounded-2xl shadow-sm sm:rounded-3xl">
+            <CardBody className="space-y-4 p-4 sm:p-6">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:text-sm">
                 <TagIcon className="h-4 w-4" />
                 Project details
               </div>
               <dl className="space-y-3 text-sm text-default-600">
                 {project.status && (
-                  <div className="flex justify-between">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
                     <dt className="text-muted-foreground">Status</dt>
-                    <dd className="font-medium text-foreground capitalize">
+                    <dd className="font-medium text-foreground capitalize sm:text-right">
                       {project.status}
                     </dd>
                   </div>
                 )}
                 {project.category && (
-                  <div className="flex justify-between">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
                     <dt className="text-muted-foreground">Category</dt>
-                    <dd className="font-medium text-foreground capitalize">
+                    <dd className="font-medium text-foreground capitalize sm:text-right">
                       {project.category}
                     </dd>
                   </div>
                 )}
-                <div className="flex justify-between">
+                <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
                   <dt className="text-muted-foreground">Priority</dt>
                   <dd
-                    className={`font-semibold uppercase tracking-wide ${getPriorityTextClass(
+                    className={`font-semibold uppercase tracking-wide sm:text-right ${getPriorityTextClass(
                       project.priority,
                     )}`}
                   >
@@ -323,12 +312,12 @@ export default async function ProjectDetailsPage({
                 </div>
                 {project.tags && project.tags.length > 0 && (
                   <div>
-                    <dt className="text-muted-foreground">Tags</dt>
-                    <dd className="mt-2 flex flex-wrap gap-2">
+                    <dt className="mb-2 text-muted-foreground">Tags</dt>
+                    <dd className="flex flex-wrap gap-2">
                       {project.tags.map((tag: string) => (
                         <span
                           key={tag}
-                          className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground"
+                          className="rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-foreground sm:px-3"
                         >
                           {tag}
                         </span>
@@ -338,8 +327,10 @@ export default async function ProjectDetailsPage({
                 )}
                 {project.notes && (
                   <div>
-                    <dt className="text-muted-foreground">Coordinator notes</dt>
-                    <dd className="mt-2 rounded-2xl bg-muted p-3 text-default-600">
+                    <dt className="mb-2 text-muted-foreground">
+                      Coordinator notes
+                    </dt>
+                    <dd className="rounded-xl bg-muted p-3 text-sm text-default-600 sm:rounded-2xl sm:text-base">
                       {project.notes}
                     </dd>
                   </div>

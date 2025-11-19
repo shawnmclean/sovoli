@@ -43,16 +43,48 @@ export const ProjectHeroSection = ({
     orgInstance.org.locations.find((loc) => loc.isPrimary) ??
     orgInstance.org.locations[0];
 
+  // Format full address
+  const formatFullAddress = (
+    loc: OrgLocation | undefined,
+  ): string | undefined => {
+    if (!loc) return undefined;
+
+    const addressParts: string[] = [];
+
+    // Add address lines
+    if (loc.address.line1) addressParts.push(loc.address.line1);
+    if (loc.address.line2) addressParts.push(loc.address.line2);
+    if (loc.address.line3) addressParts.push(loc.address.line3);
+
+    // Add city
+    if (loc.address.city) addressParts.push(loc.address.city);
+
+    // Add state
+    if (loc.address.state) addressParts.push(loc.address.state);
+
+    // Add country
+    if (loc.address.countryCode) {
+      const countryName = countryCodeToName(loc.address.countryCode);
+      if (countryName) {
+        addressParts.push(countryName);
+      }
+    }
+
+    return addressParts.length > 0 ? addressParts.join(", ") : undefined;
+  };
+
+  const fullAddress = formatFullAddress(displayLocation);
+
   return (
-    <section className="mb-4 border-b border-default-200 pb-6 text-center">
+    <section className="mb-6 border-b border-default-200 pb-6 text-center sm:mb-8 sm:pb-8">
       {/* Project Title */}
-      <h1 className="text-2xl leading-tight tracking-tight my-4">
+      <h1 className="my-4 text-2xl font-semibold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
         {project.title}
       </h1>
 
       {/* Quick Facts */}
       {quickFacts.length > 0 && (
-        <p className="text-sm text-foreground-500 max-w-3xl mx-auto">
+        <p className="mx-auto max-w-3xl text-xs text-foreground-500 sm:text-sm">
           {quickFacts.map((fact, index) => (
             <span key={fact}>
               {fact}
@@ -64,28 +96,21 @@ export const ProjectHeroSection = ({
 
       {/* Timeline */}
       {timeline && (
-        <p className="text-sm text-foreground-500 mt-2 max-w-3xl mx-auto">
+        <p className="mx-auto mt-2 max-w-3xl text-xs text-foreground-500 sm:text-sm">
           {timeline}
         </p>
       )}
 
-      {/* Location */}
-      {displayLocation && (
-        <div className="flex justify-center gap-2 text-foreground-500 mt-2">
-          <span className="text-sm">
-            {displayLocation.label ?? `${displayLocation.address.city ?? ""}`}
-            {displayLocation.address.city &&
-              displayLocation.address.countryCode &&
-              ", "}
-            {displayLocation.address.countryCode &&
-              countryCodeToName(displayLocation.address.countryCode)}
-          </span>
+      {/* Address */}
+      {fullAddress && (
+        <div className="mt-2 flex justify-center text-foreground-500">
+          <span className="text-xs sm:text-sm">{fullAddress}</span>
         </div>
       )}
 
       {/* Trust/Support Badge */}
       {needsCount > 0 && (
-        <p className="text-sm text-muted-foreground mt-4">
+        <p className="mt-4 text-xs text-muted-foreground sm:text-sm">
           🎯 {needsCount} {needsCount === 1 ? "need" : "needs"} awaiting support
         </p>
       )}
