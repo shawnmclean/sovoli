@@ -22,7 +22,7 @@ import { CycleSection } from "./components/CycleSection";
 import { ProgramTestimonialsSection } from "./components/ProgramTestimonialsSection";
 import { RequirementsSection } from "./components/requirements/RequirementsSection";
 import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
-import { OrgBadgeSection } from "./components/OrgBadgeSection";
+import { OrgBadgeSection } from "~/components/OrgBadgeSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
 import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
@@ -284,7 +284,7 @@ export default async function Layout({ children, params, modals }: Props) {
             program={programToUse}
           />
 
-          <OrgBadgeSection orgInstance={orgInstance} program={programToUse} />
+          <OrgBadgeSection orgInstance={orgInstance} />
 
           <ProgramHighlightsSection program={programToUse} />
 

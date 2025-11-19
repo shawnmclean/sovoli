@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
-import {
-  AlertCircleIcon,
-  ArrowLeftIcon,
-  CalendarDaysIcon,
-  ClipboardListIcon,
-  MapPinIcon,
-  TagIcon,
-} from "lucide-react";
+import { AlertCircleIcon, ClipboardListIcon, TagIcon } from "lucide-react";
 
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
@@ -19,10 +13,7 @@ import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { config } from "~/utils/config";
 import { slugify } from "~/utils/slugify";
 import { ProjectGalleryCarousel } from "~/app/(temp)/projects/components/ProjectGalleryCarousel";
-import {
-  formatDate,
-  formatTimeline,
-} from "~/app/(temp)/projects/lib/formatters";
+import { formatDate } from "~/app/(temp)/projects/lib/formatters";
 import {
   getPriorityBadgeClass,
   getPriorityLabel,
@@ -33,6 +24,9 @@ import type { Need } from "~/modules/needs/types";
 import type { ProjectNeedSummary } from "~/app/(temp)/projects/types";
 import type { Item } from "~/modules/core/items/types";
 import type { Project, ProjectsModule } from "~/modules/projects/types";
+import { ProjectDetailNavbar } from "./components/ProjectDetailNavbar";
+import { OrgBadgeSection } from "~/components/OrgBadgeSection";
+import { ProjectHeroSection } from "./components/ProjectHeroSection";
 
 interface ProjectDetailsPageProps {
   params: Promise<{ username: string; slug: string }>;
@@ -116,6 +110,36 @@ export async function generateMetadata({
   };
 }
 
+function getBackHref(referer: string | null, username: string): string {
+  if (!referer) {
+    return `/${username}`;
+  }
+
+  try {
+    const refererUrl = new URL(referer);
+    const refererPath = refererUrl.pathname;
+
+    // If coming from projects listing page
+    if (refererPath === "/projects" || refererPath.startsWith("/projects/")) {
+      return "/projects";
+    }
+
+    // If coming from org profile page
+    if (
+      refererPath === `/${username}` ||
+      refererPath.startsWith(`/${username}/`)
+    ) {
+      return `/${username}`;
+    }
+
+    // Default to org profile
+    return `/${username}`;
+  } catch {
+    // If URL parsing fails, default to org profile
+    return `/${username}`;
+  }
+}
+
 export default async function ProjectDetailsPage({
   params,
 }: ProjectDetailsPageProps) {
@@ -127,6 +151,10 @@ export default async function ProjectDetailsPage({
     notFound();
   }
 
+  const headersList = await headers();
+  const referer = headersList.get("referer");
+  const backHref = getBackHref(referer, username);
+
   const location = resolveProjectLocation(project.locationKey, orgInstance);
   const fallbackPhotos = orgInstance.org.photos ?? [];
   const photos =
@@ -134,7 +162,6 @@ export default async function ProjectDetailsPage({
       ? project.photos
       : fallbackPhotos;
 
-  const timeline = formatTimeline(project.startDate, project.endDate);
   const updatedAt = formatDate(project.updatedAt ?? project.createdAt);
   const needsCount = project.needs?.length ?? 0;
   const whatsappMessage = `Hi Sovoli team, I'd like to pledge supplies for ${project.title} at ${orgInstance.org.name}.`;
@@ -146,17 +173,11 @@ export default async function ProjectDetailsPage({
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-        <div className="absolute left-4 top-4 z-20 flex flex-wrap gap-3">
-          <Button
-            as={Link}
-            href={`/${username}`}
-            variant="light"
-            startContent={<ArrowLeftIcon className="h-4 w-4" />}
-            className="pointer-events-auto bg-background/80 text-foreground backdrop-blur"
-          >
-            Back to profile
-          </Button>
-        </div>
+        <ProjectDetailNavbar
+          orgInstance={orgInstance}
+          project={project}
+          backHref={backHref}
+        />
 
         <div className="absolute bottom-6 left-6 z-20">
           <span
@@ -169,43 +190,31 @@ export default async function ProjectDetailsPage({
         </div>
       </div>
 
-      <main className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-10 sm:px-6">
+      <main className="mx-auto flex w-full max-w-5xl flex-col px-4 py-4 sm:px-6">
+        <ProjectHeroSection
+          orgInstance={orgInstance}
+          project={project}
+          location={location}
+        />
+
+        <OrgBadgeSection orgInstance={orgInstance} />
+
         <section className="rounded-3xl bg-card p-6 shadow-sm">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="space-y-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                  {orgInstance.org.name}
-                </p>
-                <h1 className="text-3xl font-semibold text-foreground sm:text-4xl">
-                  {project.title}
-                </h1>
-              </div>
               {project.description && (
                 <p className="text-lg text-default-600">
                   {project.description}
                 </p>
               )}
-              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                {location?.label && (
-                  <span className="inline-flex items-center gap-2">
-                    <MapPinIcon className="h-4 w-4 text-muted-foreground" />
-                    {location.label}
-                  </span>
-                )}
-                {timeline && (
-                  <span className="inline-flex items-center gap-2">
-                    <CalendarDaysIcon className="h-4 w-4 text-muted-foreground" />
-                    {timeline}
-                  </span>
-                )}
-                {updatedAt && (
+              {updatedAt && (
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                   <span className="inline-flex items-center gap-2">
                     <ClipboardListIcon className="h-4 w-4 text-muted-foreground" />
                     Updated {updatedAt}
                   </span>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <Button
