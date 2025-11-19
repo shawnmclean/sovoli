@@ -9,6 +9,14 @@ export const SANDY_BANK_INFANT_SCHOOL_ORG: OrgInstance = {
     username: ORG_USERNAME,
     name: "Sandy Bank Infant School",
     categories: ["public-school", "nursery-school"],
+    isVerified: true,
+    verification: {
+      status: "verified",
+      submittedBy: "Tabitha Smith",
+      submittedAt: "2025-11-19",
+      verifiedAt: "2025-11-19",
+      documents: [],
+    },
     locations: [
       {
         key: "main-campus",
