@@ -11,7 +11,7 @@ import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { config } from "~/utils/config";
 import { slugify } from "~/utils/slugify";
-import { ProjectGalleryCarousel } from "~/app/(temp)/projects/components/ProjectGalleryCarousel";
+import { GalleryCarousel } from "~/components/GalleryCarousel";
 import { formatDate } from "~/app/(temp)/projects/lib/formatters";
 import {
   getPriorityBadgeClass,
@@ -168,9 +168,7 @@ export default async function ProjectDetailsPage({
   return (
     <div className="min-h-screen bg-background">
       <div className="relative">
-        <ProjectGalleryCarousel photos={photos} title={project.title} />
-
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <GalleryCarousel photos={photos} title={project.title} />
 
         <ProjectDetailNavbar
           orgInstance={orgInstance}

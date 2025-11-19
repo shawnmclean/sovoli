@@ -8,6 +8,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
+import { Chip } from "@sovoli/ui/components/chip";
 import {
   Modal,
   ModalBody,
@@ -20,15 +21,19 @@ import { ChevronLeftIcon } from "lucide-react";
 
 import type { Photo } from "~/modules/core/photos/types";
 
-interface ProjectGalleryCarouselProps {
+export interface GalleryCarouselProps {
   photos: Photo[];
   title: string;
+  emptyStateMessage?: string;
+  className?: string;
 }
 
-export function ProjectGalleryCarousel({
+export function GalleryCarousel({
   photos,
   title,
-}: ProjectGalleryCarouselProps) {
+  emptyStateMessage = "No photos available",
+  className,
+}: GalleryCarouselProps) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,51 +48,61 @@ export function ProjectGalleryCarousel({
 
   if (photos.length === 0) {
     return (
-      <div className="flex h-[300px] w-full items-center justify-center bg-muted text-muted-foreground md:h-[420px]">
-        No photos available yet
+      <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+        <p className="text-gray-500 text-sm">{emptyStateMessage}</p>
       </div>
     );
   }
 
   return (
     <>
-      <div className="relative h-[320px] w-full overflow-hidden bg-background dark:bg-black md:h-[460px]">
+      <div
+        className={`w-full max-w-full md:max-w-md mx-auto relative aspect-square ${className ?? ""}`}
+      >
         <Carousel
-          className="h-full"
-          setApi={setApi}
           opts={{
             align: "start",
             loop: true,
           }}
+          setApi={setApi}
+          className="w-full h-full"
         >
-          <CarouselContent className="h-full">
+          <CarouselContent className="-ml-0">
             {photos.map((photo, index) => (
-              <CarouselItem
-                key={`${title}-${index}`}
-                className="h-full basis-full"
-              >
-                <button
-                  type="button"
-                  onClick={onOpen}
-                  className="relative h-full w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-default-foreground/60 dark:focus-visible:ring-default-foreground/80"
-                >
+              <CarouselItem key={index} className="basis-full pl-0">
+                <div className="w-full max-w-md aspect-square mx-auto relative">
                   <CldImage
                     src={photo.publicId}
-                    alt={photo.alt ?? `${title} photo ${index + 1}`}
-                    fill
-                    sizes="100vw"
-                    className="h-full w-full object-cover"
                     priority={index === 0}
+                    alt={photo.alt ?? `${title} photo ${index + 1}`}
+                    width={448}
+                    height={448}
+                    crop="fill"
+                    sizes="100vw"
+                    quality="auto"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    className="object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                    onClick={onOpen}
                   />
-                </button>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
         </Carousel>
 
         {photos.length > 1 && (
-          <div className="absolute bottom-4 right-4 rounded-full bg-background/70 px-3 py-1 text-xs font-medium text-foreground shadow-sm dark:bg-black/60 dark:text-default-foreground">
-            {current + 1} / {photos.length}
+          <div className="absolute bottom-6 right-3">
+            <Chip
+              variant="flat"
+              color="default"
+              radius="md"
+              size="sm"
+              classNames={{
+                base: "bg-black/50 text-white",
+              }}
+            >
+              {current + 1} / {photos.length}
+            </Chip>
           </div>
         )}
       </div>
@@ -120,55 +135,50 @@ function FullScreenGallery({
   const [current, setCurrent] = useState(initialIndex);
 
   useEffect(() => {
-    if (!api) return;
-    api.scrollTo(initialIndex);
+    if (!api) {
+      return;
+    }
+
     setCurrent(api.selectedScrollSnap());
+
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });
-  }, [api, initialIndex]);
+  }, [api]);
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} size="full" hideCloseButton>
-      <ModalContent className="bg-background dark:bg-black">
-        <ModalHeader className="flex items-center justify-between text-foreground dark:text-default-foreground">
-          <Button
-            variant="light"
-            isIconOnly
-            radius="full"
-            onPress={onClose}
-            className="bg-foreground/10 text-foreground hover:bg-foreground/20 dark:bg-default-foreground/10 dark:text-default-foreground dark:hover:bg-default-foreground/20"
-          >
+      <ModalContent>
+        <ModalHeader className="flex items-center justify-between">
+          <Button variant="light" isIconOnly radius="full" onPress={onClose}>
             <ChevronLeftIcon />
           </Button>
           <span className="text-sm">
             {current + 1} / {photos.length}
           </span>
         </ModalHeader>
-        <ModalBody className="flex-1 overflow-hidden p-0">
+        <ModalBody className="p-0 flex-1 overflow-hidden">
           <Carousel
-            className="h-full"
-            setApi={setApi}
             opts={{
               align: "start",
               loop: true,
+              startIndex: initialIndex,
             }}
+            setApi={setApi}
+            className="w-full h-full"
           >
-            <CarouselContent className="h-full">
+            <CarouselContent className="h-full -ml-0">
               {photos.map((photo, index) => (
-                <CarouselItem
-                  key={`${title}-modal-${index}`}
-                  className="h-full basis-full"
-                >
-                  <div className="relative flex h-full w-full items-center justify-center bg-background dark:bg-black">
+                <CarouselItem key={index} className="basis-full pl-0 h-full">
+                  <div className="w-full h-full relative flex items-center justify-center">
                     <CldImage
                       src={photo.publicId}
                       alt={photo.alt ?? `${title} photo ${index + 1}`}
-                      width={photo.width ?? 1600}
-                      height={photo.height ?? 900}
+                      width={photo.width}
+                      height={photo.height}
                       sizes="100vw"
-                      className="max-h-full w-auto object-contain"
-                      priority={index === initialIndex}
+                      className="object-contain"
+                      priority
                     />
                   </div>
                 </CarouselItem>
