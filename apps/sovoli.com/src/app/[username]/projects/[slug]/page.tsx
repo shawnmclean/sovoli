@@ -117,7 +117,7 @@ export async function generateMetadata({
 
 function getBackHref(referer: string | null, username: string): string {
   if (!referer) {
-    return `/${username}`;
+    return "/projects";
   }
 
   try {
@@ -137,11 +137,11 @@ function getBackHref(referer: string | null, username: string): string {
       return `/${username}`;
     }
 
-    // Default to org profile
-    return `/${username}`;
+    // Default to projects page
+    return "/projects";
   } catch {
-    // If URL parsing fails, default to org profile
-    return `/${username}`;
+    // If URL parsing fails, default to projects page
+    return "/projects";
   }
 }
 
