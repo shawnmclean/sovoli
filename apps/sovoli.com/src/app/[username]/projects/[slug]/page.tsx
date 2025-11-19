@@ -4,7 +4,13 @@ import { headers } from "next/headers";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
-import { AlertCircleIcon, ClipboardListIcon, TagIcon } from "lucide-react";
+import {
+  AlertCircleIcon,
+  ClipboardListIcon,
+  TagIcon,
+  UserIcon,
+  CalendarIcon,
+} from "lucide-react";
 
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
@@ -269,7 +275,55 @@ export default async function ProjectDetailsPage({
                   }}
                 >
                   <SiWhatsapp className="h-4 w-4" />
-                  <span className="ml-2">Donate Now</span>
+                  <span className="ml-2">Volunteer/Donate</span>
+                </Button>
+              </div>
+            </CardBody>
+          </Card>
+
+          <Card className="rounded-2xl shadow-sm sm:rounded-3xl">
+            <CardBody className="space-y-4 p-4 sm:p-6">
+              <div className="space-y-3">
+                <Button
+                  as={WhatsAppLink}
+                  phoneNumber={config.contact.whatsapp}
+                  message={`Hi Sovoli team, I'd like to view the coordinator for ${project.title} at ${orgInstance.org.name}.`}
+                  color="default"
+                  variant="bordered"
+                  className="w-full"
+                  size="lg"
+                  event="Contact"
+                  eventProperties={{
+                    source: "project-details",
+                    project_id: project.id,
+                    org_username: username,
+                    cta_type: "view_coordinator",
+                  }}
+                >
+                  <UserIcon className="h-4 w-4" />
+                  <span className="ml-2">View Coordinator</span>
+                </Button>
+
+                <Button
+                  as={WhatsAppLink}
+                  phoneNumber={config.contact.whatsapp}
+                  message={`Hi Sovoli team, I'd like to view the detailed recovery plan & timelines for ${project.title} at ${orgInstance.org.name}.`}
+                  color="default"
+                  variant="bordered"
+                  className="w-full"
+                  size="lg"
+                  event="Contact"
+                  eventProperties={{
+                    source: "project-details",
+                    project_id: project.id,
+                    org_username: username,
+                    cta_type: "view_recovery_plan",
+                  }}
+                >
+                  <CalendarIcon className="h-4 w-4" />
+                  <span className="ml-2">
+                    View Detailed Recovery Plan & Timelines
+                  </span>
                 </Button>
               </div>
             </CardBody>
