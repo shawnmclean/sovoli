@@ -24,7 +24,7 @@ export const SANDY_BANK_INFANT_SCHOOL_ORG: OrgInstance = {
         isPrimary: true,
         address: {
           line1: "Treasure Beach",
-          city: "Treasure Beach",
+          city: "",
           state: "St. Elizabeth",
           countryCode: "JM",
         },
