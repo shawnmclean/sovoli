@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CldImage } from "next-cloudinary";
+import posthog from "posthog-js";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
@@ -37,14 +38,55 @@ export function GalleryCarousel({
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const previousIndexRef = useRef(0);
+  const viewedRef = useRef(false);
 
   useEffect(() => {
     if (!api) return;
     setCurrent(api.selectedScrollSnap());
+
+    // Track initial gallery view
+    if (!viewedRef.current) {
+      posthog.capture("gallery_viewed", {
+        mode: "normal",
+      });
+      viewedRef.current = true;
+    }
+
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
+      const newIndex = api.selectedScrollSnap();
+      const oldIndex = previousIndexRef.current;
+
+      // Track swipe if index changed
+      if (newIndex !== oldIndex) {
+        const direction = determineSwipeDirection(
+          oldIndex,
+          newIndex,
+          photos.length,
+        );
+        posthog.capture("gallery_swipe", {
+          mode: "normal",
+          direction,
+          from_index: oldIndex,
+          to_index: newIndex,
+        });
+      }
+
+      setCurrent(newIndex);
+      previousIndexRef.current = newIndex;
     });
-  }, [api]);
+  }, [api, photos.length]);
+
+  const handleOpenFullscreen = () => {
+    const currentPhoto = photos[current];
+    if (currentPhoto) {
+      posthog.capture("gallery_open_fullscreen", {
+        index: current,
+        url: currentPhoto.publicId,
+      });
+    }
+    onOpen();
+  };
 
   if (photos.length === 0) {
     return (
@@ -82,7 +124,7 @@ export function GalleryCarousel({
                     quality="auto"
                     loading={index === 0 ? "eager" : "lazy"}
                     className="object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                    onClick={onOpen}
+                    onClick={handleOpenFullscreen}
                   />
                 </div>
               </CarouselItem>
@@ -133,6 +175,8 @@ function FullScreenGallery({
 }) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(initialIndex);
+  const previousIndexRef = useRef(initialIndex);
+  const imageStartTimeRef = useRef<number>(Date.now());
 
   useEffect(() => {
     if (!api) {
@@ -140,11 +184,70 @@ function FullScreenGallery({
     }
 
     setCurrent(api.selectedScrollSnap());
+    previousIndexRef.current = initialIndex;
+    imageStartTimeRef.current = Date.now();
 
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
+      const newIndex = api.selectedScrollSnap();
+      const oldIndex = previousIndexRef.current;
+
+      // Track dwell time for the previous image
+      if (oldIndex !== newIndex) {
+        const dwellTime = Date.now() - imageStartTimeRef.current;
+        if (dwellTime > 0) {
+          // Log dwell time event for this viewing session
+          posthog.capture("gallery_image_dwell_time", {
+            mode: "fullscreen",
+            image_index: oldIndex,
+            duration_ms: dwellTime,
+          });
+        }
+
+        // Track swipe
+        const direction = determineSwipeDirection(
+          oldIndex,
+          newIndex,
+          photos.length,
+        );
+        posthog.capture("gallery_swipe", {
+          mode: "fullscreen",
+          direction,
+          from_index: oldIndex,
+          to_index: newIndex,
+        });
+
+        // Reset timer for new image
+        imageStartTimeRef.current = Date.now();
+      }
+
+      setCurrent(newIndex);
+      previousIndexRef.current = newIndex;
     });
-  }, [api]);
+  }, [api, initialIndex, photos.length]);
+
+  // Track final dwell time and close event when modal closes
+  useEffect(() => {
+    if (!isOpen && api) {
+      const currentIndex = api.selectedScrollSnap();
+      const currentPhoto = photos[currentIndex];
+
+      // Track final dwell time
+      const dwellTime = Date.now() - imageStartTimeRef.current;
+      if (dwellTime > 0) {
+        posthog.capture("gallery_image_dwell_time", {
+          mode: "fullscreen",
+          image_index: currentIndex,
+          duration_ms: dwellTime,
+        });
+      }
+
+      // Track fullscreen close
+      posthog.capture("gallery_close_fullscreen", {
+        index: currentIndex,
+        url: currentPhoto?.publicId,
+      });
+    }
+  }, [isOpen, api, photos]);
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} size="full" hideCloseButton>
@@ -189,4 +292,21 @@ function FullScreenGallery({
       </ModalContent>
     </Modal>
   );
+}
+
+function determineSwipeDirection(
+  fromIndex: number,
+  toIndex: number,
+  totalItems: number,
+): "left" | "right" {
+  // Handle wrap-around for loop carousels
+  if (fromIndex === totalItems - 1 && toIndex === 0) {
+    return "right";
+  }
+  if (fromIndex === 0 && toIndex === totalItems - 1) {
+    return "left";
+  }
+
+  // Normal case
+  return toIndex > fromIndex ? "right" : "left";
 }
