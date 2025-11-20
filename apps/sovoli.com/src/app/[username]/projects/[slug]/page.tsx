@@ -94,14 +94,14 @@ export async function generateMetadata({
     title: `${project.title} | ${orgInstance.org.name}`,
     description,
     openGraph: {
-      title: project.title,
+      title: `${project.title} | ${orgInstance.org.name}`,
       description,
       images: ogImage ? [{ url: ogImage }] : [],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: project.title,
+      title: `${project.title} | ${orgInstance.org.name}`,
       description,
       images: ogImage ? [ogImage] : [],
     },
