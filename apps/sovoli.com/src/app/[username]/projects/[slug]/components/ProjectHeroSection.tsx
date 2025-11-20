@@ -82,18 +82,6 @@ export const ProjectHeroSection = ({
         {project.title}
       </h1>
 
-      {/* Quick Facts */}
-      {quickFacts.length > 0 && (
-        <p className="mx-auto max-w-3xl text-xs text-foreground-500 sm:text-sm">
-          {quickFacts.map((fact, index) => (
-            <span key={fact}>
-              {fact}
-              {index < quickFacts.length - 1 && " • "}
-            </span>
-          ))}
-        </p>
-      )}
-
       {/* Timeline */}
       {timeline && (
         <p className="mx-auto mt-2 max-w-3xl text-xs text-foreground-500 sm:text-sm">
@@ -104,15 +92,8 @@ export const ProjectHeroSection = ({
       {/* Address */}
       {fullAddress && (
         <div className="mt-2 flex justify-center text-foreground-500">
-          <span className="text-xs sm:text-sm">{fullAddress}</span>
+          <span className="text-sm">{fullAddress}</span>
         </div>
-      )}
-
-      {/* Trust/Support Badge */}
-      {needsCount > 0 && (
-        <p className="mt-4 text-xs text-muted-foreground sm:text-sm">
-          🎯 {needsCount} {needsCount === 1 ? "need" : "needs"} awaiting support
-        </p>
       )}
     </section>
   );

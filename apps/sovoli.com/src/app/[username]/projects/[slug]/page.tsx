@@ -2,20 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Button } from "@sovoli/ui/components/button";
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
-import {
-  AlertCircleIcon,
-  ClipboardListIcon,
-  TagIcon,
-  UserIcon,
-  CalendarIcon,
-} from "lucide-react";
+import { ClipboardListIcon, TagIcon } from "lucide-react";
 
 import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { config } from "~/utils/config";
 import { slugify } from "~/utils/slugify";
 import { GalleryCarousel } from "~/components/GalleryCarousel";
 import { formatDate } from "~/app/(temp)/projects/lib/formatters";
@@ -25,13 +15,14 @@ import {
   getPriorityTextClass,
 } from "~/app/(temp)/projects/lib/priorities";
 import type { OrgLocation } from "~/modules/organisations/types";
-import type { Need } from "~/modules/needs/types";
-import type { ProjectNeedSummary } from "~/app/(temp)/projects/types";
-import type { Item } from "~/modules/core/items/types";
 import type { Project, ProjectsModule } from "~/modules/projects/types";
 import { ProjectDetailNavbar } from "./components/ProjectDetailNavbar";
 import { OrgBadgeSection } from "~/components/OrgBadgeSection";
 import { ProjectHeroSection } from "./components/ProjectHeroSection";
+import { ProjectDetailMobileFooter } from "./components/ProjectDetailMobileFooter";
+import { ProjectMetrics } from "./components/ProjectMetrics";
+import { ProjectBreakdown } from "./components/ProjectBreakdown";
+import { ProjectCoordinators } from "./components/ProjectCoordinators";
 
 interface ProjectDetailsPageProps {
   params: Promise<{ username: string; slug: string }>;
@@ -73,25 +64,6 @@ function resolveProjectLocation(
     orgInstance.org.locations.find((location) => location.isPrimary) ??
     orgInstance.org.locations[0]
   );
-}
-
-function summarizeNeeds(needs: Need[]): ProjectNeedSummary[] {
-  return needs
-    .filter((need): need is Need & { type: "material"; item: Item } => {
-      return need.type === "material" && "item" in need;
-    })
-    .map((need) => {
-      const materialNeed = need as Need & { type: "material"; item: Item };
-      return {
-        slug: materialNeed.slug,
-        title: materialNeed.title,
-        quantity: materialNeed.quantity,
-        type: materialNeed.type,
-        status: materialNeed.status,
-        priority: materialNeed.priority,
-        item: materialNeed.item,
-      };
-    });
 }
 
 export async function generateMetadata({
@@ -168,8 +140,6 @@ export default async function ProjectDetailsPage({
       : fallbackPhotos;
 
   const updatedAt = formatDate(project.updatedAt ?? project.createdAt);
-  const needsCount = project.needs?.length ?? 0;
-  const whatsappMessage = `Hi Sovoli team, I'd like to pledge supplies for ${project.title} at ${orgInstance.org.name}.`;
 
   return (
     <div className="min-h-screen bg-background">
@@ -194,6 +164,7 @@ export default async function ProjectDetailsPage({
       </div>
 
       <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
+        <ProjectMetrics project={project} />
         <ProjectHeroSection
           orgInstance={orgInstance}
           project={project}
@@ -222,112 +193,10 @@ export default async function ProjectDetailsPage({
           </section>
         )}
 
+        <ProjectBreakdown project={project} orgInstance={orgInstance} />
+
         <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-          <Card className="rounded-2xl shadow-sm sm:rounded-3xl">
-            <CardBody className="space-y-4 p-4 sm:p-6">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:text-sm">
-                <AlertCircleIcon className="h-4 w-4" />
-                Needs
-                <span className="text-muted-foreground">({needsCount})</span>
-              </div>
-              {needsCount === 0 ? (
-                <p className="text-sm text-muted-foreground sm:text-base">
-                  School leaders are still finalizing the scoped needs for this
-                  project.
-                </p>
-              ) : (
-                <ul className="space-y-3">
-                  {summarizeNeeds(project.needs ?? []).map((need) => (
-                    <li
-                      key={need.slug}
-                      className="rounded-xl border border-divider bg-muted px-3 py-2.5 sm:rounded-2xl sm:px-4 sm:py-3"
-                    >
-                      <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-semibold text-foreground sm:text-base">
-                            {need.title}
-                          </p>
-                          {need.quantity && (
-                            <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
-                              Quantity: {need.quantity}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <div className="pt-2">
-                <Button
-                  as={WhatsAppLink}
-                  phoneNumber={config.contact.whatsapp}
-                  message={whatsappMessage}
-                  color="primary"
-                  className="w-full"
-                  size="lg"
-                  event="Contact"
-                  eventProperties={{
-                    source: "project-details",
-                    project_id: project.id,
-                    org_username: username,
-                  }}
-                >
-                  <SiWhatsapp className="h-4 w-4" />
-                  <span className="ml-2">Volunteer/Donate</span>
-                </Button>
-              </div>
-            </CardBody>
-          </Card>
-
-          <Card className="rounded-2xl shadow-sm sm:rounded-3xl">
-            <CardBody className="space-y-4 p-4 sm:p-6">
-              <div className="space-y-3">
-                <Button
-                  as={WhatsAppLink}
-                  phoneNumber={config.contact.whatsapp}
-                  message={`Hi Sovoli team, I'd like to view the coordinator for ${project.title} at ${orgInstance.org.name}.`}
-                  color="default"
-                  variant="bordered"
-                  className="w-full"
-                  size="lg"
-                  event="Contact"
-                  eventProperties={{
-                    source: "project-details",
-                    project_id: project.id,
-                    org_username: username,
-                    cta_type: "view_coordinator",
-                  }}
-                >
-                  <UserIcon className="h-4 w-4" />
-                  <span className="ml-2">View Coordinator</span>
-                </Button>
-
-                <Button
-                  as={WhatsAppLink}
-                  phoneNumber={config.contact.whatsapp}
-                  message={`Hi Sovoli team, I'd like to view the detailed recovery plan & timelines for ${project.title} at ${orgInstance.org.name}.`}
-                  color="default"
-                  variant="bordered"
-                  className="w-full"
-                  size="lg"
-                  event="Contact"
-                  eventProperties={{
-                    source: "project-details",
-                    project_id: project.id,
-                    org_username: username,
-                    cta_type: "view_recovery_plan",
-                  }}
-                >
-                  <CalendarIcon className="h-4 w-4" />
-                  <span className="ml-2">
-                    View Detailed Recovery Plan & Timelines
-                  </span>
-                </Button>
-              </div>
-            </CardBody>
-          </Card>
+          <ProjectCoordinators project={project} orgInstance={orgInstance} />
 
           <Card className="rounded-2xl shadow-sm sm:rounded-3xl">
             <CardBody className="space-y-4 p-4 sm:p-6">
@@ -392,6 +261,12 @@ export default async function ProjectDetailsPage({
           </Card>
         </div>
       </main>
+
+      <ProjectDetailMobileFooter
+        orgInstance={orgInstance}
+        project={project}
+        username={username}
+      />
     </div>
   );
 }
