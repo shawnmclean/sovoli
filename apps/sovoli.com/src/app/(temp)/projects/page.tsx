@@ -35,12 +35,11 @@ export default async function ProjectsDirectoryPage({
           <div className="space-y-6">
             <div className="space-y-4">
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                Back urgent school recovery projects across Jamaica
+                Support urgent school recovery projects across Jamaica
               </h1>
               <p className="text-base text-white/80 sm:text-lg">
-                Every listing includes scoped needs, timelines, and photos from
-                school leaders on the ground. Switch views to find the
-                workstream that aligns with your mission.
+                The mission of this platform is to matchmake the needs for those
+                who have the desire to help with those who need it.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
