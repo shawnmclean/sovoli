@@ -34,4 +34,3 @@ export const EMMANUEL_KINDER_PREP_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-

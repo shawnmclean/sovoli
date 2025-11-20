@@ -13,6 +13,20 @@ export const metadata: Metadata = {
   title: "Active Projects Directory | Sovoli",
   description:
     "Browse urgent school recovery projects across the Sovoli network and discover where your support can make an immediate impact.",
+  openGraph: {
+    title: "Active Projects Directory | Sovoli",
+    description:
+      "Browse urgent school recovery projects across the Sovoli network and discover where your support can make an immediate impact.",
+    images: [{ url: "/images/og.webp" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Active Projects Directory | Sovoli",
+    description:
+      "Browse urgent school recovery projects across the Sovoli network and discover where your support can make an immediate impact.",
+    images: ["/images/og.webp"],
+  },
 };
 
 interface ProjectsDirectoryPageProps {
@@ -57,7 +71,7 @@ export default async function ProjectsDirectoryPage({
             <CardBody className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-2">
                 <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                  Filter and search here soon
+                  Filter and search coming soon
                 </p>
               </div>
               <DirectoryViewTabs defaultView={view} />
