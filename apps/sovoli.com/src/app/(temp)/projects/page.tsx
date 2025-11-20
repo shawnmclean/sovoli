@@ -35,7 +35,7 @@ export default async function ProjectsDirectoryPage({
           <div className="space-y-6">
             <div className="space-y-4">
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                Support urgent school recovery projects across Jamaica
+                Support urgent school projects across Jamaica
               </h1>
               <p className="text-base text-white/80 sm:text-lg">
                 The mission of this platform is to matchmake the needs for those
@@ -44,15 +44,7 @@ export default async function ProjectsDirectoryPage({
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Button as={Link} href="/needs/new" color="secondary">
-                Submit a new project
-              </Button>
-              <Button
-                as={Link}
-                href="/d/public-school/jamaica"
-                variant="light"
-                className="bg-white/10 text-white hover:bg-white/20"
-              >
-                Browse schools
+                Submit a your project
               </Button>
             </div>
           </div>
