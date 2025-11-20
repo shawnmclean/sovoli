@@ -79,11 +79,32 @@ export async function generateMetadata({
     };
   }
 
+  const fallbackPhotos = orgInstance.org.photos ?? [];
+  const photos =
+    project.photos && project.photos.length > 0
+      ? project.photos
+      : fallbackPhotos;
+
+  const ogImage = photos[0]?.url;
+  const description =
+    project.description ??
+    "Explore the latest recovery projects shared by school leaders on Sovoli.";
+
   return {
     title: `${project.title} | ${orgInstance.org.name}`,
-    description:
-      project.description ??
-      "Explore the latest recovery projects shared by school leaders on Sovoli.",
+    description,
+    openGraph: {
+      title: project.title,
+      description,
+      images: ogImage ? [{ url: ogImage }] : [],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description,
+      images: ogImage ? [ogImage] : [],
+    },
   };
 }
 
