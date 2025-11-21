@@ -533,8 +533,7 @@ export function ProjectBreakdown({
       ) : (
         <div className="text-sm text-warning-600 bg-warning-50 p-3 rounded-lg border border-warning-200">
           <p>
-            <strong>No suppliers configured.</strong> Contact the organization
-            to set up supplier recommendations for pricing information.
+            <strong>We are awaiting quotes for some items.</strong>
           </p>
         </div>
       )}

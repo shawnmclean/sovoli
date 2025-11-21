@@ -38,7 +38,8 @@ export function Overview() {
         {/* Description */}
         <p className="text-base sm:text-xl text-default-600 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
           Sovoli is the only data-driven growth enrollment system built
-          specifically for private schools in <strong>Guyana</strong>.
+          specifically for private schools in <strong>Guyana</strong> and{" "}
+          <strong>Jamaica</strong>.
         </p>
 
         {/* Overview Image */}
