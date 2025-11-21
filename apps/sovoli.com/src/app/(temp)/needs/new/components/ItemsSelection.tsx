@@ -4,7 +4,11 @@ import { useMemo, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { Minus, Plus, Trash2 } from "lucide-react";
-import type { Item, ItemCategory } from "~/modules/core/items/types";
+import type {
+  Item,
+  ItemCategory,
+  CategoryDefinition,
+} from "~/modules/core/items/types";
 
 interface ItemsSelectionProps {
   items: Item[];
@@ -12,6 +16,8 @@ interface ItemsSelectionProps {
   quantities: Record<string, number>;
   onSelectionChange: (selectedIds: Set<string>) => void;
   onQuantityChange: (itemId: string, quantity: number) => void;
+  getTopLevelCategoryId: (categoryId: string) => string;
+  categoryIndex: Record<string, CategoryDefinition>;
 }
 
 export const getCategoryLabel = (category: ItemCategory) => {
@@ -24,25 +30,30 @@ export function ItemsSelection({
   quantities,
   onSelectionChange,
   onQuantityChange,
+  getTopLevelCategoryId,
+  categoryIndex,
 }: ItemsSelectionProps) {
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
 
   const groupedItems = useMemo(() => {
     const map = new Map<string, { items: Item[]; label: string }>();
     items.forEach((item) => {
-      const key = item.category.id;
-      const existing = map.get(key);
+      // Get the top-level category for this item
+      const topLevelCategoryId = getTopLevelCategoryId(item.category.id);
+      const topLevelCategory = categoryIndex[topLevelCategoryId];
+
+      const existing = map.get(topLevelCategoryId);
       if (existing) {
         existing.items.push(item);
         return;
       }
-      map.set(key, {
+      map.set(topLevelCategoryId, {
         items: [item],
-        label: getCategoryLabel(item.category),
+        label: topLevelCategory?.name ?? topLevelCategoryId,
       });
     });
     return Array.from(map.entries());
-  }, [items]);
+  }, [items, getTopLevelCategoryId, categoryIndex]);
 
   const updateQuantity = (itemId: string, proposedQuantity: number) => {
     const nextQuantity = Math.max(proposedQuantity, 0);

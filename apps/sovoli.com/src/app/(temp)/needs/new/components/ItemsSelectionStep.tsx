@@ -5,10 +5,10 @@ import { useMemo, useState } from "react";
 import { Input } from "@sovoli/ui/components/input";
 
 import type { ReliefFormData, ReliefFormUpdater } from "./ReliefForm";
-import { ItemsSelection, getCategoryLabel } from "./ItemsSelection";
-import type { ItemCategory } from "~/modules/core/items/types";
+import { ItemsSelection } from "./ItemsSelection";
 import { ItemsSearchNavBar } from "./ItemsSearchNavBar";
 import { ALL_ITEMS } from "~/modules/data/items";
+import { CATEGORY_INDEX } from "~/modules/data/items/categories";
 
 interface ItemsSelectionStepProps {
   formData: ReliefFormData;
@@ -20,23 +20,113 @@ const ALL_ITEMS_BY_ID = new Map(ALL_ITEMS.map((item) => [item.id, item]));
 const ALL_CATEGORY_KEYS = Array.from(
   new Set<string>(ALL_ITEMS.map((item) => item.category.id)),
 );
-const PREFERRED_CATEGORY_KEYS = [
-  "hardware",
-  "hygiene",
-  "bedding",
-] satisfies readonly string[];
-const PREFERRED_CATEGORY_SET = new Set<string>(PREFERRED_CATEGORY_KEYS);
-const INITIAL_ACTIVE_CATEGORIES = (() => {
-  const preferred = ALL_CATEGORY_KEYS.filter((categoryId) =>
-    PREFERRED_CATEGORY_SET.has(categoryId),
-  );
-  if (preferred.length > 0) {
-    return new Set<string>(preferred);
+
+// Helper function to get all descendant category IDs from a parent category
+function getAllDescendantCategoryIds(parentCategoryId: string): string[] {
+  const descendants: string[] = [];
+
+  // Find all categories that have this parent in their hierarchy
+  for (const categoryId of Object.keys(CATEGORY_INDEX)) {
+    if (categoryId === parentCategoryId) {
+      continue; // Skip the parent itself
+    }
+
+    const category = CATEGORY_INDEX[categoryId];
+    if (!category) {
+      continue; // Skip if category not found
+    }
+
+    // Check if this category is a descendant by walking up the parent chain
+    let currentCategory: typeof category | undefined = category;
+    const visited = new Set<string>(); // Prevent infinite loops
+
+    while (currentCategory?.parentId && !visited.has(currentCategory.id)) {
+      visited.add(currentCategory.id);
+
+      if (currentCategory.parentId === parentCategoryId) {
+        descendants.push(categoryId);
+        break;
+      }
+      // Move up the parent chain
+      const parentId: string = currentCategory.parentId;
+      currentCategory = CATEGORY_INDEX[parentId];
+    }
   }
-  if (ALL_CATEGORY_KEYS.length > 0) {
+
+  return descendants;
+}
+
+// Helper function to get the top-level category for any category
+function getTopLevelCategoryId(categoryId: string): string {
+  let currentCategory = CATEGORY_INDEX[categoryId];
+
+  // Walk up the parent chain until we find a category with no parent
+  while (currentCategory?.parentId) {
+    const parentCategory = CATEGORY_INDEX[currentCategory.parentId];
+    if (parentCategory) {
+      currentCategory = parentCategory;
+    } else {
+      break;
+    }
+  }
+
+  return currentCategory?.id ?? categoryId;
+}
+
+// Get all top-level categories that have items
+function getTopLevelCategoriesWithItems(): string[] {
+  const topLevelCategories = new Set<string>();
+
+  // For each category that has items, find its top-level parent
+  for (const categoryId of ALL_CATEGORY_KEYS) {
+    const topLevelId = getTopLevelCategoryId(categoryId);
+    topLevelCategories.add(topLevelId);
+  }
+
+  return Array.from(topLevelCategories);
+}
+
+// Top-level preferred categories - these will expand to include all their children
+const PREFERRED_TOP_LEVEL_CATEGORIES = [
+  "building-products",
+  "stationery-office-machinery-occasion-supplies",
+  "tools-equipment",
+  "plumbing-heating-ventilation-air-conditioning",
+  "arts-crafts-needlework",
+  "toys-games",
+] satisfies readonly string[];
+
+const INITIAL_ACTIVE_CATEGORIES = (() => {
+  try {
+    const preferredCategories = new Set<string>();
+
+    // For each top-level preferred category, add all its descendants that exist in items
+    for (const topLevelCategory of PREFERRED_TOP_LEVEL_CATEGORIES) {
+      // Add all descendant categories that exist in items
+      const descendants = getAllDescendantCategoryIds(topLevelCategory);
+      for (const descendant of descendants) {
+        if (ALL_CATEGORY_KEYS.includes(descendant)) {
+          preferredCategories.add(descendant);
+        }
+      }
+    }
+
+    // If we found preferred categories, use them
+    if (preferredCategories.size > 0) {
+      return preferredCategories;
+    }
+
+    // Fallback to all categories if no preferred ones found
+    if (ALL_CATEGORY_KEYS.length > 0) {
+      return new Set<string>(ALL_CATEGORY_KEYS);
+    }
+
+    return new Set<string>();
+  } catch (error) {
+    console.error("Error initializing active categories:", error);
+    // Fallback to all categories on error
     return new Set<string>(ALL_CATEGORY_KEYS);
   }
-  return new Set<string>();
 })();
 type CategoryFilterKey = string;
 
@@ -55,34 +145,38 @@ export function ItemsSelectionStep({
     [formData.suppliesSelected],
   );
 
+  const topLevelCategories = useMemo(
+    () => getTopLevelCategoriesWithItems(),
+    [],
+  );
+
   const allCategoriesActive =
     activeCategories.size === ALL_CATEGORY_KEYS.length;
 
   const categoryOptions = useMemo(() => {
-    // Create a map of category ID to ItemCategory for label lookup
-    const categoryMap = new Map<string, ItemCategory>();
-    for (const item of ALL_ITEMS) {
-      if (!categoryMap.has(item.category.id)) {
-        categoryMap.set(item.category.id, item.category);
-      }
-    }
-
     return [
       {
         key: "all" as const,
         label: "All categories",
         isActive: allCategoriesActive,
       },
-      ...ALL_CATEGORY_KEYS.map((categoryId) => {
-        const category = categoryMap.get(categoryId);
+      ...topLevelCategories.map((topLevelCategoryId) => {
+        const topLevelCategory = CATEGORY_INDEX[topLevelCategoryId];
+
+        // Check if this top-level category is active by seeing if any of its descendants are active
+        const descendants = getAllDescendantCategoryIds(topLevelCategoryId);
+        const isActive = descendants.some((descendant) =>
+          activeCategories.has(descendant),
+        );
+
         return {
-          key: categoryId,
-          label: category ? getCategoryLabel(category) : categoryId,
-          isActive: activeCategories.has(categoryId),
+          key: topLevelCategoryId,
+          label: topLevelCategory?.name ?? topLevelCategoryId,
+          isActive,
         };
       }),
     ];
-  }, [activeCategories, allCategoriesActive]);
+  }, [activeCategories, allCategoriesActive, topLevelCategories]);
 
   const filteredItems = useMemo(() => {
     const trimmedQuery = searchQuery.trim().toLowerCase();
@@ -181,12 +275,31 @@ export function ItemsSelectionStep({
         return new Set<string>(ALL_CATEGORY_KEYS);
       }
 
+      // Get all descendant categories for this top-level category
+      const descendants = getAllDescendantCategoryIds(categoryKey);
+      const descendantsWithItems = descendants.filter((id) =>
+        ALL_CATEGORY_KEYS.includes(id),
+      );
+
       const next = new Set(prev);
-      if (next.has(categoryKey)) {
-        next.delete(categoryKey);
+
+      // Check if any descendants are currently active
+      const hasActiveDescendants = descendantsWithItems.some((id) =>
+        next.has(id),
+      );
+
+      if (hasActiveDescendants) {
+        // Remove all descendants
+        for (const descendant of descendantsWithItems) {
+          next.delete(descendant);
+        }
       } else {
-        next.add(categoryKey);
+        // Add all descendants
+        for (const descendant of descendantsWithItems) {
+          next.add(descendant);
+        }
       }
+
       return next;
     });
   };
@@ -208,6 +321,8 @@ export function ItemsSelectionStep({
           quantities={formData.suppliesQuantities}
           onSelectionChange={handleSelectionChange}
           onQuantityChange={handleQuantityChange}
+          getTopLevelCategoryId={getTopLevelCategoryId}
+          categoryIndex={CATEGORY_INDEX}
         />
 
         <Input
