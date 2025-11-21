@@ -15,13 +15,7 @@ interface ItemsSelectionProps {
 }
 
 export const getCategoryLabel = (category: ItemCategory) => {
-  const names: string[] = [];
-  let current: ItemCategory | undefined = category;
-  while (current) {
-    names.unshift(current.name);
-    current = current.parent;
-  }
-  return names.join(" / ");
+  return category.name;
 };
 
 export function ItemsSelection({
