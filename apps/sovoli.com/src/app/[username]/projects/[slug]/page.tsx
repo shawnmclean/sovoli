@@ -17,8 +17,8 @@ import {
 import type { OrgLocation } from "~/modules/organisations/types";
 import type { Project, ProjectsModule } from "~/modules/projects/types";
 import { ProjectDetailNavbar } from "./components/ProjectDetailNavbar";
-import { OrgBadgeSection } from "~/components/OrgBadgeSection";
 import { ProjectHeroSection } from "./components/ProjectHeroSection";
+import { ProjectOrgBadgeSection } from "./components/ProjectOrgBadgeSection";
 import { ProjectDetailMobileFooter } from "./components/ProjectDetailMobileFooter";
 import { ProjectMetrics } from "./components/ProjectMetrics";
 import { ProjectBreakdown } from "./components/ProjectBreakdown";
@@ -187,16 +187,16 @@ export default async function ProjectDetailsPage({
         </div>
 
         <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
+          <ProjectOrgBadgeSection
+            orgInstance={orgInstance}
+            location={location}
+          />
           <ProjectMetrics project={project} />
           <ProjectHeroSection
             orgInstance={orgInstance}
             project={project}
             location={location}
           />
-
-          <div className="mb-6 sm:mb-8">
-            <OrgBadgeSection orgInstance={orgInstance} />
-          </div>
 
           {project.description && (
             <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">
