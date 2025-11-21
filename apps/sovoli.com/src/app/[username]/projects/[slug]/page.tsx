@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { headers } from "next/headers";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { ClipboardListIcon, TagIcon } from "lucide-react";
 
@@ -109,36 +108,6 @@ export async function generateMetadata({
   };
 }
 
-function getBackHref(referer: string | null, username: string): string {
-  if (!referer) {
-    return "/projects";
-  }
-
-  try {
-    const refererUrl = new URL(referer);
-    const refererPath = refererUrl.pathname;
-
-    // If coming from projects listing page
-    if (refererPath === "/projects" || refererPath.startsWith("/projects/")) {
-      return "/projects";
-    }
-
-    // If coming from org profile page
-    if (
-      refererPath === `/${username}` ||
-      refererPath.startsWith(`/${username}/`)
-    ) {
-      return `/${username}`;
-    }
-
-    // Default to projects page
-    return "/projects";
-  } catch {
-    // If URL parsing fails, default to projects page
-    return "/projects";
-  }
-}
-
 export default async function ProjectDetailsPage({
   params,
 }: ProjectDetailsPageProps) {
@@ -149,10 +118,6 @@ export default async function ProjectDetailsPage({
   if (!project) {
     notFound();
   }
-
-  const headersList = await headers();
-  const referer = headersList.get("referer");
-  const backHref = getBackHref(referer, username);
 
   const location = resolveProjectLocation(project.locationKey, orgInstance);
   const fallbackPhotos = orgInstance.org.photos ?? [];
@@ -172,7 +137,7 @@ export default async function ProjectDetailsPage({
           <ProjectDetailNavbar
             orgInstance={orgInstance}
             project={project}
-            backHref={backHref}
+            backHref="/projects"
           />
 
           <div className="absolute bottom-4 left-4 z-20 sm:bottom-6 sm:left-6">
