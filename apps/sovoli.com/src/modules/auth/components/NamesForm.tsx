@@ -31,11 +31,73 @@ export function NamesForm({
     setLastName(defaultLastName);
   }, [defaultLastName]);
 
+  const validateName = (name: string): boolean => {
+    const organizationKeywords = [
+      "school",
+      "college",
+      "university",
+      "academy",
+      "institute",
+      "education",
+      "high school",
+      "elementary",
+      "primary",
+      "secondary",
+      "prep",
+      "preparatory",
+      "company",
+      "corporation",
+      "corp",
+      "inc",
+      "llc",
+      "ltd",
+      "foundation",
+      "organization",
+      "association",
+      "center",
+      "centre",
+      "group",
+      "services",
+      "solutions",
+      "consulting",
+      "hospital",
+      "clinic",
+      "medical",
+      "church",
+      "ministry",
+      "department",
+      "office",
+      "agency",
+      "bureau",
+      "council",
+    ];
+
+    const lowerName = name.toLowerCase();
+    return !organizationKeywords.some((keyword) => lowerName.includes(keyword));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!firstName.trim() || !lastName.trim()) {
-      setError("Please enter both first name and last name");
+      setError("Please enter both your first name and last name");
+      return;
+    }
+
+    // Validate that names don't contain organization-related keywords
+    if (!validateName(firstName) || !validateName(lastName)) {
+      setError(
+        "Please enter your personal name, not an organization or company name",
+      );
+      return;
+    }
+
+    // Check if names look like they might be school names (very basic check)
+    if (
+      firstName.trim().split(" ").length > 2 ||
+      lastName.trim().split(" ").length > 2
+    ) {
+      setError("Please enter your personal first and last name only");
       return;
     }
 
@@ -67,7 +129,12 @@ export function NamesForm({
       {/* Title and Subtitle */}
       <div className="text-left">
         <h1 className="text-3xl font-bold mb-2">What's your name?</h1>
-        <p className="text-base">Enter your personal first and last name.</p>
+        <p className="text-base text-gray-600 mb-2">
+          Please enter <strong>your personal name</strong>.
+        </p>
+        <p className="text-sm text-gray-500">
+          We need your individual name for your personal profile.
+        </p>
       </div>
 
       {/* Input Fields */}
@@ -81,8 +148,9 @@ export function NamesForm({
             autoFocus
             type="text"
             size="lg"
+            label="First name"
             variant="bordered"
-            placeholder="First name"
+            placeholder="John"
             isRequired
             isDisabled={isSubmitting}
           />
@@ -96,7 +164,8 @@ export function NamesForm({
             type="text"
             size="lg"
             variant="bordered"
-            placeholder="Last name"
+            placeholder="Smith"
+            label="Last name"
             isRequired
             isDisabled={isSubmitting}
           />
