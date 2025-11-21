@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
+import { Input } from "@sovoli/ui/components/input";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import type { Item, ItemCategory } from "~/modules/core/items/types";
 
@@ -30,6 +31,8 @@ export function ItemsSelection({
   onSelectionChange,
   onQuantityChange,
 }: ItemsSelectionProps) {
+  const [editingItemId, setEditingItemId] = useState<string | null>(null);
+
   const groupedItems = useMemo(() => {
     const map = new Map<string, { items: Item[]; label: string }>();
     items.forEach((item) => {
@@ -79,6 +82,26 @@ export function ItemsSelection({
     updateQuantity(itemId, currentQuantity - 1);
   };
 
+  const handleQuickIncrement = (itemId: string, increment: number) => {
+    const currentQuantity = quantities[itemId] ?? 0;
+    updateQuantity(itemId, currentQuantity + increment);
+  };
+
+  const handleDirectInput = (itemId: string, value: string) => {
+    const numValue = parseInt(value, 10);
+    if (!isNaN(numValue) && numValue >= 0) {
+      updateQuantity(itemId, numValue);
+    }
+  };
+
+  const handleInputFocus = (itemId: string) => {
+    setEditingItemId(itemId);
+  };
+
+  const handleInputBlur = () => {
+    setEditingItemId(null);
+  };
+
   const hasResults = groupedItems.length > 0;
 
   return (
@@ -121,7 +144,7 @@ export function ItemsSelection({
                               </span>
                             ) : null}
                           </div>
-                          <div className="flex items-center gap-3 sm:min-w-[180px] sm:justify-end">
+                          <div className="flex items-center gap-3 sm:min-w-[240px] sm:justify-end">
                             {isSelected ? (
                               <div className="flex items-center gap-2">
                                 <Button
@@ -142,9 +165,30 @@ export function ItemsSelection({
                                     <Trash2 className="h-4 w-4" />
                                   )}
                                 </Button>
-                                <span className="min-w-[1.5rem] text-center text-sm font-semibold text-default-700">
-                                  {quantity}
-                                </span>
+
+                                {editingItemId === item.id ? (
+                                  <Input
+                                    type="number"
+                                    min="0"
+                                    value={quantity.toString()}
+                                    onChange={(e) =>
+                                      handleDirectInput(item.id, e.target.value)
+                                    }
+                                    onBlur={handleInputBlur}
+                                    className="w-16 text-center text-sm"
+                                    size="sm"
+                                    autoFocus
+                                  />
+                                ) : (
+                                  <button
+                                    onClick={() => handleInputFocus(item.id)}
+                                    className="min-w-[2rem] rounded px-2 py-1 text-center text-sm font-semibold text-default-700 hover:bg-default-100"
+                                    aria-label={`Edit quantity of ${item.name}`}
+                                  >
+                                    {quantity}
+                                  </button>
+                                )}
+
                                 <Button
                                   isIconOnly
                                   size="sm"
@@ -154,6 +198,20 @@ export function ItemsSelection({
                                   aria-label={`Increase quantity of ${item.name}`}
                                 >
                                   <Plus className="h-4 w-4" />
+                                </Button>
+
+                                {/* +10 quick increment button */}
+                                <Button
+                                  size="sm"
+                                  variant="flat"
+                                  color="default"
+                                  className="h-8 px-2 text-xs font-medium"
+                                  onPress={() =>
+                                    handleQuickIncrement(item.id, 10)
+                                  }
+                                  aria-label={`Add 10 more ${item.name}`}
+                                >
+                                  +10
                                 </Button>
                               </div>
                             ) : (
