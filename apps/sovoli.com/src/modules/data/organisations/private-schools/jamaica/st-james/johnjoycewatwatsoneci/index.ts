@@ -8,7 +8,7 @@ export const JOHN_JOYCE_WATSON_WATSON_ECI_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "John Joyce Watson Watson ECI",
-    categories: ["private-school", "basic-school"],
+    categories: ["private-school", "nursery-school"],
     isVerified: true,
     verification: {
       status: "verified",
