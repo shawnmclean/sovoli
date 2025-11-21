@@ -37,46 +37,8 @@ export const ProjectHeroSection = ({
     quickFacts.push(`${needsCount} ${needsCount === 1 ? "need" : "needs"}`);
   }
 
-  // Get primary location or use provided location
-  const displayLocation =
-    location ??
-    orgInstance.org.locations.find((loc) => loc.isPrimary) ??
-    orgInstance.org.locations[0];
-
-  // Format full address
-  const formatFullAddress = (
-    loc: OrgLocation | undefined,
-  ): string | undefined => {
-    if (!loc) return undefined;
-
-    const addressParts: string[] = [];
-
-    // Add address lines
-    if (loc.address.line1) addressParts.push(loc.address.line1);
-    if (loc.address.line2) addressParts.push(loc.address.line2);
-    if (loc.address.line3) addressParts.push(loc.address.line3);
-
-    // Add city
-    if (loc.address.city) addressParts.push(loc.address.city);
-
-    // Add state
-    if (loc.address.state) addressParts.push(loc.address.state);
-
-    // Add country
-    if (loc.address.countryCode) {
-      const countryName = countryCodeToName(loc.address.countryCode);
-      if (countryName) {
-        addressParts.push(countryName);
-      }
-    }
-
-    return addressParts.length > 0 ? addressParts.join(", ") : undefined;
-  };
-
-  const fullAddress = formatFullAddress(displayLocation);
-
   return (
-    <section className="mb-6 border-b border-default-200 pb-6 text-center sm:mb-8 sm:pb-8">
+    <section className="mb-2 border-b border-default-200 pb-2 text-center sm:mb-8 sm:pb-8">
       {/* Project Title */}
       <h1 className="my-4 text-2xl font-semibold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
         {project.title}
@@ -87,13 +49,6 @@ export const ProjectHeroSection = ({
         <p className="mx-auto mt-2 max-w-3xl text-xs text-foreground-500 sm:text-sm">
           {timeline}
         </p>
-      )}
-
-      {/* Address */}
-      {fullAddress && (
-        <div className="mt-2 flex justify-center text-foreground-500">
-          <span className="text-sm">{fullAddress}</span>
-        </div>
       )}
     </section>
   );

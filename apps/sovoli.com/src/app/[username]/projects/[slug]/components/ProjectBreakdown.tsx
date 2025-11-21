@@ -12,10 +12,17 @@ import type { Item } from "~/modules/core/items/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { useProjectCart } from "../context/ProjectCartContext";
 import { pluralize } from "~/utils/pluralize";
+import { ORGS } from "~/modules/data/organisations";
 
 interface ProjectBreakdownProps {
   project: Project;
   orgInstance: OrgInstance;
+}
+
+interface Supplier {
+  name: string;
+  price: number;
+  org: OrgInstance;
 }
 
 interface BreakdownItem {
@@ -32,53 +39,98 @@ interface BreakdownItem {
   supplier?: string;
 }
 
-interface ProjectPhase {
-  id: string;
-  name: string;
-  totalCost: number;
-  funded: number;
-  items: BreakdownItem[];
+// Function to get supplier data for an item from recommended suppliers
+function getSupplierDataForItem(
+  itemId: string,
+  recommendedSuppliers: OrgInstance[],
+): Supplier[] {
+  const suppliers: Supplier[] = [];
+
+  recommendedSuppliers.forEach((supplierOrg) => {
+    // Check if this supplier has a catalog module
+    if (supplierOrg.catalogModule?.items) {
+      // Find the item in the supplier's catalog
+      const catalogItem = supplierOrg.catalogModule.items.find(
+        (catalogItem) => catalogItem.id === itemId,
+      );
+
+      if (catalogItem) {
+        // Use JMD pricing if available, otherwise GYD, then USD
+        const price =
+          catalogItem.price.JMD ??
+          catalogItem.price.GYD ??
+          catalogItem.price.USD ??
+          0;
+
+        suppliers.push({
+          name: supplierOrg.org.name,
+          price: price,
+          org: supplierOrg,
+        });
+      }
+    }
+  });
+
+  // Sort by price (lowest first)
+  return suppliers.sort((a, b) => a.price - b.price);
 }
 
-// Get cost for a need based on slug
-function getNeedCost(slug: string): number {
-  if (slug === "sandybankinfant-industrial-sheeting-2025") {
-    return 2000000; // 2M JMD
+// Get the best price for a need from available suppliers
+function getNeedCost(
+  need: Need & { type: "material"; item: Item },
+  recommendedSuppliers: OrgInstance[],
+): { cost: number; supplier?: Supplier } {
+  // First check if need has procurement cost data
+  if (need.procurement?.estimatedCost) {
+    return { cost: need.procurement.estimatedCost };
   }
-  if (slug === "sandybankinfant-exterior-door-2025") {
-    return 20000; // 20k JMD
+
+  // Get suppliers for this item
+  const suppliers = getSupplierDataForItem(need.item.id, recommendedSuppliers);
+  const quantity = need.quantity ?? 1;
+
+  if (suppliers.length > 0) {
+    // Use the cheapest supplier
+    const bestSupplier = suppliers[0];
+    if (bestSupplier) {
+      return {
+        cost: bestSupplier.price * quantity,
+        supplier: bestSupplier,
+      };
+    }
   }
-  return 0;
+
+  // Fallback: no supplier data available
+  return { cost: 0 };
 }
 
 // Calculate unit price and breakdown from total cost and quantity
 function calculateItemBreakdown(
   need: Need & { type: "material"; item: Item },
-  totalCost: number,
+  costData: { cost: number; supplier?: Supplier },
 ): BreakdownItem {
   const quantity = need.quantity ?? 1;
-  const unitPrice = Math.round(totalCost / quantity);
+  const totalCost = costData.cost;
+  const unitPrice = quantity > 0 ? Math.round(totalCost / quantity) : 0;
 
-  // For demo purposes, simulate some funding status
-  // In real app, this would come from actual funding data
+  // Use actual need status for funding information
   const isFunded = need.status === "fulfilled";
-  // Use a deterministic number based on need slug for demo purposes
-  const contributors = isFunded
-    ? need.slug.includes("industrial")
-      ? 4
-      : 1
-    : 0;
+  const isPartiallyFunded =
+    need.status === "in-progress" || need.procurement?.status === "ordered";
 
-  // Infer unit
-  let unit = "unit";
-  if (need.slug === "sandybankinfant-industrial-sheeting-2025") {
-    unit = "square";
+  // Simulate contributors based on funding status and cost
+  let contributors = 0;
+  if (isFunded) {
+    contributors = totalCost > 50000 ? Math.floor(totalCost / 50000) : 1;
+  } else if (isPartiallyFunded) {
+    contributors = Math.floor(totalCost / 100000) || 1;
   }
 
-  // Override for demo purposes to match 66% funded logic
-  // but keep the original unit (squares) if possible, or adjust math
-  // Actually, user said "put back the original units, the squares coming from the needs file is real"
-  // So we assume quantity is correct from need.
+  // Use the item's unit label or infer from item type
+  const unit = need.item.unitLabel ?? "unit";
+
+  // Use supplier from cost data or fallback
+  const supplierName = costData.supplier?.name ?? "No supplier available";
 
   return {
     id: need.slug,
@@ -88,14 +140,21 @@ function calculateItemBreakdown(
     unit,
     unitPrice,
     total: totalCost,
-    status: isFunded ? "funded" : "open",
-    fulfilled: isFunded ? quantity : 0,
+    status: isFunded ? "funded" : isPartiallyFunded ? "partial" : "open",
+    fulfilled: isFunded
+      ? quantity
+      : isPartiallyFunded
+        ? Math.floor(quantity * 0.3)
+        : 0,
     contributors,
-    supplier: "Phils Hardware",
+    supplier: supplierName,
   };
 }
 
-function buildProjectPhases(project: Project): ProjectPhase[] {
+function buildProjectItems(
+  project: Project,
+  orgInstance: OrgInstance,
+): BreakdownItem[] {
   const needs = project.needs ?? [];
 
   // Filter to only material needs with items
@@ -109,90 +168,29 @@ function buildProjectPhases(project: Project): ProjectPhase[] {
     return [];
   }
 
-  const phases: ProjectPhase[] = [];
+  // Get recommended suppliers from the organization
+  const recommendedSuppliers =
+    orgInstance.org.supplierRecommendations
+      ?.map((rec) => {
+        // Find the full OrgInstance for each supplier
+        const fullSupplierOrg = ORGS.find(
+          (org) => org.org.username === rec.org.username,
+        );
+        return fullSupplierOrg;
+      })
+      .filter((org): org is OrgInstance => org !== undefined) ?? [];
 
-  // Phase 1: Roofing & Structural
-  const roofingNeed = materialNeeds.find(
-    (need) => need.slug === "sandybankinfant-industrial-sheeting-2025",
-  );
+  const items: BreakdownItem[] = [];
 
-  if (roofingNeed) {
-    const totalCost = getNeedCost(roofingNeed.slug);
-    const funded =
-      roofingNeed.status === "fulfilled"
-        ? totalCost
-        : Math.round(totalCost * 0.66);
+  // Process each need and convert to breakdown item
+  materialNeeds.forEach((need) => {
+    const costData = getNeedCost(need, recommendedSuppliers);
+    const item = calculateItemBreakdown(need, costData);
+    items.push(item);
+  });
 
-    const roofingItem = calculateItemBreakdown(roofingNeed, totalCost);
-
-    // Adjust fulfilled amount for roofing item if it's partial
-    if (funded > 0 && funded < totalCost) {
-      roofingItem.status = "partial";
-      roofingItem.fulfilled = Math.round(
-        (funded / totalCost) * roofingItem.quantity,
-      );
-    }
-
-    phases.push({
-      id: "phase-1",
-      name: "Phase 1: Roofing & Structural",
-      totalCost,
-      funded,
-      items: [
-        roofingItem,
-        // Add labor item for roofing
-        {
-          id: "l1",
-          name: "Roofing Installation Labor",
-          type: "labor",
-          quantity: 3,
-          unit: "day",
-          unitPrice: 15000,
-          total: 45000,
-          status: "open",
-          fulfilled: 0,
-          contributors: 0,
-          supplier: "Local Contractors",
-        },
-      ],
-    });
-  }
-
-  // Phase 2: Security & Access
-  const doorNeed = materialNeeds.find(
-    (need) => need.slug === "sandybankinfant-exterior-door-2025",
-  );
-
-  if (doorNeed) {
-    const totalCost = getNeedCost(doorNeed.slug);
-    const funded = doorNeed.status === "fulfilled" ? totalCost : 0;
-
-    phases.push({
-      id: "phase-2",
-      name: "Phase 2: Security & Access",
-      totalCost,
-      funded,
-      items: [
-        calculateItemBreakdown(doorNeed, totalCost),
-        // Add labor item for door installation
-        {
-          id: "l2",
-          name: "Door Installation Labor",
-          type: "labor",
-          quantity: 4,
-          unit: "hour",
-          unitPrice: 2000,
-          total: 8000,
-          status: "open",
-          fulfilled: 0,
-          contributors: 0,
-          supplier: "Local Contractors",
-        },
-      ],
-    });
-  }
-
-  return phases;
+  // Sort items by total cost (highest first) for better visibility
+  return items.sort((a, b) => b.total - a.total);
 }
 
 function formatCurrency(amount: number): string {
@@ -418,22 +416,51 @@ function BreakdownItemComponent({ item }: { item: BreakdownItem }) {
   );
 }
 
-export function ProjectBreakdown({ project }: ProjectBreakdownProps) {
-  const projectPhases = buildProjectPhases(project);
+export function ProjectBreakdown({
+  project,
+  orgInstance,
+}: ProjectBreakdownProps) {
+  const projectItems = buildProjectItems(project, orgInstance);
 
-  if (projectPhases.length === 0) {
-    return null;
+  if (projectItems.length === 0) {
+    return (
+      <div className="space-y-8 mb-12">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold text-foreground">
+              Project Items Needed
+            </h2>
+            <p className="text-muted-foreground">
+              No material needs found for this project
+            </p>
+          </div>
+        </div>
+      </div>
+    );
   }
+
+  // Calculate totals
+  const totalCost = projectItems.reduce((sum, item) => sum + item.total, 0);
+  const totalFunded = projectItems.reduce((sum, item) => {
+    if (item.status === "funded") {
+      return sum + item.total;
+    } else if (item.status === "partial") {
+      return sum + item.fulfilled * item.unitPrice;
+    }
+    return sum;
+  }, 0);
+  const percentFunded =
+    totalCost > 0 ? Math.round((totalFunded / totalCost) * 100) : 0;
 
   return (
     <div className="space-y-8 mb-12">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-foreground">
-            Project Breakdown
+            Project Items Needed
           </h2>
           <p className="text-muted-foreground">
-            Detailed costs for materials and labor by phase
+            All materials and supplies required for this project
           </p>
         </div>
         <div className="flex items-center gap-4 text-sm">
@@ -442,46 +469,75 @@ export function ProjectBreakdown({ project }: ProjectBreakdownProps) {
             <span>Funded</span>
           </div>
           <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-warning-500/20 border border-warning-500" />
+            <span>Partial</span>
+          </div>
+          <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full border border-default-400" />
             <span>Open</span>
           </div>
         </div>
       </div>
 
-      <div className="space-y-6">
-        {projectPhases.map((phase) => {
-          const percentFunded = Math.round(
-            (phase.funded / phase.totalCost) * 100,
-          );
+      {/* Project Summary */}
+      <Card className="overflow-hidden border-muted">
+        <div className="bg-default-100/50 p-4 border-b border-default-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <h3 className="font-semibold text-lg">Project Summary</h3>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>
+                {formatCurrency(totalFunded)} raised of{" "}
+                {formatCurrency(totalCost)}
+              </span>
+              <span>•</span>
+              <span>{percentFunded}% Funded</span>
+              <span>•</span>
+              <span>{projectItems.length} items needed</span>
+            </div>
+          </div>
+          <div className="w-full md:w-48">
+            <Progress value={percentFunded} className="h-2" />
+          </div>
+        </div>
+      </Card>
 
-          return (
-            <Card key={phase.id} className="overflow-hidden border-muted">
-              <div className="bg-default-100/50 p-4 border-b border-default-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <h3 className="font-semibold text-lg">{phase.name}</h3>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span>
-                      {formatCurrency(phase.funded)} raised of{" "}
-                      {formatCurrency(phase.totalCost)}
-                    </span>
-                    <span>•</span>
-                    <span>{percentFunded}% Funded</span>
-                  </div>
-                </div>
-                <div className="w-full md:w-48">
-                  <Progress value={percentFunded} className="h-2" />
-                </div>
-              </div>
+      {/* Items List */}
+      <Card className="overflow-hidden border-muted">
+        <div className="bg-default-100/50 p-4 border-b border-default-200">
+          <h3 className="font-semibold text-lg">Items Breakdown</h3>
+          <p className="text-sm text-muted-foreground">
+            {projectItems.some((item) => item.total > 0)
+              ? "Sorted by cost (highest first)"
+              : "Prices will be shown when suppliers are available"}
+          </p>
+        </div>
 
-              <div className="divide-y divide-default-200">
-                {phase.items.map((item) => (
-                  <BreakdownItemComponent key={item.id} item={item} />
-                ))}
-              </div>
-            </Card>
-          );
-        })}
-      </div>
+        <div className="divide-y divide-default-200">
+          {projectItems.map((item) => (
+            <BreakdownItemComponent key={item.id} item={item} />
+          ))}
+        </div>
+      </Card>
+
+      {/* Supplier Information */}
+      {orgInstance.org.supplierRecommendations &&
+      orgInstance.org.supplierRecommendations.length > 0 ? (
+        <div className="text-sm text-muted-foreground">
+          <p>
+            Prices shown are from recommended suppliers:{" "}
+            {orgInstance.org.supplierRecommendations
+              .map((rec) => rec.org.name)
+              .join(", ")}
+          </p>
+        </div>
+      ) : (
+        <div className="text-sm text-warning-600 bg-warning-50 p-3 rounded-lg border border-warning-200">
+          <p>
+            <strong>No suppliers configured.</strong> Contact the organization
+            to set up supplier recommendations for pricing information.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

@@ -156,7 +156,31 @@ export default async function ProjectDetailsPage({
             orgInstance={orgInstance}
             location={location}
           />
-          <ProjectMetrics project={project} />
+          <ProjectMetrics
+            project={project}
+            metrics={{
+              totalRaised: {
+                value: "$0",
+                target: "$0",
+                progress: 0,
+              },
+              projectProgress: {
+                value: "0%",
+                target: "Complete",
+                progress: 0,
+              },
+              volunteers: {
+                value: "0",
+                target: "People",
+                progress: 0,
+              },
+              itemsFunded: {
+                value: "0",
+                target: "0 Items",
+                progress: 0,
+              },
+            }}
+          />
           <ProjectHeroSection
             orgInstance={orgInstance}
             project={project}

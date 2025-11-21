@@ -3,8 +3,22 @@ import { Progress } from "@sovoli/ui/components/progress";
 import { DollarSign, Package, Users, TrendingUp } from "lucide-react";
 import type { Project } from "~/modules/projects/types";
 
+export interface MetricData {
+  value: string;
+  target: string;
+  progress: number;
+}
+
+export interface ProjectMetricsData {
+  totalRaised: MetricData;
+  projectProgress: MetricData;
+  volunteers: MetricData;
+  itemsFunded: MetricData;
+}
+
 interface ProjectMetricsProps {
   project: Project;
+  metrics?: ProjectMetricsData;
 }
 
 // Calculate metrics from project data
@@ -72,10 +86,10 @@ function formatCurrency(amount: number): string {
   return `$${amount.toLocaleString()}`;
 }
 
-export function ProjectMetrics({ project }: ProjectMetricsProps) {
-  const metricsData = calculateMetrics(project);
+export function ProjectMetrics({ project, metrics }: ProjectMetricsProps) {
+  const metricsData = metrics ?? calculateMetrics(project);
 
-  const metrics = [
+  const metricsArray = [
     {
       label: "Total Raised",
       value: metricsData.totalRaised.value,
@@ -109,7 +123,7 @@ export function ProjectMetrics({ project }: ProjectMetricsProps) {
   return (
     <div className="w-full">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {metrics.map((metric, index) => {
+        {metricsArray.map((metric, index) => {
           const Icon = metric.icon;
           return (
             <Card
