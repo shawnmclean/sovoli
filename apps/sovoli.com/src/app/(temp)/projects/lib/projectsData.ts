@@ -66,6 +66,7 @@ function buildProjectDirectoryEntries(): ProjectDirectoryEntry[] {
         locationKey: project.locationKey ?? location?.key,
         locationLabel: location?.label ?? location?.address.line1,
         locationAddress: formatAddress(location),
+        locationAddressLine1: location?.address.line1,
         locationCity: location?.address.city,
         locationState: location?.address.state,
         locationCountryCode: location?.address.countryCode,

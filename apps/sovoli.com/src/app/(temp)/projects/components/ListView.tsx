@@ -3,15 +3,10 @@
 import { useMemo } from "react";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-import {
-  AlertCircleIcon,
-  ArrowRightIcon,
-  CalendarDaysIcon,
-  MapPinIcon,
-} from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 
 import type { ProjectDirectoryEntry } from "../types";
-import { formatTimeline, formatDate } from "../lib/formatters";
+import { formatDate } from "../lib/formatters";
 import { getPriorityLabel, getPriorityTextClass } from "../lib/priorities";
 import { ProjectCarousel } from "./ProjectCarousel";
 import { slugify } from "~/utils/slugify";
@@ -44,11 +39,19 @@ export function ListView({ projects }: ListViewProps) {
 }
 
 function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
-  const timeline = formatTimeline(project.startDate, project.endDate);
   const needsCount = project.needs.length;
   const photos = useMemo(() => project.photos, [project.photos]);
   const projectSlug = slugify(project.title);
   const projectHref = `/${project.orgUsername}/projects/${projectSlug}`;
+
+  // Format address following ProjectOrgBadgeSection pattern
+  const addressParts = [
+    project.locationAddressLine1,
+    project.locationCity,
+    project.locationState,
+  ].filter(Boolean);
+
+  const addressString = addressParts.join(", ");
 
   return (
     <Card className="group overflow-hidden border border-divider shadow-sm transition duration-200 hover:shadow-2xl">
@@ -77,15 +80,14 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
             <h2 className="text-2xl font-semibold leading-tight text-foreground">
               {project.title}
             </h2>
-            <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              {project.orgName}
-              {project.locationLabel && (
-                <span className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
-                  <MapPinIcon className="h-3 w-3 text-muted-foreground" />
-                  {project.locationLabel}
-                </span>
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                {project.orgName}
+              </p>
+              {addressString && (
+                <p className="text-xs text-foreground-500">{addressString}</p>
               )}
-            </p>
+            </div>
             {project.description && (
               <p className="text-default-600 line-clamp-3">
                 {project.description}
@@ -93,44 +95,20 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
             )}
           </div>
 
-          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-            {timeline && (
-              <span className="inline-flex items-center gap-2">
-                <CalendarDaysIcon className="h-4 w-4 text-muted-foreground" />
-                {timeline}
-              </span>
-            )}
-            <span className="inline-flex items-center gap-2">
-              <AlertCircleIcon
-                className={`h-4 w-4 ${getPriorityTextClass(project.priority)}`}
-              />
-              {needsCount > 0
-                ? `${needsCount} scoped ${needsCount === 1 ? "need" : "needs"}`
-                : "Needs in review"}
-            </span>
-          </div>
-
           {needsCount > 0 && (
-            <div className="flex flex-wrap gap-2">
+            <ul className="list-disc list-inside text-sm text-muted-foreground">
               {project.needs.slice(0, 4).map((need) => (
-                <span
-                  key={need.slug}
-                  className="inline-flex items-center gap-1 rounded-full border border-divider bg-muted px-3 py-1 text-xs font-medium text-foreground"
-                >
-                  {need.title}
-                  {need.quantity && (
-                    <span className="text-muted-foreground">
-                      · {need.quantity}
-                    </span>
-                  )}
-                </span>
+                <li key={need.slug}>
+                  <span className="text-foreground">{need.title}</span>
+                  {need.quantity && <span> ({need.quantity})</span>}
+                </li>
               ))}
               {project.needs.length > 4 && (
-                <span className="text-xs text-muted-foreground">
+                <li className="list-none text-xs pt-1">
                   +{project.needs.length - 4} more
-                </span>
+                </li>
               )}
-            </div>
+            </ul>
           )}
         </Link>
       </CardBody>

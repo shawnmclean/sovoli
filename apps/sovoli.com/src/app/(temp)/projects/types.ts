@@ -42,6 +42,7 @@ export interface ProjectDirectoryEntry {
   locationKey?: string;
   locationLabel?: string;
   locationAddress?: string;
+  locationAddressLine1?: string;
   locationCity?: string;
   locationState?: string;
   locationCountryCode?: string;
