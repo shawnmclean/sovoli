@@ -1,20 +1,20 @@
 import type { OrgInstance } from "~/modules/organisations/types";
 
 import { ORG_USERNAME } from "./constants";
-import { EMMANUEL_KINDER_PREP_NEEDS } from "./needs";
-import { EMMANUEL_KINDER_PREP_PROJECTS } from "./projects";
+import { JOHN_JOYCE_WATSON_WATSON_ECI_NEEDS } from "./needs";
+import { JOHN_JOYCE_WATSON_WATSON_ECI_PROJECTS } from "./projects";
 
-export const EMMANUEL_KINDER_PREP_ORG: OrgInstance = {
+export const JOHN_JOYCE_WATSON_WATSON_ECI_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "Emmanuel Kinder Prep",
-    categories: ["private-school", "primary-school"],
+    name: "John Joyce Watson Watson ECI",
+    categories: ["private-school", "basic-school"],
     isVerified: true,
     verification: {
       status: "verified",
-      submittedBy: "Emmanuel Prep",
-      submittedAt: "2025-11-19",
-      verifiedAt: "2025-11-19",
+      submittedBy: "De'Andra Wright",
+      submittedAt: "2025-11-21",
+      verifiedAt: "2025-11-21",
       documents: [],
     },
     locations: [
@@ -23,17 +23,16 @@ export const EMMANUEL_KINDER_PREP_ORG: OrgInstance = {
         label: "Main Campus",
         isPrimary: true,
         address: {
-          line1: "26 Ward Avenue",
-          line2: "Mandeville",
-          city: "Manchester",
-          state: "Manchester",
+          line1: "Wedtgree P.O. Box 514 Montego Bay",
+          city: "",
+          state: "St. James",
           countryCode: "JM",
         },
         contacts: [
           {
             type: "phone",
-            value: "+1 (876) 317-6570",
-            label: "Principal Emmanuel Prep",
+            value: "+1 (876) 893-0668",
+            label: "Principal De'Andra Wright",
             isPublic: true,
             primary: true,
           },
@@ -46,6 +45,6 @@ export const EMMANUEL_KINDER_PREP_ORG: OrgInstance = {
   serviceModule: null,
   workforceModule: null,
   scoringModule: null,
-  needsModule: EMMANUEL_KINDER_PREP_NEEDS,
-  projectsModule: EMMANUEL_KINDER_PREP_PROJECTS,
+  needsModule: JOHN_JOYCE_WATSON_WATSON_ECI_NEEDS,
+  projectsModule: JOHN_JOYCE_WATSON_WATSON_ECI_PROJECTS,
 };
