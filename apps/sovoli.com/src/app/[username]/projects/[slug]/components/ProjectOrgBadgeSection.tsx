@@ -1,6 +1,6 @@
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Badge } from "@sovoli/ui/components/badge";
-import { BadgeCheckIcon, MapPinIcon } from "lucide-react";
+import { BadgeCheckIcon } from "lucide-react";
 
 import type { OrgInstance, OrgLocation } from "~/modules/organisations/types";
 
