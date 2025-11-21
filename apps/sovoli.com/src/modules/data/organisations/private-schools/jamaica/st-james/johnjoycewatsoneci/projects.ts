@@ -1,8 +1,8 @@
 import type { ProjectsModule } from "~/modules/projects/types";
-import { JOHN_JOYCE_WATSON_WATSON_ECI_NEEDS } from "./needs";
+import { JOHN_JOYCE_WATSON_ECI_NEEDS } from "./needs";
 
 function findNeedBySlug(slug: string) {
-  const need = JOHN_JOYCE_WATSON_WATSON_ECI_NEEDS.needs.find(
+  const need = JOHN_JOYCE_WATSON_ECI_NEEDS.needs.find(
     (entry) => entry.slug === slug,
   );
 
@@ -15,10 +15,10 @@ function findNeedBySlug(slug: string) {
   return need;
 }
 
-export const JOHN_JOYCE_WATSON_WATSON_ECI_PROJECTS: ProjectsModule = {
+export const JOHN_JOYCE_WATSON_ECI_PROJECTS: ProjectsModule = {
   projects: [
     {
-      id: "johnjoycewatwatsoneci-facility-restoration-2025",
+      id: "facility-restoration-2025",
       title: "Facility Restoration and Equipment Recovery",
       description:
         "Comprehensive restoration project to repair storm damage to doors, furniture, and replace damaged equipment and educational materials.",
@@ -27,7 +27,7 @@ export const JOHN_JOYCE_WATSON_WATSON_ECI_PROJECTS: ProjectsModule = {
       priority: "high",
       locationKey: "main-campus",
       internal: false,
-      needs: [findNeedBySlug("johnjoycewatwatsoneci-plyboard-sheet-2025")],
+      needs: [findNeedBySlug("johnjoycewatsoneci-plyboard-sheet-2025")],
       photos: [
         {
           category: "environment",

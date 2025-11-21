@@ -7,10 +7,10 @@ if (!PLYBOARD_SHEET) {
   throw new Error("maintenance-plyboard item is missing from core items.");
 }
 
-export const JOHN_JOYCE_WATSON_WATSON_ECI_NEEDS: NeedsModule = {
+export const JOHN_JOYCE_WATSON_ECI_NEEDS: NeedsModule = {
   needs: [
     {
-      slug: "johnjoycewatwatsoneci-plyboard-sheet-2025",
+      slug: "johnjoycewatsoneci-plyboard-sheet-2025",
       title: "Plyboard Sheet",
       description:
         "Plywood sheets needed for repairing damaged doors, furniture, and structural elements after storm damage.",
