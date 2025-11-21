@@ -1,7 +1,6 @@
 import type { Project } from "~/modules/projects/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { OrgLocation } from "~/modules/organisations/types";
-import { countryCodeToName } from "~/utils/countryUtils";
 import { formatTimeline } from "~/app/(temp)/projects/lib/formatters";
 
 export interface ProjectHeroSectionProps {
@@ -10,11 +9,7 @@ export interface ProjectHeroSectionProps {
   location?: OrgLocation;
 }
 
-export const ProjectHeroSection = ({
-  orgInstance,
-  project,
-  location,
-}: ProjectHeroSectionProps) => {
+export const ProjectHeroSection = ({ project }: ProjectHeroSectionProps) => {
   const timeline = formatTimeline(project.startDate, project.endDate);
   const needsCount = project.needs?.length ?? 0;
 
