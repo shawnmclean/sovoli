@@ -58,7 +58,7 @@ export default async function ProjectsDirectoryPage({
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Button as={Link} href="/needs/new" color="secondary">
-                Submit a your project
+                Submit your project
               </Button>
             </div>
           </div>
