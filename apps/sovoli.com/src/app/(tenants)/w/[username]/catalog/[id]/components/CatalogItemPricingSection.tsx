@@ -1,7 +1,7 @@
-import type { CatalogItem } from "~/modules/catalogs/types";
+import type { CatalogOffer } from "~/modules/catalogs/types";
 
 export interface CatalogItemPricingSectionProps {
-  catalogItem: CatalogItem;
+  catalogItem: CatalogOffer;
 }
 
 export const CatalogItemPricingSection = ({

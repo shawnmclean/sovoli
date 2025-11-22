@@ -1,10 +1,10 @@
 import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
 import type { OrgInstance } from "~/modules/organisations/types";
-import type { CatalogItem } from "~/modules/catalogs/types";
+import type { CatalogOffer } from "~/modules/catalogs/types";
 
 export interface OrgInstanceWithCatalogItem {
   orgInstance: OrgInstance;
-  catalogItem: CatalogItem;
+  catalogItem: CatalogOffer;
 }
 
 export async function getOrgInstanceWithCatalogItem(

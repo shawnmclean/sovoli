@@ -1,10 +1,10 @@
 import { getCategoryLabel } from "~/app/(temp)/needs/new/components/ItemsSelection";
-import type { CatalogItem } from "~/modules/catalogs/types";
+import type { CatalogOffer } from "~/modules/catalogs/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface CatalogItemHeroSectionProps {
   orgInstance: OrgInstance;
-  catalogItem: CatalogItem;
+  catalogItem: CatalogOffer;
 }
 
 export const CatalogItemHeroSection = ({

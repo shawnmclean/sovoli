@@ -1,8 +1,8 @@
 import { getCategoryLabel } from "~/app/(temp)/needs/new/components/ItemsSelection";
-import type { CatalogItem } from "~/modules/catalogs/types";
+import type { CatalogOffer } from "~/modules/catalogs/types";
 
 export interface CatalogItemDetailsSectionProps {
-  catalogItem: CatalogItem;
+  catalogItem: CatalogOffer;
 }
 
 export const CatalogItemDetailsSection = ({

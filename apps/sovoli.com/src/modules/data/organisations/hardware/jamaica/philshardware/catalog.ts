@@ -1,4 +1,4 @@
-import type { CatalogModule, CatalogItem } from "~/modules/catalogs/types";
+import type { CatalogModule, CatalogOffer } from "~/modules/catalogs/types";
 import { findItemById } from "~/modules/data/items";
 import type { AmountByCurrency } from "~/modules/core/economics/types";
 
@@ -9,7 +9,7 @@ function createCatalogItem(
   id: string,
   price: AmountByCurrency,
   name?: string,
-): CatalogItem | null {
+): CatalogOffer | null {
   const item = findItemById(id);
   if (!item) {
     console.warn(`Item with id "${id}" not found`);
@@ -32,5 +32,5 @@ export const PHILS_HARDWARE_CATALOG: CatalogModule = {
       { JMD: 17117.75, USD: 107 },
       "36X80 PINE DOOR - 6 PANEL - BRAZIL- IBI",
     ),
-  ].filter((item): item is CatalogItem => item !== null),
+  ].filter((item): item is CatalogOffer => item !== null),
 };

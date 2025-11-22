@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import type { CatalogItem as ModuleCatalogItem } from "~/modules/catalogs/types";
+import type { CatalogOffer as ModuleCatalogItem } from "~/modules/catalogs/types";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import { ProductCatalogListing } from "./components/ProductCatalogListing";
 import { SupplyListHeader } from "./components/SupplyListHeader";

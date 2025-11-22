@@ -1,7 +1,7 @@
 "use client";
 
 import type { OrgInstance } from "~/modules/organisations/types";
-import type { CatalogItem } from "~/modules/catalogs/types";
+import type { CatalogOffer } from "~/modules/catalogs/types";
 import {
   Carousel,
   CarouselContent,
@@ -77,7 +77,7 @@ export function CatalogGroupListing({ orgInstance }: CatalogGroupListingProps) {
       acc[categoryDisplayName].push(catalogItem);
       return acc;
     },
-    {} as Record<string, CatalogItem[]>,
+    {} as Record<string, CatalogOffer[]>,
   );
 
   // Sort categories by order

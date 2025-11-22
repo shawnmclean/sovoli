@@ -1,8 +1,8 @@
-import type { CatalogItem } from "~/modules/catalogs/types";
+import type { CatalogOffer } from "~/modules/catalogs/types";
 import { CldImage } from "next-cloudinary";
 
 export interface CatalogItemGalleryProps {
-  catalogItem: CatalogItem;
+  catalogItem: CatalogOffer;
 }
 
 export const CatalogItemGallery = ({

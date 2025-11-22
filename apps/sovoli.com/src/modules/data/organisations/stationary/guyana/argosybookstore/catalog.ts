@@ -1,4 +1,4 @@
-import type { CatalogModule, CatalogItem } from "~/modules/catalogs/types";
+import type { CatalogModule, CatalogOffer } from "~/modules/catalogs/types";
 import { findItemById } from "~/modules/data/items";
 import type { AmountByCurrency } from "~/modules/core/economics/types";
 
@@ -8,7 +8,7 @@ import type { AmountByCurrency } from "~/modules/core/economics/types";
 function createCatalogItem(
   id: string,
   price: AmountByCurrency,
-): CatalogItem | null {
+): CatalogOffer | null {
   const item = findItemById(id);
   if (!item) {
     console.warn(`Item with id "${id}" not found`);
@@ -230,5 +230,5 @@ export const ARGOSY_BOOK_STORE_CATALOG: CatalogModule = {
       GYD: 1300,
       USD: 6.5,
     }),
-  ].filter((item): item is CatalogItem => item !== null),
+  ].filter((item): item is CatalogOffer => item !== null),
 };

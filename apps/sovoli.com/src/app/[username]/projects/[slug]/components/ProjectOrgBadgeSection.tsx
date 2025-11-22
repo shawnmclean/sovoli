@@ -1,5 +1,4 @@
 import { Avatar } from "@sovoli/ui/components/avatar";
-import { Badge } from "@sovoli/ui/components/badge";
 import { BadgeCheckIcon } from "lucide-react";
 
 import type { OrgInstance, OrgLocation } from "~/modules/organisations/types";
@@ -14,16 +13,6 @@ export function ProjectOrgBadgeSection({
   location,
 }: ProjectOrgBadgeSectionProps) {
   const org = orgInstance.org;
-
-  // Calculate score
-  const score = orgInstance.scoringModule
-    ? (() => {
-        const { totalScore, maxScore } =
-          orgInstance.scoringModule.result.scoreSummary;
-        const rawScore = (totalScore / maxScore) * 10;
-        return isNaN(rawScore) || !isFinite(rawScore) ? 0 : rawScore.toFixed(1);
-      })()
-    : 0;
 
   // Get first category
   const firstCategory = org.categories[0];
