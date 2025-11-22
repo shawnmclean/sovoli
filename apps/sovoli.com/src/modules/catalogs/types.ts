@@ -4,6 +4,7 @@ import type { Item } from "../core/items/types";
 export interface CatalogItem {
   id: string;
   item: Item;
+  name?: string;
   price: AmountByCurrency;
 }
 
