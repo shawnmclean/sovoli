@@ -132,7 +132,13 @@ export default async function ProjectDetailsPage({
     <ProjectCartProvider>
       <div className="min-h-screen bg-background">
         <div className="relative">
-          <GalleryCarousel photos={photos} title={project.title} />
+          <GalleryCarousel
+            photos={photos}
+            title={project.title}
+            type="project"
+            username={username}
+            id={project.id}
+          />
 
           <ProjectDetailNavbar
             orgInstance={orgInstance}

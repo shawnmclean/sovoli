@@ -27,6 +27,9 @@ export interface GalleryCarouselProps {
   title: string;
   emptyStateMessage?: string;
   className?: string;
+  type: "project" | "program" | "event";
+  id: string;
+  username: string;
 }
 
 export function GalleryCarousel({
@@ -34,6 +37,9 @@ export function GalleryCarousel({
   title,
   emptyStateMessage = "No photos available",
   className,
+  type,
+  id,
+  username,
 }: GalleryCarouselProps) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
@@ -50,6 +56,10 @@ export function GalleryCarousel({
       posthog.capture("GalleryViewed", {
         mode: "normal",
         total_items: photos.length,
+        type,
+        id,
+        username,
+        title,
       });
       viewedRef.current = true;
     }
@@ -71,13 +81,17 @@ export function GalleryCarousel({
           from_index: oldIndex,
           to_index: newIndex,
           total_items: photos.length,
+          type,
+          id,
+          username,
+          title,
         });
       }
 
       setCurrent(newIndex);
       previousIndexRef.current = newIndex;
     });
-  }, [api, photos.length]);
+  }, [api, photos.length, type, id, username, title]);
 
   const handleOpenFullscreen = () => {
     const currentPhoto = photos[current];
@@ -86,6 +100,10 @@ export function GalleryCarousel({
         index: current,
         url: currentPhoto.publicId,
         total_items: photos.length,
+        type,
+        id,
+        username,
+        title,
       });
     }
     onOpen();
@@ -158,6 +176,9 @@ export function GalleryCarousel({
         onClose={onClose}
         initialIndex={current}
         title={title}
+        type={type}
+        id={id}
+        username={username}
       />
     </>
   );
@@ -169,12 +190,18 @@ function FullScreenGallery({
   onClose,
   initialIndex,
   title,
+  type,
+  id,
+  username,
 }: {
   photos: Photo[];
   isOpen: boolean;
   onClose: () => void;
   initialIndex: number;
   title: string;
+  type: "project" | "program" | "event";
+  id: string;
+  username: string;
 }) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(initialIndex);
@@ -204,6 +231,10 @@ function FullScreenGallery({
             image_index: oldIndex,
             duration_ms: dwellTime,
             total_items: photos.length,
+            type,
+            id,
+            username,
+            title,
           });
         }
 
@@ -219,6 +250,10 @@ function FullScreenGallery({
           from_index: oldIndex,
           to_index: newIndex,
           total_items: photos.length,
+          type,
+          id,
+          username,
+          title,
         });
 
         // Reset timer for new image
@@ -228,7 +263,7 @@ function FullScreenGallery({
       setCurrent(newIndex);
       previousIndexRef.current = newIndex;
     });
-  }, [api, initialIndex, photos.length]);
+  }, [api, initialIndex, photos.length, type, id, username, title]);
 
   // Track final dwell time and close event when modal closes
   useEffect(() => {
@@ -244,6 +279,10 @@ function FullScreenGallery({
           image_index: currentIndex,
           duration_ms: dwellTime,
           total_items: photos.length,
+          type,
+          id,
+          username,
+          title,
         });
       }
 
@@ -252,9 +291,13 @@ function FullScreenGallery({
         index: currentIndex,
         url: currentPhoto?.publicId,
         total_items: photos.length,
+        type,
+        id,
+        username,
+        title,
       });
     }
-  }, [isOpen, api, photos]);
+  }, [isOpen, api, photos, type, id, username, title]);
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} size="full" hideCloseButton>

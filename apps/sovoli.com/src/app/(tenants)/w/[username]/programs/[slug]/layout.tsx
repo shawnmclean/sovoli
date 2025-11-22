@@ -279,6 +279,9 @@ export default async function Layout({ children, params, modals }: Props) {
         <GalleryCarousel
           photos={programToUse.photos ?? []}
           title={programToUse.name ?? "Program"}
+          type="program"
+          username={username}
+          id={programToUse.id}
         />
 
         <div className="container mx-auto max-w-7xl px-4">

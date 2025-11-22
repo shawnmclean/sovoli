@@ -8,7 +8,7 @@ import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
 import { EventDetailMobileFooter } from "./components/footer/EventDetailMobileFooter";
 import { EventHeroSection } from "./components/EventHeroSection";
 import { EventRequirementsSection } from "./components/EventRequirementsSection";
-import { EventGalleryCarousel } from "./components/EventGalleryCarousel";
+import { GalleryCarousel } from "~/components/GalleryCarousel";
 import { EventDetailNavbar } from "./components/navbar/EventDetailMobileNavbar";
 const retrieveOrgInstanceWithEvent = async (username: string, slug: string) => {
   const result = await getOrgInstanceWithEvent(username, slug);
@@ -113,7 +113,13 @@ export default async function Layout({ children, params }: Props) {
       />
       <MobileOnlyAlert />
       <EventDetailNavbar orgInstance={orgInstance} event={event} />
-      <EventGalleryCarousel event={event} />
+      <GalleryCarousel
+        photos={event.photos ?? []}
+        title={event.name}
+        type="event"
+        username={username}
+        id={event.id}
+      />
 
       <div className="container mx-auto max-w-7xl px-4">
         <EventHeroSection orgInstance={orgInstance} event={event} />
