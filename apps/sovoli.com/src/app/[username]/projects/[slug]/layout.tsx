@@ -1,0 +1,274 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Card, CardBody } from "@sovoli/ui/components/card";
+import { ClipboardListIcon, TagIcon } from "lucide-react";
+
+import { bus } from "~/services/core/bus";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { slugify } from "~/utils/slugify";
+import { GalleryCarousel } from "~/components/GalleryCarousel";
+import { formatDate } from "~/app/(temp)/projects/lib/formatters";
+import {
+  getPriorityBadgeClass,
+  getPriorityLabel,
+  getPriorityTextClass,
+} from "~/app/(temp)/projects/lib/priorities";
+import type { OrgLocation } from "~/modules/organisations/types";
+import type { Project, ProjectsModule } from "~/modules/projects/types";
+import { ProjectDetailNavbar } from "./components/ProjectDetailNavbar";
+import { ProjectHeroSection } from "./components/ProjectHeroSection";
+import { ProjectOrgBadgeSection } from "./components/ProjectOrgBadgeSection";
+import { ProjectDetailMobileFooter } from "./components/ProjectDetailMobileFooter";
+import { ProjectMetricsSection } from "./components/metrics/ProjectMetricsSection";
+import { ProjectBreakdown } from "./components/ProjectBreakdown";
+import { ProjectCoordinators } from "./components/ProjectCoordinators";
+import { ProjectCartProvider } from "./context/ProjectCartContext";
+import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
+import { ProjectTracking } from "./components/ProjectTracking";
+
+interface Props {
+  children: React.ReactNode;
+  params: Promise<{ username: string; slug: string }>;
+  modals: React.ReactNode;
+}
+
+const retrieveOrgInstance = async (username: string) => {
+  const result = await bus.queryProcessor.execute(
+    new GetOrgInstanceByUsernameQuery(username),
+  );
+  if (!result.orgInstance) return notFound();
+  return result.orgInstance;
+};
+
+function findProjectBySlug(
+  projectsModule: ProjectsModule | null | undefined,
+  slug: string,
+): Project | null {
+  if (!projectsModule) return null;
+
+  return (
+    projectsModule.projects.find(
+      (project) => slugify(project.title) === slug || project.id === slug,
+    ) ?? null
+  );
+}
+
+function resolveProjectLocation(
+  locationKey: string | undefined,
+  orgInstance: { org: { locations: OrgLocation[] } },
+): OrgLocation | undefined {
+  if (locationKey) {
+    const match = orgInstance.org.locations.find(
+      (location) => location.key === locationKey,
+    );
+    if (match) return match;
+  }
+
+  return (
+    orgInstance.org.locations.find((location) => location.isPrimary) ??
+    orgInstance.org.locations[0]
+  );
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { username, slug } = await params;
+  const orgInstance = await retrieveOrgInstance(username);
+  const project = findProjectBySlug(orgInstance.projectsModule, slug);
+
+  if (!project) {
+    return {
+      title: "Project not found | Sovoli",
+    };
+  }
+
+  const fallbackPhotos = orgInstance.org.photos ?? [];
+  const photos =
+    project.photos && project.photos.length > 0
+      ? project.photos
+      : fallbackPhotos;
+
+  const ogImage = photos[0]?.url;
+  const description =
+    project.description ??
+    "Explore the latest recovery projects shared by school leaders on Sovoli.";
+
+  return {
+    title: `${project.title} | ${orgInstance.org.name}`,
+    description,
+    openGraph: {
+      title: `${project.title} | ${orgInstance.org.name}`,
+      description,
+      images: ogImage ? [{ url: ogImage }] : [],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | ${orgInstance.org.name}`,
+      description,
+      images: ogImage ? [ogImage] : [],
+    },
+  };
+}
+
+export default async function Layout({ children, params, modals }: Props) {
+  const { username, slug } = await params;
+  const orgInstance = await retrieveOrgInstance(username);
+  const project = findProjectBySlug(orgInstance.projectsModule, slug);
+
+  if (!project) {
+    notFound();
+  }
+
+  const location = resolveProjectLocation(project.locationKey, orgInstance);
+  const fallbackPhotos = orgInstance.org.photos ?? [];
+  const photos =
+    project.photos && project.photos.length > 0
+      ? project.photos
+      : fallbackPhotos;
+
+  const updatedAt = formatDate(project.updatedAt ?? project.createdAt);
+
+  return (
+    <ProjectCartProvider>
+      <div className="min-h-screen bg-background">
+        <div className="relative">
+          <GalleryCarousel
+            photos={photos}
+            title={project.title}
+            type="project"
+            username={username}
+            id={project.id}
+          />
+
+          <ProjectDetailNavbar
+            orgInstance={orgInstance}
+            project={project}
+            backHref="/projects"
+          />
+
+          <div className="absolute bottom-4 left-4 z-20 sm:bottom-6 sm:left-6">
+            <span
+              className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide shadow-lg sm:px-4 ${getPriorityBadgeClass(
+                project.priority,
+              )}`}
+            >
+              {getPriorityLabel(project.priority)}
+            </span>
+          </div>
+        </div>
+
+        <NavigationDrawer fallbackPath={`/projects/${slug}`}>
+          {modals}
+        </NavigationDrawer>
+
+        <ProjectTracking project={project} />
+
+        <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
+          <ProjectOrgBadgeSection
+            orgInstance={orgInstance}
+            location={location}
+          />
+          <ProjectMetricsSection project={project} />
+          <ProjectHeroSection
+            orgInstance={orgInstance}
+            project={project}
+            location={location}
+          />
+
+          {project.description && (
+            <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">
+              <div className="space-y-4">
+                <p className="text-base leading-relaxed text-default-600 sm:text-lg">
+                  {project.description}
+                </p>
+                {updatedAt && (
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                    <span className="inline-flex items-center gap-2">
+                      <ClipboardListIcon className="h-4 w-4" />
+                      Updated {updatedAt}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
+
+          <ProjectBreakdown project={project} orgInstance={orgInstance} />
+
+          <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+            <ProjectCoordinators project={project} orgInstance={orgInstance} />
+
+            <Card className="rounded-2xl shadow-sm sm:rounded-3xl">
+              <CardBody className="space-y-4 p-4 sm:p-6">
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:text-sm">
+                  <TagIcon className="h-4 w-4" />
+                  Project details
+                </div>
+                <dl className="space-y-3 text-sm text-default-600">
+                  {project.status && (
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
+                      <dt className="text-muted-foreground">Status</dt>
+                      <dd className="font-medium text-foreground capitalize sm:text-right">
+                        {project.status}
+                      </dd>
+                    </div>
+                  )}
+                  {project.category && (
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
+                      <dt className="text-muted-foreground">Category</dt>
+                      <dd className="font-medium text-foreground capitalize sm:text-right">
+                        {project.category}
+                      </dd>
+                    </div>
+                  )}
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
+                    <dt className="text-muted-foreground">Priority</dt>
+                    <dd
+                      className={`font-semibold uppercase tracking-wide sm:text-right ${getPriorityTextClass(
+                        project.priority,
+                      )}`}
+                    >
+                      {getPriorityLabel(project.priority)}
+                    </dd>
+                  </div>
+                  {project.tags && project.tags.length > 0 && (
+                    <div>
+                      <dt className="mb-2 text-muted-foreground">Tags</dt>
+                      <dd className="flex flex-wrap gap-2">
+                        {project.tags.map((tag: string) => (
+                          <span
+                            key={tag}
+                            className="rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-foreground sm:px-3"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </dd>
+                    </div>
+                  )}
+                  {project.notes && (
+                    <div>
+                      <dt className="mb-2 text-muted-foreground">
+                        Coordinator notes
+                      </dt>
+                      <dd className="rounded-xl bg-muted p-3 text-sm text-default-600 sm:rounded-2xl sm:text-base">
+                        {project.notes}
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+              </CardBody>
+            </Card>
+          </div>
+        </main>
+
+        <ProjectDetailMobileFooter
+          orgInstance={orgInstance}
+          project={project}
+          username={username}
+        />
+        {children}
+      </div>
+    </ProjectCartProvider>
+  );
+}
