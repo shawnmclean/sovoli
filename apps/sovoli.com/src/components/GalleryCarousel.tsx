@@ -49,6 +49,7 @@ export function GalleryCarousel({
     if (!viewedRef.current) {
       posthog.capture("GalleryViewed", {
         mode: "normal",
+        total_items: photos.length,
       });
       viewedRef.current = true;
     }
@@ -69,6 +70,7 @@ export function GalleryCarousel({
           direction,
           from_index: oldIndex,
           to_index: newIndex,
+          total_items: photos.length,
         });
       }
 
@@ -83,6 +85,7 @@ export function GalleryCarousel({
       posthog.capture("GalleryOpenFullscreen", {
         index: current,
         url: currentPhoto.publicId,
+        total_items: photos.length,
       });
     }
     onOpen();
@@ -200,6 +203,7 @@ function FullScreenGallery({
             mode: "fullscreen",
             image_index: oldIndex,
             duration_ms: dwellTime,
+            total_items: photos.length,
           });
         }
 
@@ -214,6 +218,7 @@ function FullScreenGallery({
           direction,
           from_index: oldIndex,
           to_index: newIndex,
+          total_items: photos.length,
         });
 
         // Reset timer for new image
@@ -238,6 +243,7 @@ function FullScreenGallery({
           mode: "fullscreen",
           image_index: currentIndex,
           duration_ms: dwellTime,
+          total_items: photos.length,
         });
       }
 
@@ -245,6 +251,7 @@ function FullScreenGallery({
       posthog.capture("GalleryCloseFullscreen", {
         index: currentIndex,
         url: currentPhoto?.publicId,
+        total_items: photos.length,
       });
     }
   }, [isOpen, api, photos]);
