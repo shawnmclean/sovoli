@@ -8,10 +8,10 @@ import {
 } from "@sovoli/ui/components/drawer";
 import { Card } from "@sovoli/ui/components/card";
 import { Progress } from "@sovoli/ui/components/progress";
+import { Alert } from "@sovoli/ui/components/alert";
 import { DollarSign, Package, Users, TrendingUp } from "lucide-react";
 import type { Project } from "~/modules/projects/types";
 import { trackProjectAnalytics } from "../../lib/projectAnalytics";
-import type { MetricData, ProjectMetricsData } from "../ProjectMetrics";
 
 interface ProjectMetricsDetailsProps {
   project: Project;
@@ -137,14 +137,13 @@ export function ProjectMetricsDetails({ project }: ProjectMetricsDetailsProps) {
           />
           <DrawerBodyComponent>
             <div className="space-y-6 pb-20">
-              <div>
-                <h1 className="text-2xl font-semibold text-foreground mb-2">
-                  {project.title}
-                </h1>
-                <p className="text-sm text-muted-foreground">
-                  Detailed metrics and progress tracking
+              <Alert color="warning" variant="flat">
+                <p className="text-sm font-medium">Under Development</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  This feature is currently under development. Metrics shown are
+                  for demonstration purposes.
                 </p>
-              </div>
+              </Alert>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {metricsArray.map((metric, index) => {

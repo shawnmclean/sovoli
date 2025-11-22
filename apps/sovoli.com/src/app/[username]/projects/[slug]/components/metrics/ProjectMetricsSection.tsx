@@ -153,9 +153,6 @@ export function ProjectMetricsSection({
             );
           })}
         </div>
-        <div className="mt-3 text-sm text-muted-foreground underline text-center">
-          View detailed metrics
-        </div>
       </div>
     </Link>
   );
