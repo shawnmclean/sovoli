@@ -1,46 +1,41 @@
 "use client";
 
-import { useState } from "react";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 
 import { MapView } from "./MapView";
 import { ListView } from "./ListView";
 import { ProjectsSearch } from "./ProjectsSearch";
 import { ProjectsViewTabs } from "./ProjectsViewTabs";
+import { ProjectsPagination } from "./ProjectsPagination";
 import type { ProjectDirectoryEntry } from "../types";
 
 interface ProjectsDirectoryContentProps {
   projects: ProjectDirectoryEntry[];
   totalProjects: number;
   view: "list" | "map";
+  page: number;
+  pageSize: number;
+  totalPages: number;
+  selectedOrg?: string;
 }
 
 export function ProjectsDirectoryContent({
   projects,
   totalProjects,
   view,
+  page,
+  pageSize,
+  totalPages,
+  selectedOrg,
 }: ProjectsDirectoryContentProps) {
-  const [filteredProjects, setFilteredProjects] =
-    useState<ProjectDirectoryEntry[]>(projects);
-
-  const handleFilteredProjectsChange = (filtered: ProjectDirectoryEntry[]) => {
-    setFilteredProjects(filtered);
-  };
-
   return (
     <>
       <Card className="border border-divider shadow-lg">
         <CardBody className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex-1 space-y-2">
-            <ProjectsSearch
-              projects={projects}
-              onFilteredProjectsChange={handleFilteredProjectsChange}
-            />
+            <ProjectsSearch selectedOrg={selectedOrg} />
           </div>
-          <ProjectsViewTabs
-            defaultView={view}
-            projectsCount={filteredProjects.length}
-          />
+          <ProjectsViewTabs defaultView={view} projectsCount={totalProjects} />
         </CardBody>
       </Card>
 
@@ -54,7 +49,7 @@ export function ProjectsDirectoryContent({
             </p>
           </CardBody>
         </Card>
-      ) : filteredProjects.length === 0 ? (
+      ) : projects.length === 0 ? (
         <Card>
           <CardBody className="text-center">
             <p className="text-lg font-semibold">No projects found</p>
@@ -64,10 +59,22 @@ export function ProjectsDirectoryContent({
             </p>
           </CardBody>
         </Card>
-      ) : view === "map" ? (
-        <MapView projects={filteredProjects} />
       ) : (
-        <ListView projects={filteredProjects} />
+        <>
+          {view === "map" ? (
+            <MapView projects={projects} />
+          ) : (
+            <ListView projects={projects} />
+          )}
+          {view === "list" && totalPages > 1 && (
+            <ProjectsPagination
+              page={page}
+              pageSize={pageSize}
+              totalPages={totalPages}
+              selectedOrg={selectedOrg}
+            />
+          )}
+        </>
       )}
     </>
   );

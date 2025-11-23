@@ -26,17 +26,46 @@ export const metadata: Metadata = {
 };
 
 interface ProjectsDirectoryPageProps {
-  searchParams: Promise<{ view?: string }>;
+  searchParams: Promise<{
+    view?: string;
+    page?: string;
+    pageSize?: string;
+    org?: string;
+  }>;
 }
 
 export default async function ProjectsDirectoryPage({
   searchParams,
 }: ProjectsDirectoryPageProps) {
-  const viewParam = (await searchParams).view;
+  const params = await searchParams;
+  const viewParam = params.view;
   const view: "list" | "map" = viewParam === "map" ? "map" : "list";
+  const page = parseInt(params.page ?? "1");
+  const pageSize = parseInt(params.pageSize ?? "10");
+  const orgParam = params.org;
 
-  const projects = getAllProjectDirectoryEntries();
+  // Get all projects
+  let projects = getAllProjectDirectoryEntries();
+
+  // Filter by organization if org param exists
+  if (orgParam) {
+    projects = projects.filter((project) => project.orgUsername === orgParam);
+  }
+
   const totalProjects = projects.length;
+
+  // For map view, show all projects (no pagination)
+  // For list view, paginate
+  let paginatedProjects = projects;
+  if (view === "list") {
+    // List view paginates
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    paginatedProjects = projects.slice(startIndex, endIndex);
+  }
+  // Map view already has all projects, no need to slice
+
+  const totalPages = Math.ceil(totalProjects / pageSize);
 
   return (
     <>
@@ -64,9 +93,13 @@ export default async function ProjectsDirectoryPage({
       <section className="-mt-8 pb-16 sm:-mt-10">
         <div className="mx-auto max-w-5xl space-y-6 px-4 sm:px-6">
           <ProjectsDirectoryContent
-            projects={projects}
+            projects={paginatedProjects}
             totalProjects={totalProjects}
             view={view}
+            page={page}
+            pageSize={pageSize}
+            totalPages={totalPages}
+            selectedOrg={orgParam}
           />
         </div>
       </section>

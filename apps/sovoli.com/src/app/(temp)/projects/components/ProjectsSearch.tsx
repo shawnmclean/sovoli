@@ -1,43 +1,40 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import posthog from "posthog-js";
 import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
-import type { ProjectDirectoryEntry } from "../types";
+import { getAllProjectDirectoryEntries } from "../lib/projectsData";
 
 interface ProjectsSearchProps {
-  projects: ProjectDirectoryEntry[];
-  onFilteredProjectsChange: (filtered: ProjectDirectoryEntry[]) => void;
+  selectedOrg?: string;
 }
 
-export function ProjectsSearch({
-  projects,
-  onFilteredProjectsChange,
-}: ProjectsSearchProps) {
-  const [selectedOrgKey, setSelectedOrgKey] = useState<string | null>(null);
-
-  // Filter projects based on selected organization
-  const filteredProjects = useMemo(() => {
-    if (!selectedOrgKey) {
-      return projects;
-    }
-    return projects.filter((project) => project.orgUsername === selectedOrgKey);
-  }, [projects, selectedOrgKey]);
-
-  // Notify parent when filtered projects change
-  useEffect(() => {
-    onFilteredProjectsChange(filteredProjects);
-  }, [filteredProjects, onFilteredProjectsChange]);
+export function ProjectsSearch({ selectedOrg }: ProjectsSearchProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const handleSelectionChange = (key: string | null) => {
-    setSelectedOrgKey(key);
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (key) {
+      params.set("org", key);
+      // Reset to page 1 when filtering
+      params.set("page", "1");
+    } else {
+      params.delete("org");
+      params.delete("page");
+    }
+
+    const query = params.toString();
 
     // Track search event
     if (key) {
-      const selectedProject = projects.find(
+      const allProjects = getAllProjectDirectoryEntries();
+      const selectedProject = allProjects.find(
         (project) => project.orgUsername === key,
       );
-      const resultsCount = projects.filter(
+      const resultsCount = allProjects.filter(
         (project) => project.orgUsername === key,
       ).length;
       posthog.capture("ProjectsSearch", {
@@ -54,14 +51,27 @@ export function ProjectsSearch({
         content_category: "search",
       });
     }
+
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
   };
 
   const handleClear = () => {
-    setSelectedOrgKey(null);
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("org");
+    params.delete("page");
+
+    const query = params.toString();
+
     // Track clear filter event
     posthog.capture("ProjectsSearchCleared", {
       content_type: "projects_directory",
       content_category: "search",
+    });
+
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
     });
   };
 
@@ -69,14 +79,14 @@ export function ProjectsSearch({
     <div className="space-y-2">
       <OrganizationAutocomplete
         label="Find schools"
-        selectedKey={selectedOrgKey}
+        selectedKey={selectedOrg ?? null}
         onSelectionChange={handleSelectionChange}
         placeholder="Search for a school..."
         categoryGroup="school"
         countryCode="JM"
         className="w-full"
       />
-      {selectedOrgKey && (
+      {selectedOrg && (
         <button
           onClick={handleClear}
           className="text-sm text-primary hover:underline"
