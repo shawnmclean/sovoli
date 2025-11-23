@@ -6,7 +6,7 @@ import { Card } from "@sovoli/ui/components/card";
 import { Progress } from "@sovoli/ui/components/progress";
 import { DollarSign, Package, Users, TrendingUp } from "lucide-react";
 import type { Project } from "~/modules/projects/types";
-import type { MetricData, ProjectMetricsData } from "../ProjectMetrics";
+import type {  ProjectMetricsData } from "../ProjectMetrics";
 
 interface ProjectMetricsSectionProps {
   project: Project;
