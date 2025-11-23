@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
+import posthog from "posthog-js";
 import {
   Drawer,
   DrawerBody,
@@ -329,6 +330,13 @@ export function ReliefForm() {
       contactPhoneRaw: rawPhone,
       contactCountryIso: normalizedIso ?? "",
     }));
+
+    posthog.capture("LeadPhoneEntered", {
+      $set: {
+        phone: phone,
+      },
+    });
+
     setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
     return Promise.resolve({ status: "success", message: "" });
   };
@@ -339,6 +347,15 @@ export function ReliefForm() {
       contactFirstName: firstName,
       contactLastName: lastName,
     }));
+
+    posthog.capture("LeadNameEntered", {
+      $set: {
+        first_name: firstName,
+        last_name: lastName,
+        name: `${firstName} ${lastName}`,
+      },
+    });
+
     setCurrentStep((prev) => Math.min(prev + 1, stepSequence.length - 1));
   };
 
