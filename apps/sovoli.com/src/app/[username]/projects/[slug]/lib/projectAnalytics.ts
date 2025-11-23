@@ -12,7 +12,7 @@ interface ProjectAnalyticsData {
 
 // Get project name
 const getProjectName = (project: Project) => {
-  return project.title ?? "Project";
+  return project.title;
 };
 
 // Centralized analytics data preparation
