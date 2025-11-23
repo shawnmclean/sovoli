@@ -18,6 +18,7 @@ export const CONTACT_ROLE_OPTIONS = [
   { key: "guidance-counsellor", label: "Guidance Counsellor" },
   { key: "teacher", label: "Teacher" },
   { key: "board-member", label: "Board Member" },
+  { key: "parent", label: "Parent" },
   { key: "operations", label: "Operations / Facilities Lead" },
   { key: "other", label: "Other" },
 ] as const;
