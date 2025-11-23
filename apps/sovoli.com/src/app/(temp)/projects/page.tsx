@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
-import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
 
-import { DirectoryViewTabs } from "~/app/(directory)/d/components/DirectoryViewTabs";
-
-import { MapView } from "./components/MapView";
-import { ListView } from "./components/ListView";
+import { ProjectsDirectoryContent } from "./components/ProjectsDirectoryContent";
 import { getAllProjectDirectoryEntries } from "./lib/projectsData";
 
 export const metadata: Metadata = {
@@ -67,32 +63,11 @@ export default async function ProjectsDirectoryPage({
 
       <section className="-mt-8 pb-16 sm:-mt-10">
         <div className="mx-auto max-w-5xl space-y-6 px-4 sm:px-6">
-          <Card className="border border-divider shadow-lg">
-            <CardBody className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-              <div className="space-y-2">
-                <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                  Filter and search coming soon
-                </p>
-              </div>
-              <DirectoryViewTabs defaultView={view} />
-            </CardBody>
-          </Card>
-
-          {totalProjects === 0 ? (
-            <Card>
-              <CardBody className="text-center">
-                <p className="text-lg font-semibold">No projects yet</p>
-                <p className="mt-2 text-default-500">
-                  We&apos;re coordinating new recovery initiatives. Check back
-                  shortly or submit your school&apos;s needs.
-                </p>
-              </CardBody>
-            </Card>
-          ) : view === "map" ? (
-            <MapView projects={projects} />
-          ) : (
-            <ListView projects={projects} />
-          )}
+          <ProjectsDirectoryContent
+            projects={projects}
+            totalProjects={totalProjects}
+            view={view}
+          />
         </div>
       </section>
     </>
