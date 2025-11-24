@@ -21,6 +21,8 @@ export interface OrganizationAutocompleteProps {
   onSelectionChange?: (key: string | null) => void;
   /** Callback when a new organization is created (called with the organization name) */
   onCreate?: (name: string) => void;
+  /** Callback when input text changes */
+  onInputChange?: (value: string) => void;
   /** Placeholder text */
   placeholder?: string;
   /** Filter by specific categories */
@@ -50,6 +52,7 @@ export function OrganizationAutocomplete({
   selectedKey,
   onSelectionChange,
   onCreate,
+  onInputChange,
   placeholder = "Select an organization",
   categories,
   categoryGroup,
@@ -171,11 +174,17 @@ export function OrganizationAutocomplete({
       {...(allowsCreate
         ? {
             inputValue,
-            onInputChange: setInputValue,
+            onInputChange: (value: string) => {
+              setInputValue(value);
+              onInputChange?.(value);
+            },
             items: filteredOrgs,
           }
         : {
             defaultItems: filteredOrgs,
+            onInputChange: (value: string) => {
+              onInputChange?.(value);
+            },
           })}
       placeholder={placeholder}
       selectedKey={selectedKey ?? null}

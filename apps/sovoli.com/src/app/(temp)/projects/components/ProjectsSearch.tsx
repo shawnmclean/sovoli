@@ -1,9 +1,10 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import posthog from "posthog-js";
 import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
-import { getAllProjectDirectoryEntries } from "../lib/projectsData";
+import { ORGS } from "~/modules/data/organisations";
 
 interface ProjectsSearchProps {
   selectedOrg?: string;
@@ -13,6 +14,8 @@ export function ProjectsSearch({ selectedOrg }: ProjectsSearchProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [inputValue, setInputValue] = useState("");
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleSelectionChange = (key: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -30,25 +33,18 @@ export function ProjectsSearch({ selectedOrg }: ProjectsSearchProps) {
 
     // Track search event
     if (key) {
-      const allProjects = getAllProjectDirectoryEntries();
-      const selectedProject = allProjects.find(
-        (project) => project.orgUsername === key,
-      );
-      const resultsCount = allProjects.filter(
-        (project) => project.orgUsername === key,
-      ).length;
-      posthog.capture("ProjectsSearch", {
-        content_type: "projects_directory",
-        content_category: "search",
-        org_username: key,
-        org_name: selectedProject?.orgName,
-        results_count: resultsCount,
+      // Get organization name from ORGS data (what was selected from autocomplete)
+      const selectedOrgInstance = ORGS.find((org) => org.org.username === key);
+      const orgName = selectedOrgInstance?.org.name ?? inputValue;
+
+      posthog.capture("Search", {
+        type: "project",
+        search_string: orgName,
       });
     } else {
       // Track clear filter event
-      posthog.capture("ProjectsSearchCleared", {
-        content_type: "projects_directory",
-        content_category: "search",
+      posthog.capture("SearchCleared", {
+        type: "project",
       });
     }
 
@@ -65,15 +61,45 @@ export function ProjectsSearch({ selectedOrg }: ProjectsSearchProps) {
     const query = params.toString();
 
     // Track clear filter event
-    posthog.capture("ProjectsSearchCleared", {
-      content_type: "projects_directory",
-      content_category: "search",
-    });
+    posthog.capture("SearchCleared", { type: "project" });
 
     router.replace(query ? `${pathname}?${query}` : pathname, {
       scroll: false,
     });
   };
+
+  const handleInputChange = (value: string) => {
+    setInputValue(value);
+  };
+
+  // Debounced PostHog logging for input text changes
+  // Only log when no item is selected and user has finished typing
+  useEffect(() => {
+    // Clear existing timeout
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
+
+    // Only log if:
+    // 1. No item is currently selected (selectedOrg is null/undefined)
+    // 2. There's actual input text (not empty)
+    if (!selectedOrg && inputValue.trim()) {
+      // Set a new timeout to log after user stops typing for 500ms
+      debounceTimeoutRef.current = setTimeout(() => {
+        posthog.capture("Search", {
+          type: "project",
+          search_string: inputValue,
+        });
+      }, 500);
+    }
+
+    // Cleanup timeout on unmount or when inputValue/selectedOrg changes
+    return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+    };
+  }, [inputValue, selectedOrg]);
 
   return (
     <div className="space-y-2">
@@ -81,6 +107,7 @@ export function ProjectsSearch({ selectedOrg }: ProjectsSearchProps) {
         label="Find schools"
         selectedKey={selectedOrg ?? null}
         onSelectionChange={handleSelectionChange}
+        onInputChange={handleInputChange}
         placeholder="Search for a school..."
         categoryGroup="school"
         countryCode="JM"
