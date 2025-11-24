@@ -72,6 +72,12 @@ export function ProjectsSearch({ selectedOrg }: ProjectsSearchProps) {
     setInputValue(value);
   };
 
+  const handleFocus = () => {
+    posthog.capture("SearchInteract", {
+      type: "project",
+    });
+  };
+
   // Debounced PostHog logging for input text changes
   // Only log when no item is selected and user has finished typing
   useEffect(() => {
@@ -108,6 +114,7 @@ export function ProjectsSearch({ selectedOrg }: ProjectsSearchProps) {
         selectedKey={selectedOrg ?? null}
         onSelectionChange={handleSelectionChange}
         onInputChange={handleInputChange}
+        onFocus={handleFocus}
         placeholder="Search for a school..."
         categoryGroup="school"
         countryCode="JM"

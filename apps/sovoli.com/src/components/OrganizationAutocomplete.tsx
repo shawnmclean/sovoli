@@ -23,6 +23,8 @@ export interface OrganizationAutocompleteProps {
   onCreate?: (name: string) => void;
   /** Callback when input text changes */
   onInputChange?: (value: string) => void;
+  /** Callback when input is focused */
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   /** Placeholder text */
   placeholder?: string;
   /** Filter by specific categories */
@@ -53,6 +55,7 @@ export function OrganizationAutocomplete({
   onSelectionChange,
   onCreate,
   onInputChange,
+  onFocus,
   placeholder = "Select an organization",
   categories,
   categoryGroup,
@@ -189,6 +192,7 @@ export function OrganizationAutocomplete({
       placeholder={placeholder}
       selectedKey={selectedKey ?? null}
       multiple={false}
+      onFocus={onFocus}
       onSelectionChange={(key) => {
         const keyString = key ? String(key) : null;
         if (allowsCreate && keyString) {
