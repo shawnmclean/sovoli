@@ -18,6 +18,14 @@ export type ProjectCategory =
   | "administration"
   | "other";
 
+export interface ProjectGroup {
+  id: string;
+  slug: string;
+  name: string;
+  description?: string;
+  projects?: Project[];
+}
+
 /**
  * A project represents an initiative or operation carried out by a school/org.
  * Each project may include multiple Needs (materials, human resources, services, etc.).
@@ -29,6 +37,8 @@ export interface Project {
 
   /** Project title */
   title: string;
+
+  group?: ProjectGroup & { order?: number };
 
   /** Project photos */
   photos?: Photo[];

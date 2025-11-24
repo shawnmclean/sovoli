@@ -7,7 +7,6 @@ interface ProjectAnalyticsData {
   projectId: string;
   status?: string;
   priority?: string;
-  category?: string;
 }
 
 // Get project name
@@ -25,7 +24,6 @@ const prepareProjectAnalytics = (project: Project): ProjectAnalyticsData => {
     projectId: project.id,
     status: project.status,
     priority: project.priority,
-    category: project.category,
   };
 };
 
@@ -39,9 +37,10 @@ export const trackProjectAnalytics = (
 
   // https://developers.facebook.com/docs/meta-pixel/implementation/conversion-tracking#custom-events
   posthog.capture(event, {
-    content_category: analyticsData.category ?? "Project",
+    type: "project",
+    content_category: analyticsData.project.group?.name ?? "Project",
     content_name: analyticsData.projectName,
-    content_type: "project",
+    content_type: "product",
     content_ids: [analyticsData.projectId],
     ...(analyticsData.status && { project_status: analyticsData.status }),
     ...(analyticsData.priority && { project_priority: analyticsData.priority }),

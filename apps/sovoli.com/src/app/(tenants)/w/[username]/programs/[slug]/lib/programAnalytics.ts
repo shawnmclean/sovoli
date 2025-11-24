@@ -135,6 +135,7 @@ export const trackProgramAnalytics = (
 
   // https://developers.facebook.com/docs/meta-pixel/implementation/conversion-tracking#custom-events
   posthog.capture(event, {
+    type: "program",
     content_category: analyticsData.program.group?.name ?? "Program",
     content_name: `${programName} - ${cycleLabel}`,
     content_type: "product",
