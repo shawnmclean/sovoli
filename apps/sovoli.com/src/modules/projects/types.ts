@@ -6,7 +6,7 @@ import type { Photo } from "../core/photos/types";
 export type ProjectStatus = "planned" | "active" | "completed" | "cancelled";
 
 /** Priority classification */
-export type ProjectPriority = "low" | "medium" | "high";
+export type ProjectPriority = "low" | "medium" | "high" | "critical";
 
 /** Optional project categories */
 export type ProjectCategory =

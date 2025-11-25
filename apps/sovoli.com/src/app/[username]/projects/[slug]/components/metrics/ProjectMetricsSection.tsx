@@ -6,7 +6,19 @@ import { Card } from "@sovoli/ui/components/card";
 import { Progress } from "@sovoli/ui/components/progress";
 import { DollarSign, Package, Users, TrendingUp } from "lucide-react";
 import type { Project } from "~/modules/projects/types";
-import type {  ProjectMetricsData } from "../ProjectMetrics";
+
+export interface MetricData {
+  value: string;
+  target: string;
+  progress: number;
+}
+
+export interface ProjectMetricsData {
+  totalRaised: MetricData;
+  projectProgress: MetricData;
+  volunteers: MetricData;
+  itemsFunded: MetricData;
+}
 
 interface ProjectMetricsSectionProps {
   project: Project;
@@ -34,14 +46,14 @@ function calculateMetrics(project: Project) {
   totalRaised = Math.round(targetRaised * 0.668);
 
   // Calculate project progress (65% to match example)
-  const projectProgress = 65;
+  const projectProgress = 0;
 
   // Placeholder values for volunteers
-  const volunteersPledged = 47;
-  const targetVolunteers = 60;
+  const volunteersPledged = 0;
+  const targetVolunteers = 10;
 
   // Items funded (18 out of 24 to match example)
-  const itemsFunded = 18;
+  const itemsFunded = 0;
   const totalItems = 24;
 
   return {
