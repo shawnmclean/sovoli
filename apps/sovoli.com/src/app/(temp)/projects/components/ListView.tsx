@@ -188,7 +188,7 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
           href={projectHref}
           className="flex items-center gap-1 text-primary transition hover:gap-2"
         >
-          View impact
+          More Details
           <ArrowRightIcon className="h-4 w-4" />
         </Link>
       </CardFooter>
