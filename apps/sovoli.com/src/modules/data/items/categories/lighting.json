@@ -4,211 +4,203 @@
   "gpcCode": "14000000",
   "children": [
     {
-      "id": "lighting",
-      "name": "Lighting",
-      "gpcCode": "14010000",
+      "id": "lamps-light-bulbs-lighting",
+      "name": "Lamps/Light Bulbs/Lighting",
+      "gpcCode": "14010100",
       "parentId": "lighting",
       "children": [
         {
-          "id": "lamps-light-bulbs-lighting",
-          "name": "Lamps/Light Bulbs/Lighting",
-          "gpcCode": "14010100",
-          "parentId": "lighting",
-          "children": [
-            {
-              "id": "built-in-lighting",
-              "name": "Built-in Lighting",
-              "gpcCode": "10008402",
-              "gpcDescription": "Includes all products that can be described/observed as a complete lighting unit permanently fixed in place and built into a wall, ceiling or floor. These products may have connections for one or more light bulbs and are connected to the wired electrical home network. Includes products such as recessed ceiling spotlights and floor lights.",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "fibre-optic-lighting",
-              "name": "Fibre Optic Lighting",
-              "gpcCode": "10005640",
-              "gpcDescription": "Includes any products that can be described/observed as decorative light made from multiple transparent plastic or glass fibres. A single light source provides multiple points of light at the ends of the fibre optic cables, which can be continuous or intermittent. A colour wheel may be present in some products to enable the colour of the output points of lights to be changed without changing the light source.",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "freestanding-lighting",
-              "name": "Freestanding Lighting",
-              "gpcCode": "10005641",
-              "gpcDescription": "Includes any products that can be described/observed as a lamp that can be used freestanding and is not mounted in or on a wall, ceiling or floor. Includes products such as table lamps, lava lamps, uplighters, torchieres, floor lamps and electric candles.",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "hanging-lighting",
-              "name": "Hanging Lighting",
-              "gpcCode": "10008404",
-              "gpcDescription": "Includes all products that can be described/observed as a complete lighting unit permanently fixed in place and attached to a ceiling by a cable or cord.",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "led-strips-and-replacement-parts-accessories",
-              "name": "Led Strips and Replacement Parts/Accessories",
-              "gpcCode": "10008292",
-              "gpcDescription": "Includes any products that can be described/observed as a ledstrip or lightstrip. Also includes accessories and replacement parts for ledstrips/lightstrips.",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "light-bulbs-tubes-light-emitting-diodes",
-              "name": "Light Bulbs/Tubes/Light-Emitting Diodes",
-              "gpcCode": "10000552",
-              "gpcDescription": "Includes any products that can be described/observed as an electrical bulb, light-emitting diode, or tube specifically designed to generate and diffuse artificial light when activated by an electrical current. Includes decorative lights, bulbs, fluorescent tubes and appliance bulbs. ",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "mounted-lighting",
-              "name": "Mounted Lighting",
-              "gpcCode": "10008403",
-              "gpcDescription": "Includes all products that can be described/observed as a complete lighting unit permanently fixed in place and mounted on a wall, ceiling or floor. These products may have connections for one or more light bulbs and are connected to the wired electrical home network. Includes products such as mounted wall and ceiling light fixtures.",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "plug-in-lighting",
-              "name": "Plug-in Lighting",
-              "gpcCode": "10008405",
-              "gpcDescription": "Includes all products that can be described/observed as a lighting device that can be plugged directly into a current-carrying system, such as, for example, a wall socket.",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "rope-string-lights",
-              "name": "Rope/String Lights",
-              "gpcCode": "10005644",
-              "gpcDescription": "Includes any products that can be described/observed as a number of small lightbulbs, which are attached to a length of wire or a network of wires. The lightbulbs either shine continuously or flash intermittently. The lights and wire can be enclosed in a transparent plastic sheath or the lightbulbs may have individual lampshades, which are often decorative shapes such as flowers, butterflies or hearts. These products can be operated with electrical or solar energy and are designed to be used indoor or outdoor.",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "undercabinet-and-mirror-lighting",
-              "name": "Undercabinet and Mirror Lighting",
-              "gpcCode": "10008406",
-              "gpcDescription": "Includes all products that can be described/observed as lighting used to illuminate furniture and mirrors.",
-              "parentId": "lamps-light-bulbs-lighting"
-            },
-            {
-              "id": "wide-angle-and-high-beem-work-lighting",
-              "name": "Wide-angle and High-beem (work) Lighting",
-              "gpcCode": "10005643",
-              "gpcDescription": "Includes any products that can be described/observed as a lighting device used to illuminate broad areas. These can be either portable or need to be fixed to a facade. Includes products such as as portable inspection lamps and work lights.",
-              "parentId": "lamps-light-bulbs-lighting"
-            }
-          ]
+          "id": "built-in-lighting",
+          "name": "Built-in Lighting",
+          "gpcCode": "10008402",
+          "gpcDescription": "Includes all products that can be described/observed as a complete lighting unit permanently fixed in place and built into a wall, ceiling or floor. These products may have connections for one or more light bulbs and are connected to the wired electrical home network. Includes products such as recessed ceiling spotlights and floor lights.",
+          "parentId": "lamps-light-bulbs-lighting"
         },
+        {
+          "id": "fibre-optic-lighting",
+          "name": "Fibre Optic Lighting",
+          "gpcCode": "10005640",
+          "gpcDescription": "Includes any products that can be described/observed as decorative light made from multiple transparent plastic or glass fibres. A single light source provides multiple points of light at the ends of the fibre optic cables, which can be continuous or intermittent. A colour wheel may be present in some products to enable the colour of the output points of lights to be changed without changing the light source.",
+          "parentId": "lamps-light-bulbs-lighting"
+        },
+        {
+          "id": "freestanding-lighting",
+          "name": "Freestanding Lighting",
+          "gpcCode": "10005641",
+          "gpcDescription": "Includes any products that can be described/observed as a lamp that can be used freestanding and is not mounted in or on a wall, ceiling or floor. Includes products such as table lamps, lava lamps, uplighters, torchieres, floor lamps and electric candles.",
+          "parentId": "lamps-light-bulbs-lighting"
+        },
+        {
+          "id": "hanging-lighting",
+          "name": "Hanging Lighting",
+          "gpcCode": "10008404",
+          "gpcDescription": "Includes all products that can be described/observed as a complete lighting unit permanently fixed in place and attached to a ceiling by a cable or cord.",
+          "parentId": "lamps-light-bulbs-lighting"
+        },
+        {
+          "id": "led-strips-and-replacement-parts-accessories",
+          "name": "Led Strips and Replacement Parts/Accessories",
+          "gpcCode": "10008292",
+          "gpcDescription": "Includes any products that can be described/observed as a ledstrip or lightstrip. Also includes accessories and replacement parts for ledstrips/lightstrips.",
+          "parentId": "lamps-light-bulbs-lighting"
+        },
+        {
+          "id": "light-bulbs-tubes-light-emitting-diodes",
+          "name": "Light Bulbs/Tubes/Light-Emitting Diodes",
+          "gpcCode": "10000552",
+          "gpcDescription": "Includes any products that can be described/observed as an electrical bulb, light-emitting diode, or tube specifically designed to generate and diffuse artificial light when activated by an electrical current. Includes decorative lights, bulbs, fluorescent tubes and appliance bulbs. ",
+          "parentId": "lamps-light-bulbs-lighting"
+        },
+        {
+          "id": "mounted-lighting",
+          "name": "Mounted Lighting",
+          "gpcCode": "10008403",
+          "gpcDescription": "Includes all products that can be described/observed as a complete lighting unit permanently fixed in place and mounted on a wall, ceiling or floor. These products may have connections for one or more light bulbs and are connected to the wired electrical home network. Includes products such as mounted wall and ceiling light fixtures.",
+          "parentId": "lamps-light-bulbs-lighting"
+        },
+        {
+          "id": "plug-in-lighting",
+          "name": "Plug-in Lighting",
+          "gpcCode": "10008405",
+          "gpcDescription": "Includes all products that can be described/observed as a lighting device that can be plugged directly into a current-carrying system, such as, for example, a wall socket.",
+          "parentId": "lamps-light-bulbs-lighting"
+        },
+        {
+          "id": "rope-string-lights",
+          "name": "Rope/String Lights",
+          "gpcCode": "10005644",
+          "gpcDescription": "Includes any products that can be described/observed as a number of small lightbulbs, which are attached to a length of wire or a network of wires. The lightbulbs either shine continuously or flash intermittently. The lights and wire can be enclosed in a transparent plastic sheath or the lightbulbs may have individual lampshades, which are often decorative shapes such as flowers, butterflies or hearts. These products can be operated with electrical or solar energy and are designed to be used indoor or outdoor.",
+          "parentId": "lamps-light-bulbs-lighting"
+        },
+        {
+          "id": "undercabinet-and-mirror-lighting",
+          "name": "Undercabinet and Mirror Lighting",
+          "gpcCode": "10008406",
+          "gpcDescription": "Includes all products that can be described/observed as lighting used to illuminate furniture and mirrors.",
+          "parentId": "lamps-light-bulbs-lighting"
+        },
+        {
+          "id": "wide-angle-and-high-beem-work-lighting",
+          "name": "Wide-angle and High-beem (work) Lighting",
+          "gpcCode": "10005643",
+          "gpcDescription": "Includes any products that can be described/observed as a lighting device used to illuminate broad areas. These can be either portable or need to be fixed to a facade. Includes products such as as portable inspection lamps and work lights.",
+          "parentId": "lamps-light-bulbs-lighting"
+        }
+      ]
+    },
+    {
+      "id": "lighting-other",
+      "name": "Lighting - Other",
+      "gpcCode": "14010300",
+      "parentId": "lighting",
+      "children": [
         {
           "id": "lighting-other",
           "name": "Lighting - Other",
-          "gpcCode": "14010300",
-          "parentId": "lighting",
-          "children": [
-            {
-              "id": "lighting-other",
-              "name": "Lighting - Other",
-              "gpcCode": "10006896",
-              "gpcDescription": "Includes any products that may be described/observed as lighting products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
-              "parentId": "lighting-other"
-            }
-          ]
+          "gpcCode": "10006896",
+          "gpcDescription": "Includes any products that may be described/observed as lighting products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+          "parentId": "lighting-other"
+        }
+      ]
+    },
+    {
+      "id": "lighting-replacement-parts-accessories",
+      "name": "Lighting - Replacement Parts/Accessories",
+      "gpcCode": "14010500",
+      "parentId": "lighting",
+      "children": [
+        {
+          "id": "lamp-brackets-fittings-others",
+          "name": "Lamp Brackets/Fittings Others",
+          "gpcCode": "10005637",
+          "gpcDescription": "Includes any products that can be observed/described as an accessory other than a lamp fitting or a fixture to be able to attach a lamp to a wall, ceiling or floor. Includes products such as wall brackets, ceiling mounts, fluorescent battens and spotlight tracks. ",
+          "parentId": "lighting-replacement-parts-accessories"
+        },
+        {
+          "id": "lampshades",
+          "name": "Lampshades",
+          "gpcCode": "10005635",
+          "gpcDescription": "Includes any products that can be described/observed as a shade or cover that is placed over or around a lamp to soften or screen its light. Includes products that give a downlighting, uplighting or wallwashing effect and come in a variety of materials.",
+          "parentId": "lighting-replacement-parts-accessories"
+        },
+        {
+          "id": "lampstands-bases",
+          "name": "Lampstands/Bases",
+          "gpcCode": "10005636",
+          "gpcDescription": "Includes any products that can be described/observed as a freestanding column or base, which encloses the lamp cable and supports the lamp and most often the lampshade. Includes products in a variety of materials and can be either rigid or flexible. Includes also accessories used to support lighting equipment, specifically for outdoor or construction site use.",
+          "parentId": "lighting-replacement-parts-accessories"
+        },
+        {
+          "id": "light-bulb-changers",
+          "name": "Light Bulb Changers",
+          "gpcCode": "10005638",
+          "gpcDescription": "Includes any products that can be described/observed as a tool that is used to change bulbs and recessed floodlights safely from the ground. The tool consists of a fork-like grip attached to a telescopic pole that is able to change many sizes and shapes of bulbs. Includes products that have accessories for recessed and track lighting, standard incandescent bulbs and floodlights.",
+          "parentId": "lighting-replacement-parts-accessories"
         },
         {
           "id": "lighting-replacement-parts-accessories",
           "name": "Lighting - Replacement Parts/Accessories",
-          "gpcCode": "14010500",
-          "parentId": "lighting",
-          "children": [
-            {
-              "id": "lamp-brackets-fittings-others",
-              "name": "Lamp Brackets/Fittings Others",
-              "gpcCode": "10005637",
-              "gpcDescription": "Includes any products that can be observed/described as an accessory other than a lamp fitting or a fixture to be able to attach a lamp to a wall, ceiling or floor. Includes products such as wall brackets, ceiling mounts, fluorescent battens and spotlight tracks. ",
-              "parentId": "lighting-replacement-parts-accessories"
-            },
-            {
-              "id": "lampshades",
-              "name": "Lampshades",
-              "gpcCode": "10005635",
-              "gpcDescription": "Includes any products that can be described/observed as a shade or cover that is placed over or around a lamp to soften or screen its light. Includes products that give a downlighting, uplighting or wallwashing effect and come in a variety of materials.",
-              "parentId": "lighting-replacement-parts-accessories"
-            },
-            {
-              "id": "lampstands-bases",
-              "name": "Lampstands/Bases",
-              "gpcCode": "10005636",
-              "gpcDescription": "Includes any products that can be described/observed as a freestanding column or base, which encloses the lamp cable and supports the lamp and most often the lampshade. Includes products in a variety of materials and can be either rigid or flexible. Includes also accessories used to support lighting equipment, specifically for outdoor or construction site use.",
-              "parentId": "lighting-replacement-parts-accessories"
-            },
-            {
-              "id": "light-bulb-changers",
-              "name": "Light Bulb Changers",
-              "gpcCode": "10005638",
-              "gpcDescription": "Includes any products that can be described/observed as a tool that is used to change bulbs and recessed floodlights safely from the ground. The tool consists of a fork-like grip attached to a telescopic pole that is able to change many sizes and shapes of bulbs. Includes products that have accessories for recessed and track lighting, standard incandescent bulbs and floodlights.",
-              "parentId": "lighting-replacement-parts-accessories"
-            },
-            {
-              "id": "lighting-replacement-parts-accessories",
-              "name": "Lighting - Replacement Parts/Accessories",
-              "gpcCode": "10005217",
-              "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for lighting equipment.",
-              "parentId": "lighting-replacement-parts-accessories"
-            },
-            {
-              "id": "tripod-lighting",
-              "name": "Tripod (Lighting)",
-              "gpcCode": "10007931",
-              "gpcDescription": "Includes any products that can be described/observed as an accessory used to support lighting equipment, specifically for outdoor use or use on a construction site. ",
-              "parentId": "lighting-replacement-parts-accessories"
-            }
-          ]
+          "gpcCode": "10005217",
+          "gpcDescription": "Includes any products that may be described/observed as replacement parts or accessories for lighting equipment.",
+          "parentId": "lighting-replacement-parts-accessories"
         },
         {
-          "id": "lighting-control-components",
-          "name": "Lighting Control Components",
-          "gpcCode": "14010200",
-          "parentId": "lighting",
-          "children": [
-            {
-              "id": "ballasts-starters",
-              "name": "Ballasts/Starters",
-              "gpcCode": "10005481",
-              "gpcDescription": "Includes any products that can be described/observed as a device that initiates a flow of electric current across the electrodes of electrical gas discharge lights and regulates the current once in operation. The gas discharge light sources include fluorescent lights, neon lights and high-intensity discharge lamps. Includes products such as magnetic ballasts/starters and electronic ballasts/starters.",
-              "parentId": "lighting-control-components"
-            },
-            {
-              "id": "dimmers",
-              "name": "Dimmers",
-              "gpcCode": "10005634",
-              "gpcDescription": "Includes products that can be described observed as a device used to vary the brightness of a light. Dimmers range in size from small units the size of a normal light switch used for domestic lighting to high power units used in architectural lighting installations. Includes products that are operated either mechanically, electronically, by remote control or via an app (smarthome).",
-              "parentId": "lighting-control-components"
-            },
-            {
-              "id": "light-sockets",
-              "name": "Light Sockets",
-              "gpcCode": "10005633",
-              "gpcDescription": "Includes any products that can be described/observed as a system deigned to mechanically hold and electrically connect a lamp bulb to the electrical wiring. Includes products designed for either bayonet fitting or screw fitting light bulbs. Some light bulb sockets used on freestanding lamps may have a knob on the side of the socket, which enables the light to be switched on and off. ",
-              "parentId": "lighting-control-components"
-            }
-          ]
+          "id": "tripod-lighting",
+          "name": "Tripod (Lighting)",
+          "gpcCode": "10007931",
+          "gpcDescription": "Includes any products that can be described/observed as an accessory used to support lighting equipment, specifically for outdoor use or use on a construction site. ",
+          "parentId": "lighting-replacement-parts-accessories"
+        }
+      ]
+    },
+    {
+      "id": "lighting-control-components",
+      "name": "Lighting Control Components",
+      "gpcCode": "14010200",
+      "parentId": "lighting",
+      "children": [
+        {
+          "id": "ballasts-starters",
+          "name": "Ballasts/Starters",
+          "gpcCode": "10005481",
+          "gpcDescription": "Includes any products that can be described/observed as a device that initiates a flow of electric current across the electrodes of electrical gas discharge lights and regulates the current once in operation. The gas discharge light sources include fluorescent lights, neon lights and high-intensity discharge lamps. Includes products such as magnetic ballasts/starters and electronic ballasts/starters.",
+          "parentId": "lighting-control-components"
         },
         {
-          "id": "torches-lanterns-flashlights",
-          "name": "Torches/Lanterns/Flashlights",
-          "gpcCode": "14010400",
-          "parentId": "lighting",
-          "children": [
-            {
-              "id": "torches-lanterns-flashlights-non-powered",
-              "name": "Torches/Lanterns/Flashlights (Non Powered)",
-              "gpcCode": "10005216",
-              "gpcDescription": "Includes any products that may be described/observed as a non-powered lighting either fixed permanently to the ground or inserted into the ground with a spike, or handheld. Includes products such as paper lampions, lanterns, torchieres and flashlights.",
-              "parentId": "torches-lanterns-flashlights"
-            },
-            {
-              "id": "torches-lanterns-flashlights-powered",
-              "name": "Torches/Lanterns/Flashlights (Powered)",
-              "gpcCode": "10005642",
-              "gpcDescription": "Includes any products that can be described/observed as a hand-held or head mounted portable electric spotlight. Typically a torch/lantern/flashlight consists of a small electric lightbulb powered by electric batteries or rechargeable electric cell. The components are mounted in a housing that contains the necessary electric circuit and provides ease of handling, a means of access to the batteries for replacement, and a clear covering over the lightbulb for its protection. Includes products such as headlamps, which have elasticised straps and can be worn around the head leaving the hands free.",
-              "parentId": "torches-lanterns-flashlights"
-            }
-          ]
+          "id": "dimmers",
+          "name": "Dimmers",
+          "gpcCode": "10005634",
+          "gpcDescription": "Includes products that can be described observed as a device used to vary the brightness of a light. Dimmers range in size from small units the size of a normal light switch used for domestic lighting to high power units used in architectural lighting installations. Includes products that are operated either mechanically, electronically, by remote control or via an app (smarthome).",
+          "parentId": "lighting-control-components"
+        },
+        {
+          "id": "light-sockets",
+          "name": "Light Sockets",
+          "gpcCode": "10005633",
+          "gpcDescription": "Includes any products that can be described/observed as a system deigned to mechanically hold and electrically connect a lamp bulb to the electrical wiring. Includes products designed for either bayonet fitting or screw fitting light bulbs. Some light bulb sockets used on freestanding lamps may have a knob on the side of the socket, which enables the light to be switched on and off. ",
+          "parentId": "lighting-control-components"
+        }
+      ]
+    },
+    {
+      "id": "torches-lanterns-flashlights",
+      "name": "Torches/Lanterns/Flashlights",
+      "gpcCode": "14010400",
+      "parentId": "lighting",
+      "children": [
+        {
+          "id": "torches-lanterns-flashlights-non-powered",
+          "name": "Torches/Lanterns/Flashlights (Non Powered)",
+          "gpcCode": "10005216",
+          "gpcDescription": "Includes any products that may be described/observed as a non-powered lighting either fixed permanently to the ground or inserted into the ground with a spike, or handheld. Includes products such as paper lampions, lanterns, torchieres and flashlights.",
+          "parentId": "torches-lanterns-flashlights"
+        },
+        {
+          "id": "torches-lanterns-flashlights-powered",
+          "name": "Torches/Lanterns/Flashlights (Powered)",
+          "gpcCode": "10005642",
+          "gpcDescription": "Includes any products that can be described/observed as a hand-held or head mounted portable electric spotlight. Typically a torch/lantern/flashlight consists of a small electric lightbulb powered by electric batteries or rechargeable electric cell. The components are mounted in a housing that contains the necessary electric circuit and provides ease of handling, a means of access to the batteries for replacement, and a clear covering over the lightbulb for its protection. Includes products such as headlamps, which have elasticised straps and can be worn around the head leaving the hands free.",
+          "parentId": "torches-lanterns-flashlights"
         }
       ]
     }

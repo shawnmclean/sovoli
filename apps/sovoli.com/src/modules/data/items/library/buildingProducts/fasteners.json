@@ -38,5 +38,61 @@
     "unitLabel": "box",
     "tags": ["relief", "building", "fastener"],
     "description": "Hot-dip galvanized nails sized for metal straps and connectors."
+  },
+  {
+    "id": "nail-head-1in",
+    "name": "Nail Head - 1 in",
+    "category": "nails-pins-fixings-fasteners",
+    "unitLabel": "lb",
+    "tags": ["building", "fastener", "hardware"],
+    "description": "Common nails with flat head, 1 inch length."
+  },
+  {
+    "id": "nail-head-2-5in",
+    "name": "Nail Head - 2.5 in",
+    "category": "nails-pins-fixings-fasteners",
+    "unitLabel": "lb",
+    "tags": ["building", "fastener", "hardware"],
+    "description": "Common nails with flat head, 2.5 inch length."
+  },
+  {
+    "id": "nail-head-3in",
+    "name": "Nail Head - 3 in",
+    "category": "nails-pins-fixings-fasteners",
+    "unitLabel": "lb",
+    "tags": ["building", "fastener", "hardware"],
+    "description": "Common nails with flat head, 3 inch length."
+  },
+  {
+    "id": "nail-zinc-2-5in",
+    "name": "Zinc Nail - 2.5 in",
+    "category": "nails-pins-fixings-fasteners",
+    "unitLabel": "lb",
+    "tags": ["building", "fastener", "hardware", "zinc"],
+    "description": "Zinc-coated nails, 2.5 inch length, for corrosion resistance."
+  },
+  {
+    "id": "nail-concrete-2-5in",
+    "name": "Concrete Nail - 2.5 in",
+    "category": "nails-pins-fixings-fasteners",
+    "unitLabel": "lb",
+    "tags": ["building", "fastener", "hardware", "concrete"],
+    "description": "Hardened nails for concrete and masonry, 2.5 inch length."
+  },
+  {
+    "id": "screw-zinc-2in",
+    "name": "Zinc Screw - 2 in",
+    "category": "screws",
+    "unitLabel": "each",
+    "tags": ["building", "fastener", "hardware"],
+    "description": "Zinc-coated screws, 2 inch length."
+  },
+  {
+    "id": "fillet",
+    "name": "Fillet",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "each",
+    "tags": ["building", "hardware", "trim"],
+    "description": "Trim piece used in construction and finishing work."
   }
 ]

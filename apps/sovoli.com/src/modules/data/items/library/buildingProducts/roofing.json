@@ -55,5 +55,45 @@
     "attributes": {
       "source": "Local"
     }
+  },
+  {
+    "id": "strip-flat-12ft",
+    "name": "Strip Flat - 12 ft",
+    "category": "roof-vent-flashing-trim-coils",
+    "tags": ["building", "roofing", "trim"],
+    "unitLabel": "each",
+    "description": "Flat metal strip for roofing and trim work, 12 feet length."
+  },
+  {
+    "id": "strip-flat-14ft",
+    "name": "Strip Flat - 14 ft",
+    "category": "roof-vent-flashing-trim-coils",
+    "tags": ["building", "roofing", "trim"],
+    "unitLabel": "each",
+    "description": "Flat metal strip for roofing and trim work, 14 feet length."
+  },
+  {
+    "id": "zinc-aluminum-8ft",
+    "name": "Zinc Aluminum Sheet - 8 ft",
+    "category": "roofing-panels-slabs",
+    "tags": ["building", "roofing", "sheet"],
+    "unitLabel": "sheet",
+    "description": "Zinc aluminum roofing sheet, 8 feet length."
+  },
+  {
+    "id": "zinc-aluminum-12ft",
+    "name": "Zinc Aluminum Sheet - 12 ft",
+    "category": "roofing-panels-slabs",
+    "tags": ["building", "roofing", "sheet"],
+    "unitLabel": "sheet",
+    "description": "Zinc aluminum roofing sheet, 12 feet length."
+  },
+  {
+    "id": "cellotex-hardboard",
+    "name": "Cellotex Hardboard",
+    "category": "roofing-panels-slabs",
+    "tags": ["building", "roofing", "insulation"],
+    "unitLabel": "sheet",
+    "description": "Hardboard sheet for roofing and construction applications."
   }
 ]

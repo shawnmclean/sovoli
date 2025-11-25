@@ -11,6 +11,7 @@ export interface CatalogItem {
   };
   price: {
     GYD?: number;
+    JMD?: number;
     USD?: number;
   };
 }

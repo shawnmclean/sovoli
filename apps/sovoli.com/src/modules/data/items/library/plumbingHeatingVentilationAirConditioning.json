@@ -6,5 +6,93 @@
     "tags": ["facilities", "classroom", "cooling"],
     "unitLabel": "unit",
     "description": "Standard split-system AC unit suitable for classroom environments."
+  },
+  {
+    "id": "tank-to-bowl-screw",
+    "name": "Tank To Bowl Screw",
+    "category": "sanitary-ware-replacement-parts-accessories",
+    "tags": ["plumbing", "toilet", "hardware"],
+    "unitLabel": "each",
+    "description": "Screw used to secure toilet tank to bowl."
+  },
+  {
+    "id": "basin-faucet-single-lever",
+    "name": "Basin Faucet Single Lever",
+    "category": "faucets-taps",
+    "tags": ["plumbing", "bathroom", "faucet"],
+    "unitLabel": "each",
+    "description": "Single lever mixer faucet for bathroom basin."
+  },
+  {
+    "id": "toilet-faucet",
+    "name": "Toilet Faucet",
+    "category": "faucets-taps",
+    "tags": ["plumbing", "toilet", "faucet"],
+    "unitLabel": "each",
+    "description": "Faucet for toilet installation."
+  },
+  {
+    "id": "hose-bib-1-2in-pvc",
+    "name": "Hose Bib - 1/2 inch PVC",
+    "category": "valves-fittings-water-and-gas",
+    "tags": ["plumbing", "outdoor", "hose"],
+    "unitLabel": "each",
+    "description": "Outdoor water connection valve, 1/2 inch PVC connection."
+  },
+  {
+    "id": "angle-valve-1-2x3-8",
+    "name": "Angle Valve - 1/2 x 3/8",
+    "category": "valves-fittings-water-and-gas",
+    "tags": ["plumbing", "valve", "fitting"],
+    "unitLabel": "each",
+    "description": "Angle stop valve with 1/2 inch inlet and 3/8 inch outlet."
+  },
+  {
+    "id": "s-trap-1-5in",
+    "name": "S-Trap - 1.5 inch",
+    "category": "valves-fittings-water-and-gas",
+    "tags": ["plumbing", "drain", "trap"],
+    "unitLabel": "each",
+    "description": "S-shaped drain trap, 1.5 inch diameter."
+  },
+  {
+    "id": "toilet-inlet-valve",
+    "name": "Toilet Inlet Valve",
+    "category": "sanitary-ware-replacement-parts-accessories",
+    "tags": ["plumbing", "toilet", "valve"],
+    "unitLabel": "each",
+    "description": "Fill valve for toilet tank."
+  },
+  {
+    "id": "toilet-flapper-ball",
+    "name": "Toilet Flapper Ball",
+    "category": "sanitary-ware-replacement-parts-accessories",
+    "tags": ["plumbing", "toilet", "repair"],
+    "unitLabel": "each",
+    "description": "Flapper valve for toilet tank flush mechanism."
+  },
+  {
+    "id": "toilet-flush-handle-metal",
+    "name": "Toilet Flush Handle Metal",
+    "category": "flush-wall-plate",
+    "tags": ["plumbing", "toilet", "handle"],
+    "unitLabel": "each",
+    "description": "Metal flush handle for toilet tank."
+  },
+  {
+    "id": "basin-faucet-mixer-single-lever",
+    "name": "Basin Faucet Mixer Single Lever",
+    "category": "faucets-taps",
+    "tags": ["plumbing", "bathroom", "faucet", "mixer"],
+    "unitLabel": "each",
+    "description": "Single lever mixer faucet for bathroom basin with hot and cold water mixing."
+  },
+  {
+    "id": "valve-outlet",
+    "name": "Valve Outlet",
+    "category": "valves-fittings-water-and-gas",
+    "tags": ["plumbing", "valve", "outlet"],
+    "unitLabel": "each",
+    "description": "Outlet valve for water supply connections."
   }
 ]

@@ -29,6 +29,7 @@ export interface CatalogMatch {
     };
     price: {
       GYD?: number;
+      JMD?: number;
       USD?: number;
     };
   };

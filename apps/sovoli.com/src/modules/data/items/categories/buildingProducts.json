@@ -528,7 +528,7 @@
       ]
     },
     {
-      "id": "doors",
+      "id": "doors-family",
       "name": "Doors",
       "gpcCode": "83011100",
       "parentId": "building-products",
@@ -538,42 +538,42 @@
           "name": "Cat/Dog Flaps",
           "gpcCode": "10002577",
           "gpcDescription": "Includes any products that may be described/observed as a hinged door fixed to a frame, designed to be placed in the surface of an entry door to allow access and exit by a domestic animal.",
-          "parentId": "doors"
+          "parentId": "doors-family"
         },
         {
           "id": "doors",
           "name": "Doors",
           "gpcCode": "10002567",
           "gpcDescription": "Includes any products that may be described/observed as a movable, hinged barrier that will close the entrance to a room or building. This includes products such as interior doors, exterior doors, patio doors, and bulkhead (basement) doors.",
-          "parentId": "doors"
+          "parentId": "doors-family"
         },
         {
           "id": "doors-replacement-parts-accessories",
           "name": "Doors - Replacement Parts/Accessories",
           "gpcCode": "10005471",
           "gpcDescription": "Includes any products that may be described/observed as a device specifically designed to enhance or improve the performance of doors.",
-          "parentId": "doors"
+          "parentId": "doors-family"
         },
         {
           "id": "doors-other",
           "name": "Doors Other",
           "gpcCode": "10003923",
           "gpcDescription": "Includes any products that may be described/observed as Door products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
-          "parentId": "doors"
+          "parentId": "doors-family"
         },
         {
           "id": "doors-variety-packs",
           "name": "Doors Variety Packs",
           "gpcCode": "10003924",
           "gpcDescription": "Includes any products that may be described/observed as two or more distinct Door products sold together, which exist within the schema belonging to different classes but to the same family.",
-          "parentId": "doors"
+          "parentId": "doors-family"
         },
         {
           "id": "gate-garage-door-opening-systems-replacement-parts-accessories",
           "name": "Gate/Garage Door Opening Systems - Replacement Parts/Accessories",
           "gpcCode": "10005673",
           "gpcDescription": "Includes any products that may be described/observed as a device that is designed to open and close, either a gate or garage door via a remote control. These systems are bought complete and can be attached universally to most gates and garage doors. These products are available in various designs and mechanical systems dependent on the user requirements. Includes products such as Chain Driven Garage Door Openers, Belt Driven Gate Openers,  keypads, receivers or transmitters and any item used together with a automatic garage door or gate.",
-          "parentId": "doors"
+          "parentId": "doors-family"
         },
         {
           "id": "gate-garage-doors",

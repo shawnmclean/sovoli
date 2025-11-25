@@ -10,6 +10,8 @@ interface CatalogItemCardProps {
     };
     price: {
       GYD?: number;
+      JMD?: number;
+      USD?: number;
     };
   };
 }
@@ -35,13 +37,25 @@ function CatalogItemCard({ item }: CatalogItemCardProps) {
             </p>
           )}
 
-          {item.price.GYD && (
-            <div className="mt-3">
-              <span className="text-xl font-bold text-foreground">
-                GYD ${item.price.GYD.toLocaleString()}
-              </span>
-            </div>
-          )}
+          {(() => {
+            const prices: string[] = [];
+            if (item.price.JMD) {
+              prices.push(`JMD $${item.price.JMD.toLocaleString()}`);
+            }
+            if (item.price.GYD) {
+              prices.push(`GYD $${item.price.GYD.toLocaleString()}`);
+            }
+            if (item.price.USD) {
+              prices.push(`USD $${item.price.USD.toLocaleString()}`);
+            }
+            return prices.length > 0 ? (
+              <div className="mt-3">
+                <span className="text-xl font-bold text-foreground">
+                  {prices.join(" • ")}
+                </span>
+              </div>
+            ) : null;
+          })()}
         </div>
       </div>
     </Link>
@@ -58,6 +72,8 @@ interface ProductCatalogListingProps {
     };
     price: {
       GYD?: number;
+      JMD?: number;
+      USD?: number;
     };
   }[];
 }

@@ -29,6 +29,7 @@ function transformCatalogItem(item: ModuleCatalogItem): LocalCatalogItem {
     },
     price: {
       GYD: item.price.GYD,
+      JMD: item.price.JMD,
       USD: item.price.USD,
     },
   };

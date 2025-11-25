@@ -99,8 +99,12 @@ export function SupplyListResults({
         if (isSelected) {
           const match = itemMatches.get(item.item.id);
           if (match) {
+            const priceObj = match.catalogItem.price;
             const price =
-              match.catalogItem.price.GYD ?? match.catalogItem.price.USD ?? 0;
+              (typeof priceObj.JMD === "number" ? priceObj.JMD : undefined) ??
+              (typeof priceObj.GYD === "number" ? priceObj.GYD : undefined) ??
+              (typeof priceObj.USD === "number" ? priceObj.USD : undefined) ??
+              0;
             totalPrice += price * (item.quantity ?? 1);
             selectedItemCount++;
           }
@@ -186,9 +190,17 @@ export function SupplyListResults({
               if (isSelected) {
                 const match = itemMatches.get(item.item.id);
                 if (match) {
+                  const priceObj = match.catalogItem.price;
                   const price =
-                    match.catalogItem.price.GYD ??
-                    match.catalogItem.price.USD ??
+                    (typeof priceObj.JMD === "number"
+                      ? priceObj.JMD
+                      : undefined) ??
+                    (typeof priceObj.GYD === "number"
+                      ? priceObj.GYD
+                      : undefined) ??
+                    (typeof priceObj.USD === "number"
+                      ? priceObj.USD
+                      : undefined) ??
                     0;
                   return total + price * (item.quantity ?? 1);
                 }
@@ -245,9 +257,19 @@ export function SupplyListResults({
                       {match ? (
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-foreground-600">
-                            GYD{" "}
-                            {match.catalogItem.price.GYD?.toLocaleString() ??
-                              match.catalogItem.price.USD?.toLocaleString()}
+                            {(() => {
+                              const price = match.catalogItem.price;
+                              if (typeof price.JMD === "number") {
+                                return `JMD ${price.JMD.toLocaleString()}`;
+                              }
+                              if (typeof price.GYD === "number") {
+                                return `GYD ${price.GYD.toLocaleString()}`;
+                              }
+                              if (typeof price.USD === "number") {
+                                return `USD ${price.USD.toLocaleString()}`;
+                              }
+                              return "Price on request";
+                            })()}
                           </span>
                           <Link
                             href={`/catalog/${match.catalogItem.id}`}

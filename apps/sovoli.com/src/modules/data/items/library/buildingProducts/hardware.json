@@ -29,5 +29,61 @@
     "tags": ["facilities", "maintenance", "relief"],
     "unitLabel": "door",
     "description": "Standard 36x80 exterior door for securing repaired classrooms and offices."
+  },
+  {
+    "id": "door-metal-36x80",
+    "name": "Metal Door - 36x80",
+    "category": "doors",
+    "tags": ["building", "door", "metal"],
+    "unitLabel": "each",
+    "description": "Metal door with raised panel design, 36x80 inches."
+  },
+  {
+    "id": "door-ply-32x80",
+    "name": "Plywood Door - 32x80",
+    "category": "doors",
+    "tags": ["building", "door", "plywood"],
+    "unitLabel": "each",
+    "description": "Plywood door, 32x80 inches."
+  },
+  {
+    "id": "lock-deadbolt-single-key",
+    "name": "Deadbolt Lock - Single Key",
+    "category": "door-hardware-other",
+    "tags": ["building", "security", "lock"],
+    "unitLabel": "each",
+    "description": "Deadbolt lock with single key operation."
+  },
+  {
+    "id": "lock-entrance-single-turn",
+    "name": "Entrance Lock - Single Turn",
+    "category": "door-hardware-other",
+    "tags": ["building", "security", "lock"],
+    "unitLabel": "each",
+    "description": "Entrance door lock with single turn mechanism."
+  },
+  {
+    "id": "circuit-breaker-20amp-double-pole",
+    "name": "Circuit Breaker - 20Amp Double Pole",
+    "category": "circuit-breakers",
+    "tags": ["electrical", "safety", "breaker"],
+    "unitLabel": "each",
+    "description": "20 amp double pole circuit breaker for electrical distribution."
+  },
+  {
+    "id": "led-emergency-bulb-11w",
+    "name": "LED Emergency Bulb - 11W",
+    "category": "lamps-light-bulbs-lighting",
+    "tags": ["electrical", "lighting", "emergency"],
+    "unitLabel": "each",
+    "description": "LED emergency light bulb with intelligent features, 11 watts."
+  },
+  {
+    "id": "electrical-tape-multi-color",
+    "name": "Electrical Tape - Multi Color",
+    "category": "cable-clips-grommets-ties",
+    "tags": ["electrical", "wiring", "tape"],
+    "unitLabel": "roll",
+    "description": "Electrical tape in multiple colors (yellow, blue, red, green) for wire identification and insulation."
   }
 ]

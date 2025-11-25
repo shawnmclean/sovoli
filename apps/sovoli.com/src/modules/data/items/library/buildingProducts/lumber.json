@@ -46,5 +46,37 @@
     "unitLabel": "board",
     "tags": ["relief", "building", "framing"],
     "description": "Sized for rafters and ridge boards in replacement roof structures."
+  },
+  {
+    "id": "lumber-1x3x16-rough-untreated",
+    "name": "1x3x16 ft Rough Untreated Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "length",
+    "tags": ["building", "lumber", "construction"],
+    "description": "Rough sawn untreated lumber, 1x3x16 feet."
+  },
+  {
+    "id": "lumber-1x6x16-dress-treated",
+    "name": "1x6x16 ft Dressed Treated Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "length",
+    "tags": ["building", "lumber", "construction"],
+    "description": "Dressed and treated lumber, 1x6x16 feet."
+  },
+  {
+    "id": "lumber-1x6x14-gt",
+    "name": "1x6x14 ft GT Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "length",
+    "tags": ["building", "lumber", "construction"],
+    "description": "GT grade lumber, 1x6x14 feet."
+  },
+  {
+    "id": "lumber-1x8x16-dress-treated",
+    "name": "1x8x16 ft Dressed Treated Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "length",
+    "tags": ["building", "lumber", "construction"],
+    "description": "Dressed and treated lumber, 1x8x16 feet."
   }
 ]
