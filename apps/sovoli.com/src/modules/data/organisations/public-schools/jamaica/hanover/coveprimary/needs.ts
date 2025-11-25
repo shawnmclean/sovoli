@@ -10,7 +10,9 @@ const RIDGE_CAP_12FT = findItemById("ridge-cap-12ft");
 const ROOF_SEALANT = findItemById("roof-sealant");
 
 // Fasteners
-const ROOFING_SCREWS_WASHERS = findItemById("maintenance-zinc-roof-screws-2-5in");
+const ROOFING_SCREWS_WASHERS = findItemById(
+  "maintenance-zinc-roof-screws-2-5in",
+);
 const ROOFING_SCREWS = findItemById("relief-screws");
 const ROOFING_NAILS = findItemById("roofing-nails-2-5in");
 const HURRICANE_STRAP_NAILS = findItemById("strap-nails-3in");
@@ -32,7 +34,9 @@ const BUILDING_BLOCKS = findItemById("supply-building-blocks");
 const CRAYOLA_PLAY_DOUGH = findItemById("supply-crayola-play-dough");
 const FAT_PENCIL = findItemById("supply-fat-pencil");
 const PENCILS_PACK = findItemById("supply-pencils-pack-12");
-const EXERCISE_BOOK_SMALL = findItemById("supply-exercise-book-small-fine-line");
+const EXERCISE_BOOK_SMALL = findItemById(
+  "supply-exercise-book-small-fine-line",
+);
 const EXERCISE_BOOK_BIG = findItemById("supply-exercise-book-big");
 const DOUBLE_LINE_BOOK = findItemById("supply-double-line-book");
 
@@ -79,6 +83,37 @@ for (const { item, id } of requiredItems) {
   }
 }
 
+// Type assertions after validation
+const validatedItems = {
+  CORRUGATED_ZINC_12FT: CORRUGATED_ZINC_12FT!,
+  ZINC_ROOF_SHEET: ZINC_ROOF_SHEET!,
+  MAINTENANCE_ZINC_ROOF_SHEET: MAINTENANCE_ZINC_ROOF_SHEET!,
+  INDUSTRIAL_ROOF_SHEETING: INDUSTRIAL_ROOF_SHEETING!,
+  RIDGE_CAP_12FT: RIDGE_CAP_12FT!,
+  ROOF_SEALANT: ROOF_SEALANT!,
+  ROOFING_SCREWS_WASHERS: ROOFING_SCREWS_WASHERS!,
+  ROOFING_SCREWS: ROOFING_SCREWS!,
+  ROOFING_NAILS: ROOFING_NAILS!,
+  HURRICANE_STRAP_NAILS: HURRICANE_STRAP_NAILS!,
+  PLYBOARD_SHEET: PLYBOARD_SHEET!,
+  PLYWOOD_3_4_4X8: PLYWOOD_3_4_4X8!,
+  LUMBER_2X2X12: LUMBER_2X2X12!,
+  PURLIN_1X4X12: PURLIN_1X4X12!,
+  LUMBER_2X4X12: LUMBER_2X4X12!,
+  LUMBER_2X6X12: LUMBER_2X6X12!,
+  DOOR_TRIM_ADHESIVE: DOOR_TRIM_ADHESIVE!,
+  EXTERIOR_DOOR: EXTERIOR_DOOR!,
+  BUILDING_BLOCKS: BUILDING_BLOCKS!,
+  CRAYOLA_PLAY_DOUGH: CRAYOLA_PLAY_DOUGH!,
+  FAT_PENCIL: FAT_PENCIL!,
+  PENCILS_PACK: PENCILS_PACK!,
+  EXERCISE_BOOK_SMALL: EXERCISE_BOOK_SMALL!,
+  EXERCISE_BOOK_BIG: EXERCISE_BOOK_BIG!,
+  DOUBLE_LINE_BOOK: DOUBLE_LINE_BOOK!,
+  MEASURING_TAPE: MEASURING_TAPE!,
+  AC_UNIT: AC_UNIT!,
+};
+
 // Aggregated quantities from all Airtable submissions
 // cove-primary records: 30 AC units, 100 corrugated zinc, 150 zinc roof, etc.
 // cove-primary-school records: 30 corrugated zinc, 40 zinc roof, etc.
@@ -90,8 +125,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-ac-unit-2025",
       title: "Air Conditioning Unit",
-      description: "Replace damaged air conditioning units after hurricane damage.",
-      item: AC_UNIT,
+      description:
+        "Replace damaged air conditioning units after hurricane damage.",
+      item: validatedItems.AC_UNIT,
       quantity: 30,
       type: "material",
       source: "external",
@@ -111,7 +147,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-corrugated-zinc-2025",
       title: "Corrugated Zinc Sheet - 12 ft (28 gauge)",
       description: "Roofing materials for replacing damaged classroom roofs.",
-      item: CORRUGATED_ZINC_12FT,
+      item: validatedItems.CORRUGATED_ZINC_12FT,
       quantity: 100,
       type: "material",
       source: "external",
@@ -131,7 +167,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-zinc-roof-sheet-2025",
       title: "Zinc Roof Sheet",
       description: "Additional roofing sheets for roof repairs.",
-      item: ZINC_ROOF_SHEET,
+      item: validatedItems.ZINC_ROOF_SHEET,
       quantity: 150,
       type: "material",
       source: "external",
@@ -151,7 +187,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-maintenance-zinc-2025",
       title: "Zinc Roof Sheet - Maintenance",
       description: "Maintenance-grade zinc sheets for ongoing repairs.",
-      item: MAINTENANCE_ZINC_ROOF_SHEET,
+      item: validatedItems.MAINTENANCE_ZINC_ROOF_SHEET,
       quantity: 100,
       type: "material",
       source: "external",
@@ -171,7 +207,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-industrial-roof-sheeting-2025",
       title: "Industrial Roof Sheeting (Square)",
       description: "Industrial-grade roof sheeting for full building coverage.",
-      item: INDUSTRIAL_ROOF_SHEETING,
+      item: validatedItems.INDUSTRIAL_ROOF_SHEETING,
       quantity: 150,
       type: "material",
       source: "external",
@@ -191,7 +227,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-ridge-cap-2025",
       title: "Zinc Ridge Cap - 12 ft",
       description: "Ridge caps for sealing roof peaks.",
-      item: RIDGE_CAP_12FT,
+      item: validatedItems.RIDGE_CAP_12FT,
       quantity: 100,
       type: "material",
       source: "external",
@@ -211,7 +247,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-roof-sealant-2025",
       title: "Roof Sealant",
       description: "Waterproofing sealant for roof joints and repairs.",
-      item: ROOF_SEALANT,
+      item: validatedItems.ROOF_SEALANT,
       quantity: 40,
       type: "material",
       source: "external",
@@ -230,8 +266,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-roofing-screws-washers-2025",
       title: "Roofing Screws w/ Washers - 2.5 in",
-      description: "Self-drilling screws with neoprene washers for fastening zinc sheets.",
-      item: ROOFING_SCREWS_WASHERS,
+      description:
+        "Self-drilling screws with neoprene washers for fastening zinc sheets.",
+      item: validatedItems.ROOFING_SCREWS_WASHERS,
       quantity: 200,
       type: "material",
       source: "external",
@@ -251,7 +288,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-roofing-screws-2025",
       title: "Roofing Screws",
       description: "General purpose roofing screws for repair work.",
-      item: ROOFING_SCREWS,
+      item: validatedItems.ROOFING_SCREWS,
       quantity: 200,
       type: "material",
       source: "external",
@@ -270,8 +307,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-roofing-nails-2025",
       title: "Galvanized Roofing Nails - 2.5 in",
-      description: "Ring-shank nails for batten strips and hurricane strapping.",
-      item: ROOFING_NAILS,
+      description:
+        "Ring-shank nails for batten strips and hurricane strapping.",
+      item: validatedItems.ROOFING_NAILS,
       quantity: 150,
       type: "material",
       source: "external",
@@ -291,7 +329,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-hurricane-strap-nails-2025",
       title: "Hurricane Strap Nails - 3 in",
       description: "Hot-dip galvanized nails for metal straps and connectors.",
-      item: HURRICANE_STRAP_NAILS,
+      item: validatedItems.HURRICANE_STRAP_NAILS,
       quantity: 150,
       type: "material",
       source: "external",
@@ -310,15 +348,17 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-plyboard-sheet-2025",
       title: "Plyboard Sheet",
-      description: "Plywood sheets for structural repairs and furniture restoration.",
-      item: PLYBOARD_SHEET,
+      description:
+        "Plywood sheets for structural repairs and furniture restoration.",
+      item: validatedItems.PLYBOARD_SHEET,
       quantity: 250,
       type: "material",
       source: "external",
       priority: "high",
       neededBy: {
         type: "asap",
-        reason: "Needed for repairing damaged furniture and structural elements.",
+        reason:
+          "Needed for repairing damaged furniture and structural elements.",
       },
       requestingUnit: {
         locationKey: "main-campus",
@@ -330,8 +370,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-plywood-2025",
       title: "3/4 in Plywood - 4x8 ft",
-      description: "Thick sheet stock for decking repairs and roof sheathing replacement.",
-      item: PLYWOOD_3_4_4X8,
+      description:
+        "Thick sheet stock for decking repairs and roof sheathing replacement.",
+      item: validatedItems.PLYWOOD_3_4_4X8,
       quantity: 260,
       type: "material",
       source: "external",
@@ -351,7 +392,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-lumber-2x2x12-2025",
       title: "2x2x12 ft Treated Lumber",
       description: "Lumber for batten strips and roof bracing.",
-      item: LUMBER_2X2X12,
+      item: validatedItems.LUMBER_2X2X12,
       quantity: 200,
       type: "material",
       source: "external",
@@ -370,8 +411,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-purlin-2025",
       title: "1x4x12 ft Purlin Board",
-      description: "Treated purlin used under zinc sheets for fastening and ventilation.",
-      item: PURLIN_1X4X12,
+      description:
+        "Treated purlin used under zinc sheets for fastening and ventilation.",
+      item: validatedItems.PURLIN_1X4X12,
       quantity: 150,
       type: "material",
       source: "external",
@@ -391,7 +433,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-lumber-2x4x12-2025",
       title: "2x4x12 ft Framing Lumber",
       description: "Common stud length for framing repairs.",
-      item: LUMBER_2X4X12,
+      item: validatedItems.LUMBER_2X4X12,
       quantity: 251,
       type: "material",
       source: "external",
@@ -411,7 +453,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-lumber-2x6x12-2025",
       title: "2x6x12 ft Framing Lumber",
       description: "Lumber for rafters and ridge boards in roof structures.",
-      item: LUMBER_2X6X12,
+      item: validatedItems.LUMBER_2X6X12,
       quantity: 251,
       type: "material",
       source: "external",
@@ -431,7 +473,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-door-trim-adhesive-2025",
       title: "Door Trim Adhesive Protection",
       description: "Adhesive for door trim installation and protection.",
-      item: DOOR_TRIM_ADHESIVE,
+      item: validatedItems.DOOR_TRIM_ADHESIVE,
       quantity: 251,
       type: "material",
       source: "external",
@@ -451,7 +493,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-exterior-door-2025",
       title: "Exterior Door - 36x80",
       description: "Replacement exterior doors for damaged entrances.",
-      item: EXTERIOR_DOOR,
+      item: validatedItems.EXTERIOR_DOOR,
       quantity: 30,
       type: "material",
       source: "external",
@@ -471,7 +513,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-measuring-tape-2025",
       title: "25 ft Measuring Tape",
       description: "Measuring tools for accurate construction and repair work.",
-      item: MEASURING_TAPE,
+      item: validatedItems.MEASURING_TAPE,
       quantity: 20,
       type: "material",
       source: "external",
@@ -490,8 +532,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-building-blocks-2025",
       title: "Building Blocks",
-      description: "Educational toys for cognitive development and creative play.",
-      item: BUILDING_BLOCKS,
+      description:
+        "Educational toys for cognitive development and creative play.",
+      item: validatedItems.BUILDING_BLOCKS,
       quantity: 60,
       type: "material",
       source: "external",
@@ -510,8 +553,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-crayola-play-dough-2025",
       title: "Crayola Play Dough",
-      description: "Sensory learning materials for early childhood development activities.",
-      item: CRAYOLA_PLAY_DOUGH,
+      description:
+        "Sensory learning materials for early childhood development activities.",
+      item: validatedItems.CRAYOLA_PLAY_DOUGH,
       quantity: 61,
       type: "material",
       source: "external",
@@ -531,7 +575,7 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
       slug: "cove-primary-fat-pencil-2025",
       title: "Fat Pencil",
       description: "Large pencils for early childhood writing development.",
-      item: FAT_PENCIL,
+      item: validatedItems.FAT_PENCIL,
       quantity: 50,
       type: "material",
       source: "external",
@@ -550,8 +594,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-pencils-pack-2025",
       title: "Pencils pack of 12",
-      description: "Basic writing supplies for students to continue educational activities.",
-      item: PENCILS_PACK,
+      description:
+        "Basic writing supplies for students to continue educational activities.",
+      item: validatedItems.PENCILS_PACK,
       quantity: 150,
       type: "material",
       source: "external",
@@ -570,8 +615,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-exercise-book-small-2025",
       title: "Exercise Book Small Fine line",
-      description: "Small exercise books for student writing and homework activities.",
-      item: EXERCISE_BOOK_SMALL,
+      description:
+        "Small exercise books for student writing and homework activities.",
+      item: validatedItems.EXERCISE_BOOK_SMALL,
       quantity: 200,
       type: "material",
       source: "external",
@@ -590,8 +636,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-exercise-book-big-2025",
       title: "Exercise Book Big",
-      description: "Large exercise books for student writing and homework activities.",
-      item: EXERCISE_BOOK_BIG,
+      description:
+        "Large exercise books for student writing and homework activities.",
+      item: validatedItems.EXERCISE_BOOK_BIG,
       quantity: 200,
       type: "material",
       source: "external",
@@ -610,8 +657,9 @@ export const COVE_PRIMARY_NEEDS: NeedsModule = {
     {
       slug: "cove-primary-double-line-book-2025",
       title: "Double Line Book",
-      description: "Specialized writing books for handwriting practice and development.",
-      item: DOUBLE_LINE_BOOK,
+      description:
+        "Specialized writing books for handwriting practice and development.",
+      item: validatedItems.DOUBLE_LINE_BOOK,
       quantity: 200,
       type: "material",
       source: "external",

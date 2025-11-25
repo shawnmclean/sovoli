@@ -4,7 +4,7 @@ import type { OrgLocation } from "../organisations/types";
 import type { Position } from "../workforce/types";
 
 /** How important this need is */
-export type NeedPriority = "low" | "medium" | "high";
+export type NeedPriority = "low" | "medium" | "high" | "critical";
 
 /** Current state of the need */
 export type NeedStatus =
