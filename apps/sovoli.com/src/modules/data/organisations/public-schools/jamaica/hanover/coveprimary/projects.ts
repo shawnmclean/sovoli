@@ -2,25 +2,57 @@ import type { Photo } from "~/modules/core/photos/types";
 import type { ProjectsModule } from "~/modules/projects/types";
 import { COVE_PRIMARY_NEEDS } from "./needs";
 
-// Photos extracted from all 4 Airtable records and deduplicated
-// Deduplication by assetId (primary), then publicId (fallback), then caption (last resort)
+// Photos extracted from all 4 Airtable records
+// Arranged in specific order: prioritized photos first, then the rest
+// Duplicates have been manually removed
 const allPhotos: Photo[] = [
-  // From cove-primary records
+  // Prioritized photos (shown first)
   {
-    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763998808/o/cove-primary/projects/t5t9k7zhqo6j30uqml5be04o.webp",
-    publicId: "o/cove-primary/projects/t5t9k7zhqo6j30uqml5be04o",
-    assetId: "89d6a9d93d6e87952153c4ade040d48b",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763998818/o/cove-primary/projects/skibpj1q3lu645qzya0qwv8b.webp",
+    publicId: "o/cove-primary/projects/skibpj1q3lu645qzya0qwv8b",
+    assetId: "7ce551261f3d179e8947f46fbaf42019",
     bucket: "o/cove-primary/projects",
-    uploadedAt: "2025-11-24T15:40:08Z",
-    bytes: 120046,
-    width: 3000,
-    height: 4000,
+    uploadedAt: "2025-11-24T15:40:18Z",
+    bytes: 1435764,
+    width: 4000,
+    height: 3000,
     format: "webp",
-    version: 1763998808,
-    caption: "1000126526.jpg",
-    alt: "1000126526.jpg",
+    version: 1763998818,
+    caption: "1000126653.jpg",
+    alt: "1000126653.jpg",
     category: "default",
   },
+  {
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763997979/o/cove-primary-school/projects/lbxrcfez3z3cbkcqlfsjdvu4.webp",
+    publicId: "o/cove-primary-school/projects/lbxrcfez3z3cbkcqlfsjdvu4",
+    assetId: "714af76f2b7084cffd4a39e94c7bde4a",
+    bucket: "o/cove-primary-school/projects",
+    uploadedAt: "2025-11-24T15:26:19Z",
+    bytes: 984126,
+    width: 2160,
+    height: 3840,
+    format: "webp",
+    version: 1763997979,
+    caption: "1000133452.jpg",
+    alt: "1000133452.jpg",
+    category: "default",
+  },
+  {
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763997985/o/cove-primary-school/projects/tmzgexoy2ywshamv2zl9ykda.webp",
+    publicId: "o/cove-primary-school/projects/tmzgexoy2ywshamv2zl9ykda",
+    assetId: "c5df828debd02b409669cc470046ea1c",
+    bucket: "o/cove-primary-school/projects",
+    uploadedAt: "2025-11-24T15:26:25Z",
+    bytes: 721730,
+    width: 2160,
+    height: 3840,
+    format: "webp",
+    version: 1763997985,
+    caption: "1000133464.jpg",
+    alt: "1000133464.jpg",
+    category: "default",
+  },
+  // Rest of the photos
   {
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763998808/o/cove-primary/projects/icjlycl3fdhq18pa26jcwo56.webp",
     publicId: "o/cove-primary/projects/icjlycl3fdhq18pa26jcwo56",
@@ -82,21 +114,6 @@ const allPhotos: Photo[] = [
     category: "default",
   },
   {
-    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763998812/o/cove-primary/projects/isol9xs4eve71w6yzl97an73.webp",
-    publicId: "o/cove-primary/projects/isol9xs4eve71w6yzl97an73",
-    assetId: "dcb299c471f90f4d7738cfc505c0a95e",
-    bucket: "o/cove-primary/projects",
-    uploadedAt: "2025-11-24T15:40:12Z",
-    bytes: 373366,
-    width: 3000,
-    height: 4000,
-    format: "webp",
-    version: 1763998812,
-    caption: "1000126646.jpg",
-    alt: "1000126646.jpg",
-    category: "default",
-  },
-  {
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763998813/o/cove-primary/projects/a61fekzink3vif5arpjku8eg.webp",
     publicId: "o/cove-primary/projects/a61fekzink3vif5arpjku8eg",
     assetId: "a65907888ea73ec84b3b5bf191edd71a",
@@ -141,22 +158,7 @@ const allPhotos: Photo[] = [
     alt: "1000126654.jpg",
     category: "default",
   },
-  {
-    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763998818/o/cove-primary/projects/skibpj1q3lu645qzya0qwv8b.webp",
-    publicId: "o/cove-primary/projects/skibpj1q3lu645qzya0qwv8b",
-    assetId: "7ce551261f3d179e8947f46fbaf42019",
-    bucket: "o/cove-primary/projects",
-    uploadedAt: "2025-11-24T15:40:18Z",
-    bytes: 1435764,
-    width: 4000,
-    height: 3000,
-    format: "webp",
-    version: 1763998818,
-    caption: "1000126653.jpg",
-    alt: "1000126653.jpg",
-    category: "default",
-  },
-  // Additional unique photos from cove-primary-school records (deduplicated)
+  // Additional unique photos from cove-primary-school records
   {
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763997936/o/cove-primary-school/projects/ronwx02mej10brsx5s1mj2um.webp",
     publicId: "o/cove-primary-school/projects/ronwx02mej10brsx5s1mj2um",
@@ -218,21 +220,6 @@ const allPhotos: Photo[] = [
     category: "default",
   },
   {
-    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763997979/o/cove-primary-school/projects/lbxrcfez3z3cbkcqlfsjdvu4.webp",
-    publicId: "o/cove-primary-school/projects/lbxrcfez3z3cbkcqlfsjdvu4",
-    assetId: "714af76f2b7084cffd4a39e94c7bde4a",
-    bucket: "o/cove-primary-school/projects",
-    uploadedAt: "2025-11-24T15:26:19Z",
-    bytes: 984126,
-    width: 2160,
-    height: 3840,
-    format: "webp",
-    version: 1763997979,
-    caption: "1000133452.jpg",
-    alt: "1000133452.jpg",
-    category: "default",
-  },
-  {
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763997979/o/cove-primary-school/projects/vv40ea8w1vl41e6hwmn0ooiv.webp",
     publicId: "o/cove-primary-school/projects/vv40ea8w1vl41e6hwmn0ooiv",
     assetId: "46f34d74cf8836fd608a647dd1af5ba4",
@@ -247,36 +234,10 @@ const allPhotos: Photo[] = [
     alt: "1000133462.jpg",
     category: "default",
   },
-  {
-    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763997985/o/cove-primary-school/projects/tmzgexoy2ywshamv2zl9ykda.webp",
-    publicId: "o/cove-primary-school/projects/tmzgexoy2ywshamv2zl9ykda",
-    assetId: "c5df828debd02b409669cc470046ea1c",
-    bucket: "o/cove-primary-school/projects",
-    uploadedAt: "2025-11-24T15:26:25Z",
-    bytes: 721730,
-    width: 2160,
-    height: 3840,
-    format: "webp",
-    version: 1763997985,
-    caption: "1000133464.jpg",
-    alt: "1000133464.jpg",
-    category: "default",
-  },
 ];
 
-// Deduplicate photos by assetId, then publicId, then caption
-const photoMap = new Map<string, Photo>();
-for (const photo of allPhotos) {
-  const key =
-    photo.assetId ??
-    photo.publicId ??
-    photo.caption ??
-    photo.url;
-  if (!photoMap.has(key)) {
-    photoMap.set(key, photo);
-  }
-}
-const deduplicatedPhotos = Array.from(photoMap.values());
+// Photos are manually curated and arranged in the correct order
+const projectPhotos = allPhotos;
 
 // Combined project descriptions from all submissions
 const projectDescription = `1. Roof completely caved in
@@ -298,7 +259,7 @@ export const COVE_PRIMARY_PROJECTS: ProjectsModule = {
       startDate: "2025-11-24",
       internal: false,
       needs: COVE_PRIMARY_NEEDS.needs,
-      photos: deduplicatedPhotos,
+      photos: projectPhotos,
       tags: ["hurricane", "relief", "infrastructure"],
       notes:
         "Combined from multiple submissions. Principal: Patrice Campbell. Critical infrastructure damage requiring immediate attention.",
