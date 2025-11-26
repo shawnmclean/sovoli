@@ -85,6 +85,21 @@
           "alt": "VID-20251125-WA0004.mp4"
         },
         {
+          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764181277/o/cove-primary/projects/nl3zo3v9lqv7pz439ai7.jpg",
+          "publicId": "o/cove-primary/projects/nl3zo3v9lqv7pz439ai7",
+          "assetId": "9dffe3a01a966447ee29787b231d8257",
+          "bucket": "o/cove-primary/projects",
+          "uploadedAt": "2025-11-26T18:21:17Z",
+          "bytes": 178912,
+          "width": 1200,
+          "height": 1600,
+          "format": "jpg",
+          "version": 1764181277,
+          "caption": "IMG-20251125-WA0058.jpg",
+          "alt": "IMG-20251125-WA0058.jpg",
+          "category": "default"
+        },
+        {
           "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1763998818/o/cove-primary/projects/skibpj1q3lu645qzya0qwv8b.webp",
           "publicId": "o/cove-primary/projects/skibpj1q3lu645qzya0qwv8b",
           "assetId": "7ce551261f3d179e8947f46fbaf42019",
@@ -142,21 +157,6 @@
           "version": 1764181276,
           "caption": "IMG-20251125-WA0057.jpg",
           "alt": "IMG-20251125-WA0057.jpg",
-          "category": "default"
-        },
-        {
-          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764181277/o/cove-primary/projects/nl3zo3v9lqv7pz439ai7.jpg",
-          "publicId": "o/cove-primary/projects/nl3zo3v9lqv7pz439ai7",
-          "assetId": "9dffe3a01a966447ee29787b231d8257",
-          "bucket": "o/cove-primary/projects",
-          "uploadedAt": "2025-11-26T18:21:17Z",
-          "bytes": 178912,
-          "width": 1200,
-          "height": 1600,
-          "format": "jpg",
-          "version": 1764181277,
-          "caption": "IMG-20251125-WA0058.jpg",
-          "alt": "IMG-20251125-WA0058.jpg",
           "category": "default"
         },
         {
