@@ -13,7 +13,7 @@ function hasCoverPhoto(knowledge: KnowledgeFile): knowledge is KnowledgeFile & {
 } {
   return !!(
     knowledge.coverPhoto?.type === "image" &&
-    knowledge.coverPhoto?.bucket &&
+    knowledge.coverPhoto.bucket &&
     knowledge.coverPhoto.id
   );
 }

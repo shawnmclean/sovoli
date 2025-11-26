@@ -212,7 +212,7 @@ function FullScreenGallery({
   id,
   username,
 }: {
-  photos: Array<Media & { type: "image" | "video" }>;
+  photos: (Media & { type: "image" | "video" })[];
   isOpen: boolean;
   onClose: () => void;
   initialIndex: number;
