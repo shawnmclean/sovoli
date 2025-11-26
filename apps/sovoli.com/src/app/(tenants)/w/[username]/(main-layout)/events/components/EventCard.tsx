@@ -31,6 +31,9 @@ export function EventCard({
 }: EventCardProps) {
   const startDate = parseISO(event.startDate);
 
+  // Find the first image (not video) from the media array
+  const firstImage = event.media?.find((media) => media.type === "image");
+
   return (
     <Card
       as={Link}
@@ -41,10 +44,10 @@ export function EventCard({
         {/* Event Image - Left Side */}
         <div className="w-32 min-h-32 flex-shrink-0 p-2 flex items-center justify-center">
           <div className="w-28 h-28">
-            {event.media?.[0]?.url ? (
+            {firstImage?.url ? (
               <Image
-                src={event.media[0].url}
-                alt={event.name}
+                src={firstImage.url}
+                alt={firstImage.alt ?? event.name}
                 width={112}
                 height={112}
                 className="w-full h-full object-cover rounded-lg"

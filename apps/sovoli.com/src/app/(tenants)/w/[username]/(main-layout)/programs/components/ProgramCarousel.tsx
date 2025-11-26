@@ -17,7 +17,10 @@ export interface ProgramCarouselProps {
 }
 
 export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
-  const photos = program.media ?? [];
+  // Filter to only show images - exclude videos, PDFs and other documents
+  const images = (program.media ?? []).filter(
+    (media) => media.type === "image",
+  );
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
 
@@ -33,7 +36,7 @@ export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
     });
   }, [api]);
 
-  if (photos.length === 0) {
+  if (images.length === 0) {
     return (
       <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center">
         <p className="text-gray-500 text-sm">No photos available</p>
@@ -52,14 +55,14 @@ export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
         className="w-full h-full"
       >
         <CarouselContent className="h-full -ml-0">
-          {photos.map((photo, index) => (
+          {images.map((image, index) => (
             <CarouselItem key={index} className="basis-full pl-0 h-full">
               <div className="w-full h-full aspect-square relative">
                 <Link href={href}>
                   <CldImage
-                    src={photo.publicId}
+                    src={image.publicId}
                     fill
-                    alt={`Program photo ${index + 1}`}
+                    alt={image.alt ?? `Program photo ${index + 1}`}
                     className="object-cover rounded-lg"
                   />
                 </Link>
@@ -70,19 +73,19 @@ export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
       </Carousel>
 
       {/* Dots Indicator */}
-      {photos.length > 1 && (
+      {images.length > 1 && (
         <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
-          {Array.from({ length: Math.min(5, photos.length) }, (_, i) => {
+          {Array.from({ length: Math.min(5, images.length) }, (_, i) => {
             let slideIndex;
-            if (photos.length <= 5) {
-              // If 5 or fewer photos, show all dots
+            if (images.length <= 5) {
+              // If 5 or fewer images, show all dots
               slideIndex = i;
             } else if (current < 2) {
               // Near the beginning, show first 5
               slideIndex = i;
-            } else if (current >= photos.length - 2) {
+            } else if (current >= images.length - 2) {
               // Near the end, show last 5
-              slideIndex = photos.length - 5 + i;
+              slideIndex = images.length - 5 + i;
             } else {
               // In the middle, show dots around current position
               slideIndex = current - 2 + i;
@@ -96,7 +99,7 @@ export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
                     ? "bg-white scale-120 shadow-lg"
                     : "bg-white/60"
                 }`}
-                aria-label={`Slide ${slideIndex + 1} of ${photos.length}`}
+                aria-label={`Slide ${slideIndex + 1} of ${images.length}`}
               />
             );
           })}
