@@ -1,0 +1,544 @@
+{
+  "needs": [
+    {
+      "slug": "cove-primary-ac-unit-2025",
+      "title": "Air Conditioning Unit",
+      "description": "Replace damaged air conditioning units after hurricane damage.",
+      "itemId": "equipment-ac-unit",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for comfortable learning environment."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-corrugated-zinc-2025",
+      "title": "Corrugated Zinc Sheet - 12 ft (28 gauge)",
+      "description": "Roofing materials for replacing damaged classroom roofs.",
+      "itemId": "corrugated-zinc-12ft",
+      "quantity": 100,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Roof completely caved in, urgent replacement needed."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-zinc-roof-sheet-2025",
+      "title": "Zinc Roof Sheet",
+      "description": "Additional roofing sheets for roof repairs.",
+      "itemId": "zinc-roof-sheet",
+      "quantity": 150,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Complete roof replacement required after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-maintenance-zinc-2025",
+      "title": "Zinc Roof Sheet - Maintenance",
+      "description": "Maintenance-grade zinc sheets for ongoing repairs.",
+      "itemId": "maintenance-zinc-roof-sheet",
+      "quantity": 100,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Ongoing maintenance and repair work needed."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-industrial-roof-sheeting-2025",
+      "title": "Industrial Roof Sheeting (Square)",
+      "description": "Industrial-grade roof sheeting for full building coverage.",
+      "itemId": "industrial-roof-sheeting",
+      "quantity": 150,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Large-scale roof replacement required."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-ridge-cap-2025",
+      "title": "Zinc Ridge Cap - 12 ft",
+      "description": "Ridge caps for sealing roof peaks.",
+      "itemId": "ridge-cap-12ft",
+      "quantity": 100,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for proper roof installation and sealing."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-roof-sealant-2025",
+      "title": "Roof Sealant",
+      "description": "Waterproofing sealant for roof joints and repairs.",
+      "itemId": "roof-sealant",
+      "quantity": 40,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Critical for waterproofing and preventing further damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-roofing-screws-washers-2025",
+      "title": "Roofing Screws w/ Washers - 2.5 in",
+      "description": "Self-drilling screws with neoprene washers for fastening zinc sheets.",
+      "itemId": "maintenance-zinc-roof-screws-2-5in",
+      "quantity": 200,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for secure roof installation."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-roofing-screws-2025",
+      "title": "Roofing Screws",
+      "description": "General purpose roofing screws for repair work.",
+      "itemId": "relief-screws",
+      "quantity": 200,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for fastening roofing materials."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-roofing-nails-2025",
+      "title": "Galvanized Roofing Nails - 2.5 in",
+      "description": "Ring-shank nails for batten strips and hurricane strapping.",
+      "itemId": "roofing-nails-2-5in",
+      "quantity": 150,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for secure roof attachment."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-hurricane-strap-nails-2025",
+      "title": "Hurricane Strap Nails - 3 in",
+      "description": "Hot-dip galvanized nails for metal straps and connectors.",
+      "itemId": "strap-nails-3in",
+      "quantity": 150,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Critical for hurricane-resistant roof installation."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-plyboard-sheet-2025",
+      "title": "Plyboard Sheet",
+      "description": "Plywood sheets for structural repairs and furniture restoration.",
+      "itemId": "maintenance-plyboard",
+      "quantity": 250,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for repairing damaged furniture and structural elements."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-plywood-2025",
+      "title": "3/4 in Plywood - 4x8 ft",
+      "description": "Thick sheet stock for decking repairs and roof sheathing replacement.",
+      "itemId": "plywood-3-4-4x8",
+      "quantity": 260,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for structural roof decking."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-lumber-2x2x12-2025",
+      "title": "2x2x12 ft Treated Lumber",
+      "description": "Lumber for batten strips and roof bracing.",
+      "itemId": "lumber-2x2x12",
+      "quantity": 200,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for roof structure support."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-purlin-2025",
+      "title": "1x4x12 ft Purlin Board",
+      "description": "Treated purlin used under zinc sheets for fastening and ventilation.",
+      "itemId": "purlin-1x4x12",
+      "quantity": 150,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for proper roof structure."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-lumber-2x4x12-2025",
+      "title": "2x4x12 ft Framing Lumber",
+      "description": "Common stud length for framing repairs.",
+      "itemId": "lumber-2x4x12",
+      "quantity": 251,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for structural framing repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-lumber-2x6x12-2025",
+      "title": "2x6x12 ft Framing Lumber",
+      "description": "Lumber for rafters and ridge boards in roof structures.",
+      "itemId": "lumber-2x6x12",
+      "quantity": 251,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for roof structure support."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-door-trim-adhesive-2025",
+      "title": "Door Trim Adhesive Protection",
+      "description": "Adhesive for door trim installation and protection.",
+      "itemId": "door-trim-adhesive",
+      "quantity": 251,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for door installation and repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-exterior-door-2025",
+      "title": "Exterior Door - 36x80",
+      "description": "Replacement exterior doors for damaged entrances.",
+      "itemId": "exterior-door-36x80",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace damaged doors after hurricane."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-measuring-tape-2025",
+      "title": "25 ft Measuring Tape",
+      "description": "Measuring tools for accurate construction and repair work.",
+      "itemId": "measuring-tape-25ft",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for precise measurements during repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-building-blocks-2025",
+      "title": "Building Blocks",
+      "description": "Educational toys for cognitive development and creative play.",
+      "itemId": "supply-building-blocks",
+      "quantity": 60,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost educational resources after hurricane."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-crayola-play-dough-2025",
+      "title": "Crayola Play Dough",
+      "description": "Sensory learning materials for early childhood development activities.",
+      "itemId": "supply-crayola-play-dough",
+      "quantity": 61,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-fat-pencil-2025",
+      "title": "Fat Pencil",
+      "description": "Large pencils for early childhood writing development.",
+      "itemId": "supply-fat-pencil",
+      "quantity": 50,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily learning activities."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-pencils-pack-2025",
+      "title": "Pencils pack of 12",
+      "description": "Basic writing supplies for students to continue educational activities.",
+      "itemId": "supply-pencils-pack-12",
+      "quantity": 150,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily classroom activities."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-exercise-book-small-2025",
+      "title": "Exercise Book Small Fine line",
+      "description": "Small exercise books for student writing and homework activities.",
+      "itemId": "supply-exercise-book-small-fine-line",
+      "quantity": 200,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily classroom activities and student work."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-exercise-book-big-2025",
+      "title": "Exercise Book Big",
+      "description": "Large exercise books for student writing and homework activities.",
+      "itemId": "supply-exercise-book-big",
+      "quantity": 200,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily classroom activities and student work."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    },
+    {
+      "slug": "cove-primary-double-line-book-2025",
+      "title": "Double Line Book",
+      "description": "Specialized writing books for handwriting practice and development.",
+      "itemId": "supply-double-line-book",
+      "quantity": 200,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Critical for proper handwriting development in students."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-24T00:00:00.000Z",
+      "updatedAt": "2025-11-24T00:00:00.000Z"
+    }
+  ]
+}
