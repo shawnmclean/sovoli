@@ -1,12 +1,23 @@
 import { z } from "zod";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 import type { NeedsModule } from "~/modules/needs/types";
 import type { ProjectsModule, Project } from "~/modules/projects/types";
 
 /**
- * Zod schema for Photo (from JSON)
+ * Zod schema for Media (from JSON) - supports images, videos, PDFs, documents, and other file types
  */
-const photoJsonSchema = z.object({
+const mediaJsonSchema = z.object({
+  type: z
+    .enum([
+      "image",
+      "video",
+      "pdf",
+      "document",
+      "spreadsheet",
+      "presentation",
+      "audio",
+    ])
+    .default("image"),
   url: z.string(),
   publicId: z.string(),
   assetId: z.string().optional(),
@@ -29,6 +40,18 @@ const photoJsonSchema = z.object({
       "default",
     ])
     .optional(),
+  // Video-specific fields
+  duration: z.number().optional(),
+  videoCodec: z.string().optional(),
+  audioCodec: z.string().optional(),
+  fps: z.number().optional(),
+  bitrate: z.number().optional(),
+  posterUrl: z.string().optional(),
+  // Document-specific fields
+  pages: z.number().optional(),
+  // Audio-specific fields
+  audioDuration: z.number().optional(),
+  audioBitrate: z.number().optional(),
 });
 
 /**
@@ -56,7 +79,9 @@ const projectJsonSchema = z.object({
   endDate: z.string().optional(),
   internal: z.boolean().optional(),
   needSlugs: z.array(z.string()).optional(), // Foreign key references to needs
-  photos: z.array(photoJsonSchema).optional(),
+  media: z.array(mediaJsonSchema).optional(),
+  // Legacy support: also accept 'photos' in JSON for backward compatibility
+  photos: z.array(mediaJsonSchema).optional(),
   tags: z.array(z.string()).optional(),
   notes: z.string().optional(),
   createdAt: z.string().optional(),
@@ -121,7 +146,7 @@ export function parseProjectsModule(
       endDate: projectJson.endDate,
       internal: projectJson.internal,
       needs,
-      photos: projectJson.photos as Photo[] | undefined,
+      media: (projectJson.media ?? projectJson.photos) as Media[] | undefined,
       tags: projectJson.tags,
       notes: projectJson.notes,
       createdAt: projectJson.createdAt,

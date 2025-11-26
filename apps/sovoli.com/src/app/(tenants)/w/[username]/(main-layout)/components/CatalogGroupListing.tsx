@@ -113,7 +113,7 @@ export function CatalogGroupListing({ orgInstance }: CatalogGroupListingProps) {
               {categoryItems.map((catalogItem) => {
                 const itemName = catalogItem.item.name;
                 const itemDescription = catalogItem.item.description;
-                const itemImage = catalogItem.item.photos?.[0];
+                const itemImage = catalogItem.item.media?.[0];
 
                 return (
                   <CarouselItem

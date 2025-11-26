@@ -10,15 +10,19 @@ import {
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
+import { filterVisualMedia } from "~/modules/core/media/types";
 
 interface ProjectCarouselProps {
-  photos: Photo[];
+  media: Media[];
   title: string;
   href: string;
 }
 
-export function ProjectCarousel({ photos, title, href }: ProjectCarouselProps) {
+export function ProjectCarousel({ media: photos, title, href }: ProjectCarouselProps) {
+  // Filter to only show visual media (images and videos) - exclude PDFs and other documents
+  const visualMedia = filterVisualMedia(photos);
+
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
 
@@ -30,7 +34,7 @@ export function ProjectCarousel({ photos, title, href }: ProjectCarouselProps) {
     });
   }, [api]);
 
-  if (photos.length === 0) {
+  if (visualMedia.length === 0) {
     return (
       <div className="flex min-h-[320px] w-full items-center justify-center rounded-2xl bg-muted text-sm text-muted-foreground">
         Photos coming soon
@@ -49,7 +53,7 @@ export function ProjectCarousel({ photos, title, href }: ProjectCarouselProps) {
         className="h-full w-full"
       >
         <CarouselContent className="h-full -ml-0">
-          {photos.map((photo, index) => (
+          {visualMedia.map((media, index) => (
             <CarouselItem
               key={`${title}-${index}`}
               className="h-full basis-full pl-0"
@@ -59,45 +63,60 @@ export function ProjectCarousel({ photos, title, href }: ProjectCarouselProps) {
                 className="relative block w-full min-h-[320px] overflow-hidden rounded-2xl"
                 aria-label={`Open project ${title}`}
               >
-                <CldImage
-                  src={photo.publicId}
-                  alt={photo.alt ?? `${title} photo ${index + 1}`}
-                  fill
-                  sizes="(min-width: 768px) 45vw, 100vw"
-                  className="h-full w-full object-cover"
-                  priority={index === 0}
-                />
+                {media.type === "video" ? (
+                  <video
+                    src={media.url}
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    poster={media.posterUrl}
+                  />
+                ) : (
+                  <CldImage
+                    src={media.publicId}
+                    alt={media.alt ?? `${title} photo ${index + 1}`}
+                    fill
+                    sizes="(min-width: 768px) 45vw, 100vw"
+                    className="h-full w-full object-cover"
+                    priority={index === 0}
+                  />
+                )}
               </Link>
             </CarouselItem>
           ))}
         </CarouselContent>
       </Carousel>
 
-      {photos.length > 1 && (
+      {visualMedia.length > 1 && (
         <div className="absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 gap-2">
-          {Array.from({ length: Math.min(5, photos.length) }, (_, dotIndex) => {
-            let slideIndex: number;
-            if (photos.length <= 5) {
-              slideIndex = dotIndex;
-            } else if (current < 2) {
-              slideIndex = dotIndex;
-            } else if (current >= photos.length - 2) {
-              slideIndex = photos.length - 5 + dotIndex;
-            } else {
-              slideIndex = current - 2 + dotIndex;
-            }
+          {Array.from(
+            { length: Math.min(5, visualMedia.length) },
+            (_, dotIndex) => {
+              let slideIndex: number;
+              if (visualMedia.length <= 5) {
+                slideIndex = dotIndex;
+              } else if (current < 2) {
+                slideIndex = dotIndex;
+              } else if (current >= visualMedia.length - 2) {
+                slideIndex = visualMedia.length - 5 + dotIndex;
+              } else {
+                slideIndex = current - 2 + dotIndex;
+              }
 
-            return (
-              <span
-                key={`${title}-dot-${dotIndex}`}
-                className={`h-1.5 w-1.5 rounded-full transition-all ${
-                  current === slideIndex
-                    ? "scale-125 bg-white shadow-lg"
-                    : "bg-white/60"
-                }`}
-              />
-            );
-          })}
+              return (
+                <span
+                  key={`${title}-dot-${dotIndex}`}
+                  className={`h-1.5 w-1.5 rounded-full transition-all ${
+                    current === slideIndex
+                      ? "scale-125 bg-white shadow-lg"
+                      : "bg-white/60"
+                  }`}
+                />
+              );
+            },
+          )}
         </div>
       )}
     </div>

@@ -27,7 +27,7 @@ export const BLCGY_SECONDARY_GRADE_10_PROGRAM: Program = {
   tagline: "CSEC excellence and achievement",
   outcome: "CSEC (Caribbean Secondary Education Certificate)",
   description: "CSEC examination year with comprehensive academic preparation",
-  photos: SECONDARY_PHOTOS,
+  media: SECONDARY_PHOTOS,
   cycles: [],
   testimonials: BLCGY_SHARED_TESTIMONIALS,
   activities: BLCGY_SECONDARY_DEPT_ACTIVITIES,

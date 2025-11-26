@@ -161,7 +161,7 @@ export function getProgramSuggestions(
           currency: currency,
           billingCycle: billingCycle,
           imageUrl:
-            program.photos?.[0]?.url ??
+            program.media?.[0]?.url ??
             program.standardProgramVersion?.program.image,
         };
       }),

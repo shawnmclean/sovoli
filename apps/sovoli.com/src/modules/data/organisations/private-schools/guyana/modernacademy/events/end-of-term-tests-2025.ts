@@ -1,8 +1,9 @@
 import type { Event } from "~/modules/events/types";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
-const END_OF_TERM_TESTS_EVENT_PHOTOS: Photo[] = [
+const END_OF_TERM_TESTS_EVENT_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760991744/o/magy/events/end-of-term-tests-2025/1.png",
     assetId: "fbabf79579e117c3d13e75205ecbb5ef",
@@ -83,7 +84,7 @@ export const END_OF_TERM_TESTS_2025_EVENT: Event = {
       isRequired: false,
     },
   ],
-  photos: END_OF_TERM_TESTS_EVENT_PHOTOS,
+  media: END_OF_TERM_TESTS_EVENT_PHOTOS,
   notes:
     "Individual class timetables will be shared by teachers. Parents are encouraged to monitor homework platforms for revision guidance.",
 };

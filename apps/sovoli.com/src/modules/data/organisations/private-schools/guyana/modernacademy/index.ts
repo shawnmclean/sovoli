@@ -163,7 +163,7 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
         org: ARGOSY_BOOK_STORE_ORG.org,
       },
     ],
-    photos: MODERN_ACADEMY_PHOTOS,
+    media: MODERN_ACADEMY_PHOTOS,
   },
   websiteModule: MODERN_ACADEMY_WEBSITE,
   academicModule: MODERN_ACADEMY_ACADEMIC,

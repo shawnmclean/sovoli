@@ -1,7 +1,8 @@
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
-const FITRIGHT_BAG_WORKSHOP_PHOTOS: Photo[] = [
+const FITRIGHT_BAG_WORKSHOP_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753365788/o/fitright/programs/sew-your-own-bag/6e1d3b6b-fbcc-4bb8-a001-3a8ed83bf65f.png",
     assetId: "a5c87c6eeee354d18c7e3123ab939318",
@@ -14,6 +15,7 @@ const FITRIGHT_BAG_WORKSHOP_PHOTOS: Photo[] = [
     version: 1753365788,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753366479/o/fitright/programs/sew-your-own-bag/9c07fe65-4844-4c23-97c6-5891e8637816.png",
     assetId: "cefd22502ca0234f2b7b299766a2b78b",
@@ -27,8 +29,9 @@ const FITRIGHT_BAG_WORKSHOP_PHOTOS: Photo[] = [
   },
 ];
 
-const FITRIGHT_ELEMENTARY_SEWING_PHOTOS: Photo[] = [
+const FITRIGHT_ELEMENTARY_SEWING_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126211/o/fitright/programs/elementary-sewing/1.webp",
     assetId: "4d241cfd99248e1461f2a052c3e4c5ff",
@@ -40,6 +43,7 @@ const FITRIGHT_ELEMENTARY_SEWING_PHOTOS: Photo[] = [
     version: 1756126211,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126221/o/fitright/programs/elementary-sewing/2.webp",
     assetId: "21780519efe80c5f7b78415a715b935d",
@@ -51,6 +55,7 @@ const FITRIGHT_ELEMENTARY_SEWING_PHOTOS: Photo[] = [
     version: 1756126221,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126225/o/fitright/programs/elementary-sewing/3.webp",
     assetId: "1967b0ed2ccf9868120acdf27eb0a3c1",
@@ -62,6 +67,7 @@ const FITRIGHT_ELEMENTARY_SEWING_PHOTOS: Photo[] = [
     version: 1756126225,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126234/o/fitright/programs/elementary-sewing/4.webp",
     assetId: "49dc8a4b01c2db1919c8cfe7611a77ea",
@@ -73,6 +79,7 @@ const FITRIGHT_ELEMENTARY_SEWING_PHOTOS: Photo[] = [
     version: 1756126234,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126456/o/fitright/programs/elementary-sewing/5.webp",
     assetId: "b013b8b79de5d1e68b813dae030eb40b",
@@ -99,20 +106,20 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-export const BAG_WORKSHOP_PHOTOS: Photo[] = shuffleArray(
+export const BAG_WORKSHOP_PHOTOS: Media[] = shuffleArray(
   FITRIGHT_BAG_WORKSHOP_PHOTOS,
 );
 
-export const ELEMENTARY_SEWING_PHOTOS: Photo[] = shuffleArray(
+export const ELEMENTARY_SEWING_PHOTOS: Media[] = shuffleArray(
   FITRIGHT_ELEMENTARY_SEWING_PHOTOS,
 );
 
-export const INTEMEDIATE_SEWING_PHOTOS: Photo[] = shuffleArray(
+export const INTEMEDIATE_SEWING_PHOTOS: Media[] = shuffleArray(
   FITRIGHT_ELEMENTARY_SEWING_PHOTOS,
 );
 
-export const ADVANCED_SEWING_PHOTOS: Photo[] = shuffleArray(
+export const ADVANCED_SEWING_PHOTOS: Media[] = shuffleArray(
   FITRIGHT_ELEMENTARY_SEWING_PHOTOS,
 );
 
-export const FITRIGHT_ACADEMY_PHOTOS: Photo[] = [...BAG_WORKSHOP_PHOTOS];
+export const FITRIGHT_ACADEMY_PHOTOS: Media[] = [...BAG_WORKSHOP_PHOTOS];

@@ -102,7 +102,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
     },
   ],
   activities: MAGY_NURSERY_DEPT_ACTIVITIES,
-  photos: PRE_NURSERY_PHOTOS,
+  media: PRE_NURSERY_PHOTOS,
   isPopular: true,
   cycles: [MAGY_PRE_NURSERY_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,

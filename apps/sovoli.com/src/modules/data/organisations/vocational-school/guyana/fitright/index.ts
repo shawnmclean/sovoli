@@ -65,7 +65,7 @@ export const FITRIGHT_ORG: OrgInstance = {
         url: "https://www.fitright.gy",
       },
     ],
-    photos: FITRIGHT_ACADEMY_PHOTOS,
+    media: FITRIGHT_ACADEMY_PHOTOS,
   },
   websiteModule: FITRIGHT_ACADEMY_WEBSITE,
   academicModule: FITRIGHT_ACADEMIC,

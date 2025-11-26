@@ -1,7 +1,8 @@
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
-const PHOTOS: Photo[] = [
+const PHOTOS: Media[] = [
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761265485/o/blcgy/school/park.jpg",
     assetId: "dee180ec9a3e44de60960b70b256dfe5",
@@ -14,6 +15,7 @@ const PHOTOS: Photo[] = [
     uploadedAt: "2025-10-24T00:24:45Z",
   },
   {
+    type: "image",
     category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761265484/o/blcgy/events/diwali-2025/diwali.jpg",
     assetId: "3f36df730a5efa0d0893da113e162bd4",
@@ -41,13 +43,14 @@ export function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-export const BACCHUS_LEARNING_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const NURSERY_YEAR_1_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const NURSERY_YEAR_2_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const PRIMARY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const SECONDARY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const DIWALI_EVENT_PHOTOS: Photo[] = [
+export const BACCHUS_LEARNING_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const NURSERY_YEAR_1_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const NURSERY_YEAR_2_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const PRIMARY_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const SECONDARY_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const DIWALI_EVENT_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761265484/o/blcgy/events/diwali-2025/diwali.jpg",
     assetId: "3f36df730a5efa0d0893da113e162bd4",

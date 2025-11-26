@@ -35,14 +35,14 @@ function buildProjectDirectoryEntries(): ProjectDirectoryEntry[] {
     const projectModule = orgInstance.projectsModule;
     if (!projectModule || projectModule.projects.length === 0) continue;
 
-    const fallbackPhotos = orgInstance.org.photos ?? [];
+    const fallbackMedia = orgInstance.org.media ?? [];
 
     for (const project of projectModule.projects) {
       const location = resolveProjectLocation(project.locationKey, orgInstance);
-      const photos =
-        project.photos && project.photos.length > 0
-          ? project.photos
-          : fallbackPhotos;
+      const media =
+        project.media && project.media.length > 0
+          ? project.media
+          : fallbackMedia;
 
       entries.push({
         id: `${orgInstance.org.username}-${project.id}`,
@@ -72,8 +72,8 @@ function buildProjectDirectoryEntries(): ProjectDirectoryEntry[] {
         locationCountryCode: location?.address.countryCode,
         coordinates: location?.coordinates,
         placeId: location?.placeId,
-        photos,
-        coverPhoto: photos[0] ?? null,
+        media,
+        coverMedia: media[0] ?? null,
         needs: summarizeNeeds(project.needs ?? []),
       });
     }

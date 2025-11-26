@@ -1,6 +1,6 @@
 import type { PricingPackage } from "../core/economics/types";
 import type { Item } from "../core/items/types";
-import type { Photo } from "../core/photos/types";
+import type { Media } from "../core/media/types";
 import type { CountryCode } from "../core/types";
 import type { WorkforceMember } from "../workforce/types";
 
@@ -228,7 +228,7 @@ export interface Program {
 
   description?: string; // Custom or default
 
-  photos?: Photo[];
+  media?: Media[];
 
   // Optional local overrides
   admission?: AdmissionPolicy;

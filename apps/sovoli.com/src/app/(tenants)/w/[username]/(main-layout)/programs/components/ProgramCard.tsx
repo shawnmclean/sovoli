@@ -32,7 +32,7 @@ export function ProgramCard({
       <div className="relative">
         <Image
           src={
-            program.photos?.[0]?.url ??
+            program.media?.[0]?.url ??
             program.standardProgramVersion?.program.image ??
             ""
           }

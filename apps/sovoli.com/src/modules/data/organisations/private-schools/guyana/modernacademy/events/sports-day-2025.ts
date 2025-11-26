@@ -1,8 +1,9 @@
 import type { Event } from "~/modules/events/types";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
-const SPORTS_DAY_EVENT_PHOTOS: Photo[] = [
+const SPORTS_DAY_EVENT_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760991745/o/magy/events/sports-day-2025/1.png",
     assetId: "b710400ee729f8aec3563984ba304e12",
@@ -95,7 +96,7 @@ export const SPORTS_DAY_2025_EVENT: Event = {
       isRequired: false,
     },
   ],
-  photos: SPORTS_DAY_EVENT_PHOTOS,
+  media: SPORTS_DAY_EVENT_PHOTOS,
   notes:
     "Parents and guardians are invited to cheer for teams and ensure students have a healthy snack for the day.",
 };

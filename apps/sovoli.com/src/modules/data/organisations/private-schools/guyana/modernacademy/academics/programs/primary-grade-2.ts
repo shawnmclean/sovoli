@@ -22,7 +22,7 @@ export const MAGY_PRIMARY_GRADE_2_PROGRAM: Program = {
   outcome: "NGSA (Grade 6 Exam)",
   description: "Strong foundational learning in a nurturing environment",
   standardProgramVersion: GY_PRIMARY_GRADE_2_V1,
-  photos: shuffleArray(PRIMARY_PHOTOS),
+  media: shuffleArray(PRIMARY_PHOTOS),
   cycles: [MAGY_PRIMARY_GRADE_2_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,
   activities: MAGY_PRIMARY_DEPT_ACTIVITIES,

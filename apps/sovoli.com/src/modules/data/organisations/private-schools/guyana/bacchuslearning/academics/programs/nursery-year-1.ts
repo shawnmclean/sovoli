@@ -21,7 +21,7 @@ export const BLCGY_NURSERY_YEAR_1_PROGRAM: Program = {
   outcome: "Early Literacy & Numeracy",
   description: "Engaging curriculum fostering critical thinking and creativity",
   standardProgramVersion: GY_NURSERY_YEAR_1_V1,
-  photos: NURSERY_YEAR_1_PHOTOS,
+  media: NURSERY_YEAR_1_PHOTOS,
   isPopular: true,
   cycles: [BLCGY_NURSERY_YEAR_1_2025_T1],
   testimonials: BLCGY_SHARED_TESTIMONIALS,

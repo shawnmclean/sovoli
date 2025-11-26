@@ -8,7 +8,7 @@ export interface CatalogItemGalleryProps {
 export const CatalogItemGallery = ({
   catalogItem,
 }: CatalogItemGalleryProps) => {
-  const photos = catalogItem.item.photos ?? [];
+  const photos = catalogItem.item.media ?? [];
 
   if (photos.length === 0) {
     return (

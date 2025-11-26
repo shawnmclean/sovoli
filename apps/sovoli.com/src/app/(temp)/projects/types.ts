@@ -1,5 +1,5 @@
 import type { NeedPriority, NeedStatus, NeedType } from "~/modules/needs/types";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 import type {
   ProjectCategory,
   ProjectPriority,
@@ -49,8 +49,8 @@ export interface ProjectDirectoryEntry {
   coordinates?: { lat: number; lng: number };
   placeId?: string;
 
-  photos: Photo[];
-  coverPhoto?: Photo | null;
+  media: Media[];
+  coverMedia?: Media | null;
 
   needs: ProjectNeedSummary[];
 }

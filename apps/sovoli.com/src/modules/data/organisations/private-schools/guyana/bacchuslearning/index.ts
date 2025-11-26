@@ -78,7 +78,7 @@ export const BACCHUS_LEARNING_ORG: OrgInstance = {
       },
     ],
     supplierRecommendations: [],
-    photos: BACCHUS_LEARNING_PHOTOS,
+    media: BACCHUS_LEARNING_PHOTOS,
   },
   websiteModule: BACCHUS_LEARNING_WEBSITE,
   academicModule: BACCHUS_LEARNING_ACADEMIC,

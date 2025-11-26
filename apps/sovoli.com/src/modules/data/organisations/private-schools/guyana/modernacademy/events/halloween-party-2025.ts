@@ -1,8 +1,9 @@
 import type { Event } from "~/modules/events/types";
-import type { Photo } from "~/modules/core/photos/types";
+import { Media } from "~/modules/core/media/types";
 
-const HALLOWEEN_PARTY_EVENT_PHOTOS: Photo[] = [
+const HALLOWEEN_PARTY_EVENT_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760991132/o/magy/events/halloween-party-2025/1.png",
     assetId: "9ecf6126c0bcfbdf5d2fcf49704b2374",
@@ -95,7 +96,7 @@ export const HALLOWEEN_PARTY_2025_EVENT: Event = {
       isRequired: false,
     },
   ],
-  photos: HALLOWEEN_PARTY_EVENT_PHOTOS,
+  media: HALLOWEEN_PARTY_EVENT_PHOTOS,
   notes:
     "Teachers will supervise treat exchanges and ensure allergies or dietary needs are respected during the celebrations.",
 };

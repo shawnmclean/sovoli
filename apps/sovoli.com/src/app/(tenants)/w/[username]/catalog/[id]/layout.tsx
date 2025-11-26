@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props) {
       type: "website",
       images: [
         {
-          url: catalogItem.item.photos?.[0]?.url ?? "",
+          url: catalogItem.item.media?.[0]?.url ?? "",
           width: 1200,
           height: 630,
           alt: itemName,
@@ -74,8 +74,8 @@ export default async function Layout({ children, params }: Props) {
         }
       : undefined,
     category: catalogItem.item.category.id,
-    ...(catalogItem.item.photos?.[0]?.url && {
-      image: catalogItem.item.photos[0]?.url,
+    ...(catalogItem.item.media?.[0]?.url && {
+      image: catalogItem.item.media[0]?.url,
     }),
     offers: {
       "@type": "Offer",

@@ -2,7 +2,7 @@ import { readdir, readFile } from "fs/promises";
 import { join, extname } from "path";
 import matter from "gray-matter";
 import type { KnowledgeFile, UserSlug } from "./types";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
 export class KnowledgeFileCache {
   private static instance?: KnowledgeFileCache;
@@ -150,8 +150,8 @@ export class KnowledgeFileCache {
         updatedAt:
           (frontmatter.updatedAt as string) || new Date().toISOString(),
         userId: username,
-        coverPhoto: frontmatter.coverPhoto as Photo | undefined,
-        inlinePhotos: frontmatter.inlinePhotos as Photo[],
+        coverPhoto: frontmatter.coverPhoto as Media | undefined,
+        inlinePhotos: frontmatter.inlinePhotos as Media[],
       };
     } catch (error) {
       console.error(`Error reading knowledge file ${filePath}:`, error);

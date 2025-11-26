@@ -1,8 +1,9 @@
 import type { Event } from "~/modules/events/types";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
-const BREAST_CANCER_AWARENESS_EVENT_PHOTOS: Photo[] = [
+const BREAST_CANCER_AWARENESS_EVENT_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760990752/o/magy/events/breast-cancer-awareness-2025/1.png",
     assetId: "5cc3aad5bb98863e7b5cd356dc112588",
@@ -90,7 +91,7 @@ export const BREAST_CANCER_AWARENESS_2025_EVENT: Event = {
       quantity: "1-2 per student",
     },
   ],
-  photos: BREAST_CANCER_AWARENESS_EVENT_PHOTOS,
+  media: BREAST_CANCER_AWARENESS_EVENT_PHOTOS,
   notes:
     "Teachers will facilitate age-appropriate conversations about health, self-care, and supporting families affected by breast cancer.",
 };

@@ -28,7 +28,7 @@ export const BLCGY_SECONDARY_GRADE_7_PROGRAM: Program = {
   outcome: "CSEC (Caribbean Secondary Education Certificate)",
   description:
     "Comprehensive secondary education preparing students for CSEC examinations",
-  photos: SECONDARY_PHOTOS,
+  media: SECONDARY_PHOTOS,
   cycles: [], // Will be added when cycles are created
   testimonials: BLCGY_SHARED_TESTIMONIALS,
   activities: BLCGY_SECONDARY_DEPT_ACTIVITIES,

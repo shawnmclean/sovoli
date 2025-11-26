@@ -77,7 +77,7 @@ function formatCurrency(amount: number): string {
 
 function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
   const needsCount = project.needs.length;
-  const photos = useMemo(() => project.photos, [project.photos]);
+  const media = useMemo(() => project.media, [project.media]);
   const projectSlug = slugify(project.title);
   const projectHref = `/${project.orgUsername}/projects/${projectSlug}`;
   const metrics = useMemo(() => calculateProjectMetrics(project), [project]);
@@ -95,7 +95,7 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
     <Card className="group overflow-hidden border border-divider shadow-sm transition duration-200 hover:shadow-2xl">
       <div className="relative w-full min-h-[320px] overflow-hidden rounded-2xl">
         <ProjectCarousel
-          photos={photos}
+          media={media}
           title={project.title}
           href={projectHref}
         />

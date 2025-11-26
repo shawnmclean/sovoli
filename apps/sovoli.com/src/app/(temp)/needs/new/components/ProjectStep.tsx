@@ -5,7 +5,7 @@ import { Textarea } from "@sovoli/ui/components/input";
 import { SEVERITY_OPTIONS } from "./options";
 import type { SeverityOptionKey } from "./options";
 import { DamagePhotosUpload } from "./DamagePhotosUpload";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
 const SEVERITY_COLORS: Record<SeverityOptionKey, string> = {
   minor: "bg-blue-500",
@@ -17,11 +17,11 @@ const SEVERITY_COLORS: Record<SeverityOptionKey, string> = {
 interface ProjectStepProps {
   severity: SeverityOptionKey | "";
   damageDescription: string;
-  photos: Photo[];
+  photos: Media[];
   schoolUsername: string;
   onSeverityChange: (value: SeverityOptionKey | "") => void;
   onDamageDescriptionChange: (value: string) => void;
-  onPhotosChange: (updater: (photos: Photo[]) => Photo[]) => void;
+  onPhotosChange: (updater: (photos: Media[]) => Media[]) => void;
   onUploadStatusChange: (hasPendingUploads: boolean) => void;
 }
 

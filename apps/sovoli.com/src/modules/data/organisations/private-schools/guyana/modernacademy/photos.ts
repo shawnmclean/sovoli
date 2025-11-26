@@ -1,7 +1,8 @@
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
-const PHOTOS: Photo[] = [
+const PHOTOS: Media[] = [
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753281990/o/magy/programs/pre-nursery/1.webp",
     assetId: "acb9ef4f96c5c0780d77b4bcea2733b9",
@@ -13,6 +14,7 @@ const PHOTOS: Photo[] = [
     version: 1753281990,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753281995/o/magy/programs/pre-nursery/2.webp",
     assetId: "5f90f506c590e15b88ed1c97d20c1298",
@@ -24,6 +26,7 @@ const PHOTOS: Photo[] = [
     version: 1753281995,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282000/o/magy/programs/pre-nursery/3.webp",
     assetId: "bae6ae8ec079e7c8ab458f31b7116ac6",
@@ -35,6 +38,7 @@ const PHOTOS: Photo[] = [
     version: 1753282000,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282006/o/magy/programs/pre-nursery/4.webp",
     assetId: "908a6bc45a20d9e7c8cc3dde3648bd03",
@@ -46,6 +50,7 @@ const PHOTOS: Photo[] = [
     version: 1753282006,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282009/o/magy/programs/pre-nursery/5.webp",
     assetId: "6bbc3a29fa22f4015aad9b85208dbd26",
@@ -57,6 +62,7 @@ const PHOTOS: Photo[] = [
     version: 1753282009,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282013/o/magy/programs/pre-nursery/6.webp",
     assetId: "2fd30bf2f145b3357cdcbd18e0f29167",
@@ -68,6 +74,7 @@ const PHOTOS: Photo[] = [
     version: 1753282013,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282019/o/magy/programs/pre-nursery/7.webp",
     assetId: "016e9adead3ea22233077f02286465dd",
@@ -79,6 +86,7 @@ const PHOTOS: Photo[] = [
     version: 1753282019,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282030/o/magy/programs/pre-nursery/8.webp",
     assetId: "c9ccc4213dbed1933c4b5c172f54f747",
@@ -90,6 +98,7 @@ const PHOTOS: Photo[] = [
     version: 1753282030,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282034/o/magy/programs/pre-nursery/9.webp",
     assetId: "31724ea0893717dc8c7c7fcc2dbb9575",
@@ -101,6 +110,7 @@ const PHOTOS: Photo[] = [
     version: 1753282034,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282038/o/magy/programs/pre-nursery/10.webp",
     assetId: "3185bb8655a70a97164011e3b18a9704",
@@ -112,6 +122,7 @@ const PHOTOS: Photo[] = [
     version: 1753282038,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282045/o/magy/programs/pre-nursery/11.webp",
     assetId: "e8ea962cba00f0744dc7c19d26b7a7fd",
@@ -123,6 +134,7 @@ const PHOTOS: Photo[] = [
     version: 1753282045,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282049/o/magy/programs/pre-nursery/12.webp",
     assetId: "4dd692506ca7169e3e97a5125f9f53aa",
@@ -134,6 +146,7 @@ const PHOTOS: Photo[] = [
     version: 1753282049,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282054/o/magy/programs/pre-nursery/13.webp",
     assetId: "637d5d9694df82104ed2ad55ec8b942f",
@@ -145,6 +158,7 @@ const PHOTOS: Photo[] = [
     version: 1753282054,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282062/o/magy/programs/pre-nursery/14.webp",
     assetId: "e1aec2207d6e2fd87e72141e1f881931",
@@ -156,6 +170,7 @@ const PHOTOS: Photo[] = [
     version: 1753282062,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282066/o/magy/programs/pre-nursery/15.webp",
     assetId: "fe71b229ba284626f0161f5b4923b6f6",
@@ -167,6 +182,7 @@ const PHOTOS: Photo[] = [
     version: 1753282066,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282071/o/magy/programs/pre-nursery/16.webp",
     assetId: "f9c7789cb2d0812fe73e32532c75f66b",
@@ -178,6 +194,7 @@ const PHOTOS: Photo[] = [
     version: 1753282071,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282075/o/magy/programs/pre-nursery/17.webp",
     assetId: "dffea9d86412d1937e9d5ba453ec07bc",
@@ -189,6 +206,7 @@ const PHOTOS: Photo[] = [
     version: 1753282075,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282079/o/magy/programs/pre-nursery/18.webp",
     assetId: "87cd45ee3be222bff915e5f38ac7cd5d",
@@ -200,6 +218,7 @@ const PHOTOS: Photo[] = [
     version: 1753282079,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282088/o/magy/programs/pre-nursery/19.webp",
     assetId: "14c6b59f00880cd4e457d1d4fec9c9a0",
@@ -211,6 +230,7 @@ const PHOTOS: Photo[] = [
     version: 1753282088,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282093/o/magy/programs/pre-nursery/20.webp",
     assetId: "73d12d234b6d01947a819d1094363aab",
@@ -222,6 +242,7 @@ const PHOTOS: Photo[] = [
     version: 1753282093,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282097/o/magy/programs/pre-nursery/21.webp",
     assetId: "faef4f6a79eb5211a030575899662a68",
@@ -233,6 +254,7 @@ const PHOTOS: Photo[] = [
     version: 1753282097,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282101/o/magy/programs/pre-nursery/22.webp",
     assetId: "177b63f99ab75e35c019f853e276fd3f",
@@ -244,6 +266,7 @@ const PHOTOS: Photo[] = [
     version: 1753282101,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282105/o/magy/programs/pre-nursery/23.webp",
     assetId: "e6fab0993d1df638d15d8bf3a29c5376",
@@ -255,6 +278,7 @@ const PHOTOS: Photo[] = [
     version: 1753282105,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282109/o/magy/programs/pre-nursery/24.webp",
     assetId: "842c9129d77568f69029401794a4fc0c",
@@ -266,6 +290,7 @@ const PHOTOS: Photo[] = [
     version: 1753282109,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282112/o/magy/programs/pre-nursery/25.webp",
     assetId: "d3689815fe0d76d617235948698ca15d",
@@ -277,6 +302,7 @@ const PHOTOS: Photo[] = [
     version: 1753282112,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282120/o/magy/programs/pre-nursery/26.webp",
     assetId: "d3d2e9a5dbb17f11ce02ad4535a6b367",
@@ -288,6 +314,7 @@ const PHOTOS: Photo[] = [
     version: 1753282120,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282125/o/magy/programs/pre-nursery/27.webp",
     assetId: "b93f9cf8e4ea22f6e4b5c2e5a1ca0ef9",
@@ -299,6 +326,7 @@ const PHOTOS: Photo[] = [
     version: 1753282125,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282130/o/magy/programs/pre-nursery/28.webp",
     assetId: "1fe22d2665ee4a9d262d35159a1a2d9e",
@@ -310,6 +338,7 @@ const PHOTOS: Photo[] = [
     version: 1753282130,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282133/o/magy/programs/pre-nursery/29.webp",
     assetId: "24592f6c0145a32f451efb39f73cd88e",
@@ -321,6 +350,7 @@ const PHOTOS: Photo[] = [
     version: 1753282133,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282140/o/magy/programs/pre-nursery/30.webp",
     assetId: "35954125cd0fe31aae515cafe1479075",
@@ -347,13 +377,14 @@ export function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-export const MODERN_ACADEMY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const PRE_NURSERY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const NURSERY_YEAR_1_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const NURSERY_YEAR_2_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const PRIMARY_PHOTOS: Photo[] = shuffleArray(PHOTOS);
-export const SECONDARY_PHOTOS: Photo[] = [
+export const MODERN_ACADEMY_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const PRE_NURSERY_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const NURSERY_YEAR_1_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const NURSERY_YEAR_2_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const PRIMARY_PHOTOS: Media[] = shuffleArray(PHOTOS);
+export const SECONDARY_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1757870814/o/magy/programs/secondary/1.jpg",
     assetId: "847ce6773e28b9b48014c6d11295d08c",
@@ -365,6 +396,7 @@ export const SECONDARY_PHOTOS: Photo[] = [
     version: 1757870814,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1757870815/o/magy/programs/secondary/2.jpg",
     assetId: "c57f47efd9716f8145ec95a0d692b26b",
@@ -376,6 +408,7 @@ export const SECONDARY_PHOTOS: Photo[] = [
     version: 1757870815,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1757870816/o/magy/programs/secondary/3.jpg",
     assetId: "024cb74ca40bbcf862e919868f1e444d",
@@ -388,4 +421,4 @@ export const SECONDARY_PHOTOS: Photo[] = [
   },
 ];
 
-export const DIWALI_EVENT_PHOTOS: Photo[] = shuffleArray(PHOTOS);
+export const DIWALI_EVENT_PHOTOS: Media[] = shuffleArray(PHOTOS);

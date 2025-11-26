@@ -121,7 +121,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
                     program.name ??
                     program.standardProgramVersion?.program.name ??
                     "Program";
-                  const programImage = program.photos?.[0];
+                  const programImage = program.media?.[0];
                   const ageReq = getAgeRequirement(program);
 
                   return (

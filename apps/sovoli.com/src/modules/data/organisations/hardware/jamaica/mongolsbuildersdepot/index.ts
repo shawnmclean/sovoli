@@ -54,7 +54,7 @@ export const MONGOLS_BUILDERS_DEPOT_ORG: OrgInstance = {
         url: "https://mongolsbuildersdepotjm.sovoli.com",
       },
     ],
-    photos: MONGOLS_BUILDERS_DEPOT_PHOTOS,
+    media: MONGOLS_BUILDERS_DEPOT_PHOTOS,
   },
   websiteModule: MONGOLS_BUILDERS_DEPOT_WEBSITE,
   academicModule: null,

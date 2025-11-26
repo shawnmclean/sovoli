@@ -41,9 +41,9 @@ export function EventCard({
         {/* Event Image - Left Side */}
         <div className="w-32 min-h-32 flex-shrink-0 p-2 flex items-center justify-center">
           <div className="w-28 h-28">
-            {event.photos?.[0]?.url ? (
+            {event.media?.[0]?.url ? (
               <Image
-                src={event.photos[0].url}
+                src={event.media[0].url}
                 alt={event.name}
                 width={112}
                 height={112}

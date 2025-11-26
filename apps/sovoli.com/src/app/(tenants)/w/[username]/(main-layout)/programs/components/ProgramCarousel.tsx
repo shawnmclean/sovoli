@@ -17,7 +17,7 @@ export interface ProgramCarouselProps {
 }
 
 export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
-  const photos = program.photos ?? [];
+  const photos = program.media ?? [];
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
 

@@ -1,4 +1,4 @@
-import type { Photo } from "../photos/types";
+import type { Media } from "../media/types";
 import { z } from "zod";
 
 export interface CategoryDefinition {
@@ -44,7 +44,7 @@ export interface Item {
   dimensions?: Dimensions; // physical info (optional)
   weightInGrams?: number;
 
-  photos?: Photo[];
+  media?: Media[];
 }
 
 interface Dimensions {
@@ -60,16 +60,29 @@ const dimensionsSchema = z.object({
   heightCm: z.number(),
 });
 
-// Zod schema for Photo
-const photoSchema = z.object({
-  category: z.enum([
-    "environment",
-    "classroom",
-    "activities",
-    "events",
-    "awards",
-    "default",
-  ]),
+// Zod schema for Media (supports images, videos, PDFs, documents, and other file types)
+const mediaSchema = z.object({
+  type: z
+    .enum([
+      "image",
+      "video",
+      "pdf",
+      "document",
+      "spreadsheet",
+      "presentation",
+      "audio",
+    ])
+    .default("image"),
+  category: z
+    .enum([
+      "environment",
+      "classroom",
+      "activities",
+      "events",
+      "awards",
+      "default",
+    ])
+    .optional(),
   url: z.string(),
   caption: z.string().optional(),
   alt: z.string().optional(),
@@ -84,6 +97,18 @@ const photoSchema = z.object({
   bytes: z.number().optional(),
   version: z.number().optional(),
   uploadedAt: z.string().optional(),
+  // Video-specific fields
+  duration: z.number().optional(),
+  videoCodec: z.string().optional(),
+  audioCodec: z.string().optional(),
+  fps: z.number().optional(),
+  bitrate: z.number().optional(),
+  posterUrl: z.string().optional(),
+  // Document-specific fields
+  pages: z.number().optional(),
+  // Audio-specific fields
+  audioDuration: z.number().optional(),
+  audioBitrate: z.number().optional(),
 });
 
 // Zod schema for Item (used for parsing JSON files where category is stored as string ID)
@@ -100,7 +125,9 @@ export const itemJsonSchema = z.object({
   unitLabel: z.string().optional(),
   dimensions: dimensionsSchema.optional(),
   weightInGrams: z.number().optional(),
-  photos: z.array(photoSchema).optional(),
+  media: z.array(mediaSchema).optional(),
+  // Legacy support: also accept 'photos' in JSON for backward compatibility
+  photos: z.array(mediaSchema).optional(),
 });
 
 /**

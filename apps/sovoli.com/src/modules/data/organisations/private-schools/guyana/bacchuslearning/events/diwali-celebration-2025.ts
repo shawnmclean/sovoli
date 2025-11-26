@@ -1,8 +1,9 @@
 import type { Event } from "~/modules/events/types";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
-const DIWALI_EVENT_PHOTOS: Photo[] = [
+const DIWALI_EVENT_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761265484/o/blcgy/events/diwali-2025/diwali.jpg",
     assetId: "3f36df730a5efa0d0893da113e162bd4",
@@ -63,7 +64,7 @@ export const DIWALI_CELEBRATION_2025_EVENT: Event = {
       description: "Building cultural understanding and community bonds",
     },
   ],
-  photos: DIWALI_EVENT_PHOTOS,
+  media: DIWALI_EVENT_PHOTOS,
   activities: [
     {
       id: "rangoli-making",

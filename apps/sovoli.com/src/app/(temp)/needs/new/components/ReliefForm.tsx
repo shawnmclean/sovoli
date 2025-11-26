@@ -29,7 +29,7 @@ import type {
   ParishOptionKey,
   SeverityOptionKey,
 } from "./options";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
 export interface ReliefFormData {
   contactFirstName: string;
@@ -49,7 +49,7 @@ export interface ReliefFormData {
   locationParish: ParishOptionKey | "";
   severity: SeverityOptionKey | "";
   damageDescription: string;
-  photos: Photo[];
+  photos: Media[];
   suppliesSelected: string[];
   suppliesQuantities: Record<string, number>;
   suppliesOther: string;
@@ -675,7 +675,7 @@ function OrgSelectionStepWrapper({
 interface ProjectStepWrapperProps {
   severity: SeverityOptionKey | "";
   damageDescription: string;
-  photos: Photo[];
+  photos: Media[];
   schoolUsername: string;
   onUpdate: ReliefFormUpdater;
   onUploadStatusChange: (hasPendingUploads: boolean) => void;

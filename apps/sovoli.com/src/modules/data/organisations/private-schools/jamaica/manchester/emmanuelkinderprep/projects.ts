@@ -44,7 +44,7 @@ export const EMMANUEL_KINDER_PREP_PROJECTS: ProjectsModule = {
         findNeedBySlug("emmanuelkinderprep-exercise-book-big-2025"),
         findNeedBySlug("emmanuelkinderprep-double-line-book-2025"),
       ],
-      photos: [],
+      media: [],
       notes:
         "Assessment notes: Destruction of charts, damaged windows, wet furniture. School requires both structural repairs and replacement of educational materials to resume normal operations.",
       createdAt: new Date().toISOString(),

@@ -81,13 +81,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const fallbackPhotos = orgInstance.org.photos ?? [];
-  const photos =
-    project.photos && project.photos.length > 0
-      ? project.photos
-      : fallbackPhotos;
+  const fallbackMedia = orgInstance.org.media ?? [];
+  const media =
+    project.media && project.media.length > 0
+      ? project.media
+      : fallbackMedia;
 
-  const ogImage = photos[0]?.url;
+  const ogImage = media[0]?.url;
   const description =
     project.description ??
     "Explore the latest recovery projects shared by school leaders on Sovoli.";
@@ -120,11 +120,11 @@ export default async function Layout({ children, params, modals }: Props) {
   }
 
   const location = resolveProjectLocation(project.locationKey, orgInstance);
-  const fallbackPhotos = orgInstance.org.photos ?? [];
-  const photos =
-    project.photos && project.photos.length > 0
-      ? project.photos
-      : fallbackPhotos;
+  const fallbackMedia = orgInstance.org.media ?? [];
+  const media =
+    project.media && project.media.length > 0
+      ? project.media
+      : fallbackMedia;
 
   const updatedAt = formatDate(project.updatedAt ?? project.createdAt);
 
@@ -133,7 +133,7 @@ export default async function Layout({ children, params, modals }: Props) {
       <div className="min-h-screen bg-background">
         <div className="relative">
           <GalleryCarousel
-            photos={photos}
+            media={media}
             title={project.title}
             type="project"
             username={username}

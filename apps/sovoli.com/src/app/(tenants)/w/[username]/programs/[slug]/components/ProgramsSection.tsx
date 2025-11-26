@@ -68,7 +68,7 @@ export function ProgramsSection({
                 program.name ??
                 program.standardProgramVersion?.program.name ??
                 "Program";
-              const programImage = program.photos?.[0];
+              const programImage = program.media?.[0];
 
               // Get age requirement for this program
               const admission =

@@ -1,7 +1,8 @@
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
-const CREATIVE_THINKING_STATIONERY_HUB_PHOTOS: Photo[] = [
+const CREATIVE_THINKING_STATIONERY_HUB_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753365788/o/ctshgy/store/1.webp",
     assetId: "placeholder-asset-id-1",
@@ -13,6 +14,7 @@ const CREATIVE_THINKING_STATIONERY_HUB_PHOTOS: Photo[] = [
     version: 1753365788,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753365788/o/ctshgy/store/2.webp",
     assetId: "placeholder-asset-id-2",
@@ -24,6 +26,7 @@ const CREATIVE_THINKING_STATIONERY_HUB_PHOTOS: Photo[] = [
     version: 1753365788,
   },
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753365788/o/ctshgy/store/3.webp",
     assetId: "placeholder-asset-id-3",
@@ -50,6 +53,6 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-export const STORE_PHOTOS: Photo[] = shuffleArray(
+export const STORE_PHOTOS: Media[] = shuffleArray(
   CREATIVE_THINKING_STATIONERY_HUB_PHOTOS,
 );

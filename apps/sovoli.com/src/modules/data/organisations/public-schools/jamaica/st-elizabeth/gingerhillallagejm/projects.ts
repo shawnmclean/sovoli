@@ -27,8 +27,9 @@ export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
         return [need];
       })(),
       tags: ["hurricane-mellissa"],
-      photos: [
+      media: [
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763153721/o/gingerhillallagejm/projects/hpfhacbyl4vux0t64v2v.jpg",
           publicId: "o/gingerhillallagejm/projects/hpfhacbyl4vux0t64v2v",
@@ -44,6 +45,7 @@ export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
           alt: "Damaged Ginger Hill All Age school building with tarps after the hurricane",
         },
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763153906/o/gingerhillallagejm/projects/odasjjagw6ioeidfi7sv.jpg",
           publicId: "o/gingerhillallagejm/projects/odasjjagw6ioeidfi7sv",
@@ -58,6 +60,7 @@ export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
           alt: "Volunteers assessing damaged classroom walls with clipboards",
         },
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763153910/o/gingerhillallagejm/projects/wjserpsagyi4elwska6b.jpg",
           publicId: "o/gingerhillallagejm/projects/wjserpsagyi4elwska6b",

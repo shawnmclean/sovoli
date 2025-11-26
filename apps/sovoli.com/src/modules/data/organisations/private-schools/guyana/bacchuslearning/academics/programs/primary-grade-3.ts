@@ -22,7 +22,7 @@ export const BLCGY_PRIMARY_GRADE_3_PROGRAM: Program = {
   outcome: "NGSA (Grade 6 Exam)",
   description: "Intermediate skills development for academic success",
   standardProgramVersion: GY_PRIMARY_GRADE_3_V1,
-  photos: PRIMARY_PHOTOS,
+  media: PRIMARY_PHOTOS,
   cycles: [BLCGY_PRIMARY_GRADE_3_2025_T1],
   testimonials: BLCGY_SHARED_TESTIMONIALS,
   activities: BLCGY_PRIMARY_DEPT_ACTIVITIES,

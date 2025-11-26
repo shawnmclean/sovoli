@@ -22,7 +22,7 @@ export const BLCGY_PRIMARY_GRADE_1_PROGRAM: Program = {
   outcome: "NGSA (Grade 6 Exam)",
   description: "Strong foundational learning in a nurturing environment",
   standardProgramVersion: GY_PRIMARY_GRADE_1_V1,
-  photos: PRIMARY_PHOTOS,
+  media: PRIMARY_PHOTOS,
   cycles: [BLCGY_PRIMARY_GRADE_1_2025_T1],
   testimonials: BLCGY_SHARED_TESTIMONIALS,
   activities: BLCGY_PRIMARY_DEPT_ACTIVITIES,

@@ -1,6 +1,6 @@
 import type { OrgLocation } from "../organisations/types";
 import type { Need } from "../needs/types";
-import type { Photo } from "../core/photos/types";
+import type { Media } from "../core/media/types";
 
 /** Standardized project lifecycle states */
 export type ProjectStatus = "planned" | "active" | "completed" | "cancelled";
@@ -40,8 +40,8 @@ export interface Project {
 
   group?: ProjectGroup & { order?: number };
 
-  /** Project photos */
-  photos?: Photo[];
+  /** Project media (photos and videos) */
+  media?: Media[];
 
   /** Description and purpose */
   description?: string;

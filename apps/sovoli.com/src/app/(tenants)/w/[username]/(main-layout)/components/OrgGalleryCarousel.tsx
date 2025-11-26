@@ -19,7 +19,8 @@ import { CldImage } from "next-cloudinary";
 import { useState, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { ChevronLeftIcon } from "lucide-react";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
+import { filterVisualMedia } from "~/modules/core/media/types";
 
 export interface OrgGalleryCarouselProps {
   orgInstance: OrgInstance;
@@ -32,7 +33,7 @@ function OrgGalleryModal({
   onClose,
   initialIndex = 0,
 }: {
-  photos: Photo[];
+  photos: Array<Media & { type: "image" | "video" }>;
   isOpen: boolean;
   onClose: () => void;
   initialIndex?: number;
@@ -74,18 +75,31 @@ function OrgGalleryModal({
             className="w-full h-full"
           >
             <CarouselContent className="h-full -ml-0">
-              {photos.map((photo, index) => (
+              {photos.map((media, index) => (
                 <CarouselItem key={index} className="basis-full pl-0 h-full">
                   <div className="w-full h-full relative flex items-center justify-center">
-                    <CldImage
-                      src={photo.publicId}
-                      alt={`Organization photo ${index + 1}`}
-                      width={photo.width}
-                      height={photo.height}
-                      sizes="100vw"
-                      className="object-contain"
-                      priority
-                    />
+                    {media.type === "video" ? (
+                      <video
+                        src={media.url}
+                        className="object-contain w-full h-full max-w-full max-h-full"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        controls
+                        poster={media.posterUrl}
+                      />
+                    ) : (
+                      <CldImage
+                        src={media.publicId}
+                        alt={`Organization photo ${index + 1}`}
+                        width={media.width}
+                        height={media.height}
+                        sizes="100vw"
+                        className="object-contain"
+                        priority
+                      />
+                    )}
                   </div>
                 </CarouselItem>
               ))}
@@ -98,7 +112,10 @@ function OrgGalleryModal({
 }
 
 export function OrgGalleryCarousel({ orgInstance }: OrgGalleryCarouselProps) {
-  const photos = orgInstance.org.photos ?? [];
+  const allMedia = orgInstance.org.media ?? [];
+  // Filter to only show visual media (images and videos) - exclude PDFs and other documents
+  const photos = filterVisualMedia(allMedia);
+
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -134,22 +151,35 @@ export function OrgGalleryCarousel({ orgInstance }: OrgGalleryCarouselProps) {
         className="w-full h-full"
       >
         <CarouselContent className="-ml-0">
-          {photos.map((photo, index) => (
+          {photos.map((media, index) => (
             <CarouselItem key={index} className="basis-full pl-0">
               <div className="w-full max-w-2xl aspect-[16/9] mx-auto relative">
-                <CldImage
-                  src={photo.publicId}
-                  priority={index === 0}
-                  alt={`Organization photo ${index + 1}`}
-                  width={800}
-                  height={450}
-                  crop="fill"
-                  sizes="100vw"
-                  quality="auto"
-                  loading={index === 0 ? "eager" : "lazy"}
-                  className="object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={onOpen}
-                />
+                {media.type === "video" ? (
+                  <video
+                    src={media.url}
+                    className="object-cover w-full h-full cursor-pointer hover:opacity-90 transition-opacity"
+                    onClick={onOpen}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    poster={media.posterUrl}
+                  />
+                ) : (
+                  <CldImage
+                    src={media.publicId}
+                    priority={index === 0}
+                    alt={`Organization photo ${index + 1}`}
+                    width={800}
+                    height={450}
+                    crop="fill"
+                    sizes="100vw"
+                    quality="auto"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    className="object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                    onClick={onOpen}
+                  />
+                )}
               </div>
             </CarouselItem>
           ))}

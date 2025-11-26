@@ -31,8 +31,9 @@ export const SANDY_BANK_INFANT_SCHOOL_PROJECTS: ProjectsModule = {
         findNeedBySlug("sandybankinfant-industrial-sheeting-2025"),
         findNeedBySlug("sandybankinfant-exterior-door-2025"),
       ],
-      photos: [
+      media: [
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763523979/o/sandybankinfantjm/projects/pq3yt5tipbzclezz0ylm.jpg",
           publicId: "o/sandybankinfantjm/projects/pq3yt5tipbzclezz0ylm",
@@ -48,6 +49,7 @@ export const SANDY_BANK_INFANT_SCHOOL_PROJECTS: ProjectsModule = {
           alt: "Damaged Sandy Bank Infant School building showing roof damage",
         },
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763523980/o/sandybankinfantjm/projects/ssn9vsk8j7ad2ilei4ck.jpg",
           publicId: "o/sandybankinfantjm/projects/ssn9vsk8j7ad2ilei4ck",
@@ -63,6 +65,7 @@ export const SANDY_BANK_INFANT_SCHOOL_PROJECTS: ProjectsModule = {
           alt: "Structural assessment of damaged school facilities at Sandy Bank Infant",
         },
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763523981/o/sandybankinfantjm/projects/vv1dmo8hptrnc15vhtfz.jpg",
           publicId: "o/sandybankinfantjm/projects/vv1dmo8hptrnc15vhtfz",

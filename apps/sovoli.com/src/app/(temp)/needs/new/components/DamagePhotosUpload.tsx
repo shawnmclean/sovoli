@@ -15,7 +15,7 @@ import { uploadToCloudinary } from "~/core/cloudinary/uploadToCloudinary";
 import type { UploadSignature } from "~/core/cloudinary/generateUploadSignatures";
 import { processImage } from "~/core/image/processImage";
 
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
 type UploadStatus = "uploading" | "error";
 
@@ -52,7 +52,7 @@ type DisplayItem =
 const getFirstNonEmpty = (...values: (string | undefined)[]) =>
   values.find((value) => value !== undefined && value.trim().length > 0);
 
-const getPhotoKey = (photo: Photo) =>
+const getPhotoKey = (photo: Media) =>
   getFirstNonEmpty(
     photo.publicId,
     photo.id,
@@ -63,9 +63,9 @@ const getPhotoKey = (photo: Photo) =>
   ) ?? crypto.randomUUID();
 
 export interface DamagePhotosUploadProps {
-  photos: Photo[];
+  photos: Media[];
   username: string;
-  onPhotosChange: (updater: (photos: Photo[]) => Photo[]) => void;
+  onPhotosChange: (updater: (photos: Media[]) => Media[]) => void;
   onUploadStatusChange?: (hasPendingUploads: boolean) => void;
 }
 
@@ -224,7 +224,8 @@ export function DamagePhotosUpload({
               signature,
             );
 
-            const uploadedPhoto: Photo = {
+            const uploadedPhoto: Media = {
+              type: "image",
               category: "default",
               url: uploadedAsset.url,
               caption: item.fileName,

@@ -1,4 +1,4 @@
-import type { Photo } from "../core/photos/types";
+import type { Media } from "../core/media/types";
 import type { Contact } from "../core/types";
 
 // #region Event Types
@@ -23,7 +23,7 @@ export interface Event {
   requirements?: EventRequirement[];
 
   // Media
-  photos?: Photo[];
+  media?: Media[];
 
   // Event Status
   status?: "upcoming" | "current" | "completed" | "cancelled";

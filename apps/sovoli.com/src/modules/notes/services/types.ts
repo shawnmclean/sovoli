@@ -1,4 +1,4 @@
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
 export interface KnowledgeFile {
   id: string;
@@ -17,8 +17,8 @@ export interface KnowledgeFile {
   createdAt: string;
   updatedAt: string;
   userId: string;
-  coverPhoto?: Photo;
-  inlinePhotos: Photo[];
+  coverPhoto?: Media;
+  inlinePhotos: Media[];
 }
 
 export interface UserKnowledge {

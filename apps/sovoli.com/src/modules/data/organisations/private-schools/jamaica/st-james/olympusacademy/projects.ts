@@ -61,8 +61,9 @@ export const OLYMPUS_ACADEMY_PROJECTS: ProjectsModule = {
         findNeedBySlug("olympusacademy-exercise-book-big-2025"),
         findNeedBySlug("olympusacademy-double-line-book-2025"),
       ],
-      photos: [
+      media: [
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763740443/o/olympus-academy/projects/hom58z0vesneheam37uuwukm.webp",
           publicId: "o/olympus-academy/projects/hom58z0vesneheam37uuwukm",
@@ -78,6 +79,7 @@ export const OLYMPUS_ACADEMY_PROJECTS: ProjectsModule = {
           alt: "Complete roof destruction and structural damage at Olympus Academy requiring total reconstruction",
         },
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763740443/o/olympus-academy/projects/xe9nezxsiq0dgmqu7g5tsreb.webp",
           publicId: "o/olympus-academy/projects/xe9nezxsiq0dgmqu7g5tsreb",
@@ -93,6 +95,7 @@ export const OLYMPUS_ACADEMY_PROJECTS: ProjectsModule = {
           alt: "Interior view of classroom showing destroyed ceiling, teaching materials, and educational resources",
         },
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763740443/o/olympus-academy/projects/xdzbw9d2z0bf6jq9jkzrybrq.webp",
           publicId: "o/olympus-academy/projects/xdzbw9d2z0bf6jq9jkzrybrq",
@@ -108,6 +111,7 @@ export const OLYMPUS_ACADEMY_PROJECTS: ProjectsModule = {
           alt: "Classroom structural damage showing need for total internal rebuilding and electrical rewiring",
         },
         {
+          type: "image",
           category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763740444/o/olympus-academy/projects/xtq836emj3hbtcdw8n1y57gf.webp",
           publicId: "o/olympus-academy/projects/xtq836emj3hbtcdw8n1y57gf",

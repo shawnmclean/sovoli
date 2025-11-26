@@ -6,7 +6,7 @@ import type { ScoringModule } from "../scoring/types";
 import type { WebsiteModule } from "../websites/types";
 import type { WorkforceModule } from "../workforce/types";
 import type { EventModule } from "../events/types";
-import type { Photo } from "../core/photos/types";
+import type { Media } from "../core/media/types";
 import type { NeedsModule } from "../needs/types";
 import type { ProjectsModule } from "../projects/types";
 
@@ -106,7 +106,7 @@ export interface Org {
   techStack?: OrgTechStack;
   supplierRecommendations?: SupplierRecommendation[];
 
-  photos?: Photo[];
+  media?: Media[];
 }
 
 export interface SupplierRecommendation {

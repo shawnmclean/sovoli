@@ -15,7 +15,7 @@ export const FITRIGHT_BAG_WORKSHOP_PROGRAM: Program = {
   highlights: bagWorkshopHighlights,
   description:
     "A hands-on introduction to sewing for complete beginners. In just one day, you'll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
-  photos: BAG_WORKSHOP_PHOTOS,
+  media: BAG_WORKSHOP_PHOTOS,
   courses: [
     {
       id: "fr-beginner-course-1",

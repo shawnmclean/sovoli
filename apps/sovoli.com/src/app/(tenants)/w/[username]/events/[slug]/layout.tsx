@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: Props) {
       type: "website",
       images: [
         {
-          url: event.photos?.[0]?.url ?? "",
+          url: event.media?.[0]?.url ?? "",
           width: 1200,
           height: 630,
           alt: event.name,
@@ -98,8 +98,8 @@ export default async function Layout({ children, params }: Props) {
     organizer: {
       "@id": `${orgInstance.websiteModule.website.url}#org`,
     },
-    ...(event.photos?.[0]?.url && {
-      image: event.photos[0].url,
+    ...(event.media?.[0]?.url && {
+      image: event.media[0].url,
     }),
   };
 
@@ -114,7 +114,7 @@ export default async function Layout({ children, params }: Props) {
       <MobileOnlyAlert />
       <EventDetailNavbar orgInstance={orgInstance} event={event} />
       <GalleryCarousel
-        photos={event.photos ?? []}
+        media={event.media ?? []}
         title={event.name}
         type="event"
         username={username}

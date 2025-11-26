@@ -5,13 +5,17 @@ import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Link } from "@sovoli/ui/components/link";
 import type { KnowledgeFile } from "~/modules/notes/services/types";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
 // Type guard for cover photo
 function hasCoverPhoto(knowledge: KnowledgeFile): knowledge is KnowledgeFile & {
-  coverPhoto: Photo & { bucket: string; id: string };
+  coverPhoto: Media & { type: "image"; bucket: string; id: string };
 } {
-  return !!(knowledge.coverPhoto?.bucket && knowledge.coverPhoto.id);
+  return !!(
+    knowledge.coverPhoto?.type === "image" &&
+    knowledge.coverPhoto?.bucket &&
+    knowledge.coverPhoto.id
+  );
 }
 
 interface KnowledgeCardProps {

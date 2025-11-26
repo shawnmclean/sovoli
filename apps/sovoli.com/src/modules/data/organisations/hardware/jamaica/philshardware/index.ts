@@ -1,10 +1,11 @@
 import type { OrgInstance } from "~/modules/organisations/types";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 import { ORG_USERNAME } from "./constants";
 import { PHILS_HARDWARE_CATALOG } from "./catalog";
 
-const PHILS_HARDWARE_PHOTOS: Photo[] = [
+const PHILS_HARDWARE_PHOTOS: Media[] = [
   {
+    type: "image",
     category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761156821/o/philshardware/org/1.png",
     assetId: "placeholder-asset-id",
@@ -66,7 +67,7 @@ export const PHILS_HARDWARE_ORG: OrgInstance = {
         url: "https://philshardwarejm.sovoli.com",
       },
     ],
-    photos: PHILS_HARDWARE_PHOTOS,
+    media: PHILS_HARDWARE_PHOTOS,
   },
   websiteModule: null,
   academicModule: null,

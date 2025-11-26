@@ -2,20 +2,21 @@
 
 import { CldImage } from "next-cloudinary";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import type { Photo } from "~/modules/core/photos/types";
+import type { Media } from "~/modules/core/media/types";
 
-// Type guard for inline photo
+// Type guard for inline photo (only images for inline display)
 function hasInlinePhoto(
-  photo: Photo,
-): photo is Photo & { bucket: string; id: string } {
-  return !!(photo.bucket && photo.id);
+  media: Media,
+): media is Media & { type: "image"; bucket: string; id: string } {
+  return media.type === "image" && !!(media.bucket && media.id);
 }
 
 interface InlinePhotosProps {
-  photos: Photo[];
+  photos: Media[];
 }
 
 export function InlinePhotos({ photos }: InlinePhotosProps) {
+  // Filter to only show images inline (videos can be displayed differently if needed)
   const validPhotos = photos.filter(hasInlinePhoto);
 
   if (validPhotos.length === 0) {

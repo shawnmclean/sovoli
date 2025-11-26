@@ -41,6 +41,28 @@
       ],
       "photos": [
         {
+          "type": "video",
+          "url": "https://res.cloudinary.com/dipyku9mn/video/upload/v1764170588/o/cove-primary/projects/aetwcrztes1minu8volw.mp4",
+          "publicId": "o/cove-primary/projects/aetwcrztes1minu8volw",
+          "assetId": "3938fe3b2ef1cc29ad08a3d51f2764f6",
+          "bucket": "o/cove-primary/projects",
+          "format": "mp4",
+          "bytes": 55207833,
+          "version": 1764170588,
+          "uploadedAt": "2025-11-26T15:23:08Z",
+          "width": 478,
+          "height": 850,
+          "duration": 238.247322,
+          "videoCodec": "h264",
+          "audioCodec": "aac",
+          "fps": 30,
+          "bitrate": 1594105,
+          "posterUrl": "https://res.cloudinary.com/dipyku9mn/video/upload/so_0/o/cove-primary/projects/aetwcrztes1minu8volw.jpg",
+          "category": "default",
+          "caption": "WhatsApp Video 2025-11-25 at 15.29.07_e5e187bb.mp4",
+          "alt": "WhatsApp Video 2025-11-25 at 15.29.07_e5e187bb.mp4"
+        },
+        {
           "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1763998818/o/cove-primary/projects/skibpj1q3lu645qzya0qwv8b.webp",
           "publicId": "o/cove-primary/projects/skibpj1q3lu645qzya0qwv8b",
           "assetId": "7ce551261f3d179e8947f46fbaf42019",
