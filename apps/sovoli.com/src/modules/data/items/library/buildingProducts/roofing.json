@@ -95,5 +95,21 @@
     "tags": ["building", "roofing", "insulation"],
     "unitLabel": "sheet",
     "description": "Hardboard sheet for roofing and construction applications."
+  },
+  {
+    "id": "zinc-sheet-20ft-galv",
+    "name": "Zinc Sheet - 20 ft Galvanized",
+    "category": "roofing-panels-slabs",
+    "tags": ["facilities", "maintenance", "roofing", "relief"],
+    "unitLabel": "sheet",
+    "description": "Corrugated galvanized zinc sheet, 20 feet length, for roofing applications."
+  },
+  {
+    "id": "zinc-sheet-16ft-galv",
+    "name": "Zinc Sheet - 16 ft Galvanized",
+    "category": "roofing-panels-slabs",
+    "tags": ["facilities", "maintenance", "roofing", "relief"],
+    "unitLabel": "sheet",
+    "description": "Corrugated galvanized zinc sheet, 16 feet length, for roofing applications."
   }
 ]

@@ -11,6 +11,7 @@ import fastenersData from "./library/buildingProducts/fasteners.json";
 import lumberData from "./library/buildingProducts/lumber.json";
 import adhesivesSealantsData from "./library/buildingProducts/adhesivesSealants.json";
 import hardwareData from "./library/buildingProducts/hardware.json";
+import gypsumDrywallData from "./library/buildingProducts/gypsumDrywall.json";
 import handToolsData from "./library/toolsEquipment/handTools.json";
 import cuttingToolsData from "./library/toolsEquipment/cuttingTools.json";
 import powerToolsData from "./library/toolsEquipment/powerTools.json";
@@ -44,6 +45,7 @@ const HARDWARE_ITEMS = [
   ...hydrateItemsFromJson(lumberData),
   ...hydrateItemsFromJson(adhesivesSealantsData),
   ...hydrateItemsFromJson(hardwareData),
+  ...hydrateItemsFromJson(gypsumDrywallData),
   ...hydrateItemsFromJson(handToolsData),
   ...hydrateItemsFromJson(cuttingToolsData),
   ...hydrateItemsFromJson(powerToolsData),

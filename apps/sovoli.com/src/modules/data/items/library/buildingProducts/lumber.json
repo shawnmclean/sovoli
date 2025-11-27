@@ -78,5 +78,21 @@
     "unitLabel": "length",
     "tags": ["building", "lumber", "construction"],
     "description": "Dressed and treated lumber, 1x8x16 feet."
+  },
+  {
+    "id": "lumber-1x3x14-rough-untreated",
+    "name": "1x3x14 ft Rough Untreated Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "length",
+    "tags": ["building", "lumber", "construction"],
+    "description": "Rough sawn untreated lumber, 1x3x14 feet."
+  },
+  {
+    "id": "lumber-2x6x20",
+    "name": "2x6x20 ft Framing Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "board",
+    "tags": ["relief", "building", "framing"],
+    "description": "Framing lumber for rafters and structural applications, 2x6x20 feet."
   }
 ]

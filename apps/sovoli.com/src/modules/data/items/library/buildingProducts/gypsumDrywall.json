@@ -1,0 +1,10 @@
+[
+  {
+    "id": "sheet-rock",
+    "name": "Sheet Rock (Drywall)",
+    "category": "gypsum-cement-board",
+    "tags": ["facilities", "maintenance", "construction", "relief"],
+    "unitLabel": "sheet",
+    "description": "Gypsum board (drywall) sheet for interior walls and ceilings."
+  }
+]

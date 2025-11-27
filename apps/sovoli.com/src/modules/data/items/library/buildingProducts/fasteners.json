@@ -94,5 +94,13 @@
     "unitLabel": "each",
     "tags": ["building", "hardware", "trim"],
     "description": "Trim piece used in construction and finishing work."
+  },
+  {
+    "id": "concrete-screw-1-4-x2",
+    "name": "Concrete Screw - 1/4 x 2 in",
+    "category": "screws",
+    "tags": ["building", "fastener", "hardware", "concrete"],
+    "unitLabel": "box",
+    "description": "Concrete screws for fastening to concrete and masonry, 1/4 inch diameter by 2 inches length."
   }
 ]

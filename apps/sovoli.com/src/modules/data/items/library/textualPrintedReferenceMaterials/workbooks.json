@@ -64,5 +64,12 @@
       "level": "Book 2",
       "kind": "workbook"
     }
+  },
+  {
+    "id": "books-and-charts",
+    "name": "Books and Charts",
+    "category": "workbooks",
+    "tags": ["educational", "teaching", "charts", "books"],
+    "description": "Educational books and wall charts for classroom instruction."
   }
 ]
