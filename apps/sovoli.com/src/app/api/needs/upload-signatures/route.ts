@@ -7,6 +7,8 @@ const requestSchema = z
   .object({
     count: z.number().int().min(1).max(20).optional(),
     username: z.string().optional(),
+    resourceType: z.enum(["image", "video", "auto"]).optional(),
+    mediaMetadata: z.boolean().optional(),
   })
   .optional();
 
@@ -21,6 +23,8 @@ export async function POST(request: Request) {
     const signatures = generateUploadSignatures({
       count,
       folder: `o/${username}/projects`,
+      resourceType: parsedBody?.resourceType,
+      mediaMetadata: parsedBody?.mediaMetadata,
     });
 
     return NextResponse.json(signatures);

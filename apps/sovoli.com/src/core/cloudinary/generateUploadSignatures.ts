@@ -33,11 +33,15 @@ export interface UploadSignature {
 export interface GenerateUploadSignaturesOptions {
   count?: number;
   folder?: string;
+  resourceType?: "image" | "video" | "auto";
+  mediaMetadata?: boolean;
 }
 
 export const generateUploadSignatures = ({
   count = 1,
   folder = DEFAULT_UPLOAD_FOLDER,
+  resourceType,
+  mediaMetadata,
 }: GenerateUploadSignaturesOptions = {}): UploadSignature[] => {
   configureCloudinary();
 
@@ -46,12 +50,24 @@ export const generateUploadSignatures = ({
 
   for (let index = 0; index < count; index += 1) {
     const id = createId();
+    const params: Record<string, string | number> = {
+      timestamp,
+      public_id: id,
+      folder,
+    };
+
+    // Include resource_type in signature if specified
+    if (resourceType) {
+      params.resource_type = resourceType;
+    }
+
+    // Include media_metadata in signature if specified
+    if (mediaMetadata) {
+      params.media_metadata = "true";
+    }
+
     const signature = cloudinary.utils.api_sign_request(
-      {
-        timestamp,
-        public_id: id,
-        folder,
-      },
+      params,
       env.CLOUDINARY_API_SECRET,
     );
 

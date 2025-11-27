@@ -305,7 +305,7 @@ export function ProjectMediaUpload({
   );
 
   const fetchSignatures = useCallback(
-    async (count: number) => {
+    async (count: number, isVideo: boolean) => {
       const trimmedUsername = username.trim();
       const response = await fetch("/api/needs/upload-signatures", {
         method: "POST",
@@ -313,6 +313,8 @@ export function ProjectMediaUpload({
         body: JSON.stringify({
           count,
           username: trimmedUsername.length > 0 ? trimmedUsername : undefined,
+          resourceType: isVideo ? "video" : undefined,
+          mediaMetadata: isVideo ? true : undefined,
         }),
       });
 
@@ -343,10 +345,51 @@ export function ProjectMediaUpload({
 
       setQueue((current) => [...current, ...incomingItems]);
 
-      let signatures: UploadSignature[] = [];
+      // Separate files by type to request appropriate signatures
+      const videoFiles = incomingItems.filter((item) => item.isVideo);
+      const imageFiles = incomingItems.filter((item) => !item.isVideo);
+
+      // Create a map to track which signature index each item should use
+      const signatureMap = new Map<
+        string,
+        { signature: UploadSignature; index: number }
+      >();
+      let videoIndex = 0;
+      let imageIndex = 0;
+
+      let videoSignatures: UploadSignature[] = [];
+      let imageSignatures: UploadSignature[] = [];
 
       try {
-        signatures = await fetchSignatures(acceptedFiles.length);
+        if (videoFiles.length > 0) {
+          videoSignatures = await fetchSignatures(videoFiles.length, true);
+        }
+        if (imageFiles.length > 0) {
+          imageSignatures = await fetchSignatures(imageFiles.length, false);
+        }
+
+        // Map signatures to items
+        for (const item of incomingItems) {
+          if (item.isVideo) {
+            const sig = videoSignatures[videoIndex];
+            if (sig) {
+              signatureMap.set(item.id, {
+                signature: sig,
+                index: videoIndex,
+              });
+              videoIndex++;
+            }
+          } else {
+            const sig = imageSignatures[imageIndex];
+            if (sig) {
+              signatureMap.set(item.id, {
+                signature: sig,
+                index: imageIndex,
+              });
+              imageIndex++;
+            }
+          }
+        }
       } catch (error) {
         console.error("Failed to request Cloudinary upload signatures:", error);
         const message =
@@ -365,10 +408,11 @@ export function ProjectMediaUpload({
       }
 
       await Promise.all(
-        incomingItems.map(async (item, index) => {
+        incomingItems.map(async (item) => {
           const { file } = item;
-          const signature = signatures[index];
-          if (!signature) {
+          // Get the appropriate signature from the map
+          const signatureData = signatureMap.get(item.id);
+          if (!signatureData) {
             updateQueueItems([item.id], (queueItem) => ({
               ...queueItem,
               status: "error",
@@ -376,6 +420,8 @@ export function ProjectMediaUpload({
             }));
             return;
           }
+
+          const { signature } = signatureData;
 
           try {
             if (item.isVideo) {
