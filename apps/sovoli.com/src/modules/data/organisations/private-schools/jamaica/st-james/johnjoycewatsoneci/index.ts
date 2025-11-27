@@ -7,7 +7,7 @@ import { JOHN_JOYCE_WATSON_ECI_PROJECTS } from "./projects";
 export const JOHN_JOYCE_WATSON_ECI_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
-    name: "John Joyce Watson Watson ECI",
+    name: "John Joyce Watson ECI",
     categories: ["private-school", "nursery-school"],
     isVerified: true,
     verification: {
