@@ -1,0 +1,102 @@
+{
+  "projects": [
+    {
+      "id": "st-theresa-basic-school-hurricane-recovery-2025",
+      "title": "Hurricane Recovery and Infrastructure Repair",
+      "description": "Completely damaged school",
+      "category": "relief",
+      "status": "planned",
+      "priority": "critical",
+      "locationKey": "main-campus",
+      "startDate": "2025-11-26",
+      "internal": false,
+      "needSlugs": [
+        "st-theresa-basic-school-ac-unit-2025",
+        "st-theresa-basic-school-tank-to-bowl-screw-2025",
+        "st-theresa-basic-school-basin-faucet-single-lever-2025"
+      ],
+      "photos": [
+        {
+          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764193238/o/st-theresa-basic-school/projects/i96qm9vnrfjz4qhjobt1wnyl.webp",
+          "publicId": "o/st-theresa-basic-school/projects/i96qm9vnrfjz4qhjobt1wnyl",
+          "assetId": "f10bb632d2cee69758297817779d7412",
+          "bucket": "o/st-theresa-basic-school/projects",
+          "uploadedAt": "2025-11-26T21:40:38Z",
+          "bytes": 163980,
+          "width": 1280,
+          "height": 832,
+          "format": "webp",
+          "version": 1764193238,
+          "caption": "IMG-20251104-WA0013.jpg",
+          "alt": "IMG-20251104-WA0013.jpg",
+          "category": "default"
+        },
+        {
+          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764193239/o/st-theresa-basic-school/projects/gg7b0jqdil1o24v8k0rxeigc.webp",
+          "publicId": "o/st-theresa-basic-school/projects/gg7b0jqdil1o24v8k0rxeigc",
+          "assetId": "319eeb4ff2ad0cd71dc3eaf5457ff827",
+          "bucket": "o/st-theresa-basic-school/projects",
+          "uploadedAt": "2025-11-26T21:40:39Z",
+          "bytes": 154834,
+          "width": 960,
+          "height": 1280,
+          "format": "webp",
+          "version": 1764193239,
+          "caption": "IMG-20251106-WA0013.jpg",
+          "alt": "IMG-20251106-WA0013.jpg",
+          "category": "default"
+        },
+        {
+          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764193240/o/st-theresa-basic-school/projects/x3sd9uwj509zzr610rmbv98e.webp",
+          "publicId": "o/st-theresa-basic-school/projects/x3sd9uwj509zzr610rmbv98e",
+          "assetId": "de9051f8a594aa39275b40218d57091e",
+          "bucket": "o/st-theresa-basic-school/projects",
+          "uploadedAt": "2025-11-26T21:40:40Z",
+          "bytes": 206386,
+          "width": 1280,
+          "height": 832,
+          "format": "webp",
+          "version": 1764193240,
+          "caption": "IMG-20251104-WA0010.jpg",
+          "alt": "IMG-20251104-WA0010.jpg",
+          "category": "default"
+        },
+        {
+          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764193241/o/st-theresa-basic-school/projects/f0jmzr9ucm8m70auzscheo3x.webp",
+          "publicId": "o/st-theresa-basic-school/projects/f0jmzr9ucm8m70auzscheo3x",
+          "assetId": "86281a195ab37bff353e996c48cf1340",
+          "bucket": "o/st-theresa-basic-school/projects",
+          "uploadedAt": "2025-11-26T21:40:41Z",
+          "bytes": 190654,
+          "width": 960,
+          "height": 1280,
+          "format": "webp",
+          "version": 1764193241,
+          "caption": "IMG-20251106-WA0011.jpg",
+          "alt": "IMG-20251106-WA0011.jpg",
+          "category": "default"
+        },
+        {
+          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764193242/o/st-theresa-basic-school/projects/cv8idp1it1j155ufmacv4am3.webp",
+          "publicId": "o/st-theresa-basic-school/projects/cv8idp1it1j155ufmacv4am3",
+          "assetId": "397247fa4da00cb793b3a8ad3d339ef9",
+          "bucket": "o/st-theresa-basic-school/projects",
+          "uploadedAt": "2025-11-26T21:40:42Z",
+          "bytes": 215664,
+          "width": 849,
+          "height": 1600,
+          "format": "webp",
+          "version": 1764193242,
+          "caption": "IMG-20251104-WA0011.jpg",
+          "alt": "IMG-20251104-WA0011.jpg",
+          "category": "default"
+        }
+      ],
+      "tags": ["hurricane", "relief", "infrastructure", "critical"],
+      "notes": "Principal: Sr Juliet Nyaga ASN. Critical damage - school completely damaged. Urgent restoration needed.",
+      "createdAt": "2025-11-26",
+      "updatedAt": "2025-11-26"
+    }
+  ]
+}
+

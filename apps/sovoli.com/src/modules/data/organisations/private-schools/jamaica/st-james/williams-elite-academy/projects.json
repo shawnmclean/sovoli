@@ -1,0 +1,70 @@
+{
+  "projects": [
+    {
+      "id": "williams-elite-academy-hurricane-recovery-2025",
+      "title": "Hurricane Recovery and Infrastructure Repair",
+      "description": "The roof of the kitchen and tuck shop was completely torn off, and the roof of the Grade 5 and 6 building was partially damaged. Several books were destroyed. The Grade 1 and Grade 2 buildings were flooded. The Kindergarten 2 classes were also flooded, and some books were destroyed.",
+      "category": "relief",
+      "status": "planned",
+      "priority": "medium",
+      "locationKey": "main-campus",
+      "startDate": "2025-11-26",
+      "internal": false,
+      "needSlugs": [
+        "williams-elite-academy-generator-2025"
+      ],
+      "photos": [
+        {
+          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764153461/o/williams-elite-academy/projects/l0mejjdm1k9hnwb9n2ya6ztk.png",
+          "publicId": "o/williams-elite-academy/projects/l0mejjdm1k9hnwb9n2ya6ztk",
+          "assetId": "31fddeac377d2fc6babc69037f17ff09",
+          "bucket": "o/williams-elite-academy/projects",
+          "uploadedAt": "2025-11-26T10:37:41Z",
+          "bytes": 1812613,
+          "width": 747,
+          "height": 1600,
+          "format": "png",
+          "version": 1764153461,
+          "caption": "a8bb7517-40ae-4467-bbc3-719e3deeae97.jpeg",
+          "alt": "a8bb7517-40ae-4467-bbc3-719e3deeae97.jpeg",
+          "category": "default"
+        },
+        {
+          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764153462/o/williams-elite-academy/projects/z6cs07wakj9wvx9h1hksvx9y.png",
+          "publicId": "o/williams-elite-academy/projects/z6cs07wakj9wvx9h1hksvx9y",
+          "assetId": "dd8056b0613f741783147552e29657c8",
+          "bucket": "o/williams-elite-academy/projects",
+          "uploadedAt": "2025-11-26T10:37:42Z",
+          "bytes": 922593,
+          "width": 1170,
+          "height": 682,
+          "format": "png",
+          "version": 1764153462,
+          "caption": "IMG_5629.jpeg",
+          "alt": "IMG_5629.jpeg",
+          "category": "default"
+        },
+        {
+          "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764153461/o/williams-elite-academy/projects/m03ls8h4hh6aa4cg2b5y5b4f.png",
+          "publicId": "o/williams-elite-academy/projects/m03ls8h4hh6aa4cg2b5y5b4f",
+          "assetId": "66f022b7435921549c36686644d4fe12",
+          "bucket": "o/williams-elite-academy/projects",
+          "uploadedAt": "2025-11-26T10:37:41Z",
+          "bytes": 900163,
+          "width": 1170,
+          "height": 648,
+          "format": "png",
+          "version": 1764153461,
+          "caption": "IMG_5631.jpeg",
+          "alt": "IMG_5631.jpeg",
+          "category": "default"
+        }
+      ],
+      "tags": ["hurricane", "relief", "infrastructure"],
+      "notes": "Principal: Nadine Williams. Moderate damage to roofs and flooding in multiple buildings.",
+      "createdAt": "2025-11-26",
+      "updatedAt": "2025-11-26"
+    }
+  ]
+}
+

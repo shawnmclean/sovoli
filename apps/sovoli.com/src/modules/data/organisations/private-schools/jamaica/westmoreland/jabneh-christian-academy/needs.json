@@ -1,0 +1,765 @@
+{
+  "needs": [
+    {
+      "slug": "jabneh-christian-academy-ac-unit-2025",
+      "title": "Air Conditioning Unit",
+      "description": "Replace damaged air conditioning units after building collapse.",
+      "itemId": "equipment-ac-unit",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for comfortable learning environment after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-tank-to-bowl-screw-2025",
+      "title": "Tank To Bowl Screw",
+      "description": "Screws for toilet repairs.",
+      "itemId": "tank-to-bowl-screw",
+      "quantity": 5,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for plumbing repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-basin-faucet-single-lever-2025",
+      "title": "Basin Faucet Single Lever",
+      "description": "Faucets for bathroom basin repairs.",
+      "itemId": "basin-faucet-single-lever",
+      "quantity": 5,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for plumbing repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-toilet-faucet-2025",
+      "title": "Toilet Faucet",
+      "description": "Faucets for toilet repairs.",
+      "itemId": "toilet-faucet",
+      "quantity": 5,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for plumbing repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-plyboard-sheet-2025",
+      "title": "Plyboard Sheet",
+      "description": "Plywood sheets for structural repairs after building collapse.",
+      "itemId": "maintenance-plyboard",
+      "quantity": 80,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Critical for rebuilding collapsed building structure."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-lumber-2x2x12-2025",
+      "title": "2x2x12 ft Treated Lumber",
+      "description": "Lumber for structural repairs.",
+      "itemId": "lumber-2x2x12",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for roof structure support and rebuilding."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-lumber-2x4x12-2025",
+      "title": "2x4x12 ft Framing Lumber",
+      "description": "Framing lumber for structural repairs.",
+      "itemId": "lumber-2x4x12",
+      "quantity": 40,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for structural framing repairs after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-lumber-1x3x16-2025",
+      "title": "1x3x16 ft Rough Untreated Lumber",
+      "description": "Rough untreated lumber for construction.",
+      "itemId": "lumber-1x3x16-rough-untreated",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for construction and repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-lumber-1x6x16-2025",
+      "title": "1x6x16 ft Dressed Treated Lumber",
+      "description": "Dressed treated lumber for construction.",
+      "itemId": "lumber-1x6x16-dress-treated",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for construction and repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-lumber-1x6x14-2025",
+      "title": "1x6x14 ft GT Lumber",
+      "description": "GT grade lumber for construction.",
+      "itemId": "lumber-1x6x14-gt",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for construction and repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-door-trim-adhesive-2025",
+      "title": "Door Trim Adhesive Protection",
+      "description": "Adhesive for door trim installation.",
+      "itemId": "door-trim-adhesive",
+      "quantity": 10,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for door installation and repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-exterior-door-2025",
+      "title": "Exterior Door - 36x80",
+      "description": "Replacement exterior doors for damaged entrances.",
+      "itemId": "exterior-door-36x80",
+      "quantity": 4,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace damaged doors after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-metal-door-2025",
+      "title": "Metal Door - 36x80",
+      "description": "Metal doors for secure entrances.",
+      "itemId": "door-metal-36x80",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace damaged doors after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-entrance-lock-2025",
+      "title": "Entrance Lock - Single Turn",
+      "description": "Locks for entrance doors.",
+      "itemId": "lock-entrance-single-turn",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for door security."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-roofing-hammer-2025",
+      "title": "Roofing Claw Hammer",
+      "description": "Hammers for construction and repair work.",
+      "itemId": "roofing-hammer",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for construction and repair work."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-measuring-tape-2025",
+      "title": "25 ft Measuring Tape",
+      "description": "Measuring tools for accurate construction work.",
+      "itemId": "measuring-tape-25ft",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for precise measurements during repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-tin-snips-2025",
+      "title": "Tin Snips",
+      "description": "Cutting tools for construction work.",
+      "itemId": "tin-snips",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for cutting materials during repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-impact-driver-2025",
+      "title": "18V Cordless Impact Driver",
+      "description": "Power tools for construction and repair work.",
+      "itemId": "impact-driver",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for efficient construction work."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-crayola-crayons-fat-2025",
+      "title": "Crayola Crayons (Fat)",
+      "description": "Art supplies for early childhood development.",
+      "itemId": "supply-crayola-crayons-fat",
+      "quantity": 10,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-crayola-crayons-fine-2025",
+      "title": "Crayola Crayons Fine",
+      "description": "Art supplies for student activities.",
+      "itemId": "supply-crayola-crayons-fine",
+      "quantity": 40,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-crayola-paint-2025",
+      "title": "Crayola Paint 6pcs",
+      "description": "Art supplies for student activities.",
+      "itemId": "supply-crayola-paint-6pcs",
+      "quantity": 40,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-glue-elmers-2025",
+      "title": "Glue Elmer's",
+      "description": "Craft supplies for student activities.",
+      "itemId": "supply-glue-elmers",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-cardboard-lg-2025",
+      "title": "Cardboard Lg",
+      "description": "Craft supplies for student activities.",
+      "itemId": "supply-cardboard-lg",
+      "quantity": 10,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-cardboard-sml-2025",
+      "title": "Cardboard sml",
+      "description": "Craft supplies for student activities.",
+      "itemId": "supply-cardboard-sml",
+      "quantity": 10,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-drawing-book-2025",
+      "title": "Drawing Book",
+      "description": "Art books for student activities.",
+      "itemId": "supply-drawing-book",
+      "quantity": 40,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-drawing-book-8.5x13-2025",
+      "title": "Drawing Book 8 1/2 by 13",
+      "description": "Art books for student activities.",
+      "itemId": "supply-drawing-book-8.5x13",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-drawing-book-8.5x11-2025",
+      "title": "Drawing Book 8 1/2 by 11",
+      "description": "Art books for student activities.",
+      "itemId": "supply-drawing-book-8.5x11",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-tailors-chalk-blue-2025",
+      "title": "Tailor's Chalk (Blue)",
+      "description": "Chalk for marking and drawing activities.",
+      "itemId": "supply-tailors-chalk-blue",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "low",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-tailors-chalk-red-2025",
+      "title": "Tailor's Chalk (Red)",
+      "description": "Chalk for marking and drawing activities.",
+      "itemId": "supply-tailors-chalk-red",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "low",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-drafting-paper-2025",
+      "title": "Drafting Paper",
+      "description": "Paper for drafting and drawing activities.",
+      "itemId": "supply-drafting-paper",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-building-blocks-2025",
+      "title": "Building Blocks",
+      "description": "Educational toys for cognitive development.",
+      "itemId": "supply-building-blocks",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost educational resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-pack-blocks-2025",
+      "title": "Pack Blocks",
+      "description": "Educational toys for cognitive development.",
+      "itemId": "supply-pack-blocks",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost educational resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-crayola-play-dough-2025",
+      "title": "Crayola Play Dough",
+      "description": "Sensory learning materials for early childhood development.",
+      "itemId": "supply-crayola-play-dough",
+      "quantity": 40,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-pack-letters-numbers-2025",
+      "title": "Pk letters n Numbers",
+      "description": "Educational toys for learning letters and numbers.",
+      "itemId": "supply-pack-letters-numbers",
+      "quantity": 40,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost educational resources after building collapse."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-pencils-pack-2025",
+      "title": "Pencils pack of 12",
+      "description": "Basic writing supplies for students.",
+      "itemId": "supply-pencils-pack-12",
+      "quantity": 100,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily classroom activities."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-exercise-book-small-2025",
+      "title": "Exercise Book Small Fine line",
+      "description": "Small exercise books for student writing.",
+      "itemId": "supply-exercise-book-small-fine-line",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily classroom activities and student work."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-exercise-book-big-2025",
+      "title": "Exercise Book Big",
+      "description": "Large exercise books for student writing.",
+      "itemId": "supply-exercise-book-big",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily classroom activities and student work."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "jabneh-christian-academy-double-line-book-2025",
+      "title": "Double Line Book",
+      "description": "Specialized writing books for handwriting practice.",
+      "itemId": "supply-double-line-book",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Critical for proper handwriting development in students."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    }
+  ]
+}
+

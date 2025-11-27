@@ -25,6 +25,7 @@ import { ST_ELIZABETH_TRAINING_INSTITUTE_ORG } from "./stelizabethtraininginstit
 import { ST_ELMO_S_PREPARATORY_ORG } from "./stelmosprep";
 import { ST_VINCENT_STRAMBI_CATHOLIC_HIGH_ORG } from "./stvincentstrambi";
 import { THE_EDUCATION_CENTRE_ORG } from "./theeducationcentre";
+import { ST_THERESA_BASIC_SCHOOL_ORG } from "./st-theresa-basic-school";
 import { WILANEL_PREPARATORY_ORG } from "./wilanelpreparatory";
 import { WILMOR_PREPARATORY_ORG } from "./wilmorprep";
 import { WINTEC_PRE_UNIVERSITY_ORG } from "./wintecpreuniversity";
@@ -55,6 +56,7 @@ export const ST_ELIZABETH_PRIVATE_SCHOOLS_JAMAICA: OrgInstance[] = [
   ST_ELMO_S_PREPARATORY_ORG,
   ST_VINCENT_STRAMBI_CATHOLIC_HIGH_ORG,
   THE_EDUCATION_CENTRE_ORG,
+  ST_THERESA_BASIC_SCHOOL_ORG,
   WILANEL_PREPARATORY_ORG,
   WILMOR_PREPARATORY_ORG,
   WINTEC_PRE_UNIVERSITY_ORG,

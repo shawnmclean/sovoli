@@ -1,0 +1,25 @@
+{
+  "needs": [
+    {
+      "slug": "williams-elite-academy-generator-2025",
+      "title": "Generator",
+      "description": "Generator for power backup after hurricane damage.",
+      "itemId": "fuel-containers",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Power backup needed after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    }
+  ]
+}
+

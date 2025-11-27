@@ -1,0 +1,65 @@
+{
+  "needs": [
+    {
+      "slug": "st-theresa-basic-school-ac-unit-2025",
+      "title": "Air Conditioning Unit",
+      "description": "Replace damaged air conditioning units after complete school damage.",
+      "itemId": "equipment-ac-unit",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "School completely damaged, essential for restoring learning environment."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "st-theresa-basic-school-tank-to-bowl-screw-2025",
+      "title": "Tank To Bowl Screw",
+      "description": "Screws for toilet repairs after complete damage.",
+      "itemId": "tank-to-bowl-screw",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "School completely damaged, needed for plumbing repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "st-theresa-basic-school-basin-faucet-single-lever-2025",
+      "title": "Basin Faucet Single Lever",
+      "description": "Faucets for bathroom basin repairs after complete damage.",
+      "itemId": "basin-faucet-single-lever",
+      "quantity": 21,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "School completely damaged, needed for plumbing repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    }
+  ]
+}
+

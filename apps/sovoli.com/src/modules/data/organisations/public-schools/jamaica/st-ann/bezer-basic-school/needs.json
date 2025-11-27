@@ -1,0 +1,325 @@
+{
+  "needs": [
+    {
+      "slug": "bezer-basic-school-zinc-roof-sheet-2025",
+      "title": "Zinc Roof Sheet",
+      "description": "Roofing sheets to replace blown off zinc sheets.",
+      "itemId": "zinc-roof-sheet",
+      "quantity": 18,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Zinc sheets blown off, urgent roof replacement needed."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-hurricane-strap-nails-2025",
+      "title": "Hurricane Strap Nails - 3 in",
+      "description": "Nails for securing hurricane straps.",
+      "itemId": "strap-nails-3in",
+      "quantity": 3,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for secure roof installation."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-nail-head-1in-2025",
+      "title": "Nail Head - 1 in",
+      "description": "Nails for construction and repair work.",
+      "itemId": "nail-head-1in",
+      "quantity": 3,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for construction and repair work."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-exterior-door-2025",
+      "title": "Exterior Door - 36x80",
+      "description": "Replacement exterior door for damaged entrance.",
+      "itemId": "exterior-door-36x80",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace damaged door after hurricane."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-metal-door-2025",
+      "title": "Metal Door - 36x80",
+      "description": "Metal doors for secure entrances.",
+      "itemId": "door-metal-36x80",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace damaged doors after hurricane."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-deadbolt-lock-2025",
+      "title": "Deadbolt Lock - Single Key",
+      "description": "Locks for door security.",
+      "itemId": "lock-deadbolt-single-key",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for door security."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-entrance-lock-2025",
+      "title": "Entrance Lock - Single Turn",
+      "description": "Locks for entrance doors.",
+      "itemId": "lock-entrance-single-turn",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for door security."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-drawing-book-2025",
+      "title": "Drawing Book",
+      "description": "Art books for student activities.",
+      "itemId": "supply-drawing-book",
+      "quantity": 43,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace destroyed books and charts after hurricane."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-tailors-chalk-blue-2025",
+      "title": "Tailor's Chalk (Blue)",
+      "description": "Chalk for marking and drawing activities.",
+      "itemId": "supply-tailors-chalk-blue",
+      "quantity": 3,
+      "type": "material",
+      "source": "external",
+      "priority": "low",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-tailors-chalk-red-2025",
+      "title": "Tailor's Chalk (Red)",
+      "description": "Chalk for marking and drawing activities.",
+      "itemId": "supply-tailors-chalk-red",
+      "quantity": 3,
+      "type": "material",
+      "source": "external",
+      "priority": "low",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost teaching resources."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-drafting-paper-2025",
+      "title": "Drafting Paper",
+      "description": "Paper for drafting and drawing activities.",
+      "itemId": "supply-drafting-paper",
+      "quantity": 12,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace destroyed books and charts after hurricane."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-pack-blocks-2025",
+      "title": "Pack Blocks",
+      "description": "Educational toys for cognitive development.",
+      "itemId": "supply-pack-blocks",
+      "quantity": 3,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost educational resources after hurricane."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-pack-letters-numbers-2025",
+      "title": "Pk letters n Numbers",
+      "description": "Educational toys for learning letters and numbers.",
+      "itemId": "supply-pack-letters-numbers",
+      "quantity": 5,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Replace lost educational resources after hurricane."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-fat-pencil-2025",
+      "title": "Fat Pencil",
+      "description": "Large pencils for early childhood writing development.",
+      "itemId": "supply-fat-pencil",
+      "quantity": 12,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily learning activities."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-pencils-pack-2025",
+      "title": "Pencils pack of 12",
+      "description": "Basic writing supplies for students.",
+      "itemId": "supply-pencils-pack-12",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily classroom activities."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    },
+    {
+      "slug": "bezer-basic-school-exercise-book-big-2025",
+      "title": "Exercise Book Big",
+      "description": "Large exercise books for student writing.",
+      "itemId": "supply-exercise-book-big",
+      "quantity": 44,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily classroom activities and student work. Books destroyed in hurricane."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-26T00:00:00.000Z",
+      "updatedAt": "2025-11-26T00:00:00.000Z"
+    }
+  ]
+}
+

@@ -1,0 +1,39 @@
+{
+  "projects": [
+    {
+      "id": "bezer-basic-school-hurricane-recovery-2025",
+      "title": "Hurricane Recovery and Infrastructure Repair",
+      "description": "Zinc sheets blown off, Ceiling collapsed, Books and Charts destroyed.",
+      "category": "relief",
+      "status": "planned",
+      "priority": "medium",
+      "locationKey": "main-campus",
+      "startDate": "2025-11-26",
+      "internal": false,
+      "needSlugs": [
+        "bezer-basic-school-zinc-roof-sheet-2025",
+        "bezer-basic-school-hurricane-strap-nails-2025",
+        "bezer-basic-school-nail-head-1in-2025",
+        "bezer-basic-school-exterior-door-2025",
+        "bezer-basic-school-metal-door-2025",
+        "bezer-basic-school-deadbolt-lock-2025",
+        "bezer-basic-school-entrance-lock-2025",
+        "bezer-basic-school-drawing-book-2025",
+        "bezer-basic-school-tailors-chalk-blue-2025",
+        "bezer-basic-school-tailors-chalk-red-2025",
+        "bezer-basic-school-drafting-paper-2025",
+        "bezer-basic-school-pack-blocks-2025",
+        "bezer-basic-school-pack-letters-numbers-2025",
+        "bezer-basic-school-fat-pencil-2025",
+        "bezer-basic-school-pencils-pack-2025",
+        "bezer-basic-school-exercise-book-big-2025"
+      ],
+      "photos": [],
+      "tags": ["hurricane", "relief", "infrastructure"],
+      "notes": "Board Member: Tavon Bryan. Moderate damage - zinc sheets blown off, ceiling collapsed, books and charts destroyed.",
+      "createdAt": "2025-11-26",
+      "updatedAt": "2025-11-26"
+    }
+  ]
+}
+
