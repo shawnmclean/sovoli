@@ -1,0 +1,26 @@
+{
+  "needs": [
+    {
+      "slug": "ginger-hill-primary-pencils-pack-2025",
+      "title": "Pencils pack of 12",
+      "description": "Basic writing supplies for students.",
+      "itemId": "supply-pencils-pack-12",
+      "quantity": 21,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for daily classroom activities after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-27T00:00:00.000Z",
+      "updatedAt": "2025-11-27T00:00:00.000Z"
+    }
+  ]
+}
+
+

@@ -1,0 +1,25 @@
+{
+  "projects": [
+    {
+      "id": "ginger-hill-primary-hurricane-recovery-2025",
+      "title": "Hurricane Recovery and Infrastructure Repair",
+      "description": "*Almost complete roof damage to both  buildings.\n*Total damaged roof of Guidance Department.\n* Total destruction of fencing, water tank covering \n*Partial destruction of Bathroom facilities",
+      "category": "relief",
+      "status": "planned",
+      "priority": "medium",
+      "locationKey": "main-campus",
+      "startDate": "2025-11-27",
+      "internal": false,
+      "needSlugs": [
+        "ginger-hill-primary-pencils-pack-2025"
+      ],
+      "photos": [],
+      "tags": ["hurricane", "relief", "infrastructure"],
+      "notes": "Contact: Sherreen Smith (Teacher). Moderate damage - almost complete roof damage to both buildings, total destruction of fencing and water tank covering, partial destruction of bathroom facilities.",
+      "createdAt": "2025-11-27",
+      "updatedAt": "2025-11-27"
+    }
+  ]
+}
+
+
