@@ -37,7 +37,7 @@ export const Stepper: React.FC<StepperProps> = ({
               <button
                 type="button"
                 disabled={!isClickable}
-                onClick={() => onStepClick && onStepClick(idx)}
+                onClick={() => onStepClick?.(idx)}
                 className={`flex items-center gap-2 group focus:outline-none transition-colors duration-200
                   ${isClickable ? "hover:opacity-80 cursor-pointer" : "cursor-default"}
                 `}
