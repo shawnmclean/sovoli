@@ -132,7 +132,7 @@ const uploadVideoToCloudinary = async (
   formData.append("signature", signature.signature);
   formData.append("public_id", signature.id);
   formData.append("folder", signature.folder);
-  formData.append("resource_type", "video");
+  // Note: resource_type is not needed here as it's implied by the /video/upload endpoint
   formData.append("media_metadata", "true");
 
   const response = await fetch(

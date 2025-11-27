@@ -56,12 +56,9 @@ export const generateUploadSignatures = ({
       folder,
     };
 
-    // Include resource_type in signature if specified
-    if (resourceType) {
-      params.resource_type = resourceType;
-    }
-
     // Include media_metadata in signature if specified
+    // Note: resource_type is not included in signature when using /video/upload endpoint
+    // as it's implied by the endpoint path
     if (mediaMetadata) {
       params.media_metadata = "true";
     }
