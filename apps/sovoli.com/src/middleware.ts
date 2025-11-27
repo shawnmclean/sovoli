@@ -25,6 +25,10 @@ export async function middleware(request: NextRequest) {
 
   if (isLocalhost(hostname)) {
     tenant = extractLocalTenant(request.url, hostname);
+    // If accessing via local IP without subdomain, allow access to directory/landing page
+    if (!tenant && isLocalIp(hostname)) {
+      return NextResponse.next();
+    }
   } else if (isPreviewHost(hostname)) {
     tenant = extractPreviewTenant(hostname);
   } else {
@@ -61,7 +65,15 @@ function isStaticAsset(path: string): boolean {
 
 function isLocalhost(host: string): boolean {
   const hostname = host.split(":")[0];
-  return hostname === "localhost" || hostname === "127.0.0.1";
+  if (hostname === "localhost" || hostname === "127.0.0.1") return true;
+  
+  // Check for local network IP addresses (192.168.x.x, 10.x.x.x, 172.16-31.x.x)
+  return isLocalIp(hostname);
+}
+
+function isLocalIp(hostname: string): boolean {
+  const localIpPattern = /^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[01])\.)/;
+  return localIpPattern.test(hostname);
 }
 
 function isPreviewHost(host: string): boolean {
