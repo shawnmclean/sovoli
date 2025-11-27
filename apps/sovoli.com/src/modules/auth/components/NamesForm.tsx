@@ -150,7 +150,7 @@ export function NamesForm({
             size="lg"
             label="First name"
             variant="bordered"
-            placeholder="John"
+            placeholder="Patrice"
             isRequired
             isDisabled={isSubmitting}
           />
@@ -164,7 +164,7 @@ export function NamesForm({
             type="text"
             size="lg"
             variant="bordered"
-            placeholder="Smith"
+            placeholder="Gooden"
             label="Last name"
             isRequired
             isDisabled={isSubmitting}
