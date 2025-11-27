@@ -4,7 +4,7 @@ import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { Textarea } from "@sovoli/ui/components/input";
 import { SEVERITY_OPTIONS } from "./options";
 import type { SeverityOptionKey } from "./options";
-import { DamagePhotosUpload } from "./DamagePhotosUpload";
+import { ProjectMediaUpload } from "./ProjectMediaUpload";
 import type { Media } from "~/modules/core/media/types";
 
 const SEVERITY_COLORS: Record<SeverityOptionKey, string> = {
@@ -98,8 +98,10 @@ export function ProjectStep({
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-default-700">Photos</label>
-        <DamagePhotosUpload
+        <label className="text-sm font-medium text-default-700">
+          Photos & Videos
+        </label>
+        <ProjectMediaUpload
           photos={photos}
           username={schoolUsername}
           onPhotosChange={onPhotosChange}
