@@ -205,13 +205,7 @@ export function DamagePhotosUpload({
           }
 
           try {
-            const processedBlob = await processImage(
-              file,
-              80,
-              "auto",
-              "auto",
-              "webp",
-            );
+            const processedBlob = await processImage(file);
 
             const processedFileName = file.name.replace(/\.[^/.]+$/, ".webp");
             const processedFile = new File([processedBlob], processedFileName, {

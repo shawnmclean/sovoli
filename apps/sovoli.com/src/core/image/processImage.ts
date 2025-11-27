@@ -1,4 +1,4 @@
-import type { ImageFormat, Size } from "./types";
+import type { ImageFormat } from "./types";
 
 /**
  * Returns the mime type given a string
@@ -18,64 +18,67 @@ const getMimeType = (format: ImageFormat): string => {
 };
 
 /**
- * Get the width and height of an image based on desired dimensions.
+ * Process an image with specific dimensions and return a blob.
  *
- * @param {HTMLImageElement} img - The image element for reference.
- * @param {(number | 'auto')} [width='auto'] - Desired width. Auto-calculated if set to `'auto'` or `0`.
- * @param {(number | 'auto')} [height='auto'] - Desired height. Auto-calculated if set to `'auto'` or `0`.
- * @returns {Size} The calculated width and height.
+ * @param {HTMLImageElement} img - The image element.
+ * @param {number} targetWidth - Target width.
+ * @param {number} targetHeight - Target height.
+ * @param {string} mimeType - MIME type for the output.
+ * @param {number} quality - Image quality (0-1).
+ * @returns {Promise<Blob>} A promise resolving to the processed image Blob.
  */
-const getHeightWidth = (
+const processImageWithDimensions = async (
   img: HTMLImageElement,
-  width: number | "auto" = "auto",
-  height: number | "auto" = "auto",
-): Size => {
-  const isWidthAuto = width === "auto" || width === 0;
-  const isHeightAuto = height === "auto" || height === 0;
+  targetWidth: number,
+  targetHeight: number,
+  mimeType: string,
+  quality: number,
+): Promise<Blob> => {
+  return new Promise((resolve, reject) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
 
-  if (!isWidthAuto && !isHeightAuto) {
-    return { width, height };
-  }
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      reject(new Error("Failed to get canvas context."));
+      return;
+    }
 
-  if (!isWidthAuto) {
-    const ratio = img.naturalWidth / width;
-    return {
-      width,
-      height:
-        Math.round((img.naturalHeight / ratio + Number.EPSILON) * 100) / 100,
-    };
-  }
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-  if (!isHeightAuto) {
-    const ratio = img.naturalHeight / height;
-    return {
-      width:
-        Math.round((img.naturalWidth / ratio + Number.EPSILON) * 100) / 100,
-      height,
-    };
-  }
-
-  return { width: img.naturalWidth, height: img.naturalHeight };
+    canvas.toBlob(
+      (blob) => {
+        if (blob === null) {
+          return reject(new Error("Failed to generate image blob."));
+        }
+        resolve(
+          new Blob([blob], {
+            type: mimeType,
+          }),
+        );
+      },
+      mimeType,
+      quality,
+    );
+  });
 };
 
 /**
- * Compress, resize, or convert an image Blob/File.
+ * Compress, resize, and convert an image Blob/File.
+ * Automatically downscales images to fit within maxWidth while maintaining aspect ratio.
  *
  * @param {Blob | File} imgBlob The image blob to manipulate.
- * @param {number} [quality=100] The image quality for JPEG/PNG (0-100).
- * @param {number | 'auto'} [width='auto] The desired width (`'auto'` for original).
- * @param {number | 'auto'} [height='auto] The desired height (`'auto'` for original).
- * @param {ImageFormat | null} [format=null] The desired image format (defaults to original format).
- * @param {string | null} [backgroundColor=null] Background color for PNG images (e.g., "#FFFFFF").
+ * @param {number} [maxWidth=1920] Maximum width constraint. 1920 is a safe default for retina displays.
+ * @param {number} [quality=0.8] The image quality (0-1). Default 0.8 provides good quality with smaller file sizes.
+ * @param {ImageFormat} [format='jpeg'] The desired image format.
  * @returns {Promise<Blob>} A promise resolving to the processed image Blob.
  */
 export const processImage = async (
   imgBlob: Blob | File,
-  quality = 100,
-  width: number | "auto" = "auto",
-  height: number | "auto" = "auto",
-  format: ImageFormat | null = null,
-  backgroundColor: string | null = null,
+  maxWidth = 1920, // Safe default for retina displays
+  quality = 0.8,
+  format: ImageFormat = "jpeg",
 ): Promise<Blob> => {
   if (!(imgBlob instanceof Blob)) {
     throw new TypeError(`Expected a Blob or File, but got ${typeof imgBlob}.`);
@@ -87,19 +90,15 @@ export const processImage = async (
     );
   }
 
-  if (quality <= 0) {
-    throw new RangeError("Quality must be greater than 0.");
+  if (maxWidth <= 0) {
+    throw new RangeError("maxWidth must be greater than 0.");
   }
 
-  if (
-    (typeof width === "number" && width < 0) ||
-    (typeof height === "number" && height < 0)
-  ) {
-    throw new RangeError("Invalid width or height value!");
+  if (quality <= 0 || quality > 1) {
+    throw new RangeError("Quality must be between 0 and 1.");
   }
 
-  const mimeType = format ? getMimeType(format) : imgBlob.type;
-  const imgQuality = quality < 1 ? quality : quality / 100;
+  const mimeType = getMimeType(format);
 
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -108,39 +107,25 @@ export const processImage = async (
       const img = new Image();
       img.src = reader.result as string;
 
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        const size = getHeightWidth(img, width, height);
-        canvas.width = size.width;
-        canvas.height = size.height;
+      img.onload = async () => {
+        try {
+          // Calculate dimensions respecting maxWidth constraint
+          const aspectRatio = img.naturalWidth / img.naturalHeight;
+          const targetWidth = Math.min(img.naturalWidth, maxWidth);
+          const targetHeight = Math.round(targetWidth / aspectRatio);
 
-        const ctx = canvas.getContext("2d");
-        if (!ctx) {
-          reject(new Error("Failed to get canvas context."));
-          return;
+          const processedBlob = await processImageWithDimensions(
+            img,
+            targetWidth,
+            targetHeight,
+            mimeType,
+            quality,
+          );
+
+          resolve(processedBlob);
+        } catch (error) {
+          reject(error instanceof Error ? error : new Error(String(error)));
         }
-
-        if (backgroundColor && mimeType === "image/png") {
-          ctx.fillStyle = backgroundColor;
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-        canvas.toBlob(
-          (blob) => {
-            if (blob === null) {
-              return reject(new Error("Failed to generate image blob."));
-            }
-            resolve(
-              new Blob([blob], {
-                type: mimeType,
-              }),
-            );
-          },
-          mimeType,
-          imgQuality,
-        );
       };
 
       img.onerror = () => {
