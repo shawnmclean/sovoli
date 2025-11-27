@@ -1,11 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { CldImage } from "next-cloudinary";
+import { Play } from "lucide-react";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import type { ReliefFormData } from "./ReliefForm";
 import { findItemById } from "~/modules/data/items";
+import { filterVisualMedia } from "~/modules/core/media/types";
 import {
   CONTACT_ROLE_OPTIONS,
   ORG_TYPE_OPTIONS,
@@ -50,8 +53,11 @@ export function Confirmation({
   const parishLabel =
     PARISH_OPTIONS.find((option) => option.key === formData.locationParish)
       ?.label ?? formData.locationParish;
-  const damagePhotos = formData.photos.filter((photo) => photo.url);
-  const hasDamagePhotos = damagePhotos.length > 0;
+  // Filter to only show visual media (images and videos)
+  const damageMedia = filterVisualMedia(
+    formData.photos.filter((photo) => photo.url),
+  );
+  const hasDamageMedia = damageMedia.length > 0;
 
   return (
     <div className="space-y-8 text-center">
@@ -89,37 +95,69 @@ export function Confirmation({
         </Card>
       )}
 
-      {hasDamagePhotos && (
+      {hasDamageMedia && (
         <Card className="rounded-2xl border border-default-200 bg-default-50/80 text-left">
           <CardHeader className="flex flex-col items-start gap-2 px-5 py-4 sm:px-6">
-            <h3 className="text-lg font-semibold">Damage Photos</h3>
+            <h3 className="text-lg font-semibold">Photos & Videos</h3>
             <p className="text-small text-default-500">
-              These photos will help us verify the damage.
+              These media files will help us verify the damage.
             </p>
           </CardHeader>
           <Divider />
           <CardBody className="px-5 py-4 sm:px-6">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {damagePhotos.map((photo) => {
+              {damageMedia.map((media) => {
                 const altText =
-                  photo.alt ??
-                  photo.caption ??
-                  (photo.publicId.trim().length > 0
-                    ? photo.publicId
-                    : "Damage photo");
+                  media.alt ??
+                  media.caption ??
+                  (media.publicId.trim().length > 0
+                    ? media.publicId
+                    : media.type === "video"
+                      ? "Damage video"
+                      : "Damage photo");
+
+                const mediaKey = media.publicId
+                  ? media.publicId
+                  : (media.id ?? media.assetId ?? media.url);
 
                 return (
                   <div
-                    key={photo.id}
+                    key={mediaKey}
                     className="relative aspect-square overflow-hidden rounded-xl border border-default-200 bg-default-100"
                   >
-                    <Image
-                      src={photo.url}
-                      alt={altText}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 640px) 140px, 40vw"
-                    />
+                    {media.type === "video" ? (
+                      <>
+                        <video
+                          src={media.url}
+                          className="object-cover w-full h-full"
+                          muted
+                          playsInline
+                          preload="metadata"
+                          poster={media.posterUrl}
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                          <Play className="h-8 w-8 text-white" />
+                        </div>
+                      </>
+                    ) : media.publicId ? (
+                      <CldImage
+                        src={media.publicId}
+                        alt={altText}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 640px) 140px, 40vw"
+                        crop="fill"
+                        quality="auto"
+                      />
+                    ) : (
+                      <Image
+                        src={media.url}
+                        alt={altText}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 640px) 140px, 40vw"
+                      />
+                    )}
                   </div>
                 );
               })}
