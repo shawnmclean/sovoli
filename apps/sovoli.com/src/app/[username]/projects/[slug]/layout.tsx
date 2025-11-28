@@ -3,9 +3,6 @@ import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { ClipboardListIcon, TagIcon } from "lucide-react";
 
-import { bus } from "~/services/core/bus";
-import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-import { slugify } from "~/utils/slugify";
 import { GalleryCarousel } from "~/components/GalleryCarousel";
 import { formatDate } from "~/app/(temp)/projects/lib/formatters";
 import {
@@ -14,7 +11,8 @@ import {
   getPriorityTextClass,
 } from "~/app/(temp)/projects/lib/priorities";
 import type { OrgLocation } from "~/modules/organisations/types";
-import type { Project, ProjectsModule } from "~/modules/projects/types";
+import type { Project, ProjectGroup } from "~/modules/projects/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { ProjectDetailNavbar } from "./components/ProjectDetailNavbar";
 import { ProjectHeroSection } from "./components/ProjectHeroSection";
 import { ProjectOrgBadgeSection } from "./components/ProjectOrgBadgeSection";
@@ -25,6 +23,8 @@ import { ProjectCoordinators } from "./components/ProjectCoordinators";
 import { ProjectCartProvider } from "./context/ProjectCartContext";
 import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 import { ProjectTracking } from "./components/ProjectTracking";
+import { ProjectsInGroupSection } from "./components/ProjectsInGroupSection";
+import { getOrgInstanceWithProject } from "./lib/getOrgInstanceWithProject";
 
 interface Props {
   children: React.ReactNode;
@@ -32,26 +32,20 @@ interface Props {
   modals: React.ReactNode;
 }
 
-const retrieveOrgInstance = async (username: string) => {
-  const result = await bus.queryProcessor.execute(
-    new GetOrgInstanceByUsernameQuery(username),
-  );
-  if (!result.orgInstance) return notFound();
-  return result.orgInstance;
-};
-
-function findProjectBySlug(
-  projectsModule: ProjectsModule | null | undefined,
+const retrieveOrgInstanceWithProject = async (
+  username: string,
   slug: string,
-): Project | null {
-  if (!projectsModule) return null;
-
-  return (
-    projectsModule.projects.find(
-      (project) => slugify(project.title) === slug || project.id === slug,
-    ) ?? null
-  );
-}
+): Promise<{
+  orgInstance: OrgInstance;
+  project?: Project;
+  group?: ProjectGroup;
+}> => {
+  const result = await getOrgInstanceWithProject(username, slug);
+  if (!result) {
+    notFound();
+  }
+  return result;
+};
 
 function resolveProjectLocation(
   locationKey: string | undefined,
@@ -72,49 +66,154 @@ function resolveProjectLocation(
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username, slug } = await params;
-  const orgInstance = await retrieveOrgInstance(username);
-  const project = findProjectBySlug(orgInstance.projectsModule, slug);
+  const result = await retrieveOrgInstanceWithProject(username, slug);
 
-  if (!project) {
+  const { orgInstance, project, group } = result;
+
+  // Handle group case
+  if (group) {
+    const firstProject = group.projects?.[0];
+    const fallbackMedia = orgInstance.org.media ?? [];
+    const media =
+      firstProject?.media && firstProject.media.length > 0
+        ? firstProject.media
+        : fallbackMedia;
+
+    const ogImage = media[0]?.url;
+    const description =
+      group.description ??
+      "Explore the latest recovery projects shared by school leaders on Sovoli.";
+
     return {
-      title: "Project not found | Sovoli",
+      title: `${group.name} | ${orgInstance.org.name}`,
+      description,
+      openGraph: {
+        title: `${group.name} | ${orgInstance.org.name}`,
+        description,
+        images: ogImage ? [{ url: ogImage }] : [],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${group.name} | ${orgInstance.org.name}`,
+        description,
+        images: ogImage ? [ogImage] : [],
+      },
     };
   }
 
-  const fallbackMedia = orgInstance.org.media ?? [];
-  const media =
-    project.media && project.media.length > 0
-      ? project.media
-      : fallbackMedia;
+  // Handle individual project case
+  if (project) {
+    const fallbackMedia = orgInstance.org.media ?? [];
+    const media =
+      project.media && project.media.length > 0
+        ? project.media
+        : fallbackMedia;
 
-  const ogImage = media[0]?.url;
-  const description =
-    project.description ??
-    "Explore the latest recovery projects shared by school leaders on Sovoli.";
+    const ogImage = media[0]?.url;
+    const description =
+      project.description ??
+      "Explore the latest recovery projects shared by school leaders on Sovoli.";
+
+    return {
+      title: `${project.title} | ${orgInstance.org.name}`,
+      description,
+      openGraph: {
+        title: `${project.title} | ${orgInstance.org.name}`,
+        description,
+        images: ogImage ? [{ url: ogImage }] : [],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${project.title} | ${orgInstance.org.name}`,
+        description,
+        images: ogImage ? [ogImage] : [],
+      },
+    };
+  }
 
   return {
-    title: `${project.title} | ${orgInstance.org.name}`,
-    description,
-    openGraph: {
-      title: `${project.title} | ${orgInstance.org.name}`,
-      description,
-      images: ogImage ? [{ url: ogImage }] : [],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${project.title} | ${orgInstance.org.name}`,
-      description,
-      images: ogImage ? [ogImage] : [],
-    },
+    title: "Project not found | Sovoli",
   };
 }
 
 export default async function Layout({ children, params, modals }: Props) {
   const { username, slug } = await params;
-  const orgInstance = await retrieveOrgInstance(username);
-  const project = findProjectBySlug(orgInstance.projectsModule, slug);
+  const result = await retrieveOrgInstanceWithProject(username, slug);
 
+  const { orgInstance, project, group } = result;
+
+  // Handle group case
+  if (group) {
+    const firstProject = group.projects?.[0];
+    if (!firstProject) {
+      notFound();
+    }
+
+    const location = resolveProjectLocation(
+      firstProject.locationKey,
+      orgInstance,
+    );
+    const fallbackMedia = orgInstance.org.media ?? [];
+    const media =
+      firstProject.media && firstProject.media.length > 0
+        ? firstProject.media
+        : fallbackMedia;
+
+    return (
+      <ProjectCartProvider>
+        <div className="min-h-screen bg-background">
+          <div className="relative">
+            <GalleryCarousel
+              media={media}
+              title={group.name}
+              type="project"
+              username={username}
+              id={group.id}
+            />
+
+            <ProjectDetailNavbar
+              orgInstance={orgInstance}
+              project={firstProject}
+              backHref="/projects"
+            />
+          </div>
+
+          <NavigationDrawer fallbackPath={`/projects/${slug}`}>
+            {modals}
+          </NavigationDrawer>
+
+          <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
+            <ProjectOrgBadgeSection
+              orgInstance={orgInstance}
+              location={location}
+            />
+
+            <section className="mb-2 border-b border-default-200 pb-2 text-center sm:mb-8 sm:pb-8">
+              <h1 className="my-4 text-2xl font-semibold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
+                {group.name}
+              </h1>
+              {group.description && (
+                <p className="mx-auto mt-2 max-w-3xl text-base leading-relaxed text-default-600 sm:text-lg">
+                  {group.description}
+                </p>
+              )}
+            </section>
+
+            <ProjectsInGroupSection
+              orgInstance={orgInstance}
+              group={group}
+            />
+          </main>
+
+          {children}
+        </div>
+      </ProjectCartProvider>
+    );
+  }
+
+  // Handle individual project case
   if (!project) {
     notFound();
   }
@@ -127,6 +226,7 @@ export default async function Layout({ children, params, modals }: Props) {
       : fallbackMedia;
 
   const updatedAt = formatDate(project.updatedAt ?? project.createdAt);
+  const projectGroup = project.group;
 
   return (
     <ProjectCartProvider>
@@ -175,6 +275,24 @@ export default async function Layout({ children, params, modals }: Props) {
             location={location}
           />
 
+          {projectGroup && (
+            <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">
+              <div className="space-y-2">
+                <p className="text-sm font-medium text-muted-foreground">
+                  Part of project group
+                </p>
+                <p className="text-base font-semibold text-foreground sm:text-lg">
+                  {projectGroup.name}
+                </p>
+                {projectGroup.description && (
+                  <p className="text-sm text-default-600">
+                    {projectGroup.description}
+                  </p>
+                )}
+              </div>
+            </section>
+          )}
+
           {project.description && (
             <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">
               <div className="space-y-4">
@@ -191,6 +309,14 @@ export default async function Layout({ children, params, modals }: Props) {
                 )}
               </div>
             </section>
+          )}
+
+          {projectGroup && (
+            <ProjectsInGroupSection
+              orgInstance={orgInstance}
+              project={project}
+              group={projectGroup}
+            />
           )}
 
           <ProjectBreakdown project={project} orgInstance={orgInstance} />
