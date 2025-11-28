@@ -55,9 +55,54 @@ const footerSectionJsonSchema = z.object({
 });
 
 /**
- * Zod schema for PageConfig (simplified - full structure would need more investigation)
+ * Zod schema for PageSection
  */
-const pageConfigJsonSchema = z.record(z.unknown());
+const pageSectionJsonSchema = z.object({
+  type: z.enum([
+    "hero",
+    "metrics",
+    "cards",
+    "list",
+    "collection",
+    "programs",
+    "team",
+  ]),
+  layout: z.string().optional(),
+  variant: z.string().optional(),
+  title: z.string().optional(),
+  subtitle: z.string().optional(),
+  backgroundImage: z.string().optional(),
+  contentRefs: z.array(z.string()).optional(),
+  collectionKey: z.string().optional(),
+  actions: z
+    .array(
+      z.object({
+        label: z.string(),
+        href: z.string(),
+      }),
+    )
+    .optional(),
+  metrics: z
+    .array(
+      z.object({
+        title: z.string(),
+        value: z.string(),
+        icon: z.string().optional(),
+        description: z.string().optional(),
+      }),
+    )
+    .optional(),
+});
+
+/**
+ * Zod schema for PageConfig
+ */
+const pageConfigJsonSchema = z.object({
+  name: z.enum(["home", "about"]),
+  title: z.string().optional(),
+  subtitle: z.string().optional(),
+  sections: z.array(pageSectionJsonSchema),
+});
 
 /**
  * Zod schema for Website
