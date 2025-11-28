@@ -21,6 +21,7 @@ export function getProjectById(id: string): ProjectDirectoryEntry | undefined {
 
 function buildProjectDirectoryEntries(): ProjectDirectoryEntry[] {
   const entries: ProjectDirectoryEntry[] = [];
+  const processedGroups = new Set<string>(); // Track processed groups by org+groupId
 
   for (const orgInstance of ORGS) {
     const isInTargetCountry = orgInstance.org.locations.some((location) => {
@@ -37,8 +38,178 @@ function buildProjectDirectoryEntries(): ProjectDirectoryEntry[] {
 
     const fallbackMedia = orgInstance.org.media ?? [];
 
+    // Group projects by their group ID
+    const projectsByGroup = new Map<
+      string,
+      { project: (typeof projectModule.projects)[number]; location: OrgLocation | undefined }[]
+    >();
+    const ungroupedProjects: {
+      project: (typeof projectModule.projects)[number];
+      location: OrgLocation | undefined;
+    }[] = [];
+
     for (const project of projectModule.projects) {
       const location = resolveProjectLocation(project.locationKey, orgInstance);
+      if (project.group) {
+        const groupKey = `${orgInstance.org.username}-${project.group.id}`;
+        if (!projectsByGroup.has(groupKey)) {
+          projectsByGroup.set(groupKey, []);
+        }
+        projectsByGroup.get(groupKey)?.push({ project, location });
+      } else {
+        ungroupedProjects.push({ project, location });
+      }
+    }
+
+    // Create entries for groups
+    for (const [groupKey, groupProjects] of projectsByGroup) {
+      if (processedGroups.has(groupKey)) continue;
+      processedGroups.add(groupKey);
+
+      // Sort group projects by their order (if available) to ensure consistent first project
+      const sortedGroupProjects = [...groupProjects].sort((a, b) => {
+        const aOrder = a.project.group?.order ?? 999;
+        const bOrder = b.project.group?.order ?? 999;
+        return aOrder - bOrder;
+      });
+
+      const firstProjectData = sortedGroupProjects[0];
+      if (!firstProjectData) continue;
+
+      const { project: firstProject, location: firstLocation } = firstProjectData;
+      const group = firstProject.group;
+      if (!group) continue;
+
+      // Aggregate data from all projects in the group
+      const allNeeds: Need[] = [];
+      const allTags = new Set<string>();
+      let highestPriority: ProjectDirectoryEntry["priority"] = firstProject.priority;
+      let mostActiveStatus: ProjectDirectoryEntry["status"] = firstProject.status;
+      let earliestStartDate = firstProject.startDate;
+      let latestEndDate = firstProject.endDate;
+      let latestUpdatedAt = firstProject.updatedAt;
+      let earliestCreatedAt = firstProject.createdAt;
+
+      for (const { project } of sortedGroupProjects) {
+        // Aggregate needs
+        if (project.needs) {
+          allNeeds.push(...project.needs);
+        }
+
+        // Aggregate tags
+        if (project.tags) {
+          project.tags.forEach((tag) => {
+            allTags.add(tag);
+          });
+        }
+
+        // Determine highest priority (critical > high > medium > low)
+        if (project.priority) {
+          const priorityOrder: ProjectDirectoryEntry["priority"][] = [
+            "critical",
+            "high",
+            "medium",
+            "low",
+          ];
+          const currentIndex = priorityOrder.indexOf(project.priority);
+          const highestIndex = highestPriority
+            ? priorityOrder.indexOf(highestPriority)
+            : -1;
+          if (currentIndex >= 0 && (highestIndex < 0 || currentIndex < highestIndex)) {
+            highestPriority = project.priority;
+          }
+        }
+
+        // Determine most active status (active > planned > completed > cancelled)
+        if (project.status) {
+          const statusOrder: ProjectDirectoryEntry["status"][] = [
+            "active",
+            "planned",
+            "completed",
+            "cancelled",
+          ];
+          const currentIndex = statusOrder.indexOf(project.status);
+          const mostActiveIndex = mostActiveStatus
+            ? statusOrder.indexOf(mostActiveStatus)
+            : -1;
+          if (currentIndex >= 0 && (mostActiveIndex < 0 || currentIndex < mostActiveIndex)) {
+            mostActiveStatus = project.status;
+          }
+        }
+
+        // Track earliest start date
+        if (project.startDate) {
+          if (!earliestStartDate || project.startDate < earliestStartDate) {
+            earliestStartDate = project.startDate;
+          }
+        }
+
+        // Track latest end date
+        if (project.endDate) {
+          if (!latestEndDate || project.endDate > latestEndDate) {
+            latestEndDate = project.endDate;
+          }
+        }
+
+        // Track latest updated date
+        if (project.updatedAt) {
+          if (!latestUpdatedAt || project.updatedAt > latestUpdatedAt) {
+            latestUpdatedAt = project.updatedAt;
+          }
+        }
+
+        // Track earliest created date
+        if (project.createdAt) {
+          if (!earliestCreatedAt || project.createdAt < earliestCreatedAt) {
+            earliestCreatedAt = project.createdAt;
+          }
+        }
+      }
+
+      // Use first project's media, or fallback
+      const media =
+        firstProject.media && firstProject.media.length > 0
+          ? firstProject.media
+          : fallbackMedia;
+
+      entries.push({
+        id: groupKey,
+        projectId: firstProject.id, // Use first project's ID for reference
+        title: group.name,
+        description: group.description ?? firstProject.description,
+        category: firstProject.category, // Use first project's category
+        status: mostActiveStatus,
+        priority: highestPriority,
+        tags: Array.from(allTags),
+        internal: firstProject.internal ?? false,
+        startDate: earliestStartDate,
+        endDate: latestEndDate,
+        createdAt: earliestCreatedAt,
+        updatedAt: latestUpdatedAt,
+        notes: firstProject.notes, // Use first project's notes
+        groupId: group.id,
+        groupSlug: group.slug,
+        orgUsername: orgInstance.org.username,
+        orgName: orgInstance.org.name,
+        orgLogo: orgInstance.org.logo,
+        orgCategories: orgInstance.org.categories,
+        locationKey: firstProject.locationKey ?? firstLocation?.key,
+        locationLabel: firstLocation?.label ?? firstLocation?.address.line1,
+        locationAddress: formatAddress(firstLocation),
+        locationAddressLine1: firstLocation?.address.line1,
+        locationCity: firstLocation?.address.city,
+        locationState: firstLocation?.address.state,
+        locationCountryCode: firstLocation?.address.countryCode,
+        coordinates: firstLocation?.coordinates,
+        placeId: firstLocation?.placeId,
+        media,
+        coverMedia: media[0] ?? null,
+        needs: summarizeNeeds(allNeeds),
+      });
+    }
+
+    // Create entries for ungrouped projects
+    for (const { project, location } of ungroupedProjects) {
       const media =
         project.media && project.media.length > 0
           ? project.media

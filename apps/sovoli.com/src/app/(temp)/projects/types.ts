@@ -18,7 +18,7 @@ export interface ProjectNeedSummary {
 }
 
 export interface ProjectDirectoryEntry {
-  /** Unique identifier for directory listing (org + project) */
+  /** Unique identifier for directory listing (org + project/group) */
   id: string;
   projectId: string;
   title: string;
@@ -33,6 +33,10 @@ export interface ProjectDirectoryEntry {
   createdAt?: string;
   updatedAt?: string;
   notes?: string;
+
+  /** Group information - if present, this entry represents a group */
+  groupId?: string;
+  groupSlug?: string;
 
   orgUsername: string;
   orgName: string;

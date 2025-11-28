@@ -78,7 +78,8 @@ function formatCurrency(amount: number): string {
 function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
   const needsCount = project.needs.length;
   const media = useMemo(() => project.media, [project.media]);
-  const projectSlug = slugify(project.title);
+  // Use groupSlug if this is a group, otherwise use slugified title
+  const projectSlug = project.groupSlug ?? slugify(project.title);
   const projectHref = `/${project.orgUsername}/projects/${projectSlug}`;
   const metrics = useMemo(() => calculateProjectMetrics(project), [project]);
 
