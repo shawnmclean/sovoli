@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import Image from "next/image";
 import { Tabs, Tab } from "@sovoli/ui/components/tabs";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
@@ -131,13 +131,16 @@ function FeatureImageModal({
 }) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(initialIndex);
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     if (!api) {
       return;
     }
 
-    setCurrent(api.selectedScrollSnap());
+    startTransition(() => {
+      setCurrent(api.selectedScrollSnap());
+    });
 
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
@@ -207,13 +210,16 @@ function FeatureImageCarousel({
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     if (!api) {
       return;
     }
 
-    setCurrent(api.selectedScrollSnap());
+    startTransition(() => {
+      setCurrent(api.selectedScrollSnap());
+    });
 
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());

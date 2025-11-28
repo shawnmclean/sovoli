@@ -71,9 +71,7 @@ export function CatalogGroupListing({ orgInstance }: CatalogGroupListingProps) {
       const category = catalogItem.item.category;
       const categoryDisplayName = getCategoryDisplayName(category.id);
 
-      if (!acc[categoryDisplayName]) {
-        acc[categoryDisplayName] = [];
-      }
+      acc[categoryDisplayName] ??= [];
       acc[categoryDisplayName].push(catalogItem);
       return acc;
     },

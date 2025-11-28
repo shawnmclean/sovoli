@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
@@ -28,10 +28,13 @@ export function ProjectCarousel({
 
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     if (!api) return;
-    setCurrent(api.selectedScrollSnap());
+    startTransition(() => {
+      setCurrent(api.selectedScrollSnap());
+    });
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });

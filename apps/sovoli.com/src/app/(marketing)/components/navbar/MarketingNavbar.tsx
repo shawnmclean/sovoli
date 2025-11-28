@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -22,9 +22,14 @@ const menuItems = [
 export function MarketingNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
-    setIsMenuOpen(false);
+    if (pathname) {
+      startTransition(() => {
+        setIsMenuOpen(false);
+      });
+    }
   }, [pathname]);
 
   return (

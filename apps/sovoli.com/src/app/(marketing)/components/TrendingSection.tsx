@@ -15,10 +15,19 @@ export async function TrendingSection() {
   const topSchool = orgs[0];
   const otherSchools = orgs.slice(1);
 
-  // Randomize the remaining schools and take 3 more
+  // Deterministically shuffle the remaining schools and take 3 more
+  // Using a simple hash-based shuffle for consistency
   const randomizedOthers = otherSchools
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3);
+    .map((school) => ({
+      school,
+      // Create a deterministic "random" value based on username
+      sortKey: school.org.username
+        ? school.org.username.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)
+        : 0,
+    }))
+    .sort((a, b) => a.sortKey - b.sortKey)
+    .slice(0, 3)
+    .map((item) => item.school);
 
   // Combine top school with randomized others
   const trendingSchools = [topSchool, ...randomizedOthers];

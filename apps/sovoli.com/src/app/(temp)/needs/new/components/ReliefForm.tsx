@@ -107,6 +107,7 @@ export function ReliefForm() {
   const [formData, setFormData] = useState<ReliefFormData>(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
   const [isPending, startTransition] = useTransition();
+  const [, startStepTransition] = useTransition();
   const [hasPendingDamagePhotoUploads, setHasPendingDamagePhotoUploads] =
     useState(false);
 
@@ -124,7 +125,9 @@ export function ReliefForm() {
 
   useEffect(() => {
     if (currentStep > stepSequence.length - 1) {
-      setCurrentStep(stepSequence.length - 1);
+      startStepTransition(() => {
+        setCurrentStep(stepSequence.length - 1);
+      });
     }
   }, [currentStep, stepSequence]);
 

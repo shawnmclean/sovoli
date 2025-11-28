@@ -16,7 +16,7 @@ import {
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
 import { CldImage } from "next-cloudinary";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { ChevronLeftIcon } from "lucide-react";
 import type { Media } from "~/modules/core/media/types";
@@ -40,13 +40,16 @@ function OrgGalleryModal({
 }) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(initialIndex);
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     if (!api) {
       return;
     }
 
-    setCurrent(api.selectedScrollSnap());
+    startTransition(() => {
+      setCurrent(api.selectedScrollSnap());
+    });
 
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
@@ -119,13 +122,16 @@ export function OrgGalleryCarousel({ orgInstance }: OrgGalleryCarouselProps) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     if (!api) {
       return;
     }
 
-    setCurrent(api.selectedScrollSnap());
+    startTransition(() => {
+      setCurrent(api.selectedScrollSnap());
+    });
 
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Image from "next/image";
 import { CloudUpload, X, Loader2, AlertCircle, Play } from "lucide-react";
 import { useDropzone } from "react-dropzone";
@@ -698,10 +698,13 @@ function PreviewModal({
 }) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(initialIndex);
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     if (!api) return;
-    setCurrent(api.selectedScrollSnap());
+    startTransition(() => {
+      setCurrent(api.selectedScrollSnap());
+    });
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });
@@ -710,7 +713,9 @@ function PreviewModal({
   useEffect(() => {
     if (isOpen && api) {
       api.scrollTo(initialIndex);
-      setCurrent(initialIndex);
+      startTransition(() => {
+        setCurrent(initialIndex);
+      });
     }
   }, [isOpen, api, initialIndex]);
 

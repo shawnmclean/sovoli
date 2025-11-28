@@ -83,9 +83,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
       const ageReq = getAgeRequirement(program);
       const ageGroupName = getAgeGroupName(ageReq);
 
-      if (!acc[ageGroupName]) {
-        acc[ageGroupName] = [];
-      }
+      acc[ageGroupName] ??= [];
       acc[ageGroupName].push(program);
       return acc;
     },

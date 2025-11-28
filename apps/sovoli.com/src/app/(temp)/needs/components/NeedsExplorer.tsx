@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import Link from "next/link";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
@@ -309,9 +309,14 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
   const [activeCategories, setActiveCategories] = useState<Set<string>>(
     () => new Set(defaultActiveCategoryKeys),
   );
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
-    setActiveCategories(new Set(defaultActiveCategoryKeys));
+    if (defaultActiveCategoryKeys.length > 0) {
+      startTransition(() => {
+        setActiveCategories(new Set(defaultActiveCategoryKeys));
+      });
+    }
   }, [defaultActiveCategoryKeys]);
 
   const searchableEntries = useMemo<SearchableEntry[]>(
