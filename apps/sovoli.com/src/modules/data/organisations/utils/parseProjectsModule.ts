@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { Media } from "~/modules/core/media/types";
 import type { NeedsModule } from "~/modules/needs/types";
-import type { ProjectsModule, Project } from "~/modules/projects/types";
+import type { ProjectsModule, Project, ProjectGroup } from "~/modules/projects/types";
 
 /**
  * Zod schema for Media (from JSON) - supports images, videos, PDFs, documents, and other file types
@@ -86,22 +86,37 @@ const projectJsonSchema = z.object({
   notes: z.string().optional(),
   createdAt: z.string().optional(),
   updatedAt: z.string().optional(),
+  groupOrder: z.number().optional(), // Order within the parent group
+});
+
+/**
+ * Zod schema for JSON representation of a project group
+ */
+const projectGroupJsonSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  name: z.string(),
+  description: z.string().optional(),
+  projects: z.array(projectJsonSchema), // Nested projects
 });
 
 /**
  * Zod schema for the projects JSON file structure
+ * Supports both groups (with nested projects) and root-level projects
  */
 const projectsModuleJsonSchema = z.object({
-  projects: z.array(projectJsonSchema),
+  groups: z.array(projectGroupJsonSchema).optional(),
+  projects: z.array(projectJsonSchema).optional(),
 });
 
 /**
  * Parses a projects JSON file and resolves foreign key references to Need objects.
+ * Supports projects nested in groups and root-level projects.
  * Validates that all referenced needs exist.
  *
  * @param jsonData - The parsed JSON data from the projects.json file
  * @param needsModule - The NeedsModule containing all available needs
- * @returns Fully hydrated ProjectsModule with Need[] resolved
+ * @returns Fully hydrated ProjectsModule with Need[] resolved and groups hydrated
  * @throws Error if any needSlug cannot be resolved or if JSON structure is invalid
  */
 export function parseProjectsModule(
@@ -111,13 +126,40 @@ export function parseProjectsModule(
   // Validate JSON structure
   const validated = projectsModuleJsonSchema.parse(jsonData);
 
+  // Ensure at least one of groups or projects exists
+  if (
+    (!validated.groups || validated.groups.length === 0) &&
+    (!validated.projects || validated.projects.length === 0)
+  ) {
+    throw new Error(
+      "Projects JSON must contain at least one of 'groups' or 'projects' arrays.",
+    );
+  }
+
   // Create a map of needs by slug for efficient lookup
   const needsBySlug = new Map(
     needsModule.needs.map((need) => [need.slug, need]),
   );
 
-  // Resolve needSlugs references and validate they exist
-  const projects: Project[] = validated.projects.map((projectJson) => {
+  // Create a map of groups by id for efficient lookup
+  const groupsById = new Map<string, ProjectGroup>();
+  if (validated.groups) {
+    for (const groupJson of validated.groups) {
+      groupsById.set(groupJson.id, {
+        id: groupJson.id,
+        slug: groupJson.slug,
+        name: groupJson.name,
+        description: groupJson.description,
+      });
+    }
+  }
+
+  // Helper function to hydrate a project with needs and optionally a group
+  const hydrateProject = (
+    projectJson: z.infer<typeof projectJsonSchema>,
+    group?: ProjectGroup,
+    order?: number,
+  ): Project => {
     let needs: typeof needsModule.needs | undefined;
 
     if (projectJson.needSlugs && projectJson.needSlugs.length > 0) {
@@ -153,10 +195,47 @@ export function parseProjectsModule(
       updatedAt: projectJson.updatedAt,
     };
 
+    // Add group information if provided
+    if (group) {
+      project.group = {
+        ...group,
+        order: order ?? projectJson.groupOrder,
+      };
+    }
+
     return project;
-  });
+  };
+
+  // Extract projects from groups (nested) and hydrate with group info
+  const projectsFromGroups: Project[] = [];
+  if (validated.groups) {
+    for (const groupJson of validated.groups) {
+      const group = groupsById.get(groupJson.id);
+      if (!group) {
+        throw new Error(
+          `Group with id "${groupJson.id}" not found in groups map.`,
+        );
+      }
+
+      groupJson.projects.forEach((projectJson, index) => {
+        const order = projectJson.groupOrder ?? index + 1;
+        projectsFromGroups.push(hydrateProject(projectJson, group, order));
+      });
+    }
+  }
+
+  // Extract root-level projects (ungrouped)
+  const rootProjects: Project[] = [];
+  if (validated.projects) {
+    for (const projectJson of validated.projects) {
+      rootProjects.push(hydrateProject(projectJson));
+    }
+  }
+
+  // Combine all projects
+  const allProjects = [...projectsFromGroups, ...rootProjects];
 
   return {
-    projects,
+    projects: allProjects,
   };
 }

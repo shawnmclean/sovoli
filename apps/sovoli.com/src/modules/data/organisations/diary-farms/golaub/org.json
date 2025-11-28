@@ -8,7 +8,8 @@
       "label": "Main Farm",
       "isPrimary": true,
       "address": {
-        "line1": "Bounry",
+        "line1": "Black River",
+        "state": "St. Elizabeth",
         "countryCode": "JM"
       },
       "contacts": []
