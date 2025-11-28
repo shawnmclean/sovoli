@@ -9,7 +9,7 @@ export default async function MetricsIntercept({ params }: Props) {
   const { username, slug } = await params;
   const result = await getOrgInstanceWithProject(username, slug);
 
-  if (!result) {
+  if (!result || !result.project) {
     return null;
   }
 
