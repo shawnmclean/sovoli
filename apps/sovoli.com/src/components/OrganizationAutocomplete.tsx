@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, startTransition } from "react";
 import Image from "next/image";
 import {
   Autocomplete,
@@ -125,11 +125,15 @@ export function OrganizationAutocomplete({
         (org) => org.org.username === selectedKey,
       );
       if (selectedOrg) {
-        setInputValue(selectedOrg.org.name);
+        startTransition(() => {
+          setInputValue(selectedOrg.org.name);
+        });
       }
     } else if (!selectedKey && allowsCreate) {
       // Clear input when selection is cleared (only when allowsCreate is true)
-      setInputValue("");
+      startTransition(() => {
+        setInputValue("");
+      });
     }
   }, [selectedKey, allowsCreate, baseFilteredOrgs]);
 

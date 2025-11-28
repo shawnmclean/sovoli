@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useActionState } from "react";
+import { useEffect, useState, useActionState, startTransition } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { Form } from "@sovoli/ui/components/form";
@@ -86,7 +86,9 @@ export function PhoneNumberForm({
 
   useEffect(() => {
     if (defaultPhone !== undefined) {
-      setPhone(defaultPhone);
+      startTransition(() => {
+        setPhone(defaultPhone);
+      });
     }
   }, [defaultPhone]);
 
@@ -96,7 +98,9 @@ export function PhoneNumberForm({
         (item) => item.countryCode === defaultCountryCode,
       );
       if (match) {
-        setSelectedCountry(match);
+        startTransition(() => {
+          setSelectedCountry(match);
+        });
       }
     }
   }, [defaultCountryCode]);

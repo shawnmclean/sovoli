@@ -22,4 +22,3 @@ export type LeadPhoneActionState =
 export type PhoneActionStates =
   | SendOTPActionState
   | LeadPhoneActionState
-  | null;

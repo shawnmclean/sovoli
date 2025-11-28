@@ -153,7 +153,7 @@ function buildStaffSection(staff: WorkforceMember[]): string | null {
   if (staff.length === 0) return null;
 
   const staffLines = staff.map((member) => {
-    const role = member.roleAssignments[0]?.position?.name ?? "Staff";
+    const role = member.roleAssignments[0]?.position.name ?? "Staff";
     const memberLines = [`- ${member.name} (${role})`];
 
     if (member.education && member.education.length > 0) {

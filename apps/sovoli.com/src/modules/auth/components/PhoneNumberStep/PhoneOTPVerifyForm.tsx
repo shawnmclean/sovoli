@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useActionState, useEffect, useRef } from "react";
+import {
+  useState,
+  useActionState,
+  useEffect,
+  useRef,
+  startTransition,
+} from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { InputOtp } from "@sovoli/ui/components/input-otp";
 import type { VerifyState } from "../../actions/verifyOTPAction";
@@ -53,7 +59,9 @@ export function PhoneOTPVerifyForm({
   // Reset countdown when resend is successful
   useEffect(() => {
     if (resendState?.status === "success") {
-      setCountdown(60);
+      startTransition(() => {
+        setCountdown(60);
+      });
     }
   }, [resendState]);
 

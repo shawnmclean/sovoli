@@ -1,7 +1,14 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { createContext, useContext, useState, useEffect, useRef } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  startTransition,
+} from "react";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import type { ProgramSelectionState } from "./types";
 
@@ -57,11 +64,17 @@ export function ProgramCycleSelectionProvider({
 
       const fallbackCycle = currentCycle ?? nextCycle ?? program.cycles[0];
       if (fallbackCycle) {
-        setSelectedCycle(fallbackCycle);
+        startTransition(() => {
+          setSelectedCycle(fallbackCycle);
+        });
       }
-      setIsInitialized(true);
-    } else if (program.cycles && program.cycles.length === 0) {
-      setIsInitialized(true);
+      startTransition(() => {
+        setIsInitialized(true);
+      });
+    } else if (program.cycles?.length === 0) {
+      startTransition(() => {
+        setIsInitialized(true);
+      });
     }
   }, [program.cycles, selectedCycle, isInitialized]);
 

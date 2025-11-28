@@ -46,7 +46,7 @@ export function OrgHighlightsDetails({
       const dateB = b.issuedDate ? new Date(b.issuedDate) : new Date(0);
       return dateB.getTime() - dateA.getTime();
     })[0];
-  }, [org.verification?.documents]);
+  }, [org.verification]);
 
   const highlights = useMemo(
     () => [

@@ -19,9 +19,7 @@ export class KnowledgeFileCache {
   }
 
   public static getInstance(): KnowledgeFileCache {
-    if (KnowledgeFileCache.instance === undefined) {
-      KnowledgeFileCache.instance = new KnowledgeFileCache();
-    }
+    KnowledgeFileCache.instance ??= new KnowledgeFileCache();
     return KnowledgeFileCache.instance;
   }
 

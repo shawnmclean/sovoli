@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "prettier": "catalog:",
+    "@biomejs/biome": "2.3.8",
     "turbo": "2.5.6"
   },
   "pnpm": {

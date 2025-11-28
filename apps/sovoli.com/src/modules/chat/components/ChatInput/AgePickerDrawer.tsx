@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, startTransition } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Drawer,
@@ -35,11 +35,24 @@ export function AgePickerDrawer({
   const [selectedAge, setSelectedAge] = useState<AgeSelection>(
     initialAge ?? { years: 2, months: 0 },
   );
+  const prevIsOpenRef = useRef<boolean>(isOpen);
+  const prevInitialAgeRef = useRef<AgeSelection | undefined>(initialAge);
 
-  // Update selectedAge when initialAge changes (when drawer opens with new age)
+  // Reset selectedAge when drawer opens with a new initialAge
   useEffect(() => {
-    if (initialAge && isOpen) {
-      setSelectedAge(initialAge);
+    const wasClosed = !prevIsOpenRef.current;
+    const initialAgeChanged =
+      prevInitialAgeRef.current !== initialAge &&
+      JSON.stringify(prevInitialAgeRef.current) !== JSON.stringify(initialAge);
+
+    prevIsOpenRef.current = isOpen;
+    prevInitialAgeRef.current = initialAge;
+
+    if (wasClosed && isOpen && initialAge && initialAgeChanged) {
+      // Use startTransition to mark this as a non-urgent update
+      startTransition(() => {
+        setSelectedAge(initialAge);
+      });
     }
   }, [initialAge, isOpen]);
 

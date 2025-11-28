@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, startTransition } from "react";
 import { CldImage } from "next-cloudinary";
 import posthog from "posthog-js";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
@@ -53,7 +53,9 @@ export function GalleryCarousel({
 
   useEffect(() => {
     if (!api) return;
-    setCurrent(api.selectedScrollSnap());
+    startTransition(() => {
+      setCurrent(api.selectedScrollSnap());
+    });
 
     // Track initial gallery view
     if (!viewedRef.current) {
@@ -224,14 +226,16 @@ function FullScreenGallery({
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(initialIndex);
   const previousIndexRef = useRef(initialIndex);
-  const imageStartTimeRef = useRef<number>(Date.now());
+  const imageStartTimeRef = useRef<number>(0);
 
   useEffect(() => {
     if (!api) {
       return;
     }
 
-    setCurrent(api.selectedScrollSnap());
+    startTransition(() => {
+      setCurrent(api.selectedScrollSnap());
+    });
     previousIndexRef.current = initialIndex;
     imageStartTimeRef.current = Date.now();
 

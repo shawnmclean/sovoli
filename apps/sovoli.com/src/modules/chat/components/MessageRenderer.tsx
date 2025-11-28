@@ -2,6 +2,7 @@ import type { ChatMessage } from "../types";
 import { AgeChatInput } from "./ChatInput/AgeChatInput";
 import { Button } from "@sovoli/ui/components/button";
 import { ExternalLinkIcon } from "lucide-react";
+import { useEffect } from "react";
 import type { FamilyMember } from "./FamilyDrawer";
 
 // Message bubble component
@@ -372,6 +373,54 @@ function ToolProgramSuggestions({
 }: ToolProgramSuggestionsProps) {
   const callId = part.toolCallId;
 
+  // Auto-execute the tool to fetch program suggestions from API when state becomes input-available
+  useEffect(() => {
+    if (part.state !== "input-available") {
+      return;
+    }
+
+    void (async () => {
+      try {
+        const response = await fetch("/api/programs/suggestions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            familyMembers: familyMembersRef.current,
+          }),
+        });
+
+        const data = (await response.json()) as {
+          suggestions: {
+            familyMemberId: string;
+            familyMemberName: string;
+            programs: {
+              id: string;
+              slug: string;
+              name: string;
+              description?: string;
+              ageRange?: string;
+              price?: number;
+              currency?: string;
+              billingCycle?: string;
+            }[];
+          }[];
+        };
+
+        await onToolResult({
+          tool: "programSuggestions",
+          toolCallId: callId,
+          output: data,
+        });
+        onScrollToBottom();
+      } catch (error) {
+        console.error("Error fetching program suggestions:", error);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [part.state, callId]);
+
   switch (part.state) {
     case "input-streaming":
       return (
@@ -381,46 +430,6 @@ function ToolProgramSuggestions({
         </div>
       );
     case "input-available":
-      // Auto-execute the tool to fetch program suggestions from API
-      void (async () => {
-        try {
-          const response = await fetch("/api/programs/suggestions", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              familyMembers: familyMembersRef.current,
-            }),
-          });
-
-          const data = (await response.json()) as {
-            suggestions: {
-              familyMemberId: string;
-              familyMemberName: string;
-              programs: {
-                id: string;
-                slug: string;
-                name: string;
-                description?: string;
-                ageRange?: string;
-                price?: number;
-                currency?: string;
-                billingCycle?: string;
-              }[];
-            }[];
-          };
-
-          await onToolResult({
-            tool: "programSuggestions",
-            toolCallId: callId,
-            output: data,
-          });
-          onScrollToBottom();
-        } catch (error) {
-          console.error("Error fetching program suggestions:", error);
-        }
-      })();
       return (
         <div className="flex items-center gap-2 text-sm text-default-600">
           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary" />

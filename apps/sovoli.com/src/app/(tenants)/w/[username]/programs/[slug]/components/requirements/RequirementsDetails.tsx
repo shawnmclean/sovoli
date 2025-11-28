@@ -281,9 +281,7 @@ export function RequirementsDetails({
           const suppliers = supplierData[itemKey] ?? [];
           const supplier = suppliers.find((s) => s.name === selectedSupplier);
           if (supplier) {
-            if (!itemsBySupplier[supplier.name]) {
-              itemsBySupplier[supplier.name] = [];
-            }
+            itemsBySupplier[supplier.name] ??= [];
             itemsBySupplier[supplier.name]?.push({
               item: item.item.name,
               quantity: item.quantity ?? 1,
@@ -478,6 +476,7 @@ export function RequirementsDetails({
                   <div className="flex items-center gap-4">
                     <div>
                       <button
+                        type="button"
                         onClick={handleShowSupplierDetails}
                         className="text-lg font-semibold text-foreground hover:text-primary-600 transition-colors cursor-pointer"
                       >

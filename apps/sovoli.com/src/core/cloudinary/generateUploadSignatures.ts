@@ -40,7 +40,6 @@ export interface GenerateUploadSignaturesOptions {
 export const generateUploadSignatures = ({
   count = 1,
   folder = DEFAULT_UPLOAD_FOLDER,
-  resourceType,
   mediaMetadata,
 }: GenerateUploadSignaturesOptions = {}): UploadSignature[] => {
   configureCloudinary();
