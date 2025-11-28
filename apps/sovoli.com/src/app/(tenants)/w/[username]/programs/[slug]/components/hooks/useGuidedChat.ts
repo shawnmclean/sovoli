@@ -76,22 +76,25 @@ export function useGuidedChat({
   program?: Program;
   cycle?: ProgramCycle;
 }) {
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: "welcome",
-      sender: "system",
-      message: "👋 Welcome! Let's get you started.",
-      timestamp: Date.now(),
-    },
-    {
-      id: "phone-question",
-      sender: "system",
-      message:
-        INPUT_FIELDS[0]?.message ??
-        "📱 What's your WhatsApp number so we can reach you?",
-      timestamp: Date.now(),
-    },
-  ]);
+  const [messages, setMessages] = useState<ChatMessage[]>(() => {
+    const now = Date.now();
+    return [
+      {
+        id: "welcome",
+        sender: "system",
+        message: "👋 Welcome! Let's get you started.",
+        timestamp: now,
+      },
+      {
+        id: "phone-question",
+        sender: "system",
+        message:
+          INPUT_FIELDS[0]?.message ??
+          "📱 What's your WhatsApp number so we can reach you?",
+        timestamp: now,
+      },
+    ];
+  });
 
   const [chatData, setChatData] = useState<ChatData>({});
   const [currentStep, setCurrentStep] = useState(0);

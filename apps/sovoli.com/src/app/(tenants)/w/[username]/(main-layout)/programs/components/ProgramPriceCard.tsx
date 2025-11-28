@@ -47,7 +47,7 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
     : original;
   const saved = original - discounted;
   const showDiscount = discount && saved > 0;
-  const isFree = discount && discount.value === 100;
+  const isFree = discount?.value === 100;
 
   return (
     <div>

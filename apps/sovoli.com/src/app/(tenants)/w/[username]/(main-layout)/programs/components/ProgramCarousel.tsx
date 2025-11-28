@@ -7,7 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { useState, useEffect } from "react";
+import { useState, useEffect, startTransition } from "react";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
 
@@ -29,7 +29,9 @@ export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
       return;
     }
 
-    setCurrent(api.selectedScrollSnap());
+    startTransition(() => {
+      setCurrent(api.selectedScrollSnap());
+    });
 
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
@@ -76,7 +78,7 @@ export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
       {images.length > 1 && (
         <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
           {Array.from({ length: Math.min(5, images.length) }, (_, i) => {
-            let slideIndex;
+            let slideIndex: number;
             if (images.length <= 5) {
               // If 5 or fewer images, show all dots
               slideIndex = i;
@@ -99,7 +101,6 @@ export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
                     ? "bg-white scale-120 shadow-lg"
                     : "bg-white/60"
                 }`}
-                aria-label={`Slide ${slideIndex + 1} of ${images.length}`}
               />
             );
           })}

@@ -6,18 +6,27 @@ import {
   useSelectedLayoutSegment,
   usePathname,
 } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef, startTransition } from "react";
 
 // Simple hook to track the previous path
 function usePreviousPath() {
   const pathname = usePathname();
-  const previousPath = useRef<string | null>(null);
+  const [previousPath, setPreviousPath] = useState<string | null>(null);
+  const pathnameRef = useRef<string | null>(null);
 
   useEffect(() => {
-    previousPath.current = pathname;
+    // Store the current pathname value (from previous render) as previous
+    // Then update the ref to the new pathname for next time
+    const previous = pathnameRef.current;
+    pathnameRef.current = pathname;
+
+    startTransition(() => {
+      setPreviousPath(previous);
+    });
   }, [pathname]);
 
-  return previousPath.current;
+  // Return the previous pathname (which is the pathname from the previous render)
+  return previousPath;
 }
 
 // Helper to check if a path is internal to the app

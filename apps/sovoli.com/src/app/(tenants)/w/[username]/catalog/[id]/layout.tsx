@@ -75,7 +75,7 @@ export default async function Layout({ children, params }: Props) {
       : undefined,
     category: catalogItem.item.category.id,
     ...(catalogItem.item.media?.[0]?.url && {
-      image: catalogItem.item.media[0]?.url,
+      image: catalogItem.item.media[0].url,
     }),
     offers: {
       "@type": "Offer",
