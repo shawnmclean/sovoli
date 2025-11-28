@@ -85,5 +85,13 @@
     "tags": ["electrical", "wiring", "tape"],
     "unitLabel": "roll",
     "description": "Electrical tape in multiple colors (yellow, blue, red, green) for wire identification and insulation."
+  },
+  {
+    "id": "barb-wire-roll",
+    "name": "Barb Wire Roll",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "roll",
+    "tags": ["agriculture", "fencing", "fence-repair", "pasture-restoration"],
+    "description": "Galvanized barb wire in rolls for fence construction and repair. Used to secure pasture boundaries and protect livestock areas."
   }
 ]

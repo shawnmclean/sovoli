@@ -14,7 +14,7 @@ export interface ProjectNeedSummary {
   type: NeedType;
   status?: NeedStatus;
   priority?: NeedPriority;
-  item: Item;
+  item?: Item; // Only present for material needs
 }
 
 export interface ProjectDirectoryEntry {

@@ -1,0 +1,30 @@
+{
+  "username": "golaub-dairy-farm",
+  "name": "Golaub Dairy Farm",
+  "categories": ["diary-farm"],
+  "locations": [
+    {
+      "key": "main-farm",
+      "label": "Main Farm",
+      "isPrimary": true,
+      "address": {
+        "line1": "Bounry",
+        "countryCode": "JM"
+      },
+      "contacts": []
+    }
+  ],
+  "socialLinks": [],
+  "verification": {
+    "status": "pending",
+    "submittedAt": "2025-01-01",
+    "submittedBy": "system",
+    "documents": [],
+    "notes": "Verification pending - created from submission data."
+  },
+  "isVerified": false,
+  "internalCRM": {
+    "people": [],
+    "claimStatus": "unclaimed"
+  }
+}

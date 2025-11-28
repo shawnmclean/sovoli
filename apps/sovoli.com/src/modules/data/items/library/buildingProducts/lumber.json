@@ -94,5 +94,13 @@
     "unitLabel": "board",
     "tags": ["relief", "building", "framing"],
     "description": "Framing lumber for rafters and structural applications, 2x6x20 feet."
+  },
+  {
+    "id": "fence-post-man-cut",
+    "name": "Fence Post (Man Cut)",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "post",
+    "tags": ["agriculture", "fencing", "fence-repair", "pasture-restoration"],
+    "description": "Manually cut fence posts from local trees. Used for fence construction and repair in agricultural and pasture areas. Posts are typically cut from trees using power saws and used to support barb wire fencing."
   }
 ]

@@ -1,0 +1,145 @@
+{
+  "needs": [
+    {
+      "slug": "golaub-power-saw-2025",
+      "title": "Power Saw",
+      "description": "Medium size power saw for cutting tree branches and limbs that have fallen down in the pasture.",
+      "itemId": "power-saw-circular-medium",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Trees have fallen down in pasture blocking grass growth. Cows cannot get to the grass."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-barb-wire-2025",
+      "title": "Barb Wire - 5 Rolls",
+      "description": "5 rolls of barb wire for fence repair and pasture restoration.",
+      "itemId": "barb-wire-roll",
+      "quantity": 5,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for fence repair after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-staples-2025",
+      "title": "Staples for Fence Wire",
+      "description": "Staples needed for attaching barb wire to fence posts.",
+      "itemId": "fence-wire-staples",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for securing barb wire to posts."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-posts-2025",
+      "title": "Posts (Man Cut) - 500 posts",
+      "description": "500 man-cut posts for fence construction and repair. Trees need to be cut with power saw to make posts.",
+      "itemId": "fence-post-man-cut",
+      "quantity": 500,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Essential for fence repair. Posts need to be cut from trees using power saw."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-chainsaw-labor-2025",
+      "title": "Chainsaw Labor",
+      "description": "Manual labor for chainsaw work to cut tree branches and limbs in pasture.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Trees need to be cut to clear pasture and allow grass to grow. Cows cannot access grass due to fallen trees."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": ["chainsaw operation", "tree cutting"],
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-machete-labor-2025",
+      "title": "Machete Work Labor",
+      "description": "Manual labor for machete work to clear brush and small branches.",
+      "type": "human",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Additional clearing work needed after chainsaw operation."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": ["machete operation", "brush clearing"],
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-post-moving-labor-2025",
+      "title": "Manual Labor - Move Posts",
+      "description": "Manual labor to move posts (lift 20-30lbs) for fence construction.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Posts need to be moved and positioned for fence installation."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 3,
+      "shiftPattern": "Full day work",
+      "skills": ["manual labor", "physical strength"],
+      "notes": "Workers need to be able to lift 20-30lbs repeatedly.",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    }
+  ]
+}

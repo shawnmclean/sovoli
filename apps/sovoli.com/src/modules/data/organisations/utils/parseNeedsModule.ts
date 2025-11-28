@@ -1,17 +1,25 @@
 import { z } from "zod";
 import { findItemById } from "~/modules/data/items";
-import type { NeedsModule, MaterialNeed } from "~/modules/needs/types";
+import type {
+  NeedsModule,
+  MaterialNeed,
+  HumanNeed,
+  ServiceNeed,
+  FinancialNeed,
+  JobNeed,
+  Need,
+} from "~/modules/needs/types";
+import type { AmountByCurrency } from "~/modules/core/economics/types";
+import type { WorkforceModule } from "~/modules/workforce/types";
 
 /**
- * Zod schema for JSON representation of a material need (with itemId instead of item object)
+ * Shared schema for common need fields
  */
-const materialNeedJsonSchema = z.object({
+const needBaseJsonSchema = z.object({
   slug: z.string(),
   title: z.string(),
   description: z.string().optional(),
-  itemId: z.string(), // Foreign key reference to item
   quantity: z.number().optional(),
-  type: z.literal("material"),
   source: z.enum(["internal", "external"]).optional(),
   priority: z.enum(["low", "medium", "high", "critical"]).optional(),
   neededBy: z
@@ -51,47 +59,119 @@ const materialNeedJsonSchema = z.object({
     ])
     .optional(),
   projectId: z.string().optional(),
+  procurement: z
+    .object({
+      supplier: z.string().optional(),
+      estimatedCost: z.number().optional(),
+      currency: z.enum(["GYD", "USD", "JMD"]).optional(),
+      status: z
+        .enum(["quoted", "ordered", "delivered", "cancelled"])
+        .optional(),
+      notes: z.string().optional(),
+    })
+    .optional(),
   notes: z.string().optional(),
   createdAt: z.string().optional(),
   updatedAt: z.string().optional(),
+  totalBudget: z.record(z.enum(["GYD", "USD", "JMD"]), z.number()).optional(),
 });
+
+/**
+ * Zod schema for AmountByCurrency
+ */
+const amountByCurrencySchema = z
+  .record(z.enum(["GYD", "USD", "JMD"]), z.number())
+  .optional();
+
+/**
+ * Zod schema for JSON representation of a material need (with itemId instead of item object)
+ */
+const materialNeedJsonSchema = needBaseJsonSchema.extend({
+  itemId: z.string(), // Foreign key reference to item
+  type: z.literal("material"),
+});
+
+/**
+ * Zod schema for JSON representation of a human need
+ */
+const humanNeedJsonSchema = needBaseJsonSchema.extend({
+  type: z.literal("human"),
+  roleSummary: z.string().optional(),
+  headcount: z.number().optional(),
+  shiftPattern: z.string().optional(),
+  skills: z.array(z.string()).optional(),
+});
+
+/**
+ * Zod schema for JSON representation of a service need
+ */
+const serviceNeedJsonSchema = needBaseJsonSchema.extend({
+  type: z.literal("service"),
+  serviceCategory: z.string().optional(),
+  statementOfWork: z.array(z.string()).optional(),
+  rfpUrl: z.string().optional(),
+  bidsCloseAt: z.string().optional(),
+});
+
+/**
+ * Zod schema for JSON representation of a financial need
+ */
+const financialNeedJsonSchema = needBaseJsonSchema.extend({
+  type: z.literal("financial"),
+  targetAmount: amountByCurrencySchema,
+  pledgeUrl: z.string().optional(),
+});
+
+/**
+ * Zod schema for JSON representation of a job need
+ * Note: position is optional in JSON as it may need to be resolved from workforce module
+ */
+const jobNeedJsonSchema = needBaseJsonSchema.extend({
+  type: z.literal("job"),
+  positionSlug: z.string().optional(), // Foreign key reference to position slug
+});
+
+/**
+ * Union schema for all need types
+ */
+const needJsonSchema = z.discriminatedUnion("type", [
+  materialNeedJsonSchema,
+  humanNeedJsonSchema,
+  serviceNeedJsonSchema,
+  financialNeedJsonSchema,
+  jobNeedJsonSchema,
+]);
 
 /**
  * Zod schema for the needs JSON file structure
  */
 const needsModuleJsonSchema = z.object({
-  needs: z.array(materialNeedJsonSchema),
+  needs: z.array(needJsonSchema),
 });
 
 /**
- * Parses a needs JSON file and resolves foreign key references to Item objects.
+ * Parses a needs JSON file and resolves foreign key references.
  * Validates that all referenced items exist.
  *
  * @param jsonData - The parsed JSON data from the needs.json file
- * @returns Fully hydrated NeedsModule with Item objects resolved
- * @throws Error if any itemId cannot be resolved or if JSON structure is invalid
+ * @param options - Optional options object containing workforce module for resolving job need positions
+ * @returns Fully hydrated NeedsModule with all references resolved
+ * @throws Error if any itemId or positionSlug cannot be resolved or if JSON structure is invalid
  */
-export function parseNeedsModule(jsonData: unknown): NeedsModule {
+export function parseNeedsModule(
+  jsonData: unknown,
+  options?: { workforceModule?: WorkforceModule | null },
+): NeedsModule {
   // Validate JSON structure
   const validated = needsModuleJsonSchema.parse(jsonData);
 
-  // Resolve itemId references and validate they exist
-  const needs: MaterialNeed[] = validated.needs.map((needJson) => {
-    const item = findItemById(needJson.itemId);
-    if (!item) {
-      throw new Error(
-        `Item with id "${needJson.itemId}" not found. Referenced in need "${needJson.slug}" (${needJson.title}).`,
-      );
-    }
-
-    // Build the hydrated need object
-    const need: MaterialNeed = {
+  // Resolve references and build hydrated need objects
+  const needs: Need[] = validated.needs.map((needJson) => {
+    const baseFields = {
       slug: needJson.slug,
       title: needJson.title,
       description: needJson.description,
-      item,
       quantity: needJson.quantity,
-      type: "material",
       source: needJson.source,
       priority: needJson.priority,
       neededBy: needJson.neededBy,
@@ -102,9 +182,87 @@ export function parseNeedsModule(jsonData: unknown): NeedsModule {
       notes: needJson.notes,
       createdAt: needJson.createdAt,
       updatedAt: needJson.updatedAt,
+      procurement: needJson.procurement,
+      totalBudget: needJson.totalBudget as AmountByCurrency | undefined,
     };
 
-    return need;
+    switch (needJson.type) {
+      case "material": {
+        const item = findItemById(needJson.itemId);
+        if (!item) {
+          throw new Error(
+            `Item with id "${needJson.itemId}" not found. Referenced in need "${needJson.slug}" (${needJson.title}).`,
+          );
+        }
+
+        const need: MaterialNeed = {
+          ...baseFields,
+          type: "material",
+          item,
+        };
+        return need;
+      }
+
+      case "human": {
+        const need: HumanNeed = {
+          ...baseFields,
+          type: "human",
+          roleSummary: needJson.roleSummary,
+          headcount: needJson.headcount,
+          shiftPattern: needJson.shiftPattern,
+          skills: needJson.skills,
+        };
+        return need;
+      }
+
+      case "service": {
+        const need: ServiceNeed = {
+          ...baseFields,
+          type: "service",
+          serviceCategory: needJson.serviceCategory,
+          statementOfWork: needJson.statementOfWork,
+          rfpUrl: needJson.rfpUrl,
+          bidsCloseAt: needJson.bidsCloseAt,
+        };
+        return need;
+      }
+
+      case "financial": {
+        const need: FinancialNeed = {
+          ...baseFields,
+          type: "financial",
+          targetAmount: needJson.targetAmount as AmountByCurrency | undefined,
+          pledgeUrl: needJson.pledgeUrl,
+        };
+        return need;
+      }
+
+      case "job": {
+        let position;
+        if (needJson.positionSlug && options?.workforceModule?.positions) {
+          position = options.workforceModule.positions.find(
+            (p) => p.slug === needJson.positionSlug,
+          );
+          if (!position) {
+            throw new Error(
+              `Position with slug "${needJson.positionSlug}" not found. Referenced in need "${needJson.slug}" (${needJson.title}).`,
+            );
+          }
+        }
+
+        const need: JobNeed = {
+          ...baseFields,
+          type: "job",
+          position: position as JobNeed["position"],
+        };
+        return need;
+      }
+
+      default: {
+        const _exhaustive: never = needJson;
+        throw new Error(`Unknown need type: ${_exhaustive}`);
+      }
+    }
   });
 
   return {

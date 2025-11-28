@@ -102,5 +102,13 @@
     "tags": ["building", "fastener", "hardware", "concrete"],
     "unitLabel": "box",
     "description": "Concrete screws for fastening to concrete and masonry, 1/4 inch diameter by 2 inches length."
+  },
+  {
+    "id": "fence-wire-staples",
+    "name": "Fence Wire Staples",
+    "category": "staples-fixings-fasteners",
+    "unitLabel": "box",
+    "tags": ["agriculture", "fencing", "fence-repair", "wire"],
+    "description": "U-shaped wire staples for securing barb wire and fence wire to wooden posts. Essential for fence construction and repair."
   }
 ]

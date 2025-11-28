@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "id": "golaub-bounry-restoration-2025",
+      "title": "Bounry Restoration - Pasture Recovery",
+      "description": "Hurricane recovery project to restore pasture and fencing. Trees have fallen down in the pasture preventing grass from growing. Cows cannot access the grass. The 35-acre farm has lost significant livestock (30 cows, 7 calves out of original 33 cows, 10 calves). Currently has 3 cows, 2 heifers, and 3 calves remaining.\n\nWork includes:\n1. Power saw work - Cut medium size tree branches and limbs\n2. Remove fallen trees from pasture\n3. Clear area to allow grass to grow\n4. Install/repair fencing with 5 rolls of barb wire, staples, and 500 posts\n5. Manual labor for chainsaw work, machete work, and moving posts (lift 20-30lbs)",
+      "category": "relief",
+      "status": "planned",
+      "priority": "critical",
+      "locationKey": "main-farm",
+      "startDate": "2025-01-01",
+      "internal": false,
+      "needSlugs": [
+        "golaub-power-saw-2025",
+        "golaub-barb-wire-2025",
+        "golaub-staples-2025",
+        "golaub-posts-2025",
+        "golaub-chainsaw-labor-2025",
+        "golaub-machete-labor-2025",
+        "golaub-post-moving-labor-2025"
+      ],
+      "tags": ["hurricane-recovery", "pasture-restoration", "fence-repair", "livestock"],
+      "notes": "Farm size: 35 acres. Livestock loss: 30 cows, 7 calves. Remaining: 3 cows, 2 heifers, 3 calves.",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    }
+  ]
+}
