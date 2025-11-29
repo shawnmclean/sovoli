@@ -1,0 +1,41 @@
+{
+  "username": "alderton-primary-and-infant-school",
+  "name": "Alderton Primary and Infant School",
+  "categories": ["public-school", "primary-school"],
+  "locations": [
+    {
+      "key": "main-campus",
+      "label": "Main Campus",
+      "isPrimary": true,
+      "address": {
+        "line1": "Alderton",
+        "city": "Claremont",
+        "state": "St. Ann",
+        "countryCode": "JM"
+      },
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+18768420756",
+          "label": "School",
+          "isPublic": true,
+          "primary": true
+        }
+      ]
+    }
+  ],
+  "socialLinks": [],
+  "verification": {
+    "status": "pending",
+    "submittedAt": "2025-11-28",
+    "submittedBy": "system",
+    "documents": [],
+    "notes": "Verification pending - will be updated with Jamaica's ministry information. Created from Airtable submissions. Contact: Marsha Hall (Teacher)."
+  },
+  "isVerified": false,
+  "internalCRM": {
+    "people": [],
+    "claimStatus": "unclaimed"
+  }
+}
+

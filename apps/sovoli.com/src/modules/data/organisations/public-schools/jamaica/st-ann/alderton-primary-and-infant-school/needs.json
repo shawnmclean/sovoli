@@ -1,0 +1,205 @@
+{
+  "needs": [
+    {
+      "slug": "alderton-air-conditioning-unit-2025",
+      "title": "Air Conditioning Unit",
+      "description": "Air conditioning unit needed for school facilities.",
+      "itemId": "equipment-ac-unit",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for school facilities after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    },
+    {
+      "slug": "alderton-industrial-roof-sheeting-2025",
+      "title": "Industrial Roof Sheeting (Square) - 15 sheets",
+      "description": "15 sheets of industrial roof sheeting for roof repair.",
+      "itemId": "industrial-roof-sheeting",
+      "quantity": 15,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Roof completely stripped off Block A. Urgent need for roof repair."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    },
+    {
+      "slug": "alderton-roof-sealant-2025",
+      "title": "Roof Sealant",
+      "description": "Roof sealant for waterproofing roof repairs.",
+      "itemId": "roof-sealant",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for waterproofing roof repairs."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    },
+    {
+      "slug": "alderton-roofing-screws-2025",
+      "title": "Roofing Screws w/ Washers - 2.5 in - 9 boxes",
+      "description": "Roofing screws with washers for securing roof sheeting.",
+      "itemId": "maintenance-zinc-roof-screws-2-5in",
+      "quantity": 9,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for securing roof sheeting."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    },
+    {
+      "slug": "alderton-lumber-2x2x12-2025",
+      "title": "2x2x12 ft Treated Lumber - 10 pieces",
+      "description": "Treated lumber for structural repairs.",
+      "itemId": "lumber-2x2x12",
+      "quantity": 10,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for structural repairs after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    },
+    {
+      "slug": "alderton-lumber-2x4x12-2025",
+      "title": "2x4x12 ft Framing Lumber - 12 pieces",
+      "description": "Framing lumber for structural repairs.",
+      "itemId": "lumber-2x4x12",
+      "quantity": 12,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for framing repairs after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    },
+    {
+      "slug": "alderton-lumber-2x6x12-2025",
+      "title": "2x6x12 ft Framing Lumber - 12 pieces",
+      "description": "Framing lumber for structural repairs.",
+      "itemId": "lumber-2x6x12",
+      "quantity": 12,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for structural repairs after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    },
+    {
+      "slug": "alderton-lumber-1x6x16-2025",
+      "title": "1x6x16 ft Dressed Treated Lumber - 12 pieces",
+      "description": "Dressed treated lumber for repairs.",
+      "itemId": "lumber-1x6x16-dress-treated",
+      "quantity": 12,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for repairs after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    },
+    {
+      "slug": "alderton-plyboard-sheets-2025",
+      "title": "Plyboard Sheet - 15 sheets",
+      "description": "Plyboard sheets for repairs.",
+      "itemId": "maintenance-plyboard",
+      "quantity": 15,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for repairs after hurricane damage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    },
+    {
+      "slug": "alderton-tarpaulin-2025",
+      "title": "Heavy-Duty Tarpaulin - 6 pieces",
+      "description": "Heavy-duty tarpaulin for temporary coverage.",
+      "itemId": "tarpaulin-heavy-duty",
+      "quantity": 6,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Needed for temporary coverage until permanent repairs are completed."
+      },
+      "requestingUnit": {
+        "locationKey": "main-campus"
+      },
+      "status": "planned",
+      "createdAt": "2025-11-28T00:00:00.000Z",
+      "updatedAt": "2025-11-28T00:00:00.000Z"
+    }
+  ]
+}
+
