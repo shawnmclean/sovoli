@@ -1,7 +1,13 @@
 import { z } from "zod";
 import type { Media } from "~/modules/core/media/types";
 import type { NeedsModule } from "~/modules/needs/types";
-import type { ProjectsModule, Project, ProjectGroup } from "~/modules/projects/types";
+import type {
+  ProjectsModule,
+  Project,
+  ProjectGroup,
+  ProjectPhase,
+  PhaseNeed,
+} from "~/modules/projects/types";
 
 /**
  * Zod schema for Media (from JSON) - supports images, videos, PDFs, documents, and other file types
@@ -55,6 +61,31 @@ const mediaJsonSchema = z.object({
 });
 
 /**
+ * Zod schema for simplified inline phase needs
+ */
+const phaseNeedJsonSchema = z.object({
+  id: z.string(),
+  type: z.enum(["material", "service", "labor", "financial"]),
+  title: z.string(),
+  description: z.string().optional(),
+  status: z.enum(["needed", "in-progress", "fulfilled", "cancelled"]),
+});
+
+/**
+ * Zod schema for project phases
+ */
+const projectPhaseJsonSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  status: z.enum(["planned", "active", "completed", "cancelled"]).optional(),
+  priority: z.enum(["low", "medium", "high", "critical"]).optional(),
+  startDate: z.string().optional(),
+  endDate: z.string().optional(),
+  needs: z.array(phaseNeedJsonSchema).optional(),
+  media: z.array(mediaJsonSchema).optional(),
+});
+
+/**
  * Zod schema for JSON representation of a project (with needSlugs instead of needs array)
  */
 const projectJsonSchema = z.object({
@@ -79,6 +110,7 @@ const projectJsonSchema = z.object({
   endDate: z.string().optional(),
   internal: z.boolean().optional(),
   needSlugs: z.array(z.string()).optional(), // Foreign key references to needs
+  phases: z.array(projectPhaseJsonSchema).optional(), // Project phases with inline needs
   media: z.array(mediaJsonSchema).optional(),
   // Legacy support: also accept 'photos' in JSON for backward compatibility
   photos: z.array(mediaJsonSchema).optional(),
@@ -175,6 +207,35 @@ export function parseProjectsModule(
       needs = resolvedNeeds;
     }
 
+    // Parse phases if present
+    let phases: ProjectPhase[] | undefined;
+    if (projectJson.phases && projectJson.phases.length > 0) {
+      phases = projectJson.phases.map((phaseJson) => {
+        const phase: ProjectPhase = {
+          title: phaseJson.title,
+          description: phaseJson.description,
+          status: phaseJson.status,
+          priority: phaseJson.priority,
+          startDate: phaseJson.startDate,
+          endDate: phaseJson.endDate,
+          media: phaseJson.media as Media[] | undefined,
+        };
+
+        // Parse inline phase needs
+        if (phaseJson.needs && phaseJson.needs.length > 0) {
+          phase.needs = phaseJson.needs.map((needJson) => ({
+            id: needJson.id,
+            type: needJson.type,
+            title: needJson.title,
+            description: needJson.description,
+            status: needJson.status,
+          } as PhaseNeed));
+        }
+
+        return phase;
+      });
+    }
+
     // Build the hydrated project object
     const project: Project = {
       id: projectJson.id,
@@ -188,6 +249,7 @@ export function parseProjectsModule(
       endDate: projectJson.endDate,
       internal: projectJson.internal,
       needs,
+      phases,
       media: (projectJson.media ?? projectJson.photos) as Media[] | undefined,
       tags: projectJson.tags,
       notes: projectJson.notes,

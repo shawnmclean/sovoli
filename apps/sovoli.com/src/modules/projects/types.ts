@@ -26,6 +26,32 @@ export interface ProjectGroup {
   projects?: Project[];
 }
 
+/** Phase need type - simplified inline needs for phases */
+export type PhaseNeedType = "material" | "service" | "labor" | "financial";
+
+/** Phase need status */
+export type PhaseNeedStatus = "needed" | "in-progress" | "fulfilled" | "cancelled";
+
+/** Simplified inline need for project phases */
+export interface PhaseNeed {
+  id: string;
+  type: PhaseNeedType;
+  title: string;
+  description?: string;
+  status: PhaseNeedStatus;
+}
+
+export interface ProjectPhase {
+  title: string;
+  description?: string;
+  status?: ProjectStatus;
+  priority?: ProjectPriority;
+  startDate?: string;
+  endDate?: string;
+  needs?: PhaseNeed[];
+  media?: Media[];
+}
+
 /**
  * A project represents an initiative or operation carried out by a school/org.
  * Each project may include multiple Needs (materials, human resources, services, etc.).
@@ -67,6 +93,8 @@ export interface Project {
 
   /** Linked needs (external or internal resources). */
   needs?: Need[];
+
+  phases?: ProjectPhase[];
 
   /** Free-form labels for discovery/filtering (e.g., hurricane ids). */
   tags?: string[];

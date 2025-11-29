@@ -25,6 +25,7 @@ import { ProjectCartProvider } from "./context/ProjectCartContext";
 import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 import { ProjectTracking } from "./components/ProjectTracking";
 import { ProjectsInGroupSection } from "./components/ProjectsInGroupSection";
+import { ProjectPhasesSection } from "./components/ProjectPhasesSection";
 import { getOrgInstanceWithProject } from "./lib/getOrgInstanceWithProject";
 
 interface Props {
@@ -284,6 +285,8 @@ export default async function Layout({ children, params, modals }: Props) {
           <ProjectDescriptionSection project={project} updatedAt={updatedAt ?? undefined} />
 
           <ProjectBreakdown project={project} orgInstance={orgInstance} />
+
+          <ProjectPhasesSection project={project} />
 
           {projectGroup && (
             <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">
