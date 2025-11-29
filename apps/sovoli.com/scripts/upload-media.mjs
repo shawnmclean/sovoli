@@ -89,11 +89,87 @@ async function uploadMedia() {
     console.log(`Uploading ${resourceType} from: ${fullPath}`);
     console.log(`To folder: ${orgPathStr}`);
 
-    const result = await cloudinary.uploader.upload(fullPath, {
+    // Check file size - use upload_large for files over 100MB
+    const fileStats = fs.statSync(fullPath);
+    const fileSizeInMB = fileStats.size / (1024 * 1024);
+    const useLargeUpload = fileSizeInMB > 100;
+
+    if (useLargeUpload) {
+      console.log(`File size: ${fileSizeInMB.toFixed(2)}MB - Using large file upload`);
+    }
+
+    const uploadOptions = {
       resource_type: resourceType,
       folder: orgPathStr,
       media_metadata: true,
-    });
+    };
+
+    // Use upload_large for large files (supports chunked uploads)
+    // upload_large returns a stream, so we need to handle it with a callback
+    // Set chunk_size to 20MB (20000000 bytes) to stay under the 100MB limit
+    let result;
+    if (useLargeUpload && resourceType === "video") {
+      // For large videos, use smaller chunks and create a compressed version
+      const largeUploadOptions = {
+        ...uploadOptions,
+        chunk_size: 10000000, // 10MB chunks (smaller to avoid limits)
+        // Create a compressed version as eager transformation
+        eager: [
+          {
+            quality: "auto:good", // Auto quality with good compression
+            video_codec: "h264", // Use H.264 codec
+            bit_rate: "1500k", // Limit bitrate to 1.5Mbps to reduce size significantly
+            format: "mp4", // Ensure MP4 format
+          },
+        ],
+        eager_async: false, // Process synchronously
+      };
+      console.log("Uploading large video with compression...");
+      console.log("Note: A compressed version will be created automatically.");
+      result = await new Promise((resolve, reject) => {
+        cloudinary.uploader.upload_large(fullPath, largeUploadOptions, (error, result) => {
+          if (error) {
+            reject(error);
+          } else {
+            // If eager transformation was created, use that instead
+            if (result.eager && result.eager.length > 0) {
+              const compressed = result.eager[0];
+              console.log("Using compressed version from eager transformation");
+              // Merge the compressed version data with the original result
+              resolve({
+                ...result,
+                secure_url: compressed.secure_url || result.secure_url,
+                url: compressed.url || result.url,
+                format: compressed.format || result.format,
+                bytes: compressed.bytes || result.bytes,
+                width: compressed.width || result.width,
+                height: compressed.height || result.height,
+                duration: compressed.duration || result.duration,
+              });
+            } else {
+              resolve(result);
+            }
+          }
+        });
+      });
+    } else if (useLargeUpload) {
+      // For large non-video files, just use chunking
+      const largeUploadOptions = {
+        ...uploadOptions,
+        chunk_size: 20000000, // 20MB chunks
+      };
+      result = await new Promise((resolve, reject) => {
+        cloudinary.uploader.upload_large(fullPath, largeUploadOptions, (error, result) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        });
+      });
+    } else {
+      result = await cloudinary.uploader.upload(fullPath, uploadOptions);
+    }
 
     console.log("\n=== Full Cloudinary Response ===");
     console.log(JSON.stringify(result, null, 2));
