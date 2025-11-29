@@ -18,7 +18,7 @@ export function DirectoryNavbar() {
       </Link>
 
       <NavbarContent>
-        <SearchBar placeholder="Private Schools in Guyana" />
+        <SearchBar placeholder="Search" />
       </NavbarContent>
     </Navbar>
   );
