@@ -8,19 +8,17 @@ import {
   NavbarItem,
 } from "@sovoli/ui/components/navbar";
 import { Button } from "@sovoli/ui/components/button";
-import type { OrgInstance } from "~/modules/organisations/types";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
-import type { Project } from "~/modules/projects/types";
 
 export interface ProjectDetailNavbarProps {
-  orgInstance: OrgInstance;
-  project: Project;
+  title: string;
+  orgName: string;
   backHref: string;
 }
 
 export function ProjectDetailNavbar({
-  orgInstance,
-  project,
+  title,
+  orgName,
   backHref,
 }: ProjectDetailNavbarProps) {
   return (
@@ -51,8 +49,8 @@ export function ProjectDetailNavbar({
         <NavbarItem>
           <ShareButton
             variant="solid"
-            title={project.title}
-            text={`Check out ${project.title} on ${orgInstance.org.name}`}
+            title={title}
+            text={`Check out ${title} on ${orgName}`}
             isIconOnly
           />
         </NavbarItem>

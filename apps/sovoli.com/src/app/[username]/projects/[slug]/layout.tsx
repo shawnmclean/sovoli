@@ -174,8 +174,8 @@ export default async function Layout({ children, params, modals }: Props) {
             />
 
             <ProjectDetailNavbar
-              orgInstance={orgInstance}
-              project={firstProject}
+              title={group.name}
+              orgName={orgInstance.org.name}
               backHref="/projects"
             />
           </div>
@@ -228,6 +228,11 @@ export default async function Layout({ children, params, modals }: Props) {
   const updatedAt = formatDate(project.updatedAt ?? project.createdAt);
   const projectGroup = project.group;
 
+  // Determine back href: if project is part of a group, go to group page, otherwise go to projects listing
+  const backHref = projectGroup
+    ? `/${username}/projects/${projectGroup.slug}`
+    : "/projects";
+
   return (
     <ProjectCartProvider>
       <div className="min-h-screen bg-background">
@@ -241,9 +246,9 @@ export default async function Layout({ children, params, modals }: Props) {
           />
 
           <ProjectDetailNavbar
-            orgInstance={orgInstance}
-            project={project}
-            backHref="/projects"
+            title={project.title}
+            orgName={orgInstance.org.name}
+            backHref={backHref}
           />
 
           <div className="absolute bottom-4 left-4 z-20 sm:bottom-6 sm:left-6">
