@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import { ClipboardListIcon, TagIcon } from "lucide-react";
+import { TagIcon } from "lucide-react";
 
 import { GalleryCarousel } from "~/components/GalleryCarousel";
 import { formatDate } from "~/app/(temp)/projects/lib/formatters";
@@ -18,6 +18,7 @@ import { ProjectHeroSection } from "./components/ProjectHeroSection";
 import { ProjectOrgBadgeSection } from "./components/ProjectOrgBadgeSection";
 import { ProjectDetailMobileFooter } from "./components/ProjectDetailMobileFooter";
 import { ProjectMetricsSection } from "./components/metrics/ProjectMetricsSection";
+import { ProjectDescriptionSection } from "./components/ProjectDescriptionSection";
 import { ProjectBreakdown } from "./components/ProjectBreakdown";
 import { ProjectCoordinators } from "./components/ProjectCoordinators";
 import { ProjectCartProvider } from "./context/ProjectCartContext";
@@ -280,6 +281,10 @@ export default async function Layout({ children, params, modals }: Props) {
             location={location}
           />
 
+          <ProjectDescriptionSection project={project} updatedAt={updatedAt ?? undefined} />
+
+          <ProjectBreakdown project={project} orgInstance={orgInstance} />
+
           {projectGroup && (
             <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">
               <div className="space-y-2">
@@ -298,24 +303,6 @@ export default async function Layout({ children, params, modals }: Props) {
             </section>
           )}
 
-          {project.description && (
-            <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">
-              <div className="space-y-4">
-                <p className="text-base leading-relaxed text-default-600 sm:text-lg">
-                  {project.description}
-                </p>
-                {updatedAt && (
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                    <span className="inline-flex items-center gap-2">
-                      <ClipboardListIcon className="h-4 w-4" />
-                      Updated {updatedAt}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </section>
-          )}
-
           {projectGroup && (
             <ProjectsInGroupSection
               orgInstance={orgInstance}
@@ -323,8 +310,6 @@ export default async function Layout({ children, params, modals }: Props) {
               group={projectGroup}
             />
           )}
-
-          <ProjectBreakdown project={project} orgInstance={orgInstance} />
 
           <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
             <ProjectCoordinators project={project} orgInstance={orgInstance} />

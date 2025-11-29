@@ -14,7 +14,7 @@
           "status": "planned",
           "priority": "critical",
           "locationKey": "main-farm",
-          "startDate": "2025-01-01",
+          "startDate": "2025-29-11",
           "internal": false,
           "needSlugs": [
             "golaub-power-saw-2025",
@@ -25,8 +25,8 @@
           "tags": ["hurricane-recovery", "pasture-restoration", "livestock"],
           "notes": "Farm size: 35 acres. Livestock loss: 30 cows, 7 calves. Remaining: 3 cows, 2 heifers, 3 calves.",
           "groupOrder": 1,
-          "createdAt": "2025-01-01T00:00:00.000Z",
-          "updatedAt": "2025-01-01T00:00:00.000Z",
+          "createdAt": "2025-11-29T00:00:00.000Z",
+          "updatedAt": "2025-11-29T00:00:00.000Z",
           "photos": [
             {
               "type": "video",
@@ -135,7 +135,7 @@
           "status": "planned",
           "priority": "critical",
           "locationKey": "main-farm",
-          "startDate": "2025-01-01",
+          "startDate": "2025-29-11",
           "internal": false,
           "needSlugs": [
             "golaub-barb-wire-2025",
