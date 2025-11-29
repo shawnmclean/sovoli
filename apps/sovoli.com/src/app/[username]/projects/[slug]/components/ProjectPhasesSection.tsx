@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Circle, Clock, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import type { Project, ProjectPhase, PhaseNeed } from "~/modules/projects/types";
 
@@ -13,26 +13,26 @@ function NeedRow({ need }: { need: PhaseNeed }) {
   const isPartial = need.status === "partially-fulfilled";
 
   return (
-    <div className="flex items-center justify-between gap-2 rounded-md border border-default-200 p-2">
+    <div className="flex items-center justify-between gap-2 py-1">
       <div className="flex min-w-0 flex-col">
-        <span className="truncate text-xs font-medium">{need.title}</span>
+        <span className={`text-xs ${isFulfilled ? "text-default-400 line-through" : ""}`}>
+          {need.title}
+        </span>
         {need.fulfillments?.length ? (
           <span className="text-[10px] text-default-500">
             {isFulfilled
-              ? `Fulfilled by ${need.fulfillments.length} contributor(s)`
+              ? `${need.fulfillments.length} helped`
               : isPartial
-                ? `Partially fulfilled: ${need.fulfillments.length}`
+                ? `${need.fulfillments.length} partial`
                 : null}
           </span>
-        ) : (
-          <span className="text-[10px] text-default-400">Needed</span>
-        )}
+        ) : null}
       </div>
 
       {!isFulfilled && (
         <button
           type="button"
-          className="shrink-0 rounded bg-primary px-2 py-1 text-xs text-white"
+          className="shrink-0 rounded bg-primary px-2 py-0.5 text-[10px] text-white"
         >
           Help
         </button>
@@ -53,30 +53,19 @@ function PhaseItem({ phase, index }: { phase: ProjectPhase; index: number }) {
     <div className={`border-b border-default-200 last:border-b-0 ${isActive ? "bg-primary/5" : ""}`}>
       <button
         type="button"
-        className="flex w-full items-center gap-3 p-3 text-left"
+        className="flex w-full items-center gap-2 p-3 text-left"
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
       >
-        {/* Status indicator */}
-        <div className="shrink-0">
-          {isCompleted ? (
-            <CheckCircle2 className="h-5 w-5 text-success" />
-          ) : isActive ? (
-            <Clock className="h-5 w-5 text-primary" />
-          ) : (
-            <Circle className="h-5 w-5 text-default-300" />
-          )}
-        </div>
+        {/* Phase number */}
+        <span className={`w-5 shrink-0 text-xs ${isCompleted ? "text-success" : isActive ? "text-primary font-medium" : "text-default-400"}`}>
+          {index + 1}.
+        </span>
 
-        {/* Title and status */}
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-default-400">{index + 1}.</span>
-            <span className={`truncate text-sm font-medium ${isCompleted ? "text-default-500 line-through" : ""}`}>
-              {phase.title}
-            </span>
-          </div>
-        </div>
+        {/* Title */}
+        <span className={`min-w-0 flex-1 text-sm ${isCompleted ? "text-default-400 line-through" : ""}`}>
+          {phase.title}
+        </span>
 
         {/* Expand indicator */}
         {hasContent && (
@@ -88,13 +77,13 @@ function PhaseItem({ phase, index }: { phase: ProjectPhase; index: number }) {
 
       {/* Expanded content */}
       {isExpanded && hasContent && (
-        <div className="space-y-3 px-3 pb-3 pl-11">
+        <div className="space-y-2 px-3 pb-3 pl-8">
           {phase.description && (
-            <p className="text-xs text-default-600">{phase.description}</p>
+            <p className="text-xs text-default-500">{phase.description}</p>
           )}
 
           {hasNeeds && (
-            <div className="space-y-2">
+            <div className="space-y-1">
               {phase.needs?.map((need) => (
                 <NeedRow key={need.id} need={need} />
               ))}
