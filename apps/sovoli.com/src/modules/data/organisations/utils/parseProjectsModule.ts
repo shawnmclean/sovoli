@@ -61,6 +61,16 @@ const mediaJsonSchema = z.object({
 });
 
 /**
+ * Zod schema for phase need fulfillment
+ */
+const phaseNeedFulfillmentSchema = z.object({
+  id: z.string(),
+  contributorName: z.string().optional(),
+  quantity: z.number().optional(),
+  date: z.string().optional(),
+});
+
+/**
  * Zod schema for simplified inline phase needs
  */
 const phaseNeedJsonSchema = z.object({
@@ -68,7 +78,8 @@ const phaseNeedJsonSchema = z.object({
   type: z.enum(["material", "service", "labor", "financial"]),
   title: z.string(),
   description: z.string().optional(),
-  status: z.enum(["needed", "in-progress", "fulfilled", "cancelled"]),
+  status: z.enum(["needed", "in-progress", "partially-fulfilled", "fulfilled", "cancelled"]),
+  fulfillments: z.array(phaseNeedFulfillmentSchema).optional(),
 });
 
 /**
@@ -229,6 +240,7 @@ export function parseProjectsModule(
             title: needJson.title,
             description: needJson.description,
             status: needJson.status,
+            fulfillments: needJson.fulfillments,
           } as PhaseNeed));
         }
 

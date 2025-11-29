@@ -284,9 +284,9 @@ export default async function Layout({ children, params, modals }: Props) {
 
           <ProjectDescriptionSection project={project} updatedAt={updatedAt ?? undefined} />
 
+          <ProjectPhasesSection project={project} />
           <ProjectBreakdown project={project} orgInstance={orgInstance} />
 
-          <ProjectPhasesSection project={project} />
 
           {projectGroup && (
             <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">
