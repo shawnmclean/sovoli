@@ -57,7 +57,9 @@ if (!filePath || !orgPath) {
 }
 
 // TypeScript-friendly: ensure these are strings after the check
+/** @type {string} */
 const filePathStr = filePath;
+/** @type {string} */
 const orgPathStr = orgPath;
 
 async function uploadMedia() {
@@ -79,6 +81,7 @@ async function uploadMedia() {
     if (!fs.existsSync(fullPath)) {
       throw new Error(`File not found: ${fullPath}`);
     }
+    /** @type {"video" | "image"} */
     const resourceType =
       path.extname(fullPath).toLowerCase() === ".mp4" ||
       path.extname(fullPath).toLowerCase() === ".mov" ||
@@ -107,6 +110,7 @@ async function uploadMedia() {
     // Use upload_large for large files (supports chunked uploads)
     // upload_large returns a stream, so we need to handle it with a callback
     // Set chunk_size to 20MB (20000000 bytes) to stay under the 100MB limit
+    /** @type {import('cloudinary').UploadApiResponse} */
     let result;
     if (useLargeUpload && resourceType === "video") {
       // For large videos, use smaller chunks and create a compressed version
@@ -127,30 +131,38 @@ async function uploadMedia() {
       console.log("Uploading large video with compression...");
       console.log("Note: A compressed version will be created automatically.");
       result = await new Promise((resolve, reject) => {
-        cloudinary.uploader.upload_large(fullPath, largeUploadOptions, (error, result) => {
-          if (error) {
-            reject(error);
-          } else {
-            // If eager transformation was created, use that instead
-            if (result.eager && result.eager.length > 0) {
-              const compressed = result.eager[0];
-              console.log("Using compressed version from eager transformation");
-              // Merge the compressed version data with the original result
-              resolve({
-                ...result,
-                secure_url: compressed.secure_url || result.secure_url,
-                url: compressed.url || result.url,
-                format: compressed.format || result.format,
-                bytes: compressed.bytes || result.bytes,
-                width: compressed.width || result.width,
-                height: compressed.height || result.height,
-                duration: compressed.duration || result.duration,
-              });
+        cloudinary.uploader.upload_large(
+          fullPath,
+          largeUploadOptions,
+          /** @param {Error | undefined} error */
+          /** @param {import('cloudinary').UploadApiResponse | undefined} result */
+          (error, result) => {
+            if (error) {
+              reject(error);
+            } else if (!result) {
+              reject(new Error("Upload failed: No result returned"));
             } else {
-              resolve(result);
+              // If eager transformation was created, use that instead
+              if (result.eager && result.eager.length > 0) {
+                const compressed = result.eager[0];
+                console.log("Using compressed version from eager transformation");
+                // Merge the compressed version data with the original result
+                resolve({
+                  ...result,
+                  secure_url: compressed.secure_url || result.secure_url,
+                  url: compressed.url || result.url,
+                  format: compressed.format || result.format,
+                  bytes: compressed.bytes || result.bytes,
+                  width: compressed.width || result.width,
+                  height: compressed.height || result.height,
+                  duration: compressed.duration || result.duration,
+                });
+              } else {
+                resolve(result);
+              }
             }
-          }
-        });
+          },
+        );
       });
     } else if (useLargeUpload) {
       // For large non-video files, just use chunking
@@ -159,13 +171,21 @@ async function uploadMedia() {
         chunk_size: 20000000, // 20MB chunks
       };
       result = await new Promise((resolve, reject) => {
-        cloudinary.uploader.upload_large(fullPath, largeUploadOptions, (error, result) => {
-          if (error) {
-            reject(error);
-          } else {
-            resolve(result);
-          }
-        });
+        cloudinary.uploader.upload_large(
+          fullPath,
+          largeUploadOptions,
+          /** @param {Error | undefined} error */
+          /** @param {import('cloudinary').UploadApiResponse | undefined} result */
+          (error, result) => {
+            if (error) {
+              reject(error);
+            } else if (!result) {
+              reject(new Error("Upload failed: No result returned"));
+            } else {
+              resolve(result);
+            }
+          },
+        );
       });
     } else {
       result = await cloudinary.uploader.upload(fullPath, uploadOptions);
@@ -175,6 +195,7 @@ async function uploadMedia() {
     console.log(JSON.stringify(result, null, 2));
 
     // Extract relevant fields for the Media type
+    /** @type {Record<string, unknown>} */
     const mediaObject = {
       type: resourceType,
       url: result.secure_url || result.url || "",
