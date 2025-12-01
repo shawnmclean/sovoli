@@ -2,11 +2,22 @@
 
 import type { Project, ProjectGroup } from "~/modules/projects/types";
 import type { OrgInstance } from "~/modules/organisations/types";
-import type { Need } from "~/modules/needs/types";
+import type { Need, NeedType } from "~/modules/needs/types";
 import type { Item } from "~/modules/core/items/types";
+import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
+import { Divider } from "@sovoli/ui/components/divider";
+import { CldImage } from "next-cloudinary";
 import { slugify } from "~/utils/slugify";
-import { ChevronRight, Package, Users, Wrench, DollarSign, Briefcase } from "lucide-react";
+import {
+  ArrowRight,
+  Package,
+  Users,
+  Wrench,
+  DollarSign,
+  Briefcase,
+  FolderOpen,
+} from "lucide-react";
 import { CircularProgress } from "@sovoli/ui/components/progress";
 import { ORGS } from "~/modules/data/organisations";
 import { pluralize } from "~/utils/pluralize";
@@ -17,107 +28,291 @@ export interface ProjectsInGroupSectionProps {
   group: ProjectGroup;
 }
 
-// Calculate estimated cost for a project
-function calculateEstimatedCost(
-  project: Project,
-  orgInstance: OrgInstance,
-): number {
-  const needs = project.needs ?? [];
+/** Need type icons and labels */
+const NEED_TYPE_CONFIG: Record<NeedType, { icon: typeof Package; label: string }> = {
+  material: { icon: Package, label: "Materials" },
+  service: { icon: Wrench, label: "Services" },
+  human: { icon: Users, label: "Volunteers" },
+  financial: { icon: DollarSign, label: "Funding" },
+  job: { icon: Briefcase, label: "Jobs" },
+};
+
+/** Calculate fulfillment progress for a single need (0-100) */
+function calculateNeedProgress(need: Need): number {
+  if (need.status === "fulfilled") return 100;
+  if (need.fulfillment?.progress !== undefined) {
+    return Math.min(100, Math.max(0, need.fulfillment.progress));
+  }
+  if (need.quantity && need.fulfillment?.quantityMet !== undefined) {
+    return Math.round((need.fulfillment.quantityMet / need.quantity) * 100);
+  }
+  if (need.type === "human" && need.headcount && need.fulfillment?.quantityMet !== undefined) {
+    return Math.round((need.fulfillment.quantityMet / need.headcount) * 100);
+  }
+  if (need.type === "financial" && need.targetAmount && need.fulfillment?.amountRaised) {
+    const currency = Object.keys(need.targetAmount)[0] as keyof typeof need.targetAmount | undefined;
+    const raisedAmount = currency ? need.fulfillment.amountRaised[currency] : undefined;
+    if (currency && raisedAmount !== undefined) {
+      const target = need.targetAmount[currency] ?? 0;
+      if (target > 0) return Math.round((raisedAmount / target) * 100);
+    }
+  }
+  if (need.status === "in-progress" || need.status === "ordered") return 50;
+  if (need.status === "approved") return 25;
+  return 0;
+}
+
+/** Calculate overall project progress from all needs */
+function calculateProjectProgress(project: Project): number {
+  const allNeeds: Need[] = [];
+
+  // Collect project-level needs
+  if (project.needs) {
+    allNeeds.push(...project.needs);
+  }
+
+  // Collect phase needs
+  if (project.phases) {
+    for (const phase of project.phases) {
+      if (phase.needs) {
+        allNeeds.push(...phase.needs);
+      }
+    }
+  }
+
+  if (allNeeds.length === 0) {
+    return project.status === "completed" ? 100 : 0;
+  }
+
+  const totalProgress = allNeeds.reduce((sum, need) => sum + calculateNeedProgress(need), 0);
+  return Math.round(totalProgress / allNeeds.length);
+}
+
+/** Count needs by type for a project (including phase needs) */
+function countNeedsByType(project: Project): Record<NeedType, number> {
+  const counts: Record<NeedType, number> = {
+    material: 0,
+    service: 0,
+    human: 0,
+    financial: 0,
+    job: 0,
+  };
+
+  // Count project-level needs
+  if (project.needs) {
+    for (const need of project.needs) {
+      counts[need.type]++;
+    }
+  }
+
+  // Count phase needs
+  if (project.phases) {
+    for (const phase of project.phases) {
+      if (phase.needs) {
+        for (const need of phase.needs) {
+          counts[need.type]++;
+        }
+      }
+    }
+  }
+
+  return counts;
+}
+
+/** Get total needs count */
+function getTotalNeedsCount(counts: Record<NeedType, number>): number {
+  return Object.values(counts).reduce((sum, count) => sum + count, 0);
+}
+
+/** Calculate estimated cost for a project */
+function calculateEstimatedCost(project: Project, orgInstance: OrgInstance): number {
+  const allNeeds: Need[] = [];
+
+  if (project.needs) allNeeds.push(...project.needs);
+  if (project.phases) {
+    for (const phase of project.phases) {
+      if (phase.needs) allNeeds.push(...phase.needs);
+    }
+  }
+
   let totalCost = 0;
 
-  // Get recommended suppliers
   const recommendedSuppliers =
     orgInstance.org.supplierRecommendations
-      ?.map((rec) => {
-        const fullSupplierOrg = ORGS.find(
-          (org) => org.org.username === rec.org.username,
-        );
-        return fullSupplierOrg;
-      })
+      ?.map((rec) => ORGS.find((org) => org.org.username === rec.org.username))
       .filter((org): org is OrgInstance => org !== undefined) ?? [];
 
-  needs.forEach((need) => {
-    // First check if need has procurement cost data
+  for (const need of allNeeds) {
     if (need.procurement?.estimatedCost) {
       totalCost += need.procurement.estimatedCost;
-      return;
+      continue;
     }
 
-    // For material needs, try to get price from suppliers
     if (need.type === "material" && "item" in need) {
       const materialNeed = need as Need & { type: "material"; item: Item };
       const itemId = materialNeed.item.id;
 
-      // Find supplier with this item
       for (const supplierOrg of recommendedSuppliers) {
         if (supplierOrg.catalogModule?.items) {
           const catalogItem = supplierOrg.catalogModule.items.find(
-            (catalogItem) => catalogItem.id === itemId,
+            (item) => item.id === itemId,
           );
-
           if (catalogItem) {
             const price =
-              catalogItem.price.JMD ??
-              catalogItem.price.GYD ??
-              catalogItem.price.USD ??
-              0;
-            const quantity = need.quantity ?? 1;
-            totalCost += price * quantity;
-            return;
+              catalogItem.price.JMD ?? catalogItem.price.GYD ?? catalogItem.price.USD ?? 0;
+            totalCost += price * (need.quantity ?? 1);
+            break;
           }
         }
       }
     }
-  });
+  }
 
   return totalCost;
 }
 
-// Format currency for display
 function formatCurrency(amount: number): string {
-  if (amount >= 1000000) {
-    return `$${(amount / 1000000).toFixed(1)}M`;
-  }
-  // For amounts under 1M, show full number with commas
+  if (amount >= 1000000) return `$${(amount / 1000000).toFixed(1)}M`;
+  if (amount >= 1000) return `$${(amount / 1000).toFixed(0)}k`;
   return `$${amount.toLocaleString()}`;
 }
 
-// Get status indicator styling
-function getStatusIndicator(status?: string) {
-  switch (status) {
-    case "active":
-      return {
-        text: "Active",
-        progressColor: "danger" as const,
-      };
-    case "planned":
-      return {
-        text: "Planned",
-        progressColor: "warning" as const,
-      };
-    case "completed":
-      return {
-        text: "Completed",
-        progressColor: "success" as const,
-      };
-    default:
-      return {
-        text: "Planned",
-        progressColor: "default" as const,
-      };
-  }
-}
+function ProjectCard({
+  project,
+  orgInstance,
+}: {
+  project: Project;
+  orgInstance: OrgInstance;
+}) {
+  const projectSlug = slugify(project.title);
+  const projectHref = `/${orgInstance.org.username}/projects/${projectSlug}`;
 
-// Count needs by type for a project
-function countNeedsByType(project: Project) {
-  const needs = project.needs ?? [];
-  return {
-    materials: needs.filter((n) => n.type === "material").length,
-    labor: needs.filter((n) => n.type === "human" || n.type === "job").length,
-    services: needs.filter((n) => n.type === "service").length,
-    financial: needs.filter((n) => n.type === "financial").length,
-    total: needs.length,
-  };
+  // Get first image from project or phases
+  const firstImage =
+    project.media?.find((m) => m.type === "image") ??
+    project.phases?.flatMap((p) => p.media ?? []).find((m) => m.type === "image");
+
+  const progress = calculateProjectProgress(project);
+  const needsCounts = countNeedsByType(project);
+  const totalNeeds = getTotalNeedsCount(needsCounts);
+  const estimatedCost = calculateEstimatedCost(project, orgInstance);
+  const isComplete = project.status === "completed" || progress === 100;
+
+  // Get needs summary for display
+  const needsSummary = (Object.entries(needsCounts) as [NeedType, number][])
+    .filter(([, count]) => count > 0)
+    .slice(0, 3);
+
+  return (
+    <Card
+      as={Link}
+      href={projectHref}
+      className="overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+    >
+      {/* Image Section */}
+      <div className="relative aspect-[16/9] bg-default-100">
+        {firstImage?.publicId ? (
+          <>
+            <CldImage
+              src={firstImage.publicId}
+              alt={firstImage.alt ?? project.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover"
+              crop="fill"
+              quality="auto"
+            />
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          </>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-default-200 to-default-100">
+            <FolderOpen className="h-12 w-12 text-default-400" />
+          </div>
+        )}
+
+        {/* Progress indicator overlay */}
+        {totalNeeds > 0 && (
+          <div className="absolute bottom-3 right-3">
+            <div className="relative">
+              <CircularProgress
+                value={progress}
+                size="md"
+                color={isComplete ? "success" : "primary"}
+                classNames={{
+                  svg: "w-12 h-12 drop-shadow-lg",
+                  track: "stroke-white/30",
+                  indicator: "stroke-white",
+                }}
+                aria-label={`${project.title} progress`}
+                showValueLabel={false}
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-xs font-bold text-white drop-shadow-md">
+                  {progress}%
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <CardBody className="p-4">
+        {/* Title */}
+        <h3 className="text-lg font-semibold text-foreground line-clamp-1 mb-1">
+          {project.title}
+        </h3>
+
+        {/* Description */}
+        {project.description && (
+          <p className="text-sm text-default-500 line-clamp-2 mb-3">
+            {project.description}
+          </p>
+        )}
+
+        {/* Needs summary */}
+        {needsSummary.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {needsSummary.map(([type, count]) => {
+              const config = NEED_TYPE_CONFIG[type];
+              const Icon = config.icon;
+              return (
+                <div
+                  key={type}
+                  className="flex items-center gap-1.5 text-xs text-default-600 bg-default-100 px-2 py-1 rounded-md"
+                >
+                  <Icon className="h-3 w-3" />
+                  <span>
+                    {count} {pluralize(count, config.label.slice(0, -1))}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </CardBody>
+
+      <CardFooter className="flex items-center justify-between border-t border-default-100 px-4 py-3">
+        {/* Cost estimate */}
+        {estimatedCost > 0 ? (
+          <div className="flex items-center gap-1 text-success font-semibold">
+            <DollarSign className="h-4 w-4" />
+            <span>{formatCurrency(estimatedCost)}</span>
+          </div>
+        ) : (
+          <span className="text-xs text-default-400">
+            {totalNeeds} {pluralize(totalNeeds, "need")}
+          </span>
+        )}
+
+        {/* CTA */}
+        <span className="flex items-center gap-1.5 text-sm font-medium text-primary">
+          View Project
+          <ArrowRight className="h-4 w-4" />
+        </span>
+      </CardFooter>
+    </Card>
+  );
 }
 
 export const ProjectsInGroupSection = ({
@@ -137,106 +332,25 @@ export const ProjectsInGroupSection = ({
   const projectsInGroup = group.projects;
 
   return (
-    <section className="my-6 border-b border-default-200 pb-6">
-      <div className="space-y-3">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-foreground">
-          {projectsInGroup.length} {pluralize(projectsInGroup.length, "Project")} 
+    <>
+      <Divider className="my-6 sm:my-8" />
+      <section className="mb-6 sm:mb-8">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-2xl font-semibold leading-tight tracking-tight">
+            Projects
           </h2>
+          <span className="text-sm text-default-500">
+            {projectsInGroup.length} {pluralize(projectsInGroup.length, "project")}
+          </span>
         </div>
 
-        {/* Compact Phase List */}
-        <div className="divide-y divide-default-200 rounded-lg border border-default-200 overflow-hidden">
-          {projectsInGroup.map((p) => {
-            const projectSlug = slugify(p.title);
-            const estimatedCost = calculateEstimatedCost(p, orgInstance);
-            const statusIndicator = getStatusIndicator(p.status);
-            const needsCounts = countNeedsByType(p);
-
-            // Mock progress - you can replace with actual calculation
-            const progress = p.status === "completed" ? 100 : p.status === "active" ? 45 : 0;
-
-            const hasStats = needsCounts.total > 0 || estimatedCost > 0;
-
-            return (
-              <Link
-                key={p.id}
-                href={`/${orgInstance.org.username}/projects/${projectSlug}`}
-                className="block px-4 py-3 hover:bg-default-100 transition-colors group"
-              >
-                <div className="flex items-center gap-4">
-                  {/* Circular Progress */}
-                  <div className="flex-shrink-0">
-                    <CircularProgress
-                      value={progress}
-                      color={statusIndicator.progressColor}
-                      size="sm"
-                      showValueLabel
-                      aria-label={`${p.title} progress`}
-                    />
-                  </div>
-
-                  {/* Title & Description */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-foreground truncate">
-                      {p.title}
-                    </h3>
-
-                    {p.description && (
-                      <p className="text-xs text-default-500 truncate mt-0.5">
-                        {p.description}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Arrow */}
-                  <ChevronRight className="h-4 w-4 text-default-300 group-hover:text-default-500 transition-colors flex-shrink-0" />
-                </div>
-
-                {/* Stats Row */}
-                {hasStats && (
-                  <div className="flex items-center gap-4 mt-2 ml-12 text-default-400">
-                    {needsCounts.materials > 0 && (
-                      <div className="flex items-center gap-1">
-                        <Package className="h-3 w-3" />
-                        <span className="text-xs">{needsCounts.materials}</span>
-                      </div>
-                    )}
-                    {needsCounts.labor > 0 && (
-                      <div className="flex items-center gap-1">
-                        <Users className="h-3 w-3" />
-                        <span className="text-xs">{needsCounts.labor}</span>
-                      </div>
-                    )}
-                    {needsCounts.services > 0 && (
-                      <div className="flex items-center gap-1">
-                        <Wrench className="h-3 w-3" />
-                        <span className="text-xs">{needsCounts.services}</span>
-                      </div>
-                    )}
-                    {needsCounts.financial > 0 && (
-                      <div className="flex items-center gap-1">
-                        <Briefcase className="h-3 w-3" />
-                        <span className="text-xs">{needsCounts.financial}</span>
-                      </div>
-                    )}
-                    {estimatedCost > 0 && (
-                      <div className="flex items-center gap-1 text-default-600">
-                        <DollarSign className="h-3 w-3" />
-                        <span className="text-xs font-medium">
-                          {formatCurrency(estimatedCost)}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </Link>
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {projectsInGroup.map((p) => (
+            <ProjectCard key={p.id} project={p} orgInstance={orgInstance} />
+          ))}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
