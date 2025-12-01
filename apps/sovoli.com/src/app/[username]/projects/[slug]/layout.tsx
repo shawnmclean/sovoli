@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
+import { Divider } from "@sovoli/ui/components/divider";
 import { TagIcon } from "lucide-react";
 
+import { Footer } from "~/components/footer/Footer";
 import { GalleryCarousel } from "~/components/GalleryCarousel";
 import {
   getPriorityBadgeClass,
@@ -202,6 +204,8 @@ export default async function Layout({ children, params, modals }: Props) {
           </main>
 
           {children}
+
+          <Footer />
         </div>
       </ProjectCartProvider>
     );
@@ -272,7 +276,12 @@ export default async function Layout({ children, params, modals }: Props) {
             description={project.description}
           />
 
+          <Divider className="my-6 sm:my-8" />
+
           <ProjectPhasesSection project={project} />
+
+          <Divider className="my-6 sm:my-8" />
+
           <ProjectBreakdown project={project} orgInstance={orgInstance} />
 
 
@@ -374,7 +383,10 @@ export default async function Layout({ children, params, modals }: Props) {
           project={project}
           username={username}
         />
+
         {children}
+
+        <Footer />
       </div>
     </ProjectCartProvider>
   );

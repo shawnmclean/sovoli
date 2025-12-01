@@ -6,8 +6,10 @@ import {
   DrawerHeader as DrawerHeaderComponent,
   DrawerBody as DrawerBodyComponent,
 } from "@sovoli/ui/components/drawer";
+import { Button } from "@sovoli/ui/components/button";
 import { Card } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
+import { Divider } from "@sovoli/ui/components/divider";
 import { Progress } from "@sovoli/ui/components/progress";
 import { Alert } from "@sovoli/ui/components/alert";
 import {
@@ -17,10 +19,15 @@ import {
   Calendar,
   Package,
   ImageIcon,
+  Minus,
+  Plus,
+  Trash2,
 } from "lucide-react";
 import type { Project, ProjectStatus } from "~/modules/projects/types";
 import type { Need } from "~/modules/needs/types";
 import { trackProjectAnalytics } from "../../lib/projectAnalytics";
+import { useProjectCart } from "../../context/ProjectCartContext";
+import { pluralize } from "~/utils/pluralize";
 
 interface ProjectPhaseDetailsProps {
   project: Project;
@@ -49,49 +56,253 @@ function formatDate(dateString: string): string {
   });
 }
 
+function formatCurrency(amount: number): string {
+  if (amount >= 1000000) {
+    return `$${(amount / 1000000).toFixed(1)}M JMD`;
+  }
+  if (amount >= 1000) {
+    return `$${(amount / 1000).toFixed(0)}k JMD`;
+  }
+  return `$${amount.toLocaleString()} JMD`;
+}
+
+function getNeedQuantityAndUnit(need: Need): { totalQuantity: number; unit: string } {
+  if (need.type === "human") {
+    return { totalQuantity: need.headcount ?? need.quantity ?? 1, unit: "volunteer" };
+  }
+  if (need.type === "material") {
+    return { totalQuantity: need.quantity ?? 1, unit: need.item.unitLabel ?? "item" };
+  }
+  return { totalQuantity: need.quantity ?? 1, unit: "item" };
+}
+
+function getNeedUnitPrice(need: Need, totalQuantity: number): number {
+  // First check procurement cost
+  if (need.procurement?.estimatedCost) {
+    return Math.round(need.procurement.estimatedCost / totalQuantity);
+  }
+  // For financial needs, use target amount
+  if (need.type === "financial" && need.targetAmount) {
+    return need.targetAmount.JMD ?? need.targetAmount.USD ?? 0;
+  }
+  return 0;
+}
+
 function NeedCard({ need }: { need: Need }) {
+  const { getItemQuantity, setItemQuantity } = useProjectCart();
+  
   const isFulfilled = need.status === "fulfilled";
   const isInProgress = need.status === "in-progress";
+  
+  // Get need details for funding
+  const needId = need.slug;
+  const { totalQuantity, unit } = getNeedQuantityAndUnit(need);
+  const fulfilledQuantity = need.fulfillment?.quantityMet ?? (isFulfilled ? totalQuantity : 0);
+  const unitPrice = getNeedUnitPrice(need, totalQuantity);
+  
+  const quantity = getItemQuantity(needId);
+  const availableToFund = Math.max(0, totalQuantity - fulfilledQuantity);
+  const remaining = Math.max(0, availableToFund - quantity);
+  const isFullyFunded = isFulfilled || availableToFund === 0;
+
+  const handleIncrement = () => {
+    if (quantity < availableToFund) {
+      setItemQuantity(
+        {
+          id: needId,
+          name: need.title,
+          type: need.type === "material" ? "material" : "labor",
+          unit,
+          unitPrice,
+          quantity: 0,
+        },
+        quantity + 1,
+      );
+    }
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 0) {
+      setItemQuantity(
+        {
+          id: needId,
+          name: need.title,
+          type: need.type === "material" ? "material" : "labor",
+          unit,
+          unitPrice,
+          quantity: 0,
+        },
+        quantity - 1,
+      );
+    }
+  };
+
+  const handleAll = () => {
+    setItemQuantity(
+      {
+        id: needId,
+        name: need.title,
+        type: need.type === "material" ? "material" : "labor",
+        unit,
+        unitPrice,
+        quantity: 0,
+      },
+      availableToFund,
+    );
+  };
+
+  const handleStart = () => {
+    setItemQuantity(
+      {
+        id: needId,
+        name: need.title,
+        type: need.type === "material" ? "material" : "labor",
+        unit,
+        unitPrice,
+        quantity: 0,
+      },
+      1,
+    );
+  };
 
   return (
-    <Card className="p-3 border-none bg-content1/50">
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            {isFulfilled ? (
-              <CheckCircle2 className="h-4 w-4 text-success shrink-0" />
-            ) : isInProgress ? (
-              <Clock className="h-4 w-4 text-primary shrink-0" />
-            ) : (
-              <Circle className="h-4 w-4 text-default-400 shrink-0" />
+    <Card className="p-4 border-none bg-content1/50">
+      <div className="space-y-3">
+        {/* Header */}
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              {isFulfilled ? (
+                <CheckCircle2 className="h-4 w-4 text-success shrink-0" />
+              ) : isInProgress ? (
+                <Clock className="h-4 w-4 text-primary shrink-0" />
+              ) : (
+                <Circle className="h-4 w-4 text-default-400 shrink-0" />
+              )}
+              <span
+                className={`text-sm font-medium ${isFulfilled ? "text-default-400 line-through" : ""}`}
+              >
+                {need.title}
+              </span>
+            </div>
+
+            {need.description && (
+              <p className="text-xs text-default-500 ml-6 line-clamp-2">
+                {need.description}
+              </p>
             )}
-            <span
-              className={`text-sm font-medium ${isFulfilled ? "text-default-400 line-through" : ""}`}
-            >
-              {need.title}
-            </span>
           </div>
 
-          {need.description && (
-            <p className="text-xs text-default-500 ml-6 line-clamp-2">
-              {need.description}
-            </p>
-          )}
-
-          {isInProgress && (
-            <Chip size="sm" color="primary" variant="flat" className="mt-2 ml-6">
-              In Progress
-            </Chip>
+          {unitPrice > 0 && (
+            <div className="text-right shrink-0">
+              <span className="font-semibold text-sm">
+                {formatCurrency(unitPrice)}
+              </span>
+              <span className="text-xs text-default-400 block">
+                per {unit}
+              </span>
+            </div>
           )}
         </div>
 
-        {!isFulfilled && (
-          <button
-            type="button"
-            className="shrink-0 rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary/90 transition-colors"
-          >
-            Help
-          </button>
+        {/* Funding Controls */}
+        {!isFullyFunded && (
+          <>
+            <Divider />
+            
+            <div className="flex flex-col gap-3">
+              {/* Progress */}
+              <div>
+                <div className="text-xs flex justify-between mb-1">
+                  <span className="font-medium">
+                    {remaining} {pluralize(remaining, unit)} remaining
+                  </span>
+                </div>
+                <Progress
+                  size="sm"
+                  value={Math.round(((fulfilledQuantity + quantity) / totalQuantity) * 100)}
+                  color="success"
+                  aria-label="Funding progress"
+                />
+                <div className="flex justify-between text-[10px] text-default-400 mt-1">
+                  <span>{fulfilledQuantity + quantity} funded</span>
+                  <span>{totalQuantity} total</span>
+                </div>
+              </div>
+
+              {/* Controls */}
+              <div className="flex items-center justify-between">
+                {quantity > 0 ? (
+                  <div className="flex items-center gap-2 w-full">
+                    <div className="flex items-center gap-1 bg-default-100 rounded-md p-1">
+                      <Button
+                        variant="light"
+                        isIconOnly
+                        size="sm"
+                        className="h-7 w-7 min-w-7"
+                        onPress={handleDecrement}
+                        aria-label="Decrease quantity"
+                      >
+                        {quantity === 1 ? (
+                          <Trash2 className="h-3.5 w-3.5 text-danger" />
+                        ) : (
+                          <Minus className="h-3.5 w-3.5" />
+                        )}
+                      </Button>
+                      <span className="min-w-[1.5rem] text-center text-sm font-medium">
+                        {quantity}
+                      </span>
+                      <Button
+                        variant="light"
+                        isIconOnly
+                        size="sm"
+                        className="h-7 w-7 min-w-7"
+                        onPress={handleIncrement}
+                        isDisabled={quantity >= availableToFund}
+                        aria-label="Increase quantity"
+                      >
+                        <Plus className="h-3.5 w-3.5" />
+                      </Button>
+                    </div>
+
+                    <Button
+                      variant="bordered"
+                      size="sm"
+                      className="h-8"
+                      onPress={handleAll}
+                      isDisabled={quantity >= availableToFund}
+                    >
+                      All
+                    </Button>
+
+                    {unitPrice > 0 && (
+                      <span className="ml-auto font-semibold text-primary text-sm">
+                        {formatCurrency(quantity * unitPrice)}
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <Button
+                    color="primary"
+                    size="sm"
+                    onPress={handleStart}
+                    className="w-full"
+                  >
+                    Fund This Need
+                  </Button>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Fulfilled Badge */}
+        {isFullyFunded && (
+          <div className="flex justify-end">
+            <Chip color="success" variant="flat" size="sm">
+              Fully Funded
+            </Chip>
+          </div>
         )}
       </div>
     </Card>
@@ -244,7 +455,7 @@ export function ProjectPhaseDetails({
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={media.url}
-                            alt={media.title ?? `Phase media ${index + 1}`}
+                            alt={media.alt ?? `Phase media ${index + 1}`}
                             className="w-full h-full object-cover"
                           />
                         )}

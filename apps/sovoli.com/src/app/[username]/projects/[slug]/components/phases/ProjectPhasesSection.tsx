@@ -138,7 +138,6 @@ function PhaseCard({
     <Card
       as={Link}
       href={`${basePath}/phases/${phase.slug}`}
-      className="shadow-sm hover:shadow-md transition-shadow"
     >
       <CardBody className="pb-2">
         {/* Title row with phase number, help chip, and progress */}
@@ -235,15 +234,15 @@ export function ProjectPhasesSection({ project }: ProjectPhasesSectionProps) {
   const completedCount = phases.filter((p) => p.status === "completed").length;
 
   return (
-    <section className="mb-6">
-      <div className="mb-3 flex items-center justify-between">
-        <h3 className="text-sm font-semibold">Project Phases</h3>
-        <span className="text-xs text-default-500">
+    <section className="mb-6 sm:mb-8">
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="text-2xl font-semibold leading-tight tracking-tight">Project Roadmap</h2>
+        <span className="text-sm text-muted-foreground">
           {completedCount}/{phases.length} completed
         </span>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         {phases.map((phase, index) => (
           <PhaseCard
             key={phase.slug}
