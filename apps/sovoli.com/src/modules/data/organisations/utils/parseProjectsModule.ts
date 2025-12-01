@@ -63,6 +63,7 @@ const mediaJsonSchema = z.object({
  * Zod schema for project phases (with needSlugs instead of inline needs)
  */
 const projectPhaseJsonSchema = z.object({
+  slug: z.string(), // Unique identifier for routing to phase details page
   title: z.string(),
   description: z.string().optional(),
   status: z.enum(["planned", "active", "completed", "cancelled"]).optional(),
@@ -200,6 +201,7 @@ export function parseProjectsModule(
     if (projectJson.phases && projectJson.phases.length > 0) {
       phases = projectJson.phases.map((phaseJson) => {
         const phase: ProjectPhase = {
+          slug: phaseJson.slug,
           title: phaseJson.title,
           description: phaseJson.description,
           status: phaseJson.status,

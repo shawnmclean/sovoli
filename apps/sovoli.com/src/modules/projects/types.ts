@@ -27,6 +27,8 @@ export interface ProjectGroup {
 }
 
 export interface ProjectPhase {
+  /** Unique slug for the phase, used for routing to phase details page */
+  slug: string;
   title: string;
   description?: string;
   status?: ProjectStatus;

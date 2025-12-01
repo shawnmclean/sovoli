@@ -110,7 +110,7 @@ export function ProjectPhasesSection({ project }: ProjectPhasesSectionProps) {
 
       <div className="overflow-hidden rounded-lg border border-default-200">
         {phases.map((phase, index) => (
-          <PhaseItem key={`phase-${index}`} phase={phase} index={index} />
+          <PhaseItem key={phase.slug} phase={phase} index={index} />
         ))}
       </div>
     </section>
