@@ -1,7 +1,6 @@
 "use client";
 
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
 import {
@@ -134,9 +133,9 @@ function collectAndCombineNeeds(project: Project): CombinedNeed[] {
     const isFulfilled = need.status === "fulfilled";
     const fulfilledQty = need.fulfillment?.quantityMet ?? (isFulfilled ? quantity : 0);
 
-    if (needsMap.has(key)) {
+    const existing = needsMap.get(key);
+    if (existing) {
       // Combine with existing
-      const existing = needsMap.get(key)!;
       existing.totalQuantity += quantity;
       existing.fulfilledQuantity += fulfilledQty;
       existing.isFulfilled = existing.isFulfilled && isFulfilled;
@@ -164,16 +163,20 @@ function collectAndCombineNeeds(project: Project): CombinedNeed[] {
 
   // Add project-level needs
   if (project.needs) {
-    project.needs.forEach((need) => addNeed(need));
+    for (const need of project.needs) {
+      addNeed(need);
+    }
   }
 
   // Add phase needs
   if (project.phases) {
-    project.phases.forEach((phase, index) => {
+    for (const [index, phase] of project.phases.entries()) {
       if (phase.needs) {
-        phase.needs.forEach((need) => addNeed(need, phase.title, index));
+        for (const need of phase.needs) {
+          addNeed(need, phase.title, index);
+        }
       }
-    });
+    }
   }
 
   return Array.from(needsMap.values());
@@ -185,10 +188,11 @@ function groupNeedsByType(combinedNeeds: CombinedNeed[]): NeedTypeGroup[] {
 
   const groupedByType: Partial<Record<NeedType, CombinedNeed[]>> = {};
 
-  combinedNeeds.forEach((n) => {
-    groupedByType[n.type] ??= [];
-    groupedByType[n.type].push(n);
-  });
+  for (const n of combinedNeeds) {
+    const typeArray = groupedByType[n.type] ?? [];
+    typeArray.push(n);
+    groupedByType[n.type] = typeArray;
+  }
 
   return typeOrder
     .filter((type) => groupedByType[type] && groupedByType[type].length > 0)
@@ -219,145 +223,120 @@ function NeedItem({ need }: { need: CombinedNeed }) {
   const quantity = getItemQuantity(need.key);
   const totalCost = need.unitPrice * availableToFund;
 
+  const createCartItem = (): { id: string; name: string; type: "material" | "labor"; unit: string; unitPrice: number; quantity: number } => ({
+    id: need.key,
+    name: need.title,
+    type: need.type === "material" ? "material" : "labor",
+    unit: need.unit,
+    unitPrice: need.unitPrice,
+    quantity: 0,
+  });
+
   const handleIncrement = () => {
     if (quantity < availableToFund) {
-      setItemQuantity(
-        {
-          id: need.key,
-          name: need.title,
-          type: need.type === "material" ? "material" : "labor",
-          unit: need.unit,
-          unitPrice: need.unitPrice,
-          quantity: 0,
-        },
-        quantity + 1
-      );
+      setItemQuantity(createCartItem(), quantity + 1);
     }
   };
 
   const handleDecrement = () => {
     if (quantity > 0) {
-      setItemQuantity(
-        {
-          id: need.key,
-          name: need.title,
-          type: need.type === "material" ? "material" : "labor",
-          unit: need.unit,
-          unitPrice: need.unitPrice,
-          quantity: 0,
-        },
-        quantity - 1
-      );
+      setItemQuantity(createCartItem(), quantity - 1);
     }
   };
 
   const handleAll = () => {
-    setItemQuantity(
-      {
-        id: need.key,
-        name: need.title,
-        type: need.type === "material" ? "material" : "labor",
-        unit: need.unit,
-        unitPrice: need.unitPrice,
-        quantity: 0,
-      },
-      availableToFund
-    );
+    setItemQuantity(createCartItem(), availableToFund);
   };
 
   const handleStart = () => {
-    setItemQuantity(
-      {
-        id: need.key,
-        name: need.title,
-        type: need.type === "material" ? "material" : "labor",
-        unit: need.unit,
-        unitPrice: need.unitPrice,
-        quantity: 0,
-      },
-      1
-    );
+    setItemQuantity(createCartItem(), 1);
   };
 
+  // Compact view for fully funded items
+  if (isFullyFunded) {
+    return (
+      <div className="flex items-center gap-2 py-2 text-default-400">
+        <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+        <span className="text-sm line-through">
+          {need.title}
+          {need.totalQuantity > 1 && ` ×${need.totalQuantity}`}
+        </span>
+      </div>
+    );
+  }
+
   return (
-    <div
-      className={`flex items-start justify-between gap-4 py-3 ${
-        isFullyFunded ? "opacity-50" : ""
-      }`}
-    >
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2">
-          {isFullyFunded && <CheckCircle2 className="h-4 w-4 text-success shrink-0" />}
-          <span className={`font-medium ${isFullyFunded ? "line-through text-default-400" : ""}`}>
-            {need.title}
+    <div className="flex items-start justify-between gap-4 py-3">
+      {/* Left: Multi-line info */}
+      <div className="flex flex-col gap-1 min-w-0">
+        <span className="font-medium">{need.title}</span>
+        <div className="flex items-center gap-3 text-sm">
+          <span className="text-default-500">
+            <span className="font-semibold text-foreground">{availableToFund}</span>
+            {" "}of{" "}
+            <span className="text-default-400">{need.totalQuantity}</span>
+            {" "}{need.unit}{need.totalQuantity !== 1 ? "s" : ""} remaining
           </span>
-          {need.totalQuantity > 1 && (
-            <span className="text-xs text-default-400">
-              ×{need.totalQuantity} {need.unit}s
-            </span>
+          {totalCost > 0 && (
+            <>
+              <span className="text-default-300">•</span>
+              <span className="font-semibold text-success">{formatCurrency(totalCost)}</span>
+            </>
           )}
         </div>
-        {need.description && (
-          <p className="text-sm text-default-500 mt-0.5 line-clamp-1">{need.description}</p>
-        )}
       </div>
 
-      <div className="flex items-center gap-3 shrink-0">
-        {isFullyFunded ? (
-          <Chip color="success" variant="flat" size="sm">
-            Funded
-          </Chip>
-        ) : (
-          <>
-            {totalCost > 0 && (
-              <span className="text-sm font-semibold">{formatCurrency(totalCost)}</span>
-            )}
-            {quantity > 0 ? (
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1 bg-default-100 rounded-md p-1">
-                  <Button
-                    variant="light"
-                    isIconOnly
-                    size="sm"
-                    className="h-7 w-7 min-w-7"
-                    onPress={handleDecrement}
-                    aria-label="Decrease quantity"
-                  >
-                    {quantity === 1 ? (
-                      <Trash2 className="h-3.5 w-3.5 text-danger" />
-                    ) : (
-                      <Minus className="h-3.5 w-3.5" />
-                    )}
-                  </Button>
-                  <span className="min-w-[1.5rem] text-center text-sm font-medium">{quantity}</span>
-                  <Button
-                    variant="light"
-                    isIconOnly
-                    size="sm"
-                    className="h-7 w-7 min-w-7"
-                    onPress={handleIncrement}
-                    isDisabled={quantity >= availableToFund}
-                    aria-label="Increase quantity"
-                  >
-                    <Plus className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
+      {/* Right: Actions */}
+      <div className="shrink-0">
+        {quantity > 0 ? (
+          <div className="flex flex-col items-end gap-2">
+            <div className="font-semibold text-primary">
+              Fund: {formatCurrency(quantity * need.unitPrice)}
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 bg-default-100 rounded-md p-1">
                 <Button
-                  variant="bordered"
+                  variant="light"
+                  isIconOnly
                   size="sm"
-                  className="h-8"
-                  onPress={handleAll}
-                  isDisabled={quantity >= availableToFund}
+                  className="h-7 w-7 min-w-7"
+                  onPress={handleDecrement}
+                  aria-label="Decrease quantity"
                 >
-                  All
+                  {quantity === 1 ? (
+                    <Trash2 className="h-3.5 w-3.5 text-danger" />
+                  ) : (
+                    <Minus className="h-3.5 w-3.5" />
+                  )}
+                </Button>
+                <span className="min-w-[2rem] text-center text-sm font-medium">{quantity}</span>
+                <Button
+                  variant="light"
+                  isIconOnly
+                  size="sm"
+                  className="h-7 w-7 min-w-7"
+                  onPress={handleIncrement}
+                  isDisabled={quantity >= availableToFund}
+                  aria-label="Increase quantity"
+                >
+                  <Plus className="h-3.5 w-3.5" />
                 </Button>
               </div>
-            ) : (
-              <Button color="primary" size="sm" variant="flat" onPress={handleStart}>
-                Fund This
+              <Button
+                variant="bordered"
+                size="sm"
+                className="h-8"
+                onPress={handleAll}
+                isDisabled={quantity >= availableToFund}
+              >
+                All
               </Button>
-            )}
-          </>
+            </div>
+          </div>
+        ) : (
+          <Button color="primary" size="sm" onPress={handleStart}>
+            Fund Item
+          </Button>
         )}
       </div>
     </div>
