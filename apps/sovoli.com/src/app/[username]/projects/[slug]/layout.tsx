@@ -4,7 +4,6 @@ import { Card, CardBody } from "@sovoli/ui/components/card";
 import { TagIcon } from "lucide-react";
 
 import { GalleryCarousel } from "~/components/GalleryCarousel";
-import { formatDate } from "~/app/(temp)/projects/lib/formatters";
 import {
   getPriorityBadgeClass,
   getPriorityLabel,
@@ -24,7 +23,7 @@ import { ProjectCartProvider } from "./context/ProjectCartContext";
 import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 import { ProjectTracking } from "./components/ProjectTracking";
 import { ProjectsInGroupSection } from "./components/ProjectsInGroupSection";
-import { ProjectPhasesSection } from "./components/ProjectPhasesSection";
+import { ProjectPhasesSection } from "./components/phases/ProjectPhasesSection";
 import { getOrgInstanceWithProject } from "./lib/getOrgInstanceWithProject";
 
 interface Props {

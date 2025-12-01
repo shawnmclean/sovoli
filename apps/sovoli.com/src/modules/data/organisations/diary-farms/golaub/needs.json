@@ -36,7 +36,11 @@
       "requestingUnit": {
         "locationKey": "main-farm"
       },
-      "status": "planned",
+      "status": "fulfilled",
+      "fulfillment": {
+        "quantityMet": 1,
+        "progress": 100
+      },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
@@ -53,10 +57,14 @@
       "requestingUnit": {
         "locationKey": "main-farm"
       },
-      "status": "planned",
+      "status": "in-progress",
       "headcount": 3,
       "shiftPattern": "Full day work",
       "skills": ["manual labor", "debris clearing"],
+      "fulfillment": {
+        "quantityMet": 2,
+        "progress": 66
+      },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
@@ -116,7 +124,11 @@
       "requestingUnit": {
         "locationKey": "main-farm"
       },
-      "status": "planned",
+      "status": "in-progress",
+      "fulfillment": {
+        "quantityMet": 2,
+        "progress": 40
+      },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
@@ -136,7 +148,11 @@
       "requestingUnit": {
         "locationKey": "main-farm"
       },
-      "status": "planned",
+      "status": "fulfilled",
+      "fulfillment": {
+        "quantityMet": 1,
+        "progress": 100
+      },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
@@ -156,7 +172,11 @@
       "requestingUnit": {
         "locationKey": "main-farm"
       },
-      "status": "planned",
+      "status": "in-progress",
+      "fulfillment": {
+        "quantityMet": 75,
+        "progress": 15
+      },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
@@ -173,10 +193,14 @@
       "requestingUnit": {
         "locationKey": "main-farm"
       },
-      "status": "planned",
+      "status": "in-progress",
       "headcount": 2,
       "shiftPattern": "Full day work",
       "skills": ["chainsaw operation", "tree cutting"],
+      "fulfillment": {
+        "quantityMet": 1,
+        "progress": 50
+      },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
@@ -213,10 +237,14 @@
       "requestingUnit": {
         "locationKey": "main-farm"
       },
-      "status": "planned",
+      "status": "in-progress",
       "headcount": 3,
       "shiftPattern": "Full day work",
       "skills": ["manual labor", "physical strength"],
+      "fulfillment": {
+        "quantityMet": 1,
+        "progress": 33
+      },
       "notes": "Workers need to be able to lift 20-30lbs repeatedly.",
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"

@@ -37,6 +37,16 @@ export interface ProcurementInfo {
   notes?: string;
 }
 
+/** Tracks how much of a need has been fulfilled */
+export interface NeedFulfillment {
+  /** Number of units/items met (for material, human headcount, etc.) */
+  quantityMet?: number;
+  /** Amount raised in primary currency (for financial needs) */
+  amountRaised?: AmountByCurrency;
+  /** Direct progress percentage (0-100), useful when quantity doesn't apply */
+  progress?: number;
+}
+
 /** Primary entity describing a school or org requirement (shared fields) */
 export interface NeedBase {
   slug: string;
@@ -62,6 +72,9 @@ export interface NeedBase {
   status?: NeedStatus;
   procurement?: ProcurementInfo;
   notes?: string;
+
+  /** Tracks fulfillment progress */
+  fulfillment?: NeedFulfillment;
 
   /** Metadata */
   createdAt?: string;
