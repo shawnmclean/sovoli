@@ -18,7 +18,6 @@ import { ProjectHeroSection } from "./components/ProjectHeroSection";
 import { ProjectOrgBadgeSection } from "./components/ProjectOrgBadgeSection";
 import { ProjectDetailMobileFooter } from "./components/ProjectDetailMobileFooter";
 import { ProjectMetricsSection } from "./components/metrics/ProjectMetricsSection";
-import { ProjectDescriptionSection } from "./components/ProjectDescriptionSection";
 import { ProjectBreakdown } from "./components/ProjectBreakdown";
 import { ProjectCoordinators } from "./components/ProjectCoordinators";
 import { ProjectCartProvider } from "./context/ProjectCartContext";
@@ -192,16 +191,10 @@ export default async function Layout({ children, params, modals }: Props) {
               location={location}
             />
 
-            <section className="mb-2 border-b border-default-200 pb-2 text-center sm:mb-8 sm:pb-8">
-              <h1 className="my-4 text-2xl font-semibold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
-                {group.name}
-              </h1>
-              {group.description && (
-                <p className="mx-auto mt-2 max-w-3xl text-base leading-relaxed text-default-600 sm:text-lg">
-                  {group.description}
-                </p>
-              )}
-            </section>
+            <ProjectHeroSection
+              title={group.name}
+              description={group.description}
+            />
 
             <ProjectsInGroupSection
               orgInstance={orgInstance}
@@ -277,12 +270,10 @@ export default async function Layout({ children, params, modals }: Props) {
           />
           <ProjectMetricsSection project={project} />
           <ProjectHeroSection
-            orgInstance={orgInstance}
-            project={project}
-            location={location}
+            title={project.title}
+            description={project.description}
+            updatedAt={updatedAt ?? undefined}
           />
-
-          <ProjectDescriptionSection project={project} updatedAt={updatedAt ?? undefined} />
 
           <ProjectPhasesSection project={project} />
           <ProjectBreakdown project={project} orgInstance={orgInstance} />
