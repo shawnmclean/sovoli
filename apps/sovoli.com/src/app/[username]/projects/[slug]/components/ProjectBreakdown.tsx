@@ -423,20 +423,7 @@ export function ProjectBreakdown({
   const projectItems = buildProjectItems(project, orgInstance);
 
   if (projectItems.length === 0) {
-    return (
-      <div className="space-y-8 mb-12">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-bold text-foreground">
-              Project Items Needed
-            </h2>
-            <p className="text-muted-foreground">
-              No material needs found for this project
-            </p>
-          </div>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   // Calculate totals
@@ -453,7 +440,9 @@ export function ProjectBreakdown({
     totalCost > 0 ? Math.round((totalFunded / totalCost) * 100) : 0;
 
   return (
-    <div className="space-y-8 mb-12">
+    <>
+      <Divider className="my-6 sm:my-8" />
+      <div className="space-y-8 mb-12">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-foreground">
@@ -537,6 +526,7 @@ export function ProjectBreakdown({
           </p>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }

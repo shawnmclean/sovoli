@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
+import { Divider } from "@sovoli/ui/components/divider";
 import { Link } from "@sovoli/ui/components/link";
 import { CircularProgress } from "@sovoli/ui/components/progress";
 import { ArrowRight } from "lucide-react";
@@ -234,7 +235,9 @@ export function ProjectPhasesSection({ project }: ProjectPhasesSectionProps) {
   const completedCount = phases.filter((p) => p.status === "completed").length;
 
   return (
-    <section className="mb-6 sm:mb-8">
+    <>
+      <Divider className="my-6 sm:my-8" />
+      <section className="mb-6 sm:mb-8">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-2xl font-semibold leading-tight tracking-tight">Project Roadmap</h2>
         <span className="text-sm text-muted-foreground">
@@ -253,6 +256,7 @@ export function ProjectPhasesSection({ project }: ProjectPhasesSectionProps) {
         ))}
       </div>
     </section>
+    </>
   );
 }
 

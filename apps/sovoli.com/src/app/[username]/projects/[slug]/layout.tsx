@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Divider } from "@sovoli/ui/components/divider";
 import { TagIcon } from "lucide-react";
 
 import { Footer } from "~/components/footer/Footer";
@@ -19,13 +18,13 @@ import { ProjectHeroSection } from "./components/ProjectHeroSection";
 import { ProjectOrgBadgeSection } from "./components/ProjectOrgBadgeSection";
 import { ProjectDetailMobileFooter } from "./components/ProjectDetailMobileFooter";
 import { ProjectMetricsSection } from "./components/metrics/ProjectMetricsSection";
-import { ProjectBreakdown } from "./components/ProjectBreakdown";
 import { ProjectCoordinators } from "./components/ProjectCoordinators";
 import { ProjectCartProvider } from "./context/ProjectCartContext";
 import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 import { ProjectTracking } from "./components/ProjectTracking";
 import { ProjectsInGroupSection } from "./components/ProjectsInGroupSection";
 import { ProjectPhasesSection } from "./components/phases/ProjectPhasesSection";
+import { ProjectNeedsSection } from "./components/needs/ProjectNeedsSection";
 import { getOrgInstanceWithProject } from "./lib/getOrgInstanceWithProject";
 
 interface Props {
@@ -276,14 +275,9 @@ export default async function Layout({ children, params, modals }: Props) {
             description={project.description}
           />
 
-          <Divider className="my-6 sm:my-8" />
-
           <ProjectPhasesSection project={project} />
 
-          <Divider className="my-6 sm:my-8" />
-
-          <ProjectBreakdown project={project} orgInstance={orgInstance} />
-
+          <ProjectNeedsSection project={project} />
 
           {projectGroup && (
             <section className="mb-6 rounded-2xl bg-card p-4 shadow-sm sm:mb-8 sm:rounded-3xl sm:p-6">

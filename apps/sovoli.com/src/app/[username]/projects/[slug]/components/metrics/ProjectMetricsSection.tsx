@@ -27,13 +27,12 @@ const STATUS_CONFIG: Record<
 };
 
 export function ProjectMetricsSection({
-  project,
   progress = 0,
 }: ProjectMetricsSectionProps) {
   const pathname = usePathname();
   const metricsHref = `${pathname}/metrics`;
 
-  const status = project.status ?? "planned";
+  const status = "active";
   const statusConfig = STATUS_CONFIG[status];
 
   return (
