@@ -8,7 +8,7 @@
       "projects": [
         {
           "id": "golaub-pasture-clearance-2025",
-          "title": "Pasture Clearance & Access Restoration",
+          "title": "Pasture Clearance",
           "description": "Clear fallen trees and debris from pasture to allow grass to grow and restore cow access. Trees have fallen down in the pasture preventing grass from growing. Cows cannot access the grass.\n\nWork includes:\n1. Power saw work - Cut medium size tree branches and limbs\n2. Remove fallen trees from pasture\n3. Clear area to allow grass to grow\n4. Manual labor for chainsaw work, machete work, and moving posts (lift 20-30lbs)",
           "category": "relief",
           "status": "planned",
@@ -130,8 +130,8 @@
         {
           "id": "golaub-boundary-fence-restoration-2025",
           "title": "Boundary & Fence Restoration",
-          "description": "Install and repair fencing to restore farm boundaries and secure livestock. Requires 5 rolls of barb wire, staples, and 500 posts.",
-          "category": "relief",
+          "description": "Several trees fell onto the boundary fence during Hurricane Melissa, destroying large sections and blocking access to the **35-acre pasture**.\n\nWith the fence down, cows wander off and workers spend hours rounding them up instead of focusing on recovery. The situation has added stress and slowed the recovery process."
+,"category": "relief",
           "status": "planned",
           "priority": "critical",
           "locationKey": "main-farm",
@@ -147,91 +147,43 @@
               "title": "Clearing Trees & Debris",
               "description": "Several medium-sized trees fell onto the fence line during Hurricane Melissa. The first step is to cut and remove these trees so cows can access the 35-acre pasture again.",
               "status": "active",
-              "needs": [
-                {
-                  "id": "chainsaw-labor",
-                  "type": "service",
-                  "title": "Chainsaw Operator",
-                  "description": "Cut fallen trees and clear the fence perimeter.",
-                  "status": "needed"
-                },
-                {
-                  "id": "chainsaw-fuel",
-                  "type": "material",
-                  "title": "Chainsaw Fuel",
-                  "description": "Required for operating the chainsaw to clear debris.",
-                  "status": "needed"
-                },
-                {
-                  "id": "manual-labor-clearing",
-                  "type": "labor",
-                  "title": "Manual Labor",
-                  "description": "Move branches and debris after chainsaw cuts. 2–3 people needed for 1 day.",
-                  "status": "needed"
-                }
+              "needSlugs": [
+                "golaub-chainsaw-labor-2025",
+                "golaub-chainsaw-fuel-2025",
+                "golaub-clearing-labor-2025"
               ]
             },
             {
               "title": "Cutting and Preparing Posts",
               "description": "Posts will be manually sourced by cutting standing trees on the farm using a power saw. Approximately 500 posts are needed for the full boundary.",
               "status": "planned",
-              "needs": [
-                {
-                  "id": "power-saw-labor",
-                  "type": "service",
-                  "title": "Power Saw Work",
-                  "description": "Cut suitable trees into fence posts.",
-                  "status": "needed"
-                },
-                {
-                  "id": "post-transport",
-                  "type": "labor",
-                  "title": "Manual Post Transport",
-                  "description": "Move each 20–30 lb post to the fence line. Heavy manual lifting.",
-                  "status": "needed"
-                }
+              "needSlugs": [
+                "golaub-power-saw-labor-2025",
+                "golaub-post-moving-labor-2025"
               ]
             },
             {
               "title": "Installing Posts",
               "description": "Fence posts must be dug into the soil along the 35-acre boundary. This step requires digging holes, leveling posts, and securing them into the ground.",
               "status": "planned",
-              "needs": [
-                {
-                  "id": "post-installation-labor",
-                  "type": "labor",
-                  "title": "Post Installation Labor",
-                  "description": "Digging holes, aligning posts, and securing them in the ground.",
-                  "status": "needed"
-                }
+              "needSlugs": [
+                "golaub-post-installation-labor-2025"
               ]
             },
             {
               "title": "Running Barb Wire",
               "description": "Five rolls of barb wire need to be installed around the entire perimeter. Staples are required to secure the wire to each post.",
               "status": "planned",
-              "needs": [
-                {
-                  "id": "barb-wire",
-                  "type": "material",
-                  "title": "Barb Wire Rolls (x5)",
-                  "description": "Five rolls needed to fully restore the fence perimeter.",
-                  "status": "needed"
-                },
-                {
-                  "id": "staples",
-                  "type": "material",
-                  "title": "Fence Staples",
-                  "description": "Used to secure the wire to posts across the boundary.",
-                  "status": "needed"
-                }
+              "needSlugs": [
+                "golaub-barb-wire-2025",
+                "golaub-staples-2025"
               ]
             },
             {
               "title": "Final Inspection & Reinforcement",
               "description": "Once the wire is installed, the fence line will be walked to confirm tension, stability, and coverage. Additional reinforcement may be required in areas weakened by fallen trees.",
               "status": "planned",
-              "needs": []
+              "needSlugs": []
             }
           ],
           "tags": ["hurricane-recovery", "fence-repair", "livestock"],

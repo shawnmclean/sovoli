@@ -6,7 +6,6 @@ import type {
   Project,
   ProjectGroup,
   ProjectPhase,
-  PhaseNeed,
 } from "~/modules/projects/types";
 
 /**
@@ -61,29 +60,7 @@ const mediaJsonSchema = z.object({
 });
 
 /**
- * Zod schema for phase need fulfillment
- */
-const phaseNeedFulfillmentSchema = z.object({
-  id: z.string(),
-  contributorName: z.string().optional(),
-  quantity: z.number().optional(),
-  date: z.string().optional(),
-});
-
-/**
- * Zod schema for simplified inline phase needs
- */
-const phaseNeedJsonSchema = z.object({
-  id: z.string(),
-  type: z.enum(["material", "service", "labor", "financial"]),
-  title: z.string(),
-  description: z.string().optional(),
-  status: z.enum(["needed", "in-progress", "partially-fulfilled", "fulfilled", "cancelled"]),
-  fulfillments: z.array(phaseNeedFulfillmentSchema).optional(),
-});
-
-/**
- * Zod schema for project phases
+ * Zod schema for project phases (with needSlugs instead of inline needs)
  */
 const projectPhaseJsonSchema = z.object({
   title: z.string(),
@@ -92,7 +69,7 @@ const projectPhaseJsonSchema = z.object({
   priority: z.enum(["low", "medium", "high", "critical"]).optional(),
   startDate: z.string().optional(),
   endDate: z.string().optional(),
-  needs: z.array(phaseNeedJsonSchema).optional(),
+  needSlugs: z.array(z.string()).optional(), // Foreign key references to needs
   media: z.array(mediaJsonSchema).optional(),
 });
 
@@ -232,16 +209,17 @@ export function parseProjectsModule(
           media: phaseJson.media as Media[] | undefined,
         };
 
-        // Parse inline phase needs
-        if (phaseJson.needs && phaseJson.needs.length > 0) {
-          phase.needs = phaseJson.needs.map((needJson) => ({
-            id: needJson.id,
-            type: needJson.type,
-            title: needJson.title,
-            description: needJson.description,
-            status: needJson.status,
-            fulfillments: needJson.fulfillments,
-          } as PhaseNeed));
+        // Resolve phase needSlugs to Need objects
+        if (phaseJson.needSlugs && phaseJson.needSlugs.length > 0) {
+          phase.needs = phaseJson.needSlugs.map((slug) => {
+            const need = needsBySlug.get(slug);
+            if (!need) {
+              throw new Error(
+                `Need with slug "${slug}" not found. Referenced in phase "${phaseJson.title}" of project "${projectJson.id}" (${projectJson.title}).`,
+              );
+            }
+            return need;
+          });
         }
 
         return phase;

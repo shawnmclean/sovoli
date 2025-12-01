@@ -220,7 +220,6 @@ export default async function Layout({ children, params, modals }: Props) {
       ? project.media
       : fallbackMedia;
 
-  const updatedAt = formatDate(project.updatedAt ?? project.createdAt);
   const projectGroup = project.group;
 
   // Determine back href: if project is part of a group, go to group page, otherwise go to projects listing
@@ -272,7 +271,6 @@ export default async function Layout({ children, params, modals }: Props) {
           <ProjectHeroSection
             title={project.title}
             description={project.description}
-            updatedAt={updatedAt ?? undefined}
           />
 
           <ProjectPhasesSection project={project} />

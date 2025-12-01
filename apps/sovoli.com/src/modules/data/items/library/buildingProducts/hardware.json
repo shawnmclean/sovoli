@@ -93,5 +93,13 @@
     "unitLabel": "roll",
     "tags": ["agriculture", "fencing", "fence-repair", "pasture-restoration"],
     "description": "Galvanized barb wire in rolls for fence construction and repair. Used to secure pasture boundaries and protect livestock areas."
+  },
+  {
+    "id": "chainsaw-fuel",
+    "name": "Chainsaw Fuel (Mixed Gas)",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "gallon",
+    "tags": ["relief", "power", "fuel", "equipment"],
+    "description": "Pre-mixed fuel for chainsaw operation. Required for clearing fallen trees and debris."
   }
 ]

@@ -21,6 +21,86 @@
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
     {
+      "slug": "golaub-chainsaw-fuel-2025",
+      "title": "Chainsaw Fuel",
+      "description": "Fuel required for operating the chainsaw to clear debris and fallen trees.",
+      "itemId": "chainsaw-fuel",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for chainsaw operation during tree clearing."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-clearing-labor-2025",
+      "title": "Manual Labor - Clearing",
+      "description": "Manual labor to move branches and debris after chainsaw cuts. 2–3 people needed for 1 day.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Move branches and debris after chainsaw cuts to clear fence line."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 3,
+      "shiftPattern": "Full day work",
+      "skills": ["manual labor", "debris clearing"],
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-power-saw-labor-2025",
+      "title": "Power Saw Work",
+      "description": "Cut suitable trees into fence posts using power saw.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Posts need to be cut from trees for fence construction."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": ["power saw operation", "tree cutting"],
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-post-installation-labor-2025",
+      "title": "Post Installation Labor",
+      "description": "Digging holes, aligning posts, and securing them in the ground along the 35-acre boundary.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Posts must be installed to restore fence perimeter."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 3,
+      "shiftPattern": "Full day work",
+      "skills": ["manual labor", "post installation", "digging"],
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
       "slug": "golaub-barb-wire-2025",
       "title": "Barb Wire - 5 Rolls",
       "description": "5 rolls of barb wire for fence repair and pasture restoration.",

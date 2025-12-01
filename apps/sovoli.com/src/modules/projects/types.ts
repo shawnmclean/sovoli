@@ -26,30 +26,6 @@ export interface ProjectGroup {
   projects?: Project[];
 }
 
-/** Phase need type - simplified inline needs for phases */
-export type PhaseNeedType = "material" | "service" | "labor" | "financial";
-
-/** Phase need status */
-export type PhaseNeedStatus = "needed" | "in-progress" | "partially-fulfilled" | "fulfilled" | "cancelled";
-
-/** Fulfillment record for a phase need */
-export interface PhaseNeedFulfillment {
-  id: string;
-  contributorName?: string;
-  quantity?: number;
-  date?: string;
-}
-
-/** Simplified inline need for project phases */
-export interface PhaseNeed {
-  id: string;
-  type: PhaseNeedType;
-  title: string;
-  description?: string;
-  status: PhaseNeedStatus;
-  fulfillments?: PhaseNeedFulfillment[];
-}
-
 export interface ProjectPhase {
   title: string;
   description?: string;
@@ -57,7 +33,8 @@ export interface ProjectPhase {
   priority?: ProjectPriority;
   startDate?: string;
   endDate?: string;
-  needs?: PhaseNeed[];
+  /** Resolved needs from needSlugs references */
+  needs?: Need[];
   media?: Media[];
 }
 

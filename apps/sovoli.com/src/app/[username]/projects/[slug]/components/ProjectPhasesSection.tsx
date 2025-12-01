@@ -2,15 +2,16 @@
 
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import type { Project, ProjectPhase, PhaseNeed } from "~/modules/projects/types";
+import type { Project, ProjectPhase } from "~/modules/projects/types";
+import type { Need } from "~/modules/needs/types";
 
 interface ProjectPhasesSectionProps {
   project: Project;
 }
 
-function NeedRow({ need }: { need: PhaseNeed }) {
+function NeedRow({ need }: { need: Need }) {
   const isFulfilled = need.status === "fulfilled";
-  const isPartial = need.status === "partially-fulfilled";
+  const isInProgress = need.status === "in-progress";
 
   return (
     <div className="flex items-center justify-between gap-2 py-1">
@@ -18,15 +19,9 @@ function NeedRow({ need }: { need: PhaseNeed }) {
         <span className={`text-xs ${isFulfilled ? "text-default-400 line-through" : ""}`}>
           {need.title}
         </span>
-        {need.fulfillments?.length ? (
-          <span className="text-[10px] text-default-500">
-            {isFulfilled
-              ? `${need.fulfillments.length} helped`
-              : isPartial
-                ? `${need.fulfillments.length} partial`
-                : null}
-          </span>
-        ) : null}
+        {isInProgress && (
+          <span className="text-[10px] text-default-500">In progress</span>
+        )}
       </div>
 
       {!isFulfilled && (
@@ -85,7 +80,7 @@ function PhaseItem({ phase, index }: { phase: ProjectPhase; index: number }) {
           {hasNeeds && (
             <div className="space-y-1">
               {phase.needs?.map((need) => (
-                <NeedRow key={need.id} need={need} />
+                <NeedRow key={need.slug} need={need} />
               ))}
             </div>
           )}
