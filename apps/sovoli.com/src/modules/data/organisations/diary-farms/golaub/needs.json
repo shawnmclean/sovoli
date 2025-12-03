@@ -1,9 +1,238 @@
 {
   "needs": [
     {
+      "slug": "golaub-house-zinc-roofing-2025",
+      "title": "House Roof \u2013 26-Gauge Zinc Sheets",
+      "description": "10\u201330 sheets of 26-gauge galvanized zinc to fully re-cover the farmer's home roof spans.",
+      "itemId": "zinc-roof-sheet-26g",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Roof decking is exposed; zinc needs to be installed before the next rain band."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-structural-lumber-2025",
+      "title": "House Roof Structural Lumber",
+      "description": "Bundles of 2x4 rafters, 1x3 battens, and 4x4 posts to replace damaged members and reinforce load paths.",
+      "itemId": "timber-rafters-battens",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Rafters and battens must be replaced before zinc sheets can be tied down."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-roof-fasteners-2025",
+      "title": "Roof Nails & Fasteners",
+      "description": "Roofing nails with rubber washers plus 3\" and 4\" construction nails for framing tie-in.",
+      "itemId": "roof-fastener-kit",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Fasteners are required for reinstalling the structural frame and zinc sheets."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-hurricane-straps-2025",
+      "title": "House Hurricane Straps",
+      "description": "Metal straps to connect rafters to wall beams for wind-resistant reconstruction.",
+      "itemId": "hurricane-strap-galv",
+      "quantity": 40,
+      "type": "material",
+      "source": "external",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Tie-downs must be in place before final inspection to prevent future uplift."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-ridge-cap-2025",
+      "title": "House Roof Ridge Cap",
+      "description": "Galvanized ridge capping to seal the roof peak against rain intrusion.",
+      "itemId": "roof-ridge-cap",
+      "quantity": 3,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Ridge caps finish the roof assembly and prevent water penetration at the crown."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-underlayment-2025",
+      "title": "Tar Paper / Underlayment",
+      "description": "Waterproof membrane layer to protect the timber deck before zinc installation.",
+      "itemId": "roof-tar-paper-roll",
+      "quantity": 3,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Underlayment is needed immediately after structural repairs to keep the interior dry."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-sealant-flashing-2025",
+      "title": "Sealant & Flashing Tape",
+      "description": "Sealant tubes and flashing tape for leak prevention around joints and penetrations.",
+      "itemId": "roof-sealant-kit",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Sealing joints prevents vector ingress once zinc is installed."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-safety-ppe-2025",
+      "title": "Roof Work Safety PPE",
+      "description": "Helmets, gloves, harnesses, and boots to keep roof crews safe during demolition and installation.",
+      "itemId": "ppe-roofing-kit",
+      "quantity": 4,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Working at height requires PPE before crews can start stripping the roof."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-structural-carpenter-2025",
+      "title": "Structural Carpenter",
+      "description": "1\u20132 carpenters skilled in rafter replacement and frame alignment for the farmer's house roof.",
+      "type": "human",
+      "priority": "critical",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Experienced carpenters are required to rebuild the timber frame before zinc install."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "roof framing",
+        "structural carpentry"
+      ],
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-roofing-installers-2025",
+      "title": "Roofing Installers",
+      "description": "Crew experienced with zinc installation, fastening patterns, and overlap geometry for the home roof.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Dedicated installers keep the roof schedule tight once materials arrive."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "zinc roofing",
+        "fastening"
+      ],
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-house-general-labor-2025",
+      "title": "General Labor \u2013 Housing Roof",
+      "description": "1\u20132 laborers for debris removal, staging materials, and assisting carpenters on the roof.",
+      "type": "human",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Support labor keeps the roof crew productive and site safe."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "debris removal",
+        "material handling"
+      ],
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
       "slug": "golaub-power-saw-2025",
       "title": "Power Saw",
-      "description": "Medium size power saw for cutting tree branches and limbs that have fallen down in the pasture.",
+      "description": "Medium-size power saw for cutting tree branches and limbs blocking the pasture and fence line.",
       "itemId": "power-saw-circular-medium",
       "quantity": 1,
       "type": "material",
@@ -23,7 +252,7 @@
     {
       "slug": "golaub-chainsaw-fuel-2025",
       "title": "Chainsaw Fuel",
-      "description": "Fuel required for operating the chainsaw to clear debris and fallen trees.",
+      "description": "Fuel mix required for operating chainsaws during tree clearing.",
       "itemId": "chainsaw-fuel",
       "quantity": 1,
       "type": "material",
@@ -45,25 +274,148 @@
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
     {
-      "slug": "golaub-clearing-labor-2025",
-      "title": "Manual Labor - Clearing",
-      "description": "Manual labor to move branches and debris after chainsaw cuts. 2–3 people needed for 1 day.",
+      "slug": "golaub-chainsaw-bar-oil-2025",
+      "title": "Chainsaw Bar Oil",
+      "description": "Bar oil to keep saws lubricated during continuous biomass removal.",
+      "itemId": "chainsaw-bar-oil",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Continuous cutting requires bar oil to avoid downtime from seized bars."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-chainsaw-spare-chains-2025",
+      "title": "Spare Chainsaw Chains",
+      "description": "Replacement chains so operators can keep working while sharpening dull chains.",
+      "itemId": "chainsaw-chain-20in",
+      "quantity": 3,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Cutting hardwood posts quickly dulls chains; spares keep production up."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-machetes-2025",
+      "title": "Machetes",
+      "description": "Carbon steel machetes for stripping vines, brush, and young saplings.",
+      "itemId": "machete-carbon-steel",
+      "quantity": 4,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Brush clearing crews need sharp machetes to keep pace with chainsaw work."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-rakes-forks-2025",
+      "title": "Rakes & Forks",
+      "description": "Heavy-duty rakes and pitchforks for pulling biomass into piles and reopening pathways.",
+      "itemId": "yard-rakes-set",
+      "quantity": 4,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Manual crews need hand tools to move vines and leaves after felling."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-wheelbarrows-2025",
+      "title": "Wheelbarrows",
+      "description": "Heavy-duty wheelbarrows for transporting debris, cut posts, and manure buildup off pathways.",
+      "itemId": "wheelbarrow-heavy-duty",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Without wheelbarrows the manual crews cannot keep up with biomass removal."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-cutlass-file-2025",
+      "title": "Cutlass Sharpening File",
+      "description": "Metal files to keep cutlasses and machetes sharp throughout the clearing operation.",
+      "itemId": "cutlass-file",
+      "quantity": 2,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Sharp tools reduce fatigue for machete crews clearing vines."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-chainsaw-labor-2025",
+      "title": "Chainsaw Labor",
+      "description": "1\u20132 certified chainsaw operators for felling, limbing, and bucking storm-fallen trees.",
       "type": "human",
       "priority": "high",
       "neededBy": {
         "type": "asap",
-        "reason": "Move branches and debris after chainsaw cuts to clear fence line."
+        "reason": "Trees need to be cut to clear pasture and allow grass to grow."
       },
       "requestingUnit": {
         "locationKey": "main-farm"
       },
       "status": "in-progress",
-      "headcount": 3,
+      "headcount": 2,
       "shiftPattern": "Full day work",
-      "skills": ["manual labor", "debris clearing"],
+      "skills": [
+        "chainsaw operation",
+        "tree cutting"
+      ],
       "fulfillment": {
-        "quantityMet": 2,
-        "progress": 66
+        "quantityMet": 1,
+        "progress": 50
       },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
@@ -71,7 +423,7 @@
     {
       "slug": "golaub-power-saw-labor-2025",
       "title": "Power Saw Work",
-      "description": "Cut suitable trees into fence posts using power saw.",
+      "description": "Operators to cut suitable trees into fence posts and clear thicker limbs.",
       "type": "human",
       "priority": "high",
       "neededBy": {
@@ -84,75 +436,88 @@
       "status": "planned",
       "headcount": 2,
       "shiftPattern": "Full day work",
-      "skills": ["power saw operation", "tree cutting"],
+      "skills": [
+        "power saw operation",
+        "tree cutting"
+      ],
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
     {
-      "slug": "golaub-post-installation-labor-2025",
-      "title": "Post Installation Labor",
-      "description": "Digging holes, aligning posts, and securing them in the ground along the 35-acre boundary.",
+      "slug": "golaub-clearing-labor-2025",
+      "title": "Manual Labor - Clearing",
+      "description": "Manual labor to move branches, stack biomass, and reopen fence lines after chainsaw cuts.",
       "type": "human",
       "priority": "high",
       "neededBy": {
         "type": "asap",
-        "reason": "Posts must be installed to restore fence perimeter."
-      },
-      "requestingUnit": {
-        "locationKey": "main-farm"
-      },
-      "status": "planned",
-      "headcount": 3,
-      "shiftPattern": "Full day work",
-      "skills": ["manual labor", "post installation", "digging"],
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-01-01T00:00:00.000Z"
-    },
-    {
-      "slug": "golaub-barb-wire-2025",
-      "title": "Barb Wire - 5 Rolls",
-      "description": "5 rolls of barb wire for fence repair and pasture restoration.",
-      "itemId": "barb-wire-roll",
-      "quantity": 5,
-      "type": "material",
-      "source": "external",
-      "priority": "high",
-      "neededBy": {
-        "type": "asap",
-        "reason": "Needed for fence repair after hurricane damage."
+        "reason": "Move branches and debris after chainsaw cuts to clear fence line."
       },
       "requestingUnit": {
         "locationKey": "main-farm"
       },
       "status": "in-progress",
+      "headcount": 3,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "manual labor",
+        "debris clearing"
+      ],
       "fulfillment": {
         "quantityMet": 2,
-        "progress": 40
+        "progress": 66
       },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
     {
-      "slug": "golaub-staples-2025",
-      "title": "Staples for Fence Wire",
-      "description": "Staples needed for attaching barb wire to fence posts.",
-      "itemId": "fence-wire-staples",
-      "quantity": 1,
-      "type": "material",
-      "source": "external",
-      "priority": "high",
+      "slug": "golaub-machete-labor-2025",
+      "title": "Machete Work Labor",
+      "description": "Crew members focused on stripping vines, brush, and young saplings.",
+      "type": "human",
+      "priority": "medium",
       "neededBy": {
         "type": "asap",
-        "reason": "Required for securing barb wire to posts."
+        "reason": "Additional clearing work needed after chainsaw operation."
       },
       "requestingUnit": {
         "locationKey": "main-farm"
       },
-      "status": "fulfilled",
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "machete operation",
+        "brush clearing"
+      ],
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-post-moving-labor-2025",
+      "title": "Manual Labor - Move Posts",
+      "description": "Manual labor to move posts (lift 20-30lbs) for fence construction and debris staging.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Posts need to be moved and positioned for fence installation."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "in-progress",
+      "headcount": 3,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "manual labor",
+        "physical strength"
+      ],
       "fulfillment": {
         "quantityMet": 1,
-        "progress": 100
+        "progress": 33
       },
+      "notes": "Workers need to be able to lift 20-30lbs repeatedly.",
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
@@ -181,38 +546,166 @@
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
     {
-      "slug": "golaub-chainsaw-labor-2025",
-      "title": "Chainsaw Labor",
-      "description": "Manual labor for chainsaw work to cut tree branches and limbs in pasture.",
-      "type": "human",
+      "slug": "golaub-barb-wire-2025",
+      "title": "Barb Wire - 5 Rolls",
+      "description": "5 rolls of 12\u00bd gauge barb wire for fence repair and pasture restoration.",
+      "itemId": "barb-wire-roll",
+      "quantity": 5,
+      "type": "material",
+      "source": "external",
       "priority": "high",
       "neededBy": {
         "type": "asap",
-        "reason": "Trees need to be cut to clear pasture and allow grass to grow. Cows cannot access grass due to fallen trees."
+        "reason": "Needed for fence repair after hurricane damage."
       },
       "requestingUnit": {
         "locationKey": "main-farm"
       },
       "status": "in-progress",
-      "headcount": 2,
-      "shiftPattern": "Full day work",
-      "skills": ["chainsaw operation", "tree cutting"],
       "fulfillment": {
-        "quantityMet": 1,
-        "progress": 50
+        "quantityMet": 2,
+        "progress": 40
       },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
     {
-      "slug": "golaub-machete-labor-2025",
-      "title": "Machete Work Labor",
-      "description": "Manual labor for machete work to clear brush and small branches.",
-      "type": "human",
+      "slug": "golaub-staples-2025",
+      "title": "Staples for Fence Wire",
+      "description": "Galvanized U-nails for attaching barb wire to posts.",
+      "itemId": "fence-wire-staples",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Required for securing barb wire to posts."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "fulfilled",
+      "fulfillment": {
+        "quantityMet": 1,
+        "progress": 100
+      },
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-fence-tensioning-tools-2025",
+      "title": "Fence Tensioning Tools",
+      "description": "Come-along and wire stretcher set to achieve proper barb wire tension.",
+      "itemId": "wire-tensioning-kit",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Tensioning tools are required to stretch barb wire over the 35-acre perimeter."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-post-hole-tools-2025",
+      "title": "Post Hole Tools",
+      "description": "Digging bar, post hole shovel, and manual auger for installing 500 posts.",
+      "itemId": "post-hole-toolkit",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Posts cannot be set without specialty digging tools."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-fence-hammers-2025",
+      "title": "Fence Hammers & Sledge",
+      "description": "Hammers and a sledgehammer for driving staples and tamping soil around posts.",
+      "itemId": "fence-hammer-set",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
       "priority": "medium",
       "neededBy": {
         "type": "asap",
-        "reason": "Additional clearing work needed after chainsaw operation."
+        "reason": "Install crews need dedicated hammers to secure staples and posts."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-fence-ppe-2025",
+      "title": "Fence Crew PPE",
+      "description": "Gloves, boots, and safety glasses to protect workers handling barbed wire and posts.",
+      "itemId": "fence-ppe-kit",
+      "quantity": 4,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Wire handling is hazardous without protective gear."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-post-installation-labor-2025",
+      "title": "Post Installation Labor",
+      "description": "Crew to dig holes, align posts, and secure them along the 35-acre boundary.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Posts must be installed to restore fence perimeter."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 3,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "manual labor",
+        "post installation",
+        "digging"
+      ],
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-barb-wire-installers-2025",
+      "title": "Barb Wire Installers",
+      "description": "Crew skilled at running, tensioning, and stapling barb wire safely along long perimeters.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Dedicated installers keep the fence schedule on track once posts are set."
       },
       "requestingUnit": {
         "locationKey": "main-farm"
@@ -220,34 +713,221 @@
       "status": "planned",
       "headcount": 2,
       "shiftPattern": "Full day work",
-      "skills": ["machete operation", "brush clearing"],
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-01-01T00:00:00.000Z"
+      "skills": [
+        "wire tensioning",
+        "stapling"
+      ],
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
     },
     {
-      "slug": "golaub-post-moving-labor-2025",
-      "title": "Manual Labor - Move Posts",
-      "description": "Manual labor to move posts (lift 20-30lbs) for fence construction.",
-      "type": "human",
+      "slug": "golaub-shed-lumber-2025",
+      "title": "Cow Shed Lumber",
+      "description": "Pressure-treated lumber for rafters, purlins, posts, and stall framing in the cow shed.",
+      "itemId": "shed-lumber-treated",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
       "priority": "high",
       "neededBy": {
         "type": "asap",
-        "reason": "Posts need to be moved and positioned for fence installation."
+        "reason": "Structure cannot be rebuilt without new treated lumber."
       },
       "requestingUnit": {
         "locationKey": "main-farm"
       },
-      "status": "in-progress",
-      "headcount": 3,
-      "shiftPattern": "Full day work",
-      "skills": ["manual labor", "physical strength"],
-      "fulfillment": {
-        "quantityMet": 1,
-        "progress": 33
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-shed-concrete-2025",
+      "title": "Cow Shed Concrete Mix",
+      "description": "3\u20136 bags of concrete mix for post footings and slab patching inside the shed.",
+      "itemId": "bagged-concrete-mix",
+      "quantity": 6,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Footings must be stabilized before the shed frame is raised."
       },
-      "notes": "Workers need to be able to lift 20-30lbs repeatedly.",
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-01-01T00:00:00.000Z"
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-shed-fasteners-2025",
+      "title": "Cow Shed Fasteners",
+      "description": "Roofing nails, lag bolts, and structural screws for the shed frame and roof.",
+      "itemId": "shed-fastener-kit",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Fasteners tie the shed frame together and secure zinc sheets."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-shed-hurricane-straps-2025",
+      "title": "Cow Shed Hurricane Straps",
+      "description": "Tie-down straps to secure rafters and posts on the rebuilt cow shed.",
+      "itemId": "shed-hurricane-strap",
+      "quantity": 30,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Straps keep the agricultural structure anchored during future storms."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-shed-roofing-2025",
+      "title": "Cow Shed Zinc Roofing",
+      "description": "10\u201320 sheets of zinc roofing separate from the house roof to cover the cow shed.",
+      "itemId": "shed-zinc-roofing",
+      "quantity": 20,
+      "type": "material",
+      "source": "external",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Shelter is needed to reduce animal stress and restart milk production."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-shed-gutters-2025",
+      "title": "Cow Shed Gutters & Downspouts",
+      "description": "Gutter lengths and downspouts to capture rainwater for cows and protect the slab.",
+      "itemId": "shed-gutter-kit",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "low",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Rainwater capture offsets hauling water during recovery."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-shed-stall-components-2025",
+      "title": "Cow Shed Stall Components",
+      "description": "Boards, support frames, and feeding trough replacements for dairy stalls.",
+      "itemId": "shed-stall-kit",
+      "quantity": 1,
+      "type": "material",
+      "source": "external",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Stalls must be restored before cows can reoccupy the shed."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-shed-carpenters-2025",
+      "title": "Cow Shed Carpenters",
+      "description": "1\u20132 carpenters specialized in agricultural buildings to rebuild shed framing.",
+      "type": "human",
+      "priority": "high",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Framing professionals keep the shed rebuild on structural spec."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "agricultural carpentry",
+        "framing"
+      ],
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-shed-roof-installers-2025",
+      "title": "Cow Shed Roof Installers",
+      "description": "Crew experienced with zinc roofing and gutter installation for the cow shed.",
+      "type": "human",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Roof installers complete the shed weatherproofing stage."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "roofing",
+        "gutter installation"
+      ],
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "slug": "golaub-shed-general-labor-2025",
+      "title": "General Farm Labor \u2013 Shed",
+      "description": "Two general laborers to carry lumber, hold panels, and clear the shed site.",
+      "type": "human",
+      "priority": "medium",
+      "neededBy": {
+        "type": "asap",
+        "reason": "Support labor keeps carpenters and roofers productive during the rebuild."
+      },
+      "requestingUnit": {
+        "locationKey": "main-farm"
+      },
+      "status": "planned",
+      "headcount": 2,
+      "shiftPattern": "Full day work",
+      "skills": [
+        "material handling",
+        "site cleanup"
+      ],
+      "createdAt": "2025-12-03T00:00:00.000Z",
+      "updatedAt": "2025-12-03T00:00:00.000Z"
     }
   ]
 }

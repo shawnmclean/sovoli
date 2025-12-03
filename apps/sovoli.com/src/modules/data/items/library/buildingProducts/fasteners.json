@@ -110,5 +110,37 @@
     "unitLabel": "box",
     "tags": ["agriculture", "fencing", "fence-repair", "wire"],
     "description": "U-shaped wire staples for securing barb wire and fence wire to wooden posts. Essential for fence construction and repair."
+  },
+  {
+    "id": "roof-fastener-kit",
+    "name": "Roof Fastener Kit",
+    "category": "nails-pins-fixings-fasteners",
+    "unitLabel": "kit",
+    "tags": ["relief", "building", "roofing"],
+    "description": "Assortment of zinc roofing nails and washers plus 3-4 inch construction nails for fastening rafters and sheets."
+  },
+  {
+    "id": "shed-fastener-kit",
+    "name": "Shed Fastener Kit",
+    "category": "nails-pins-fixings-fasteners",
+    "unitLabel": "kit",
+    "tags": ["agriculture", "dairy", "fasteners"],
+    "description": "Lag bolts, roofing screws, and structural nails packaged for rebuilding agricultural sheds."
+  },
+  {
+    "id": "hurricane-strap-galv",
+    "name": "Galvanized Hurricane Straps",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "pack",
+    "tags": ["relief", "building", "wind-resistance"],
+    "description": "Metal straps that tie rafters to wall plates to resist uplift on residential roofs."
+  },
+  {
+    "id": "shed-hurricane-strap",
+    "name": "Agricultural Hurricane Straps",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "pack",
+    "tags": ["agriculture", "dairy", "wind-resistance"],
+    "description": "Corrosion-resistant straps sized for agricultural shed posts and rafters."
   }
 ]

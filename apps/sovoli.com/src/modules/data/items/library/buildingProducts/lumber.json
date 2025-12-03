@@ -102,5 +102,21 @@
     "unitLabel": "post",
     "tags": ["agriculture", "fencing", "fence-repair", "pasture-restoration"],
     "description": "Manually cut fence posts from local trees. Used for fence construction and repair in agricultural and pasture areas. Posts are typically cut from trees using power saws and used to support barb wire fencing."
+  },
+  {
+    "id": "timber-rafters-battens",
+    "name": "Roof Rafter & Batten Pack",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "bundle",
+    "tags": ["relief", "building", "roofing"],
+    "description": "Mixed bundle of 2x4 rafters, 1x3 battens, and 4x4 posts for reinforcing small home roof structures."
+  },
+  {
+    "id": "shed-lumber-treated",
+    "name": "Treated Shed Framing Lumber",
+    "category": "dimension-structural-lumber-timber",
+    "unitLabel": "bundle",
+    "tags": ["agriculture", "dairy", "framing"],
+    "description": "Pressure-treated posts, rafters, and purlins sized for rebuilding agricultural cow sheds."
   }
 ]

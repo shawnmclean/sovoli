@@ -14,5 +14,13 @@
     "unitLabel": "tool",
     "tags": ["agriculture", "construction", "tree-cutting", "pasture-restoration"],
     "description": "Medium size circular power saw for cutting tree branches, limbs, and logs. Essential for clearing fallen trees in pastures and agricultural areas."
+  },
+  {
+    "id": "chainsaw-chain-20in",
+    "name": "20 in Chainsaw Chain",
+    "category": "chain-saws-powered",
+    "unitLabel": "each",
+    "tags": ["agriculture", "clearing", "equipment"],
+    "description": "Replacement chain sized for 20-inch bar saws so operators can keep cutting while dull chains are sharpened."
   }
 ]
