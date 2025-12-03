@@ -22,6 +22,7 @@ import { ProjectCoordinators } from "./components/ProjectCoordinators";
 import { ProjectCartProvider } from "./context/ProjectCartContext";
 import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 import { ProjectTracking } from "./components/ProjectTracking";
+import { ProjectGroupTracking } from "./components/ProjectGroupTracking";
 import { ProjectsInGroupSection } from "./components/ProjectsInGroupSection";
 import { ProjectPhasesSection } from "./components/phases/ProjectPhasesSection";
 import { ProjectNeedsSection } from "./components/needs/ProjectNeedsSection";
@@ -184,6 +185,8 @@ export default async function Layout({ children, params, modals }: Props) {
           <NavigationDrawer fallbackPath={`/projects/${slug}`}>
             {modals}
           </NavigationDrawer>
+
+          <ProjectGroupTracking group={group} />
 
           <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
             <ProjectOrgBadgeSection

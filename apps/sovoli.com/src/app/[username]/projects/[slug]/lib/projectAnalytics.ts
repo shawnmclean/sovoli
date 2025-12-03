@@ -1,4 +1,4 @@
-import type { Project } from "~/modules/projects/types";
+import type { Project, ProjectGroup } from "~/modules/projects/types";
 import posthog from "posthog-js";
 
 interface ProjectAnalyticsData {
@@ -45,6 +45,18 @@ export const trackProjectAnalytics = (
     ...(analyticsData.status && { project_status: analyticsData.status }),
     ...(analyticsData.priority && { project_priority: analyticsData.priority }),
     ...additionalData,
+  });
+};
+
+export const trackProjectGroupAnalytics = (
+  event: "ViewContent",
+  group: ProjectGroup,
+) => {
+  posthog.capture(event, {
+    content_category: "Project Group",
+    content_name: group.name,
+    content_type: "product_group",
+    content_ids: [group.id],
   });
 };
 
