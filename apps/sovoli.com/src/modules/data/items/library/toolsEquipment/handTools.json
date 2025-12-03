@@ -18,7 +18,7 @@
   {
     "id": "machete-carbon-steel",
     "name": "Carbon Steel Machete",
-    "category": "machetes-non-powered",
+    "category": "axes",
     "unitLabel": "tool",
     "tags": ["agriculture", "clearing", "pasture-restoration"],
     "description": "Heavy-duty machete for stripping vines, brush, and young saplings."
@@ -34,7 +34,7 @@
   {
     "id": "yard-rakes-set",
     "name": "Yard Rakes & Forks Set",
-    "category": "rakes-non-powered",
+    "category": "rakes",
     "unitLabel": "set",
     "tags": ["agriculture", "clearing", "debris"],
     "description": "Bundle of heavy-duty rakes and pitchforks for pulling biomass into piles."
@@ -42,7 +42,7 @@
   {
     "id": "cutlass-file",
     "name": "Cutlass Sharpening File",
-    "category": "files-surforms-non-powered",
+    "category": "files-non-powered",
     "unitLabel": "tool",
     "tags": ["agriculture", "clearing", "maintenance"],
     "description": "Metal file used to sharpen machetes and cutlasses during extended clearing shifts."
