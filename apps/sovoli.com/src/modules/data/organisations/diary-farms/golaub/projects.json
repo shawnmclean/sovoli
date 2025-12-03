@@ -150,7 +150,7 @@
 				},
 				{
 					"id": "golaub-housing-recovery-2025",
-					"title": "Housing Recovery – Farmer Home Roof Replacement",
+					"title": "Housing Recovery",
 					"description": "The hurricane left the farm family exposed to rain, heat, and pests. The timber-framed residence needs a full strip-down, structural check, and new 26-gauge zinc roof system with hurricane strapping and sealing.",
 					"category": "relief",
 					"status": "planned",
@@ -290,7 +290,7 @@
 				},
 				{
 					"id": "golaub-land-clearance-2025",
-					"title": "Land Clearance – Pasture & Interior Grounds",
+					"title": "Land Clearance",
 					"description": "Fallen trees, vines, and debris are blocking the 35-acre pasture and interior pathways, starving grass of sunlight and preventing cows from reaching feed. We need coordinated mechanical felling and manual clearing to reopen the land.",
 					"category": "relief",
 					"status": "active",
@@ -414,7 +414,7 @@
 				},
 				{
 					"id": "golaub-boundary-refencing-2025",
-					"title": "Boundary & Refencing – Security + Livestock Containment",
+					"title": "Boundary & Refencing",
 					"description": "With 35 acres open, cows drift off and workers chase animals instead of rebuilding. Restoring 500-post perimeter fencing re-establishes security, biosecurity, and livestock containment.",
 					"category": "relief",
 					"status": "planned",
@@ -552,7 +552,7 @@
 				},
 				{
 					"id": "golaub-cow-shed-rebuild-2025",
-					"title": "Cow Shed Rebuild – Operational Dairy Infrastructure",
+					"title": "Cow Shed Rebuild",
 					"description": "The cow shed is the center of dairy metabolism: shelter lowers animal stress and stabilizes milk yield. We need to rebuild the frame, roofing, drainage, and stall hardware to restart milking.",
 					"category": "relief",
 					"status": "planned",

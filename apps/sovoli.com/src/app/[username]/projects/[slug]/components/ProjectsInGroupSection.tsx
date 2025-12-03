@@ -5,20 +5,13 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import type { Need, NeedType } from "~/modules/needs/types";
 import type { Item } from "~/modules/core/items/types";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
+import { Chip } from "@sovoli/ui/components/chip";
 import { Link } from "@sovoli/ui/components/link";
 import { Divider } from "@sovoli/ui/components/divider";
 import { CldImage } from "next-cloudinary";
 import { slugify } from "~/utils/slugify";
-import {
-  ArrowRight,
-  Package,
-  Users,
-  Wrench,
-  DollarSign,
-  Briefcase,
-  FolderOpen,
-} from "lucide-react";
-import { CircularProgress } from "@sovoli/ui/components/progress";
+import { ArrowRight, Package, Users, Wrench, DollarSign, Briefcase, FolderOpen } from "lucide-react";
+import { CircularProgress, Progress } from "@sovoli/ui/components/progress";
 import { ORGS } from "~/modules/data/organisations";
 import { pluralize } from "~/utils/pluralize";
 
@@ -269,46 +262,57 @@ function ProjectCard({
           </p>
         )}
 
-        {/* Needs summary */}
-        {needsSummary.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {needsSummary.map(([type, count]) => {
-              const config = NEED_TYPE_CONFIG[type];
-              const Icon = config.icon;
-              return (
-                <div
-                  key={type}
-                  className="flex items-center gap-1.5 text-xs text-default-600 bg-default-100 px-2 py-1 rounded-md"
-                >
-                  <Icon className="h-3 w-3" />
-                  <span>
-                    {count} {pluralize(count, config.label.slice(0, -1))}
-                  </span>
-                </div>
-              );
-            })}
+        {/* Progress */}
+        <div className="mt-4">
+          <div className="flex items-center gap-3">
+            <Progress
+              size="sm"
+              color={isComplete ? "success" : "primary"}
+              value={progress}
+              aria-label={`${project.title} completion`}
+              className="flex-1"
+            />
+            <span className="text-xs font-semibold text-default-600 w-10 text-right">
+              {progress}%
+            </span>
           </div>
-        )}
+        </div>
       </CardBody>
 
-      <CardFooter className="flex items-center justify-between border-t border-default-100 px-4 py-3">
-        {/* Cost estimate */}
-        {estimatedCost > 0 ? (
-          <div className="flex items-center gap-1 text-success font-semibold">
-            <DollarSign className="h-4 w-4" />
-            <span>{formatCurrency(estimatedCost)}</span>
-          </div>
-        ) : (
-          <span className="text-xs text-default-400">
-            {totalNeeds} {pluralize(totalNeeds, "need")}
-          </span>
-        )}
+      <CardFooter className="flex w-full border-t border-default-100 px-4 py-3">
+        <div className="flex w-full items-center justify-between gap-3">
+          {/* Needs summary */}
+          {needsSummary.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {needsSummary.map(([type, count]) => {
+                const config = NEED_TYPE_CONFIG[type];
+                const Icon = config.icon;
+                return (
+                  <div
+                    key={type}
+                    className="flex items-center gap-1.5 rounded-md bg-default-100 px-2 py-1 text-xs text-default-600"
+                  >
+                    <Icon className="h-3 w-3" />
+                    <span>
+                      {count} {pluralize(count, config.label.slice(0, -1))}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <span className="text-xs text-default-500">
+              {totalNeeds} {pluralize(totalNeeds, "need")}
+            </span>
+          )}
 
-        {/* CTA */}
-        <span className="flex items-center gap-1.5 text-sm font-medium text-primary">
-          View Details
-          <ArrowRight className="h-4 w-4" />
-        </span>
+          <div className="flex items-center gap-2 text-default-400">
+            {estimatedCost > 0 && (
+              <span className="text-sm font-medium text-success">{formatCurrency(estimatedCost)}</span>
+            )}
+            <ArrowRight className="h-4 w-4" />
+          </div>
+        </div>
       </CardFooter>
     </Card>
   );
@@ -329,15 +333,21 @@ export const ProjectsInGroupSection = ({
   }
 
   const projectsInGroup = group.projects;
+  const projectCount = projectsInGroup.length;
 
   return (
     <>
       <Divider className="my-6 sm:my-8" />
       <section className="mb-6 sm:mb-8">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-2xl font-semibold leading-tight tracking-tight">
-            Project Overview
-          </h2>
+          <div className="flex items-center gap-3">
+            <h2 className="text-2xl font-semibold leading-tight tracking-tight">
+              Projects
+            </h2>
+            <Chip size="sm" variant="flat" radius="lg">
+              {projectCount}
+            </Chip>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
