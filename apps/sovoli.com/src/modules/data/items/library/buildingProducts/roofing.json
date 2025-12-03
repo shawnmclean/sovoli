@@ -111,5 +111,53 @@
     "tags": ["facilities", "maintenance", "roofing", "relief"],
     "unitLabel": "sheet",
     "description": "Corrugated galvanized zinc sheet, 16 feet length, for roofing applications."
+  },
+  {
+    "id": "zinc-roof-sheet-26g",
+    "name": "26-Gauge Zinc Roofing Sheet",
+    "category": "roofing-panels-slabs",
+    "tags": ["relief", "building", "roofing"],
+    "unitLabel": "sheet",
+    "description": "Heavy-duty 26-gauge corrugated zinc sheet for permanent home roof replacement."
+  },
+  {
+    "id": "roof-ridge-cap",
+    "name": "Galvanized Roof Ridge Cap",
+    "category": "roof-vent-flashing-trim-coils",
+    "tags": ["relief", "building", "roofing"],
+    "unitLabel": "length",
+    "description": "Galvanized ridge capping for sealing roof peaks after zinc sheet installation."
+  },
+  {
+    "id": "roof-tar-paper-roll",
+    "name": "Roofing Tar Paper Roll",
+    "category": "roofing-membranes",
+    "tags": ["relief", "building", "roofing"],
+    "unitLabel": "roll",
+    "description": "Waterproof underlayment roll that protects timber decking before zinc sheets are fastened."
+  },
+  {
+    "id": "roof-sealant-kit",
+    "name": "Roof Sealant & Flashing Kit",
+    "category": "sealants",
+    "tags": ["relief", "building", "roofing"],
+    "unitLabel": "kit",
+    "description": "Bundle of sealant tubes and flashing tape for closing joints, penetrations, and ridge seams."
+  },
+  {
+    "id": "shed-zinc-roofing",
+    "name": "Cow Shed Zinc Roofing Pack",
+    "category": "roofing-panels-slabs",
+    "tags": ["agriculture", "dairy", "roofing"],
+    "unitLabel": "bundle",
+    "description": "Set of zinc roofing sheets sized for agricultural sheds to restore cow shelter."
+  },
+  {
+    "id": "shed-gutter-kit",
+    "name": "Gutter & Downspout Kit",
+    "category": "roof-vent-flashing-trim-coils",
+    "tags": ["relief", "building", "water-harvesting"],
+    "unitLabel": "kit",
+    "description": "Gutter lengths, hangers, and downspouts for capturing shed roof runoff into troughs."
   }
 ]

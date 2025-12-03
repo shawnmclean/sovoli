@@ -101,5 +101,69 @@
     "unitLabel": "gallon",
     "tags": ["relief", "power", "fuel", "equipment"],
     "description": "Pre-mixed fuel for chainsaw operation. Required for clearing fallen trees and debris."
+  },
+  {
+    "id": "bagged-concrete-mix",
+    "name": "Bagged Concrete Mix",
+    "category": "cement",
+    "unitLabel": "bag",
+    "tags": ["relief", "building", "concrete"],
+    "description": "Ready-mix concrete in 94 lb bags for post footings and slab patching."
+  },
+  {
+    "id": "chainsaw-bar-oil",
+    "name": "Chainsaw Bar & Chain Oil",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "gallon",
+    "tags": ["relief", "equipment", "lubricant"],
+    "description": "High-tack lubricant that keeps chainsaws running during continuous biomass removal."
+  },
+  {
+    "id": "wheelbarrow-heavy-duty",
+    "name": "Heavy-Duty Wheelbarrow",
+    "category": "wheelbarrows-non-powered",
+    "unitLabel": "each",
+    "tags": ["relief", "clearing", "material-handling"],
+    "description": "Reinforced wheelbarrow for hauling debris, posts, and feed across the farm."
+  },
+  {
+    "id": "wire-tensioning-kit",
+    "name": "Fence Wire Tensioning Kit",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "kit",
+    "tags": ["agriculture", "fencing", "tools"],
+    "description": "Come-along and stretcher set for tightening long runs of barbed wire."
+  },
+  {
+    "id": "post-hole-toolkit",
+    "name": "Post Hole Tool Kit",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "kit",
+    "tags": ["agriculture", "fencing", "tools"],
+    "description": "Digging bar, manual auger, and post-hole shovel for installing boundary posts."
+  },
+  {
+    "id": "shed-stall-kit",
+    "name": "Cow Shed Stall Hardware Kit",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "kit",
+    "tags": ["agriculture", "dairy", "hardware"],
+    "description": "Boards, trough brackets, and fasteners required to rebuild dairy stall fronts."
+  },
+  {
+    "id": "fence-ppe-kit",
+    "name": "Fence Crew PPE Kit",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "kit",
+    "tags": ["safety", "agriculture", "fencing"],
+    "description": "Gloves, boots, and safety glasses to protect crews while handling barbed wire."
+  },
+  {
+    "id": "ppe-roofing-kit",
+    "name": "Roof Work PPE Kit",
+    "category": "fixings-fasteners-hardware-other",
+    "unitLabel": "kit",
+    "tags": ["safety", "roofing", "relief"],
+    "description": "Set of helmets, gloves, harnesses, and boots for safe roof demolition and install."
   }
 ]
