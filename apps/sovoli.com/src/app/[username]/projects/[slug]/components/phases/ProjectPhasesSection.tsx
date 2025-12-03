@@ -2,11 +2,10 @@
 
 import { usePathname } from "next/navigation";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Link } from "@sovoli/ui/components/link";
-import { CircularProgress } from "@sovoli/ui/components/progress";
-import { ArrowRight } from "lucide-react";
+import { Progress } from "@sovoli/ui/components/progress";
+import { ArrowRight, Package, Users, Wrench, DollarSign, Briefcase } from "lucide-react";
 import type { Project, ProjectPhase } from "~/modules/projects/types";
 import type { Need, NeedType } from "~/modules/needs/types";
 import { pluralize } from "~/utils/pluralize";
@@ -15,12 +14,12 @@ interface ProjectPhasesSectionProps {
   project: Project;
 }
 
-const NEED_TYPE_CONFIG: Record<NeedType, string> = {
-  material: "Material",
-  service: "Service",
-  human: "Volunteer",
-  financial: "Funding",
-  job: "Job",
+const NEED_TYPE_CONFIG: Record<NeedType, { icon: typeof Package; label: string }> = {
+  material: { icon: Package, label: "Materials" },
+  service: { icon: Wrench, label: "Services" },
+  human: { icon: Users, label: "Volunteers" },
+  financial: { icon: DollarSign, label: "Funding" },
+  job: { icon: Briefcase, label: "Jobs" },
 };
 
 /** Calculate fulfillment progress for a single need (0-100) */
@@ -69,46 +68,25 @@ function calculateNeedProgress(need: Need): number {
   return 0;
 }
 
-interface NeedTypeSummary {
-  type: NeedType;
-  count: number;
-  fulfilledCount: number;
-  averageProgress: number;
+/** Count needs by type */
+function countNeedsByType(needs: Need[]): Record<NeedType, number> {
+  const counts: Record<NeedType, number> = {
+    material: 0,
+    service: 0,
+    human: 0,
+    financial: 0,
+    job: 0,
+  };
+
+  for (const need of needs) {
+    counts[need.type]++;
+  }
+
+  return counts;
 }
 
-/** Group needs by type and calculate aggregate progress */
-function calculateNeedsSummaryByType(needs: Need[]): NeedTypeSummary[] {
-  const typeOrder: NeedType[] = ["material", "service", "human", "financial", "job"];
-  
-  const summaryMap = needs.reduce<Partial<Record<NeedType, { count: number; totalProgress: number; fulfilledCount: number }>>>((acc, need) => {
-    const type = need.type;
-    const progress = calculateNeedProgress(need);
-    const isFulfilled = need.status === "fulfilled";
-    
-    acc[type] ??= { count: 0, totalProgress: 0, fulfilledCount: 0 };
-    
-    acc[type].count += 1;
-    acc[type].totalProgress += progress;
-    if (isFulfilled) {
-      acc[type].fulfilledCount += 1;
-    }
-    
-    return acc;
-  }, {});
-
-  return typeOrder
-    .filter((type) => summaryMap[type])
-    .map((type) => {
-      const data = summaryMap[type];
-      if (!data) return null;
-      return {
-        type,
-        count: data.count,
-        fulfilledCount: data.fulfilledCount,
-        averageProgress: Math.round(data.totalProgress / data.count),
-      };
-    })
-    .filter((item): item is NeedTypeSummary => item !== null);
+function getTotalNeedsCount(counts: Record<NeedType, number>): number {
+  return Object.values(counts).reduce((sum, count) => sum + count, 0);
 }
 
 function PhaseCard({
@@ -123,102 +101,86 @@ function PhaseCard({
   const status = phase.status ?? "planned";
   const needs = phase.needs ?? [];
 
-  // Calculate needs summary by type with progress
-  const needsSummary = calculateNeedsSummaryByType(needs);
-
   // Calculate overall phase progress
   const totalProgress = needs.length > 0
     ? Math.round(needs.reduce((sum, need) => sum + calculateNeedProgress(need), 0) / needs.length)
     : 0;
   const isPhaseComplete = status === "completed" || totalProgress === 100;
-  
-  // Show "Help Wanted!" when phase is not complete and has unfulfilled needs
-  const needsHelp = !isPhaseComplete && needs.some((need) => need.status !== "fulfilled");
+  const needsCounts = countNeedsByType(needs);
+  const totalNeeds = getTotalNeedsCount(needsCounts);
+  const needsSummary = (Object.entries(needsCounts) as [NeedType, number][])
+    .filter(([, count]) => count > 0)
+    .slice(0, 3);
 
   return (
     <Card
       as={Link}
       href={`${basePath}/phases/${phase.slug}`}
     >
-      <CardBody className="pb-2">
-        {/* Title row with phase number, help chip, and progress */}
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex items-center gap-2 min-w-0">
-            <h4
-              className={`font-semibold ${
-                status === "completed" ? "text-default-400 line-through" : ""
-              }`}
-            >
-              <span className={`mr-1.5 ${isPhaseComplete ? "text-success" : "text-default-500"}`}>
-                {index + 1}.
-              </span>
-              {phase.title}
-            </h4>
-            {needsHelp && (
-              <Chip size="sm" color="warning" variant="flat" className="shrink-0">
-                Help Wanted!
-              </Chip>
-            )}
-          </div>
-          {needs.length > 0 && (
-            <span className={`text-sm font-medium tabular-nums shrink-0 ${isPhaseComplete ? "text-success" : "text-default-500"}`}>
-              {totalProgress}%
-            </span>
-          )}
-        </div>
+      <CardBody className="p-4">
+        {/* Title */}
+        <h3 className={`text-lg font-semibold text-foreground mb-1 ${status === "completed" ? "text-default-400 line-through" : ""}`}>
+          <span className={`mr-2 text-sm font-medium ${isPhaseComplete ? "text-success" : "text-default-500"}`}>
+            {index + 1}.
+          </span>
+          {phase.title}
+        </h3>
 
+        {/* Description */}
         {phase.description && (
-          <p className="text-sm text-default-500 line-clamp-2 mt-1">
+          <p className="text-sm text-default-500 line-clamp-2 mb-3">
             {phase.description}
           </p>
         )}
-      </CardBody>
-      <CardFooter className="flex items-center justify-between pt-0">
-        {/* Needs summary by type with circular progress */}
-        {needsSummary.length > 0 ? (
-          <div className="flex flex-wrap gap-4">
-            {needsSummary.map((summary) => {
-              const label = NEED_TYPE_CONFIG[summary.type];
-              const isComplete = summary.averageProgress === 100;
-              return (
-                <div
-                  key={summary.type}
-                  className="flex items-center gap-2"
-                >
-                  <div className="relative">
-                    <CircularProgress
-                      value={summary.averageProgress}
-                      size="sm"
-                      color={isComplete ? "success" : "default"}
-                      classNames={{
-                        svg: "w-8 h-8",
-                        track: "stroke-default-200",
-                      }}
-                      aria-label={`${pluralize(summary.count, label)} progress`}
-                      showValueLabel={false}
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className={`text-[10px] font-semibold tabular-nums ${isComplete ? "text-success" : "text-default-600"}`}>
-                        {summary.fulfilledCount}/{summary.count}
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-sm text-default-600">
-                    {pluralize(summary.count, label)}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div />
-        )}
 
-        {/* View Details */}
-        <span className="flex items-center gap-1 text-sm text-default-500 shrink-0">
-          View Details
-          <ArrowRight className="w-4 h-4" />
-        </span>
+        {/* Progress */}
+        <div className="mt-4">
+          <div className="flex items-center gap-3">
+            <Progress
+              size="sm"
+              color={isPhaseComplete ? "success" : "primary"}
+              value={totalProgress}
+              aria-label={`${phase.title} completion`}
+              className="flex-1"
+            />
+            <span className="text-xs font-semibold text-default-600 w-10 text-right">
+              {totalProgress}%
+            </span>
+          </div>
+        </div>
+      </CardBody>
+      <CardFooter className="flex w-full border-t border-default-100 px-4 py-3">
+        <div className="flex w-full items-center justify-between gap-3">
+          {/* Needs summary */}
+          {needsSummary.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {needsSummary.map(([type, count]) => {
+                const config = NEED_TYPE_CONFIG[type];
+                const Icon = config.icon;
+                return (
+                  <div
+                    key={type}
+                    className="flex items-center gap-1.5 rounded-md bg-default-100 px-2 py-1 text-xs text-default-600"
+                  >
+                    <Icon className="h-3 w-3" />
+                    <span>
+                      {count} {pluralize(count, config.label.slice(0, -1))}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <span className="text-xs text-default-500">
+              {totalNeeds} {pluralize(totalNeeds, "need")}
+            </span>
+          )}
+
+          {/* Arrow indicator */}
+          <span className="text-default-400 shrink-0">
+            <ArrowRight className="w-4 h-4" />
+          </span>
+        </div>
       </CardFooter>
     </Card>
   );
