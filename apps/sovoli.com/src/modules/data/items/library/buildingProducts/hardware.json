@@ -1,105 +1,305 @@
 [
-  {
-    "id": "tarpaulin-heavy-duty",
-    "name": "Heavy-Duty Tarpaulin",
-    "category": "fixings-fasteners-hardware-other",
-    "tags": ["relief", "shelter", "weatherproofing"],
-    "unitLabel": "tarp",
-    "description": "Reinforced tarpaulin for temporary coverage of damaged classrooms and walkways."
-  },
-  {
-    "id": "tarps",
-    "name": "Tarps",
-    "category": "fixings-fasteners-hardware-other",
-    "unitLabel": "tarp",
-    "tags": ["relief", "building", "weatherproofing"]
-  },
-  {
-    "id": "fuel-containers",
-    "name": "Fuel Containers",
-    "category": "fixings-fasteners-hardware-other",
-    "unitLabel": "container",
-    "tags": ["relief", "power", "storage"],
-    "description": "Certified fuel cans for transporting gasoline or butane during response."
-  },
-  {
-    "id": "exterior-door-36x80",
-    "name": "Exterior Door - 36x80",
-    "category": "fixings-fasteners-hardware-other",
-    "tags": ["facilities", "maintenance", "relief"],
-    "unitLabel": "door",
-    "description": "Standard 36x80 exterior door for securing repaired classrooms and offices."
-  },
-  {
-    "id": "door-metal-36x80",
-    "name": "Metal Door - 36x80",
-    "category": "doors",
-    "tags": ["building", "door", "metal"],
-    "unitLabel": "each",
-    "description": "Metal door with raised panel design, 36x80 inches."
-  },
-  {
-    "id": "door-ply-32x80",
-    "name": "Plywood Door - 32x80",
-    "category": "doors",
-    "tags": ["building", "door", "plywood"],
-    "unitLabel": "each",
-    "description": "Plywood door, 32x80 inches."
-  },
-  {
-    "id": "lock-deadbolt-single-key",
-    "name": "Deadbolt Lock - Single Key",
-    "category": "door-hardware-other",
-    "tags": ["building", "security", "lock"],
-    "unitLabel": "each",
-    "description": "Deadbolt lock with single key operation."
-  },
-  {
-    "id": "lock-entrance-single-turn",
-    "name": "Entrance Lock - Single Turn",
-    "category": "door-hardware-other",
-    "tags": ["building", "security", "lock"],
-    "unitLabel": "each",
-    "description": "Entrance door lock with single turn mechanism."
-  },
-  {
-    "id": "circuit-breaker-20amp-double-pole",
-    "name": "Circuit Breaker - 20Amp Double Pole",
-    "category": "circuit-breakers",
-    "tags": ["electrical", "safety", "breaker"],
-    "unitLabel": "each",
-    "description": "20 amp double pole circuit breaker for electrical distribution."
-  },
-  {
-    "id": "led-emergency-bulb-11w",
-    "name": "LED Emergency Bulb - 11W",
-    "category": "lamps-light-bulbs-lighting",
-    "tags": ["electrical", "lighting", "emergency"],
-    "unitLabel": "each",
-    "description": "LED emergency light bulb with intelligent features, 11 watts."
-  },
-  {
-    "id": "electrical-tape-multi-color",
-    "name": "Electrical Tape - Multi Color",
-    "category": "cable-clips-grommets-ties",
-    "tags": ["electrical", "wiring", "tape"],
-    "unitLabel": "roll",
-    "description": "Electrical tape in multiple colors (yellow, blue, red, green) for wire identification and insulation."
-  },
-  {
-    "id": "barb-wire-roll",
-    "name": "Barb Wire Roll",
-    "category": "fixings-fasteners-hardware-other",
-    "unitLabel": "roll",
-    "tags": ["agriculture", "fencing", "fence-repair", "pasture-restoration"],
-    "description": "Galvanized barb wire in rolls for fence construction and repair. Used to secure pasture boundaries and protect livestock areas."
-  },
-  {
-    "id": "chainsaw-fuel",
-    "name": "Chainsaw Fuel (Mixed Gas)",
-    "category": "fixings-fasteners-hardware-other",
-    "unitLabel": "gallon",
-    "tags": ["relief", "power", "fuel", "equipment"],
-    "description": "Pre-mixed fuel for chainsaw operation. Required for clearing fallen trees and debris."
-  }
+	{
+		"id": "tarpaulin-heavy-duty",
+		"name": "Heavy-Duty Tarpaulin",
+		"category": "fixings-fasteners-hardware-other",
+		"tags": ["relief", "shelter", "weatherproofing"],
+		"unitLabel": "tarp",
+		"description": "Reinforced tarpaulin for temporary coverage of damaged classrooms and walkways."
+	},
+	{
+		"id": "tarps",
+		"name": "Tarps",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "tarp",
+		"tags": ["relief", "building", "weatherproofing"]
+	},
+	{
+		"id": "fuel-containers",
+		"name": "Fuel Containers",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "container",
+		"tags": ["relief", "power", "storage"],
+		"description": "Certified fuel cans for transporting gasoline or butane during response."
+	},
+	{
+		"id": "exterior-door-36x80",
+		"name": "Exterior Door - 36x80",
+		"category": "fixings-fasteners-hardware-other",
+		"tags": ["facilities", "maintenance", "relief"],
+		"unitLabel": "door",
+		"description": "Standard 36x80 exterior door for securing repaired classrooms and offices."
+	},
+	{
+		"id": "door-metal-36x80",
+		"name": "Metal Door - 36x80",
+		"category": "doors",
+		"tags": ["building", "door", "metal"],
+		"unitLabel": "each",
+		"description": "Metal door with raised panel design, 36x80 inches."
+	},
+	{
+		"id": "door-ply-32x80",
+		"name": "Plywood Door - 32x80",
+		"category": "doors",
+		"tags": ["building", "door", "plywood"],
+		"unitLabel": "each",
+		"description": "Plywood door, 32x80 inches."
+	},
+	{
+		"id": "lock-deadbolt-single-key",
+		"name": "Deadbolt Lock - Single Key",
+		"category": "door-hardware-other",
+		"tags": ["building", "security", "lock"],
+		"unitLabel": "each",
+		"description": "Deadbolt lock with single key operation."
+	},
+	{
+		"id": "lock-entrance-single-turn",
+		"name": "Entrance Lock - Single Turn",
+		"category": "door-hardware-other",
+		"tags": ["building", "security", "lock"],
+		"unitLabel": "each",
+		"description": "Entrance door lock with single turn mechanism."
+	},
+	{
+		"id": "circuit-breaker-20amp-double-pole",
+		"name": "Circuit Breaker - 20Amp Double Pole",
+		"category": "circuit-breakers",
+		"tags": ["electrical", "safety", "breaker"],
+		"unitLabel": "each",
+		"description": "20 amp double pole circuit breaker for electrical distribution."
+	},
+	{
+		"id": "led-emergency-bulb-11w",
+		"name": "LED Emergency Bulb - 11W",
+		"category": "lamps-light-bulbs-lighting",
+		"tags": ["electrical", "lighting", "emergency"],
+		"unitLabel": "each",
+		"description": "LED emergency light bulb with intelligent features, 11 watts."
+	},
+	{
+		"id": "electrical-tape-multi-color",
+		"name": "Electrical Tape - Multi Color",
+		"category": "cable-clips-grommets-ties",
+		"tags": ["electrical", "wiring", "tape"],
+		"unitLabel": "roll",
+		"description": "Electrical tape in multiple colors (yellow, blue, red, green) for wire identification and insulation."
+	},
+	{
+		"id": "barb-wire-roll",
+		"name": "Barb Wire Roll",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "roll",
+		"tags": ["agriculture", "fencing", "fence-repair", "pasture-restoration"],
+		"description": "Galvanized barb wire in rolls for fence construction and repair. Used to secure pasture boundaries and protect livestock areas."
+	},
+	{
+		"id": "chainsaw-fuel",
+		"name": "Chainsaw Fuel (Mixed Gas)",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "gallon",
+		"tags": ["relief", "power", "fuel", "equipment"],
+		"description": "Pre-mixed fuel for chainsaw operation. Required for clearing fallen trees and debris."
+	},
+	{
+		"id": "bagged-concrete-mix",
+		"name": "Bagged Concrete Mix",
+		"category": "cement",
+		"unitLabel": "bag",
+		"tags": ["relief", "building", "concrete"],
+		"description": "Ready-mix concrete in 94 lb bags for post footings and slab patching."
+	},
+	{
+		"id": "chainsaw-bar-oil",
+		"name": "Chainsaw Bar & Chain Oil",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "gallon",
+		"tags": ["relief", "equipment", "lubricant"],
+		"description": "High-tack lubricant that keeps chainsaws running during continuous biomass removal."
+	},
+	{
+		"id": "wheelbarrow-heavy-duty",
+		"name": "Heavy-Duty Wheelbarrow",
+		"category": "wheelbarrows-non-powered",
+		"unitLabel": "each",
+		"tags": ["relief", "clearing", "material-handling"],
+		"description": "Reinforced wheelbarrow for hauling debris, posts, and feed across the farm."
+	},
+	{
+		"id": "wire-tensioning-kit",
+		"name": "Fence Wire Tensioning Kit",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "kit",
+		"tags": ["agriculture", "fencing", "tools"],
+		"description": "Come-along and stretcher set for tightening long runs of barbed wire."
+	},
+	{
+		"id": "post-hole-toolkit",
+		"name": "Post Hole Tool Kit",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "kit",
+		"tags": ["agriculture", "fencing", "tools"],
+		"description": "Digging bar, manual auger, and post-hole shovel for installing boundary posts."
+	},
+	{
+		"id": "shed-stall-kit",
+		"name": "Cow Shed Stall Hardware Kit",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "kit",
+		"tags": ["agriculture", "dairy", "hardware"],
+		"description": "Boards, trough brackets, and fasteners required to rebuild dairy stall fronts."
+	},
+	{
+		"id": "fence-ppe-kit",
+		"name": "Fence Crew PPE Kit",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "kit",
+		"tags": ["safety", "agriculture", "fencing"],
+		"description": "Gloves, boots, and safety glasses to protect crews while handling barbed wire."
+	},
+	{
+		"id": "ppe-roofing-kit",
+		"name": "Roof Work PPE Kit",
+		"category": "fixings-fasteners-hardware-other",
+		"unitLabel": "kit",
+		"tags": ["safety", "roofing", "relief"],
+		"description": "Set of helmets, gloves, harnesses, and boots for safe roof demolition and install."
+	},
+	{
+		"id": "relief-rope-bungee-kit",
+		"name": "Rope & Bungee Securing Kit",
+		"category": "ropes-chains-cables-fixings-fasteners",
+		"unitLabel": "kit",
+		"tags": ["relief", "shelter", "weatherproofing"],
+		"description": "Coiled rope, tie-down straps, and bungee cords used to cinch tarps to surviving rafters."
+	},
+	{
+		"id": "relief-garbage-bag-pack",
+		"name": "Heavy-Duty Garbage Bag Pack",
+		"category": "refuse-bags",
+		"unitLabel": "pack",
+		"tags": ["relief", "sanitation"],
+		"description": "Contractor-grade refuse bags that double as moisture liners and debris control."
+	},
+	{
+		"id": "relief-generator-portable",
+		"name": "Portable Generator - 5kW",
+		"category": "power-generator-set",
+		"unitLabel": "generator",
+		"tags": ["relief", "power", "continuity"],
+		"description": "Gasoline/diesel portable generator sized for farm pumps, refrigeration, and communications gear."
+	},
+	{
+		"id": "relief-extension-cords",
+		"name": "Heavy-Duty Extension Cables",
+		"category": "extension-power-supply-cords",
+		"unitLabel": "cord",
+		"tags": ["relief", "power-distribution"],
+		"description": "Outdoor-rated 50\u2013100 ft extension cables that bridge generators to the farmhouse safely."
+	},
+	{
+		"id": "relief-generator-fuel",
+		"name": "Generator Fuel Reserve",
+		"category": "gas-fuels",
+		"unitLabel": "drum",
+		"tags": ["relief", "power", "fuel"],
+		"description": "Stored gasoline/diesel supply with stabilizer for multi-day generator operation."
+	},
+	{
+		"id": "relief-power-strips",
+		"name": "Surge-Protected Power Strips",
+		"category": "sockets-receptacles-outlets",
+		"unitLabel": "strip",
+		"tags": ["relief", "power-distribution", "safety"],
+		"description": "Multi-outlet strips with surge protection for distributing limited generator power."
+	},
+	{
+		"id": "relief-led-worklights",
+		"name": "LED Work Lights",
+		"category": "wide-angle-and-high-beem-work-lighting",
+		"unitLabel": "light",
+		"tags": ["relief", "lighting", "operations"],
+		"description": "Adjustable LED flood/work lights for night stabilization and milking tasks."
+	},
+	{
+		"id": "relief-battery-lanterns",
+		"name": "Battery Lanterns",
+		"category": "torches-lanterns-flashlights-powered",
+		"unitLabel": "lantern",
+		"tags": ["relief", "lighting", "household"],
+		"description": "Long-run LED lanterns that keep bedrooms and work areas lit during outages."
+	},
+	{
+		"id": "relief-water-storage-drum",
+		"name": "Water Storage Containers",
+		"category": "storage-drums-empty",
+		"unitLabel": "drum",
+		"tags": ["relief", "water", "household"],
+		"description": "Food-grade storage drums for capturing potable water while plumbing is offline."
+	},
+	{
+		"id": "relief-mosquito-coils",
+		"name": "Mosquito Coils & Repellent Kit",
+		"category": "non-personal-repellents",
+		"unitLabel": "kit",
+		"tags": ["relief", "health", "vector-control"],
+		"description": "Bulk coils and repellents that push back mosquitos around sleeping and livestock areas."
+	},
+	{
+		"id": "relief-first-aid-kit",
+		"name": "Comprehensive First Aid Supplies",
+		"category": "first-aid-variety-packs",
+		"unitLabel": "kit",
+		"tags": ["relief", "medical", "safety"],
+		"description": "Dressings, antiseptics, and trauma supplies for a farm family sheltering in place."
+	},
+	{
+		"id": "relief-sanitation-kit",
+		"name": "Sanitation Supply Kit",
+		"category": "cleaners-variety-packs",
+		"unitLabel": "kit",
+		"tags": ["relief", "sanitation", "health"],
+		"description": "Bleach, disinfectant, soaps, and gloves to keep the household hygienic after flooding."
+	},
+	{
+		"id": "relief-bedding-pack",
+		"name": "Dry Bedding & Blanket Pack",
+		"category": "blankets-throws-non-powered",
+		"unitLabel": "set",
+		"tags": ["relief", "shelter", "comfort"],
+		"description": "Moisture-resistant blankets and bedding used when original linens are soaked."
+	},
+	{
+		"id": "relief-charger-pack",
+		"name": "Battery Charger & Power Bank Pack",
+		"category": "chargers",
+		"unitLabel": "set",
+		"tags": ["relief", "communications", "power"],
+		"description": "USB battery banks and multi-port chargers to keep phones and radios alive."
+	},
+	{
+		"id": "relief-headlamp-set",
+		"name": "Headlamp & Flashlight Set",
+		"category": "torches-lanterns-flashlights-powered",
+		"unitLabel": "set",
+		"tags": ["relief", "mobility", "lighting"],
+		"description": "Rechargeable headlamps and handheld flashlights for moving across the farm at night."
+	},
+	{
+		"id": "relief-rain-boots",
+		"name": "Rain Boots",
+		"category": "boots-general-purpose",
+		"unitLabel": "pair",
+		"tags": ["relief", "protective-gear"],
+		"description": "High-shaft waterproof boots that keep crews dry while crossing flooded paddocks."
+	},
+	{
+		"id": "relief-rain-jackets",
+		"name": "Rain Jackets",
+		"category": "jackets-blazers-cardigans-waistcoats",
+		"unitLabel": "jacket",
+		"tags": ["relief", "protective-gear", "weather"],
+		"description": "Waterproof outer shells with hoods so family members can keep working in rain bands."
+	}
 ]

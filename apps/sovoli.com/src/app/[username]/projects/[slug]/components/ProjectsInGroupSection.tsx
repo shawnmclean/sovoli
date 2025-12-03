@@ -207,7 +207,6 @@ function ProjectCard({
     <Card
       as={Link}
       href={projectHref}
-      className="overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
     >
       {/* Image Section */}
       <div className="relative aspect-[16/9] bg-default-100">
@@ -259,7 +258,7 @@ function ProjectCard({
 
       <CardBody className="p-4">
         {/* Title */}
-        <h3 className="text-lg font-semibold text-foreground line-clamp-1 mb-1">
+        <h3 className="text-lg font-semibold text-foreground mb-1">
           {project.title}
         </h3>
 
@@ -307,7 +306,7 @@ function ProjectCard({
 
         {/* CTA */}
         <span className="flex items-center gap-1.5 text-sm font-medium text-primary">
-          View Project
+          View Details
           <ArrowRight className="h-4 w-4" />
         </span>
       </CardFooter>
@@ -337,11 +336,8 @@ export const ProjectsInGroupSection = ({
       <section className="mb-6 sm:mb-8">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-2xl font-semibold leading-tight tracking-tight">
-            Projects
+            Project Overview
           </h2>
-          <span className="text-sm text-default-500">
-            {projectsInGroup.length} {pluralize(projectsInGroup.length, "project")}
-          </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

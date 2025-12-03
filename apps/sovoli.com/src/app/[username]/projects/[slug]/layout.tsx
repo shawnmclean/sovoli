@@ -66,6 +66,42 @@ function resolveProjectLocation(
   );
 }
 
+function parseTimestamp(value?: string | null): number | null {
+  if (!value) return null;
+  const parsed = Date.parse(value);
+  return Number.isNaN(parsed) ? null : parsed;
+}
+
+function getProjectCreationTimestamp(project?: Project) {
+  if (!project) return null;
+  return parseTimestamp(project.createdAt) ?? parseTimestamp(project.updatedAt);
+}
+
+function getProjectUpdatedTimestamp(project?: Project) {
+  if (!project) return null;
+  return parseTimestamp(project.updatedAt) ?? parseTimestamp(project.createdAt);
+}
+
+function getEarliestProjectByCreation(projects?: Project[]) {
+  if (!projects || projects.length === 0) return undefined;
+  return projects.reduce<Project | undefined>((earliest, project) => {
+    if (!earliest) return project;
+    const earliestTimestamp = getProjectCreationTimestamp(earliest) ?? Number.POSITIVE_INFINITY;
+    const projectTimestamp = getProjectCreationTimestamp(project) ?? Number.POSITIVE_INFINITY;
+    return projectTimestamp < earliestTimestamp ? project : earliest;
+  }, undefined);
+}
+
+function getLatestProjectByUpdate(projects?: Project[]) {
+  if (!projects || projects.length === 0) return undefined;
+  return projects.reduce<Project | undefined>((latest, project) => {
+    if (!latest) return project;
+    const latestTimestamp = getProjectUpdatedTimestamp(latest) ?? Number.NEGATIVE_INFINITY;
+    const projectTimestamp = getProjectUpdatedTimestamp(project) ?? Number.NEGATIVE_INFINITY;
+    return projectTimestamp > latestTimestamp ? project : latest;
+  }, undefined);
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username, slug } = await params;
   const result = await retrieveOrgInstanceWithProject(username, slug);
@@ -152,6 +188,12 @@ export default async function Layout({ children, params, modals }: Props) {
     if (!firstProject) {
       notFound();
     }
+    const earliestProjectForCreated = getEarliestProjectByCreation(group.projects);
+    const latestProjectForUpdated = getLatestProjectByUpdate(group.projects);
+    const createdTimestamp =
+      earliestProjectForCreated?.createdAt ?? earliestProjectForCreated?.updatedAt;
+    const updatedTimestamp =
+      latestProjectForUpdated?.updatedAt ?? latestProjectForUpdated?.createdAt;
 
     const location = resolveProjectLocation(
       firstProject.locationKey,
@@ -197,6 +239,8 @@ export default async function Layout({ children, params, modals }: Props) {
             <ProjectHeroSection
               title={group.name}
               description={group.description}
+              createdAt={createdTimestamp}
+              updatedAt={updatedTimestamp}
             />
 
             <ProjectsInGroupSection
@@ -276,6 +320,8 @@ export default async function Layout({ children, params, modals }: Props) {
           <ProjectHeroSection
             title={project.title}
             description={project.description}
+            createdAt={project.createdAt}
+            updatedAt={project.updatedAt}
           />
 
           <ProjectPhasesSection project={project} />

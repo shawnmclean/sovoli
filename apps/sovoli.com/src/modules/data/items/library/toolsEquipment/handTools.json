@@ -14,5 +14,37 @@
     "unitLabel": "tool",
     "tags": ["relief", "building", "layout"],
     "description": "Steel tape for verifying spans and cut lengths during roof rebuilds."
+  },
+  {
+    "id": "machete-carbon-steel",
+    "name": "Carbon Steel Machete",
+    "category": "axes",
+    "unitLabel": "tool",
+    "tags": ["agriculture", "clearing", "pasture-restoration"],
+    "description": "Heavy-duty machete for stripping vines, brush, and young saplings."
+  },
+  {
+    "id": "fence-hammer-set",
+    "name": "Fence Hammer & Sledge Set",
+    "category": "hammers-diy-non-powered",
+    "unitLabel": "set",
+    "tags": ["agriculture", "fencing", "tools"],
+    "description": "Combination of straight-claw hammers and small sledge for tamping posts and driving staples."
+  },
+  {
+    "id": "yard-rakes-set",
+    "name": "Yard Rakes & Forks Set",
+    "category": "rakes",
+    "unitLabel": "set",
+    "tags": ["agriculture", "clearing", "debris"],
+    "description": "Bundle of heavy-duty rakes and pitchforks for pulling biomass into piles."
+  },
+  {
+    "id": "cutlass-file",
+    "name": "Cutlass Sharpening File",
+    "category": "files-non-powered",
+    "unitLabel": "tool",
+    "tags": ["agriculture", "clearing", "maintenance"],
+    "description": "Metal file used to sharpen machetes and cutlasses during extended clearing shifts."
   }
 ]

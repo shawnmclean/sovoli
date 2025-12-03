@@ -1,303 +1,685 @@
 {
-  "groups": [
-    {
-      "id": "golaub-dairy-farm-recovery-2025",
-      "slug": "golaub-dairy-farm-recovery-2025",
-      "name": "Golaub Dairy Farm Recovery",
-"description": "The family-owned small dairy operation suffered major losses during Hurricane Melissa.\n\nThe storm killed **4 cows, 2 heifers, and 3 calves**, and several trees collapsed onto the boundary fence, blocking access to the **35-acre pasture**.\n\nThe **cow shed roof** was destroyed, halting all dairy production.",
-      "projects": [
-        {
-          "id": "golaub-pasture-clearance-2025",
-          "title": "Pasture Clearance",
-          "description": "Clear fallen trees and debris from pasture to allow grass to grow and restore cow access. Trees have fallen down in the pasture preventing grass from growing. Cows cannot access the grass.\n\nWork includes:\n1. Power saw work - Cut medium size tree branches and limbs\n2. Remove fallen trees from pasture\n3. Clear area to allow grass to grow\n4. Manual labor for chainsaw work, machete work, and moving posts (lift 20-30lbs)",
-          "category": "relief",
-          "status": "planned",
-          "priority": "critical",
-          "locationKey": "main-farm",
-          "startDate": "2025-29-11",
-          "internal": false,
-          "needSlugs": [
-            "golaub-power-saw-2025",
-            "golaub-chainsaw-labor-2025",
-            "golaub-machete-labor-2025",
-            "golaub-post-moving-labor-2025"
-          ],
-          "tags": ["hurricane-recovery", "pasture-restoration", "livestock"],
-          "notes": "Farm size: 35 acres. Livestock loss: 30 cows, 7 calves. Remaining: 3 cows, 2 heifers, 3 calves.",
-          "groupOrder": 1,
-          "createdAt": "2025-11-29T00:00:00.000Z",
-          "updatedAt": "2025-11-29T00:00:00.000Z",
-          "photos": [
-            {
-              "type": "video",
-              "url": "https://res.cloudinary.com/dipyku9mn/video/upload/v1764376501/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.mp4",
-              "publicId": "o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj",
-              "assetId": "f2e4313cf8893d140d20b1f919658d41",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "format": "mp4",
-              "bytes": 41010383,
-              "version": 1764376501,
-              "uploadedAt": "2025-11-29T00:35:01Z",
-              "width": 1214,
-              "height": 2160,
-              "duration": 37.076,
-              "videoCodec": "h264",
-              "audioCodec": "aac",
-              "fps": 59.94005994005994,
-              "bitrate": 8709464,
-              "posterUrl": "https://res.cloudinary.com/dipyku9mn/video/upload/so_0/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.jpg",
-              "category": "default",
-              "caption": "IMG_5918_vertical.mp4",
-              "alt": "IMG_5918_vertical.mp4"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375608/o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt",
-              "assetId": "55781ffc249f6ab107b324127653ef37",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:08Z",
-              "bytes": 3209058,
-              "width": 4032,
-              "height": 3024,
-              "format": "jpg",
-              "version": 1764375608,
-              "caption": "IMG_5911.jpeg",
-              "alt": "IMG_5911.jpeg",
-              "category": "default"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375610/o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd",
-              "assetId": "0bb79adc8faecd08a78237acddcfb466",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:10Z",
-              "bytes": 3640850,
-              "width": 4032,
-              "height": 3024,
-              "format": "jpg",
-              "version": 1764375610,
-              "caption": "IMG_5912.jpg",
-              "alt": "IMG_5912.jpg",
-              "category": "default"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375612/o/golaub-dairy-farm/projects/nzo6zk8axys9c5irnfxq.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/nzo6zk8axys9c5irnfxq",
-              "assetId": "0c7130d155cf9f0a7506cd491e700ac5",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:12Z",
-              "bytes": 2502251,
-              "width": 3840,
-              "height": 2160,
-              "format": "jpg",
-              "version": 1764375612,
-              "caption": "IMG_5915.JPG",
-              "alt": "IMG_5915.JPG",
-              "category": "default"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375613/o/golaub-dairy-farm/projects/pw9azi9e6nqdryu3yysa.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/pw9azi9e6nqdryu3yysa",
-              "assetId": "dae72c5ddc2369e62ef6cbb7141212fc",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:13Z",
-              "bytes": 3136303,
-              "width": 3840,
-              "height": 2160,
-              "format": "jpg",
-              "version": 1764375613,
-              "caption": "IMG_5916.JPG",
-              "alt": "IMG_5916.JPG",
-              "category": "default"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375615/o/golaub-dairy-farm/projects/eozwymbc35wmzm9d1heo.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/eozwymbc35wmzm9d1heo",
-              "assetId": "cfd4178530e192e1b04936aebf527266",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:15Z",
-              "bytes": 3547439,
-              "width": 3840,
-              "height": 2160,
-              "format": "jpg",
-              "version": 1764375615,
-              "caption": "IMG_5917.JPG",
-              "alt": "IMG_5917.JPG",
-              "category": "default"
-            }
-          ]
-        },
-        {
-          "id": "golaub-boundary-fence-restoration-2025",
-          "title": "Boundary & Fence Restoration",
-          "description": "Several trees fell onto the boundary fence during Hurricane Melissa, destroying large sections and blocking access to the **35-acre pasture**.\n\nWith the fence down, cows wander off and workers spend hours rounding them up instead of focusing on recovery. The situation has added stress and slowed the recovery process."
-,"category": "relief",
-          "status": "planned",
-          "priority": "critical",
-          "locationKey": "main-farm",
-          "startDate": "2025-29-11",
-          "internal": false,
-          "needSlugs": [
-            "golaub-barb-wire-2025",
-            "golaub-staples-2025",
-            "golaub-posts-2025"
-          ],
-          "phases": [
-            {
-              "slug": "clearing-trees-debris",
-              "title": "Clearing Trees & Debris",
-              "description": "Several medium-sized trees fell onto the fence line during Hurricane Melissa. The first step is to cut and remove these trees so cows can access the 35-acre pasture again.",
-              "status": "active",
-              "needSlugs": [
-                "golaub-chainsaw-labor-2025",
-                "golaub-chainsaw-fuel-2025",
-                "golaub-clearing-labor-2025"
-              ]
-            },
-            {
-              "slug": "cutting-preparing-posts",
-              "title": "Cutting and Preparing Posts",
-              "description": "Posts will be manually sourced by cutting standing trees on the farm using a power saw. Approximately 500 posts are needed for the full boundary.",
-              "status": "planned",
-              "needSlugs": [
-                "golaub-power-saw-labor-2025",
-                "golaub-post-moving-labor-2025"
-              ]
-            },
-            {
-              "slug": "installing-posts",
-              "title": "Installing Posts",
-              "description": "Fence posts must be dug into the soil along the 35-acre boundary. This step requires digging holes, leveling posts, and securing them into the ground.",
-              "status": "planned",
-              "needSlugs": [
-                "golaub-post-installation-labor-2025"
-              ]
-            },
-            {
-              "slug": "running-barb-wire",
-              "title": "Running Barb Wire",
-              "description": "Five rolls of barb wire need to be installed around the entire perimeter. Staples are required to secure the wire to each post.",
-              "status": "planned",
-              "needSlugs": [
-                "golaub-barb-wire-2025",
-                "golaub-staples-2025"
-              ]
-            },
-            {
-              "slug": "final-inspection-reinforcement",
-              "title": "Final Inspection & Reinforcement",
-              "description": "Once the wire is installed, the fence line will be walked to confirm tension, stability, and coverage. Additional reinforcement may be required in areas weakened by fallen trees.",
-              "status": "planned",
-              "needSlugs": []
-            }
-          ],
-          "tags": ["hurricane-recovery", "fence-repair", "livestock"],
-          "notes": "Farm size: 35 acres. Livestock loss: 30 cows, 7 calves. Remaining: 3 cows, 2 heifers, 3 calves.",
-          "groupOrder": 2,
-          "createdAt": "2025-01-01T00:00:00.000Z",
-          "updatedAt": "2025-01-01T00:00:00.000Z",
-          "photos": [
-            {
-              "type": "video",
-              "url": "https://res.cloudinary.com/dipyku9mn/video/upload/v1764376501/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.mp4",
-              "publicId": "o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj",
-              "assetId": "f2e4313cf8893d140d20b1f919658d41",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "format": "mp4",
-              "bytes": 41010383,
-              "version": 1764376501,
-              "uploadedAt": "2025-11-29T00:35:01Z",
-              "width": 1214,
-              "height": 2160,
-              "duration": 37.076,
-              "videoCodec": "h264",
-              "audioCodec": "aac",
-              "fps": 59.94005994005994,
-              "bitrate": 8709464,
-              "posterUrl": "https://res.cloudinary.com/dipyku9mn/video/upload/so_0/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.jpg",
-              "category": "default",
-              "caption": "IMG_5918_vertical.mp4",
-              "alt": "IMG_5918_vertical.mp4"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375608/o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt",
-              "assetId": "55781ffc249f6ab107b324127653ef37",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:08Z",
-              "bytes": 3209058,
-              "width": 4032,
-              "height": 3024,
-              "format": "jpg",
-              "version": 1764375608,
-              "caption": "IMG_5911.jpeg",
-              "alt": "IMG_5911.jpeg",
-              "category": "default"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375610/o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd",
-              "assetId": "0bb79adc8faecd08a78237acddcfb466",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:10Z",
-              "bytes": 3640850,
-              "width": 4032,
-              "height": 3024,
-              "format": "jpg",
-              "version": 1764375610,
-              "caption": "IMG_5912.jpg",
-              "alt": "IMG_5912.jpg",
-              "category": "default"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375612/o/golaub-dairy-farm/projects/nzo6zk8axys9c5irnfxq.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/nzo6zk8axys9c5irnfxq",
-              "assetId": "0c7130d155cf9f0a7506cd491e700ac5",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:12Z",
-              "bytes": 2502251,
-              "width": 3840,
-              "height": 2160,
-              "format": "jpg",
-              "version": 1764375612,
-              "caption": "IMG_5915.JPG",
-              "alt": "IMG_5915.JPG",
-              "category": "default"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375613/o/golaub-dairy-farm/projects/pw9azi9e6nqdryu3yysa.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/pw9azi9e6nqdryu3yysa",
-              "assetId": "dae72c5ddc2369e62ef6cbb7141212fc",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:13Z",
-              "bytes": 3136303,
-              "width": 3840,
-              "height": 2160,
-              "format": "jpg",
-              "version": 1764375613,
-              "caption": "IMG_5916.JPG",
-              "alt": "IMG_5916.JPG",
-              "category": "default"
-            },
-            {
-              "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375615/o/golaub-dairy-farm/projects/eozwymbc35wmzm9d1heo.jpg",
-              "publicId": "o/golaub-dairy-farm/projects/eozwymbc35wmzm9d1heo",
-              "assetId": "cfd4178530e192e1b04936aebf527266",
-              "bucket": "o/golaub-dairy-farm/projects",
-              "uploadedAt": "2025-11-29T00:20:15Z",
-              "bytes": 3547439,
-              "width": 3840,
-              "height": 2160,
-              "format": "jpg",
-              "version": 1764375615,
-              "caption": "IMG_5917.JPG",
-              "alt": "IMG_5917.JPG",
-              "category": "default"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "projects": []
+	"groups": [
+		{
+			"id": "golaub-dairy-farm-recovery-2025",
+			"slug": "golaub-dairy-farm-recovery-2025",
+			"name": "Golaub Dairy Farm Recovery",
+			"description": "The family-owned small dairy operation suffered major losses during Hurricane Melissa.\n\nThe storm killed **4 cows, 2 heifers, and 3 calves**, and several trees collapsed onto the boundary fence, blocking access to the **35-acre pasture**.\n\nThe **cow shed roof** was destroyed, halting all dairy production.",
+			"projects": [
+				{
+					"id": "golaub-immediate-relief-2025",
+					"title": "Immediate Relief & Stabilization",
+					"description": "Rapid first-phase actions (tarps, emergency power, sanitation, and mobility kits) that make the family home livable and the farm functional before roof, clearing, fencing, or shed rebuilds can proceed.",
+					"category": "relief",
+					"status": "active",
+					"priority": "critical",
+					"locationKey": "main-farm",
+					"startDate": "2025-11-01",
+					"internal": false,
+					"needSlugs": [
+						"golaub-relief-tarpaulins-2025",
+						"golaub-relief-rope-bungee-2025",
+						"golaub-relief-garbage-bags-2025",
+						"golaub-relief-generator-2025",
+						"golaub-relief-extension-cords-2025",
+						"golaub-relief-generator-fuel-2025",
+						"golaub-relief-power-strips-2025",
+						"golaub-relief-work-lights-2025",
+						"golaub-relief-battery-lanterns-2025",
+						"golaub-relief-water-storage-2025",
+						"golaub-relief-mosquito-control-2025",
+						"golaub-relief-first-aid-2025",
+						"golaub-relief-sanitation-2025",
+						"golaub-relief-bedding-2025",
+						"golaub-relief-chargers-2025",
+						"golaub-relief-headlamps-2025",
+						"golaub-relief-rain-boots-2025",
+						"golaub-relief-rain-jackets-2025"
+					],
+					"phases": [
+						{
+							"slug": "shelter-stabilization",
+							"title": "Shelter Stabilization",
+							"description": "Deploy tarps, rope kits, and liners so the family has dry sleeping quarters and weather protection while the permanent roof is rebuilt.",
+							"status": "active",
+							"needSlugs": [
+								"golaub-relief-tarpaulins-2025",
+								"golaub-relief-rope-bungee-2025",
+								"golaub-relief-garbage-bags-2025"
+							]
+						},
+						{
+							"slug": "power-continuity",
+							"title": "Power & Continuity",
+							"description": "Restore electricity for pumps, refrigeration, milking prep, and task lighting via generator, cabling, and emergency lighting.",
+							"status": "active",
+							"needSlugs": [
+								"golaub-relief-generator-2025",
+								"golaub-relief-extension-cords-2025",
+								"golaub-relief-generator-fuel-2025",
+								"golaub-relief-power-strips-2025",
+								"golaub-relief-work-lights-2025",
+								"golaub-relief-battery-lanterns-2025"
+							]
+						},
+						{
+							"slug": "household-life-support",
+							"title": "General Household & Safety Needs",
+							"description": "Stage water, sanitation, first aid, and bedding so the household remains healthy while other crews mobilize.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-relief-water-storage-2025",
+								"golaub-relief-mosquito-control-2025",
+								"golaub-relief-first-aid-2025",
+								"golaub-relief-sanitation-2025",
+								"golaub-relief-bedding-2025"
+							]
+						},
+						{
+							"slug": "communications-mobility",
+							"title": "Communications & Mobility",
+							"description": "Keep the family connected and mobile across the property with chargers, lighting, and wet-weather gear.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-relief-chargers-2025",
+								"golaub-relief-headlamps-2025",
+								"golaub-relief-rain-boots-2025",
+								"golaub-relief-rain-jackets-2025"
+							]
+						}
+					],
+					"tags": ["hurricane-recovery", "immediate-relief", "stabilization"],
+					"notes": "This precursor step installs temporary shelter, emergency power, sanitation, and mobility gear so subsequent roof, clearing, fencing, and shed projects can proceed safely.",
+					"groupOrder": 0,
+					"createdAt": "2025-11-01T00:00:00.000Z",
+					"updatedAt": "2025-11-01T00:00:00.000Z",
+					"photos": [
+						{
+							"type": "video",
+							"url": "https://res.cloudinary.com/dipyku9mn/video/upload/v1764376501/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.mp4",
+							"publicId": "o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj",
+							"assetId": "f2e4313cf8893d140d20b1f919658d41",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"format": "mp4",
+							"bytes": 41010383,
+							"version": 1764376501,
+							"uploadedAt": "2025-11-29T00:35:01Z",
+							"width": 1214,
+							"height": 2160,
+							"duration": 37.076,
+							"videoCodec": "h264",
+							"audioCodec": "aac",
+							"fps": 59.94005994005994,
+							"bitrate": 8709464,
+							"posterUrl": "https://res.cloudinary.com/dipyku9mn/video/upload/so_0/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.jpg",
+							"category": "default",
+							"caption": "IMG_5918_vertical.mp4",
+							"alt": "IMG_5918_vertical.mp4"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375608/o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt",
+							"assetId": "55781ffc249f6ab107b324127653ef37",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:08Z",
+							"bytes": 3209058,
+							"width": 4032,
+							"height": 3024,
+							"format": "jpg",
+							"version": 1764375608,
+							"caption": "IMG_5911.jpeg",
+							"alt": "IMG_5911.jpeg",
+							"category": "default"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375610/o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd",
+							"assetId": "0bb79adc8faecd08a78237acddcfb466",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:10Z",
+							"bytes": 3640850,
+							"width": 4032,
+							"height": 3024,
+							"format": "jpg",
+							"version": 1764375610,
+							"caption": "IMG_5912.jpg",
+							"alt": "IMG_5912.jpg",
+							"category": "default"
+						}
+					]
+				},
+				{
+					"id": "golaub-housing-recovery-2025",
+					"title": "Housing Recovery – Farmer Home Roof Replacement",
+					"description": "The hurricane left the farm family exposed to rain, heat, and pests. The timber-framed residence needs a full strip-down, structural check, and new 26-gauge zinc roof system with hurricane strapping and sealing.",
+					"category": "relief",
+					"status": "planned",
+					"priority": "critical",
+					"locationKey": "main-farm",
+					"startDate": "2025-12-03",
+					"internal": false,
+					"needSlugs": [
+						"golaub-house-zinc-roofing-2025",
+						"golaub-house-structural-lumber-2025",
+						"golaub-house-roof-fasteners-2025",
+						"golaub-house-hurricane-straps-2025",
+						"golaub-house-ridge-cap-2025",
+						"golaub-house-underlayment-2025",
+						"golaub-house-sealant-flashing-2025",
+						"golaub-house-safety-ppe-2025",
+						"golaub-house-structural-carpenter-2025",
+						"golaub-house-roofing-installers-2025",
+						"golaub-house-general-labor-2025"
+					],
+					"phases": [
+						{
+							"slug": "roof-assessment-strip-out",
+							"title": "Assessment & Safe Strip-out",
+							"description": "Document roof failure, remove compromised zinc sheets, and stage salvageable lumber before rain returns.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-house-safety-ppe-2025",
+								"golaub-house-structural-carpenter-2025",
+								"golaub-house-general-labor-2025"
+							]
+						},
+						{
+							"slug": "structural-repairs",
+							"title": "Structural Reinforcement",
+							"description": "Replace damaged rafters, purlins, and posts; install hurricane straps to tie rafters to wall plates.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-house-structural-lumber-2025",
+								"golaub-house-hurricane-straps-2025",
+								"golaub-house-structural-carpenter-2025"
+							]
+						},
+						{
+							"slug": "roof-decking-waterproofing",
+							"title": "Decking & Waterproofing",
+							"description": "Lay batten strips, tar paper, and flashing tape so the structure is protected before sheet installation.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-house-structural-lumber-2025",
+								"golaub-house-underlayment-2025",
+								"golaub-house-sealant-flashing-2025"
+							]
+						},
+						{
+							"slug": "zinc-installation",
+							"title": "Zinc Sheet Installation",
+							"description": "Install 26-gauge zinc sheets with ridge capping, proper overlap geometry, and roofing fasteners.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-house-zinc-roofing-2025",
+								"golaub-house-ridge-cap-2025",
+								"golaub-house-roof-fasteners-2025",
+								"golaub-house-roofing-installers-2025"
+							]
+						},
+						{
+							"slug": "final-sealing",
+							"title": "Final Sealing & Inspection",
+							"description": "Seal penetrations, test for leaks, and clear debris to hand the home back to the family.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-house-sealant-flashing-2025",
+								"golaub-house-general-labor-2025"
+							]
+						}
+					],
+					"tags": ["hurricane-recovery", "housing", "roof"],
+					"notes": "Single-family timber structure with galvanized zinc roof. Loss of roof exposes residents to rain and vectors.",
+					"groupOrder": 1,
+					"createdAt": "2025-12-03T00:00:00.000Z",
+					"updatedAt": "2025-12-03T00:00:00.000Z",
+					"photos": [
+						{
+							"type": "video",
+							"url": "https://res.cloudinary.com/dipyku9mn/video/upload/v1764376501/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.mp4",
+							"publicId": "o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj",
+							"assetId": "f2e4313cf8893d140d20b1f919658d41",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"format": "mp4",
+							"bytes": 41010383,
+							"version": 1764376501,
+							"uploadedAt": "2025-11-29T00:35:01Z",
+							"width": 1214,
+							"height": 2160,
+							"duration": 37.076,
+							"videoCodec": "h264",
+							"audioCodec": "aac",
+							"fps": 59.94005994005994,
+							"bitrate": 8709464,
+							"posterUrl": "https://res.cloudinary.com/dipyku9mn/video/upload/so_0/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.jpg",
+							"category": "default",
+							"caption": "IMG_5918_vertical.mp4",
+							"alt": "IMG_5918_vertical.mp4"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375608/o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt",
+							"assetId": "55781ffc249f6ab107b324127653ef37",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:08Z",
+							"bytes": 3209058,
+							"width": 4032,
+							"height": 3024,
+							"format": "jpg",
+							"version": 1764375608,
+							"caption": "IMG_5911.jpeg",
+							"alt": "IMG_5911.jpeg",
+							"category": "default"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375610/o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd",
+							"assetId": "0bb79adc8faecd08a78237acddcfb466",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:10Z",
+							"bytes": 3640850,
+							"width": 4032,
+							"height": 3024,
+							"format": "jpg",
+							"version": 1764375610,
+							"caption": "IMG_5912.jpg",
+							"alt": "IMG_5912.jpg",
+							"category": "default"
+						}
+					]
+				},
+				{
+					"id": "golaub-land-clearance-2025",
+					"title": "Land Clearance – Pasture & Interior Grounds",
+					"description": "Fallen trees, vines, and debris are blocking the 35-acre pasture and interior pathways, starving grass of sunlight and preventing cows from reaching feed. We need coordinated mechanical felling and manual clearing to reopen the land.",
+					"category": "relief",
+					"status": "active",
+					"priority": "critical",
+					"locationKey": "main-farm",
+					"startDate": "2025-12-03",
+					"internal": false,
+					"needSlugs": [
+						"golaub-power-saw-2025",
+						"golaub-chainsaw-fuel-2025",
+						"golaub-chainsaw-bar-oil-2025",
+						"golaub-chainsaw-spare-chains-2025",
+						"golaub-chainsaw-labor-2025",
+						"golaub-power-saw-labor-2025",
+						"golaub-clearing-labor-2025",
+						"golaub-machete-labor-2025",
+						"golaub-machetes-2025",
+						"golaub-rakes-forks-2025",
+						"golaub-wheelbarrows-2025",
+						"golaub-cutlass-file-2025"
+					],
+					"phases": [
+						{
+							"slug": "mechanical-tree-reduction",
+							"title": "Mechanical Tree Reduction",
+							"description": "Power saw and chainsaw crews fell and buck medium-sized trees lodged in the pasture.",
+							"status": "active",
+							"needSlugs": [
+								"golaub-power-saw-2025",
+								"golaub-chainsaw-fuel-2025",
+								"golaub-chainsaw-bar-oil-2025",
+								"golaub-chainsaw-spare-chains-2025",
+								"golaub-chainsaw-labor-2025",
+								"golaub-power-saw-labor-2025"
+							]
+						},
+						{
+							"slug": "manual-debris-pullback",
+							"title": "Manual Debris Pullback",
+							"description": "Machete crews and general laborers strip vines, move cut logs, and reopen sunlight corridors.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-machete-labor-2025",
+								"golaub-machetes-2025",
+								"golaub-clearing-labor-2025",
+								"golaub-wheelbarrows-2025",
+								"golaub-rakes-forks-2025"
+							]
+						},
+						{
+							"slug": "access-restoration",
+							"title": "Access Restoration",
+							"description": "Finish grading pathways, stack debris for transport, and confirm cows can circulate to pasture.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-cutlass-file-2025",
+								"golaub-clearing-labor-2025",
+								"golaub-post-moving-labor-2025"
+							]
+						}
+					],
+					"tags": ["hurricane-recovery", "pasture-restoration", "livestock"],
+					"notes": "Outputs: reopen pasture sunlight exposure, restart grass photosynthesis, restore access paths.",
+					"groupOrder": 2,
+					"createdAt": "2025-12-03T00:00:00.000Z",
+					"updatedAt": "2025-12-03T00:00:00.000Z",
+					"photos": [
+						{
+							"type": "video",
+							"url": "https://res.cloudinary.com/dipyku9mn/video/upload/v1764376501/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.mp4",
+							"publicId": "o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj",
+							"assetId": "f2e4313cf8893d140d20b1f919658d41",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"format": "mp4",
+							"bytes": 41010383,
+							"version": 1764376501,
+							"uploadedAt": "2025-11-29T00:35:01Z",
+							"width": 1214,
+							"height": 2160,
+							"duration": 37.076,
+							"videoCodec": "h264",
+							"audioCodec": "aac",
+							"fps": 59.94005994005994,
+							"bitrate": 8709464,
+							"posterUrl": "https://res.cloudinary.com/dipyku9mn/video/upload/so_0/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.jpg",
+							"category": "default",
+							"caption": "IMG_5918_vertical.mp4",
+							"alt": "IMG_5918_vertical.mp4"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375612/o/golaub-dairy-farm/projects/nzo6zk8axys9c5irnfxq.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/nzo6zk8axys9c5irnfxq",
+							"assetId": "0c7130d155cf9f0a7506cd491e700ac5",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:12Z",
+							"bytes": 2502251,
+							"width": 3840,
+							"height": 2160,
+							"format": "jpg",
+							"version": 1764375612,
+							"caption": "IMG_5915.JPG",
+							"alt": "IMG_5915.JPG",
+							"category": "default"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375613/o/golaub-dairy-farm/projects/pw9azi9e6nqdryu3yysa.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/pw9azi9e6nqdryu3yysa",
+							"assetId": "dae72c5ddc2369e62ef6cbb7141212fc",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:13Z",
+							"bytes": 3136303,
+							"width": 3840,
+							"height": 2160,
+							"format": "jpg",
+							"version": 1764375613,
+							"caption": "IMG_5916.JPG",
+							"alt": "IMG_5916.JPG",
+							"category": "default"
+						}
+					]
+				},
+				{
+					"id": "golaub-boundary-refencing-2025",
+					"title": "Boundary & Refencing – Security + Livestock Containment",
+					"description": "With 35 acres open, cows drift off and workers chase animals instead of rebuilding. Restoring 500-post perimeter fencing re-establishes security, biosecurity, and livestock containment.",
+					"category": "relief",
+					"status": "planned",
+					"priority": "critical",
+					"locationKey": "main-farm",
+					"startDate": "2025-12-03",
+					"internal": false,
+					"needSlugs": [
+						"golaub-posts-2025",
+						"golaub-power-saw-labor-2025",
+						"golaub-post-moving-labor-2025",
+						"golaub-post-installation-labor-2025",
+						"golaub-barb-wire-2025",
+						"golaub-barb-wire-installers-2025",
+						"golaub-staples-2025",
+						"golaub-fence-tensioning-tools-2025",
+						"golaub-post-hole-tools-2025",
+						"golaub-fence-hammers-2025",
+						"golaub-fence-ppe-2025"
+					],
+					"phases": [
+						{
+							"slug": "tree-clearing",
+							"title": "Clearing Fence Line",
+							"description": "Cut remaining trees off the fence line so crews can access boundary alignments.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-power-saw-2025",
+								"golaub-chainsaw-labor-2025",
+								"golaub-clearing-labor-2025"
+							]
+						},
+						{
+							"slug": "post-production",
+							"title": "Cutting & Staging Posts",
+							"description": "Power saw crews cut local hardwood into 500 durable posts and stage them along the perimeter.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-power-saw-labor-2025",
+								"golaub-posts-2025",
+								"golaub-post-moving-labor-2025"
+							]
+						},
+						{
+							"slug": "installing-posts",
+							"title": "Installing Posts",
+							"description": "Dig and tamp posts on the boundary line using digging bars, post hole shovels, and hammers.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-post-installation-labor-2025",
+								"golaub-post-hole-tools-2025",
+								"golaub-fence-hammers-2025",
+								"golaub-fence-ppe-2025"
+							]
+						},
+						{
+							"slug": "running-wire",
+							"title": "Running Barb Wire",
+							"description": "Stretch five rolls of 12½ gauge barb wire with proper tension and staples at each post.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-barb-wire-2025",
+								"golaub-staples-2025",
+								"golaub-fence-tensioning-tools-2025",
+								"golaub-barb-wire-installers-2025"
+							]
+						},
+						{
+							"slug": "final-walk",
+							"title": "Inspection & Reinforcement",
+							"description": "Walk the perimeter to confirm tension, stability, and identify reinforcement hotspots.",
+							"status": "planned",
+							"needSlugs": ["golaub-fence-ppe-2025"]
+						}
+					],
+					"tags": ["hurricane-recovery", "fence-repair", "livestock"],
+					"notes": "Security + containment for 35-acre boundary. 500 post system with barbed wire.",
+					"groupOrder": 3,
+					"createdAt": "2025-12-03T00:00:00.000Z",
+					"updatedAt": "2025-12-03T00:00:00.000Z",
+					"photos": [
+						{
+							"type": "video",
+							"url": "https://res.cloudinary.com/dipyku9mn/video/upload/v1764376501/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.mp4",
+							"publicId": "o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj",
+							"assetId": "f2e4313cf8893d140d20b1f919658d41",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"format": "mp4",
+							"bytes": 41010383,
+							"version": 1764376501,
+							"uploadedAt": "2025-11-29T00:35:01Z",
+							"width": 1214,
+							"height": 2160,
+							"duration": 37.076,
+							"videoCodec": "h264",
+							"audioCodec": "aac",
+							"fps": 59.94005994005994,
+							"bitrate": 8709464,
+							"posterUrl": "https://res.cloudinary.com/dipyku9mn/video/upload/so_0/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.jpg",
+							"category": "default",
+							"caption": "IMG_5918_vertical.mp4",
+							"alt": "IMG_5918_vertical.mp4"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375610/o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/et8gmkpragxc8eqgivrd",
+							"assetId": "0bb79adc8faecd08a78237acddcfb466",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:10Z",
+							"bytes": 3640850,
+							"width": 4032,
+							"height": 3024,
+							"format": "jpg",
+							"version": 1764375610,
+							"caption": "IMG_5912.jpg",
+							"alt": "IMG_5912.jpg",
+							"category": "default"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375615/o/golaub-dairy-farm/projects/eozwymbc35wmzm9d1heo.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/eozwymbc35wmzm9d1heo",
+							"assetId": "cfd4178530e192e1b04936aebf527266",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:15Z",
+							"bytes": 3547439,
+							"width": 3840,
+							"height": 2160,
+							"format": "jpg",
+							"version": 1764375615,
+							"caption": "IMG_5917.JPG",
+							"alt": "IMG_5917.JPG",
+							"category": "default"
+						}
+					]
+				},
+				{
+					"id": "golaub-cow-shed-rebuild-2025",
+					"title": "Cow Shed Rebuild – Operational Dairy Infrastructure",
+					"description": "The cow shed is the center of dairy metabolism: shelter lowers animal stress and stabilizes milk yield. We need to rebuild the frame, roofing, drainage, and stall hardware to restart milking.",
+					"category": "relief",
+					"status": "planned",
+					"priority": "high",
+					"locationKey": "main-farm",
+					"startDate": "2025-12-03",
+					"internal": false,
+					"needSlugs": [
+						"golaub-shed-lumber-2025",
+						"golaub-shed-concrete-2025",
+						"golaub-shed-fasteners-2025",
+						"golaub-shed-hurricane-straps-2025",
+						"golaub-shed-roofing-2025",
+						"golaub-shed-gutters-2025",
+						"golaub-shed-stall-components-2025",
+						"golaub-shed-carpenters-2025",
+						"golaub-shed-roof-installers-2025",
+						"golaub-shed-general-labor-2025"
+					],
+					"phases": [
+						{
+							"slug": "site-prep-footings",
+							"title": "Site Prep & Footings",
+							"description": "Clear shed footprint, pour or repair concrete footings, and set treated posts to grade.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-shed-concrete-2025",
+								"golaub-shed-lumber-2025",
+								"golaub-shed-general-labor-2025"
+							]
+						},
+						{
+							"slug": "frame-assembly",
+							"title": "Frame Assembly",
+							"description": "Stand pressure-treated posts, rafters, and purlins with lag bolts and hurricane straps.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-shed-lumber-2025",
+								"golaub-shed-fasteners-2025",
+								"golaub-shed-hurricane-straps-2025",
+								"golaub-shed-carpenters-2025"
+							]
+						},
+						{
+							"slug": "roofing-water-control",
+							"title": "Roofing & Water Control",
+							"description": "Install zinc roofing, gutters, and downspouts to harvest water for cows and protect the slab.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-shed-roofing-2025",
+								"golaub-shed-gutters-2025",
+								"golaub-shed-roof-installers-2025"
+							]
+						},
+						{
+							"slug": "stall-outfitting",
+							"title": "Stall Outfitting & Commissioning",
+							"description": "Replace feeding troughs, boards, and hardware before bringing cows back under cover.",
+							"status": "planned",
+							"needSlugs": [
+								"golaub-shed-stall-components-2025",
+								"golaub-shed-general-labor-2025"
+							]
+						}
+					],
+					"tags": ["hurricane-recovery", "dairy", "infrastructure"],
+					"notes": "Operational shed rebuild ties directly to milk output and cash flow stability.",
+					"groupOrder": 4,
+					"createdAt": "2025-12-03T00:00:00.000Z",
+					"updatedAt": "2025-12-03T00:00:00.000Z",
+					"photos": [
+						{
+							"type": "video",
+							"url": "https://res.cloudinary.com/dipyku9mn/video/upload/v1764376501/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.mp4",
+							"publicId": "o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj",
+							"assetId": "f2e4313cf8893d140d20b1f919658d41",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"format": "mp4",
+							"bytes": 41010383,
+							"version": 1764376501,
+							"uploadedAt": "2025-11-29T00:35:01Z",
+							"width": 1214,
+							"height": 2160,
+							"duration": 37.076,
+							"videoCodec": "h264",
+							"audioCodec": "aac",
+							"fps": 59.94005994005994,
+							"bitrate": 8709464,
+							"posterUrl": "https://res.cloudinary.com/dipyku9mn/video/upload/so_0/o/golaub-dairy-farm/projects/pupsgdhwqpsjjidf3esj.jpg",
+							"category": "default",
+							"caption": "IMG_5918_vertical.mp4",
+							"alt": "IMG_5918_vertical.mp4"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375608/o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/o9xp5yaloogt7wa921vt",
+							"assetId": "55781ffc249f6ab107b324127653ef37",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:08Z",
+							"bytes": 3209058,
+							"width": 4032,
+							"height": 3024,
+							"format": "jpg",
+							"version": 1764375608,
+							"caption": "IMG_5911.jpeg",
+							"alt": "IMG_5911.jpeg",
+							"category": "default"
+						},
+						{
+							"url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764375613/o/golaub-dairy-farm/projects/pw9azi9e6nqdryu3yysa.jpg",
+							"publicId": "o/golaub-dairy-farm/projects/pw9azi9e6nqdryu3yysa",
+							"assetId": "dae72c5ddc2369e62ef6cbb7141212fc",
+							"bucket": "o/golaub-dairy-farm/projects",
+							"uploadedAt": "2025-11-29T00:20:13Z",
+							"bytes": 3136303,
+							"width": 3840,
+							"height": 2160,
+							"format": "jpg",
+							"version": 1764375613,
+							"caption": "IMG_5916.JPG",
+							"alt": "IMG_5916.JPG",
+							"category": "default"
+						}
+					]
+				}
+			]
+		}
+	],
+	"projects": []
 }
