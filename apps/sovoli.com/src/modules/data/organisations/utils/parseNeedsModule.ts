@@ -13,6 +13,17 @@ import type { AmountByCurrency } from "~/modules/core/economics/types";
 import type { WorkforceModule } from "~/modules/workforce/types";
 
 /**
+ * Zod schema for NeedFulfillment
+ */
+const needFulfillmentSchema = z
+  .object({
+    quantityMet: z.number().optional(),
+    amountRaised: z.record(z.enum(["GYD", "USD", "JMD"]), z.number()).optional(),
+    progress: z.number().optional(),
+  })
+  .optional();
+
+/**
  * Shared schema for common need fields
  */
 const needBaseJsonSchema = z.object({
@@ -70,6 +81,7 @@ const needBaseJsonSchema = z.object({
       notes: z.string().optional(),
     })
     .optional(),
+  fulfillment: needFulfillmentSchema,
   notes: z.string().optional(),
   createdAt: z.string().optional(),
   updatedAt: z.string().optional(),
@@ -183,6 +195,11 @@ export function parseNeedsModule(
       createdAt: needJson.createdAt,
       updatedAt: needJson.updatedAt,
       procurement: needJson.procurement,
+      fulfillment: needJson.fulfillment as {
+        quantityMet?: number;
+        amountRaised?: AmountByCurrency;
+        progress?: number;
+      } | undefined,
       totalBudget: needJson.totalBudget as AmountByCurrency | undefined,
     };
 

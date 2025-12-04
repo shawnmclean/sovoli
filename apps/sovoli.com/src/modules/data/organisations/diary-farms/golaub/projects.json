@@ -8,34 +8,15 @@
 			"projects": [
 				{
 					"id": "golaub-immediate-relief-2025",
-					"title": "Immediate Relief & Stabilization",
-					"description": "Rapid first-phase actions (tarps, emergency power, sanitation, and mobility kits) that make the family home livable and the farm functional before roof, clearing, fencing, or shed rebuilds can proceed.",
+					"title": "Immediate Relief",
+					"description": "First phase relief efforts to make the family home livable and protect items from the elements.",
 					"category": "relief",
 					"status": "active",
 					"priority": "critical",
 					"locationKey": "main-farm",
 					"startDate": "2025-11-01",
 					"internal": false,
-					"needSlugs": [
-						"golaub-relief-tarpaulins-2025",
-						"golaub-relief-rope-bungee-2025",
-						"golaub-relief-garbage-bags-2025",
-						"golaub-relief-generator-2025",
-						"golaub-relief-extension-cords-2025",
-						"golaub-relief-generator-fuel-2025",
-						"golaub-relief-power-strips-2025",
-						"golaub-relief-work-lights-2025",
-						"golaub-relief-battery-lanterns-2025",
-						"golaub-relief-water-storage-2025",
-						"golaub-relief-mosquito-control-2025",
-						"golaub-relief-first-aid-2025",
-						"golaub-relief-sanitation-2025",
-						"golaub-relief-bedding-2025",
-						"golaub-relief-chargers-2025",
-						"golaub-relief-headlamps-2025",
-						"golaub-relief-rain-boots-2025",
-						"golaub-relief-rain-jackets-2025"
-					],
+					"needSlugs": [],
 					"phases": [
 						{
 							"slug": "shelter-stabilization",
@@ -43,9 +24,11 @@
 							"description": "Deploy tarps, rope kits, and liners so the family has dry sleeping quarters and weather protection while the permanent roof is rebuilt.",
 							"status": "active",
 							"needSlugs": [
-								"golaub-relief-tarpaulins-2025",
+								"golaub-relief-small-tarps-2025",
+								"golaub-relief-heavy-duty-tarps-2025",
 								"golaub-relief-rope-bungee-2025",
-								"golaub-relief-garbage-bags-2025"
+								"golaub-relief-garbage-bags-2025",
+								"golaub-relief-kerosene-2025"
 							]
 						},
 						{
@@ -56,10 +39,7 @@
 							"needSlugs": [
 								"golaub-relief-generator-2025",
 								"golaub-relief-extension-cords-2025",
-								"golaub-relief-generator-fuel-2025",
-								"golaub-relief-power-strips-2025",
-								"golaub-relief-work-lights-2025",
-								"golaub-relief-battery-lanterns-2025"
+								"golaub-relief-generator-fuel-2025"
 							]
 						},
 						{
@@ -69,22 +49,7 @@
 							"status": "planned",
 							"needSlugs": [
 								"golaub-relief-water-storage-2025",
-								"golaub-relief-mosquito-control-2025",
-								"golaub-relief-first-aid-2025",
-								"golaub-relief-sanitation-2025",
-								"golaub-relief-bedding-2025"
-							]
-						},
-						{
-							"slug": "communications-mobility",
-							"title": "Communications & Mobility",
-							"description": "Keep the family connected and mobile across the property with chargers, lighting, and wet-weather gear.",
-							"status": "planned",
-							"needSlugs": [
-								"golaub-relief-chargers-2025",
-								"golaub-relief-headlamps-2025",
-								"golaub-relief-rain-boots-2025",
-								"golaub-relief-rain-jackets-2025"
+								"golaub-relief-mosquito-control-2025"
 							]
 						}
 					],

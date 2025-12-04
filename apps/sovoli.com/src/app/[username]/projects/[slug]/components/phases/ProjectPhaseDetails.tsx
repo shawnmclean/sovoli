@@ -10,7 +10,6 @@ import { Button } from "@sovoli/ui/components/button";
 import { Card } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
-import { Progress } from "@sovoli/ui/components/progress";
 import { Alert } from "@sovoli/ui/components/alert";
 import {
   CheckCircle2,
@@ -88,21 +87,31 @@ function getNeedUnitPrice(need: Need, totalQuantity: number): number {
   return 0;
 }
 
+/** Generate a consistent key for cart items - must match ProjectNeedsSection logic */
+function getNeedKey(need: Need): string {
+  // For materials, use the item ID to combine same items across phases
+  if (need.type === "material") {
+    return `material-${need.item.id}`;
+  }
+  // For others, use slug (they're typically unique)
+  return need.slug;
+}
+
 function NeedCard({ need }: { need: Need }) {
   const { getItemQuantity, setItemQuantity } = useProjectCart();
   
   const isFulfilled = need.status === "fulfilled";
   const isInProgress = need.status === "in-progress";
   
-  // Get need details for funding
-  const needId = need.slug;
+  // Get need details for funding - use consistent key that matches ProjectNeedsSection
+  const needId = getNeedKey(need);
   const { totalQuantity, unit } = getNeedQuantityAndUnit(need);
+  // Match ProjectNeedsSection pattern exactly for fulfillment extraction
   const fulfilledQuantity = need.fulfillment?.quantityMet ?? (isFulfilled ? totalQuantity : 0);
   const unitPrice = getNeedUnitPrice(need, totalQuantity);
   
   const quantity = getItemQuantity(needId);
   const availableToFund = Math.max(0, totalQuantity - fulfilledQuantity);
-  const remaining = Math.max(0, availableToFund - quantity);
   const isFullyFunded = isFulfilled || availableToFund === 0;
 
   const handleIncrement = () => {
@@ -210,88 +219,69 @@ function NeedCard({ need }: { need: Need }) {
           <>
             <Divider />
             
-            <div className="flex flex-col gap-3">
-              {/* Progress */}
-              <div>
-                <div className="text-xs flex justify-between mb-1">
-                  <span className="font-medium">
-                    {remaining} {pluralize(remaining, unit)} remaining
-                  </span>
-                </div>
-                <Progress
-                  size="sm"
-                  value={Math.round(((fulfilledQuantity + quantity) / totalQuantity) * 100)}
-                  color="success"
-                  aria-label="Funding progress"
-                />
-                <div className="flex justify-between text-[10px] text-default-400 mt-1">
-                  <span>{fulfilledQuantity + quantity} funded</span>
-                  <span>{totalQuantity} total</span>
-                </div>
-              </div>
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-xs text-default-500">
+                <span className="font-semibold text-foreground">{availableToFund}</span> of {totalQuantity} {pluralize(totalQuantity, unit)} remaining
+              </span>
 
-              {/* Controls */}
-              <div className="flex items-center justify-between">
-                {quantity > 0 ? (
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex items-center gap-1 bg-default-100 rounded-md p-1">
-                      <Button
-                        variant="light"
-                        isIconOnly
-                        size="sm"
-                        className="h-7 w-7 min-w-7"
-                        onPress={handleDecrement}
-                        aria-label="Decrease quantity"
-                      >
-                        {quantity === 1 ? (
-                          <Trash2 className="h-3.5 w-3.5 text-danger" />
-                        ) : (
-                          <Minus className="h-3.5 w-3.5" />
-                        )}
-                      </Button>
-                      <span className="min-w-[1.5rem] text-center text-sm font-medium">
-                        {quantity}
-                      </span>
-                      <Button
-                        variant="light"
-                        isIconOnly
-                        size="sm"
-                        className="h-7 w-7 min-w-7"
-                        onPress={handleIncrement}
-                        isDisabled={quantity >= availableToFund}
-                        aria-label="Increase quantity"
-                      >
-                        <Plus className="h-3.5 w-3.5" />
-                      </Button>
-                    </div>
-
+              {quantity > 0 ? (
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1 bg-default-100 rounded-md p-1">
                     <Button
-                      variant="bordered"
+                      variant="light"
+                      isIconOnly
                       size="sm"
-                      className="h-8"
-                      onPress={handleAll}
-                      isDisabled={quantity >= availableToFund}
+                      className="h-7 w-7 min-w-7"
+                      onPress={handleDecrement}
+                      aria-label="Decrease quantity"
                     >
-                      All
+                      {quantity === 1 ? (
+                        <Trash2 className="h-3.5 w-3.5 text-danger" />
+                      ) : (
+                        <Minus className="h-3.5 w-3.5" />
+                      )}
                     </Button>
-
-                    {unitPrice > 0 && (
-                      <span className="ml-auto font-semibold text-primary text-sm">
-                        {formatCurrency(quantity * unitPrice)}
-                      </span>
-                    )}
+                    <span className="min-w-[1.5rem] text-center text-sm font-medium">
+                      {quantity}
+                    </span>
+                    <Button
+                      variant="light"
+                      isIconOnly
+                      size="sm"
+                      className="h-7 w-7 min-w-7"
+                      onPress={handleIncrement}
+                      isDisabled={quantity >= availableToFund}
+                      aria-label="Increase quantity"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                    </Button>
                   </div>
-                ) : (
+
                   <Button
-                    color="primary"
+                    variant="bordered"
                     size="sm"
-                    onPress={handleStart}
-                    className="w-full"
+                    className="h-8"
+                    onPress={handleAll}
+                    isDisabled={quantity >= availableToFund}
                   >
-                    Fund This Need
+                    All
                   </Button>
-                )}
-              </div>
+
+                  {unitPrice > 0 && (
+                    <span className="font-semibold text-primary text-sm">
+                      {formatCurrency(quantity * unitPrice)}
+                    </span>
+                  )}
+                </div>
+              ) : (
+                <Button
+                  color="primary"
+                  size="sm"
+                  onPress={handleStart}
+                >
+                  Fund
+                </Button>
+              )}
             </div>
           </>
         )}
@@ -355,8 +345,6 @@ export function ProjectPhaseDetails({
 
   const phaseIndex = project.phases?.findIndex((p) => p.slug === phaseSlug) ?? 0;
   const needs = phase.needs ?? [];
-  const completedNeeds = needs.filter((n) => n.status === "fulfilled").length;
-  const progress = needs.length > 0 ? Math.round((completedNeeds / needs.length) * 100) : 0;
   const hasMedia = phase.media && phase.media.length > 0;
 
   return (
@@ -389,27 +377,6 @@ export function ProjectPhaseDetails({
                 )}
               </div>
 
-              {/* Progress Section */}
-              {needs.length > 0 && (
-                <Card className="p-4 border-none bg-content1/50">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium">Overall Progress</span>
-                    <span className="text-sm font-semibold text-primary tabular-nums">
-                      {progress}%
-                    </span>
-                  </div>
-                  <Progress
-                    value={progress}
-                    size="md"
-                    color={status === "completed" ? "success" : "primary"}
-                    className="w-full"
-                    aria-label="Phase progress"
-                  />
-                  <p className="text-xs text-default-500 mt-2">
-                    {completedNeeds} of {needs.length} needs fulfilled
-                  </p>
-                </Card>
-              )}
 
               {/* Timeline */}
               {(phase.startDate ?? phase.endDate) && (
@@ -471,9 +438,6 @@ export function ProjectPhaseDetails({
                   <div className="flex items-center gap-2 mb-3">
                     <Package className="h-4 w-4 text-default-500" />
                     <span className="text-sm font-medium">Needs</span>
-                    <span className="text-xs text-default-500">
-                      ({needs.length} items)
-                    </span>
                   </div>
                   <div className="space-y-2">
                     {needs.map((need) => (

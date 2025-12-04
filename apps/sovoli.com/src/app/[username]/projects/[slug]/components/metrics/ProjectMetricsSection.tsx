@@ -7,10 +7,10 @@ import { Progress } from "@sovoli/ui/components/progress";
 import { Chip } from "@sovoli/ui/components/chip";
 import { TrendingUp, CircleDot } from "lucide-react";
 import type { Project, ProjectStatus } from "~/modules/projects/types";
+import type { Need } from "~/modules/needs/types";
 
 interface ProjectMetricsSectionProps {
   project: Project;
-  progress?: number;
 }
 
 const STATUS_CONFIG: Record<
@@ -26,14 +26,55 @@ const STATUS_CONFIG: Record<
   cancelled: { label: "Cancelled", color: "danger" },
 };
 
+function getNeedQuantity(need: Need): number {
+  if (need.type === "human") {
+    return need.headcount ?? need.quantity ?? 1;
+  }
+  return need.quantity ?? 1;
+}
+
+function getNeedFulfilledQuantity(need: Need): number {
+  const totalQuantity = getNeedQuantity(need);
+  const isFulfilled = need.status === "fulfilled";
+  return need.fulfillment?.quantityMet ?? (isFulfilled ? totalQuantity : 0);
+}
+
+/** Calculate progress based on fulfilled quantities across all needs */
+function calculateProgress(project: Project): number {
+  let totalQuantity = 0;
+  let fulfilledQuantity = 0;
+
+  const addNeeds = (needs: Need[]) => {
+    for (const need of needs) {
+      totalQuantity += getNeedQuantity(need);
+      fulfilledQuantity += getNeedFulfilledQuantity(need);
+    }
+  };
+
+  if (project.needs) {
+    addNeeds(project.needs);
+  }
+
+  if (project.phases) {
+    for (const phase of project.phases) {
+      if (phase.needs) {
+        addNeeds(phase.needs);
+      }
+    }
+  }
+
+  return totalQuantity > 0 ? Math.round((fulfilledQuantity / totalQuantity) * 100) : 0;
+}
+
 export function ProjectMetricsSection({
-  progress = 0,
+  project,
 }: ProjectMetricsSectionProps) {
   const pathname = usePathname();
   const metricsHref = `${pathname}/metrics`;
 
-  const status = "active";
+  const status = project.status ?? "planned";
   const statusConfig = STATUS_CONFIG[status];
+  const progress = calculateProgress(project);
 
   return (
     <Link href={metricsHref} className="block w-full">

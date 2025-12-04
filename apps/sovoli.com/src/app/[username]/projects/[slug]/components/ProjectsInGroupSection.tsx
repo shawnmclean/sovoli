@@ -10,9 +10,10 @@ import { Link } from "@sovoli/ui/components/link";
 import { Divider } from "@sovoli/ui/components/divider";
 import { CldImage } from "next-cloudinary";
 import { slugify } from "~/utils/slugify";
-import { ArrowRight, Package, Users, Wrench, DollarSign, Briefcase, FolderOpen } from "lucide-react";
+import { ArrowRight, FolderOpen } from "lucide-react";
 import { CircularProgress, Progress } from "@sovoli/ui/components/progress";
 import { ORGS } from "~/modules/data/organisations";
+import { NEED_TYPE_CONFIG } from "~/modules/needs/utils";
 import { pluralize } from "~/utils/pluralize";
 
 export interface ProjectsInGroupSectionProps {
@@ -20,15 +21,6 @@ export interface ProjectsInGroupSectionProps {
   project?: Project;
   group: ProjectGroup;
 }
-
-/** Need type icons and labels */
-const NEED_TYPE_CONFIG: Record<NeedType, { icon: typeof Package; label: string }> = {
-  material: { icon: Package, label: "Materials" },
-  service: { icon: Wrench, label: "Services" },
-  human: { icon: Users, label: "Volunteers" },
-  financial: { icon: DollarSign, label: "Funding" },
-  job: { icon: Briefcase, label: "Jobs" },
-};
 
 /** Calculate fulfillment progress for a single need (0-100) */
 function calculateNeedProgress(need: Need): number {
@@ -290,11 +282,11 @@ function ProjectCard({
                 return (
                   <div
                     key={type}
-                    className="flex items-center gap-1.5 rounded-md bg-default-100 px-2 py-1 text-xs text-default-600"
+                    className={`flex items-center gap-1.5 rounded-md px-2 py-1 text-xs ${config.bgColor}`}
                   >
-                    <Icon className="h-3 w-3" />
-                    <span>
-                      {count} {pluralize(count, config.label.slice(0, -1))}
+                    <Icon className={`h-3 w-3 ${config.textColor}`} />
+                    <span className={config.textColor}>
+                      {count} {pluralize(count, config.label)}
                     </span>
                   </div>
                 );

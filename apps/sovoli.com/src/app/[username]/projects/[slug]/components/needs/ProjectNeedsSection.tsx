@@ -3,61 +3,15 @@
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
-import {
-  CheckCircle2,
-  Package,
-  Wrench,
-  Users,
-  DollarSign,
-  Briefcase,
-  Minus,
-  Plus,
-  Trash2,
-} from "lucide-react";
+import { CheckCircle2, Minus, Plus, Trash2 } from "lucide-react";
 import type { Project } from "~/modules/projects/types";
 import type { Need, NeedType } from "~/modules/needs/types";
+import { NEED_TYPE_CONFIG } from "~/modules/needs/utils";
 import { useProjectCart } from "../../context/ProjectCartContext";
 
 interface ProjectNeedsSectionProps {
   project: Project;
 }
-
-/** Configuration for each need type */
-const NEED_TYPE_CONFIG: Record<
-  NeedType,
-  { label: string; pluralLabel: string; icon: typeof Package; color: string }
-> = {
-  material: {
-    label: "Material",
-    pluralLabel: "Materials",
-    icon: Package,
-    color: "text-primary",
-  },
-  service: {
-    label: "Service",
-    pluralLabel: "Services",
-    icon: Wrench,
-    color: "text-secondary",
-  },
-  human: {
-    label: "Volunteer",
-    pluralLabel: "Volunteers",
-    icon: Users,
-    color: "text-warning",
-  },
-  financial: {
-    label: "Funding",
-    pluralLabel: "Funding",
-    icon: DollarSign,
-    color: "text-success",
-  },
-  job: {
-    label: "Job",
-    pluralLabel: "Jobs",
-    icon: Briefcase,
-    color: "text-danger",
-  },
-};
 
 /** Combined need item - merges same needs from different sources */
 interface CombinedNeed {
@@ -80,6 +34,10 @@ interface NeedTypeGroup {
   needs: CombinedNeed[];
   totalCount: number;
   fulfilledCount: number;
+  /** Total quantity needed across all items in group */
+  totalQuantity: number;
+  /** Total quantity fulfilled across all items in group */
+  totalFulfilledQuantity: number;
 }
 
 function formatCurrency(amount: number): string {
@@ -206,11 +164,17 @@ function groupNeedsByType(combinedNeeds: CombinedNeed[]): NeedTypeGroup[] {
         return aFulfilled - bFulfilled;
       });
 
+      // Calculate total quantities for the group
+      const totalQuantity = typeNeeds.reduce((sum, n) => sum + n.totalQuantity, 0);
+      const totalFulfilledQuantity = typeNeeds.reduce((sum, n) => sum + n.fulfilledQuantity, 0);
+
       return {
         type,
         needs: sortedNeeds,
         totalCount: typeNeeds.length,
         fulfilledCount: typeNeeds.filter((n) => n.isFulfilled).length,
+        totalQuantity,
+        totalFulfilledQuantity,
       };
     });
 }
@@ -267,16 +231,15 @@ function NeedItem({ need }: { need: CombinedNeed }) {
 
   return (
     <div className="flex items-start justify-between gap-4 py-3">
-      {/* Left: Multi-line info */}
-      <div className="flex flex-col gap-1 min-w-0">
+      {/* Left: Info */}
+      <div className="flex flex-col gap-1 min-w-0 flex-1">
         <span className="font-medium">{need.title}</span>
-        <div className="flex items-center gap-3 text-sm">
-          <span className="text-default-500">
-            <span className="font-semibold text-foreground">{availableToFund}</span>
-            {" "}of{" "}
-            <span className="text-default-400">{need.totalQuantity}</span>
-            {" "}{need.unit}{need.totalQuantity !== 1 ? "s" : ""} remaining
+        
+        <div className="flex flex-wrap items-center gap-x-2 text-sm text-default-500">
+          <span>
+            <span className="font-semibold text-foreground">{availableToFund}</span> of {need.totalQuantity} {need.unit}{need.totalQuantity !== 1 ? "s" : ""} remaining
           </span>
+          
           {totalCost > 0 && (
             <>
               <span className="text-default-300">•</span>
@@ -350,16 +313,11 @@ function NeedTypeGroupCard({ group }: { group: NeedTypeGroup }) {
   return (
     <Card className="border-none shadow-sm">
       <CardHeader className="pb-2">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg bg-default-100 ${config.color}`}>
-              <Icon className="h-4 w-4" />
-            </div>
-            <h4 className="font-semibold">{config.pluralLabel}</h4>
+        <div className="flex items-center gap-3">
+          <div className={`p-2 rounded-lg ${config.bgColor}`}>
+            <Icon className={`h-4 w-4 ${config.textColor}`} />
           </div>
-          <span className="text-xs text-default-500">
-            {group.fulfilledCount}/{group.totalCount} funded
-          </span>
+          <h4 className="font-semibold">{config.pluralLabel}</h4>
         </div>
       </CardHeader>
       <CardBody className="pt-0">
@@ -381,18 +339,13 @@ export function ProjectNeedsSection({ project }: ProjectNeedsSectionProps) {
   }
 
   const groups = groupNeedsByType(combinedNeeds);
-  const totalNeeds = combinedNeeds.length;
-  const fulfilledCount = combinedNeeds.filter((n) => n.isFulfilled).length;
 
   return (
     <>
       <Divider className="my-6 sm:my-8" />
       <section className="mb-6 sm:mb-8">
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-4">
           <h2 className="text-2xl font-semibold leading-tight tracking-tight">What&apos;s Needed</h2>
-          <span className="text-sm text-muted-foreground">
-            {fulfilledCount}/{totalNeeds} funded
-          </span>
         </div>
 
         <div className="space-y-4">

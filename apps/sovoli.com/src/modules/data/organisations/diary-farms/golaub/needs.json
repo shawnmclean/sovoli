@@ -1,24 +1,52 @@
 {
 	"needs": [
 		{
-			"slug": "golaub-relief-tarpaulins-2025",
-			"title": "Immediate Shelter Tarpaulins",
-			"description": "Heavy-duty tarpaulins to span the open roof bays and keep the family dry until rebuild crews mobilize.",
-			"itemId": "tarpaulin-heavy-duty",
-			"quantity": 6,
+			"slug": "golaub-relief-small-tarps-2025",
+			"title": "Small Tarpaulins",
+			"description": "Small tarps to cover exposed areas and protect belongings from rain while roof repairs proceed.",
+			"itemId": "tarpaulin-small",
+			"quantity": 5,
 			"type": "material",
 			"source": "external",
 			"priority": "critical",
 			"neededBy": {
 				"type": "asap",
-				"reason": "Must be in place by 1 Nov so the home can shed rain before other phases begin."
+				"reason": "Must be in place to protect the home from rain before other phases begin."
 			},
 			"requestingUnit": {
 				"locationKey": "main-farm"
 			},
-			"status": "planned",
+			"status": "in-progress",
+			"fulfillment": {
+				"quantityMet": 2,
+				"progress": 40
+			},
 			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
+			"updatedAt": "2025-12-04T00:00:00.000Z"
+		},
+		{
+			"slug": "golaub-relief-heavy-duty-tarps-2025",
+			"title": "Heavy Duty Tarpaulins",
+			"description": "Heavy-duty tarpaulins to span the open roof bays and keep the family dry until rebuild crews mobilize.",
+			"itemId": "tarpaulin-heavy-duty",
+			"quantity": 5,
+			"type": "material",
+			"source": "external",
+			"priority": "critical",
+			"neededBy": {
+				"type": "asap",
+				"reason": "Must be in place to provide durable weather protection before roof rebuild."
+			},
+			"requestingUnit": {
+				"locationKey": "main-farm"
+			},
+			"status": "in-progress",
+			"fulfillment": {
+				"quantityMet": 1,
+				"progress": 20
+			},
+			"createdAt": "2025-11-01T00:00:00.000Z",
+			"updatedAt": "2025-12-04T00:00:00.000Z"
 		},
 		{
 			"slug": "golaub-relief-rope-bungee-2025",
@@ -42,23 +70,51 @@
 		},
 		{
 			"slug": "golaub-relief-garbage-bags-2025",
-			"title": "Heavy Plastic Garbage Bags",
-			"description": "Industrial liner bags for temporary leak protection, debris control, and waste segregation.",
-			"itemId": "relief-garbage-bag-pack",
-			"quantity": 2,
+			"title": "Large Garbage Bags",
+			"description": "Rolls of large garbage bags for temporary leak protection, debris control, and waste segregation.",
+			"itemId": "relief-garbage-bag-roll",
+			"quantity": 5,
 			"type": "material",
 			"source": "external",
 			"priority": "medium",
 			"neededBy": {
 				"type": "asap",
-				"reason": "Needed by 1 Nov to line bedding and capture soaked insulation while tarps go up."
+				"reason": "Needed to line bedding and capture soaked insulation while tarps go up."
 			},
 			"requestingUnit": {
 				"locationKey": "main-farm"
 			},
-			"status": "planned",
+			"status": "in-progress",
+			"fulfillment": {
+				"quantityMet": 2,
+				"progress": 40
+			},
 			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
+			"updatedAt": "2025-12-04T00:00:00.000Z"
+		},
+		{
+			"slug": "golaub-relief-kerosene-2025",
+			"title": "Kerosene",
+			"description": "Kerosene for lighting lamps and cooking while power remains offline.",
+			"itemId": "kerosene-litre",
+			"quantity": 2,
+			"type": "material",
+			"source": "external",
+			"priority": "high",
+			"neededBy": {
+				"type": "asap",
+				"reason": "Essential for household lighting and cooking during power outage."
+			},
+			"requestingUnit": {
+				"locationKey": "main-farm"
+			},
+			"status": "in-progress",
+			"fulfillment": {
+				"quantityMet": 1,
+				"progress": 50
+			},
+			"createdAt": "2025-12-04T00:00:00.000Z",
+			"updatedAt": "2025-12-04T00:00:00.000Z"
 		},
 		{
 			"slug": "golaub-relief-generator-2025",
@@ -121,66 +177,6 @@
 			"updatedAt": "2025-11-01T00:00:00.000Z"
 		},
 		{
-			"slug": "golaub-relief-power-strips-2025",
-			"title": "Surge-Protected Power Strips",
-			"description": "Multi-outlet strips that distribute limited generator power without overloading circuits.",
-			"itemId": "relief-power-strips",
-			"quantity": 3,
-			"type": "material",
-			"source": "external",
-			"priority": "medium",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Needed on 1 Nov to power fridges, fans, and communication gear safely."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
-			"slug": "golaub-relief-work-lights-2025",
-			"title": "LED Work Lights",
-			"description": "Portable LED work lights to illuminate stabilization tasks and nighttime milking.",
-			"itemId": "relief-led-worklights",
-			"quantity": 2,
-			"type": "material",
-			"source": "external",
-			"priority": "medium",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Farm crews need bright task lighting by 1 Nov for safe roof shoring."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
-			"slug": "golaub-relief-battery-lanterns-2025",
-			"title": "Battery Lanterns",
-			"description": "Household lanterns that keep bedrooms, kitchen, and milking prep areas lit overnight.",
-			"itemId": "relief-battery-lanterns",
-			"quantity": 4,
-			"type": "material",
-			"source": "external",
-			"priority": "medium",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Families require safe lighting by 1 Nov to operate indoors without grid power."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
 			"slug": "golaub-relief-water-storage-2025",
 			"title": "Water Storage Drums",
 			"description": "Food-grade drums that hold potable water when the pump or public supply is offline.",
@@ -212,146 +208,6 @@
 			"neededBy": {
 				"type": "asap",
 				"reason": "Vector control is needed by 1 Nov to protect the family and livestock after flooding."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
-			"slug": "golaub-relief-first-aid-2025",
-			"title": "First Aid Supplies",
-			"description": "Comprehensive first aid kits for treating cuts, heat stress, and livestock handling injuries.",
-			"itemId": "relief-first-aid-kit",
-			"quantity": 1,
-			"type": "material",
-			"source": "external",
-			"priority": "high",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Crews working on 1 Nov need medical supplies on-site before heavy manual labor."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
-			"slug": "golaub-relief-sanitation-2025",
-			"title": "Sanitation Supply Kits",
-			"description": "Bleach, disinfectant, soap, and PPE that keep the home and dairy prep area safe post-storm.",
-			"itemId": "relief-sanitation-kit",
-			"quantity": 2,
-			"type": "material",
-			"source": "external",
-			"priority": "high",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Sanitation products are required by 1 Nov to prevent contamination while rebuilding."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
-			"slug": "golaub-relief-bedding-2025",
-			"title": "Dry Bedding & Blankets",
-			"description": "Replacement bedding sets so the family can sleep warm after existing linens were soaked.",
-			"itemId": "relief-bedding-pack",
-			"quantity": 4,
-			"type": "material",
-			"source": "external",
-			"priority": "medium",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Needed 1 Nov to keep family rested while the roof remains temporary."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
-			"slug": "golaub-relief-chargers-2025",
-			"title": "Chargers & Battery Packs",
-			"description": "USB chargers and battery banks that keep phones, radios, and LED lights powered.",
-			"itemId": "relief-charger-pack",
-			"quantity": 3,
-			"type": "material",
-			"source": "external",
-			"priority": "medium",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Communications gear must stay topped up starting 1 Nov for coordination."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
-			"slug": "golaub-relief-headlamps-2025",
-			"title": "Headlamps & Flashlights",
-			"description": "Rechargeable headlamps and flashlights that free both hands during livestock checks.",
-			"itemId": "relief-headlamp-set",
-			"quantity": 4,
-			"type": "material",
-			"source": "external",
-			"priority": "medium",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Critical on 1 Nov for night mobility between pens and living spaces."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
-			"slug": "golaub-relief-rain-boots-2025",
-			"title": "Rain Boots",
-			"description": "Waterproof boots so each family member can traverse soaked paddocks safely.",
-			"itemId": "relief-rain-boots",
-			"quantity": 4,
-			"type": "material",
-			"source": "external",
-			"priority": "high",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Needed 1 Nov to keep workers dry while moving between shed, pens, and house."
-			},
-			"requestingUnit": {
-				"locationKey": "main-farm"
-			},
-			"status": "planned",
-			"createdAt": "2025-11-01T00:00:00.000Z",
-			"updatedAt": "2025-11-01T00:00:00.000Z"
-		},
-		{
-			"slug": "golaub-relief-rain-jackets-2025",
-			"title": "Rain Jackets",
-			"description": "Waterproof rain jackets with hoods that allow long shifts outdoors in continuing squalls.",
-			"itemId": "relief-rain-jackets",
-			"quantity": 4,
-			"type": "material",
-			"source": "external",
-			"priority": "high",
-			"neededBy": {
-				"type": "asap",
-				"reason": "Rain gear is essential on 1 Nov to keep crews healthy during stabilization."
 			},
 			"requestingUnit": {
 				"locationKey": "main-farm"

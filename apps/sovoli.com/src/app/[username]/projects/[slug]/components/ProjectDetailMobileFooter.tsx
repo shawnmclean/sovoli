@@ -52,7 +52,7 @@ Total Value: ${formatCurrency(totalCost)}`;
 
   return (
     <>
-      <footer className="fixed left-0 right-0 border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
+      <footer className="fixed left-0 right-0 border-t bg-background border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
         <div className="flex w-full items-center justify-between py-3 gap-4">
           {itemCount > 0 ? (
             <>

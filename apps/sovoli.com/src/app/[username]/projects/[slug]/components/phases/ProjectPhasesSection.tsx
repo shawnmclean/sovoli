@@ -5,22 +5,15 @@ import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Link } from "@sovoli/ui/components/link";
 import { Progress } from "@sovoli/ui/components/progress";
-import { ArrowRight, Package, Users, Wrench, DollarSign, Briefcase } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Project, ProjectPhase } from "~/modules/projects/types";
 import type { Need, NeedType } from "~/modules/needs/types";
+import { NEED_TYPE_CONFIG } from "~/modules/needs/utils";
 import { pluralize } from "~/utils/pluralize";
 
 interface ProjectPhasesSectionProps {
   project: Project;
 }
-
-const NEED_TYPE_CONFIG: Record<NeedType, { icon: typeof Package; label: string }> = {
-  material: { icon: Package, label: "Materials" },
-  service: { icon: Wrench, label: "Services" },
-  human: { icon: Users, label: "Volunteers" },
-  financial: { icon: DollarSign, label: "Funding" },
-  job: { icon: Briefcase, label: "Jobs" },
-};
 
 /** Calculate fulfillment progress for a single need (0-100) */
 function calculateNeedProgress(need: Need): number {
@@ -68,25 +61,37 @@ function calculateNeedProgress(need: Need): number {
   return 0;
 }
 
-/** Count needs by type */
-function countNeedsByType(needs: Need[]): Record<NeedType, number> {
-  const counts: Record<NeedType, number> = {
-    material: 0,
-    service: 0,
-    human: 0,
-    financial: 0,
-    job: 0,
+/** Count needs by type with fulfillment info */
+interface NeedTypeStats {
+  total: number;
+  fulfilled: number;
+}
+
+function countNeedsByType(needs: Need[]): Record<NeedType, NeedTypeStats> {
+  const counts: Record<NeedType, NeedTypeStats> = {
+    material: { total: 0, fulfilled: 0 },
+    service: { total: 0, fulfilled: 0 },
+    human: { total: 0, fulfilled: 0 },
+    financial: { total: 0, fulfilled: 0 },
+    job: { total: 0, fulfilled: 0 },
   };
 
   for (const need of needs) {
-    counts[need.type]++;
+    counts[need.type].total++;
+    const progress = calculateNeedProgress(need);
+    if (progress === 100) {
+      counts[need.type].fulfilled++;
+    }
   }
 
   return counts;
 }
 
-function getTotalNeedsCount(counts: Record<NeedType, number>): number {
-  return Object.values(counts).reduce((sum, count) => sum + count, 0);
+function getTotalNeedsCount(counts: Record<NeedType, NeedTypeStats>): { total: number; fulfilled: number } {
+  return Object.values(counts).reduce(
+    (acc, stats) => ({ total: acc.total + stats.total, fulfilled: acc.fulfilled + stats.fulfilled }),
+    { total: 0, fulfilled: 0 }
+  );
 }
 
 function PhaseCard({
@@ -107,9 +112,9 @@ function PhaseCard({
     : 0;
   const isPhaseComplete = status === "completed" || totalProgress === 100;
   const needsCounts = countNeedsByType(needs);
-  const totalNeeds = getTotalNeedsCount(needsCounts);
-  const needsSummary = (Object.entries(needsCounts) as [NeedType, number][])
-    .filter(([, count]) => count > 0)
+  const totalNeedsStats = getTotalNeedsCount(needsCounts);
+  const needsSummary = (Object.entries(needsCounts) as [NeedType, NeedTypeStats][])
+    .filter(([, stats]) => stats.total > 0)
     .slice(0, 3);
 
   return (
@@ -151,20 +156,21 @@ function PhaseCard({
       </CardBody>
       <CardFooter className="flex w-full border-t border-default-100 px-4 py-3">
         <div className="flex w-full items-center justify-between gap-3">
-          {/* Needs summary */}
+          {/* Needs summary with fulfillment */}
           {needsSummary.length > 0 ? (
             <div className="flex flex-wrap gap-2">
-              {needsSummary.map(([type, count]) => {
+              {needsSummary.map(([type, stats]) => {
                 const config = NEED_TYPE_CONFIG[type];
                 const Icon = config.icon;
+                const hasFulfilled = stats.fulfilled > 0;
                 return (
                   <div
                     key={type}
-                    className="flex items-center gap-1.5 rounded-md bg-default-100 px-2 py-1 text-xs text-default-600"
+                    className={`flex items-center gap-1.5 rounded-md px-2 py-1 text-xs ${config.bgColor}`}
                   >
-                    <Icon className="h-3 w-3" />
-                    <span>
-                      {count} {pluralize(count, config.label.slice(0, -1))}
+                    <Icon className={`h-3 w-3 ${config.textColor}`} />
+                    <span className={config.textColor}>
+                      {hasFulfilled ? `${stats.fulfilled}/${stats.total}` : stats.total} {pluralize(stats.total, config.label)}
                     </span>
                   </div>
                 );
@@ -172,7 +178,10 @@ function PhaseCard({
             </div>
           ) : (
             <span className="text-xs text-default-500">
-              {totalNeeds} {pluralize(totalNeeds, "need")}
+              {totalNeedsStats.fulfilled > 0 
+                ? `${totalNeedsStats.fulfilled}/${totalNeedsStats.total} ${pluralize(totalNeedsStats.total, "need")} funded`
+                : `${totalNeedsStats.total} ${pluralize(totalNeedsStats.total, "need")}`
+              }
             </span>
           )}
 

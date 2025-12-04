@@ -1,5 +1,13 @@
 [
 	{
+		"id": "tarpaulin-small",
+		"name": "Small Tarpaulin",
+		"category": "fixings-fasteners-hardware-other",
+		"tags": ["relief", "shelter", "weatherproofing"],
+		"unitLabel": "tarp",
+		"description": "Small tarpaulin for covering exposed areas and protecting belongings from rain."
+	},
+	{
 		"id": "tarpaulin-heavy-duty",
 		"name": "Heavy-Duty Tarpaulin",
 		"category": "fixings-fasteners-hardware-other",
@@ -181,6 +189,22 @@
 		"unitLabel": "pack",
 		"tags": ["relief", "sanitation"],
 		"description": "Contractor-grade refuse bags that double as moisture liners and debris control."
+	},
+	{
+		"id": "relief-garbage-bag-roll",
+		"name": "Large Garbage Bags Roll",
+		"category": "refuse-bags",
+		"unitLabel": "roll",
+		"tags": ["relief", "sanitation", "household"],
+		"description": "Roll of large garbage bags for temporary leak protection, debris control, and waste segregation."
+	},
+	{
+		"id": "kerosene-litre",
+		"name": "Kerosene",
+		"category": "gas-fuels",
+		"unitLabel": "litre",
+		"tags": ["relief", "fuel", "household", "lighting"],
+		"description": "Kerosene for lighting lamps and cooking during power outages."
 	},
 	{
 		"id": "relief-generator-portable",
