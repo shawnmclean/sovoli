@@ -21,7 +21,7 @@ export function OrgDetailMobileFooter({
 
   return (
     <>
-      <footer className="fixed left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
+      <footer className="fixed left-0 right-0 border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
         <div className="flex w-full items-center justify-between py-3 gap-4">
           {/* Left side - Organization info */}
           <div className="flex flex-1 items-center">

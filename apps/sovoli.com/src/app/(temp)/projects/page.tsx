@@ -4,6 +4,7 @@ import { Link } from "@sovoli/ui/components/link";
 
 import { ProjectsDirectoryContent } from "./components/ProjectsDirectoryContent";
 import { getAllProjectDirectoryEntries } from "./lib/projectsData";
+import { Footer } from "~/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Active Projects Directory | Sovoli",
@@ -103,6 +104,8 @@ export default async function ProjectsDirectoryPage({
           />
         </div>
       </section>
+      
+      <Footer />
     </>
   );
 }

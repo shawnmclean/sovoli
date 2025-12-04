@@ -6,6 +6,16 @@
 @source "./src/components/**/*.{js,ts,jsx,tsx,mdx}";
 @source "./src/modules/**/*.{js,ts,jsx,tsx,mdx}";
 
+/* Light mode background */
+body {
+  background: #f5f5f4;
+}
+
+/* Dark mode uses HeroUI default background */
+.dark body {
+  background: #070506;
+}
+
 .prose {
   :first-child {
     margin-top: 0;

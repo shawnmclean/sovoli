@@ -207,7 +207,7 @@ export default async function Layout({ children, params, modals }: Props) {
 
     return (
       <ProjectCartProvider>
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen">
           <div className="relative">
             <GalleryCarousel
               media={media}
@@ -278,7 +278,7 @@ export default async function Layout({ children, params, modals }: Props) {
 
   return (
     <ProjectCartProvider>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
         <div className="relative">
           <GalleryCarousel
             media={media}

@@ -85,7 +85,7 @@ export default async function Layout({ children, params }: Props) {
 
   if (userKnowledgeResult.userKnowledge) {
     // Render user knowledge profile with simple layout
-    return <div className="min-h-screen bg-background">{children}</div>;
+    return <div className="min-h-screen">{children}</div>;
   }
 
   // If no user knowledge, get org instance and render org layout
