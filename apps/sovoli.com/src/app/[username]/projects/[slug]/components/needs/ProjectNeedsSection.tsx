@@ -3,11 +3,59 @@
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { Divider } from "@sovoli/ui/components/divider";
-import { CheckCircle2, Minus, Plus, Trash2 } from "lucide-react";
+import {
+  CheckCircle2,
+  Minus,
+  Plus,
+  Trash2,
+  Package,
+  Wrench,
+  Users,
+  DollarSign,
+  Briefcase,
+} from "lucide-react";
 import type { Project } from "~/modules/projects/types";
 import type { Need, NeedType } from "~/modules/needs/types";
-import { NEED_TYPE_CONFIG } from "~/modules/needs/utils";
 import { useProjectCart } from "../../context/ProjectCartContext";
+
+/** Configuration for each need type */
+const NEED_TYPE_CONFIG = {
+  material: {
+    label: "Material",
+    pluralLabel: "Materials",
+    icon: Package,
+    textColor: "text-primary",
+    bgColor: "bg-primary-100",
+  },
+  service: {
+    label: "Service",
+    pluralLabel: "Services",
+    icon: Wrench,
+    textColor: "text-secondary",
+    bgColor: "bg-secondary-100",
+  },
+  human: {
+    label: "Volunteer",
+    pluralLabel: "Volunteers",
+    icon: Users,
+    textColor: "text-warning",
+    bgColor: "bg-warning-100",
+  },
+  financial: {
+    label: "Funding",
+    pluralLabel: "Funding",
+    icon: DollarSign,
+    textColor: "text-success",
+    bgColor: "bg-success-100",
+  },
+  job: {
+    label: "Job",
+    pluralLabel: "Jobs",
+    icon: Briefcase,
+    textColor: "text-danger",
+    bgColor: "bg-danger-100",
+  },
+} as const satisfies Record<NeedType, { label: string; pluralLabel: string; icon: typeof Package; textColor: string; bgColor: string }>;
 
 interface ProjectNeedsSectionProps {
   project: Project;
@@ -307,17 +355,16 @@ function NeedItem({ need }: { need: CombinedNeed }) {
 }
 
 function NeedTypeGroupCard({ group }: { group: NeedTypeGroup }) {
-  const config = NEED_TYPE_CONFIG[group.type];
-  const Icon = config.icon;
+  const { icon: Icon, bgColor, textColor, pluralLabel } = NEED_TYPE_CONFIG[group.type];
 
   return (
     <Card className="border-none shadow-sm">
       <CardHeader className="pb-2">
         <div className="flex items-center gap-3">
-          <div className={`p-2 rounded-lg ${config.bgColor}`}>
-            <Icon className={`h-4 w-4 ${config.textColor}`} />
+          <div className={`p-2 rounded-lg ${bgColor}`}>
+            <Icon className={`h-4 w-4 ${textColor}`} />
           </div>
-          <h4 className="font-semibold">{config.pluralLabel}</h4>
+          <h4 className="font-semibold">{pluralLabel}</h4>
         </div>
       </CardHeader>
       <CardBody className="pt-0">

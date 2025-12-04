@@ -1,4 +1,3 @@
-import type { LucideIcon } from "lucide-react";
 import {
   Package,
   Wrench,
@@ -12,7 +11,7 @@ import type { NeedType } from "./types";
 export interface NeedTypeConfigItem {
   label: string;
   pluralLabel: string;
-  icon: LucideIcon;
+  icon: typeof Package;
   textColor: string;
   bgColor: string;
 }
