@@ -93,7 +93,7 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
   const addressString = addressParts.join(", ");
 
   return (
-    <Card>
+    <Card className="rounded-2xl">
       <div className="relative w-full min-h-[320px] overflow-hidden">
         <ProjectCarousel
           media={media}

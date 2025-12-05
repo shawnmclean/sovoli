@@ -49,7 +49,7 @@ export function ProjectCarousel({
   }
 
   return (
-    <div className="relative w-full min-h-[320px]">
+    <div className="relative w-full min-h-[320px] overflow-hidden rounded-2xl">
       <Carousel
         opts={{
           align: "start",
