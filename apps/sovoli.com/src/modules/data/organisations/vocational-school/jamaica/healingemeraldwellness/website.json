@@ -1,0 +1,70 @@
+{
+  "website": {
+    "siteName": "Healing Emerald Wellness",
+    "title": "Massage Therapy & Wellness Training - Healing Emerald Wellness",
+    "description": "Healing Emerald Wellness Spa & Training Centre offers professional vocational training in massage therapy, waxing, and wellness services in Kingston, Jamaica.",
+    "images": [
+      {
+        "url": "/healingemeraldwellness/websites/landing/hero.jpg",
+        "width": 1200,
+        "height": 600,
+        "alt": "Healing Emerald Wellness Spa & Training Centre"
+      }
+    ],
+    "header": {
+      "layout": "default",
+      "variant": "default",
+      "nav": [
+        { "key": "home", "label": "Home" },
+        { "key": "academics", "label": "Programs" },
+        { "key": "offerings", "label": "Spa Services" },
+        { "key": "workforce", "label": "Our Team" },
+        { "key": "contact", "label": "Contact" }
+      ],
+      "actions": [
+        { "key": "apply", "label": "Enroll Now" }
+      ]
+    },
+    "footer": {
+      "layout": "default",
+      "variant": "default",
+      "sections": [
+        {
+          "key": "social",
+          "title": "Healing Emerald Wellness",
+          "description": "Empowering individuals with professional wellness and beauty therapy skills."
+        },
+        { "key": "academics", "title": "Programs" },
+        { "key": "offerings", "title": "Services" },
+        { "key": "contact", "title": "Contact" }
+      ]
+    },
+    "pages": [
+      {
+        "name": "home",
+        "title": "Welcome to Healing Emerald Wellness",
+        "subtitle": "Your journey to wellness expertise starts here.",
+        "sections": [
+          {
+            "type": "hero",
+            "layout": "default",
+            "variant": "image",
+            "title": "Transform Lives Through the Power of Touch",
+            "subtitle": "Healing Emerald Wellness Spa & Training Centre offers professional spa services and vocational training in massage therapy, waxing, and wellness disciplines.",
+            "backgroundImage": "/vocational-training/jamaica/healingemeraldwellness/website/home/hero.webp",
+            "actions": [
+              { "label": "View Programs", "href": "/programs" },
+              { "label": "Contact Us", "href": "/contact" }
+            ]
+          },
+          {
+            "type": "programs",
+            "title": "Our Training Programs",
+            "subtitle": "Master the art of wellness therapy with our comprehensive training programs taught by experienced professionals."
+          }
+        ]
+      }
+    ]
+  }
+}
+
