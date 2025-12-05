@@ -1,60 +1,59 @@
 {
-  "username": "healingemeraldwellness",
-  "name": "Healing Emerald Wellness Spa & Training Centre Limited",
-  "categories": ["vocational-school"],
-  "locations": [
-    {
-      "key": "main-location",
-      "label": "Main Location",
-      "isPrimary": true,
-      "address": {
-        "line1": "4 Springvale Ave",
-        "city": "Kingston",
-        "countryCode": "JM"
-      },
-      "contacts": [
-        {
-          "type": "whatsapp",
-          "value": "+18763467995",
-          "isPublic": true
-        },
-        {
-          "type": "phone",
-          "value": "+18763467995",
-          "isPublic": true
-        }
-      ]
-    }
-  ],
-  "socialLinks": [
-    {
-      "platform": "website",
-      "url": "https://www.healingemeraldwellness.com"
-    }
-  ],
-  "verification": {
-    "status": "pending",
-    "submittedAt": "2025-12-05",
-    "submittedBy": "system",
-    "documents": [],
-    "notes": "Verification pending - created from submission data."
-  },
-  "isVerified": false,
-  "internalCRM": {
-    "people": [
-      {
-        "name": "Alisha Davis",
-        "contacts": [
-          {
-            "type": "whatsapp",
-            "value": "+18763467995",
-            "isPublic": false
-          }
-        ],
-        "notes": "Owner of Healing Emerald Wellness Spa & Training Centre"
-      }
-    ],
-    "claimStatus": "unclaimed"
-  }
+	"username": "healingemeraldwellness",
+	"name": "Healing Emerald Wellness Spa & Training Centre Limited",
+	"categories": ["vocational-school"],
+	"locations": [
+		{
+			"key": "main-location",
+			"label": "Main Location",
+			"isPrimary": true,
+			"address": {
+				"line1": "4 Springvale Ave",
+				"city": "Kingston",
+				"countryCode": "JM"
+			},
+			"contacts": [
+				{
+					"type": "whatsapp",
+					"value": "+18763467995",
+					"isPublic": true
+				},
+				{
+					"type": "phone",
+					"value": "+18763467995",
+					"isPublic": true
+				}
+			]
+		}
+	],
+	"socialLinks": [
+		{
+			"platform": "website",
+			"url": "https://www.healingemeraldwellness.com"
+		}
+	],
+	"verification": {
+		"status": "pending",
+		"submittedAt": "2025-12-05",
+		"submittedBy": "system",
+		"documents": [],
+		"notes": "Verification pending - created from submission data."
+	},
+	"isVerified": false,
+	"internalCRM": {
+		"people": [
+			{
+				"name": "Alisha Davis",
+				"contacts": [
+					{
+						"type": "whatsapp",
+						"value": "+18763467995",
+						"isPublic": false
+					}
+				],
+				"notes": "Owner of Healing Emerald Wellness Spa & Training Centre"
+			}
+		],
+		"claimStatus": "unclaimed"
+	}
 }
-

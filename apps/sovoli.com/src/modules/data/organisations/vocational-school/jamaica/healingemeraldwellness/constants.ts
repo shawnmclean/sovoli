@@ -4,4 +4,4 @@ export const ORG_USERNAME = "healingemeraldwellness";
 export const ORG_DOMAIN =
 	env.NODE_ENV === "development"
 		? "healingemeraldwellness.localhost:3000"
-		: "www.healingemeraldwellness.com";
+		: "healingemeraldwellness.sovoli.com";
