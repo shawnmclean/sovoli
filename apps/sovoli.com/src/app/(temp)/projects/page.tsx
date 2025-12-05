@@ -75,7 +75,7 @@ export default async function ProjectsDirectoryPage({
           <div className="space-y-6">
             <div className="space-y-4">
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                Support urgent school projects across Jamaica
+                Support urgent projects across Jamaica
               </h1>
               <p className="text-base text-white/80 sm:text-lg">
                 The mission of this platform is to matchmake the needs for those
