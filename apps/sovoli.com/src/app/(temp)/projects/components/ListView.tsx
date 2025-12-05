@@ -93,8 +93,8 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
   const addressString = addressParts.join(", ");
 
   return (
-    <Card className="group overflow-hidden border border-divider shadow-sm transition duration-200 hover:shadow-2xl">
-      <div className="relative w-full min-h-[320px] overflow-hidden rounded-2xl">
+    <Card>
+      <div className="relative w-full min-h-[320px] overflow-hidden">
         <ProjectCarousel
           media={media}
           title={project.title}
@@ -181,7 +181,7 @@ function ProjectListItem({ project }: { project: ProjectDirectoryEntry }) {
       </CardBody>
 
       <CardFooter className="flex items-center justify-between border-t border-divider bg-muted text-sm text-muted-foreground">
-        <span>
+        <span className="text-muted-foreground">
           Updated{" "}
           {formatDate(project.updatedAt ?? project.createdAt) ?? "recently"}
         </span>

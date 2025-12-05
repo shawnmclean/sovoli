@@ -42,7 +42,7 @@ export function ProjectCarousel({
 
   if (images.length === 0) {
     return (
-      <div className="flex min-h-[320px] w-full items-center justify-center rounded-2xl bg-muted text-sm text-muted-foreground">
+      <div className="flex min-h-[320px] w-full items-center justify-center bg-muted text-sm text-muted-foreground">
         Photos coming soon
       </div>
     );
@@ -66,7 +66,7 @@ export function ProjectCarousel({
             >
               <Link
                 href={href}
-                className="relative block w-full min-h-[320px] overflow-hidden rounded-2xl"
+                className="relative block w-full min-h-[320px] overflow-hidden"
                 aria-label={`Open project ${title}`}
               >
                 <CldImage
