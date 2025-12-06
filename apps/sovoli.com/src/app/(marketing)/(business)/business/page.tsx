@@ -1,17 +1,8 @@
 import Link from "next/link";
-import {
-	GraduationCapIcon,
-	BriefcaseIcon,
-	ShoppingBagIcon,
-	TreesIcon,
-	UsersIcon,
-	CircleEllipsisIcon,
-	ArrowRightIcon,
-	BuildingIcon,
-} from "lucide-react";
+import { ArrowRightIcon, BuildingIcon } from "lucide-react";
 import type { Metadata } from "next";
-import type { Industry } from "./components/IndustryTile";
-import { IndustryTile } from "./components/IndustryTile";
+import type { IndustryCardData } from "./components/IndustryCard";
+import { IndustryCard } from "./components/IndustryCard";
 
 export const metadata: Metadata = {
 	title: "Sovoli Business – Digitize Your Organization",
@@ -19,57 +10,56 @@ export const metadata: Metadata = {
 		"Websites, Google visibility, programs, services, products, and projects — all in one place. Digital solutions for Caribbean businesses.",
 };
 
-const industries: Industry[] = [
+const industries: IndustryCardData[] = [
 	{
 		id: "education",
-		name: "Education",
+		goal: "Increase Enrollment",
 		description:
-			"Schools, academies, training centers, and educational institutions.",
-		href: "/education",
-		icon: GraduationCapIcon,
+			"Turn parent searches into enrollment conversations. Get discovered on Google, build a professional website, and capture leads on WhatsApp.",
+		href: "/growth-system",
+		image:
+			"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
 		gradient: "from-blue-500 via-indigo-500 to-violet-500",
 	},
 	{
 		id: "services",
-		name: "Services",
+		goal: "Get More Clients",
 		description:
-			"Professional services, consultants, agencies, and service providers.",
+			"Showcase your expertise online. Get found by people searching for your services and convert visitors into paying clients.",
 		href: "/services",
-		icon: BriefcaseIcon,
+		image:
+			"https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80",
 		gradient: "from-emerald-500 via-teal-500 to-cyan-500",
 	},
 	{
 		id: "retail",
-		name: "Retail",
-		description: "Shops, stores, e-commerce, and retail businesses.",
+		goal: "Increase Sales",
+		description:
+			"Get your products in front of more buyers. Build an online storefront and reach customers beyond your physical location.",
 		href: "/retail",
-		icon: ShoppingBagIcon,
+		image:
+			"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
 		gradient: "from-amber-500 via-orange-500 to-red-500",
 	},
 	{
 		id: "farming",
-		name: "Farms & Agriculture",
-		description: "Farms, agricultural businesses, and food producers.",
+		goal: "Reach More Buyers",
+		description:
+			"Connect directly with buyers looking for fresh produce. Showcase your farm and products to hotels, restaurants, and households.",
 		href: "/farming",
-		icon: TreesIcon,
+		image:
+			"https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80",
 		gradient: "from-lime-500 via-green-500 to-emerald-500",
 	},
 	{
 		id: "community",
-		name: "Community & NGOs",
+		goal: "Grow Your Impact",
 		description:
-			"Non-profits, community organizations, churches, and foundations.",
+			"Increase visibility for your cause. Attract donors, volunteers, and community members who believe in your mission.",
 		href: "/community",
-		icon: UsersIcon,
+		image:
+			"https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80",
 		gradient: "from-pink-500 via-rose-500 to-red-500",
-	},
-	{
-		id: "other",
-		name: "Other",
-		description: "Other businesses and organizations not listed above.",
-		href: "/other",
-		icon: CircleEllipsisIcon,
-		gradient: "from-slate-500 via-gray-500 to-zinc-500",
 	},
 ];
 
@@ -120,16 +110,17 @@ export default function BusinessPage() {
 			<section className="mx-auto max-w-6xl px-4 pb-24">
 				<div className="mb-12 text-center">
 					<h2 className="mb-4 text-2xl font-bold text-foreground sm:text-3xl">
-						Choose Your Industry
+						What&apos;s Your Goal?
 					</h2>
-					<p className="text-default-500">
-						Select your sector to see tailored solutions for your organization.
+					<p className="mx-auto max-w-2xl text-default-500">
+						Every business has a goal. We build digital systems tailored to help
+						you achieve yours.
 					</p>
 				</div>
 
-				<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 					{industries.map((industry) => (
-						<IndustryTile key={industry.id} industry={industry} />
+						<IndustryCard key={industry.id} industry={industry} />
 					))}
 				</div>
 			</section>
