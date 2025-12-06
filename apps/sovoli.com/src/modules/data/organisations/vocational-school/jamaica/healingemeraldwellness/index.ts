@@ -12,6 +12,20 @@ import websiteData from "./website.json";
 
 // Build website module with domain from constants (env-aware)
 const HEALING_EMERALD_WEBSITE: WebsiteModule = {
+	programsPageHero: {
+		headline: "Transform Lives Through the Power of Touch",
+		subtext:
+			"Find the perfect program to launch your career in wellness therapy.",
+		socialProof: {
+			count: "100+",
+			audienceLabel: "graduates",
+			locationContext: "in Kingston, Jamaica",
+		},
+	},
+	defaultSocialProof: {
+		count: "100+",
+		audienceLabel: "clients",
+	},
 	website: {
 		...(websiteData.website as Omit<Website, "domain" | "url">),
 		domain: ORG_DOMAIN,
