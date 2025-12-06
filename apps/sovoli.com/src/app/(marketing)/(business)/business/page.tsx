@@ -1,75 +1,75 @@
 import Link from "next/link";
 import {
-	TrendingUpIcon,
 	GraduationCapIcon,
+	BriefcaseIcon,
+	ShoppingBagIcon,
+	TreesIcon,
 	UsersIcon,
+	CircleEllipsisIcon,
 	ArrowRightIcon,
-	TargetIcon,
+	BuildingIcon,
 } from "lucide-react";
 import type { Metadata } from "next";
-import type { Vertical } from "./components/VerticalCard";
-import { VerticalCard } from "./components/VerticalCard";
+import type { Industry } from "./components/IndustryTile";
+import { IndustryTile } from "./components/IndustryTile";
 
 export const metadata: Metadata = {
-	title: "Sovoli for Business – Digital Solutions for Caribbean Schools",
+	title: "Sovoli Business – Digitize Your Organization",
 	description:
-		"Discover Sovoli's suite of digital solutions designed specifically for schools in the Caribbean. From growth systems to enrollment management.",
+		"Websites, Google visibility, programs, services, products, and projects — all in one place. Digital solutions for Caribbean businesses.",
 };
 
-const verticals: Vertical[] = [
+const industries: Industry[] = [
 	{
-		id: "growth-system",
-		name: "Growth System",
-		tagline: "Turn parent searches into enrollments",
+		id: "education",
+		name: "Education",
 		description:
-			"A complete digital visibility and lead system built for small private schools. Get found on Google, Bing, and Sovoli's directory—automatically.",
-		href: "/growth-system",
-		icon: <TrendingUpIcon className="h-7 w-7" />,
+			"Schools, academies, training centers, and educational institutions.",
+		href: "/education",
+		icon: GraduationCapIcon,
+		gradient: "from-blue-500 via-indigo-500 to-violet-500",
+	},
+	{
+		id: "services",
+		name: "Services",
+		description:
+			"Professional services, consultants, agencies, and service providers.",
+		href: "/services",
+		icon: BriefcaseIcon,
 		gradient: "from-emerald-500 via-teal-500 to-cyan-500",
-		accentColor: "emerald",
-		features: [
-			"Google & Bing Business Setup",
-			"AI-Powered School Profile",
-			"Lead Capture & WhatsApp Alerts",
-			"Parent Search Analytics",
-		],
-		status: "live",
 	},
 	{
-		id: "enrollment-hub",
-		name: "Enrollment Hub",
-		tagline: "Paperless admissions, delightful experience",
-		description:
-			"Streamline your entire enrollment process from inquiry to acceptance. Online applications, document collection, and fee management in one place.",
-		href: "#",
-		icon: <GraduationCapIcon className="h-7 w-7" />,
-		gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
-		accentColor: "violet",
-		features: [
-			"Online Applications",
-			"Document Management",
-			"Fee Collection",
-			"Parent Portal",
-		],
-		status: "coming-soon",
-	},
-	{
-		id: "staff-connect",
-		name: "Staff Connect",
-		tagline: "Build your dream teaching team",
-		description:
-			"Attract, hire, and retain the best educators. Job postings, applicant tracking, and staff management designed for Caribbean schools.",
-		href: "#",
-		icon: <UsersIcon className="h-7 w-7" />,
+		id: "retail",
+		name: "Retail",
+		description: "Shops, stores, e-commerce, and retail businesses.",
+		href: "/retail",
+		icon: ShoppingBagIcon,
 		gradient: "from-amber-500 via-orange-500 to-red-500",
-		accentColor: "amber",
-		features: [
-			"Job Board Integration",
-			"Applicant Tracking",
-			"Staff Profiles",
-			"Performance Tools",
-		],
-		status: "coming-soon",
+	},
+	{
+		id: "farming",
+		name: "Farms & Agriculture",
+		description: "Farms, agricultural businesses, and food producers.",
+		href: "/farming",
+		icon: TreesIcon,
+		gradient: "from-lime-500 via-green-500 to-emerald-500",
+	},
+	{
+		id: "community",
+		name: "Community & NGOs",
+		description:
+			"Non-profits, community organizations, churches, and foundations.",
+		href: "/community",
+		icon: UsersIcon,
+		gradient: "from-pink-500 via-rose-500 to-red-500",
+	},
+	{
+		id: "other",
+		name: "Other",
+		description: "Other businesses and organizations not listed above.",
+		href: "/other",
+		icon: CircleEllipsisIcon,
+		gradient: "from-slate-500 via-gray-500 to-zinc-500",
 	},
 ];
 
@@ -93,70 +93,43 @@ export default function BusinessPage() {
 					{/* Badge */}
 					<div className="mb-8 flex justify-center">
 						<span className="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700 dark:border-primary-800 dark:bg-primary-950/50 dark:text-primary-300">
-							<TargetIcon className="h-4 w-4" />
-							Built for Caribbean Schools
+							<BuildingIcon className="h-4 w-4" />
+							For Caribbean Organizations
 						</span>
 					</div>
 
 					{/* Main headline */}
 					<h1 className="mb-6 text-center text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-						<span className="block text-foreground">Digital Solutions</span>
+						<span className="block text-foreground">
+							Digitize Your Organization
+						</span>
 						<span className="block bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
-							That Grow Your School
+							With Sovoli Business
 						</span>
 					</h1>
 
 					{/* Subheadline */}
 					<p className="mx-auto mb-12 max-w-2xl text-center text-lg text-default-600 sm:text-xl">
-						Everything you need to modernize your school—from attracting parents
-						to managing enrollment. Pick the solutions that fit your needs.
+						Websites, Google visibility, programs, services, products, and
+						projects — all in one place.
 					</p>
-
-					{/* Stats */}
-					<div className="mx-auto mb-16 grid max-w-3xl grid-cols-3 gap-4 rounded-2xl border border-default-200 bg-content1/50 p-6 backdrop-blur-sm">
-						<div className="text-center">
-							<div className="text-2xl font-bold text-foreground sm:text-3xl">
-								50+
-							</div>
-							<div className="text-xs text-default-500 sm:text-sm">
-								Schools Onboarded
-							</div>
-						</div>
-						<div className="text-center border-x border-default-200">
-							<div className="text-2xl font-bold text-foreground sm:text-3xl">
-								3x
-							</div>
-							<div className="text-xs text-default-500 sm:text-sm">
-								More Parent Inquiries
-							</div>
-						</div>
-						<div className="text-center">
-							<div className="text-2xl font-bold text-foreground sm:text-3xl">
-								24hr
-							</div>
-							<div className="text-xs text-default-500 sm:text-sm">
-								Setup Time
-							</div>
-						</div>
-					</div>
 				</div>
 			</section>
 
-			{/* Products Grid */}
+			{/* Industries Grid */}
 			<section className="mx-auto max-w-6xl px-4 pb-24">
 				<div className="mb-12 text-center">
 					<h2 className="mb-4 text-2xl font-bold text-foreground sm:text-3xl">
-						Choose Your Growth Path
+						Choose Your Industry
 					</h2>
 					<p className="text-default-500">
-						Start with one product or bundle them together—your school, your
-						choice.
+						Select your sector to see tailored solutions for your organization.
 					</p>
 				</div>
 
 				<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-					{verticals.map((vertical) => (
-						<VerticalCard key={vertical.id} vertical={vertical} />
+					{industries.map((industry) => (
+						<IndustryTile key={industry.id} industry={industry} />
 					))}
 				</div>
 			</section>
@@ -165,17 +138,17 @@ export default function BusinessPage() {
 			<section className="border-t border-default-200 bg-default-50/50 dark:bg-default-50/5">
 				<div className="mx-auto max-w-4xl px-4 py-16 text-center">
 					<h2 className="mb-4 text-2xl font-bold text-foreground sm:text-3xl">
-						Not sure where to start?
+						Ready to get started?
 					</h2>
 					<p className="mb-8 text-default-600">
-						Most schools begin with the Growth System to get more parents
-						finding them online. From there, everything else becomes easier.
+						Set up your digital presence in minutes. No technical skills
+						required.
 					</p>
 					<Link
-						href="/growth-system"
+						href="/signup/business"
 						className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-secondary px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5"
 					>
-						Start with Growth System
+						Get Started
 						<ArrowRightIcon className="h-5 w-5" />
 					</Link>
 				</div>
