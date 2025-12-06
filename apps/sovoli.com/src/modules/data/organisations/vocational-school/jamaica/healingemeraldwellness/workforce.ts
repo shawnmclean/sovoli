@@ -14,11 +14,11 @@ const INSTRUCTOR: Position = {
   url: "/vocational-training/jamaica/healingemeraldwellness/team",
 };
 
-const OWNER: Position = {
-  name: "Owner",
-  slug: "owner",
-  description: "Business owner and lead instructor",
-  image: "/vocational-training/jamaica/healingemeraldwellness/team/owner.webp",
+const SPA_MANAGING_DIRECTOR: Position = {
+  name: "Spa Managing Director",
+  slug: "spa-managing-director",
+  description: "Spa Managing Director and lead instructor",
+  image: "/vocational-training/jamaica/healingemeraldwellness/team/director.webp",
   url: "/vocational-training/jamaica/healingemeraldwellness/team",
 };
 
@@ -38,18 +38,18 @@ const FACULTY: Department = {
   url: "/vocational-training/jamaica/healingemeraldwellness/team",
 };
 
-export const ALISHA_DAVIS: WorkforceMember = {
+export const ALICIA_DAVIS: WorkforceMember = {
   id: "001",
-  name: "Alisha Davis",
-  slug: "alisha-davis",
-  image: "/images/orgs/vocational-training/jamaica/healingemeraldwellness/team/alisha.webp",
-  bio: "Alisha Davis is the founder and owner of Healing Emerald Wellness Spa & Training Centre Limited. With a passion for wellness and beauty therapy, she established the centre to provide high-quality spa services and vocational training in massage therapy, waxing, and other wellness disciplines.",
+  name: "Alicia Davis",
+  slug: "alicia-davis",
+  image: "/images/orgs/vocational-training/jamaica/healingemeraldwellness/team/alicia.webp",
+  bio: "Alicia Davis is the founder and owner of Healing Emerald Wellness Spa & Training Centre Limited. With a passion for wellness and beauty therapy, she established the centre to provide high-quality spa services and vocational training in massage therapy, waxing, and other wellness disciplines.",
   quote: "Empowering others through wellness education and self-care.",
   isPublic: true,
   contacts: [],
   roleAssignments: [
     {
-      position: OWNER,
+      position: SPA_MANAGING_DIRECTOR,
       department: MANAGEMENT,
       isPrimary: true,
     },
@@ -73,8 +73,8 @@ export const ALISHA_DAVIS: WorkforceMember = {
 
 export const HEALING_EMERALD_WORKFORCE: WorkforceModule = {
   departments: [MANAGEMENT, FACULTY],
-  positions: [OWNER, INSTRUCTOR],
+  positions: [SPA_MANAGING_DIRECTOR, INSTRUCTOR],
   teams: [],
-  members: [ALISHA_DAVIS],
+  members: [ALICIA_DAVIS],
 };
 

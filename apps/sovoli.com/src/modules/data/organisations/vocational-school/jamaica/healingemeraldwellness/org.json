@@ -43,7 +43,7 @@
 	"internalCRM": {
 		"people": [
 			{
-				"name": "Alisha Davis",
+				"name": "Alicia Davis",
 				"contacts": [
 					{
 						"type": "whatsapp",
@@ -51,7 +51,7 @@
 						"isPublic": false
 					}
 				],
-				"notes": "Owner of Healing Emerald Wellness Spa & Training Centre"
+				"notes": "Spa Managing Director of Healing Emerald Wellness Spa & Training Centre"
 			}
 		],
 		"claimStatus": "unclaimed"
