@@ -2,7 +2,18 @@
 
 import { useState, useEffect } from "react";
 
-const businessTypes = ["Schools", "Bookstores", "Training Centers"];
+const businessTypes = [
+	"Schools",
+	"Academies",
+	"Wellness Studios",
+	"Bookstores",
+	"Farms",
+];
+
+// Get the longest business type for sizing the container
+const longestType = businessTypes.reduce((a, b) =>
+	a.length > b.length ? a : b,
+);
 
 export function DynamicHeadline() {
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,11 +37,11 @@ export function DynamicHeadline() {
 				<span className="block text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
 					Grow your business with Sovoli technologies.
 				</span>
-				<span className="block text-foreground/80 text-2xl sm:text-3xl md:text-5xl lg:text-5xl mt-2">
+				<span className="block text-foreground/80 text-3xl sm:text-3xl md:text-5xl lg:text-5xl mt-2">
 					Built for{" "}
 					<span className="relative inline-block overflow-hidden align-bottom">
 						{/* Hidden longest word to set width */}
-						<span className="invisible">Wellness Businesses.</span>
+						<span className="invisible">{longestType}.</span>
 						{businessTypes.map((type, index) => (
 							<span
 								key={type}
