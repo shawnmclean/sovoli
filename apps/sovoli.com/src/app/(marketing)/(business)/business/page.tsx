@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { ArrowRightIcon, BuildingIcon } from "lucide-react";
+import Image from "next/image";
+import { ArrowRightIcon } from "lucide-react";
 import type { Metadata } from "next";
 import type { IndustryCardData } from "./components/IndustryCard";
 import { IndustryCard } from "./components/IndustryCard";
+import { DynamicHeadline } from "./components/DynamicHeadline";
 
 export const metadata: Metadata = {
 	title: "Sovoli Business – Digitize Your Organization",
@@ -79,30 +81,39 @@ export default function BusinessPage() {
 					/>
 				</div>
 
-				<div className="mx-auto max-w-6xl px-4 py-16 sm:py-24">
-					{/* Badge */}
-					<div className="mb-8 flex justify-center">
-						<span className="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700 dark:border-primary-800 dark:bg-primary-950/50 dark:text-primary-300">
-							<BuildingIcon className="h-4 w-4" />
-							For Caribbean Organizations
-						</span>
+				<div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 md:py-20 lg:px-12 lg:py-24">
+					<div className="flex flex-col md:flex-row md:items-start md:gap-8 lg:gap-12">
+						{/* Text content */}
+						<div className="md:flex-1">
+							<DynamicHeadline />
+
+							{/* Subheadline */}
+							<p className="text-sm text-default-600 sm:text-base md:text-lg md:max-w-md lg:max-w-lg mb-6 sm:mb-8">
+								Websites, Google visibility, programs, services, products, and
+								projects — all in one place.
+							</p>
+
+							{/* CTA Button */}
+							<Link
+								href="/signup/business"
+								className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold text-white transition-all hover:bg-primary/90"
+							>
+								Get Started
+							</Link>
+						</div>
+
+						{/* Hero image - mobile app mockup */}
+						<div className="mt-10 md:mt-0 md:w-[180px] lg:w-[220px] xl:w-[260px] flex-shrink-0 self-center md:self-start">
+							<div className="relative aspect-[9/16] w-[200px] mx-auto md:w-full overflow-hidden rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 shadow-2xl ring-1 ring-black/5">
+								<Image
+									src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+									alt="Sovoli mobile app"
+									fill
+									className="object-cover"
+								/>
+							</div>
+						</div>
 					</div>
-
-					{/* Main headline */}
-					<h1 className="mb-6 text-center text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-						<span className="block text-foreground">
-							Digitize Your Organization
-						</span>
-						<span className="block bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
-							With Sovoli Business
-						</span>
-					</h1>
-
-					{/* Subheadline */}
-					<p className="mx-auto mb-12 max-w-2xl text-center text-lg text-default-600 sm:text-xl">
-						Websites, Google visibility, programs, services, products, and
-						projects — all in one place.
-					</p>
 				</div>
 			</section>
 
