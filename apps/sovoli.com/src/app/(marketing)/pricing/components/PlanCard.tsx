@@ -9,7 +9,7 @@ import {
 } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Button } from "@sovoli/ui/components/button";
-import { CheckIcon, RocketIcon } from "lucide-react";
+import { CheckIcon, RocketIcon, MinusIcon, PlusIcon } from "lucide-react";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Price } from "./Price";
 import type { PlanDefinition } from "~/modules/plans/types";
@@ -44,6 +44,9 @@ export function PlanCard({
 	const [selectedOptionals, setSelectedOptionals] = useState<
 		Record<string, boolean>
 	>({});
+	const [quantityBasedCounts, setQuantityBasedCounts] = useState<
+		Record<string, number>
+	>({});
 
 	const toggleOptional = (id: string) => {
 		setSelectedOptionals((prev) => ({
@@ -52,13 +55,37 @@ export function PlanCard({
 		}));
 	};
 
+	const incrementQuantity = (id: string) => {
+		setQuantityBasedCounts((prev) => ({
+			...prev,
+			[id]: (prev[id] ?? 0) + 1,
+		}));
+	};
+
+	const decrementQuantity = (id: string) => {
+		setQuantityBasedCounts((prev) => ({
+			...prev,
+			[id]: Math.max(0, (prev[id] ?? 0) - 1),
+		}));
+	};
+
 	// Split pricing items by billing cycle
 	const baseItems = plan.pricingPackage.pricingItems.filter(
 		(item) => !item.optional,
 	);
-	// Exclude Campaign Ads from regular optional items (shown separately)
-	const optionalItems = plan.pricingPackage.pricingItems.filter(
+
+	// Get all optional add-ons (excluding Campaign Ads which is shown separately)
+	// This includes both regular optional items and quantity-based items
+	const allOptionalItems = plan.pricingPackage.pricingItems.filter(
 		(item) => item.optional && item.id !== "optional-campaign-ads",
+	);
+
+	// Separate quantity-based from regular optional items for rendering
+	const quantityBasedItems = allOptionalItems.filter(
+		(item) => item.isQuantityBased,
+	);
+	const regularOptionalItems = allOptionalItems.filter(
+		(item) => !item.isQuantityBased,
 	);
 
 	// Group base items by billing cycle
@@ -112,12 +139,69 @@ export function PlanCard({
 		return totals;
 	};
 
+	// Calculate quantity-based items cost
+	const calculateQuantityBasedCost = (): AmountByCurrency => {
+		const totals: AmountByCurrency = {};
+		const currencies: CurrencyCode[] = ["USD", "GYD", "JMD"];
+
+		for (const item of quantityBasedItems) {
+			const quantity = quantityBasedCounts[item.id] ?? 0;
+			if (quantity === 0) continue;
+
+			for (const currency of currencies) {
+				const perUnitAmount = getDiscountedAmount(item, currency);
+				const itemTotal = perUnitAmount * quantity;
+				totals[currency] = (totals[currency] ?? 0) + itemTotal;
+			}
+		}
+
+		// Only include currencies with totals > 0
+		for (const currency of currencies) {
+			if ((totals[currency] ?? 0) <= 0) {
+				delete totals[currency];
+			}
+		}
+
+		return totals;
+	};
+
 	const oneTimeTotals = calculateTotals(oneTimeItems);
 	const annualTotals = calculateTotals(annualItems);
+	const quantityBasedCost = calculateQuantityBasedCost();
 
-	const selectedAddOnLabels = optionalItems
+	// Calculate selected regular optional add-ons (non-quantity-based)
+	const selectedRegularOptionals = regularOptionalItems.filter(
+		(item) => selectedOptionals[item.id],
+	);
+	const selectedRegularOptionalsTotals = calculateTotals(
+		selectedRegularOptionals,
+	);
+
+	// Calculate total "You pay now" (base plan + all selected optionals + quantity-based items)
+	const totalPayNow: AmountByCurrency = {};
+	const currencies: CurrencyCode[] = ["USD", "GYD", "JMD"];
+	for (const currency of currencies) {
+		const baseAnnual = annualTotals[currency] ?? 0;
+		const baseOneTime = oneTimeTotals[currency] ?? 0;
+		const regularOptionals = selectedRegularOptionalsTotals[currency] ?? 0;
+		const quantityBased = quantityBasedCost[currency] ?? 0;
+		const total = baseAnnual + baseOneTime + regularOptionals + quantityBased;
+		if (total > 0) {
+			totalPayNow[currency] = total;
+		}
+	}
+
+	const selectedAddOnLabels = regularOptionalItems
 		.filter((item) => selectedOptionals[item.id])
 		.map((item) => item.label);
+
+	// Add quantity-based items to WhatsApp message
+	for (const item of quantityBasedItems) {
+		const quantity = quantityBasedCounts[item.id] ?? 0;
+		if (quantity > 0) {
+			selectedAddOnLabels.push(`${quantity} ${item.label}`);
+		}
+	}
 
 	const whatsappMessage =
 		selectedAddOnLabels.length > 0
@@ -218,70 +302,161 @@ export function PlanCard({
 							<p className="mb-4 text-sm">{plan.description}</p>
 						)}
 
-						{Object.values(plan.features).length > 0 && (
+						{Object.entries(plan.features).filter(
+							([_, feature]) => feature.show !== false,
+						).length > 0 && (
 							<>
 								<h3 className="text-base font-semibold mb-2">
 									What's Included:
 								</h3>
 								<ul className="space-y-3">
-									{Object.entries(plan.features).map(([key, feature]) => (
-										<li key={key} className="flex items-start text-sm gap-2">
-											<CheckIcon className="text-success mt-1 h-4 w-4 shrink-0" />
-											<div className="flex flex-col">
-												<span className="font-medium">{feature.label}</span>
-												{feature.pitch && (
-													<span className="text-xs italic text-default-500">
-														{feature.pitch}
-													</span>
-												)}
-											</div>
-										</li>
-									))}
+									{Object.entries(plan.features)
+										.filter(([_, feature]) => feature.show !== false)
+										.map(([key, feature]) => (
+											<li key={key} className="flex items-start text-sm gap-2">
+												<CheckIcon className="text-success mt-1 h-4 w-4 shrink-0" />
+												<div className="flex flex-col">
+													<span className="font-medium">{feature.label}</span>
+													{feature.pitch && (
+														<span className="text-xs italic text-default-500">
+															{feature.pitch}
+														</span>
+													)}
+												</div>
+											</li>
+										))}
 								</ul>
 							</>
 						)}
 
-						{optionalItems.length > 0 && (
+						{/* Add-ons - combines both regular optional items and quantity-based items */}
+						{allOptionalItems.length > 0 && (
 							<>
-								<h3 className="text-base font-semibold mt-5 mb-2">
-									Optional Add-ons:
-								</h3>
-								<div className="flex flex-wrap gap-2">
-									{optionalItems.map((item) => (
-										<div
-											key={item.id}
-											className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm cursor-pointer transition-colors ${
-												selectedOptionals[item.id]
-													? "bg-success-50 border border-success-200"
-													: "hover:bg-default-50 border border-transparent"
-											}`}
-										>
-											<Checkbox
-												id={`optional-${item.id}`}
-												color="success"
-												isSelected={!!selectedOptionals[item.id]}
-												onValueChange={() => toggleOptional(item.id)}
-											/>
-											<label
-												htmlFor={`optional-${item.id}`}
-												className="flex flex-col text-sm cursor-pointer"
+								<h3 className="text-base font-semibold mt-5 mb-2">Add-ons:</h3>
+								<div className="space-y-3">
+									{/* Quantity-based items */}
+									{quantityBasedItems.map((item) => {
+										const quantity = quantityBasedCounts[item.id] ?? 0;
+										const itemCost: AmountByCurrency = {};
+										const currencies: CurrencyCode[] = ["USD", "GYD", "JMD"];
+
+										for (const currency of currencies) {
+											const perUnitAmount = getDiscountedAmount(item, currency);
+											const total = perUnitAmount * quantity;
+											if (total > 0) {
+												itemCost[currency] = total;
+											}
+										}
+
+										return (
+											<div
+												key={item.id}
+												className="p-4 bg-default-50 rounded-lg border border-default-200"
 											>
-												<span className="font-medium">{item.label}</span>
-												{item.description && (
-													<span className="text-xs text-default-500 italic mt-1">
-														{item.description}
-													</span>
-												)}
-												<span className="text-xs text-success-600 font-semibold mt-1">
-													+{" "}
-													<Price
-														amount={item.amount}
-														preferredCurrency={preferredCurrency}
+												<div className="flex items-center justify-between mb-2">
+													<div className="flex flex-col">
+														<span className="text-sm font-medium">
+															{item.label}
+														</span>
+														{item.description && (
+															<span className="text-xs text-default-500 mt-1">
+																{item.description}
+															</span>
+														)}
+													</div>
+												</div>
+												<div className="flex items-center justify-between mt-3">
+													<div className="flex items-center gap-3">
+														<Button
+															variant="bordered"
+															size="sm"
+															onClick={() => decrementQuantity(item.id)}
+															disabled={quantity === 0}
+															className="min-w-[2.5rem]"
+															isIconOnly
+														>
+															<MinusIcon className="w-4 h-4" />
+														</Button>
+														<span className="text-lg font-semibold min-w-[2rem] text-center">
+															{quantity}
+														</span>
+														<Button
+															variant="bordered"
+															size="sm"
+															onClick={() => incrementQuantity(item.id)}
+															className="min-w-[2.5rem]"
+															isIconOnly
+														>
+															<PlusIcon className="w-4 h-4" />
+														</Button>
+													</div>
+													<div className="text-right">
+														<div className="text-sm text-default-600">
+															Per unit:
+														</div>
+														<div className="text-base font-semibold text-success-600">
+															<Price
+																amount={item.amount}
+																preferredCurrency={preferredCurrency}
+															/>
+														</div>
+														{quantity > 0 && (
+															<div className="text-xs text-default-500 mt-1">
+																Total:{" "}
+																<span className="font-semibold">
+																	<Price
+																		amount={itemCost}
+																		preferredCurrency={preferredCurrency}
+																	/>
+																</span>
+															</div>
+														)}
+													</div>
+												</div>
+											</div>
+										);
+									})}
+
+									{/* Regular optional items */}
+									{regularOptionalItems.length > 0 && (
+										<div className="flex flex-wrap gap-2">
+											{regularOptionalItems.map((item) => (
+												<div
+													key={item.id}
+													className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm cursor-pointer transition-colors ${
+														selectedOptionals[item.id]
+															? "bg-success-50 border border-success-200"
+															: "hover:bg-default-50 border border-transparent"
+													}`}
+												>
+													<Checkbox
+														id={`optional-${item.id}`}
+														color="success"
+														isSelected={!!selectedOptionals[item.id]}
+														onValueChange={() => toggleOptional(item.id)}
 													/>
-												</span>
-											</label>
+													<label
+														htmlFor={`optional-${item.id}`}
+														className="flex flex-col text-sm cursor-pointer"
+													>
+														<span className="font-medium">{item.label}</span>
+														{item.description && (
+															<span className="text-xs text-default-500 italic mt-1">
+																{item.description}
+															</span>
+														)}
+														<span className="text-xs text-success-600 font-semibold mt-1">
+															+{" "}
+															<Price
+																amount={item.amount}
+																preferredCurrency={preferredCurrency}
+															/>
+														</span>
+													</label>
+												</div>
+											))}
 										</div>
-									))}
+									)}
 								</div>
 							</>
 						)}
@@ -290,7 +465,8 @@ export function PlanCard({
 			)}
 
 			<CardFooter className="flex flex-col items-start pt-4 gap-2">
-				{optionalItems.length > 0 && (
+				<div className="w-full space-y-2">
+					{/* Base Plan */}
 					<div className="w-full p-3 bg-default-50 rounded-lg border border-default-200">
 						<div className="flex items-center justify-between">
 							<span className="text-sm font-medium text-default-700">
@@ -309,7 +485,53 @@ export function PlanCard({
 							</div>
 						</div>
 					</div>
-				)}
+
+					{/* You Pay Now - total of base plan + all selected optionals */}
+					<div className="w-full p-3 bg-primary-50 rounded-lg border border-primary-200">
+						<div className="flex items-center justify-between">
+							<span className="text-sm font-medium text-primary-700">
+								You pay now:
+							</span>
+							<div className="flex items-center gap-2">
+								<span className="text-lg font-semibold text-primary-700">
+									<Price
+										amount={totalPayNow}
+										preferredCurrency={preferredCurrency}
+									/>
+								</span>
+							</div>
+						</div>
+						{(selectedRegularOptionals.length > 0 ||
+							quantityBasedItems.some(
+								(item) => (quantityBasedCounts[item.id] ?? 0) > 0,
+							)) && (
+							<div className="text-xs text-primary-600 mt-1">
+								Includes base plan
+								{selectedRegularOptionals.length > 0 && (
+									<>
+										{" "}
+										+ {selectedRegularOptionals.length} optional add-on
+										{selectedRegularOptionals.length > 1 ? "s" : ""}
+									</>
+								)}
+								{quantityBasedItems.some(
+									(item) => (quantityBasedCounts[item.id] ?? 0) > 0,
+								) && (
+									<>
+										{selectedRegularOptionals.length > 0 && ", "}
+										{quantityBasedItems
+											.filter((item) => (quantityBasedCounts[item.id] ?? 0) > 0)
+											.map(
+												(item) =>
+													`${quantityBasedCounts[item.id]} ${item.label}`,
+											)
+											.join(", ")}
+									</>
+								)}
+							</div>
+						)}
+					</div>
+				</div>
 
 				{!hideCta && (
 					<Button

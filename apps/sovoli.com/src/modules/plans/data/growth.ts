@@ -29,12 +29,7 @@ export const growthPlan: PlanDefinition = {
 			pitch: "No logo? We'll create a custom one for your brand.",
 			ctaLabel: "Design Logo",
 			covers: ["hasLogo"],
-		},
-		campaignAds: {
-			label: "Campaign Ads",
-			pitch: "We help drive traffic from Meta ads. Minimum $50 per week.",
-			ctaLabel: "Run Campaign Ads",
-			covers: [],
+			show: false,
 		},
 	},
 
@@ -76,6 +71,22 @@ export const growthPlan: PlanDefinition = {
 				},
 				optional: true,
 				notes: "Minimum $50 per week for Meta ads management.",
+			},
+			{
+				id: "additional-programs",
+				label: "Additional Programs",
+				description:
+					"Each additional program setup (Growth plan includes 2 programs)",
+				billingCycle: "one-time",
+				amount: {
+					GYD: 6000, // ~30 USD * 200 GYD/USD (approximate rate)
+					USD: 30,
+					JMD: 4650, // ~30 USD * 155 JMD/USD (approximate rate)
+				},
+				optional: true,
+				isQuantityBased: true,
+				notes:
+					"One-time setup fee per additional program. Growth plan includes 2 programs.",
 			},
 		],
 
