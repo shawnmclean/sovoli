@@ -45,26 +45,6 @@ const industries: IndustryCardData[] = [
 			"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
 		gradient: "from-amber-500 via-orange-500 to-red-500",
 	},
-	{
-		id: "farming",
-		goal: "Reach More Buyers",
-		description:
-			"Connect directly with buyers looking for fresh produce. Showcase your farm and products to hotels, restaurants, and households.",
-		href: "/farming",
-		image:
-			"https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80",
-		gradient: "from-lime-500 via-green-500 to-emerald-500",
-	},
-	{
-		id: "community",
-		goal: "Grow Your Impact",
-		description:
-			"Increase visibility for your cause. Attract donors, volunteers, and community members who believe in your mission.",
-		href: "/community",
-		image:
-			"https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80",
-		gradient: "from-pink-500 via-rose-500 to-red-500",
-	},
 ];
 
 const capabilities: CapabilityCardData[] = [
@@ -161,12 +141,12 @@ export default function BusinessPage() {
 			{/* Industries Grid */}
 			<section className="mx-auto max-w-6xl px-4 pb-24">
 				<div className="mb-12 text-center">
-					<h2 className="mb-4 text-2xl font-bold text-foreground sm:text-3xl">
-						What&apos;s Your Goal?
+					<h2 className="mb-4 text-2xl font-semibold text-foreground sm:text-3xl">
+						Show what you offer, from programs to services and products.
 					</h2>
 					<p className="mx-auto max-w-2xl text-default-500">
-						Every business has a goal. We build digital systems tailored to help
-						you achieve yours.
+						Whether you're a school, training center, service provider, or
+						store, we can help you get more customers online.
 					</p>
 				</div>
 
