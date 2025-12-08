@@ -2,4 +2,4 @@
 
 Docs located in: @docs/
 
-Read the @AGENTs.md there to understand it.
+Read the @AGENTS.md there to understand it.
