@@ -90,8 +90,8 @@ export default function BusinessPage() {
 							{/* Subheadline */}
 							<p className="text-lg text-default-600 md:text-xl md:max-w-md lg:max-w-lg mb-6 sm:mb-8">
 								We build your website, set up your Google profile, and organize
-								your programs, services, products, and projects into a unified
-								digital system that brings you more leads and new customers.
+								your programs, services and products into a unified digital
+								system that brings you more leads and new customers.
 							</p>
 
 							{/* CTA Button */}
