@@ -518,7 +518,7 @@ export function PlanCard({
 									(item) => (quantityBasedCounts[item.id] ?? 0) > 0,
 								) && (
 									<>
-										{selectedRegularOptionals.length > 0 && ", "}
+										{selectedRegularOptionals.length > 0 ? ", " : " + "}
 										{quantityBasedItems
 											.filter((item) => (quantityBasedCounts[item.id] ?? 0) > 0)
 											.map(
@@ -543,7 +543,6 @@ export function PlanCard({
 						className="w-full mt-2"
 						endContent={<RocketIcon className="w-4 h-4" />}
 						intent="Purchase"
-						role="admin"
 						page="pricing"
 						orgId={orgUsername}
 						funnel="upgrade"

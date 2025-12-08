@@ -9,18 +9,20 @@ export const growthPlan: PlanDefinition = {
 		autoVerify: {
 			label: "Sovoli Verification Badge",
 			pitch:
-				"We'll ensure your school is compliant with a trusted badge on our trusted school directory.",
+				"We'll ensure your business is compliant with a trusted badge on our directory.",
 			covers: [],
 		},
 		googleProfile: {
-			label: "Google Business Setup",
-			pitch: "We'll set up or review your Google Business profile.",
+			label: "Google Business Synchronization",
+			pitch:
+				"We'll ensure your Google Business profile is up to date and accurate.",
 			ctaLabel: "Get Google Business",
 			covers: ["hasGoogleProfile"],
 		},
 		website: {
 			label: "Website Setup",
-			pitch: "We'll set up your website with an .edu.gy domain.",
+			pitch:
+				"We'll setup your website with a custom domain and a few high converting pages.",
 			ctaLabel: "Get Website",
 			covers: ["hasWebsite", "hasWebsiteEduDomain"],
 		},
@@ -30,6 +32,13 @@ export const growthPlan: PlanDefinition = {
 			ctaLabel: "Design Logo",
 			covers: ["hasLogo"],
 			show: false,
+		},
+		programs: {
+			label: "Vocational/Academic Programs Setup",
+			pitch:
+				"Two free programs with curriculum, photos, videos, terms, dates, and more.",
+			ctaLabel: "Get Programs",
+			covers: ["hasAcademicPrograms"],
 		},
 	},
 
@@ -42,7 +51,7 @@ export const growthPlan: PlanDefinition = {
 				amount: {
 					GYD: 50000,
 					USD: 250,
-					JMD: 38750, // ~250 USD * 155 JMD/USD (approximate rate)
+					JMD: 40000, // ~250 USD * 155 JMD/USD (approximate rate)
 				},
 				notes: "Annual subscription to the Growth System.",
 			},
@@ -54,7 +63,7 @@ export const growthPlan: PlanDefinition = {
 				amount: {
 					GYD: 5000,
 					USD: 25,
-					JMD: 3875, // ~25 USD * 155 JMD/USD (approximate rate)
+					JMD: 5000, // ~25 USD * 155 JMD/USD (approximate rate)
 				},
 				optional: true,
 				notes: "One-time logo design service.",
@@ -76,12 +85,12 @@ export const growthPlan: PlanDefinition = {
 				id: "additional-programs",
 				label: "Additional Programs",
 				description:
-					"Each additional program setup (Growth plan includes 2 programs)",
+					"Add additional programs, such as grade 1-6, waxing, massages, etc.",
 				billingCycle: "one-time",
 				amount: {
 					GYD: 6000, // ~30 USD * 200 GYD/USD (approximate rate)
 					USD: 30,
-					JMD: 4650, // ~30 USD * 155 JMD/USD (approximate rate)
+					JMD: 4000, // ~30 USD * 155 JMD/USD (approximate rate)
 				},
 				optional: true,
 				isQuantityBased: true,
