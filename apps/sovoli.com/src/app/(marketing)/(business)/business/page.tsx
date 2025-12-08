@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon, Globe, MapPin, Megaphone } from "lucide-react";
 import type { Metadata } from "next";
 import type { IndustryCardData } from "./components/IndustryCard";
 import { IndustryCard } from "./components/IndustryCard";
+import type { CapabilityCardData } from "./components/CapabilityCard";
+import { CapabilityCard } from "./components/CapabilityCard";
 import { DynamicHeadline } from "./components/DynamicHeadline";
 
 export const metadata: Metadata = {
@@ -65,9 +67,30 @@ const industries: IndustryCardData[] = [
 	},
 ];
 
+const capabilities: CapabilityCardData[] = [
+	{
+		title: "Build Your Website",
+		description:
+			"Get a clean, fast website that brings you customers. Built for mobile devices. Add photos, videos, programs, services and more.",
+		icon: Globe,
+	},
+	{
+		title: "Google Business Profile",
+		description:
+			"Show up on Google and Google Maps when people search for you. We set it up properly so customers can find you easily.",
+		icon: MapPin,
+	},
+	{
+		title: "Facebook & Instagram Ads",
+		description:
+			"We run and track your ads on Facebook and Instagram so more of the right customers reach you—without wasting your budget.",
+		icon: Megaphone,
+	},
+];
+
 export default function BusinessPage() {
 	return (
-		<main className="min-h-screen">
+		<main className="min-h-screen pb-20 md:pb-0">
 			{/* Hero Section */}
 			<section className="relative overflow-hidden">
 				{/* Background pattern */}
@@ -89,15 +112,15 @@ export default function BusinessPage() {
 
 							{/* Subheadline */}
 							<p className="text-lg text-default-600 md:text-xl md:max-w-md lg:max-w-lg mb-6 sm:mb-8">
-								We build your website, set up your Google profile, and organize
-								your programs, services and products into a unified digital
-								system that brings you more leads and new customers.
+								We build your website, set up your Google listing, and organize
+								your programs, services, or products into one simple system that
+								brings you more leads and new customers.
 							</p>
 
 							{/* CTA Button */}
 							<Link
 								href="/signup/business"
-								className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold text-white transition-all hover:bg-primary/90"
+								className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold text-white transition-all hover:bg-primary/90"
 							>
 								Get Started
 							</Link>
@@ -114,6 +137,23 @@ export default function BusinessPage() {
 								/>
 							</div>
 						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* Technologies Section */}
+			<section>
+				<div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+					<div className="mb-12 text-center">
+						<h2 className="mb-4 text-2xl font-semibold text-foreground sm:text-3xl lg:text-4xl">
+							See how Sovoli helps your business get more customers online.
+						</h2>
+					</div>
+
+					<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+						{capabilities.map((capability, index) => (
+							<CapabilityCard key={index} capability={capability} />
+						))}
 					</div>
 				</div>
 			</section>
@@ -149,7 +189,7 @@ export default function BusinessPage() {
 					</p>
 					<Link
 						href="/signup/business"
-						className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-secondary px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5"
+						className="hidden md:inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-secondary px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5"
 					>
 						Get Started
 						<ArrowRightIcon className="h-5 w-5" />
