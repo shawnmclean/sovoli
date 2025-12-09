@@ -37,7 +37,7 @@ export default async function GrowthSystemPage() {
 			<Customers />
 			<Features />
 			<Pricing preferredCurrency={preferredCurrency} />
-			<Answers />
+			<Answers trackingEventProperties={trackingProperties} />
 			<CTA trackingEventProperties={trackingProperties} />
 			{/* <Roadmap /> */}
 			{/* <Compare /> */}

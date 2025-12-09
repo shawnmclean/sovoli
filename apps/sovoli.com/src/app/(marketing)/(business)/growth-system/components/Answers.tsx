@@ -1,6 +1,10 @@
 "use client";
 
+import { useRef } from "react";
+import type React from "react";
+import posthog from "posthog-js";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
+import type { TrackingEventProperties } from "./Tracking";
 
 const faqs = [
 	{
@@ -106,7 +110,43 @@ const faqs = [
 	},
 ];
 
-export function Answers() {
+interface AnswersProps {
+	trackingEventProperties?: TrackingEventProperties;
+}
+
+export function Answers({ trackingEventProperties }: AnswersProps) {
+	const previousKeysRef = useRef<Set<string>>(new Set());
+
+	const handleSelectionChange = (
+		keys: Parameters<
+			NonNullable<React.ComponentProps<typeof Accordion>["onSelectionChange"]>
+		>[0],
+	) => {
+		const currentKeys =
+			keys === "all"
+				? new Set(faqs.map((_, i) => String(i)))
+				: new Set(Array.from(keys as Set<unknown>).map(String));
+
+		const newlyOpened = Array.from(currentKeys).filter(
+			(key) => !previousKeysRef.current.has(key),
+		);
+
+		newlyOpened.forEach((key) => {
+			const index = parseInt(key, 10);
+			const faq = faqs[index];
+			if (faq) {
+				posthog.capture("SectionOpened", {
+					content_name: faq.question,
+					content_type: "faq",
+					content_category: "FAQ",
+					...trackingEventProperties,
+				});
+			}
+		});
+
+		previousKeysRef.current = currentKeys;
+	};
+
 	return (
 		<section className="py-8 px-4 sm:py-16 bg-default-50">
 			<div className="mx-auto max-w-4xl">
@@ -121,9 +161,9 @@ export function Answers() {
 				</div>
 
 				<div className="bg-background rounded-xl shadow-lg border border-default-200">
-					<Accordion>
+					<Accordion onSelectionChange={handleSelectionChange}>
 						{faqs.map((faq, index) => (
-							<AccordionItem key={index} title={faq.question}>
+							<AccordionItem key={String(index)} title={faq.question}>
 								{faq.answer}
 							</AccordionItem>
 						))}
