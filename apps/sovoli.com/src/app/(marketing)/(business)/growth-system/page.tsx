@@ -1,9 +1,8 @@
 import { Overview } from "./components/Overview";
 import { Customers } from "./components/Customers";
 import { Features } from "./components/Features";
-// import { Answers } from "./components/Answers";
+import { Answers } from "./components/Answers";
 import { Pricing } from "./components/Pricing";
-import { Diagnostics } from "./components/Diagnostics";
 import { CTA } from "./components/CTA";
 import type { TrackingEventProperties } from "./components/Tracking";
 import { Tracking } from "./components/Tracking";
@@ -37,10 +36,9 @@ export default async function GrowthSystemPage() {
 			<Overview />
 			<Customers />
 			<Features />
-			{/* <Answers /> */}
 			<Pricing preferredCurrency={preferredCurrency} />
+			<Answers />
 			<CTA trackingEventProperties={trackingProperties} />
-			<Diagnostics />
 			{/* <Roadmap /> */}
 			{/* <Compare /> */}
 		</div>
