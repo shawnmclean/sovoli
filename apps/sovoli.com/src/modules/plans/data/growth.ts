@@ -3,14 +3,14 @@ import type { PlanDefinition } from "../types";
 export const growthPlan: PlanDefinition = {
 	key: "growth",
 	title: "Growth System",
-	onboardingNode: "Working with only 1 more school this month.",
 
 	features: {
-		autoVerify: {
-			label: "Sovoli Verification Badge",
+		website: {
+			label: "Website Setup",
 			pitch:
-				"We'll ensure your business is compliant with a trusted badge on our directory.",
-			covers: [],
+				"We'll setup your website with a custom domain and a few high converting pages.",
+			ctaLabel: "Get Website",
+			covers: ["hasWebsite", "hasWebsiteEduDomain"],
 		},
 		googleProfile: {
 			label: "Google Business Synchronization",
@@ -19,12 +19,18 @@ export const growthPlan: PlanDefinition = {
 			ctaLabel: "Get Google Business",
 			covers: ["hasGoogleProfile"],
 		},
-		website: {
-			label: "Website Setup",
+		programs: {
+			label: "Vocational/Academic Programs Setup",
 			pitch:
-				"We'll setup your website with a custom domain and a few high converting pages.",
-			ctaLabel: "Get Website",
-			covers: ["hasWebsite", "hasWebsiteEduDomain"],
+				"Two free programs with curriculum, photos, videos, terms, dates, and more.",
+			ctaLabel: "Get Programs",
+			covers: ["hasAcademicPrograms"],
+		},
+		autoVerify: {
+			label: "Sovoli Verification Badge",
+			pitch:
+				"We'll ensure your business is compliant with a trusted badge on our directory.",
+			covers: [],
 		},
 		logo: {
 			label: "Logo Design",
@@ -32,13 +38,6 @@ export const growthPlan: PlanDefinition = {
 			ctaLabel: "Design Logo",
 			covers: ["hasLogo"],
 			show: false,
-		},
-		programs: {
-			label: "Vocational/Academic Programs Setup",
-			pitch:
-				"Two free programs with curriculum, photos, videos, terms, dates, and more.",
-			ctaLabel: "Get Programs",
-			covers: ["hasAcademicPrograms"],
 		},
 	},
 
@@ -71,7 +70,8 @@ export const growthPlan: PlanDefinition = {
 			{
 				id: "optional-campaign-ads",
 				label: "Campaign Ads",
-				description: "Meta ads management - minimum $50 per week",
+				description:
+					"We run your Meta ads, generate copy, target audiences, and create images. Minimum 1 week, $50/week minimum spend.",
 				billingCycle: "annual",
 				amount: {
 					GYD: 520000,
@@ -79,7 +79,8 @@ export const growthPlan: PlanDefinition = {
 					JMD: 403000, // ~2600 USD * 155 JMD/USD (approximate rate)
 				},
 				optional: true,
-				notes: "Minimum $50 per week for Meta ads management.",
+				notes:
+					"Minimum 1 week campaign duration. $50/week minimum spend to get results and train the system.",
 			},
 			{
 				id: "additional-programs",

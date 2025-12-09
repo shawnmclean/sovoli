@@ -19,6 +19,7 @@ import type {
 	AmountByCurrency,
 } from "~/modules/core/economics/types";
 import type { CurrencyCode } from "~/utils/currencyDetection";
+import { usePreferredCurrency } from "~/hooks/usePreferredCurrency";
 
 interface PlanCardProps {
 	plan: PlanDefinition;
@@ -39,8 +40,10 @@ export function PlanCard({
 	orgUsername,
 	hideHeader = false,
 	hideCta = false,
-	preferredCurrency = "USD",
+	preferredCurrency: serverCurrency = "USD",
 }: PlanCardProps) {
+	// Enhance server-detected currency with client-side timezone detection
+	const preferredCurrency = usePreferredCurrency(serverCurrency);
 	const [selectedOptionals, setSelectedOptionals] = useState<
 		Record<string, boolean>
 	>({});
@@ -265,8 +268,10 @@ export function PlanCard({
 							amount={annualTotals}
 							preferredCurrency={preferredCurrency}
 						/>
+						<span className="text-sm font-normal text-default-500 ml-1">
+							/ year
+						</span>
 					</div>
-					<div className="text-sm text-default-500 mt-1">/ year</div>
 				</div>
 
 				{/* One-time items if any */}
@@ -305,28 +310,23 @@ export function PlanCard({
 						{Object.entries(plan.features).filter(
 							([_, feature]) => feature.show !== false,
 						).length > 0 && (
-							<>
-								<h3 className="text-base font-semibold mb-2">
-									What's Included:
-								</h3>
-								<ul className="space-y-3">
-									{Object.entries(plan.features)
-										.filter(([_, feature]) => feature.show !== false)
-										.map(([key, feature]) => (
-											<li key={key} className="flex items-start text-sm gap-2">
-												<CheckIcon className="text-success mt-1 h-4 w-4 shrink-0" />
-												<div className="flex flex-col">
-													<span className="font-medium">{feature.label}</span>
-													{feature.pitch && (
-														<span className="text-xs italic text-default-500">
-															{feature.pitch}
-														</span>
-													)}
-												</div>
-											</li>
-										))}
-								</ul>
-							</>
+							<ul className="space-y-3">
+								{Object.entries(plan.features)
+									.filter(([_, feature]) => feature.show !== false)
+									.map(([key, feature]) => (
+										<li key={key} className="flex items-start text-sm gap-2">
+											<CheckIcon className="text-success mt-1 h-4 w-4 shrink-0" />
+											<div className="flex flex-col">
+												<span className="font-medium">{feature.label}</span>
+												{feature.pitch && (
+													<span className="text-xs italic text-default-500">
+														{feature.pitch}
+													</span>
+												)}
+											</div>
+										</li>
+									))}
+							</ul>
 						)}
 
 						{/* Add-ons - combines both regular optional items and quantity-based items */}
