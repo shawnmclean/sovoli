@@ -4,6 +4,7 @@ import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { detectCurrency } from "~/utils/currencyDetection";
+import { Answers } from "../(business)/growth-system/components/Answers";
 
 export const metadata: Metadata = {
 	title: "Pricing Plans",
@@ -69,6 +70,9 @@ export default async function PricingPage({
 					/>
 				</div>
 			</section>
+
+			{/* FAQ Section */}
+			<Answers />
 		</main>
 	);
 }
