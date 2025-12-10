@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Media } from "~/modules/core/media/types";
 import { filterVisualMedia } from "~/modules/core/media/types";
@@ -21,6 +22,12 @@ interface ReceivableCategory {
 	title: string;
 	description?: string;
 	items: ReceivableItem[];
+	isAccordion?: boolean;
+	accordionGroups?: Array<{
+		id: string;
+		title: string;
+		items: ReceivableItem[];
+	}>;
 }
 
 interface ReceivablesChecklistProps {
@@ -224,6 +231,11 @@ export function ReceivablesChecklist({
 
 	// ===== PROGRAMS (if they have any) =====
 	const programItems: ReceivableItem[] = [];
+	const programGroups: Array<{
+		id: string;
+		title: string;
+		items: ReceivableItem[];
+	}> = [];
 
 	if (programCount === 0) {
 		programItems.push({
@@ -257,63 +269,71 @@ export function ReceivablesChecklist({
 				program.audience ?? (program.quickFacts?.length ?? 0) > 0,
 			);
 
-			programItems.push(
+			const programGroupItems: ReceivableItem[] = [
 				{
 					id: `${programPrefix}-name`,
-					label: `${programName}: Name`,
+					label: "Name",
 					description: "The name of this program",
 					status: hasName ? "complete" : "missing",
 				},
 				{
 					id: `${programPrefix}-description`,
-					label: `${programName}: Description`,
+					label: "Description",
 					description: "What is this program about? What will students learn?",
 					hint: "2-3 sentences explaining the program",
 					status: hasDescription ? "complete" : "missing",
 				},
 				{
 					id: `${programPrefix}-photos`,
-					label: `${programName}: Photos`,
+					label: "Photos",
 					description: "Photos of this program in action",
 					hint: "Students learning, equipment used, finished projects, etc.",
 					status: hasVisualMedia(program.media) ? "complete" : "missing",
 				},
 				{
 					id: `${programPrefix}-duration`,
-					label: `${programName}: How Long Does It Take?`,
+					label: "How Long Does It Take?",
 					description: "Duration of the program",
 					hint: "e.g., '8 weeks', '3 months', 'One semester'",
 					status: hasCycles ? "complete" : "missing",
 				},
 				{
 					id: `${programPrefix}-schedule`,
-					label: `${programName}: Schedule / Dates`,
+					label: "Schedule / Dates",
 					description: "When does this program run?",
 					hint: "Start date, end date, class days and times",
 					status: hasScheduleDates ? "complete" : "missing",
 				},
 				{
 					id: `${programPrefix}-price`,
-					label: `${programName}: Price / Fees`,
+					label: "Price / Fees",
 					description: "How much does it cost to enroll?",
 					hint: "Include any registration fees, materials, etc.",
 					status: hasPricing ? "complete" : "missing",
 				},
 				{
 					id: `${programPrefix}-highlights`,
-					label: `${programName}: Key Features / Benefits`,
+					label: "Key Features / Benefits",
 					description: "What makes this program special?",
 					hint: "e.g., 'Small class sizes', 'Hands-on training', 'Certificate included'",
 					status: hasHighlights ? "complete" : "missing",
 				},
 				{
 					id: `${programPrefix}-audience`,
-					label: `${programName}: Who Is This For?`,
+					label: "Who Is This For?",
 					description: "Who should enroll in this program?",
 					hint: "e.g., 'Beginners with no experience', 'Ages 18+'",
 					status: hasAudience ? "complete" : "missing",
 				},
-			);
+			];
+
+			// Add to both flat list (for backward compatibility) and grouped structure
+			programItems.push(...programGroupItems);
+			programGroups.push({
+				id: programPrefix,
+				title: programName,
+				items: programGroupItems,
+			});
 		}
 	}
 
@@ -416,6 +436,8 @@ export function ReceivablesChecklist({
 					: "Your Programs / Courses",
 			description: "Details about what you offer",
 			items: programItems,
+			isAccordion: programCount > 0,
+			accordionGroups: programGroups,
 		},
 		{
 			id: "staff",
@@ -433,6 +455,66 @@ export function ReceivablesChecklist({
 			items: socialItems,
 		},
 	];
+
+	const renderItem = (item: ReceivableItem, categoryId: string) => {
+		const isChecked = checkedItems.has(item.id);
+		const fullItemId = `${categoryId}-${item.id}`;
+
+		return (
+			<button
+				type="button"
+				key={item.id}
+				className={`flex items-start gap-3 p-3 rounded-lg border transition-colors cursor-pointer w-full text-left ${
+					isChecked
+						? "bg-success-50 border-success-200"
+						: item.status === "complete"
+							? "border-success-200 bg-success-50/30"
+							: "border-default-200 hover:bg-default-50"
+				}`}
+				onClick={() => toggleItem(item.id)}
+			>
+				<div className="mt-0.5">
+					<Checkbox
+						id={fullItemId}
+						isSelected={isChecked}
+						onValueChange={() => toggleItem(item.id)}
+						color="success"
+					/>
+				</div>
+				<div className="flex-1 min-w-0">
+					<div className="flex items-center gap-2 flex-wrap">
+						<label
+							htmlFor={fullItemId}
+							className={`font-medium cursor-pointer ${
+								isChecked ? "line-through text-default-400" : ""
+							}`}
+						>
+							{item.label}
+						</label>
+						{item.status === "complete" && !isChecked && (
+							<span className="text-xs px-2 py-0.5 rounded-full bg-success-100 text-success-700">
+								✓ We have this
+							</span>
+						)}
+					</div>
+					{item.description && (
+						<p
+							className={`text-sm mt-1 ${
+								isChecked ? "text-default-400" : "text-default-600"
+							}`}
+						>
+							{item.description}
+						</p>
+					)}
+					{item.hint && !isChecked && (
+						<p className="text-xs text-default-400 mt-1 italic">
+							💡 {item.hint}
+						</p>
+					)}
+				</div>
+			</button>
+		);
+	};
 
 	return (
 		<div className="space-y-6">
@@ -462,69 +544,40 @@ export function ReceivablesChecklist({
 							</div>
 						</CardHeader>
 						<CardBody>
-							<div className="space-y-3">
-								{category.items.map((item) => {
-									const isChecked = checkedItems.has(item.id);
-									const fullItemId = `${category.id}-${item.id}`;
+							{category.isAccordion && category.accordionGroups ? (
+								<Accordion variant="bordered" selectionMode="multiple">
+									{category.accordionGroups.map((group) => {
+										const groupCheckedCount = group.items.filter((item) =>
+											checkedItems.has(item.id),
+										).length;
+										const groupTotalCount = group.items.length;
 
-									return (
-										<button
-											type="button"
-											key={item.id}
-											className={`flex items-start gap-3 p-3 rounded-lg border transition-colors cursor-pointer w-full text-left ${
-												isChecked
-													? "bg-success-50 border-success-200"
-													: item.status === "complete"
-														? "border-success-200 bg-success-50/30"
-														: "border-default-200 hover:bg-default-50"
-											}`}
-											onClick={() => toggleItem(item.id)}
-										>
-											<div className="mt-0.5">
-												<Checkbox
-													id={fullItemId}
-													isSelected={isChecked}
-													onValueChange={() => toggleItem(item.id)}
-													color="success"
-												/>
-											</div>
-											<div className="flex-1 min-w-0">
-												<div className="flex items-center gap-2 flex-wrap">
-													<label
-														htmlFor={fullItemId}
-														className={`font-medium cursor-pointer ${
-															isChecked ? "line-through text-default-400" : ""
-														}`}
-													>
-														{item.label}
-													</label>
-													{item.status === "complete" && !isChecked && (
-														<span className="text-xs px-2 py-0.5 rounded-full bg-success-100 text-success-700">
-															✓ We have this
+										return (
+											<AccordionItem
+												key={group.id}
+												title={
+													<div className="flex items-center justify-between w-full pr-4">
+														<span className="font-medium">{group.title}</span>
+														<span className="text-sm text-default-500">
+															{groupCheckedCount} / {groupTotalCount}
 														</span>
+													</div>
+												}
+											>
+												<div className="space-y-3 pt-2">
+													{group.items.map((item) =>
+														renderItem(item, category.id),
 													)}
 												</div>
-												{item.description && (
-													<p
-														className={`text-sm mt-1 ${
-															isChecked
-																? "text-default-400"
-																: "text-default-600"
-														}`}
-													>
-														{item.description}
-													</p>
-												)}
-												{item.hint && !isChecked && (
-													<p className="text-xs text-default-400 mt-1 italic">
-														💡 {item.hint}
-													</p>
-												)}
-											</div>
-										</button>
-									);
-								})}
-							</div>
+											</AccordionItem>
+										);
+									})}
+								</Accordion>
+							) : (
+								<div className="space-y-3">
+									{category.items.map((item) => renderItem(item, category.id))}
+								</div>
+							)}
 						</CardBody>
 					</Card>
 				);
