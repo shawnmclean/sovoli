@@ -445,19 +445,19 @@ export function ReceivablesChecklist({
 				return (
 					<Card key={category.id}>
 						<CardHeader>
-							<div className="flex items-center justify-between">
-								<div>
-									<h2 className="text-lg font-semibold">{category.title}</h2>
+							<div className="flex items-start justify-between gap-4">
+								<div className="flex-1 min-w-0">
+									<div className="flex items-center gap-3 mb-1">
+										<h2 className="text-lg font-semibold">{category.title}</h2>
+										<div className="text-sm font-medium text-default-600">
+											{userCheckedCount} / {totalCount}
+										</div>
+									</div>
 									{category.description && (
-										<p className="text-sm text-default-500 mt-1">
+										<p className="text-sm text-default-500">
 											{category.description}
 										</p>
 									)}
-								</div>
-								<div className="text-right">
-									<div className="text-sm font-medium">
-										{userCheckedCount} / {totalCount}
-									</div>
 								</div>
 							</div>
 						</CardHeader>
