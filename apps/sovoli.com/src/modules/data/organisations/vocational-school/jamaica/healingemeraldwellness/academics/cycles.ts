@@ -1,6 +1,8 @@
 import type { ProgramCycle } from "~/modules/academics/types";
+import { ALICIA_DAVIS } from "../workforce";
 
 // Helper function to create a massage therapy cycle
+// Duration: 3 Days per week (Wed, Thurs, Fri) - 7 Weeks
 const createMassageTherapyCycle = (
 	startDate: string,
 	endDate: string,
@@ -23,22 +25,55 @@ const createMassageTherapyCycle = (
 				label: "Tuition",
 				purpose: "tuition",
 				billingCycle: "program",
-				amount: { JMD: 0 }, // Price TBD
+				amount: { JMD: 100000 },
 			},
 		],
 	},
-	// Teachers will be resolved from workforce module
-	teachers: [],
+	teachers: [ALICIA_DAVIS],
 	capacity,
 	enrolled,
 });
 
-// Massage Therapy cycles - dates to be announced
-export const HEALING_EMERALD_MASSAGE_THERAPY_CYCLE_1: ProgramCycle =
+// Massage Therapy Program cycles
+// 3 Days per week (Wed, Thurs, Fri) - 7 Weeks - 3hrs per day
+// Cost: $100,000 JMD
+
+export const HEALING_EMERALD_MASSAGE_THERAPY_JANUARY_2026: ProgramCycle =
 	createMassageTherapyCycle(
-		"2025-01-01", // TBD
-		"2025-03-31", // TBD
-		"Massage Therapy - Intake TBA",
+		"2026-01-07",
+		"2026-02-25", // 7 weeks later
+		"Massage Therapy - January 2026",
 		10,
 		0,
 	);
+
+export const HEALING_EMERALD_MASSAGE_THERAPY_FEBRUARY_2026: ProgramCycle =
+	createMassageTherapyCycle(
+		"2026-02-25",
+		"2026-04-15", // 7 weeks later
+		"Massage Therapy - February 2026",
+		10,
+		0,
+	);
+
+export const HEALING_EMERALD_MASSAGE_THERAPY_APRIL_2026: ProgramCycle =
+	createMassageTherapyCycle(
+		"2026-04-15",
+		"2026-06-03", // 7 weeks later
+		"Massage Therapy - April 2026",
+		10,
+		0,
+	);
+
+export const HEALING_EMERALD_MASSAGE_THERAPY_JUNE_2026: ProgramCycle =
+	createMassageTherapyCycle(
+		"2026-06-03",
+		"2026-07-22", // 7 weeks later
+		"Massage Therapy - June 2026",
+		10,
+		0,
+	);
+
+// Legacy export for backwards compatibility
+export const HEALING_EMERALD_MASSAGE_THERAPY_CYCLE_1: ProgramCycle =
+	HEALING_EMERALD_MASSAGE_THERAPY_JANUARY_2026;
