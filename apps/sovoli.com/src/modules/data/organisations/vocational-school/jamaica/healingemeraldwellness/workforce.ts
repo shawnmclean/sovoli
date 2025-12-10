@@ -46,8 +46,6 @@ export const ALICIA_DAVIS: WorkforceMember = {
 	id: "001",
 	name: "Alicia Davis",
 	slug: "alicia-davis",
-	image:
-		"/images/orgs/vocational-training/jamaica/healingemeraldwellness/team/alicia.webp",
 	bio: "Alicia Davis is the founder and owner of Healing Emerald Wellness Spa & Training Centre Limited. With a passion for wellness and beauty therapy, she established the centre to provide high-quality spa services and vocational training in massage therapy, waxing, and other wellness disciplines.",
 	quote: "Empowering others through wellness education and self-care.",
 	isPublic: true,

@@ -5,32 +5,37 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { usePathname } from "next/navigation";
 
 export interface AdminSchoolNavigationProps {
-  orgInstance: OrgInstance;
+	orgInstance: OrgInstance;
 }
 
 export function AdminSchoolNavigation({
-  orgInstance,
+	orgInstance,
 }: AdminSchoolNavigationProps) {
-  const pathname = usePathname();
+	const pathname = usePathname();
 
-  return (
-    <Tabs
-      aria-label="Navigation"
-      variant="underlined"
-      selectedKey={pathname}
-      fullWidth
-      className="border-t border-default-200 py-2"
-    >
-      <Tab
-        key={`/${orgInstance.org.username}/dashboard`}
-        title="Overview"
-        href={`/${orgInstance.org.username}/dashboard`}
-      />
-      <Tab
-        key={`/${orgInstance.org.username}/dashboard/growth`}
-        title="Growth"
-        href={`/${orgInstance.org.username}/dashboard/growth`}
-      />
-    </Tabs>
-  );
+	return (
+		<Tabs
+			aria-label="Navigation"
+			variant="underlined"
+			selectedKey={pathname}
+			fullWidth
+			className="border-t border-default-200 py-2"
+		>
+			<Tab
+				key={`/${orgInstance.org.username}/dashboard`}
+				title="Overview"
+				href={`/${orgInstance.org.username}/dashboard`}
+			/>
+			<Tab
+				key={`/${orgInstance.org.username}/dashboard/growth`}
+				title="Growth"
+				href={`/${orgInstance.org.username}/dashboard/growth`}
+			/>
+			<Tab
+				key={`/${orgInstance.org.username}/dashboard/receivables`}
+				title="Information Needed"
+				href={`/${orgInstance.org.username}/dashboard/receivables`}
+			/>
+		</Tabs>
+	);
 }
