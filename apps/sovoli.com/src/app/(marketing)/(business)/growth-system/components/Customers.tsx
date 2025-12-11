@@ -4,37 +4,24 @@ import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { Image } from "@sovoli/ui/components/image";
+import type { GrowthSystemContent } from "../content";
 
-const customers = [
-  {
-    company: "Modern Academy",
-    title: "Increased calls by 300%",
-    quote:
-      "We were getting 2 calls per week from ads, now we're getting 6-8 calls per week without ads.",
-    caseStudyLink: "https://www.ma.edu.gy?ref=sovoli-case-study",
-    logo: "/images/orgs/private-schools/guyana/modernacademy/logo.webp",
-  },
-  {
-    company: "Fit Right Academy",
-    title: "Got our first few students",
-    quote: "Found the right students for our program.",
-    caseStudyLink: "https://www.fitright.gy?ref=sovoli-case-study",
-    logo: "/images/orgs/vocational-training/guyana/fitright/logo.webp",
-  },
-];
+interface CustomersProps {
+	content: GrowthSystemContent["customers"];
+}
 
-export function Customers() {
+export function Customers({ content }: CustomersProps) {
   return (
     <section className="py-6 px-4 sm:py-12">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold">
-            Schools Already Growing With Sovoli
+            {content.title}
           </h2>
         </div>
 
         <div className="space-y-4">
-          {customers.map((customer, index) => (
+          {content.customers.map((customer, index) => (
             <Card key={index} className="bg-background">
               <CardBody>
                 <div className="flex flex-col gap-2">

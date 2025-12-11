@@ -10,6 +10,7 @@ import { Tracking } from "./components/Tracking";
 // import { Compare } from "./components/Compare";
 import { headers } from "next/headers";
 import { detectCurrency } from "~/utils/currencyDetection";
+import { getContent } from "./content";
 
 export const metadata = {
 	title: "Growth System – Sovoli",
@@ -20,25 +21,22 @@ export const metadata = {
 export default async function GrowthSystemPage() {
 	const headersList = await headers();
 	const preferredCurrency = detectCurrency(headersList);
+	const content = getContent("k12");
 
-	const trackingProperties: TrackingEventProperties = {
-		content_name: "Growth System",
-		content_type: "product",
-		content_ids: ["growth-system"],
-		value: 80000,
-		currency: "GYD",
-		predicted_ltv: 1200000,
-		audience: "school-admin",
-	};
+	const trackingProperties: TrackingEventProperties =
+		content.tracking as TrackingEventProperties;
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-background to-default-50">
 			<Tracking trackingEventProperties={trackingProperties} />
-			<Overview />
-			<Customers />
-			<Features />
+			<Overview content={content.overview} />
+			<Customers content={content.customers} />
+			<Features content={content.features} />
 			<Pricing preferredCurrency={preferredCurrency} />
-			<Answers trackingEventProperties={trackingProperties} />
-			<CTA trackingEventProperties={trackingProperties} />
+			<Answers
+				content={content.answers}
+				trackingEventProperties={trackingProperties}
+			/>
+			<CTA content={content.cta} trackingEventProperties={trackingProperties} />
 			{/* <Roadmap /> */}
 			{/* <Compare /> */}
 		</div>

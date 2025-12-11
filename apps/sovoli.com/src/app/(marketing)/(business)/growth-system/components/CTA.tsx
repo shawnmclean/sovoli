@@ -4,15 +4,16 @@ import { Button } from "@sovoli/ui/components/button";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import type { TrackingEventProperties } from "./Tracking";
+import type { GrowthSystemContent } from "../content";
 
 interface CTAProps {
-  message?: string;
+  content: GrowthSystemContent["cta"];
   phoneNumber?: string;
   trackingEventProperties: TrackingEventProperties;
 }
 
 export function CTA({
-  message = "I would like more information on your growth system",
+  content,
   phoneNumber,
   trackingEventProperties,
 }: CTAProps) {
@@ -23,16 +24,15 @@ export function CTA({
           <div className="absolute top-1/2 left-1/2 w-[300%] h-[300%] animate-shine-border shine-border-gradient" />
           <div className="relative bg-background rounded-2xl shadow-xl p-8 sm:p-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
-              Ready to Grow Your School?
+              {content.title}
             </h2>
             <p className="text-lg sm:text-xl text-default-600 mb-8 max-w-2xl mx-auto">
-              Get started today and start converting parent searches into
-              enrollment conversations.
+              {content.description}
             </p>
             <Button
               as={WhatsAppLink}
               phoneNumber={phoneNumber}
-              message={message}
+              message={content.message}
               size="lg"
               color="primary"
               variant="solid"

@@ -11,8 +11,13 @@ import {
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
 import { Button } from "@sovoli/ui/components/button";
+import type { GrowthSystemContent } from "../content";
 
-export function Overview() {
+interface OverviewProps {
+	content: GrowthSystemContent["overview"];
+}
+
+export function Overview({ content }: OverviewProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -24,23 +29,21 @@ export function Overview() {
             <TrendingUpIcon className="h-6 w-6 text-primary-600" />
           </div>
           <h1 className="text-xl sm:text-3xl font-bold text-primary-600">
-            Growth System
+            {content.productName}
           </h1>
         </div>
 
         {/* Title */}
         <h2 className="text-3xl sm:text-5xl font-bold mb-6 leading-tight">
           <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Grow Your School With Digital Marketing Systems
+            {content.title}
           </span>
         </h2>
 
         {/* Description */}
-        <p className="text-base sm:text-xl text-default-600 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-          Sovoli is the only data-driven growth enrollment system built
-          specifically for private schools in <strong>Guyana</strong> and{" "}
-          <strong>Jamaica</strong>.
-        </p>
+        <div className="text-base sm:text-xl text-default-600 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+          {content.description}
+        </div>
 
         {/* Overview Image */}
         <div className="relative mx-2 sm:mx-4">

@@ -30,90 +30,25 @@ import {
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
 import { ChevronLeftIcon } from "lucide-react";
+import type { GrowthSystemContent, IconName } from "../content";
 
-type FeatureKey = "discovery" | "ads" | "diagnostics" | "leadCapture";
+type FeatureKey = string;
+
+const iconMap: Record<IconName, React.ComponentType<{ className?: string }>> = {
+	search: SearchIcon,
+	target: TargetIcon,
+	globe: GlobeIcon,
+	"message-circle": MessageCircleIcon,
+};
 
 interface Screenshot {
   image: StaticImageData;
   footnote?: string;
 }
 
-const features: Record<
-  FeatureKey,
-  {
-    title: string;
-    icon: React.ComponentType<{ className?: string }>;
-    headline: string;
-    description: string;
-    features: string[];
-    screenshots?: Screenshot[];
-    nextFeature?: FeatureKey;
-  }
-> = {
-  discovery: {
-    title: "Discovery",
-    icon: SearchIcon,
-    headline: "Parents are searching.",
-    description:
-      "A mother opens her phone and types ‘best schools near me.’ Your school appears at the top.",
-    features: [
-      "Show up when parents search online",
-      "Appear on Google and Bing maps",
-      "Be listed in trusted school directories",
-    ],
-    screenshots: [
-      {
-        image: bingResultImage,
-        footnote: "We rank on the first pages of Google and Bing.",
-      },
-      {
-        image: googleResultImage,
-        footnote: "Fully fleshed out Maps listing to show up for more parents.",
-      },
-      {
-        image: sovoliDirectoryImage,
-        footnote: "Rank up in our directory with over 500+ monthly visitors.",
-      },
-    ],
-    nextFeature: "ads",
-  },
-  ads: {
-    title: "Ads",
-    icon: TargetIcon,
-    headline: "Intelligent Advertising",
-    description:
-      "A mother nearby is scrolling through Facebook when she sees your ad. We put even more families in front of your school.",
-    features: [
-      "We run and manage Facebook + Instagram ads for you.",
-      "Target the right parents in your local area automatically",
-      "Ad performance reports (how much did you spend? how many leads did you get? how much did you earn?)",
-    ],
-    nextFeature: "diagnostics",
-  },
-  diagnostics: {
-    title: "Website",
-    icon: GlobeIcon,
-    headline: "Professional Website Built for Mobile",
-    description:
-      "Majority of parents are using mobile devices to search for schools, so we build a website that works perfectly on mobile.",
-    features: [
-      "Program Finder page to showcase your programs",
-      "Comprehensive program details page",
-      "School Calendar to showcase your events and activities",
-      "AI Chatbot to answer parent questions",
-      "Enrollment and schedule visitation flows",
-    ],
-    nextFeature: "leadCapture",
-  },
-  leadCapture: {
-    title: "WhatsApp",
-    icon: MessageCircleIcon,
-    headline: "Convert Visitors Into Conversations",
-    description:
-      "Guyanese parents prefer to communicate via WhatsApp. So we send high quality leads to your WhatsApp number.",
-    features: ["One-click WhatsApp chat", "Follow-up reminders"],
-  },
-};
+interface FeaturesProps {
+	content: GrowthSystemContent["features"];
+}
 
 // Modal Component for full-screen image viewing
 function FeatureImageModal({
@@ -304,17 +239,18 @@ function FeatureImageCarousel({
   );
 }
 
-export function Features() {
-  const [selectedTab, setSelectedTab] = useState<FeatureKey>("discovery");
+export function Features({ content }: FeaturesProps) {
+  const featureKeys = Object.keys(content.features);
+  const [selectedTab, setSelectedTab] = useState<FeatureKey>(featureKeys[0] ?? "");
 
-  const currentFeature = features[selectedTab];
-  const nextFeatureKey = currentFeature.nextFeature ?? null;
+  const currentFeature = content.features[selectedTab];
+  const nextFeatureKey = currentFeature?.nextFeature ?? null;
 
   return (
     <section className="py-6 px-4 sm:py-12">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold">Features</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold">{content.title}</h2>
         </div>
 
         <Tabs
@@ -322,8 +258,8 @@ export function Features() {
           onSelectionChange={(key) => setSelectedTab(key as FeatureKey)}
           className="w-full"
         >
-          {Object.entries(features).map(([key, feature]) => {
-            const IconComponent = feature.icon;
+          {Object.entries(content.features).map(([key, feature]) => {
+            const IconComponent = iconMap[feature.icon];
             const isCurrentTab = key === selectedTab;
             const currentNextKey = isCurrentTab ? nextFeatureKey : null;
 
@@ -368,13 +304,13 @@ export function Features() {
                         alt={feature.headline}
                       />
                     )}
-                    {isCurrentTab && currentNextKey && (
+                    {isCurrentTab && currentNextKey && content.features[currentNextKey] && (
                       <div className="mt-6 flex justify-end">
                         <Button
                           onPress={() => setSelectedTab(currentNextKey)}
                           className="gap-2"
                         >
-                          Next: Learn about {features[currentNextKey].title}
+                          Next: Learn about {content.features[currentNextKey]?.title}
                           <ChevronRightIcon className="h-4 w-4" />
                         </Button>
                       </div>
