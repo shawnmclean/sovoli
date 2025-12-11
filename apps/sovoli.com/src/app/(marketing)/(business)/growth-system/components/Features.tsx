@@ -17,9 +17,6 @@ import {
   MessageCircleIcon,
   ChevronRightIcon,
 } from "lucide-react";
-import bingResultImage from "./bing-result.png";
-import googleResultImage from "./google-maps.png";
-import sovoliDirectoryImage from "./sovoli-directory.png";
 import type { StaticImageData } from "next/image";
 import { Button } from "@sovoli/ui/components/button";
 import {
@@ -310,7 +307,7 @@ export function Features({ content }: FeaturesProps) {
                           onPress={() => setSelectedTab(currentNextKey)}
                           className="gap-2"
                         >
-                          Next: Learn about {content.features[currentNextKey]?.title}
+                          Next: Learn about {content.features[currentNextKey].title}
                           <ChevronRightIcon className="h-4 w-4" />
                         </Button>
                       </div>
