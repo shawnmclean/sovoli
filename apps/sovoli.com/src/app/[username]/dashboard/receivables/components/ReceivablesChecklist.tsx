@@ -23,11 +23,11 @@ interface ReceivableCategory {
 	description?: string;
 	items: ReceivableItem[];
 	isAccordion?: boolean;
-	accordionGroups?: Array<{
-		id: string;
-		title: string;
-		items: ReceivableItem[];
-	}>;
+        accordionGroups?: {
+                id: string;
+                title: string;
+                items: ReceivableItem[];
+        }[];
 }
 
 interface ReceivablesChecklistProps {
@@ -231,11 +231,11 @@ export function ReceivablesChecklist({
 
 	// ===== PROGRAMS (if they have any) =====
 	const programItems: ReceivableItem[] = [];
-	const programGroups: Array<{
-		id: string;
-		title: string;
-		items: ReceivableItem[];
-	}> = [];
+        const programGroups: {
+                id: string;
+                title: string;
+                items: ReceivableItem[];
+        }[] = [];
 
 	if (programCount === 0) {
 		programItems.push({
