@@ -23,7 +23,6 @@ See: https://cloud.tiptap.dev/v1/pro-extensions
 
 - Framework: [Next.js](https://nextjs.org/)
 - Media Storage: [Cloudinary](https://cloudinary.com/)
-- Database: [Supabas Postgres](https://supabase.com/)
 - LLM: [OpenAI](https://openai.com/), [Gemini](https://gemini.google.com/)
 
 Some links:

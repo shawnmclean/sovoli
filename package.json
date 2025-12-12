@@ -34,7 +34,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@10.22.0+sha256.053a8493e8e328a3c6d7ff5cb079bef28719152ccf831e4666b5c0332b77bb88",
+  "packageManager": "pnpm@10.25.0+sha256.0f3726654b0b5e52e5800904de168afc3c667e2abf84bdb06d9ac1386104bd90",
   "prettier": "@sovoli/prettier-config",
   "dependencies": {
     "react-to-print": "^3.1.1"
