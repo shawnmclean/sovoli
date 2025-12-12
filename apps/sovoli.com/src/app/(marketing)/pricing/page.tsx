@@ -4,8 +4,8 @@ import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { detectCurrency } from "~/utils/currencyDetection";
-import { Answers } from "../(business)/growth-system/components/Answers";
-import { getContent } from "../(business)/growth-system/content";
+import { Answers } from "../(business)/business/_growth-system/components/Answers";
+import { getContent } from "../(business)/business/_growth-system/content";
 
 export const metadata: Metadata = {
 	title: "Pricing Plans",
