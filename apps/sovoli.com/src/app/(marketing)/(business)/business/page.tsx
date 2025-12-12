@@ -6,7 +6,7 @@ import { IndustryCard } from "./components/IndustryCard";
 import type { CapabilityCardData } from "./components/CapabilityCard";
 import { CapabilityCard } from "./components/CapabilityCard";
 import { DynamicHeadline } from "./components/DynamicHeadline";
-import { BUSINESS_CATEGORIES, growthSystemHref } from "./categories";
+import { BUSINESS_CATEGORIES, businessCategoryHref } from "./categories";
 
 export const metadata: Metadata = {
 	title: "Sovoli Business – Digitize Your Organization",
@@ -125,7 +125,7 @@ export default function BusinessPage() {
 								id: category.id,
 								goal: category.label,
 								description: category.shortDescription,
-								href: growthSystemHref(category.id),
+                                                                href: businessCategoryHref(category.id),
 								image: category.image,
 								gradient: category.gradient,
 							}}
