@@ -20,7 +20,7 @@ import { usePathname } from "next/navigation";
 import { MenuIcon } from "lucide-react";
 
 const menuItems = [
-	{ name: "Growth System", href: "/growth-system" },
+	{ name: "Business", href: "/business" },
 	{ name: "Pricing", href: "/pricing" },
 ];
 
