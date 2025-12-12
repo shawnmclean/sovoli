@@ -1,6 +1,6 @@
 "use client";
 
-import { TrendingUpIcon, ChevronLeftIcon } from "lucide-react";
+import { ChevronLeftIcon } from "lucide-react";
 import Image from "next/image";
 import overviewImage from "./overview.webp";
 import {
@@ -23,25 +23,17 @@ export function Overview({ content }: OverviewProps) {
   return (
     <section className="py-6 px-2 sm:py-16">
       <div className="mx-auto max-w-6xl text-center">
-        {/* Product Icon and Name */}
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <div className="w-9 h-9 bg-primary-100 rounded-lg flex items-center justify-center">
-            <TrendingUpIcon className="h-6 w-6 text-primary-600" />
-          </div>
-          <h1 className="text-xl sm:text-3xl font-bold text-primary-600">
-            {content.productName}
-          </h1>
-        </div>
-
         {/* Title */}
-        <h2 className="text-3xl sm:text-5xl font-bold mb-6 leading-tight">
+        <h2 className="text-3xl sm:text-5xl font-bold mb-6 leading-tight text-foreground">
+          Grow your{" "}
           <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            {content.title}
-          </span>
+            {content.businessType}
+          </span>{" "}
+          with Digital Marketing Systems
         </h2>
 
         {/* Description */}
-        <div className="text-base sm:text-xl text-default-600 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+        <div className="text-base sm:text-xl text-foreground mb-8 max-w-4xl mx-auto leading-relaxed px-4">
           {content.description}
         </div>
 

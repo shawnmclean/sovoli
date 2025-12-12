@@ -26,19 +26,28 @@ export function Customers({ content }: CustomersProps) {
               <CardBody>
                 <div className="flex flex-col gap-2">
                   {/* Header with Logo, Company Name, and Case Study Button */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-start gap-3">
                       {/* Company Logo */}
                       <Image
                         src={customer.logo}
                         alt={`${customer.company} logo`}
-                        width={32}
-                        height={32}
+                        width={40}
+                        height={40}
+                        className="flex-shrink-0"
                       />
-                      {/* Company Name */}
-                      <h3 className="text-xl font-semibold text-default-800">
-                        {customer.company}
-                      </h3>
+                      <div className="flex flex-col gap-0.5">
+                        {/* Company Name */}
+                        <h3 className="text-xl font-semibold text-default-800">
+                          {customer.company}
+                        </h3>
+                        {/* Category */}
+                        {customer.category && (
+                          <p className="text-sm text-default-500">
+                            {customer.category}
+                          </p>
+                        )}
+                      </div>
                     </div>
 
                     {/* Case Study Button */}
@@ -46,9 +55,10 @@ export function Customers({ content }: CustomersProps) {
                       as={Link}
                       target="_blank"
                       href={customer.caseStudyLink}
-                      variant="bordered"
-                      color="default"
+                      variant="solid"
+                      color="primary"
                       size="sm"
+                      className="flex-shrink-0"
                     >
                       View
                     </Button>
