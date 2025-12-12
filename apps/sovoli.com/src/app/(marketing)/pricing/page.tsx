@@ -4,8 +4,8 @@ import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { detectCurrency } from "~/utils/currencyDetection";
-import { Answers } from "../(business)/growth-system/components/Answers";
-import { getContent } from "../(business)/growth-system/content";
+import { Answers } from "../(business)/business/_growth-system/components/Answers";
+import { getContent } from "../(business)/business/_growth-system/content";
 
 export const metadata: Metadata = {
 	title: "Pricing Plans",
@@ -19,11 +19,12 @@ export default async function PricingPage({
 	searchParams: Promise<{ org: string }>;
 }) {
 	const { org } = await searchParams;
-        const headersList = await headers();
-        const preferredCurrency = detectCurrency(headersList);
-        const { answers } = getContent("k12");
+	const headersList = await headers();
+	const preferredCurrency = detectCurrency(headersList);
+	const content = getContent("k12");
+	const { answers } = content;
 
-        const ruleSet = categoryRuleSets["private-school"];
+	const ruleSet = categoryRuleSets["private-school"];
 
 	if (!ruleSet) {
 		return <div>No rule set found</div>;
@@ -73,8 +74,8 @@ export default async function PricingPage({
 				</div>
 			</section>
 
-                        {/* FAQ Section */}
-                        <Answers content={answers} />
-                </main>
-        );
+			{/* FAQ Section */}
+			<Answers content={answers} />
+		</main>
+	);
 }
