@@ -1,7 +1,6 @@
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { detectCurrency } from "~/utils/currencyDetection";
-import type { BusinessCategory } from "../../categories";
 import { isBusinessCategory } from "../../categories";
 
 import { getContent } from "../../_growth-system/content";
@@ -45,7 +44,7 @@ export default async function BusinessCategoryGrowthSystemPage({
 
 	const headersList = await headers();
 	const preferredCurrency = detectCurrency(headersList);
-	const content = getContent(category as BusinessCategory);
+	const content = getContent(category);
 	const trackingProperties: TrackingEventProperties =
 		content.tracking as TrackingEventProperties;
 

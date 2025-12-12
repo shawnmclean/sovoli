@@ -1,6 +1,6 @@
-import { sql } from "@vercel/postgres";
-import { drizzle } from "drizzle-orm/vercel-postgres";
-
-import * as schema from "./schema";
-
-export const db = drizzle(sql, { schema, logger: false });
+// Mock db client to maintain structure after removing Drizzle
+// This is a placeholder that maintains the same type structure
+export const db = {
+	// Mock object - can be extended if needed
+	// The actual implementation will be provided by services that use it
+} as const;

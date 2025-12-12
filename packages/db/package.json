@@ -1,44 +1,26 @@
 {
-  "name": "@sovoli/db",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "exports": {
-    ".": "./src/index.ts",
-    "./schema": "./src/schema/index.ts"
-  },
-  "scripts": {
-    "build": "tsc",
-    "clean": "git clean -xdf node_modules dist .turbo",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint",
-    "migrate": "pnpm with-env drizzle-kit migrate",
-    "generate": "pnpm with-env drizzle-kit generate",
-    "push": "pnpm with-env drizzle-kit push",
-    "seed": "pnpm with-env tsx ./src/seed/index.ts",
-    "studio": "pnpm with-env drizzle-kit studio",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "with-env": "dotenv -e ../../.env --"
-  },
-  "dependencies": {
-    "@vercel/postgres": "0.9.0",
-    "@auth/drizzle-adapter": "1.4.2",
-    "next-auth": "5.0.0-beta.20",
-    "drizzle-orm": "0.33.0",
-    "drizzle-zod": "0.5.1",
-    "zod": "3.25.76",
-    "@paralleldrive/cuid2": "2.2.2"
-  },
-  "devDependencies": {
-    "@sovoli/eslint-config": "workspace:*",
-    "@sovoli/typescript-config": "workspace:*",
-    "@sovoli/prettier-config": "workspace:*",
-    "dotenv-cli": "7.4.2",
-    "drizzle-kit": "0.24.2",
-    "eslint": "catalog:",
-    "prettier": "catalog:",
-    "typescript": "catalog:",
-    "tsx": "4.19.1"
-  },
-  "prettier": "@sovoli/prettier-config"
+	"name": "@sovoli/db",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./schema": "./src/schema/index.ts"
+	},
+	"scripts": {
+		"build": "tsc",
+		"clean": "git clean -xdf node_modules dist .turbo",
+		"format": "prettier --check . --ignore-path ../../.gitignore",
+		"lint": "eslint",
+		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
+	},
+	"devDependencies": {
+		"@sovoli/eslint-config": "workspace:*",
+		"@sovoli/typescript-config": "workspace:*",
+		"@sovoli/prettier-config": "workspace:*",
+		"eslint": "catalog:",
+		"prettier": "catalog:",
+		"typescript": "catalog:"
+	},
+	"prettier": "@sovoli/prettier-config"
 }

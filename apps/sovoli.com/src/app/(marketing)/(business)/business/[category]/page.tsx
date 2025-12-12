@@ -5,7 +5,6 @@ import { ArrowRightIcon } from "lucide-react";
 import {
 	getBusinessCategoryMeta,
 	isBusinessCategory,
-	type BusinessCategory,
 	growthSystemHref,
 } from "../categories";
 
@@ -38,7 +37,7 @@ export default async function BusinessCategoryLandingPage({
 		notFound();
 	}
 
-	const meta = getBusinessCategoryMeta(category as BusinessCategory);
+	const meta = getBusinessCategoryMeta(category);
 
 	return (
 		<main className="min-h-screen pb-20 md:pb-0">

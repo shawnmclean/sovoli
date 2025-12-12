@@ -1,42 +1,38 @@
 {
-  "name": "@sovoli/root",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
-    "clean": "git clean -xdf node_modules .turbo",
-    "clean:workspaces": "turbo run clean",
-    "db:push": "turbo -F @sovoli/db push",
-    "db:migrate": "turbo -F @sovoli/db migrate",
-    "db:seed": "turbo -F @sovoli/db seed",
-    "db:studio": "turbo -F @sovoli/db studio",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
-    "typecheck": "turbo run typecheck"
-  },
-  "devDependencies": {
-    "prettier": "catalog:",
-    "@biomejs/biome": "2.3.8",
-    "turbo": "2.5.6"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@babel/*",
-        "typescript"
-      ]
-    }
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "pnpm@10.25.0+sha256.0f3726654b0b5e52e5800904de168afc3c667e2abf84bdb06d9ac1386104bd90",
-  "prettier": "@sovoli/prettier-config",
-  "dependencies": {
-    "react-to-print": "^3.1.1"
-  }
+	"name": "@sovoli/root",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "turbo run dev",
+		"build": "turbo run build",
+		"lint": "turbo run lint",
+		"clean": "git clean -xdf node_modules .turbo",
+		"clean:workspaces": "turbo run clean",
+		"format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
+		"typecheck": "turbo run typecheck"
+	},
+	"devDependencies": {
+		"prettier": "catalog:",
+		"@biomejs/biome": "2.3.8",
+		"turbo": "2.5.6"
+	},
+	"pnpm": {
+		"peerDependencyRules": {
+			"ignoreMissing": [
+				"@babel/*",
+				"typescript"
+			]
+		}
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"packageManager": "pnpm@10.25.0+sha256.0f3726654b0b5e52e5800904de168afc3c667e2abf84bdb06d9ac1386104bd90",
+	"prettier": "@sovoli/prettier-config",
+	"dependencies": {
+		"react-to-print": "^3.1.1"
+	}
 }
