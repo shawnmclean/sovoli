@@ -13,7 +13,7 @@ This is a **monorepo** organized as follows:
 - **Apps**: `apps/sovoli.com` - Main Next.js 15.5.7 application with App Router
 - **Packages**: 
   - `@sovoli/db` - Database client and schema (currently mock/placeholder)
-  - `@sovoli/ui` - Shared UI component library
+  - `@sovoli/ui` - Shared UI component library, built on HeroUI
   - `@sovoli/eslint-config` - Shared ESLint configuration
   - `@sovoli/typescript-config` - Shared TypeScript configuration
   - `@sovoli/prettier-config` - Shared Prettier configuration
@@ -25,7 +25,7 @@ This is a **monorepo** organized as follows:
 - **Language**: TypeScript 5.9.3 (strict mode)
 - **Media**: Cloudinary for media storage
 - **Background Jobs**: Trigger.dev
-- **Authentication**: NextAuth 5.0.0-beta.25
+- **Authentication**: None as yet
 - **Analytics**: PostHog
 - **Observability**: OpenTelemetry
 
@@ -39,8 +39,9 @@ This is a **monorepo** organized as follows:
 ### Initial Setup
 
 1. Install dependencies: `pnpm install` (run at root)
-2. Set up environment variables: Create `.env` file at root level
-3. Environment variables are loaded via `dotenv-cli` using `pnpm with-env` command
+2. Set up environment variables: Copy `.env.example` to `.env` at root level
+   - The `.env` file is required for build and testing
+   - Environment variables are loaded via `dotenv-cli` using `pnpm with-env` command
 
 ### Development Commands
 
@@ -108,11 +109,6 @@ All checks should pass before committing changes.
 - **Catalog pattern** for shared dependency versions in `pnpm-workspace.yaml`
 - Internal packages are referenced as: `@sovoli/db`, `@sovoli/ui`, etc.
 
-## CI/CD Expectations
-
-- No GitHub Actions workflows currently in repository
-- Expected checks before merging: `pnpm lint`, `pnpm typecheck`, `pnpm build`
-- All quality checks must pass
 
 ## Documentation
 
