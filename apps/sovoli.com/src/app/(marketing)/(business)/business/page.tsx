@@ -2,50 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon, Globe, MapPin, Megaphone } from "lucide-react";
 import type { Metadata } from "next";
-import type { IndustryCardData } from "./components/IndustryCard";
 import { IndustryCard } from "./components/IndustryCard";
 import type { CapabilityCardData } from "./components/CapabilityCard";
 import { CapabilityCard } from "./components/CapabilityCard";
 import { DynamicHeadline } from "./components/DynamicHeadline";
+import { BUSINESS_CATEGORIES, growthSystemHref } from "./categories";
 
 export const metadata: Metadata = {
 	title: "Sovoli Business – Digitize Your Organization",
 	description:
 		"Websites, Google visibility, programs, services, products, and projects — all in one place. Digital solutions for Caribbean businesses.",
 };
-
-const industries: IndustryCardData[] = [
-	{
-		id: "education",
-		goal: "Increase Enrollment",
-		description:
-			"Turn parent searches into enrollment conversations. Get discovered on Google, build a professional website, and capture leads on WhatsApp.",
-		href: "/growth-system",
-		image:
-			"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
-		gradient: "from-blue-500 via-indigo-500 to-violet-500",
-	},
-	{
-		id: "services",
-		goal: "Get More Clients",
-		description:
-			"Showcase your expertise online. Get found by people searching for your services and convert visitors into paying clients.",
-		href: "/services",
-		image:
-			"https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80",
-		gradient: "from-emerald-500 via-teal-500 to-cyan-500",
-	},
-	{
-		id: "retail",
-		goal: "Increase Sales",
-		description:
-			"Get your products in front of more buyers. Build an online storefront and reach customers beyond your physical location.",
-		href: "/retail",
-		image:
-			"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
-		gradient: "from-amber-500 via-orange-500 to-red-500",
-	},
-];
 
 const capabilities: CapabilityCardData[] = [
 	{
@@ -138,21 +105,31 @@ export default function BusinessPage() {
 				</div>
 			</section>
 
-			{/* Industries Grid */}
-			<section className="mx-auto max-w-6xl px-4 pb-24">
+			{/* Growth System by Business Type */}
+			<section className="mx-auto max-w-6xl px-4 pb-16">
 				<div className="mb-12 text-center">
 					<h2 className="mb-4 text-2xl font-semibold text-foreground sm:text-3xl">
 						Show what you offer, from programs to services and products.
 					</h2>
 					<p className="mx-auto max-w-2xl text-default-500">
-						Whether you're a school, training center, service provider, or
-						store, we can help you get more customers online.
+						Start with your business type, then explore the system built to help
+						you get discovered and convert visitors into customers.
 					</p>
 				</div>
 
 				<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-					{industries.map((industry) => (
-						<IndustryCard key={industry.id} industry={industry} />
+					{BUSINESS_CATEGORIES.map((category) => (
+						<IndustryCard
+							key={category.id}
+							industry={{
+								id: category.id,
+								goal: category.label,
+								description: category.shortDescription,
+								href: growthSystemHref(category.id),
+								image: category.image,
+								gradient: category.gradient,
+							}}
+						/>
 					))}
 				</div>
 			</section>

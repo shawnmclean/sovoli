@@ -23,14 +23,19 @@ const menuItems = [
 		href: "/business",
 	},
 	{
-		key: "education",
-		name: "Education",
-		href: "/growth-system",
+		key: "k12",
+		name: "K-12",
+		href: "/business/k12",
 	},
 	{
-		key: "services",
-		name: "Services",
-		href: "/services",
+		key: "skills-training",
+		name: "Skills Training",
+		href: "/business/skills-training",
+	},
+	{
+		key: "bookstore",
+		name: "Bookstore",
+		href: "/business/bookstore",
 	},
 ];
 

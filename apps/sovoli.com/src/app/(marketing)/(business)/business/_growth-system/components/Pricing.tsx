@@ -1,7 +1,7 @@
 "use client";
 
 import { growthPlan } from "~/modules/plans/data/growth";
-import { PlanCard } from "../../../pricing/components/PlanCard";
+import { PlanCard } from "../../../../pricing/components/PlanCard";
 import type { CurrencyCode } from "~/utils/currencyDetection";
 
 interface PricingProps {
