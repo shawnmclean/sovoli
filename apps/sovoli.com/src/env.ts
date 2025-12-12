@@ -18,7 +18,6 @@ export const env = createEnv({
 	 * This way you can ensure the app isn't built with invalid env vars.
 	 */
 	server: {
-		POSTGRES_URL: z.string().url(),
 		TRIGGER_SECRET_KEY: z.string(),
 		CLOUDINARY_API_SECRET: z.string().min(1),
 		CLOUDINARY_API_KEY: z.string().min(1),
