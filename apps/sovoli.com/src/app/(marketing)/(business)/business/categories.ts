@@ -65,9 +65,5 @@ export function getBusinessCategoryMeta(
 }
 
 export function businessCategoryHref(category: BusinessCategory) {
-	return `/business/${category}`;
-}
-
-export function growthSystemHref(category: BusinessCategory) {
-	return `/business/${category}/growth-system`;
+        return `/business/${category}`;
 }
