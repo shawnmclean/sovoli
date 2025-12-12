@@ -44,8 +44,6 @@ jobs:
 
       - name: 📦 Install dependencies
         run: pnpm install
-        env:
-          NPM_CONFIG_TIPTAP_PRO_TOKEN: ${{ secrets.NPM_CONFIG_TIPTAP_PRO_TOKEN }}
 
       - name: Build
         run: pnpm build
@@ -55,7 +53,7 @@ jobs:
 
       - name: Lint
         run: pnpm lint
-      
+
       # - name: 🚀 Preview Trigger.dev
       #   if: github.event_name == 'pull_request'
       #   env:

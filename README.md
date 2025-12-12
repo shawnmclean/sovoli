@@ -6,19 +6,6 @@ WIP: nothing here to see, pls leave.
 
 Setup the environment variables:
 
-### Tiptap Pro
-
-```bash
-echo 'export NPM_CONFIG_TIPTAP_PRO_TOKEN={token}' >> ~/.bash_profile
-source ~/.bash_profile
-```
-
-```powershell
-$env:NPM_CONFIG_TIPTAP_PRO_TOKEN="{token}"; [Environment]::SetEnvironmentVariable("NPM_CONFIG_TIPTAP_PRO_TOKEN", $env:NPM_CONFIG_TIPTAP_PRO_TOKEN, "User")
-```
-
-See: https://cloud.tiptap.dev/v1/pro-extensions
-
 #### WebApp
 
 - Framework: [Next.js](https://nextjs.org/)
