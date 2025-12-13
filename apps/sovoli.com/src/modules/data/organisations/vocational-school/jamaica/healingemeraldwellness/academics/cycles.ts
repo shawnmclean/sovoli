@@ -21,6 +21,15 @@ const createMassageTherapyCycle = (
     discounts: [],
     pricingItems: [
       {
+        id: "registration",
+        label: "Registration",
+        billingCycle: "one-time",
+        purpose: "registration",
+        amount: { JMD: 3000 },
+        notes:
+          "Non-refundable registration fee. Covers administrative processing, course setup, and student onboarding.",
+      },
+      {
         id: "tuition",
         label: "Tuition",
         purpose: "tuition",

@@ -70,7 +70,12 @@ export function ProgramDetailMobileFooter({
       <footer className="fixed left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
         <div className="flex w-full items-center py-3 justify-between">
           {/* Left side - Program info badge */}
-          <PriceButton defaultCycle={defaultCycle} />
+          <PriceButton
+            defaultCycle={defaultCycle}
+            program={program}
+            orgInstance={orgInstance}
+            onChatNowClick={onOpen}
+          />
 
           {/* Right side - Reserve button */}
           <Button

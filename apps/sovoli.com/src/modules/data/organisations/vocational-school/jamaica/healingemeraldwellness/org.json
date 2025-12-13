@@ -1,59 +1,87 @@
 {
-	"username": "healingemeraldwellness",
-	"name": "Healing Emerald Wellness Spa & Training Centre Limited",
-	"categories": ["vocational-school"],
-	"locations": [
-		{
-			"key": "main-location",
-			"label": "Main Location",
-			"isPrimary": true,
-			"address": {
-				"line1": "4 Springvale Ave",
-				"city": "Kingston",
-				"countryCode": "JM"
-			},
-			"contacts": [
-				{
-					"type": "whatsapp",
-					"value": "+18763467995",
-					"isPublic": true
-				},
-				{
-					"type": "phone",
-					"value": "+18763467995",
-					"isPublic": true
-				}
-			]
-		}
-	],
-	"socialLinks": [
-		{
-			"platform": "website",
-			"url": "https://www.healingemeraldwellness.com"
-		}
-	],
-	"verification": {
-		"status": "pending",
-		"submittedAt": "2025-12-05",
-		"submittedBy": "system",
-		"documents": [],
-		"notes": "Verification pending - created from submission data."
-	},
-	"isVerified": false,
-	"internalCRM": {
-		"people": [
-			{
-				"name": "Alicia Davis",
-				"contacts": [
-					{
-						"type": "whatsapp",
-						"value": "+18763467995",
-						"isPublic": false
-					}
-				],
-				"notes": "Spa Managing Director of Healing Emerald Wellness Spa & Training Centre"
-			}
-		],
-		"claimStatus": "unclaimed"
-	}
+  "username": "healingemeraldwellness",
+  "name": "Healing Emerald Wellness Spa & Training Centre Limited",
+  "categories": ["vocational-school"],
+  "locations": [
+    {
+      "key": "main-location",
+      "label": "Main Location",
+      "isPrimary": true,
+      "address": {
+        "line1": "4 Springvale Ave",
+        "city": "Kingston",
+        "countryCode": "JM"
+      },
+      "contacts": [
+        {
+          "type": "whatsapp",
+          "value": "+18763467995",
+          "isPublic": true
+        },
+        {
+          "type": "phone",
+          "value": "+18763467995",
+          "isPublic": true
+        },
+        {
+          "type": "email",
+          "value": "healingemeraldwellnessspa@gmail.com",
+          "isPublic": true
+        }
+      ]
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "website",
+      "url": "https://www.healingemeraldwellness.com"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/share/1a7D7SEMAZ/"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/healingemeraldwellnessspa?igsh=OXE4bDZiMjZ1bDU1"
+    },
+    {
+      "platform": "other",
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@healing.emerald.w"
+    },
+    {
+      "platform": "other",
+      "label": "Fresha",
+      "url": "https://www.fresha.com/book-now/healing-emerald-wellness-spa-training-centre-ltd-nwcg3389/all-offer?share=true&pId=2719972"
+    },
+    {
+      "platform": "other",
+      "label": "Google Maps",
+      "url": "https://maps.app.goo.gl/kzxwtnfjqoDuDRJ59"
+    }
+  ],
+  "verification": {
+    "status": "pending",
+    "submittedAt": "2025-12-05",
+    "submittedBy": "system",
+    "documents": [],
+    "notes": "Verification pending - created from submission data."
+  },
+  "isVerified": false,
+  "internalCRM": {
+    "people": [
+      {
+        "name": "Alicia Davis",
+        "contacts": [
+          {
+            "type": "whatsapp",
+            "value": "+18763467995",
+            "isPublic": false
+          }
+        ],
+        "notes": "Spa Managing Director of Healing Emerald Wellness Spa & Training Centre"
+      }
+    ],
+    "claimStatus": "unclaimed"
+  }
 }
