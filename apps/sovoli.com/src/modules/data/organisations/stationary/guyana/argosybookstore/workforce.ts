@@ -27,7 +27,6 @@ export const STORE_MANAGER: WorkforceMember = {
   id: "001",
   name: "Ganesh Mohabir",
   slug: "ganesh-mohabir",
-  image: "/stationary/guyana/argosybookstore/team/manager.webp",
   bio: "Dedicated to providing quality books and stationery to the Georgetown community. Committed to excellent customer service and helping customers find exactly what they need for their educational and reading requirements.",
   quote:
     "Books are the gateway to knowledge - we're here to provide the tools you need to learn and grow.",

@@ -22,7 +22,6 @@ export const PHILS_HARDWARE_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Phil's Hardware",
-    logo: "/images/orgs/hardware/jamaica/philshardware/logo.webp",
     isVerified: false,
     verification: {
       status: "pending",

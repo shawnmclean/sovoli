@@ -9,7 +9,6 @@ export const MONGOLS_BUILDERS_DEPOT_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Mongol's Builders Depot",
-    logo: "/images/orgs/hardware/jamaica/mongolsbuildersdepot/logo.webp",
     isVerified: false,
     verification: {
       status: "pending",

@@ -16,7 +16,6 @@ export const APPLETON_PRINCIPAL: WorkforceMember = {
   id: "appleton-principal",
   name: "Principal",
   slug: "principal",
-  image: "/private-schools/jamaica/appleton/workforce/principal.webp",
   bio: "Leading our school with passion and dedication to early childhood education",
   quote:
     "Every child deserves a nurturing environment where they can grow, learn, and discover their potential.",
@@ -55,7 +54,6 @@ export const APPLETON_NURSERY1_TEACHER: WorkforceMember = {
   id: "appleton-nursery1-teacher",
   name: "Nursery Year 1 Teacher",
   slug: "nursery-year-1-teacher",
-  image: "/private-schools/jamaica/appleton/workforce/nursery1-teacher.webp",
   bio: "Specialized in early childhood development and play-based learning",
   quote:
     "Learning should be fun and engaging. I love watching children discover new things every day.",
@@ -109,7 +107,6 @@ export const APPLETON_NURSERY2_TEACHER: WorkforceMember = {
   id: "appleton-nursery2-teacher",
   name: "Nursery Year 2 Teacher",
   slug: "nursery-year-2-teacher",
-  image: "/private-schools/jamaica/appleton/workforce/nursery2-teacher.webp",
   bio: "Expert in preparing children for primary school transition",
   quote:
     "My goal is to ensure every child is ready and excited for their next learning adventure.",
@@ -163,7 +160,6 @@ export const APPLETON_TEACHING_ASSISTANT: WorkforceMember = {
   id: "appleton-assistant",
   name: "Teaching Assistant",
   slug: "teaching-assistant",
-  image: "/private-schools/jamaica/appleton/workforce/assistant.webp",
   bio: "Supporting our teachers and students with care and dedication",
   quote:
     "I believe in creating a supportive environment where every child feels valued and encouraged.",
@@ -202,7 +198,6 @@ export const APPLETON_CARETAKER: WorkforceMember = {
   id: "appleton-caretaker",
   name: "School Caretaker",
   slug: "school-caretaker",
-  image: "/private-schools/jamaica/appleton/workforce/caretaker.webp",
   bio: "Maintaining our school facilities to ensure a clean and safe environment",
   quote:
     "A clean and safe environment is essential for children to learn and grow.",

@@ -27,7 +27,6 @@ export const STORE_MANAGER: WorkforceMember = {
   id: "001",
   name: "Store Manager",
   slug: "store-manager",
-  image: "/stationary/guyana/creativethinking/team/manager.webp",
   bio: "Dedicated to providing quality stationery and office supplies to the community. Committed to excellent customer service and helping customers find exactly what they need for their educational and office requirements.",
   quote:
     "Your success is our priority - we're here to provide the tools you need to excel.",

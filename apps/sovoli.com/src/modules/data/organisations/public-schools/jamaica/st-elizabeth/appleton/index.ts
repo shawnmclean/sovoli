@@ -11,7 +11,6 @@ export const APPLETON_BASIC_SCHOOL_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Appleton Basic School",
-    logo: "/absjm/logo.webp",
     isVerified: false,
     verification: {
       status: "pending",
