@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon, Globe, MapPin, Megaphone } from "lucide-react";
 import type { Metadata } from "next";
-import { IndustryCard } from "./components/IndustryCard";
+import { BusinessCard } from "./components/BusinessCard";
 import type { CapabilityCardData } from "./components/CapabilityCard";
 import { CapabilityCard } from "./components/CapabilityCard";
 import { DynamicHeadline } from "./components/DynamicHeadline";
@@ -121,9 +121,9 @@ export default function BusinessPage() {
           </p>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-8">
           {BUSINESS_CATEGORIES.map((category) => (
-            <IndustryCard
+            <BusinessCard
               key={category.id}
               industry={{
                 id: category.id,
