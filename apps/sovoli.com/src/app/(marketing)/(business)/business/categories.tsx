@@ -198,6 +198,27 @@ export interface GrowthSystemContent {
   };
 }
 
+const SHARED_CUSTOMERS: Customer[] = [
+  {
+    company: "Modern Academy",
+    title: "Verified private school partner",
+    quote:
+      "Sovoli helps us show up where parents are searching and keeps new inquiries flowing to our WhatsApp.",
+    caseStudyLink: "https://www.ma.edu.gy",
+    logo: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638251/o/magy/logo/logo.webp",
+    category: "K-12 School",
+  },
+  {
+    company: "Marian Academy",
+    title: "Growing digital visibility",
+    quote:
+      "With Sovoli, families can quickly find us online and reach out directly for admissions questions.",
+    caseStudyLink: "https://marianacademygy.sovoli.com",
+    logo: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638258/o/marianacademy/logo/logo.webp",
+    category: "K-12 School",
+  },
+];
+
 // Placeholder content - will be expanded
 const k12EducationContent: GrowthSystemContent = {
   metadata: {
@@ -218,7 +239,7 @@ const k12EducationContent: GrowthSystemContent = {
   },
   customers: {
     title: "Private Schools Already Growing With Sovoli",
-    customers: [],
+    customers: SHARED_CUSTOMERS,
   },
   features: {
     title: "Features",
@@ -412,7 +433,7 @@ const beautyWellnessContent: GrowthSystemContent = {
   },
   customers: {
     title: "Beauty & Wellness Businesses Already Growing With Sovoli",
-    customers: [],
+    customers: SHARED_CUSTOMERS,
   },
   tracking: {
     content_name: "Growth System - Beauty & Wellness",
@@ -446,7 +467,7 @@ const fashionSewingContent: GrowthSystemContent = {
   },
   customers: {
     title: "Fashion & Sewing Businesses Already Growing With Sovoli",
-    customers: [],
+    customers: SHARED_CUSTOMERS,
   },
   tracking: {
     content_name: "Growth System - Fashion & Sewing",
@@ -480,7 +501,7 @@ const agricultureContent: GrowthSystemContent = {
   },
   customers: {
     title: "Agriculture Businesses Already Growing With Sovoli",
-    customers: [],
+    customers: SHARED_CUSTOMERS,
   },
   tracking: {
     content_name: "Growth System - Agriculture",
@@ -514,7 +535,7 @@ const fitnessSportsContent: GrowthSystemContent = {
   },
   customers: {
     title: "Fitness & Sports Businesses Already Growing With Sovoli",
-    customers: [],
+    customers: SHARED_CUSTOMERS,
   },
   tracking: {
     content_name: "Growth System - Fitness & Sports",
@@ -548,7 +569,7 @@ const creativeArtsContent: GrowthSystemContent = {
   },
   customers: {
     title: "Creative Arts Businesses Already Growing With Sovoli",
-    customers: [],
+    customers: SHARED_CUSTOMERS,
   },
   tracking: {
     content_name: "Growth System - Creative Arts",
