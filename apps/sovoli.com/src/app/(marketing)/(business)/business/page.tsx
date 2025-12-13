@@ -63,9 +63,9 @@ export default function BusinessPage() {
 
               {/* Subheadline */}
               <p className="text-lg text-default-600 md:text-xl md:max-w-md lg:max-w-lg mb-6 sm:mb-8">
-                We don’t just build websites — we run data-driven ads and a
-                connected growth system that continuously turns attention into
-                real leads and customers.
+                We don’t just build websites — we run data-driven ads within a
+                connected growth system that turns interest in your programs
+                into real leads and customers.
               </p>
 
               {/* CTA Button */}
