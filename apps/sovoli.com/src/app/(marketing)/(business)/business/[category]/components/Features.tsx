@@ -27,7 +27,7 @@ import {
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
 import { ChevronLeftIcon } from "lucide-react";
-import type { GrowthSystemContent, IconName } from "../content";
+import type { GrowthSystemContent, IconName } from "../../categories";
 
 type FeatureKey = string;
 
@@ -322,3 +322,4 @@ export function Features({ content }: FeaturesProps) {
     </section>
   );
 }
+

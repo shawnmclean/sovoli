@@ -26,3 +26,4 @@ export function Tracking({ trackingEventProperties }: TrackingProps) {
 
   return null; // This component doesn't render anything
 }
+

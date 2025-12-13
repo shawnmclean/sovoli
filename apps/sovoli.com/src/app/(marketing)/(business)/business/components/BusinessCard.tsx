@@ -13,7 +13,7 @@ export interface BusinessCardData {
 
 export function BusinessCard({ industry }: { industry: BusinessCardData }) {
   return (
-    <Link href={industry.href} className="block h-[300px]">
+    <Link href={industry.href} className="block aspect-square">
       <Card className="h-full relative overflow-hidden">
         <Image
           removeWrapper

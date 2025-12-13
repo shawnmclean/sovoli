@@ -4,7 +4,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { Image } from "@sovoli/ui/components/image";
-import type { GrowthSystemContent } from "../content";
+import type { GrowthSystemContent } from "../../categories";
 
 interface CustomersProps {
 	content: GrowthSystemContent["customers"];
@@ -86,3 +86,4 @@ export function Customers({ content }: CustomersProps) {
     </section>
   );
 }
+

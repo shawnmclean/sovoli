@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { detectCurrency } from "~/utils/currencyDetection";
-import { getContent } from "../_growth-system/content";
-import { Answers } from "../_growth-system/components/Answers";
-import { CTA } from "../_growth-system/components/CTA";
-import { Customers } from "../_growth-system/components/Customers";
-import { Features } from "../_growth-system/components/Features";
-import { Overview } from "../_growth-system/components/Overview";
-import { Pricing } from "../_growth-system/components/Pricing";
-import { Tracking } from "../_growth-system/components/Tracking";
-import type { TrackingEventProperties } from "../_growth-system/components/Tracking";
+import { getContent } from "../categories";
+import { Answers } from "./components/Answers";
+import { CTA } from "./components/CTA";
+import { Customers } from "./components/Customers";
+import { Features } from "./components/Features";
+import { Overview } from "./components/Overview";
+import { Pricing } from "./components/Pricing";
+import { Tracking } from "./components/Tracking";
+import type { TrackingEventProperties } from "./components/Tracking";
 import { isBusinessCategory } from "../categories";
 
 export async function generateMetadata({

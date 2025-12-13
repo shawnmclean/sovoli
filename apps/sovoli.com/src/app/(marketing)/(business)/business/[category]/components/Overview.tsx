@@ -11,7 +11,7 @@ import {
   ModalHeader,
 } from "@sovoli/ui/components/dialog";
 import { Button } from "@sovoli/ui/components/button";
-import type { GrowthSystemContent } from "../content";
+import type { GrowthSystemContent } from "../../categories";
 
 interface OverviewProps {
 	content: GrowthSystemContent["overview"];
@@ -80,3 +80,4 @@ export function Overview({ content }: OverviewProps) {
     </section>
   );
 }
+

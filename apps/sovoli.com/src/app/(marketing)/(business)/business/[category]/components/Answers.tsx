@@ -5,7 +5,7 @@ import type React from "react";
 import posthog from "posthog-js";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import type { TrackingEventProperties } from "./Tracking";
-import type { GrowthSystemContent } from "../content";
+import type { GrowthSystemContent } from "../../categories";
 
 interface AnswersProps {
 	content: GrowthSystemContent["answers"];
@@ -70,3 +70,4 @@ export function Answers({ content, trackingEventProperties }: AnswersProps) {
 		</section>
 	);
 }
+

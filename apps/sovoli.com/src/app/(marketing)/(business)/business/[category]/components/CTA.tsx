@@ -4,7 +4,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import type { TrackingEventProperties } from "./Tracking";
-import type { GrowthSystemContent } from "../content";
+import type { GrowthSystemContent } from "../../categories";
 
 interface CTAProps {
   content: GrowthSystemContent["cta"];
@@ -49,3 +49,4 @@ export function CTA({
     </section>
   );
 }
+
