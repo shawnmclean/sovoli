@@ -203,19 +203,19 @@ const SHARED_CUSTOMERS: Customer[] = [
     company: "Modern Academy",
     title: "Verified private school partner",
     quote:
-      "Sovoli helps us show up where parents are searching and keeps new inquiries flowing to our WhatsApp.",
+      "Sovoli increased our sales-qualified enrollment leads by 300%.",
     caseStudyLink: "https://www.ma.edu.gy",
     logo: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638251/o/magy/logo/logo.webp",
     category: "K-12 School",
   },
   {
-    company: "Marian Academy",
-    title: "Growing digital visibility",
+    company: "FitRight Academy",
+    title: "Fashion & sewing academy launch",
     quote:
-      "With Sovoli, families can quickly find us online and reach out directly for admissions questions.",
-    caseStudyLink: "https://marianacademygy.sovoli.com",
-    logo: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638258/o/marianacademy/logo/logo.webp",
-    category: "K-12 School",
+      "Sovoli launched our school and filled our first two paid programs.",
+    caseStudyLink: "https://www.fitright.gy",
+    logo: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638250/o/fitright/logo/logo.webp",
+    category: "Vocational School",
   },
 ];
 
