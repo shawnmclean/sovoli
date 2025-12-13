@@ -43,7 +43,7 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
     <Card className="overflow-visible">
       <CardHeader className="flex flex-row items-center gap-4 pb-2">
         <Avatar
-          src={member.image}
+          src={member.photo?.url}
           name={member.name}
           className="h-20 w-20"
           isBordered

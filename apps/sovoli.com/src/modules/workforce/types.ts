@@ -1,5 +1,6 @@
 import type { AmountByCurrency } from "../core/economics/types";
 import type { Contact } from "../core/types";
+import type { Media } from "../core/media/types";
 
 export interface Department {
   name: string;
@@ -65,7 +66,7 @@ export interface WorkforceMember {
   id: string;
   slug: string;
   name: string;
-  image?: string;
+  photo?: Media;
   bio?: string;
   contacts?: Contact[];
   roleAssignments: OrgRoleAssignment[];

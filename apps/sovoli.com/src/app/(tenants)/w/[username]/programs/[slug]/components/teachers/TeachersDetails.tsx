@@ -70,7 +70,7 @@ function SingleTeacherDetails({
             <div className="space-y-6">
               <div className="flex flex-col items-center gap-4">
                 <Avatar
-                  src={teacher.image}
+                  src={teacher.photo?.url}
                   name={teacher.name}
                   className="h-32 w-32"
                   isBordered
@@ -263,7 +263,7 @@ function MultipleTeachersDetails({
                   >
                     <div className="flex items-center gap-4">
                       <Avatar
-                        src={teacher.image}
+                        src={teacher.photo?.url}
                         name={teacher.name}
                         className="h-16 w-16"
                         isBordered

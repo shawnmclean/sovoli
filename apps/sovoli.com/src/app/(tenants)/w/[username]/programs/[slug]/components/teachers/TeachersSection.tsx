@@ -38,7 +38,7 @@ function SingleTeacherSection({
       <div>
         <div className="flex flex-col items-center gap-4">
           <Avatar
-            src={teacher.image}
+            src={teacher.photo?.url}
             name={teacher.name}
             className="h-24 w-24"
             isBordered
@@ -115,7 +115,7 @@ function MultipleTeachersSection({
                   <CarouselItem key={teacher.id} className="basis-[200px]">
                     <div className="flex flex-col items-center gap-3 p-4 bg-default-50 rounded-lg border border-default-200 hover:border-primary-400 transition-colors h-full">
                       <Avatar
-                        src={teacher.image}
+                        src={teacher.photo?.url}
                         name={teacher.name}
                         className="h-16 w-16"
                         isBordered

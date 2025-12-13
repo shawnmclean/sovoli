@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
@@ -59,7 +58,7 @@ export function WorkforcePersonProfile({
       <Card className="overflow-visible">
         <CardHeader className="flex flex-col sm:flex-row items-center gap-6 pb-4">
           <Avatar
-            src={member.image}
+            src={member.photo?.url}
             name={member.name}
             className="h-24 w-24"
             isBordered

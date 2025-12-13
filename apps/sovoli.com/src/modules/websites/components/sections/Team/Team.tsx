@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
@@ -85,7 +85,7 @@ export function Team({ orgInstance, section }: TeamProps) {
                 className="group flex w-[160px] flex-col items-center"
               >
                 <Avatar
-                  src={member.image}
+                  src={member.photo?.url}
                   alt={member.name}
                   isBordered
                   className="h-28 w-28"

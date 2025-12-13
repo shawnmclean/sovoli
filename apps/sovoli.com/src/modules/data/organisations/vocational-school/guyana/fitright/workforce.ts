@@ -4,6 +4,7 @@ import type {
   Position,
   Department,
 } from "~/modules/workforce/types";
+import type { Media } from "~/modules/core/media/types";
 
 // Define departments and positions for FitRight
 const INSTRUCTOR: Position = {
@@ -26,7 +27,18 @@ export const XAVIRINE_DORNELLAS: WorkforceMember = {
   id: "001",
   name: "Xavirine D'Ornellas",
   slug: "xavirine-dornellas",
-  image: "/images/orgs/vocational-training/guyana/fitright/team/xavirine.webp",
+  photo: {
+    type: "image",
+    category: "default",
+    url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765636944/o/fitright/team/xavirine.webp",
+    assetId: "af6bbb7977081d6106009ab0770d9186",
+    publicId: "o/fitright/team/xavirine",
+    width: 777,
+    height: 952,
+    format: "webp",
+    bytes: 44212,
+    version: 1765636944,
+  } satisfies Media,
   bio: "Xavirine D'Ornellas is a passionate teacher born in Guyana with over a decade of experience in design, sewing, and teaching. Her passion for design and sewing began at the age of seven when she started designing and sewing clothes for her dolls, and by fourteen, she was making clothes for herself. She worked as a school teacher in Guyana for many years, successfully tutoring students in the art of making their own clothes. Her teaching method, known as the 'Xavie teaching method,' is fun, approachable, and rich with helpful tips and techniques aimed at helping students transform fabric into beautiful, well-fitted garments. She has a very open mind and loves supporting new ideas. Her professional experience includes working in couture tailoring in French Guyana, St Lucia, and New York.",
   quote:
     "Transform fabric into beautiful, well-fitted garments with fun and approachable techniques.",
