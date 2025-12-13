@@ -14,7 +14,7 @@ import {
 
 export const HEALING_EMERALD_MASSAGE_THERAPY_PROGRAM: Program = {
   id: "hew-massage-therapy",
-  name: "Massage Therapy",
+  name: "Massage Therapy Training",
   slug: "massage-therapy",
   audience: "student",
   quickFacts: healingEmeraldProgramQuickFacts,
