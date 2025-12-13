@@ -9,7 +9,7 @@ const config = {
     "prettier-plugin-tailwindcss",
   ],
   tabWidth: 2,
-  useTabs: false,
+  useTabs: true,
   tailwindFunctions: ["cn", "cva"],
   importOrder: [
     "<TYPES>",
