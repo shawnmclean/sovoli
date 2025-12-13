@@ -29,7 +29,7 @@ export function ProjectOrgBadgeSection({
       <div className="flex items-center gap-4">
         {/* Logo with Score Badge */}
         <div className="shrink-0">
-          <Avatar src={org.logo} name={org.name} size="lg" />
+          <Avatar src={org.logoPhoto?.url} name={org.name} size="lg" />
         </div>
 
         {/* Organization Info */}

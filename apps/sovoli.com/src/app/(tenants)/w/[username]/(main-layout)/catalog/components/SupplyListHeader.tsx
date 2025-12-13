@@ -15,9 +15,9 @@ export function SupplyListHeader({ school, program }: SupplyListHeaderProps) {
     <div className="bg-card">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="flex items-center gap-4 mb-6">
-          {school.org.logo && (
+          {school.org.logoPhoto?.url && (
             <Image
-              src={school.org.logo}
+              src={school.org.logoPhoto.url}
               alt={`${school.org.name} logo`}
               width={64}
               height={64}

@@ -105,7 +105,7 @@ export function ReceivablesChecklist({
       label: "Your Logo",
       description: "A logo image for your business (PNG or JPG)",
       hint: "This appears in the header of your website and on search results",
-      status: org.logo ? "complete" : "missing",
+      status: org.logoPhoto ? "complete" : "missing",
     },
     {
       id: "business-name",

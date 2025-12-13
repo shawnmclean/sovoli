@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: Props) {
       description: `Profile page for ${orgInstance.org.name}`,
       url: `https://sovoli.com/${orgInstance.org.username}`,
       siteName: orgInstance.org.name,
-      images: orgInstance.org.logo,
+      images: orgInstance.org.logoPhoto?.url,
     },
   };
 }

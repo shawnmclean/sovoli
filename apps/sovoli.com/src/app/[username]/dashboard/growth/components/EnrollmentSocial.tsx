@@ -333,9 +333,9 @@ export function EnrollmentSocial({ orgInstance }: EnrollmentSocialProps) {
                 textAlign: "center",
               }}
             >
-              {org.logo && (
+              {org.logoPhoto?.url && (
                 <Image
-                  src={org.logo}
+                  src={org.logoPhoto.url}
                   alt="School Logo"
                   style={{
                     height: "7rem",

@@ -211,7 +211,7 @@ const orgTechStackJsonSchema = z
 const orgJsonSchema = z.object({
   username: z.string(),
   name: z.string(),
-  logo: z.string().optional(),
+  logoPhoto: mediaJsonSchema.optional(),
   categories: z.array(z.string()),
   locations: z.array(orgLocationJsonSchema),
   socialLinks: z.array(socialLinkJsonSchema).optional(),
@@ -248,7 +248,7 @@ export function parseOrgModule(jsonData: unknown): Org {
   const org: Org = {
     username: validated.username,
     name: validated.name,
-    logo: validated.logo,
+    logoPhoto: validated.logoPhoto as Media | undefined,
     categories: validated.categories as Org["categories"],
     locations: validated.locations as OrgLocation[],
     socialLinks: validated.socialLinks as SocialLink[] | undefined,

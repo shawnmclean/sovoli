@@ -312,9 +312,9 @@ export function EnrollmentFlier({ orgInstance }: EnrollmentFlierProps) {
                 textAlign: "center",
               }}
             >
-              {org.logo && (
+              {org.logoPhoto?.url && (
                 <Image
-                  src={org.logo}
+                  src={org.logoPhoto.url}
                   alt="School Logo"
                   style={{
                     height: "4rem",

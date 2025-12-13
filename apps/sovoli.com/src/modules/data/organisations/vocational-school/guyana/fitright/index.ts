@@ -1,4 +1,5 @@
 import type { OrgInstance } from "~/modules/organisations/types";
+import type { Media } from "~/modules/core/media/types";
 import { ORG_USERNAME } from "./constants";
 import { FITRIGHT_ACADEMY_WEBSITE } from "./website";
 import { FITRIGHT_ACADEMIC } from "./academic";
@@ -9,7 +10,18 @@ export const FITRIGHT_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "FitRight Academy",
-    logo: "/images/orgs/vocational-training/guyana/fitright/logo.webp",
+    logoPhoto: {
+      type: "image",
+      category: "default",
+      url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638250/o/fitright/logo/logo.webp",
+      assetId: "59b69ca571cbc6ac24d31aa1ddefaa28",
+      publicId: "o/fitright/logo/logo",
+      width: 320,
+      height: 320,
+      format: "webp",
+      bytes: 13080,
+      version: 1765638250,
+    } satisfies Media,
     isVerified: true,
     verification: {
       status: "verified",

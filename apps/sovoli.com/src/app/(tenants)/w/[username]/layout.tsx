@@ -52,8 +52,8 @@ export default async function Layout({ children, params, modals }: Props) {
     "@id": `${orgInstance.websiteModule.website.url}#org`,
     name: orgInstance.org.name,
     url: orgInstance.websiteModule.website.url,
-    ...(orgInstance.org.logo && {
-      logo: orgInstance.org.logo,
+    ...(orgInstance.org.logoPhoto?.url && {
+      logo: orgInstance.org.logoPhoto.url,
     }),
     ...(orgInstance.websiteModule.website.description && {
       description: orgInstance.websiteModule.website.description,

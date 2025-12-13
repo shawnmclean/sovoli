@@ -5,6 +5,6 @@ export const hasLogo: OrgScoreRule = {
   maxScore: 5,
   compute: ({ org }) =>
     Promise.resolve({
-      score: org.logo ? 5 : 0,
+      score: org.logoPhoto ? 5 : 0,
     }),
 };

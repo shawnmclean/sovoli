@@ -1,4 +1,5 @@
 import type { OrgInstance } from "~/modules/organisations/types";
+import type { Media } from "~/modules/core/media/types";
 import { OrgLocationFeature } from "~/modules/organisations/types";
 import { MODERN_ACADEMY_ACADEMIC } from "./academic";
 import { ORG_USERNAME } from "./constants";
@@ -16,7 +17,18 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Modern Academy",
-    logo: "/images/orgs/private-schools/guyana/modernacademy/logo.webp",
+    logoPhoto: {
+      type: "image",
+      category: "default",
+      url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638251/o/magy/logo/logo.webp",
+      assetId: "0c855ff5b5c95580393913b185076be5",
+      publicId: "o/magy/logo/logo",
+      width: 320,
+      height: 320,
+      format: "webp",
+      bytes: 10916,
+      version: 1765638251,
+    } satisfies Media,
     isVerified: true,
     verification: {
       status: "verified",

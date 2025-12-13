@@ -76,7 +76,7 @@ export function OrgLandingSection({ orgInstance }: OrgLandingSectionProps) {
           shape="circle"
         > */}
         <Avatar
-          src={org.logo}
+          src={org.logoPhoto?.url}
           name={org.name}
           size="lg"
           fallback={

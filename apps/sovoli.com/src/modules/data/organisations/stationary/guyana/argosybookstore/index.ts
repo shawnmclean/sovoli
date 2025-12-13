@@ -24,7 +24,18 @@ export const ARGOSY_BOOK_STORE_ORG: OrgInstance = {
   org: {
     username: ORG_USERNAME,
     name: "Argosy Book Store",
-    logo: "/images/orgs/stationary/guyana/argosybookstore/logo.webp",
+    logoPhoto: {
+      type: "image",
+      category: "default",
+      url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638257/o/argosybookstore/logo/logo.webp",
+      assetId: "cc2a0b0a8399911a8e5d7359a30502fe",
+      publicId: "o/argosybookstore/logo/logo",
+      width: 320,
+      height: 320,
+      format: "webp",
+      bytes: 4212,
+      version: 1765638257,
+    } satisfies Media,
     isVerified: false,
     verification: {
       status: "pending",

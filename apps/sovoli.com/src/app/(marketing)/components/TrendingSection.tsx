@@ -48,7 +48,7 @@ export async function TrendingSection() {
             className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-default-100 transition-colors"
           >
             <Avatar
-              src={school?.org.logo}
+              src={school?.org.logoPhoto?.url}
               name={school?.org.name}
               size="lg"
               className="w-16 h-16"

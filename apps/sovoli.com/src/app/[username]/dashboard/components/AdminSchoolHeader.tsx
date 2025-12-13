@@ -18,7 +18,7 @@ export function AdminSchoolHeader({ orgInstance }: AdminSchoolHeaderProps) {
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-3">
           <Avatar
-            src={orgInstance.org.logo}
+            src={orgInstance.org.logoPhoto?.url}
             name={orgInstance.org.name}
             size="lg"
             className="h-16 w-16 shrink-0"

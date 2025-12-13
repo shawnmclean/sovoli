@@ -43,7 +43,7 @@ export function OrgBadgeSection({ orgInstance }: OrgBadgeSectionProps) {
             shape="circle"
           >
             <Avatar
-              src={org.logo}
+              src={org.logoPhoto?.url}
               name={org.name}
               size="lg"
               fallback={

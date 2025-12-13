@@ -86,7 +86,7 @@ export interface OrgVerification {
 export interface Org {
   username: string;
   name: string;
-  logo?: string;
+  logoPhoto?: Media;
   categories: OrgCategoryKeys[];
   locations: OrgLocation[];
   socialLinks?: SocialLink[];

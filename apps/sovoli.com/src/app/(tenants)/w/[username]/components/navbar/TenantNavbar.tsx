@@ -145,7 +145,7 @@ export function TenantNavbar({
       >
         <NavbarBrand className="hidden md:flex">
           <Link href="/">
-            <Avatar src={org.logo} name={website.siteName} size="md" />
+            <Avatar src={org.logoPhoto?.url} name={website.siteName} size="md" />
 
             <span className="ml-2 text-small font-medium text-default-foreground">
               {website.siteName}

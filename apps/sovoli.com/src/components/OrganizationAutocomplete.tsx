@@ -242,7 +242,7 @@ export function OrganizationAutocomplete({
 							<Avatar
 								alt={`${org.org.name} logo`}
 								name={org.org.name}
-								src={org.org.logo}
+								src={org.org.logoPhoto?.url}
 								size="sm"
 								className="shrink-0"
 							/>

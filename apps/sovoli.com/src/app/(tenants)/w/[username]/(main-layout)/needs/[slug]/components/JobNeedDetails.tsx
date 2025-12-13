@@ -55,9 +55,9 @@ export function JobNeedDetails({ need }: JobNeedDetailsProps) {
       <header className="rounded-3xl border border-divider bg-card p-4 text-center shadow-sm">
         <div className="flex justify-center">
           <div className="relative h-16 w-16 overflow-hidden rounded-full border border-divider bg-muted">
-            {orgInstance.org.logo ? (
+            {orgInstance.org.logoPhoto?.url ? (
               <Image
-                src={orgInstance.org.logo}
+                src={orgInstance.org.logoPhoto.url}
                 alt={orgInstance.org.name}
                 fill
                 className="object-cover"

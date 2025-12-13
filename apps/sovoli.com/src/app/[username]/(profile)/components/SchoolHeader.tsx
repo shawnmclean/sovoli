@@ -106,7 +106,7 @@ export function SchoolHeader({ orgInstance }: SchoolHeaderProps) {
               shape="circle"
             >
               <Avatar
-                src={orgInstance.org.logo}
+                src={orgInstance.org.logoPhoto?.url}
                 name={orgInstance.org.name}
                 size="lg"
                 className="h-20 w-20"
