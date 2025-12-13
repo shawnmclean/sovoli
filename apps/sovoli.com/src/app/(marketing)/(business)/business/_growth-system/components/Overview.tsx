@@ -26,7 +26,7 @@ export function Overview({ content }: OverviewProps) {
         {/* Title */}
         <h2 className="text-3xl sm:text-5xl font-bold mb-6 leading-tight text-foreground">
           Grow your{" "}
-          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#800080] via-[#ff00ff] to-[#800080] bg-clip-text text-transparent">
             {content.businessType}
           </span>{" "}
           with Digital Marketing Systems

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const capabilities: CapabilityCardData[] = [
   {
-    title: "Build Your Website",
+    title: "Conversion-Focused Website",
     description:
       "Get a clean, fast website that brings you customers. Built for mobile devices. Add photos, videos, programs, services and more.",
     icon: Globe,
@@ -24,13 +24,13 @@ const capabilities: CapabilityCardData[] = [
   {
     title: "Google Business Profile",
     description:
-      "Show up on Google and Google Maps when people search for you. We set it up properly so customers can find you easily.",
+      "Show up on Google and Google Maps with information that stays accurate. We centralize your listing so everything stays in sync automatically.",
     icon: MapPin,
   },
   {
     title: "Facebook & Instagram Ads",
     description:
-      "We run and track your ads on Facebook and Instagram so more of the right customers reach you—without wasting your budget.",
+      "We run and continuously optimize your ads so the right customers reach you—without wasting budget.",
     icon: Megaphone,
   },
 ];
@@ -64,8 +64,8 @@ export default function BusinessPage() {
               {/* Subheadline */}
               <p className="text-lg text-default-600 md:text-xl md:max-w-md lg:max-w-lg mb-6 sm:mb-8">
                 We don’t just build websites — we run data-driven ads and a
-                connected growth system that continuously converts attention
-                into leads and customers.
+                connected growth system that continuously turns attention into
+                real leads and customers.
               </p>
 
               {/* CTA Button */}

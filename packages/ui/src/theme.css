@@ -23,6 +23,10 @@
   --radius-small: 2px;
   --radius-medium: 4px;
   --radius-large: 6px;
+
+  /* Logo gradient colors */
+  --color-logo-purple: #800080;
+  --color-logo-magenta: #ff00ff;
 }
 
 @keyframes neonPulse {

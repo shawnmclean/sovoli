@@ -42,7 +42,7 @@ export function DynamicHeadline({ headlineLabels }: DynamicHeadlineProps) {
             {headlineLabels.map((type, index) => (
               <span
                 key={type}
-                className={`absolute left-0 top-0 whitespace-nowrap bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent transition-all duration-500 ease-out ${
+                className={`absolute left-0 top-0 whitespace-nowrap bg-gradient-to-r from-[#800080] via-[#ff00ff] to-[#800080] bg-clip-text text-transparent transition-all duration-500 ease-out ${
                   index === currentIndex
                     ? isAnimating
                       ? "-translate-y-full opacity-0"
