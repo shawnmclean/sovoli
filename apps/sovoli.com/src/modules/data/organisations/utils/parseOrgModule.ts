@@ -2,6 +2,8 @@ import { z } from "zod";
 import type { Org, OrgLocation, OrgVerification, OrgTechStack } from "~/modules/organisations/types";
 import type { Contact, SocialLink } from "~/modules/core/types";
 import type { Media } from "~/modules/core/media/types";
+import type { MediaMap } from "./parseMediaModule";
+import { getMediaByIdOptional } from "./parseMediaModule";
 
 /**
  * Zod schema for Contact
@@ -211,7 +213,7 @@ const orgTechStackJsonSchema = z
 const orgJsonSchema = z.object({
   username: z.string(),
   name: z.string(),
-  logoPhoto: mediaJsonSchema.optional(),
+  logoPhotoId: z.string().optional(),
   categories: z.array(z.string()),
   locations: z.array(orgLocationJsonSchema),
   socialLinks: z.array(socialLinkJsonSchema).optional(),
@@ -235,20 +237,38 @@ const orgJsonSchema = z.object({
 const orgModuleJsonSchema = orgJsonSchema;
 
 /**
+ * Options for parsing an org module
+ */
+export interface ParseOrgModuleOptions {
+  /** Media map for resolving logoPhotoId reference */
+  mediaMap?: MediaMap;
+}
+
+/**
  * Parses an org.json file and returns a fully hydrated Org object.
  *
  * @param jsonData - The parsed JSON data from the org.json file
+ * @param options - Optional parsing options including mediaMap for resolving logoPhotoId
  * @returns Fully hydrated Org object
  * @throws Error if JSON structure is invalid
  */
-export function parseOrgModule(jsonData: unknown): Org {
+export function parseOrgModule(
+  jsonData: unknown,
+  options?: ParseOrgModuleOptions,
+): Org {
+  const { mediaMap } = options ?? {};
   const validated = orgModuleJsonSchema.parse(jsonData);
+
+  // Resolve logoPhotoId to logoPhoto if mediaMap is provided
+  const logoPhoto = mediaMap
+    ? getMediaByIdOptional(mediaMap, validated.logoPhotoId, "org")
+    : undefined;
 
   // Convert JSON data to Org type, handling type conversions
   const org: Org = {
     username: validated.username,
     name: validated.name,
-    logoPhoto: validated.logoPhoto as Media | undefined,
+    logoPhoto,
     categories: validated.categories as Org["categories"],
     locations: validated.locations as OrgLocation[],
     socialLinks: validated.socialLinks as SocialLink[] | undefined,

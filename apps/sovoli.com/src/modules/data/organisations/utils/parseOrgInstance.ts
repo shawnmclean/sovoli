@@ -70,17 +70,18 @@ export function parseOrgInstance(
 ): OrgInstance {
   const { jsonData, existingInstance } = options;
 
-  // Step 1: Parse org.json (required - core data including username)
-  const org = parseOrgModule(jsonData.org);
-
-  // Use existing org if provided, otherwise use parsed org
-  const finalOrg = existingInstance?.org ?? org;
-
-  // Step 2: Parse media module (no dependencies, needed by workforce and academic)
+  // Step 1: Parse media module first (no dependencies, needed by org for logoPhotoId resolution)
   let mediaMap: MediaMap | undefined;
   if (jsonData.media) {
     mediaMap = parseMediaModule(jsonData.media);
   }
+
+  // Step 2: Parse org.json (required - core data including username)
+  // Pass mediaMap to resolve logoPhotoId reference
+  const org = parseOrgModule(jsonData.org, { mediaMap });
+
+  // Use existing org if provided, otherwise use parsed org
+  const finalOrg = existingInstance?.org ?? org;
 
   // Step 3: Parse workforce module (depends on media for photos)
   const workforceModule = jsonData.workforce

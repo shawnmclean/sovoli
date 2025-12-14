@@ -1,17 +1,7 @@
 {
   "username": "healingemeraldwellness",
   "name": "Healing Emerald Wellness Spa & Training Centre Limited",
-  "logoPhoto": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638544/o/healingemeraldwellness/logo/logo.png",
-    "assetId": "07b2d01868acea31c945fcfb7e4fb831",
-    "publicId": "o/healingemeraldwellness/logo/logo",
-    "width": 306,
-    "height": 305,
-    "format": "png",
-    "bytes": 64506,
-    "version": 1765638544
-  },
+  "logoPhotoId": "hew-logo",
   "categories": ["vocational-school"],
   "locations": [
     {
