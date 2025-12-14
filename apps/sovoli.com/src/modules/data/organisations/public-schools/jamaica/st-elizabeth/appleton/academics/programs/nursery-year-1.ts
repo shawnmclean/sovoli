@@ -20,7 +20,7 @@ export const APPLETON_NURSERY_YEAR_1_PROGRAM: Program = {
   description:
     "A nurturing environment where children develop essential skills through play and exploration",
   standardProgramVersion: undefined, // Will be updated when Jamaica's ministry information is added
-  media: NURSERY_YEAR_1_PHOTOS,
+  media: { gallery: NURSERY_YEAR_1_PHOTOS },
   isPopular: true,
   cycles: [], // Will be added when cycles are created
   testimonials: [], // Will be added when testimonials are collected

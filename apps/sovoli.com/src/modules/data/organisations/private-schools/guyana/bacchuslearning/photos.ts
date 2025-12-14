@@ -3,7 +3,6 @@ import type { Media } from "~/modules/core/media/types";
 const PHOTOS: Media[] = [
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761265485/o/blcgy/school/park.jpg",
     assetId: "dee180ec9a3e44de60960b70b256dfe5",
     publicId: "o/blcgy/school/park",
@@ -16,7 +15,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761265484/o/blcgy/events/diwali-2025/diwali.jpg",
     assetId: "3f36df730a5efa0d0893da113e162bd4",
     publicId: "o/blcgy/events/diwali-2025/diwali",
@@ -51,7 +49,6 @@ export const SECONDARY_PHOTOS: Media[] = shuffleArray(PHOTOS);
 export const DIWALI_EVENT_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761265484/o/blcgy/events/diwali-2025/diwali.jpg",
     assetId: "3f36df730a5efa0d0893da113e162bd4",
     publicId: "o/blcgy/events/diwali-2025/diwali",

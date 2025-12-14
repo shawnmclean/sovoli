@@ -73,16 +73,6 @@ const mediaSchema = z.object({
       "audio",
     ])
     .default("image"),
-  category: z
-    .enum([
-      "environment",
-      "classroom",
-      "activities",
-      "events",
-      "awards",
-      "default",
-    ])
-    .optional(),
   url: z.string(),
   caption: z.string().optional(),
   alt: z.string().optional(),

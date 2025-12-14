@@ -4,7 +4,6 @@ import type { Media } from "~/modules/core/media/types";
 const DIWALI_EVENT_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817781/o/magy/events/diwali-2025/1.jpg",
     assetId: "acc873a7fb5b3ffa9a874debe806a05d",
     publicId: "o/magy/events/diwali-2025/1",
@@ -17,7 +16,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817793/o/magy/events/diwali-2025/2.jpg",
     assetId: "b5d032a52412ae490e233f3d44e67afd",
     publicId: "o/magy/events/diwali-2025/2",
@@ -30,7 +28,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817815/o/magy/events/diwali-2025/3.jpg",
     assetId: "eea37a53959cf471bf144f79f977cc32",
     publicId: "o/magy/events/diwali-2025/3",
@@ -43,7 +40,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817818/o/magy/events/diwali-2025/4.jpg",
     assetId: "7d67b1b01c1d6abce1fc7e26c2a6b28a",
     publicId: "o/magy/events/diwali-2025/4",
@@ -56,7 +52,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817821/o/magy/events/diwali-2025/5.jpg",
     assetId: "2b1e499a48fe1e6f3005d2d2ca9ddec6",
     publicId: "o/magy/events/diwali-2025/5",
@@ -69,7 +64,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817824/o/magy/events/diwali-2025/6.jpg",
     assetId: "08abc1425b0ad1ee812940f7c79a3e0f",
     publicId: "o/magy/events/diwali-2025/6",
@@ -82,7 +76,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817827/o/magy/events/diwali-2025/7.jpg",
     assetId: "3a9f7fa9b33155cad4efb4469b4cfa0d",
     publicId: "o/magy/events/diwali-2025/7",
@@ -95,7 +88,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817830/o/magy/events/diwali-2025/8.jpg",
     assetId: "99330b30c435704026b3df56b977adf8",
     publicId: "o/magy/events/diwali-2025/8",
@@ -108,7 +100,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817833/o/magy/events/diwali-2025/9.jpg",
     assetId: "197aec2fd21aa851ed9091f0e7c1c77a",
     publicId: "o/magy/events/diwali-2025/9",
@@ -121,7 +112,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817837/o/magy/events/diwali-2025/10.jpg",
     assetId: "e8e8ca181743d259cbc341ad789bd961",
     publicId: "o/magy/events/diwali-2025/10",
@@ -134,7 +124,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817839/o/magy/events/diwali-2025/11.jpg",
     assetId: "7253ba47f41e972d0a03f810d9ce3ebb",
     publicId: "o/magy/events/diwali-2025/11",
@@ -147,7 +136,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817842/o/magy/events/diwali-2025/12.jpg",
     assetId: "3d5f5ee7102a9bd0aa27c33f91b5803f",
     publicId: "o/magy/events/diwali-2025/12",
@@ -160,7 +148,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817845/o/magy/events/diwali-2025/13.jpg",
     assetId: "ef8445eac29ab20b030bb9938320a221",
     publicId: "o/magy/events/diwali-2025/13",
@@ -173,7 +160,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817850/o/magy/events/diwali-2025/14.jpg",
     assetId: "d794d31c47aa5d60b2c46010fb637dbc",
     publicId: "o/magy/events/diwali-2025/14",
@@ -186,7 +172,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817853/o/magy/events/diwali-2025/15.jpg",
     assetId: "9fb134fae416bf093d9edd1c0d4fda46",
     publicId: "o/magy/events/diwali-2025/15",
@@ -199,7 +184,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817856/o/magy/events/diwali-2025/16.jpg",
     assetId: "0c22ff75be9bc62f5f48358ad42ad892",
     publicId: "o/magy/events/diwali-2025/16",
@@ -212,7 +196,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817860/o/magy/events/diwali-2025/17.jpg",
     assetId: "b3e6865357641e1a00bfd954ae1b53e2",
     publicId: "o/magy/events/diwali-2025/17",
@@ -225,7 +208,6 @@ const DIWALI_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760817863/o/magy/events/diwali-2025/18.jpg",
     assetId: "a4f9598a9acc9b7630e593a0c7346b9e",
     publicId: "o/magy/events/diwali-2025/18",

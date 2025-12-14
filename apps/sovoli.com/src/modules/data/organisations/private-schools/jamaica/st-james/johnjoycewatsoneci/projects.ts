@@ -31,7 +31,6 @@ export const JOHN_JOYCE_WATSON_ECI_PROJECTS: ProjectsModule = {
       media: [
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763734675/o/john-joyce-watson-watson-eci/projects/p52yby4soobgval76qjzz0g6.webp",
           publicId:
             "o/john-joyce-watson-watson-eci/projects/p52yby4soobgval76qjzz0g6",
@@ -47,7 +46,6 @@ export const JOHN_JOYCE_WATSON_ECI_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763734675/o/john-joyce-watson-watson-eci/projects/egntexd0w0ill9gvrqikvgp3.webp",
           publicId:
             "o/john-joyce-watson-watson-eci/projects/egntexd0w0ill9gvrqikvgp3",
@@ -64,7 +62,6 @@ export const JOHN_JOYCE_WATSON_ECI_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763734675/o/john-joyce-watson-watson-eci/projects/hniutjf12n6ip2s1k3u8p8kq.webp",
           publicId:
             "o/john-joyce-watson-watson-eci/projects/hniutjf12n6ip2s1k3u8p8kq",
@@ -81,7 +78,6 @@ export const JOHN_JOYCE_WATSON_ECI_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763734675/o/john-joyce-watson-watson-eci/projects/a30n98kcqyo1nr5fpbjbnheq.webp",
           publicId:
             "o/john-joyce-watson-watson-eci/projects/a30n98kcqyo1nr5fpbjbnheq",
@@ -97,7 +93,6 @@ export const JOHN_JOYCE_WATSON_ECI_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763734676/o/john-joyce-watson-watson-eci/projects/keosu5sl3fx48bh7lp315z96.webp",
           publicId:
             "o/john-joyce-watson-watson-eci/projects/keosu5sl3fx48bh7lp315z96",

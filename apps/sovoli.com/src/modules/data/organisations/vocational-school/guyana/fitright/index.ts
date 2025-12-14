@@ -12,7 +12,6 @@ export const FITRIGHT_ORG: OrgInstance = {
     name: "FitRight Academy",
     logoPhoto: {
       type: "image",
-      category: "default",
       url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638250/o/fitright/logo/logo.webp",
       assetId: "59b69ca571cbc6ac24d31aa1ddefaa28",
       publicId: "o/fitright/logo/logo",

@@ -34,7 +34,6 @@ export const SANDY_BANK_INFANT_SCHOOL_PROJECTS: ProjectsModule = {
       media: [
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763523979/o/sandybankinfantjm/projects/pq3yt5tipbzclezz0ylm.jpg",
           publicId: "o/sandybankinfantjm/projects/pq3yt5tipbzclezz0ylm",
           assetId: "75f6e0681411d934260a756291a2ad7b",
@@ -50,7 +49,6 @@ export const SANDY_BANK_INFANT_SCHOOL_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763523980/o/sandybankinfantjm/projects/ssn9vsk8j7ad2ilei4ck.jpg",
           publicId: "o/sandybankinfantjm/projects/ssn9vsk8j7ad2ilei4ck",
           assetId: "1ee21a3df04ffca11e5fd708a1d3c639",
@@ -66,7 +64,6 @@ export const SANDY_BANK_INFANT_SCHOOL_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763523981/o/sandybankinfantjm/projects/vv1dmo8hptrnc15vhtfz.jpg",
           publicId: "o/sandybankinfantjm/projects/vv1dmo8hptrnc15vhtfz",
           assetId: "1eab1910b493f5848308f9656e8e025b",

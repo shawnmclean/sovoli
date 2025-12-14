@@ -6,7 +6,6 @@ import { PHILS_HARDWARE_CATALOG } from "./catalog";
 const PHILS_HARDWARE_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761156821/o/philshardware/org/1.png",
     assetId: "placeholder-asset-id",
     publicId: "o/philshardware/org/1",

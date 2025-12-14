@@ -18,9 +18,8 @@ export interface ProgramCarouselProps {
 
 export function ProgramCarousel({ href, program }: ProgramCarouselProps) {
   // Filter to only show images - exclude videos, PDFs and other documents
-  const images = (program.media ?? []).filter(
-    (media) => media.type === "image",
-  );
+  const allMedia = program.media?.gallery ?? [];
+  const images = allMedia.filter((media) => media.type === "image");
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
 

@@ -3,7 +3,6 @@ import type { Media } from "~/modules/core/media/types";
 const HEALING_EMERALD_MASSAGE_THERAPY_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637928/o/healingemeraldwellness/programs/massage-therapy/massage-model.jpg",
     assetId: "46539ba9b6db4691b60461c7681873d5",
     publicId: "o/healingemeraldwellness/programs/massage-therapy/massage-model",
@@ -15,7 +14,6 @@ const HEALING_EMERALD_MASSAGE_THERAPY_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637929/o/healingemeraldwellness/programs/massage-therapy/reception-area.jpg",
     assetId: "9ec095d13942e190bcd8cba6459695a0",
     publicId:

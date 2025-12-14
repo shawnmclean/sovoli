@@ -20,7 +20,7 @@ export const APPLETON_NURSERY_YEAR_2_PROGRAM: Program = {
   description:
     "Advanced learning experiences that prepare children for the transition to primary school",
   standardProgramVersion: undefined, // Will be updated when Jamaica's ministry information is added
-  media: NURSERY_YEAR_2_PHOTOS,
+  media: { gallery: NURSERY_YEAR_2_PHOTOS },
   isPopular: true,
   cycles: [], // Will be added when cycles are created
   testimonials: [], // Will be added when testimonials are collected

@@ -2,6 +2,8 @@ import { z } from "zod";
 import type { WorkforceModule } from "~/modules/workforce/types";
 import type { AmountByCurrency } from "~/modules/core/economics/types";
 import type { Contact } from "~/modules/core/types";
+import type { MediaMap } from "./parseMediaModule";
+import { getMediaByIdOptional } from "./parseMediaModule";
 
 /**
  * Zod schema for Contact
@@ -17,7 +19,9 @@ const contactJsonSchema = z.object({
 /**
  * Zod schema for AmountByCurrency
  */
-const amountByCurrencySchema = z.record(z.enum(["GYD", "USD", "JMD"]), z.number()).optional();
+const amountByCurrencySchema = z
+  .record(z.enum(["GYD", "USD", "JMD"]), z.number())
+  .optional();
 
 /**
  * Zod schema for Department
@@ -51,13 +55,9 @@ const positionJsonSchema = z.object({
   image: z.string(),
   url: z.string(),
   qualifications: z.array(z.string()).optional(),
-  employmentType: z.enum([
-    "full-time",
-    "part-time",
-    "contract",
-    "temporary",
-    "volunteer",
-  ]).optional(),
+  employmentType: z
+    .enum(["full-time", "part-time", "contract", "temporary", "volunteer"])
+    .optional(),
   compensationRange: z
     .object({
       min: amountByCurrencySchema,
@@ -111,7 +111,7 @@ const workforceMemberJsonSchema = z.object({
   id: z.string(),
   slug: z.string(),
   name: z.string(),
-  image: z.string().optional(),
+  photoId: z.string().optional(), // References media by ID
   bio: z.string().optional(),
   contacts: z.array(contactJsonSchema).optional(),
   roleAssignments: z.array(orgRoleAssignmentJsonSchema),
@@ -132,14 +132,27 @@ const workforceModuleJsonSchema = z.object({
 });
 
 /**
+ * Options for parsing workforce module
+ */
+export interface ParseWorkforceModuleOptions {
+  /** Optional media map for resolving photo references */
+  mediaMap?: MediaMap;
+}
+
+/**
  * Parses a workforce.json file and resolves foreign key references.
  * Validates that all referenced positions, departments, and teams exist.
  *
  * @param jsonData - The parsed JSON data from the workforce.json file
+ * @param options - Optional parsing options including mediaMap for photo resolution
  * @returns Fully hydrated WorkforceModule with all references resolved
  * @throws Error if any reference cannot be resolved or if JSON structure is invalid
  */
-export function parseWorkforceModule(jsonData: unknown): WorkforceModule {
+export function parseWorkforceModule(
+  jsonData: unknown,
+  options?: ParseWorkforceModuleOptions,
+): WorkforceModule {
+  const { mediaMap } = options ?? {};
   // Validate JSON structure
   const validated = workforceModuleJsonSchema.parse(jsonData);
 
@@ -153,9 +166,7 @@ export function parseWorkforceModule(jsonData: unknown): WorkforceModule {
     departments.map((dept) => [dept.slug, dept]),
   );
   const teamsBySlug = new Map(teams.map((team) => [team.slug, team]));
-  const positionsBySlug = new Map(
-    positions.map((pos) => [pos.slug, pos]),
-  );
+  const positionsBySlug = new Map(positions.map((pos) => [pos.slug, pos]));
 
   // Resolve role assignments for members
   const resolvedMembers = members.map((memberJson) => {
@@ -197,11 +208,20 @@ export function parseWorkforceModule(jsonData: unknown): WorkforceModule {
       };
     });
 
+    // Resolve photo from media map if photoId is provided
+    const photo = mediaMap
+      ? getMediaByIdOptional(
+          mediaMap,
+          memberJson.photoId,
+          `workforce member "${memberJson.slug}"`,
+        )
+      : undefined;
+
     return {
       id: memberJson.id,
       slug: memberJson.slug,
       name: memberJson.name,
-      image: memberJson.image,
+      photo,
       bio: memberJson.bio,
       contacts: memberJson.contacts as Contact[] | undefined,
       roleAssignments,

@@ -19,7 +19,6 @@ export const MODERN_ACADEMY_ORG: OrgInstance = {
     name: "Modern Academy",
     logoPhoto: {
       type: "image",
-      category: "default",
       url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638251/o/magy/logo/logo.webp",
       assetId: "0c855ff5b5c95580393913b185076be5",
       publicId: "o/magy/logo/logo",

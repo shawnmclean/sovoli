@@ -140,7 +140,6 @@ export async function submitReliefForm(formData: ReliefFormData) {
         version: photo.version,
         caption: photo.caption,
         alt: photo.alt,
-        category: photo.category,
       }));
 
       if (photosPayload.length > 0) {

@@ -30,7 +30,6 @@ export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
       media: [
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763153721/o/gingerhillallagejm/projects/hpfhacbyl4vux0t64v2v.jpg",
           publicId: "o/gingerhillallagejm/projects/hpfhacbyl4vux0t64v2v",
           assetId: "ccd59d465bf09ad846a4d6562a212407",
@@ -46,7 +45,6 @@ export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763153906/o/gingerhillallagejm/projects/odasjjagw6ioeidfi7sv.jpg",
           publicId: "o/gingerhillallagejm/projects/odasjjagw6ioeidfi7sv",
           assetId: "c01e627197a4a2e1da3dce81de586b7d",
@@ -61,7 +59,6 @@ export const GINGER_HILL_ALL_AGE_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763153910/o/gingerhillallagejm/projects/wjserpsagyi4elwska6b.jpg",
           publicId: "o/gingerhillallagejm/projects/wjserpsagyi4elwska6b",
           assetId: "7392a9fd9943af909c224ac6531c94f2",

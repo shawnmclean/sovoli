@@ -208,6 +208,17 @@ export interface ProgramHighlight {
   description: string;
 }
 
+/**
+ * Media wrapper for programs - categorization happens at the usage site
+ * instead of on the media item itself
+ */
+export interface ProgramMedia {
+  /** Primary cover image for the program */
+  cover?: Media;
+  /** Gallery images for the program */
+  gallery?: Media[];
+}
+
 export interface Program {
   id: string;
   slug: string; // e.g., "grade-1", "form-3", "year-2", "beginner"
@@ -228,7 +239,7 @@ export interface Program {
 
   description?: string; // Custom or default
 
-  media?: Media[];
+  media?: ProgramMedia;
 
   // Optional local overrides
   admission?: AdmissionPolicy;

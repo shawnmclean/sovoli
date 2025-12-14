@@ -4,7 +4,6 @@ import type { Media } from "~/modules/core/media/types";
 const AMERINDIAN_HERITAGE_DAY_EVENT_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760992329/o/magy/events/amerindian-heritage-day-2025/1.jpg",
     assetId: "5cb612fe5b7093a08db5cfa4f017fba3",
     publicId: "o/magy/events/amerindian-heritage-day-2025/1",
@@ -17,7 +16,6 @@ const AMERINDIAN_HERITAGE_DAY_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760992330/o/magy/events/amerindian-heritage-day-2025/2.jpg",
     assetId: "7ac16f3e4a0a12d0e6f6de08adb443c8",
     publicId: "o/magy/events/amerindian-heritage-day-2025/2",
@@ -30,7 +28,6 @@ const AMERINDIAN_HERITAGE_DAY_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760992332/o/magy/events/amerindian-heritage-day-2025/3.jpg",
     assetId: "fa7577355a55f63452fcd41d49a9e2cb",
     publicId: "o/magy/events/amerindian-heritage-day-2025/3",
@@ -43,7 +40,6 @@ const AMERINDIAN_HERITAGE_DAY_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760992333/o/magy/events/amerindian-heritage-day-2025/4.jpg",
     assetId: "39c747a693b9dd1dcea032c27ceff482",
     publicId: "o/magy/events/amerindian-heritage-day-2025/4",
@@ -56,7 +52,6 @@ const AMERINDIAN_HERITAGE_DAY_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760992337/o/magy/events/amerindian-heritage-day-2025/5.jpg",
     assetId: "d877326fd4a2aa347ca4ca46229455a1",
     publicId: "o/magy/events/amerindian-heritage-day-2025/5",
@@ -69,7 +64,6 @@ const AMERINDIAN_HERITAGE_DAY_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760992339/o/magy/events/amerindian-heritage-day-2025/6.jpg",
     assetId: "79e5a6fbfd9e03e220c4df8509ac0c7d",
     publicId: "o/magy/events/amerindian-heritage-day-2025/6",
@@ -82,7 +76,6 @@ const AMERINDIAN_HERITAGE_DAY_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760992340/o/magy/events/amerindian-heritage-day-2025/7.jpg",
     assetId: "19dd1c26738676ed76357169d71d8074",
     publicId: "o/magy/events/amerindian-heritage-day-2025/7",
@@ -95,7 +88,6 @@ const AMERINDIAN_HERITAGE_DAY_EVENT_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760992342/o/magy/events/amerindian-heritage-day-2025/8.jpg",
     assetId: "7a8557f83f79fd25d06087214a7391d8",
     publicId: "o/magy/events/amerindian-heritage-day-2025/8",

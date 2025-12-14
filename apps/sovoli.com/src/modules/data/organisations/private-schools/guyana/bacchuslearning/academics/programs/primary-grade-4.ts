@@ -22,7 +22,7 @@ export const BLCGY_PRIMARY_GRADE_4_PROGRAM: Program = {
   outcome: "NGSA (Grade 6 Exam)",
   description: "Advanced primary education preparing for NGSA",
   standardProgramVersion: GY_PRIMARY_GRADE_4_V1,
-  media: PRIMARY_PHOTOS,
+  media: { gallery: PRIMARY_PHOTOS },
   cycles: [BLCGY_PRIMARY_GRADE_4_2025_T1],
   testimonials: BLCGY_SHARED_TESTIMONIALS,
   activities: BLCGY_PRIMARY_DEPT_ACTIVITIES,

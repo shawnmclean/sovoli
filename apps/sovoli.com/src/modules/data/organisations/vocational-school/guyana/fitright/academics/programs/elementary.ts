@@ -93,7 +93,7 @@ export const FITRIGHT_ELEMENTARY_SEWING_PROGRAM: Program = {
     },
   ],
   requirements: fitrightProgramRequirements,
-  media: ELEMENTARY_SEWING_PHOTOS,
+  media: { gallery: ELEMENTARY_SEWING_PHOTOS },
   group: { ...FITRIGHT_SEWING_PROGRAM_GROUP, order: 1 },
   cycles: [FITRIGHT_ELEMENTARY_SEWING_SEPTEMBER_2025],
 };

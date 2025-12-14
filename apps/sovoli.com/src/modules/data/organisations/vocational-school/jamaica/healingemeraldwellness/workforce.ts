@@ -49,7 +49,6 @@ export const ALICIA_DAVIS: WorkforceMember = {
   slug: "alicia-davis",
   photo: {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637751/o/healingemeraldwellness/team/alicia.png",
     assetId: "18e695f0da005cf04cce95f85c92b9cd",
     publicId: "o/healingemeraldwellness/team/alicia",

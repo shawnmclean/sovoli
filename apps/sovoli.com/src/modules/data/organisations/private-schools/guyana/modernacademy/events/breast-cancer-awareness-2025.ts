@@ -4,7 +4,6 @@ import type { Media } from "~/modules/core/media/types";
 const BREAST_CANCER_AWARENESS_EVENT_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760990752/o/magy/events/breast-cancer-awareness-2025/1.png",
     assetId: "5cc3aad5bb98863e7b5cd356dc112588",
     publicId: "o/magy/events/breast-cancer-awareness-2025/1",

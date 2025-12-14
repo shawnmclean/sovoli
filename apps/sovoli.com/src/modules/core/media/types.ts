@@ -27,15 +27,6 @@ export interface Media {
   /** Media type discriminator */
   type: MediaType;
 
-  /** Category classification (optional for non-visual types like PDFs) */
-  category?:
-    | "environment"
-    | "classroom"
-    | "activities"
-    | "events"
-    | "awards"
-    | "default";
-
   /** Direct URL to the media asset */
   url: string;
 

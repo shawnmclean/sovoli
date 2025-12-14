@@ -28,7 +28,7 @@ export const MAGY_SECONDARY_GRADE_9_PROGRAM: Program = {
   outcome: "CSEC (Caribbean Secondary Education Certificate)",
   description:
     "Advanced secondary education with focused CSEC examination preparation",
-  media: shuffleArray(SECONDARY_PHOTOS),
+  media: { gallery: shuffleArray(SECONDARY_PHOTOS) },
   cycles: [], // Will be added when cycles are created
   testimonials: MAGY_SHARED_TESTIMONIALS,
   activities: MAGY_SECONDARY_DEPT_ACTIVITIES,

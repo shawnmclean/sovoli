@@ -4,7 +4,6 @@ import type { Media } from "~/modules/core/media/types";
 const END_OF_TERM_TESTS_EVENT_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760991744/o/magy/events/end-of-term-tests-2025/1.png",
     assetId: "fbabf79579e117c3d13e75205ecbb5ef",
     publicId: "o/magy/events/end-of-term-tests-2025/1",

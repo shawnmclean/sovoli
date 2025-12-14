@@ -27,7 +27,7 @@ export const BLCGY_SECONDARY_GRADE_11_PROGRAM: Program = {
   tagline: "Advanced CSEC and CAPE preparation",
   outcome: "CSEC (Caribbean Secondary Education Certificate)",
   description: "Advanced secondary education with CAPE preparation options",
-  media: SECONDARY_PHOTOS,
+  media: { gallery: SECONDARY_PHOTOS },
   cycles: [],
   testimonials: BLCGY_SHARED_TESTIMONIALS,
   activities: BLCGY_SECONDARY_DEPT_ACTIVITIES,

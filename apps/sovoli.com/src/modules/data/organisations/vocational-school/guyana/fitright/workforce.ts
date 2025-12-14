@@ -29,7 +29,6 @@ export const XAVIRINE_DORNELLAS: WorkforceMember = {
   slug: "xavirine-dornellas",
   photo: {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765636944/o/fitright/team/xavirine.webp",
     assetId: "af6bbb7977081d6106009ab0770d9186",
     publicId: "o/fitright/team/xavirine",

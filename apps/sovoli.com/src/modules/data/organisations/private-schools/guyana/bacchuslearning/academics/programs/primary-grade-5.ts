@@ -22,7 +22,7 @@ export const BLCGY_PRIMARY_GRADE_5_PROGRAM: Program = {
   outcome: "NGSA (Grade 6 Exam)",
   description: "NGSA preparation with comprehensive academic foundation",
   standardProgramVersion: GY_PRIMARY_GRADE_5_V1,
-  media: PRIMARY_PHOTOS,
+  media: { gallery: PRIMARY_PHOTOS },
   cycles: [BLCGY_PRIMARY_GRADE_5_2025_T1],
   testimonials: BLCGY_SHARED_TESTIMONIALS,
   activities: BLCGY_PRIMARY_DEPT_ACTIVITIES,

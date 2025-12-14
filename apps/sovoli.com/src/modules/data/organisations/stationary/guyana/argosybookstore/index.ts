@@ -8,7 +8,6 @@ import { ARGOSY_BOOK_STORE_CATALOG } from "./catalog";
 const ARGOSY_BOOK_STORE_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1761156821/o/argosy/org/o/argosy/org/1.png",
     assetId: "f1ea46a8a2cc2d34f756b6c3ffefd681",
     publicId: "o/argosy/org/o/argosy/org/1",
@@ -26,7 +25,6 @@ export const ARGOSY_BOOK_STORE_ORG: OrgInstance = {
     name: "Argosy Book Store",
     logoPhoto: {
       type: "image",
-      category: "default",
       url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638257/o/argosybookstore/logo/logo.webp",
       assetId: "cc2a0b0a8399911a8e5d7359a30502fe",
       publicId: "o/argosybookstore/logo/logo",

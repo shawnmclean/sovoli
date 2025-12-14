@@ -106,7 +106,8 @@ export async function generateMetadata({ params }: Props) {
       images: [
         {
           url:
-            program?.media?.[0]?.url ??
+            program?.media?.cover?.url ??
+            program?.media?.gallery?.[0]?.url ??
             program?.standardProgramVersion?.program.image ??
             "",
           width: 1200,
@@ -189,8 +190,10 @@ export default async function Layout({ children, params, modals }: Props) {
     provider: {
       "@id": `${orgInstance.websiteModule.website.url}#org`,
     },
-    ...(programToUse.media?.[0]?.url && {
-      image: programToUse.media[0].url,
+    ...((programToUse.media?.cover?.url ??
+      programToUse.media?.gallery?.[0]?.url) && {
+      image:
+        programToUse.media?.cover?.url ?? programToUse.media?.gallery?.[0]?.url,
     }),
     ...(defaultCycle && {
       offers: {
@@ -277,7 +280,7 @@ export default async function Layout({ children, params, modals }: Props) {
         <ProgramTracking program={programToUse} defaultCycle={defaultCycle} />
 
         <GalleryCarousel
-          media={programToUse.media ?? []}
+          media={programToUse.media?.gallery ?? []}
           title={programToUse.name ?? "Program"}
           type="program"
           username={username}

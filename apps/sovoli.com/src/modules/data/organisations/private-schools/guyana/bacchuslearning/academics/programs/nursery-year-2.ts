@@ -21,7 +21,7 @@ export const BLCGY_NURSERY_YEAR_2_PROGRAM: Program = {
   outcome: "Primary School Readiness",
   description: "Advanced curriculum preparing children for primary school",
   standardProgramVersion: GY_NURSERY_YEAR_2_V1,
-  media: NURSERY_YEAR_2_PHOTOS,
+  media: { gallery: NURSERY_YEAR_2_PHOTOS },
   isPopular: true,
   cycles: [BLCGY_NURSERY_YEAR_2_2025_T1],
   testimonials: BLCGY_SHARED_TESTIMONIALS,

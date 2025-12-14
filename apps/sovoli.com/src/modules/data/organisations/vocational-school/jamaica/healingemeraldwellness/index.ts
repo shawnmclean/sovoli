@@ -53,7 +53,6 @@ export const HEALING_EMERALD_ORG: OrgInstance = parseOrgInstance({
 HEALING_EMERALD_ORG.org.media = HEALING_EMERALD_PHOTOS;
 HEALING_EMERALD_ORG.org.logoPhoto = {
   type: "image",
-  category: "default",
   url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638544/o/healingemeraldwellness/logo/logo.png",
   assetId: "07b2d01868acea31c945fcfb7e4fb831",
   publicId: "o/healingemeraldwellness/logo/logo",

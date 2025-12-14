@@ -21,7 +21,7 @@ export const MAGY_NURSERY_YEAR_1_PROGRAM: Program = {
   outcome: "Early Literacy & Numeracy",
   description: "Engaging curriculum fostering critical thinking and creativity",
   standardProgramVersion: GY_NURSERY_YEAR_1_V1,
-  media: NURSERY_YEAR_1_PHOTOS,
+  media: { gallery: NURSERY_YEAR_1_PHOTOS },
   isPopular: true,
   cycles: [MAGY_NURSERY_YEAR_1_2025_T1],
   testimonials: MAGY_SHARED_TESTIMONIALS,

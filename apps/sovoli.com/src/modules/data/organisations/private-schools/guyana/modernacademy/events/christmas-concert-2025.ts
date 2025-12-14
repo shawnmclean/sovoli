@@ -4,7 +4,6 @@ import { Media } from "~/modules/core/media/types";
 const CHRISTMAS_CONCERT_EVENT_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760992018/o/magy/events/christmas-concert-2025/1.png",
     assetId: "75c4870e93b221ea44c04ca5c1d8523d",
     publicId: "o/magy/events/christmas-concert-2025/1",

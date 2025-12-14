@@ -8,6 +8,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import type { Media } from "~/modules/core/media/types";
 import { filterVisualMedia } from "~/modules/core/media/types";
 import type { OrgLocation } from "~/modules/organisations/types";
+import type { ProgramMedia } from "~/modules/academics/types";
 
 interface ReceivableItem {
   id: string;
@@ -80,10 +81,20 @@ export function ReceivablesChecklist({
     });
   };
 
-  // Helper to check if media exists and is visual
+  // Helper to check if media exists and is visual (for org media array)
   const hasVisualMedia = (media?: Media[]): boolean => {
     if (!media || media.length === 0) return false;
     return filterVisualMedia(media).length > 0;
+  };
+
+  // Helper to check if program media exists and is visual
+  const hasProgramVisualMedia = (media?: ProgramMedia): boolean => {
+    if (!media) return false;
+    const gallery = media.gallery ?? [];
+    const hasCover =
+      media.cover?.type === "image" || media.cover?.type === "video";
+    const hasGallery = filterVisualMedia(gallery).length > 0;
+    return hasCover || hasGallery;
   };
 
   // Get primary location
@@ -177,18 +188,14 @@ export function ReceivablesChecklist({
       label: "Photo of Your Building (Outside)",
       description: "A clear photo of the front of your building",
       hint: "Helps customers recognize your location when they arrive",
-      status: org.media?.some((m) => m.category === "environment")
-        ? "complete"
-        : "missing",
+      status: hasVisualMedia(org.media) ? "complete" : "missing",
     },
     {
       id: "classroom-photos",
       label: "Photos of Classrooms / Training Areas",
       description: "Show where students will learn",
       hint: "Clean, well-lit photos work best",
-      status: org.media?.some((m) => m.category === "classroom")
-        ? "complete"
-        : "missing",
+      status: hasVisualMedia(org.media) ? "complete" : "missing",
     },
     {
       id: "general-photos",
@@ -288,7 +295,7 @@ export function ReceivablesChecklist({
           label: "Photos",
           description: "Photos of this program in action",
           hint: "Students learning, equipment used, finished projects, etc.",
-          status: hasVisualMedia(program.media) ? "complete" : "missing",
+          status: hasProgramVisualMedia(program.media) ? "complete" : "missing",
         },
         {
           id: `${programPrefix}-duration`,

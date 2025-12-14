@@ -3,7 +3,6 @@ import type { Media } from "~/modules/core/media/types";
 const PHOTOS: Media[] = [
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753281990/o/magy/programs/pre-nursery/1.webp",
     assetId: "acb9ef4f96c5c0780d77b4bcea2733b9",
     publicId: "o/magy/programs/pre-nursery/1",
@@ -15,7 +14,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753281995/o/magy/programs/pre-nursery/2.webp",
     assetId: "5f90f506c590e15b88ed1c97d20c1298",
     publicId: "o/magy/programs/pre-nursery/2",
@@ -27,7 +25,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282000/o/magy/programs/pre-nursery/3.webp",
     assetId: "bae6ae8ec079e7c8ab458f31b7116ac6",
     publicId: "o/magy/programs/pre-nursery/3",
@@ -39,7 +36,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282006/o/magy/programs/pre-nursery/4.webp",
     assetId: "908a6bc45a20d9e7c8cc3dde3648bd03",
     publicId: "o/magy/programs/pre-nursery/4",
@@ -51,7 +47,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282009/o/magy/programs/pre-nursery/5.webp",
     assetId: "6bbc3a29fa22f4015aad9b85208dbd26",
     publicId: "o/magy/programs/pre-nursery/5",
@@ -63,7 +58,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282013/o/magy/programs/pre-nursery/6.webp",
     assetId: "2fd30bf2f145b3357cdcbd18e0f29167",
     publicId: "o/magy/programs/pre-nursery/6",
@@ -75,7 +69,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282019/o/magy/programs/pre-nursery/7.webp",
     assetId: "016e9adead3ea22233077f02286465dd",
     publicId: "o/magy/programs/pre-nursery/7",
@@ -87,7 +80,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282030/o/magy/programs/pre-nursery/8.webp",
     assetId: "c9ccc4213dbed1933c4b5c172f54f747",
     publicId: "o/magy/programs/pre-nursery/8",
@@ -99,7 +91,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282034/o/magy/programs/pre-nursery/9.webp",
     assetId: "31724ea0893717dc8c7c7fcc2dbb9575",
     publicId: "o/magy/programs/pre-nursery/9",
@@ -111,7 +102,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282038/o/magy/programs/pre-nursery/10.webp",
     assetId: "3185bb8655a70a97164011e3b18a9704",
     publicId: "o/magy/programs/pre-nursery/10",
@@ -123,7 +113,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282045/o/magy/programs/pre-nursery/11.webp",
     assetId: "e8ea962cba00f0744dc7c19d26b7a7fd",
     publicId: "o/magy/programs/pre-nursery/11",
@@ -135,7 +124,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282049/o/magy/programs/pre-nursery/12.webp",
     assetId: "4dd692506ca7169e3e97a5125f9f53aa",
     publicId: "o/magy/programs/pre-nursery/12",
@@ -147,7 +135,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282054/o/magy/programs/pre-nursery/13.webp",
     assetId: "637d5d9694df82104ed2ad55ec8b942f",
     publicId: "o/magy/programs/pre-nursery/13",
@@ -159,7 +146,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282062/o/magy/programs/pre-nursery/14.webp",
     assetId: "e1aec2207d6e2fd87e72141e1f881931",
     publicId: "o/magy/programs/pre-nursery/14",
@@ -171,7 +157,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282066/o/magy/programs/pre-nursery/15.webp",
     assetId: "fe71b229ba284626f0161f5b4923b6f6",
     publicId: "o/magy/programs/pre-nursery/15",
@@ -183,7 +168,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282071/o/magy/programs/pre-nursery/16.webp",
     assetId: "f9c7789cb2d0812fe73e32532c75f66b",
     publicId: "o/magy/programs/pre-nursery/16",
@@ -195,7 +179,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282075/o/magy/programs/pre-nursery/17.webp",
     assetId: "dffea9d86412d1937e9d5ba453ec07bc",
     publicId: "o/magy/programs/pre-nursery/17",
@@ -207,7 +190,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282079/o/magy/programs/pre-nursery/18.webp",
     assetId: "87cd45ee3be222bff915e5f38ac7cd5d",
     publicId: "o/magy/programs/pre-nursery/18",
@@ -219,7 +201,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282088/o/magy/programs/pre-nursery/19.webp",
     assetId: "14c6b59f00880cd4e457d1d4fec9c9a0",
     publicId: "o/magy/programs/pre-nursery/19",
@@ -231,7 +212,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282093/o/magy/programs/pre-nursery/20.webp",
     assetId: "73d12d234b6d01947a819d1094363aab",
     publicId: "o/magy/programs/pre-nursery/20",
@@ -243,7 +223,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282097/o/magy/programs/pre-nursery/21.webp",
     assetId: "faef4f6a79eb5211a030575899662a68",
     publicId: "o/magy/programs/pre-nursery/21",
@@ -255,7 +234,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282101/o/magy/programs/pre-nursery/22.webp",
     assetId: "177b63f99ab75e35c019f853e276fd3f",
     publicId: "o/magy/programs/pre-nursery/22",
@@ -267,7 +245,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282105/o/magy/programs/pre-nursery/23.webp",
     assetId: "e6fab0993d1df638d15d8bf3a29c5376",
     publicId: "o/magy/programs/pre-nursery/23",
@@ -279,7 +256,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282109/o/magy/programs/pre-nursery/24.webp",
     assetId: "842c9129d77568f69029401794a4fc0c",
     publicId: "o/magy/programs/pre-nursery/24",
@@ -291,7 +267,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282112/o/magy/programs/pre-nursery/25.webp",
     assetId: "d3689815fe0d76d617235948698ca15d",
     publicId: "o/magy/programs/pre-nursery/25",
@@ -303,7 +278,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282120/o/magy/programs/pre-nursery/26.webp",
     assetId: "d3d2e9a5dbb17f11ce02ad4535a6b367",
     publicId: "o/magy/programs/pre-nursery/26",
@@ -315,7 +289,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282125/o/magy/programs/pre-nursery/27.webp",
     assetId: "b93f9cf8e4ea22f6e4b5c2e5a1ca0ef9",
     publicId: "o/magy/programs/pre-nursery/27",
@@ -327,7 +300,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282130/o/magy/programs/pre-nursery/28.webp",
     assetId: "1fe22d2665ee4a9d262d35159a1a2d9e",
     publicId: "o/magy/programs/pre-nursery/28",
@@ -339,7 +311,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282133/o/magy/programs/pre-nursery/29.webp",
     assetId: "24592f6c0145a32f451efb39f73cd88e",
     publicId: "o/magy/programs/pre-nursery/29",
@@ -351,7 +322,6 @@ const PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1753282140/o/magy/programs/pre-nursery/30.webp",
     assetId: "35954125cd0fe31aae515cafe1479075",
     publicId: "o/magy/programs/pre-nursery/30",
@@ -385,7 +355,6 @@ export const PRIMARY_PHOTOS: Media[] = shuffleArray(PHOTOS);
 export const SECONDARY_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1757870814/o/magy/programs/secondary/1.jpg",
     assetId: "847ce6773e28b9b48014c6d11295d08c",
     publicId: "o/magy/programs/secondary/1",
@@ -397,7 +366,6 @@ export const SECONDARY_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1757870815/o/magy/programs/secondary/2.jpg",
     assetId: "c57f47efd9716f8145ec95a0d692b26b",
     publicId: "o/magy/programs/secondary/2",
@@ -409,7 +377,6 @@ export const SECONDARY_PHOTOS: Media[] = [
   },
   {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1757870816/o/magy/programs/secondary/3.jpg",
     assetId: "024cb74ca40bbcf862e919868f1e444d",
     publicId: "o/magy/programs/secondary/3",

@@ -4,7 +4,6 @@ import type { Media } from "~/modules/core/media/types";
 const SPORTS_DAY_EVENT_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760991745/o/magy/events/sports-day-2025/1.png",
     assetId: "b710400ee729f8aec3563984ba304e12",
     publicId: "o/magy/events/sports-day-2025/1",

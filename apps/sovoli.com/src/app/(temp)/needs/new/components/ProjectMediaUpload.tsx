@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import Image from "next/image";
 import { CloudUpload, X, Loader2, AlertCircle, Play } from "lucide-react";
 import { useDropzone } from "react-dropzone";
@@ -433,7 +440,6 @@ export function ProjectMediaUpload({
 
               const uploadedMedia: Media = {
                 type: "video",
-                category: "default",
                 url: uploadedAsset.url,
                 caption: item.fileName,
                 alt: item.fileName,
@@ -478,7 +484,6 @@ export function ProjectMediaUpload({
 
               const uploadedMedia: Media = {
                 type: "image",
-                category: "default",
                 url: uploadedAsset.url,
                 caption: item.fileName,
                 alt: item.fileName,

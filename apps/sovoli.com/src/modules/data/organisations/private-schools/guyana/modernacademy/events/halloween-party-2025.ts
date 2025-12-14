@@ -4,7 +4,6 @@ import { Media } from "~/modules/core/media/types";
 const HALLOWEEN_PARTY_EVENT_PHOTOS: Media[] = [
   {
     type: "image",
-    category: "events",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1760991132/o/magy/events/halloween-party-2025/1.png",
     assetId: "9ecf6126c0bcfbdf5d2fcf49704b2374",
     publicId: "o/magy/events/halloween-party-2025/1",

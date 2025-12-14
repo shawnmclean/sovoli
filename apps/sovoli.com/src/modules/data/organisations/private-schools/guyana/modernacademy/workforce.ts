@@ -59,7 +59,6 @@ export const ANITA_DHANIRAM: WorkforceMember = {
   slug: "anita-dhaniram",
   photo: {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637044/o/magy/team/anita.webp",
     assetId: "fd09b4f84b6d781a90b2a552e45a3ef2",
     publicId: "o/magy/team/anita",
@@ -103,7 +102,6 @@ export const JESSICA_GOBIN: WorkforceMember = {
   slug: "jessica-a-gobin",
   photo: {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637045/o/magy/team/jessica.webp",
     assetId: "f3bca71d18dc72333a2839bc0ff69f12",
     publicId: "o/magy/team/jessica",
@@ -140,7 +138,6 @@ export const WONDA_BARON: WorkforceMember = {
   slug: "wonda-baron",
   photo: {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637048/o/magy/team/wonda.webp",
     assetId: "34171207b325742d43570eccd8547ed8",
     publicId: "o/magy/team/wonda",
@@ -176,7 +173,6 @@ export const MOLTA_MCRAE: WorkforceMember = {
   slug: "molta-mcrae",
   photo: {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637049/o/magy/team/molta.webp",
     assetId: "2e9ca4e52e0fb32c076c15bd4ee68a91",
     publicId: "o/magy/team/molta",
@@ -212,7 +208,6 @@ export const SAMANTHA_PERSAUD: WorkforceMember = {
   slug: "samantha-persaud",
   photo: {
     type: "image",
-    category: "default",
     url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637051/o/magy/team/samantha.webp",
     assetId: "15d96931f0817655666eb96b49eed333",
     publicId: "o/magy/team/samantha",

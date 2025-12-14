@@ -64,7 +64,6 @@ export const OLYMPUS_ACADEMY_PROJECTS: ProjectsModule = {
       media: [
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763740443/o/olympus-academy/projects/hom58z0vesneheam37uuwukm.webp",
           publicId: "o/olympus-academy/projects/hom58z0vesneheam37uuwukm",
           assetId: "c04200e8b8d778a57b7d836be0627902",
@@ -80,7 +79,6 @@ export const OLYMPUS_ACADEMY_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763740443/o/olympus-academy/projects/xe9nezxsiq0dgmqu7g5tsreb.webp",
           publicId: "o/olympus-academy/projects/xe9nezxsiq0dgmqu7g5tsreb",
           assetId: "7a92c360d1248626677f61df15828b69",
@@ -96,7 +94,6 @@ export const OLYMPUS_ACADEMY_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763740443/o/olympus-academy/projects/xdzbw9d2z0bf6jq9jkzrybrq.webp",
           publicId: "o/olympus-academy/projects/xdzbw9d2z0bf6jq9jkzrybrq",
           assetId: "3d6089a52cef8bc5578e5ba18adad184",
@@ -112,7 +109,6 @@ export const OLYMPUS_ACADEMY_PROJECTS: ProjectsModule = {
         },
         {
           type: "image",
-          category: "environment",
           url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1763740444/o/olympus-academy/projects/xtq836emj3hbtcdw8n1y57gf.webp",
           publicId: "o/olympus-academy/projects/xtq836emj3hbtcdw8n1y57gf",
           assetId: "53ca0bab834b6d5bd0019940ff63befc",

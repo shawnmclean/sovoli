@@ -7,7 +7,6 @@ export const MARIAN_ACADEMY_ORG: OrgInstance = {
     username: ORG_USERNAME,
     logoPhoto: {
       type: "image",
-      category: "default",
       url: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638258/o/marianacademy/logo/logo.webp",
       assetId: "0085d409a8b9e3d27bf52cb08446d7e8",
       publicId: "o/marianacademy/logo/logo",

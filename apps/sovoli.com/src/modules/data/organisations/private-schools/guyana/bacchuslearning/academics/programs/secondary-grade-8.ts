@@ -27,7 +27,7 @@ export const BLCGY_SECONDARY_GRADE_8_PROGRAM: Program = {
   tagline: "Advanced secondary foundations",
   outcome: "CSEC (Caribbean Secondary Education Certificate)",
   description: "Advanced secondary education building towards CSEC success",
-  media: SECONDARY_PHOTOS,
+  media: { gallery: SECONDARY_PHOTOS },
   cycles: [],
   testimonials: BLCGY_SHARED_TESTIMONIALS,
   activities: BLCGY_SECONDARY_DEPT_ACTIVITIES,
