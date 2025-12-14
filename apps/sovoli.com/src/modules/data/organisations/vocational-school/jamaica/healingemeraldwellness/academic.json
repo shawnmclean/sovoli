@@ -1,0 +1,117 @@
+{
+  "programs": [
+    {
+      "id": "hew-massage-therapy",
+      "slug": "massage-therapy",
+      "name": "Massage Therapy Training",
+      "audience": "student",
+      "quickFacts": [
+        "Certificate Included",
+        "Expert Instructor",
+        "Hands-On Training"
+      ],
+      "highlights": [
+        {
+          "icon": "hammer",
+          "label": "Hands-On Learning",
+          "description": "Practice techniques on real clients from day one in a professional spa environment."
+        },
+        {
+          "icon": "users",
+          "label": "Small Class Sizes",
+          "description": "Personal attention and individualized instruction in an intimate learning setting."
+        },
+        {
+          "icon": "badge-check",
+          "label": "Certificate Included",
+          "description": "Receive a professional certificate upon successful completion of the program."
+        },
+        {
+          "icon": "graduation-cap",
+          "label": "Exam/Career Ready",
+          "description": "Graduate with the skills needed to work in spas, wellness centres, or start your own practice or take the exam to become a registered massage therapist."
+        }
+      ],
+      "tagline": "Master the art of therapeutic massage",
+      "outcome": "Become a certified massage therapist ready for professional practice",
+      "description": "Our comprehensive Massage Therapy program teaches students the fundamental and advanced techniques of therapeutic massage. Students will learn Swedish massage, deep tissue massage, and other modalities in a professional spa environment. This program prepares graduates for careers in spas, wellness centres, hotels, and private practice.",
+      "whatYouWillLearn": [
+        {
+          "heading": "Massage Fundamentals",
+          "items": [
+            {
+              "id": "anatomy-basics",
+              "title": "Human Anatomy & Physiology",
+              "blurb": "Understand the musculoskeletal system and how massage affects the body.",
+              "tag": "Foundations"
+            },
+            {
+              "id": "massage-theory",
+              "title": "Massage Theory & History",
+              "blurb": "Learn the origins and scientific principles behind therapeutic massage."
+            }
+          ]
+        },
+        {
+          "heading": "Massage Techniques",
+          "items": [
+            {
+              "id": "swedish-massage",
+              "title": "Swedish Massage",
+              "blurb": "Master the classic relaxation massage technique with flowing strokes.",
+              "tag": "Core Skill"
+            },
+            {
+              "id": "deep-tissue",
+              "title": "Deep Tissue Massage",
+              "blurb": "Learn to work on deeper muscle layers to release chronic tension."
+            },
+            {
+              "id": "pressure-points",
+              "title": "Pressure Point Therapy",
+              "blurb": "Identify and work trigger points to relieve pain and tension."
+            }
+          ]
+        },
+        {
+          "heading": "Professional Practice",
+          "items": [
+            {
+              "id": "client-consultation",
+              "title": "Client Consultation & Assessment",
+              "blurb": "Learn to assess client needs and create personalized treatment plans.",
+              "tag": "Hands-on"
+            },
+            {
+              "id": "hygiene-safety",
+              "title": "Hygiene & Safety Standards",
+              "blurb": "Maintain professional standards for cleanliness and client safety."
+            },
+            {
+              "id": "business-skills",
+              "title": "Business & Client Management",
+              "blurb": "Build skills for running your own massage practice or working in a spa.",
+              "tag": "Career Ready"
+            }
+          ]
+        }
+      ],
+      "group": {
+        "id": "massage-therapy",
+        "slug": "massage-therapy",
+        "name": "Massage Therapy",
+        "description": "Professional massage therapy training programs",
+        "order": 1
+      },
+      "cycleIds": [
+        "hew-massage-20260107",
+        "hew-massage-20260225",
+        "hew-massage-20260415",
+        "hew-massage-20260603"
+      ],
+      "media": {
+        "galleryIds": ["hew-massage-model", "hew-reception-area"]
+      }
+    }
+  ]
+}

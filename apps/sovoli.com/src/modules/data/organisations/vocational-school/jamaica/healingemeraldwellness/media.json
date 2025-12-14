@@ -1,0 +1,52 @@
+{
+  "media": [
+    {
+      "id": "hew-logo",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638544/o/healingemeraldwellness/logo/logo.png",
+      "assetId": "07b2d01868acea31c945fcfb7e4fb831",
+      "publicId": "o/healingemeraldwellness/logo/logo",
+      "width": 306,
+      "height": 305,
+      "format": "png",
+      "bytes": 64506,
+      "version": 1765638544
+    },
+    {
+      "id": "hew-massage-model",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637928/o/healingemeraldwellness/programs/massage-therapy/massage-model.jpg",
+      "assetId": "46539ba9b6db4691b60461c7681873d5",
+      "publicId": "o/healingemeraldwellness/programs/massage-therapy/massage-model",
+      "width": 1536,
+      "height": 1024,
+      "format": "jpg",
+      "bytes": 223961,
+      "version": 1765637928
+    },
+    {
+      "id": "hew-reception-area",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637929/o/healingemeraldwellness/programs/massage-therapy/reception-area.jpg",
+      "assetId": "9ec095d13942e190bcd8cba6459695a0",
+      "publicId": "o/healingemeraldwellness/programs/massage-therapy/reception-area",
+      "width": 1056,
+      "height": 1280,
+      "format": "jpg",
+      "bytes": 289066,
+      "version": 1765637929
+    },
+    {
+      "id": "hew-alicia-photo",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1765637751/o/healingemeraldwellness/team/alicia.png",
+      "assetId": "18e695f0da005cf04cce95f85c92b9cd",
+      "publicId": "o/healingemeraldwellness/team/alicia",
+      "width": 992,
+      "height": 969,
+      "format": "png",
+      "bytes": 1091637,
+      "version": 1765637751
+    }
+  ]
+}

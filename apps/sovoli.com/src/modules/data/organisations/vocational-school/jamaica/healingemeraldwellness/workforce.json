@@ -1,0 +1,69 @@
+{
+  "departments": [
+    {
+      "name": "Management",
+      "slug": "management",
+      "description": "Executive leadership and business operations",
+      "image": "/vocational-training/jamaica/healingemeraldwellness/team/management.webp",
+      "url": "/vocational-training/jamaica/healingemeraldwellness/team"
+    },
+    {
+      "name": "Faculty",
+      "slug": "faculty",
+      "description": "Teaching staff and instructors",
+      "image": "/vocational-training/jamaica/healingemeraldwellness/team/faculty.webp",
+      "url": "/vocational-training/jamaica/healingemeraldwellness/team"
+    }
+  ],
+  "positions": [
+    {
+      "name": "Instructor",
+      "slug": "instructor",
+      "description": "Wellness and beauty therapy instructor",
+      "image": "/vocational-training/jamaica/healingemeraldwellness/team/instructor.webp",
+      "url": "/vocational-training/jamaica/healingemeraldwellness/team"
+    },
+    {
+      "name": "Spa Managing Director",
+      "slug": "spa-managing-director",
+      "description": "Spa Managing Director and lead instructor",
+      "image": "/vocational-training/jamaica/healingemeraldwellness/team/director.webp",
+      "url": "/vocational-training/jamaica/healingemeraldwellness/team"
+    }
+  ],
+  "teams": [],
+  "members": [
+    {
+      "id": "001",
+      "slug": "alicia-davis",
+      "name": "Alicia Davis",
+      "photoId": "hew-alicia-photo",
+      "bio": "Alicia Davis is the founder and owner of Healing Emerald Wellness Spa & Training Centre Limited. With a passion for wellness and beauty therapy, she established the centre to provide high-quality spa services and vocational training in massage therapy, waxing, and other wellness disciplines.",
+      "quote": "Empowering others through wellness education and self-care.",
+      "isPublic": true,
+      "contacts": [],
+      "roleAssignments": [
+        {
+          "positionSlug": "spa-managing-director",
+          "departmentSlug": "management",
+          "isPrimary": true
+        },
+        {
+          "positionSlug": "instructor",
+          "departmentSlug": "faculty",
+          "isPrimary": false
+        }
+      ],
+      "subjectAssignments": [
+        {
+          "subject": "Massage Therapy",
+          "grades": ["Beginner", "Intermediate", "Advanced"]
+        },
+        {
+          "subject": "Waxing",
+          "grades": ["Beginner"]
+        }
+      ]
+    }
+  ]
+}

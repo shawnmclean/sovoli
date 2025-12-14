@@ -1,0 +1,156 @@
+{
+  "globalCycles": [],
+  "academicCycles": [
+    {
+      "id": "hew-massage-20260107",
+      "customLabel": "Massage Therapy - January 2026",
+      "startDate": "2026-01-07",
+      "endDate": "2026-02-25"
+    },
+    {
+      "id": "hew-massage-20260225",
+      "customLabel": "Massage Therapy - February 2026",
+      "startDate": "2026-02-25",
+      "endDate": "2026-04-15"
+    },
+    {
+      "id": "hew-massage-20260415",
+      "customLabel": "Massage Therapy - April 2026",
+      "startDate": "2026-04-15",
+      "endDate": "2026-06-03"
+    },
+    {
+      "id": "hew-massage-20260603",
+      "customLabel": "Massage Therapy - June 2026",
+      "startDate": "2026-06-03",
+      "endDate": "2026-07-22"
+    }
+  ],
+  "programCycles": [
+    {
+      "id": "hew-massage-20260107",
+      "academicCycleId": "hew-massage-20260107",
+      "teacherSlugs": ["alicia-davis"],
+      "capacity": 2,
+      "enrolled": 0,
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 3000
+            },
+            "notes": "Non-refundable registration fee. Covers administrative processing, course setup, and student onboarding."
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "program",
+            "amount": {
+              "JMD": 100000
+            }
+          }
+        ],
+        "discounts": []
+      }
+    },
+    {
+      "id": "hew-massage-20260225",
+      "academicCycleId": "hew-massage-20260225",
+      "teacherSlugs": ["alicia-davis"],
+      "capacity": 2,
+      "enrolled": 0,
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 3000
+            },
+            "notes": "Non-refundable registration fee. Covers administrative processing, course setup, and student onboarding."
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "program",
+            "amount": {
+              "JMD": 100000
+            }
+          }
+        ],
+        "discounts": []
+      }
+    },
+    {
+      "id": "hew-massage-20260415",
+      "academicCycleId": "hew-massage-20260415",
+      "teacherSlugs": ["alicia-davis"],
+      "capacity": 2,
+      "enrolled": 0,
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 3000
+            },
+            "notes": "Non-refundable registration fee. Covers administrative processing, course setup, and student onboarding."
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "program",
+            "amount": {
+              "JMD": 100000
+            }
+          }
+        ],
+        "discounts": []
+      }
+    },
+    {
+      "id": "hew-massage-20260603",
+      "academicCycleId": "hew-massage-20260603",
+      "teacherSlugs": ["alicia-davis"],
+      "capacity": 2,
+      "enrolled": 0,
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 3000
+            },
+            "notes": "Non-refundable registration fee. Covers administrative processing, course setup, and student onboarding."
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "program",
+            "amount": {
+              "JMD": 100000
+            }
+          }
+        ],
+        "discounts": []
+      }
+    }
+  ]
+}
+
