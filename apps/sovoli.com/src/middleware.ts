@@ -94,10 +94,12 @@ function isStaticAsset(path: string): boolean {
 
 function isLocalhost(host: string): boolean {
   const hostname = host.split(":")[0] ?? host;
-  if (hostname === "localhost" || hostname === "127.0.0.1") return true;
-
-  // Check for local network IP addresses (192.168.x.x, 10.x.x.x, 172.16-31.x.x)
-  return isLocalIp(hostname);
+  return (
+    hostname === "localhost" ||
+    hostname === "127.0.0.1" ||
+    hostname.endsWith(".localhost") ||
+    isLocalIp(hostname)
+  );
 }
 
 function isLocalIp(hostname: string): boolean {
