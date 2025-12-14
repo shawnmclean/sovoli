@@ -9,7 +9,9 @@ import websiteData from "./website.json";
 import mediaData from "./media.json";
 import workforceData from "./workforce.json";
 import cyclesData from "./cycles.json";
-import academicData from "./academic.json";
+import programGroupsData from "./program-groups.json";
+import sewingAcademicData from "./sewing-academic.json";
+import workshopsAcademicData from "./workshops-academic.json";
 
 /**
  * FitRight Academy organization instance
@@ -21,7 +23,8 @@ export const FITRIGHT_ORG: OrgInstance = parseOrgInstance({
     media: mediaData,
     workforce: workforceData,
     cycles: cyclesData,
-    academic: academicData,
+    programGroups: programGroupsData,
+    groupAcademic: [sewingAcademicData, workshopsAcademicData],
     website: websiteData,
   },
 });

@@ -1,83 +1,11 @@
 {
   "programs": [
     {
-      "id": "fr-bag-workshop",
-      "slug": "sew-your-own-bag",
-      "name": "Intro to Sewing: Make Your Own Bag",
-      "audience": "student",
-      "highlights": [
-        {
-          "icon": "hammer",
-          "label": "Hands-On Learning",
-          "description": "Use real tools and materials from day one to practice sewing techniques."
-        },
-        {
-          "icon": "shopping-bag",
-          "label": "Make & Take Bag",
-          "description": "Create your own tote bag during the workshop and take it home."
-        },
-        {
-          "icon": "tool",
-          "label": "Tools Provided",
-          "description": "We provide sewing machines, scissors, and all fabric — just show up and sew."
-        },
-        {
-          "icon": "users",
-          "label": "Small Group",
-          "description": "Personal attention and relaxed pace in a small class environment."
-        }
-      ],
-      "description": "A hands-on introduction to sewing for complete beginners. In just one day, you'll learn how to measure, cut, and stitch fabric — and leave with your very own handmade bag.",
-      "courses": [
-        {
-          "id": "fr-beginner-course-1",
-          "subject": {
-            "id": "fr-beginner-subject-1",
-            "name": "Sewing"
-          },
-          "title": "Make Your Own Bag",
-          "description": "Learn to operate a sewing machine and complete your first project — a fully functional canvas tote bag. Designed for absolute beginners.",
-          "units": [
-            {
-              "title": "Machine Control & Pattern Drafting",
-              "topics": [
-                "Control sewing machine (speed, stitch length, pedal use)",
-                "Draft pattern of the tote bag",
-                "Select and cut correct fabric on grain",
-                "Sew straight and curved lines on practice material"
-              ]
-            },
-            {
-              "title": "Bag Construction & Finishing",
-              "topics": [
-                "Sew a patch pocket on bag body",
-                "Insert a zipper into bag opening",
-                "Double fold hemming technique",
-                "Finish raw fabric edges (zigzag or bias tape)",
-                "Final assembly and completion of bag"
-              ]
-            }
-          ]
-        }
-      ],
-      "cycleIds": [
-        "fr-cycle-july25",
-        "fr-cycle-july26",
-        "fr-cycle-july27"
-      ],
-      "media": {
-        "galleryIds": ["fitright-bag-workshop-1", "fitright-bag-workshop-2"]
-      }
-    },
-    {
       "id": "fr-elementary-sewing",
       "slug": "elementary-sewing",
       "name": "Elementary Sewing",
       "audience": "student",
-      "quickFacts": [
-        "Certificate Included",
-        "Expert Instructor"
-      ],
+      "quickFacts": ["Certificate Included", "Expert Instructor"],
       "highlights": [
         {
           "icon": "hammer",
@@ -158,49 +86,12 @@
       ],
       "requirements": [
         {
-          "name": "Tools",
-          "category": "materials",
-          "audience": "student",
-          "items": [
-            {
-              "itemId": "supply-seamstress-scissors"
-            },
-            {
-              "itemId": "supply-pin-cushion"
-            },
-            {
-              "itemId": "supply-tape-measure"
-            },
-            {
-              "itemId": "supply-straight-ruler"
-            },
-            {
-              "itemId": "supply-french-curve"
-            }
-          ]
-        },
-        {
           "name": "Supplies",
           "category": "materials",
           "audience": "student",
           "items": [
             {
-              "itemId": "supply-machine-needles-14"
-            },
-            {
-              "itemId": "supply-sewing-pins"
-            },
-            {
-              "itemId": "supply-hand-needle"
-            },
-            {
               "itemId": "supply-drafting-paper"
-            },
-            {
-              "itemId": "supply-pencils"
-            },
-            {
-              "itemId": "supply-erasers"
             },
             {
               "itemId": "supply-tailors-chalk-blue"
@@ -220,26 +111,15 @@
           "fitright-elementary-sewing-5"
         ]
       },
-      "group": {
-        "id": "sewing",
-        "slug": "sewing",
-        "name": "Sewing",
-        "description": "Elementary to Advanced Sewing Programs",
-        "order": 1
-      },
-      "cycleIds": [
-        "fr-elementary-sewing-09-15"
-      ]
+      "groupId": "sewing",
+      "cycleIds": ["fr-elementary-sewing-09-15"]
     },
     {
       "id": "fr-intermediate-sewing",
       "slug": "intermediate-sewing",
       "name": "Intermediate Sewing",
       "audience": "student",
-      "quickFacts": [
-        "Certificate Included",
-        "Expert Instructor"
-      ],
+      "quickFacts": ["Certificate Included", "Expert Instructor"],
       "highlights": [
         {
           "icon": "hammer",
@@ -334,49 +214,12 @@
       ],
       "requirements": [
         {
-          "name": "Tools",
-          "category": "materials",
-          "audience": "student",
-          "items": [
-            {
-              "itemId": "supply-seamstress-scissors"
-            },
-            {
-              "itemId": "supply-pin-cushion"
-            },
-            {
-              "itemId": "supply-tape-measure"
-            },
-            {
-              "itemId": "supply-straight-ruler"
-            },
-            {
-              "itemId": "supply-french-curve"
-            }
-          ]
-        },
-        {
           "name": "Supplies",
           "category": "materials",
           "audience": "student",
           "items": [
             {
-              "itemId": "supply-machine-needles-14"
-            },
-            {
-              "itemId": "supply-sewing-pins"
-            },
-            {
-              "itemId": "supply-hand-needle"
-            },
-            {
               "itemId": "supply-drafting-paper"
-            },
-            {
-              "itemId": "supply-pencils"
-            },
-            {
-              "itemId": "supply-erasers"
             },
             {
               "itemId": "supply-tailors-chalk-blue"
@@ -396,26 +239,15 @@
           "fitright-elementary-sewing-5"
         ]
       },
-      "group": {
-        "id": "sewing",
-        "slug": "sewing",
-        "name": "Sewing",
-        "description": "Elementary to Advanced Sewing Programs",
-        "order": 2
-      },
-      "cycleIds": [
-        "fr-intermediate-sewing-10-13"
-      ]
+      "groupId": "sewing",
+      "cycleIds": ["fr-intermediate-sewing-10-13"]
     },
     {
       "id": "fr-advanced-sewing",
       "slug": "advanced-sewing",
       "name": "Advanced Sewing",
       "audience": "student",
-      "quickFacts": [
-        "Certificate Included",
-        "Expert Instructor"
-      ],
+      "quickFacts": ["Certificate Included", "Expert Instructor"],
       "highlights": [
         {
           "icon": "hammer",
@@ -494,49 +326,12 @@
       ],
       "requirements": [
         {
-          "name": "Tools",
-          "category": "materials",
-          "audience": "student",
-          "items": [
-            {
-              "itemId": "supply-seamstress-scissors"
-            },
-            {
-              "itemId": "supply-pin-cushion"
-            },
-            {
-              "itemId": "supply-tape-measure"
-            },
-            {
-              "itemId": "supply-straight-ruler"
-            },
-            {
-              "itemId": "supply-french-curve"
-            }
-          ]
-        },
-        {
           "name": "Supplies",
           "category": "materials",
           "audience": "student",
           "items": [
             {
-              "itemId": "supply-machine-needles-14"
-            },
-            {
-              "itemId": "supply-sewing-pins"
-            },
-            {
-              "itemId": "supply-hand-needle"
-            },
-            {
               "itemId": "supply-drafting-paper"
-            },
-            {
-              "itemId": "supply-pencils"
-            },
-            {
-              "itemId": "supply-erasers"
             },
             {
               "itemId": "supply-tailors-chalk-blue"
@@ -556,15 +351,8 @@
           "fitright-elementary-sewing-5"
         ]
       },
-      "group": {
-        "id": "sewing",
-        "slug": "sewing",
-        "name": "Sewing",
-        "description": "Elementary to Advanced Sewing Programs",
-        "order": 3
-      },
+      "groupId": "sewing",
       "cycleIds": []
     }
   ]
 }
-

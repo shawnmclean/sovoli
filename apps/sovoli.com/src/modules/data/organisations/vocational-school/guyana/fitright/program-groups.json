@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "id": "sewing",
+      "slug": "sewing",
+      "name": "Sewing",
+      "description": "Elementary to Advanced Sewing Programs",
+      "order": 1
+    },
+    {
+      "id": "workshops",
+      "slug": "workshops",
+      "name": "Workshops",
+      "description": "Short-term workshops and introductory programs",
+      "order": 2
+    }
+  ]
+}
