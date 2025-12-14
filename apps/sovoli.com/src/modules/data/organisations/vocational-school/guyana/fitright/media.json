@@ -1,0 +1,113 @@
+{
+  "media": [
+    {
+      "id": "fitright-logo",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638250/o/fitright/logo/logo.webp",
+      "assetId": "59b69ca571cbc6ac24d31aa1ddefaa28",
+      "publicId": "o/fitright/logo/logo",
+      "width": 320,
+      "height": 320,
+      "format": "webp",
+      "bytes": 13080,
+      "version": 1765638250
+    },
+    {
+      "id": "fitright-xavirine-photo",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1765636944/o/fitright/team/xavirine.webp",
+      "assetId": "af6bbb7977081d6106009ab0770d9186",
+      "publicId": "o/fitright/team/xavirine",
+      "width": 777,
+      "height": 952,
+      "format": "webp",
+      "bytes": 44212,
+      "version": 1765636944
+    },
+    {
+      "id": "fitright-bag-workshop-1",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1753365788/o/fitright/programs/sew-your-own-bag/6e1d3b6b-fbcc-4bb8-a001-3a8ed83bf65f.png",
+      "assetId": "a5c87c6eeee354d18c7e3123ab939318",
+      "publicId": "o/fitright/programs/sew-your-own-bag/6e1d3b6b-fbcc-4bb8-a001-3a8ed83bf65f",
+      "width": 2696,
+      "height": 2022,
+      "format": "png",
+      "bytes": 6099562,
+      "version": 1753365788
+    },
+    {
+      "id": "fitright-bag-workshop-2",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1753366479/o/fitright/programs/sew-your-own-bag/9c07fe65-4844-4c23-97c6-5891e8637816.png",
+      "assetId": "cefd22502ca0234f2b7b299766a2b78b",
+      "publicId": "o/fitright/programs/sew-your-own-bag/9c07fe65-4844-4c23-97c6-5891e8637816",
+      "width": 2696,
+      "height": 2022,
+      "format": "png",
+      "bytes": 6488663,
+      "version": 1753366479
+    },
+    {
+      "id": "fitright-elementary-sewing-1",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126211/o/fitright/programs/elementary-sewing/1.webp",
+      "assetId": "4d241cfd99248e1461f2a052c3e4c5ff",
+      "publicId": "o/fitright/programs/elementary-sewing/1",
+      "width": 4032,
+      "height": 3024,
+      "format": "webp",
+      "bytes": 631388,
+      "version": 1756126211
+    },
+    {
+      "id": "fitright-elementary-sewing-2",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126221/o/fitright/programs/elementary-sewing/2.webp",
+      "assetId": "21780519efe80c5f7b78415a715b935d",
+      "publicId": "o/fitright/programs/elementary-sewing/2",
+      "width": 4032,
+      "height": 3024,
+      "format": "webp",
+      "bytes": 711670,
+      "version": 1756126221
+    },
+    {
+      "id": "fitright-elementary-sewing-3",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126225/o/fitright/programs/elementary-sewing/3.webp",
+      "assetId": "1967b0ed2ccf9868120acdf27eb0a3c1",
+      "publicId": "o/fitright/programs/elementary-sewing/3",
+      "width": 4032,
+      "height": 3024,
+      "format": "webp",
+      "bytes": 719816,
+      "version": 1756126225
+    },
+    {
+      "id": "fitright-elementary-sewing-4",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126234/o/fitright/programs/elementary-sewing/4.webp",
+      "assetId": "49dc8a4b01c2db1919c8cfe7611a77ea",
+      "publicId": "o/fitright/programs/elementary-sewing/4",
+      "width": 4032,
+      "height": 3024,
+      "format": "webp",
+      "bytes": 799872,
+      "version": 1756126234
+    },
+    {
+      "id": "fitright-elementary-sewing-5",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1756126456/o/fitright/programs/elementary-sewing/5.webp",
+      "assetId": "b013b8b79de5d1e68b813dae030eb40b",
+      "publicId": "o/fitright/programs/elementary-sewing/5",
+      "width": 900,
+      "height": 1600,
+      "format": "webp",
+      "bytes": 69778,
+      "version": 1756126456
+    }
+  ]
+}
+
