@@ -1,5 +1,5 @@
 import { ORGS } from "~/modules/data/organisations";
-import { DomainChecker } from "./components/DomainChecker";
+import { TenantListWithStatus } from "./components/TenantListWithStatus";
 
 interface TenantWithDomain {
   username: string;
@@ -41,7 +41,8 @@ export default function AdminPage() {
             website modules
           </p>
         </div>
-        <DomainChecker tenants={tenants} />
+
+        <TenantListWithStatus tenants={tenants} />
       </div>
     </div>
   );

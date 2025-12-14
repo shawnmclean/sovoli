@@ -3,7 +3,12 @@
 import { useEffect, useState, useMemo } from "react";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Spinner } from "@sovoli/ui/components/spinner";
-import { CheckCircle2, XCircle, Loader2, ExternalLink } from "lucide-react";
+import {
+  CheckCircle2,
+  XCircle,
+  Loader2,
+  ExternalLink,
+} from "lucide-react";
 
 interface TenantWithDomain {
   username: string;
@@ -18,7 +23,7 @@ interface DomainStatus {
   error?: string;
 }
 
-interface DomainCheckerProps {
+interface TenantListWithStatusProps {
   tenants: TenantWithDomain[];
 }
 
@@ -73,12 +78,13 @@ async function checkDomain(url: string): Promise<{
   }
 }
 
-export function DomainChecker({ tenants }: DomainCheckerProps) {
+export function TenantListWithStatus({ tenants }: TenantListWithStatusProps) {
   const [statuses, setStatuses] = useState<DomainStatus[]>([]);
   const [isChecking, setIsChecking] = useState(false);
 
   const stats = useMemo(() => {
-    const accessible = statuses.filter((s) => s.status === "accessible").length;
+    const accessible = statuses.filter((s) => s.status === "accessible")
+      .length;
     const inaccessible = statuses.filter(
       (s) => s.status === "inaccessible",
     ).length;
@@ -133,6 +139,11 @@ export function DomainChecker({ tenants }: DomainCheckerProps) {
     }
   }
 
+  // Create a map for quick status lookup
+  const statusMap = new Map(
+    statuses.map((s) => [s.tenant.username, s]),
+  );
+
   return (
     <div className="space-y-6">
       {/* Summary Stats */}
@@ -180,42 +191,45 @@ export function DomainChecker({ tenants }: DomainCheckerProps) {
         </div>
       )}
 
-      {/* Domain List */}
+      {/* Tenant List with Status */}
       <div className="space-y-3">
-        {statuses.map((domainStatus) => (
-          <Card key={domainStatus.tenant.username}>
-            <CardBody className="p-4">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1">
-                    {getStatusIcon(domainStatus.status)}
-                    <h3 className="font-semibold truncate">
-                      {domainStatus.tenant.name}
-                    </h3>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span className="truncate">
-                      {domainStatus.tenant.domain}
-                    </span>
-                    <a
-                      href={domainStatus.tenant.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
-                    >
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </div>
-                  {domainStatus.error && (
-                    <div className="text-xs text-orange-600 dark:text-orange-400 mt-1">
-                      {domainStatus.error}
+        {tenants.map((tenant) => {
+          const domainStatus = statusMap.get(tenant.username);
+          const status = domainStatus?.status ?? "checking";
+
+          return (
+            <Card key={tenant.username}>
+              <CardBody className="p-4">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-1">
+                      {getStatusIcon(status)}
+                      <h3 className="font-semibold truncate">{tenant.name}</h3>
                     </div>
-                  )}
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span className="truncate">@{tenant.username}</span>
+                      <span>•</span>
+                      <span className="truncate">{tenant.domain}</span>
+                      <a
+                        href={tenant.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </div>
+                    {domainStatus?.error && (
+                      <div className="text-xs text-orange-600 dark:text-orange-400 mt-1">
+                        {domainStatus.error}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </CardBody>
-          </Card>
-        ))}
+              </CardBody>
+            </Card>
+          );
+        })}
       </div>
 
       {/* Progress Indicator */}
@@ -227,3 +241,4 @@ export function DomainChecker({ tenants }: DomainCheckerProps) {
     </div>
   );
 }
+
