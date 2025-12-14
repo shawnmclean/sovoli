@@ -1,0 +1,225 @@
+{
+  "programs": [
+    {
+      "id": "hew-massage-therapy",
+      "slug": "massage-therapy",
+      "name": "Massage Therapy Training",
+      "audience": "student",
+      "quickFacts": [
+        "Certificate Included",
+        "Expert Instructor",
+        "Hands-On Training"
+      ],
+      "highlights": [
+        {
+          "icon": "hammer",
+          "label": "Hands-On Learning",
+          "description": "Practice techniques on real clients from day one in a professional spa environment."
+        },
+        {
+          "icon": "users",
+          "label": "Small Class Sizes",
+          "description": "Personal attention and individualized instruction in an intimate learning setting."
+        },
+        {
+          "icon": "badge-check",
+          "label": "Certificate Included",
+          "description": "Receive a professional certificate upon successful completion of the program."
+        },
+        {
+          "icon": "graduation-cap",
+          "label": "Exam/Career Ready",
+          "description": "Graduate with the skills needed to work in spas, wellness centres, or start your own practice or take the exam to become a registered massage therapist."
+        }
+      ],
+      "tagline": "Master the art of therapeutic massage",
+      "outcome": "Become a certified massage therapist ready for professional practice",
+      "description": "Our comprehensive Massage Therapy program teaches students the fundamental and advanced techniques of therapeutic massage. Students will learn Swedish massage, deep tissue massage, and other modalities in a professional spa environment. This program prepares graduates for careers in spas, wellness centres, hotels, and private practice.",
+      "whatYouWillLearn": [
+        {
+          "heading": "Massage Fundamentals",
+          "items": [
+            {
+              "id": "anatomy-basics",
+              "title": "Human Anatomy & Physiology",
+              "blurb": "Understand the musculoskeletal system and how massage affects the body.",
+              "tag": "Foundations"
+            },
+            {
+              "id": "massage-theory",
+              "title": "Massage Theory & History",
+              "blurb": "Learn the origins and scientific principles behind therapeutic massage."
+            }
+          ]
+        },
+        {
+          "heading": "Massage Techniques",
+          "items": [
+            {
+              "id": "swedish-massage",
+              "title": "Swedish Massage",
+              "blurb": "Master the classic relaxation massage technique with flowing strokes.",
+              "tag": "Core Skill"
+            },
+            {
+              "id": "deep-tissue",
+              "title": "Deep Tissue Massage",
+              "blurb": "Learn to work on deeper muscle layers to release chronic tension."
+            },
+            {
+              "id": "pressure-points",
+              "title": "Pressure Point Therapy",
+              "blurb": "Identify and work trigger points to relieve pain and tension."
+            }
+          ]
+        },
+        {
+          "heading": "Professional Practice",
+          "items": [
+            {
+              "id": "client-consultation",
+              "title": "Client Consultation & Assessment",
+              "blurb": "Learn to assess client needs and create personalized treatment plans.",
+              "tag": "Hands-on"
+            },
+            {
+              "id": "hygiene-safety",
+              "title": "Hygiene & Safety Standards",
+              "blurb": "Maintain professional standards for cleanliness and client safety."
+            },
+            {
+              "id": "business-skills",
+              "title": "Business & Client Management",
+              "blurb": "Build skills for running your own massage practice or working in a spa.",
+              "tag": "Career Ready"
+            }
+          ]
+        }
+      ],
+      "groupId": "massage-therapy",
+      "cycleIds": [
+        "hew-massage-20260107",
+        "hew-massage-20260225",
+        "hew-massage-20260415",
+        "hew-massage-20260603"
+      ],
+      "media": {
+        "galleryIds": ["hew-massage-model", "hew-reception-area"]
+      }
+    },
+    {
+      "id": "hew-advanced-massage-therapy",
+      "slug": "advanced-massage-therapy",
+      "name": "Advanced Massage Therapy Program",
+      "audience": "student",
+      "quickFacts": [
+        "Advanced Techniques",
+        "Expert Instructor",
+        "Certificate Included",
+        "Specialized Modalities"
+      ],
+      "highlights": [
+        {
+          "icon": "hammer",
+          "label": "Advanced Techniques",
+          "description": "Master specialized massage modalities including sports massage, trigger point therapy, and myofascial release."
+        },
+        {
+          "icon": "users",
+          "label": "Small Class Sizes",
+          "description": "Intensive, personalized instruction in advanced therapeutic techniques."
+        },
+        {
+          "icon": "badge-check",
+          "label": "Advanced Certificate",
+          "description": "Receive an advanced certificate upon successful completion, demonstrating mastery of advanced techniques."
+        },
+        {
+          "icon": "graduation-cap",
+          "label": "Professional Advancement",
+          "description": "Elevate your practice with advanced skills for specialized client needs and career growth."
+        }
+      ],
+      "tagline": "Elevate your massage therapy practice with advanced techniques",
+      "outcome": "Become an advanced massage therapist with specialized skills for complex client needs",
+      "description": "Our Advanced Massage Therapy program builds upon fundamental massage skills to teach specialized techniques for addressing complex client needs. Students will learn advanced modalities including sports massage, trigger point therapy, myofascial release, and injury rehabilitation techniques. This program is designed for practicing massage therapists seeking to expand their skill set and advance their careers.",
+      "whatYouWillLearn": [
+        {
+          "heading": "Advanced Assessment",
+          "items": [
+            {
+              "id": "advanced-anatomy",
+              "title": "Advanced Anatomy & Pathology",
+              "blurb": "Deep dive into musculoskeletal anatomy, common pathologies, and their implications for massage therapy.",
+              "tag": "Foundations"
+            },
+            {
+              "id": "assessment-techniques",
+              "title": "Advanced Assessment Techniques",
+              "blurb": "Learn comprehensive client assessment methods including postural analysis and range of motion testing."
+            }
+          ]
+        },
+        {
+          "heading": "Specialized Techniques",
+          "items": [
+            {
+              "id": "sports-massage",
+              "title": "Sports Massage",
+              "blurb": "Master pre-event, post-event, and maintenance sports massage techniques for athletes.",
+              "tag": "Core Skill"
+            },
+            {
+              "id": "trigger-point-therapy",
+              "title": "Trigger Point Therapy",
+              "blurb": "Advanced techniques for identifying and releasing trigger points to alleviate chronic pain."
+            },
+            {
+              "id": "myofascial-release",
+              "title": "Myofascial Release",
+              "blurb": "Learn specialized techniques for releasing fascial restrictions and improving mobility."
+            },
+            {
+              "id": "injury-rehab",
+              "title": "Injury Rehabilitation",
+              "blurb": "Develop skills for working with clients recovering from injuries and surgeries."
+            }
+          ]
+        },
+        {
+          "heading": "Professional Excellence",
+          "items": [
+            {
+              "id": "treatment-planning",
+              "title": "Advanced Treatment Planning",
+              "blurb": "Create comprehensive, multi-session treatment plans for complex client conditions.",
+              "tag": "Hands-on"
+            },
+            {
+              "id": "client-communication",
+              "title": "Advanced Client Communication",
+              "blurb": "Master communication techniques for explaining complex treatments and managing client expectations."
+            },
+            {
+              "id": "practice-development",
+              "title": "Advanced Practice Development",
+              "blurb": "Build skills for developing specialized services and growing your advanced practice.",
+              "tag": "Career Ready"
+            }
+          ]
+        }
+      ],
+      "groupId": "massage-therapy",
+      "cycleIds": [
+        "hew-advanced-massage-20260107",
+        "hew-advanced-massage-20260225",
+        "hew-advanced-massage-20260415",
+        "hew-advanced-massage-20260603"
+      ],
+      "media": {
+        "galleryIds": ["hew-massage-model", "hew-reception-area"]
+      }
+    }
+  ]
+}
+

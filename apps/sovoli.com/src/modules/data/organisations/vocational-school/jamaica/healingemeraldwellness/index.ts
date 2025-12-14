@@ -9,7 +9,8 @@ import websiteData from "./website.json";
 import mediaData from "./media.json";
 import workforceData from "./workforce.json";
 import cyclesData from "./cycles.json";
-import academicData from "./academic.json";
+import programGroupsData from "./program-groups.json";
+import massageTherapyAcademicData from "./massage-therapy-academic.json";
 
 /**
  * Healing Emerald Wellness Spa & Training Centre organization instance
@@ -21,7 +22,8 @@ export const HEALING_EMERALD_ORG: OrgInstance = parseOrgInstance({
 		media: mediaData,
 		workforce: workforceData,
 		cycles: cyclesData,
-		academic: academicData,
+		programGroups: programGroupsData,
+		groupAcademic: [massageTherapyAcademicData],
 		website: websiteData,
 	},
 });

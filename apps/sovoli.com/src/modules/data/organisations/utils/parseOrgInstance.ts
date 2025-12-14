@@ -1,3 +1,4 @@
+import { z } from "zod";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { parseOrgModule } from "./parseOrgModule";
 import { parseNeedsModule } from "./parseNeedsModule";
@@ -11,6 +12,8 @@ import {
   type ParsedCyclesModule,
 } from "./parseCyclesModule";
 import { parseAcademicModule } from "./parseAcademicModule";
+import { findItemById } from "~/modules/data/items";
+import type { ProgramGroup } from "~/modules/academics/types";
 
 /**
  * JSON data for parsing an organization instance
@@ -25,8 +28,12 @@ export interface OrgInstanceJsonData {
   workforce?: unknown;
   /** Optional: Cycles module data (academic and program cycles) */
   cycles?: unknown;
-  /** Optional: Academic module data (programs) */
+  /** Optional: Academic module data (programs) - old format */
   academic?: unknown;
+  /** Optional: Program groups data (for group-based format) */
+  programGroups?: unknown;
+  /** Optional: Group-based academic data (array of group academic files) */
+  groupAcademic?: unknown[];
   /** Optional: Needs module data */
   needs?: unknown;
   /** Optional: Projects module data */
@@ -96,10 +103,71 @@ export function parseOrgInstance(
     });
   }
 
-  // Step 5: Parse academic module (depends on media and cycles)
-  const academicModule = jsonData.academic
-    ? parseAcademicModule(jsonData.academic, { mediaMap, cyclesModule })
-    : (existingInstance?.academicModule ?? null);
+  // Step 5: Parse academic module (depends on media, cycles, and items)
+  // Support both old format (academic.json) and new format (group-based files)
+  let academicModule = existingInstance?.academicModule ?? null;
+
+  if (jsonData.programGroups && jsonData.groupAcademic) {
+    // New format: group-based files
+    // Parse program groups
+    const programGroupsSchema = z.object({
+      groups: z.array(
+        z.object({
+          id: z.string(),
+          slug: z.string(),
+          name: z.string(),
+          description: z.string().optional(),
+          order: z.number().optional(),
+        }),
+      ),
+    });
+
+    const validatedGroups = programGroupsSchema.parse(jsonData.programGroups);
+    const groupsMap = new Map<
+      string,
+      ProgramGroup & { order?: number }
+    >();
+
+    for (const groupJson of validatedGroups.groups) {
+      groupsMap.set(groupJson.id, {
+        id: groupJson.id,
+        slug: groupJson.slug,
+        name: groupJson.name,
+        description: groupJson.description,
+        order: groupJson.order,
+      });
+    }
+
+    // Merge programs from all group academic files
+    const allPrograms: unknown[] = [];
+    for (const groupAcademicData of jsonData.groupAcademic) {
+      const groupAcademicSchema = z.object({
+        programs: z.array(z.unknown()),
+      });
+      const validated = groupAcademicSchema.parse(groupAcademicData);
+      allPrograms.push(...validated.programs);
+    }
+
+    // Create merged academic data structure
+    const mergedAcademicData = {
+      programs: allPrograms,
+    };
+
+    // Parse with groups map and itemResolver
+    academicModule = parseAcademicModule(mergedAcademicData, {
+      mediaMap,
+      cyclesModule,
+      itemResolver: findItemById,
+      programGroups: groupsMap,
+    });
+  } else if (jsonData.academic) {
+    // Old format: single academic.json file
+    academicModule = parseAcademicModule(jsonData.academic, {
+      mediaMap,
+      cyclesModule,
+      itemResolver: findItemById,
+    });
+  }
 
   // Step 6: Parse needs module (depends on workforce for job needs)
   const needsModule = jsonData.needs

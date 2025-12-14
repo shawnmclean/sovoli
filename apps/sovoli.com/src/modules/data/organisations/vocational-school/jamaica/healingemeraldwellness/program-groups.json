@@ -1,0 +1,12 @@
+{
+  "groups": [
+    {
+      "id": "massage-therapy",
+      "slug": "massage-therapy",
+      "name": "Massage Therapy",
+      "description": "Professional massage therapy training programs",
+      "order": 1
+    }
+  ]
+}
+

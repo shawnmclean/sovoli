@@ -172,7 +172,8 @@ const programJsonSchema = z.object({
   highlights: z.array(programHighlightJsonSchema).optional(),
   courses: z.array(courseJsonSchema).optional(),
   activities: z.array(activityJsonSchema).optional(),
-  group: programGroupJsonSchema.optional(),
+  group: programGroupJsonSchema.optional(), // Old format: inline group
+  groupId: z.string().optional(), // New format: reference to group ID
   tagline: z.string().optional(),
   outcome: z.string().optional(),
   description: z.string().optional(),
@@ -202,6 +203,8 @@ export interface ParseAcademicModuleOptions {
   cyclesModule?: ParsedCyclesModule;
   /** Function to resolve item IDs to Item objects (for requirements) */
   itemResolver?: (itemId: string) => Item | undefined;
+  /** Map of group IDs to ProgramGroup objects (for group-based format) */
+  programGroups?: Map<string, ProgramGroup & { order?: number }>;
 }
 
 /**
@@ -217,7 +220,7 @@ export function parseAcademicModule(
   jsonData: unknown,
   options?: ParseAcademicModuleOptions,
 ): AcademicModule {
-  const { mediaMap, cyclesModule, itemResolver } = options ?? {};
+  const { mediaMap, cyclesModule, itemResolver, programGroups } = options ?? {};
 
   // Validate JSON structure
   const validated = academicModuleJsonSchema.parse(jsonData);
@@ -291,6 +294,23 @@ export function parseAcademicModule(
       );
     }
 
+    // Resolve group reference
+    let group: (ProgramGroup & { order?: number }) | undefined;
+    if (programJson.groupId && programGroups) {
+      // New format: resolve groupId from programGroups map
+      const resolvedGroup = programGroups.get(programJson.groupId);
+      if (resolvedGroup) {
+        group = resolvedGroup;
+      } else {
+        console.warn(
+          `Group with id "${programJson.groupId}" not found. Referenced in program "${programJson.slug}".`,
+        );
+      }
+    } else if (programJson.group) {
+      // Old format: use inline group
+      group = programJson.group as ProgramGroup & { order?: number };
+    }
+
     // Build the program
     const program: Program = {
       id: programJson.id,
@@ -301,9 +321,7 @@ export function parseAcademicModule(
       highlights: programJson.highlights as ProgramHighlight[] | undefined,
       courses: programJson.courses as Course[] | undefined,
       activities: programJson.activities as Activity[] | undefined,
-      group: programJson.group as
-        | (ProgramGroup & { order?: number })
-        | undefined,
+      group,
       tagline: programJson.tagline,
       outcome: programJson.outcome,
       description: programJson.description,
