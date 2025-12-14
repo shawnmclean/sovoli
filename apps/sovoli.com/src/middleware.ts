@@ -56,9 +56,13 @@ export async function middleware(request: NextRequest) {
 
   if (isLocalhost(hostname)) {
     tenant = extractLocalTenant(request.url, hostname);
-    // If accessing via local IP without subdomain, allow access to directory/landing page
+    // If no tenant from subdomain and accessing via local IP, try query parameter
     if (!tenant && isLocalIp(hostname)) {
-      return NextResponse.next();
+      tenant = extractTenantFromQuery(request.nextUrl.searchParams);
+      // If still no tenant, allow access to directory/landing page
+      if (!tenant) {
+        return NextResponse.next();
+      }
     }
   } else {
     tenant = await resolveTenant(hostname);
