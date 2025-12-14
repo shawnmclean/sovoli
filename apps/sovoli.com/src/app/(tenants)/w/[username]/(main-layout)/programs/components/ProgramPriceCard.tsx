@@ -49,15 +49,13 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
     original = item.amount[preferredCurrency] ?? 0;
   } else {
     // Find the first available currency with a value > 0 (same logic as PriceButton)
-    const currencyEntry = item.amount
-      ? Object.entries(item.amount).find(
-          ([_, amount]) => amount !== undefined && amount > 0,
-        )
-      : null;
+    const currencyEntry = Object.entries(item.amount).find(
+      ([_, amount]) => amount && amount > 0,
+    );
 
     if (currencyEntry) {
       currency = currencyEntry[0] as CurrencyCode;
-      original = currencyEntry[1] ?? 0;
+      original = currencyEntry[1];
     } else {
       // Fallback to GYD if available, otherwise 0
       original = item.amount.GYD ?? 0;

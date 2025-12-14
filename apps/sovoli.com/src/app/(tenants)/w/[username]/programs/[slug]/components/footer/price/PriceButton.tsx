@@ -123,8 +123,7 @@ export function PriceButton({
       </Skeleton>
 
       {/* Price Details Drawer - Always use the same cycle as displayed in the button */}
-      {cycleToUse && (
-        <Drawer
+      <Drawer
           isOpen={isOpen}
           size="5xl"
           placement="bottom"
@@ -246,7 +245,7 @@ export function PriceButton({
                     )}
 
                     {/* Chat Now Button */}
-                    {(program || onChatNowClick) && (
+                    {(program ?? onChatNowClick) && (
                       <div className="pt-4 border-t border-divider">
                         <Button
                           fullWidth
@@ -275,7 +274,6 @@ export function PriceButton({
             )}
           </DrawerContent>
         </Drawer>
-      )}
 
       {/* Chat Dialog */}
       {program && selectedCycle && (

@@ -190,11 +190,12 @@ export default async function Layout({ children, params, modals }: Props) {
     provider: {
       "@id": `${orgInstance.websiteModule.website.url}#org`,
     },
-    ...((programToUse.media?.cover?.url ??
-      programToUse.media?.gallery?.[0]?.url) && {
-      image:
-        programToUse.media?.cover?.url ?? programToUse.media?.gallery?.[0]?.url,
-    }),
+    ...(() => {
+      const coverUrl = programToUse.media?.cover?.url;
+      const galleryUrl = programToUse.media?.gallery?.[0]?.url;
+      const imageUrl = coverUrl ?? galleryUrl;
+      return imageUrl ? { image: imageUrl } : {};
+    })(),
     ...(defaultCycle && {
       offers: {
         "@type": "Offer",
