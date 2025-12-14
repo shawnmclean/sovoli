@@ -1,4 +1,6 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { headers } from "next/headers";
+import { env } from "~/env";
 import { getOrgInstanceByUsername } from "./lib/getOrgInstanceByUsername";
 import type { Organization, WithContext } from "schema-dts";
 import { NavigationDrawer } from "./components/NavigationDrawer";
@@ -7,6 +9,20 @@ import { TenantProvider } from "./components/TenantProvider";
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
   if (!result) return notFound();
+
+  // In production, redirect to custom domain if it exists
+  if (env.NODE_ENV === "production") {
+    const customDomain = result.websiteModule.website.domain;
+    const isCustomDomain = !customDomain.endsWith(".sovoli.com");
+    if (isCustomDomain) {
+      const headersList = await headers();
+      const host = headersList.get("host") ?? "";
+      if (!host.includes(customDomain)) {
+        permanentRedirect(result.websiteModule.website.url);
+      }
+    }
+  }
+
   return result;
 };
 interface Props {
