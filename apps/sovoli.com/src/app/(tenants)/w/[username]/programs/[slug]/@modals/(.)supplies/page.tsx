@@ -1,11 +1,11 @@
 import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
-import { RequirementsDetails } from "../../components/requirements/RequirementsDetails";
+import { SuppliesDetails } from "../../components/supplies/SuppliesDetails";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
 }
 
-export default async function RequirementsPage({ params }: Props) {
+export default async function SuppliesIntercept({ params }: Props) {
   const { username, slug } = await params;
   const result = await getOrgInstanceWithProgram(username, slug);
 
@@ -19,7 +19,5 @@ export default async function RequirementsPage({ params }: Props) {
     return null;
   }
 
-  return (
-    <RequirementsDetails orgInstance={result.orgInstance} program={program} />
-  );
+  return <SuppliesDetails orgInstance={result.orgInstance} program={program} />;
 }

@@ -20,7 +20,7 @@ import { PricingSection } from "./components/PricingSection";
 import { ProgramTracking } from "./components/ProgramTracking";
 import { CycleSection } from "./components/CycleSection";
 import { ProgramTestimonialsSection } from "./components/ProgramTestimonialsSection";
-import { RequirementsSection } from "./components/requirements/RequirementsSection";
+import { SuppliesSection } from "./components/supplies/SuppliesSection";
 import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
 import { OrgBadgeSection } from "~/components/OrgBadgeSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
@@ -336,10 +336,7 @@ export default async function Layout({ children, params, modals }: Props) {
             program={programToUse}
           />
 
-          <RequirementsSection
-            program={programToUse}
-            orgInstance={orgInstance}
-          />
+          <SuppliesSection program={programToUse} orgInstance={orgInstance} />
           <ProgramsSection
             orgInstance={orgInstance}
             currentProgram={programToUse}

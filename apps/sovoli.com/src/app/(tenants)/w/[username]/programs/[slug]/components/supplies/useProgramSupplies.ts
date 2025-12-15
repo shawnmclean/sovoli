@@ -12,7 +12,7 @@ export interface Supplier {
 	org: OrgInstance;
 }
 
-export interface RequirementItem {
+export interface SuppliesItem {
 	item: Item;
 	quantity?: number;
 	unit?: string;
@@ -51,7 +51,7 @@ function getSupplierDataForItem(
 	return suppliers.sort((a, b) => a.price - b.price);
 }
 
-export function useProgramRequirements(
+export function useProgramSupplies(
 	program: Program,
 	orgInstance?: OrgInstance,
 ) {
@@ -82,7 +82,7 @@ export function useProgramRequirements(
 
 	// Flatten all items from all requirements
 	const allItems = useMemo(() => {
-		const items: RequirementItem[] = [];
+		const items: SuppliesItem[] = [];
 
 		requirements.forEach((requirement: RequirementList) => {
 			// Filter out items that don't have valid item data (runtime data may not match types)

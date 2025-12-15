@@ -32,10 +32,10 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { pluralize } from "~/utils/pluralize";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
-import { useProgramRequirements } from "./useProgramRequirements";
-import type { Supplier } from "./useProgramRequirements";
+import { useProgramSupplies } from "./useProgramSupplies";
+import type { Supplier } from "./useProgramSupplies";
 
-interface RequirementsDetailsProps {
+interface SuppliesDetailsProps {
   orgInstance: OrgInstance;
   program: Program;
 }
@@ -55,17 +55,17 @@ function getCategoryIcon(category: string) {
   }
 }
 
-export function RequirementsDetails({
+export function SuppliesDetails({
   orgInstance,
   program,
-}: RequirementsDetailsProps) {
+}: SuppliesDetailsProps) {
   const {
     requirements,
     supplierData,
     selectedSuppliers,
     setSelectedSuppliers,
     totals,
-  } = useProgramRequirements(program, orgInstance);
+  } = useProgramSupplies(program, orgInstance);
 
   const [showSuppliers, setShowSuppliers] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -475,3 +475,4 @@ export function RequirementsDetails({
     </DrawerContent>
   );
 }
+

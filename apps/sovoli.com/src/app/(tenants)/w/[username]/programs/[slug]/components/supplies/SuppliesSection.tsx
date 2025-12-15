@@ -4,18 +4,18 @@ import { useMemo } from "react";
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import Link from "next/link";
-import { useProgramRequirements } from "./useProgramRequirements";
+import { useProgramSupplies } from "./useProgramSupplies";
 
-interface RequirementsSectionProps {
+interface SuppliesSectionProps {
   program: Program;
   orgInstance?: OrgInstance;
 }
 
-export function RequirementsSection({
+export function SuppliesSection({
   program,
   orgInstance,
-}: RequirementsSectionProps) {
-  const { requirements, allItems, totals } = useProgramRequirements(
+}: SuppliesSectionProps) {
+  const { requirements, allItems, totals } = useProgramSupplies(
     program,
     orgInstance,
   );
@@ -36,13 +36,13 @@ export function RequirementsSection({
 
   return (
     <Link
-      href={`/programs/${program.slug}/requirements`}
+      href={`/programs/${program.slug}/supplies`}
       className="block my-6 border-b border-default-200 pb-6"
     >
       <section className="overflow-hidden">
         <div className="pb-4">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-            Your Supply List
+            What to Bring
           </h2>
         </div>
 
