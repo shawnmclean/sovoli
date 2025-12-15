@@ -61,15 +61,10 @@
         }
       ],
       "groupId": "workshops",
-      "cycleIds": [
-        "fr-cycle-july25",
-        "fr-cycle-july26",
-        "fr-cycle-july27"
-      ],
+      "cycleIds": [],
       "media": {
         "galleryIds": ["fitright-bag-workshop-1", "fitright-bag-workshop-2"]
       }
     }
   ]
 }
-

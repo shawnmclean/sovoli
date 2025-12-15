@@ -1,0 +1,490 @@
+{
+  "globalCycles": [],
+  "academicCycles": [
+    {
+      "id": "magy-2025-t1",
+      "globalCycleId": "gy-2025-t1",
+      "startDate": "2025-09-08",
+      "endDate": "2025-12-15"
+    }
+  ],
+  "programCycles": [
+    {
+      "id": "magy-pre-nursery-2025-t1",
+      "academicCycleId": "magy-2025-t1",
+      "teacherSlugs": ["anita-dhaniram"],
+      "capacity": 25,
+      "enrolled": 18,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "GYD": 6000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "GYD": 68000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "magy-nursery-year-1-2025-t1",
+      "academicCycleId": "magy-2025-t1",
+      "teacherSlugs": ["samantha-persaud"],
+      "capacity": 25,
+      "enrolled": 15,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "GYD": 6000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "GYD": 60000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "magy-nursery-year-2-2025-t1",
+      "academicCycleId": "magy-2025-t1",
+      "teacherSlugs": ["samantha-persaud"],
+      "capacity": 25,
+      "enrolled": 15,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "GYD": 6000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "GYD": 60000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "magy-primary-grade-1-2025-t1",
+      "academicCycleId": "magy-2025-t1",
+      "teacherSlugs": ["wonda-baron"],
+      "capacity": 25,
+      "enrolled": 15,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "GYD": 6000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "GYD": 60000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "magy-primary-grade-2-2025-t1",
+      "academicCycleId": "magy-2025-t1",
+      "teacherSlugs": ["wonda-baron"],
+      "capacity": 25,
+      "enrolled": 15,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "GYD": 6000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "GYD": 60000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "magy-primary-grade-3-2025-t1",
+      "academicCycleId": "magy-2025-t1",
+      "teacherSlugs": ["molta-mcrae"],
+      "capacity": 25,
+      "enrolled": 15,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "GYD": 6000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "GYD": 60000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "magy-primary-grade-4-2025-t1",
+      "academicCycleId": "magy-2025-t1",
+      "teacherSlugs": ["molta-mcrae"],
+      "capacity": 25,
+      "enrolled": 15,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "GYD": 6000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "GYD": 60000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "magy-primary-grade-5-2025-t1",
+      "academicCycleId": "magy-2025-t1",
+      "teacherSlugs": ["sir-chabeeraj-francis"],
+      "capacity": 25,
+      "enrolled": 15,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "GYD": 6000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "GYD": 60000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "magy-primary-grade-6-2025-t1",
+      "academicCycleId": "magy-2025-t1",
+      "teacherSlugs": ["sir-chabeeraj-francis"],
+      "capacity": 25,
+      "enrolled": 15,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "GYD": 6000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "GYD": 60000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    }
+  ]
+}

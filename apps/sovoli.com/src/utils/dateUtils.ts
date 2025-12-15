@@ -21,7 +21,7 @@ export const calculateDuration = (startDate: string, endDate: string) => {
   const weeks = Math.ceil(originalDays / 7);
   const months = differenceInMonths(end, start);
 
-  if (months >= 1) {
+  if (months >= 3) {
     return `${months} month${months !== 1 ? "s" : ""}`;
   } else if (weeks >= 1) {
     return `${weeks} week${weeks !== 1 ? "s" : ""}`;

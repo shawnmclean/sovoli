@@ -79,5 +79,47 @@
     "name": "Drafting Paper",
     "category": "paper-craft-card-making-supplies",
     "tags": ["drafting", "paper"]
+  },
+  {
+    "id": "supply-tape-measure",
+    "name": "Tape Measure",
+    "category": "tape-measures-diy-non-powered",
+    "tags": ["sewing", "measuring", "tool"],
+    "unitLabel": "tool"
+  },
+  {
+    "id": "supply-scissors",
+    "name": "Scissors",
+    "category": "scissors-shears-non-powered",
+    "tags": ["sewing", "cutting", "tool"],
+    "unitLabel": "tool"
+  },
+  {
+    "id": "supply-machine-needle-14",
+    "name": "#14 Machine Needle",
+    "category": "arts-crafts-needlework-needles",
+    "tags": ["sewing", "machine", "needle"],
+    "unitLabel": "needle"
+  },
+  {
+    "id": "supply-pins",
+    "name": "Pins",
+    "category": "arts-crafts-needlework-tools-non-powered",
+    "tags": ["sewing", "pins", "fastening"],
+    "unitLabel": "pack"
+  },
+  {
+    "id": "supply-cotton-fabric-2-yards",
+    "name": "2 Yards of Plain Cotton Material",
+    "category": "arts-crafts-needlework-fabrics-textiles",
+    "tags": ["sewing", "fabric", "cotton"],
+    "unitLabel": "yards"
+  },
+  {
+    "id": "supply-scrapbook",
+    "name": "Scrapbook",
+    "category": "paper-craft-card-making-supplies",
+    "tags": ["craft", "scrapbook", "book"],
+    "unitLabel": "book"
   }
 ]

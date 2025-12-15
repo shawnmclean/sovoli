@@ -1,9 +1,9 @@
 {
   "programs": [
     {
-      "id": "fr-elementary-sewing",
-      "slug": "elementary-sewing",
-      "name": "Elementary Sewing",
+      "id": "fr-sewing",
+      "slug": "sewing-class",
+      "name": "Sewing Class",
       "audience": "student",
       "quickFacts": ["Certificate Included", "Expert Instructor"],
       "highlights": [
@@ -15,70 +15,84 @@
         {
           "icon": "users",
           "label": "Small Group",
-          "description": "Personal attention and relaxed pace in a small class environment."
+          "description": "Personal attention and relaxed pace in a small class environment (8 students)."
         },
         {
           "icon": "graduation-cap",
-          "label": "Make & Take Skirt",
-          "description": "Create your own skirt at the end of the course and take it home."
+          "label": "Comprehensive Training",
+          "description": "Learn everything from taking measurements to constructing full garments."
         }
       ],
-      "description": "This is a 4-week program that teaches students how to sew a skirt. It is designed for students who are new to sewing and want to learn the basics of sewing.",
+      "description": "Fitright classes will teach you a variety of techniques to create clothing for yourself and family members, or to sew for profit. This comprehensive program covers everything from basic measurements to pattern making, fabric handling, and garment construction.",
       "whatYouWillLearn": [
         {
-          "heading": "Seams",
+          "heading": "Measurements & Drafting",
           "items": [
             {
-              "id": "basic-seams",
-              "title": "Master basic seam techniques",
-              "blurb": "Learn to sew straight seams with consistent seam allowance and proper finishing.",
+              "id": "take-measurements",
+              "title": "How to take measurements",
+              "blurb": "Learn the proper techniques for taking accurate body measurements for garment fitting.",
               "tag": "Foundations"
+            },
+            {
+              "id": "draft-bodice",
+              "title": "How to draft a Bodice (Front and Back)",
+              "blurb": "Master the art of drafting bodice patterns for proper fit and style."
+            },
+            {
+              "id": "draft-skirt",
+              "title": "How to draft a skirt",
+              "blurb": "Create skirt patterns from measurements with proper fit and design."
             }
           ]
         },
         {
-          "heading": "Fabric & Materials",
+          "heading": "Pattern Making & Grading",
           "items": [
             {
-              "id": "fabric-selection",
-              "title": "Choose appropriate fabrics",
-              "blurb": "Understand different fabric types and select the right material for your project."
+              "id": "pattern-making",
+              "title": "Pattern Making",
+              "blurb": "Learn to create patterns from scratch and adapt existing patterns to your needs."
             },
             {
-              "id": "grain-lines",
-              "title": "Work with grain lines",
-              "blurb": "Identify and respect fabric grain to ensure proper fit and drape."
-            },
-            {
-              "id": "thread-basics",
-              "title": "Thread selection and care",
-              "blurb": "Select the right thread type and learn proper threading techniques."
+              "id": "pattern-grading",
+              "title": "Pattern Grading",
+              "blurb": "Understand how to adjust patterns for different sizes and proportions."
             }
           ]
         },
         {
-          "heading": "Measurements & Fitting",
+          "heading": "Fabric & Cutting",
           "items": [
             {
-              "id": "body-measurements",
-              "title": "Take accurate body measurements",
-              "blurb": "Learn to measure waist, hip, and length for proper garment fitting.",
-              "tag": "Hands-on"
+              "id": "laying-cutting",
+              "title": "Laying and cutting of fabric",
+              "blurb": "Master proper fabric layout and cutting techniques for efficient use of material."
+            },
+            {
+              "id": "fabric-grain",
+              "title": "Understanding fabric grain",
+              "blurb": "Learn to identify and work with fabric grain for proper garment drape and fit."
+            },
+            {
+              "id": "fabric-types",
+              "title": "Types of fabric and how to handle them during the sewing process",
+              "blurb": "Understand different fabric types and their specific handling requirements."
             }
           ]
         },
         {
-          "heading": "Cutting & Construction",
+          "heading": "Construction & Finishing",
           "items": [
             {
-              "id": "pattern-cutting",
-              "title": "Cut fabric accurately",
-              "blurb": "Cut pattern pieces with precision and proper grain alignment."
+              "id": "seams-pockets-finishing",
+              "title": "Types of seams, pockets, and finishing techniques",
+              "blurb": "Master various seam types, pocket construction, and professional finishing methods."
             },
             {
-              "id": "skirt-construction",
-              "title": "Construct a complete skirt",
-              "blurb": "Build a wearable skirt with darts, zipper, waistband, and hem finishing.",
+              "id": "sewing-equipment",
+              "title": "Use of sewing equipment and more",
+              "blurb": "Learn to properly use and maintain sewing machines and other essential equipment.",
               "tag": "Capstone"
             }
           ]
@@ -86,18 +100,27 @@
       ],
       "requirements": [
         {
-          "name": "Supplies",
+          "name": "Required Materials",
           "category": "materials",
           "audience": "student",
           "items": [
             {
-              "itemId": "supply-drafting-paper"
+              "itemId": "supply-tape-measure"
             },
             {
-              "itemId": "supply-tailors-chalk-blue"
+              "itemId": "supply-scissors"
             },
             {
-              "itemId": "supply-tailors-chalk-red"
+              "itemId": "supply-machine-needle-14"
+            },
+            {
+              "itemId": "supply-pins"
+            },
+            {
+              "itemId": "supply-cotton-fabric-2-yards"
+            },
+            {
+              "itemId": "supply-scrapbook"
             }
           ]
         }
@@ -112,247 +135,7 @@
         ]
       },
       "groupId": "sewing",
-      "cycleIds": ["fr-elementary-sewing-09-15"]
-    },
-    {
-      "id": "fr-intermediate-sewing",
-      "slug": "intermediate-sewing",
-      "name": "Intermediate Sewing",
-      "audience": "student",
-      "quickFacts": ["Certificate Included", "Expert Instructor"],
-      "highlights": [
-        {
-          "icon": "hammer",
-          "label": "Hands-On Learning",
-          "description": "Use real tools and materials from day one to practice sewing techniques."
-        },
-        {
-          "icon": "users",
-          "label": "Small Group",
-          "description": "Personal attention and relaxed pace in a small class environment."
-        },
-        {
-          "icon": "graduation-cap",
-          "label": "Make & Take Blouse",
-          "description": "Create your own blouse or skirt at the end of the course and take it home."
-        }
-      ],
-      "description": "This is a 4-week program that teaches students how to sew a blouse. It is designed for students who are new to sewing and want to learn the basics of sewing.",
-      "whatYouWillLearn": [
-        {
-          "heading": "Body Measurements & Fitting",
-          "items": [
-            {
-              "id": "upper-body-measurements",
-              "title": "Take upper body measurements",
-              "blurb": "Learn to measure bust, waist, shoulder width, and arm length for proper blouse fitting.",
-              "tag": "Foundations"
-            }
-          ]
-        },
-        {
-          "heading": "Sleeve Construction",
-          "items": [
-            {
-              "id": "sleeve-basics",
-              "title": "Understand sleeve construction",
-              "blurb": "Learn sleeve types, armhole fitting, and sleeve attachment techniques."
-            },
-            {
-              "id": "sleeve-patterns",
-              "title": "Draft and fit sleeve patterns",
-              "blurb": "Create sleeve patterns that fit properly with the armhole and body."
-            }
-          ]
-        },
-        {
-          "heading": "Collar Techniques",
-          "items": [
-            {
-              "id": "collar-types",
-              "title": "Work with different collar styles",
-              "blurb": "Learn to construct various collar types including flat and stand-up collars."
-            },
-            {
-              "id": "collar-attachment",
-              "title": "Attach collars professionally",
-              "blurb": "Master the techniques for clean, professional collar attachment."
-            }
-          ]
-        },
-        {
-          "heading": "Facings & Finishing",
-          "items": [
-            {
-              "id": "facing-techniques",
-              "title": "Apply facings correctly",
-              "blurb": "Learn to cut, sew, and attach facings for clean garment edges."
-            },
-            {
-              "id": "professional-finishing",
-              "title": "Achieve professional finishes",
-              "blurb": "Master techniques for clean edges, proper pressing, and final touches."
-            }
-          ]
-        },
-        {
-          "heading": "Blouse Construction",
-          "items": [
-            {
-              "id": "blouse-pattern",
-              "title": "Create blouse pattern",
-              "blurb": "Draft a complete blouse pattern incorporating all learned techniques."
-            },
-            {
-              "id": "complete-blouse",
-              "title": "Construct a complete blouse",
-              "blurb": "Build a professional blouse with sleeves, collar, facings, and proper finishing.",
-              "tag": "Capstone"
-            }
-          ]
-        }
-      ],
-      "requirements": [
-        {
-          "name": "Supplies",
-          "category": "materials",
-          "audience": "student",
-          "items": [
-            {
-              "itemId": "supply-drafting-paper"
-            },
-            {
-              "itemId": "supply-tailors-chalk-blue"
-            },
-            {
-              "itemId": "supply-tailors-chalk-red"
-            }
-          ]
-        }
-      ],
-      "media": {
-        "galleryIds": [
-          "fitright-elementary-sewing-1",
-          "fitright-elementary-sewing-2",
-          "fitright-elementary-sewing-3",
-          "fitright-elementary-sewing-4",
-          "fitright-elementary-sewing-5"
-        ]
-      },
-      "groupId": "sewing",
-      "cycleIds": ["fr-intermediate-sewing-10-13"]
-    },
-    {
-      "id": "fr-advanced-sewing",
-      "slug": "advanced-sewing",
-      "name": "Advanced Sewing",
-      "audience": "student",
-      "quickFacts": ["Certificate Included", "Expert Instructor"],
-      "highlights": [
-        {
-          "icon": "hammer",
-          "label": "Hands-On Learning",
-          "description": "Use real tools and materials from day one to practice sewing techniques."
-        },
-        {
-          "icon": "users",
-          "label": "Small Group",
-          "description": "Personal attention and relaxed pace in a small class environment."
-        },
-        {
-          "icon": "graduation-cap",
-          "label": "Make & Take Suit",
-          "description": "Create your own pants, dress and top at the end of the course and take it home."
-        }
-      ],
-      "description": "This is a 4-week program that teaches students how to sew a pants, dress and top. It is designed for students who are new to sewing and want to learn the basics of sewing.",
-      "courses": [
-        {
-          "id": "fr-intermediate-sewing-course-0",
-          "subject": {
-            "id": "design-skills",
-            "name": "Design Skills"
-          },
-          "title": "Design Skills",
-          "units": [
-            {
-              "title": "Design Skills",
-              "topics": ["Design Skills"]
-            }
-          ]
-        },
-        {
-          "id": "fr-intermediate-sewing-course-1",
-          "subject": {
-            "id": "darts",
-            "name": "Darts"
-          },
-          "title": "Darts",
-          "units": [
-            {
-              "title": "Darts",
-              "topics": ["Darts"]
-            }
-          ]
-        },
-        {
-          "id": "fr-intermediate-sewing-course-2",
-          "subject": {
-            "id": "pleats",
-            "name": "Pleats"
-          },
-          "title": "Pleats",
-          "units": [
-            {
-              "title": "Pleats",
-              "topics": ["Pleats"]
-            }
-          ]
-        },
-        {
-          "id": "fr-intermediate-sewing-course-3",
-          "subject": {
-            "id": "jumpsuit",
-            "name": "Jumpsuit/Pants"
-          },
-          "title": "Jumpsuit",
-          "units": [
-            {
-              "title": "Make a Jumpsuit",
-              "topics": ["Jumpsuit"]
-            }
-          ]
-        }
-      ],
-      "requirements": [
-        {
-          "name": "Supplies",
-          "category": "materials",
-          "audience": "student",
-          "items": [
-            {
-              "itemId": "supply-drafting-paper"
-            },
-            {
-              "itemId": "supply-tailors-chalk-blue"
-            },
-            {
-              "itemId": "supply-tailors-chalk-red"
-            }
-          ]
-        }
-      ],
-      "media": {
-        "galleryIds": [
-          "fitright-elementary-sewing-1",
-          "fitright-elementary-sewing-2",
-          "fitright-elementary-sewing-3",
-          "fitright-elementary-sewing-4",
-          "fitright-elementary-sewing-5"
-        ]
-      },
-      "groupId": "sewing",
-      "cycleIds": []
+      "cycleIds": ["fr-sewing-2026-01-05"]
     }
   ]
 }

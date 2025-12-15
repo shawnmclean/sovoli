@@ -2,106 +2,19 @@
   "globalCycles": [],
   "academicCycles": [
     {
-      "id": "fr-cycle-july25",
-      "customLabel": "July 25 - 10AM - 4PM",
-      "startDate": "2025-07-25",
-      "endDate": "2025-07-25"
-    },
-    {
-      "id": "fr-cycle-july26",
-      "customLabel": "July 26 - 10AM - 4PM",
-      "startDate": "2025-07-26",
-      "endDate": "2025-07-26"
-    },
-    {
-      "id": "fr-cycle-july27",
-      "customLabel": "July 27 - 10AM - 4PM",
-      "startDate": "2025-07-27",
-      "endDate": "2025-07-27"
-    },
-    {
-      "id": "fr-elementary-sewing-09-15",
-      "customLabel": "Elementary Sewing - Sept 2025",
-      "startDate": "2025-09-15",
-      "endDate": "2025-10-10"
-    },
-    {
-      "id": "fr-intermediate-sewing-10-13",
-      "customLabel": "Intermediate Sewing - Oct 2025",
-      "startDate": "2025-10-13",
-      "endDate": "2025-11-07"
+      "id": "fr-sewing-2026-01-05",
+      "customLabel": "Sewing - Jan 5 - Mar 12, 2026",
+      "startDate": "2026-01-05",
+      "endDate": "2026-03-12"
     }
   ],
   "programCycles": [
     {
-      "id": "fr-cycle-july25",
-      "academicCycleId": "fr-cycle-july25",
-      "teacherSlugs": ["xavirine-dornellas"],
-      "capacity": 6,
-      "enrolled": 4,
-      "pricingPackage": {
-        "pricingItems": [
-          {
-            "id": "tuition",
-            "label": "Materials",
-            "purpose": "materials",
-            "billingCycle": "one-time",
-            "amount": {
-              "GYD": 8000
-            }
-          }
-        ],
-        "discounts": []
-      }
-    },
-    {
-      "id": "fr-cycle-july26",
-      "academicCycleId": "fr-cycle-july26",
-      "teacherSlugs": ["xavirine-dornellas"],
-      "capacity": 6,
-      "enrolled": 2,
-      "pricingPackage": {
-        "pricingItems": [
-          {
-            "id": "tuition",
-            "label": "Materials",
-            "purpose": "materials",
-            "billingCycle": "one-time",
-            "amount": {
-              "GYD": 8000
-            }
-          }
-        ],
-        "discounts": []
-      }
-    },
-    {
-      "id": "fr-cycle-july27",
-      "academicCycleId": "fr-cycle-july27",
-      "teacherSlugs": ["xavirine-dornellas"],
-      "capacity": 6,
-      "enrolled": 1,
-      "pricingPackage": {
-        "pricingItems": [
-          {
-            "id": "tuition",
-            "label": "Materials",
-            "purpose": "materials",
-            "billingCycle": "one-time",
-            "amount": {
-              "GYD": 8000
-            }
-          }
-        ],
-        "discounts": []
-      }
-    },
-    {
-      "id": "fr-elementary-sewing-09-15",
-      "academicCycleId": "fr-elementary-sewing-09-15",
-      "teacherSlugs": ["xavirine-dornellas"],
-      "capacity": 10,
-      "enrolled": 2,
+      "id": "fr-sewing-2026-01-05",
+      "academicCycleId": "fr-sewing-2026-01-05",
+      "teacherSlugs": ["xavrine-dornellas"],
+      "capacity": 8,
+      "enrolled": 0,
       "pricingPackage": {
         "pricingItems": [
           {
@@ -115,41 +28,11 @@
           },
           {
             "id": "tuition",
-            "label": "Tuition",
+            "label": "Course Fee",
             "purpose": "tuition",
-            "billingCycle": "program",
-            "amount": {
-              "GYD": 65000
-            }
-          }
-        ],
-        "discounts": []
-      }
-    },
-    {
-      "id": "fr-intermediate-sewing-10-13",
-      "academicCycleId": "fr-intermediate-sewing-10-13",
-      "teacherSlugs": ["xavirine-dornellas"],
-      "capacity": 10,
-      "enrolled": 2,
-      "pricingPackage": {
-        "pricingItems": [
-          {
-            "id": "registration",
-            "label": "Registration",
-            "purpose": "registration",
             "billingCycle": "one-time",
             "amount": {
-              "GYD": 5000
-            }
-          },
-          {
-            "id": "tuition",
-            "label": "Tuition",
-            "purpose": "tuition",
-            "billingCycle": "program",
-            "amount": {
-              "GYD": 65000
+              "GYD": 210000
             }
           }
         ],
@@ -158,4 +41,3 @@
     }
   ]
 }
-
