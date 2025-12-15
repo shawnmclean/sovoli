@@ -336,7 +336,10 @@ export default async function Layout({ children, params, modals }: Props) {
             program={programToUse}
           />
 
-          <RequirementsSection program={programToUse} />
+          <RequirementsSection
+            program={programToUse}
+            orgInstance={orgInstance}
+          />
           <ProgramsSection
             orgInstance={orgInstance}
             currentProgram={programToUse}

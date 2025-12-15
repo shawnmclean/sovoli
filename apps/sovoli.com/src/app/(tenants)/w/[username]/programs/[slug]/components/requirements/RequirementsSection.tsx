@@ -1,44 +1,24 @@
 "use client";
 
 import { useMemo } from "react";
-import type { Program, RequirementList } from "~/modules/academics/types";
-import type { Item } from "~/modules/core/items/types";
+import type { Program } from "~/modules/academics/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import Link from "next/link";
+import { useProgramRequirements } from "./useProgramRequirements";
 
 interface RequirementsSectionProps {
   program: Program;
+  orgInstance?: OrgInstance;
 }
 
-interface RequirementItem {
-  item: Item;
-  quantity?: number;
-  unit?: string;
-  notes?: string;
-}
-
-export function RequirementsSection({ program }: RequirementsSectionProps) {
-  const requirements = useMemo(
-    () =>
-      program.requirements ??
-      program.standardProgramVersion?.requirements ??
-      [],
-    [program.requirements, program.standardProgramVersion?.requirements],
+export function RequirementsSection({
+  program,
+  orgInstance,
+}: RequirementsSectionProps) {
+  const { requirements, allItems, totals } = useProgramRequirements(
+    program,
+    orgInstance,
   );
-
-  // Flatten all items from all requirements
-  const allItems = useMemo(() => {
-    const items: RequirementItem[] = [];
-
-    requirements.forEach((requirement: RequirementList) => {
-      // Filter out items that don't have valid item data (runtime data may not match types)
-      const validItems = requirement.items.filter(
-        (entry) => (entry as { item?: { name?: string } }).item?.name,
-      ) as RequirementItem[];
-      items.push(...validItems);
-    });
-
-    return items;
-  }, [requirements]);
 
   // Get first 4 items for summary
   const summaryItems = useMemo(() => {
@@ -91,6 +71,14 @@ export function RequirementsSection({ program }: RequirementsSectionProps) {
 
             {remainingCount > 0 && (
               <div className="mt-3 underline">show {remainingCount} more</div>
+            )}
+
+            {orgInstance && totals.totalPrice > 0 && (
+              <div className="mt-4 pt-4 border-t border-default-200">
+                <div className="text-sm font-semibold text-foreground">
+                  Total: GYD {totals.totalPrice.toLocaleString()}
+                </div>
+              </div>
             )}
           </div>
         </div>

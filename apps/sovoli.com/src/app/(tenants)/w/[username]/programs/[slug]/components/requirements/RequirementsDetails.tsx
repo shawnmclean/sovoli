@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import type { Program, RequirementList } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Switch } from "@sovoli/ui/components/switch";
@@ -29,48 +29,11 @@ import {
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { ORGS } from "~/modules/data/organisations";
 import { pluralize } from "~/utils/pluralize";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
-
-interface Supplier {
-  name: string;
-  price: number;
-  org: OrgInstance;
-}
-
-// Function to get supplier data for an item from recommended suppliers
-function getSupplierDataForItem(
-  itemId: string,
-  recommendedSuppliers: OrgInstance[],
-): Supplier[] {
-  const suppliers: Supplier[] = [];
-
-  recommendedSuppliers.forEach((supplierOrg) => {
-    // Check if this supplier has a catalog module
-    if (supplierOrg.catalogModule?.items) {
-      // Find the item in the supplier's catalog
-      const catalogItem = supplierOrg.catalogModule.items.find(
-        (catalogItem) => catalogItem.id === itemId,
-      );
-
-      if (catalogItem) {
-        // Use GYD pricing if available, otherwise USD
-        const price = catalogItem.price.GYD ?? catalogItem.price.USD ?? 0;
-
-        suppliers.push({
-          name: supplierOrg.org.name,
-          price: price,
-          org: supplierOrg,
-        });
-      }
-    }
-  });
-
-  // Sort by price (lowest first)
-  return suppliers.sort((a, b) => a.price - b.price);
-}
+import { useProgramRequirements } from "./useProgramRequirements";
+import type { Supplier } from "./useProgramRequirements";
 
 interface RequirementsDetailsProps {
   orgInstance: OrgInstance;
@@ -96,34 +59,19 @@ export function RequirementsDetails({
   orgInstance,
   program,
 }: RequirementsDetailsProps) {
-  const [selectedSuppliers, setSelectedSuppliers] = useState<
-    Record<string, string>
-  >({});
-  const [initialized, setInitialized] = useState(false);
-  const [supplierData, setSupplierData] = useState<Record<string, Supplier[]>>(
-    {},
-  );
+  const {
+    requirements,
+    supplierData,
+    selectedSuppliers,
+    setSelectedSuppliers,
+    totals,
+  } = useProgramRequirements(program, orgInstance);
+
   const [showSuppliers, setShowSuppliers] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedSuppliersForDrawer, setSelectedSuppliersForDrawer] = useState<
     Supplier[]
   >([]);
-
-  const requirements = useMemo(() => {
-    const rawRequirements =
-      program.requirements ??
-      program.standardProgramVersion?.requirements ??
-      [];
-
-    // Filter out items that don't exist in the items database
-    return rawRequirements
-      .map((requirement) => ({
-        ...requirement,
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/prefer-optional-chain
-        items: requirement.items.filter((item) => item.item && item.item.id),
-      }))
-      .filter((requirement) => requirement.items.length > 0);
-  }, [program.requirements, program.standardProgramVersion?.requirements]);
 
   const programName =
     program.name ?? program.standardProgramVersion?.program.name;
@@ -133,51 +81,6 @@ export function RequirementsDetails({
       section: "requirements",
     });
   }, [program]);
-
-  // Initialize supplier data from recommended suppliers
-  useEffect(() => {
-    if (!initialized && requirements.length > 0) {
-      const initialSelections: Record<string, string> = {};
-      const supplierDataMap: Record<string, Supplier[]> = {};
-
-      // Get recommended suppliers from the organization
-      const recommendedSuppliers =
-        orgInstance.org.supplierRecommendations
-          ?.map((rec) => {
-            // Find the full OrgInstance for each supplier
-            const fullSupplierOrg = ORGS.find(
-              (org) => org.org.username === rec.org.username,
-            );
-            return fullSupplierOrg;
-          })
-          .filter((org): org is OrgInstance => org !== undefined) ?? [];
-
-      requirements.forEach((requirement, reqIndex) => {
-        requirement.items.forEach((item, itemIndex) => {
-          const itemKey = `${reqIndex}-${itemIndex}`;
-          const suppliers = getSupplierDataForItem(
-            item.item.id,
-            recommendedSuppliers,
-          );
-
-          // Store the supplier data for this item
-          supplierDataMap[itemKey] = suppliers;
-
-          // Select the cheapest supplier (first one since they're sorted by price)
-          // If there's only one supplier, select it; if multiple, select the cheapest
-          if (suppliers.length > 0) {
-            initialSelections[itemKey] = suppliers[0]?.name ?? "";
-          } else {
-            initialSelections[itemKey] = "";
-          }
-        });
-      });
-
-      setSupplierData(supplierDataMap);
-      setSelectedSuppliers(initialSelections);
-      setInitialized(true);
-    }
-  }, [requirements, initialized, orgInstance.org.supplierRecommendations]);
 
   const handleViewSuppliers = () => {
     trackProgramAnalytics("ViewSuppliers", program, null, {
@@ -214,7 +117,7 @@ export function RequirementsDetails({
     const uniqueSuppliers = new Set<string>();
 
     requirements.forEach((requirement, reqIndex) => {
-      requirement.items.forEach((item, itemIndex) => {
+      requirement.items.forEach((_item, itemIndex) => {
         const itemKey = `${reqIndex}-${itemIndex}`;
         const selectedSupplierName = selectedSuppliers[itemKey];
         if (selectedSupplierName) {
@@ -234,33 +137,7 @@ export function RequirementsDetails({
     setDrawerOpen(true);
   };
 
-  // Calculate totals
-  const calculateTotals = () => {
-    let totalPrice = 0;
-    let supplierCount = 0;
-    const uniqueSuppliers = new Set<string>();
-
-    requirements.forEach((requirement, reqIndex) => {
-      requirement.items.forEach((item, itemIndex) => {
-        const itemKey = `${reqIndex}-${itemIndex}`;
-        const selectedSupplier = selectedSuppliers[itemKey];
-        if (selectedSupplier) {
-          // Use stored supplier data
-          const suppliers = supplierData[itemKey] ?? [];
-          const supplier = suppliers.find((s) => s.name === selectedSupplier);
-          if (supplier) {
-            totalPrice += supplier.price * (item.quantity ?? 1);
-            uniqueSuppliers.add(selectedSupplier);
-          }
-        }
-      });
-    });
-
-    supplierCount = uniqueSuppliers.size;
-    return { totalPrice, supplierCount };
-  };
-
-  const { totalPrice, supplierCount } = calculateTotals();
+  const { totalPrice, supplierCount } = totals;
 
   // Generate WhatsApp message with selected items
   const generateWhatsAppMessage = () => {
