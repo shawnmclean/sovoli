@@ -6,7 +6,7 @@ import { ArrowRightIcon } from "lucide-react";
 
 export function BusinessStickyFooter() {
   return (
-    <footer className="sticky bottom-0 left-0 right-0 z-50 border-t border-default-200 bg-background/95">
+    <footer className="sticky bottom-0 left-0 right-0 z-50 border-t border-default-200 bg-background/95 md:hidden">
       <div className="mx-auto max-w-6xl px-4 py-4">
         <Button
           as={Link}
