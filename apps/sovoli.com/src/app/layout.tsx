@@ -46,7 +46,6 @@ export default async function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       {/* <script src="https://unpkg.com/react-scan/dist/auto.global.js" async /> */}
       <body>
-        {countryCode}
         <Providers countryCode={countryCode}>{children}</Providers>
         <SpeedInsights />
         <Analytics />

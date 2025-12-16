@@ -1,23 +1,37 @@
 {
   "extends": "@sovoli/typescript-config/base.json",
   "compilerOptions": {
-    "lib": ["es2022", "dom", "dom.iterable"],
+    "lib": [
+      "es2022",
+      "dom",
+      "dom.iterable"
+    ],
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
-      "@sovoli/ui/*": ["../../packages/ui/src/*"]
+      "~/*": [
+        "./src/*"
+      ],
+      "@sovoli/ui/*": [
+        "../../packages/ui/src/*"
+      ]
     },
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "module": "esnext"
   },
   "include": [
-    "src/**/*",
-    "scripts/**/*",
-    ".next/types/**/*.ts",
     "app-env.d.ts",
     "next-env.d.ts",
-    "trigger.config.ts"
+    "scripts/**/*",
+    "src/**/*",
+    "trigger.config.ts",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
