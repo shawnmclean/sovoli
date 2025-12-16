@@ -1,6 +1,6 @@
 import { config } from "~/utils/config";
 import { TrendingSection } from "../(marketing)/components/TrendingSection";
-import { SchoolAdminSection } from "../(marketing)/components/SchoolAdminSection";
+import { SovoliBusinessSection } from "../(marketing)/components/SovoliBusinessSection";
 import { HurricaneMelissaSection } from "../(marketing)/components/HurricaneMelissaSection";
 import { FindSchoolsSection } from "../(marketing)/components/FindSchoolsSection";
 
@@ -19,7 +19,7 @@ export default function LandingPage() {
       <HurricaneMelissaSection />
       <FindSchoolsSection />
       <TrendingSection />
-      <SchoolAdminSection />
+      <SovoliBusinessSection />
     </main>
   );
 }
