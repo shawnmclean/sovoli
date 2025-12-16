@@ -1,21 +1,20 @@
-import React from "react";
+import type { ReactNode } from "react";
 import type { StaticImageData } from "next/image";
 import bingResultImage from "./[category]/components/bing-result.png";
 import googleResultImage from "./[category]/components/google-maps.png";
 import sovoliDirectoryImage from "./[category]/components/sovoli-directory.png";
 
 export type BusinessCategory =
-  | "k12-education"
-  | "beauty-wellness"
-  | "fashion-sewing"
+  | "private-schools"
+  | "salons-spas"
+  | "sewing-studio"
   | "agriculture"
-  | "fitness-sports"
-  | "creative-arts";
+  | "fitness-coaches"
+  | "music-schools";
 
 export interface BusinessCategoryMeta {
   id: BusinessCategory;
   label: string;
-  headlineLabel: string;
   shortDescription: string;
   heroTitle: string;
   heroSubtitle: string;
@@ -25,22 +24,20 @@ export interface BusinessCategoryMeta {
 
 export const BUSINESS_CATEGORIES: BusinessCategoryMeta[] = [
   {
-    id: "k12-education",
-    label: "K12 Education",
-    headlineLabel: "Private Schools",
+    id: "private-schools",
+    label: "Private Schools",
     shortDescription:
-      "Turn parent searches into enrollment conversations with a complete Growth System.",
-    heroTitle: "Growth Systems for K-12 Schools",
+      "Help parents find your school and understand your programs before they message you.",
+    heroTitle: "Growth Systems for Private Schools",
     heroSubtitle:
-      "Get discovered on Google, build a professional website, and convert interest into enrollment conversations.",
+      "Get found online, give parents clear information, and make enrollment easier to manage.",
     image:
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
     gradient: "from-blue-500 via-indigo-500 to-violet-500",
   },
   {
-    id: "beauty-wellness",
-    label: "Beauty & Wellness",
-    headlineLabel: "Beauty Businesses",
+    id: "salons-spas",
+    label: "Salons & Spas",
     shortDescription:
       "Get found by customers searching for beauty and wellness services and convert clicks into bookings.",
     heroTitle: "Growth Systems for Beauty & Wellness Businesses",
@@ -51,9 +48,8 @@ export const BUSINESS_CATEGORIES: BusinessCategoryMeta[] = [
     gradient: "from-pink-500 via-rose-500 to-fuchsia-500",
   },
   {
-    id: "fashion-sewing",
-    label: "Fashion & Sewing",
-    headlineLabel: "Fashion Businesses",
+    id: "sewing-studio",
+    label: "Sewing Studio",
     shortDescription:
       "Reach customers searching for fashion and sewing services and convert clicks into sales conversations.",
     heroTitle: "Growth Systems for Fashion & Sewing Businesses",
@@ -65,8 +61,7 @@ export const BUSINESS_CATEGORIES: BusinessCategoryMeta[] = [
   },
   {
     id: "agriculture",
-    label: "Agriculture",
-    headlineLabel: "Farms",
+    label: "Farms",
     shortDescription:
       "Get found by customers searching for agricultural products and services and convert clicks into sales.",
     heroTitle: "Growth Systems for Agriculture Businesses",
@@ -77,9 +72,8 @@ export const BUSINESS_CATEGORIES: BusinessCategoryMeta[] = [
     gradient: "from-green-500 via-emerald-500 to-teal-500",
   },
   {
-    id: "fitness-sports",
-    label: "Fitness & Sports",
-    headlineLabel: "Fitness Businesses",
+    id: "fitness-coaches",
+    label: "Fitness Coaches",
     shortDescription:
       "Get found by customers searching for fitness and sports services and convert clicks into bookings.",
     heroTitle: "Growth Systems for Fitness & Sports Businesses",
@@ -90,14 +84,13 @@ export const BUSINESS_CATEGORIES: BusinessCategoryMeta[] = [
     gradient: "from-orange-500 via-red-500 to-pink-500",
   },
   {
-    id: "creative-arts",
-    label: "Creative Arts",
-    headlineLabel: "Creative Businesses",
+    id: "music-schools",
+    label: "Music Schools",
     shortDescription:
-      "Reach customers searching for creative arts and services and convert clicks into sales conversations.",
-    heroTitle: "Growth Systems for Creative Arts Businesses",
+      "Reach customers searching for music lessons and services and convert clicks into sales conversations.",
+    heroTitle: "Growth Systems for Music Schools",
     heroSubtitle:
-      "Get discovered online, showcase your work and services, and turn customer searches into inquiries and sales.",
+      "Get discovered online, showcase your classes and programs, and turn customer searches into inquiries and sales.",
     image:
       "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
     gradient: "from-cyan-500 via-blue-500 to-indigo-500",
@@ -152,7 +145,7 @@ interface Customer {
 
 interface FAQ {
   question: string;
-  answer: React.ReactNode;
+  answer: ReactNode;
 }
 
 export interface GrowthSystemContent {
@@ -164,7 +157,7 @@ export interface GrowthSystemContent {
     productName: string;
     businessType: string;
     title: string;
-    description: React.ReactNode;
+    description: ReactNode;
   };
   customers: {
     title: string;
@@ -202,8 +195,7 @@ const SHARED_CUSTOMERS: Customer[] = [
   {
     company: "Modern Academy",
     title: "Verified private school partner",
-    quote:
-      "Sovoli increased our sales-qualified enrollment leads by 300%.",
+    quote: "Sovoli increased our sales-qualified enrollment leads by 300%.",
     caseStudyLink: "https://www.ma.edu.gy",
     logo: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638251/o/magy/logo/logo.webp",
     category: "K-12 School",
@@ -211,8 +203,7 @@ const SHARED_CUSTOMERS: Customer[] = [
   {
     company: "FitRight Academy",
     title: "Fashion & sewing academy launch",
-    quote:
-      "Sovoli launched our school and filled our first two paid programs.",
+    quote: "Sovoli launched our school and filled our first two paid programs.",
     caseStudyLink: "https://www.fitright.gy",
     logo: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638250/o/fitright/logo/logo.webp",
     category: "Vocational School",
@@ -584,8 +575,8 @@ const creativeArtsContent: GrowthSystemContent = {
 
 export const contentByCategory: Record<BusinessCategory, GrowthSystemContent> =
   {
-    "k12-education": k12EducationContent,
-    "beauty-wellness": beautyWellnessContent,
+    "private-schools": k12EducationContent,
+    "salons-spas": beautyWellnessContent,
     "fashion-sewing": fashionSewingContent,
     agriculture: agricultureContent,
     "fitness-sports": fitnessSportsContent,

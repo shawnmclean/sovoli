@@ -36,9 +36,7 @@ const capabilities: CapabilityCardData[] = [
 ];
 
 export default function BusinessPage() {
-  const headlineLabels = BUSINESS_CATEGORIES.map(
-    (category) => category.headlineLabel,
-  );
+  const headlineLabels = BUSINESS_CATEGORIES.map((category) => category.label);
 
   return (
     <main className="min-h-screen">
@@ -99,7 +97,8 @@ export default function BusinessPage() {
             One platform for schools and training programs
           </h2>
           <p className="mx-auto max-w-2xl text-default-500">
-            Everything you need to get your programs discovered and filled.
+            Everything you need to get your classes, programs, and workshops
+            discovered and filled.
           </p>
         </div>
 
