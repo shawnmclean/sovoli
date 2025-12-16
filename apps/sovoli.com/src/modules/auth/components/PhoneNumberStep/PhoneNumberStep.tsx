@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PhoneNumberForm } from "./PhoneNumberForm";
 import { PhoneOTPVerifyForm } from "./PhoneOTPVerifyForm";
 import { sendOTPAction } from "../../actions/sendOTPAction";
@@ -15,13 +15,20 @@ import type {
 export interface PhoneNumberStepProps {
   mode: SignupWizardMode;
   onSuccess?: (phone: string) => void;
+  defaultPhone?: string;
+  defaultCountryCode?: "US" | "GB" | "GY" | "JM";
 }
 
 type Step = "send" | "verify";
 
-export function PhoneNumberStep({ onSuccess, mode }: PhoneNumberStepProps) {
+export function PhoneNumberStep({
+  onSuccess,
+  mode,
+  defaultPhone,
+  defaultCountryCode,
+}: PhoneNumberStepProps) {
   const [currentStep, setCurrentStep] = useState<Step>("send");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(defaultPhone ?? "");
   const [otpToken, setOtpToken] = useState<string | undefined>();
 
   const handleBack = () => {
@@ -73,10 +80,21 @@ export function PhoneNumberStep({ onSuccess, mode }: PhoneNumberStepProps) {
 
   const phoneAction = mode === "lead" ? leadPhoneAction : otpPhoneAction;
 
+  // Update phone state when defaultPhone changes
+  useEffect(() => {
+    if (defaultPhone !== undefined && currentStep === "send") {
+      setPhone(defaultPhone);
+    }
+  }, [defaultPhone, currentStep]);
+
   return (
     <div className="space-y-4">
       {currentStep === "send" ? (
-        <PhoneNumberForm sendAction={phoneAction} defaultPhone={phone} />
+        <PhoneNumberForm
+          sendAction={phoneAction}
+          defaultPhone={phone}
+          defaultCountryCode={defaultCountryCode}
+        />
       ) : (
         <PhoneOTPVerifyForm
           phone={phone}
