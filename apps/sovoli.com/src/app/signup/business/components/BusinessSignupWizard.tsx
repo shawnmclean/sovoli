@@ -151,6 +151,9 @@ export function BusinessSignupWizard({
           posthog.capture("CompleteRegistration", {
             type: "business",
             org_name: businessName,
+            // TODO: remove this when we hook up the plan
+            currency: "JMD",
+            value: "40000",
           });
           setStep("success");
         } else {
