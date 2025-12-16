@@ -92,32 +92,14 @@ export default function BusinessPage() {
         </div>
       </section>
 
-      {/* Technologies Section */}
-      <section>
-        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-2xl font-semibold text-foreground sm:text-3xl lg:text-4xl">
-              See how Sovoli helps your business get more customers online.
-            </h2>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((capability, index) => (
-              <CapabilityCard key={index} capability={capability} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Growth System by Business Type */}
       <section className="mx-auto max-w-6xl px-4 pb-16">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-2xl font-semibold text-foreground sm:text-3xl">
-            Show what you offer, from programs to services and products.
+            One platform for schools and training programs
           </h2>
           <p className="mx-auto max-w-2xl text-default-500">
-            Start with your business type, then explore the system built to help
-            you get discovered and convert visitors into customers.
+            Everything you need to get your programs discovered and filled.
           </p>
         </div>
 
@@ -135,6 +117,23 @@ export default function BusinessPage() {
               }}
             />
           ))}
+        </div>
+      </section>
+
+      {/* Technologies Section */}
+      <section>
+        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-2xl font-semibold text-foreground sm:text-3xl lg:text-4xl">
+              See how Sovoli helps your business get more customers online.
+            </h2>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map((capability, index) => (
+              <CapabilityCard key={index} capability={capability} />
+            ))}
+          </div>
         </div>
       </section>
 

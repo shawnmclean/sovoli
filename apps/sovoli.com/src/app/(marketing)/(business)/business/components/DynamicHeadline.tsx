@@ -32,7 +32,7 @@ export function DynamicHeadline({ headlineLabels }: DynamicHeadlineProps) {
     <div className="mb-8">
       <h1 className="text-left font-bold leading-tight tracking-tight">
         <span className="block text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-          Get more enrollments for your programs.
+          Get more enrollments for your programs
         </span>
         <span className="block text-foreground/80 text-3xl sm:text-3xl md:text-5xl lg:text-5xl mt-2">
           For{" "}
