@@ -17,7 +17,7 @@ export default async function SignupBusinessPage({ searchParams }: Props) {
     category && isBusinessCategory(category) ? category : undefined;
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-white via-white to-gray-50">
       <main className="flex-1">
         <BusinessSignupWizard initialCategory={validCategory} />
       </main>

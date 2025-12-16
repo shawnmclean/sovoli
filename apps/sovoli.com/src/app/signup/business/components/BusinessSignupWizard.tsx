@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { Input } from "@sovoli/ui/components/input";
+import { Input, Textarea } from "@sovoli/ui/components/input";
+import { Select, SelectItem } from "@sovoli/ui/components/select";
+import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { PhoneNumberStep } from "~/modules/auth/components/PhoneNumberStep/PhoneNumberStep";
 import { NamesForm } from "~/modules/auth/components/NamesForm";
 import type { BusinessCategory } from "../../../(marketing)/(business)/business/categories";
@@ -39,6 +41,8 @@ export function BusinessSignupWizard({
       ? initialCategory
       : null,
   );
+  const [marketingMethods, setMarketingMethods] = useState<string[]>([]);
+  const [description, setDescription] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -139,12 +143,14 @@ export function BusinessSignupWizard({
           phone,
           firstName,
           lastName,
+          marketingMethods,
+          description: description.trim(),
         });
 
         if (result.success) {
-          posthog.capture("BusinessLeadSubmitted", {
-            business_name: businessName,
-            category,
+          posthog.capture("CompleteRegistration", {
+            type: "business",
+            org_name: businessName,
           });
           setStep("success");
         } else {
@@ -276,37 +282,140 @@ export function BusinessSignupWizard({
                 size="lg"
                 label="Business Name"
                 variant="bordered"
-                placeholder="Acme School"
+                placeholder="Hillel Academy"
                 isRequired
               />
             </div>
 
             {/* Category Selection */}
             <div>
-              <div className="block text-sm font-medium text-foreground mb-2">
-                Category <span className="text-danger">*</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Select
+                label="Category"
+                selectedKeys={category ? [category] : []}
+                onSelectionChange={(keys) => {
+                  const selectedKey = Array.from(keys)[0] as string | undefined;
+                  if (selectedKey && isBusinessCategory(selectedKey)) {
+                    setCategory(selectedKey);
+                  } else {
+                    setCategory(null);
+                  }
+                }}
+                placeholder="Select a category"
+                size="lg"
+                variant="bordered"
+                fullWidth
+                isRequired
+              >
                 {BUSINESS_CATEGORIES.map((cat) => (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    onClick={() => setCategory(cat.id)}
-                    className={`p-4 rounded-lg border-2 text-left transition-all ${
-                      category === cat.id
-                        ? "border-primary bg-primary-50 dark:bg-primary-950/30"
-                        : "border-default-200 hover:border-primary-300 bg-content1"
-                    }`}
-                  >
-                    <div className="font-semibold text-foreground">
-                      {cat.label}
-                    </div>
-                    <div className="text-sm text-default-500 mt-1">
-                      {cat.shortDescription}
-                    </div>
-                  </button>
+                  <SelectItem key={cat.id} textValue={cat.label}>
+                    {cat.label}
+                  </SelectItem>
                 ))}
+              </Select>
+            </div>
+
+            {/* Marketing Methods */}
+            <div>
+              <div className="block text-sm font-medium text-foreground mb-2">
+                How are you marketing?
               </div>
+              <div className="flex flex-col">
+                <div className="mb-4">
+                  <Checkbox
+                    isSelected={marketingMethods.includes("Word of Mouth")}
+                    onValueChange={(checked) => {
+                      if (checked) {
+                        setMarketingMethods([
+                          ...marketingMethods,
+                          "Word of Mouth",
+                        ]);
+                      } else {
+                        setMarketingMethods(
+                          marketingMethods.filter((m) => m !== "Word of Mouth"),
+                        );
+                      }
+                    }}
+                  >
+                    Word of Mouth
+                  </Checkbox>
+                </div>
+                <div className="mb-4">
+                  <Checkbox
+                    isSelected={marketingMethods.includes("Social Media Posts")}
+                    onValueChange={(checked) => {
+                      if (checked) {
+                        setMarketingMethods([
+                          ...marketingMethods,
+                          "Social Media Posts",
+                        ]);
+                      } else {
+                        setMarketingMethods(
+                          marketingMethods.filter(
+                            (m) => m !== "Social Media Posts",
+                          ),
+                        );
+                      }
+                    }}
+                  >
+                    Social Media Posts
+                  </Checkbox>
+                </div>
+                <div className="mb-4">
+                  <Checkbox
+                    isSelected={marketingMethods.includes("Boosting Ads")}
+                    onValueChange={(checked) => {
+                      if (checked) {
+                        setMarketingMethods([
+                          ...marketingMethods,
+                          "Boosting Ads",
+                        ]);
+                      } else {
+                        setMarketingMethods(
+                          marketingMethods.filter((m) => m !== "Boosting Ads"),
+                        );
+                      }
+                    }}
+                  >
+                    Boosting Ads
+                  </Checkbox>
+                </div>
+                <div>
+                  <Checkbox
+                    isSelected={marketingMethods.includes(
+                      "No marketing efforts",
+                    )}
+                    onValueChange={(checked) => {
+                      if (checked) {
+                        setMarketingMethods([
+                          ...marketingMethods,
+                          "No marketing efforts",
+                        ]);
+                      } else {
+                        setMarketingMethods(
+                          marketingMethods.filter(
+                            (m) => m !== "No marketing efforts",
+                          ),
+                        );
+                      }
+                    }}
+                  >
+                    No marketing efforts
+                  </Checkbox>
+                </div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div>
+              <Textarea
+                label="Description"
+                placeholder="Tell us more about your programs, classes or workshops"
+                value={description}
+                onValueChange={setDescription}
+                minRows={4}
+                size="lg"
+                variant="bordered"
+              />
             </div>
 
             {/* Error message */}
