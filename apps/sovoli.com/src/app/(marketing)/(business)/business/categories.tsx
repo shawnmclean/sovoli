@@ -6,10 +6,10 @@ import sovoliDirectoryImage from "./[category]/components/sovoli-directory.png";
 
 export type BusinessCategory =
   | "private-schools"
-  | "salons-spas"
-  | "sewing-studio"
+  | "beauty-schools"
+  | "fashion-schools"
   | "agriculture"
-  | "fitness-coaches"
+  | "personal-trainers"
   | "music-schools";
 
 export interface BusinessCategoryMeta {
@@ -36,8 +36,8 @@ export const BUSINESS_CATEGORIES: BusinessCategoryMeta[] = [
     gradient: "from-blue-500 via-indigo-500 to-violet-500",
   },
   {
-    id: "salons-spas",
-    label: "Salons & Spas",
+    id: "beauty-schools",
+    label: "Beauty Schools",
     shortDescription:
       "Get found by customers searching for beauty and wellness services and convert clicks into bookings.",
     heroTitle: "Growth Systems for Beauty & Wellness Businesses",
@@ -48,8 +48,8 @@ export const BUSINESS_CATEGORIES: BusinessCategoryMeta[] = [
     gradient: "from-pink-500 via-rose-500 to-fuchsia-500",
   },
   {
-    id: "sewing-studio",
-    label: "Sewing Studio",
+    id: "fashion-schools",
+    label: "Fashion Schools",
     shortDescription:
       "Reach customers searching for fashion and sewing services and convert clicks into sales conversations.",
     heroTitle: "Growth Systems for Fashion & Sewing Businesses",
@@ -72,11 +72,11 @@ export const BUSINESS_CATEGORIES: BusinessCategoryMeta[] = [
     gradient: "from-green-500 via-emerald-500 to-teal-500",
   },
   {
-    id: "fitness-coaches",
-    label: "Fitness Coaches",
+    id: "personal-trainers",
+    label: "Personal Trainers",
     shortDescription:
       "Get found by customers searching for fitness and sports services and convert clicks into bookings.",
-    heroTitle: "Growth Systems for Fitness & Sports Businesses",
+    heroTitle: "Growth Systems for Personal Trainers",
     heroSubtitle:
       "Get discovered online, showcase your services, and turn customer searches into appointments and sales.",
     image:
