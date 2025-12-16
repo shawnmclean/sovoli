@@ -8,7 +8,7 @@ export type BusinessCategory =
   | "private-schools"
   | "beauty-schools"
   | "fashion-schools"
-  | "agriculture"
+  | "farms"
   | "personal-trainers"
   | "music-schools";
 
@@ -60,7 +60,7 @@ export const BUSINESS_CATEGORIES: BusinessCategoryMeta[] = [
     gradient: "from-purple-500 via-violet-500 to-indigo-500",
   },
   {
-    id: "agriculture",
+    id: "farms",
     label: "Farms",
     shortDescription:
       "Get found by customers searching for agricultural products and services and convert clicks into sales.",
@@ -471,7 +471,7 @@ const fashionSewingContent: GrowthSystemContent = {
   },
 };
 
-const agricultureContent: GrowthSystemContent = {
+const farmContent: GrowthSystemContent = {
   ...k12EducationContent,
   metadata: {
     title: "Growth System for Agriculture – Sovoli",
@@ -576,11 +576,11 @@ const creativeArtsContent: GrowthSystemContent = {
 export const contentByCategory: Record<BusinessCategory, GrowthSystemContent> =
   {
     "private-schools": k12EducationContent,
-    "salons-spas": beautyWellnessContent,
-    "fashion-sewing": fashionSewingContent,
-    agriculture: agricultureContent,
-    "fitness-sports": fitnessSportsContent,
-    "creative-arts": creativeArtsContent,
+    "beauty-schools": beautyWellnessContent,
+    "fashion-schools": fashionSewingContent,
+    farms: farmContent,
+    "personal-trainers": fitnessSportsContent,
+    "music-schools": creativeArtsContent,
   };
 
 export function getContent(category: BusinessCategory): GrowthSystemContent {
