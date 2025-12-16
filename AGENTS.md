@@ -101,6 +101,12 @@ All checks should pass before committing changes.
 - Use default Tailwind theme colors (no custom colors)
 - Follow existing patterns in the codebase
 
+### UI/UX Guidelines
+
+- **CTA Buttons**: All Call-to-Action (CTA) buttons must use rounded pill style by setting `radius="full"` on the Button component
+  - This improves conversions on marketing pages
+  - Example: `<Button radius="full" color="primary">Get Started</Button>`
+
 ## Important File Locations
 
 - **Environment config**: `apps/sovoli.com/src/env.ts` (validated with `@t3-oss/env-nextjs`)

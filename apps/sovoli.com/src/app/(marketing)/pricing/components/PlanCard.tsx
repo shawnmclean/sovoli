@@ -370,6 +370,7 @@ export function PlanCard({
 														<Button
 															variant="bordered"
 															size="sm"
+															radius="full"
 															onClick={() => decrementQuantity(item.id)}
 															disabled={quantity === 0}
 															className="min-w-[2.5rem]"
@@ -383,6 +384,7 @@ export function PlanCard({
 														<Button
 															variant="bordered"
 															size="sm"
+															radius="full"
 															onClick={() => incrementQuantity(item.id)}
 															className="min-w-[2.5rem]"
 															isIconOnly
@@ -540,6 +542,7 @@ export function PlanCard({
 						color="primary"
 						variant="solid"
 						size="lg"
+						radius="full"
 						className="w-full mt-2"
 						endContent={<RocketIcon className="w-4 h-4" />}
 						intent="Purchase"

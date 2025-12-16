@@ -36,6 +36,7 @@ export function CTA({
               size="lg"
               color="primary"
               variant="solid"
+              radius="full"
               className="font-semibold"
               event="Contact"
               eventProperties={trackingEventProperties}

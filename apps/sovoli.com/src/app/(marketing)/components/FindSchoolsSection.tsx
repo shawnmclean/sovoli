@@ -49,6 +49,7 @@ export function FindSchoolsSection() {
                       fullWidth
                       variant="bordered"
                       color="default"
+                      radius="full"
                       endContent={<ChevronDownIcon className="h-4 w-4" />}
                       className="justify-between"
                     >
@@ -76,6 +77,7 @@ export function FindSchoolsSection() {
                   href={path}
                   color="primary"
                   size="md"
+                  radius="full"
                   endContent={<ArrowRightIcon className="h-4 w-4" />}
                   className="w-full sm:w-auto font-semibold"
                 >

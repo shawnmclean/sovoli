@@ -94,6 +94,7 @@ export function CampaignAdsAddon({
 					color="primary"
 					variant="solid"
 					size="lg"
+					radius="full"
 					className="w-full"
 					endContent={<RocketIcon className="w-4 h-4" />}
 					intent="Purchase"

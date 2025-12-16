@@ -43,6 +43,7 @@ export function HurricaneMelissaSection() {
                 href="/projects"
                 color="primary"
                 size="md"
+                radius="full"
                 endContent={<ArrowRightIcon className="h-4 w-4" />}
                 className="w-full sm:w-auto font-semibold"
               >

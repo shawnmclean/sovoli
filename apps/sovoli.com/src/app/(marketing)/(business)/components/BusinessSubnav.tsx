@@ -58,6 +58,7 @@ export function BusinessSubnav() {
             <Button
               variant="light"
               size="lg"
+              radius="full"
               endContent={<ChevronDownIcon className="h-5 w-5" />}
               className="font-semibold text-lg"
             >

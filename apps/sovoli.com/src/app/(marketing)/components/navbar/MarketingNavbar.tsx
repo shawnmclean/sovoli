@@ -49,6 +49,7 @@ export function MarketingNavbar() {
 					<Button
 						isIconOnly
 						variant="light"
+						radius="full"
 						aria-label={isDrawerOpen ? "Close menu" : "Open menu"}
 						className="sm:hidden"
 						onPress={() => setIsDrawerOpen(true)}

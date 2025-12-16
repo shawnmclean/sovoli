@@ -34,6 +34,7 @@ export function CTASection() {
               fullWidth
               variant="bordered"
               color="default"
+              radius="full"
               endContent={<ChevronDownIcon className="h-4 w-4" />}
             >
               {selectedArea?.name}
@@ -56,6 +57,7 @@ export function CTASection() {
           as={Link}
           fullWidth
           color="primary"
+          radius="full"
           endContent={<ArrowRightIcon className="h-4 w-4" />}
           href={path}
         >
