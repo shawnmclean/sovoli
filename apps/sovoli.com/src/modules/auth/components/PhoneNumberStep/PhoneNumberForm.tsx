@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useState,
-  useActionState,
-  startTransition,
-  useRef,
-} from "react";
+import { useState, useActionState, useMemo } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { Form } from "@sovoli/ui/components/form";
@@ -73,69 +67,49 @@ export function PhoneNumberForm({
 }: PhoneNumberFormProps) {
   // Get country code from context
   const countryCode = useCountry();
-  const phoneCountryCodeFromContext = countryCode
-    ? countryCodeToPhoneCode(countryCode)
-    : undefined;
+  const phoneCountryCodeFromContext = useMemo(
+    () => (countryCode ? countryCodeToPhoneCode(countryCode) : undefined),
+    [countryCode],
+  );
 
   // Use prop if provided, otherwise use context value, otherwise default to "GY"
-  const effectiveCountryCode: CountryCode =
-    defaultCountryCode ?? phoneCountryCodeFromContext ?? "GY";
+  const effectiveCountryCode: CountryCode = useMemo(
+    () => defaultCountryCode ?? phoneCountryCodeFromContext ?? "GY",
+    [defaultCountryCode, phoneCountryCodeFromContext],
+  );
 
-  const [phone, setPhone] = useState(defaultPhone);
-  const [selectedCountry, setSelectedCountry] = useState<{
+  // Derive country from props - this is the source of truth when user hasn't interacted
+  const derivedCountry = useMemo((): {
     code: string;
     name: string;
     countryCode: CountryCode;
-  }>(() => {
+  } => {
+    const countryToUse: CountryCode =
+      defaultCountryCode ?? effectiveCountryCode;
     const match = countryCodes.find(
-      (item) => item.countryCode === effectiveCountryCode,
+      (item) => item.countryCode === countryToUse,
     );
-    if (match) {
-      return match;
-    }
-    return {
-      code: "+592",
-      name: "Guyana",
-      countryCode: "GY",
-    };
-  });
-
-  // Track previous prop values to only update when they actually change
-  const prevDefaultCountryCodeRef = useRef(defaultCountryCode);
-  const prevEffectiveCountryCodeRef = useRef(effectiveCountryCode);
-
-  useEffect(() => {
-    if (defaultPhone !== undefined) {
-      startTransition(() => {
-        setPhone(defaultPhone);
-      });
-    }
-  }, [defaultPhone]);
-
-  // Update selectedCountry when defaultCountryCode or effectiveCountryCode props change
-  // This should NOT run when user manually changes the dropdown
-  useEffect(() => {
-    const countryCodeChanged =
-      defaultCountryCode !== prevDefaultCountryCodeRef.current ||
-      effectiveCountryCode !== prevEffectiveCountryCodeRef.current;
-
-    if (countryCodeChanged) {
-      prevDefaultCountryCodeRef.current = defaultCountryCode;
-      prevEffectiveCountryCodeRef.current = effectiveCountryCode;
-
-      // Prioritize defaultCountryCode prop if provided, otherwise use effectiveCountryCode
-      const countryToUse: CountryCode =
-        defaultCountryCode ?? effectiveCountryCode;
-      const match = countryCodes.find(
-        (item) => item.countryCode === countryToUse,
-      );
-      if (match) {
-        startTransition(() => {
-          setSelectedCountry(match);
-        });
+    return (
+      match ?? {
+        code: "+592",
+        name: "Guyana",
+        countryCode: "GY" as CountryCode,
       }
-    }
+    );
   }, [defaultCountryCode, effectiveCountryCode]);
+
+  // Track user input separately from props
+  // Once user interacts, their input takes precedence over props
+  const [userPhone, setUserPhone] = useState<string | null>(null);
+  const [userSelectedCountry, setUserSelectedCountry] = useState<{
+    code: string;
+    name: string;
+    countryCode: CountryCode;
+  } | null>(null);
+
+  // Use user input if available, otherwise derive from props
+  const phone = userPhone ?? defaultPhone ?? "";
+  const selectedCountry = userSelectedCountry ?? derivedCountry;
 
   const clientActionValidation = async (
     prevState: PhoneActionStates,
@@ -147,7 +121,6 @@ export function PhoneNumberForm({
 
     // Combine country code with phone number
     const fullPhoneNumber = countryCode + rawPhone;
-    console.log("Combined phone number:", fullPhoneNumber);
 
     // Create new FormData with the combined phone number
     const updatedFormData = new FormData();
@@ -204,7 +177,9 @@ export function PhoneNumberForm({
         <Input
           name="phone"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) => {
+            setUserPhone(e.target.value);
+          }}
           fullWidth
           autoFocus
           type="tel"
@@ -240,7 +215,7 @@ export function PhoneNumberForm({
                     (c) => c.code === selectedKey,
                   );
                   if (country) {
-                    setSelectedCountry(country);
+                    setUserSelectedCountry(country);
                   }
                 }}
               >
