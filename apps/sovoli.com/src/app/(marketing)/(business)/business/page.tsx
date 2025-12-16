@@ -41,7 +41,7 @@ export default function BusinessPage() {
   );
 
   return (
-    <main className="min-h-screen pb-20 md:pb-0">
+    <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Background pattern */}
