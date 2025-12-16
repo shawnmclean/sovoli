@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useState, useActionState, startTransition } from "react";
+import {
+  useEffect,
+  useState,
+  useActionState,
+  startTransition,
+  useRef,
+} from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { Form } from "@sovoli/ui/components/form";
@@ -94,6 +100,10 @@ export function PhoneNumberForm({
     };
   });
 
+  // Track previous prop values to only update when they actually change
+  const prevDefaultCountryCodeRef = useRef(defaultCountryCode);
+  const prevEffectiveCountryCodeRef = useRef(effectiveCountryCode);
+
   useEffect(() => {
     if (defaultPhone !== undefined) {
       startTransition(() => {
@@ -102,16 +112,30 @@ export function PhoneNumberForm({
     }
   }, [defaultPhone]);
 
+  // Update selectedCountry when defaultCountryCode or effectiveCountryCode props change
+  // This should NOT run when user manually changes the dropdown
   useEffect(() => {
-    const match = countryCodes.find(
-      (item) => item.countryCode === effectiveCountryCode,
-    );
-    if (match) {
-      startTransition(() => {
-        setSelectedCountry(match);
-      });
+    const countryCodeChanged =
+      defaultCountryCode !== prevDefaultCountryCodeRef.current ||
+      effectiveCountryCode !== prevEffectiveCountryCodeRef.current;
+
+    if (countryCodeChanged) {
+      prevDefaultCountryCodeRef.current = defaultCountryCode;
+      prevEffectiveCountryCodeRef.current = effectiveCountryCode;
+
+      // Prioritize defaultCountryCode prop if provided, otherwise use effectiveCountryCode
+      const countryToUse: CountryCode =
+        defaultCountryCode ?? effectiveCountryCode;
+      const match = countryCodes.find(
+        (item) => item.countryCode === countryToUse,
+      );
+      if (match) {
+        startTransition(() => {
+          setSelectedCountry(match);
+        });
+      }
     }
-  }, [effectiveCountryCode]);
+  }, [defaultCountryCode, effectiveCountryCode]);
 
   const clientActionValidation = async (
     prevState: PhoneActionStates,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { PhoneNumberForm } from "./PhoneNumberForm";
 import { PhoneOTPVerifyForm } from "./PhoneOTPVerifyForm";
 import { sendOTPAction } from "../../actions/sendOTPAction";
@@ -14,7 +14,7 @@ import type {
 
 export interface PhoneNumberStepProps {
   mode: SignupWizardMode;
-  onSuccess?: (phone: string) => void;
+  onSuccess?: (phone: string, rawPhone?: string, countryIso?: string) => void;
   defaultPhone?: string;
   defaultCountryCode?: "US" | "GB" | "GY" | "JM";
 }
@@ -28,7 +28,7 @@ export function PhoneNumberStep({
   defaultCountryCode,
 }: PhoneNumberStepProps) {
   const [currentStep, setCurrentStep] = useState<Step>("send");
-  const [phone, setPhone] = useState(defaultPhone ?? "");
+  const [phone, setPhone] = useState<string>("");
   const [otpToken, setOtpToken] = useState<string | undefined>();
 
   const handleBack = () => {
@@ -38,12 +38,14 @@ export function PhoneNumberStep({
   };
 
   const leadPhoneAction = async (
-    prevState: LeadPhoneActionState,
+    _prevState: LeadPhoneActionState,
     formData: FormData,
   ): Promise<LeadPhoneActionState> => {
     const phone = formData.get("phone") as string;
+    const rawPhone = formData.get("rawPhone") as string | undefined;
+    const countryIso = formData.get("countryIso") as string | undefined;
 
-    onSuccess?.(phone);
+    onSuccess?.(phone, rawPhone, countryIso);
     return new Promise((resolve) => {
       resolve({
         status: "success",
@@ -80,19 +82,12 @@ export function PhoneNumberStep({
 
   const phoneAction = mode === "lead" ? leadPhoneAction : otpPhoneAction;
 
-  // Update phone state when defaultPhone changes
-  useEffect(() => {
-    if (defaultPhone !== undefined && currentStep === "send") {
-      setPhone(defaultPhone);
-    }
-  }, [defaultPhone, currentStep]);
-
   return (
     <div className="space-y-4">
       {currentStep === "send" ? (
         <PhoneNumberForm
           sendAction={phoneAction}
-          defaultPhone={phone}
+          defaultPhone={defaultPhone}
           defaultCountryCode={defaultCountryCode}
         />
       ) : (

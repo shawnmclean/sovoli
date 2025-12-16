@@ -27,6 +27,10 @@ export function BusinessSignupWizard({
 }: BusinessSignupWizardProps) {
   const [step, setStep] = useState<WizardStep>("phone");
   const [phone, setPhone] = useState<string | null>(null);
+  const [phoneRaw, setPhoneRaw] = useState<string>("");
+  const [phoneCountryCode, setPhoneCountryCode] = useState<
+    "US" | "GB" | "GY" | "JM" | undefined
+  >(undefined);
   const [firstName, setFirstName] = useState<string | null>(null);
   const [lastName, setLastName] = useState<string | null>(null);
   const [businessName, setBusinessName] = useState("");
@@ -45,8 +49,21 @@ export function BusinessSignupWizard({
     });
   }, [category]);
 
-  const handlePhoneSuccess = (phoneNumber: string) => {
+  const handlePhoneSuccess = (
+    phoneNumber: string,
+    rawPhone?: string,
+    countryIso?: string,
+  ) => {
     setPhone(phoneNumber);
+    setPhoneRaw(rawPhone ?? "");
+    setPhoneCountryCode(
+      countryIso === "US" ||
+        countryIso === "GB" ||
+        countryIso === "GY" ||
+        countryIso === "JM"
+        ? countryIso
+        : undefined,
+    );
     posthog.capture("BusinessPhoneEntered", {
       $set: {
         phone: phoneNumber,
@@ -146,31 +163,6 @@ export function BusinessSignupWizard({
   };
 
   if (step === "phone") {
-    // Extract phone number without country code for defaultPhone
-    // Phone is stored as full number with country code (e.g., "+5921234567")
-    // PhoneNumberForm expects just the number part
-    let defaultPhoneNumber: string | undefined;
-    let defaultCountryCode: "US" | "GB" | "GY" | "JM" | undefined;
-
-    if (phone) {
-      if (phone.startsWith("+1")) {
-        defaultCountryCode = "US";
-        defaultPhoneNumber = phone.slice(2);
-      } else if (phone.startsWith("+44")) {
-        defaultCountryCode = "GB";
-        defaultPhoneNumber = phone.slice(3);
-      } else if (phone.startsWith("+592")) {
-        defaultCountryCode = "GY";
-        defaultPhoneNumber = phone.slice(4);
-      } else if (phone.startsWith("+1876")) {
-        defaultCountryCode = "JM";
-        defaultPhoneNumber = phone.slice(5);
-      } else {
-        // Fallback: try to extract just the number part
-        defaultPhoneNumber = phone.replace(/^\+/, "");
-      }
-    }
-
     return (
       <div className="min-h-screen flex flex-col">
         <div className="absolute top-4 left-4 z-10">
@@ -195,8 +187,8 @@ export function BusinessSignupWizard({
             <PhoneNumberStep
               mode="lead"
               onSuccess={handlePhoneSuccess}
-              defaultPhone={defaultPhoneNumber}
-              defaultCountryCode={defaultCountryCode}
+              defaultPhone={phoneRaw || undefined}
+              defaultCountryCode={phoneCountryCode}
             />
           </div>
         </div>
