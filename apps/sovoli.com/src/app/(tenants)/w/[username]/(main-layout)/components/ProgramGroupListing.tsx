@@ -11,6 +11,7 @@ import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { UserIcon } from "lucide-react";
 import { CldImage } from "next-cloudinary";
+import { getProgramImage } from "../../programs/[slug]/lib/getProgramImage";
 
 export interface ProgramGroupListingProps {
   orgInstance: OrgInstance;
@@ -119,8 +120,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
                     program.name ??
                     program.standardProgramVersion?.program.name ??
                     "Program";
-                  const programImage =
-                    program.media?.cover ?? program.media?.gallery?.[0];
+                  const programImage = getProgramImage(program);
                   const ageReq = getAgeRequirement(program);
 
                   return (

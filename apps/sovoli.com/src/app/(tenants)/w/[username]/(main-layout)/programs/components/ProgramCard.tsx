@@ -8,6 +8,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { displayAgeRange } from "../utils";
 import { Image } from "@sovoli/ui/components/image";
 import { ArrowRightIcon, UserIcon } from "lucide-react";
+import { getProgramImageUrl } from "../../../programs/[slug]/lib/getProgramImage";
 
 export interface ProgramCardProps {
   orgInstance: OrgInstance;
@@ -31,12 +32,7 @@ export function ProgramCard({
       {/* 🖼️ Image */}
       <div className="relative">
         <Image
-          src={
-            program.media?.cover?.url ??
-            program.media?.gallery?.[0]?.url ??
-            program.standardProgramVersion?.program.image ??
-            ""
-          }
+          src={getProgramImageUrl(program) ?? ""}
           alt={programName}
           width={800}
           height={150}

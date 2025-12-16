@@ -28,6 +28,7 @@ import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
 import { OrgHighlightsSection } from "./components/orgHighlights/OrgHighlightsSection";
 import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
+import { getProgramImageUrl } from "./lib/getProgramImage";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
@@ -96,6 +97,8 @@ export async function generateMetadata({ params }: Props) {
 
   const title = `${programName} ${group ? `- ${group.name}` : ""}`;
 
+  const ogImageUrl = program ? getProgramImageUrl(program) : undefined;
+
   return {
     title: title,
     description: programDescription,
@@ -105,11 +108,7 @@ export async function generateMetadata({ params }: Props) {
       type: "website",
       images: [
         {
-          url:
-            program?.media?.cover?.url ??
-            program?.media?.gallery?.[0]?.url ??
-            program?.standardProgramVersion?.program.image ??
-            "",
+          url: ogImageUrl ?? "",
           width: 1200,
           height: 630,
           alt: programName,
@@ -191,9 +190,7 @@ export default async function Layout({ children, params, modals }: Props) {
       "@id": `${orgInstance.websiteModule.website.url}#org`,
     },
     ...(() => {
-      const coverUrl = programToUse.media?.cover?.url;
-      const galleryUrl = programToUse.media?.gallery?.[0]?.url;
-      const imageUrl = coverUrl ?? galleryUrl;
+      const imageUrl = getProgramImageUrl(programToUse);
       return imageUrl ? { image: imageUrl } : {};
     })(),
     ...(defaultCycle && {

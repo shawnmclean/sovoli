@@ -11,6 +11,7 @@ import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { UserIcon } from "lucide-react";
 import { CldImage } from "next-cloudinary";
+import { getProgramImage } from "../lib/getProgramImage";
 
 // Helper function to display age range
 const formatAgeRange = (range: {
@@ -68,8 +69,7 @@ export function ProgramsSection({
                 program.name ??
                 program.standardProgramVersion?.program.name ??
                 "Program";
-              const programImage =
-                program.media?.cover ?? program.media?.gallery?.[0];
+              const programImage = getProgramImage(program);
 
               // Get age requirement for this program
               const admission =
