@@ -11,7 +11,7 @@ import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { UserIcon } from "lucide-react";
 import { CldImage } from "next-cloudinary";
-import { getProgramImage } from "../../programs/[slug]/lib/getProgramImage";
+import { getProgramImage } from "~/modules/academics/getProgramImage";
 
 export interface ProgramGroupListingProps {
   orgInstance: OrgInstance;

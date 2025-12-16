@@ -8,7 +8,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { displayAgeRange } from "../utils";
 import { Image } from "@sovoli/ui/components/image";
 import { ArrowRightIcon, UserIcon } from "lucide-react";
-import { getProgramImageUrl } from "../../../programs/[slug]/lib/getProgramImage";
+import { getProgramImageUrl } from "~/modules/academics/getProgramImage";
 
 export interface ProgramCardProps {
   orgInstance: OrgInstance;

@@ -28,7 +28,7 @@ import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
 import { OrgHighlightsSection } from "./components/orgHighlights/OrgHighlightsSection";
 import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
-import { getProgramImageUrl } from "./lib/getProgramImage";
+import { getProgramImageUrl } from "~/modules/academics/getProgramImage";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,
