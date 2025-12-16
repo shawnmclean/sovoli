@@ -2,8 +2,6 @@ import { Plans } from "./components/Plans";
 import { plans } from "~/modules/plans/data";
 import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import type { Metadata } from "next";
-import { headers } from "next/headers";
-import { detectCurrency } from "~/utils/currencyDetection";
 import { Answers } from "../(business)/business/[category]/components/Answers";
 import { getContent } from "../(business)/business/categories";
 
@@ -19,9 +17,7 @@ export default async function PricingPage({
   searchParams: Promise<{ org: string }>;
 }) {
   const { org } = await searchParams;
-  const headersList = await headers();
-  const preferredCurrency = detectCurrency(headersList);
-  const content = getContent("k12-education");
+  const content = getContent("private-schools");
   const { answers } = content;
 
   const ruleSet = categoryRuleSets["private-school"];
@@ -65,12 +61,7 @@ export default async function PricingPage({
       {/* Pricing Section */}
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Plans
-            plans={plans}
-            ruleSet={ruleSet}
-            orgUsername={org}
-            preferredCurrency={preferredCurrency}
-          />
+          <Plans plans={plans} ruleSet={ruleSet} orgUsername={org} />
         </div>
       </section>
 

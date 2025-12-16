@@ -1,27 +1,31 @@
 // components/Plans.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import type { RuleSet } from "~/modules/scoring/types";
 import type { PlanDefinition } from "~/modules/plans/types";
-import type { CurrencyCode } from "~/utils/currencyDetection";
 import { PlanCard } from "./PlanCard";
 import { Card, CardHeader, CardBody } from "@sovoli/ui/components/card";
 import { CheckIcon } from "lucide-react";
+import { useCountry } from "~/modules/core/context/CountryProvider";
+import { getPreferredCurrency } from "~/utils/currencyDetection";
 
 interface PlansProps {
 	plans: PlanDefinition[];
 	ruleSet: RuleSet;
 	orgUsername?: string;
-	preferredCurrency?: CurrencyCode;
 }
 
 export function Plans({
 	plans,
 	ruleSet: _ruleSet,
 	orgUsername,
-	preferredCurrency = "USD",
 }: PlansProps) {
+	const countryCode = useCountry();
+	const preferredCurrency = useMemo(
+		() => getPreferredCurrency(countryCode),
+		[countryCode],
+	);
 	const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
 	const toggleExpand = (planKey: string) => {
