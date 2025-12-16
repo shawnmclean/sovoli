@@ -5,7 +5,7 @@ import { ThemeSwitch } from "../ThemeSwitch";
 
 export const Footer = () => {
   return (
-    <footer className="my-2 w-full border-t-1 border-default-200 px-4 py-6">
+    <footer className="my-2 w-full border-t-1 border-default-200 px-4 py-6 pb-20 md:pb-6">
       <div className="mx-auto max-w-5xl">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="text-sm text-default-600 flex items-center gap-2">
@@ -19,7 +19,12 @@ export const Footer = () => {
           <div className="flex items-center gap-4">
             <ThemeSwitch />
             <div className="flex gap-6">
-              <Link href="/about" color="foreground" underline="hover" size="sm">
+              <Link
+                href="/about"
+                color="foreground"
+                underline="hover"
+                size="sm"
+              >
                 About
               </Link>
               <Link
