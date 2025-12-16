@@ -107,7 +107,24 @@
       "format": "webp",
       "bytes": 69778,
       "version": 1756126456
+    },
+    {
+      "id": "fitright-sewing-class-video-1",
+      "type": "video",
+      "url": "https://res.cloudinary.com/dipyku9mn/video/upload/v1765844540/o/fitright/programs/sewing-class/v3w14pan2lhgevfzlxb0.mov",
+      "assetId": "4a57202981baee0d3e01774126fe590f",
+      "publicId": "o/fitright/programs/sewing-class/v3w14pan2lhgevfzlxb0",
+      "width": 1080,
+      "height": 1920,
+      "format": "mov",
+      "bytes": 34124724,
+      "version": 1765844540,
+      "duration": 30.636667,
+      "videoCodec": "hevc",
+      "audioCodec": "aac",
+      "fps": 30,
+      "bitrate": 8595134,
+      "posterUrl": "https://res.cloudinary.com/dipyku9mn/video/upload/so_0/o/fitright/programs/sewing-class/v3w14pan2lhgevfzlxb0.jpg"
     }
   ]
 }
-
