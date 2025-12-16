@@ -1,10 +1,12 @@
 import "~/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { config } from "~/utils/config";
+import { detectCountryFromHeaders } from "~/utils/currencyDetection";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
@@ -32,16 +34,20 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const countryCode = detectCountryFromHeaders(headersList);
+
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       {/* <script src="https://unpkg.com/react-scan/dist/auto.global.js" async /> */}
       <body>
-        <Providers>{children}</Providers>
+        {countryCode}
+        <Providers countryCode={countryCode}>{children}</Providers>
         <SpeedInsights />
         <Analytics />
       </body>

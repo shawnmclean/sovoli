@@ -3,13 +3,20 @@
 import { useRouter } from "next/navigation";
 import { HeroUIProvider } from "@sovoli/ui/providers";
 import { ThemeProvider } from "next-themes";
+import { CountryProvider } from "~/modules/core/context/CountryProvider";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({
+  children,
+  countryCode,
+}: {
+  children: React.ReactNode;
+  countryCode?: string | null;
+}) {
   const router = useRouter();
   return (
     <HeroUIProvider navigate={(href: string) => router.push(href)}>
       <ThemeProvider attribute="class" enableSystem>
-        {children}
+        <CountryProvider countryCode={countryCode}>{children}</CountryProvider>
       </ThemeProvider>
     </HeroUIProvider>
   );

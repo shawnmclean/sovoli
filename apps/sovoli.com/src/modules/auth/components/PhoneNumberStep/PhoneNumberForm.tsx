@@ -15,6 +15,8 @@ import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
 import { parseFormData } from "@rvf/core";
 import type { PhoneActionStates } from "../../actions/states";
 import { whatsAppOTPFormSchema } from "../../actions/schemas";
+import { useCountry } from "~/modules/core/context/CountryProvider";
+import { countryCodeToPhoneCode } from "~/utils/currencyDetection";
 
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";
@@ -63,19 +65,27 @@ export function PhoneNumberForm({
   defaultPhone,
   defaultCountryCode,
 }: PhoneNumberFormProps) {
+  // Get country code from context
+  const countryCode = useCountry();
+  const phoneCountryCodeFromContext = countryCode
+    ? countryCodeToPhoneCode(countryCode)
+    : undefined;
+
+  // Use prop if provided, otherwise use context value, otherwise default to "GY"
+  const effectiveCountryCode: CountryCode =
+    defaultCountryCode ?? phoneCountryCodeFromContext ?? "GY";
+
   const [phone, setPhone] = useState(defaultPhone);
   const [selectedCountry, setSelectedCountry] = useState<{
     code: string;
     name: string;
     countryCode: CountryCode;
   }>(() => {
-    if (defaultCountryCode) {
-      const match = countryCodes.find(
-        (item) => item.countryCode === defaultCountryCode,
-      );
-      if (match) {
-        return match;
-      }
+    const match = countryCodes.find(
+      (item) => item.countryCode === effectiveCountryCode,
+    );
+    if (match) {
+      return match;
     }
     return {
       code: "+592",
@@ -93,17 +103,15 @@ export function PhoneNumberForm({
   }, [defaultPhone]);
 
   useEffect(() => {
-    if (defaultCountryCode) {
-      const match = countryCodes.find(
-        (item) => item.countryCode === defaultCountryCode,
-      );
-      if (match) {
-        startTransition(() => {
-          setSelectedCountry(match);
-        });
-      }
+    const match = countryCodes.find(
+      (item) => item.countryCode === effectiveCountryCode,
+    );
+    if (match) {
+      startTransition(() => {
+        setSelectedCountry(match);
+      });
     }
-  }, [defaultCountryCode]);
+  }, [effectiveCountryCode]);
 
   const clientActionValidation = async (
     prevState: PhoneActionStates,
