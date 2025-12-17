@@ -233,7 +233,7 @@ export function BusinessSignupWizard({
               defaultLastName={lastName ?? undefined}
             />
             {error && (
-              <div className="mt-4 p-3 rounded-lg bg-danger-50 text-danger-700 border border-danger-200">
+              <div className="mt-4 p-3 rounded-lg bg-danger/10 text-danger border border-danger/20">
                 {error}
               </div>
             )}
@@ -423,7 +423,7 @@ export function BusinessSignupWizard({
 
             {/* Error message */}
             {error && (
-              <div className="p-3 rounded-lg bg-danger-50 text-danger-700 border border-danger-200">
+              <div className="p-3 rounded-lg bg-danger/10 text-danger border border-danger/20">
                 {error}
               </div>
             )}
