@@ -30,17 +30,28 @@ export function BusinessHeroSection({
 
             {/* Subheadline */}
             <p className="text-lg text-default-600 md:text-xl md:max-w-md lg:max-w-lg mb-6 sm:mb-8">
-              We set up ads and pages that filter inquiries, show you what’s
-              working, and send only serious people to WhatsApp.
+              We set up ads and pages that filter inquiries, show you what's
+              working, and send only serious people ready to join to WhatsApp.
             </p>
 
-            {/* CTA Button */}
-            <Link
-              href="/signup/business"
-              className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold text-white transition-all hover:bg-primary/90"
-            >
-              Get Started
-            </Link>
+            {/* CTA and Built for section */}
+            <div className="flex flex-col md:flex-row md:items-center md:gap-4 mb-2">
+              {/* CTA Button */}
+              <Link
+                href="/signup/business"
+                className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold text-white transition-all hover:bg-primary/90"
+              >
+                Get Started
+              </Link>
+
+              {/* Built for section */}
+              <div className="flex items-center gap-2 text-sm text-default-500">
+                <span>Built for</span>
+                <span className="font-medium text-default-700">Jamaica</span>
+                <span className="text-default-400">&</span>
+                <span className="font-medium text-default-700">Guyana</span>
+              </div>
+            </div>
           </div>
 
           {/* Hero image - mobile app screenshot (top half) */}
