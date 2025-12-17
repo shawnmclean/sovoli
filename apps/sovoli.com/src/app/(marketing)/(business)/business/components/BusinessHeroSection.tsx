@@ -30,9 +30,8 @@ export function BusinessHeroSection({
 
             {/* Subheadline */}
             <p className="text-lg text-default-600 md:text-xl md:max-w-md lg:max-w-lg mb-6 sm:mb-8">
-              We don't just build websites — we run data-driven ads within a
-              connected growth system that turns interest in your programs into
-              real leads and customers.
+              We set up ads and pages that filter inquiries, show you what’s
+              working, and send only serious people to WhatsApp.
             </p>
 
             {/* CTA Button */}
