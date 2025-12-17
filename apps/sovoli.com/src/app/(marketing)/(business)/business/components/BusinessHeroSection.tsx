@@ -31,7 +31,8 @@ export function BusinessHeroSection({
             {/* Subheadline */}
             <p className="text-lg text-default-600 md:text-xl md:max-w-md lg:max-w-lg mb-6 sm:mb-8">
               We set up ads and pages that filter inquiries, show you what's
-              working, and send only serious people ready to join to WhatsApp.
+              working, and send only <strong>serious people</strong> ready to
+              join straight to WhatsApp.
             </p>
 
             {/* CTA and Built for section */}
