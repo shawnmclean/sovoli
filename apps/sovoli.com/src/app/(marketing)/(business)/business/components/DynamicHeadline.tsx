@@ -32,17 +32,16 @@ export function DynamicHeadline({ headlineLabels }: DynamicHeadlineProps) {
     <div className="mb-8">
       <h1 className="text-left font-semibold leading-tight tracking-tight">
         <span className="block text-foreground text-3xl md:text-5xl lg:text-6xl font-medium">
-          Get more enrollments for your programs
-        </span>
-        <span className="block text-foreground/70 text-3xl sm:text-3xl md:text-5xl lg:text-5xl mt-3 font-medium">
-          For{" "}
+          Bring the right people to your programs:{" "}
           <span className="relative inline-block overflow-hidden align-bottom">
             {/* Hidden longest word to set width */}
-            <span className="invisible font-semibold">{longestType}.</span>
+            <span className="invisible font-medium whitespace-nowrap">
+              {longestType}.
+            </span>
             {headlineLabels.map((type, index) => (
               <span
                 key={type}
-                className={`absolute left-0 top-0 whitespace-nowrap font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 dark:from-purple-400 dark:via-pink-400 dark:to-rose-400 bg-clip-text text-transparent transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                className={`absolute left-0 top-0 whitespace-nowrap font-medium bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 dark:from-purple-400 dark:via-pink-400 dark:to-rose-400 bg-clip-text text-transparent transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
                   index === currentIndex
                     ? isAnimating
                       ? "-translate-y-full opacity-0 blur-sm"
