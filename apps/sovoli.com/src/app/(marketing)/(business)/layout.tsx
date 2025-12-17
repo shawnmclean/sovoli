@@ -1,16 +1,16 @@
-import { BusinessSubnav } from "./components/BusinessSubnav";
+import { BusinessNavbar } from "./components/BusinessNavbar";
 import { BusinessStickyFooter } from "./components/BusinessStickyFooter";
 
 interface Props {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export default function BusinessLayout({ children }: Props) {
-	return (
-		<>
-			<BusinessSubnav />
-			{children}
-			<BusinessStickyFooter />
-		</>
-	);
+  return (
+    <>
+      <BusinessNavbar />
+      {children}
+      <BusinessStickyFooter />
+    </>
+  );
 }
