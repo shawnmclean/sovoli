@@ -53,7 +53,7 @@ export default function BusinessPage() {
           />
         </div>
 
-        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 md:py-20 lg:px-12 lg:py-24">
+        <div className="mx-auto max-w-6xl px-4 py-10 lg:px-12 lg:py-20">
           <div className="flex flex-col md:flex-row md:items-start md:gap-8 lg:gap-12">
             {/* Text content */}
             <div className="md:flex-1">
