@@ -14,7 +14,7 @@ import { Button } from "@sovoli/ui/components/button";
 import type { GrowthSystemContent } from "../../categories";
 
 interface OverviewProps {
-	content: GrowthSystemContent["overview"];
+  content: GrowthSystemContent["overview"];
 }
 
 export function Overview({ content }: OverviewProps) {
@@ -26,7 +26,7 @@ export function Overview({ content }: OverviewProps) {
         {/* Title */}
         <h2 className="text-3xl sm:text-5xl font-bold mb-6 leading-tight text-foreground">
           Grow your{" "}
-          <span className="bg-gradient-to-r from-[#800080] via-[#ff00ff] to-[#800080] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 dark:from-purple-400 dark:via-pink-400 dark:to-rose-400 bg-clip-text text-transparent">
             {content.businessType}
           </span>{" "}
           with Digital Marketing Systems
@@ -80,4 +80,3 @@ export function Overview({ content }: OverviewProps) {
     </section>
   );
 }
-
