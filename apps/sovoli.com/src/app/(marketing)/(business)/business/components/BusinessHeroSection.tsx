@@ -55,7 +55,7 @@ export function BusinessHeroSection({
           </div>
 
           {/* Hero image - mobile app screenshot (top half) */}
-          <div className="mt-10 md:mt-0 md:flex-[1.2] flex-shrink-0">
+          <div className="mt-6 md:mt-0 md:flex-[1.2] flex-shrink-0">
             <div className="relative aspect-[9/8] w-full overflow-hidden rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 shadow-2xl ring-1 ring-black/5">
               <Image
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
