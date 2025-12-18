@@ -1,17 +1,10 @@
 import Link from "next/link";
 import { ArrowRightIcon, Globe, MapPin, Megaphone } from "lucide-react";
-import type { Metadata } from "next";
 import { BusinessCard } from "./components/BusinessCard";
 import type { CapabilityCardData } from "./components/CapabilityCard";
 import { CapabilityCard } from "./components/CapabilityCard";
 import { BusinessHeroSection } from "./components/BusinessHeroSection";
 import { BUSINESS_CATEGORIES, businessCategoryHref } from "./categories";
-
-export const metadata: Metadata = {
-  title: "Sovoli Business – Digitize Your Organization",
-  description:
-    "Websites, Google visibility, programs, services, products, and projects — all in one place. Digital solutions for Caribbean businesses.",
-};
 
 const capabilities: CapabilityCardData[] = [
   {
