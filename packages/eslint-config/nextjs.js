@@ -15,9 +15,14 @@ export default [
     },
   },
   {
-    files: ['src/pages/**/*', 'src/app/**/{page,default,layout,not-found,robots,sitemap,icon,opengraph-image,twitter-image}.{tsx,ts}', 'src/middleware.ts', 'src/loaders/**/*'],
+    files: [
+      "src/pages/**/*",
+      "src/app/**/{page,default,layout,not-found,global-error,robots,sitemap,icon,opengraph-image,twitter-image}.{tsx,ts}",
+      "src/middleware.ts",
+      "src/loaders/**/*",
+    ],
     rules: {
-      'import/no-default-export': 'off',
+      "import/no-default-export": "off",
     },
-  }
+  },
 ];

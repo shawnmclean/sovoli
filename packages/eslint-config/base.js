@@ -34,7 +34,7 @@ export const restrictEnvAccess = tseslint.config(
         },
       ],
     },
-  }
+  },
 );
 
 export default tseslint.config(
@@ -75,11 +75,11 @@ export default tseslint.config(
       ],
       "@typescript-eslint/no-non-null-assertion": "error",
       "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
-       "import/no-default-export":  "error"
+      "import/no-default-export": "error",
     },
   },
   {
     linterOptions: { reportUnusedDisableDirectives: true },
     languageOptions: { parserOptions: { projectService: true } },
-  }
+  },
 );
