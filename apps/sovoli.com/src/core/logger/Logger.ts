@@ -7,7 +7,11 @@ export class Logger {
   private readonly logger: pino.Logger;
 
   constructor() {
-    this.logger = pino();
+    this.logger = pino({
+      transport: {
+        target: "pino-opentelemetry-transport",
+      },
+    });
   }
 
   public trace(message: string, properties?: Record<string, unknown>) {
