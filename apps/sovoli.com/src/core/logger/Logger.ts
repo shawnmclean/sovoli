@@ -1,5 +1,4 @@
 import { flatten } from "flat";
-import type { LoggerOptions } from "pino";
 import pino from "pino";
 
 import { env } from "~/env";
@@ -7,26 +6,28 @@ import { env } from "~/env";
 export type LogLevel = "fatal" | "error" | "warn" | "info" | "debug" | "trace";
 
 const environment = env.VERCEL_ENV ?? env.NODE_ENV;
-const isNodeRuntime = process.env.NEXT_RUNTIME === "nodejs";
+
+function createLogger(): pino.Logger {
+  const base = { environment };
+
+  // Try to use OTEL transport, fall back to basic pino if unavailable
+  try {
+    return pino({
+      transport: {
+        target: "pino-opentelemetry-transport",
+      },
+      base,
+    });
+  } catch {
+    return pino({ base });
+  }
+}
 
 export class Logger {
   private readonly logger: pino.Logger;
 
   constructor() {
-    const options: LoggerOptions = {
-      base: {
-        environment,
-      },
-    };
-
-    // Only use OTEL transport in Node.js runtime (not edge)
-    if (isNodeRuntime) {
-      options.transport = {
-        target: "pino-opentelemetry-transport",
-      };
-    }
-
-    this.logger = pino(options);
+    this.logger = createLogger();
   }
 
   public trace(message: string, properties?: Record<string, unknown>) {
