@@ -6,7 +6,7 @@ import { NodeSDK } from "@opentelemetry/sdk-node";
 import { SimpleSpanProcessor } from "@opentelemetry/sdk-trace-node";
 
 const sdk = new NodeSDK({
-  serviceName: "next-app",
+  serviceName: "sovoli.com",
   spanProcessors: [new SimpleSpanProcessor(new OTLPTraceExporter())],
   logRecordProcessors: [new SimpleLogRecordProcessor(new OTLPLogExporter())],
   instrumentations: [new PinoInstrumentation()],
