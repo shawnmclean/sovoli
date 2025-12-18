@@ -1,7 +1,11 @@
 import { flatten } from "flat";
 import pino from "pino";
 
+import { env } from "~/env";
+
 export type LogLevel = "fatal" | "error" | "warn" | "info" | "debug" | "trace";
+
+const environment = env.VERCEL_ENV ?? env.NODE_ENV;
 
 export class Logger {
   private readonly logger: pino.Logger;
@@ -10,6 +14,9 @@ export class Logger {
     this.logger = pino({
       transport: {
         target: "pino-opentelemetry-transport",
+      },
+      base: {
+        environment,
       },
     });
   }
