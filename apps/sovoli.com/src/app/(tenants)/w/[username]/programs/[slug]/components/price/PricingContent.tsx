@@ -124,24 +124,6 @@ export function PricingContent({ defaultCycle }: PricingContentProps) {
             />
           </div>
         )}
-
-      {/* Notes Section - Show notes from any pricing item */}
-      {(() => {
-        const itemsWithNotes = cycleToUse.pricingPackage.pricingItems.filter(
-          (item: PricingItem) => item.notes,
-        );
-        if (itemsWithNotes.length === 0) return null;
-
-        // Get the first note (assuming all items have the same note if multiple)
-        const note = itemsWithNotes[0]?.notes;
-        if (!note) return null;
-
-        return (
-          <div className="pt-4 border-t border-divider">
-            <p className="text-sm text-foreground-600">{note}</p>
-          </div>
-        );
-      })()}
     </div>
   );
 }
