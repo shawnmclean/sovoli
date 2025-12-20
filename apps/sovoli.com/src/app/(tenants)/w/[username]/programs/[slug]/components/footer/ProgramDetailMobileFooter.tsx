@@ -38,12 +38,11 @@ export function ProgramDetailMobileFooter({
             <Button
               as={Link}
               href={`/programs/${program.slug}/enroll`}
-              variant="shadow"
+              variant="solid"
               color="primary"
               radius="full"
               size="md"
               startContent={<UserPlus size={16} />}
-              className={gradientBorderButton()}
             >
               Enroll
             </Button>
@@ -63,12 +62,11 @@ export function ProgramDetailMobileFooter({
         <Button
           as={Link}
           href={`/programs/${program.slug}/enroll`}
-          variant="shadow"
+          variant="solid"
           color="primary"
           radius="full"
           size="md"
           startContent={<UserPlus size={16} />}
-          className={gradientBorderButton()}
         >
           Enroll
         </Button>
