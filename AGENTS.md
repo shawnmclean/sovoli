@@ -87,11 +87,11 @@ All checks should pass before committing changes.
 
 - Automatic import sorting
 - Tailwind CSS class sorting
-- Tab indentation
+- 2 space indentation
 
 ### Biome
 
-- Formatter enabled with tab indentation
+- Formatter enabled with 2 space indentation
 - Linter enabled with recommended rules
 - Automatic import organization
 
