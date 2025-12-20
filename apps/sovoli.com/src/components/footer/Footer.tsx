@@ -2,6 +2,7 @@ import { Link } from "@sovoli/ui/components/link";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { env } from "~/env";
 import { ThemeSwitch } from "../ThemeSwitch";
+import { StatusBadge } from "./StatusBadge";
 
 export const Footer = () => {
   return (
@@ -82,6 +83,9 @@ export const Footer = () => {
               </div>
             </div>
           </div>
+
+          {/* Status Badge */}
+          <StatusBadge />
         </div>
       </div>
 
