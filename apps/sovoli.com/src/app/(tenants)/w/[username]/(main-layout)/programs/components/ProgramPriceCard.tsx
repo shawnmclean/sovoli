@@ -12,7 +12,6 @@ interface ProgramPriceCardProps {
 }
 
 const formatCycle = (cycle: string) => {
-  if (cycle === "one-time") return "";
   if (cycle === "annual") return "/ year";
   if (cycle === "term") return "/ term";
   return `/${cycle}`;
@@ -132,9 +131,6 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
               <p className="text-sm text-foreground-500">
                 {formatCycle(item.billingCycle)}
               </p>
-            )}
-            {item.billingCycle === "one-time" && (
-              <p className="text-sm text-foreground-500">/one-time</p>
             )}
           </div>
           {item.billingCycle === "term" && (
