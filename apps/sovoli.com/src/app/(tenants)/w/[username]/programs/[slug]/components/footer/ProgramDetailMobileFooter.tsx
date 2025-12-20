@@ -40,6 +40,7 @@ export function ProgramDetailMobileFooter({
               color="primary"
               radius="full"
               size="lg"
+              className="min-w-[140px]"
               startContent={<UserPlus size={16} />}
             >
               Enroll
@@ -64,6 +65,7 @@ export function ProgramDetailMobileFooter({
           color="primary"
           radius="full"
           size="lg"
+          className="min-w-[140px]"
           startContent={<UserPlus size={16} />}
         >
           Enroll
