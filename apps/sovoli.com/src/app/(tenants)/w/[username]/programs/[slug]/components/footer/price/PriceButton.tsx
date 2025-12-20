@@ -52,7 +52,6 @@ export function PriceButton({ defaultCycle, program }: PriceButtonProps) {
 
   // Format billing cycle unit
   const formatBillingCycle = (cycle: string) => {
-    if (cycle === "one-time") return "one-time •";
     if (cycle === "annual") return "yearly •";
     if (cycle === "term") return "termly •";
     if (cycle === "monthly") return "monthly •";
@@ -62,6 +61,7 @@ export function PriceButton({ defaultCycle, program }: PriceButtonProps) {
   const billingUnit = pricingItem?.billingCycle
     ? formatBillingCycle(pricingItem.billingCycle)
     : "";
+  const billingLine = [billingUnit, cycleLabel].filter(Boolean).join(" ");
 
   // Determine if we should show the button as clickable
   // Only show pricing button if we have a cycle and it's not closed
@@ -85,9 +85,7 @@ export function PriceButton({ defaultCycle, program }: PriceButtonProps) {
             <span className="text-md font-bold text-primary underline">
               {currency} {tuitionCost.toLocaleString()}
             </span>
-            <span className="text-xs text-foreground-500">
-              {billingUnit} {cycleLabel}
-            </span>
+            <span className="text-xs text-foreground-500">{billingLine}</span>
           </div>
         </Button>
       ) : (
