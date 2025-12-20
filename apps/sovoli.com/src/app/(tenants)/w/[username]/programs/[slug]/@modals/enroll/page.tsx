@@ -1,11 +1,11 @@
 import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
-import { PriceDetails } from "../../components/price/PriceDetails";
+import { EnrollDetails } from "../../components/enroll/EnrollDetails";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
 }
 
-export default async function PricePage({ params }: Props) {
+export default async function EnrollPage({ params }: Props) {
   const { username, slug } = await params;
   const result = await getOrgInstanceWithProgram(username, slug);
 
@@ -19,5 +19,5 @@ export default async function PricePage({ params }: Props) {
     return null;
   }
 
-  return <PriceDetails orgInstance={result.orgInstance} program={program} />;
+  return <EnrollDetails orgInstance={result.orgInstance} program={program} />;
 }
