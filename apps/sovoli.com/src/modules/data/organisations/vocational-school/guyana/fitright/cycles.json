@@ -49,8 +49,8 @@
             "id": "tuition-feb",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "date", "date": "2026-02-01" },
-            "note": "By February 1st"
+            "dueAt": { "type": "date", "date": "2026-02-20" },
+            "note": "By February 20th"
           }
         ]
       }

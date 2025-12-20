@@ -73,8 +73,6 @@ export function ProgramDetailMobileFooter({
           <PriceButton
             defaultCycle={defaultCycle}
             program={program}
-            orgInstance={orgInstance}
-            onChatNowClick={onOpen}
           />
 
           {/* Right side - Reserve button */}
