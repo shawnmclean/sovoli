@@ -13,6 +13,8 @@ import type {
   PricingPackage,
   BillingCycle,
   PricingItemPurpose,
+  PaymentSplit,
+  DueAt,
 } from "~/modules/core/economics/types";
 
 /**
@@ -78,9 +80,28 @@ const pricingItemJsonSchema = z.object({
   isQuantityBased: z.boolean().optional(),
 });
 
+const dueAtJsonSchema = z.discriminatedUnion("type", [
+  z.object({ type: z.literal("now") }),
+  z.object({ type: z.literal("date"), date: z.string() }),
+  z.object({
+    type: z.literal("after_start"),
+    count: z.number(),
+    unit: z.enum(["day", "week", "month", "year"]),
+  }),
+]) as z.ZodType<DueAt>;
+
+const paymentSplitJsonSchema = z.object({
+  id: z.string(),
+  pricingItemId: z.string(),
+  percentage: z.number(),
+  dueAt: dueAtJsonSchema,
+  note: z.string().optional(),
+}) as z.ZodType<PaymentSplit>;
+
 const pricingPackageJsonSchema = z.object({
   pricingItems: z.array(pricingItemJsonSchema),
   discounts: z.array(discountJsonSchema).optional(),
+  paymentSplits: z.array(paymentSplitJsonSchema).optional(),
   notes: z.string().optional(),
 });
 
@@ -245,6 +266,7 @@ export function parseCyclesModule(
     const pricingPackage: PricingPackage = {
       pricingItems: cycleJson.pricingPackage.pricingItems,
       discounts: cycleJson.pricingPackage.discounts,
+      paymentSplits: cycleJson.pricingPackage.paymentSplits,
       notes: cycleJson.pricingPackage.notes,
     };
 

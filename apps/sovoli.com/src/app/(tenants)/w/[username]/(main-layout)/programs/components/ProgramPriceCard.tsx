@@ -118,6 +118,9 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
               </span>
             </div>
           )}
+          {item.notes && (
+            <p className="text-sm text-foreground-600 mt-2">{item.notes}</p>
+          )}
         </div>
       ) : (
         <div className="flex flex-col gap-2">
@@ -143,6 +146,9 @@ export const ProgramPriceCard: React.FC<ProgramPriceCardProps> = ({
                 Flexible payment options & family discounts available
               </p>
             </div>
+          )}
+          {item.notes && (
+            <p className="text-sm text-foreground-600 mt-2">{item.notes}</p>
           )}
         </div>
       )}

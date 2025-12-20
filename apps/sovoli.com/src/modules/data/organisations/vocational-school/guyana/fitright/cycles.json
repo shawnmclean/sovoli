@@ -19,7 +19,7 @@
         "pricingItems": [
           {
             "id": "registration",
-            "label": "Registration",
+            "label": "Application / Registration Fee",
             "purpose": "registration",
             "billingCycle": "one-time",
             "amount": {
@@ -36,7 +36,23 @@
             }
           }
         ],
-        "discounts": []
+        "discounts": [],
+        "paymentSplits": [
+          {
+            "id": "tuition-upfront",
+            "pricingItemId": "tuition",
+            "percentage": 50,
+            "dueAt": { "type": "now" },
+            "note": "Upon registration"
+          },
+          {
+            "id": "tuition-feb",
+            "pricingItemId": "tuition",
+            "percentage": 50,
+            "dueAt": { "type": "date", "date": "2026-02-01" },
+            "note": "By February 1st"
+          }
+        ]
       }
     }
   ]
