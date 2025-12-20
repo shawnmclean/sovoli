@@ -3,8 +3,6 @@
 import { Button } from "@sovoli/ui/components/button";
 import Link from "next/link";
 
-import { gradientBorderButton } from "~/components/GradientBorderButton";
-
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { UserPlus } from "lucide-react";
@@ -29,7 +27,7 @@ export function ProgramDetailMobileFooter({
   // If no cycle is selected, show fallback
   if (!selectedCycle) {
     return (
-      <footer className="fixed left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
+      <footer className="fixed left-0 right-0 bg-background border-t border-default shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
         <div className="flex w-full items-center justify-between py-3 gap-4">
           <Skeleton isLoaded={!(isLoading && isInitialized)}>
             <div className="flex flex-1 items-center">Select a cycle</div>
@@ -41,7 +39,7 @@ export function ProgramDetailMobileFooter({
               variant="solid"
               color="primary"
               radius="full"
-              size="md"
+              size="lg"
               startContent={<UserPlus size={16} />}
             >
               Enroll
@@ -53,7 +51,7 @@ export function ProgramDetailMobileFooter({
   }
 
   return (
-    <footer className="fixed left-0 right-0 bg-background border-t border-divider shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
+    <footer className="fixed left-0 right-0 bg-background border-t border-default shadow-lg pb-safe-area-inset-bottom px-4 md:hidden z-40 [bottom:max(0px,calc(100dvh-100vh))]">
       <div className="flex w-full items-center py-3 justify-between">
         {/* Left side - Program info badge */}
         <PriceButton defaultCycle={defaultCycle} program={program} />
@@ -65,7 +63,7 @@ export function ProgramDetailMobileFooter({
           variant="solid"
           color="primary"
           radius="full"
-          size="md"
+          size="lg"
           startContent={<UserPlus size={16} />}
         >
           Enroll
