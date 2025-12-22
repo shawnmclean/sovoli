@@ -70,7 +70,7 @@ export function SuppliesSection({
               <>
                 {allItems.length}{" "}
                 {pluralize(allItems.length, "required item", "required items")}{" "}
-                • GYD {totals.totalPrice.toLocaleString()} • {supplierList}
+                • {totals.currency} {totals.totalPrice.toLocaleString()} • {supplierList}
               </>
             ) : (
               <>

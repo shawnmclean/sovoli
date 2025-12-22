@@ -244,24 +244,27 @@ export function SuppliesDetails({
 
               {requirements.map(
                 (requirement: RequirementList, reqIndex: number) => {
-                  // Calculate category totals
-                  const categoryTotal = requirement.items.reduce(
-                    (total, item, itemIndex) => {
-                      const itemKey = `${reqIndex}-${itemIndex}`;
-                      const selectedSupplier = selectedSuppliers[itemKey];
-                      if (selectedSupplier) {
-                        const suppliers = supplierData[itemKey] ?? [];
-                        const supplier = suppliers.find(
-                          (s) => s.name === selectedSupplier,
-                        );
-                        if (supplier) {
-                          return total + supplier.price * (item.quantity ?? 1);
+                  // Calculate category totals with currency
+                  let categoryTotal = 0;
+                  let categoryCurrency: "JMD" | "GYD" | "USD" = totals.currency;
+
+                  requirement.items.forEach((item, itemIndex) => {
+                    const itemKey = `${reqIndex}-${itemIndex}`;
+                    const selectedSupplier = selectedSuppliers[itemKey];
+                    if (selectedSupplier) {
+                      const suppliers = supplierData[itemKey] ?? [];
+                      const supplier = suppliers.find(
+                        (s) => s.name === selectedSupplier,
+                      );
+                      if (supplier) {
+                        categoryTotal += supplier.price * (item.quantity ?? 1);
+                        // Use first supplier's currency for category (assumes same currency within category)
+                        if (categoryTotal === supplier.price * (item.quantity ?? 1)) {
+                          categoryCurrency = supplier.currency;
                         }
                       }
-                      return total;
-                    },
-                    0,
-                  );
+                    }
+                  });
 
                   const itemCount = requirement.items.length;
 
@@ -275,7 +278,7 @@ export function SuppliesDetails({
                           </h3>
                         </div>
                         <div className="text-sm text-foreground-500">
-                          GYD {categoryTotal.toLocaleString()}
+                          {categoryCurrency} {categoryTotal.toLocaleString()}
                         </div>
                       </div>
 
@@ -315,7 +318,7 @@ export function SuppliesDetails({
                                           }
                                         >
                                           <span className="text-sm text-foreground-600">
-                                            GYD{" "}
+                                            {supplier.currency}{" "}
                                             {supplier.price.toLocaleString()} -
                                           </span>
                                         </Checkbox>
@@ -357,7 +360,7 @@ export function SuppliesDetails({
                         onClick={handleShowSupplierDetails}
                         className="text-lg font-semibold text-foreground hover:text-primary-600 transition-colors cursor-pointer"
                       >
-                        Total GYD {totalPrice.toLocaleString()}
+                        Total {totals.currency} {totalPrice.toLocaleString()}
                       </button>
                       <div className="text-sm text-foreground-600">
                         from {supplierCount}{" "}

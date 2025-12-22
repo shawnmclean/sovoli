@@ -512,21 +512,6 @@
           "audience": "parent",
           "items": [
             {
-              "itemId": "book-animal-friends-level-1a-reader"
-            },
-            {
-              "itemId": "book-animal-friends-level-1a-workbook-1"
-            },
-            {
-              "itemId": "book-animal-friends-level-1a-workbook-2"
-            },
-            {
-              "itemId": "book-animal-friends-level-1a-workbook-3"
-            },
-            {
-              "itemId": "book-big-easy-coloring"
-            },
-            {
               "itemId": "book-roraima-nursery-year-1-literacy"
             },
             {
@@ -534,6 +519,12 @@
             },
             {
               "itemId": "book-roraima-workbook-1-writing"
+            },
+            {
+              "itemId": "book-elb-maths-age-5"
+            },
+            {
+              "itemId": "book-elb-writing-skills-age-3"
             }
           ]
         },

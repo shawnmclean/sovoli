@@ -71,5 +71,25 @@
     "category": "workbooks",
     "tags": ["educational", "teaching", "charts", "books"],
     "description": "Educational books and wall charts for classroom instruction."
+  },
+  {
+    "id": "book-elb-maths-age-5",
+    "name": "My First Big Workbook of Maths - Age 5",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "maths", "age-5"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "5"
+    }
+  },
+  {
+    "id": "book-elb-writing-skills-age-3",
+    "name": "My First Big Workbook of Writing Skills - Age 3",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "writing-skills", "age-3"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "3"
+    }
   }
 ]

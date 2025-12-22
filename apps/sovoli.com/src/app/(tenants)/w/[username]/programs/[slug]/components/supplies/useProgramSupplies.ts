@@ -9,6 +9,7 @@ import { ORGS } from "~/modules/data/organisations";
 export interface Supplier {
   name: string;
   price: number;
+  currency: "JMD" | "GYD" | "USD";
   org: OrgInstance;
 }
 
@@ -35,12 +36,22 @@ function getSupplierDataForItem(
       );
 
       if (catalogItem) {
-        // Use GYD pricing if available, otherwise USD
-        const price = catalogItem.price.GYD ?? catalogItem.price.USD ?? 0;
+        // Use JMD pricing if available, otherwise GYD, then USD
+        const price =
+          catalogItem.price.JMD ??
+          catalogItem.price.GYD ??
+          catalogItem.price.USD ??
+          0;
+        const currency = catalogItem.price.JMD
+          ? "JMD"
+          : catalogItem.price.GYD
+            ? "GYD"
+            : "USD";
 
         suppliers.push({
           name: supplierOrg.org.name,
           price: price,
+          currency: currency,
           org: supplierOrg,
         });
       }
@@ -148,6 +159,7 @@ export function useProgramSupplies(
     let totalPrice = 0;
     let supplierCount = 0;
     const uniqueSuppliers = new Set<string>();
+    let totalCurrency: "JMD" | "GYD" | "USD" = "JMD"; // Default to JMD, use first supplier's currency
 
     requirements.forEach((requirement, reqIndex) => {
       requirement.items.forEach((item, itemIndex) => {
@@ -160,13 +172,17 @@ export function useProgramSupplies(
           if (supplier) {
             totalPrice += supplier.price * (item.quantity ?? 1);
             uniqueSuppliers.add(selectedSupplier);
+            // Use first supplier's currency (assumes all suppliers use same currency for totals)
+            if (totalPrice === supplier.price * (item.quantity ?? 1)) {
+              totalCurrency = supplier.currency;
+            }
           }
         }
       });
     });
 
     supplierCount = uniqueSuppliers.size;
-    return { totalPrice, supplierCount };
+    return { totalPrice, supplierCount, currency: totalCurrency };
   }, [requirements, selectedSuppliers, supplierData]);
 
   return {

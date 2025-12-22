@@ -1,4 +1,16 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "book-elb-maths-age-5",
+      "price": {
+        "JMD": 2950
+      }
+    },
+    {
+      "id": "book-elb-writing-skills-age-3",
+      "price": {
+        "JMD": 2180
+      }
+    }
+  ]
 }
-
