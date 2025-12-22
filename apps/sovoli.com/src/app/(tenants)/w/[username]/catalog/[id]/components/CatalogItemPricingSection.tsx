@@ -9,12 +9,18 @@ export const CatalogItemPricingSection = ({
 }: CatalogItemPricingSectionProps) => {
   const price = catalogItem.price;
 
-  const formatPrice = (price: { GYD?: number }) => {
-    if (price.GYD) {
-      return `GYD $${price.GYD.toLocaleString()}`;
-    }
-    return "Price on request";
-  };
+  // Format price checking all currencies (JMD, GYD, USD)
+  const prices: string[] = [];
+  if (typeof price.JMD === "number") {
+    prices.push(`JMD $${price.JMD.toLocaleString()}`);
+  }
+  if (typeof price.GYD === "number") {
+    prices.push(`GYD $${price.GYD.toLocaleString()}`);
+  }
+  if (typeof price.USD === "number") {
+    prices.push(`USD $${price.USD.toLocaleString()}`);
+  }
+  const hasPrice = prices.length > 0;
 
   return (
     <section className="my-6 border-b border-default-200 pb-6">
@@ -23,10 +29,10 @@ export const CatalogItemPricingSection = ({
       <div className="bg-card rounded-lg p-6 border border-default-200">
         <div className="text-center">
           <div className="text-3xl font-bold text-primary mb-2">
-            {formatPrice(price)}
+            {hasPrice ? prices.join(" • ") : "Price on request"}
           </div>
           <p className="text-sm text-muted-foreground">
-            {price.GYD
+            {hasPrice
               ? "Price includes all applicable taxes"
               : "Contact us for pricing"}
           </p>

@@ -50,12 +50,23 @@ const getCategoryOrder = (category: string) => {
   return order[category] ?? 999;
 };
 
-// Helper function to format price
-const formatPrice = (price: { GYD?: number }) => {
-  if (price.GYD) {
-    return `GYD $${price.GYD.toLocaleString()}`;
+// Helper function to format price (checks all currencies: JMD, GYD, USD)
+const formatPrice = (price: {
+  JMD?: number;
+  GYD?: number;
+  USD?: number;
+}) => {
+  const prices: string[] = [];
+  if (typeof price.JMD === "number") {
+    prices.push(`JMD $${price.JMD.toLocaleString()}`);
   }
-  return "Price on request";
+  if (typeof price.GYD === "number") {
+    prices.push(`GYD $${price.GYD.toLocaleString()}`);
+  }
+  if (typeof price.USD === "number") {
+    prices.push(`USD $${price.USD.toLocaleString()}`);
+  }
+  return prices.length > 0 ? prices.join(" • ") : "Price on request";
 };
 
 export function CatalogGroupListing({ orgInstance }: CatalogGroupListingProps) {

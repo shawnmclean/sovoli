@@ -4,9 +4,16 @@ import type { CatalogModule, CatalogOffer } from "~/modules/catalogs/types";
 import type { AmountByCurrency } from "~/modules/core/economics/types";
 
 /**
- * Zod schema for AmountByCurrency
+ * Zod schema for AmountByCurrency (partial record - all fields optional)
+ * Matches TypeScript type: Partial<Record<CurrencyCode, number>>
  */
-const amountByCurrencySchema = z.record(z.enum(["GYD", "USD", "JMD"]), z.number());
+const amountByCurrencySchema = z
+  .object({
+    GYD: z.number().optional(),
+    USD: z.number().optional(),
+    JMD: z.number().optional(),
+  })
+  .strict();
 
 /**
  * Zod schema for JSON representation of a catalog offer (with itemId instead of item object)
