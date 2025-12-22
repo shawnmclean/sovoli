@@ -1,0 +1,40 @@
+{
+  "media": [
+    {
+      "id": "lfk-logo",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1766416052/o/littlefishkindergarten/photos/lfk-photo-1.jpg",
+      "assetId": "13c77e3d96998dac4eae8425765f74b9",
+      "publicId": "o/littlefishkindergarten/photos/lfk-photo-1",
+      "width": 768,
+      "height": 768,
+      "format": "jpg",
+      "bytes": 143854,
+      "version": 1766416052
+    },
+    {
+      "id": "lfk-gallery-1",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1766416058/o/littlefishkindergarten/photos/lfk-photo-2.jpg",
+      "assetId": "e80f9a29b6f36213b81ab38f193db2dd",
+      "publicId": "o/littlefishkindergarten/photos/lfk-photo-2",
+      "width": 768,
+      "height": 768,
+      "format": "jpg",
+      "bytes": 140094,
+      "version": 1766416058
+    },
+    {
+      "id": "lfk-gallery-2",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1766416065/o/littlefishkindergarten/photos/lfk-photo-3.jpg",
+      "assetId": "79b56abf6ab5711ac2469242ce6a5ad8",
+      "publicId": "o/littlefishkindergarten/photos/lfk-photo-3",
+      "width": 1080,
+      "height": 1080,
+      "format": "jpg",
+      "bytes": 168431,
+      "version": 1766416065
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 {
   "username": "littlefishkindergarten",
   "name": "Little Fish Kindergarten",
+  "logoPhotoId": "lfk-logo",
   "categories": ["private-school", "nursery-school"],
   "locations": [
     {
@@ -60,4 +61,3 @@
     "claimStatus": "unclaimed"
   }
 }
-
