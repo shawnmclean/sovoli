@@ -14,6 +14,7 @@ The `docs/` directory contains organized documentation for different aspects of 
 Documentation related to the data layer, CRM, analytics, metrics, and data structure:
 
 - `crm.md` - CRM system documentation
+- `onboarding.md` - Tenant onboarding guide (step-by-step process for adding new organizations)
 - `guyana-schools-table.md` - Data structure documentation
 
 This section covers:

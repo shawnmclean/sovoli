@@ -2,6 +2,8 @@
 
 This document explains how to locate verification data, documents, and internal CRM information for each tenant (organization) in the system.
 
+> **📘 For onboarding new tenants**: See [onboarding.md](./onboarding.md) for a complete step-by-step guide on adding new organizations to the system.
+
 ## File Structure
 
 Each tenant's data is stored in a dedicated directory following this structure:
@@ -290,4 +292,8 @@ All paths below refer to fields in `org.json`:
 - Some tenants may have incomplete data (empty arrays, missing fields)
 - The `isVerified` boolean field should match the `verification.status` field
 - Location-specific contacts are separate from `internalCRM.people` contacts
+
+## Related Documentation
+
+- **[onboarding.md](./onboarding.md)** - Complete step-by-step guide for onboarding new tenants/organizations
 
