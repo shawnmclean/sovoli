@@ -1,0 +1,68 @@
+{
+  "website": {
+    "siteName": "Little Fish Kindergarten",
+    "title": "Little Fish Kindergarten - Early Childhood Education in Treasure Beach, St. Elizabeth",
+    "description": "Little Fish Kindergarten provides quality early childhood education in a nurturing environment. Offering Pre-Nursery, Nursery Year 1, and Nursery Year 2 programs in Treasure Beach, St. Elizabeth, Jamaica. Motto: Fishing For Excellence.",
+    "images": [
+      {
+        "url": "/private-schools/jamaica/st-elizabeth/littlefishkindergarten/website/landing/hero.jpg",
+        "width": 1200,
+        "height": 600,
+        "alt": "Little Fish Kindergarten"
+      }
+    ],
+    "header": {
+      "layout": "default",
+      "variant": "default",
+      "nav": [
+        { "key": "home", "label": "Home" },
+        { "key": "academics", "label": "Programs" },
+        { "key": "workforce", "label": "Our Team" },
+        { "key": "contact", "label": "Contact" }
+      ],
+      "actions": [
+        { "key": "apply", "label": "Enroll Now" }
+      ]
+    },
+    "footer": {
+      "layout": "default",
+      "variant": "default",
+      "sections": [
+        {
+          "key": "social",
+          "title": "Little Fish Kindergarten",
+          "description": "Fishing For Excellence - Nurturing young minds in Treasure Beach, St. Elizabeth."
+        },
+        { "key": "academics", "title": "Programs" },
+        { "key": "contact", "title": "Contact" }
+      ]
+    },
+    "pages": [
+      {
+        "name": "home",
+        "title": "Welcome to Little Fish Kindergarten",
+        "subtitle": "Fishing For Excellence in Early Childhood Education",
+        "sections": [
+          {
+            "type": "hero",
+            "layout": "default",
+            "variant": "image",
+            "title": "Nurturing Young Minds in Treasure Beach",
+            "subtitle": "Little Fish Kindergarten provides quality early childhood education in a safe and nurturing environment. Our programs prepare children for primary school success through play-based learning and holistic development.",
+            "backgroundImage": "/private-schools/jamaica/st-elizabeth/littlefishkindergarten/website/home/hero.webp",
+            "actions": [
+              { "label": "View Programs", "href": "/programs" },
+              { "label": "Contact Us", "href": "/contact" }
+            ]
+          },
+          {
+            "type": "programs",
+            "title": "Our Nursery Programs",
+            "subtitle": "Early childhood education programs designed to foster creativity, learning, and social development."
+          }
+        ]
+      }
+    ]
+  }
+}
+

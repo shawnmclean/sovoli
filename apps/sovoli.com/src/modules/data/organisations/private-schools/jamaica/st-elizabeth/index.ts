@@ -12,6 +12,7 @@ import { JOINTWOOD_S_D_A_PREPARATORY_ORG } from "./jointwoodsdapreparatory";
 import { JUNCTION_ACADEMIC_INSTITUTE_OF_ORG } from "./junctionacademicinstituteof";
 import { JUNCTION_KINDER_PREP_AND_CHILD_CARE_ACADEMY_ORG } from "./staceyannmcturner";
 import { KAYAN_PREPARATORY_ORG } from "./kayanpreparatory";
+import { LITTLE_FISH_KINDERGARTEN_ORG } from "./littlefishkindergarten";
 import { MALVERN_COMPUTER_LEARNING_ORG } from "./malverncomputerlearning";
 import { MARANATHA_SCHOOL_FOR_THE_DEAF_ORG } from "./maranathaschoolforthedeaf";
 import { MUNRO_PREPARATORY_SCHOOL_ORG } from "./munroprep";
@@ -43,6 +44,7 @@ export const ST_ELIZABETH_PRIVATE_SCHOOLS_JAMAICA: OrgInstance[] = [
   JUNCTION_ACADEMIC_INSTITUTE_OF_ORG,
   JUNCTION_KINDER_PREP_AND_CHILD_CARE_ACADEMY_ORG,
   KAYAN_PREPARATORY_ORG,
+  LITTLE_FISH_KINDERGARTEN_ORG,
   MALVERN_COMPUTER_LEARNING_ORG,
   MARANATHA_SCHOOL_FOR_THE_DEAF_ORG,
   MUNRO_PREPARATORY_SCHOOL_ORG,

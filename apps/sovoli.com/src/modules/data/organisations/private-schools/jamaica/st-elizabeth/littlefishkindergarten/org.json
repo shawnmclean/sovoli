@@ -1,0 +1,63 @@
+{
+  "username": "littlefishkindergarten",
+  "name": "Little Fish Kindergarten",
+  "categories": ["private-school", "nursery-school"],
+  "locations": [
+    {
+      "key": "main-location",
+      "label": "Main Location",
+      "isPrimary": true,
+      "address": {
+        "line1": "Calabash Bay P.A",
+        "line2": "Calabash Bay District",
+        "city": "Treasure Beach",
+        "state": "St. Elizabeth",
+        "countryCode": "JM"
+      },
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+18762858079",
+          "label": "School",
+          "isPublic": true,
+          "primary": true
+        },
+        {
+          "type": "email",
+          "value": "littlefishkinder@gmail.com",
+          "isPublic": true
+        }
+      ]
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/little_fish_kinder/"
+    }
+  ],
+  "verification": {
+    "status": "pending",
+    "submittedAt": "2025-01-15",
+    "submittedBy": "system",
+    "documents": [],
+    "notes": "Verification pending - created from organization data. Motto: Fishing For Excellence"
+  },
+  "isVerified": false,
+  "internalCRM": {
+    "people": [
+      {
+        "name": "Auntie Tatty",
+        "contacts": [],
+        "notes": "Principal"
+      },
+      {
+        "name": "Deborah Butler",
+        "contacts": [],
+        "notes": "Owner"
+      }
+    ],
+    "claimStatus": "unclaimed"
+  }
+}
+

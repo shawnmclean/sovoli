@@ -1,0 +1,63 @@
+{
+  "departments": [
+    {
+      "name": "Administration",
+      "slug": "administration",
+      "description": "School administration and leadership",
+      "image": "/private-schools/jamaica/st-elizabeth/littlefishkindergarten/team/administration.webp",
+      "url": "/private-schools/jamaica/st-elizabeth/littlefishkindergarten/team"
+    }
+  ],
+  "positions": [
+    {
+      "name": "Principal",
+      "slug": "principal",
+      "description": "School principal and educational leader",
+      "image": "/private-schools/jamaica/st-elizabeth/littlefishkindergarten/team/principal.webp",
+      "url": "/private-schools/jamaica/st-elizabeth/littlefishkindergarten/team"
+    },
+    {
+      "name": "Owner",
+      "slug": "owner",
+      "description": "School owner and proprietor",
+      "image": "/private-schools/jamaica/st-elizabeth/littlefishkindergarten/team/owner.webp",
+      "url": "/private-schools/jamaica/st-elizabeth/littlefishkindergarten/team"
+    }
+  ],
+  "teams": [],
+  "members": [
+    {
+      "id": "001",
+      "slug": "auntie-tatty",
+      "name": "Auntie Tatty",
+      "bio": "Principal of Little Fish Kindergarten, dedicated to providing quality early childhood education in a nurturing environment.",
+      "isPublic": true,
+      "contacts": [],
+      "roleAssignments": [
+        {
+          "positionSlug": "principal",
+          "departmentSlug": "administration",
+          "isPrimary": true
+        }
+      ],
+      "subjectAssignments": []
+    },
+    {
+      "id": "002",
+      "slug": "deborah-butler",
+      "name": "Deborah Butler",
+      "bio": "Owner of Little Fish Kindergarten, committed to fostering excellence in early childhood education.",
+      "isPublic": true,
+      "contacts": [],
+      "roleAssignments": [
+        {
+          "positionSlug": "owner",
+          "departmentSlug": "administration",
+          "isPrimary": true
+        }
+      ],
+      "subjectAssignments": []
+    }
+  ]
+}
+

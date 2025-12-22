@@ -12,13 +12,20 @@ apps/sovoli.com/src/modules/data/organisations/
 │   ├── {country}/
 │   │   ├── {region?}/          # Optional region/state
 │   │   │   ├── {tenant-name}/
-│   │   │   │   └── index.ts    # Main tenant data file
+│   │   │   │   ├── index.ts    # Main tenant data file (parses JSON)
+│   │   │   │   ├── org.json    # Organization data
+│   │   │   │   ├── cycles.json # Academic/program cycles
+│   │   │   │   ├── program-groups.json # Program groups
+│   │   │   │   └── {program-group}-academic.json # Academic programs
 ```
+
+**Note**: All organization data is stored in JSON format. The `index.ts` file imports and parses these JSON files using parser utilities.
 
 ### Example Paths
 
 - **Private School in Guyana**: `apps/sovoli.com/src/modules/data/organisations/private-schools/guyana/modernacademy/index.ts`
 - **Public School in Jamaica**: `apps/sovoli.com/src/modules/data/organisations/public-schools/jamaica/st-elizabeth/balaclavahighjm/index.ts`
+- **Private Kindergarten in Jamaica**: `apps/sovoli.com/src/modules/data/organisations/private-schools/jamaica/st-elizabeth/littlefishkindergarten/index.ts`
 - **Hardware Store**: `apps/sovoli.com/src/modules/data/organisations/hardware/jamaica/mongolsbuildersdepot/index.ts`
 
 ## Data Structure
@@ -108,21 +115,21 @@ export const TENANT_NAME_ORG: OrgInstance = {
 3. Navigate to the country folder (e.g., `guyana`, `jamaica`)
 4. If applicable, navigate to the region/state folder (e.g., `st-elizabeth`, `st-james`)
 5. Find the tenant's folder (usually matches their username or a slugified version of their name)
-6. Open the `index.ts` file
+6. Open the `org.json` file for organization data, or `index.ts` to see how JSON files are parsed
 
 ### Step 2: Access Verification Data
 
-In the `index.ts` file, look for the `verification` object within `org`:
+In the `org.json` file, look for the `verification` object within the root object:
 
-```typescript
-org: {
-  verification: {
-    status: "verified",           // Current verification status
-    submittedBy: "Nessa",          // Who submitted the verification
-    submittedAt: "2025-05-24",     // When it was submitted
-    incorporationDate: "2020-02-28", // Business incorporation date
-    notes: "Went to location and saw the original registration.",
-    documents: [...]               // See Step 3
+```json
+{
+  "verification": {
+    "status": "verified",
+    "submittedBy": "Nessa",
+    "submittedAt": "2025-05-24",
+    "incorporationDate": "2020-02-28",
+    "notes": "Went to location and saw the original registration.",
+    "documents": []
   }
 }
 ```
@@ -138,26 +145,28 @@ org: {
 
 ### Step 3: Access Documents
 
-Documents are stored in the `verification.documents` array:
+Documents are stored in the `verification.documents` array in `org.json`:
 
-```typescript
-verification: {
-  documents: [
-    {
-      type: "business_registration",
-      name: "Modern Academy Certificate of Registration 2020",
-      url: "https://photos.app.goo.gl/LBvL5xQ2gT4ssU3Y8",  // Document location
-      uploadedAt: "2025-05-24",
-      issuedDate: "2020-02-28",
-      expiryDate: "2021-02-25",
-      referenceNumber: "178271",
-      issuingAuthority: "Office of Registrar of Business Names",
-      issuingJurisdiction: {
-        country: "GY",
-      },
-      notes: "Captured by photo (in google photos)",
-    }
-  ]
+```json
+{
+  "verification": {
+    "documents": [
+      {
+        "type": "business_registration",
+        "name": "Modern Academy Certificate of Registration 2020",
+        "url": "https://photos.app.goo.gl/LBvL5xQ2gT4ssU3Y8",
+        "uploadedAt": "2025-05-24",
+        "issuedDate": "2020-02-28",
+        "expiryDate": "2021-02-25",
+        "referenceNumber": "178271",
+        "issuingAuthority": "Office of Registrar of Business Names",
+        "issuingJurisdiction": {
+          "country": "GY"
+        },
+        "notes": "Captured by photo (in google photos)"
+      }
+    ]
+  }
 }
 ```
 
@@ -175,20 +184,15 @@ verification: {
 
 ### Step 4: Access Internal CRM Data
 
-Internal CRM data is stored in the `internalCRM` object:
+Internal CRM data is stored in the `internalCRM` object in `org.json`:
 
-```typescript
-org: {
-  internalCRM: {
-    claimStatus: "claimed",        // Organization claim status
-    claimedBy: "Joel",             // Who claimed the organization
-    claimedAt: "2025-05-20",       // When it was claimed
-    people: [                       // See Step 5
-      {
-        name: "Joel",
-        contacts: [...],
-      }
-    ],
+```json
+{
+  "internalCRM": {
+    "claimStatus": "claimed",
+    "claimedBy": "Joel",
+    "claimedAt": "2025-05-20",
+    "people": []
   }
 }
 ```
@@ -201,29 +205,31 @@ org: {
 
 ### Step 5: Access People/Contacts
 
-People and their contact information are in `internalCRM.people`:
+People and their contact information are in `internalCRM.people` in `org.json`:
 
-```typescript
-internalCRM: {
-  people: [
-    {
-      name: "Joel",
-      contacts: [
-        {
-          type: "whatsapp",
-          value: "+592 627-1915",
-          label: "Joel",
-          isPublic: true,
-        },
-        {
-          type: "email",
-          value: "joel@example.com",
-          isPublic: false,
-        }
-      ],
-      notes: "Primary contact person",
-    }
-  ]
+```json
+{
+  "internalCRM": {
+    "people": [
+      {
+        "name": "Joel",
+        "contacts": [
+          {
+            "type": "whatsapp",
+            "value": "+592 627-1915",
+            "label": "Joel",
+            "isPublic": true
+          },
+          {
+            "type": "email",
+            "value": "joel@example.com",
+            "isPublic": false
+          }
+        ],
+        "notes": "Primary contact person"
+      }
+    ]
+  }
 }
 ```
 
@@ -239,20 +245,27 @@ internalCRM: {
 
 ## Quick Reference: Common Locations
 
+All paths below refer to fields in `org.json`:
+
 ### Verification Status
-- **Path**: `org.verification.status`
+- **Path**: `verification.status`
 - **Values**: `"pending"`, `"verified"`, `"rejected"`
 
 ### Document URLs
-- **Path**: `org.verification.documents[].url`
+- **Path**: `verification.documents[].url`
 - **Common formats**: Google Photos links, cloud storage URLs, file paths
 
 ### Claim Information
-- **Path**: `org.internalCRM.claimStatus`, `org.internalCRM.claimedBy`, `org.internalCRM.claimedAt`
+- **Path**: `internalCRM.claimStatus`, `internalCRM.claimedBy`, `internalCRM.claimedAt`
 
 ### Contact Information
-- **Path**: `org.internalCRM.people[].contacts[]`
-- **Also check**: `org.locations[].contacts[]` for location-specific contacts
+- **Path**: `internalCRM.people[].contacts[]`
+- **Also check**: `locations[].contacts[]` for location-specific contacts
+
+### Academic Programs
+- **File**: `{program-group}-academic.json` (e.g., `nursery-academic.json`)
+- **Cycles**: `cycles.json`
+- **Program Groups**: `program-groups.json`
 
 ## Examples
 

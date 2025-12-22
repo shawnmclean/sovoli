@@ -1,0 +1,172 @@
+{
+  "globalCycles": [],
+  "academicCycles": [
+    {
+      "id": "lfk-2025-t1",
+      "startDate": "2025-09-01",
+      "endDate": "2025-12-15"
+    }
+  ],
+  "programCycles": [
+    {
+      "id": "lfk-pre-nursery-2025-t1",
+      "academicCycleId": "lfk-2025-t1",
+      "teacherSlugs": [],
+      "capacity": 20,
+      "enrolled": 0,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 5000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "JMD": 60000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lfk-nursery-year-1-2025-t1",
+      "academicCycleId": "lfk-2025-t1",
+      "teacherSlugs": [],
+      "capacity": 20,
+      "enrolled": 0,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 5000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "JMD": 55000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lfk-nursery-year-2-2025-t1",
+      "academicCycleId": "lfk-2025-t1",
+      "teacherSlugs": [],
+      "capacity": 20,
+      "enrolled": 0,
+      "registrationPeriod": {
+        "startDate": "2025-07-01",
+        "endDate": "2025-08-15"
+      },
+      "pricingPackage": {
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 5000
+            }
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "term",
+            "amount": {
+              "JMD": 55000
+            }
+          }
+        ],
+        "discounts": [
+          {
+            "id": "early-bird",
+            "label": "Early Bird",
+            "message": "Early Bird discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-07-18"
+          },
+          {
+            "id": "no-registration",
+            "label": "No Registration",
+            "message": "No Registration discount",
+            "type": "percentage",
+            "value": 100,
+            "appliesTo": ["registration"],
+            "validUntil": "2025-10-01"
+          }
+        ]
+      }
+    }
+  ]
+}
+

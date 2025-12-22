@@ -1,0 +1,12 @@
+{
+  "groups": [
+    {
+      "id": "nursery",
+      "slug": "nursery",
+      "name": "Nursery",
+      "description": "Early childhood education programs for children ages 2-5",
+      "order": 1
+    }
+  ]
+}
+
