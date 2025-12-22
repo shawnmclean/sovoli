@@ -1,0 +1,52 @@
+{
+  "username": "earlylearnersbookshelf",
+  "name": "Early Learners Bookshelf",
+  "logoPhotoId": "elb-logo",
+  "categories": ["stationery"],
+  "locations": [
+    {
+      "key": "main-location",
+      "label": "Main Location",
+      "isPrimary": true,
+      "address": {
+        "line1": "McCatty Street",
+        "city": "Montego Bay",
+        "state": "St. James",
+        "countryCode": "JM"
+      },
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+18764192032",
+          "label": "Business",
+          "isPublic": true,
+          "primary": true
+        },
+        {
+          "type": "email",
+          "value": "earlylearnersbookshelf@gmail.com",
+          "isPublic": true
+        }
+      ]
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "website",
+      "url": "https://earlylearnersbookshelf.com/"
+    }
+  ],
+  "verification": {
+    "status": "pending",
+    "submittedAt": "2025-01-22",
+    "submittedBy": "system",
+    "documents": [],
+    "notes": "Verification pending - created from organization data. Tagline: Plug in the Fun!"
+  },
+  "isVerified": false,
+  "internalCRM": {
+    "people": [],
+    "claimStatus": "unclaimed"
+  }
+}
+

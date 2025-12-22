@@ -1,0 +1,68 @@
+{
+  "website": {
+    "siteName": "Early Learners Bookshelf",
+    "title": "Early Learners Bookshelf - STEM & STREAM Educational Content",
+    "description": "Early Learners Bookshelf is the first self-made STEM & STREAM educational content creators for little learners. We provide fun, hands-on workbooks, PDF printables, and K-Games bundles to help children discover the joy of learning through powerful thought processing activities. Located in Montego Bay, St. James, Jamaica. Tagline: Plug in the Fun!",
+    "images": [
+      {
+        "url": "/stationary/jamaica/st-james/earlylearnersbookshelf/website/landing/hero.jpg",
+        "width": 1200,
+        "height": 600,
+        "alt": "Early Learners Bookshelf"
+      }
+    ],
+    "header": {
+      "layout": "default",
+      "variant": "default",
+      "nav": [
+        { "key": "home", "label": "Home" },
+        { "key": "offerings", "label": "Books & Products" },
+        { "key": "workforce", "label": "Team" },
+        { "key": "contact", "label": "Contact" }
+      ],
+      "actions": [
+        { "key": "contact", "label": "Contact Us" }
+      ]
+    },
+    "footer": {
+      "layout": "default",
+      "variant": "default",
+      "sections": [
+        {
+          "key": "social",
+          "title": "Early Learners Bookshelf",
+          "description": "Plug in the Fun! - STEM & STREAM educational content for little learners in Montego Bay, St. James."
+        },
+        { "key": "offerings", "title": "Books & Products" },
+        { "key": "contact", "title": "Contact" }
+      ]
+    },
+    "pages": [
+      {
+        "name": "home",
+        "title": "Welcome to Early Learners Bookshelf",
+        "subtitle": "Plug in the Fun! - STEM & STREAM Educational Content for Little Learners",
+        "sections": [
+          {
+            "type": "hero",
+            "layout": "default",
+            "variant": "image",
+            "title": "STEM & STREAM Educational Content for Little Learners",
+            "subtitle": "Early Learners Bookshelf provides fun, hands-on workbooks, PDF printables, and K-Games bundles to help children discover the joy of learning through powerful thought processing activities. Our interactive K-Games offer a fun and effective way to assess student knowledge and reinforce key concepts.",
+            "backgroundImage": "/stationary/jamaica/st-james/earlylearnersbookshelf/website/home/hero.webp",
+            "actions": [
+              { "label": "Browse Products", "href": "/offerings" },
+              { "label": "Contact Us", "href": "/contact" }
+            ]
+          },
+          {
+            "type": "cards",
+            "title": "Our Products",
+            "subtitle": "Explore our educational workbooks, PDF printables, and K-Games bundles designed to make learning fun and engaging for little learners."
+          }
+        ]
+      }
+    ]
+  }
+}
+
