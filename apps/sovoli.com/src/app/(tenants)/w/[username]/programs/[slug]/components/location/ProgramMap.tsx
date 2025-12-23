@@ -38,6 +38,7 @@ interface ProgramMapProps {
   showZoomControl?: boolean;
   defaultZoom?: number;
   disableAllControls?: boolean;
+  disableGestures?: boolean;
 }
 
 const DEFAULT_CENTER: LatLngLiteral = { lat: 18.0, lng: -77.5 };
@@ -69,6 +70,7 @@ function ProgramMapContent({
   showZoomControl = true,
   defaultZoom = 14,
   disableAllControls = false,
+  disableGestures = false,
 }: ProgramMapProps) {
   const { resolvedTheme } = useTheme();
   const geocodingLib = useMapsLibrary("geocoding") as GeocodingLibrary | null;
@@ -186,7 +188,7 @@ function ProgramMapContent({
       fullscreenControl={false}
       zoomControl={disableAllControls ? false : showZoomControl}
       className={className ?? "h-full w-full"}
-      gestureHandling="greedy"
+      gestureHandling={disableGestures ? "none" : "greedy"}
       disableDefaultUI={disableAllControls}
       colorScheme={isDark ? "DARK" : "LIGHT"}
     >
@@ -226,6 +228,7 @@ export function ProgramMap({
   showZoomControl = true,
   defaultZoom = 14,
   disableAllControls = false,
+  disableGestures = false,
 }: ProgramMapProps) {
   const apiKey = env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -253,6 +256,7 @@ export function ProgramMap({
         showZoomControl={showZoomControl}
         defaultZoom={defaultZoom}
         disableAllControls={disableAllControls}
+        disableGestures={disableGestures}
       />
     </APIProvider>
   );

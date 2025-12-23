@@ -28,6 +28,7 @@ export function MapSection({
           mapId="location-map"
           showZoomControl={false}
           disableAllControls={true}
+          disableGestures={true}
           className="h-full w-full"
         />
         <div className="absolute top-2 right-2 z-10">
