@@ -1,6 +1,9 @@
+"use client";
+
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
-import { MapPinIcon, MapIcon } from "lucide-react";
+import { MapPinIcon, MapIcon, ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
 
 import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
@@ -84,18 +87,30 @@ export function LocationSection({
               </div>
             </div>
 
-            <Button
-              color="primary"
-              variant="flat"
-              startContent={<MapIcon />}
-              as="a"
-              href={getMapsUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3"
-            >
-              View on Map
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                color="primary"
+                variant="flat"
+                startContent={<MapIcon />}
+                as="a"
+                href={getMapsUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1"
+              >
+                View on Map
+              </Button>
+              <Button
+                variant="flat"
+                color="default"
+                endContent={<ChevronRightIcon className="h-4 w-4" />}
+                href={`/programs/${program.slug}/location`}
+                as={Link}
+                className="flex-1"
+              >
+                View Details
+              </Button>
+            </div>
           </div>
         </CardBody>
       </Card>
