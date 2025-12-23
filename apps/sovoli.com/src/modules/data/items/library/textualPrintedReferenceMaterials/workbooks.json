@@ -91,5 +91,95 @@
       "series": "My First Big Workbook",
       "age": "3"
     }
+  },
+  {
+    "id": "book-elb-sounds-age-3",
+    "name": "My First Big Workbook of Sounds - Age 3",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "sounds", "age-3"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "3"
+    }
+  },
+  {
+    "id": "book-elb-maths-age-3",
+    "name": "My First Big Workbook of Maths - Age 3",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "maths", "age-3"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "3"
+    }
+  },
+  {
+    "id": "book-elb-decodable-reading-age-3-4",
+    "name": "My First Big Workbook of Decodable Reading - Age 3–4",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "decodable-reading", "age-3-4"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "3-4"
+    }
+  },
+  {
+    "id": "book-elb-sounds-age-4",
+    "name": "My First Big Workbook of Sounds - Age 4",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "sounds", "age-4"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "4"
+    }
+  },
+  {
+    "id": "book-elb-maths-age-4",
+    "name": "My First Big Workbook of Maths - Age 4",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "maths", "age-4"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "4"
+    }
+  },
+  {
+    "id": "book-elb-decodable-reading-age-4-5",
+    "name": "My First Big Workbook of Decodable Reading - Age 4–5",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "decodable-reading", "age-4-5"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "4-5"
+    }
+  },
+  {
+    "id": "book-elb-writing-skills-age-4",
+    "name": "My First Big Workbook of Writing Skills - Age 4",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "writing-skills", "age-4"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "4"
+    }
+  },
+  {
+    "id": "book-elb-sounds-age-5",
+    "name": "My First Big Workbook of Sounds - Age 5",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "sounds", "age-5"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "5"
+    }
+  },
+  {
+    "id": "book-elb-decodable-reading-age-5-6",
+    "name": "My First Big Workbook of Decodable Reading - Age 5–6",
+    "category": "workbooks",
+    "tags": ["workbook", "early-learners", "decodable-reading", "age-5-6"],
+    "attributes": {
+      "series": "My First Big Workbook",
+      "age": "5-6"
+    }
   }
 ]

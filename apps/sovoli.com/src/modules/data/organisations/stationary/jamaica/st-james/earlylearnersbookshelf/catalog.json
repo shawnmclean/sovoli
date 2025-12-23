@@ -1,15 +1,69 @@
 {
   "items": [
     {
-      "id": "book-elb-maths-age-5",
+      "id": "book-elb-sounds-age-3",
       "price": {
-        "JMD": 2950
+        "JMD": 2750
+      }
+    },
+    {
+      "id": "book-elb-maths-age-3",
+      "price": {
+        "JMD": 2750
       }
     },
     {
       "id": "book-elb-writing-skills-age-3",
       "price": {
         "JMD": 2180
+      }
+    },
+    {
+      "id": "book-elb-decodable-reading-age-3-4",
+      "price": {
+        "JMD": 1900
+      }
+    },
+    {
+      "id": "book-elb-sounds-age-4",
+      "price": {
+        "JMD": 2880
+      }
+    },
+    {
+      "id": "book-elb-maths-age-4",
+      "price": {
+        "JMD": 2880
+      }
+    },
+    {
+      "id": "book-elb-decodable-reading-age-4-5",
+      "price": {
+        "JMD": 2100
+      }
+    },
+    {
+      "id": "book-elb-writing-skills-age-4",
+      "price": {
+        "JMD": 2260
+      }
+    },
+    {
+      "id": "book-elb-sounds-age-5",
+      "price": {
+        "JMD": 2880
+      }
+    },
+    {
+      "id": "book-elb-maths-age-5",
+      "price": {
+        "JMD": 2950
+      }
+    },
+    {
+      "id": "book-elb-decodable-reading-age-5-6",
+      "price": {
+        "JMD": 2400
       }
     }
   ]
