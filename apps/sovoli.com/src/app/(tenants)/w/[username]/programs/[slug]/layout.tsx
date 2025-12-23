@@ -13,7 +13,7 @@ import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobi
 import { CurriculumSection } from "./components/curriculum/CurriculumSection";
 import { ActivitiesSection } from "./components/activities/ActivitiesSection";
 import { TeachersSection } from "./components/teachers/TeachersSection";
-import { LocationSection } from "./components/LocationSection";
+import { LocationSection } from "./components/location/LocationSection";
 import { LocationFeaturesSection } from "./components/locationFeatures/LocationFeaturesSection";
 import { ProgramsSection } from "./components/ProgramsSection";
 import { PricingSection } from "./components/PricingSection";
