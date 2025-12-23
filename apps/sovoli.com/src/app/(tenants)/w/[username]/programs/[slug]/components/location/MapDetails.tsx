@@ -3,11 +3,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@sovoli/ui/components/button";
-import { XIcon } from "lucide-react";
+import { XIcon, ExternalLinkIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Program } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
-import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 import { ProgramMap } from "./ProgramMap";
 
 interface MapDetailsProps {
@@ -62,13 +61,19 @@ export function MapDetails({ orgInstance, program }: MapDetailsProps) {
   return (
     <div className="fixed inset-0 z-50 bg-background">
       <div className="absolute top-4 right-4 z-10 flex gap-2">
-        <ShareButton
-          title={`${orgInstance.org.name} Location`}
-          text={`Check out ${orgInstance.org.name} location on Google Maps.`}
-          url={getMapsUrl()}
+        <Button
+          isIconOnly
           variant="flat"
+          radius="full"
+          as="a"
+          href={getMapsUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open in Google Maps"
           className="bg-background/80 backdrop-blur-sm shadow-sm"
-        />
+        >
+          <ExternalLinkIcon size={18} />
+        </Button>
         <Button
           isIconOnly
           color="default"
