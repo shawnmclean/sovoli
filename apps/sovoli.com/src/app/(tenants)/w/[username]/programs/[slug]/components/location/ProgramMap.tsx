@@ -5,10 +5,11 @@ import { useTheme } from "next-themes";
 import {
   APIProvider,
   Map as GoogleMap,
-  Marker,
+  AdvancedMarker,
   useMap,
   useMapsLibrary,
 } from "@vis.gl/react-google-maps";
+import { SchoolIcon } from "lucide-react";
 import { env } from "~/env";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { Skeleton } from "@sovoli/ui/components/skeleton";
@@ -40,6 +41,26 @@ interface ProgramMapProps {
 }
 
 const DEFAULT_CENTER: LatLngLiteral = { lat: 18.0, lng: -77.5 };
+
+function CustomPin() {
+  return (
+    <div className="relative -translate-y-1 transition-transform duration-200 ease-in-out">
+      {/* Main circular pin body */}
+      <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary p-2 shadow-lg">
+        <SchoolIcon className="h-5 w-5 text-primary-foreground" />
+      </div>
+      {/* Tip pointer using border trick */}
+      <div
+        className="absolute bottom-0 left-1/2 z-[-1] h-0 w-0 -translate-x-1/2 translate-y-[30%] rotate-45 border-[10px] border-primary"
+        style={{
+          borderBottomRightRadius: "4px",
+          borderTop: "none",
+          borderLeft: "none",
+        }}
+      />
+    </div>
+  );
+}
 
 function ProgramMapContent({
   orgInstance,
@@ -149,9 +170,15 @@ function ProgramMapContent({
     );
   }
 
+  // We don't need a map id for just advanced markers, but putting this here for future reference.
+  // see: https://developers.google.com/maps/documentation/javascript/map-ids/mapid-over
+  const googleMapId =
+    (env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID as string | undefined) ?? "DEMO_MAP_ID";
+
   return (
     <GoogleMap
       id={mapId}
+      mapId={googleMapId}
       defaultCenter={center}
       defaultZoom={defaultZoom}
       mapTypeControl={false}
@@ -164,7 +191,9 @@ function ProgramMapContent({
       colorScheme={isDark ? "DARK" : "LIGHT"}
     >
       <FitBounds position={markerPosition} mapId={mapId} />
-      <Marker position={markerPosition} title={orgInstance.org.name} />
+      <AdvancedMarker position={markerPosition} title={orgInstance.org.name}>
+        <CustomPin />
+      </AdvancedMarker>
     </GoogleMap>
   );
 }
@@ -216,7 +245,7 @@ export function ProgramMap({
   }
 
   return (
-    <APIProvider apiKey={apiKey} libraries={["geocoding"]}>
+    <APIProvider apiKey={apiKey} libraries={["geocoding", "marker"]}>
       <ProgramMapContent
         orgInstance={orgInstance}
         mapId={mapId}
