@@ -114,4 +114,11 @@ export const HYGIENE_ITEMS: Item[] = [
     unitLabel: "pack",
     tags: ["relief", "personal-care", "cleaning"],
   },
+  {
+    id: "supply-hand-towel",
+    name: "Hand Towel",
+    category: hydrateCategory("hygiene"),
+    tags: ["general", "towel", "hygiene"],
+    unitLabel: "towel",
+  },
 ];

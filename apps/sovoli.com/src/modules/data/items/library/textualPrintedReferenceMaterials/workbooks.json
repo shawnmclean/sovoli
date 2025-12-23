@@ -181,5 +181,25 @@
       "series": "My First Big Workbook",
       "age": "5-6"
     }
+  },
+  {
+    "id": "book-lets-learn-together-integrated-thematic-workbook-k2",
+    "name": "Let's Learn Together Integrated Thematic Workbook K2",
+    "category": "workbooks",
+    "tags": ["workbook", "integrated", "thematic", "k2"],
+    "attributes": {
+      "series": "Let's Learn Together",
+      "level": "K2",
+      "author": "J. E. White"
+    }
+  },
+  {
+    "id": "book-kids-one-abc-trace-colour-read",
+    "name": "Kids One ABC Trace, Colour and Read",
+    "category": "workbooks",
+    "tags": ["workbook", "abc", "trace", "coloring", "reading"],
+    "attributes": {
+      "series": "Kids One"
+    }
   }
 ]

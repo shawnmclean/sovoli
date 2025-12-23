@@ -19,5 +19,12 @@
     "category": "exercise-books",
     "tags": ["stationery", "copybook", "double-line"],
     "unitLabel": "book"
+  },
+  {
+    "id": "supply-typing-sheet",
+    "name": "Typing Sheet",
+    "category": "exercise-books",
+    "tags": ["stationery", "typing", "practice"],
+    "unitLabel": "pack"
   }
 ]

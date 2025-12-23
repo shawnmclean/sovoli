@@ -11,5 +11,11 @@
     "category": "pencils",
     "tags": ["stationery", "pencil"],
     "unitLabel": "pack"
+  },
+  {
+    "id": "supply-pencil-case",
+    "name": "Pencil Case",
+    "category": "pencils",
+    "tags": ["stationery", "pencil-case", "organizer"]
   }
 ]

@@ -5,11 +5,7 @@
       "slug": "pre-nursery",
       "name": "Pre-Nursery (Playschool)",
       "audience": "parent",
-      "quickFacts": [
-        "{{age}}",
-        "Secure",
-        "Qualified Teachers"
-      ],
+      "quickFacts": ["{{age}}", "Secure", "Qualified Teachers"],
       "highlights": [
         {
           "icon": "palette",
@@ -31,9 +27,7 @@
       "outcome": "School Readiness",
       "description": "Strong foundational learning in a nurturing environment",
       "groupId": "nursery",
-      "cycleIds": [
-        "lfk-pre-nursery-2025-t1"
-      ],
+      "cycleIds": ["lfk-pre-nursery-2025-t1"],
       "isPopular": true,
       "activities": [
         {
@@ -107,7 +101,11 @@
           "units": [
             {
               "title": "Simple Stories and Role Play",
-              "topics": ["Picture storytelling", "Emotion expression", "Narration"]
+              "topics": [
+                "Picture storytelling",
+                "Emotion expression",
+                "Narration"
+              ]
             }
           ]
         },
@@ -273,11 +271,7 @@
       "slug": "nursery-year-1",
       "name": "Nursery Year 1",
       "audience": "parent",
-      "quickFacts": [
-        "{{age}}",
-        "Secure",
-        "Qualified Teachers"
-      ],
+      "quickFacts": ["{{age}}", "Secure", "Qualified Teachers"],
       "highlights": [
         {
           "icon": "palette",
@@ -299,9 +293,7 @@
       "outcome": "Early Literacy & Numeracy",
       "description": "Engaging curriculum fostering critical thinking and creativity",
       "groupId": "nursery",
-      "cycleIds": [
-        "lfk-nursery-year-1-2025-t1"
-      ],
+      "cycleIds": ["lfk-nursery-year-1-2025-t1"],
       "isPopular": true,
       "activities": [
         {
@@ -360,7 +352,11 @@
           "units": [
             {
               "title": "Letter Sounds",
-              "topics": ["Alphabet sounds", "Beginning sounds", "Blending practice"]
+              "topics": [
+                "Alphabet sounds",
+                "Beginning sounds",
+                "Blending practice"
+              ]
             }
           ]
         },
@@ -388,7 +384,11 @@
           "units": [
             {
               "title": "Sight Words and Picture Books",
-              "topics": ["Picture-word matching", "Simple sentences", "Reading aloud"]
+              "topics": [
+                "Picture-word matching",
+                "Simple sentences",
+                "Reading aloud"
+              ]
             }
           ]
         },
@@ -430,7 +430,11 @@
           "units": [
             {
               "title": "Numbers 1–10",
-              "topics": ["Number recognition", "Counting objects", "Simple addition"]
+              "topics": [
+                "Number recognition",
+                "Counting objects",
+                "Simple addition"
+              ]
             }
           ]
         },
@@ -579,11 +583,7 @@
       "slug": "nursery-year-2",
       "name": "Nursery Year 2",
       "audience": "parent",
-      "quickFacts": [
-        "{{age}}",
-        "Secure",
-        "Qualified Teachers"
-      ],
+      "quickFacts": ["{{age}}", "Secure", "Qualified Teachers"],
       "highlights": [
         {
           "icon": "palette",
@@ -604,10 +604,29 @@
       "tagline": "Advanced skills for primary school readiness",
       "outcome": "Early Literacy & Numeracy",
       "description": "Engaging curriculum fostering critical thinking and creativity",
+      "admission": {
+        "id": "lfk-nursery-year-2-admission",
+        "eligibility": [
+          {
+            "type": "age",
+            "ageRange": {
+              "minAgeYears": 4,
+              "minAgeMonths": 8,
+              "maxAgeYears": 5,
+              "maxAgeMonths": 7
+            }
+          }
+        ],
+        "documents": [
+          {
+            "type": "document",
+            "name": "Birth Certificate",
+            "requirement": "required"
+          }
+        ]
+      },
       "groupId": "nursery",
-      "cycleIds": [
-        "lfk-nursery-year-2-2025-t1"
-      ],
+      "cycleIds": ["lfk-nursery-year-2-2025-t1"],
       "isPopular": true,
       "activities": [
         {
@@ -666,7 +685,11 @@
           "units": [
             {
               "title": "Blends and Digraphs",
-              "topics": ["sh, ch, th sounds", "Blending simple words", "Sight words"]
+              "topics": [
+                "sh, ch, th sounds",
+                "Blending simple words",
+                "Sight words"
+              ]
             }
           ]
         },
@@ -680,7 +703,11 @@
           "units": [
             {
               "title": "Short Stories and Sentences",
-              "topics": ["Reading aloud", "Picture comprehension", "Word recognition"]
+              "topics": [
+                "Reading aloud",
+                "Picture comprehension",
+                "Word recognition"
+              ]
             }
           ]
         },
@@ -694,7 +721,11 @@
           "units": [
             {
               "title": "Memorization and Recital",
-              "topics": ["Simple poems", "Action rhymes", "Reciting with expression"]
+              "topics": [
+                "Simple poems",
+                "Action rhymes",
+                "Reciting with expression"
+              ]
             }
           ]
         },
@@ -736,7 +767,11 @@
           "units": [
             {
               "title": "Addition and Subtraction",
-              "topics": ["Numbers 1–20", "Counting by 2s and 5s", "Shapes and patterns"]
+              "topics": [
+                "Numbers 1–20",
+                "Counting by 2s and 5s",
+                "Shapes and patterns"
+              ]
             }
           ]
         },
@@ -834,7 +869,11 @@
           "units": [
             {
               "title": "Group Conversations",
-              "topics": ["Show and tell", "Answering questions", "Sharing ideas"]
+              "topics": [
+                "Show and tell",
+                "Answering questions",
+                "Sharing ideas"
+              ]
             }
           ]
         },
@@ -848,7 +887,11 @@
           "units": [
             {
               "title": "Comprehension Through Stories",
-              "topics": ["Moral stories", "Sequencing events", "Character recall"]
+              "topics": [
+                "Moral stories",
+                "Sequencing events",
+                "Character recall"
+              ]
             }
           ]
         },
@@ -888,82 +931,84 @@
           "audience": "parent",
           "items": [
             {
-              "itemId": "book-animal-friends-level-1a-reader"
+              "itemId": "book-lets-learn-together-integrated-thematic-workbook-k2"
             },
             {
-              "itemId": "book-roraima-numeracy-workbook-book-2"
+              "itemId": "book-elb-maths-age-4"
             },
             {
-              "itemId": "book-roraima-literacy-nursery-year-2"
+              "itemId": "book-elb-sounds-age-4"
             },
             {
-              "itemId": "book-big-easy-coloring"
+              "itemId": "book-elb-decodable-reading-age-4-5"
+            },
+            {
+              "itemId": "book-elb-writing-skills-age-4"
+            },
+            {
+              "itemId": "book-kids-one-abc-trace-colour-read",
+              "source": "buy-at-school"
             }
           ]
         },
         {
-          "name": "Supplies",
+          "name": "Writing & Stationery",
           "category": "materials",
           "audience": "parent",
           "items": [
             {
-              "itemId": "supply-crayola-crayons-fine"
-            },
-            {
-              "itemId": "supply-drawing-book",
-              "quantity": 1
-            },
-            {
               "itemId": "supply-exercise-book-small-fine-line",
+              "quantity": 2
+            },
+            {
+              "itemId": "supply-fat-pencil",
+              "quantity": 2
+            },
+            {
+              "itemId": "supply-pencil-case",
               "quantity": 1
             },
             {
-              "itemId": "supply-4-line-book",
-              "quantity": 1
-            },
-            {
-              "itemId": "supply-pencils-pack-12",
-              "quantity": 2,
-              "unit": "pack"
-            },
-            {
-              "itemId": "supply-cardboard-sml",
-              "quantity": 2,
-              "unit": "sheet"
-            },
-            {
-              "itemId": "supply-pack-blocks",
+              "itemId": "supply-typing-sheet",
               "quantity": 1,
               "unit": "pack"
             },
             {
-              "itemId": "supply-crayola-paint-6pcs",
+              "itemId": "supply-scrapbook"
+            }
+          ]
+        },
+        {
+          "name": "Art & Play",
+          "category": "materials",
+          "audience": "parent",
+          "items": [
+            {
+              "itemId": "supply-crayola-play-dough"
+            },
+            {
+              "itemId": "supply-crayola-crayons-fat",
               "quantity": 1,
-              "unit": "set"
+              "unit": "pack"
+            }
+          ]
+        },
+        {
+          "name": "Hygiene / Classroom Supplies",
+          "category": "materials",
+          "audience": "parent",
+          "items": [
+            {
+              "itemId": "supply-liquid-soap"
             },
             {
-              "itemId": "supply-soap",
-              "quantity": 1
+              "itemId": "supply-tissue-paper-towel"
             },
             {
-              "itemId": "supply-detergent",
-              "quantity": 1
+              "itemId": "supply-hand-towel"
             },
             {
-              "itemId": "supply-hand-sanitizer",
-              "quantity": 1,
-              "unit": "bottle"
-            },
-            {
-              "itemId": "supply-bounty-tissue",
-              "quantity": 1,
-              "unit": "roll",
-              "notes": "brand: Bounty"
-            },
-            {
-              "itemId": "supply-toilet-paper",
-              "quantity": 1,
-              "unit": "roll"
+              "itemId": "relief-general-wipes"
             }
           ]
         }
@@ -974,4 +1019,3 @@
     }
   ]
 }
-
