@@ -49,7 +49,7 @@ export function LocationSection({
 
         <MapSection orgInstance={orgInstance} programSlug={program.slug} />
 
-        <h3 className="text-default-600">
+        <h3 className="text-default-600 font-semibold">
           {addressLine}
           {primaryLocation.address.landmark && (
             <span className="text-default-500 italic">

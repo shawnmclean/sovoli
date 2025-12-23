@@ -11,6 +11,7 @@ import {
 } from "@vis.gl/react-google-maps";
 import { env } from "~/env";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { Skeleton } from "@sovoli/ui/components/skeleton";
 
 interface LatLngLiteral {
   lat: number;
@@ -140,14 +141,11 @@ function ProgramMapContent({
 
   if (!markerPosition) {
     return (
-      <div
+      <Skeleton
         className={
-          className ??
-          "h-[300px] w-full flex items-center justify-center border border-default-200 rounded-lg bg-default-50"
+          className ?? "h-[300px] w-full rounded-lg border border-default-200"
         }
-      >
-        <p className="text-default-600 text-sm">Loading map location...</p>
-      </div>
+      />
     );
   }
 

@@ -66,6 +66,8 @@ export function MapDetails({ orgInstance, program }: MapDetailsProps) {
           title={`${orgInstance.org.name} Location`}
           text={`Check out ${orgInstance.org.name} location on Google Maps.`}
           url={getMapsUrl()}
+          variant="flat"
+          className="bg-background/80 backdrop-blur-sm shadow-sm"
         />
         <Button
           isIconOnly
@@ -73,6 +75,8 @@ export function MapDetails({ orgInstance, program }: MapDetailsProps) {
           onPress={handleClose}
           aria-label="Close map"
           radius="full"
+          variant="flat"
+          className="bg-background/80 backdrop-blur-sm shadow-sm"
         >
           <XIcon className="h-5 w-5" />
         </Button>
