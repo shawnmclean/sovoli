@@ -26,7 +26,7 @@ export function ShareButton({
   text,
   url,
   className,
-  variant = "flat",
+  variant,
   children,
   isIconOnly = true,
 }: ShareButtonProps) {
