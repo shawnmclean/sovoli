@@ -117,6 +117,7 @@ export function SchoolProgramSearchContent({
               }}
               categoryGroup="school"
               className="w-full"
+              size="lg"
               countryCode={tenantCountryCode}
               footer={
                 <WhatsAppLink
@@ -145,6 +146,7 @@ export function SchoolProgramSearchContent({
                   setSelectedProgram((key as string) || "");
                 }}
                 className="w-full"
+                size="lg"
                 allowsCustomValue={false}
               >
                 {availablePrograms.map((program) => (
