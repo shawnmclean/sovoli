@@ -35,7 +35,9 @@ export const env = createEnv({
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
     NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1),
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string().min(1),
-    NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID: z.string().optional(),
+    // We don't need a map id for just advanced markers, but putting this here for future reference.
+    // see: https://developers.google.com/maps/documentation/javascript/map-ids/mapid-over
+    NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID: z.string().default("DEMO_MAP_ID"),
   },
 
   /**
@@ -53,6 +55,4 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID: process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID,
   },
-  skipValidation:
-    !!process.env.CI || process.env.npm_lifecycle_event === "lint",
 });

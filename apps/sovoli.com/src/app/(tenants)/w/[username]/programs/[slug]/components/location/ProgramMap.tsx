@@ -172,15 +172,10 @@ function ProgramMapContent({
     );
   }
 
-  // We don't need a map id for just advanced markers, but putting this here for future reference.
-  // see: https://developers.google.com/maps/documentation/javascript/map-ids/mapid-over
-  const googleMapId =
-    (env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID as string | undefined) ?? "DEMO_MAP_ID";
-
   return (
     <GoogleMap
       id={mapId}
-      mapId={googleMapId}
+      mapId={env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID}
       defaultCenter={center}
       defaultZoom={defaultZoom}
       mapTypeControl={false}
