@@ -5,6 +5,7 @@ import {
 	Autocomplete,
 	AutocompleteItem,
 } from "@sovoli/ui/components/autocomplete";
+import type { AutocompleteProps } from "@sovoli/ui/components/autocomplete";
 import { ORGS } from "~/modules/data/organisations";
 import { resolveOrgCategoryFilter } from "~/modules/organisations/lib/categoryHierarchy";
 import { doesLocationValueMatchSegment } from "~/modules/organisations/lib/locationSegments";
@@ -43,6 +44,8 @@ export interface OrganizationAutocompleteProps {
 	allowsCreate?: boolean;
 	/** Footer component to display at the bottom of the autocomplete dropdown */
 	footer?: React.ReactNode;
+	/** Autocomplete size */
+	size?: AutocompleteProps["size"];
 }
 
 interface OrgInstanceWithCreate extends OrgInstance {
@@ -64,6 +67,7 @@ export function OrganizationAutocomplete({
 	className,
 	allowsCustomValue = false,
 	allowsCreate = false,
+	size,
 }: OrganizationAutocompleteProps) {
 	const [inputValue, setInputValue] = useState("");
 
@@ -226,6 +230,7 @@ export function OrganizationAutocomplete({
 				}
 			}}
 			className={className}
+			size={size}
 			allowsCustomValue={allowsCustomValue}
 			listboxProps={{
 				virtualization: {
