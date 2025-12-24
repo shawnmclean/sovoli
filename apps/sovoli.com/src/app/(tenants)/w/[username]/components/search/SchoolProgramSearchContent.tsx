@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@sovoli/ui/components/button";
 import {
@@ -10,6 +10,7 @@ import {
 import { SearchIcon } from "lucide-react";
 import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { useTenant } from "~/app/(tenants)/w/[username]/components/TenantProvider";
 import { ORGS } from "~/modules/data/organisations";
 import type { Program } from "~/modules/academics/types";
 
@@ -25,10 +26,18 @@ export function SchoolProgramSearchContent({
   source: _source = "landing_page",
 }: SchoolProgramSearchContentProps) {
   const router = useRouter();
+  const { orgInstance } = useTenant();
   const [selectedSchool, setSelectedSchool] = useState<string>("");
   const [selectedProgram, setSelectedProgram] = useState<string>("");
   const [availablePrograms, setAvailablePrograms] = useState<Program[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const tenantCountryCode = useMemo(() => {
+    const { locations } = orgInstance.org;
+    const primaryLocation =
+      locations.find((location) => location.isPrimary) ?? locations[0];
+
+    return primaryLocation?.address.countryCode;
+  }, [orgInstance]);
 
   // Update available programs when school changes
   useEffect(() => {
@@ -108,7 +117,7 @@ export function SchoolProgramSearchContent({
               }}
               categoryGroup="school"
               className="w-full"
-              countryCode="GY"
+              countryCode={tenantCountryCode}
               footer={
                 <WhatsAppLink
                   message={getWhatsAppMessage()}
