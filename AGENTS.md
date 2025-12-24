@@ -118,33 +118,13 @@ All checks should pass before committing changes.
 
 ## Media Management
 
-### Uploading Media Files
+For detailed instructions on uploading media files and adding them to programs, see:
+**`docs/uploading-media.md`**
 
-**Always use the upload script instead of MCP tools** for uploading media to Cloudinary:
-
-1. **Upload media using the script**:
-   ```bash
-   pnpm with-env node apps/sovoli.com/scripts/upload-media.mjs <file-path> <org-path>
-   ```
-
-   Examples:
-   - `pnpm with-env node apps/sovoli.com/scripts/upload-media.mjs "tmp/video.mp4" "o/fitright/programs/sewing-class"`
-   - `pnpm with-env node apps/sovoli.com/scripts/upload-media.mjs "E:\path\to\image.jpg" "o/cove-primary/photos"`
-
-2. **Add media entries to organization's media.json**:
-   - Copy the "Media Object for JSON" output from the script
-   - Add a unique `id` field following the organization's naming pattern
-   - Add the entry to the `media` array in the organization's `media.json` file
-   - Location: `apps/sovoli.com/src/modules/data/organisations/<org-path>/media.json`
-
-3. **Reference media in programs/projects**:
-   - Add the media `id` to the appropriate `galleryIds` array in program or project JSON files
-
-### File Size Limitations
-
-- **Cloudinary upload limit**: 100MB per file
-- Files over 100MB will fail to upload even with the large file upload feature
-- For files exceeding 100MB, compress them first or use Cloudinary's async upload API with a signed upload preset
+**Quick reference:**
+- Always use the upload script: `pnpm with-env node apps/sovoli.com/scripts/upload-media.mjs <file-path> <org-path>`
+- Never use MCP tools for Cloudinary uploads
+- File size limit: 100MB per file
 
 ## Package Management
 
