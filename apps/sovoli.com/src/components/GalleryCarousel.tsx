@@ -137,10 +137,10 @@ export function GalleryCarousel({
           setApi={setApi}
           className="w-full h-full"
         >
-          <CarouselContent className="-ml-0">
+          <CarouselContent className="-ml-0 h-full">
             {visualMedia.map((media, index) => (
-              <CarouselItem key={index} className="basis-full pl-0">
-                <div className="w-full max-w-md aspect-square mx-auto relative">
+              <CarouselItem key={index} className="basis-full pl-0 h-full">
+                <div className="w-full h-full relative">
                   {media.type === "video" ? (
                     <video
                       src={media.url}
@@ -163,7 +163,7 @@ export function GalleryCarousel({
                       sizes="100vw"
                       quality="auto"
                       loading={index === 0 ? "eager" : "lazy"}
-                      className="object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                      className="object-cover w-full h-full cursor-pointer hover:opacity-90 transition-opacity"
                       onClick={handleOpenFullscreen}
                     />
                   )}
