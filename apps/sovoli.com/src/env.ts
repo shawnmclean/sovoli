@@ -22,8 +22,6 @@ export const env = createEnv({
     CLOUDINARY_API_SECRET: z.string().min(1),
     CLOUDINARY_API_KEY: z.string().min(1),
     AUTH_SECRET: z.string().min(1),
-    META_ACCESS_TOKEN: z.string().min(1),
-    WHATSAPP_PHONE_NUMBER_ID: z.string().min(1),
     AIRTABLE_API_KEY: z.string().min(1),
   },
 
