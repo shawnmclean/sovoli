@@ -42,64 +42,65 @@ export async function sendOTPAction(
 
   try {
     // Send WhatsApp message via Facebook Graph API
-    const response = await fetch(
-      `https://graph.facebook.com/v22.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${env.META_ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messaging_product: "whatsapp",
-          to: phone,
-          type: "template",
-          template: {
-            name: "otp_verify_code",
-            language: {
-              code: "en_US",
-            },
-            components: [
-              {
-                type: "body",
-                parameters: [
-                  {
-                    type: "text",
-                    text: otp,
-                  },
-                ],
-              },
-              {
-                type: "button",
-                sub_type: "url",
-                index: "0",
-                parameters: [
-                  {
-                    type: "text",
-                    text: otp,
-                  },
-                ],
-              },
-            ],
-          },
-        }),
-      },
-    );
+    // COMMENTED OUT: WhatsApp env variables (WHATSAPP_PHONE_NUMBER_ID, META_ACCESS_TOKEN) removed
+    // const response = await fetch(
+    //   `https://graph.facebook.com/v22.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       Authorization: `Bearer ${env.META_ACCESS_TOKEN}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       messaging_product: "whatsapp",
+    //       to: phone,
+    //       type: "template",
+    //       template: {
+    //         name: "otp_verify_code",
+    //         language: {
+    //           code: "en_US",
+    //         },
+    //         components: [
+    //           {
+    //             type: "body",
+    //             parameters: [
+    //               {
+    //                 type: "text",
+    //                 text: otp,
+    //               },
+    //             ],
+    //           },
+    //           {
+    //             type: "button",
+    //             sub_type: "url",
+    //             index: "0",
+    //             parameters: [
+    //               {
+    //                 type: "text",
+    //                 text: otp,
+    //               },
+    //             ],
+    //           },
+    //         ],
+    //       },
+    //     }),
+    //   },
+    // );
 
-    if (!response.ok) {
-      const errorData = (await response.json().catch(() => ({}))) as Record<
-        string,
-        unknown
-      >;
-      console.error("WhatsApp API error:", errorData);
-      return {
-        status: "error",
-        message: "Failed to send WhatsApp message. Please try again.",
-      };
-    }
+    // if (!response.ok) {
+    //   const errorData = (await response.json().catch(() => ({}))) as Record<
+    //     string,
+    //     unknown
+    //   >;
+    //   console.error("WhatsApp API error:", errorData);
+    //   return {
+    //     status: "error",
+    //     message: "Failed to send WhatsApp message. Please try again.",
+    //   };
+    // }
 
-    const result = (await response.json()) as Record<string, unknown>;
-    console.log("WhatsApp message sent successfully:", result);
+    // const result = (await response.json()) as Record<string, unknown>;
+    // console.log("WhatsApp message sent successfully:", result);
 
     // Create a token with phone and OTP for verification
     const payload = JSON.stringify({
