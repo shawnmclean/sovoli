@@ -5,6 +5,7 @@ import { getOrgInstanceByUsername } from "./lib/getOrgInstanceByUsername";
 import type { Organization, WithContext } from "schema-dts";
 import { NavigationDrawer } from "./components/NavigationDrawer";
 import { TenantProvider } from "./components/TenantProvider";
+import { TenantNavbar } from "./components/navbar/TenantNavbar";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -128,6 +129,7 @@ export default async function Layout({ children, params, modals }: Props) {
           __html: JSON.stringify(organizationSchema, null, 0),
         }}
       />
+      <TenantNavbar orgInstance={orgInstance} />
       {children}
       <NavigationDrawer fallbackPath="/">{modals}</NavigationDrawer>
     </TenantProvider>

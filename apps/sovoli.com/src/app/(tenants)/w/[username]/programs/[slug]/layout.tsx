@@ -3,7 +3,7 @@ import { Footer } from "../../components/footer/Footer";
 import { parseISO } from "date-fns";
 import type { EducationalOccupationalProgram, WithContext } from "schema-dts";
 
-import { ProgramDetailNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
+import { ProgramDetailMobileNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
 import { ProgramHeroSection } from "./components/ProgramHeroSection";
@@ -260,7 +260,7 @@ export default async function Layout({ children, params, modals }: Props) {
           __html: JSON.stringify(programSchema, null, 0), // Compact JSON without whitespace
         }}
       />
-      <ProgramDetailNavbar
+      <ProgramDetailMobileNavbar
         orgInstance={orgInstance}
         program={programToUse}
         group={group}

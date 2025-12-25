@@ -11,17 +11,17 @@ import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/Sha
 import type { Program, ProgramGroup } from "~/modules/academics/types";
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
-export interface ProgramDetailNavbarProps {
+export interface ProgramDetailMobileNavbarProps {
   orgInstance: OrgInstance;
   program: Program;
   group?: ProgramGroup;
 }
 
-export function ProgramDetailNavbar({
+export function ProgramDetailMobileNavbar({
   orgInstance,
   program,
   group,
-}: ProgramDetailNavbarProps) {
+}: ProgramDetailMobileNavbarProps) {
   const programName =
     program.name ??
     program.standardProgramVersion?.program.name ??
@@ -31,7 +31,7 @@ export function ProgramDetailNavbar({
   return (
     <Navbar
       maxWidth="full"
-      className="absolute top-0 left-0 right-0 bg-transparent"
+      className="absolute top-0 left-0 right-0 bg-transparent md:hidden"
       isBordered={false}
       isBlurred={false}
       classNames={{
