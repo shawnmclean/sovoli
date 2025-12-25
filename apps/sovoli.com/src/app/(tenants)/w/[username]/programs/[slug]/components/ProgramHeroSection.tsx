@@ -1,10 +1,9 @@
 "use client";
-import { CldImage } from "next-cloudinary";
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
 import { GalleryCarousel } from "~/components/GalleryCarousel";
-import { getProgramImage } from "~/modules/academics/getProgramImage";
+import { DesktopGallery } from "~/components/DesktopGallery";
 
 export interface ProgramHeroSectionProps {
   orgInstance: OrgInstance;
@@ -50,8 +49,6 @@ export const ProgramHeroSection = ({
     return `✅ Trusted by ${program.audience === "parent" ? "parents" : "students"}`;
   };
 
-  const firstImage = getProgramImage(program);
-
   return (
     <section className="border-b border-default-200 pb-6 md:border-b-0">
       {/* Mobile Gallery - Full Width */}
@@ -68,23 +65,16 @@ export const ProgramHeroSection = ({
       {/* Desktop Gallery + Title Content - Inside Container */}
       <div className="container mx-auto max-w-6xl px-4">
         <div className="flex flex-col md:flex-col-reverse gap-6">
-          {/* Desktop Gallery Section - Single Image */}
-          {firstImage && (
-            <div className="hidden md:block w-full">
-              <div className="relative aspect-square w-full max-w-md mx-auto">
-                <CldImage
-                  src={firstImage.publicId}
-                  alt={firstImage.alt ?? programName}
-                  width={firstImage.width ?? 800}
-                  height={firstImage.height ?? 800}
-                  crop="fill"
-                  sizes="(max-width: 768px) 100vw, 800px"
-                  quality="auto"
-                  className="object-cover w-full h-full rounded-lg"
-                />
-              </div>
-            </div>
-          )}
+          {/* Desktop Gallery Section */}
+          <div className="hidden md:block w-full">
+            <DesktopGallery
+              media={program.media?.gallery ?? []}
+              title={programName}
+              type="program"
+              username={username}
+              id={program.id}
+            />
+          </div>
 
           {/* Title Content Section */}
           <div className="text-center">

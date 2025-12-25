@@ -263,12 +263,7 @@
         }
       ],
       "media": {
-        "galleryIds": [
-          "lfk-gallery-3",
-          "lfk-gallery-1",
-          "lfk-gallery-2",
-          "lfk-video-1"
-        ]
+        "galleryIds": ["lfk-gallery-3", "lfk-video-1"]
       }
     },
     {
@@ -580,12 +575,7 @@
         }
       ],
       "media": {
-        "galleryIds": [
-          "lfk-gallery-3",
-          "lfk-gallery-1",
-          "lfk-gallery-2",
-          "lfk-video-1"
-        ]
+        "galleryIds": ["lfk-gallery-3", "lfk-gallery-1", "lfk-video-1"]
       }
     },
     {
