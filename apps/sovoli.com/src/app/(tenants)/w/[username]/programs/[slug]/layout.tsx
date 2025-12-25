@@ -6,7 +6,6 @@ import type { EducationalOccupationalProgram, WithContext } from "schema-dts";
 import { ProgramDetailNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
 import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
-import { GalleryCarousel } from "~/components/GalleryCarousel";
 import { ProgramHeroSection } from "./components/ProgramHeroSection";
 import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionContext";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
@@ -277,20 +276,13 @@ export default async function Layout({ children, params, modals }: Props) {
         {group && <ProgramGroupTracking group={group} />}
         <ProgramTracking program={programToUse} defaultCycle={defaultCycle} />
 
-        <GalleryCarousel
-          media={programToUse.media?.gallery ?? []}
-          title={programToUse.name ?? "Program"}
-          type="program"
+        <ProgramHeroSection
+          orgInstance={orgInstance}
+          program={programToUse}
           username={username}
-          id={programToUse.id}
         />
 
-        <div className="container mx-auto max-w-7xl px-4">
-          <ProgramHeroSection
-            orgInstance={orgInstance}
-            program={programToUse}
-          />
-
+        <div className="container mx-auto max-w-6xl px-4">
           <OrgBadgeSection orgInstance={orgInstance} />
 
           <ProgramHighlightsSection program={programToUse} />
