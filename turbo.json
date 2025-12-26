@@ -1,76 +1,81 @@
 {
-	"$schema": "https://turbo.build/schema.json",
-	"tasks": {
-		"update": {
-			"dependsOn": ["^update"]
-		},
-		"build": {
-			"inputs": ["$TURBO_DEFAULT$", ".env*"],
-			"outputs": [
-				".next/**",
-				"!.next/cache/**",
-				"next-env.d.ts",
-				".expo/**",
-				".output/**",
-				".vercel/output/**"
-			],
-			"dependsOn": ["^build"]
-		},
-		"dev": {
-			"cache": false,
-			"persistent": true
-		},
-		"lint": {
-			"dependsOn": ["^build"],
-			"outputs": ["node_modules/.cache/.eslintcache"]
-		},
-		"clean": {
-			"cache": false
-		},
-		"push": {
-			"cache": false,
-			"interactive": true
-		},
-		"migrate": {
-			"cache": false,
-			"interactive": true
-		},
-		"seed": {
-			"cache": false,
-			"interactive": true
-		},
-		"studio": {
-			"cache": false,
-			"persistent": true
-		},
-		"typecheck": {
-			"dependsOn": ["^build"],
-			"outputs": ["node_modules/.cache/tsbuildinfo.json"]
-		}
-	},
-	"globalEnv": ["PORT"],
-	"globalPassThroughEnv": [
-		"NODE_ENV",
-		"CI",
-		"VERCEL",
-		"VERCEL_ENV",
-		"VERCEL_URL",
-		"VERCEL_PROJECT_PRODUCTION_URL",
-		"npm_lifecycle_event",
-		"TRIGGER_SECRET_KEY",
-		"AUTH_SECRET",
-		"OPENAI_API_KEY",
-		"GOOGLE_GENERATIVE_AI_API_KEY",
-		"OTEL_EXPORTER_OTLP_TRACES_ENDPOINT",
-		"OTEL_EXPORTER_OTLP_LOGS_ENDPOINT",
-		"OTEL_EXPORTER_OTLP_HEADERS",
-		"NEXT_PUBLIC_POSTHOG_KEY",
-		"NEXT_PUBLIC_POSTHOG_HOST",
-		"NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME",
-		"CLOUDINARY_API_KEY",
-		"CLOUDINARY_API_SECRET",
-		"NEXT_PUBLIC_ROOT_DOMAIN",
-		"AIRTABLE_API_KEY"
-	],
-	"ui": "tui"
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "update": {
+      "dependsOn": ["^update"]
+    },
+    "build": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "next-env.d.ts",
+        ".expo/**",
+        ".output/**",
+        ".vercel/output/**"
+      ],
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "outputs": ["node_modules/.cache/.eslintcache"]
+    },
+    "clean": {
+      "cache": false
+    },
+    "push": {
+      "cache": false,
+      "interactive": true
+    },
+    "migrate": {
+      "cache": false,
+      "interactive": true
+    },
+    "seed": {
+      "cache": false,
+      "interactive": true
+    },
+    "studio": {
+      "cache": false,
+      "persistent": true
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "outputs": ["node_modules/.cache/tsbuildinfo.json"]
+    }
+  },
+  "globalEnv": ["PORT"],
+  "globalPassThroughEnv": [
+    "NODE_ENV",
+    "CI",
+    "VERCEL",
+    "VERCEL_ENV",
+    "VERCEL_URL",
+    "VERCEL_PROJECT_PRODUCTION_URL",
+    "npm_lifecycle_event",
+    "TRIGGER_SECRET_KEY",
+    "AUTH_SECRET",
+    "OPENAI_API_KEY",
+    "GOOGLE_GENERATIVE_AI_API_KEY",
+    "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT",
+    "OTEL_EXPORTER_OTLP_LOGS_ENDPOINT",
+    "OTEL_EXPORTER_OTLP_HEADERS",
+    "NEXT_PUBLIC_POSTHOG_KEY",
+    "NEXT_PUBLIC_POSTHOG_HOST",
+    "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME",
+    "CLOUDINARY_API_KEY",
+    "CLOUDINARY_API_SECRET",
+    "NEXT_PUBLIC_ROOT_DOMAIN",
+    "AIRTABLE_API_KEY"
+  ],
+  "ui": "tui"
 }
