@@ -3,9 +3,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { loadMDXDoc } from "../lib/loadDoc";
 import type { DocSection } from "../lib/types";
+import { getAllDocParams } from "../lib/getAllDocSlugs";
 
 interface Props {
   params: Promise<{ slug?: string[] }>;
+}
+
+/**
+ * Generate static params for all doc routes at build time.
+ * This ensures Next.js includes all MDX files in the production bundle.
+ */
+export async function generateStaticParams() {
+  const params = await getAllDocParams();
+  // Also include the root /docs route
+  return [{ slug: [] }, ...params];
 }
 
 function isValidSection(section: string): section is DocSection {
