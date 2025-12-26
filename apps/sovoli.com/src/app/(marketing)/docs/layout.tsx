@@ -9,7 +9,7 @@ export default function DocsLayout({ children }: Props) {
     <>
       <DocsNavbar />
       <main className="flex-1 overflow-y-auto p-4 md:p-8">
-        <div className="max-w-4xl mx-auto prose">{children}</div>
+        <div className="max-w-4xl mx-auto">{children}</div>
       </main>
     </>
   );
