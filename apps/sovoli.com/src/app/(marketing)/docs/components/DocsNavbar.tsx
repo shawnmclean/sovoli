@@ -111,9 +111,14 @@ export function DocsNavbar({ title }: DocsNavbarProps) {
 
   if (showBackButton) {
     return (
-      <Navbar maxWidth="xl" position="sticky">
-        <NavbarContent>
-          <NavbarItem>
+      <Navbar
+        maxWidth="xl"
+        position="sticky"
+        className="h-[72px]"
+        classNames={{ wrapper: "px-0" }}
+      >
+        <NavbarContent className="min-w-0">
+          <NavbarItem className="flex-shrink-0">
             <Button
               isIconOnly
               variant="light"
@@ -126,7 +131,9 @@ export function DocsNavbar({ title }: DocsNavbarProps) {
             </Button>
           </NavbarItem>
           {title && isScrolled && (
-            <NavbarItem className="text-lg font-semibold">{title}</NavbarItem>
+            <NavbarItem className="text-lg font-semibold whitespace-normal min-w-0 flex-1 overflow-hidden">
+              {title}
+            </NavbarItem>
           )}
         </NavbarContent>
       </Navbar>
