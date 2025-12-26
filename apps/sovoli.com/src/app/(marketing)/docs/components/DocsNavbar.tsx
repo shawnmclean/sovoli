@@ -8,6 +8,7 @@ import {
   NavbarItem,
 } from "@sovoli/ui/components/navbar";
 import { Link } from "@sovoli/ui/components/link";
+import NextLink from "next/link";
 import {
   Drawer,
   DrawerContent,
@@ -16,7 +17,7 @@ import {
 } from "@sovoli/ui/components/drawer";
 import { Button } from "@sovoli/ui/components/button";
 import { Logo } from "~/components/Logo/Logo";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { MenuIcon, ChevronLeftIcon } from "lucide-react";
 
 const menuItems = [
@@ -35,7 +36,6 @@ const menuItems = [
 export function DocsNavbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
   const [, startTransition] = useTransition();
 
   useEffect(() => {
@@ -46,7 +46,26 @@ export function DocsNavbar() {
     }
   }, [pathname]);
 
-  const showBackButton = pathname?.startsWith("/docs/guides") ?? false;
+  // Calculate parent path by removing the last segment
+  // e.g., /docs/guides/whatsapp/new-business -> /docs/guides/whatsapp
+  //      /docs/guides/whatsapp -> /docs/guides
+  //      /docs/guides -> /docs
+  const getParentPath = (currentPath: string | null): string | null => {
+    if (!currentPath || currentPath === "/docs") {
+      return null;
+    }
+    const segments = currentPath.split("/").filter(Boolean);
+    if (segments.length <= 2) {
+      // At /docs or /docs/something, parent is /docs
+      return "/docs";
+    }
+    // Remove the last segment
+    segments.pop();
+    return `/${segments.join("/")}`;
+  };
+
+  const parentPath = getParentPath(pathname);
+  const showBackButton = parentPath !== null && pathname !== "/docs";
 
   if (showBackButton) {
     return (
@@ -64,7 +83,8 @@ export function DocsNavbar() {
               variant="light"
               radius="full"
               aria-label="Go back"
-              onPress={() => router.push("/docs")}
+              as={NextLink}
+              href={parentPath}
             >
               <ChevronLeftIcon size={24} />
             </Button>
