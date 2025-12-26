@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Handle root /docs
   if (slug.length === 0) {
     return {
-      title: "Documentation | Sovoli",
+      title: "Learn more about how to use Sovoli",
       description: "Documentation and guides for using Sovoli",
     };
   }
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const section = slug[0];
   if (!section || !isValidSection(section)) {
     return {
-      title: "Not Found | Sovoli",
+      title: "Not Found",
     };
   }
 
@@ -37,12 +37,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!doc) {
     return {
-      title: "Not Found | Sovoli",
+      title: "Not Found",
     };
   }
 
   return {
-    title: `${doc.metadata.title} | Sovoli Docs`,
+    title: `${doc.metadata.title} | Docs`,
     description: doc.metadata.description,
   };
 }

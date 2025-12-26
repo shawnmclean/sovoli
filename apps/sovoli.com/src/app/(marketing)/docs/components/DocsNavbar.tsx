@@ -33,8 +33,13 @@ const menuItems = [
   },
 ];
 
-export function DocsNavbar() {
+interface DocsNavbarProps {
+  title?: string;
+}
+
+export function DocsNavbar({ title }: DocsNavbarProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const [, startTransition] = useTransition();
 
@@ -45,6 +50,43 @@ export function DocsNavbar() {
       });
     }
   }, [pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check multiple scroll sources
+      const windowScrollY = window.scrollY;
+      const documentScrollTop = document.documentElement.scrollTop;
+      const mainElement = document.querySelector("main");
+      const mainScrollTop = mainElement?.scrollTop ?? 0;
+
+      // Use the maximum scroll value
+      const scrollY = Math.max(windowScrollY, documentScrollTop, mainScrollTop);
+      const scrolled = scrollY > 50;
+
+      setIsScrolled(scrolled);
+    };
+
+    // Initial check
+    handleScroll();
+
+    // Listen to scroll on window, document, and main element
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    document.addEventListener("scroll", handleScroll, { passive: true });
+
+    const mainElement = document.querySelector("main");
+    if (mainElement) {
+      mainElement.addEventListener("scroll", handleScroll, { passive: true });
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
+      const mainEl = document.querySelector("main");
+      if (mainEl) {
+        mainEl.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
 
   // Calculate parent path by removing the last segment
   // e.g., /docs/guides/whatsapp/new-business -> /docs/guides/whatsapp
@@ -69,13 +111,7 @@ export function DocsNavbar() {
 
   if (showBackButton) {
     return (
-      <Navbar
-        maxWidth="xl"
-        className="bg-background/80 backdrop-blur-md"
-        height="60px"
-        position="static"
-        isBordered
-      >
+      <Navbar maxWidth="xl" position="sticky">
         <NavbarContent>
           <NavbarItem>
             <Button
@@ -89,6 +125,9 @@ export function DocsNavbar() {
               <ChevronLeftIcon size={24} />
             </Button>
           </NavbarItem>
+          {title && isScrolled && (
+            <NavbarItem className="text-lg font-semibold">{title}</NavbarItem>
+          )}
         </NavbarContent>
       </Navbar>
     );
@@ -99,8 +138,7 @@ export function DocsNavbar() {
       <Navbar
         maxWidth="xl"
         className="bg-background/80 backdrop-blur-md"
-        height="60px"
-        position="static"
+        position="sticky"
         isBordered
       >
         <NavbarContent>

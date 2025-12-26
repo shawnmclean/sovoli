@@ -21,6 +21,41 @@ body {
     margin-top: 0;
   }
 
+  /* Headers - match business section styling */
+  h1 {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+    color: hsl(var(--foreground));
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.25rem; /* text-xl - same as h1 */
+    font-weight: 700; /* font-bold */
+    color: hsl(var(--foreground));
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 700; /* font-bold */
+    color: hsl(var(--foreground));
+    margin-bottom: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 1rem; /* text-base */
+    font-weight: 700; /* font-bold */
+    color: hsl(var(--foreground));
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+  }
+
   /* Images */
   img {
     display: block;
