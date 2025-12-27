@@ -7,6 +7,31 @@ interface Props {
   params: Promise<{ slug?: string[] }>;
 }
 
+interface MDXModule {
+  default?: React.ComponentType;
+  metadata?: { title: string; description: string };
+}
+
+async function getPage(slug: string[]): Promise<MDXModule | null> {
+  if (slug.length === 0) {
+    return null;
+  }
+
+  const key = slug.join("/");
+  try {
+    const mdxModule = (await import(
+      `../_content/${key}/index.mdx`
+    )) as MDXModule;
+    return mdxModule;
+  } catch (error) {
+    console.error(
+      `[getPage] Error loading ${key}:`,
+      error instanceof Error ? error.message : String(error),
+    );
+    return null;
+  }
+}
+
 export function generateStaticParams() {
   return [
     { slug: [] },
@@ -31,44 +56,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const key = slug.join("/");
-  const importMap: Record<string, () => Promise<unknown>> = {
-    guides: () => import("../_content/guides/index.mdx"),
-    "guides/ads": () => import("../_content/guides/ads/index.mdx"),
-    "guides/whatsapp": () => import("../_content/guides/whatsapp/index.mdx"),
-    "guides/whatsapp/new-business": () =>
-      import("../_content/guides/whatsapp/new-business.mdx"),
-    reference: () => import("../_content/reference/index.mdx"),
-    "reference/supported-countries": () =>
-      import("../_content/reference/supported-countries.mdx"),
-  };
-
-  const importFn = importMap[key];
-  if (!importFn) {
-    return { title: "Not Found" };
-  }
-
-  try {
-    const mdxModule = (await importFn()) as {
-      metadata?: { title: string; description: string };
+  const mdxModule = await getPage(slug);
+  if (mdxModule?.metadata) {
+    return {
+      title: `${mdxModule.metadata.title} | Docs`,
+      description: mdxModule.metadata.description,
     };
-    if (mdxModule.metadata) {
-      return {
-        title: `${mdxModule.metadata.title} | Docs`,
-        description: mdxModule.metadata.description,
-      };
-    }
-  } catch (error) {
-    console.error(
-      `[generateMetadata] Error loading ${key}:`,
-      error instanceof Error ? error.message : String(error),
-    );
   }
 
   return { title: "Not Found" };
 }
 
-export default async function DocPage({ params }: Props) {
+export default async function Page({ params }: Props) {
   const { slug = [] } = await params;
 
   if (slug.length === 0) {
@@ -115,48 +114,23 @@ export default async function DocPage({ params }: Props) {
     );
   }
 
-  const key = slug.join("/");
-  const importMap: Record<string, () => Promise<unknown>> = {
-    guides: () => import("../_content/guides/index.mdx"),
-    "guides/ads": () => import("../_content/guides/ads/index.mdx"),
-    "guides/whatsapp": () => import("../_content/guides/whatsapp/index.mdx"),
-    "guides/whatsapp/new-business": () =>
-      import("../_content/guides/whatsapp/new-business.mdx"),
-    reference: () => import("../_content/reference/index.mdx"),
-    "reference/supported-countries": () =>
-      import("../_content/reference/supported-countries.mdx"),
-  };
-
-  const importFn = importMap[key];
-  if (!importFn) {
+  const mdxModule = await getPage(slug);
+  if (!mdxModule?.default) {
     notFound();
   }
 
-  try {
-    const mdxModule = (await importFn()) as {
-      default?: React.ComponentType;
-      metadata?: { title: string; description: string };
-    };
-    if (mdxModule.default) {
-      return (
-        <>
-          <DocsNavbar title={mdxModule.metadata?.title ?? "Documentation"} />
-          <main className="flex-1 overflow-y-auto p-4 md:p-8">
-            <div className="max-w-4xl mx-auto">
-              <article className="prose prose-slate max-w-none">
-                <mdxModule.default />
-              </article>
-            </div>
-          </main>
-        </>
-      );
-    }
-  } catch (error) {
-    console.error(
-      `[DocPage] Error loading ${key}:`,
-      error instanceof Error ? error.message : String(error),
-    );
-  }
+  const { default: Post } = mdxModule;
 
-  notFound();
+  return (
+    <>
+      <DocsNavbar title={mdxModule.metadata?.title ?? "Documentation"} />
+      <main className="flex-1 overflow-y-auto p-4 md:p-8">
+        <div className="max-w-4xl mx-auto">
+          <article className="prose prose-slate max-w-none">
+            <Post />
+          </article>
+        </div>
+      </main>
+    </>
+  );
 }
