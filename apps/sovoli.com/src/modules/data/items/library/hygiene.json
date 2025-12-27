@@ -2,48 +2,48 @@
   {
     "id": "supply-detergent",
     "name": "Detergent",
-    "category": "hygiene",
+    "category": "laundry-detergents",
     "tags": ["general", "cleaning"]
   },
   {
     "id": "supply-hand-sanitizer",
     "name": "Hand Sanitizer",
-    "category": "sanitizer",
+    "category": "sanitizers",
     "tags": ["hygiene", "sanitizer"],
     "unitLabel": "bottle"
   },
   {
     "id": "supply-paper-towel",
     "name": "Paper Towel",
-    "category": "tissue",
+    "category": "paper-towels",
     "tags": ["general", "paper-towel"],
     "unitLabel": "roll"
   },
   {
     "id": "supply-liquid-soap",
     "name": "Liquid Soap",
-    "category": "soap",
+    "category": "cleansing-washing-soap-body",
     "tags": ["general", "soap"],
     "unitLabel": "bottle"
   },
   {
     "id": "supply-toilet-paper",
     "name": "Toilet Paper",
-    "category": "tissue",
+    "category": "toilet-paper",
     "tags": ["general", "toilet-paper"],
     "unitLabel": "roll"
   },
   {
     "id": "supply-soap",
     "name": "Soap",
-    "category": "soap",
+    "category": "cleansing-washing-soap-body",
     "tags": ["general", "soap", "hygiene"],
     "unitLabel": "bar"
   },
   {
     "id": "supply-bounty-tissue",
     "name": "Bounty Tissue",
-    "category": "tissue",
+    "category": "paper-towels",
     "tags": ["general", "tissue", "bounty"],
     "brand": "Bounty",
     "unitLabel": "roll"
@@ -51,70 +51,70 @@
   {
     "id": "supply-tissue-paper-towel",
     "name": "Tissue/Paper Towel",
-    "category": "tissue",
+    "category": "paper-towels",
     "tags": ["general", "tissue", "paper-towel"],
     "unitLabel": "roll"
   },
   {
     "id": "relief-diapers",
     "name": "Diapers",
-    "category": "hygiene",
+    "category": "baby-diapers-disposable",
     "unitLabel": "pack",
     "tags": ["relief", "infant", "care"]
   },
   {
     "id": "relief-disposable-masks",
     "name": "Disposable Masks",
-    "category": "hygiene",
+    "category": "general-personal-hygiene",
     "unitLabel": "box",
     "tags": ["relief", "ppe", "health"]
   },
   {
     "id": "relief-first-aid-kits",
     "name": "First Aid Kits",
-    "category": "medical",
+    "category": "first-aid",
     "unitLabel": "kit",
     "tags": ["relief", "medical", "safety"]
   },
   {
     "id": "relief-hygiene-kits",
     "name": "Hygiene Kits",
-    "category": "hygiene",
+    "category": "general-personal-hygiene",
     "unitLabel": "kit",
     "tags": ["relief", "hygiene", "personal-care"]
   },
   {
     "id": "relief-sanitizing-wipes",
     "name": "Sanitisers / Wipes",
-    "category": "hygiene",
+    "category": "wipes-personal",
     "unitLabel": "pack",
     "tags": ["relief", "cleaning", "disinfectant"]
   },
   {
     "id": "relief-toiletries",
     "name": "Toiletries",
-    "category": "hygiene",
+    "category": "general-personal-hygiene",
     "unitLabel": "kit",
     "tags": ["relief", "personal-care"]
   },
   {
     "id": "relief-insect-repellent",
     "name": "Repellent",
-    "category": "hygiene",
+    "category": "personal-repellents",
     "unitLabel": "bottle",
     "tags": ["relief", "personal-care", "mosquito"]
   },
   {
     "id": "relief-general-wipes",
     "name": "Wipes",
-    "category": "hygiene",
+    "category": "wipes-personal",
     "unitLabel": "pack",
     "tags": ["relief", "personal-care", "cleaning"]
   },
   {
     "id": "supply-hand-towel",
     "name": "Hand Towel",
-    "category": "hygiene",
+    "category": "cleaning-cloths",
     "tags": ["general", "towel", "hygiene"],
     "unitLabel": "towel"
   }

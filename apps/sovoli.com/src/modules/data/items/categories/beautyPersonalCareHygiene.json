@@ -706,7 +706,7 @@
           ]
         },
         {
-          "id": "baby-diapers-accessories",
+          "id": "baby-diapers",
           "name": "Baby Diapers/Accessories",
           "gpcCode": "53181700",
           "parentId": "personal-hygiene-products",
@@ -716,42 +716,42 @@
               "name": "Baby Diapers (Disposable)",
               "gpcCode": "10000494",
               "gpcDescription": "Includes any products that can be described/observed as a disposable paper-based or fabric garment specifically designed to collect and/or absorb bodily waste, and typically intended to be worn in place of underpants by a baby or infant who is not yet toilet trained. Includes disposable paper-based products that are enclosed within a waterproof backing, and disposable fabric products that may be worn with or without outer waterproof pants. ",
-              "parentId": "baby-diapers-accessories"
+              "parentId": "baby-diapers"
             },
             {
               "id": "baby-diapers-non-disposable",
               "name": "Baby Diapers (Non Disposable)",
               "gpcCode": "10000728",
               "gpcDescription": "Includes any products that can be described/observed as a non-disposable paper-based or fabric garment specifically designed to collect and/or absorb bodily waste, and typically intended to be worn in place of underpants by a baby or infant who is not yet toilet trained. Includes non-disposable paper-based products that are enclosed within a waterproof backing, and non-disposable fabric products that may be worn with or without outer waterproof pants. ",
-              "parentId": "baby-diapers-accessories"
+              "parentId": "baby-diapers"
             },
             {
               "id": "baby-diapers-accessories",
               "name": "Baby Diapers Accessories",
               "gpcCode": "10000496",
               "gpcDescription": "Includes any products that can be described/observed as an implement, device or garment specifically designed to secure a baby diaper in place whilst it is being worn, to be worn over diapers so as to provide an additional water-proof layer that assists in keeping the diaper and its contents in place, or as a receptacle to contain clean or soiled diapers. Includes products such as diaper pins, covers and bags.",
-              "parentId": "baby-diapers-accessories"
+              "parentId": "baby-diapers"
             },
             {
               "id": "baby-diapers-accessories-other",
               "name": "Baby Diapers/Accessories Other",
               "gpcCode": "10006821",
               "gpcDescription": "Includes any products that can be described/observed as Baby Diapers/Accessories products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
-              "parentId": "baby-diapers-accessories"
+              "parentId": "baby-diapers"
             },
             {
               "id": "baby-diapers-accessories-variety-packs",
               "name": "Baby Diapers/Accessories Variety Packs",
               "gpcCode": "10006822",
               "gpcDescription": "Includes any products than can be described/observed as two or more distinct Baby Diapers/Accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Baby Diapers/Accessories class. Includes products such as Diapers and Diaper Bags sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-              "parentId": "baby-diapers-accessories"
+              "parentId": "baby-diapers"
             },
             {
               "id": "baby-inserts-pads",
               "name": "Baby Inserts/Pads",
               "gpcCode": "10000495",
               "gpcDescription": "Includes any products that can be described/observed as an disposable layer of paper, tissue or other fibres that is specifically designed to absorb bodily waste, and is typically intended to be inserted inside the baby diaper, underwear or fixation pants in order to enhance the absorptive capacity of the garment and thereby prevent any spillage or seepage of urine or faecal matter.",
-              "parentId": "baby-diapers-accessories"
+              "parentId": "baby-diapers"
             }
           ]
         },
