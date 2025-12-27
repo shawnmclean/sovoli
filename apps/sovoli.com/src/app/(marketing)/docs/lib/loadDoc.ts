@@ -1,10 +1,8 @@
-import { existsSync } from "node:fs";
 import type { ComponentType } from "react";
-import { getDocPaths } from "./getDocPath";
 import type { DocSection, DocMetadata } from "./types";
 
 interface MDXModule {
-  default: ComponentType;
+  default?: ComponentType;
   metadata?: DocMetadata;
 }
 
@@ -13,66 +11,72 @@ export interface LoadedDoc {
   metadata: DocMetadata;
 }
 
-/**
- * Checks if a doc file exists for the given section and slug.
- * Returns the path if found, null otherwise.
- */
-export function getDocFilePath(
-  section: DocSection,
-  slug: string[],
-): string | null {
-  const paths = getDocPaths(section, slug);
-
-  // Try each path until we find one that exists
-  for (const path of paths) {
-    if (existsSync(path)) {
-      return path;
-    }
-  }
-
-  return null;
-}
-
-/**
- * Loads an MDX file and returns both the component and metadata.
- * Tries multiple path patterns to find the file.
- */
 export async function loadMDXDoc(
   section: DocSection,
   slug: string[],
 ): Promise<LoadedDoc | null> {
-  // Build the import path - Next.js needs a pattern it can analyze
-  // Use path alias ~/ which maps to src/
-  const slugPath = slug.length === 0 ? "index" : slug.join("/");
+  console.log("[loadDoc] Loading doc:", { section, slug });
 
-  // Try direct file first, then directory with index
+  // Build the full path as a single string variable (like the test example)
+  // This file is at: src/app/(marketing)/docs/lib/loadDoc.ts
+  // Content is at: src/app/(marketing)/docs/_content/
+  // So relative path is: ../_content/
+  let path: string;
+  if (slug.length === 0) {
+    path = `../_content/${section}/index.mdx`;
+  } else {
+    const slugPath = slug.join("/");
+    path = `../_content/${section}/${slugPath}.mdx`;
+  }
+
+  console.log("[loadDoc] Trying path:", path);
+
+  // Try direct file first
   try {
-    // Try as direct file: ~/app/(marketing)/docs/_content/guides/whatsapp/new-business.mdx
-    const directPath = `~/app/(marketing)/docs/_content/${section}/${slugPath}.mdx`;
-    const mdxModule = (await import(directPath)) as MDXModule;
-    if (mdxModule.metadata) {
-      const result: LoadedDoc = {
+    console.log("[loadDoc] Attempting to import:", path);
+    const mdxModule = (await import(path)) as MDXModule;
+    if (mdxModule.default) {
+      console.log("[loadDoc] Successfully loaded doc from:", path);
+      return {
         content: mdxModule.default,
-        metadata: mdxModule.metadata,
+        metadata: mdxModule.metadata ?? {
+          title: "Documentation",
+          description: "",
+        },
       };
-      return result;
     }
-  } catch {
-    // If direct file doesn't exist, try directory with index
+  } catch (error) {
+    console.log(
+      "[loadDoc] Direct import failed:",
+      error instanceof Error ? error.message : String(error),
+    );
+  }
+
+  // Try directory with index as fallback
+  if (slug.length > 0) {
+    const slugPath = slug.join("/");
+    const indexPath = `../_content/${section}/${slugPath}/index.mdx`;
     try {
-      const indexPath = `~/app/(marketing)/docs/_content/${section}/${slugPath}/index.mdx`;
+      console.log("[loadDoc] Attempting to import index:", indexPath);
       const mdxModule = (await import(indexPath)) as MDXModule;
-      if (mdxModule.metadata) {
-        const result: LoadedDoc = {
+      if (mdxModule.default) {
+        console.log("[loadDoc] Successfully loaded doc from:", indexPath);
+        return {
           content: mdxModule.default,
-          metadata: mdxModule.metadata,
+          metadata: mdxModule.metadata ?? {
+            title: "Documentation",
+            description: "",
+          },
         };
-        return result;
       }
-    } catch {
-      // File doesn't exist - return null
+    } catch (error) {
+      console.log(
+        "[loadDoc] Index import failed:",
+        error instanceof Error ? error.message : String(error),
+      );
     }
   }
 
+  console.log("[loadDoc] No doc found for:", { section, slug });
   return null;
 }
