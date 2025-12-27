@@ -31,35 +31,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const slugPath = slug.join("/");
-  const path = `../_content/${slugPath}.mdx`;
+  const key = slug.join("/");
+  const importMap: Record<string, () => Promise<unknown>> = {
+    guides: () => import("../_content/guides/index.mdx"),
+    "guides/ads": () => import("../_content/guides/ads/index.mdx"),
+    "guides/whatsapp": () => import("../_content/guides/whatsapp/index.mdx"),
+    "guides/whatsapp/new-business": () =>
+      import("../_content/guides/whatsapp/new-business.mdx"),
+    reference: () => import("../_content/reference/index.mdx"),
+    "reference/supported-countries": () =>
+      import("../_content/reference/supported-countries.mdx"),
+  };
+
+  const importFn = importMap[key];
+  if (!importFn) {
+    return { title: "Not Found" };
+  }
 
   try {
-    const { metadata } = (await import(path)) as {
+    const mdxModule = (await importFn()) as {
       metadata?: { title: string; description: string };
     };
-    if (metadata) {
+    if (mdxModule.metadata) {
       return {
-        title: `${metadata.title} | Docs`,
-        description: metadata.description,
+        title: `${mdxModule.metadata.title} | Docs`,
+        description: mdxModule.metadata.description,
       };
     }
-  } catch {
-    try {
-      const { metadata } = (await import(
-        `../_content/${slugPath}/index.mdx`
-      )) as {
-        metadata?: { title: string; description: string };
-      };
-      if (metadata) {
-        return {
-          title: `${metadata.title} | Docs`,
-          description: metadata.description,
-        };
-      }
-    } catch {
-      // Fall through
-    }
+  } catch (error) {
+    console.error(
+      `[generateMetadata] Error loading ${key}:`,
+      error instanceof Error ? error.message : String(error),
+    );
   }
 
   return { title: "Not Found" };
@@ -112,54 +115,47 @@ export default async function DocPage({ params }: Props) {
     );
   }
 
-  // Build path using join - webpack can analyze this with generateStaticParams
-  const slugPath = slug.join("/");
-  const path = `../_content/${slugPath}.mdx`;
+  const key = slug.join("/");
+  const importMap: Record<string, () => Promise<unknown>> = {
+    guides: () => import("../_content/guides/index.mdx"),
+    "guides/ads": () => import("../_content/guides/ads/index.mdx"),
+    "guides/whatsapp": () => import("../_content/guides/whatsapp/index.mdx"),
+    "guides/whatsapp/new-business": () =>
+      import("../_content/guides/whatsapp/new-business.mdx"),
+    reference: () => import("../_content/reference/index.mdx"),
+    "reference/supported-countries": () =>
+      import("../_content/reference/supported-countries.mdx"),
+  };
+
+  const importFn = importMap[key];
+  if (!importFn) {
+    notFound();
+  }
 
   try {
-    const { default: MDXContent, metadata } = (await import(path)) as {
+    const mdxModule = (await importFn()) as {
       default?: React.ComponentType;
       metadata?: { title: string; description: string };
     };
-    if (MDXContent) {
+    if (mdxModule.default) {
       return (
         <>
-          <DocsNavbar title={metadata?.title ?? "Documentation"} />
+          <DocsNavbar title={mdxModule.metadata?.title ?? "Documentation"} />
           <main className="flex-1 overflow-y-auto p-4 md:p-8">
             <div className="max-w-4xl mx-auto">
               <article className="prose prose-slate max-w-none">
-                <MDXContent />
+                <mdxModule.default />
               </article>
             </div>
           </main>
         </>
       );
     }
-  } catch {
-    try {
-      const { default: MDXContent, metadata } = (await import(
-        `../_content/${slugPath}/index.mdx`
-      )) as {
-        default?: React.ComponentType;
-        metadata?: { title: string; description: string };
-      };
-      if (MDXContent) {
-        return (
-          <>
-            <DocsNavbar title={metadata?.title ?? "Documentation"} />
-            <main className="flex-1 overflow-y-auto p-4 md:p-8">
-              <div className="max-w-4xl mx-auto">
-                <article className="prose prose-slate max-w-none">
-                  <MDXContent />
-                </article>
-              </div>
-            </main>
-          </>
-        );
-      }
-    } catch {
-      // Fall through
-    }
+  } catch (error) {
+    console.error(
+      `[DocPage] Error loading ${key}:`,
+      error instanceof Error ? error.message : String(error),
+    );
   }
 
   notFound();
