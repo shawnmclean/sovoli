@@ -1,37 +1,59 @@
 export const metadata = {
   title: "Setting up WhatsApp for a New Business",
   description:
-    "A short guide for setting up WhatsApp Business when starting a new business on Sovoli",
+    "Step-by-step guides for setting up WhatsApp Business by country",
 };
 
-# Setting up WhatsApp for a New Business
+import { Button } from "@sovoli/ui/components/button";
+import Link from "next/link";
 
-A simple overview of the steps needed to start using WhatsApp Business for a new organization.
+# Setting up WhatsApp Business for a New Business
 
-## Table of contents
+This section contains country-specific guides for setting up WhatsApp Business when starting a new business. Each guide provides step-by-step instructions tailored to your location, including local carrier information, country codes, and requirements.
 
-<nav aria-label="Table of contents">
-  <ul>
-    <li>
-      <a href="#getting-the-number">Getting the number</a>
-    </li>
-    <li>
-      <a href="#downloading-the-app">Downloading the app</a>
-    </li>
-    <li>
-      <a href="#sharing-the-account">Sharing the account</a>
-    </li>
-  </ul>
-</nav>
+## Available Guides
 
-## Getting the number
+Choose your country to see the complete setup guide:
 
-Choose a dedicated phone number that your business controls so verification and customer chats stay reliable.
+<div className="grid gap-4 sm:grid-cols-2 mt-8">
+  <Button
+    as={Link}
+    href="/docs/guides/whatsapp/new-business/guyana"
+    variant="bordered"
+    className="h-auto flex-col items-start gap-3 p-6"
+    radius="lg"
+  >
+    <div className="flex items-center gap-3">
+      <span className="text-lg font-semibold">Guyana</span>
+    </div>
+    <p className="text-left text-sm text-default-600">
+      Complete guide for setting up WhatsApp Business in Guyana
+    </p>
+  </Button>
 
-## Downloading the app
+  <Button
+    as={Link}
+    href="/docs/guides/whatsapp/new-business/jamaica"
+    variant="bordered"
+    className="h-auto flex-col items-start gap-3 p-6"
+    radius="lg"
+  >
+    <div className="flex items-center gap-3">
+      <span className="text-lg font-semibold">Jamaica</span>
+    </div>
+    <p className="text-left text-sm text-default-600">
+      Complete guide for setting up WhatsApp Business in Jamaica
+    </p>
+  </Button>
+</div>
 
-Install WhatsApp Business from the official app store on the phone tied to that number and complete the verification flow.
+## What's Covered
 
-## Sharing the account
+Each country guide includes:
 
-Link additional devices from the primary phone so teammates can respond while keeping the main number active.
+- Getting a dedicated business phone number
+- Installing WhatsApp Business on your device
+- Setting up your WhatsApp Business account
+- Linking multiple devices for team access
+- Common problems and solutions
+- Country-specific requirements and codes
