@@ -6,6 +6,11 @@
 @source "./src/components/**/*.{js,ts,jsx,tsx,mdx}";
 @source "./src/modules/**/*.{js,ts,jsx,tsx,mdx}";
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Light mode background */
 body {
   background: #f5f5f4;
