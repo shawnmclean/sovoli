@@ -75,23 +75,7 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [
-      "remark-gfm",
-      [
-        "remark-table-of-contents",
-        {
-          mdx: true,
-          placeholder: "%toc%",
-          containerAttributes: {
-            id: "articleToc",
-          },
-          navAttributes: {
-            "aria-label": "table of contents",
-          },
-          maxDepth: 2,
-        },
-      ],
-    ],
+    remarkPlugins: [],
     rehypePlugins: [],
   },
 });

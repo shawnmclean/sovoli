@@ -22,7 +22,7 @@
     "@icons-pack/react-simple-icons": "12.9.0",
     "@mdx-js/loader": "3.1.0",
     "@mdx-js/react": "3.1.0",
-    "@next/mdx": "15.3.2",
+    "@next/mdx": "16.1.1",
     "@opentelemetry/api": "1.9.0",
     "@opentelemetry/api-logs": "0.205.0",
     "@opentelemetry/auto-instrumentations-node": "0.64.1",
@@ -56,8 +56,7 @@
     "lodash": "4.17.21",
     "lucide-react": "catalog:",
     "magic-bytes.js": "1.10.0",
-    "next": "15.5.7",
-    "next-auth": "5.0.0-beta.25",
+    "next": "16.1.1",
     "next-cloudinary": "6.16.0",
     "next-themes": "0.4.4",
     "pg": "^8.16.3",
@@ -66,14 +65,12 @@
     "posthog-js": "1.257.0",
     "posthog-node": "5.5.1",
     "raf": "3.4.1",
-    "react": "catalog:",
-    "react-dom": "catalog:",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-dropzone": "14.3.5",
     "react-easy-crop": "5.2.0",
     "react-markdown": "9.0.1",
     "react-qr-code": "2.0.16",
-    "remark-gfm": "4.0.0",
-    "remark-table-of-contents": "2.1.0",
     "schema-dts": "1.1.5",
     "server-only": "0.0.1",
     "superjson": "2.2.2",
@@ -88,8 +85,8 @@
     "@types/lodash": "4.17.13",
     "@types/mdx": "2.0.13",
     "@types/node": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "@types/swagger-ui-react": "4.18.3",
     "concurrently": "9.1.0",
     "dotenv-cli": "7.4.4",
@@ -102,5 +99,11 @@
     "trigger.dev": "4.1.2",
     "typescript": "catalog:"
   },
-  "prettier": "@sovoli/prettier-config"
+  "prettier": "@sovoli/prettier-config",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.7",
+      "@types/react-dom": "19.2.3"
+    }
+  }
 }
