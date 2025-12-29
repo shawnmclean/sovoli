@@ -1,6 +1,7 @@
 import "@ncdai/react-wheel-picker/style.css";
 
 import * as WheelPickerPrimitive from "@ncdai/react-wheel-picker";
+import type React from "react";
 import { tv } from "tailwind-variants";
 
 type WheelPickerOption = WheelPickerPrimitive.WheelPickerOption;
@@ -14,16 +15,17 @@ const wheelPickerWrapper = tv({
   ],
 });
 
-function WheelPickerWrapper({
-  className,
-  ...props
-}: React.ComponentProps<typeof WheelPickerPrimitive.WheelPickerWrapper>) {
-  return (
-    <WheelPickerPrimitive.WheelPickerWrapper
-      className={wheelPickerWrapper({ className })}
-      {...props}
-    />
-  );
+interface WheelPickerWrapperProps
+  extends React.ComponentPropsWithoutRef<
+    typeof WheelPickerPrimitive.WheelPickerWrapper
+  > {
+  className?: string;
+}
+
+function WheelPickerWrapper({ className, ...props }: WheelPickerWrapperProps) {
+  const Wrapper =
+    WheelPickerPrimitive.WheelPickerWrapper as unknown as React.ElementType<WheelPickerWrapperProps>;
+  return <Wrapper className={wheelPickerWrapper({ className })} {...props} />;
 }
 
 const wheelPicker = tv({
@@ -34,14 +36,20 @@ const wheelPicker = tv({
   },
 });
 
-function WheelPicker({
-  classNames,
-  ...props
-}: React.ComponentProps<typeof WheelPickerPrimitive.WheelPicker>) {
+interface WheelPickerProps
+  extends React.ComponentPropsWithoutRef<
+    typeof WheelPickerPrimitive.WheelPicker
+  > {
+  classNames?: WheelPickerClassNames;
+}
+
+function WheelPicker({ classNames, ...props }: WheelPickerProps) {
   const { optionItem, highlightWrapper } = wheelPicker();
+  const Picker =
+    WheelPickerPrimitive.WheelPicker as unknown as React.ElementType<WheelPickerProps>;
 
   return (
-    <WheelPickerPrimitive.WheelPicker
+    <Picker
       classNames={{
         optionItem: optionItem(),
         highlightWrapper: highlightWrapper(),

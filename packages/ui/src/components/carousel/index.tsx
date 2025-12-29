@@ -3,7 +3,7 @@
 import type { UseEmblaCarouselType } from "embla-carousel-react";
 import * as React from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { tv } from "tailwind-variants";
 
 import type { ButtonProps } from "../button";
@@ -238,71 +238,67 @@ const CarouselItem = React.forwardRef<
 });
 CarouselItem.displayName = "CarouselItem";
 
-const CarouselPrevious = ({
-  className,
-  variant = "faded",
-  isIconOnly = true,
-  size = "sm",
-  ref,
-  ...props
-}: ButtonProps) => {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+const CarouselPrevious = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { className, variant = "faded", isIconOnly = true, size = "sm", ...props },
+    ref,
+  ) => {
+    const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
-  return (
-    <Button
-      ref={ref}
-      variant={variant}
-      size={size}
-      isIconOnly={isIconOnly}
-      className={arrowButtonStyles({
-        orientation,
-        position: orientation === "horizontal" ? "left" : "top",
-        visibility: canScrollPrev ? "visible" : "hidden",
-        className,
-      })}
-      disabled={!canScrollPrev}
-      onPress={scrollPrev}
-      {...props}
-    >
-      <ArrowLeft className="h-4 w-4" />
-      <span className="sr-only">Previous slide</span>
-    </Button>
-  );
-};
+    return (
+      <Button
+        ref={ref}
+        variant={variant}
+        size={size}
+        isIconOnly={isIconOnly}
+        className={arrowButtonStyles({
+          orientation,
+          position: orientation === "horizontal" ? "left" : "top",
+          visibility: canScrollPrev ? "visible" : "hidden",
+          className,
+        })}
+        disabled={!canScrollPrev}
+        onPress={scrollPrev}
+        {...props}
+      >
+        <ArrowLeftIcon className="h-4 w-4" />
+        <span className="sr-only">Previous slide</span>
+      </Button>
+    );
+  },
+);
 
 CarouselPrevious.displayName = "CarouselPrevious";
 
-const CarouselNext = ({
-  className,
-  variant = "faded",
-  isIconOnly = true,
-  size = "sm",
-  ref,
-  ...props
-}: ButtonProps) => {
-  const { orientation, scrollNext, canScrollNext } = useCarousel();
+const CarouselNext = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { className, variant = "faded", isIconOnly = true, size = "sm", ...props },
+    ref,
+  ) => {
+    const { orientation, scrollNext, canScrollNext } = useCarousel();
 
-  return (
-    <Button
-      ref={ref}
-      variant={variant}
-      isIconOnly={isIconOnly}
-      size={size}
-      className={arrowButtonStyles({
-        orientation,
-        position: orientation === "horizontal" ? "right" : "bottom",
-        visibility: canScrollNext ? "visible" : "hidden",
-        className,
-      })}
-      disabled={!canScrollNext}
-      onPress={scrollNext}
-      {...props}
-    >
-      <ArrowRight className="h-4 w-4" />
-      <span className="sr-only">Next slide</span>
-    </Button>
-  );
-};
+    return (
+      <Button
+        ref={ref}
+        variant={variant}
+        isIconOnly={isIconOnly}
+        size={size}
+        className={arrowButtonStyles({
+          orientation,
+          position: orientation === "horizontal" ? "right" : "bottom",
+          visibility: canScrollNext ? "visible" : "hidden",
+          className,
+        })}
+        disabled={!canScrollNext}
+        onPress={scrollNext}
+        {...props}
+      >
+        <ArrowRightIcon className="h-4 w-4" />
+        <span className="sr-only">Next slide</span>
+      </Button>
+    );
+  },
+);
 
 CarouselNext.displayName = "CarouselNext";
 
