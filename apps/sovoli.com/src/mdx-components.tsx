@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
-import React, { type AnchorHTMLAttributes, type ReactNode } from "react";
+import type { AnchorHTMLAttributes, ReactNode } from "react";
+import React from "react";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
@@ -21,8 +22,11 @@ function getTextFromChildren(children: ReactNode): string {
   if (Array.isArray(children)) {
     return children.map(getTextFromChildren).join("");
   }
-  if (children && typeof children === "object" && "props" in children) {
-    return getTextFromChildren(children.props.children);
+  if (React.isValidElement(children)) {
+    const props = children.props as { children?: ReactNode };
+    if (props.children !== undefined) {
+      return getTextFromChildren(props.children);
+    }
   }
   return "";
 }
