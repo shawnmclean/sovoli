@@ -1,1 +1,0 @@
-export { DownloadOnAppStores } from "./DownloadOnAppStores";
