@@ -175,7 +175,7 @@ export default async function KnowledgePage({ params }: KnowledgePageProps) {
               {otherItems.slice(0, 3).map((item) => (
                 <Link
                   key={item.id}
-                  href={`/users/${username}/${item.slug}`}
+                  href={`/${username}/${item.slug}`}
                   className="block"
                 >
                   <Card className="p-4 hover:shadow-md transition-shadow">

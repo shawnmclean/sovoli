@@ -1,5 +1,4 @@
 import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -44,24 +43,16 @@ export const ProjectHeroSection = ({
       </h1>
       {showDates && (
         <p className="mb-4 text-center text-sm text-default-500">
-          {showCreatedDate && (
-            <>
-              Created {formattedCreatedAt}
-            </>
-          )}
+          {showCreatedDate && <>Created {formattedCreatedAt}</>}
           {showCreatedDate && showUpdatedDate && (
             <span className="mx-2 text-default-300">•</span>
           )}
-          {showUpdatedDate && (
-            <>
-              Updated {formattedUpdatedAt}
-            </>
-          )}
+          {showUpdatedDate && <>Updated {formattedUpdatedAt}</>}
         </p>
       )}
       {description && (
         <article className="prose prose-lg max-w-none text-default-600 prose-p:text-default-600 prose-li:text-default-600 prose-strong:text-default-700 dark:prose-invert">
-          <Markdown remarkPlugins={[remarkGfm]}>{description}</Markdown>
+          <Markdown>{description}</Markdown>
         </article>
       )}
     </section>
