@@ -73,6 +73,7 @@
     "react-markdown": "9.0.1",
     "react-qr-code": "2.0.16",
     "remark-gfm": "4.0.0",
+    "remark-table-of-contents": "2.1.0",
     "schema-dts": "1.1.5",
     "server-only": "0.0.1",
     "superjson": "2.2.2",

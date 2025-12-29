@@ -72,8 +72,28 @@ const nextConfig = {
   // This is required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
 };
+
 const withMDX = createMDX({
-  // Add markdown plugins here, as desired
+  options: {
+    remarkPlugins: [
+      "remark-gfm",
+      [
+        "remark-table-of-contents",
+        {
+          mdx: true,
+          placeholder: "%toc%",
+          containerAttributes: {
+            id: "articleToc",
+          },
+          navAttributes: {
+            "aria-label": "table of contents",
+          },
+          maxDepth: 2,
+        },
+      ],
+    ],
+    rehypePlugins: [],
+  },
 });
 
 // Merge MDX config with Next.js config

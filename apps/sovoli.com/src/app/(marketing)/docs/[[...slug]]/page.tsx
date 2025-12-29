@@ -9,7 +9,10 @@ interface Props {
 
 interface MDXModule {
   default?: React.ComponentType;
-  metadata?: { title: string; description: string };
+  metadata?: {
+    title: string;
+    description: string;
+  };
 }
 
 async function getPage(slug: string[]): Promise<MDXModule | null> {
