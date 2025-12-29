@@ -4,8 +4,6 @@ export const metadata = {
     "Step-by-step guides for setting up WhatsApp Business by country",
 };
 
-import { Button } from "@sovoli/ui/components/button";
-import Link from "next/link";
 
 # Setting up WhatsApp Business for a New Business
 
@@ -16,8 +14,7 @@ This section contains country-specific guides for setting up WhatsApp Business w
 Choose your country to see the complete setup guide:
 
 <div className="grid gap-4 sm:grid-cols-2 mt-8">
-  <Button
-    as={Link}
+  <ButtonLink
     href="/docs/guides/whatsapp/new-business/guyana"
     variant="bordered"
     className="h-auto flex-col items-start gap-3 p-6"
@@ -29,10 +26,9 @@ Choose your country to see the complete setup guide:
     <p className="text-left text-sm text-default-600">
       Complete guide for setting up WhatsApp Business in Guyana
     </p>
-  </Button>
+  </ButtonLink>
 
-  <Button
-    as={Link}
+  <ButtonLink
     href="/docs/guides/whatsapp/new-business/jamaica"
     variant="bordered"
     className="h-auto flex-col items-start gap-3 p-6"
@@ -44,7 +40,7 @@ Choose your country to see the complete setup guide:
     <p className="text-left text-sm text-default-600">
       Complete guide for setting up WhatsApp Business in Jamaica
     </p>
-  </Button>
+  </ButtonLink>
 </div>
 
 ## Table of Contents

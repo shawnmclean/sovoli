@@ -3,17 +3,14 @@ export const metadata = {
   description: "Step-by-step guides to help you get the most out of Sovoli",
 };
 
-import { Button } from "@sovoli/ui/components/button";
 import { MessageSquareIcon, MegaphoneIcon } from "lucide-react";
-import Link from "next/link";
 
 # Guides
 
 Step-by-step guides to help you get the most out of Sovoli
 
 <div className="grid gap-4 sm:grid-cols-2 mt-8">
-  <Button
-    as={Link}
+  <ButtonLink
     href="/docs/guides/whatsapp"
     variant="bordered"
     className="h-auto flex-col items-start gap-3 p-6"
@@ -26,10 +23,9 @@ Step-by-step guides to help you get the most out of Sovoli
     <p className="text-left text-sm text-default-600">
       Learn how to set up and use WhatsApp features
     </p>
-  </Button>
+  </ButtonLink>
 
-  <Button
-    as={Link}
+  <ButtonLink
     href="/docs/guides/ads"
     variant="bordered"
     className="h-auto flex-col items-start gap-3 p-6"
@@ -42,6 +38,6 @@ Step-by-step guides to help you get the most out of Sovoli
     <p className="text-left text-sm text-default-600">
       Create and manage advertising campaigns
     </p>
-  </Button>
+  </ButtonLink>
 </div>
 

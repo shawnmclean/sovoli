@@ -99,11 +99,5 @@
     "trigger.dev": "4.1.2",
     "typescript": "catalog:"
   },
-  "prettier": "@sovoli/prettier-config",
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.2.7",
-      "@types/react-dom": "19.2.3"
-    }
-  }
+  "prettier": "@sovoli/prettier-config"
 }

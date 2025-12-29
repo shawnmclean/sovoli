@@ -5,6 +5,7 @@ import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { GuideLink } from "~/app/(marketing)/docs/components/GuideLink";
+import { ButtonLink } from "~/app/(marketing)/docs/components/ButtonLink";
 import { DeviceTabs } from "~/app/(marketing)/docs/components/DeviceTabs";
 import Link from "next/link";
 import { slugify } from "~/utils/slugify";
@@ -86,6 +87,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // Provide UI components
     Alert,
     Button,
+    ButtonLink,
     Card,
     CardBody,
     CardHeader,
