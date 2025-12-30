@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { config } from "~/utils/config";
 import { DocsNavbar } from "../components/DocsNavbar";
 
 interface Props {
@@ -55,17 +56,53 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug = [] } = await params;
 
   if (slug.length === 0) {
+    const title = "Documentation | Sovoli";
+    const description = "Documentation and guides for using Sovoli";
+    const url = `${config.url}/docs`;
+
     return {
-      title: "Documentation | Sovoli",
-      description: "Documentation and guides for using Sovoli",
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        type: "website",
+        url,
+        siteName: config.siteName,
+        images: config.images,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: config.images.map((img) => img.url),
+      },
     };
   }
 
   const mdxModule = await getPage(slug);
   if (mdxModule?.metadata) {
+    const title = `${mdxModule.metadata.title} | Docs`;
+    const description = mdxModule.metadata.description;
+    const url = `${config.url}/docs/${slug.join("/")}`;
+
     return {
-      title: `${mdxModule.metadata.title} | Docs`,
-      description: mdxModule.metadata.description,
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        type: "article",
+        url,
+        siteName: config.siteName,
+        images: config.images,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: config.images.map((img) => img.url),
+      },
     };
   }
 
