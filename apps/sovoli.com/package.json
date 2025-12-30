@@ -11,7 +11,7 @@
     "dev:trigger": "pnpm with-env trigger dev",
     "deploy:trigger-prod": "trigger deploy",
     "deploy:trigger": "trigger deploy --env staging",
-    "start": "pnpm with-env node server.js",
+    "start": "pnpm with-env node scripts/server.js",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --"

@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-properties, turbo/no-undeclared-env-vars */
+// This is a standalone server script that needs direct process.env access
 import { createServer as createHttpsServer } from "node:https";
 import { createServer as createHttpServer } from "node:http";
 import { readFileSync } from "node:fs";
@@ -10,9 +12,9 @@ const __dirname = dirname(__filename);
 
 // Always use production build for start command
 const dev = false;
-const hostname = process.env.HOSTNAME || "localhost";
-const httpPort = parseInt(process.env.PORT || "3000", 10);
-const httpsPort = parseInt(process.env.HTTPS_PORT || "3443", 10);
+const hostname = process.env.HOSTNAME ?? "localhost";
+const httpPort = parseInt(process.env.PORT ?? "3000", 10);
+const httpsPort = parseInt(process.env.HTTPS_PORT ?? "3443", 10);
 
 const app = next({ dev, hostname });
 const handle = app.getRequestHandler();
@@ -61,30 +63,31 @@ if (!keyPath || !certPath) {
   }
 }
 
-const httpsOptions = keyPath && certPath
-  ? {
-      key: readFileSync(keyPath),
-      cert: readFileSync(certPath),
-    }
-  : null;
+const httpsOptions =
+  keyPath && certPath
+    ? {
+        key: readFileSync(keyPath),
+        cert: readFileSync(certPath),
+      }
+    : null;
 
-app.prepare().then(() => {
+void app.prepare().then(() => {
   // Setup HTTP Server
-  createHttpServer((req, res) => {
-    const parsedUrl = parse(req.url, true);
-    handle(req, res, parsedUrl);
-  }).listen(httpPort, hostname, (err) => {
-    if (err) throw err;
+  const httpServer = createHttpServer((req, res) => {
+    const parsedUrl = parse(req.url ?? "/", true);
+    void handle(req, res, parsedUrl);
+  });
+  httpServer.listen(httpPort, hostname, () => {
     console.log(`> Ready on http://${hostname}:${httpPort}`);
   });
 
   // Setup HTTPS Server (only if certificates are available)
   if (httpsOptions) {
-    createHttpsServer(httpsOptions, (req, res) => {
-      const parsedUrl = parse(req.url, true);
-      handle(req, res, parsedUrl);
-    }).listen(httpsPort, hostname, (err) => {
-      if (err) throw err;
+    const httpsServer = createHttpsServer(httpsOptions, (req, res) => {
+      const parsedUrl = parse(req.url ?? "/", true);
+      void handle(req, res, parsedUrl);
+    });
+    httpsServer.listen(httpsPort, hostname, () => {
       console.log(`> Ready on https://${hostname}:${httpsPort}`);
     });
   } else {
@@ -96,4 +99,3 @@ app.prepare().then(() => {
     );
   }
 });
-

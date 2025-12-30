@@ -20,6 +20,7 @@ export default [
       "src/app/**/{page,default,layout,not-found,global-error,robots,sitemap,icon,opengraph-image,twitter-image}.{tsx,ts}",
       "src/middleware.ts",
       "src/loaders/**/*",
+      "**/*.d.ts",
     ],
     rules: {
       "import/no-default-export": "off",
