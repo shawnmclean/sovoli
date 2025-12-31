@@ -41,6 +41,7 @@ export function generateStaticParams() {
     { slug: [] },
     { slug: ["guides"] },
     { slug: ["guides", "ads"] },
+    { slug: ["guides", "verification"] },
     { slug: ["guides", "whatsapp"] },
     { slug: ["guides", "whatsapp", "new-business"] },
     { slug: ["guides", "whatsapp", "new-business", "guyana"] },

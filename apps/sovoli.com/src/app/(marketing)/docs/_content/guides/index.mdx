@@ -3,7 +3,7 @@ export const metadata = {
   description: "Step-by-step guides to help you get the most out of Sovoli",
 };
 
-import { MessageSquareIcon, MegaphoneIcon } from "lucide-react";
+import { MessageSquareIcon, MegaphoneIcon, ShieldCheckIcon } from "lucide-react";
 
 # Guides
 
@@ -37,6 +37,21 @@ Step-by-step guides to help you get the most out of Sovoli
     </div>
     <p className="text-left text-sm text-default-600">
       Create and manage advertising campaigns
+    </p>
+  </ButtonLink>
+
+  <ButtonLink
+    href="/docs/guides/verification"
+    variant="bordered"
+    className="h-auto flex-col items-start gap-3 p-6"
+    radius="lg"
+  >
+    <div className="flex items-center gap-3">
+      <ShieldCheckIcon size={24} />
+      <span className="text-lg font-semibold">Business Verification</span>
+    </div>
+    <p className="text-left text-sm text-default-600">
+      Verify your business to increase trust and enable Meta ads
     </p>
   </ButtonLink>
 </div>
