@@ -79,7 +79,14 @@ function CourseCurriculumSection({ program }: CurriculumSectionProps) {
 
 // Component for whatYouWillLearn-based curriculum
 function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
-  if (!program.whatYouWillLearn || program.whatYouWillLearn.length === 0) {
+  // Use competencies if available, otherwise fall back to legacy whatYouWillLearn
+  const competencyGroups = program.competencies;
+  const legacyGroups = program.whatYouWillLearn;
+
+  if (
+    (!competencyGroups || competencyGroups.length === 0) &&
+    (!legacyGroups || legacyGroups.length === 0)
+  ) {
     return null;
   }
 
@@ -96,7 +103,8 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
         <div className="space-y-4">
           <div>
             <ul className="space-y-4">
-              {program.whatYouWillLearn.map((group) => (
+              {/* Render competencies (new format) */}
+              {competencyGroups?.map((group) => (
                 <li key={group.heading} className="space-y-2">
                   <div className="flex items-center gap-2">
                     <CheckIcon className="h-4 w-4 text-primary shrink-0" />
@@ -105,14 +113,39 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
                     </span>
                   </div>
                   <ul className="ml-6 space-y-1">
-                    {group.items.map((item) => (
-                      <li key={item.id} className="text-sm text-foreground-600">
-                        • {item.title}
+                    {group.competencies.map((competency) => (
+                      <li
+                        key={competency.id}
+                        className="text-sm text-foreground-600"
+                      >
+                        • {competency.title}
                       </li>
                     ))}
                   </ul>
                 </li>
               ))}
+              {/* Fallback to legacy whatYouWillLearn */}
+              {!competencyGroups?.length &&
+                legacyGroups?.map((group) => (
+                  <li key={group.heading} className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <CheckIcon className="h-4 w-4 text-primary shrink-0" />
+                      <span className="font-bold text-foreground">
+                        {group.heading}
+                      </span>
+                    </div>
+                    <ul className="ml-6 space-y-1">
+                      {group.items.map((item) => (
+                        <li
+                          key={item.id}
+                          className="text-sm text-foreground-600"
+                        >
+                          • {item.title}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
             </ul>
           </div>
           <div className="flex justify-center">
@@ -135,8 +168,11 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
 
 // Main component that decides which curriculum section to render
 export function CurriculumSection({ program }: CurriculumSectionProps) {
-  // Check if program has whatYouWillLearn data
-  if (program.whatYouWillLearn && program.whatYouWillLearn.length > 0) {
+  // Check if program has competencies or whatYouWillLearn data
+  if (
+    (program.competencies && program.competencies.length > 0) ||
+    (program.whatYouWillLearn && program.whatYouWillLearn.length > 0)
+  ) {
     return <WhatWillYouLearnSection program={program} />;
   }
 

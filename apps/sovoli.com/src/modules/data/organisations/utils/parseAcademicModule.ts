@@ -16,6 +16,8 @@ import type {
   RequirementList,
   RequirementListEntry,
   ProgramGroup,
+  Competency,
+  CompetencyGroup,
 } from "~/modules/academics/types";
 import type { Item } from "~/modules/core/items/types";
 import type { MediaMap } from "./parseMediaModule";
@@ -68,6 +70,20 @@ const programWYLGroupJsonSchema = z.object({
   items: z.array(programWYLItemJsonSchema),
 });
 
+// Competency schemas (new format)
+const competencyJsonSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string(),
+  tag: z.string().optional(),
+  unitIds: z.array(z.string()).optional(),
+});
+
+const competencyGroupJsonSchema = z.object({
+  heading: z.string(),
+  competencies: z.array(competencyJsonSchema),
+});
+
 const programTestimonialJsonSchema = z.object({
   author: z.string(),
   content: z.string(),
@@ -84,8 +100,10 @@ const subjectJsonSchema = z.object({
 });
 
 const courseUnitJsonSchema = z.object({
+  id: z.string().optional(),
   title: z.string(),
   topics: z.array(z.string()),
+  competencyIds: z.array(z.string()).optional(),
 });
 
 const courseJsonSchema = z.object({
@@ -184,7 +202,8 @@ const programJsonSchema = z.object({
   isPopular: z.boolean().optional(),
   testimonials: z.array(programTestimonialJsonSchema).optional(),
   cycleIds: z.array(z.string()).optional(), // References to program cycles
-  whatYouWillLearn: z.array(programWYLGroupJsonSchema).optional(),
+  whatYouWillLearn: z.array(programWYLGroupJsonSchema).optional(), // deprecated
+  competencies: z.array(competencyGroupJsonSchema).optional(),
 });
 
 // Academic module schema
@@ -236,10 +255,10 @@ export function parseAcademicModule(
       );
       const gallery = programJson.media.galleryIds
         ? getMediaByIds(
-            mediaMap,
-            programJson.media.galleryIds,
-            `program "${programJson.slug}"`,
-          )
+          mediaMap,
+          programJson.media.galleryIds,
+          `program "${programJson.slug}"`,
+        )
         : undefined;
 
       if (cover || gallery) {
@@ -251,10 +270,10 @@ export function parseAcademicModule(
     const cycles =
       programJson.cycleIds && cyclesModule
         ? getProgramCyclesByIds(
-            cyclesModule,
-            programJson.cycleIds,
-            `program "${programJson.slug}"`,
-          )
+          cyclesModule,
+          programJson.cycleIds,
+          `program "${programJson.slug}"`,
+        )
         : undefined;
 
     // Resolve requirement item references
@@ -336,6 +355,9 @@ export function parseAcademicModule(
       cycles,
       whatYouWillLearn: programJson.whatYouWillLearn as
         | ProgramWYLGroup[]
+        | undefined,
+      competencies: programJson.competencies as
+        | CompetencyGroup[]
         | undefined,
     };
 

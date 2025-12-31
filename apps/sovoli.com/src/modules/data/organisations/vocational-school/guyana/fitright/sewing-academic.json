@@ -5,7 +5,10 @@
       "slug": "sewing-class",
       "name": "Sewing Class",
       "audience": "student",
-      "quickFacts": ["Certificate Included", "Expert Instructor"],
+      "quickFacts": [
+        "Certificate Included",
+        "Expert Instructor"
+      ],
       "highlights": [
         {
           "icon": "hammer",
@@ -24,75 +27,75 @@
         }
       ],
       "description": "Fitright classes will teach you a variety of techniques to create clothing for yourself and family members, or to sew for profit. This comprehensive program covers everything from basic measurements to pattern making, fabric handling, and garment construction.",
-      "whatYouWillLearn": [
+      "competencies": [
         {
           "heading": "Measurements & Drafting",
-          "items": [
+          "competencies": [
             {
               "id": "take-measurements",
               "title": "How to take measurements",
-              "blurb": "Learn the proper techniques for taking accurate body measurements for garment fitting.",
+              "description": "Learn the proper techniques for taking accurate body measurements for garment fitting.",
               "tag": "Foundations"
             },
             {
               "id": "draft-bodice",
               "title": "How to draft a Bodice (Front and Back)",
-              "blurb": "Master the art of drafting bodice patterns for proper fit and style."
+              "description": "Master the art of drafting bodice patterns for proper fit and style."
             },
             {
               "id": "draft-skirt",
               "title": "How to draft a skirt",
-              "blurb": "Create skirt patterns from measurements with proper fit and design."
+              "description": "Create skirt patterns from measurements with proper fit and design."
             }
           ]
         },
         {
           "heading": "Pattern Making & Grading",
-          "items": [
+          "competencies": [
             {
               "id": "pattern-making",
               "title": "Pattern Making",
-              "blurb": "Learn to create patterns from scratch and adapt existing patterns to your needs."
+              "description": "Learn to create patterns from scratch and adapt existing patterns to your needs."
             },
             {
               "id": "pattern-grading",
               "title": "Pattern Grading",
-              "blurb": "Understand how to adjust patterns for different sizes and proportions."
+              "description": "Understand how to adjust patterns for different sizes and proportions."
             }
           ]
         },
         {
           "heading": "Fabric & Cutting",
-          "items": [
+          "competencies": [
             {
               "id": "laying-cutting",
               "title": "Laying and cutting of fabric",
-              "blurb": "Master proper fabric layout and cutting techniques for efficient use of material."
+              "description": "Master proper fabric layout and cutting techniques for efficient use of material."
             },
             {
               "id": "fabric-grain",
               "title": "Understanding fabric grain",
-              "blurb": "Learn to identify and work with fabric grain for proper garment drape and fit."
+              "description": "Learn to identify and work with fabric grain for proper garment drape and fit."
             },
             {
               "id": "fabric-types",
               "title": "Types of fabric and how to handle them during the sewing process",
-              "blurb": "Understand different fabric types and their specific handling requirements."
+              "description": "Understand different fabric types and their specific handling requirements."
             }
           ]
         },
         {
           "heading": "Construction & Finishing",
-          "items": [
+          "competencies": [
             {
               "id": "seams-pockets-finishing",
               "title": "Types of seams, pockets, and finishing techniques",
-              "blurb": "Master various seam types, pocket construction, and professional finishing methods."
+              "description": "Master various seam types, pocket construction, and professional finishing methods."
             },
             {
               "id": "sewing-equipment",
               "title": "Use of sewing equipment and more",
-              "blurb": "Learn to properly use and maintain sewing machines and other essential equipment.",
+              "description": "Learn to properly use and maintain sewing machines and other essential equipment.",
               "tag": "Capstone"
             }
           ]
@@ -136,7 +139,9 @@
         ]
       },
       "groupId": "sewing",
-      "cycleIds": ["fr-sewing-2026-01-05"]
+      "cycleIds": [
+        "fr-sewing-2026-01-05"
+      ]
     }
   ]
 }

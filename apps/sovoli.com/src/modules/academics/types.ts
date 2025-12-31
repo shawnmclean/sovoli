@@ -249,9 +249,37 @@ export interface Program {
   testimonials?: ProgramTestimonial[];
   cycles?: ProgramCycle[];
 
+  /** @deprecated Use competencies instead */
   whatYouWillLearn?: ProgramWYLGroup[];
+  competencies?: CompetencyGroup[];
 }
 
+// #region Competencies
+
+/**
+ * Competency represents a skill/outcome students will achieve
+ */
+export interface Competency {
+  id: string; // stable slug-like ID within the program
+  title: string; // short, parent-facing title
+  description: string; // one-line promise/outcome
+  tag?: string; // optional pill, e.g., "Hands-on", "Foundations"
+  unitIds?: string[]; // bidirectional: course units that teach this competency
+}
+
+/**
+ * Group competencies by category (e.g., "Mathematics", "Sewing")
+ */
+export interface CompetencyGroup {
+  heading: string; // e.g., "Mathematics", "English", "Sewing"
+  competencies: Competency[];
+}
+
+// #endregion
+
+// #region Legacy WYL types (deprecated)
+
+/** @deprecated Use Competency instead */
 export interface ProgramWYLItem {
   id: string; // stable within the program page (slug-like)
   title: string; // short, parent-facing
@@ -259,10 +287,13 @@ export interface ProgramWYLItem {
   tag?: string; // optional pill, e.g., "Hands-on", "Foundations"
 }
 
+/** @deprecated Use CompetencyGroup instead */
 export interface ProgramWYLGroup {
   heading: string; // e.g., "Mathematics", "English", "Sewing"
   items: ProgramWYLItem[];
 }
+
+// #endregion
 
 export interface ProgramTestimonial {
   author: string;
@@ -293,8 +324,10 @@ export interface Activity {
 }
 
 export interface CourseUnit {
+  id?: string; // optional ID for referencing from competencies
   title: string;
   topics: string[];
+  competencyIds?: string[]; // bidirectional: competencies this unit addresses
 }
 
 export interface AcademicModule {
