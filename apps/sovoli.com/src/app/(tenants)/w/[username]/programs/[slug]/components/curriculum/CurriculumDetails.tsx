@@ -2,8 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Button } from "@sovoli/ui/components/button";
-import { BookOpenIcon, ChevronRightIcon, ArrowLeftIcon } from "lucide-react";
+import { BookOpenIcon, ChevronRightIcon } from "lucide-react";
 import type {
   Program,
   Competency,
