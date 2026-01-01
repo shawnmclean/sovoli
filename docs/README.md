@@ -42,6 +42,7 @@ This section covers:
 1. **For data layer questions**: Refer to `docs/data/` for CRM, analytics, and data structure
 2. **For product context**: See `docs/product/` for user personas and product strategy
 3. **For development setup**: See root `AGENTS.md` for technical setup and workflows
+4. **For Strategy & Tasks**: See `docs/STRATEGY.md` and `docs/TASKS.md`
 
 ## Contributing to Documentation
 
