@@ -137,6 +137,7 @@ export type OrgCategoryKeys =
   | "primary-school"
   | "special-education-school"
   | "vocational-school"
+  | "beauty-school"
   | "stationery"
   | "hardware"
   | "diary-farm";
