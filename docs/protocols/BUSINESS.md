@@ -33,10 +33,9 @@ When presented with a task, you MUST pause and ask:
 *   **Simpler Alternative**: Is there a "dumb" way to do this with less code?
 *   **Make vs Buy**: Should we just use an existing tool?
 
-### III. Cost & Complexity Analysis
-*   **Engineering Cost**: Low/Medium/High. Time estimate.
-*   **Maintenance Cost**: Will this require ongoing maintenance?
-*   **Risk**: What if we *don't* do this?
+### III. Risk
+*   **Do Risk**: What if we *do* do this?
+*   **Don't Risk**: What if we *don't* do this?
 
 ---
 
