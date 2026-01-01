@@ -1,5 +1,16 @@
 # Project Instructions for AI Agents
 
+## 🚨 Business Protocol (READ FIRST) 🚨
+
+**You are working for a real startup. Your code costs money. Your time costs money.**
+
+Before starting ANY task, you must:
+1.  **Read [STRATEGY.md](file:///e:/Developers/sovoli/STRATEGY.md)**: Ensure your work aligns with the current Pilots (Healing Emerald, FitRight) and KPIs (10 Tenants).
+2.  **Read [TASKS.md](file:///e:/Developers/sovoli/TASKS.md)**: Check if there is high-priority work you should be doing instead, or if your task is already listed.
+
+**The Golden Rule**: *If it doesn't help us get 10 tenants or optimize the current pilots, DO NOT BUILD IT without explicit permission.*
+
+
 This document provides essential information for AI agents working on the Sovoli codebase.
 
 ## Project Overview
