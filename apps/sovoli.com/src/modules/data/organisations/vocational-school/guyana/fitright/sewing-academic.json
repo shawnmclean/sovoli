@@ -27,76 +27,54 @@
         }
       ],
       "description": "Fitright classes will teach you a variety of techniques to create clothing for yourself and family members, or to sew for profit. This comprehensive program covers everything from basic measurements to pattern making, fabric handling, and garment construction.",
-      "competencies": [
+      "capabilities": [
         {
-          "heading": "Measurements & Drafting",
+          "wyl": "Measurements & Drafting",
           "competencies": [
             {
-              "id": "take-measurements",
-              "title": "How to take measurements",
-              "description": "Learn the proper techniques for taking accurate body measurements for garment fitting.",
-              "tag": "Foundations"
+              "statement": "How to take measurements"
             },
             {
-              "id": "draft-bodice",
-              "title": "How to draft a Bodice (Front and Back)",
-              "description": "Master the art of drafting bodice patterns for proper fit and style."
+              "statement": "How to draft a Bodice (Front and Back)"
             },
             {
-              "id": "draft-skirt",
-              "title": "How to draft a skirt",
-              "description": "Create skirt patterns from measurements with proper fit and design."
+              "statement": "How to draft a skirt"
             }
           ]
         },
         {
-          "heading": "Pattern Making & Grading",
+          "wyl": "Pattern Making & Grading",
           "competencies": [
             {
-              "id": "pattern-making",
-              "title": "Pattern Making",
-              "description": "Learn to create patterns from scratch and adapt existing patterns to your needs."
+              "statement": "Pattern Making"
             },
             {
-              "id": "pattern-grading",
-              "title": "Pattern Grading",
-              "description": "Understand how to adjust patterns for different sizes and proportions."
+              "statement": "Pattern Grading"
             }
           ]
         },
         {
-          "heading": "Fabric & Cutting",
+          "wyl": "Fabric & Cutting",
           "competencies": [
             {
-              "id": "laying-cutting",
-              "title": "Laying and cutting of fabric",
-              "description": "Master proper fabric layout and cutting techniques for efficient use of material."
+              "statement": "Laying and cutting of fabric"
             },
             {
-              "id": "fabric-grain",
-              "title": "Understanding fabric grain",
-              "description": "Learn to identify and work with fabric grain for proper garment drape and fit."
+              "statement": "Understanding fabric grain"
             },
             {
-              "id": "fabric-types",
-              "title": "Types of fabric and how to handle them during the sewing process",
-              "description": "Understand different fabric types and their specific handling requirements."
+              "statement": "Types of fabric and how to handle them during the sewing process"
             }
           ]
         },
         {
-          "heading": "Construction & Finishing",
+          "wyl": "Construction & Finishing",
           "competencies": [
             {
-              "id": "seams-pockets-finishing",
-              "title": "Types of seams, pockets, and finishing techniques",
-              "description": "Master various seam types, pocket construction, and professional finishing methods."
+              "statement": "Types of seams, pockets, and finishing techniques"
             },
             {
-              "id": "sewing-equipment",
-              "title": "Use of sewing equipment and more",
-              "description": "Learn to properly use and maintain sewing machines and other essential equipment.",
-              "tag": "Capstone"
+              "statement": "Use of sewing equipment and more"
             }
           ]
         }

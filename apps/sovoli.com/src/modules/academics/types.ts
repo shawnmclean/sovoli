@@ -249,30 +249,21 @@ export interface Program {
   testimonials?: ProgramTestimonial[];
   cycles?: ProgramCycle[];
 
-  /** @deprecated Use competencies instead */
+  /** @deprecated Use capabilities instead */
   whatYouWillLearn?: ProgramWYLGroup[];
-  competencies?: CompetencyGroup[];
+  capabilities?: Capability[];
 }
 
-// #region Competencies
+// #region Capabilities
 
-/**
- * Competency represents a skill/outcome students will achieve
- */
-export interface Competency {
-  id: string; // stable slug-like ID within the program
-  title: string; // short, parent-facing title
-  description: string; // one-line promise/outcome
-  tag?: string; // optional pill, e.g., "Hands-on", "Foundations"
-  unitIds?: string[]; // bidirectional: course units that teach this competency
-}
-
-/**
- * Group competencies by category (e.g., "Mathematics", "Sewing")
- */
-export interface CompetencyGroup {
-  heading: string; // e.g., "Mathematics", "English", "Sewing"
+export interface Capability {
+  wyl: string;
+  description?: string;
   competencies: Competency[];
+}
+
+export interface Competency {
+  statement: string;
 }
 
 // #endregion

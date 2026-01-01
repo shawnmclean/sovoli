@@ -17,7 +17,7 @@ import type {
   RequirementListEntry,
   ProgramGroup,
   Competency,
-  CompetencyGroup,
+  Capability,
 } from "~/modules/academics/types";
 import type { Item } from "~/modules/core/items/types";
 import type { MediaMap } from "./parseMediaModule";
@@ -70,17 +70,14 @@ const programWYLGroupJsonSchema = z.object({
   items: z.array(programWYLItemJsonSchema),
 });
 
-// Competency schemas (new format)
+// Capability schemas
 const competencyJsonSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  description: z.string(),
-  tag: z.string().optional(),
-  unitIds: z.array(z.string()).optional(),
+  statement: z.string(),
 });
 
-const competencyGroupJsonSchema = z.object({
-  heading: z.string(),
+const capabilityJsonSchema = z.object({
+  wyl: z.string(),
+  description: z.string().optional(),
   competencies: z.array(competencyJsonSchema),
 });
 
@@ -203,7 +200,7 @@ const programJsonSchema = z.object({
   testimonials: z.array(programTestimonialJsonSchema).optional(),
   cycleIds: z.array(z.string()).optional(), // References to program cycles
   whatYouWillLearn: z.array(programWYLGroupJsonSchema).optional(), // deprecated
-  competencies: z.array(competencyGroupJsonSchema).optional(),
+  capabilities: z.array(capabilityJsonSchema).optional(),
 });
 
 // Academic module schema
@@ -356,8 +353,8 @@ export function parseAcademicModule(
       whatYouWillLearn: programJson.whatYouWillLearn as
         | ProgramWYLGroup[]
         | undefined,
-      competencies: programJson.competencies as
-        | CompetencyGroup[]
+      capabilities: programJson.capabilities as
+        | Capability[]
         | undefined,
     };
 

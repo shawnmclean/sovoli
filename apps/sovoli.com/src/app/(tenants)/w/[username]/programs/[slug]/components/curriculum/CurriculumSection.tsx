@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Button } from "@sovoli/ui/components/button";
 import { BookOpenIcon, CheckIcon } from "lucide-react";
+import Markdown from "react-markdown";
 import type { Program } from "~/modules/academics/types";
 import Link from "next/link";
 
@@ -79,12 +80,12 @@ function CourseCurriculumSection({ program }: CurriculumSectionProps) {
 
 // Component for whatYouWillLearn-based curriculum
 function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
-  // Use competencies if available, otherwise fall back to legacy whatYouWillLearn
-  const competencyGroups = program.competencies;
+  // Use capabilities if available, otherwise fall back to legacy whatYouWillLearn
+  const capabilities = program.capabilities;
   const legacyGroups = program.whatYouWillLearn;
 
   if (
-    (!competencyGroups || competencyGroups.length === 0) &&
+    (!capabilities || capabilities.length === 0) &&
     (!legacyGroups || legacyGroups.length === 0)
   ) {
     return null;
@@ -103,29 +104,26 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
         <div className="space-y-4">
           <div>
             <ul className="space-y-4">
-              {/* Render competencies (new format) */}
-              {competencyGroups?.map((group) => (
-                <li key={group.heading} className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-primary shrink-0" />
-                    <span className="font-bold text-foreground">
-                      {group.heading}
-                    </span>
-                  </div>
-                  <ul className="ml-6 space-y-1">
-                    {group.competencies.map((competency) => (
-                      <li
-                        key={competency.id}
-                        className="text-sm text-foreground-600"
+              {/* Render capabilities (new format) */}
+              {capabilities?.map((capability) => (
+                <li key={capability.wyl} className="space-y-2">
+                  <div className="flex items-start gap-2">
+                    <CheckIcon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <div className="text-foreground prose prose-sm dark:prose-invert max-w-none">
+                      <Markdown
+                        components={{
+                          p: ({ children }) => <span className="m-0">{children}</span>,
+                          strong: ({ children }) => <strong className="font-bold text-foreground">{children}</strong>
+                        }}
                       >
-                        • {competency.title}
-                      </li>
-                    ))}
-                  </ul>
+                        {capability.wyl}
+                      </Markdown>
+                    </div>
+                  </div>
                 </li>
               ))}
               {/* Fallback to legacy whatYouWillLearn */}
-              {!competencyGroups?.length &&
+              {!capabilities?.length &&
                 legacyGroups?.map((group) => (
                   <li key={group.heading} className="space-y-2">
                     <div className="flex items-center gap-2">
@@ -168,9 +166,9 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
 
 // Main component that decides which curriculum section to render
 export function CurriculumSection({ program }: CurriculumSectionProps) {
-  // Check if program has competencies or whatYouWillLearn data
+  // Check if program has capabilities or whatYouWillLearn data
   if (
-    (program.competencies && program.competencies.length > 0) ||
+    (program.capabilities && program.capabilities.length > 0) ||
     (program.whatYouWillLearn && program.whatYouWillLearn.length > 0)
   ) {
     return <WhatWillYouLearnSection program={program} />;
