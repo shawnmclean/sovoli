@@ -38,7 +38,6 @@ export function ProgramDescriptionSection({
         {shouldShowReadMore && (
           <Button
             variant="light"
-            color="primary"
             size="sm"
             onPress={() => setIsExpanded(!isExpanded)}
             endContent={
