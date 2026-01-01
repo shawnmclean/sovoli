@@ -76,7 +76,7 @@ const competencyJsonSchema = z.object({
 });
 
 const capabilityJsonSchema = z.object({
-  wyl: z.string(),
+  outcome: z.string(),
   description: z.string().optional(),
   competencies: z.array(competencyJsonSchema),
 });

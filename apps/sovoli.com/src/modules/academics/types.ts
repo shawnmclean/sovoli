@@ -257,7 +257,7 @@ export interface Program {
 // #region Capabilities
 
 export interface Capability {
-  wyl: string;
+  outcome: string;
   description?: string;
   competencies: Competency[];
 }

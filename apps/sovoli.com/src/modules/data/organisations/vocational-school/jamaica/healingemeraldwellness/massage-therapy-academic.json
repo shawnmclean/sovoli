@@ -37,7 +37,7 @@
       "description": "Our comprehensive Massage Therapy program teaches students the fundamental and advanced techniques of therapeutic massage. Students will learn Swedish massage, deep tissue massage, and other modalities in a professional spa environment. This program prepares graduates for careers in spas, wellness centres, hotels, and private practice.",
       "capabilities": [
         {
-          "wyl": "Operate **professionally** in a real Massage Therapy environment",
+          "outcome": "Operate **professionally** in a real Massage Therapy environment",
           "competencies": [
             {
               "statement": "Meet and greet clients professionally"
@@ -63,7 +63,7 @@
           ]
         },
         {
-          "wyl": "Apply **Anatomy and Physiology** knowledge to massage therapy",
+          "outcome": "Apply **Anatomy and Physiology** knowledge to massage therapy",
           "competencies": [
             {
               "statement": "Understand the muscular and skeletal system"
@@ -77,7 +77,7 @@
           ]
         },
         {
-          "wyl": "Perform full-body **Swedish Massage** safely and effectively",
+          "outcome": "Perform full-body **Swedish Massage** safely and effectively",
           "competencies": [
             {
               "statement": "Perform effleurage, petrissage, friction, tapotement, and vibration"
@@ -94,7 +94,7 @@
           ]
         },
         {
-          "wyl": "Deliver **Deep Tissue Massage** with appropriate pressure and control",
+          "outcome": "Deliver **Deep Tissue Massage** with appropriate pressure and control",
           "competencies": [
             {
               "statement": "Understand principles and benefits of deep tissue massage"
@@ -108,7 +108,7 @@
           ]
         },
         {
-          "wyl": "Perform **Aromatherapy Massage** using essential oils safely",
+          "outcome": "Perform **Aromatherapy Massage** using essential oils safely",
           "competencies": [
             {
               "statement": "Understand the fundamentals of aromatherapy"
@@ -122,7 +122,7 @@
           ]
         },
         {
-          "wyl": "Perform full-body **Hot Stone Massage** treatments",
+          "outcome": "Perform full-body **Hot Stone Massage** treatments",
           "competencies": [
             {
               "statement": "Use heated stones safely during massage"
@@ -139,7 +139,7 @@
           ]
         },
         {
-          "wyl": "Close sessions professionally and support **Post-Treatment Care**",
+          "outcome": "Close sessions professionally and support **Post-Treatment Care**",
           "competencies": [
             {
               "statement": "Close massage sessions professionally"

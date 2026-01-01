@@ -29,52 +29,59 @@
       "description": "Fitright classes will teach you a variety of techniques to create clothing for yourself and family members, or to sew for profit. This comprehensive program covers everything from basic measurements to pattern making, fabric handling, and garment construction.",
       "capabilities": [
         {
-          "wyl": "Measurements & Drafting",
+          "outcome": "Garment Construction",
           "competencies": [
             {
-              "statement": "How to take measurements"
+              "statement": "Taking measurements"
             },
             {
-              "statement": "How to draft a Bodice (Front and Back)"
+              "statement": "Drafting patterns"
             },
             {
-              "statement": "How to draft a skirt"
+              "statement": "Cutting fabric"
+            },
+            {
+              "statement": "Sewing seams"
+            },
+            {
+              "statement": "Finishing raw edges"
+            },
+            {
+              "statement": "Attaching fasteners"
             }
           ]
         },
         {
-          "wyl": "Pattern Making & Grading",
+          "outcome": "Textiles",
           "competencies": [
             {
-              "statement": "Pattern Making"
+              "statement": "Identifying fabrics"
             },
             {
-              "statement": "Pattern Grading"
+              "statement": "Understanding fabric properties"
+            },
+            {
+              "statement": "Selecting appropriate fabrics"
+            },
+            {
+              "statement": "Caring for fabrics"
             }
           ]
         },
         {
-          "wyl": "Fabric & Cutting",
+          "outcome": "Design",
           "competencies": [
             {
-              "statement": "Laying and cutting of fabric"
+              "statement": "Sketching designs"
             },
             {
-              "statement": "Understanding fabric grain"
+              "statement": "Choosing colors"
             },
             {
-              "statement": "Types of fabric and how to handle them during the sewing process"
-            }
-          ]
-        },
-        {
-          "wyl": "Construction & Finishing",
-          "competencies": [
-            {
-              "statement": "Types of seams, pockets, and finishing techniques"
+              "statement": "Selecting trims"
             },
             {
-              "statement": "Use of sewing equipment and more"
+              "statement": "Creating mood boards"
             }
           ]
         }

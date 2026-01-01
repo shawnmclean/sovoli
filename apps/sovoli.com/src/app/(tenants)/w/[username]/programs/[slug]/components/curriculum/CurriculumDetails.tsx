@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
 import { BookOpenIcon, ChevronRightIcon, CheckIcon } from "lucide-react";
+import Markdown from "react-markdown";
 import type {
   Program,
   Capability,
@@ -79,8 +80,15 @@ export function CurriculumDetails({ program }: CurriculumDetailsProps) {
               {program.capabilities.map((capability, index) => (
                 <div key={index} className="space-y-3">
                   <div className="border-b border-default-200 pb-2">
-                    <h3 className="text-lg font-semibold text-foreground">
-                      {capability.wyl}
+                    <h3 className="text-lg font-semibold text-foreground prose prose-sm dark:prose-invert max-w-none">
+                      <Markdown
+                        components={{
+                          p: ({ children }) => <span className="m-0">{children}</span>,
+                          strong: ({ children }) => <strong className="font-bold text-foreground">{children}</strong>
+                        }}
+                      >
+                        {capability.outcome}
+                      </Markdown>
                     </h3>
                     {capability.description && (
                       <p className="text-sm text-foreground-600 mt-1">

@@ -106,7 +106,7 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
             <ul className="space-y-4">
               {/* Render capabilities (new format) */}
               {capabilities?.map((capability) => (
-                <li key={capability.wyl} className="space-y-2">
+                <li key={capability.outcome} className="space-y-2">
                   <div className="flex items-start gap-2">
                     <CheckIcon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                     <div className="text-foreground prose prose-sm dark:prose-invert max-w-none">
@@ -116,7 +116,7 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
                           strong: ({ children }) => <strong className="font-bold text-foreground">{children}</strong>
                         }}
                       >
-                        {capability.wyl}
+                        {capability.outcome}
                       </Markdown>
                     </div>
                   </div>
