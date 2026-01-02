@@ -61,14 +61,16 @@ export function OrgSection({ orgInstance, programSlug }: OrgSectionProps) {
       {/* Organization Info */}
       <div className="flex flex-col gap-1 min-w-0 flex-1">
         {/* First Row: Name and Verified Badge */}
-        <div className="flex items-center gap-2">
-          <h2 className="font-bold text-lg text-foreground flex items-center gap-2">
-            {org.name}
-            {org.isVerified && (
-              <BadgeCheckIcon className="text-success" size={16} />
-            )}
-          </h2>
-        </div>
+        <h2 className="font-bold text-lg text-foreground leading-tight">
+          {org.name}
+          {org.isVerified && (
+            <BadgeCheckIcon
+              className="text-success inline-block ml-2 align-middle"
+              size={20}
+              style={{ verticalAlign: "middle" }}
+            />
+          )}
+        </h2>
 
         {/* Second Row: Category and Establishment Year */}
         <div className="flex items-center gap-2 text-sm text-foreground-500">
