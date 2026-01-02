@@ -1,5 +1,6 @@
 import { z } from "zod";
 import type { Org, OrgLocation, OrgVerification, OrgTechStack } from "~/modules/organisations/types";
+import { OrgLocationFeature } from "~/modules/organisations/types";
 import type { Contact, SocialLink } from "~/modules/core/types";
 import type { Media } from "~/modules/core/media/types";
 import type { MediaMap } from "./parseMediaModule";
@@ -264,13 +265,37 @@ export function parseOrgModule(
     ? getMediaByIdOptional(mediaMap, validated.logoPhotoId, "org")
     : undefined;
 
+  // Convert string features to OrgLocationFeature enum values
+  const locations: OrgLocation[] = validated.locations.map((location) => {
+    const features = location.features
+      ? location.features
+          .map((featureStr) => {
+            // Validate that the string is a valid enum value
+            if (Object.values(OrgLocationFeature).includes(featureStr as OrgLocationFeature)) {
+              return featureStr as OrgLocationFeature;
+            }
+            // Log warning for invalid feature strings but don't throw
+            console.warn(
+              `Invalid location feature: "${featureStr}" for location "${location.key}". Skipping.`,
+            );
+            return null;
+          })
+          .filter((feature): feature is OrgLocationFeature => feature !== null)
+      : undefined;
+
+    return {
+      ...location,
+      features,
+    } as OrgLocation;
+  });
+
   // Convert JSON data to Org type, handling type conversions
   const org: Org = {
     username: validated.username,
     name: validated.name,
     logoPhoto,
     categories: validated.categories as Org["categories"],
-    locations: validated.locations as OrgLocation[],
+    locations,
     socialLinks: validated.socialLinks as SocialLink[] | undefined,
     verification: validated.verification as OrgVerification | undefined,
     isVerified: validated.isVerified,

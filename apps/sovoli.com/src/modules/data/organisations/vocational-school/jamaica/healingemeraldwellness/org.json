@@ -31,6 +31,12 @@
           "value": "healingemeraldwellnessspa@gmail.com",
           "isPublic": true
         }
+      ],
+      "features": [
+        "gatedPremises",
+        "onsiteParking",
+        "cleanBathrooms",
+        "dailySanitization"
       ]
     }
   ],
