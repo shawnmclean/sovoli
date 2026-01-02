@@ -1,15 +1,10 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
 import { BookOpenIcon, ChevronRightIcon, CheckIcon } from "lucide-react";
 import Markdown from "react-markdown";
-import type {
-  Program,
-  Capability,
-  CourseUnit,
-  Course,
-} from "~/modules/academics/types";
+import type { Program, CourseUnit, Course } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
 import {
   DrawerContent,
@@ -77,14 +72,20 @@ export function CurriculumDetails({ program }: CurriculumDetailsProps) {
           {/* Capabilities Section */}
           {program.capabilities && program.capabilities.length > 0 ? (
             <div className="space-y-6">
-              {program.capabilities.map((capability, index) => (
-                <div key={index} className="space-y-3">
+              {program.capabilities.map((capability) => (
+                <div key={capability.outcome} className="space-y-3">
                   <div className="border-b border-default-200 pb-2">
                     <h3 className="text-lg font-semibold text-foreground prose prose-sm dark:prose-invert max-w-none">
                       <Markdown
                         components={{
-                          p: ({ children }) => <span className="m-0">{children}</span>,
-                          strong: ({ children }) => <strong className="font-bold text-foreground">{children}</strong>
+                          p: ({ children }) => (
+                            <span className="m-0">{children}</span>
+                          ),
+                          strong: ({ children }) => (
+                            <strong className="font-bold text-foreground">
+                              {children}
+                            </strong>
+                          ),
                         }}
                       >
                         {capability.outcome}
@@ -97,9 +98,9 @@ export function CurriculumDetails({ program }: CurriculumDetailsProps) {
                     )}
                   </div>
                   <ul className="grid gap-2 sm:grid-cols-1">
-                    {capability.competencies.map((competency, idx) => (
+                    {capability.competencies.map((competency) => (
                       <li
-                        key={idx}
+                        key={competency.statement}
                         className="flex items-start gap-2 text-foreground-700 bg-default-50 p-3 rounded-md"
                       >
                         <CheckIcon className="h-5 w-5 text-primary shrink-0" />
@@ -114,8 +115,8 @@ export function CurriculumDetails({ program }: CurriculumDetailsProps) {
             program.whatYouWillLearn.length > 0 ? (
             // Fallback for legacy data if any remains
             <div className="space-y-6">
-              {program.whatYouWillLearn.map((group, index) => (
-                <div key={index} className="space-y-3">
+              {program.whatYouWillLearn.map((group) => (
+                <div key={group.heading} className="space-y-3">
                   <h3 className="text-lg font-semibold text-foreground border-b border-default-200 pb-2">
                     {group.heading}
                   </h3>
@@ -175,7 +176,8 @@ export function CurriculumDetails({ program }: CurriculumDetailsProps) {
                         <div className="space-y-2">
                           {course.units.map((unit, unitIndex) => (
                             <button
-                              key={unitIndex}
+                              key={unit.id ?? `${course.id}-${unitIndex}`}
+                              type="button"
                               onClick={() => handleUnitClick(unit, course)}
                               className="w-full text-left p-2 sm:p-3 bg-background rounded border border-default-200 hover:bg-default-100 transition-colors"
                             >
@@ -240,9 +242,9 @@ export function CurriculumDetails({ program }: CurriculumDetailsProps) {
                   Topics Covered
                 </h2>
                 <ul className="space-y-2">
-                  {unit.topics.map((topic, topicIndex) => (
+                  {unit.topics.map((topic) => (
                     <li
-                      key={topicIndex}
+                      key={topic}
                       className="flex items-start gap-2 text-foreground-600"
                     >
                       <span className="shrink-0 w-1.5 h-1.5 bg-primary rounded-full mt-2"></span>

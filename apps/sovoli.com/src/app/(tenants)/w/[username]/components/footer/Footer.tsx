@@ -97,8 +97,11 @@ const FooterSocialSection = ({
     </div>
     <p className="mb-4 text-sm text-foreground-500">{section.description}</p>
     <div className="flex gap-4">
-      {orgInstance.org.socialLinks?.map((socialLink) => (
-        <SocialLink socialLink={socialLink} key={socialLink.platform} />
+      {orgInstance.org.socialLinks?.map((socialLink, index) => (
+        <SocialLink
+          socialLink={socialLink}
+          key={socialLink.url || `social-${index}`}
+        />
       ))}
     </div>
   </div>
