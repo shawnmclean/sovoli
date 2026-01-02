@@ -2,7 +2,7 @@
 
 ## 🚨 STOP AND READ THIS FIRST 🚨
 
-**MANDATORY**: You **MUST** read the [Business Protocol](docs/protocols/BUSINESS.md) before doing anything else.
+**MANDATORY**: You **MUST** read the [Business Protocol](docs/protocols/BUSINESS.md) before doing anything else, including **creating an implementation plan**.
 
 > **Why?** It contains the "Scrappy Protocol" and the **Mandatory Implementation Plan Template**. If you skip this, you will be rejected.
 > **Rule**: Even if you think your task is purely technical, purely media-related, or small—**READ THE BUSINESS PROTOCOL FIRST**.
@@ -13,7 +13,7 @@
 
 After reading the Business Protocol, load **ONLY** the specific context you need for your task. Do not read everything if you don't need it.
 
-### 1. Context, Strategy & Tasks (Start Here)
+### 1. Context, Strategy & Tasks (Start Here - Required for Plans)
 **Read**: [docs/STRATEGY.md](docs/STRATEGY.md)
 *   *Contains: Current OKRs, Active Pilots, North Star Metrics, and **Master Task List**.*
 
