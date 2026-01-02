@@ -1,0 +1,16 @@
+[
+  {
+    "id": "spray-bottle",
+    "name": "Spray bottle",
+    "category": "food-beverage-storage-containers",
+    "tags": ["container", "spray", "bottle"],
+    "unitLabel": "bottle"
+  },
+  {
+    "id": "applicator-bottle",
+    "name": "Applicator Bottle",
+    "category": "food-beverage-storage-containers",
+    "tags": ["container", "applicator", "bottle"],
+    "unitLabel": "bottle"
+  }
+]

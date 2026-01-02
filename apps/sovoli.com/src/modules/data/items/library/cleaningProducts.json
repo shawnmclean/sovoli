@@ -1,0 +1,9 @@
+[
+  {
+    "id": "alcohol-disinfectant",
+    "name": "Alcohol",
+    "category": "disinfectants",
+    "tags": ["cleaning", "disinfectant", "sanitizer"],
+    "unitLabel": "bottle"
+  }
+]

@@ -18,5 +18,15 @@
       "brand": "Oxford",
       "kind": "reference"
     }
+  },
+  {
+    "id": "book-theory-practice-therapeutic-massage",
+    "name": "Theory & Practice of Therapeutic Massage by Mark F Beck",
+    "category": "references",
+    "tags": ["reference", "massage", "therapy", "textbook"],
+    "attributes": {
+      "author": "Mark F Beck",
+      "kind": "reference"
+    }
   }
 ]

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "massage-oil",
+    "name": "Massage Oil",
+    "category": "base-carrier-oils",
+    "tags": ["massage", "aromatherapy", "wellness"],
+    "unitLabel": "bottle"
+  },
+  {
+    "id": "essential-oils",
+    "name": "Essential Oils",
+    "category": "essential-oils",
+    "tags": ["aromatherapy", "wellness", "massage"],
+    "unitLabel": "bottle"
+  }
+]

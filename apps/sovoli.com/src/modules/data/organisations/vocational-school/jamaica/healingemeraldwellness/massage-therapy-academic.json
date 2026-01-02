@@ -169,6 +169,48 @@
           "hew-reception-area"
         ]
       },
+      "requirements": [
+        {
+          "name": "Supply List",
+          "category": "materials",
+          "audience": "student",
+          "items": [
+            {
+              "itemId": "massage-oil"
+            },
+            {
+              "itemId": "essential-oils"
+            },
+            {
+              "itemId": "twin-size-flat-sheets-dark"
+            },
+            {
+              "itemId": "large-bath-towels-dark"
+            },
+            {
+              "itemId": "small-face-towels-dark"
+            },
+            {
+              "itemId": "hand-towel-roll"
+            },
+            {
+              "itemId": "alcohol-disinfectant"
+            },
+            {
+              "itemId": "spray-bottle"
+            },
+            {
+              "itemId": "applicator-bottle"
+            },
+            {
+              "itemId": "hand-sanitizer-antiseptic"
+            },
+            {
+              "itemId": "book-theory-practice-therapeutic-massage"
+            }
+          ]
+        }
+      ],
       "testimonials": [
         {
           "author": "Angella ShandDyer",

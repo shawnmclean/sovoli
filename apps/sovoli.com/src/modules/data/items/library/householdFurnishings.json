@@ -1,0 +1,30 @@
+[
+  {
+    "id": "twin-size-flat-sheets-dark",
+    "name": "Twin size flat sheets (dark colours)",
+    "category": "bed-sheets-valances",
+    "tags": ["bedding", "sheets", "twin"],
+    "unitLabel": "set"
+  },
+  {
+    "id": "large-bath-towels-dark",
+    "name": "Large white bath towels (dark colours)",
+    "category": "fabric-textile-towels",
+    "tags": ["towels", "bath", "large"],
+    "unitLabel": "towel"
+  },
+  {
+    "id": "small-face-towels-dark",
+    "name": "Small face towels (dark colours)",
+    "category": "fabric-textile-towels",
+    "tags": ["towels", "face", "small"],
+    "unitLabel": "towel"
+  },
+  {
+    "id": "hand-towel-roll",
+    "name": "Hand towel roll",
+    "category": "fabric-textile-towels",
+    "tags": ["towels", "hand", "roll"],
+    "unitLabel": "roll"
+  }
+]

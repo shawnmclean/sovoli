@@ -20,6 +20,10 @@ import educationalToysData from "./library/toysGames/educationalToys.json";
 import pencilsData from "./library/stationeryOfficeMachineryOccasionSupplies/pencils.json";
 import exerciseBooksData from "./library/stationeryOfficeMachineryOccasionSupplies/exerciseBooks.json";
 import hygieneData from "./library/hygiene.json";
+import beautyPersonalCareData from "./library/beautyPersonalCare.json";
+import householdFurnishingsData from "./library/householdFurnishings.json";
+import cleaningProductsData from "./library/cleaningProducts.json";
+import kitchenwareData from "./library/kitchenware.json";
 
 // Parse and hydrate items from JSON files
 function hydrateItemsFromJson(jsonData: unknown[]): Item[] {
@@ -63,6 +67,20 @@ const STATIONERY_ITEMS = [
 
 const HYGIENE_ITEMS = [...hydrateItemsFromJson(hygieneData)];
 
+const BEAUTY_PERSONAL_CARE_ITEMS = [
+  ...hydrateItemsFromJson(beautyPersonalCareData),
+];
+
+const HOUSEHOLD_FURNISHINGS_ITEMS = [
+  ...hydrateItemsFromJson(householdFurnishingsData),
+];
+
+const CLEANING_PRODUCTS_ITEMS = [
+  ...hydrateItemsFromJson(cleaningProductsData),
+];
+
+const KITCHENWARE_ITEMS = [...hydrateItemsFromJson(kitchenwareData)];
+
 export const ALL_ITEMS: Item[] = [
   ...BOOKS,
   ...PLUMBING_HEATING_VENTILATION_AIR_CONDITIONING_ITEMS,
@@ -71,6 +89,10 @@ export const ALL_ITEMS: Item[] = [
   ...TOYS_GAMES_ITEMS,
   ...STATIONERY_ITEMS,
   ...HYGIENE_ITEMS,
+  ...BEAUTY_PERSONAL_CARE_ITEMS,
+  ...HOUSEHOLD_FURNISHINGS_ITEMS,
+  ...CLEANING_PRODUCTS_ITEMS,
+  ...KITCHENWARE_ITEMS,
   // ...BUILDING_ITEMS,
   // ...EQUIPMENT_ITEMS,
   // ...FOOD_ITEMS,

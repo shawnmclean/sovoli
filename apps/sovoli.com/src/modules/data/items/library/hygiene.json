@@ -117,5 +117,12 @@
     "category": "cleaning-cloths",
     "tags": ["general", "towel", "hygiene"],
     "unitLabel": "towel"
+  },
+  {
+    "id": "hand-sanitizer-antiseptic",
+    "name": "Hand Sanitizer",
+    "category": "hand-sanitizers-antiseptics",
+    "tags": ["hygiene", "sanitizer", "healthcare"],
+    "unitLabel": "bottle"
   }
 ]
