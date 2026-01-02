@@ -168,7 +168,26 @@
           "hew-massage-model",
           "hew-reception-area"
         ]
-      }
+      },
+      "testimonials": [
+        {
+          "author": "Angella ShandDyer",
+          "content": "I happen to have had first hand experience with this lady as my trainer when i was doing the makeup artistry course. She is very patient and technically sound. Her training techniques definitely moved my skill level up several notches. Thank you Alicia for all the encouragement you gave…you made me beleive I could do it ..and I did.",
+          "date": "2025-12-15",
+          "rating": 4,
+          "relation": "Student",
+          "link": "https://maps.app.goo.gl/LDy4TzBmTT811w4N9",
+          "source": "google"
+        },
+        {
+          "author": "Rickae Crossman",
+          "content": "Dear Miss Davis, I wanted to take a moment to express my gratitude for all the support and guidance you've provided throughout this course. Your passion for teaching and dedication to helping us learn has truly made a difference in my experience. Thank you for being patient, approachable, and always willing to help. I've learned so much from you, and I appreciate the effort you put into making our classes engaging and meaningful. Thank you once again for everything! Rickae",
+          "date": "2025-12-15",
+          "rating": 5,
+          "relation": "Student",
+          "source": "other"
+        }
+      ]
     },
     {
       "id": "hew-advanced-massage-therapy",

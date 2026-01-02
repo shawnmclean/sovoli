@@ -134,10 +134,14 @@ function ShowAllReviewsButton({ count }: { count: number }) {
 
 export function ProgramTestimonialsSection({
   testimonials,
+  program,
 }: ProgramTestimonialsSectionProps) {
   if (!testimonials || testimonials.length === 0) {
     return null;
   }
+
+  const headingText =
+    program.audience === "student" ? "What Students Say" : "What Parents Say";
 
   return (
     <section className="my-6 border-b border-default-200 pb-6">
@@ -146,7 +150,7 @@ export function ProgramTestimonialsSection({
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <QuoteIcon className="h-6 w-6 text-primary" />
-            What Parents Say
+            {headingText}
           </h2>
         </div>
 
