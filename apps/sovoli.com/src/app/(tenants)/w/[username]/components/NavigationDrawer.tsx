@@ -1,5 +1,4 @@
 "use client";
-import { useDisclosure } from "@sovoli/ui/components/dialog";
 import { Drawer } from "@sovoli/ui/components/drawer";
 import {
   useRouter,
@@ -59,20 +58,48 @@ export function NavigationDrawer({
   const router = useRouter();
   const segment = useSelectedLayoutSegment(slotName);
   const previousPath = usePreviousPath();
-  const { isOpen, onClose } = useDisclosure({
-    isOpen: segment !== "(slot)" && segment !== null,
-  });
+  const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Use internal state to allow delaying navigation while animation completes
+  const segmentShouldBeOpen = segment !== "(slot)" && segment !== null;
+  const [isOpen, setIsOpen] = useState(segmentShouldBeOpen);
+
+  // Sync isOpen with segment changes (only when opening)
+  useEffect(() => {
+    if (segmentShouldBeOpen) {
+      startTransition(() => {
+        setIsOpen(true);
+      });
+    }
+  }, [segmentShouldBeOpen]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleClose = () => {
-    onClose();
+    // Close drawer immediately to start exit animation
+    setIsOpen(false);
 
-    // Only use back navigation if the previous path is internal to our app
-    // Otherwise, navigate to the fallback path
-    if (isInternalPath(previousPath)) {
-      router.back();
-    } else {
-      router.push(fallbackPath);
+    // Clear any existing timeout
+    if (navigationTimeoutRef.current) {
+      clearTimeout(navigationTimeoutRef.current);
     }
+
+    // Delay navigation until after exit animation (300ms) to allow FocusScope cleanup
+    navigationTimeoutRef.current = setTimeout(() => {
+      if (isInternalPath(previousPath)) {
+        router.back();
+      } else {
+        router.push(fallbackPath);
+      }
+      navigationTimeoutRef.current = null;
+    }, 300);
   };
 
   return (
