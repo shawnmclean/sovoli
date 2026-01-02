@@ -5,11 +5,7 @@
       "slug": "massage-therapy",
       "name": "Massage Therapy Training",
       "audience": "student",
-      "quickFacts": [
-        "Certificate Included",
-        "Expert Instructor",
-        "Hands-On"
-      ],
+      "quickFacts": ["Certificate Included", "Expert Instructor", "Hands-On"],
       "highlights": [
         {
           "icon": "hammer",
@@ -24,7 +20,7 @@
         {
           "icon": "badge-check",
           "label": "Certificate Included",
-          "description": "Receive a professional certificate upon successful completion of the program."
+          "description": "Receive a certificate of participation upon successful completion of the program."
         },
         {
           "icon": "graduation-cap",
@@ -164,10 +160,7 @@
         "hew-massage-20260603"
       ],
       "media": {
-        "galleryIds": [
-          "hew-massage-model",
-          "hew-reception-area"
-        ]
+        "galleryIds": ["hew-massage-model", "hew-reception-area"]
       },
       "requirements": [
         {
@@ -341,10 +334,7 @@
         "hew-advanced-massage-20260603"
       ],
       "media": {
-        "galleryIds": [
-          "hew-massage-model",
-          "hew-reception-area"
-        ]
+        "galleryIds": ["hew-massage-model", "hew-reception-area"]
       }
     }
   ]
