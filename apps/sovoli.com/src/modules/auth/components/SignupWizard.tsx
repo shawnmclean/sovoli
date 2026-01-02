@@ -11,6 +11,7 @@ import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { ProgramPriceCard } from "~/app/(tenants)/w/[username]/(main-layout)/programs/components/ProgramPriceCard";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import posthog from "posthog-js";
+import { formatCycleLabel } from "~/utils/dateUtils";
 
 export interface SignupWizardProps {
   whatsappNumber?: string;
@@ -25,6 +26,22 @@ export interface SignupWizardProps {
   // General signup success message
   successMessage?: string;
   mode: SignupWizardMode;
+}
+
+// Helper function to get formatted cycle label from a ProgramCycle
+function getCycleLabel(cycle: ProgramCycle | undefined): string | null {
+  if (!cycle) return null;
+
+  const startDate =
+    cycle.academicCycle.startDate ??
+    cycle.academicCycle.globalCycle?.startDate;
+  const endDate =
+    cycle.academicCycle.endDate ??
+    cycle.academicCycle.globalCycle?.endDate;
+
+  if (!startDate || !endDate) return null;
+
+  return formatCycleLabel(startDate, endDate);
 }
 
 export function SignupWizard({
@@ -97,6 +114,11 @@ export function SignupWizard({
   }
 
   if (step === "choice" && phone && firstName && lastName && program) {
+    const cycleLabel = getCycleLabel(cycle);
+    const programName =
+      program.name ?? program.standardProgramVersion?.program.name;
+    const cycleSuffix = cycleLabel ? ` for ${cycleLabel}` : "";
+
     return (
       <div>
         {/* Program Information Section */}
@@ -134,7 +156,7 @@ export function SignupWizard({
             color="primary"
             as={WhatsAppLink}
             phoneNumber={whatsappNumber}
-            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in enrolling in ${program.name ?? program.standardProgramVersion?.program.name}.`}
+            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in enrolling in ${programName}${cycleSuffix}.`}
             fullWidth
             onPress={() => {
               trackProgramAnalytics("Lead", program, cycle, {
@@ -151,7 +173,7 @@ export function SignupWizard({
             variant="flat"
             as={WhatsAppLink}
             phoneNumber={whatsappNumber}
-            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${program.name ?? program.standardProgramVersion?.program.name}. I would like to schedule a visit.`}
+            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${programName}${cycleSuffix}. I would like to schedule a visit.`}
             fullWidth
             onPress={() => {
               trackProgramAnalytics("Lead", program, cycle, {
@@ -167,7 +189,7 @@ export function SignupWizard({
             color="default"
             as={WhatsAppLink}
             phoneNumber={whatsappNumber}
-            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${program.name ?? program.standardProgramVersion?.program.name}. I would like more information.`}
+            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${programName}${cycleSuffix}. I would like more information.`}
             fullWidth
             onPress={() => {
               trackProgramAnalytics("Lead", program, cycle, {
