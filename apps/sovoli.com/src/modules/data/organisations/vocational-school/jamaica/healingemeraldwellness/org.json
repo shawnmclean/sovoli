@@ -64,13 +64,30 @@
     }
   ],
   "verification": {
-    "status": "pending",
-    "submittedAt": "2025-12-05",
+    "status": "verified",
     "submittedBy": "system",
-    "documents": [],
-    "notes": "Verification pending - created from submission data."
+    "submittedAt": "2025-12-05",
+    "verifiedAt": "2026-01-02",
+    "incorporationDate": "2025-09-23",
+    "notes": "Certificate of Incorporation verified. Company registered with Companies Office of Jamaica.",
+    "documents": [
+      {
+        "type": "business_registration",
+        "name": "Certificate of Incorporation - Healing Emerald Wellness Spa & Training Centre Limited",
+        "uploadedAt": "2026-01-02",
+        "notes": "Certificate of Incorporation from Companies Office of Jamaica",
+        "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1767370284/o/healingemeraldwellness/verification/i5zovztbcgjndny9hlfk.png",
+        "issuedDate": "2025-09-26",
+        "referenceNumber": "132046",
+        "issuingAuthority": "Companies Office of Jamaica",
+        "issuingJurisdiction": {
+          "country": "JM",
+          "stateOrProvince": "St. Andrew"
+        }
+      }
+    ]
   },
-  "isVerified": false,
+  "isVerified": true,
   "internalCRM": {
     "people": [
       {
