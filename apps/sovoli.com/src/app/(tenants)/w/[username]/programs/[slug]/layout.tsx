@@ -21,7 +21,7 @@ import { CycleSection } from "./components/CycleSection";
 import { ProgramTestimonialsSection } from "./components/ProgramTestimonialsSection";
 import { SuppliesSection } from "./components/supplies/SuppliesSection";
 import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
-import { OrgBadgeSection } from "~/components/OrgBadgeSection";
+import { OrgSection } from "./components/org/OrgSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
 import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
@@ -283,7 +283,10 @@ export default async function Layout({ children, params, modals }: Props) {
         />
 
         <div className="container mx-auto max-w-6xl px-4">
-          <OrgBadgeSection orgInstance={orgInstance} />
+          <OrgSection
+            orgInstance={orgInstance}
+            programSlug={programToUse.slug}
+          />
 
           <ProgramHighlightsSection program={programToUse} />
 

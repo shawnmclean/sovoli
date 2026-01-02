@@ -90,6 +90,7 @@ export interface Org {
   categories: OrgCategoryKeys[];
   locations: OrgLocation[];
   socialLinks?: SocialLink[];
+  about?: string;
 
   verification?: OrgVerification;
 
