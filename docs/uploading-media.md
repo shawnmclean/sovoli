@@ -14,28 +14,46 @@ The `<org-path>` parameter follows this pattern: `o/<category>/<country>/<region
 
 **Common patterns:**
 - Private schools: `o/private-schools/jamaica/<region>/<school-name>`
-- Vocational training: `o/vocational-training/<country>/<region>/<org-name>`
+- Vocational training: `o/vocational-school/<country>/<region>/<org-name>`
 - Other organizations: `o/<category>/<country>/<region>/<org-name>`
+
+**Subdirectories for team member assets:**
+- Team member photos/certificates: `o/<category>/<country>/<region>/<org-name>/team/<member-name>`
+- Example: `o/vocational-school/jamaica/healingemeraldwellness/team/alicia`
 
 ## Step 2: Upload Media Files
 
-Use the upload script with the correct paths:
+Use the upload script with the correct paths. You can run it from either the workspace root or the `apps/sovoli.com` directory:
 
+**From workspace root:**
 ```bash
-pnpm with-env node apps/sovoli.com/scripts/upload-media.mjs <file-path> <org-path>
+pnpm --filter @sovoli/sovoli.com exec -- pnpm with-env node scripts/upload-media.mjs <file-path> <org-path>
+```
+
+**From apps/sovoli.com directory:**
+```bash
+pnpm with-env node scripts/upload-media.mjs <file-path> <org-path>
 ```
 
 **File path options:**
 - Absolute path: `"E:\Developers\sovoli\tmp\image.jpg"` (use quotes for Windows paths with spaces)
 - Relative path from workspace root: `"tmp/image.jpg"`
 
+**Org-path options:**
+- Base organization path: `o/vocational-school/jamaica/healingemeraldwellness`
+- With subdirectories: `o/vocational-school/jamaica/healingemeraldwellness/team/alicia` (for team member assets)
+
 **Examples:**
 ```bash
-# Upload image (absolute path)
-pnpm with-env node apps/sovoli.com/scripts/upload-media.mjs "E:\Developers\sovoli\tmp\WhatsApp Image 2025-12-23 at 13.40.08.jpeg" "o/private-schools/jamaica/st-elizabeth/littlefishkindergarten"
+# Upload image from workspace root (absolute path)
+pnpm --filter @sovoli/sovoli.com exec -- pnpm with-env node scripts/upload-media.mjs "E:\Developers\sovoli\tmp\spa-standards.png" "o/vocational-school/jamaica/healingemeraldwellness/team/alicia"
 
-# Upload video (absolute path)
-pnpm with-env node apps/sovoli.com/scripts/upload-media.mjs "E:\Developers\sovoli\tmp\WhatsApp Video 2025-12-23 at 13.40.08.mp4" "o/private-schools/jamaica/st-elizabeth/littlefishkindergarten"
+# Upload image from workspace root (relative path)
+pnpm --filter @sovoli/sovoli.com exec -- pnpm with-env node scripts/upload-media.mjs "tmp/image.jpg" "o/private-schools/jamaica/st-elizabeth/littlefishkindergarten"
+
+# Upload video from apps/sovoli.com directory
+cd apps/sovoli.com
+pnpm with-env node scripts/upload-media.mjs "E:\Developers\sovoli\tmp\video.mp4" "o/private-schools/jamaica/st-elizabeth/littlefishkindergarten"
 ```
 
 **Important:** The script outputs two JSON objects:

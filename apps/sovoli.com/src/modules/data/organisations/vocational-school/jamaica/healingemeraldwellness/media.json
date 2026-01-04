@@ -47,6 +47,30 @@
       "format": "png",
       "bytes": 1091637,
       "version": 1765637751
+    },
+    {
+      "id": "hew-alicia-spa-standards",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1767493725/o/vocational-school/jamaica/healingemeraldwellness/team/alicia/fwvrulmv8fniph92nc76.png",
+      "assetId": "e021d9321e57072e38a81c92155a54d1",
+      "publicId": "o/vocational-school/jamaica/healingemeraldwellness/team/alicia/fwvrulmv8fniph92nc76",
+      "width": 797,
+      "height": 615,
+      "format": "png",
+      "bytes": 436815,
+      "version": 1767493725
+    },
+    {
+      "id": "hew-alicia-train-trainer",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1767493749/o/vocational-school/jamaica/healingemeraldwellness/team/alicia/envax2dyy9ibgsf1neu1.png",
+      "assetId": "a8601903eb7ca0dd56b8cd9d299a0f20",
+      "publicId": "o/vocational-school/jamaica/healingemeraldwellness/team/alicia/envax2dyy9ibgsf1neu1",
+      "width": 1073,
+      "height": 872,
+      "format": "png",
+      "bytes": 637802,
+      "version": 1767493749
     }
   ]
 }

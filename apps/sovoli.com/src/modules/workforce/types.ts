@@ -62,6 +62,38 @@ export interface Education {
   url?: string; // link to institution or program
 }
 
+export interface Credential {
+  /** Type of credential */
+  type: "certification" | "license" | "membership" | "award" | "other";
+
+  /** Name or title of the credential */
+  name: string;
+
+  /** Issuing organization/institution */
+  issuingOrganization?: string;
+
+  /** Description of what the credential represents */
+  description?: string;
+
+  /** Date when credential was issued (ISO format: YYYY-MM-DD) */
+  issueDate?: string;
+
+  /** Date when credential expires (ISO format: YYYY-MM-DD) */
+  expiryDate?: string;
+
+  /** Credential ID or certificate number */
+  credentialId?: string;
+
+  /** URL to verify the credential online */
+  verificationUrl?: string;
+
+  /** Additional notes or context */
+  notes?: string;
+
+  /** Media array for credential images/documents (photos of physical certificates, PDFs, etc.) */
+  media?: Media[];
+}
+
 export interface WorkforceMember {
   id: string;
   slug: string;
@@ -74,6 +106,7 @@ export interface WorkforceMember {
   quote?: string;
   subjectAssignments?: SubjectAssignment[];
   education?: Education[];
+  credentials?: Credential[];
 }
 
 export interface WorkforceModule {

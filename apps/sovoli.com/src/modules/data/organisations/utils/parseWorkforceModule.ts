@@ -3,7 +3,7 @@ import type { WorkforceModule } from "~/modules/workforce/types";
 import type { AmountByCurrency } from "~/modules/core/economics/types";
 import type { Contact } from "~/modules/core/types";
 import type { MediaMap } from "./parseMediaModule";
-import { getMediaByIdOptional } from "./parseMediaModule";
+import { getMediaByIdOptional, getMediaByIds } from "./parseMediaModule";
 
 /**
  * Zod schema for Contact
@@ -105,6 +105,22 @@ const educationJsonSchema = z.object({
 });
 
 /**
+ * Zod schema for Credential
+ */
+const credentialJsonSchema = z.object({
+  type: z.enum(["certification", "license", "membership", "award", "other"]),
+  name: z.string(),
+  issuingOrganization: z.string().optional(),
+  description: z.string().optional(),
+  issueDate: z.string().optional(),
+  expiryDate: z.string().optional(),
+  credentialId: z.string().optional(),
+  verificationUrl: z.string().optional(),
+  notes: z.string().optional(),
+  mediaIds: z.array(z.string()).optional(), // References media by IDs (for JSON parsing)
+});
+
+/**
  * Zod schema for WorkforceMember
  */
 const workforceMemberJsonSchema = z.object({
@@ -119,6 +135,7 @@ const workforceMemberJsonSchema = z.object({
   quote: z.string().optional(),
   subjectAssignments: z.array(subjectAssignmentJsonSchema).optional(),
   education: z.array(educationJsonSchema).optional(),
+  credentials: z.array(credentialJsonSchema).optional(),
 });
 
 /**
@@ -217,6 +234,32 @@ export function parseWorkforceModule(
         )
       : undefined;
 
+    // Resolve credentials with media
+    const credentials = memberJson.credentials
+      ? memberJson.credentials.map((credJson) => {
+          const media = mediaMap && credJson.mediaIds
+            ? getMediaByIds(
+                mediaMap,
+                credJson.mediaIds,
+                `credential "${credJson.name}" for workforce member "${memberJson.slug}"`,
+              )
+            : undefined;
+
+          return {
+            type: credJson.type,
+            name: credJson.name,
+            issuingOrganization: credJson.issuingOrganization,
+            description: credJson.description,
+            issueDate: credJson.issueDate,
+            expiryDate: credJson.expiryDate,
+            credentialId: credJson.credentialId,
+            verificationUrl: credJson.verificationUrl,
+            notes: credJson.notes,
+            media,
+          };
+        })
+      : undefined;
+
     return {
       id: memberJson.id,
       slug: memberJson.slug,
@@ -229,6 +272,7 @@ export function parseWorkforceModule(
       quote: memberJson.quote,
       subjectAssignments: memberJson.subjectAssignments,
       education: memberJson.education,
+      credentials,
     };
   });
 

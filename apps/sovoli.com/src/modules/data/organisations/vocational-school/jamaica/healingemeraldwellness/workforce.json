@@ -63,6 +63,26 @@
           "subject": "Waxing",
           "grades": ["Beginner"]
         }
+      ],
+      "credentials": [
+        {
+          "type": "certification",
+          "name": "Spa Standards Virtual Workshop",
+          "issuingOrganization": "Tourism Linkages Network (Tourism Enhancement Fund)",
+          "description": "Certificate of Participation for successful completion of the Tourism Linkages Network Spa Standards Workshop",
+          "issueDate": "2020-11-17",
+          "credentialId": "TLN-SSW20-471",
+          "mediaIds": ["hew-alicia-spa-standards"]
+        },
+        {
+          "type": "certification",
+          "name": "Train the Trainer",
+          "issuingOrganization": "Vocational Training Development Institute",
+          "description": "Certificate of Competence",
+          "issueDate": "2023-12-14",
+          "credentialId": "14503",
+          "mediaIds": ["hew-alicia-train-trainer"]
+        }
       ]
     }
   ]

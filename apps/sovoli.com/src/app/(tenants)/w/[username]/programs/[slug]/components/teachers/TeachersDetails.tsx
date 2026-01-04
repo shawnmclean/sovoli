@@ -20,6 +20,7 @@ import {
 } from "@sovoli/ui/components/drawer";
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import { CredentialsSection } from "./CredentialsSection";
 
 interface TeachersDetailsProps {
   defaultTeachers?: WorkforceMember[] | null;
@@ -206,6 +207,11 @@ function SingleTeacherDetails({
                     ))}
                   </div>
                 </div>
+              )}
+
+              {/* Credentials Section */}
+              {teacher.credentials && teacher.credentials.length > 0 && (
+                <CredentialsSection credentials={teacher.credentials} />
               )}
             </div>
           </DrawerBody>
