@@ -10,6 +10,7 @@ import { ProgramHeroSection } from "./components/ProgramHeroSection";
 import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionContext";
 import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { CurriculumSection } from "./components/curriculum/CurriculumSection";
+import { CertificationSection } from "./components/certification/CertificationSection";
 import { ActivitiesSection } from "./components/activities/ActivitiesSection";
 import { TeachersSection } from "./components/teachers/TeachersSection";
 import { LocationSection } from "./components/location/LocationSection";
@@ -293,6 +294,7 @@ export default async function Layout({ children, params, modals }: Props) {
           <ProgramDescriptionSection program={programToUse} />
 
           <CurriculumSection program={programToUse} />
+          <CertificationSection program={programToUse} />
           <ActivitiesSection program={programToUse} />
 
           <CycleSection program={programToUse} defaultCycle={defaultCycle} />

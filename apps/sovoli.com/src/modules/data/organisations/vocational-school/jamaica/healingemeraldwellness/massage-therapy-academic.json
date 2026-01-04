@@ -5,7 +5,7 @@
       "slug": "massage-therapy",
       "name": "Massage Therapy Training",
       "audience": "student",
-      "quickFacts": ["Certificate Included", "Expert Instructor", "Hands-On"],
+      "quickFacts": ["Expert Instructor", "Hands-On"],
       "highlights": [
         {
           "icon": "hammer",
@@ -16,11 +16,6 @@
           "icon": "users",
           "label": "Small Class Sizes",
           "description": "Personal attention and individualized instruction in an intimate learning setting."
-        },
-        {
-          "icon": "badge-check",
-          "label": "Certificate Included",
-          "description": "Receive a certificate of participation upon successful completion of the program."
         },
         {
           "icon": "graduation-cap",
@@ -152,6 +147,9 @@
           ]
         }
       ],
+      "certification": {
+        "description": "Receive a certificate of participation upon successful completion of the program."
+      },
       "groupId": "massage-therapy",
       "cycleIds": [
         "hew-massage-20260107",

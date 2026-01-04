@@ -18,6 +18,7 @@ import type {
   ProgramGroup,
   Competency,
   Capability,
+  ProgramCertification,
 } from "~/modules/academics/types";
 import type { Item } from "~/modules/core/items/types";
 import type { MediaMap } from "./parseMediaModule";
@@ -79,6 +80,10 @@ const capabilityJsonSchema = z.object({
   outcome: z.string(),
   description: z.string().optional(),
   competencies: z.array(competencyJsonSchema),
+});
+
+const programCertificationJsonSchema = z.object({
+  description: z.string(),
 });
 
 const programTestimonialJsonSchema = z.object({
@@ -201,6 +206,7 @@ const programJsonSchema = z.object({
   cycleIds: z.array(z.string()).optional(), // References to program cycles
   whatYouWillLearn: z.array(programWYLGroupJsonSchema).optional(), // deprecated
   capabilities: z.array(capabilityJsonSchema).optional(),
+  certification: programCertificationJsonSchema.optional(),
 });
 
 // Academic module schema
@@ -355,6 +361,9 @@ export function parseAcademicModule(
         | undefined,
       capabilities: programJson.capabilities as
         | Capability[]
+        | undefined,
+      certification: programJson.certification as
+        | ProgramCertification
         | undefined,
     };
 

@@ -252,6 +252,7 @@ export interface Program {
   /** @deprecated Use capabilities instead */
   whatYouWillLearn?: ProgramWYLGroup[];
   capabilities?: Capability[];
+  certification?: ProgramCertification;
 }
 
 // #region Capabilities
@@ -319,6 +320,10 @@ export interface CourseUnit {
   title: string;
   topics: string[];
   competencyIds?: string[]; // bidirectional: competencies this unit addresses
+}
+
+export interface ProgramCertification {
+  description: string;
 }
 
 export interface AcademicModule {
