@@ -27,7 +27,9 @@ function getCredentialTypeLabel(type: Credential["type"]): string {
   }
 }
 
-function getCredentialTypeColor(type: Credential["type"]): "default" | "primary" | "secondary" | "success" | "warning" | "danger" {
+function getCredentialTypeColor(
+  type: Credential["type"],
+): "default" | "primary" | "secondary" | "success" | "warning" | "danger" {
   switch (type) {
     case "certification":
       return "primary";
@@ -63,9 +65,9 @@ function isExpiringSoon(expiryDate?: string): boolean {
 
 export function CredentialsSection({ credentials }: CredentialsSectionProps) {
   const params = useParams();
-  const username = params?.username as string;
+  const username = params.username as string;
 
-  if (!credentials || credentials.length === 0) {
+  if (credentials.length === 0) {
     return null;
   }
 
@@ -76,12 +78,13 @@ export function CredentialsSection({ credentials }: CredentialsSectionProps) {
         Credentials
       </h3>
       <div className="space-y-4">
-        {credentials.map((credential, index) => {
+        {credentials.map((credential) => {
           const expired = isExpired(credential.expiryDate);
           const expiringSoon = isExpiringSoon(credential.expiryDate);
+          const key = `${credential.type}-${credential.name}-${credential.credentialId ?? credential.issueDate ?? ""}`;
 
           return (
-            <div key={index} className="text-sm">
+            <div key={key} className="text-sm">
               <div className="flex items-start gap-2 mb-1">
                 <div className="font-medium text-foreground flex-1">
                   {credential.name}
@@ -161,7 +164,7 @@ export function CredentialsSection({ credentials }: CredentialsSectionProps) {
                     media={credential.media}
                     title={`${credential.name} - Credential Media`}
                     type="program"
-                    id={`credential-${index}`}
+                    id={key}
                     username={username}
                     className="rounded-lg"
                   />
