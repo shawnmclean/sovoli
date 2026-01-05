@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
-import { Button } from "@sovoli/ui/components/button";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import {
   Carousel,
   CarouselContent,
@@ -17,6 +17,12 @@ import Link from "next/link";
 interface TeachersSectionProps {
   defaultTeachers?: WorkforceMember[] | null;
   program: Program;
+}
+
+function getPrimaryRole(member: WorkforceMember) {
+  return (
+    member.roleAssignments.find((r) => r.isPrimary) ?? member.roleAssignments[0]
+  );
 }
 
 // Component for single teacher display
@@ -35,51 +41,35 @@ function SingleTeacherSection({
           Meet Your Teacher
         </h2>
       </div>
-      <div>
-        <div className="flex flex-col items-center gap-4">
-          <Avatar
-            src={teacher.photo?.url}
-            name={teacher.name}
-            className="h-24 w-24"
-            isBordered
-          />
-          <div className="text-center">
-            <h3 className="text-lg font-semibold text-foreground">
-              {teacher.name}
-            </h3>
-            {teacher.quote && (
-              <div className="mt-3 relative">
-                <span className="absolute -left-2 -top-2 text-2xl text-default-300">
-                  "
-                </span>
-                <p className="text-sm italic text-foreground-600 pl-4">
-                  {teacher.quote}
-                </p>
-                <span className="absolute -right-2 -bottom-2 text-2xl text-default-300">
-                  "
-                </span>
+      <Link href={`/programs/${program.slug}/teachers`} className="block">
+        <Card className="hover:border-primary-400 transition-colors cursor-pointer">
+          <CardBody className="p-6">
+            <div className="flex flex-col items-center gap-4">
+              <Avatar
+                src={teacher.photo?.url}
+                name={teacher.name}
+                className="h-24 w-24"
+              />
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-foreground">
+                  {teacher.name}
+                </h3>
+                {getPrimaryRole(teacher) && (
+                  <p className="text-sm text-foreground-600 mt-1">
+                    {getPrimaryRole(teacher)?.titleOverride ??
+                      getPrimaryRole(teacher)?.position.name}
+                  </p>
+                )}
+                {teacher.bio && (
+                  <p className="text-sm text-foreground-600 mt-3 line-clamp-2">
+                    {teacher.bio}
+                  </p>
+                )}
               </div>
-            )}
-            {teacher.bio && (
-              <p className="text-sm text-foreground-600 mt-3 line-clamp-2">
-                {teacher.bio}
-              </p>
-            )}
-          </div>
-        </div>
-        <div className="mt-4 flex justify-center">
-          <Button
-            variant="flat"
-            color="default"
-            className="mt-2"
-            fullWidth
-            href={`/programs/${program.slug}/teachers`}
-            as={Link}
-          >
-            Learn More
-          </Button>
-        </div>
-      </div>
+            </div>
+          </CardBody>
+        </Card>
+      </Link>
     </section>
   );
 }
@@ -113,42 +103,39 @@ function MultipleTeachersSection({
               {teachers.map((teacher) => {
                 return (
                   <CarouselItem key={teacher.id} className="basis-[200px]">
-                    <div className="flex flex-col items-center gap-3 p-4 bg-default-50 rounded-lg border border-default-200 hover:border-primary-400 transition-colors h-full">
-                      <Avatar
-                        src={teacher.photo?.url}
-                        name={teacher.name}
-                        className="h-16 w-16"
-                        isBordered
-                      />
-                      <div className="text-center flex-1">
-                        <h3 className="font-semibold text-foreground text-sm">
-                          {teacher.name}
-                        </h3>
+                    <Link
+                      href={`/programs/${program.slug}/teachers`}
+                      className="block h-full"
+                    >
+                      <Card className="hover:border-primary-400 transition-colors cursor-pointer h-full">
+                        <CardBody className="p-6">
+                          <div className="flex flex-col items-center gap-3">
+                            <Avatar
+                              src={teacher.photo?.url}
+                              name={teacher.name}
+                              className="h-16 w-16"
+                              isBordered
+                            />
+                            <div className="text-center flex-1">
+                              <h3 className="font-semibold text-foreground text-sm">
+                                {teacher.name}
+                              </h3>
 
-                        {teacher.quote && (
-                          <p className="text-xs text-foreground-600 mt-2 line-clamp-2">
-                            "{teacher.quote}"
-                          </p>
-                        )}
-                      </div>
-                    </div>
+                              {teacher.quote && (
+                                <p className="text-xs text-foreground-600 mt-2 line-clamp-2">
+                                  "{teacher.quote}"
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </Link>
                   </CarouselItem>
                 );
               })}
             </CarouselContent>
           </Carousel>
-        </div>
-        <div className="mt-4 flex justify-center">
-          <Button
-            variant="flat"
-            color="default"
-            className="mt-3"
-            fullWidth
-            href={`/programs/${program.slug}/teachers`}
-            as={Link}
-          >
-            View All Teachers
-          </Button>
         </div>
       </div>
     </section>
