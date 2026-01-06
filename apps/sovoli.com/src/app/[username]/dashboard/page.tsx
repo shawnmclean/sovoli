@@ -9,6 +9,18 @@ import { RulesAttentionSummary } from "~/modules/scoring/components/RulesAttenti
 import { Button } from "@sovoli/ui/components/button";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+import { LeadsTable } from "./components/LeadsTable";
+import type { Lead } from "./components/LeadsTable";
+
+// Import leads data for healingemeraldwellness
+import healingEmeraldLeadsData from "~/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json";
+
+function getLeadsData(username: string): Lead[] {
+  if (username === "healingemeraldwellness") {
+    return healingEmeraldLeadsData.leads ?? [];
+  }
+  return [];
+}
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -38,11 +50,18 @@ export default async function OrgClaimPage({
 
   const { org } = orgInstance;
 
+  // Load leads data if available for this org
+  const leads = getLeadsData(username);
+
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-4 p-4">
       <RulesAttentionSummary orgInstance={orgInstance} />
 
       <AdminScoreBreakdown orgInstance={orgInstance} />
+
+      {username === "healingemeraldwellness" && (
+        <LeadsTable leads={leads} orgInstance={orgInstance} />
+      )}
 
       <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
         <span className="text-sm text-default-500">Need help?</span>
