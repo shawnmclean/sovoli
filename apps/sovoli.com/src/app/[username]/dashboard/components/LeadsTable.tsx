@@ -13,7 +13,6 @@ export interface Lead {
   id: string;
   name: string;
   phone: string;
-  programId: string;
   cycleId: string;
   submittedAt: string;
 }
@@ -24,31 +23,28 @@ interface LeadsTableProps {
 }
 
 /**
- * Helper function to find a program by ID from orgInstance
+ * Helper function to find a program cycle by ID and return both the cycle and its parent program
  */
-function getProgramById(
+function getCycleAndProgram(
   orgInstance: OrgInstance,
-  programId: string,
-): Program | undefined {
+  cycleId: string,
+): { cycle: ProgramCycle; program: Program } | undefined {
   if (!orgInstance.academicModule?.programs) {
     return undefined;
   }
-  return orgInstance.academicModule.programs.find(
-    (program) => program.id === programId,
-  );
-}
 
-/**
- * Helper function to find a program cycle by ID
- */
-function getCycleById(
-  program: Program | undefined,
-  cycleId: string,
-): ProgramCycle | undefined {
-  if (!program?.cycles) {
-    return undefined;
+  // Search through all programs to find which one contains this cycle
+  for (const program of orgInstance.academicModule.programs) {
+    if (!program.cycles) {
+      continue;
+    }
+    const cycle = program.cycles.find((c) => c.id === cycleId);
+    if (cycle) {
+      return { cycle, program };
+    }
   }
-  return program.cycles.find((cycle) => cycle.id === cycleId);
+
+  return undefined;
 }
 
 /**
@@ -183,10 +179,13 @@ export function LeadsTable({ leads, orgInstance }: LeadsTableProps) {
       <CardBody>
         <div className="space-y-4">
           {leads.map((lead) => {
-            const program = getProgramById(orgInstance, lead.programId);
-            const cycle = getCycleById(program, lead.cycleId);
-            const programName = program?.name ?? lead.programId;
-            const cycleLabel = getCycleLabel(cycle);
+            const cycleAndProgram = getCycleAndProgram(
+              orgInstance,
+              lead.cycleId,
+            );
+            const programName =
+              cycleAndProgram?.program.name ?? "Unknown Program";
+            const cycleLabel = getCycleLabel(cycleAndProgram?.cycle);
 
             return (
               <div
