@@ -142,6 +142,10 @@ export const trackProgramAnalytics = (
     content_ids: [analyticsData.cycle?.id],
     value: analyticsData.primaryPricing?.amount ?? 0,
     currency: analyticsData.primaryCurrency ?? "GYD",
+    cycleId: analyticsData.cycle?.id,
+    cycleLabel: analyticsData.cycleLabel,
+    programId: analyticsData.program.id,
+    programName: analyticsData.programName,
     ...additionalData,
   });
 };

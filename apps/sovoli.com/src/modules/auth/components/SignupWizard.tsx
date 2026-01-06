@@ -33,11 +33,9 @@ function getCycleLabel(cycle: ProgramCycle | undefined): string | null {
   if (!cycle) return null;
 
   const startDate =
-    cycle.academicCycle.startDate ??
-    cycle.academicCycle.globalCycle?.startDate;
+    cycle.academicCycle.startDate ?? cycle.academicCycle.globalCycle?.startDate;
   const endDate =
-    cycle.academicCycle.endDate ??
-    cycle.academicCycle.globalCycle?.endDate;
+    cycle.academicCycle.endDate ?? cycle.academicCycle.globalCycle?.endDate;
 
   if (!startDate || !endDate) return null;
 
@@ -65,11 +63,20 @@ export function SignupWizard({
       <PhoneNumberStep
         onSuccess={(phoneNumber) => {
           setPhone(phoneNumber);
-          posthog.capture("LeadPhoneEntered", {
-            $set: {
-              phone: phoneNumber,
-            },
-          });
+          // Track analytics if program is provided
+          if (program) {
+            trackProgramAnalytics("LeadPhoneEntered", program, cycle, {
+              $set: {
+                phone: phoneNumber,
+              },
+            });
+          } else {
+            posthog.capture("LeadPhoneEntered", {
+              $set: {
+                phone: phoneNumber,
+              },
+            });
+          }
           setStep("names");
         }}
         mode={mode}
@@ -83,17 +90,18 @@ export function SignupWizard({
         onSuccess={(firstName, lastName) => {
           setFirstName(firstName);
           setLastName(lastName);
-          posthog.capture("LeadNameEntered", {
-            $set: {
-              first_name: firstName,
-              last_name: lastName,
-              name: `${firstName} ${lastName}`,
-            },
-          });
 
           // Track analytics if program is provided
           if (program) {
             trackProgramAnalytics("LeadNameEntered", program, cycle, {
+              $set: {
+                first_name: firstName,
+                last_name: lastName,
+                name: `${firstName} ${lastName}`,
+              },
+            });
+          } else {
+            posthog.capture("LeadNameEntered", {
               $set: {
                 first_name: firstName,
                 last_name: lastName,
@@ -118,6 +126,18 @@ export function SignupWizard({
     const programName =
       program.name ?? program.standardProgramVersion?.program.name;
     const cycleSuffix = cycleLabel ? ` for ${cycleLabel}` : "";
+
+    // Prepare event properties for WhatsAppLink to include cycle/program data
+    const whatsappEventProperties = {
+      intent: "Contact" as const,
+      role: "parent" as const,
+      page: "programs" as const,
+      cycleId: cycle?.id,
+      cycleLabel: cycleLabel ?? undefined,
+      programId: program.id,
+      programName: programName ?? undefined,
+      selection: undefined as string | undefined,
+    };
 
     return (
       <div>
@@ -158,6 +178,10 @@ export function SignupWizard({
             phoneNumber={whatsappNumber}
             message={`Hi! My name is ${firstName} ${lastName} and I'm interested in enrolling in ${programName}${cycleSuffix}.`}
             fullWidth
+            eventProperties={{
+              ...whatsappEventProperties,
+              selection: "enroll",
+            }}
             onPress={() => {
               trackProgramAnalytics("Lead", program, cycle, {
                 selection: "enroll",
@@ -175,6 +199,10 @@ export function SignupWizard({
             phoneNumber={whatsappNumber}
             message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${programName}${cycleSuffix}. I would like to schedule a visit.`}
             fullWidth
+            eventProperties={{
+              ...whatsappEventProperties,
+              selection: "visit",
+            }}
             onPress={() => {
               trackProgramAnalytics("Lead", program, cycle, {
                 selection: "visit",
@@ -191,6 +219,10 @@ export function SignupWizard({
             phoneNumber={whatsappNumber}
             message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${programName}${cycleSuffix}. I would like more information.`}
             fullWidth
+            eventProperties={{
+              ...whatsappEventProperties,
+              selection: "more_information",
+            }}
             onPress={() => {
               trackProgramAnalytics("Lead", program, cycle, {
                 selection: "more_information",
