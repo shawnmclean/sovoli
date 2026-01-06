@@ -90,10 +90,10 @@ function abbreviateName(fullName: string): string {
   const parts = fullName.trim().split(/\s+/);
   if (parts.length === 0) return fullName;
   if (parts.length === 1) return parts[0] ?? "";
-  
+
   const firstName = parts[0] ?? "";
   const lastName = parts[parts.length - 1] ?? "";
-  
+
   if (lastName.length >= 2) {
     return `${firstName} ${lastName.slice(0, 2)}...`;
   }
@@ -118,11 +118,7 @@ function NameDisplay({ name }: { name: string }) {
     );
   }
 
-  return (
-    <span className="font-semibold text-sm sm:text-base">
-      {name}
-    </span>
-  );
+  return <span className="font-semibold text-sm sm:text-base">{name}</span>;
 }
 
 /**
