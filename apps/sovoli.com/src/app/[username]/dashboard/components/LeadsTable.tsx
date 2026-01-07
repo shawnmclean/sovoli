@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
 import { Button } from "@sovoli/ui/components/button";
-import { MessageCircleIcon } from "lucide-react";
+import { MessageCircleIcon, PhoneIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 
@@ -118,7 +118,7 @@ function NameDisplay({ name }: { name: string }) {
 }
 
 /**
- * Component for phone number with tap-to-reveal and WhatsApp link
+ * Component for phone number with tap-to-reveal and action buttons
  */
 function PhoneNumberButton({ phone }: { phone: string }) {
   const [isRevealed, setIsRevealed] = useState(false);
@@ -126,6 +126,8 @@ function PhoneNumberButton({ phone }: { phone: string }) {
   // Sanitize phone for WhatsApp (remove all non-digits, assume country code is present)
   const cleanedPhone = phone.replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${cleanedPhone}`;
+  // Use tel: protocol for phone calls (keep the + and numbers)
+  const telUrl = `tel:${phone.replace(/[^\d+]/g, "")}`;
 
   if (!isRevealed) {
     return (
@@ -142,15 +144,35 @@ function PhoneNumberButton({ phone }: { phone: string }) {
   }
 
   return (
-    <Link
-      href={whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 text-success underline font-mono text-sm hover:text-success-600 transition-colors"
-    >
-      <MessageCircleIcon className="h-4 w-4" />
-      {formatPhone(phone)}
-    </Link>
+    <div className="flex flex-col gap-2 items-start sm:items-end">
+      <span className="font-mono text-sm font-semibold">
+        {formatPhone(phone)}
+      </span>
+      <div className="flex gap-2">
+        <Button
+          as={Link}
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="flat"
+          size="sm"
+          color="success"
+          startContent={<MessageCircleIcon className="h-4 w-4" />}
+        >
+          WhatsApp
+        </Button>
+        <Button
+          as={Link}
+          href={telUrl}
+          variant="flat"
+          size="sm"
+          color="primary"
+          startContent={<PhoneIcon className="h-4 w-4" />}
+        >
+          Call
+        </Button>
+      </div>
+    </div>
   );
 }
 
