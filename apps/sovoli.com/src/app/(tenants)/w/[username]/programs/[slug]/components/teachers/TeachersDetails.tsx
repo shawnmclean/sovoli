@@ -80,43 +80,14 @@ function SingleTeacherDetails({
                   <h2 className="text-2xl font-bold text-foreground">
                     {teacher.name}
                   </h2>
-                  {teacher.quickfacts && teacher.quickfacts.length > 0 ? (
-                    <p className="text-sm text-foreground-500 mt-1">
-                      {teacher.quickfacts.map((fact, index) => (
-                        <span key={fact}>
-                          <span className="inline-block whitespace-nowrap">
-                            {fact}
-                          </span>
-                          {index < (teacher.quickfacts?.length ?? 0) - 1 && (
-                            <span className="mx-1">•</span>
-                          )}
-                        </span>
-                      ))}
+                  {getPrimaryRole(teacher) && (
+                    <p className="text-lg text-foreground-600 mt-1">
+                      {getPrimaryRole(teacher)?.titleOverride ??
+                        getPrimaryRole(teacher)?.position.name}
                     </p>
-                  ) : (
-                    getPrimaryRole(teacher) && (
-                      <p className="text-lg text-foreground-600 mt-1">
-                        {getPrimaryRole(teacher)?.titleOverride ??
-                          getPrimaryRole(teacher)?.position.name}
-                      </p>
-                    )
                   )}
                 </div>
               </div>
-
-              {teacher.quote && (
-                <div className="relative">
-                  <span className="absolute -left-2 -top-2 text-4xl text-default-300">
-                    "
-                  </span>
-                  <p className="text-lg italic text-foreground-600 pl-4">
-                    {teacher.quote}
-                  </p>
-                  <span className="absolute -right-2 -bottom-2 text-4xl text-default-300">
-                    "
-                  </span>
-                </div>
-              )}
 
               {teacher.bio && (
                 <div>
@@ -146,17 +117,6 @@ function SingleTeacherDetails({
                       </button>
                     )}
                   </div>
-                </div>
-              )}
-
-              {/* Highlights Section */}
-              {teacher.highlights && teacher.highlights.length > 0 && (
-                <div>
-                  <ul className="text-foreground-600 space-y-2 list-disc list-inside">
-                    {teacher.highlights.map((highlight) => (
-                      <li key={highlight}>{highlight}</li>
-                    ))}
-                  </ul>
                 </div>
               )}
 
@@ -308,11 +268,6 @@ function MultipleTeachersDetails({
                           <p className="text-foreground-600">
                             {getPrimaryRole(teacher)?.titleOverride ??
                               getPrimaryRole(teacher)?.position.name}
-                          </p>
-                        )}
-                        {teacher.quote && (
-                          <p className="text-sm text-foreground-600 mt-2 italic">
-                            "{teacher.quote}"
                           </p>
                         )}
                       </div>

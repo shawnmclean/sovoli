@@ -54,38 +54,14 @@ function SingleTeacherSection({
                 <h3 className="text-lg font-semibold text-foreground">
                   {teacher.name}
                 </h3>
-                {teacher.quickfacts && teacher.quickfacts.length > 0 ? (
-                  <p className="text-sm text-foreground-500 mt-1">
-                    {teacher.quickfacts.map((fact, index) => (
-                      <span key={fact}>
-                        <span className="inline-block whitespace-nowrap">
-                          {fact}
-                        </span>
-                        {index < (teacher.quickfacts?.length ?? 0) - 1 && (
-                          <span className="mx-1">•</span>
-                        )}
-                      </span>
-                    ))}
+                {getPrimaryRole(teacher) && (
+                  <p className="text-sm text-foreground-600 mt-1">
+                    {getPrimaryRole(teacher)?.titleOverride ??
+                      getPrimaryRole(teacher)?.position.name}
                   </p>
-                ) : (
-                  getPrimaryRole(teacher) && (
-                    <p className="text-sm text-foreground-600 mt-1">
-                      {getPrimaryRole(teacher)?.titleOverride ??
-                        getPrimaryRole(teacher)?.position.name}
-                    </p>
-                  )
                 )}
               </div>
             </div>
-            {teacher.highlights && teacher.highlights.length > 0 && (
-              <div className="mt-4">
-                <ul className="text-sm text-foreground-600 space-y-1 list-disc list-inside">
-                  {teacher.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
             <div className="flex items-center justify-center mt-4">
               <span className="text-sm font-medium">View Full Portfolio</span>
               <ChevronRight className="h-4 w-4 ml-1" />
@@ -143,10 +119,10 @@ function MultipleTeachersSection({
                               <h3 className="font-semibold text-foreground text-sm">
                                 {teacher.name}
                               </h3>
-
-                              {teacher.quote && (
-                                <p className="text-xs text-foreground-600 mt-2 line-clamp-2">
-                                  "{teacher.quote}"
+                              {getPrimaryRole(teacher) && (
+                                <p className="text-xs text-foreground-600 mt-2">
+                                  {getPrimaryRole(teacher)?.titleOverride ??
+                                    getPrimaryRole(teacher)?.position.name}
                                 </p>
                               )}
                             </div>
