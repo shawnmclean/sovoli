@@ -80,11 +80,22 @@ function SingleTeacherDetails({
                   <h2 className="text-2xl font-bold text-foreground">
                     {teacher.name}
                   </h2>
-                  {getPrimaryRole(teacher) && (
-                    <p className="text-lg text-foreground-600 mt-1">
-                      {getPrimaryRole(teacher)?.titleOverride ??
-                        getPrimaryRole(teacher)?.position.name}
+                  {teacher.quickfacts && teacher.quickfacts.length > 0 ? (
+                    <p className="text-sm text-foreground-500 mt-1">
+                      {teacher.quickfacts.map((fact, index) => (
+                        <span key={fact}>
+                          {fact}
+                          {index < (teacher.quickfacts?.length ?? 0) - 1 && " • "}
+                        </span>
+                      ))}
                     </p>
+                  ) : (
+                    getPrimaryRole(teacher) && (
+                      <p className="text-lg text-foreground-600 mt-1">
+                        {getPrimaryRole(teacher)?.titleOverride ??
+                          getPrimaryRole(teacher)?.position.name}
+                      </p>
+                    )
                   )}
                 </div>
               </div>
@@ -131,6 +142,17 @@ function SingleTeacherDetails({
                       </button>
                     )}
                   </div>
+                </div>
+              )}
+
+              {/* Highlights Section */}
+              {teacher.highlights && teacher.highlights.length > 0 && (
+                <div>
+                  <ul className="text-foreground-600 space-y-2 list-disc list-inside">
+                    {teacher.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
 

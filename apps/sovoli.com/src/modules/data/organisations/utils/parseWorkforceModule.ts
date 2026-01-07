@@ -136,6 +136,8 @@ const workforceMemberJsonSchema = z.object({
   subjectAssignments: z.array(subjectAssignmentJsonSchema).optional(),
   education: z.array(educationJsonSchema).optional(),
   credentials: z.array(credentialJsonSchema).optional(),
+  quickfacts: z.array(z.string()).optional(),
+  highlights: z.array(z.string()).optional(),
 });
 
 /**
@@ -273,6 +275,8 @@ export function parseWorkforceModule(
       subjectAssignments: memberJson.subjectAssignments,
       education: memberJson.education,
       credentials,
+      quickfacts: memberJson.quickfacts,
+      highlights: memberJson.highlights,
     };
   });
 

@@ -8,7 +8,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { UserIcon } from "lucide-react";
+import { UserIcon, ChevronRight } from "lucide-react";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import type { Program } from "~/modules/academics/types";
@@ -42,7 +42,7 @@ function SingleTeacherSection({
         </h2>
       </div>
       <Link href={`/programs/${program.slug}/teachers`} className="block">
-        <Card className="hover:border-primary-400 transition-colors cursor-pointer">
+        <Card className="hover:border-primary-400 transition-colors cursor-pointer relative">
           <CardBody className="p-6">
             <div className="flex flex-col items-center gap-4">
               <Avatar
@@ -54,18 +54,37 @@ function SingleTeacherSection({
                 <h3 className="text-lg font-semibold text-foreground">
                   {teacher.name}
                 </h3>
-                {getPrimaryRole(teacher) && (
-                  <p className="text-sm text-foreground-600 mt-1">
-                    {getPrimaryRole(teacher)?.titleOverride ??
-                      getPrimaryRole(teacher)?.position.name}
+                {teacher.quickfacts && teacher.quickfacts.length > 0 ? (
+                  <p className="text-sm text-foreground-500 mt-1">
+                    {teacher.quickfacts.map((fact, index) => (
+                      <span key={fact}>
+                        {fact}
+                        {index < (teacher.quickfacts?.length ?? 0) - 1 && " • "}
+                      </span>
+                    ))}
                   </p>
-                )}
-                {teacher.bio && (
-                  <p className="text-sm text-foreground-600 mt-3 line-clamp-2">
-                    {teacher.bio}
-                  </p>
+                ) : (
+                  getPrimaryRole(teacher) && (
+                    <p className="text-sm text-foreground-600 mt-1">
+                      {getPrimaryRole(teacher)?.titleOverride ??
+                        getPrimaryRole(teacher)?.position.name}
+                    </p>
+                  )
                 )}
               </div>
+            </div>
+            {teacher.highlights && teacher.highlights.length > 0 && (
+              <div className="mt-4">
+                <ul className="text-sm text-foreground-600 space-y-1 list-disc list-inside">
+                  {teacher.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="flex items-center justify-center mt-4">
+              <span className="text-sm font-medium">View Details</span>
+              <ChevronRight className="h-4 w-4 ml-1" />
             </div>
           </CardBody>
         </Card>

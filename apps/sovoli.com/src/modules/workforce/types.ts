@@ -107,6 +107,8 @@ export interface WorkforceMember {
   subjectAssignments?: SubjectAssignment[];
   education?: Education[];
   credentials?: Credential[];
+  quickfacts?: string[];
+  highlights?: string[];
 }
 
 export interface WorkforceModule {
