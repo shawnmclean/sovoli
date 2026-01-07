@@ -84,8 +84,12 @@ function SingleTeacherDetails({
                     <p className="text-sm text-foreground-500 mt-1">
                       {teacher.quickfacts.map((fact, index) => (
                         <span key={fact}>
-                          {fact}
-                          {index < (teacher.quickfacts?.length ?? 0) - 1 && " • "}
+                          <span className="inline-block whitespace-nowrap">
+                            {fact}
+                          </span>
+                          {index < (teacher.quickfacts?.length ?? 0) - 1 && (
+                            <span className="mx-1">•</span>
+                          )}
                         </span>
                       ))}
                     </p>

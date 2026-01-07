@@ -58,8 +58,12 @@ function SingleTeacherSection({
                   <p className="text-sm text-foreground-500 mt-1">
                     {teacher.quickfacts.map((fact, index) => (
                       <span key={fact}>
-                        {fact}
-                        {index < (teacher.quickfacts?.length ?? 0) - 1 && " • "}
+                        <span className="inline-block whitespace-nowrap">
+                          {fact}
+                        </span>
+                        {index < (teacher.quickfacts?.length ?? 0) - 1 && (
+                          <span className="mx-1">•</span>
+                        )}
                       </span>
                     ))}
                   </p>
@@ -83,7 +87,7 @@ function SingleTeacherSection({
               </div>
             )}
             <div className="flex items-center justify-center mt-4">
-              <span className="text-sm font-medium">View Details</span>
+              <span className="text-sm font-medium">View Full Portfolio</span>
               <ChevronRight className="h-4 w-4 ml-1" />
             </div>
           </CardBody>
