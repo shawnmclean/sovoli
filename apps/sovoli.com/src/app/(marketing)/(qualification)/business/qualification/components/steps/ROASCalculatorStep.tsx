@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { Card } from "@sovoli/ui/components/card";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 
 export interface ROASCalculatorStepProps {
   adSpend: string | null;
@@ -30,17 +30,23 @@ export function ROASCalculatorStep({
 }: ROASCalculatorStepProps) {
   const roasData = useMemo(() => {
     const adSpendUsd = parseAdSpend(adSpend);
-    if (adSpendUsd === null || adSpendUsd === 0 || returnValue === 0) {
+    
+    // If ad spend is null or invalid, we can't calculate anything
+    if (adSpendUsd === null) {
       return null;
     }
 
-    const returnUsd = returnValue / JMD_TO_USD_RATE;
-    const currentRoas = returnUsd / adSpendUsd;
+    // Calculate current ROAS if we have both ad spend and return value
+    const returnUsd = returnValue > 0 ? returnValue / JMD_TO_USD_RATE : 0;
+    const currentRoas = adSpendUsd > 0 && returnValue > 0 ? returnUsd / adSpendUsd : null;
+
+    // For potential calculation, use actual ad spend if available, otherwise use a minimum estimate
+    const adSpendForPotential = adSpendUsd > 0 ? adSpendUsd : 100; // Minimum estimate if $0
     
     // Calculate potential returns with our system
-    const minPotentialReturn = adSpendUsd * MIN_ROAS;
-    const maxPotentialReturn = adSpendUsd * MAX_ROAS;
-    const avgPotentialReturn = adSpendUsd * ((MIN_ROAS + MAX_ROAS) / 2);
+    const minPotentialReturn = adSpendForPotential * MIN_ROAS;
+    const maxPotentialReturn = adSpendForPotential * MAX_ROAS;
+    const avgPotentialReturn = adSpendForPotential * ((MIN_ROAS + MAX_ROAS) / 2);
     
     return {
       adSpendUsd,
@@ -58,6 +64,9 @@ export function ROASCalculatorStep({
       <div className="space-y-6">
         <div className="text-left">
           <h1 className="text-3xl font-bold mb-2">ROAS Calculator</h1>
+          <p className="text-default-600 mb-6">
+            Unable to calculate ROAS with the provided information.
+          </p>
         </div>
         <Button
           variant="solid"
@@ -68,7 +77,7 @@ export function ROASCalculatorStep({
           onPress={onNext}
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-base"
         >
-          Next
+          Continue
         </Button>
       </div>
     );
@@ -83,21 +92,45 @@ export function ROASCalculatorStep({
         </p>
       </div>
 
-      <Card className="p-6 bg-default-50 border-default-200">
-        <div className="space-y-4">
-          <div>
-            <div className="text-sm font-medium text-default-600 mb-1">
-              Current ROAS
+      {roasData.currentRoas !== null && (
+        <Card className="border-default-200">
+          <CardBody className="p-6 bg-default-50">
+            <div className="space-y-4">
+              <div>
+                <div className="text-sm font-medium text-default-600 mb-1">
+                  Current ROAS
+                </div>
+                <div className="text-4xl font-bold text-foreground">
+                  {roasData.currentRoas.toFixed(1)}x
+                </div>
+                <div className="text-xs text-default-500 mt-1">
+                  You're making ${roasData.currentRoas.toFixed(2)} for every $1 spent
+                </div>
+              </div>
             </div>
-            <div className="text-4xl font-bold text-foreground">
-              {roasData.currentRoas.toFixed(1)}x
+          </CardBody>
+        </Card>
+      )}
+
+      {roasData.currentRoas === null && (
+        <Card className="border-default-200">
+          <CardBody className="p-6 bg-default-50">
+            <div className="space-y-4">
+              <div>
+                <div className="text-sm font-medium text-default-600 mb-1">
+                  Current ROAS
+                </div>
+                <div className="text-2xl font-bold text-foreground">
+                  Not calculated
+                </div>
+                <div className="text-xs text-default-500 mt-1">
+                  Unable to calculate with the provided information
+                </div>
+              </div>
             </div>
-            <div className="text-xs text-default-500 mt-1">
-              You're making ${roasData.currentRoas.toFixed(2)} for every $1 spent
-            </div>
-          </div>
-        </div>
-      </Card>
+          </CardBody>
+        </Card>
+      )}
 
       <div className="text-left">
         <h2 className="text-2xl font-bold mb-2">What if we could improve that?</h2>
@@ -106,29 +139,31 @@ export function ROASCalculatorStep({
         </p>
       </div>
 
-      <Card className="p-6 bg-primary/10 border-primary/20">
-        <div className="space-y-4">
-          <div>
-            <div className="text-sm font-medium text-default-600 mb-1">
-              Potential ROAS with our system
+      <Card className="border-primary/20">
+        <CardBody className="p-6 bg-primary/10">
+          <div className="space-y-4">
+            <div>
+              <div className="text-sm font-medium text-default-600 mb-1">
+                Potential ROAS with our system
+              </div>
+              <div className="text-3xl font-bold text-primary">
+                {MIN_ROAS}x - {MAX_ROAS}x
+              </div>
             </div>
-            <div className="text-3xl font-bold text-primary">
-              {MIN_ROAS}x - {MAX_ROAS}x
+            
+            <div className="pt-4 border-t border-default-200">
+              <div className="text-sm font-medium text-default-600 mb-2">
+                Potential return on your ad spend:
+              </div>
+              <div className="text-2xl font-bold text-foreground mb-1">
+                ${roasData.avgPotentialReturn.toLocaleString(undefined, { maximumFractionDigits: 0 })} USD
+              </div>
+              <div className="text-xs text-default-500">
+                Range: ${roasData.minPotentialReturn.toLocaleString(undefined, { maximumFractionDigits: 0 })} - ${roasData.maxPotentialReturn.toLocaleString(undefined, { maximumFractionDigits: 0 })} USD
+              </div>
             </div>
           </div>
-          
-          <div className="pt-4 border-t border-default-200">
-            <div className="text-sm font-medium text-default-600 mb-2">
-              Potential return on your ad spend:
-            </div>
-            <div className="text-2xl font-bold text-foreground mb-1">
-              ${roasData.avgPotentialReturn.toLocaleString(undefined, { maximumFractionDigits: 0 })} USD
-            </div>
-            <div className="text-xs text-default-500">
-              Range: ${roasData.minPotentialReturn.toLocaleString(undefined, { maximumFractionDigits: 0 })} - ${roasData.maxPotentialReturn.toLocaleString(undefined, { maximumFractionDigits: 0 })} USD
-            </div>
-          </div>
-        </div>
+        </CardBody>
       </Card>
 
       <Button

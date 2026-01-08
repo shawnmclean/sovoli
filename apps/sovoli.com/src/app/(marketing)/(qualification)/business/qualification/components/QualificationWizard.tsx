@@ -224,6 +224,37 @@ export function QualificationWizard() {
     }
   };
 
+  const getStepInfo = () => {
+    const steps: WizardStep[] = [
+      "ad-spend",
+      "return",
+      "roas-calculator",
+      "business-name",
+      "phone",
+      "name",
+    ];
+    const currentStepIndex = steps.indexOf(step);
+    const totalSteps = steps.length;
+    const currentStepNumber = currentStepIndex >= 0 ? currentStepIndex + 1 : 0;
+    return { currentStepNumber, totalSteps };
+  };
+
+  const renderStepCounter = () => {
+    if (step === "success") return null;
+
+    const { currentStepNumber, totalSteps } = getStepInfo();
+
+    return (
+      <div className="absolute top-4 right-4 z-10">
+        <div className="bg-background/80 backdrop-blur-sm rounded-full px-4 py-2 border border-default-200">
+          <span className="text-sm font-medium text-default-600">
+            {currentStepNumber} / {totalSteps}
+          </span>
+        </div>
+      </div>
+    );
+  };
+
   const renderBackButton = () => {
     if (step === "success") return null;
 
@@ -261,6 +292,7 @@ export function QualificationWizard() {
     return (
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
+        {renderStepCounter()}
         <div className="flex flex-col px-4 py-8 pt-16">
           <AdSpendStep
             value={formData.adSpend}
@@ -275,6 +307,7 @@ export function QualificationWizard() {
     return (
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
+        {renderStepCounter()}
         <div className="flex flex-col px-4 py-8 pt-16">
           <div className="space-y-6">
             <ReturnStep
@@ -302,6 +335,7 @@ export function QualificationWizard() {
     return (
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
+        {renderStepCounter()}
         <div className="flex flex-col px-4 py-8 pt-16">
           <ROASCalculatorStep
             adSpend={formData.adSpend}
@@ -317,6 +351,7 @@ export function QualificationWizard() {
     return (
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
+        {renderStepCounter()}
         <div className="flex flex-col px-4 py-8 pt-16">
           <BusinessNameStep
             value={formData.businessName}
@@ -335,6 +370,7 @@ export function QualificationWizard() {
     return (
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
+        {renderStepCounter()}
         <div className="flex flex-col px-4 py-8 pt-16">
           <PhoneStep
             defaultPhone={formData.phoneRaw || undefined}
@@ -350,6 +386,7 @@ export function QualificationWizard() {
     return (
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
+        {renderStepCounter()}
         <div className="flex flex-col px-4 py-8 pt-16">
           <NameStep
             defaultFirstName={formData.firstName ?? undefined}
