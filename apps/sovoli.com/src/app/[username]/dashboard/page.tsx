@@ -17,7 +17,7 @@ import healingEmeraldLeadsData from "~/modules/data/organisations/vocational-sch
 
 function getLeadsData(username: string): Lead[] {
   if (username === "healingemeraldwellness") {
-    return healingEmeraldLeadsData.leads ?? [];
+    return healingEmeraldLeadsData.leads;
   }
   return [];
 }
