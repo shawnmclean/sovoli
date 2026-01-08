@@ -7,6 +7,7 @@ import Link from "next/link";
 import posthog from "posthog-js";
 import { AdSpendStep } from "./steps/AdSpendStep";
 import { ReturnStep } from "./steps/ReturnStep";
+import { ROASCalculatorStep } from "./steps/ROASCalculatorStep";
 import { BusinessNameStep } from "./steps/BusinessNameStep";
 import { PhoneStep } from "./steps/PhoneStep";
 import { NameStep } from "./steps/NameStep";
@@ -14,6 +15,7 @@ import { NameStep } from "./steps/NameStep";
 type WizardStep =
   | "ad-spend"
   | "return"
+  | "roas-calculator"
   | "business-name"
   | "phone"
   | "name"
@@ -84,6 +86,14 @@ export function QualificationWizard() {
       response_formatted: `$${formData.returnValue.toLocaleString()} JMD`,
       step: "return",
     });
+    setStep("roas-calculator");
+  };
+
+  const handleROASCalculatorNext = () => {
+    // This is a presentation step, just track that it was viewed
+    posthog.capture("QualificationStepViewed", {
+      step: "roas-calculator",
+    });
     setStep("business-name");
   };
 
@@ -96,7 +106,7 @@ export function QualificationWizard() {
       return;
     }
     setError(null);
-    const questionNumber = 3;
+    const questionNumber = 4;
     const question = "What's the name of your business?";
     posthog.capture("QualificationQuestionAnswered", {
       question_number: questionNumber,
@@ -124,7 +134,7 @@ export function QualificationWizard() {
           ? countryIso
           : undefined,
     }));
-    const questionNumber = 4;
+    const questionNumber = 5;
     const question = "What's your phone number?";
     posthog.capture("QualificationQuestionAnswered", {
       question_number: questionNumber,
@@ -144,7 +154,7 @@ export function QualificationWizard() {
       firstName,
       lastName,
     }));
-    const questionNumber = 5;
+    const questionNumber = 6;
     const question = "What's your name?";
     const fullName = `${firstName} ${lastName}`;
 
@@ -203,8 +213,10 @@ export function QualificationWizard() {
   const handleBack = () => {
     if (step === "return") {
       setStep("ad-spend");
-    } else if (step === "business-name") {
+    } else if (step === "roas-calculator") {
       setStep("return");
+    } else if (step === "business-name") {
+      setStep("roas-calculator");
     } else if (step === "phone") {
       setStep("business-name");
     } else if (step === "name") {
@@ -281,6 +293,21 @@ export function QualificationWizard() {
               Next
             </Button>
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "roas-calculator") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        {renderBackButton()}
+        <div className="flex flex-col px-4 py-8 pt-16">
+          <ROASCalculatorStep
+            adSpend={formData.adSpend}
+            returnValue={formData.returnValue}
+            onNext={handleROASCalculatorNext}
+          />
         </div>
       </div>
     );

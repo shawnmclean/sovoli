@@ -16,6 +16,13 @@ const AD_SPEND_OPTIONS = [
 ] as const;
 
 export function AdSpendStep({ value, onChange }: AdSpendStepProps) {
+  const handleRadioClick = (optionValue: string, e: React.MouseEvent) => {
+    // Always trigger onChange, even if it's the same value
+    // This allows users to click the same option again to proceed
+    e.stopPropagation();
+    onChange(optionValue);
+  };
+
   return (
     <div className="space-y-6">
       <div className="text-left">
@@ -30,13 +37,18 @@ export function AdSpendStep({ value, onChange }: AdSpendStepProps) {
         }}
       >
         {AD_SPEND_OPTIONS.map((option) => (
-          <CustomRadio
+          <div
             key={option.value}
-            value={option.value}
-            className="w-full"
+            onClick={(e) => handleRadioClick(option.value, e)}
+            className="cursor-pointer"
           >
-            <span className="text-base font-medium">{option.label}</span>
-          </CustomRadio>
+            <CustomRadio
+              value={option.value}
+              className="w-full"
+            >
+              <span className="text-base font-medium">{option.label}</span>
+            </CustomRadio>
+          </div>
         ))}
       </RadioGroup>
     </div>
