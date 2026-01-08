@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
+import { Input } from "@sovoli/ui/components/input";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 
 export interface ROASCalculatorStepProps {
@@ -28,139 +29,173 @@ export function ROASCalculatorStep({
   returnValue,
   onNext,
 }: ROASCalculatorStepProps) {
-  const roasData = useMemo(() => {
-    const adSpendUsd = parseAdSpend(adSpend);
-    
-    // If ad spend is null or invalid, we can't calculate anything
-    if (adSpendUsd === null) {
-      return null;
+  // Initialize editable ad spend from parsed value (convert USD to JMD)
+  const initialAdSpendUsd = parseAdSpend(adSpend) ?? 0;
+  const initialAdSpendJmd = initialAdSpendUsd * JMD_TO_USD_RATE;
+  const [editableAdSpendJmd, setEditableAdSpendJmd] = useState<string>(
+    initialAdSpendJmd.toString(),
+  );
+
+  // Initialize editable return value
+  const [editableReturnJmd, setEditableReturnJmd] = useState<string>(
+    returnValue.toString(),
+  );
+
+  // Update editable values when props change
+  useEffect(() => {
+    const parsedAdSpendUsd = parseAdSpend(adSpend);
+    if (parsedAdSpendUsd !== null) {
+      const adSpendJmd = parsedAdSpendUsd * JMD_TO_USD_RATE;
+      setEditableAdSpendJmd(adSpendJmd.toString());
     }
+  }, [adSpend]);
 
-    // Calculate current ROAS if we have both ad spend and return value
-    const returnUsd = returnValue > 0 ? returnValue / JMD_TO_USD_RATE : 0;
-    const currentRoas = adSpendUsd > 0 && returnValue > 0 ? returnUsd / adSpendUsd : null;
+  useEffect(() => {
+    setEditableReturnJmd(returnValue.toString());
+  }, [returnValue]);
 
-    // For potential calculation, use actual ad spend if available, otherwise use a minimum estimate
-    const adSpendForPotential = adSpendUsd > 0 ? adSpendUsd : 100; // Minimum estimate if $0
+  const roasData = useMemo(() => {
+    // Parse the editable ad spend value (in JMD)
+    const adSpendJmd = parseFloat(editableAdSpendJmd) || 0;
+    // Parse the editable return value (in JMD)
+    const returnJmd = parseFloat(editableReturnJmd) || 0;
     
-    // Calculate potential returns with our system
-    const minPotentialReturn = adSpendForPotential * MIN_ROAS;
-    const maxPotentialReturn = adSpendForPotential * MAX_ROAS;
-    const avgPotentialReturn = adSpendForPotential * ((MIN_ROAS + MAX_ROAS) / 2);
+    // Calculate current ROAS (can be null if ad spend or return is 0)
+    const currentRoas = adSpendJmd > 0 && returnJmd > 0 ? returnJmd / adSpendJmd : null;
+
+    // For potential calculations, use actual ad spend if > 0, otherwise use minimum estimate (100 JMD)
+    const adSpendForPotential = adSpendJmd > 0 ? adSpendJmd : 100;
+    
+    // Calculate potential returns with our system (all in JMD)
+    const minPotentialReturnJmd = adSpendForPotential * MIN_ROAS;
+    const maxPotentialReturnJmd = adSpendForPotential * MAX_ROAS;
+    const avgPotentialReturnJmd = adSpendForPotential * ((MIN_ROAS + MAX_ROAS) / 2);
+    
+    // Calculate percentage increase
+    const percentageIncrease = currentRoas && currentRoas > 0
+      ? ((MIN_ROAS - currentRoas) / currentRoas) * 100
+      : null;
+    const avgPercentageIncrease = currentRoas && currentRoas > 0 && returnJmd > 0
+      ? ((avgPotentialReturnJmd - returnJmd) / returnJmd) * 100
+      : null;
     
     return {
-      adSpendUsd,
-      returnUsd,
+      adSpendJmd,
+      returnJmd,
       currentRoas,
-      minPotentialReturn,
-      maxPotentialReturn,
-      avgPotentialReturn,
+      minPotentialReturnJmd,
+      maxPotentialReturnJmd,
+      avgPotentialReturnJmd,
+      percentageIncrease,
+      avgPercentageIncrease,
     };
-  }, [adSpend, returnValue]);
+  }, [editableReturnJmd, editableAdSpendJmd]);
 
-  if (!roasData) {
-    // If we can't calculate, just show next button
-    return (
-      <div className="space-y-6">
-        <div className="text-left">
-          <h1 className="text-3xl font-bold mb-2">ROAS Calculator</h1>
-          <p className="text-default-600 mb-6">
-            Unable to calculate ROAS with the provided information.
-          </p>
-        </div>
-        <Button
-          variant="solid"
-          color="primary"
-          radius="lg"
-          fullWidth
-          size="lg"
-          onPress={onNext}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-base"
-        >
-          Continue
-        </Button>
-      </div>
-    );
-  }
+  const handleAdSpendChange = (value: string) => {
+    const numericValue = value.replace(/[^0-9.]/g, "");
+    setEditableAdSpendJmd(numericValue);
+  };
+
+  const handleReturnChange = (value: string) => {
+    const numericValue = value.replace(/[^0-9.]/g, "");
+    setEditableReturnJmd(numericValue);
+  };
+
+  const formatCurrencyJMD = (amount: number) => {
+    return `$${amount.toLocaleString(undefined, { maximumFractionDigits: 0 })} JMD`;
+  };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="text-left">
         <h1 className="text-3xl font-bold mb-2">Your Current ROAS</h1>
-        <p className="text-default-600 mb-6">
-          Based on your previous answers, here's your current return on ad spend.
+        <p className="text-default-600 mb-4">
+          Based on your previous answers, here's your current ROAS (return on ad spend).
         </p>
       </div>
 
-      {roasData.currentRoas !== null && (
+      {/* Editable Inputs Side by Side */}
+      <div className="flex gap-4">
+        <Input
+          type="text"
+          value={editableAdSpendJmd}
+          onChange={(e) => handleAdSpendChange(e.target.value)}
+          label="Ad Spend (JMD)"
+          variant="bordered"
+          size="lg"
+          className="flex-1"
+          placeholder="Enter amount"
+          startContent={<span className="text-default-500">$</span>}
+          endContent={<span className="text-default-500 text-sm">JMD</span>}
+        />
+
+        <Input
+          type="text"
+          value={editableReturnJmd}
+          onChange={(e) => handleReturnChange(e.target.value)}
+          label="Your Return (JMD)"
+          variant="bordered"
+          size="lg"
+          className="flex-1"
+          placeholder="Enter amount"
+          startContent={<span className="text-default-500">$</span>}
+          endContent={<span className="text-default-500 text-sm">JMD</span>}
+        />
+      </div>
+
+      {roasData.currentRoas !== null ? (
         <Card className="border-default-200">
-          <CardBody className="p-6 bg-default-50">
-            <div className="space-y-4">
-              <div>
-                <div className="text-sm font-medium text-default-600 mb-1">
-                  Current ROAS
-                </div>
-                <div className="text-4xl font-bold text-foreground">
-                  {roasData.currentRoas.toFixed(1)}x
-                </div>
-                <div className="text-xs text-default-500 mt-1">
-                  You're making ${roasData.currentRoas.toFixed(2)} for every $1 spent
-                </div>
-              </div>
+          <CardBody className="p-4 bg-default-50">
+            <div className="text-sm text-default-600 mb-1">Current ROAS</div>
+            <div className="text-3xl font-bold text-foreground">
+              {roasData.currentRoas.toFixed(1)}x
             </div>
           </CardBody>
         </Card>
-      )}
-
-      {roasData.currentRoas === null && (
+      ) : (
         <Card className="border-default-200">
-          <CardBody className="p-6 bg-default-50">
-            <div className="space-y-4">
-              <div>
-                <div className="text-sm font-medium text-default-600 mb-1">
-                  Current ROAS
-                </div>
-                <div className="text-2xl font-bold text-foreground">
-                  Not calculated
-                </div>
-                <div className="text-xs text-default-500 mt-1">
-                  Unable to calculate with the provided information
-                </div>
-              </div>
+          <CardBody className="p-4 bg-default-50">
+            <div className="text-sm text-default-600 mb-1">Current ROAS</div>
+            <div className="text-2xl font-bold text-foreground">
+              Not calculated
+            </div>
+            <div className="text-xs text-default-500 mt-1">
+              Enter ad spend and return values to calculate
             </div>
           </CardBody>
         </Card>
       )}
 
       <div className="text-left">
-        <h2 className="text-2xl font-bold mb-2">What if we could improve that?</h2>
-        <p className="text-default-600 mb-6">
-          With our system, we've seen businesses achieve 6x-10x ROAS. Here's what that could mean for you:
+        <h2 className="text-2xl font-bold mb-2">Potential ROAS with Us</h2>
+        <p className="text-default-600 mb-4">
+          With our system, we've seen businesses achieve 6x-10x ROAS.
         </p>
       </div>
 
       <Card className="border-primary/20">
-        <CardBody className="p-6 bg-primary/10">
-          <div className="space-y-4">
+        <CardBody className="p-4 bg-primary/10">
+          <div className="space-y-3">
             <div>
-              <div className="text-sm font-medium text-default-600 mb-1">
-                Potential ROAS with our system
-              </div>
-              <div className="text-3xl font-bold text-primary">
+              <div className="text-sm text-default-600 mb-1">Potential ROAS</div>
+              <div className="text-2xl font-bold text-primary">
                 {MIN_ROAS}x - {MAX_ROAS}x
               </div>
             </div>
             
-            <div className="pt-4 border-t border-default-200">
-              <div className="text-sm font-medium text-default-600 mb-2">
-                Potential return on your ad spend:
+            <div className="pt-3 border-t border-default-200">
+              <div className="text-sm text-default-600 mb-1">Potential return</div>
+              <div className="text-xl font-bold text-foreground">
+                {formatCurrencyJMD(roasData.avgPotentialReturnJmd)}
               </div>
-              <div className="text-2xl font-bold text-foreground mb-1">
-                ${roasData.avgPotentialReturn.toLocaleString(undefined, { maximumFractionDigits: 0 })} USD
+              <div className="text-xs text-default-500 mt-1">
+                Range: {formatCurrencyJMD(roasData.minPotentialReturnJmd)} - {formatCurrencyJMD(roasData.maxPotentialReturnJmd)}
               </div>
-              <div className="text-xs text-default-500">
-                Range: ${roasData.minPotentialReturn.toLocaleString(undefined, { maximumFractionDigits: 0 })} - ${roasData.maxPotentialReturn.toLocaleString(undefined, { maximumFractionDigits: 0 })} USD
-              </div>
+              {roasData.currentRoas !== null && roasData.avgPercentageIncrease !== null && roasData.avgPercentageIncrease > 0 && (
+                <div className="text-sm font-medium text-primary mt-2">
+                  {Math.round(roasData.avgPercentageIncrease)}% increase
+                </div>
+              )}
             </div>
           </div>
         </CardBody>
