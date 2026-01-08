@@ -1,0 +1,364 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { Button } from "@sovoli/ui/components/button";
+import { ArrowLeftIcon, CheckCircle2Icon } from "lucide-react";
+import Link from "next/link";
+import posthog from "posthog-js";
+import { AdSpendStep } from "./steps/AdSpendStep";
+import { ReturnStep } from "./steps/ReturnStep";
+import { BusinessNameStep } from "./steps/BusinessNameStep";
+import { PhoneStep } from "./steps/PhoneStep";
+import { NameStep } from "./steps/NameStep";
+
+type WizardStep =
+  | "ad-spend"
+  | "return"
+  | "business-name"
+  | "phone"
+  | "name"
+  | "success";
+
+interface QualificationFormData {
+  adSpend: string | null;
+  returnValue: number;
+  businessName: string;
+  phone: string | null;
+  phoneRaw: string;
+  phoneCountryCode: "US" | "GB" | "GY" | "JM" | undefined;
+  firstName: string | null;
+  lastName: string | null;
+}
+
+export function QualificationWizard() {
+  const [step, setStep] = useState<WizardStep>("ad-spend");
+  const [formData, setFormData] = useState<QualificationFormData>({
+    adSpend: null,
+    returnValue: 0,
+    businessName: "",
+    phone: null,
+    phoneRaw: "",
+    phoneCountryCode: undefined,
+    firstName: null,
+    lastName: null,
+  });
+  const [error, setError] = useState<string | null>(null);
+
+  // Track initial page view with ViewContent
+  useEffect(() => {
+    posthog.capture("ViewContent", {
+      content_name: "Business Qualification Survey",
+      content_category: "Business",
+      content_type: "survey",
+    });
+    posthog.capture("QualificationSurveyStarted");
+  }, []);
+
+  const handleAdSpendChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, adSpend: value }));
+    const questionNumber = 1;
+    const question = "How much did you spend on ads the past month?";
+    posthog.capture("QualificationQuestionAnswered", {
+      question_number: questionNumber,
+      question,
+      response: value,
+      step: "ad-spend",
+    });
+    // Auto-advance to next step
+    setTimeout(() => {
+      setStep("return");
+    }, 300);
+  };
+
+  const handleReturnChange = (value: number) => {
+    setFormData((prev) => ({ ...prev, returnValue: value }));
+  };
+
+  const handleReturnNext = () => {
+    const questionNumber = 2;
+    const question = "What was your return? How much did you make?";
+    posthog.capture("QualificationQuestionAnswered", {
+      question_number: questionNumber,
+      question,
+      response: formData.returnValue,
+      response_formatted: `$${formData.returnValue.toLocaleString()} JMD`,
+      step: "return",
+    });
+    setStep("business-name");
+  };
+
+  const handleBusinessNameNext = () => {
+    if (
+      !formData.businessName.trim() ||
+      formData.businessName.trim().length < 2
+    ) {
+      setError("Business name must be at least 2 characters");
+      return;
+    }
+    setError(null);
+    const questionNumber = 3;
+    const question = "What's the name of your business?";
+    posthog.capture("QualificationQuestionAnswered", {
+      question_number: questionNumber,
+      question,
+      response: formData.businessName.trim(),
+      step: "business-name",
+    });
+    setStep("phone");
+  };
+
+  const handlePhoneSuccess = (
+    phoneNumber: string,
+    rawPhone?: string,
+    countryIso?: string,
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      phone: phoneNumber,
+      phoneRaw: rawPhone ?? "",
+      phoneCountryCode:
+        countryIso === "US" ||
+        countryIso === "GB" ||
+        countryIso === "GY" ||
+        countryIso === "JM"
+          ? countryIso
+          : undefined,
+    }));
+    const questionNumber = 4;
+    const question = "What's your phone number?";
+    posthog.capture("QualificationQuestionAnswered", {
+      question_number: questionNumber,
+      question,
+      response: phoneNumber,
+      step: "phone",
+      $set: {
+        phone: phoneNumber,
+      },
+    });
+    setStep("name");
+  };
+
+  const handleNameSuccess = (firstName: string, lastName: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      firstName,
+      lastName,
+    }));
+    const questionNumber = 5;
+    const question = "What's your name?";
+    const fullName = `${firstName} ${lastName}`;
+
+    // Track the final question
+    posthog.capture("QualificationQuestionAnswered", {
+      question_number: questionNumber,
+      question,
+      response: fullName,
+      step: "name",
+      $set: {
+        first_name: firstName,
+        last_name: lastName,
+        name: fullName,
+      },
+    });
+
+    // Track Lead event (end of funnel)
+    posthog.capture("Lead", {
+      content_name: "Business Qualification Survey",
+      content_category: "Business",
+      content_type: "product",
+      ad_spend: formData.adSpend,
+      return_value: formData.returnValue,
+      business_name: formData.businessName,
+      phone: formData.phone,
+      first_name: firstName,
+      last_name: lastName,
+      $set: {
+        phone: formData.phone,
+        first_name: firstName,
+        last_name: lastName,
+        name: fullName,
+      },
+    });
+
+    // Complete the survey
+    posthog.capture("QualificationSurveyCompleted", {
+      ad_spend: formData.adSpend,
+      return_value: formData.returnValue,
+      business_name: formData.businessName,
+      phone: formData.phone,
+      first_name: firstName,
+      last_name: lastName,
+    });
+
+    // For now, just log the data. In the future, submit to API
+    console.log("Qualification survey completed:", {
+      ...formData,
+      firstName,
+      lastName,
+    });
+
+    setStep("success");
+  };
+
+  const handleBack = () => {
+    if (step === "return") {
+      setStep("ad-spend");
+    } else if (step === "business-name") {
+      setStep("return");
+    } else if (step === "phone") {
+      setStep("business-name");
+    } else if (step === "name") {
+      setStep("phone");
+    }
+  };
+
+  const renderBackButton = () => {
+    if (step === "success") return null;
+
+    const isFirstStep = step === "ad-spend";
+
+    return (
+      <div className="absolute top-4 left-4 z-10">
+        {isFirstStep ? (
+          <Button
+            as={Link}
+            href="/business"
+            variant="light"
+            isIconOnly
+            radius="full"
+            className="bg-background/80 backdrop-blur-sm"
+          >
+            <ArrowLeftIcon className="h-5 w-5" />
+          </Button>
+        ) : (
+          <Button
+            variant="light"
+            isIconOnly
+            onPress={handleBack}
+            radius="full"
+            className="bg-background/80 backdrop-blur-sm"
+          >
+            <ArrowLeftIcon className="h-5 w-5" />
+          </Button>
+        )}
+      </div>
+    );
+  };
+
+  if (step === "ad-spend") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        {renderBackButton()}
+        <div className="flex flex-col px-4 py-8 pt-16">
+          <AdSpendStep
+            value={formData.adSpend}
+            onChange={handleAdSpendChange}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "return") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        {renderBackButton()}
+        <div className="flex flex-col px-4 py-8 pt-16">
+          <div className="space-y-6">
+            <ReturnStep
+              value={formData.returnValue}
+              onChange={handleReturnChange}
+            />
+            <Button
+              variant="solid"
+              color="primary"
+              radius="lg"
+              fullWidth
+              size="lg"
+              onPress={handleReturnNext}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-base"
+            >
+              Next
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "business-name") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        {renderBackButton()}
+        <div className="flex flex-col px-4 py-8 pt-16">
+          <BusinessNameStep
+            value={formData.businessName}
+            onChange={(value) =>
+              setFormData((prev) => ({ ...prev, businessName: value }))
+            }
+            onNext={handleBusinessNameNext}
+            error={error}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "phone") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        {renderBackButton()}
+        <div className="flex flex-col px-4 py-8 pt-16">
+          <PhoneStep
+            defaultPhone={formData.phoneRaw || undefined}
+            defaultCountryCode={formData.phoneCountryCode}
+            onSuccess={handlePhoneSuccess}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "name") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        {renderBackButton()}
+        <div className="flex flex-col px-4 py-8 pt-16">
+          <NameStep
+            defaultFirstName={formData.firstName ?? undefined}
+            defaultLastName={formData.lastName ?? undefined}
+            onSuccess={handleNameSuccess}
+            onError={(message) => setError(message)}
+          />
+          {error && (
+            <div className="mt-4 p-3 rounded-lg bg-danger/10 text-danger border border-danger/20">
+              {error}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "success") {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 text-center space-y-6">
+          <div className="flex justify-center">
+            <CheckCircle2Icon className="h-16 w-16 text-success" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold mb-2 sm:text-3xl">
+              Thank you{formData.firstName ? `, ${formData.firstName}` : ""}!
+            </h2>
+            <p className="text-base text-default-600 sm:text-lg">
+              We&apos;ll review your information and get back to you soon.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
