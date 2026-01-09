@@ -1,7 +1,6 @@
 "use client";
 
 import { Input } from "@sovoli/ui/components/input";
-import { Button } from "@sovoli/ui/components/button";
 
 export interface BusinessNameStepProps {
   value: string;

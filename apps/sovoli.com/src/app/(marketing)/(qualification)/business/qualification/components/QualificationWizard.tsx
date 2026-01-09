@@ -438,12 +438,12 @@ export function QualificationWizard() {
     );
   }
 
-  if (step === "success") {
-    const whatsappMessage = formData.businessName
-      ? `Hello! I just completed the qualification survey for ${formData.businessName}. I'd like to learn more about how Sovoli can help improve my ROAS.`
-      : "Hello! I just completed the qualification survey. I'd like to learn more about how Sovoli can help improve my ROAS.";
+  // At this point, step must be "success" since all other steps return early
+  const whatsappMessage = formData.businessName
+    ? `Hello! I just completed the qualification survey for ${formData.businessName}. I'd like to learn more about how Sovoli can help improve my ROAS.`
+    : "Hello! I just completed the qualification survey. I'd like to learn more about how Sovoli can help improve my ROAS.";
 
-    return (
+  return (
       <div className="min-h-screen flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 text-center space-y-6">
           <div className="flex justify-center">
@@ -483,7 +483,4 @@ export function QualificationWizard() {
         </div>
       </div>
     );
-  }
-
-  return null;
 }
