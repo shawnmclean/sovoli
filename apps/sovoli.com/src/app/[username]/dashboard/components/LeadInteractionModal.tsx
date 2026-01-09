@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import posthog from "posthog-js";
 import {
   Drawer,
@@ -68,7 +68,13 @@ interface LeadInteractionModalProps {
   onSave: (interaction: LeadInteraction) => void;
 }
 
-type Step = "contact_outcome" | "not_reached_reason" | "interest_level" | "blocker" | "next_action" | "notes";
+type Step =
+  | "contact_outcome"
+  | "not_reached_reason"
+  | "interest_level"
+  | "blocker"
+  | "next_action"
+  | "notes";
 
 export function LeadInteractionModal({
   lead,
@@ -81,14 +87,6 @@ export function LeadInteractionModal({
     contactOutcome: "",
   });
   const [currentStep, setCurrentStep] = useState<Step>("contact_outcome");
-
-  // Reset to first step when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      setCurrentStep("contact_outcome");
-      setFormData({ contactOutcome: "" });
-    }
-  }, [isOpen]);
 
   // Calculate available steps based on form data
   const availableSteps = useMemo((): Step[] => {
@@ -117,22 +115,36 @@ export function LeadInteractionModal({
     return steps;
   }, [formData.contactOutcome, formData.interestLevel]);
 
-  // Ensure current step is valid, or move to closest valid step
-  useEffect(() => {
+  // Track previous available steps to detect changes
+  const prevAvailableStepsRef = React.useRef<string>("");
+
+  // Validate step when available steps change, but only update if step is invalid
+  React.useEffect(() => {
+    const currentStepsStr = availableSteps.join(",");
+    // Only validate if available steps actually changed
+    if (prevAvailableStepsRef.current === currentStepsStr) {
+      return;
+    }
+    prevAvailableStepsRef.current = currentStepsStr;
+
     const currentIndex = availableSteps.indexOf(currentStep);
-    
+
     // If current step is not in available steps, find the closest valid step
     if (currentIndex === -1) {
-      // If we were on a step that's no longer available, go to last available step
-      // or first step if that makes more sense
-      if (currentStep === "not_reached_reason" && formData.contactOutcome !== "not_reached") {
+      if (
+        currentStep === "not_reached_reason" &&
+        formData.contactOutcome !== "not_reached"
+      ) {
         // User changed from not_reached to something else, go to interest_level
         if (formData.contactOutcome !== "") {
           setCurrentStep("interest_level");
         } else {
           setCurrentStep("contact_outcome");
         }
-      } else if (currentStep === "blocker" && formData.interestLevel === "wants_to_proceed") {
+      } else if (
+        currentStep === "blocker" &&
+        formData.interestLevel === "wants_to_proceed"
+      ) {
         // User changed to wants_to_proceed, skip blocker
         setCurrentStep("next_action");
       } else {
@@ -140,7 +152,12 @@ export function LeadInteractionModal({
         setCurrentStep(availableSteps[0] ?? "contact_outcome");
       }
     }
-  }, [availableSteps, currentStep, formData.contactOutcome, formData.interestLevel]);
+  }, [
+    availableSteps,
+    currentStep,
+    formData.contactOutcome,
+    formData.interestLevel,
+  ]);
 
   const currentStepIndex = availableSteps.indexOf(currentStep);
   const canGoBack = currentStepIndex > 0;
@@ -255,7 +272,8 @@ export function LeadInteractionModal({
                 value={formData.contactOutcome}
                 onValueChange={(value) => {
                   setFormData((prev) => {
-                    const newOutcome = value as LeadInteractionForm["contactOutcome"];
+                    const newOutcome =
+                      value as LeadInteractionForm["contactOutcome"];
                     // Reset dependent fields when changing outcome
                     return {
                       ...prev,
@@ -347,9 +365,7 @@ export function LeadInteractionModal({
                 }}
               >
                 <CustomRadio value="not_interested">
-                  <span className="text-base font-medium">
-                    Not interested
-                  </span>
+                  <span className="text-base font-medium">Not interested</span>
                 </CustomRadio>
                 <CustomRadio value="curious">
                   <span className="text-base font-medium">
@@ -401,9 +417,7 @@ export function LeadInteractionModal({
                       </span>
                     </CustomRadio>
                     <CustomRadio value="timing">
-                      <span className="text-sm">
-                        Timing didn&apos;t match
-                      </span>
+                      <span className="text-sm">Timing didn&apos;t match</span>
                     </CustomRadio>
                   </div>
                 </div>
@@ -443,14 +457,10 @@ export function LeadInteractionModal({
                   </div>
                   <div className="space-y-2 pl-2">
                     <CustomRadio value="comparing">
-                      <span className="text-sm">
-                        Just comparing options
-                      </span>
+                      <span className="text-sm">Just comparing options</span>
                     </CustomRadio>
                     <CustomRadio value="not_serious">
-                      <span className="text-sm">
-                        Didn&apos;t seem serious
-                      </span>
+                      <span className="text-sm">Didn&apos;t seem serious</span>
                     </CustomRadio>
                   </div>
                 </div>
@@ -479,19 +489,13 @@ export function LeadInteractionModal({
                 }}
               >
                 <CustomRadio value="follow_up_later">
-                  <span className="text-base font-medium">
-                    Follow up later
-                  </span>
+                  <span className="text-base font-medium">Follow up later</span>
                 </CustomRadio>
                 <CustomRadio value="visit_scheduled">
-                  <span className="text-base font-medium">
-                    Visit scheduled
-                  </span>
+                  <span className="text-base font-medium">Visit scheduled</span>
                 </CustomRadio>
                 <CustomRadio value="waiting_on_them">
-                  <span className="text-base font-medium">
-                    Waiting on them
-                  </span>
+                  <span className="text-base font-medium">Waiting on them</span>
                 </CustomRadio>
                 <CustomRadio value="no_followup">
                   <span className="text-base font-medium">
@@ -523,7 +527,7 @@ export function LeadInteractionModal({
                 size="lg"
               />
               <div className="text-xs text-default-500 text-right">
-                {(formData.notes?.length ?? 0)}/120
+                {formData.notes?.length ?? 0}/120
               </div>
             </div>
           </div>
@@ -546,7 +550,14 @@ export function LeadInteractionModal({
       placement="bottom"
       backdrop="opaque"
       hideCloseButton
-      onOpenChange={onOpenChange}
+      onOpenChange={(open) => {
+        if (!open) {
+          // Reset state when closing
+          setCurrentStep("contact_outcome");
+          setFormData({ contactOutcome: "" });
+        }
+        onOpenChange(open);
+      }}
       motionProps={{
         variants: {
           enter: {
@@ -585,9 +596,7 @@ export function LeadInteractionModal({
               </div>
             )}
             <DrawerBody>
-              <div className="space-y-4 pb-4">
-                {renderStepContent()}
-              </div>
+              <div className="space-y-4 pb-4">{renderStepContent()}</div>
             </DrawerBody>
             <DrawerFooter>
               <div className="flex gap-2 w-full">
