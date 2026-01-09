@@ -168,7 +168,7 @@ export function LeadInteractionModal({
   };
 
   const handleSave = () => {
-    if (!formData.contactOutcome || formData.contactOutcome === "") {
+    if (!formData.contactOutcome) {
       return;
     }
 
@@ -605,7 +605,7 @@ export function LeadInteractionModal({
                     <Button
                       color="primary"
                       onPress={handleSave}
-                      isDisabled={formData.contactOutcome === ""}
+                      isDisabled={!formData.contactOutcome}
                     >
                       Save outcome
                     </Button>
@@ -616,7 +616,7 @@ export function LeadInteractionModal({
                     onPress={handleNext}
                     isDisabled={
                       (currentStep === "contact_outcome" &&
-                        formData.contactOutcome === "") ||
+                        !formData.contactOutcome) ||
                       (currentStep === "interest_level" &&
                         !formData.interestLevel)
                     }
