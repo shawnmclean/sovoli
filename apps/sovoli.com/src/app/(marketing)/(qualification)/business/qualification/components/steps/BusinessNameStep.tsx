@@ -6,7 +6,7 @@ import { Button } from "@sovoli/ui/components/button";
 export interface BusinessNameStepProps {
   value: string;
   onChange: (value: string) => void;
-  onNext: () => void;
+  onNext?: () => void; // Optional, kept for backward compatibility but not used (button is sticky now)
   error?: string | null;
 }
 
@@ -16,17 +16,9 @@ export function BusinessNameStep({
   onNext,
   error,
 }: BusinessNameStepProps) {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (value.trim().length >= 2) {
-      onNext();
-    }
-  };
-
-  const isValid = value.trim().length >= 2;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="space-y-6">
       <div className="text-left">
         <h1 className="text-3xl font-bold mb-2">What's the name of your business?</h1>
       </div>
@@ -43,6 +35,12 @@ export function BusinessNameStep({
         variant="bordered"
         placeholder="Enter your business name"
         isRequired
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && value.trim().length >= 2 && onNext) {
+            e.preventDefault();
+            onNext();
+          }
+        }}
       />
 
       {error && (
@@ -50,19 +48,6 @@ export function BusinessNameStep({
           {error}
         </div>
       )}
-
-      <Button
-        type="submit"
-        variant="solid"
-        color="primary"
-        radius="lg"
-        fullWidth
-        size="lg"
-        isDisabled={!isValid}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-base"
-      >
-        Next
-      </Button>
-    </form>
+    </div>
   );
 }

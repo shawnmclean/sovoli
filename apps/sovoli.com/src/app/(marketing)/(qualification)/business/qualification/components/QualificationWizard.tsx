@@ -310,24 +310,25 @@ export function QualificationWizard() {
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
         {renderStepCounter()}
-        <div className="flex flex-col px-4 py-8 pt-16">
-          <div className="space-y-6">
-            <ReturnStep
-              value={formData.returnValue}
-              onChange={handleReturnChange}
-            />
-            <Button
-              variant="solid"
-              color="primary"
-              radius="lg"
-              fullWidth
-              size="lg"
-              onPress={handleReturnNext}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-base"
-            >
-              Next
-            </Button>
-          </div>
+        <div className="flex flex-col px-4 py-8 pt-16 pb-24">
+          <ReturnStep
+            value={formData.returnValue}
+            onChange={handleReturnChange}
+          />
+        </div>
+        {/* Sticky Button */}
+        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-default-200 p-4 z-10">
+          <Button
+            variant="solid"
+            color="primary"
+            radius="lg"
+            fullWidth
+            size="lg"
+            onPress={handleReturnNext}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-base"
+          >
+            Next
+          </Button>
         </div>
       </div>
     );
@@ -338,23 +339,39 @@ export function QualificationWizard() {
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
         {renderStepCounter()}
-        <div className="flex flex-col px-4 py-8 pt-16">
+        <div className="flex flex-col px-4 py-8 pt-16 pb-24">
           <ROASCalculatorStep
             adSpend={formData.adSpend}
             returnValue={formData.returnValue}
             onNext={handleROASCalculatorNext}
           />
         </div>
+        {/* Sticky Button */}
+        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-default-200 p-4 z-10">
+          <Button
+            variant="solid"
+            color="primary"
+            radius="lg"
+            fullWidth
+            size="lg"
+            onPress={handleROASCalculatorNext}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-base"
+          >
+            Continue
+          </Button>
+        </div>
       </div>
     );
   }
 
   if (step === "business-name") {
+    const isBusinessNameValid = formData.businessName.trim().length >= 2;
+    
     return (
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
         {renderStepCounter()}
-        <div className="flex flex-col px-4 py-8 pt-16">
+        <div className="flex flex-col px-4 py-8 pt-16 pb-24">
           <BusinessNameStep
             value={formData.businessName}
             onChange={(value) =>
@@ -363,6 +380,21 @@ export function QualificationWizard() {
             onNext={handleBusinessNameNext}
             error={error}
           />
+        </div>
+        {/* Sticky Button */}
+        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-default-200 p-4 z-10">
+          <Button
+            variant="solid"
+            color="primary"
+            radius="lg"
+            fullWidth
+            size="lg"
+            onPress={handleBusinessNameNext}
+            isDisabled={!isBusinessNameValid}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-base disabled:opacity-50"
+          >
+            Next
+          </Button>
         </div>
       </div>
     );

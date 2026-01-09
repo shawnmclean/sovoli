@@ -200,18 +200,6 @@ export function ROASCalculatorStep({
           </div>
         </CardBody>
       </Card>
-
-      <Button
-        variant="solid"
-        color="primary"
-        radius="lg"
-        fullWidth
-        size="lg"
-        onPress={onNext}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-base"
-      >
-        Continue
-      </Button>
     </div>
   );
 }
