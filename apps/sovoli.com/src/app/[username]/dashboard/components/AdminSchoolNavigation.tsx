@@ -27,11 +27,6 @@ export function AdminSchoolNavigation({
 				href={`/${orgInstance.org.username}/dashboard`}
 			/>
 			<Tab
-				key={`/${orgInstance.org.username}/dashboard/growth`}
-				title="Growth"
-				href={`/${orgInstance.org.username}/dashboard/growth`}
-			/>
-			<Tab
 				key={`/${orgInstance.org.username}/dashboard/receivables`}
 				title="Information Needed"
 				href={`/${orgInstance.org.username}/dashboard/receivables`}
