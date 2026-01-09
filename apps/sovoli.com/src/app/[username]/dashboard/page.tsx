@@ -11,13 +11,15 @@ import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { LeadsTable } from "./components/LeadsTable";
 import type { Lead } from "./components/LeadsTable";
+import { parseLeadsModule } from "~/modules/data/organisations/utils/parseLeadsModule";
 
 // Import leads data for healingemeraldwellness
 import healingEmeraldLeadsData from "~/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json";
 
 function getLeadsData(username: string): Lead[] {
   if (username === "healingemeraldwellness") {
-    return healingEmeraldLeadsData.leads;
+    const leadsModule = parseLeadsModule(healingEmeraldLeadsData);
+    return leadsModule.leads;
   }
   return [];
 }

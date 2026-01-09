@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
 import { Button } from "@sovoli/ui/components/button";
+import { Chip } from "@sovoli/ui/components/chip";
 import { MessageCircleIcon, PhoneIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
@@ -15,6 +16,7 @@ export interface Lead {
   phone: string;
   cycleId: string;
   submittedAt: string;
+  selection?: "enroll" | "visit" | "more_information";
 }
 
 interface LeadsTableProps {
@@ -60,6 +62,40 @@ function getCycleLabel(cycle: ProgramCycle | undefined): string {
     cycle.academicCycle.globalCycle?.label ??
     cycle.id
   );
+}
+
+/**
+ * Helper function to format selection chip text
+ */
+function formatSelection(selection: Lead["selection"]): string {
+  switch (selection) {
+    case "enroll":
+      return "Enroll";
+    case "visit":
+      return "Schedule Visit";
+    case "more_information":
+      return "More Info";
+    default:
+      return "Unknown";
+  }
+}
+
+/**
+ * Helper function to get selection chip color
+ */
+function getSelectionColor(
+  selection: Lead["selection"],
+): "success" | "primary" | "default" {
+  switch (selection) {
+    case "enroll":
+      return "success";
+    case "visit":
+      return "primary";
+    case "more_information":
+      return "default";
+    default:
+      return "default";
+  }
 }
 
 /**
@@ -216,8 +252,17 @@ export function LeadsTable({ leads, orgInstance }: LeadsTableProps) {
               >
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex-1 space-y-2">
-                    <div>
+                    <div className="flex items-center justify-between gap-2">
                       <NameDisplay name={lead.name} />
+                      {lead.selection && (
+                        <Chip
+                          color={getSelectionColor(lead.selection)}
+                          size="sm"
+                          variant="flat"
+                        >
+                          {formatSelection(lead.selection)}
+                        </Chip>
+                      )}
                     </div>
                     <div className="flex flex-col gap-2 sm:flex-row sm:gap-4 text-sm text-default-600">
                       <div>
