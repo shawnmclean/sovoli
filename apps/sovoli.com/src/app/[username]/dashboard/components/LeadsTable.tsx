@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
 import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
-import { MessageCircleIcon, PhoneIcon } from "lucide-react";
+import { MessageCircleIcon, PhoneIcon, EditIcon } from "lucide-react";
+import { useDisclosure } from "@sovoli/ui/components/dialog";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
+import { LeadInteractionModal } from "./LeadInteractionModal";
 
 export interface Lead {
   id: string;
@@ -17,6 +18,31 @@ export interface Lead {
   cycleId: string;
   submittedAt: string;
   selection?: "enroll" | "visit" | "more_information";
+  programId?: string;
+  programName?: string;
+  cycleLabel?: string;
+}
+
+interface LeadInteraction {
+  contactOutcome: "not_reached" | "brief_contact" | "conversation";
+  notReachedReason?: "try_again_later" | "invalid_number";
+  interestLevel?: "not_interested" | "curious" | "unsure" | "wants_to_proceed";
+  blocker?:
+    | "different_program"
+    | "timing"
+    | "needs_time"
+    | "needs_approval"
+    | "needs_visit"
+    | "price_uncertainty"
+    | "comparing"
+    | "not_serious";
+  nextAction?:
+    | "follow_up_later"
+    | "visit_scheduled"
+    | "waiting_on_them"
+    | "no_followup";
+  notes?: string;
+  loggedAt: string;
 }
 
 interface LeadsTableProps {
@@ -99,6 +125,41 @@ function getSelectionColor(
 }
 
 /**
+ * Helper function to derive status from interaction data
+ */
+function getInteractionStatus(interaction: LeadInteraction | undefined): {
+  label: string;
+  color: "default" | "warning" | "success" | "danger";
+} | null {
+  if (!interaction) return null;
+
+  if (interaction.contactOutcome === "not_reached") {
+    return { label: "Not Reached", color: "default" };
+  }
+
+  if (interaction.interestLevel === "not_interested") {
+    return { label: "Not Interested", color: "default" };
+  }
+
+  if (
+    interaction.nextAction === "visit_scheduled" ||
+    interaction.interestLevel === "wants_to_proceed"
+  ) {
+    return { label: "Active", color: "success" };
+  }
+
+  if (
+    interaction.nextAction === "follow_up_later" ||
+    interaction.interestLevel === "curious" ||
+    interaction.interestLevel === "unsure"
+  ) {
+    return { label: "Follow Up", color: "warning" };
+  }
+
+  return null;
+}
+
+/**
  * Helper function to format phone number for display
  */
 function formatPhone(phone: string): string {
@@ -156,7 +217,13 @@ function NameDisplay({ name }: { name: string }) {
 /**
  * Component for phone number with tap-to-reveal and action buttons
  */
-function PhoneNumberButton({ phone }: { phone: string }) {
+function PhoneNumberButton({
+  phone,
+  onContactClick,
+}: {
+  phone: string;
+  onContactClick?: () => void;
+}) {
   const [isRevealed, setIsRevealed] = useState(false);
 
   // Sanitize phone for WhatsApp (remove all non-digits, assume country code is present)
@@ -164,6 +231,20 @@ function PhoneNumberButton({ phone }: { phone: string }) {
   const whatsappUrl = `https://wa.me/${cleanedPhone}`;
   // Use tel: protocol for phone calls (keep the + and numbers)
   const telUrl = `tel:${phone.replace(/[^\d+]/g, "")}`;
+
+  const handleWhatsAppClick = () => {
+    // Open modal first
+    onContactClick?.();
+    // Then open WhatsApp in a new tab/window
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
+
+  const handleCallClick = () => {
+    // Open modal first
+    onContactClick?.();
+    // Then trigger the call
+    window.location.href = telUrl;
+  };
 
   if (!isRevealed) {
     return (
@@ -186,24 +267,20 @@ function PhoneNumberButton({ phone }: { phone: string }) {
       </span>
       <div className="flex gap-2">
         <Button
-          as={Link}
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
           variant="flat"
           size="sm"
           color="success"
           startContent={<MessageCircleIcon className="h-4 w-4" />}
+          onPress={handleWhatsAppClick}
         >
           WhatsApp
         </Button>
         <Button
-          as={Link}
-          href={telUrl}
           variant="flat"
           size="sm"
           color="primary"
           startContent={<PhoneIcon className="h-4 w-4" />}
+          onPress={handleCallClick}
         >
           Call
         </Button>
@@ -213,6 +290,36 @@ function PhoneNumberButton({ phone }: { phone: string }) {
 }
 
 export function LeadsTable({ leads, orgInstance }: LeadsTableProps) {
+  // Store interaction data per lead ID
+  const [leadInteractions, setLeadInteractions] = useState<
+    Record<string, LeadInteraction>
+  >({});
+  const [selectedLeadId, setSelectedLeadId] = useState<string | null>(null);
+  const {
+    isOpen: isModalOpen,
+    onOpen: onModalOpen,
+    onOpenChange: onModalOpenChange,
+  } = useDisclosure();
+
+  const handleUpdateClick = (leadId: string) => {
+    setSelectedLeadId(leadId);
+    onModalOpen();
+  };
+
+  const handleSaveInteraction = (interaction: LeadInteraction) => {
+    if (!selectedLeadId) return;
+
+    setLeadInteractions((prev) => ({
+      ...prev,
+      [selectedLeadId]: interaction,
+    }));
+    setSelectedLeadId(null);
+  };
+
+  const selectedLead = selectedLeadId
+    ? leads.find((l) => l.id === selectedLeadId)
+    : null;
+
   if (leads.length === 0) {
     return (
       <Card>
@@ -227,70 +334,135 @@ export function LeadsTable({ leads, orgInstance }: LeadsTableProps) {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <h2 className="text-xl font-bold">Program Leads</h2>
-        <p className="text-sm text-default-500">
-          {leads.length} {leads.length === 1 ? "lead" : "leads"}
-        </p>
-      </CardHeader>
-      <CardBody>
-        <div className="space-y-4">
-          {leads.map((lead) => {
-            const cycleAndProgram = getCycleAndProgram(
-              orgInstance,
-              lead.cycleId,
-            );
-            const programName =
-              cycleAndProgram?.program.name ?? "Unknown Program";
-            const cycleLabel = getCycleLabel(cycleAndProgram?.cycle);
+    <>
+      <Card>
+        <CardHeader>
+          <h2 className="text-xl font-bold">Program Leads</h2>
+          <p className="text-sm text-default-500">
+            {leads.length} {leads.length === 1 ? "lead" : "leads"}
+          </p>
+        </CardHeader>
+        <CardBody>
+          <div className="space-y-4">
+            {leads.map((lead) => {
+              const cycleAndProgram = getCycleAndProgram(
+                orgInstance,
+                lead.cycleId,
+              );
+              const programName =
+                cycleAndProgram?.program.name ?? "Unknown Program";
+              const cycleLabel = getCycleLabel(cycleAndProgram?.cycle);
+              const interaction = leadInteractions[lead.id];
+              const status = getInteractionStatus(interaction);
 
-            return (
-              <div
-                key={lead.id}
-                className="border border-default-200 rounded-lg p-4 hover:bg-default-50 transition-colors"
-              >
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="flex-1 space-y-2">
-                    <div className="flex items-center justify-between gap-2">
-                      <NameDisplay name={lead.name} />
-                      {lead.selection && (
-                        <Chip
-                          color={getSelectionColor(lead.selection)}
-                          size="sm"
-                          variant="flat"
-                        >
-                          {formatSelection(lead.selection)}
-                        </Chip>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-2 sm:flex-row sm:gap-4 text-sm text-default-600">
-                      <div>
-                        <span className="font-medium">Program: </span>
-                        <span>{programName}</span>
+              return (
+                <div
+                  key={lead.id}
+                  className="border border-default-200 rounded-lg p-4 hover:bg-default-50 transition-colors"
+                >
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="flex-1 space-y-2">
+                      <div className="flex items-center justify-between gap-2 flex-wrap">
+                        <NameDisplay name={lead.name} />
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {status && (
+                            <Chip color={status.color} size="sm" variant="flat">
+                              {status.label}
+                            </Chip>
+                          )}
+                          {lead.selection && (
+                            <Chip
+                              color={getSelectionColor(lead.selection)}
+                              size="sm"
+                              variant="flat"
+                            >
+                              {formatSelection(lead.selection)}
+                            </Chip>
+                          )}
+                        </div>
                       </div>
-                      <div>
-                        <span className="font-medium">Cycle: </span>
-                        <span>{cycleLabel}</span>
+                      <div className="flex flex-col gap-2 sm:flex-row sm:gap-4 text-sm text-default-600">
+                        <div>
+                          <span className="font-medium">Program: </span>
+                          <span>{programName}</span>
+                        </div>
+                        <div>
+                          <span className="font-medium">Cycle: </span>
+                          <span>{cycleLabel}</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-1 text-xs text-default-500">
+                        <div>
+                          Submitted{" "}
+                          <TimeAgo
+                            datetime={new Date(lead.submittedAt)}
+                            className="text-default-500"
+                          />
+                        </div>
+                        {interaction && (
+                          <div>
+                            Last contact{" "}
+                            <TimeAgo
+                              datetime={new Date(interaction.loggedAt)}
+                              className="text-default-500"
+                            />
+                          </div>
+                        )}
                       </div>
                     </div>
-                    <div className="text-xs text-default-500">
-                      Submitted{" "}
-                      <TimeAgo
-                        datetime={new Date(lead.submittedAt)}
-                        className="text-default-500"
+                    <div className="flex flex-col gap-2 items-start sm:items-end">
+                      <PhoneNumberButton
+                        phone={lead.phone}
+                        onContactClick={() => handleUpdateClick(lead.id)}
                       />
+                      <Button
+                        variant="flat"
+                        size="sm"
+                        color="default"
+                        startContent={<EditIcon className="h-4 w-4" />}
+                        onPress={() => handleUpdateClick(lead.id)}
+                      >
+                        Update
+                      </Button>
                     </div>
-                  </div>
-                  <div className="flex-shrink-0 pt-1">
-                    <PhoneNumberButton phone={lead.phone} />
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      </CardBody>
-    </Card>
+              );
+            })}
+          </div>
+        </CardBody>
+      </Card>
+      {selectedLead &&
+        (() => {
+          const cycleAndProgram = getCycleAndProgram(
+            orgInstance,
+            selectedLead.cycleId,
+          );
+          const programName =
+            cycleAndProgram?.program.name ??
+            selectedLead.programName ??
+            "Unknown Program";
+          const cycleLabel =
+            selectedLead.cycleLabel ?? getCycleLabel(cycleAndProgram?.cycle);
+
+          // Enhance lead with computed values if not already present
+          const enhancedLead: Lead = {
+            ...selectedLead,
+            programId: selectedLead.programId ?? cycleAndProgram?.program.id,
+            programName,
+            cycleLabel,
+          };
+
+          return (
+            <LeadInteractionModal
+              lead={enhancedLead}
+              orgInstance={orgInstance}
+              isOpen={isModalOpen}
+              onOpenChange={onModalOpenChange}
+              onSave={handleSaveInteraction}
+            />
+          );
+        })()}
+    </>
   );
 }
