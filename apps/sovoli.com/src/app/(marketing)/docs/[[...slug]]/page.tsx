@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { config } from "~/utils/config";
 import { DocsNavbar } from "../components/DocsNavbar";
+import { AIButton } from "../components/AIButton";
 
 interface Props {
   params: Promise<{ slug?: string[] }>;
@@ -153,6 +154,7 @@ export default async function Page({ params }: Props) {
             </div>
           </div>
         </main>
+        <AIButton />
       </>
     );
   }
@@ -174,6 +176,7 @@ export default async function Page({ params }: Props) {
           </article>
         </div>
       </main>
+      <AIButton />
     </>
   );
 }
