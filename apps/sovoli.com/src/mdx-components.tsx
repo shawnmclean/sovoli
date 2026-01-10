@@ -7,6 +7,7 @@ import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { GuideLink } from "~/app/(marketing)/docs/components/GuideLink";
 import { ButtonLink } from "~/app/(marketing)/docs/components/ButtonLink";
 import { DeviceTabs } from "~/app/(marketing)/docs/components/DeviceTabs";
+import { ClickableImage } from "~/app/(marketing)/docs/components/ClickableImage";
 import { AppStoreDownload } from "~/components/DownloadOnAppStores/AppStoreDownload";
 import { GooglePlayDownload } from "~/components/DownloadOnAppStores/GooglePlayDownload";
 import Link from "next/link";
@@ -94,6 +95,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Card,
     CardBody,
     CardHeader,
+    ClickableImage,
     DeviceTabs,
     GooglePlayDownload,
     GuideLink,
