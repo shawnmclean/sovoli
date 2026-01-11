@@ -50,3 +50,7 @@ yarn-error.log*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Leads extraction pipeline
+data/leads/inputs/images/
+data/leads/registry.json
