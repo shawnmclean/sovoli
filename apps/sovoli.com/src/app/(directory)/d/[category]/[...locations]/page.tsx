@@ -25,6 +25,11 @@ const CATEGORY_MAP: Record<string, string> = {
   "nursery-school": "Nursery School",
   "secondary-school": "Secondary School",
   "pre-school": "Pre-School",
+  "beauty-school": "Beauty School",
+  "vocational-school": "Vocational School",
+  stationery: "Stationery",
+  hardware: "Hardware",
+  "diary-farm": "Dairy Farm",
   school: "School",
 };
 

@@ -7,7 +7,10 @@ export const ORG_CATEGORY_KEYS: readonly OrgCategoryKeys[] = [
   "primary-school",
   "special-education-school",
   "vocational-school",
+  "beauty-school",
   "stationery",
+  "hardware",
+  "diary-farm",
 ];
 
 export const ORG_CATEGORY_GROUPS: Record<
@@ -21,8 +24,18 @@ export const ORG_CATEGORY_GROUPS: Record<
     "primary-school",
     "special-education-school",
     "vocational-school",
+    "beauty-school",
   ],
 };
+
+type MissingOrgCategoryKeys = Exclude<
+  OrgCategoryKeys,
+  (typeof ORG_CATEGORY_KEYS)[number]
+>;
+// If this fails, `ORG_CATEGORY_KEYS` is missing a valid `OrgCategoryKeys` value.
+const _assertAllOrgCategoryKeysAreRegistered: MissingOrgCategoryKeys extends never
+  ? true
+  : never = true;
 
 const ORG_CATEGORY_KEY_LOOKUP = new Set<OrgCategoryKeys>(ORG_CATEGORY_KEYS);
 
