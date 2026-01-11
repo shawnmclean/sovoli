@@ -19,14 +19,6 @@ export const Footer = () => {
               </h3>
               <div className="flex flex-col gap-2">
                 <Link
-                  href="/about"
-                  color="foreground"
-                  underline="hover"
-                  size="sm"
-                >
-                  Who are we?
-                </Link>
-                <Link
                   href="/docs"
                   color="foreground"
                   underline="hover"
