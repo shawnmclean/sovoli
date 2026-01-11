@@ -16,7 +16,7 @@ export function ProjectCoordinators({
   project,
   orgInstance,
 }: ProjectCoordinatorsProps) {
-  const coordinatorName = "Shawn Mclean";
+  const coordinatorName = "Sovoli Admin";
   const coordinatorRole = "Project Coordinator";
 
   return (
