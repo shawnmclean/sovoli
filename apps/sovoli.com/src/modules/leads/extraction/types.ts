@@ -84,6 +84,7 @@ export const programEvidenceSchema = z.object({
   id: z.string(),
   name: z.string(), // Maps to Program.name
   quickFacts: z.array(z.string()).optional(), // Maps to Program.quickFacts
+  whatYouWillLearn: z.array(z.string()).optional(), // Maps to Program.whatYouWillLearn (learning content)
   pricing: programPricingSchema,
   schedule: programScheduleSchema,
   location: z.string().nullable().optional(), // Raw location string

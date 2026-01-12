@@ -1,6 +1,16 @@
 import { Command } from "commander";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+import dotenv from "dotenv";
 import { extractLeadsCommand } from "./commands/extract-leads.js";
 import { uploadMediaCommand } from "./commands/upload-media.js";
+
+// Load environment variables from root .env file
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+// Path from packages/cli/dist/cli.js to root .env
+const envPath = join(__dirname, "../../../.env");
+dotenv.config({ path: envPath });
 
 const program = new Command();
 

@@ -217,7 +217,8 @@ The extraction schema is designed to align with target types (`Org`, `Program`, 
 | Extraction Field | Target Type | Transformation Notes |
 |-----------------|-------------|---------------------|
 | `programs[].name` | `Program.name` | Direct mapping |
-| `programs[].quickFacts[]` | `Program.quickFacts[]` | Direct mapping |
+| `programs[].quickFacts[]` | `Program.quickFacts[]` | Direct mapping (marketing/descriptors) |
+| `programs[].whatYouWillLearn[]` | `Program.whatYouWillLearn[]` | Direct mapping (learning content - transformation to structured format happens later) |
 | `programs[].pricing.registration[]` | `Program.cycles[].pricingPackage.pricingItems[]` | Map to `PricingItem` with `purpose: "registration"` |
 | `programs[].pricing.tuition[]` | `Program.cycles[].pricingPackage.pricingItems[]` | Map to `PricingItem` with `purpose: "tuition"` |
 | `programs[].pricing.materials[]` | `Program.cycles[].pricingPackage.pricingItems[]` | Map to `PricingItem` with `purpose: "materials"` |

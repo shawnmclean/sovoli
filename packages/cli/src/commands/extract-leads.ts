@@ -1,12 +1,10 @@
 import { Command } from "commander";
-import { exec } from "child_process";
-import { promisify } from "util";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
+import { generateText } from "ai";
+import { google } from "@ai-sdk/google";
 import { validateExtraction } from "../validation/validate-extraction.js";
-
-const execAsync = promisify(exec);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -58,13 +56,70 @@ Programs may have different pricing, schedules, etc.
 
 For EACH program, extract independently:
 - name (program title/name)
-- quickFacts (marketing phrases, outcomes, descriptors)
+- quickFacts (marketing phrases, outcomes, descriptors, included items - see distinction below)
+- whatYouWillLearn (actual learning content - techniques, skills, topics that will be taught - see distinction below)
 - pricing (CRITICAL: separate registration, tuition, and materials - see pricing structure below)
 - schedule (days, times, dates, duration)
 - location (if program-specific, raw address string)
 - callsToAction (call-to-action phrases)
 
+#### Content Separation (CRITICAL)
+
+**quickFacts** should contain:
+- Marketing phrases and outcomes (e.g., "Three For the Price of One", "Certification Included")
+- Included items (e.g., "Deluxe Kit", "Manual", "Live Model", "3 Manuals", "3 Certification of completion")
+- Business/marketing support (e.g., "Marketing & Business Tips", "Vendor list", "Lifetime Mentorship")
+- General descriptors and value propositions
+
+**whatYouWillLearn** should contain:
+- Actual learning content - techniques, skills, topics that will be taught
+- Examples: "Classic|Hybrid|Volume|Wipsy", "Fan Making", "Isolation", "Placement", "Lash techniques", "Waxing Techniques", "Types of Wax", "Brow Shaping & Tinting", "Brow Texture", "Brow anatomy"
+- Technical terms and specific skills students will acquire
+- Do NOT include marketing phrases, included items, or business support in whatYouWillLearn
+
 If pricing or schedule is shared across programs, repeat it per program.
+
+#### Multi-Program Detection (CRITICAL)
+
+When extracting programs, look for bundled or multi-program offerings:
+
+**Detection Indicators:**
+- Program names containing: "3-IN-1", "Bundle", "Package", "Combo", "Group Class", numbers (e.g., "2-in-1", "3-for-1", "3-IN-1")
+- Content listing multiple program names (e.g., "LASH", "WAXING", "BROW LAMINATION" appearing as separate items or headers)
+- "What you will learn" sections that clearly reference different programs or techniques
+
+**When Multiple Programs Detected:**
+1. Split the bundled program into separate program objects
+2. Extract individual program names from the content:
+   - Look for capitalized program names, headers, or section titles in the image
+   - Use the actual program names found (e.g., "Lash", "Waxing", "Brow Lamination") rather than the bundle name
+3. For each program, match learning content ("what you will learn" items) based on:
+   - **Keywords**: Items containing program-specific terms (e.g., "Lash", "Waxing", "Brow", "Lamination")
+   - **Semantic relevance**: Technical terms associated with each program:
+     - Lash: "Classic", "Hybrid", "Volume", "Wipsy", "Bottom lash", "Fan Making", "Isolation", "Placement", "Lash techniques"
+     - Waxing: "Waxing Techniques", "Types of Wax", "Hair Grow", "Aftercare & Precare"
+     - Brow: "Brow Shaping", "Brow Tinting", "Brow Texture", "Brow anatomy"
+   - **Visual grouping**: If content appears under specific program headers or sections in the image
+4. Each program object should have:
+   - A distinct name (extract from content, don't use the bundle name like "3-IN-1 Group Class")
+   - Only relevant learning items in whatYouWillLearn (match items to the correct program)
+   - Shared marketing/included items in quickFacts (e.g., "Deluxe Kit", "Manual", "Certification of completion")
+   - Shared pricing/schedule if applicable (repeat across programs when shared)
+   - Program-specific location if different
+
+**Example:**
+If you see "3-IN-1 Group Class" with content mentioning "LASH", "WAXING", "BROW LAMINATION" and learning items like:
+- Lash program:
+  - whatYouWillLearn: ["Classic|Hybrid|Volume|Wipsy", "Bottom lash", "Fan Making", "Isolation", "Placement", "Lash techniques"]
+  - quickFacts: ["Deluxe Kit", "Manual", "Live Model", "Marketing & Business Tips", "Certification of completion", "Vendor list", "Lifetime Mentorship"]
+- Waxing program:
+  - whatYouWillLearn: ["Waxing Techniques", "Types of Wax", "Aftercare & Precare", "Hair Grow"]
+  - quickFacts: ["Deluxe Kit", "Manual", "Live Model", "Marketing & Business Tips", "Certification of completion", "Vendor list", "Lifetime Mentorship"]
+- Brow Lamination program:
+  - whatYouWillLearn: ["Brow Shaping & Tinting", "Brow Texture", "Brow anatomy", "Product & Tools"]
+  - quickFacts: ["Deluxe Kit", "Manual", "Live Model", "Marketing & Business Tips", "Certification of completion", "Vendor list", "Lifetime Mentorship"]
+
+Create THREE separate programs, each with their relevant learning content in whatYouWillLearn. Shared items like "Sanitization" (if it's a learning topic) should go in whatYouWillLearn for relevant programs, while marketing/included items go in quickFacts.
 
 #### Pricing Structure (IMPORTANT)
 Extract pricing with clear separation:
@@ -146,6 +201,7 @@ Return ONE JSON object with this shape:
         "id": "string",
         "name": "string",
         "quickFacts": ["string"] (optional),
+        "whatYouWillLearn": ["string"] (optional),
         "pricing": {
           "registration": [
             {
@@ -259,69 +315,52 @@ function writeRegistry(registry: Record<string, string>) {
 }
 
 /**
- * Extract entities using Gemini CLI
+ * Extract entities using Vercel AI SDK with Gemini
  */
-async function extractWithGemini(imagePath: string) {
-  const tmpDir = path.join(ROOT_DIR, "tmp");
-  if (!fs.existsSync(tmpDir)) {
-    fs.mkdirSync(tmpDir, { recursive: true });
-  }
-
-  const imageFilename = path.basename(imagePath);
-  const tmpImagePath = path.join(tmpDir, imageFilename);
-
-  // Copy the image to tmp
-  fs.copyFileSync(imagePath, tmpImagePath);
-
-  let stdout: string;
-  let stderr: string;
-
+async function extractWithGemini(
+  imagePath: string,
+  model: string = "gemini-2.0-flash-exp",
+) {
   try {
-    const absoluteImagePath = path.resolve(tmpImagePath);
-    const prompt = `${SYSTEM_PROMPT}
+    // Read image file as base64
+    const imageBase64 = fs.readFileSync(imagePath, {
+      encoding: "base64",
+    });
 
-Read and analyze the image file at: ${absoluteImagePath}
+    // Construct the full prompt
+    const userPrompt = `${SYSTEM_PROMPT}
 
 CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified above. Do not include any prose, explanations, or markdown code blocks. Return ONLY the JSON object.`;
 
-    const promptFile = path.join(tmpDir, `prompt-${Date.now()}.txt`);
-    fs.writeFileSync(promptFile, prompt, "utf-8");
+    // Call AI SDK generateText with image
+    const result = await generateText({
+      model: google(model),
+      maxTokens: 4096,
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: userPrompt,
+            },
+            {
+              type: "image",
+              image: imageBase64,
+            },
+          ],
+        },
+      ],
+    });
 
-    try {
-      const command = `gemini --output-format json < "${promptFile}"`;
-      const result = await execAsync(command, {
-        env: process.env,
-        maxBuffer: 10 * 1024 * 1024,
-        encoding: "utf-8",
-      } as { env?: NodeJS.ProcessEnv; maxBuffer?: number; encoding: string });
+    // Extract JSON from response text
+    const responseText = result.text.trim();
 
-      stdout = result.stdout as string;
-      stderr = result.stderr as string;
-    } finally {
-      try {
-        if (fs.existsSync(promptFile)) {
-          fs.unlinkSync(promptFile);
-        }
-      } catch {
-        // Ignore cleanup errors
-      }
-    }
-
-    if (stderr && !stderr.includes("Warning")) {
-      console.warn("Gemini CLI stderr:", stderr);
-    }
-
-    const parsed = JSON.parse(stdout.trim());
-
-    if (!parsed.response) {
-      throw new Error("No response field in gemini-cli output");
-    }
-
-    const responseText = parsed.response.trim();
+    // Try to extract JSON from markdown code blocks if present
     const jsonBlockMatch = responseText.match(
       /```(?:json)?\s*\n(\{[\s\S]*\})\n```/,
     );
-    if (jsonBlockMatch) {
+    if (jsonBlockMatch && jsonBlockMatch[1]) {
       try {
         return JSON.parse(jsonBlockMatch[1]);
       } catch (parseError) {
@@ -331,6 +370,7 @@ CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified
       }
     }
 
+    // Try to parse as direct JSON
     try {
       return JSON.parse(responseText);
     } catch {
@@ -339,36 +379,32 @@ CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified
       );
     }
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+    const errorMessage = (error as Error).message;
+    if (
+      errorMessage.includes("API key") ||
+      errorMessage.includes("GOOGLE_GENERATIVE_AI_API_KEY")
+    ) {
       throw new Error(
-        "Gemini CLI not found. Install it with: npm install -g @google/gemini-cli",
+        `Google Generative AI API key not found. Set GOOGLE_GENERATIVE_AI_API_KEY environment variable. Original error: ${errorMessage}`,
       );
     }
     throw error;
-  } finally {
-    try {
-      if (fs.existsSync(tmpImagePath)) {
-        fs.unlinkSync(tmpImagePath);
-      }
-    } catch (cleanupError) {
-      console.warn(
-        "Warning: Could not clean up tmp image file:",
-        (cleanupError as Error).message,
-      );
-    }
   }
 }
 
 /**
  * Process a single image
  */
-async function processImage(imagePath: string) {
+async function processImage(
+  imagePath: string,
+  model: string = "gemini-2.0-flash-exp",
+) {
   const imageFilename = path.basename(imagePath);
 
   console.log(`🔍 Processing ${imageFilename}...`);
 
   try {
-    const extracted = await extractWithGemini(imagePath);
+    const extracted = await extractWithGemini(imagePath, model);
 
     // Validate structure using JSON Schema
     const validation = validateExtraction(extracted);
@@ -417,11 +453,13 @@ function getImageFiles(): string[] {
 
 export const extractLeadsCommand = new Command("extract-leads")
   .description("Extract lead entities from ad images")
+  .option("-m, --model <model>", "Gemini model to use", "gemini-2.0-flash-exp")
   .argument(
     "[images...]",
     "Image file paths to process (default: all unprocessed images)",
   )
-  .action(async (imagePaths: string[]) => {
+  .action(async (imagePaths: string[], options: { model?: string }) => {
+    const model = options.model || "gemini-2.0-flash-exp";
     // Ensure directories exist
     if (!fs.existsSync(EXTRACTIONS_DIR)) {
       fs.mkdirSync(EXTRACTIONS_DIR, { recursive: true });
@@ -471,7 +509,7 @@ export const extractLeadsCommand = new Command("extract-leads")
             error: "File not found",
           });
         }
-        return processImage(imagePath);
+        return processImage(imagePath, model);
       }),
     );
 

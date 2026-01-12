@@ -75,6 +75,11 @@ export const leadExtractionSchema = {
                 items: { type: "string" },
                 nullable: true,
               },
+              whatYouWillLearn: {
+                type: "array",
+                items: { type: "string" },
+                nullable: true,
+              },
               pricing: {
                 type: "object",
                 nullable: true,
