@@ -37,16 +37,6 @@ export const leadExtractionArtifactSchema = z.object({
 });
 
 // ============================================================================
-// Organization Evidence
-// ============================================================================
-
-export const organizationNameSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  confidence: z.enum(["high", "medium", "low"]).optional(),
-});
-
-// ============================================================================
 // Program Evidence
 // ============================================================================
 
@@ -134,7 +124,6 @@ export const socialLinkEvidenceSchema = z.object({
 // ============================================================================
 
 export const leadExtractionSchema = z.object({
-  organizationNames: z.array(organizationNameSchema),
   programs: z.array(programEvidenceSchema),
   contacts: contactEvidenceSchema,
   socialLinks: z.array(socialLinkEvidenceSchema),
@@ -150,7 +139,7 @@ export const leadExtractionSchema = z.object({
 export const leadExtractionDocumentSchema = z.object({
   artifact: leadExtractionArtifactSchema,
   extraction: leadExtractionSchema,
-  business: z.string().nullable(),
+  business: z.array(z.string()),
 });
 
 // ============================================================================
@@ -163,7 +152,6 @@ export type LeadExtractionFile = z.infer<typeof leadExtractionFileSchema>;
 export type LeadExtractionArtifact = z.infer<
   typeof leadExtractionArtifactSchema
 >;
-export type OrganizationName = z.infer<typeof organizationNameSchema>;
 export type PricingItemEvidence = z.infer<typeof pricingItemEvidenceSchema>;
 export type TuitionPricingItemEvidence = z.infer<
   typeof tuitionPricingItemEvidenceSchema

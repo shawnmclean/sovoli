@@ -124,11 +124,6 @@ The extraction schema is designed to align with target types (`Org`, `Program`, 
     }
   }
   extraction: {
-    organizationNames: Array<{
-      id: string
-      name: string
-      confidence?: "high" | "medium" | "low"
-    }>
     programs: Array<{
       id: string
       name: string
@@ -184,17 +179,17 @@ The extraction schema is designed to align with target types (`Org`, `Program`, 
     locations?: string[]
     platformSignals?: string[]
   }
-  business?: string | null
+  business: string[]
 }
 ```
 
 ### Key Features
 
 1. **Pricing Separation**: Registration, tuition, and materials fees are extracted separately to map directly to `PricingItem[]` with `purpose` field
-2. **Type Alignment**: Field names align with target types (`organizationNames` → `Org.name`, `socialLinks` → `Org.socialLinks`, etc.)
+2. **Type Alignment**: Field names align with target types (`socialLinks` → `Org.socialLinks`, etc.)
 3. **Raw Data Preservation**: All extracted values are preserved as strings for later parsing/transformation
 4. **Structured Evidence**: Evidence is structured to make transformation paths clear
-5. **Business Identification**: The `business` field contains the model's best guess of the single business/organization running the advertisement, or null if unclear
+5. **Business Identification**: The `business` field contains an array of business name candidates, ordered by likelihood. The most likely business name is at index 0, with additional candidates (if any) following in descending order of likelihood. Returns an empty array if no business name can be determined.
 
 ## Transformation Mapping
 
@@ -202,7 +197,7 @@ The extraction schema is designed to align with target types (`Org`, `Program`, 
 
 | Extraction Field | Target Type | Transformation Notes |
 |-----------------|-------------|---------------------|
-| `organizationNames[0].name` | `Org.name` | Use primary (first) organization name |
+| `business[0]` | `Org.name` | Use primary (first) business name candidate |
 | `contacts.phones[]` | `Org.locations[].contacts: Contact[]` | Convert to `Contact` with `type: "phone" \| "whatsapp"` |
 | `contacts.emails[]` | `Org.locations[].contacts: Contact[]` | Convert to `Contact` with `type: "email"` |
 | `socialLinks[]` | `Org.socialLinks: SocialLink[]` | Convert handles to URLs, map platform |

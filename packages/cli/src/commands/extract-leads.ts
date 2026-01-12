@@ -47,9 +47,6 @@ PHASE 1 — EVIDENCE EXTRACTION
 
 Extract the following if visible.
 
-### Organization Names
-Organization or business names exactly as written. Extract all variations if multiple appear.
-
 ### Programs
 Each program MUST be its own object.
 Programs may have different pricing, schedules, etc.
@@ -146,9 +143,14 @@ Do NOT attach global data to programs unless explicitly tied visually.
 PHASE 2 — BUSINESS IDENTIFICATION
 ────────────────────────────────
 
-Based on the extracted evidence, identify the single business running this advertisement. Usually there is one business. Provide your best guess of the business name as a string, or null if unclear.
+Based on the extracted evidence, identify the business(es) running this advertisement. Usually there is one business, but sometimes there are multiple names that could be the business name.
 
-Use the organization names, contact information, and other evidence to determine the business name. If multiple organization names appear, choose the most prominent or primary one.
+Provide an array of business name candidates as strings, ordered by likelihood:
+- The most likely business name should be at index 0
+- Additional candidate names (if any) should follow in descending order of likelihood
+- If no business name can be determined, return an empty array []
+
+Use contact information, social links, locations, and any visible branding to determine the business name(s).
 
 ────────────────────────────────
 FINAL INSTRUCTION
