@@ -1,0 +1,179 @@
+{
+  "artifact": {
+    "id": "08608c9a-5515-4264-b050-e079762d250d",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "0a3c5f94-3723-4b0d-ba48-641157f73138",
+        "name": "LASH",
+        "quickFacts": [
+          "3Deluxe Kits",
+          "3 Manuals",
+          "Live Model",
+          "Marketing & Business Tips",
+          "3 Certification of completion",
+          "Vendor list",
+          "Lifetime Mentorship"
+        ],
+        "whatYouWillLearn": [
+          "Classic|Hybrid|Volume|Wipsy",
+          "Bottom lash",
+          "Fan Making",
+          "Sanitization",
+          "Isolation",
+          "Placement",
+          "Lash techniques"
+        ],
+        "pricing": {
+          "registration": [
+            {
+              "amount": "$20,000",
+              "currency": "$",
+              "label": "NON-REFUNABLE DEPOSIT",
+              "notes": ""
+            }
+          ],
+          "tuition": [
+            {
+              "amount": "$80,000",
+              "currency": "$",
+              "label": "COST",
+              "notes": "",
+              "billingCycle": ""
+            }
+          ]
+        },
+        "schedule": {
+          "dates": [
+            "JAN 30-FEB 1"
+          ]
+        },
+        "location": "Central plaza shop 12",
+        "callsToAction": []
+      },
+      {
+        "id": "3f57a7f3-60c0-4f97-b84d-148831c5310c",
+        "name": "WAXING",
+        "quickFacts": [
+          "3Deluxe Kits",
+          "3 Manuals",
+          "Live Model",
+          "Marketing & Business Tips",
+          "3 Certification of completion",
+          "Vendor list",
+          "Lifetime Mentorship"
+        ],
+        "whatYouWillLearn": [
+          "Waxing Techniques",
+          "Types of Wax",
+          "Sanitation & Hygiene",
+          "Aftercare & Precare",
+          "Hair Grow"
+        ],
+        "pricing": {
+          "registration": [
+            {
+              "amount": "$20,000",
+              "currency": "$",
+              "label": "NON-REFUNABLE DEPOSIT",
+              "notes": ""
+            }
+          ],
+          "tuition": [
+            {
+              "amount": "$80,000",
+              "currency": "$",
+              "label": "COST",
+              "notes": "",
+              "billingCycle": ""
+            }
+          ]
+        },
+        "schedule": {
+          "dates": [
+            "JAN 30-FEB 1"
+          ]
+        },
+        "location": "Central plaza shop 12",
+        "callsToAction": []
+      },
+      {
+        "id": "082cf009-f396-47f6-91e2-660bb16c4816",
+        "name": "BROW LAMINATION",
+        "quickFacts": [
+          "3Deluxe Kits",
+          "3 Manuals",
+          "Live Model",
+          "Marketing & Business Tips",
+          "3 Certification of completion",
+          "Vendor list",
+          "Lifetime Mentorship"
+        ],
+        "whatYouWillLearn": [
+          "Brow Shaping & Tinting",
+          "Product & Tools",
+          "Brow Texture",
+          "Brow anatomy"
+        ],
+        "pricing": {
+          "registration": [
+            {
+              "amount": "$20,000",
+              "currency": "$",
+              "label": "NON-REFUNABLE DEPOSIT",
+              "notes": ""
+            }
+          ],
+          "tuition": [
+            {
+              "amount": "$80,000",
+              "currency": "$",
+              "label": "COST",
+              "notes": "",
+              "billingCycle": ""
+            }
+          ]
+        },
+        "schedule": {
+          "dates": [
+            "JAN 30-FEB 1"
+          ]
+        },
+        "location": "Central plaza shop 12",
+        "callsToAction": []
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "876-787-4132",
+          "type": "whatsapp"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [],
+    "locations": [
+      "Central plaza shop 12"
+    ],
+    "platformSignals": [
+      "Sponsored",
+      "See more"
+    ]
+  },
+  "business": [
+    "Niques lash"
+  ]
+}

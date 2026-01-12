@@ -1,0 +1,59 @@
+{
+  "artifact": {
+    "id": "6c77a9a3-264c-414e-a078-169683142155",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "6e9d90c0-a5c3-4e72-976c-b5140a55dd2f",
+        "name": "Visceral Manipulation Massage",
+        "quickFacts": [
+          "4-DAY WORKSHOP"
+        ],
+        "whatYouWillLearn": [],
+        "pricing": {},
+        "schedule": {
+          "dates": [
+            "JULY 10-13, 2026"
+          ]
+        },
+        "location": "Rockley Golf & Country Club, Christ Church, Barbados",
+        "callsToAction": [
+          "PRE-REGISTER NOW"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "+1 (246) 823-1003",
+          "type": "phone"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [
+      "www.schoolofholistictherapies.com"
+    ],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored",
+      "See more"
+    ]
+  },
+  "business": [
+    "Caribbean School of Holistic Therapies Health & Wellness",
+    "Caribbean School of Holistic Therapies"
+  ]
+}

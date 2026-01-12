@@ -1,0 +1,44 @@
+{
+  "artifact": {
+    "id": "64172",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "7384b",
+        "name": "12 IN 1 INTEGRATED AESTHETICS",
+        "quickFacts": [
+          "PROFESSIONAL COURSE",
+          "Learn 12 esthetic techniques in a single course and transform your professional future.",
+          "Earn over $3,000 per month with our Professional Combo Course!"
+        ],
+        "whatYouWillLearn": [
+          "esthetic techniques"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [
+      "elitebeautyschool.online"
+    ],
+    "locations": [],
+    "platformSignals": []
+  },
+  "business": [
+    "elitebeautyschool.online"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "artifact": {
+    "id": "9f692ff4-a8d2-476d-a235-d90f99447e7b",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "63188991-b9b5-40d3-b29a-833f93444f41",
+        "name": "Kindergarten",
+        "quickFacts": [],
+        "whatYouWillLearn": []
+      },
+      {
+        "id": "5ef0378c-8203-4b42-b66f-00b04e4db852",
+        "name": "Preparatory",
+        "quickFacts": [],
+        "whatYouWillLearn": []
+      },
+      {
+        "id": "a4e78b5b-b245-42d7-a0f4-10937a00f708",
+        "name": "Special Education",
+        "quickFacts": [],
+        "whatYouWillLearn": []
+      },
+      {
+        "id": "2df6c827-4c33-4f33-990d-9e2a677b3d68",
+        "name": "Evening & Weekend",
+        "quickFacts": [],
+        "whatYouWillLearn": []
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "876 208-5049",
+          "type": "phone"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Rainbow Academy Online School"
+  ]
+}

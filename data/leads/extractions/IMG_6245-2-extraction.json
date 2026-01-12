@@ -1,6 +1,6 @@
 {
   "artifact": {
-    "id": "4292",
+    "id": "8e45960c-f6b1-4273-8748-9d2c20669102",
     "source": {
       "ingest_method": "manual_upload",
       "platform_hint": "facebook",
@@ -15,8 +15,12 @@
   "extraction": {
     "programs": [
       {
-        "id": "7598",
+        "id": "1392b5d6-1c91-4649-a20b-137327380a8a",
         "name": "SATURDAY CLASS",
+        "quickFacts": [
+          "FUN LEARNING ENVIRONMENT",
+          "PEP PREPARATION CLASSES"
+        ],
         "whatYouWillLearn": [
           "Assist in Reading",
           "Mathematics",
@@ -31,16 +35,23 @@
           "tuition": [
             {
               "amount": "$1500",
-              "currency": "$",
-              "label": "Tuition"
+              "currency": "USD",
+              "label": "Tuition",
+              "notes": "One-time payment",
+              "billingCycle": "class"
             }
           ]
         },
         "schedule": {
+          "days": [
+            "Saturday"
+          ],
           "times": [
             "9:00AM - 1:00PM"
           ]
-        }
+        },
+        "location": "BRUNSWICK AVE SPANISH TOWN",
+        "callsToAction": []
       }
     ],
     "contacts": {
@@ -59,7 +70,7 @@
     "socialLinks": [],
     "urls": [],
     "locations": [
-      "BRUNSWICK AVE\nSPANISH TOWN"
+      "BRUNSWICK AVE SPANISH TOWN"
     ],
     "platformSignals": [
       "Sponsored",

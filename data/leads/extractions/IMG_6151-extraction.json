@@ -1,0 +1,53 @@
+{
+  "artifact": {
+    "id": "881",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": null,
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "001",
+        "name": "NCTVET and AMCA Certificate Program",
+        "quickFacts": [
+          "Jamaica's # 1",
+          "AMCA exams APPROVED",
+          "NCTVET"
+        ],
+        "schedule": {
+          "dates": [
+            "January 2026"
+          ]
+        }
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "876-217-5150",
+          "type": "phone"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [
+      "edunomics.biz/programmes"
+    ],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Edunomics Limited"
+  ]
+}

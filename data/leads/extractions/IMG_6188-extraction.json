@@ -1,0 +1,65 @@
+{
+  "artifact": {
+    "id": "2496",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "79c96347-8238-4b73-84ca-b6751c7166b5",
+        "name": "Online Music Classes",
+        "quickFacts": [
+          "Live Online Music Classes for Kids, Teens & Adults",
+          "Start 2026 with a Skill that Lasts a Lifetime",
+          "Live, interactive online sessions,",
+          "Flexible scheduling",
+          "Personalized lessons for every skill level",
+          "Learn from the comfort of your home",
+          "Same quality instruction - no travel required"
+        ],
+        "whatYouWillLearn": [
+          "Vocal Training",
+          "Keyboard/Piano",
+          "Acoustic Guitar",
+          "Electric Guitar",
+          "Bass Guitar"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "876-436-8207",
+          "type": "whatsapp"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [
+      {
+        "platform": "instagram",
+        "handle": "musical_prodigies.ed",
+        "url": "https://www.instagram.com/musical_prodigies.ed",
+        "value": "@musical_prodigies.ed"
+      }
+    ],
+    "urls": [],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored",
+      "See more"
+    ]
+  },
+  "business": [
+    "Musical Prodigies Educational Services"
+  ]
+}

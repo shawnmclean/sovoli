@@ -1,0 +1,60 @@
+{
+  "artifact": {
+    "id": "822",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "instagram",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "969",
+        "name": "ADVANCED NAIL TECHNICIAN",
+        "quickFacts": [
+          "University-Level Training",
+          "Certificate Programme",
+          "Hands-On Practical Skills",
+          "Industry-Ready Techniques",
+          "Limited Seats Available"
+        ],
+        "whatYouWillLearn": [],
+        "schedule": {
+          "times": [
+            "2-5 PM"
+          ],
+          "duration": "12 Weeks"
+        }
+      }
+    ],
+    "contacts": {
+      "phones": [],
+      "emails": []
+    },
+    "socialLinks": [
+      {
+        "platform": "website",
+        "url": "www.thebeautyinstituteja.com",
+        "value": "www.thebeautyinstituteja.com"
+      }
+    ],
+    "urls": [
+      "thebeautyinstituteja.com"
+    ],
+    "locations": [
+      "7 Barbados Avenue, New Kingston"
+    ],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "The Beauty Institute of Jamaica"
+  ]
+}

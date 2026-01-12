@@ -1,0 +1,85 @@
+{
+  "artifact": {
+    "id": "1092",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "6369",
+        "name": "BROW LAMINATION",
+        "quickFacts": [
+          "Full Kit",
+          "Certificate of Completion"
+        ],
+        "whatYouWillLearn": [
+          "Brief Tinting Knowledge",
+          "Mapping"
+        ]
+      },
+      {
+        "id": "9296",
+        "name": "WORKSHOP",
+        "quickFacts": [
+          "Full Kit",
+          "Certificate of Completion"
+        ],
+        "whatYouWillLearn": [
+          "Brief Tinting Knowledge",
+          "Mapping"
+        ]
+      },
+      {
+        "id": "9297",
+        "name": "Brow Lamination Workshop",
+        "quickFacts": [
+          "Full Kit",
+          "Certificate of Completion"
+        ],
+        "whatYouWillLearn": [
+          "Brief Tinting Knowledge",
+          "Mapping"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "8763287556",
+          "type": "whatsapp"
+        },
+        {
+          "value": "8762326656",
+          "type": "phone"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [
+      {
+        "platform": "instagram",
+        "handle": "thelashacademy.ja",
+        "value": "thelashacademy.ja"
+      }
+    ],
+    "urls": [],
+    "locations": [
+      "KINGSTON"
+    ],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "The Lash Academy"
+  ]
+}

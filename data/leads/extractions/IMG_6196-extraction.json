@@ -1,0 +1,141 @@
+{
+  "artifact": {
+    "id": "819",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "867",
+        "name": "Dining Room & Bartending",
+        "schedule": {
+          "dates": [
+            "January 5th"
+          ]
+        }
+      },
+      {
+        "id": "991",
+        "name": "Housekeeping",
+        "schedule": {
+          "dates": [
+            "January 5th"
+          ]
+        }
+      },
+      {
+        "id": "438",
+        "name": "Spa Massage",
+        "schedule": {
+          "dates": [
+            "January 5th",
+            "February 25th"
+          ]
+        }
+      },
+      {
+        "id": "622",
+        "name": "Cosmetology",
+        "schedule": {
+          "dates": [
+            "January 5th"
+          ]
+        }
+      },
+      {
+        "id": "235",
+        "name": "Advanced Nails",
+        "schedule": {
+          "dates": [
+            "January 5th"
+          ]
+        }
+      },
+      {
+        "id": "532",
+        "name": "Barbering",
+        "schedule": {
+          "dates": [
+            "January 5th"
+          ]
+        }
+      },
+      {
+        "id": "963",
+        "name": "Food Preparation w/Baking",
+        "schedule": {
+          "dates": [
+            "January 10th"
+          ]
+        }
+      },
+      {
+        "id": "984",
+        "name": "Front Office w/Computing",
+        "schedule": {
+          "dates": [
+            "January 26th"
+          ]
+        }
+      },
+      {
+        "id": "793",
+        "name": "Customer Service",
+        "schedule": {
+          "dates": [
+            "January 27th"
+          ]
+        }
+      },
+      {
+        "id": "672",
+        "name": "Business Computing",
+        "schedule": {
+          "dates": [
+            "January 27th"
+          ]
+        }
+      },
+      {
+        "id": "123",
+        "name": "Graphic Designing",
+        "schedule": {
+          "dates": [
+            "February 24th"
+          ]
+        }
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "076 074 1434",
+          "type": "phone"
+        },
+        {
+          "value": "500 0000",
+          "type": "phone"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "St. Monica's College"
+  ]
+}

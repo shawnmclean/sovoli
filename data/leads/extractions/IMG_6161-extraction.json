@@ -1,0 +1,63 @@
+{
+  "artifact": {
+    "id": "string",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": "jamaica"
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "string",
+        "name": "Beginners Balloon Decoration for Event Planning Workshop",
+        "quickFacts": [],
+        "whatYouWillLearn": [],
+        "pricing": {
+          "other": [
+            "Cost $28,500...."
+          ]
+        },
+        "schedule": {},
+        "location": "Kingston",
+        "callsToAction": [
+          "REGISTER NOW!"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "876-360-6759",
+          "type": "phone"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [
+      {
+        "platform": "other",
+        "handle": "skillsacademy_ja",
+        "value": "@skillsacademy_ja"
+      }
+    ],
+    "urls": [],
+    "locations": [
+      "Kingston",
+      "St. Ann",
+      "Montego Bay"
+    ],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Skills Academy Jamaica"
+  ]
+}

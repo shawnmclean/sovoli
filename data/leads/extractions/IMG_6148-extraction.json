@@ -1,0 +1,166 @@
+{
+  "artifact": {
+    "id": "5e7f8b91-2a11-47a8-962b-a2e642c56711",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "3321eb27-48e2-488a-a72c-901b281d3084",
+        "name": "Facial Cleansing",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "Facial Cleansing"
+        ]
+      },
+      {
+        "id": "22c587a3-b33d-421f-8b41-549839546c40",
+        "name": "Hydra Gloss Lips",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "HYDRA GLOSS LIPS"
+        ]
+      },
+      {
+        "id": "b188b224-5221-45d5-a651-501f3db07d9b",
+        "name": "BB Glow",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "BB GLOW"
+        ]
+      },
+      {
+        "id": "85e3ff6d-5630-4003-8142-161c61a40b7e",
+        "name": "Dermaplaning",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "DERMAPLANING"
+        ]
+      },
+      {
+        "id": "47a40190-d4aa-4502-a3e7-610143c6a7c9",
+        "name": "Microneedling Dermapen",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "MICRONEEDLING DERMAPEN"
+        ]
+      },
+      {
+        "id": "a812a375-b59e-4e2d-900a-7b14ffb98404",
+        "name": "Peeling Master",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "PEELING MASTER"
+        ]
+      },
+      {
+        "id": "a38f6822-c4e9-45bc-893e-dd29a3d01379",
+        "name": "Lip Micropigmentation",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "LIP MICROPIGMENTATION"
+        ]
+      },
+      {
+        "id": "8d13884f-4132-4e91-913e-b154b1003e5c",
+        "name": "Nano Lips",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "NANO LIPS"
+        ]
+      },
+      {
+        "id": "389d84e6-f1c1-4827-8702-0514a084f21c",
+        "name": "Brow Lamination",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "BROW LAMINATION"
+        ]
+      },
+      {
+        "id": "e4dd4ef1-2d2a-4d3b-97e0-c7e5280a3b2f",
+        "name": "3-IN-1 Brow Mastery",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "3-IN-1 BROW MASTERY"
+        ]
+      },
+      {
+        "id": "4940401b-94e0-434e-ac68-93d16e5b4b5d",
+        "name": "Hydra Color Lips",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "HYDRA COLOR LIPS"
+        ]
+      },
+      {
+        "id": "8984d65e-38a1-4858-b59b-5d7560b965c3",
+        "name": "Eyelash Extensions",
+        "quickFacts": [
+          "12 HIGH-DEMAND BEAUTY SKILLS IN ONE POWERFUL BUNDLE!",
+          "12 CERTIFICATES"
+        ],
+        "whatYouWillLearn": [
+          "EYELASH EXTENSIONS"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [
+      "ELITEBEAUTYSCHOOL.ONLINE"
+    ],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Elite Beauty School"
+  ]
+}

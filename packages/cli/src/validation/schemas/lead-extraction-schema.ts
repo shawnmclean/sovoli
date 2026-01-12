@@ -47,9 +47,10 @@ export const pricingItemEvidenceSchema = z.object({
   notes: z.string().optional(), // Additional context
 });
 
-export const tuitionPricingItemEvidenceSchema = pricingItemEvidenceSchema.extend({
-  billingCycle: z.string().optional(), // "one-time", "term", "program", etc. if mentioned
-});
+export const tuitionPricingItemEvidenceSchema =
+  pricingItemEvidenceSchema.extend({
+    billingCycle: z.string().optional(), // "one-time", "term", "program", etc. if mentioned
+  });
 
 export const programPricingSchema = z
   .object({

@@ -1,0 +1,141 @@
+{
+  "artifact": {
+    "id": "8b324661543251084a62356f9f305d80f92e2489",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": "en"
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "program1",
+        "name": "Fusion Lashes",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Fusion Lashes"
+        ]
+      },
+      {
+        "id": "program2",
+        "name": "Facial",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Facial"
+        ]
+      },
+      {
+        "id": "program3",
+        "name": "Ombre Brows",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Ombre Brows"
+        ]
+      },
+      {
+        "id": "program4",
+        "name": "Teeth Whitening",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Teeth Whitening"
+        ]
+      },
+      {
+        "id": "program5",
+        "name": "Waxing",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Waxing"
+        ]
+      },
+      {
+        "id": "program6",
+        "name": "Wart Removal",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Wart Removal"
+        ]
+      },
+      {
+        "id": "program7",
+        "name": "Brow Tinting",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Brow Tinting"
+        ]
+      },
+      {
+        "id": "program8",
+        "name": "Brow Lamination",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Brow Lamination"
+        ]
+      },
+      {
+        "id": "program9",
+        "name": "Vajacial",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Vajacial"
+        ]
+      },
+      {
+        "id": "program10",
+        "name": "Lash Lifting",
+        "quickFacts": [
+          "50% OF PRODUCTS PROVIDED"
+        ],
+        "whatYouWillLearn": [
+          "Lash Lifting"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "1876-473-4790",
+          "type": "whatsapp"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [],
+    "locations": [
+      "20 EASTWOOD PARK ROAD, UNIT 6"
+    ],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Makeup School in Jamaica",
+    "TANDYDOLL VOCATIONAL INSTITUTE",
+    "TANDYDOLL"
+  ]
+}

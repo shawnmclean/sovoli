@@ -1,0 +1,74 @@
+{
+  "artifact": {
+    "id": "64332",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "24167",
+        "name": "Holistic Massage",
+        "quickFacts": [],
+        "whatYouWillLearn": []
+      },
+      {
+        "id": "59203",
+        "name": "Sports Massage",
+        "quickFacts": [],
+        "whatYouWillLearn": []
+      },
+      {
+        "id": "42786",
+        "name": "Esthetician Course (Skincare)",
+        "quickFacts": [],
+        "whatYouWillLearn": []
+      },
+      {
+        "id": "78594",
+        "name": "Nail Technician",
+        "quickFacts": [],
+        "whatYouWillLearn": []
+      },
+      {
+        "id": "83952",
+        "name": "Makeup Artistry",
+        "quickFacts": [],
+        "whatYouWillLearn": []
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "876-339-5078",
+          "type": "phone"
+        }
+      ],
+      "emails": [
+        {
+          "value": "admin@thebeautyinstituteja.com"
+        }
+      ]
+    },
+    "socialLinks": [],
+    "urls": [
+      "www.thebeautyinstituteja.com"
+    ],
+    "locations": [
+      "7 Barbados Avenue, New Kingston"
+    ],
+    "platformSignals": []
+  },
+  "business": [
+    "The Beauty Institute of Ja",
+    "The Beauty Institute"
+  ]
+}

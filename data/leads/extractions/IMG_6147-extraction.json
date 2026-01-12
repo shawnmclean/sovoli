@@ -1,0 +1,340 @@
+{
+  "artifact": {
+    "id": "855",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "176",
+        "name": "Tattoo Removal",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$60,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "283",
+        "name": "Fusion Lash",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$55,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "390",
+        "name": "Cluster Lash",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$25,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "497",
+        "name": "Massage",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$55,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "604",
+        "name": "Vajacia",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$30,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "711",
+        "name": "Eyebrow Tinting",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$20,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "818",
+        "name": "Makeup",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$55,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "925",
+        "name": "Ombré",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$80,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1032",
+        "name": "Wig Making",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$55,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1139",
+        "name": "Wig Installation",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$50,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1246",
+        "name": "Braiding",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$50,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1353",
+        "name": "Waxing",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$37,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1460",
+        "name": "Lymphatic massage",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$80,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1567",
+        "name": "Laser Hair Removal",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$60,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1674",
+        "name": "Teeth Whitening",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$60,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1781",
+        "name": "Body Contouring",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$72,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1888",
+        "name": "Brow Lamination",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$30,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1995",
+        "name": "Advanced Facial",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$100,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "2102",
+        "name": "Basic Facial",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$60,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "2209",
+        "name": "Wart Removal",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$47,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "2316",
+        "name": "Nail Tech",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$55,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "2423",
+        "name": "Body Scrub",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$35,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      },
+      {
+        "id": "2530",
+        "name": "Wood Therapy",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$40,000",
+              "currency": "$",
+              "label": "Tuition"
+            }
+          ]
+        }
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "876-535-3962",
+          "type": "phone"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [],
+    "locations": [
+      "Shop #18, Washington Plaza Washington Boulevard, Kingston"
+    ],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Stashalee Beauty And More",
+    "SHELEEN'S SCHOOL OF BEAUTY",
+    "SHELEEN'S"
+  ]
+}

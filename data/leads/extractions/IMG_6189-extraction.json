@@ -1,0 +1,56 @@
+{
+  "artifact": {
+    "id": "1598",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": null,
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "674a",
+        "name": "TWEENS & TEENS PERSONAL DEVELOPMENT PROGRAMME",
+        "quickFacts": [
+          "\"GIFT WHICH LASTS A LIFETIME\"",
+          "REGISTER NOW SPACE LIMITED"
+        ],
+        "whatYouWillLearn": [
+          "Confidence Building",
+          "Social Graces",
+          "Etiquette",
+          "Basic Poise and Posture",
+          "Art of Communication"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "+876-521-0405",
+          "type": "phone"
+        }
+      ],
+      "emails": [
+        {
+          "value": "althealaingimage2019@gmail.com"
+        }
+      ]
+    },
+    "socialLinks": [],
+    "urls": [],
+    "locations": [
+      "Kingston, Ja."
+    ],
+    "platformSignals": []
+  },
+  "business": [
+    "La Laing Image Consultancy"
+  ]
+}

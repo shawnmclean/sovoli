@@ -1,58 +1,28 @@
 {
   "artifact": {
-    "id": "9586",
+    "id": "0e998183-8479-43d9-a66b-27a77435c12e",
     "source": {
       "ingest_method": "manual_upload",
       "platform_hint": "instagram",
-      "captured_at": null,
+      "captured_at": "2024-05-03",
       "locale_hint": null
     },
     "file": {
-      "filename": null,
-      "hash": null
+      "filename": "instagram.jpg",
+      "hash": "b7f8e574252d37691511f22136a3f2431d912e00982e1b8937f6a465a96542f1"
     }
   },
   "extraction": {
     "programs": [
       {
-        "id": "4241",
+        "id": "5e8d9572-53e9-4d20-9845-77e1922e438b",
         "name": "Teen Nail Boot Camp",
         "quickFacts": [
-          "FULL PRODUCT LIST",
-          "LUXE NAIL KIT",
           "LIFE TIΜΕ ΜΕΝΤORSHIP",
-          "CERTIFICATION OF COMPLETION"
-        ],
-        "whatYouWillLearn": [
-          "SANITATION",
-          "PREPARATION",
-          "PROPER TIP PLACEMENT",
-          "SHAPING & EFILE USAGE",
-          "ACRYLIC APPLICATION",
-          "PRICING & MARKETING PLAN"
-        ]
-      },
-      {
-        "id": "5631",
-        "name": "Nail",
-        "quickFacts": [
+          "CERTIFICATION OF COMPLETION",
           "FULL PRODUCT LIST",
-          "LUXE NAIL KIT",
-          "LIFE TIΜΕ ΜΕΝΤORSHIP",
-          "CERTIFICATION OF COMPLETION"
+          "LUXE NAIL KIT"
         ],
-        "whatYouWillLearn": [
-          "SANITATION",
-          "PREPARATION",
-          "PROPER TIP PLACEMENT",
-          "SHAPING & EFILE USAGE",
-          "ACRYLIC APPLICATION",
-          "PRICING & MARKETING PLAN"
-        ]
-      },
-      {
-        "id": "8932",
-        "name": "2 Day Teen Nail Boot Camp",
         "whatYouWillLearn": [
           "SANITATION",
           "PREPARATION",
@@ -65,6 +35,8 @@
           "tuition": [
             {
               "amount": "$40,000",
+              "currency": "USD",
+              "label": "Course",
               "notes": "Payment plans available"
             }
           ]
@@ -74,7 +46,9 @@
             "JULY 26-27"
           ],
           "duration": "2 Day"
-        }
+        },
+        "location": null,
+        "callsToAction": []
       }
     ],
     "contacts": {
@@ -98,7 +72,7 @@
     "platformSignals": []
   },
   "business": [
-    "Nail'd by Kay",
+    "NAIL'D BY KAY",
     "Naildby_kay_"
   ]
 }

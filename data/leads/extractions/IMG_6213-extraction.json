@@ -1,0 +1,51 @@
+{
+  "artifact": {
+    "id": "112",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "690",
+        "name": "Body Waxing",
+        "whatYouWillLearn": [
+          "Waxing theory & skin preparation",
+          "Hair growth patterns & consultation",
+          "Proper waxing techniques (full body focus)",
+          "Brazilian & intimate area fundamentals",
+          "Client comfort, positioning & hygiene",
+          "Post-wax care & aftercare education",
+          "Contraindications & safety protocols",
+          "Professional setup & workflow"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "$40,000",
+          "type": "whatsapp"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Shameka's Artistry"
+  ]
+}

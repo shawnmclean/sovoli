@@ -1,6 +1,6 @@
 {
   "artifact": {
-    "id": "001",
+    "id": "492",
     "source": {
       "ingest_method": "manual_upload",
       "platform_hint": "facebook",
@@ -15,35 +15,54 @@
   "extraction": {
     "programs": [
       {
-        "id": "001",
+        "id": "162",
         "name": "Basic Nail Classes",
+        "quickFacts": [
+          "PAYMENT PLAN AVAILABLE"
+        ],
         "pricing": {
+          "registration": [
+            {
+              "amount": "$2500",
+              "label": "for registration"
+            }
+          ],
           "tuition": [
             {
               "amount": "65,000",
               "label": "Basic",
-              "notes": "6 weeks"
+              "billingCycle": "6 weeks"
             }
           ]
-        }
+        },
+        "callsToAction": [
+          "REGISTER NOW"
+        ]
       },
       {
-        "id": "002",
+        "id": "839",
         "name": "Advanced Nail Classes",
+        "quickFacts": [
+          "PAYMENT PLAN AVAILABLE"
+        ],
         "pricing": {
+          "registration": [
+            {
+              "amount": "$2500",
+              "label": "for registration"
+            }
+          ],
           "tuition": [
             {
               "amount": "50,000",
               "label": "Advanced",
-              "notes": "4 weeks"
+              "billingCycle": "4 weeks"
             }
           ]
         },
-        "schedule": {
-          "dates": [
-            "Start feb 2nd 2026"
-          ]
-        }
+        "callsToAction": [
+          "REGISTER NOW"
+        ]
       }
     ],
     "contacts": {

@@ -1,0 +1,58 @@
+{
+  "artifact": {
+    "id": "424",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "923",
+        "name": "LYMPHATIC MASSAGE COURSE",
+        "quickFacts": [
+          "NOW AVAILABLE",
+          "ONE-ON-ONE",
+          "GROUP CLASSES",
+          "HANDS-ON TRANING"
+        ],
+        "whatYouWillLearn": [],
+        "schedule": {}
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "1876-535-3962",
+          "type": "phone"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [
+      {
+        "platform": "instagram",
+        "handle": "Sheleen's_School_Of_Beauty",
+        "value": "@Sheleen's_School_Of_Beauty"
+      }
+    ],
+    "urls": [],
+    "locations": [
+      "Shop 24 Washington Plaza Boulevard, Kingston"
+    ],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Sheleen's School Of Beauty",
+    "Stashalee Beauty And More"
+  ]
+}

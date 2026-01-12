@@ -1,0 +1,78 @@
+{
+  "artifact": {
+    "id": "079386f4-437e-4d3f-948f-c024911b7c33",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": "facebook",
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "95499211-507d-44b8-8b17-91c6e43847a6",
+        "name": "Facial",
+        "quickFacts": [
+          "OUR SERVICES"
+        ],
+        "callsToAction": [
+          "Book Now!"
+        ]
+      },
+      {
+        "id": "65a9472c-1584-4073-84b5-037d55f945d9",
+        "name": "Massage",
+        "quickFacts": [
+          "OUR SERVICES"
+        ],
+        "callsToAction": [
+          "Book Now!"
+        ]
+      },
+      {
+        "id": "f7924d7e-e148-4862-b63a-3223f0198e42",
+        "name": "Waxing",
+        "quickFacts": [
+          "OUR SERVICES"
+        ],
+        "callsToAction": [
+          "Book Now!"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "(876)771-2546",
+          "type": "phone"
+        }
+      ],
+      "emails": [
+        {
+          "value": "Shanslumebodystudio@gmail.com"
+        }
+      ]
+    },
+    "socialLinks": [
+      {
+        "platform": "instagram",
+        "handle": "Shansluméskin&bodystudio",
+        "value": "Shansluméskin&bodystudio"
+      }
+    ],
+    "urls": [],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Shans Lume Skin & Body Studio",
+    "Shan's Lumé"
+  ]
+}

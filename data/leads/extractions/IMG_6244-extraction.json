@@ -1,0 +1,61 @@
+{
+  "artifact": {
+    "id": "4a98f7f2-97d1-4865-9754-c23186d9e74b",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": null,
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "88d75347-f497-4549-b9e7-51756b647a9f",
+        "name": "SATURDAY READING CLASSES",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$5,000",
+              "currency": "$",
+              "label": "Now",
+              "notes": "Saturdays (for 2 weeks)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1efdd70f-782e-4189-bb10-cf0e1106f39f",
+        "name": "SATURDAY READING CLASSES",
+        "pricing": {
+          "tuition": [
+            {
+              "amount": "$18,000",
+              "currency": "$",
+              "label": "Now",
+              "notes": "Saturdays (for 8 weeks)"
+            }
+          ]
+        }
+      }
+    ],
+    "contacts": {
+      "phones": [],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored"
+    ]
+  },
+  "business": [
+    "Legendary Kids Academy",
+    "Legendary Chess Academy"
+  ]
+}
