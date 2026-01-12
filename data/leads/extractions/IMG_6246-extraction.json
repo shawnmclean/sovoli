@@ -1,11 +1,11 @@
 {
   "artifact": {
-    "id": "artifact_IMG_6246",
+    "id": "IMG_6246",
     "source": {
       "ingest_method": "file_read",
-      "platform_hint": "Facebook",
-      "captured_at": "2026-01-11T00:00:00Z",
-      "locale_hint": "en-US"
+      "platform_hint": "facebook",
+      "captured_at": "2026-01-11",
+      "locale_hint": "en-JM"
     },
     "file": {
       "filename": "IMG_6246.PNG",
@@ -28,9 +28,9 @@
     "programs": [
       {
         "id": "prog_1",
-        "name": "Basic Nail Class",
+        "name": "Basic Nail Classes",
         "quickFacts": [
-          "Basic"
+          "6 weeks"
         ],
         "pricing": {
           "registration": [
@@ -43,7 +43,7 @@
           "tuition": [
             {
               "amount": "65,000",
-              "notes": "6 weeks"
+              "notes": "Basic"
             }
           ],
           "paymentPlans": [
@@ -63,9 +63,9 @@
       },
       {
         "id": "prog_2",
-        "name": "Advanced Nail Class",
+        "name": "Advanced Nail Classes",
         "quickFacts": [
-          "Advanced"
+          "4 weeks"
         ],
         "pricing": {
           "registration": [
@@ -78,7 +78,7 @@
           "tuition": [
             {
               "amount": "50,000",
-              "notes": "4 weeks"
+              "notes": "Advanced"
             }
           ],
           "paymentPlans": [
@@ -100,6 +100,7 @@
     "contacts": {
       "phones": [
         {
+          "id": "phone_1",
           "value": "876-386-8899",
           "type": "phone"
         }
@@ -108,19 +109,15 @@
     },
     "socialLinks": [
       {
+        "id": "social_1",
         "platform": "other",
         "handle": "@fabulouz_nails",
         "value": "@fabulouz_nails"
       }
     ],
-    "urls": [],
-    "locations": [],
     "platformSignals": [
       "Sponsored",
-      "WhatsApp",
-      "Like",
-      "Share",
-      "7.4K views"
+      "WhatsApp button"
     ]
   },
   "entityCandidates": [
@@ -140,24 +137,24 @@
       "id": "cand_prog_1",
       "type": "program",
       "ref": "prog_1",
-      "value": "Basic Nail Class"
+      "value": "Basic Nail Classes"
     },
     {
       "id": "cand_prog_2",
       "type": "program",
       "ref": "prog_2",
-      "value": "Advanced Nail Class"
+      "value": "Advanced Nail Classes"
     },
     {
       "id": "cand_phone_1",
       "type": "phone",
-      "ref": "contacts",
+      "ref": "phone_1",
       "value": "876-386-8899"
     },
     {
       "id": "cand_social_1",
       "type": "social_link",
-      "ref": "socialLinks",
+      "ref": "social_1",
       "value": "@fabulouz_nails"
     }
   ]

@@ -53,4 +53,4 @@ yarn-error.log*
 
 # Leads extraction pipeline
 data/leads/inputs/images/
-data/leads/registry.json
+data/leads/inputs/registry.json

@@ -15,7 +15,7 @@ const ROOT_DIR = path.resolve(__dirname, "../../../../");
 // Constants
 const INPUT_IMAGES_DIR = path.join(ROOT_DIR, "data/leads/inputs/images");
 const EXTRACTIONS_DIR = path.join(ROOT_DIR, "data/leads/extractions");
-const REGISTRY_FILE = path.join(ROOT_DIR, "data/leads/registry.json");
+const REGISTRY_FILE = path.join(ROOT_DIR, "data/leads/inputs/registry.json");
 
 // System prompt for entity extraction
 const SYSTEM_PROMPT = `

@@ -1,11 +1,11 @@
 {
   "artifact": {
-    "id": "IMG_6247",
+    "id": "IMG_6247.PNG",
     "source": {
       "ingest_method": "file_read",
-      "platform_hint": "Instagram",
-      "captured_at": "2025-05-28T13:05:00Z",
-      "locale_hint": "en"
+      "platform_hint": "instagram",
+      "captured_at": "2026-01-11T00:00:00.000Z",
+      "locale_hint": "en-US"
     },
     "file": {
       "filename": "IMG_6247.PNG",
@@ -21,7 +21,7 @@
       },
       {
         "id": "org_2",
-        "name": "Nail'd by KAY",
+        "name": "naildby_kay_",
         "confidence": "high"
       }
     ],
@@ -39,20 +39,21 @@
           "FULL PRODUCT LIST",
           "LUXE NAIL KIT",
           "LIFE TIME MENTORSHIP",
-          "CERTIFICATION OF COMPLETION"
+          "CERTIFICATION OF COMPLETION",
+          "Teen Nail Boss Camp Registrations Are Now OPEN!"
         ],
         "pricing": {
-          "registration": [
-            {
-              "amount": "50%",
-              "label": "NON-REFUNDABLE DEPOSIT",
-              "notes": "Calculated based on course fee"
-            }
-          ],
           "tuition": [
             {
               "amount": "$40,000",
-              "label": "COURSE"
+              "label": "COURSE",
+              "notes": "Payment plans available"
+            }
+          ],
+          "registration": [
+            {
+              "amount": "50%",
+              "label": "NON-REFUNDABLE DEPOSIT"
             }
           ],
           "paymentPlans": [
@@ -61,20 +62,20 @@
         },
         "schedule": {
           "dates": [
-            "JULY 26-27"
+            "JULY 26-27",
+            "May 28, 2025"
           ],
           "duration": "2 Day"
         },
         "callsToAction": [
-          "Teen Nail Boss Camp Registrations Are Now OPEN!"
+          "Use the app"
         ]
       }
     ],
     "contacts": {
       "phones": [
         {
-          "value": "876-410-1820",
-          "type": "phone"
+          "value": "876-410-1820"
         }
       ],
       "emails": []
@@ -82,13 +83,13 @@
     "socialLinks": [
       {
         "platform": "instagram",
-        "handle": "naildby_kay_",
-        "value": "naildby_kay_"
+        "handle": "@Naildby_kay_",
+        "value": "@Naildby_kay_"
       },
       {
         "platform": "instagram",
-        "handle": "@Naildby_kay_",
-        "value": "@Naildby_kay_"
+        "handle": "naildby_kay_",
+        "value": "naildby_kay_"
       }
     ],
     "urls": [
@@ -96,10 +97,11 @@
     ],
     "locations": [],
     "platformSignals": [
-      "17 likes",
-      "May 28, 2025",
       "Post",
-      "Use the app"
+      "17 likes",
+      "Use the app",
+      "instagram.com",
+      "May 28, 2025"
     ]
   },
   "entityCandidates": [
@@ -110,6 +112,12 @@
       "value": "NAIL'D BY KAY"
     },
     {
+      "id": "cand_org_2",
+      "type": "organization",
+      "ref": "org_2",
+      "value": "naildby_kay_"
+    },
+    {
       "id": "cand_prog_1",
       "type": "program",
       "ref": "prog_1",
@@ -118,14 +126,26 @@
     {
       "id": "cand_phone_1",
       "type": "phone",
-      "ref": "876-410-1820",
+      "ref": "contacts.phones[0]",
       "value": "876-410-1820"
     },
     {
       "id": "cand_social_1",
       "type": "social_link",
-      "ref": "naildby_kay_",
+      "ref": "socialLinks[0]",
+      "value": "@Naildby_kay_"
+    },
+    {
+      "id": "cand_social_2",
+      "type": "social_link",
+      "ref": "socialLinks[1]",
       "value": "naildby_kay_"
+    },
+    {
+      "id": "cand_web_1",
+      "type": "website",
+      "ref": "urls[0]",
+      "value": "instagram.com"
     }
   ]
 }

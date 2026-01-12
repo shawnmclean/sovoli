@@ -50,32 +50,48 @@ flowchart TD
    GEMINI_API_KEY=your_api_key_here
    ```
 
-### Running the Script
+### Running the CLI
 
 **Default behavior** - Process all unprocessed images in the inputs directory (in parallel):
 ```bash
-node scripts/extract-lead-entities.mjs
+pnpm --filter @sovoli/cli sovoli extract-leads
 ```
 
-The script will:
+Or add to root `package.json`:
+```json
+{
+  "scripts": {
+    "cli": "pnpm --filter @sovoli/cli sovoli"
+  }
+}
+```
+
+Then use:
+```bash
+pnpm cli extract-leads
+```
+
+The CLI will:
 - Read the registry to identify already-processed images
 - Skip images that have been successfully processed
 - Process remaining images in parallel
 - Save extracted JSON files to `data/leads/extractions/`
 - Update the registry to track processed images
+- Validate extracted JSON against the schema
 
 Process specific image(s) (optional):
 ```bash
-node scripts/extract-lead-entities.mjs "data/leads/inputs/images/IMG_6245.PNG"
+pnpm cli extract-leads "data/leads/inputs/images/IMG_6245.PNG"
 ```
 
 ## Directory Structure
 
 ```
 data/leads/
-├── inputs/images/     # Screenshots from localsend (gitignored)
-├── extractions/       # Extracted JSON files (committed)
-└── registry.json      # State tracking (gitignored)
+├── inputs/
+│   ├── images/        # Screenshots from localsend (gitignored)
+│   └── registry.json  # State tracking (gitignored)
+└── extractions/       # Extracted JSON files (committed)
 
 apps/sovoli.com/src/modules/leads/extraction/
 ├── types.ts           # TypeScript types and Zod schemas
