@@ -184,12 +184,7 @@ The extraction schema is designed to align with target types (`Org`, `Program`, 
     locations?: string[]
     platformSignals?: string[]
   }
-  entityCandidates: Array<{
-    id: string
-    type: "organization" | "program" | "phone" | "email" | "social_link" | "website"
-    ref: string
-    value?: string
-  }>
+  business?: string | null
 }
 ```
 
@@ -199,6 +194,7 @@ The extraction schema is designed to align with target types (`Org`, `Program`, 
 2. **Type Alignment**: Field names align with target types (`organizationNames` → `Org.name`, `socialLinks` → `Org.socialLinks`, etc.)
 3. **Raw Data Preservation**: All extracted values are preserved as strings for later parsing/transformation
 4. **Structured Evidence**: Evidence is structured to make transformation paths clear
+5. **Business Identification**: The `business` field contains the model's best guess of the single business/organization running the advertisement, or null if unclear
 
 ## Transformation Mapping
 

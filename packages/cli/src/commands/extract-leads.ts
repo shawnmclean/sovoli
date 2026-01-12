@@ -2,9 +2,10 @@ import { Command } from "commander";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import { generateText } from "ai";
+import { generateText, Output, NoObjectGeneratedError } from "ai";
 import { google } from "@ai-sdk/google";
 import { validateExtraction } from "../validation/validate-extraction.js";
+import { leadExtractionDocumentSchema } from "../validation/schemas/lead-extraction-schema.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,7 +14,6 @@ const ROOT_DIR = path.resolve(__dirname, "../../../../");
 // Constants
 const INPUT_IMAGES_DIR = path.join(ROOT_DIR, "data/leads/inputs/images");
 const EXTRACTIONS_DIR = path.join(ROOT_DIR, "data/leads/extractions");
-const REGISTRY_FILE = path.join(ROOT_DIR, "data/leads/inputs/registry.json");
 
 // System prompt for entity extraction
 const SYSTEM_PROMPT = `
@@ -27,7 +27,7 @@ Do not infer, explain, or normalize. The JSON structure carries meaning.
 
 The system has two phases:
 - Phase 1: Evidence Extraction
-- Phase 2: Entity Candidate Construction
+- Phase 2: Business Identification
 
 ────────────────────────────────
 GLOBAL RULES
@@ -143,138 +143,12 @@ Extract separately if not program-specific:
 Do NOT attach global data to programs unless explicitly tied visually.
 
 ────────────────────────────────
-PHASE 2 — ENTITY CANDIDATES
+PHASE 2 — BUSINESS IDENTIFICATION
 ────────────────────────────────
 
-Create entity candidates from extracted evidence.
+Based on the extracted evidence, identify the single business running this advertisement. Usually there is one business. Provide your best guess of the business name as a string, or null if unclear.
 
-Allowed candidate types:
-- organization
-- program
-- phone
-- email
-- social_link
-- website
-
-Rules:
-- Every extracted program MUST produce a program candidate
-- Every organization name MUST produce an organization candidate
-- Candidates reference extracted objects by id
-- No merging or interpretation
-
-Each candidate includes:
-- id
-- type
-- ref (extraction id)
-- value (optional, extracted value for direct matching)
-
-────────────────────────────────
-OUTPUT FORMAT (STRICT)
-────────────────────────────────
-
-Return ONE JSON object with this shape:
-
-{
-  "artifact": {
-    "id": "string",
-    "source": {
-      "ingest_method": "manual_upload" | "file_read" | "api_ingest",
-      "platform_hint": "string | null",
-      "captured_at": "ISO-8601 | null",
-      "locale_hint": "string | null"
-    },
-    "file": {
-      "filename": "string | null",
-      "hash": "string | null"
-    }
-  },
-  "extraction": {
-    "organizationNames": [
-      {
-        "id": "string",
-        "name": "string",
-        "confidence": "high" | "medium" | "low" (optional)
-      }
-    ],
-    "programs": [
-      {
-        "id": "string",
-        "name": "string",
-        "quickFacts": ["string"] (optional),
-        "whatYouWillLearn": ["string"] (optional),
-        "pricing": {
-          "registration": [
-            {
-              "amount": "string",
-              "currency": "string" (optional),
-              "label": "string" (optional),
-              "notes": "string" (optional)
-            }
-          ] (optional),
-          "tuition": [
-            {
-              "amount": "string",
-              "currency": "string" (optional),
-              "label": "string" (optional),
-              "billingCycle": "string" (optional),
-              "notes": "string" (optional)
-            }
-          ] (optional),
-          "materials": [
-            {
-              "amount": "string",
-              "currency": "string" (optional),
-              "label": "string" (optional),
-              "notes": "string" (optional)
-            }
-          ] (optional),
-          "paymentPlans": ["string"] (optional),
-          "other": ["string"] (optional)
-        } (optional),
-        "schedule": {
-          "days": ["string"] (optional),
-          "times": ["string"] (optional),
-          "dates": ["string"] (optional),
-          "duration": "string" (optional)
-        } (optional),
-        "location": "string | null" (optional),
-        "callsToAction": ["string"] (optional)
-      }
-    ],
-    "contacts": {
-      "phones": [
-        {
-          "value": "string",
-          "type": "phone" | "whatsapp" (optional)
-        }
-      ],
-      "emails": [
-        {
-          "value": "string"
-        }
-      ]
-    },
-    "socialLinks": [
-      {
-        "platform": "facebook" | "instagram" | "youtube" | "x" | "website" | "other",
-        "handle": "string" (optional),
-        "url": "string" (optional),
-        "value": "string"
-      }
-    ],
-    "urls": ["string"] (optional),
-    "locations": ["string"] (optional),
-    "platformSignals": ["string"] (optional)
-  },
-  "entityCandidates": [
-    {
-      "id": "string",
-      "type": "organization" | "program" | "phone" | "email" | "social_link" | "website",
-      "ref": "string",
-      "value": "string" (optional)
-    }
-  ]
-}
+Use the organization names, contact information, and other evidence to determine the business name. If multiple organization names appear, choose the most prominent or primary one.
 
 ────────────────────────────────
 FINAL INSTRUCTION
@@ -282,36 +156,19 @@ FINAL INSTRUCTION
 
 Assume all images represent PROGRAMS.
 Process ONLY the provided image(s).
-Output JSON only.
 CRITICAL: Separate registration fees from tuition fees in pricing structure.
 
 `;
 
 /**
- * Read registry file
+ * Check if extraction file already exists for an image
  */
-function readRegistry() {
-  try {
-    if (fs.existsSync(REGISTRY_FILE)) {
-      const content = fs.readFileSync(REGISTRY_FILE, "utf-8");
-      return JSON.parse(content);
-    }
-  } catch {
-    console.warn("Warning: Could not read registry file, starting fresh");
-  }
-  return {};
-}
-
-/**
- * Write registry file
- */
-function writeRegistry(registry: Record<string, string>) {
-  try {
-    fs.writeFileSync(REGISTRY_FILE, JSON.stringify(registry, null, 2) + "\n");
-  } catch (error) {
-    console.error("Error writing registry file:", (error as Error).message);
-    throw error;
-  }
+function extractionExists(imagePath: string): boolean {
+  const imageFilename = path.basename(imagePath);
+  const baseName = path.basename(imageFilename, path.extname(imageFilename));
+  const outputFilename = `${baseName}-extraction.json`;
+  const outputPath = path.join(EXTRACTIONS_DIR, outputFilename);
+  return fs.existsSync(outputPath);
 }
 
 /**
@@ -328,14 +185,14 @@ async function extractWithGemini(
     });
 
     // Construct the full prompt
-    const userPrompt = `${SYSTEM_PROMPT}
+    const userPrompt = SYSTEM_PROMPT;
 
-CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified above. Do not include any prose, explanations, or markdown code blocks. Return ONLY the JSON object.`;
-
-    // Call AI SDK generateText with image
+    // Call AI SDK generateText with structured output
     const result = await generateText({
       model: google(model),
-      maxTokens: 4096,
+      output: Output.object({
+        schema: leadExtractionDocumentSchema,
+      }),
       messages: [
         {
           role: "user",
@@ -353,33 +210,23 @@ CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified
       ],
     });
 
-    // Extract JSON from response text
-    const responseText = result.text.trim();
-
-    // Try to extract JSON from markdown code blocks if present
-    const jsonBlockMatch = responseText.match(
-      /```(?:json)?\s*\n(\{[\s\S]*\})\n```/,
-    );
-    if (jsonBlockMatch && jsonBlockMatch[1]) {
-      try {
-        return JSON.parse(jsonBlockMatch[1]);
-      } catch (parseError) {
-        throw new Error(
-          `Failed to parse JSON from code block: ${(parseError as Error).message}. Response starts with: ${responseText.substring(0, 200)}`,
-        );
-      }
+    // The SDK validates and returns the structured output
+    if (!result.output) {
+      throw new Error("No structured output generated from model");
     }
 
-    // Try to parse as direct JSON
-    try {
-      return JSON.parse(responseText);
-    } catch {
-      throw new Error(
-        `Could not find JSON in response. Response starts with: ${responseText.substring(0, 300)}`,
-      );
-    }
+    return result.output;
   } catch (error) {
     const errorMessage = (error as Error).message;
+
+    // Handle structured output generation failures
+    if (NoObjectGeneratedError.isInstance(error)) {
+      throw new Error(
+        `Failed to generate structured output: ${errorMessage}. Cause: ${error.cause?.toString() || "Unknown"}. Generated text: ${error.text?.substring(0, 300) || "None"}`,
+      );
+    }
+
+    // Handle API key errors
     if (
       errorMessage.includes("API key") ||
       errorMessage.includes("GOOGLE_GENERATIVE_AI_API_KEY")
@@ -388,6 +235,7 @@ CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified
         `Google Generative AI API key not found. Set GOOGLE_GENERATIVE_AI_API_KEY environment variable. Original error: ${errorMessage}`,
       );
     }
+
     throw error;
   }
 }
@@ -406,7 +254,7 @@ async function processImage(
   try {
     const extracted = await extractWithGemini(imagePath, model);
 
-    // Validate structure using JSON Schema
+    // Validate structure using Zod schema (additional validation, SDK already validates)
     const validation = validateExtraction(extracted);
     if (!validation.valid) {
       throw new Error(`Validation failed: ${validation.error}`);
@@ -418,10 +266,6 @@ async function processImage(
 
     fs.writeFileSync(outputPath, JSON.stringify(extracted, null, 2) + "\n");
     console.log(`✅ Saved extraction to ${outputFilename}`);
-
-    const currentRegistry = readRegistry();
-    currentRegistry[imageFilename] = outputFilename;
-    writeRegistry(currentRegistry);
 
     console.log(`✨ Successfully processed ${imageFilename}`);
     return { success: true, imageFilename, outputFilename };
@@ -482,10 +326,9 @@ export const extractLeadsCommand = new Command("extract-leads")
       }
     }
 
-    const registry = readRegistry();
     const unprocessedImages = paths.filter((imagePath) => {
       const imageFilename = path.basename(imagePath);
-      if (registry[imageFilename]) {
+      if (extractionExists(imagePath)) {
         console.log(`⏭️  Skipping ${imageFilename} (already processed)`);
         return false;
       }

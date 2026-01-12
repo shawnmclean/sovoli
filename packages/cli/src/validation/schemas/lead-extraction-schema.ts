@@ -1,264 +1,182 @@
+import { z } from "zod";
+
 /**
- * JSON Schema for lead extraction validation
- * Used with ajv for runtime validation
+ * Lead Extraction Types
+ *
+ * These types define the structure of extracted evidence from ad images.
+ * The schema is designed to align with target types (Org, Program, Contact, SocialLink)
+ * while preserving all raw extracted data for later transformation.
  */
 
-export const leadExtractionSchema = {
-  type: "object",
-  required: ["artifact", "extraction", "entityCandidates"],
-  properties: {
-    artifact: {
-      type: "object",
-      required: ["id", "source", "file"],
-      properties: {
-        id: { type: "string" },
-        source: {
-          type: "object",
-          required: [
-            "ingest_method",
-            "platform_hint",
-            "captured_at",
-            "locale_hint",
-          ],
-          properties: {
-            ingest_method: {
-              type: "string",
-              enum: ["manual_upload", "file_read", "api_ingest"],
-            },
-            platform_hint: { oneOf: [{ type: "string" }, { type: "null" }] },
-            captured_at: {
-              oneOf: [{ type: "string" }, { type: "null" }],
-            },
-            locale_hint: { oneOf: [{ type: "string" }, { type: "null" }] },
-          },
-        },
-        file: {
-          type: "object",
-          required: ["filename", "hash"],
-          properties: {
-            filename: { oneOf: [{ type: "string" }, { type: "null" }] },
-            hash: { oneOf: [{ type: "string" }, { type: "null" }] },
-          },
-        },
-      },
-    },
-    extraction: {
-      type: "object",
-      required: ["organizationNames", "programs", "contacts", "socialLinks"],
-      properties: {
-        organizationNames: {
-          type: "array",
-          items: {
-            type: "object",
-            required: ["id", "name"],
-            properties: {
-              id: { type: "string" },
-              name: { type: "string" },
-              confidence: {
-                type: "string",
-                enum: ["high", "medium", "low"],
-                nullable: true,
-              },
-            },
-          },
-        },
-        programs: {
-          type: "array",
-          items: {
-            type: "object",
-            required: ["id", "name"],
-            properties: {
-              id: { type: "string" },
-              name: { type: "string" },
-              quickFacts: {
-                type: "array",
-                items: { type: "string" },
-                nullable: true,
-              },
-              whatYouWillLearn: {
-                type: "array",
-                items: { type: "string" },
-                nullable: true,
-              },
-              pricing: {
-                type: "object",
-                nullable: true,
-                properties: {
-                  registration: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                      required: ["amount"],
-                      properties: {
-                        amount: { type: "string" },
-                        currency: { type: "string", nullable: true },
-                        label: { type: "string", nullable: true },
-                        notes: { type: "string", nullable: true },
-                      },
-                    },
-                    nullable: true,
-                  },
-                  tuition: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                      required: ["amount"],
-                      properties: {
-                        amount: { type: "string" },
-                        currency: { type: "string", nullable: true },
-                        label: { type: "string", nullable: true },
-                        billingCycle: { type: "string", nullable: true },
-                        notes: { type: "string", nullable: true },
-                      },
-                    },
-                    nullable: true,
-                  },
-                  materials: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                      required: ["amount"],
-                      properties: {
-                        amount: { type: "string" },
-                        currency: { type: "string", nullable: true },
-                        label: { type: "string", nullable: true },
-                        notes: { type: "string", nullable: true },
-                      },
-                    },
-                    nullable: true,
-                  },
-                  paymentPlans: {
-                    type: "array",
-                    items: { type: "string" },
-                    nullable: true,
-                  },
-                  other: {
-                    type: "array",
-                    items: { type: "string" },
-                    nullable: true,
-                  },
-                },
-              },
-              schedule: {
-                type: "object",
-                nullable: true,
-                properties: {
-                  days: {
-                    type: "array",
-                    items: { type: "string" },
-                    nullable: true,
-                  },
-                  times: {
-                    type: "array",
-                    items: { type: "string" },
-                    nullable: true,
-                  },
-                  dates: {
-                    type: "array",
-                    items: { type: "string" },
-                    nullable: true,
-                  },
-                  duration: { type: "string", nullable: true },
-                },
-              },
-              location: { oneOf: [{ type: "string" }, { type: "null" }] },
-              callsToAction: {
-                type: "array",
-                items: { type: "string" },
-                nullable: true,
-              },
-            },
-          },
-        },
-        contacts: {
-          type: "object",
-          required: [],
-          properties: {
-            phones: {
-              type: "array",
-              items: {
-                type: "object",
-                required: ["value"],
-                properties: {
-                  value: { type: "string" },
-                  type: {
-                    type: "string",
-                    enum: ["phone", "whatsapp"],
-                    nullable: true,
-                  },
-                },
-              },
-              nullable: true,
-            },
-            emails: {
-              type: "array",
-              items: {
-                type: "object",
-                required: ["value"],
-                properties: {
-                  value: { type: "string" },
-                },
-              },
-              nullable: true,
-            },
-          },
-        },
-        socialLinks: {
-          type: "array",
-          items: {
-            type: "object",
-            required: ["platform", "value"],
-            properties: {
-              platform: {
-                type: "string",
-                // Allow any string to handle unknown platforms gracefully
-                // Common values: "facebook", "instagram", "youtube", "x", "website", "other"
-              },
-              handle: { type: "string", nullable: true },
-              url: { type: "string", nullable: true },
-              value: { type: "string" },
-            },
-          },
-        },
-        urls: {
-          type: "array",
-          items: { type: "string" },
-          nullable: true,
-        },
-        locations: {
-          type: "array",
-          items: { type: "string" },
-          nullable: true,
-        },
-        platformSignals: {
-          type: "array",
-          items: { type: "string" },
-          nullable: true,
-        },
-      },
-    },
-    entityCandidates: {
-      type: "array",
-      items: {
-        type: "object",
-        required: ["id", "type", "ref"],
-        properties: {
-          id: { type: "string" },
-          type: {
-            type: "string",
-            enum: [
-              "organization",
-              "program",
-              "phone",
-              "email",
-              "social_link",
-              "website",
-            ],
-          },
-          ref: { type: "string" },
-          value: { oneOf: [{ type: "string" }, { type: "null" }] },
-        },
-      },
-    },
-  },
-} as const;
+// ============================================================================
+// Artifact Metadata
+// ============================================================================
+
+export const ingestMethodSchema = z.enum([
+  "manual_upload",
+  "file_read",
+  "api_ingest",
+]);
+
+export const leadExtractionSourceSchema = z.object({
+  ingest_method: ingestMethodSchema,
+  platform_hint: z.string().nullable(),
+  captured_at: z.string().nullable(), // ISO-8601
+  locale_hint: z.string().nullable(), // "en-JM", "en-US", etc.
+});
+
+export const leadExtractionFileSchema = z.object({
+  filename: z.string().nullable(),
+  hash: z.string().nullable(),
+});
+
+export const leadExtractionArtifactSchema = z.object({
+  id: z.string(),
+  source: leadExtractionSourceSchema,
+  file: leadExtractionFileSchema,
+});
+
+// ============================================================================
+// Organization Evidence
+// ============================================================================
+
+export const organizationNameSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  confidence: z.enum(["high", "medium", "low"]).optional(),
+});
+
+// ============================================================================
+// Program Evidence
+// ============================================================================
+
+export const pricingItemEvidenceSchema = z.object({
+  amount: z.string(), // Raw amount string: "$2500", "65,000", etc.
+  currency: z.string().optional(), // Inferred currency hint: "USD", "JMD", "GYD"
+  label: z.string().optional(), // "Registration", "Tuition", "Deposit", etc.
+  notes: z.string().optional(), // Additional context
+});
+
+export const tuitionPricingItemEvidenceSchema = pricingItemEvidenceSchema.extend({
+  billingCycle: z.string().optional(), // "one-time", "term", "program", etc. if mentioned
+});
+
+export const programPricingSchema = z
+  .object({
+    registration: z.array(pricingItemEvidenceSchema).optional(),
+    tuition: z.array(tuitionPricingItemEvidenceSchema).optional(),
+    materials: z.array(pricingItemEvidenceSchema).optional(),
+    paymentPlans: z.array(z.string()).optional(),
+    other: z.array(z.string()).optional(),
+  })
+  .optional();
+
+export const programScheduleSchema = z
+  .object({
+    days: z.array(z.string()).optional(), // "Monday", "Saturday", etc.
+    times: z.array(z.string()).optional(), // "9:00AM - 1:00PM", etc.
+    dates: z.array(z.string()).optional(), // "Start feb 2nd 2026", "6 weeks", etc.
+    duration: z.string().optional(), // "6 weeks", "2 days", etc.
+  })
+  .optional();
+
+export const programEvidenceSchema = z.object({
+  id: z.string(),
+  name: z.string(), // Maps to Program.name
+  quickFacts: z.array(z.string()).optional(), // Maps to Program.quickFacts
+  whatYouWillLearn: z.array(z.string()).optional(), // Maps to Program.whatYouWillLearn (learning content)
+  pricing: programPricingSchema,
+  schedule: programScheduleSchema,
+  location: z.string().nullable().optional(), // Raw location string
+  callsToAction: z.array(z.string()).optional(),
+});
+
+// ============================================================================
+// Contact Evidence
+// ============================================================================
+
+export const phoneEvidenceSchema = z.object({
+  value: z.string(), // Raw phone number
+  type: z.enum(["phone", "whatsapp"]).optional(), // Inferred from context
+});
+
+export const emailEvidenceSchema = z.object({
+  value: z.string(), // Raw email
+});
+
+export const contactEvidenceSchema = z.object({
+  phones: z.array(phoneEvidenceSchema),
+  emails: z.array(emailEvidenceSchema),
+});
+
+// ============================================================================
+// Social Link Evidence
+// ============================================================================
+
+export const socialLinkPlatformSchema = z.enum([
+  "facebook",
+  "instagram",
+  "youtube",
+  "x",
+  "website",
+  "other",
+]);
+
+export const socialLinkEvidenceSchema = z.object({
+  platform: socialLinkPlatformSchema,
+  handle: z.string().optional(), // "@username" or "username"
+  url: z.string().optional(), // Full URL if extracted
+  value: z.string(), // Raw extracted value (handle or URL)
+});
+
+// ============================================================================
+// Extraction Root
+// ============================================================================
+
+export const leadExtractionSchema = z.object({
+  organizationNames: z.array(organizationNameSchema),
+  programs: z.array(programEvidenceSchema),
+  contacts: contactEvidenceSchema,
+  socialLinks: z.array(socialLinkEvidenceSchema),
+  urls: z.array(z.string()).optional(),
+  locations: z.array(z.string()).optional(), // Org-level location strings
+  platformSignals: z.array(z.string()).optional(),
+});
+
+// ============================================================================
+// Complete Extraction Document
+// ============================================================================
+
+export const leadExtractionDocumentSchema = z.object({
+  artifact: leadExtractionArtifactSchema,
+  extraction: leadExtractionSchema,
+  business: z.string().nullable(),
+});
+
+// ============================================================================
+// TypeScript Types (inferred from schemas)
+// ============================================================================
+
+export type IngestMethod = z.infer<typeof ingestMethodSchema>;
+export type LeadExtractionSource = z.infer<typeof leadExtractionSourceSchema>;
+export type LeadExtractionFile = z.infer<typeof leadExtractionFileSchema>;
+export type LeadExtractionArtifact = z.infer<
+  typeof leadExtractionArtifactSchema
+>;
+export type OrganizationName = z.infer<typeof organizationNameSchema>;
+export type PricingItemEvidence = z.infer<typeof pricingItemEvidenceSchema>;
+export type TuitionPricingItemEvidence = z.infer<
+  typeof tuitionPricingItemEvidenceSchema
+>;
+export type ProgramPricing = z.infer<typeof programPricingSchema>;
+export type ProgramSchedule = z.infer<typeof programScheduleSchema>;
+export type ProgramEvidence = z.infer<typeof programEvidenceSchema>;
+export type PhoneEvidence = z.infer<typeof phoneEvidenceSchema>;
+export type EmailEvidence = z.infer<typeof emailEvidenceSchema>;
+export type ContactEvidence = z.infer<typeof contactEvidenceSchema>;
+export type SocialLinkPlatform = z.infer<typeof socialLinkPlatformSchema>;
+export type SocialLinkEvidence = z.infer<typeof socialLinkEvidenceSchema>;
+export type LeadExtraction = z.infer<typeof leadExtractionSchema>;
+export type LeadExtractionDocument = z.infer<
+  typeof leadExtractionDocumentSchema
+>;

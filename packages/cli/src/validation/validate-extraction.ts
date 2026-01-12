@@ -1,11 +1,4 @@
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
-import { leadExtractionSchema } from "./schemas/lead-extraction-schema.js";
-
-const ajv = new Ajv({ allErrors: true, strict: false });
-addFormats(ajv);
-
-const validate = ajv.compile(leadExtractionSchema);
+import { leadExtractionDocumentSchema } from "./schemas/lead-extraction-schema.js";
 
 export interface ValidationResult {
   valid: boolean;
@@ -13,16 +6,16 @@ export interface ValidationResult {
 }
 
 /**
- * Validate extracted JSON structure against JSON Schema
+ * Validate extracted JSON structure against Zod schema
  */
 export function validateExtraction(data: unknown): ValidationResult {
-  const valid = validate(data);
+  const result = leadExtractionDocumentSchema.safeParse(data);
 
-  if (!valid) {
-    const errors = validate.errors?.map((err) => {
-      const path = err.instancePath || err.schemaPath;
+  if (!result.success) {
+    const errors = result.error.issues.map((err) => {
+      const path = err.path.length > 0 ? err.path.join(".") : "root";
       return `${path}: ${err.message}`;
-    }) || ["Unknown validation error"];
+    });
 
     return {
       valid: false,

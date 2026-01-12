@@ -2,7 +2,6 @@
   "extends": "@sovoli/typescript-config/base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
     "module": "ESNext",
     "moduleResolution": "Node",
     "noEmit": false,
