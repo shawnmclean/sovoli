@@ -1,0 +1,19 @@
+{
+  "extends": "@sovoli/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "noEmit": false,
+    "emitDeclarationOnly": false,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "types": ["node"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

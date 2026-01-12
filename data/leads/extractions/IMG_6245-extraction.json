@@ -1,0 +1,226 @@
+{
+  "artifact": {
+    "id": "IMG_6245",
+    "type": "image",
+    "source": {
+      "ingest_method": "file_read",
+      "platform_hint": "facebook_mobile_feed",
+      "captured_at": "2026-01-11T00:00:00Z",
+      "locale_hint": "en-JM"
+    },
+    "file": {
+      "filename": "IMG_6245.PNG",
+      "hash": null
+    }
+  },
+  "extraction": {
+    "brand_strings": [
+      {
+        "value": "Belmo's Learning Hub",
+        "confidence": 0.95
+      },
+      {
+        "value": "BELMOS LEARNING HUB",
+        "confidence": 0.9
+      },
+      {
+        "value": "Pedagix Solutions Limited",
+        "confidence": 0.95
+      }
+    ],
+    "programs": [
+      {
+        "value": "SATURDAY CLASS",
+        "confidence": 0.95
+      },
+      {
+        "value": "PEP PREPARATION CLASSES",
+        "confidence": 0.95
+      }
+    ],
+    "descriptors": [
+      {
+        "value": "THE RESULT IS A+",
+        "confidence": 0.85
+      },
+      {
+        "value": "FUN LEARNING ENVIRONMENT",
+        "confidence": 0.9
+      },
+      {
+        "value": "INTERACTIVE AND INTERESTING ACTIVITIES",
+        "confidence": 0.9
+      },
+      {
+        "value": "Assist in Reading",
+        "confidence": 0.85
+      },
+      {
+        "value": "Mathematics",
+        "confidence": 0.85
+      },
+      {
+        "value": "Comprehension Skills",
+        "confidence": 0.85
+      },
+      {
+        "value": "Language Arts",
+        "confidence": 0.85
+      },
+      {
+        "value": "Social Studies",
+        "confidence": 0.85
+      },
+      {
+        "value": "Science",
+        "confidence": 0.85
+      },
+      {
+        "value": "Forming Interaction",
+        "confidence": 0.85
+      },
+      {
+        "value": "Mental Ability for beginners",
+        "confidence": 0.85
+      },
+      {
+        "value": "Education",
+        "confidence": 0.8
+      }
+    ],
+    "pricing": [
+      {
+        "value": "$1500",
+        "confidence": 0.95
+      }
+    ],
+    "schedule": {
+      "days": [
+        {
+          "value": "Saturday",
+          "confidence": 0.95
+        }
+      ],
+      "times": [
+        {
+          "value": "9:00AM - 1:00PM",
+          "confidence": 0.95
+        }
+      ]
+    },
+    "locations": [
+      {
+        "value": "BRUNSWICK AVE SPANISH TOWN",
+        "confidence": 0.9
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "876 857-5278",
+          "confidence": 0.95
+        }
+      ],
+      "emails": [
+        {
+          "value": "belmoshub@gmail.com",
+          "confidence": 0.95
+        }
+      ],
+      "handles": [],
+      "urls": []
+    },
+    "calls_to_action": [
+      {
+        "value": "WhatsApp",
+        "confidence": 0.95
+      },
+      {
+        "value": "See more",
+        "confidence": 0.8
+      }
+    ],
+    "platform_signals": [
+      {
+        "value": "Sponsored",
+        "confidence": 0.95
+      }
+    ]
+  },
+  "entity_candidates": [
+    {
+      "candidate_id": "brand-belmos-learning-hub",
+      "type": "brand",
+      "value": "Belmo's Learning Hub",
+      "basis": "header_text",
+      "derived_from": [
+        "extraction.brand_strings[0]"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "candidate_id": "brand-belmos-learning-hub-logo",
+      "type": "brand",
+      "value": "BELMOS LEARNING HUB",
+      "basis": "logo_text",
+      "derived_from": [
+        "extraction.brand_strings[1]"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "candidate_id": "email-belmoshub",
+      "type": "email",
+      "value": "belmoshub@gmail.com",
+      "basis": "contact_text",
+      "derived_from": [
+        "extraction.contacts.emails[0]"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "candidate_id": "phone-876-857-5278",
+      "type": "phone",
+      "value": "876 857-5278",
+      "basis": "contact_text",
+      "derived_from": [
+        "extraction.contacts.phones[0]"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "candidate_id": "program-saturday-class",
+      "type": "educational_program",
+      "value": "SATURDAY CLASS",
+      "basis": "headline_text",
+      "derived_from": [
+        "extraction.programs[0]"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "candidate_id": "program-pep-preparation",
+      "type": "educational_program",
+      "value": "PEP PREPARATION CLASSES",
+      "basis": "footer_text",
+      "derived_from": [
+        "extraction.programs[1]"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "candidate_id": "brand-pedagix-solutions",
+      "type": "brand",
+      "value": "Pedagix Solutions Limited",
+      "basis": "secondary_ad_header",
+      "derived_from": [
+        "extraction.brand_strings[2]"
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "confidence_summary": {
+    "overall_artifact_confidence": 0.92,
+    "notes": "High clarity digital screenshot. Text is explicit and well-contrasted. Ambiguity is low, primarily limited to currency (assumed JMD from context but extracted as $) and specific date ranges which are absent."
+  }
+}

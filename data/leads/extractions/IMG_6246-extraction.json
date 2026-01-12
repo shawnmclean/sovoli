@@ -1,0 +1,164 @@
+{
+  "artifact": {
+    "id": "artifact_IMG_6246",
+    "source": {
+      "ingest_method": "file_read",
+      "platform_hint": "Facebook",
+      "captured_at": "2026-01-11T00:00:00Z",
+      "locale_hint": "en-US"
+    },
+    "file": {
+      "filename": "IMG_6246.PNG",
+      "hash": null
+    }
+  },
+  "extraction": {
+    "organizationNames": [
+      {
+        "id": "org_1",
+        "name": "Fabulouz Nails By Angel",
+        "confidence": "high"
+      },
+      {
+        "id": "org_2",
+        "name": "Fabulouz Beauty Kingdom",
+        "confidence": "high"
+      }
+    ],
+    "programs": [
+      {
+        "id": "prog_1",
+        "name": "Basic Nail Class",
+        "quickFacts": [
+          "Basic"
+        ],
+        "pricing": {
+          "registration": [
+            {
+              "amount": "2500",
+              "currency": "$",
+              "label": "registration"
+            }
+          ],
+          "tuition": [
+            {
+              "amount": "65,000",
+              "notes": "6 weeks"
+            }
+          ],
+          "paymentPlans": [
+            "PAYMENT PLAN AVAILABLE"
+          ]
+        },
+        "schedule": {
+          "duration": "6 weeks",
+          "dates": [
+            "feb 2nd 2026"
+          ]
+        },
+        "callsToAction": [
+          "Register NOW",
+          "REGISTER NOW"
+        ]
+      },
+      {
+        "id": "prog_2",
+        "name": "Advanced Nail Class",
+        "quickFacts": [
+          "Advanced"
+        ],
+        "pricing": {
+          "registration": [
+            {
+              "amount": "2500",
+              "currency": "$",
+              "label": "registration"
+            }
+          ],
+          "tuition": [
+            {
+              "amount": "50,000",
+              "notes": "4 weeks"
+            }
+          ],
+          "paymentPlans": [
+            "PAYMENT PLAN AVAILABLE"
+          ]
+        },
+        "schedule": {
+          "duration": "4 weeks",
+          "dates": [
+            "feb 2nd 2026"
+          ]
+        },
+        "callsToAction": [
+          "Register NOW",
+          "REGISTER NOW"
+        ]
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "876-386-8899",
+          "type": "phone"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [
+      {
+        "platform": "other",
+        "handle": "@fabulouz_nails",
+        "value": "@fabulouz_nails"
+      }
+    ],
+    "urls": [],
+    "locations": [],
+    "platformSignals": [
+      "Sponsored",
+      "WhatsApp",
+      "Like",
+      "Share",
+      "7.4K views"
+    ]
+  },
+  "entityCandidates": [
+    {
+      "id": "cand_org_1",
+      "type": "organization",
+      "ref": "org_1",
+      "value": "Fabulouz Nails By Angel"
+    },
+    {
+      "id": "cand_org_2",
+      "type": "organization",
+      "ref": "org_2",
+      "value": "Fabulouz Beauty Kingdom"
+    },
+    {
+      "id": "cand_prog_1",
+      "type": "program",
+      "ref": "prog_1",
+      "value": "Basic Nail Class"
+    },
+    {
+      "id": "cand_prog_2",
+      "type": "program",
+      "ref": "prog_2",
+      "value": "Advanced Nail Class"
+    },
+    {
+      "id": "cand_phone_1",
+      "type": "phone",
+      "ref": "contacts",
+      "value": "876-386-8899"
+    },
+    {
+      "id": "cand_social_1",
+      "type": "social_link",
+      "ref": "socialLinks",
+      "value": "@fabulouz_nails"
+    }
+  ]
+}

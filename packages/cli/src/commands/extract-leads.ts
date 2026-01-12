@@ -1,45 +1,21 @@
-/**
- * Extract Lead Entities from Ad Images
- *
- * This script processes screenshot images of educational/training program ads
- * and extracts entity evidence using Gemini CLI.
- *
- * Usage:
- *   node scripts/extract-lead-entities.mjs [image-path...]
- *
- * Examples:
- *   # Process all unprocessed images in inputs/images directory (default)
- *   node scripts/extract-lead-entities.mjs
- *
- *   # Process specific image(s)
- *   node scripts/extract-lead-entities.mjs "data/leads/inputs/images/IMG_6245.PNG"
- *
- * The script will:
- * - Check the registry to skip already-processed images
- * - Process remaining images in parallel
- * - Save extracted JSON files to data/leads/extractions/
- * - Update the registry to track processed images
- *
- * Prerequisites:
- *   - Gemini CLI must be installed (npm install -g @google/gemini-cli)
- *   - Authentication: Gemini CLI uses cached credentials or GEMINI_API_KEY
- */
-
+import { Command } from "commander";
 import { exec } from "child_process";
 import { promisify } from "util";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
+import { validateExtraction } from "../validation/validate-extraction.js";
 
 const execAsync = promisify(exec);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const ROOT_DIR = path.resolve(__dirname, "../../../../");
 
 // Constants
-const INPUT_IMAGES_DIR = path.join(__dirname, "../data/leads/inputs/images");
-const EXTRACTIONS_DIR = path.join(__dirname, "../data/leads/extractions");
-const REGISTRY_FILE = path.join(__dirname, "../data/leads/registry.json");
+const INPUT_IMAGES_DIR = path.join(ROOT_DIR, "data/leads/inputs/images");
+const EXTRACTIONS_DIR = path.join(ROOT_DIR, "data/leads/extractions");
+const REGISTRY_FILE = path.join(ROOT_DIR, "data/leads/registry.json");
 
 // System prompt for entity extraction
 const SYSTEM_PROMPT = `
@@ -273,11 +249,11 @@ function readRegistry() {
 /**
  * Write registry file
  */
-function writeRegistry(registry) {
+function writeRegistry(registry: Record<string, string>) {
   try {
     fs.writeFileSync(REGISTRY_FILE, JSON.stringify(registry, null, 2) + "\n");
   } catch (error) {
-    console.error("Error writing registry file:", error.message);
+    console.error("Error writing registry file:", (error as Error).message);
     throw error;
   }
 }
@@ -285,9 +261,8 @@ function writeRegistry(registry) {
 /**
  * Extract entities using Gemini CLI
  */
-async function extractWithGemini(imagePath) {
-  // Copy image to tmp directory (not gitignored) so gemini-cli can read it
-  const tmpDir = path.join(__dirname, "../tmp");
+async function extractWithGemini(imagePath: string) {
+  const tmpDir = path.join(ROOT_DIR, "tmp");
   if (!fs.existsSync(tmpDir)) {
     fs.mkdirSync(tmpDir, { recursive: true });
   }
@@ -298,38 +273,31 @@ async function extractWithGemini(imagePath) {
   // Copy the image to tmp
   fs.copyFileSync(imagePath, tmpImagePath);
 
-  let stdout;
-  let stderr;
+  let stdout: string;
+  let stderr: string;
 
   try {
-    // Use absolute path for image in tmp
     const absoluteImagePath = path.resolve(tmpImagePath);
-
-    // Build the prompt - reference the file path and ask for JSON
     const prompt = `${SYSTEM_PROMPT}
 
 Read and analyze the image file at: ${absoluteImagePath}
 
 CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified above. Do not include any prose, explanations, or markdown code blocks. Return ONLY the JSON object.`;
 
-    // Build gemini-cli command - use a temp file for the prompt to avoid Windows command line length limits
     const promptFile = path.join(tmpDir, `prompt-${Date.now()}.txt`);
     fs.writeFileSync(promptFile, prompt, "utf-8");
 
     try {
-      // Use input redirection to pass the prompt file
       const command = `gemini --output-format json < "${promptFile}"`;
-
       const result = await execAsync(command, {
         env: process.env,
-        shell: true,
-        maxBuffer: 10 * 1024 * 1024, // 10MB buffer for large responses
-      });
+        maxBuffer: 10 * 1024 * 1024,
+        encoding: "utf-8",
+      } as { env?: NodeJS.ProcessEnv; maxBuffer?: number; encoding: string });
 
-      stdout = result.stdout;
-      stderr = result.stderr;
+      stdout = result.stdout as string;
+      stderr = result.stderr as string;
     } finally {
-      // Clean up prompt file
       try {
         if (fs.existsSync(promptFile)) {
           fs.unlinkSync(promptFile);
@@ -343,18 +311,13 @@ CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified
       console.warn("Gemini CLI stderr:", stderr);
     }
 
-    // Parse the JSON output - gemini-cli returns JSON with "response" field
     const parsed = JSON.parse(stdout.trim());
 
     if (!parsed.response) {
       throw new Error("No response field in gemini-cli output");
     }
 
-    // gemini-cli returns JSON with a "response" field containing markdown code blocks with JSON
-    // The response is typically: "```json\n{...}\n```"
     const responseText = parsed.response.trim();
-
-    // Extract JSON from markdown code blocks (handles ```json\n...\n``` or ```\n...\n```)
     const jsonBlockMatch = responseText.match(
       /```(?:json)?\s*\n(\{[\s\S]*\})\n```/,
     );
@@ -363,12 +326,11 @@ CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified
         return JSON.parse(jsonBlockMatch[1]);
       } catch (parseError) {
         throw new Error(
-          `Failed to parse JSON from code block: ${parseError.message}. Response starts with: ${responseText.substring(0, 200)}`,
+          `Failed to parse JSON from code block: ${(parseError as Error).message}. Response starts with: ${responseText.substring(0, 200)}`,
         );
       }
     }
 
-    // If no code blocks, try parsing the whole response as JSON (fallback)
     try {
       return JSON.parse(responseText);
     } catch {
@@ -377,45 +339,13 @@ CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified
       );
     }
   } catch (error) {
-    // Check if it's a command not found error
-    if (error.code === "ENOENT") {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
       throw new Error(
         "Gemini CLI not found. Install it with: npm install -g @google/gemini-cli",
       );
     }
-
-    // If it's a JSON parse error, show the actual response
-    if (error.message.includes("JSON") || error.message.includes("token")) {
-      // Try to parse stdout to see what we got
-      try {
-        const result = JSON.parse(error.stdout || stdout);
-        if (result.response) {
-          console.error(
-            "AI Response (first 500 chars):",
-            result.response.substring(0, 500),
-          );
-        }
-      } catch {
-        // Not JSON, show raw output
-        if (stdout) {
-          console.error(
-            "Raw stdout (first 500 chars):",
-            stdout.substring(0, 500),
-          );
-        }
-      }
-    }
-
-    console.error("Error with Gemini CLI:", error.message);
-    if (error.stdout && !error.message.includes("JSON")) {
-      console.error("STDOUT:", error.stdout.substring(0, 500));
-    }
-    if (error.stderr && !error.stderr.includes("Loaded cached credentials")) {
-      console.error("STDERR:", error.stderr);
-    }
     throw error;
   } finally {
-    // Clean up tmp image file
     try {
       if (fs.existsSync(tmpImagePath)) {
         fs.unlinkSync(tmpImagePath);
@@ -423,109 +353,36 @@ CRITICAL: You MUST respond with ONLY valid JSON matching the structure specified
     } catch (cleanupError) {
       console.warn(
         "Warning: Could not clean up tmp image file:",
-        cleanupError.message,
+        (cleanupError as Error).message,
       );
     }
   }
 }
 
 /**
- * Validate extracted JSON structure
- *
- * Note: This is a basic validation. For full schema validation with detailed
- * error messages, use the TypeScript validation module: data/leads/validate.ts
- */
-function validateExtraction(extracted) {
-  if (!extracted || typeof extracted !== "object") {
-    return { valid: false, error: "Extracted data is not an object" };
-  }
-
-  const required = ["artifact", "extraction", "entityCandidates"];
-  for (const field of required) {
-    if (!(field in extracted)) {
-      return { valid: false, error: `Missing required field: ${field}` };
-    }
-  }
-
-  if (!extracted.artifact || typeof extracted.artifact !== "object") {
-    return { valid: false, error: "artifact must be an object" };
-  }
-
-  if (!extracted.extraction || typeof extracted.extraction !== "object") {
-    return { valid: false, error: "extraction must be an object" };
-  }
-
-  if (!Array.isArray(extracted.extraction.organizationNames)) {
-    return {
-      valid: false,
-      error: "extraction.organizationNames must be an array",
-    };
-  }
-
-  if (!Array.isArray(extracted.extraction.programs)) {
-    return { valid: false, error: "extraction.programs must be an array" };
-  }
-
-  if (
-    !extracted.extraction.contacts ||
-    typeof extracted.extraction.contacts !== "object"
-  ) {
-    return { valid: false, error: "extraction.contacts must be an object" };
-  }
-
-  if (!Array.isArray(extracted.extraction.contacts.phones)) {
-    return {
-      valid: false,
-      error: "extraction.contacts.phones must be an array",
-    };
-  }
-
-  if (!Array.isArray(extracted.extraction.contacts.emails)) {
-    return {
-      valid: false,
-      error: "extraction.contacts.emails must be an array",
-    };
-  }
-
-  if (!Array.isArray(extracted.extraction.socialLinks)) {
-    return { valid: false, error: "extraction.socialLinks must be an array" };
-  }
-
-  if (!Array.isArray(extracted.entityCandidates)) {
-    return { valid: false, error: "entityCandidates must be an array" };
-  }
-
-  return { valid: true };
-}
-
-/**
  * Process a single image
  */
-async function processImage(imagePath) {
+async function processImage(imagePath: string) {
   const imageFilename = path.basename(imagePath);
 
   console.log(`🔍 Processing ${imageFilename}...`);
 
   try {
-    // Extract entities
     const extracted = await extractWithGemini(imagePath);
 
-    // Validate structure
+    // Validate structure using JSON Schema
     const validation = validateExtraction(extracted);
     if (!validation.valid) {
       throw new Error(`Validation failed: ${validation.error}`);
     }
 
-    // Generate output filename
     const baseName = path.basename(imageFilename, path.extname(imageFilename));
     const outputFilename = `${baseName}-extraction.json`;
     const outputPath = path.join(EXTRACTIONS_DIR, outputFilename);
 
-    // Save extracted JSON
     fs.writeFileSync(outputPath, JSON.stringify(extracted, null, 2) + "\n");
     console.log(`✅ Saved extraction to ${outputFilename}`);
 
-    // Update registry (each process reads/writes independently for thread-safety)
     const currentRegistry = readRegistry();
     currentRegistry[imageFilename] = outputFilename;
     writeRegistry(currentRegistry);
@@ -533,15 +390,18 @@ async function processImage(imagePath) {
     console.log(`✨ Successfully processed ${imageFilename}`);
     return { success: true, imageFilename, outputFilename };
   } catch (error) {
-    console.error(`❌ Error processing ${imageFilename}:`, error.message);
-    return { success: false, imageFilename, error: error.message };
+    console.error(
+      `❌ Error processing ${imageFilename}:`,
+      (error as Error).message,
+    );
+    return { success: false, imageFilename, error: (error as Error).message };
   }
 }
 
 /**
  * Get all image files from inputs directory
  */
-function getImageFiles() {
+function getImageFiles(): string[] {
   if (!fs.existsSync(INPUT_IMAGES_DIR)) {
     return [];
   }
@@ -555,87 +415,79 @@ function getImageFiles() {
     .map((file) => path.join(INPUT_IMAGES_DIR, file));
 }
 
-/**
- * Main function
- */
-async function main() {
-  // Ensure directories exist
-  if (!fs.existsSync(EXTRACTIONS_DIR)) {
-    fs.mkdirSync(EXTRACTIONS_DIR, { recursive: true });
-  }
+export const extractLeadsCommand = new Command("extract-leads")
+  .description("Extract lead entities from ad images")
+  .argument(
+    "[images...]",
+    "Image file paths to process (default: all unprocessed images)",
+  )
+  .action(async (imagePaths: string[]) => {
+    // Ensure directories exist
+    if (!fs.existsSync(EXTRACTIONS_DIR)) {
+      fs.mkdirSync(EXTRACTIONS_DIR, { recursive: true });
+    }
 
-  const args = process.argv.slice(2);
-  let imagePaths = [];
+    let paths: string[] = [];
 
-  if (args.length > 0) {
-    // Process specific files provided as arguments
-    imagePaths = args.map((arg) => {
-      if (path.isAbsolute(arg)) {
-        return arg;
+    if (imagePaths.length > 0) {
+      paths = imagePaths.map((arg) => {
+        if (path.isAbsolute(arg)) {
+          return arg;
+        }
+        return path.resolve(process.cwd(), arg);
+      });
+    } else {
+      paths = getImageFiles();
+      if (paths.length === 0) {
+        console.log("No images found in inputs directory");
+        process.exit(0);
       }
-      return path.resolve(process.cwd(), arg);
+    }
+
+    const registry = readRegistry();
+    const unprocessedImages = paths.filter((imagePath) => {
+      const imageFilename = path.basename(imagePath);
+      if (registry[imageFilename]) {
+        console.log(`⏭️  Skipping ${imageFilename} (already processed)`);
+        return false;
+      }
+      return true;
     });
-  } else {
-    // Process all images in inputs directory
-    imagePaths = getImageFiles();
-    if (imagePaths.length === 0) {
-      console.log("No images found in inputs directory");
+
+    if (unprocessedImages.length === 0) {
+      console.log("✅ All images have been processed!");
       process.exit(0);
     }
-  }
 
-  // Read registry to filter out already-processed images
-  const registry = readRegistry();
-  const unprocessedImages = imagePaths.filter((imagePath) => {
-    const imageFilename = path.basename(imagePath);
-    if (registry[imageFilename]) {
-      console.log(`⏭️  Skipping ${imageFilename} (already processed)`);
-      return false;
+    console.log(`📸 Found ${unprocessedImages.length} image(s) to process\n`);
+
+    const results = await Promise.allSettled(
+      unprocessedImages.map((imagePath) => {
+        if (!fs.existsSync(imagePath)) {
+          console.error(`❌ Image not found: ${imagePath}`);
+          return Promise.resolve({
+            success: false,
+            imageFilename: path.basename(imagePath),
+            error: "File not found",
+          });
+        }
+        return processImage(imagePath);
+      }),
+    );
+
+    const successful = results.filter(
+      (r) => r.status === "fulfilled" && r.value?.success,
+    ).length;
+    const failed = results.filter(
+      (r) =>
+        r.status === "rejected" ||
+        (r.status === "fulfilled" && !r.value?.success),
+    ).length;
+
+    console.log("\n🎉 Processing complete!");
+    console.log(`✅ Successful: ${successful}`);
+    if (failed > 0) {
+      console.log(`❌ Failed: ${failed}`);
+      process.exit(1);
     }
-    return true;
   });
-
-  if (unprocessedImages.length === 0) {
-    console.log("✅ All images have been processed!");
-    process.exit(0);
-  }
-
-  console.log(`📸 Found ${unprocessedImages.length} image(s) to process\n`);
-
-  // Process images in parallel
-  const results = await Promise.allSettled(
-    unprocessedImages.map((imagePath) => {
-      if (!fs.existsSync(imagePath)) {
-        console.error(`❌ Image not found: ${imagePath}`);
-        return Promise.resolve({
-          success: false,
-          imageFilename: path.basename(imagePath),
-          error: "File not found",
-        });
-      }
-      return processImage(imagePath);
-    }),
-  );
-
-  // Summary
-  const successful = results.filter(
-    (r) => r.status === "fulfilled" && r.value?.success,
-  ).length;
-  const failed = results.filter(
-    (r) =>
-      r.status === "rejected" ||
-      (r.status === "fulfilled" && !r.value?.success),
-  ).length;
-
-  console.log("\n🎉 Processing complete!");
-  console.log(`✅ Successful: ${successful}`);
-  if (failed > 0) {
-    console.log(`❌ Failed: ${failed}`);
-    process.exit(1);
-  }
-}
-
-main().catch((error) => {
-  console.error("Fatal error:", error);
-  process.exit(1);
-});

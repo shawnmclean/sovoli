@@ -1,0 +1,24 @@
+{
+  "name": "@sovoli/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "sovoli": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc && node scripts/add-shebang.js",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "@sovoli/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
