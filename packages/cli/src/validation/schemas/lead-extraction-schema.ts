@@ -167,7 +167,7 @@ export const leadExtractionSchema = {
         },
         contacts: {
           type: "object",
-          required: ["phones", "emails"],
+          required: [],
           properties: {
             phones: {
               type: "array",
@@ -183,6 +183,7 @@ export const leadExtractionSchema = {
                   },
                 },
               },
+              nullable: true,
             },
             emails: {
               type: "array",
@@ -193,6 +194,7 @@ export const leadExtractionSchema = {
                   value: { type: "string" },
                 },
               },
+              nullable: true,
             },
           },
         },
@@ -204,14 +206,8 @@ export const leadExtractionSchema = {
             properties: {
               platform: {
                 type: "string",
-                enum: [
-                  "facebook",
-                  "instagram",
-                  "youtube",
-                  "x",
-                  "website",
-                  "other",
-                ],
+                // Allow any string to handle unknown platforms gracefully
+                // Common values: "facebook", "instagram", "youtube", "x", "website", "other"
               },
               handle: { type: "string", nullable: true },
               url: { type: "string", nullable: true },
