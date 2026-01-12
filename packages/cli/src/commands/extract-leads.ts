@@ -270,12 +270,64 @@ async function processImage(
     console.log(`✨ Successfully processed ${imageFilename}`);
     return { success: true, imageFilename, outputFilename };
   } catch (error) {
-    console.error(
-      `❌ Error processing ${imageFilename}:`,
-      (error as Error).message,
-    );
-    return { success: false, imageFilename, error: (error as Error).message };
+    const errorMessage = (error as Error).message;
+    return { success: false, imageFilename, error: errorMessage };
   }
+}
+
+/**
+ * Process a single image with retry logic and exponential backoff
+ */
+async function processImageWithRetry(
+  imagePath: string,
+  model: string = "gemini-2.0-flash-exp",
+  maxRetries = 3,
+): Promise<{
+  success: boolean;
+  imageFilename: string;
+  outputFilename?: string;
+  error?: string;
+}> {
+  const imageFilename = path.basename(imagePath);
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    const result = await processImage(imagePath, model);
+
+    if (result.success) {
+      return result;
+    }
+
+    // Check if it's a rate limit/quota error
+    const isRateLimit =
+      result.error?.includes("quota") ||
+      result.error?.includes("rate limit") ||
+      result.error?.includes("exceeded") ||
+      result.error?.toLowerCase().includes("rate");
+
+    if (isRateLimit && attempt < maxRetries) {
+      const delay = Math.pow(2, attempt) * 1000; // Exponential backoff: 2s, 4s, 8s
+      console.log(
+        `⏳ Rate limited. Retrying in ${delay / 1000}s... (attempt ${attempt + 1}/${maxRetries})`,
+      );
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      continue;
+    }
+
+    // If not a rate limit error or max retries reached, return the error
+    if (attempt === maxRetries) {
+      console.error(
+        `❌ Error processing ${imageFilename} after ${maxRetries} attempts:`,
+        result.error,
+      );
+    }
+    return result;
+  }
+
+  return {
+    success: false,
+    imageFilename,
+    error: "Max retries exceeded",
+  };
 }
 
 /**
@@ -342,28 +394,39 @@ export const extractLeadsCommand = new Command("extract-leads")
 
     console.log(`📸 Found ${unprocessedImages.length} image(s) to process\n`);
 
-    const results = await Promise.allSettled(
-      unprocessedImages.map((imagePath) => {
-        if (!fs.existsSync(imagePath)) {
-          console.error(`❌ Image not found: ${imagePath}`);
-          return Promise.resolve({
-            success: false,
-            imageFilename: path.basename(imagePath),
-            error: "File not found",
-          });
-        }
-        return processImage(imagePath, model);
-      }),
-    );
+    // Process images sequentially with delays and retry logic
+    const results: Array<{
+      success: boolean;
+      imageFilename: string;
+      outputFilename?: string;
+      error?: string;
+    }> = [];
+    for (let i = 0; i < unprocessedImages.length; i++) {
+      const imagePath = unprocessedImages[i];
+      if (!imagePath) continue;
 
-    const successful = results.filter(
-      (r) => r.status === "fulfilled" && r.value?.success,
-    ).length;
-    const failed = results.filter(
-      (r) =>
-        r.status === "rejected" ||
-        (r.status === "fulfilled" && !r.value?.success),
-    ).length;
+      if (!fs.existsSync(imagePath)) {
+        console.error(`❌ Image not found: ${imagePath}`);
+        results.push({
+          success: false,
+          imageFilename: path.basename(imagePath),
+          error: "File not found",
+        });
+        continue;
+      }
+
+      const result = await processImageWithRetry(imagePath, model);
+      results.push(result);
+
+      // Add delay between requests to avoid rate limits (except for the last one)
+      if (i < unprocessedImages.length - 1) {
+        const delay = 2000; // 2 seconds between requests
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+    }
+
+    const successful = results.filter((r) => r.success).length;
+    const failed = results.filter((r) => !r.success).length;
 
     console.log("\n🎉 Processing complete!");
     console.log(`✅ Successful: ${successful}`);
