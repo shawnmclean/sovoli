@@ -67,7 +67,12 @@ export function transformLocationsToOrgFormat(locations: string[]) {
 			line1: locationStr,
 			countryCode: "JM", // Default, should be prompted or inferred
 		},
-		contacts: [],
+		contacts: [] as Array<{
+			type: "phone" | "whatsapp" | "email";
+			value: string;
+			isPublic?: boolean;
+			primary?: boolean;
+		}>,
 	}));
 }
 

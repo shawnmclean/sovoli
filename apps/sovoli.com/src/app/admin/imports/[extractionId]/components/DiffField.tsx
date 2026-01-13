@@ -89,7 +89,7 @@ export function DiffField({
 			return (
 				<Input
 					type="number"
-					value={value}
+					value={String(value)}
 					onChange={(e) => onChange(Number(e.target.value))}
 					className={getBgColor()}
 					placeholder={diff.oldValue ? String(diff.oldValue) : ""}

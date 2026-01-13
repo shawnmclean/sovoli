@@ -28,41 +28,50 @@ export function ProgramDiffView({
 	allExistingPrograms = [],
 	onChange,
 }: ProgramDiffViewProps) {
-	const [editedProgram, setEditedProgram] = useState<Record<string, unknown>>(newProgram);
-	const [isSelected, setIsSelected] = useState(false);
-	const [action, setAction] = useState<"add" | "update" | null>(null);
-	const [targetProgramId, setTargetProgramId] = useState<string | undefined>(undefined);
-	
 	const isNew = oldProgram === null;
 	const isMatched = matchedPrograms && matchedPrograms.length > 0;
 
-	// Initialize: if matched, default to update; otherwise default to add
-	useEffect(() => {
+	// Compute initial default values
+	const getInitialTargetProgramId = (): string | undefined => {
 		if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
-			setAction("update");
-			setTargetProgramId(matchedPrograms[0]!.id);
-			setIsSelected(true);
-		} else if (!isNew && oldProgram && oldProgramId) {
-			// Has old program with known ID - default to update that program
-			setAction("update");
-			setTargetProgramId(oldProgramId);
-			setIsSelected(true);
-		} else if (!isNew && oldProgram && allExistingPrograms.length > 0) {
-			// Has old program but no ID - default to update, use first existing program
-			setAction("update");
-			setIsSelected(true);
-			setTargetProgramId(allExistingPrograms[0]!.id);
-		} else if (allExistingPrograms.length > 0) {
-			// Has existing programs but no match - default to update with first program
-			setAction("update");
-			setTargetProgramId(allExistingPrograms[0]!.id);
-			setIsSelected(true);
-		} else {
-			// New program - default to add
-			setAction("add");
-			setIsSelected(true);
+			return matchedPrograms[0]!.id;
 		}
-	}, [isMatched, isNew, matchedPrograms, oldProgram, oldProgramId, allExistingPrograms]);
+		if (!isNew && oldProgramId) {
+			return oldProgramId;
+		}
+		if (allExistingPrograms.length > 0) {
+			return allExistingPrograms[0]!.id;
+		}
+		return undefined;
+	};
+
+	const getInitialAction = (): "add" | "update" | null => {
+		if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
+			return "update";
+		}
+		if (!isNew && oldProgram) {
+			return "update";
+		}
+		if (allExistingPrograms.length > 0) {
+			return "update";
+		}
+		return "add";
+	};
+
+	const [editedProgram, setEditedProgram] = useState<Record<string, unknown>>(newProgram);
+	const [isSelected, setIsSelected] = useState(true);
+	const [action, setAction] = useState<"add" | "update" | null>(getInitialAction());
+	const [targetProgramId, setTargetProgramId] = useState<string | undefined>(getInitialTargetProgramId());
+
+	// Update when props change
+	useEffect(() => {
+		const newTargetProgramId = getInitialTargetProgramId();
+		const newAction = getInitialAction();
+		
+		setTargetProgramId(newTargetProgramId);
+		setAction(newAction);
+		setIsSelected(true);
+	}, [isMatched, isNew, matchedPrograms, oldProgram, oldProgramId, allExistingPrograms.length]);
 
 	// Compute diffs
 	const diffs = oldProgram ? computeDiff(oldProgram, editedProgram) : [];
@@ -261,7 +270,7 @@ export function ProgramDiffView({
 										const isMatched = matchedPrograms?.some((m) => m.id === program.id);
 										const match = matchedPrograms?.find((m) => m.id === program.id);
 										return (
-											<SelectItem key={program.id} value={program.id}>
+											<SelectItem key={program.id} textValue={program.name}>
 												{program.name}
 												{isMatched && match && (
 													<span className="text-xs text-blue-600 dark:text-blue-400 ml-2">

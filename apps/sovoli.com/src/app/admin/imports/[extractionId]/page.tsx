@@ -49,7 +49,7 @@ export default async function ReviewPage({ params }: PageProps) {
 			transformedData: transformed,
 			oldProgram: matched?.programData || null,
 			oldProgramId: matched?.programId || null,
-			matchedPrograms: program.matchedPrograms,
+			matchedPrograms: program.matchedPrograms ?? null,
 		};
 	});
 
