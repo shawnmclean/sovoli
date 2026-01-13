@@ -16,7 +16,7 @@
     "programs": [
       {
         "id": "7598",
-        "name": "SATURDAY CLASS",
+        "name": "Saturday Class",
         "whatYouWillLearn": [
           "Assist in Reading",
           "Mathematics",
@@ -25,7 +25,7 @@
           "Social Studies",
           "Science",
           "Forming Interaction",
-          "Mental Ability for beginners"
+          "Mental Ability for Beginners"
         ],
         "pricing": {
           "tuition": [
@@ -60,7 +60,7 @@
     "socialLinks": [],
     "urls": [],
     "locations": [
-      "BRUNSWICK AVE\nSPANISH TOWN"
+      "Brunswick Ave\nSpanish Town"
     ],
     "platformSignals": [
       "Sponsored",
@@ -68,7 +68,7 @@
     ]
   },
   "business": [
-    "Belmo'S Learning Hub"
+    "Belmo's Learning Hub"
   ],
   "matchedOrgs": null
 }

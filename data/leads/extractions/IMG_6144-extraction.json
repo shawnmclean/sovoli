@@ -16,7 +16,7 @@
     "programs": [
       {
         "id": "6369",
-        "name": "BROW LAMINATION",
+        "name": "Brow Lamination",
         "quickFacts": [
           "Full Kit",
           "Certificate of Completion"
@@ -29,7 +29,7 @@
       },
       {
         "id": "9296",
-        "name": "WORKSHOP",
+        "name": "Workshop",
         "quickFacts": [
           "Full Kit",
           "Certificate of Completion"
@@ -76,7 +76,7 @@
     ],
     "urls": [],
     "locations": [
-      "KINGSTON"
+      "Kingston"
     ],
     "platformSignals": [
       "Sponsored"

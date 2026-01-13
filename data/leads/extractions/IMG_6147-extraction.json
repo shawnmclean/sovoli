@@ -184,7 +184,7 @@
       },
       {
         "id": "1460",
-        "name": "Lymphatic massage",
+        "name": "Lymphatic Massage",
         "pricing": {
           "tuition": [
             {
@@ -356,9 +356,9 @@
     ]
   },
   "business": [
-    "Stashalee Beauty And More",
-    "SHELEEN'S SCHOOL OF BEAUTY",
-    "SHELEEN'S"
+    "Stashalee Beauty and More",
+    "Sheleen's School of Beauty",
+    "Sheleen's"
   ],
   "matchedOrgs": null
 }

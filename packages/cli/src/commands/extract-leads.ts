@@ -42,6 +42,17 @@ GLOBAL RULES
 If something is unclear, include it as-is or omit it.
 
 ────────────────────────────────
+FORMATTING RULES
+────────────────────────────────
+
+Apply proper title case formatting to all extracted text values for presentable output.
+
+- **Platform names**: Use lowercase ("instagram", "facebook", "whatsapp")
+- **Program names, business names, locations, learning topics**: Use proper title case (capitalize first letter of each significant word)
+- **Preserve intentional styling** only if clearly part of the brand (e.g., "3-IN-1")
+- When in doubt, use standard title case conventions
+
+────────────────────────────────
 PHASE 1 — EVIDENCE EXTRACTION
 ────────────────────────────────
 
@@ -52,12 +63,12 @@ Each program MUST be its own object.
 Programs may have different pricing, schedules, etc.
 
 For EACH program, extract independently:
-- name (program title/name)
+- name (program title/name - use proper title case formatting as specified in FORMATTING RULES)
 - quickFacts (marketing phrases, outcomes, descriptors, included items - see distinction below)
-- whatYouWillLearn (actual learning content - techniques, skills, topics that will be taught - see distinction below)
+- whatYouWillLearn (actual learning content - techniques, skills, topics that will be taught - use proper capitalization as specified in FORMATTING RULES - see distinction below)
 - pricing (CRITICAL: separate registration, tuition, and materials - see pricing structure below)
 - schedule (days, times, dates, duration)
-- location (if program-specific, raw address string)
+- location (if program-specific, raw address string - use proper title case formatting as specified in FORMATTING RULES)
 - callsToAction (call-to-action phrases)
 
 #### Content Separation (CRITICAL)
@@ -89,7 +100,8 @@ When extracting programs, look for bundled or multi-program offerings:
 1. Split the bundled program into separate program objects
 2. Extract individual program names from the content:
    - Look for capitalized program names, headers, or section titles in the image
-   - Use the actual program names found (e.g., "Lash", "Waxing", "Brow Lamination") rather than the bundle name
+   - Use the actual program names found and format them with proper title case (e.g., "Lash", "Waxing", "Brow Lamination") rather than the bundle name
+   - Apply FORMATTING RULES for program names
 3. For each program, match learning content ("what you will learn" items) based on:
    - **Keywords**: Items containing program-specific terms (e.g., "Lash", "Waxing", "Brow", "Lamination")
    - **Semantic relevance**: Technical terms associated with each program:
@@ -132,9 +144,9 @@ Extract pricing with clear separation:
 ### Shared / Global Data
 Extract separately if not program-specific:
 - contacts: phones (with type hint if WhatsApp mentioned), emails
-- socialLinks: social media handles/URLs (platform, handle, url, value)
+- socialLinks: social media handles/URLs (platform must be lowercase as specified in FORMATTING RULES: "instagram", "facebook", "whatsapp", etc.; handle, url, value)
 - urls: Other URLs found
-- locations: Org-level location strings
+- locations: Org-level location strings (use proper title case formatting as specified in FORMATTING RULES)
 - platformSignals: Platform UI elements (Sponsored, See more, etc.)
 
 Do NOT attach global data to programs unless explicitly tied visually.
@@ -149,6 +161,7 @@ Provide an array of business name candidates as strings, ordered by likelihood:
 - The most likely business name should be at index 0
 - Additional candidate names (if any) should follow in descending order of likelihood
 - If no business name can be determined, return an empty array []
+- All business names must use proper title case formatting as specified in FORMATTING RULES
 
 Use contact information, social links, locations, and any visible branding to determine the business name(s).
 

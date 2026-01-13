@@ -16,7 +16,7 @@
     "programs": [
       {
         "id": "1392b5d6-1c91-4649-a20b-137327380a8a",
-        "name": "SATURDAY CLASS",
+        "name": "Saturday Class",
         "quickFacts": [
           "FUN LEARNING ENVIRONMENT",
           "PEP PREPARATION CLASSES"
@@ -29,7 +29,7 @@
           "Social Studies",
           "Science",
           "Forming Interaction",
-          "Mental Ability for beginners"
+          "Mental Ability for Beginners"
         ],
         "pricing": {
           "tuition": [
@@ -50,7 +50,7 @@
             "9:00AM - 1:00PM"
           ]
         },
-        "location": "BRUNSWICK AVE SPANISH TOWN",
+        "location": "Brunswick Ave Spanish Town",
         "callsToAction": [],
         "matchedPrograms": null
       }
@@ -71,7 +71,7 @@
     "socialLinks": [],
     "urls": [],
     "locations": [
-      "BRUNSWICK AVE SPANISH TOWN"
+      "Brunswick Ave Spanish Town"
     ],
     "platformSignals": [
       "Sponsored",
@@ -79,7 +79,7 @@
     ]
   },
   "business": [
-    "Belmo'S Learning Hub"
+    "Belmo's Learning Hub"
   ],
   "matchedOrgs": null
 }

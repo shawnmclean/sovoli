@@ -16,7 +16,7 @@
     "programs": [
       {
         "id": "0a3c5f94-3723-4b0d-ba48-641157f73138",
-        "name": "LASH",
+        "name": "Lash",
         "quickFacts": [
           "3Deluxe Kits",
           "3 Manuals",
@@ -28,12 +28,12 @@
         ],
         "whatYouWillLearn": [
           "Classic|Hybrid|Volume|Wipsy",
-          "Bottom lash",
+          "Bottom Lash",
           "Fan Making",
           "Sanitization",
           "Isolation",
           "Placement",
-          "Lash techniques"
+          "Lash Techniques"
         ],
         "pricing": {
           "registration": [
@@ -55,17 +55,15 @@
           ]
         },
         "schedule": {
-          "dates": [
-            "JAN 30-FEB 1"
-          ]
+          "dates": ["JAN 30-FEB 1"]
         },
-        "location": "Central plaza shop 12",
+        "location": "Central Plaza Shop 12",
         "callsToAction": [],
         "matchedPrograms": null
       },
       {
         "id": "3f57a7f3-60c0-4f97-b84d-148831c5310c",
-        "name": "WAXING",
+        "name": "Waxing",
         "quickFacts": [
           "3Deluxe Kits",
           "3 Manuals",
@@ -102,17 +100,15 @@
           ]
         },
         "schedule": {
-          "dates": [
-            "JAN 30-FEB 1"
-          ]
+          "dates": ["JAN 30-FEB 1"]
         },
-        "location": "Central plaza shop 12",
+        "location": "Central Plaza Shop 12",
         "callsToAction": [],
         "matchedPrograms": null
       },
       {
         "id": "082cf009-f396-47f6-91e2-660bb16c4816",
-        "name": "BROW LAMINATION",
+        "name": "Brow Lamination",
         "quickFacts": [
           "3Deluxe Kits",
           "3 Manuals",
@@ -126,7 +122,7 @@
           "Brow Shaping & Tinting",
           "Product & Tools",
           "Brow Texture",
-          "Brow anatomy"
+          "Brow Anatomy"
         ],
         "pricing": {
           "registration": [
@@ -148,11 +144,9 @@
           ]
         },
         "schedule": {
-          "dates": [
-            "JAN 30-FEB 1"
-          ]
+          "dates": ["JAN 30-FEB 1"]
         },
-        "location": "Central plaza shop 12",
+        "location": "Central Plaza Shop 12",
         "callsToAction": [],
         "matchedPrograms": null
       }
@@ -168,16 +162,9 @@
     },
     "socialLinks": [],
     "urls": [],
-    "locations": [
-      "Central plaza shop 12"
-    ],
-    "platformSignals": [
-      "Sponsored",
-      "See more"
-    ]
+    "locations": ["Central Plaza Shop 12"],
+    "platformSignals": ["Sponsored", "See more"]
   },
-  "business": [
-    "Niques lash"
-  ],
+  "business": ["Nique's Lash"],
   "matchedOrgs": null
 }

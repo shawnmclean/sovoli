@@ -17,10 +17,7 @@
       {
         "id": "program1",
         "name": "Tattoo Removal & Laser Hair Removal Course",
-        "quickFacts": [
-          "Theory & Practical",
-          "Certification Included"
-        ],
+        "quickFacts": ["Theory & Practical", "Certification Included"],
         "whatYouWillLearn": [
           "Laser Theory & Technology",
           "Skin Anatomy & Fitzpatrick Types",
@@ -45,14 +42,8 @@
     "socialLinks": [],
     "urls": [],
     "locations": [],
-    "platformSignals": [
-      "Sponsored",
-      "See more"
-    ]
+    "platformSignals": ["Sponsored", "See more"]
   },
-  "business": [
-    "Stashalee Beauty And More",
-    "SHELEEN'S SCHOOL OF BEAUTY"
-  ],
+  "business": ["Stashalee Beauty and More", "Sheleen's School of Beauty"],
   "matchedOrgs": null
 }

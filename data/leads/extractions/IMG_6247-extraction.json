@@ -24,12 +24,12 @@
           "CERTIFICATION OF COMPLETION"
         ],
         "whatYouWillLearn": [
-          "SANITATION",
-          "PREPARATION",
-          "PROPER TIP PLACEMENT",
-          "SHAPING & EFILE USAGE",
-          "ACRYLIC APPLICATION",
-          "PRICING & MARKETING PLAN"
+          "Sanitation",
+          "Preparation",
+          "Proper Tip Placement",
+          "Shaping & E-File Usage",
+          "Acrylic Application",
+          "Pricing & Marketing Plan"
         ],
         "matchedPrograms": null
       },
@@ -43,12 +43,12 @@
           "CERTIFICATION OF COMPLETION"
         ],
         "whatYouWillLearn": [
-          "SANITATION",
-          "PREPARATION",
-          "PROPER TIP PLACEMENT",
-          "SHAPING & EFILE USAGE",
-          "ACRYLIC APPLICATION",
-          "PRICING & MARKETING PLAN"
+          "Sanitation",
+          "Preparation",
+          "Proper Tip Placement",
+          "Shaping & E-File Usage",
+          "Acrylic Application",
+          "Pricing & Marketing Plan"
         ],
         "matchedPrograms": null
       },
@@ -56,12 +56,12 @@
         "id": "8932",
         "name": "2 Day Teen Nail Boot Camp",
         "whatYouWillLearn": [
-          "SANITATION",
-          "PREPARATION",
-          "PROPER TIP PLACEMENT",
-          "SHAPING & EFILE USAGE",
-          "ACRYLIC APPLICATION",
-          "PRICING & MARKETING PLAN"
+          "Sanitation",
+          "Preparation",
+          "Proper Tip Placement",
+          "Shaping & E-File Usage",
+          "Acrylic Application",
+          "Pricing & Marketing Plan"
         ],
         "pricing": {
           "tuition": [
@@ -72,9 +72,7 @@
           ]
         },
         "schedule": {
-          "dates": [
-            "JULY 26-27"
-          ],
+          "dates": ["JULY 26-27"],
           "duration": "2 Day"
         },
         "matchedPrograms": null
@@ -100,9 +98,6 @@
     "locations": [],
     "platformSignals": []
   },
-  "business": [
-    "Nail'd by Kay",
-    "Naildby_kay_"
-  ],
+  "business": ["Nail'd by Kay", "Naildby_kay_"],
   "matchedOrgs": null
 }

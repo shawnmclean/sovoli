@@ -8,26 +8,35 @@ The lead extraction pipeline processes ad screenshots and tenant onboarding docu
 
 ```mermaid
 flowchart TD
-    A[Ad Screenshot] --> B[Extraction Script]
+    A[Ad Screenshot] --> B[Extract Leads]
     C[Tenant Onboarding Docs] --> B
     B --> D[Extracted JSON]
     D --> E[Validation]
-    E --> F{Org Matching}
-    F -->|Match Found| G[Propose Changes]
-    F -->|No Match| H[Propose New Tenant]
-    G --> I[Review & Approval]
-    H --> I
-    I --> J[Apply Changes]
+    E --> F[Match Leads]
+    F --> G{Has Matches?}
+    G -->|Yes| H[Apply Changes]
+    G -->|No| H
+    H --> I{User Choice}
+    I -->|Use Existing| J[Update Org/Program]
+    I -->|Create New| K[Create Org/Program]
+    I -->|Skip| L[Next Extraction]
+    J --> M[Save with Metadata]
+    K --> M
+    M --> L
+    L --> N{More Extractions?}
+    N -->|Yes| H
+    N -->|No| O[Complete]
     
     style A fill:#e1f5ff
     style C fill:#e1f5ff
     style D fill:#fff4e1
     style E fill:#fff4e1
     style F fill:#ffe1f5
-    style G fill:#e1ffe1
     style H fill:#e1ffe1
-    style I fill:#f5e1ff
     style J fill:#e1ffe1
+    style K fill:#e1ffe1
+    style M fill:#f5e1ff
+    style O fill:#e1ffe1
 ```
 
 ## Usage
@@ -83,6 +92,34 @@ Process specific image(s) (optional):
 ```bash
 pnpm cli extract-leads "data/leads/inputs/images/IMG_6245.PNG"
 ```
+
+**Step 2: Match Leads**
+
+After extraction, match the extracted data to existing organizations and programs:
+```bash
+pnpm cli match-leads
+```
+
+This will:
+- Find all extraction files
+- Match business names to existing organizations
+- Match program names to existing programs within matched orgs
+- Save match results to extraction JSON files
+
+**Step 3: Apply Changes**
+
+After matching, interactively apply the changes:
+```bash
+pnpm cli apply-changes
+```
+
+This will:
+- Loop through all extraction files
+- For each extraction, prompt you to use existing org, create new org, or skip
+- For each program, prompt you to update existing program, create new program, or skip
+- Show diffs before applying changes
+- Require confirmation before saving
+- Add change tracking metadata to all updates
 
 ## Directory Structure
 
@@ -217,11 +254,11 @@ The extraction schema is designed to align with target types (`Org`, `Program`, 
 | `programs[].schedule` | `Program.cycles[]: ProgramCycle` | Parse dates, create `OrgAcademicCycle` |
 | `programs[].location` | `Program.cycles[].location` or `Org.locations[]` | Parse address string |
 
-## Future Processing Steps
+## Processing Steps
 
 ### 1. Org Matching
 
-**Status**: Not yet implemented
+**Status**: ✅ Implemented
 
 Match extracted organizations against existing orgs using:
 - Organization name (fuzzy matching)
@@ -232,43 +269,61 @@ Match extracted organizations against existing orgs using:
 
 **Output**: Match confidence score and matched org ID (if found)
 
-### 2. Change Proposal (Existing Orgs)
+**Usage**:
+```bash
+pnpm cli match-leads
+```
 
-**Status**: Not yet implemented
+This command:
+- Discovers all organizations in the system
+- Matches each extraction file's business name against existing orgs
+- Matches programs within each extraction against programs in matched orgs
+- Saves match results to extraction JSON files (`matchedOrgs` and `matchedPrograms` fields)
 
-For matched organizations, propose changes:
-- New programs to add
-- Updated contact information
-- New social links
-- Updated pricing
-- New locations
+### 2. Apply Changes
 
-**Output**: Structured change proposal with:
-- Field-level diffs
-- Confidence scores
-- Source references (extraction IDs)
+**Status**: ✅ Implemented
 
-### 3. New Tenant Proposal (Unmatched Orgs)
+Interactive command to apply extraction data to organizations and programs with human confirmation.
 
-**Status**: Not yet implemented
+**Usage**:
+```bash
+pnpm cli apply-changes
+```
 
-For unmatched organizations, propose new tenant creation:
-- Complete `Org` structure from extraction
-- Initial `AcademicModule` with extracted programs
-- Contact information
-- Social links
-- Locations (if available)
+**What it does**:
+1. Loads all extraction files from `data/leads/extractions/`
+2. For each extraction:
+   - Shows matched organizations (from `matchedOrgs` field)
+   - Prompts user to: Use existing org, Create new org, or Skip
+   - If using existing org: Shows diff of changes and confirms before applying
+   - If creating new org: Prompts for category, country, region, and username
+3. For each program in the extraction:
+   - Shows matched programs (from `matchedPrograms` field)
+   - Prompts user to: Update existing program, Create new program, or Skip
+   - Shows diff of changes and confirms before applying
 
-**Output**: Complete `OrgInstance` proposal ready for review
+**Safety Features**:
+- **Diff preview**: Always shows what will change before applying
+- **Confirmation required**: User must confirm each change
+- **Skip option**: User can skip any extraction/program
+- **Change tracking**: Metadata flags (`_addedAt`, `_updatedAt`, `_updatedFields`, `_source`) track what was added/updated
 
-### 4. Review & Approval
+**Change Tracking Metadata**:
+When changes are applied, metadata is added to track:
+- `_addedAt`: ISO timestamp when org/program was created (new records only)
+- `_updatedAt`: ISO timestamp when org/program was last updated
+- `_updatedFields`: Array of field names that were updated
+- `_source`: Extraction file ID that provided the data
 
-**Status**: Not yet implemented
-
-Manual review step before applying changes:
-- Review proposed changes/new tenants
-- Approve/reject/modify proposals
-- Apply approved changes to database
+**Example Workflow**:
+1. Run `extract-leads` to extract data from images
+2. Run `match-leads` to find matching orgs and programs
+3. Run `apply-changes` to interactively apply the changes:
+   - Review each extraction
+   - Choose which org to update or create new
+   - Review diffs for each program
+   - Confirm changes before applying
 
 ## Validation
 
