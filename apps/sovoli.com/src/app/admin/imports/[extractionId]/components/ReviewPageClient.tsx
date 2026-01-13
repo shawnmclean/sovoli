@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card } from "@sovoli/ui/components/card";
+import { useDisclosure } from "@sovoli/ui/components/dialog";
 import { OrgDiffView } from "./OrgDiffView";
 import { ProgramDiffView } from "./ProgramDiffView";
 import { ReviewSummary } from "./ReviewSummary";
+import { CommitConfirmationModal } from "./CommitConfirmationModal";
 import {
 	saveOrgChanges,
 	saveProgramChanges,
@@ -71,15 +73,59 @@ export function ReviewPageClient({
 	const programsNew = Object.values(editedPrograms).filter((p) => p.action === "add" && p.data !== null).length;
 	const programsUpdated = Object.values(editedPrograms).filter((p) => p.action === "update" && p.data !== null).length;
 
+	// Modal state
+	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
 	// Loading and error states
 	const [isCommitting, setIsCommitting] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [success, setSuccess] = useState(false);
 
-	const handleCommit = async () => {
+	// Compute summary for modal
+	const commitSummary = useMemo(() => {
+		const programsToCreate: Array<{ id: string; name: string }> = [];
+		const programsToUpdate: Array<{ id: string; name: string; targetId?: string }> = [];
+
+		for (const program of programsData) {
+			const programInfo = editedPrograms[program.programId];
+			if (!programInfo || !programInfo.data || !programInfo.action) continue;
+
+			if (programInfo.action === "add") {
+				programsToCreate.push({
+					id: program.programId,
+					name: program.programName,
+				});
+			} else if (programInfo.action === "update") {
+				const targetProgramId =
+					programInfo.targetProgramId ||
+					(program.matchedPrograms && program.matchedPrograms.length > 0
+						? program.matchedPrograms[0]!.id
+						: program.programId);
+				programsToUpdate.push({
+					id: program.programId,
+					name: program.programName,
+					targetId: targetProgramId !== program.programId ? targetProgramId : undefined,
+				});
+			}
+		}
+
+		return {
+			orgAction: isNewOrg ? "create" : (matchedOrg ? "update" : null),
+			orgName: businessName,
+			programsToCreate,
+			programsToUpdate,
+		};
+	}, [isNewOrg, matchedOrg, businessName, programsData, editedPrograms]);
+
+	const handleCommitClick = () => {
+		onOpen();
+	};
+
+	const handleConfirmCommit = async () => {
 		setIsCommitting(true);
 		setError(null);
 		setSuccess(false);
+		onOpenChange(false); // Close modal
 
 		try {
 			const extractionFilename = `${extractionId}-extraction.json`;
@@ -287,7 +333,7 @@ export function ReviewPageClient({
 					</Button>
 				</Link>
 				<Button
-					onClick={handleCommit}
+					onClick={handleCommitClick}
 					variant="solid"
 					color="primary"
 					disabled={isCommitting || success}
@@ -297,6 +343,14 @@ export function ReviewPageClient({
 				</Button>
 			</div>
 			</div>
+
+			<CommitConfirmationModal
+				isOpen={isOpen}
+				onOpenChange={onOpenChange}
+				summary={commitSummary}
+				onConfirm={handleConfirmCommit}
+				isCommitting={isCommitting}
+			/>
 		</div>
 	);
 }
