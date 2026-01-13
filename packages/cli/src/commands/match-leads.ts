@@ -13,7 +13,11 @@ import {
 	findAllProgramMatches,
 	findBestCycleMatch,
 } from "../utils/program-matcher.js";
-import type { LeadExtractionDocument } from "../validation/schemas/lead-extraction-schema.js";
+import type {
+	LeadExtractionDocument,
+	MatchedOrg,
+	MatchedProgram,
+} from "../validation/schemas/lead-extraction-schema.js";
 import { leadExtractionDocumentSchema } from "../validation/schemas/lead-extraction-schema.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -21,20 +25,6 @@ const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, "../../../../");
 
 const EXTRACTIONS_DIR = path.join(ROOT_DIR, "data/leads/extractions");
-
-interface MatchedOrg {
-	id: string;
-	name: string;
-	address: string;
-	score: number;
-}
-
-interface MatchedProgram {
-	id: string;
-	name: string;
-	cycleId?: string;
-	score: number;
-}
 
 interface ExtractionResult {
 	filename: string;
@@ -69,12 +59,6 @@ function loadExtraction(filePath: string): LeadExtractionDocument | null {
 		console.error(`Error loading extraction file ${filePath}:`, error);
 		return null;
 	}
-}
-
-interface MatchedProgram {
-	id: string;
-	name: string;
-	cycleId?: string;
 }
 
 /**

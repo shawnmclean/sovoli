@@ -71,6 +71,24 @@ export const programScheduleSchema = z
   })
   .optional();
 
+// ============================================================================
+// Matching Results
+// ============================================================================
+
+export const matchedProgramSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  cycleId: z.string().optional(),
+  score: z.number(),
+});
+
+export const matchedOrgSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  address: z.string(),
+  score: z.number(),
+});
+
 export const programEvidenceSchema = z.object({
   id: z.string(),
   name: z.string(), // Maps to Program.name
@@ -80,6 +98,7 @@ export const programEvidenceSchema = z.object({
   schedule: programScheduleSchema,
   location: z.string().nullable().optional(), // Raw location string
   callsToAction: z.array(z.string()).optional(),
+  matchedPrograms: z.array(matchedProgramSchema).nullable().optional(), // Matched programs from organization
 });
 
 // ============================================================================
@@ -141,6 +160,7 @@ export const leadExtractionDocumentSchema = z.object({
   artifact: leadExtractionArtifactSchema,
   extraction: leadExtractionSchema,
   business: z.array(z.string()),
+  matchedOrgs: z.array(matchedOrgSchema).nullable().optional(), // Matched organizations
 });
 
 // ============================================================================
@@ -159,6 +179,8 @@ export type TuitionPricingItemEvidence = z.infer<
 >;
 export type ProgramPricing = z.infer<typeof programPricingSchema>;
 export type ProgramSchedule = z.infer<typeof programScheduleSchema>;
+export type MatchedProgram = z.infer<typeof matchedProgramSchema>;
+export type MatchedOrg = z.infer<typeof matchedOrgSchema>;
 export type ProgramEvidence = z.infer<typeof programEvidenceSchema>;
 export type PhoneEvidence = z.infer<typeof phoneEvidenceSchema>;
 export type EmailEvidence = z.infer<typeof emailEvidenceSchema>;
