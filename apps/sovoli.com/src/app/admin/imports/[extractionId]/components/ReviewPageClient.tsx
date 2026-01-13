@@ -8,8 +8,11 @@ import { Card } from "@sovoli/ui/components/card";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
 import { OrgDiffView } from "./OrgDiffView";
 import { ProgramDiffView } from "./ProgramDiffView";
+import { ProgramConfiguration } from "./ProgramConfiguration";
 import { ReviewSummary } from "./ReviewSummary";
 import { CommitConfirmationModal } from "./CommitConfirmationModal";
+import { type ProgramSuffix, replaceSuffix } from "../utils/suffix-utils";
+import { useReviewState } from "../hooks/useReviewState";
 import {
 	saveOrgChanges,
 	saveProgramChanges,
@@ -51,27 +54,25 @@ export function ReviewPageClient({
 }: ReviewPageClientProps) {
 	const router = useRouter();
 
-	// State for edited data
-	const [editedOrgData, setEditedOrgData] = useState<Record<string, unknown>>(
-		transformedOrgData,
-	);
-	const [editedPrograms, setEditedPrograms] = useState<
-		Record<string, { data: Record<string, unknown> | null; action: "add" | "update" | null; targetProgramId?: string }>
-	>(() => {
-		const programs: Record<string, { data: Record<string, unknown> | null; action: "add" | "update" | null; targetProgramId?: string }> = {};
-		for (const program of programsData) {
-			programs[program.programId] = {
-				data: program.transformedData,
-				action: program.oldProgram ? "update" : "add",
-				targetProgramId: program.matchedPrograms && program.matchedPrograms.length > 0 ? program.matchedPrograms[0]!.id : undefined,
-			};
-		}
-		return programs;
+	// Centralized state management
+	const {
+		editedOrgData,
+		editedPrograms,
+		selectedSuffix,
+		programsNew,
+		programsUpdated,
+		setOrgData,
+		setProgramData,
+		setSuffix,
+	} = useReviewState({
+		initialOrgData: transformedOrgData,
+		initialPrograms: programsData.map((p) => ({
+			programId: p.programId,
+			transformedData: p.transformedData,
+			oldProgram: p.oldProgram,
+			matchedPrograms: p.matchedPrograms,
+		})),
 	});
-
-	// Track which programs are selected and their actions
-	const programsNew = Object.values(editedPrograms).filter((p) => p.action === "add" && p.data !== null).length;
-	const programsUpdated = Object.values(editedPrograms).filter((p) => p.action === "update" && p.data !== null).length;
 
 	// Modal state
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -162,37 +163,43 @@ export function ReviewPageClient({
 				}
 
 				// Save programs for new org
-				for (const program of programsData) {
-					const programInfo = editedPrograms[program.programId];
-					if (programInfo && programInfo.data && programInfo.action === "add") {
-						const programResult = await createNewProgram(
-							result.orgDir!,
-							{
-								...programInfo.data,
-								id: program.programId,
-								slug: program.programName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-							},
-							extractionFilename,
-						);
-
-						if (!programResult.success) {
-							console.error(
-								`Failed to create program ${program.programId}:`,
-								programResult.error,
+				if (result.orgDir) {
+					for (const program of programsData) {
+						const programInfo = editedPrograms[program.programId];
+						if (programInfo && programInfo.data && programInfo.action === "add") {
+							const programResult = await createNewProgram(
+								result.orgDir,
+								{
+									...programInfo.data,
+									id: program.programId,
+									slug: program.programName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+								},
+								extractionFilename,
 							);
+
+							if (!programResult.success) {
+								console.error(
+									`Failed to create program ${program.programId}:`,
+									programResult.error,
+								);
+							}
 						}
 					}
 				}
 			} else {
 				// Update existing org
+				if (!matchedOrg) {
+					throw new Error("Matched organization is required for update");
+				}
+
 				const orgResult = await saveOrgChanges(
-					matchedOrg!.orgId,
+					matchedOrg.orgId,
 					editedOrgData,
 					extractionFilename,
 				);
 
 				if (!orgResult.success) {
-					throw new Error(orgResult.error || "Failed to save organization");
+					throw new Error(orgResult.error ?? "Failed to save organization");
 				}
 
 				// Save programs
@@ -202,7 +209,7 @@ export function ReviewPageClient({
 
 					if (programInfo.action === "add") {
 						const programResult = await createNewProgram(
-							matchedOrg!.orgDir,
+							matchedOrg.orgDir,
 							{
 								...programInfo.data,
 								id: program.programId,
@@ -219,13 +226,14 @@ export function ReviewPageClient({
 						}
 					} else if (programInfo.action === "update") {
 						// Use the target program ID if specified, otherwise use matched or extraction ID
-						const targetProgramId = programInfo.targetProgramId ||
+						const targetProgramId =
+							programInfo.targetProgramId ??
 							(program.matchedPrograms && program.matchedPrograms.length > 0
 								? program.matchedPrograms[0]!.id
 								: program.programId);
 
 						const programResult = await saveProgramChanges(
-							matchedOrg!.orgDir,
+							matchedOrg.orgDir,
 							targetProgramId,
 							programInfo.data,
 							extractionFilename,
@@ -294,11 +302,38 @@ export function ReviewPageClient({
 				<OrgDiffView
 					oldOrg={oldOrgData}
 					newOrg={editedOrgData}
-					onChange={setEditedOrgData}
+					onChange={setOrgData}
 				/>
 
 				<div className="space-y-4">
 					<h2 className="text-2xl font-semibold">Programs</h2>
+					
+					<ProgramConfiguration
+						selectedSuffix={selectedSuffix}
+						onSuffixChange={setSuffix}
+						onApplyToAllPrograms={(suffix) => {
+							// Apply suffix to all programs
+							for (const program of programsData) {
+								const currentData = editedPrograms[program.programId]?.data ?? program.transformedData;
+								const currentName = currentData.name as string | undefined;
+
+								if (currentName && typeof currentName === "string") {
+									const newName = replaceSuffix(currentName, suffix);
+									const existingState = editedPrograms[program.programId];
+									setProgramData(
+										program.programId,
+										{
+											...currentData,
+											name: newName,
+										},
+										existingState?.action ?? (program.oldProgram ? "update" : "add"),
+										existingState?.targetProgramId,
+									);
+								}
+							}
+						}}
+					/>
+
 					{programsData.map((program) => (
 						<ProgramDiffView
 							key={program.programId}
@@ -306,18 +341,11 @@ export function ReviewPageClient({
 							programName={program.programName}
 							oldProgram={program.oldProgram}
 							oldProgramId={program.oldProgramId}
-							newProgram={editedPrograms[program.programId]?.data || program.transformedData}
+							newProgram={editedPrograms[program.programId]?.data ?? program.transformedData}
 							matchedPrograms={program.matchedPrograms}
 							allExistingPrograms={allExistingPrograms}
 							onChange={(updated, action, targetProgramId) => {
-								setEditedPrograms((prev) => ({
-									...prev,
-									[program.programId]: {
-										data: updated,
-										action: action || null,
-										targetProgramId,
-									},
-								}));
+								setProgramData(program.programId, updated, action ?? null, targetProgramId);
 							}}
 						/>
 					))}

@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Card } from "@sovoli/ui/components/card";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
-import { computeDiff } from "../../utils/diff-compute";
 import { DiffField } from "./DiffField";
+import { useProgramDiff } from "../hooks/useProgramDiff";
+import { getNestedValue } from "../utils/object-utils";
 
 interface ProgramDiffViewProps {
   programId: string;
@@ -32,214 +32,29 @@ export function ProgramDiffView({
   allExistingPrograms = [],
   onChange,
 }: ProgramDiffViewProps) {
-  const isNew = oldProgram === null;
-  const isMatched = matchedPrograms && matchedPrograms.length > 0;
-
-  // Compute initial default values
-  const getInitialAction = (): "add" | "update" | null => {
-    // Only default to "update" if there's a matched program or an old program
-    if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
-      return "update";
-    }
-    if (!isNew && oldProgram) {
-      return "update";
-    }
-    // Otherwise, default to "add" (even if there are existing programs available)
-    return "add";
-  };
-
-  const getInitialTargetProgramId = (): string | undefined => {
-    // Only set target program ID if we're updating
-    const initialAction = getInitialAction();
-    if (initialAction !== "update") {
-      return undefined;
-    }
-
-    // If matched, use matched program
-    if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
-      return matchedPrograms[0]!.id;
-    }
-    // If we have an old program ID, use it
-    if (!isNew && oldProgramId) {
-      return oldProgramId;
-    }
-    // Otherwise, if there are existing programs, use the first one
-    // (user can change it via dropdown)
-    if (allExistingPrograms.length > 0) {
-      return allExistingPrograms[0]!.id;
-    }
-    return undefined;
-  };
-
-  const [editedProgram, setEditedProgram] =
-    useState<Record<string, unknown>>(newProgram);
-  const [isSelected, setIsSelected] = useState(true);
-  const [action, setAction] = useState<"add" | "update" | null>(
-    getInitialAction(),
-  );
-  const [targetProgramId, setTargetProgramId] = useState<string | undefined>(
-    getInitialTargetProgramId(),
-  );
-
-  // Update when props change
-  useEffect(() => {
-    const newTargetProgramId = getInitialTargetProgramId();
-    const newAction = getInitialAction();
-
-    setTargetProgramId(newTargetProgramId);
-    setAction(newAction);
-    setIsSelected(true);
-  }, [
-    isMatched,
-    isNew,
-    matchedPrograms,
-    oldProgram,
-    oldProgramId,
-    allExistingPrograms.length,
-  ]);
-
-  // Compute diffs
-  const diffs = oldProgram ? computeDiff(oldProgram, editedProgram) : [];
-
-  // For new programs, show all fields as "add"
-  const allDiffs =
-    isNew || !oldProgram
-      ? computeDiff({} as Record<string, unknown>, editedProgram)
-      : diffs.filter((diff) => diff.type !== "remove");
-
-  // Track selected fields within the program
-  const [selectedFields, setSelectedFields] = useState<Set<string>>(new Set());
-
-  // Initialize selected fields
-  useEffect(() => {
-    if (selectedFields.size === 0 && allDiffs.length > 0) {
-      const initialSelected = new Set(allDiffs.map((diff) => diff.field));
-      setSelectedFields(initialSelected);
-    }
-  }, [allDiffs.length]);
-
-  // Update parent when selection or action changes
-  useEffect(() => {
-    if (!isSelected || !action) {
-      onChange(null, null);
-      return;
-    }
-
-    // Build final program with only selected fields
-    const finalProgram: Record<string, unknown> = {};
-
-    // If updating, start with old program data
-    if (action === "update" && oldProgram) {
-      Object.assign(finalProgram, oldProgram);
-    }
-
-    // Apply only selected field changes
-    for (const diff of allDiffs) {
-      if (selectedFields.has(diff.field)) {
-        const parts = diff.field.split(".");
-        let current: Record<string, unknown> = finalProgram;
-        let source: Record<string, unknown> = editedProgram;
-
-        // Navigate to the field location
-        for (let i = 0; i < parts.length - 1; i++) {
-          const part = parts[i]!;
-          if (!(part in current)) {
-            current[part] = {};
-          }
-          if (
-            !(part in source) ||
-            typeof source[part] !== "object" ||
-            source[part] === null
-          ) {
-            source[part] = {};
-          }
-          current = current[part] as Record<string, unknown>;
-          source = source[part] as Record<string, unknown>;
-        }
-
-        const lastPart = parts[parts.length - 1]!;
-        if (lastPart in source) {
-          current[lastPart] = source[lastPart];
-        }
-      }
-    }
-
-    onChange(finalProgram, action, targetProgramId);
-  }, [
+  const {
     editedProgram,
-    selectedFields,
-    allDiffs,
-    oldProgram,
+    isSelected,
     action,
     targetProgramId,
-    isSelected,
+    selectedFields,
+    allDiffs,
+    isNew,
+    isMatched,
+    handleFieldChange,
+    handleFieldSelection,
+    handleProgramSelection,
+    handleActionChange,
+    setTargetProgramId,
+  } = useProgramDiff({
+    programId,
+    oldProgram,
+    oldProgramId: oldProgramId ?? null,
+    newProgram,
+    matchedPrograms: matchedPrograms ?? null,
+    allExistingPrograms,
     onChange,
-  ]);
-
-  const handleFieldChange = (field: string, value: unknown) => {
-    const updated = { ...editedProgram };
-
-    // Handle nested fields
-    const parts = field.split(".");
-    if (parts.length > 1) {
-      let current: Record<string, unknown> = updated;
-      for (let i = 0; i < parts.length - 1; i++) {
-        const part = parts[i]!;
-        if (
-          !(part in current) ||
-          typeof current[part] !== "object" ||
-          current[part] === null
-        ) {
-          current[part] = {};
-        }
-        current = current[part] as Record<string, unknown>;
-      }
-      current[parts[parts.length - 1]!] = value;
-    } else {
-      updated[field] = value;
-    }
-
-    setEditedProgram(updated);
-  };
-
-  const handleFieldSelection = (field: string, selected: boolean) => {
-    const newSelected = new Set(selectedFields);
-    if (selected) {
-      newSelected.add(field);
-    } else {
-      newSelected.delete(field);
-    }
-    setSelectedFields(newSelected);
-  };
-
-  const handleProgramSelection = (selected: boolean) => {
-    setIsSelected(selected);
-    if (!selected) {
-      setAction(null);
-    } else if (!action) {
-      // Set default action if none selected
-      if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
-        setAction("update");
-        setTargetProgramId(matchedPrograms[0]!.id);
-      } else {
-        setAction("add");
-      }
-    }
-  };
-
-  const handleActionChange = (newAction: "add" | "update") => {
-    setAction(newAction);
-    if (newAction === "update") {
-      // Default to matched program if available, otherwise first existing program
-      if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
-        setTargetProgramId(matchedPrograms[0]!.id);
-      } else if (allExistingPrograms.length > 0) {
-        setTargetProgramId(allExistingPrograms[0]!.id);
-      }
-    } else if (newAction === "add") {
-      setTargetProgramId(undefined);
-    }
-  };
+  });
 
   return (
     <Card className="p-6">
@@ -252,9 +67,9 @@ export function ProgramDiffView({
             />
             <h2 className="text-xl font-semibold">{programName}</h2>
           </div>
-          {isMatched && (
+          {isMatched && matchedPrograms && matchedPrograms.length > 0 && (
             <span className="text-xs px-2 py-1 rounded bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-              Matched ({matchedPrograms![0]!.score.toFixed(2)})
+              Matched ({matchedPrograms[0]!.score.toFixed(2)})
             </span>
           )}
         </div>
@@ -364,21 +179,7 @@ export function ProgramDiffView({
             </p>
           ) : (
             allDiffs.map((diff) => {
-              // Get the value from editedProgram, handling nested paths
-              const parts = diff.field.split(".");
-              let value: unknown = editedProgram;
-              for (const part of parts) {
-                if (
-                  typeof value === "object" &&
-                  value !== null &&
-                  part in value
-                ) {
-                  value = (value as Record<string, unknown>)[part];
-                } else {
-                  value = undefined;
-                  break;
-                }
-              }
+              const value = getNestedValue(editedProgram, diff.field);
 
               return (
                 <DiffField
