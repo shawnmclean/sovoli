@@ -4,6 +4,7 @@ import { dirname, join } from "path";
 import dotenv from "dotenv";
 import { extractLeadsCommand } from "./commands/extract-leads.js";
 import { uploadMediaCommand } from "./commands/upload-media.js";
+import { matchLeadsCommand } from "./commands/match-leads.js";
 
 // Load environment variables from root .env file
 const __filename = fileURLToPath(import.meta.url);
@@ -22,5 +23,6 @@ program
 // Add commands
 program.addCommand(extractLeadsCommand);
 program.addCommand(uploadMediaCommand);
+program.addCommand(matchLeadsCommand);
 
 program.parse();

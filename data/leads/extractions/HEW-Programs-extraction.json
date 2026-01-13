@@ -1,0 +1,85 @@
+{
+  "artifact": {
+    "id": "ea4051f6-067d-488e-bf9c-bbca65a319e5",
+    "source": {
+      "ingest_method": "manual_upload",
+      "platform_hint": null,
+      "captured_at": null,
+      "locale_hint": null
+    },
+    "file": {
+      "filename": null,
+      "hash": null
+    }
+  },
+  "extraction": {
+    "programs": [
+      {
+        "id": "program-1",
+        "name": "Waxing",
+        "schedule": {
+          "dates": [
+            "January 19"
+          ]
+        }
+      },
+      {
+        "id": "program-2",
+        "name": "Threading",
+        "schedule": {
+          "dates": [
+            "January 20"
+          ]
+        }
+      },
+      {
+        "id": "program-3",
+        "name": "Spa Therapy",
+        "schedule": {
+          "dates": [
+            "January 21"
+          ]
+        }
+      },
+      {
+        "id": "program-4",
+        "name": "Skincare",
+        "schedule": {
+          "dates": [
+            "January 25"
+          ]
+        }
+      },
+      {
+        "id": "program-5",
+        "name": "Massage Therapy",
+        "schedule": {
+          "dates": [
+            "January 21"
+          ]
+        }
+      }
+    ],
+    "contacts": {
+      "phones": [
+        {
+          "value": "18763467995",
+          "type": "whatsapp"
+        }
+      ],
+      "emails": []
+    },
+    "socialLinks": [],
+    "urls": [],
+    "locations": [],
+    "platformSignals": []
+  },
+  "business": [
+    "HEALING EMERALD WELLNESS SPA & TRAINING CENTER LTD."
+  ],
+  "matchedOrg": {
+    "id": "healingemeraldwellness",
+    "name": "Healing Emerald Wellness Spa & Training Centre Limited",
+    "address": "4 Springvale Ave, Kingston, JM"
+  }
+}
