@@ -171,6 +171,7 @@ export function OrgDiffView({ oldOrg, newOrg, onChange }: OrgDiffViewProps) {
 								onChange={(newValue) => handleFieldChange(diff.field, newValue)}
 								onSelectedChange={(selected) => handleFieldSelection(diff.field, selected)}
 								selected={selectedFields.has(diff.field)}
+								action={isNew ? "add" : "update"}
 							/>
 						);
 					})
