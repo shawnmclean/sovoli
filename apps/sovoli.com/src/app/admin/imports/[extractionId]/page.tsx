@@ -52,6 +52,9 @@ export default async function ReviewPage({ params }: PageProps) {
       oldProgram: matched?.programData ?? null,
       oldProgramId: matched?.programId ?? null,
       matchedPrograms: program.matchedPrograms ?? null,
+      // Pass original extraction data for cycle creation
+      schedule: program.schedule ?? null,
+      pricing: program.pricing ?? null,
     };
   });
 

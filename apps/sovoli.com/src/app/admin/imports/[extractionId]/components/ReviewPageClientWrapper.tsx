@@ -48,6 +48,8 @@ interface ReviewPageClientWrapperProps {
 		oldProgram: Record<string, unknown> | null;
 		oldProgramId: string | null;
 		matchedPrograms: Array<{ id: string; name: string; score: number }> | null;
+		schedule: { dates?: string[] } | null;
+		pricing: Record<string, unknown> | null;
 	}>;
 	allExistingPrograms: Array<{ id: string; name: string }>;
 }

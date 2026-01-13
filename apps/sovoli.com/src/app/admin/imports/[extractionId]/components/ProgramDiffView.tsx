@@ -4,8 +4,12 @@ import { Card } from "@sovoli/ui/components/card";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { DiffField } from "./DiffField";
+import { CycleScheduleField } from "./CycleScheduleField";
+import { CyclePricingField } from "./CyclePricingField";
 import { useProgramDiff } from "../hooks/useProgramDiff";
 import { getNestedValue } from "../utils/object-utils";
+import { extractStartDate } from "../../utils/cycle-utils";
+import { useState, useEffect } from "react";
 
 interface ProgramDiffViewProps {
   programId: string;
@@ -15,6 +19,8 @@ interface ProgramDiffViewProps {
   newProgram: Record<string, unknown>;
   matchedPrograms?: Array<{ id: string; name: string; score: number }> | null;
   allExistingPrograms?: Array<{ id: string; name: string }>;
+  schedule?: { dates?: string[] } | null;
+  pricing?: Record<string, unknown> | null;
   onChange: (
     updatedProgram: Record<string, unknown> | null,
     action: "add" | "update" | null,
@@ -30,6 +36,8 @@ export function ProgramDiffView({
   newProgram,
   matchedPrograms,
   allExistingPrograms = [],
+  schedule,
+  pricing,
   onChange,
 }: ProgramDiffViewProps) {
   const {
@@ -55,6 +63,45 @@ export function ProgramDiffView({
     allExistingPrograms,
     onChange,
   });
+
+  // Manage schedule and pricing state separately
+  const [editedSchedule, setEditedSchedule] = useState<{ dates?: string[] } | null>(schedule);
+  const [editedPricing, setEditedPricing] = useState(pricing);
+  const [scheduleSelected, setScheduleSelected] = useState(!!schedule);
+  const [pricingSelected, setPricingSelected] = useState(!!pricing);
+
+  // Update edited schedule/pricing when props change
+  useEffect(() => {
+    if (schedule) {
+      setEditedSchedule(schedule);
+      setScheduleSelected(true);
+    }
+    if (pricing) {
+      setEditedPricing(pricing);
+      setPricingSelected(true);
+    }
+  }, [schedule, pricing]);
+
+  // Update parent when schedule or pricing changes
+  useEffect(() => {
+    if (!isSelected || !action) return;
+
+    const updated = { ...editedProgram };
+    if (scheduleSelected && editedSchedule) {
+      updated._extractedSchedule = editedSchedule;
+    } else {
+      delete updated._extractedSchedule;
+    }
+    if (pricingSelected && editedPricing) {
+      updated._extractedPricing = editedPricing;
+    } else {
+      delete updated._extractedPricing;
+    }
+    
+    // Use handleFieldChange to update the program data properly
+    handleFieldChange("_extractedSchedule", scheduleSelected && editedSchedule ? editedSchedule : undefined);
+    handleFieldChange("_extractedPricing", pricingSelected && editedPricing ? editedPricing : undefined);
+  }, [editedSchedule, editedPricing, scheduleSelected, pricingSelected, isSelected, action, handleFieldChange]);
 
   return (
     <Card className="p-6">
@@ -167,12 +214,38 @@ export function ProgramDiffView({
                 Creating new program. Select which fields to include below.
               </p>
             )}
+
           </div>
         )}
       </div>
 
       {isSelected && (
         <div className="space-y-4">
+          {/* Cycle Schedule Field */}
+          {schedule && (
+            <CycleScheduleField
+              schedule={schedule}
+              value={editedSchedule}
+              onChange={setEditedSchedule}
+              onSelectedChange={setScheduleSelected}
+              selected={scheduleSelected}
+              action={action}
+            />
+          )}
+
+          {/* Cycle Pricing Field */}
+          {pricing && (
+            <CyclePricingField
+              pricing={pricing}
+              value={editedPricing}
+              onChange={setEditedPricing}
+              onSelectedChange={setPricingSelected}
+              selected={pricingSelected}
+              action={action}
+            />
+          )}
+
+          {/* Other program fields */}
           {allDiffs.length === 0 ? (
             <p className="text-sm text-muted-foreground">
               No changes detected.

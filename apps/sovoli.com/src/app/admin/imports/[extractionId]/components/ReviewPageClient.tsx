@@ -18,7 +18,9 @@ import {
 	saveProgramChanges,
 	createNewOrg,
 	createNewProgram,
+	markExtractionApplied,
 } from "../../actions";
+import type { ProgramEvidence } from "../../types/lead-extraction-schema";
 
 interface ReviewPageClientProps {
 	extractionId: string;
@@ -38,6 +40,8 @@ interface ReviewPageClientProps {
 		oldProgram: Record<string, unknown> | null;
 		oldProgramId: string | null;
 		matchedPrograms: Array<{ id: string; name: string; score: number }> | null;
+		schedule: { dates?: string[] } | null;
+		pricing: Record<string, unknown> | null;
 	}>;
 	allExistingPrograms: Array<{ id: string; name: string }>;
 }
@@ -167,6 +171,10 @@ export function ReviewPageClient({
 					for (const program of programsData) {
 						const programInfo = editedPrograms[program.programId];
 						if (programInfo && programInfo.data && programInfo.action === "add") {
+							// Get schedule and pricing from edited program data
+							const editedSchedule = programInfo.data._extractedSchedule as { dates?: string[] } | null | undefined;
+							const editedPricing = programInfo.data._extractedPricing as ProgramEvidence["pricing"] | null | undefined;
+							
 							const programResult = await createNewProgram(
 								result.orgDir,
 								{
@@ -175,6 +183,8 @@ export function ReviewPageClient({
 									slug: program.programName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
 								},
 								extractionFilename,
+								editedSchedule || program.schedule,
+								(editedPricing || program.pricing) as ProgramEvidence["pricing"],
 							);
 
 							if (!programResult.success) {
@@ -208,6 +218,10 @@ export function ReviewPageClient({
 					if (!programInfo || !programInfo.data || !programInfo.action) continue;
 
 					if (programInfo.action === "add") {
+						// Get schedule and pricing from edited program data
+						const editedSchedule = programInfo.data._extractedSchedule as { dates?: string[] } | null | undefined;
+						const editedPricing = programInfo.data._extractedPricing as ProgramEvidence["pricing"] | null | undefined;
+						
 						const programResult = await createNewProgram(
 							matchedOrg.orgDir,
 							{
@@ -216,6 +230,8 @@ export function ReviewPageClient({
 								slug: program.programName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
 							},
 							extractionFilename,
+							editedSchedule || program.schedule,
+							(editedPricing || program.pricing) as ProgramEvidence["pricing"],
 						);
 
 						if (!programResult.success) {
@@ -232,11 +248,17 @@ export function ReviewPageClient({
 								? program.matchedPrograms[0]!.id
 								: program.programId);
 
+						// Get schedule and pricing from edited program data
+						const editedSchedule = programInfo.data._extractedSchedule as { dates?: string[] } | null | undefined;
+						const editedPricing = programInfo.data._extractedPricing as ProgramEvidence["pricing"] | null | undefined;
+						
 						const programResult = await saveProgramChanges(
 							matchedOrg.orgDir,
 							targetProgramId,
 							programInfo.data,
 							extractionFilename,
+							editedSchedule || program.schedule,
+							(editedPricing || program.pricing) as ProgramEvidence["pricing"],
 						);
 
 						if (!programResult.success) {
@@ -247,6 +269,15 @@ export function ReviewPageClient({
 						}
 					}
 				}
+			}
+
+			// Mark extraction as applied
+			const markResult = await markExtractionApplied(extractionId);
+			if (!markResult.success) {
+				console.warn(
+					`Failed to mark extraction as applied: ${markResult.error}`,
+				);
+				// Don't fail the whole operation if marking fails
 			}
 
 			setSuccess(true);
@@ -344,6 +375,8 @@ export function ReviewPageClient({
 							newProgram={editedPrograms[program.programId]?.data ?? program.transformedData}
 							matchedPrograms={program.matchedPrograms}
 							allExistingPrograms={allExistingPrograms}
+							schedule={program.schedule}
+							pricing={program.pricing}
 							onChange={(updated, action, targetProgramId) => {
 								setProgramData(program.programId, updated, action ?? null, targetProgramId);
 							}}

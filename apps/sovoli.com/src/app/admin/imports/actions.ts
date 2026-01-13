@@ -5,6 +5,13 @@ import path from "path";
 import { revalidatePath } from "next/cache";
 import { getChangedFields } from "./utils/change-tracking";
 import type { ChangeMetadata } from "./utils/change-tracking";
+import {
+	extractStartDate,
+	calculateEndDate,
+	generateCycleId,
+	transformPricingToPackage,
+} from "./utils/cycle-utils";
+import type { ProgramEvidence } from "./types/lead-extraction-schema";
 
 // In Next.js, process.cwd() points to the project root (apps/sovoli.com)
 // We need to go up two levels to get to the monorepo root
@@ -99,6 +106,152 @@ function findProgramFile(
 }
 
 /**
+ * Load cycles.json file
+ */
+function loadCyclesFile(orgDir: string): {
+  globalCycles: Array<Record<string, unknown>>;
+  academicCycles: Array<Record<string, unknown>>;
+  programCycles: Array<Record<string, unknown>>;
+} {
+  const cyclesPath = path.join(orgDir, "cycles.json");
+  if (!fs.existsSync(cyclesPath)) {
+    return {
+      globalCycles: [],
+      academicCycles: [],
+      programCycles: [],
+    };
+  }
+
+  try {
+    const content = fs.readFileSync(cyclesPath, "utf-8");
+    const data = JSON.parse(content) as {
+      globalCycles?: Array<Record<string, unknown>>;
+      academicCycles?: Array<Record<string, unknown>>;
+      programCycles?: Array<Record<string, unknown>>;
+    };
+    return {
+      globalCycles: data.globalCycles || [],
+      academicCycles: data.academicCycles || [],
+      programCycles: data.programCycles || [],
+    };
+  } catch (error) {
+    console.error(`Error loading cycles.json:`, error);
+    return {
+      globalCycles: [],
+      academicCycles: [],
+      programCycles: [],
+    };
+  }
+}
+
+/**
+ * Save cycles.json file
+ */
+function saveCyclesFile(
+  orgDir: string,
+  cycles: {
+    globalCycles: Array<Record<string, unknown>>;
+    academicCycles: Array<Record<string, unknown>>;
+    programCycles: Array<Record<string, unknown>>;
+  },
+): void {
+  const cyclesPath = path.join(orgDir, "cycles.json");
+  const content = JSON.stringify(cycles, null, 2) + "\n";
+  fs.writeFileSync(cyclesPath, content, "utf-8");
+}
+
+/**
+ * Find or create academic cycle for a program
+ */
+function findOrCreateAcademicCycle(
+  orgDir: string,
+  programSlug: string,
+  startDate: string,
+  programName: string,
+): string {
+  const cycles = loadCyclesFile(orgDir);
+  const cycleId = generateCycleId(programSlug, startDate);
+
+  // Check if academic cycle already exists
+  const existingCycle = cycles.academicCycles.find(
+    (ac) => (ac.id as string) === cycleId,
+  );
+  if (existingCycle) {
+    return cycleId;
+  }
+
+  // Create new academic cycle
+  const endDate = calculateEndDate(startDate);
+  const academicCycle = {
+    id: cycleId,
+    customLabel: `${programName} - ${new Date(startDate).toLocaleDateString("en-US", { month: "long", year: "numeric" })}`,
+    startDate,
+    endDate,
+  };
+
+  cycles.academicCycles.push(academicCycle);
+  saveCyclesFile(orgDir, cycles);
+
+  return cycleId;
+}
+
+/**
+ * Find or create program cycle
+ * Creates academic cycle even without pricing, but only creates program cycle if pricing is available
+ */
+function findOrCreateProgramCycle(
+  orgDir: string,
+  programSlug: string,
+  programName: string,
+  startDate: string,
+  pricing: ProgramEvidence["pricing"],
+  extractionFilename: string,
+): string | null {
+  // Always create academic cycle if we have a start date
+  const academicCycleId = findOrCreateAcademicCycle(
+    orgDir,
+    programSlug,
+    startDate,
+    programName,
+  );
+
+  // Only create program cycle if pricing is available
+  if (!pricing) {
+    return academicCycleId; // Return academic cycle ID even without program cycle
+  }
+
+  const cycles = loadCyclesFile(orgDir);
+  const cycleId = generateCycleId(programSlug, startDate);
+
+  // Check if program cycle already exists
+  const existingCycle = cycles.programCycles.find(
+    (pc) => (pc.id as string) === cycleId,
+  );
+  if (existingCycle) {
+    return cycleId;
+  }
+
+  // Transform pricing to package
+  const pricingPackage = transformPricingToPackage(pricing);
+
+  // Create new program cycle
+  const programCycle = {
+    id: cycleId,
+    academicCycleId,
+    pricingPackage,
+    status: "open" as const,
+    enrolled: 0,
+    _source: extractionFilename,
+    _addedAt: new Date().toISOString(),
+  };
+
+  cycles.programCycles.push(programCycle);
+  saveCyclesFile(orgDir, cycles);
+
+  return cycleId;
+}
+
+/**
  * Save organization changes
  */
 export async function saveOrgChanges(
@@ -188,6 +341,8 @@ export async function saveProgramChanges(
   programId: string,
   programData: Record<string, unknown>,
   extractionFilename: string,
+  schedule?: { dates?: string[] } | null,
+  pricing?: ProgramEvidence["pricing"],
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const result = findProgramFile(orgDir, programId);
@@ -259,6 +414,28 @@ export async function saveProgramChanges(
 
     const content = JSON.stringify(updatedData, null, 2) + "\n";
     fs.writeFileSync(result.filePath, content, "utf-8");
+
+    // Create cycle if schedule is available (pricing is optional)
+    if (schedule) {
+      const startDate = extractStartDate(schedule);
+      if (startDate) {
+        const programSlug =
+          (programWithMetadata.slug as string) ||
+          (programWithMetadata.name as string)
+            ?.toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-") ||
+          programId;
+        const programName = (programWithMetadata.name as string) || programId;
+        findOrCreateProgramCycle(
+          orgDir,
+          programSlug,
+          programName,
+          startDate,
+          pricing,
+          extractionFilename,
+        );
+      }
+    }
 
     revalidatePath("/admin/imports");
     return { success: true };
@@ -353,12 +530,62 @@ export async function createNewOrg(
 }
 
 /**
+ * Mark an extraction as applied (updated)
+ */
+export async function markExtractionApplied(
+  extractionId: string,
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const EXTRACTIONS_DIR = path.join(
+      ROOT_DIR,
+      "data/leads/extractions",
+    );
+    const filePath = path.join(
+      EXTRACTIONS_DIR,
+      `${extractionId}-extraction.json`,
+    );
+
+    if (!fs.existsSync(filePath)) {
+      return {
+        success: false,
+        error: `Extraction file not found: ${extractionId}`,
+      };
+    }
+
+    // Load existing extraction
+    const content = fs.readFileSync(filePath, "utf-8");
+    const extraction = JSON.parse(content) as Record<string, unknown>;
+
+    // Add applied metadata
+    const updatedExtraction = {
+      ...extraction,
+      _appliedAt: new Date().toISOString(),
+    };
+
+    // Write back to file
+    const updatedContent = JSON.stringify(updatedExtraction, null, 2) + "\n";
+    fs.writeFileSync(filePath, updatedContent, "utf-8");
+
+    revalidatePath("/admin/imports");
+    return { success: true };
+  } catch (error) {
+    console.error("Error marking extraction as applied:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Unknown error",
+    };
+  }
+}
+
+/**
  * Create new program (idempotent - will update if already exists)
  */
 export async function createNewProgram(
   orgDir: string,
   programData: Record<string, unknown>,
   extractionFilename: string,
+  schedule?: { dates?: string[] } | null,
+  pricing?: ProgramEvidence["pricing"],
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const programId = programData.id as string;
@@ -450,6 +677,26 @@ export async function createNewProgram(
 
     const content = JSON.stringify(updatedData, null, 2) + "\n";
     fs.writeFileSync(academicPath, content, "utf-8");
+
+    // Create cycle if schedule is available (pricing is optional)
+    if (schedule) {
+      const startDate = extractStartDate(schedule);
+      if (startDate) {
+        const programSlug =
+          (programData.slug as string) ||
+          (programData.name as string)?.toLowerCase().replace(/[^a-z0-9]+/g, "-") ||
+          programId;
+        const programName = (programData.name as string) || programId;
+        findOrCreateProgramCycle(
+          orgDir,
+          programSlug,
+          programName,
+          startDate,
+          pricing,
+          extractionFilename,
+        );
+      }
+    }
 
     revalidatePath("/admin/imports");
     return { success: true };

@@ -33,9 +33,16 @@ export default function ImportsPage() {
 								<Card key={extractionId} className="p-6">
 									<div className="flex items-center justify-between">
 										<div className="flex-1">
-											<h3 className="font-semibold text-lg mb-1">
-												{extractionId}
-											</h3>
+											<div className="flex items-center gap-2 mb-1">
+												<h3 className="font-semibold text-lg">
+													{extractionId}
+												</h3>
+												{metadata?.isApplied && (
+													<span className="text-xs px-2 py-0.5 rounded bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+														Applied
+													</span>
+												)}
+											</div>
 											{metadata && (
 												<div className="text-sm text-muted-foreground space-y-1">
 													<p>
@@ -45,6 +52,12 @@ export default function ImportsPage() {
 														Modified:{" "}
 														{new Date(metadata.modifiedAt).toLocaleString()}
 													</p>
+													{metadata.isApplied && metadata.appliedAt && (
+														<p>
+															Applied:{" "}
+															{new Date(metadata.appliedAt).toLocaleString()}
+														</p>
+													)}
 													<p>Size: {(metadata.size / 1024).toFixed(2)} KB</p>
 												</div>
 											)}

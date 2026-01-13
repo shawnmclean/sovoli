@@ -48,7 +48,7 @@ export function loadExtraction(
 }
 
 /**
- * Get extraction file metadata (filename, size, modified time)
+ * Get extraction file metadata (filename, size, modified time, applied status)
  */
 export function getExtractionMetadata(extractionId: string) {
 	const filePath = path.join(
@@ -61,9 +61,26 @@ export function getExtractionMetadata(extractionId: string) {
 	}
 
 	const stats = fs.statSync(filePath);
+	
+	// Try to read the extraction to check if it's been applied
+	let isApplied = false;
+	let appliedAt: string | null = null;
+	try {
+		const content = fs.readFileSync(filePath, "utf-8");
+		const data = JSON.parse(content) as { _appliedAt?: string };
+		if (data._appliedAt) {
+			isApplied = true;
+			appliedAt = data._appliedAt;
+		}
+	} catch {
+		// If we can't parse, just continue without applied status
+	}
+
 	return {
 		filename: `${extractionId}-extraction.json`,
 		size: stats.size,
 		modifiedAt: stats.mtime.toISOString(),
+		isApplied,
+		appliedAt,
 	};
 }
