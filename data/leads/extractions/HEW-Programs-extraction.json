@@ -21,7 +21,8 @@
           "dates": [
             "January 19"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "program-2",
@@ -30,7 +31,8 @@
           "dates": [
             "January 20"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "program-3",
@@ -39,7 +41,21 @@
           "dates": [
             "January 21"
           ]
-        }
+        },
+        "matchedPrograms": [
+          {
+            "id": "hew-massage-therapy",
+            "name": "Massage Therapy Training",
+            "cycleId": "hew-massage-20260107",
+            "score": 0.8
+          },
+          {
+            "id": "hew-advanced-massage-therapy",
+            "name": "Advanced Massage Therapy Program",
+            "cycleId": "hew-advanced-massage-20260107",
+            "score": 0.8
+          }
+        ]
       },
       {
         "id": "program-4",
@@ -48,7 +64,8 @@
           "dates": [
             "January 25"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "program-5",
@@ -57,7 +74,21 @@
           "dates": [
             "January 21"
           ]
-        }
+        },
+        "matchedPrograms": [
+          {
+            "id": "hew-massage-therapy",
+            "name": "Massage Therapy Training",
+            "cycleId": "hew-massage-20260107",
+            "score": 1
+          },
+          {
+            "id": "hew-advanced-massage-therapy",
+            "name": "Advanced Massage Therapy Program",
+            "cycleId": "hew-advanced-massage-20260107",
+            "score": 0.8
+          }
+        ]
       }
     ],
     "contacts": {
@@ -77,9 +108,12 @@
   "business": [
     "HEALING EMERALD WELLNESS SPA & TRAINING CENTER LTD."
   ],
-  "matchedOrg": {
-    "id": "healingemeraldwellness",
-    "name": "Healing Emerald Wellness Spa & Training Centre Limited",
-    "address": "4 Springvale Ave, Kingston, JM"
-  }
+  "matchedOrgs": [
+    {
+      "id": "healingemeraldwellness",
+      "name": "Healing Emerald Wellness Spa & Training Centre Limited",
+      "address": "4 Springvale Ave, Kingston, JM",
+      "score": 1
+    }
+  ]
 }

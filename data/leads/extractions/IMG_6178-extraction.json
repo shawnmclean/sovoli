@@ -22,7 +22,8 @@
         ],
         "callsToAction": [
           "Book Now!"
-        ]
+        ],
+        "matchedPrograms": null
       },
       {
         "id": "65a9472c-1584-4073-84b5-037d55f945d9",
@@ -32,7 +33,8 @@
         ],
         "callsToAction": [
           "Book Now!"
-        ]
+        ],
+        "matchedPrograms": null
       },
       {
         "id": "f7924d7e-e148-4862-b63a-3223f0198e42",
@@ -42,7 +44,8 @@
         ],
         "callsToAction": [
           "Book Now!"
-        ]
+        ],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -75,5 +78,5 @@
     "Shans Lume Skin & Body Studio",
     "Shan's Lumé"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

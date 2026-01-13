@@ -85,34 +85,39 @@ export function calculateSimilarity(str1: string, str2: string): number {
 	return Math.max(0, similarity);
 }
 
+export interface ScoredMatch<T> {
+	match: T;
+	score: number;
+}
+
 /**
- * Find the best matching organization for a business name
- * Returns the best match if similarity score >= 0.5, else null
+ * Find all potential organization matches for a business name
+ * Returns all matches with similarity score >= threshold, sorted by score (descending)
  */
-export function findBestMatch(
+export function findAllMatches<T extends { name: string }>(
 	businessName: string,
-	organizations: OrgInfo[],
-): OrgInfo | null {
-	if (organizations.length === 0) {
-		return null;
+	candidates: T[],
+	threshold: number = 0.3,
+): ScoredMatch<T>[] {
+	if (candidates.length === 0) {
+		return [];
 	}
 
-	let bestMatch: OrgInfo | null = null;
-	let bestScore = 0;
+	const matches: ScoredMatch<T>[] = [];
 
-	for (const org of organizations) {
-		const score = calculateSimilarity(businessName, org.name);
+	for (const candidate of candidates) {
+		const score = calculateSimilarity(businessName, candidate.name);
 
-		if (score > bestScore) {
-			bestScore = score;
-			bestMatch = org;
+		if (score >= threshold) {
+			matches.push({
+				match: candidate,
+				score,
+			});
 		}
 	}
 
-	// Return match only if similarity score >= 0.5
-	if (bestScore >= 0.5) {
-		return bestMatch;
-	}
+	// Sort by score descending
+	matches.sort((a, b) => b.score - a.score);
 
-	return null;
+	return matches;
 }

@@ -26,7 +26,8 @@
               "notes": "Saturdays (for 2 weeks)"
             }
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "1efdd70f-782e-4189-bb10-cf0e1106f39f",
@@ -40,7 +41,8 @@
               "notes": "Saturdays (for 8 weeks)"
             }
           ]
-        }
+        },
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -58,5 +60,5 @@
     "Legendary Kids Academy",
     "Legendary Chess Academy"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

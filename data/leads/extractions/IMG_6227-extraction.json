@@ -30,7 +30,8 @@
             "2-5 PM"
           ],
           "duration": "12 Weeks"
-        }
+        },
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -57,5 +58,5 @@
   "business": [
     "The Beauty Institute of Jamaica"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

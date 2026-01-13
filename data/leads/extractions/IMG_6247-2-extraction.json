@@ -48,7 +48,8 @@
           "duration": "2 Day"
         },
         "location": null,
-        "callsToAction": []
+        "callsToAction": [],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -75,5 +76,5 @@
     "NAIL'D BY KAY",
     "Naildby_kay_"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

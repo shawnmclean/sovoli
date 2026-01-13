@@ -60,7 +60,8 @@
           ]
         },
         "location": "Central plaza shop 12",
-        "callsToAction": []
+        "callsToAction": [],
+        "matchedPrograms": null
       },
       {
         "id": "3f57a7f3-60c0-4f97-b84d-148831c5310c",
@@ -106,7 +107,8 @@
           ]
         },
         "location": "Central plaza shop 12",
-        "callsToAction": []
+        "callsToAction": [],
+        "matchedPrograms": null
       },
       {
         "id": "082cf009-f396-47f6-91e2-660bb16c4816",
@@ -151,7 +153,8 @@
           ]
         },
         "location": "Central plaza shop 12",
-        "callsToAction": []
+        "callsToAction": [],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -176,5 +179,5 @@
   "business": [
     "Niques lash"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

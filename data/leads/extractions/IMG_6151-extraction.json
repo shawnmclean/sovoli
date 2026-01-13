@@ -26,7 +26,8 @@
           "dates": [
             "January 2026"
           ]
-        }
+        },
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -50,5 +51,5 @@
   "business": [
     "Edunomics Limited"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

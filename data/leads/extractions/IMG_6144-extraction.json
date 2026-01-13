@@ -24,7 +24,8 @@
         "whatYouWillLearn": [
           "Brief Tinting Knowledge",
           "Mapping"
-        ]
+        ],
+        "matchedPrograms": null
       },
       {
         "id": "9296",
@@ -36,7 +37,8 @@
         "whatYouWillLearn": [
           "Brief Tinting Knowledge",
           "Mapping"
-        ]
+        ],
+        "matchedPrograms": null
       },
       {
         "id": "9297",
@@ -48,7 +50,8 @@
         "whatYouWillLearn": [
           "Brief Tinting Knowledge",
           "Mapping"
-        ]
+        ],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -82,5 +85,5 @@
   "business": [
     "The Lash Academy"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

@@ -32,7 +32,8 @@
           "Acoustic Guitar",
           "Electric Guitar",
           "Bass Guitar"
-        ]
+        ],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -62,5 +63,5 @@
   "business": [
     "Musical Prodigies Educational Services"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

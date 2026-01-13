@@ -21,7 +21,8 @@
           "dates": [
             "January 5th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "991",
@@ -30,7 +31,8 @@
           "dates": [
             "January 5th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "438",
@@ -40,7 +42,8 @@
             "January 5th",
             "February 25th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "622",
@@ -49,7 +52,8 @@
           "dates": [
             "January 5th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "235",
@@ -58,7 +62,8 @@
           "dates": [
             "January 5th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "532",
@@ -67,7 +72,8 @@
           "dates": [
             "January 5th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "963",
@@ -76,7 +82,8 @@
           "dates": [
             "January 10th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "984",
@@ -85,7 +92,8 @@
           "dates": [
             "January 26th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "793",
@@ -94,7 +102,8 @@
           "dates": [
             "January 27th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "672",
@@ -103,7 +112,8 @@
           "dates": [
             "January 27th"
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "123",
@@ -112,7 +122,8 @@
           "dates": [
             "February 24th"
           ]
-        }
+        },
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -138,5 +149,5 @@
   "business": [
     "St. Monica's College"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

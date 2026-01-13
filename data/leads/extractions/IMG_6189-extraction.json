@@ -27,7 +27,8 @@
           "Etiquette",
           "Basic Poise and Posture",
           "Art of Communication"
-        ]
+        ],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -53,5 +54,5 @@
   "business": [
     "La Laing Image Consultancy"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

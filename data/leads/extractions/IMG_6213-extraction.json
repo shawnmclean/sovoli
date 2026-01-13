@@ -26,7 +26,8 @@
           "Post-wax care & aftercare education",
           "Contraindications & safety protocols",
           "Professional setup & workflow"
-        ]
+        ],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -48,5 +49,5 @@
   "business": [
     "Shameka's Artistry"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

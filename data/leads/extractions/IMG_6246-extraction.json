@@ -25,7 +25,8 @@
               "notes": "6 weeks"
             }
           ]
-        }
+        },
+        "matchedPrograms": null
       },
       {
         "id": "002",
@@ -43,7 +44,8 @@
           "dates": [
             "Start feb 2nd 2026"
           ]
-        }
+        },
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -72,5 +74,5 @@
     "Fabulouz Nails By Angel",
     "Fabulouz Beauty Kingdom"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

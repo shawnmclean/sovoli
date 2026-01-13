@@ -28,7 +28,8 @@
         "location": "Kingston",
         "callsToAction": [
           "REGISTER NOW!"
-        ]
+        ],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -60,5 +61,5 @@
   "business": [
     "Skills Academy Jamaica"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

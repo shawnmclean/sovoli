@@ -3,7 +3,16 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import { discoverOrganizations } from "../utils/org-discovery.js";
-import { findBestMatch } from "../utils/org-matcher.js";
+import { findAllMatches, type ScoredMatch } from "../utils/org-matcher.js";
+import {
+	loadOrganizationPrograms,
+	loadOrganizationCycles,
+	findOrganizationDirectory,
+} from "../utils/program-discovery.js";
+import {
+	findAllProgramMatches,
+	findBestCycleMatch,
+} from "../utils/program-matcher.js";
 import type { LeadExtractionDocument } from "../validation/schemas/lead-extraction-schema.js";
 import { leadExtractionDocumentSchema } from "../validation/schemas/lead-extraction-schema.js";
 
@@ -17,12 +26,20 @@ interface MatchedOrg {
 	id: string;
 	name: string;
 	address: string;
+	score: number;
+}
+
+interface MatchedProgram {
+	id: string;
+	name: string;
+	cycleId?: string;
+	score: number;
 }
 
 interface ExtractionResult {
 	filename: string;
 	businessName: string;
-	matchedOrg: MatchedOrg | null;
+	matchedOrgs: MatchedOrg[];
 }
 
 /**
@@ -54,18 +71,40 @@ function loadExtraction(filePath: string): LeadExtractionDocument | null {
 	}
 }
 
+interface MatchedProgram {
+	id: string;
+	name: string;
+	cycleId?: string;
+}
+
 /**
- * Save extraction file with matched org information
+ * Save extraction file with matched org and program information
  */
 function saveExtraction(
 	filePath: string,
 	extraction: LeadExtractionDocument,
-	matchedOrg: MatchedOrg | null,
+	matchedOrgs: MatchedOrg[],
+	matchedPrograms: MatchedProgram[][],
 ): void {
 	try {
+		// Update programs with matchedPrograms field (array of matches)
+		const updatedPrograms = extraction.extraction.programs.map(
+			(program, index) => {
+				const matches = matchedPrograms[index] || [];
+				return {
+					...program,
+					matchedPrograms: matches.length > 0 ? matches : null,
+				};
+			},
+		);
+
 		const updated = {
 			...extraction,
-			matchedOrg: matchedOrg ?? null,
+			matchedOrgs: matchedOrgs.length > 0 ? matchedOrgs : null,
+			extraction: {
+				...extraction.extraction,
+				programs: updatedPrograms,
+			},
 		};
 
 		const content = JSON.stringify(updated, null, 2);
@@ -93,27 +132,20 @@ function displayResults(results: ExtractionResult[]): void {
 	// Calculate column widths
 	let maxFilename = "Filename".length;
 	let maxBusinessName = "Business Name".length;
-	let maxOrgId = "Org ID".length;
-	let maxOrgName = "Org Name".length;
-	let maxAddress = "Address".length;
+	let maxMatches = "Matches".length;
 
 	for (const result of results) {
 		maxFilename = Math.max(maxFilename, result.filename.length);
 		maxBusinessName = Math.max(maxBusinessName, result.businessName.length);
-		if (result.matchedOrg) {
-			maxOrgId = Math.max(maxOrgId, result.matchedOrg.id.length);
-			maxOrgName = Math.max(maxOrgName, result.matchedOrg.name.length);
-			maxAddress = Math.max(maxAddress, result.matchedOrg.address.length);
-		}
+		const matchCount = result.matchedOrgs.length;
+		maxMatches = Math.max(maxMatches, matchCount.toString().length);
 	}
 
 	// Header
 	const header = [
 		"Filename".padEnd(maxFilename),
 		"Business Name".padEnd(maxBusinessName),
-		"Org ID".padEnd(maxOrgId),
-		"Org Name".padEnd(maxOrgName),
-		"Address".padEnd(maxAddress),
+		"Matches".padEnd(maxMatches),
 	].join(" | ");
 
 	console.log(header);
@@ -121,32 +153,35 @@ function displayResults(results: ExtractionResult[]): void {
 
 	// Rows
 	for (const result of results) {
-		const orgId = result.matchedOrg ? result.matchedOrg.id : "NEW";
-		const orgName = result.matchedOrg
-			? result.matchedOrg.name
-			: "-";
-		const address = result.matchedOrg
-			? formatDisplayAddress(result.matchedOrg.address)
-			: "-";
+		const matchCount = result.matchedOrgs.length;
+		const matchDisplay = matchCount > 0 ? matchCount.toString() : "NEW";
 
 		const row = [
 			path.basename(result.filename).padEnd(maxFilename),
 			result.businessName.padEnd(maxBusinessName),
-			orgId.padEnd(maxOrgId),
-			orgName.padEnd(maxOrgName),
-			address.padEnd(maxAddress),
+			matchDisplay.padEnd(maxMatches),
 		].join(" | ");
 
 		console.log(row);
+
+		// Show matches if any
+		if (result.matchedOrgs.length > 0) {
+			for (const match of result.matchedOrgs) {
+				console.log(
+					`  → ${match.name} (${match.id}) - Score: ${match.score.toFixed(2)}`,
+				);
+			}
+		}
 	}
 
 	// Summary
-	const matchedCount = results.filter((r) => r.matchedOrg !== null).length;
-	const newCount = results.length - matchedCount;
+	const withMatchesCount = results.filter((r) => r.matchedOrgs.length > 0)
+		.length;
+	const newCount = results.length - withMatchesCount;
 
 	console.log("\n=== Summary ===");
 	console.log(`Total extractions: ${results.length}`);
-	console.log(`Matched: ${matchedCount}`);
+	console.log(`With matches: ${withMatchesCount}`);
 	console.log(`New: ${newCount}`);
 }
 
@@ -192,16 +227,71 @@ export const matchLeadsCommand = new Command()
 				continue;
 			}
 
-			// Find best match
-			const matchedOrg = findBestMatch(businessName, organizations);
+			// Find all potential organization matches (threshold: 0.5)
+			const orgMatches = findAllMatches(businessName, organizations, 0.5);
+			const matchedOrgs: MatchedOrg[] = orgMatches.map((m) => ({
+				id: m.match.id,
+				name: m.match.name,
+				address: m.match.address,
+				score: m.score,
+			}));
+
+			// Match programs for each potential organization match
+			const matchedPrograms: MatchedProgram[][] = [];
+			for (const _program of extraction.extraction.programs) {
+				matchedPrograms.push([]);
+			}
+
+			// For now, match programs against the top organization match
+			// (could be enhanced to match against all org matches)
+			if (orgMatches.length > 0) {
+				const topOrgMatch = orgMatches[0]!.match;
+				const orgDir = findOrganizationDirectory(topOrgMatch.id);
+				if (orgDir) {
+					const orgPrograms = loadOrganizationPrograms(orgDir);
+					const orgCycles = loadOrganizationCycles(orgDir);
+
+					for (
+						let i = 0;
+						i < extraction.extraction.programs.length;
+						i++
+					) {
+						const program = extraction.extraction.programs[i];
+						if (!program) continue;
+
+						const programMatches = findAllProgramMatches(
+							program.name,
+							orgPrograms,
+							0.5,
+						);
+
+						const programMatchesWithCycles: MatchedProgram[] =
+							programMatches.map((pm) => {
+								const matchedCycle = findBestCycleMatch(
+									pm.match.cycleIds,
+									orgCycles,
+								);
+
+								return {
+									id: pm.match.id,
+									name: pm.match.name,
+									cycleId: matchedCycle?.id,
+									score: pm.score,
+								};
+							});
+
+						matchedPrograms[i] = programMatchesWithCycles;
+					}
+				}
+			}
 
 			// Save updated extraction file
-			saveExtraction(filePath, extraction, matchedOrg);
+			saveExtraction(filePath, extraction, matchedOrgs, matchedPrograms);
 
 			results.push({
 				filename: filePath,
 				businessName,
-				matchedOrg,
+				matchedOrgs,
 			});
 		}
 

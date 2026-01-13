@@ -37,7 +37,8 @@
         },
         "callsToAction": [
           "REGISTER NOW"
-        ]
+        ],
+        "matchedPrograms": null
       },
       {
         "id": "839",
@@ -62,7 +63,8 @@
         },
         "callsToAction": [
           "REGISTER NOW"
-        ]
+        ],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -91,5 +93,5 @@
     "Fabulouz Nails By Angel",
     "Fabulouz Beauty Kingdom"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

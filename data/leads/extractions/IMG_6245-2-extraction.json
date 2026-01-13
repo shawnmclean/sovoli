@@ -51,7 +51,8 @@
           ]
         },
         "location": "BRUNSWICK AVE SPANISH TOWN",
-        "callsToAction": []
+        "callsToAction": [],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -80,5 +81,5 @@
   "business": [
     "Belmo'S Learning Hub"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

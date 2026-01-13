@@ -40,7 +40,8 @@
           "times": [
             "9:00AM - 1:00PM"
           ]
-        }
+        },
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -69,5 +70,5 @@
   "business": [
     "Belmo'S Learning Hub"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }

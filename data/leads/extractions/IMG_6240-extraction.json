@@ -18,31 +18,36 @@
         "id": "24167",
         "name": "Holistic Massage",
         "quickFacts": [],
-        "whatYouWillLearn": []
+        "whatYouWillLearn": [],
+        "matchedPrograms": null
       },
       {
         "id": "59203",
         "name": "Sports Massage",
         "quickFacts": [],
-        "whatYouWillLearn": []
+        "whatYouWillLearn": [],
+        "matchedPrograms": null
       },
       {
         "id": "42786",
         "name": "Esthetician Course (Skincare)",
         "quickFacts": [],
-        "whatYouWillLearn": []
+        "whatYouWillLearn": [],
+        "matchedPrograms": null
       },
       {
         "id": "78594",
         "name": "Nail Technician",
         "quickFacts": [],
-        "whatYouWillLearn": []
+        "whatYouWillLearn": [],
+        "matchedPrograms": null
       },
       {
         "id": "83952",
         "name": "Makeup Artistry",
         "quickFacts": [],
-        "whatYouWillLearn": []
+        "whatYouWillLearn": [],
+        "matchedPrograms": null
       }
     ],
     "contacts": {
@@ -71,5 +76,5 @@
     "The Beauty Institute of Ja",
     "The Beauty Institute"
   ],
-  "matchedOrg": null
+  "matchedOrgs": null
 }
