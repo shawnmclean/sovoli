@@ -74,6 +74,7 @@ export function useProgramDiff({
 	const onChangeRef = useRef(onChange);
 	const isInitialMountRef = useRef(true);
 	const editedProgramRef = useRef<Record<string, unknown>>(newProgram);
+	const hasInitializedFieldsRef = useRef(false);
 
 	// Keep onChange ref up to date
 	useEffect(() => {
@@ -139,13 +140,14 @@ export function useProgramDiff({
 		return diffs.filter((diff) => diff.type !== "remove");
 	}, [editedProgram, oldProgram, isNew]);
 
-	// Initialize selected fields
+	// Initialize selected fields - all selected by default (only once)
 	useEffect(() => {
-		if (selectedFields.size === 0 && allDiffs.length > 0) {
+		if (!hasInitializedFieldsRef.current && allDiffs.length > 0) {
 			const initialSelected = new Set(allDiffs.map((diff) => diff.field));
 			setSelectedFields(initialSelected);
+			hasInitializedFieldsRef.current = true;
 		}
-	}, [allDiffs.length, selectedFields.size]);
+	}, [allDiffs.length]);
 
 	// Compute final program data based on selections - memoized
 	const finalProgram = useMemo(() => {

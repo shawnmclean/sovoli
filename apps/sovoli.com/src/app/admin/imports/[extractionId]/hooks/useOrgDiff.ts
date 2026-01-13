@@ -17,6 +17,7 @@ export function useOrgDiff({ oldOrg, newOrg, onChange }: UseOrgDiffProps) {
 	const onChangeRef = useRef(onChange);
 	const isInitialMountRef = useRef(true);
 	const editedOrgRef = useRef<Record<string, unknown>>(newOrg);
+	const hasInitializedFieldsRef = useRef(false);
 
 	// Keep onChange ref up to date
 	useEffect(() => {
@@ -62,13 +63,14 @@ export function useOrgDiff({ oldOrg, newOrg, onChange }: UseOrgDiffProps) {
 		return diffs.filter((diff) => diff.type !== "remove");
 	}, [editedOrg, oldOrg, isNew]);
 
-	// Initialize selected fields - all selected by default
+	// Initialize selected fields - all selected by default (only once)
 	useEffect(() => {
-		if (selectedFields.size === 0 && allDiffs.length > 0) {
+		if (!hasInitializedFieldsRef.current && allDiffs.length > 0) {
 			const initialSelected = new Set(allDiffs.map((diff) => diff.field));
 			setSelectedFields(initialSelected);
+			hasInitializedFieldsRef.current = true;
 		}
-	}, [allDiffs.length, selectedFields.size]);
+	}, [allDiffs.length]);
 
 	// Compute final org data based on selected fields - memoized
 	const finalOrg = useMemo(() => {
