@@ -72,7 +72,10 @@ export function ProgramDiffView({
   const [editedSchedule, setEditedSchedule] = useState<{
     dates?: string[];
   } | null>(schedule ?? null);
-  const [editedPricing, setEditedPricing] = useState<Record<string, unknown> | null>(pricing ?? null);
+  const [editedPricing, setEditedPricing] = useState<Record<
+    string,
+    unknown
+  > | null>(pricing ?? null);
   const [scheduleSelected, setScheduleSelected] = useState(!!schedule);
   const [pricingSelected, setPricingSelected] = useState(!!pricing);
 
