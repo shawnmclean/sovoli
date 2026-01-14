@@ -109,5 +109,8 @@
       }
     ],
     "claimStatus": "unclaimed"
-  }
+  },
+  "_updatedAt": "2026-01-14T15:08:54.921Z",
+  "_updatedFields": [],
+  "_source": "HEW-Programs-extraction.json"
 }

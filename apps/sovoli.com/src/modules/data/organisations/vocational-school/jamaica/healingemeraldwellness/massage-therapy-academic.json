@@ -5,7 +5,10 @@
       "slug": "massage-therapy",
       "name": "Massage Therapy Training",
       "audience": "student",
-      "quickFacts": ["Expert Instructor", "Hands-On"],
+      "quickFacts": [
+        "Expert Instructor",
+        "Hands-On"
+      ],
       "highlights": [
         {
           "icon": "hammer",
@@ -158,7 +161,10 @@
         "hew-massage-20260603"
       ],
       "media": {
-        "galleryIds": ["hew-massage-model", "hew-reception-area"]
+        "galleryIds": [
+          "hew-massage-model",
+          "hew-reception-area"
+        ]
       },
       "requirements": [
         {
@@ -332,8 +338,51 @@
         "hew-advanced-massage-20260603"
       ],
       "media": {
-        "galleryIds": ["hew-massage-model", "hew-reception-area"]
+        "galleryIds": [
+          "hew-massage-model",
+          "hew-reception-area"
+        ]
       }
+    },
+    {
+      "name": "Waxing Program",
+      "id": "program-1",
+      "slug": "waxing",
+      "_addedAt": "2026-01-14T15:08:55.619Z",
+      "_source": "HEW-Programs-extraction.json",
+      "cycleIds": [
+        "waxing-20260119"
+      ]
+    },
+    {
+      "name": "Threading Program",
+      "id": "program-2",
+      "slug": "threading",
+      "_addedAt": "2026-01-14T15:08:56.409Z",
+      "_source": "HEW-Programs-extraction.json",
+      "cycleIds": [
+        "threading-20260120"
+      ]
+    },
+    {
+      "name": "Spa Therapy Program",
+      "id": "program-3",
+      "slug": "spa-therapy",
+      "_addedAt": "2026-01-14T15:08:58.920Z",
+      "_source": "HEW-Programs-extraction.json",
+      "cycleIds": [
+        "spa-therapy-20260121"
+      ]
+    },
+    {
+      "name": "Skincare Program",
+      "id": "program-4",
+      "slug": "skincare",
+      "_addedAt": "2026-01-14T15:08:59.803Z",
+      "_source": "HEW-Programs-extraction.json",
+      "cycleIds": [
+        "skincare-20260125"
+      ]
     }
   ]
 }

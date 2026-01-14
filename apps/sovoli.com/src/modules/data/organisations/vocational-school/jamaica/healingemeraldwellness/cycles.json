@@ -48,13 +48,39 @@
       "customLabel": "Advanced Massage Therapy - June 2026",
       "startDate": "2026-06-03",
       "endDate": "2026-07-22"
+    },
+    {
+      "id": "waxing-20260119",
+      "customLabel": "Waxing Program - January 2026",
+      "startDate": "2026-01-19",
+      "endDate": "2026-04-19"
+    },
+    {
+      "id": "threading-20260120",
+      "customLabel": "Threading Program - January 2026",
+      "startDate": "2026-01-20",
+      "endDate": "2026-04-20"
+    },
+    {
+      "id": "spa-therapy-20260121",
+      "customLabel": "Spa Therapy Program - January 2026",
+      "startDate": "2026-01-21",
+      "endDate": "2026-04-21"
+    },
+    {
+      "id": "skincare-20260125",
+      "customLabel": "Skincare Program - January 2026",
+      "startDate": "2026-01-25",
+      "endDate": "2026-04-25"
     }
   ],
   "programCycles": [
     {
       "id": "hew-massage-20260107",
       "academicCycleId": "hew-massage-20260107",
-      "teacherSlugs": ["alicia-davis"],
+      "teacherSlugs": [
+        "alicia-davis"
+      ],
       "capacity": 2,
       "enrolled": 0,
       "pricingPackage": {
@@ -85,14 +111,20 @@
             "id": "tuition-upfront",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "now" },
+            "dueAt": {
+              "type": "now"
+            },
             "note": "Upon registration"
           },
           {
             "id": "tuition-week4",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "after_start", "count": 3, "unit": "week" },
+            "dueAt": {
+              "type": "after_start",
+              "count": 3,
+              "unit": "week"
+            },
             "note": "Before week 4"
           }
         ]
@@ -101,7 +133,9 @@
     {
       "id": "hew-massage-20260225",
       "academicCycleId": "hew-massage-20260225",
-      "teacherSlugs": ["alicia-davis"],
+      "teacherSlugs": [
+        "alicia-davis"
+      ],
       "capacity": 2,
       "enrolled": 0,
       "pricingPackage": {
@@ -132,14 +166,20 @@
             "id": "tuition-upfront",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "now" },
+            "dueAt": {
+              "type": "now"
+            },
             "note": "Upon registration"
           },
           {
             "id": "tuition-week4",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "after_start", "count": 3, "unit": "week" },
+            "dueAt": {
+              "type": "after_start",
+              "count": 3,
+              "unit": "week"
+            },
             "note": "Before week 4"
           }
         ]
@@ -148,7 +188,9 @@
     {
       "id": "hew-massage-20260415",
       "academicCycleId": "hew-massage-20260415",
-      "teacherSlugs": ["alicia-davis"],
+      "teacherSlugs": [
+        "alicia-davis"
+      ],
       "capacity": 2,
       "enrolled": 0,
       "pricingPackage": {
@@ -179,14 +221,20 @@
             "id": "tuition-upfront",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "now" },
+            "dueAt": {
+              "type": "now"
+            },
             "note": "Upon registration"
           },
           {
             "id": "tuition-week4",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "after_start", "count": 3, "unit": "week" },
+            "dueAt": {
+              "type": "after_start",
+              "count": 3,
+              "unit": "week"
+            },
             "note": "Before week 4"
           }
         ]
@@ -195,7 +243,9 @@
     {
       "id": "hew-massage-20260603",
       "academicCycleId": "hew-massage-20260603",
-      "teacherSlugs": ["alicia-davis"],
+      "teacherSlugs": [
+        "alicia-davis"
+      ],
       "capacity": 2,
       "enrolled": 0,
       "pricingPackage": {
@@ -226,14 +276,20 @@
             "id": "tuition-upfront",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "now" },
+            "dueAt": {
+              "type": "now"
+            },
             "note": "Upon registration"
           },
           {
             "id": "tuition-week4",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "after_start", "count": 3, "unit": "week" },
+            "dueAt": {
+              "type": "after_start",
+              "count": 3,
+              "unit": "week"
+            },
             "note": "Before week 4"
           }
         ]
@@ -242,7 +298,9 @@
     {
       "id": "hew-advanced-massage-20260107",
       "academicCycleId": "hew-advanced-massage-20260107",
-      "teacherSlugs": ["alicia-davis"],
+      "teacherSlugs": [
+        "alicia-davis"
+      ],
       "capacity": 2,
       "enrolled": 0,
       "pricingPackage": {
@@ -273,14 +331,20 @@
             "id": "tuition-upfront",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "now" },
+            "dueAt": {
+              "type": "now"
+            },
             "note": "Upon registration"
           },
           {
             "id": "tuition-week4",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "after_start", "count": 3, "unit": "week" },
+            "dueAt": {
+              "type": "after_start",
+              "count": 3,
+              "unit": "week"
+            },
             "note": "Before week 4"
           }
         ]
@@ -289,7 +353,9 @@
     {
       "id": "hew-advanced-massage-20260225",
       "academicCycleId": "hew-advanced-massage-20260225",
-      "teacherSlugs": ["alicia-davis"],
+      "teacherSlugs": [
+        "alicia-davis"
+      ],
       "capacity": 2,
       "enrolled": 0,
       "pricingPackage": {
@@ -320,14 +386,20 @@
             "id": "tuition-upfront",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "now" },
+            "dueAt": {
+              "type": "now"
+            },
             "note": "Upon registration"
           },
           {
             "id": "tuition-week4",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "after_start", "count": 3, "unit": "week" },
+            "dueAt": {
+              "type": "after_start",
+              "count": 3,
+              "unit": "week"
+            },
             "note": "Before week 4"
           }
         ]
@@ -336,7 +408,9 @@
     {
       "id": "hew-advanced-massage-20260415",
       "academicCycleId": "hew-advanced-massage-20260415",
-      "teacherSlugs": ["alicia-davis"],
+      "teacherSlugs": [
+        "alicia-davis"
+      ],
       "capacity": 2,
       "enrolled": 0,
       "pricingPackage": {
@@ -367,14 +441,20 @@
             "id": "tuition-upfront",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "now" },
+            "dueAt": {
+              "type": "now"
+            },
             "note": "Upon registration"
           },
           {
             "id": "tuition-week4",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "after_start", "count": 3, "unit": "week" },
+            "dueAt": {
+              "type": "after_start",
+              "count": 3,
+              "unit": "week"
+            },
             "note": "Before week 4"
           }
         ]
@@ -383,7 +463,9 @@
     {
       "id": "hew-advanced-massage-20260603",
       "academicCycleId": "hew-advanced-massage-20260603",
-      "teacherSlugs": ["alicia-davis"],
+      "teacherSlugs": [
+        "alicia-davis"
+      ],
       "capacity": 2,
       "enrolled": 0,
       "pricingPackage": {
@@ -414,18 +496,76 @@
             "id": "tuition-upfront",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "now" },
+            "dueAt": {
+              "type": "now"
+            },
             "note": "Upon registration"
           },
           {
             "id": "tuition-week4",
             "pricingItemId": "tuition",
             "percentage": 50,
-            "dueAt": { "type": "after_start", "count": 3, "unit": "week" },
+            "dueAt": {
+              "type": "after_start",
+              "count": 3,
+              "unit": "week"
+            },
             "note": "Before week 4"
           }
         ]
       }
+    },
+    {
+      "id": "waxing-20260119",
+      "academicCycleId": "waxing-20260119",
+      "pricingPackage": {
+        "pricingItems": [],
+        "discounts": [],
+        "paymentSplits": []
+      },
+      "status": "open",
+      "enrolled": 0,
+      "_source": "HEW-Programs-extraction.json",
+      "_addedAt": "2026-01-14T15:08:55.637Z"
+    },
+    {
+      "id": "threading-20260120",
+      "academicCycleId": "threading-20260120",
+      "pricingPackage": {
+        "pricingItems": [],
+        "discounts": [],
+        "paymentSplits": []
+      },
+      "status": "open",
+      "enrolled": 0,
+      "_source": "HEW-Programs-extraction.json",
+      "_addedAt": "2026-01-14T15:08:56.422Z"
+    },
+    {
+      "id": "spa-therapy-20260121",
+      "academicCycleId": "spa-therapy-20260121",
+      "pricingPackage": {
+        "pricingItems": [],
+        "discounts": [],
+        "paymentSplits": []
+      },
+      "status": "open",
+      "enrolled": 0,
+      "_source": "HEW-Programs-extraction.json",
+      "_addedAt": "2026-01-14T15:08:58.934Z"
+    },
+    {
+      "id": "skincare-20260125",
+      "academicCycleId": "skincare-20260125",
+      "pricingPackage": {
+        "pricingItems": [],
+        "discounts": [],
+        "paymentSplits": []
+      },
+      "status": "open",
+      "enrolled": 0,
+      "_source": "HEW-Programs-extraction.json",
+      "_addedAt": "2026-01-14T15:08:59.817Z"
     }
   ]
 }
