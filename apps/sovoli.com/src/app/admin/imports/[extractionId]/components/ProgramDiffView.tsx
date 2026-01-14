@@ -68,8 +68,8 @@ export function ProgramDiffView({
   const displayName = (editedProgram.name as string) || programName;
 
   // Manage schedule and pricing state separately
-  const [editedSchedule, setEditedSchedule] = useState<{ dates?: string[] } | null>(schedule);
-  const [editedPricing, setEditedPricing] = useState(pricing);
+  const [editedSchedule, setEditedSchedule] = useState<{ dates?: string[] } | null>(schedule ?? null);
+  const [editedPricing, setEditedPricing] = useState(pricing ?? null);
   const [scheduleSelected, setScheduleSelected] = useState(!!schedule);
   const [pricingSelected, setPricingSelected] = useState(!!pricing);
 
