@@ -68,7 +68,9 @@ export function ProgramDiffView({
   const displayName = (editedProgram.name as string) || programName;
 
   // Manage schedule and pricing state separately
-  const [editedSchedule, setEditedSchedule] = useState<{ dates?: string[] } | null>(schedule ?? null);
+  const [editedSchedule, setEditedSchedule] = useState<{
+    dates?: string[];
+  } | null>(schedule ?? null);
   const [editedPricing, setEditedPricing] = useState(pricing ?? null);
   const [scheduleSelected, setScheduleSelected] = useState(!!schedule);
   const [pricingSelected, setPricingSelected] = useState(!!pricing);
@@ -100,11 +102,25 @@ export function ProgramDiffView({
     } else {
       delete updated._extractedPricing;
     }
-    
+
     // Use handleFieldChange to update the program data properly
-    handleFieldChange("_extractedSchedule", scheduleSelected && editedSchedule ? editedSchedule : undefined);
-    handleFieldChange("_extractedPricing", pricingSelected && editedPricing ? editedPricing : undefined);
-  }, [editedSchedule, editedPricing, scheduleSelected, pricingSelected, isSelected, action, handleFieldChange]);
+    handleFieldChange(
+      "_extractedSchedule",
+      scheduleSelected && editedSchedule ? editedSchedule : undefined,
+    );
+    handleFieldChange(
+      "_extractedPricing",
+      pricingSelected && editedPricing ? editedPricing : undefined,
+    );
+  }, [
+    editedSchedule,
+    editedPricing,
+    scheduleSelected,
+    pricingSelected,
+    isSelected,
+    action,
+    handleFieldChange,
+  ]);
 
   return (
     <Card className="p-6">
@@ -217,7 +233,6 @@ export function ProgramDiffView({
                 Creating new program. Select which fields to include below.
               </p>
             )}
-
           </div>
         )}
       </div>
