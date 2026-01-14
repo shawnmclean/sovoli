@@ -54,11 +54,7 @@ When presented with a task, you MUST pause and ask:
 ### II. Scrappy Analysis (Alternatives)
 *   **Manual Alternative**: Can we do this manually? Why not?
 *   **Simpler Alternative**: Is there a "dumb" way to do this with less code?
-*   **Make vs Buy**: Should we just use an existing tool?
 
-### III. Risk
-*   **Do Risk**: What if we *do* do this?
-*   **Don't Risk**: What if we *don't* do this?
 
 ---
 
