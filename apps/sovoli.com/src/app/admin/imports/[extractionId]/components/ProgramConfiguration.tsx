@@ -34,13 +34,15 @@ export function ProgramConfiguration({
               selectedSuffix ? new Set([selectedSuffix]) : new Set()
             }
             onSelectionChange={(keys) => {
-              const selectedKey = Array.from(keys)[0];
-              if (selectedKey) {
+              const selectedKey = Array.from(keys)[0] as string | undefined;
+              if (selectedKey && PROGRAM_SUFFIXES.includes(selectedKey as ProgramSuffix)) {
                 const suffix = selectedKey as ProgramSuffix;
                 onSuffixChange(suffix);
+                // Apply suffix to all programs
                 onApplyToAllPrograms(suffix);
               } else {
                 onSuffixChange(null);
+                // Remove suffix from all programs
                 onApplyToAllPrograms(null);
               }
             }}

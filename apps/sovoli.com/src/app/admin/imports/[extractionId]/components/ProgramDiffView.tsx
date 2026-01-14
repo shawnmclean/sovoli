@@ -64,6 +64,9 @@ export function ProgramDiffView({
     onChange,
   });
 
+  // Use edited name if available, otherwise fall back to original program name
+  const displayName = (editedProgram.name as string) || programName;
+
   // Manage schedule and pricing state separately
   const [editedSchedule, setEditedSchedule] = useState<{ dates?: string[] } | null>(schedule);
   const [editedPricing, setEditedPricing] = useState(pricing);
@@ -112,7 +115,7 @@ export function ProgramDiffView({
               isSelected={isSelected}
               onValueChange={handleProgramSelection}
             />
-            <h2 className="text-xl font-semibold">{programName}</h2>
+            <h2 className="text-xl font-semibold">{displayName}</h2>
           </div>
           {isMatched && matchedPrograms && matchedPrograms.length > 0 && (
             <span className="text-xs px-2 py-1 rounded bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">

@@ -346,20 +346,24 @@ export function ReviewPageClient({
 							// Apply suffix to all programs
 							for (const program of programsData) {
 								const currentData = editedPrograms[program.programId]?.data ?? program.transformedData;
-								const currentName = currentData.name as string | undefined;
+								const currentName = (currentData.name as string) || program.programName;
 
-								if (currentName && typeof currentName === "string") {
+								if (typeof currentName === "string" && currentName.trim()) {
 									const newName = replaceSuffix(currentName, suffix);
 									const existingState = editedPrograms[program.programId];
-									setProgramData(
-										program.programId,
-										{
-											...currentData,
-											name: newName,
-										},
-										existingState?.action ?? (program.oldProgram ? "update" : "add"),
-										existingState?.targetProgramId,
-									);
+									
+									// Only update if the name actually changed
+									if (newName !== currentName) {
+										setProgramData(
+											program.programId,
+											{
+												...currentData,
+												name: newName,
+											},
+											existingState?.action ?? (program.oldProgram ? "update" : "add"),
+											existingState?.targetProgramId,
+										);
+									}
 								}
 							}
 						}}
