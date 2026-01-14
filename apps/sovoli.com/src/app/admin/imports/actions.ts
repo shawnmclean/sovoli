@@ -6,10 +6,10 @@ import { revalidatePath } from "next/cache";
 import { getChangedFields } from "./utils/change-tracking";
 import type { ChangeMetadata } from "./utils/change-tracking";
 import {
-	extractStartDate,
-	calculateEndDate,
-	generateCycleId,
-	transformPricingToPackage,
+  extractStartDate,
+  calculateEndDate,
+  generateCycleId,
+  transformPricingToPackage,
 } from "./utils/cycle-utils";
 import type { ProgramEvidence } from "./types/lead-extraction-schema";
 
@@ -197,7 +197,8 @@ function findOrCreateAcademicCycle(
 
 /**
  * Find or create program cycle
- * Creates academic cycle even without pricing, but only creates program cycle if pricing is available
+ * Always creates both academic cycle and program cycle when schedule is available
+ * Program cycle will have empty pricing if none is provided
  */
 function findOrCreateProgramCycle(
   orgDir: string,
@@ -215,11 +216,8 @@ function findOrCreateProgramCycle(
     programName,
   );
 
-  // Only create program cycle if pricing is available
-  if (!pricing) {
-    return academicCycleId; // Return academic cycle ID even without program cycle
-  }
-
+  // Always create program cycle when academic cycle is created
+  // Use empty pricing if none is provided
   const cycles = loadCyclesFile(orgDir);
   const cycleId = generateCycleId(programSlug, startDate);
 
@@ -231,7 +229,7 @@ function findOrCreateProgramCycle(
     return cycleId;
   }
 
-  // Transform pricing to package
+  // Transform pricing to package (handles null/undefined by returning empty pricing)
   const pricingPackage = transformPricingToPackage(pricing);
 
   // Create new program cycle
@@ -407,15 +405,8 @@ export async function saveProgramChanges(
       return p;
     });
 
-    // Write back to file
-    const updatedData = {
-      programs: updatedPrograms,
-    };
-
-    const content = JSON.stringify(updatedData, null, 2) + "\n";
-    fs.writeFileSync(result.filePath, content, "utf-8");
-
     // Create cycle if schedule is available (pricing is optional)
+    let cycleId: string | null = null;
     if (schedule) {
       const startDate = extractStartDate(schedule);
       if (startDate) {
@@ -426,7 +417,7 @@ export async function saveProgramChanges(
             .replace(/[^a-z0-9]+/g, "-") ||
           programId;
         const programName = (programWithMetadata.name as string) || programId;
-        findOrCreateProgramCycle(
+        cycleId = findOrCreateProgramCycle(
           orgDir,
           programSlug,
           programName,
@@ -436,6 +427,27 @@ export async function saveProgramChanges(
         );
       }
     }
+
+    // Add cycle ID to program's cycleIds array if cycle was created
+    if (cycleId) {
+      const programToUpdate = updatedPrograms.find(
+        (p) => (p.id as string) === programId,
+      );
+      if (programToUpdate) {
+        const existingCycleIds = (programToUpdate.cycleIds as string[]) || [];
+        if (!existingCycleIds.includes(cycleId)) {
+          programToUpdate.cycleIds = [...existingCycleIds, cycleId];
+        }
+      }
+    }
+
+    // Write back to file
+    const updatedData = {
+      programs: updatedPrograms,
+    };
+
+    const content = JSON.stringify(updatedData, null, 2) + "\n";
+    fs.writeFileSync(result.filePath, content, "utf-8");
 
     revalidatePath("/admin/imports");
     return { success: true };
@@ -536,10 +548,7 @@ export async function markExtractionApplied(
   extractionId: string,
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const EXTRACTIONS_DIR = path.join(
-      ROOT_DIR,
-      "data/leads/extractions",
-    );
+    const EXTRACTIONS_DIR = path.join(ROOT_DIR, "data/leads/extractions");
     const filePath = path.join(
       EXTRACTIONS_DIR,
       `${extractionId}-extraction.json`,
@@ -670,24 +679,19 @@ export async function createNewProgram(
       programs[existingProgramIndex] = programWithMetadata;
     }
 
-    // Write back to file
-    const updatedData = {
-      programs,
-    };
-
-    const content = JSON.stringify(updatedData, null, 2) + "\n";
-    fs.writeFileSync(academicPath, content, "utf-8");
-
     // Create cycle if schedule is available (pricing is optional)
+    let cycleId: string | null = null;
     if (schedule) {
       const startDate = extractStartDate(schedule);
       if (startDate) {
         const programSlug =
           (programData.slug as string) ||
-          (programData.name as string)?.toLowerCase().replace(/[^a-z0-9]+/g, "-") ||
+          (programData.name as string)
+            ?.toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-") ||
           programId;
         const programName = (programData.name as string) || programId;
-        findOrCreateProgramCycle(
+        cycleId = findOrCreateProgramCycle(
           orgDir,
           programSlug,
           programName,
@@ -697,6 +701,29 @@ export async function createNewProgram(
         );
       }
     }
+
+    // Add cycle ID to program's cycleIds array if cycle was created
+    if (cycleId) {
+      // For new programs, programWithMetadata is already in the array
+      // For existing programs, programs[existingProgramIndex] points to programWithMetadata
+      const programToUpdate = isNew
+        ? programWithMetadata
+        : programs[existingProgramIndex];
+      if (programToUpdate) {
+        const existingCycleIds = (programToUpdate.cycleIds as string[]) || [];
+        if (!existingCycleIds.includes(cycleId)) {
+          programToUpdate.cycleIds = [...existingCycleIds, cycleId];
+        }
+      }
+    }
+
+    // Write back to file
+    const updatedData = {
+      programs,
+    };
+
+    const content = JSON.stringify(updatedData, null, 2) + "\n";
+    fs.writeFileSync(academicPath, content, "utf-8");
 
     revalidatePath("/admin/imports");
     return { success: true };
