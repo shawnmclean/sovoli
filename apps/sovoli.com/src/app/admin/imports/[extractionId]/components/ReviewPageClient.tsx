@@ -79,7 +79,7 @@ export function ReviewPageClient({
 	});
 
 	// Modal state
-	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
 	// Loading and error states
 	const [isCommitting, setIsCommitting] = useState(false);
@@ -115,7 +115,7 @@ export function ReviewPageClient({
 		}
 
 		return {
-			orgAction: isNewOrg ? "create" : (matchedOrg ? "update" : null),
+			orgAction: (isNewOrg ? "create" : (matchedOrg ? "update" : null)) as "create" | "update" | null,
 			orgName: businessName,
 			programsToCreate,
 			programsToUpdate,
@@ -130,7 +130,7 @@ export function ReviewPageClient({
 		setIsCommitting(true);
 		setError(null);
 		setSuccess(false);
-		onOpenChange(false); // Close modal
+		onClose(); // Close modal
 
 		try {
 			const extractionFilename = `${extractionId}-extraction.json`;
@@ -409,13 +409,19 @@ export function ReviewPageClient({
 			</div>
 			</div>
 
-			<CommitConfirmationModal
-				isOpen={isOpen}
-				onOpenChange={onOpenChange}
-				summary={commitSummary}
-				onConfirm={handleConfirmCommit}
-				isCommitting={isCommitting}
-			/>
+		<CommitConfirmationModal
+			isOpen={isOpen}
+			onOpenChange={(open) => {
+				if (open) {
+					onOpen();
+				} else {
+					onClose();
+				}
+			}}
+			summary={commitSummary}
+			onConfirm={handleConfirmCommit}
+			isCommitting={isCommitting}
+		/>
 		</div>
 	);
 }

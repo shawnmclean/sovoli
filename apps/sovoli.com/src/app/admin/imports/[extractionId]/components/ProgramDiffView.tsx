@@ -10,6 +10,7 @@ import { useProgramDiff } from "../hooks/useProgramDiff";
 import { getNestedValue } from "../utils/object-utils";
 import { extractStartDate } from "../../utils/cycle-utils";
 import { useState, useEffect } from "react";
+import type { ProgramEvidence } from "../../../types/lead-extraction-schema";
 
 interface ProgramDiffViewProps {
   programId: string;
@@ -71,9 +72,14 @@ export function ProgramDiffView({
   const [editedSchedule, setEditedSchedule] = useState<{
     dates?: string[];
   } | null>(schedule ?? null);
-  const [editedPricing, setEditedPricing] = useState(pricing ?? null);
+  const [editedPricing, setEditedPricing] = useState<Record<string, unknown> | null>(pricing ?? null);
   const [scheduleSelected, setScheduleSelected] = useState(!!schedule);
   const [pricingSelected, setPricingSelected] = useState(!!pricing);
+
+  // Wrapper function to ensure pricing onChange matches expected type
+  const handlePricingChange = (value: ProgramEvidence["pricing"] | null) => {
+    setEditedPricing(value ?? null);
+  };
 
   // Update edited schedule/pricing when props change
   useEffect(() => {
@@ -255,8 +261,8 @@ export function ProgramDiffView({
           {pricing && (
             <CyclePricingField
               pricing={pricing}
-              value={editedPricing}
-              onChange={setEditedPricing}
+              value={editedPricing as ProgramEvidence["pricing"] | null}
+              onChange={handlePricingChange}
               onSelectedChange={setPricingSelected}
               selected={pricingSelected}
               action={action}
