@@ -3,12 +3,9 @@
     {
       "id": "hew-massage-therapy",
       "slug": "massage-therapy",
-      "name": "Massage Therapy Training",
+      "name": "Massage Therapy Program",
       "audience": "student",
-      "quickFacts": [
-        "Expert Instructor",
-        "Hands-On"
-      ],
+      "quickFacts": ["Expert Instructor", "Hands-On"],
       "highlights": [
         {
           "icon": "hammer",
@@ -161,10 +158,7 @@
         "hew-massage-20260603"
       ],
       "media": {
-        "galleryIds": [
-          "hew-massage-model",
-          "hew-reception-area"
-        ]
+        "galleryIds": ["hew-massage-model", "hew-reception-area"]
       },
       "requirements": [
         {
@@ -229,130 +223,12 @@
       ]
     },
     {
-      "id": "hew-advanced-massage-therapy",
-      "slug": "advanced-massage-therapy",
-      "name": "Advanced Massage Therapy Program",
-      "audience": "student",
-      "quickFacts": [
-        "Advanced Techniques",
-        "Expert Instructor",
-        "Certificate Included",
-        "Specialized Modalities"
-      ],
-      "highlights": [
-        {
-          "icon": "hammer",
-          "label": "Advanced Techniques",
-          "description": "Master specialized massage modalities including sports massage, trigger point therapy, and myofascial release."
-        },
-        {
-          "icon": "users",
-          "label": "Small Class Sizes",
-          "description": "Intensive, personalized instruction in advanced therapeutic techniques."
-        },
-        {
-          "icon": "badge-check",
-          "label": "Advanced Certificate",
-          "description": "Receive an advanced certificate upon successful completion, demonstrating mastery of advanced techniques."
-        },
-        {
-          "icon": "graduation-cap",
-          "label": "Professional Advancement",
-          "description": "Elevate your practice with advanced skills for specialized client needs and career growth."
-        }
-      ],
-      "tagline": "Elevate your massage therapy practice with advanced techniques",
-      "outcome": "Become an advanced massage therapist with specialized skills for complex client needs",
-      "description": "Our Advanced Massage Therapy program builds upon fundamental massage skills to teach specialized techniques for addressing complex client needs. Students will learn advanced modalities including sports massage, trigger point therapy, myofascial release, and injury rehabilitation techniques. This program is designed for practicing massage therapists seeking to expand their skill set and advance their careers.",
-      "whatYouWillLearn": [
-        {
-          "heading": "Advanced Assessment",
-          "items": [
-            {
-              "id": "advanced-anatomy",
-              "title": "Advanced Anatomy & Pathology",
-              "blurb": "Deep dive into musculoskeletal anatomy, common pathologies, and their implications for massage therapy.",
-              "tag": "Foundations"
-            },
-            {
-              "id": "assessment-techniques",
-              "title": "Advanced Assessment Techniques",
-              "blurb": "Learn comprehensive client assessment methods including postural analysis and range of motion testing."
-            }
-          ]
-        },
-        {
-          "heading": "Specialized Techniques",
-          "items": [
-            {
-              "id": "sports-massage",
-              "title": "Sports Massage",
-              "blurb": "Master pre-event, post-event, and maintenance sports massage techniques for athletes.",
-              "tag": "Core Skill"
-            },
-            {
-              "id": "trigger-point-therapy",
-              "title": "Trigger Point Therapy",
-              "blurb": "Advanced techniques for identifying and releasing trigger points to alleviate chronic pain."
-            },
-            {
-              "id": "myofascial-release",
-              "title": "Myofascial Release",
-              "blurb": "Learn specialized techniques for releasing fascial restrictions and improving mobility."
-            },
-            {
-              "id": "injury-rehab",
-              "title": "Injury Rehabilitation",
-              "blurb": "Develop skills for working with clients recovering from injuries and surgeries."
-            }
-          ]
-        },
-        {
-          "heading": "Professional Excellence",
-          "items": [
-            {
-              "id": "treatment-planning",
-              "title": "Advanced Treatment Planning",
-              "blurb": "Create comprehensive, multi-session treatment plans for complex client conditions.",
-              "tag": "Hands-on"
-            },
-            {
-              "id": "client-communication",
-              "title": "Advanced Client Communication",
-              "blurb": "Master communication techniques for explaining complex treatments and managing client expectations."
-            },
-            {
-              "id": "practice-development",
-              "title": "Advanced Practice Development",
-              "blurb": "Build skills for developing specialized services and growing your advanced practice.",
-              "tag": "Career Ready"
-            }
-          ]
-        }
-      ],
-      "groupId": "massage-therapy",
-      "cycleIds": [
-        "hew-advanced-massage-20260107",
-        "hew-advanced-massage-20260225",
-        "hew-advanced-massage-20260415",
-        "hew-advanced-massage-20260603"
-      ],
-      "media": {
-        "galleryIds": [
-          "hew-massage-model",
-          "hew-reception-area"
-        ]
-      }
-    },
-    {
       "name": "Waxing Program",
       "id": "program-1",
       "slug": "waxing",
       "_addedAt": "2026-01-14T15:08:55.619Z",
       "_source": "HEW-Programs-extraction.json",
-      "cycleIds": [
-        "waxing-20260119"
-      ]
+      "cycleIds": ["waxing-20260119"]
     },
     {
       "name": "Threading Program",
@@ -360,9 +236,7 @@
       "slug": "threading",
       "_addedAt": "2026-01-14T15:08:56.409Z",
       "_source": "HEW-Programs-extraction.json",
-      "cycleIds": [
-        "threading-20260120"
-      ]
+      "cycleIds": ["threading-20260120"]
     },
     {
       "name": "Spa Therapy Program",
@@ -370,9 +244,7 @@
       "slug": "spa-therapy",
       "_addedAt": "2026-01-14T15:08:58.920Z",
       "_source": "HEW-Programs-extraction.json",
-      "cycleIds": [
-        "spa-therapy-20260121"
-      ]
+      "cycleIds": ["spa-therapy-20260121"]
     },
     {
       "name": "Skincare Program",
@@ -380,9 +252,7 @@
       "slug": "skincare",
       "_addedAt": "2026-01-14T15:08:59.803Z",
       "_source": "HEW-Programs-extraction.json",
-      "cycleIds": [
-        "skincare-20260125"
-      ]
+      "cycleIds": ["skincare-20260125"]
     }
   ]
 }
