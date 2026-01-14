@@ -10,7 +10,7 @@ import { useProgramDiff } from "../hooks/useProgramDiff";
 import { getNestedValue } from "../utils/object-utils";
 import { extractStartDate } from "../../utils/cycle-utils";
 import { useState, useEffect } from "react";
-import type { ProgramEvidence } from "../../../types/lead-extraction-schema";
+import type { ProgramEvidence } from "../../types/lead-extraction-schema";
 
 interface ProgramDiffViewProps {
   programId: string;
