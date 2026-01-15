@@ -1,149 +1,72 @@
 # PostHog Lead Data Sync
 
-This guide explains how to sync lead interaction data from PostHog to the JSON file to ensure data accuracy and completeness.
+This guide explains how to sync lead interaction data from PostHog to the JSON file using the CLI.
 
 ## Overview
 
-Lead interactions are logged to PostHog via the `LeadInteractionModal` component. This process validates that all PostHog events are correctly reflected in the JSON file and identifies any discrepancies.
+- **LeadUpdated Events**: Tracked when staff log interactions with leads via the `LeadInteractionModal` component
+- **Lead Data**: Lead information (name, phone, program, cycle) is already stored in the JSON file from previous syncs
+- **Interaction Data**: The CLI syncs new interactions from `LeadUpdated` events and adds them to existing leads
+
+This process ensures that all PostHog interaction events are correctly reflected in the JSON file.
 
 ## Quick Start
 
-```bash
-# 1. Query PostHog for events (see Step 1 below)
-# 2. Extract events to JSON
-node scripts/leads/extract-posthog-events.js <posthog-results-file>
-
-# 3. Compare with JSON file
-node scripts/leads/compare-posthog-json.js
-
-# 4. Review the report and update JSON file manually based on findings
-```
-
-## Detailed Process
-
-### Step 1: Query PostHog
-
-Use the PostHog MCP tool to query "LeadUpdated" events:
-
-**Query Parameters:**
-- Event: `LeadUpdated`
-- Tenant: `healingemeraldwellness` (or your target tenant)
-- Date Range: Last 30 days (or custom range)
-- Properties Filter: `tenant = "healingemeraldwellness"`
-
-**Example MCP Query:**
-```json
-{
-  "query": {
-    "kind": "DataVisualizationNode",
-    "source": {
-      "kind": "HogQLQuery",
-      "query": "SELECT timestamp, properties FROM events WHERE event = 'LeadUpdated' AND JSONExtractString(properties, 'tenant') = 'healingemeraldwellness' AND timestamp >= '2025-12-16' ORDER BY timestamp DESC LIMIT 100",
-      "filters": {
-        "dateRange": {
-          "date_from": "2025-12-16",
-          "date_to": null,
-          "explicitDate": true
-        },
-        "filterTestAccounts": false
-      }
-    }
-  }
-}
-```
-
-**Save Results:**
-The query results will be saved to a temporary file. Note the file path for the next step.
-
-### Step 2: Extract Events
-
-Run the extraction script to parse PostHog query results:
+Use the CLI command to automatically sync lead interactions from PostHog:
 
 ```bash
-node scripts/leads/extract-posthog-events.js <path-to-posthog-results.txt>
+# Set environment variables in .env file:
+# POSTHOG_API_KEY=your_personal_api_key_here
+# POSTHOG_PROJECT_ID=your_project_id_here
+
+# Sync interactions for a tenant and program
+pnpm cli sync-posthog-leads --tenant healingemeraldwellness --program-id hew-massage-therapy
+
+# Dry run to see what would be updated
+pnpm cli sync-posthog-leads --tenant healingemeraldwellness --program-id hew-massage-therapy --dry-run
 ```
 
-This script:
-- Parses the PostHog query results file
-- Extracts relevant event properties
-- Saves to `posthog-events-parsed.json`
+**What it does:**
+- Queries PostHog for "LeadUpdated" events from the last 30 days
+- Matches events to existing leads in the JSON file by `leadId`
+- Adds new interactions to the appropriate lead's `interactions` array
+- Skips interactions that already exist (matched by `loggedAt` timestamp)
 
-**Output:** `posthog-events-parsed.json` with structured event data.
+## Using the CLI
 
-### Step 3: Compare with JSON
-
-Run the comparison script:
+The CLI command automatically syncs lead interactions from PostHog:
 
 ```bash
-node scripts/leads/compare-posthog-json.js
+pnpm cli sync-posthog-leads --tenant <tenant> --program-id <programId>
 ```
 
-This script:
-- Loads PostHog events from `posthog-events-parsed.json`
-- Loads leads from the JSON file
-- Matches interactions by `leadId` and `loggedAt` timestamp
-- Identifies missing interactions and discrepancies
-- Generates a comparison report
+**Required Environment Variables:**
+- `POSTHOG_API_KEY`: Your PostHog personal API key (with `query:read` scope)
+- `POSTHOG_PROJECT_ID`: Your PostHog project ID
 
-**Output:**
-- Console report with findings
-- `posthog-json-comparison-report.json` with detailed data
+**Options:**
+- `--tenant <tenant>`: Tenant username (e.g., `healingemeraldwellness`)
+- `--program-id <programId>`: Program ID (e.g., `hew-massage-therapy`)
+- `--project-id <projectId>`: Override PostHog project ID (optional, uses env var by default)
+- `--dry-run`: Show what would be updated without making changes
 
-### Step 4: Update JSON File
+**Example:**
+```bash
+pnpm cli sync-posthog-leads --tenant healingemeraldwellness --program-id hew-massage-therapy
+```
 
-Based on the comparison report, update the JSON file:
-
-1. **Missing Interactions:** Add new interactions to the appropriate lead's `interactions` array
-2. **Discrepancies:** Fix field mismatches (e.g., trailing spaces in notes)
-3. **Contact Info:** Verify and update lead contact information if needed
+The command will:
+1. Load existing leads from the JSON file
+2. Query PostHog for "LeadUpdated" events from the last 30 days matching the tenant and program
+3. Match events to existing leads by `leadId`
+4. Add new interactions to the appropriate lead's `interactions` array
+5. Skip interactions that already exist (matched by `loggedAt` timestamp)
+6. Update the JSON file automatically (or show what would be updated with `--dry-run`)
 
 **File Location:**
 ```
 apps/sovoli.com/src/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json
 ```
-
-## Scripts Reference
-
-### `extract-posthog-events.js`
-
-Extracts and parses PostHog query results.
-
-**Usage:**
-```bash
-node scripts/leads/extract-posthog-events.js [posthog-results-file]
-```
-
-**Input:** PostHog query results file (text format)
-**Output:** `posthog-events-parsed.json`
-
-**What it does:**
-- Parses PostHog query result format
-- Extracts event properties: `leadId`, `contactOutcome`, `interestLevel`, `blocker`, `nextAction`, `notes`, `loggedAt`, etc.
-- Normalizes timestamps
-
-### `compare-posthog-json.js`
-
-Compares PostHog events with JSON file.
-
-**Usage:**
-```bash
-node scripts/leads/compare-posthog-json.js
-```
-
-**Input:** 
-- `posthog-events-parsed.json` (from extraction script)
-- `apps/sovoli.com/src/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json`
-
-**Output:**
-- Console report
-- `posthog-json-comparison-report.json`
-
-**What it does:**
-- Matches PostHog events to JSON interactions
-- Identifies missing interactions
-- Detects data discrepancies
-- Verifies contact information
-- Analyzes schema differences
 
 ## Data Matching
 
@@ -213,7 +136,7 @@ If timestamps don't match:
 
 For regular syncing, consider:
 
-1. **Scheduled Job:** Run comparison script daily/weekly
+1. **Scheduled Job:** Run the CLI command daily/weekly
 2. **CI/CD Integration:** Validate data on deployment
 3. **Webhook:** Real-time sync from PostHog (if available)
 

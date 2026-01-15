@@ -31,4 +31,4 @@ After reading the Business Protocol, load **ONLY** the specific context you need
 
 ### 6. Lead Data Sync Tasks
 **Read**: [PostHog Lead Data Sync](docs/leads/posthog-sync.md)
-*   *Contains: How to sync lead interaction data from PostHog to JSON files, validation scripts, and data comparison process.*
+*   *Contains: How to sync lead data from PostHog to JSON files using the CLI command `sync-posthog-leads` or manual scripts.*

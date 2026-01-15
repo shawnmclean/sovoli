@@ -55,6 +55,29 @@ Upload media files to Cloudinary.
 pnpm cli upload-media "path/to/image.jpg" "o/org-name/photos"
 ```
 
+### `sync-posthog-leads`
+
+Sync leads from PostHog for a tenant and program. Queries PostHog for "Lead" events from the last 30 days, fetches person properties to get contact information, and automatically updates the leads JSON file.
+
+**Required Environment Variables:**
+- `POSTHOG_API_KEY`: Your PostHog personal API key (with `query:read` scope)
+- `POSTHOG_PROJECT_ID`: Your PostHog project ID
+
+**Options:**
+- `-t, --tenant <tenant>`: Tenant username (e.g., `healingemeraldwellness`)
+- `-p, --program-id <programId>`: Program ID (e.g., `hew-massage-therapy`)
+- `--project-id <projectId>`: Override PostHog project ID (optional)
+- `--dry-run`: Show what would be updated without making changes
+
+**Examples:**
+```bash
+# Sync leads for Healing Emerald Wellness Massage Therapy program
+pnpm cli sync-posthog-leads --tenant healingemeraldwellness --program-id hew-massage-therapy
+
+# Dry run to preview changes
+pnpm cli sync-posthog-leads --tenant healingemeraldwellness --program-id hew-massage-therapy --dry-run
+```
+
 ## Development
 
 ```bash
