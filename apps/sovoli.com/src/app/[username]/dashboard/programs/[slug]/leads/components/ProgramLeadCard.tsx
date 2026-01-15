@@ -1,263 +1,234 @@
 import { useState } from "react";
-import { Card, CardHeader, CardBody } from "@sovoli/ui/components/card";
-import { Chip } from "@sovoli/ui/components/chip";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
-import { EditIcon, MessageCircleIcon, PhoneIcon } from "lucide-react";
+import { EditIcon, MessageCircleIcon, PhoneIcon, ChevronRightIcon } from "lucide-react";
 import type { Lead } from "../../../../components/LeadsTable";
 import type { LeadInteraction, SystemState } from "../utils/leadCategorization";
+import { LeadHistoryModal } from "./LeadHistoryModal";
 
-// --- Helpers copied/adapted from LeadsTable.tsx ---
+// --- Helpers ---
 
-/**
- * Helper function to abbreviate name (first name + first 2 chars of last name)
- */
 function abbreviateName(fullName: string): string {
     const parts = fullName.trim().split(/\s+/);
     if (parts.length === 0) return fullName;
-    if (parts.length === 1) return parts[0] ?? "";
-
-    const firstName = parts[0] ?? "";
-    const lastName = parts[parts.length - 1] ?? "";
-
-    if (lastName.length >= 2) {
-        return `${firstName} ${lastName.slice(0, 2)}...`;
-    }
-    return `${firstName} ${lastName}...`;
+    return parts[0] ?? fullName;
 }
 
-/**
- * Helper function to format phone number for display
- */
 function formatPhone(phone: string): string {
-    // Remove any non-digit characters except +
     const cleaned = phone.replace(/[^\d+]/g, "");
-    // Format Jamaican numbers (+1876) or keep as is
     if (cleaned.startsWith("+1876") && cleaned.length === 11) {
-        return `+1 (876) ${cleaned.slice(5, 8)}-${cleaned.slice(8)}`;
-    }
-    // Format other international numbers
-    if (cleaned.startsWith("+1") && cleaned.length === 12) {
-        return `+1 (${cleaned.slice(2, 5)}) ${cleaned.slice(5, 8)}-${cleaned.slice(8)}`;
+        return `(876) ${cleaned.slice(5, 8)}-${cleaned.slice(8)}`;
     }
     return cleaned;
 }
 
-/**
- * Component for name with tap-to-reveal
- */
-function NameDisplay({ name }: { name: string }) {
-    const [isRevealed, setIsRevealed] = useState(false);
+// --- Components ---
 
-    if (!isRevealed) {
-        return (
-            <button
-                type="button"
-                onClick={(e) => {
-                    e.stopPropagation();
-                    setIsRevealed(true);
-                }}
-                className="font-semibold text-lg underline cursor-pointer hover:text-default-700 transition-colors text-left"
-            >
-                {abbreviateName(name)}
-            </button>
-        );
-    }
-
-    return <span className="font-semibold text-lg">{name}</span>;
-}
-
-/**
- * Component for phone number with tap-to-reveal and action buttons
- */
-function PhoneNumberButton({
+function ActionButtons({
     phone,
-    onContactClick,
+    isRevealed,
+    onReveal,
+    onLogInteraction
 }: {
     phone: string;
-    onContactClick?: () => void;
+    isRevealed: boolean;
+    onReveal: () => void;
+    onLogInteraction: () => void;
 }) {
-    const [isRevealed, setIsRevealed] = useState(false);
-
-    // Sanitize phone for WhatsApp (remove all non-digits, assume country code is present)
     const cleanedPhone = phone.replace(/\D/g, "");
     const whatsappUrl = `https://wa.me/${cleanedPhone}`;
-    // Use tel: protocol for phone calls (keep the + and numbers)
     const telUrl = `tel:${phone.replace(/[^\d+]/g, "")}`;
 
     const handleWhatsAppClick = () => {
-        // Open modal first
-        onContactClick?.();
-        // Then open WhatsApp in a new tab/window
+        onLogInteraction();
         window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     };
 
     const handleCallClick = () => {
-        // Open modal first
-        onContactClick?.();
-        // Then trigger the call
+        onLogInteraction();
         window.location.href = telUrl;
     };
 
     if (!isRevealed) {
         return (
             <Button
-                variant="flat"
-                size="sm"
-                color="default"
-                onClick={() => setIsRevealed(true)}
-                className="font-mono"
+                className="w-full font-medium shadow-sm transition-transform active:scale-[0.98]"
+                size="lg"
+                color="primary"
+                variant="solid"
+                onPress={onReveal}
             >
-                Tap to view number
+                Reveal Contact Info
             </Button>
         );
     }
 
     return (
-        <div className="flex flex-col gap-2 items-start sm:items-end">
-            <span className="font-mono text-sm font-semibold">
-                {formatPhone(phone)}
-            </span>
-            <div className="flex gap-2">
-                <Button
-                    variant="flat"
-                    size="sm"
-                    color="success"
-                    startContent={<MessageCircleIcon className="h-4 w-4" />}
-                    onPress={handleWhatsAppClick}
-                >
-                    WhatsApp
-                </Button>
-                <Button
-                    variant="flat"
-                    size="sm"
-                    color="primary"
-                    startContent={<PhoneIcon className="h-4 w-4" />}
-                    onPress={handleCallClick}
-                >
-                    Call
-                </Button>
-            </div>
+        <div className="grid grid-cols-2 gap-3 w-full animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <Button
+                className="w-full font-medium shadow-sm"
+                size="lg"
+                color="success"
+                variant="solid"
+                startContent={<MessageCircleIcon className="w-5 h-5" />}
+                onPress={handleWhatsAppClick}
+            >
+                WhatsApp
+            </Button>
+            <Button
+                className="w-full font-medium shadow-sm"
+                size="lg"
+                color="primary"
+                variant="solid"
+                startContent={<PhoneIcon className="w-5 h-5" />}
+                onPress={handleCallClick}
+            >
+                Call
+            </Button>
         </div>
     );
 }
 
-// --- End Helpers ---
+function StatusIndicator({ state }: { state: SystemState }) {
+    const colorMap = {
+        "🟢": "bg-success-500",
+        "🟡": "bg-warning-500",
+        "⚪": "bg-default-300",
+        "🔴": "bg-danger-500",
+    };
 
+    const bgColor = colorMap[state.emoji] || "bg-default-300";
 
-// Helper for chip colors
-function getStateColor(
-    state: SystemState
-): "success" | "warning" | "default" | "danger" {
-    if (state.emoji === "🟢") return "success";
-    if (state.emoji === "🟡") return "warning";
-    if (state.emoji === "⚪") return "default";
-    if (state.emoji === "🔴") return "danger";
-    return "default";
+    return (
+        <div className="flex items-center gap-1.5">
+            <div className={`w-2 h-2 rounded-full ${bgColor} shadow-sm`} />
+            <span className="text-xs font-medium text-default-600 uppercase tracking-tight">
+                {state.label}
+            </span>
+        </div>
+    );
 }
+
+// --- Main Component ---
 
 interface ProgramLeadCardProps {
     lead: Lead;
-    index: number;
     interactions: LeadInteraction[];
     systemState: SystemState;
     onUpdateClick: (leadId: string) => void;
-    programName?: string;
 }
 
 export function ProgramLeadCard({
     lead,
-    index,
     interactions,
     systemState,
     onUpdateClick,
-    programName
 }: ProgramLeadCardProps) {
-    // Get latest info for display
-    const latestInteraction = interactions[0]; // Assuming sorted outside
+    const [isRevealed, setIsRevealed] = useState(false);
+    const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
-    // Format initial submission
-    const submissionDate = new Date(lead.submittedAt).toLocaleString(undefined, {
-        dateStyle: "medium",
-        timeStyle: "short"
+    // Get latest interaction
+    const latestInteraction = interactions[0];
+
+    // Format date nicely
+    const submissionDate = new Date(lead.submittedAt).toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric'
     });
 
     return (
-        <Card className="w-full">
-            <CardHeader className="pb-2">
-                <div className="flex items-start justify-between w-full">
-                    <div className="flex items-center gap-2">
-                        <span className="text-default-500 font-mono text-sm">#{index + 1}</span>
-                        <NameDisplay name={lead.name} />
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Chip
-                            color={getStateColor(systemState)}
-                            variant="flat"
-                            size="sm"
+        <Card className="w-full border-b border-default-100 shadow-none rounded-none sm:rounded-medium sm:border bg-background sm:shadow-sm">
+            <CardBody className="p-4 sm:p-5 space-y-5">
+                {/* Header: Name & Status */}
+                <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                        <div
+                            className="flex items-center gap-2 cursor-pointer active:opacity-70 transition-opacity"
+                            onClick={() => !isRevealed && setIsRevealed(true)}
                         >
-                            {systemState.emoji} {systemState.label}
-                        </Chip>
-                        <Button
-                            variant="light"
-                            isIconOnly
-                            size="sm"
-                            onPress={() => onUpdateClick(lead.id)}
-                        >
-                            <EditIcon className="w-4 h-4 text-default-500" />
-                        </Button>
+                            <h3 className="text-xl font-bold text-foreground">
+                                {isRevealed ? lead.name : abbreviateName(lead.name)}
+                            </h3>
+                            {!isRevealed && (
+                                <span className="text-default-300 text-lg select-none">•••••</span>
+                            )}
+                        </div>
+                        <StatusIndicator state={systemState} />
                     </div>
+
+                    <Button
+                        isIconOnly
+                        variant="light"
+                        className="text-default-400 -mr-2 -mt-2"
+                        onPress={() => onUpdateClick(lead.id)}
+                    >
+                        <EditIcon className="w-5 h-5" />
+                    </Button>
                 </div>
-            </CardHeader>
-            <CardBody className="space-y-3 pt-0">
-                <div className="grid gap-2 text-sm sm:grid-cols-2">
-                    <div className="flex flex-col gap-1">
-                        <span className="font-medium text-default-600">Contact:</span>
-                        <PhoneNumberButton
-                            phone={lead.phone}
-                            onContactClick={() => onUpdateClick(lead.id)}
-                        />
+
+                {/* Main Actions */}
+                <div className="pt-1">
+                    <ActionButtons
+                        phone={lead.phone}
+                        isRevealed={isRevealed}
+                        onReveal={() => setIsRevealed(true)}
+                        onLogInteraction={() => onUpdateClick(lead.id)}
+                    />
+                </div>
+
+                {/* Context Info (Always Visible) */}
+                <div className="grid grid-cols-2 gap-y-2 text-sm text-default-500">
+                    <div>
+                        <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
+                            Cycle
+                        </span>
+                        <span className="text-foreground">{lead.cycleLabel || "Unknown"}</span>
                     </div>
                     <div>
-                        <span className="font-medium text-default-600">Cycle:</span>{" "}
-                        {lead.cycleLabel || "Unknown"}
+                        <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
+                            Submitted
+                        </span>
+                        <span>{submissionDate}</span>
                     </div>
-
-                    {lead.selection && (
-                        <div>
-                            <span className="font-medium text-default-600">Original Selection:</span>{" "}
-                            {lead.selection}
+                    {isRevealed && (
+                        <div className="col-span-2">
+                            <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
+                                Phone
+                            </span>
+                            <span className="font-mono">{formatPhone(lead.phone)}</span>
                         </div>
                     )}
-
-                    <div className="sm:col-span-2 text-xs text-default-400">
-                        Submitted: {submissionDate}
-                    </div>
-
-                    {latestInteraction && (
-                        <>
-                            <div className="sm:col-span-2 border-t border-default-100 my-1 pt-2">
-                                <span className="font-medium text-default-600">Latest Activity:</span>
-                            </div>
-                            <div>
-                                <span className="font-medium text-default-600">Contacted:</span>{" "}
-                                {latestInteraction.contactOutcome.replace(/_/g, " ")}
-                            </div>
-
-                            {latestInteraction.interestLevel && (
-                                <div>
-                                    <span className="font-medium text-default-600">Interest:</span>{" "}
-                                    {latestInteraction.interestLevel.replace(/_/g, " ")}
-                                </div>
-                            )}
-
-                            {latestInteraction.notes && (
-                                <div className="sm:col-span-2 bg-default-50 p-2 rounded mt-1">
-                                    <span className="font-medium text-default-600">Note:</span> {latestInteraction.notes}
-                                </div>
-                            )}
-                        </>
-                    )}
                 </div>
+
+                {/* Latest Activity Preview */}
+                {latestInteraction && (
+                    <div className="relative bg-default-50 rounded-lg p-3 text-sm">
+                        <div className="font-medium text-foreground mb-1">
+                            {latestInteraction.contactOutcome === "not_reached" ? "Did not reach" :
+                                latestInteraction.contactOutcome === "conversation" ? "Conversation" : "Brief contact"}
+                        </div>
+                        <div className="text-default-500 line-clamp-2">
+                            {latestInteraction.notes || (latestInteraction.blocker ? `Blocker: ${latestInteraction.blocker.replace(/_/g, " ")}` : "No notes logged.")}
+                        </div>
+
+                        {interactions.length > 1 && (
+                            <button
+                                onClick={() => setIsHistoryOpen(true)}
+                                className="absolute bottom-3 right-3 text-primary text-xs font-semibold flex items-center gap-0.5 hover:underline"
+                            >
+                                View History ({interactions.length})
+                                <ChevronRightIcon className="w-3 h-3" />
+                            </button>
+                        )}
+                    </div>
+                )}
+
+                <LeadHistoryModal
+                    interactions={interactions}
+                    isOpen={isHistoryOpen}
+                    onOpenChange={setIsHistoryOpen}
+                    leadName={lead.name}
+                />
             </CardBody>
         </Card>
     );

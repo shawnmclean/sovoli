@@ -125,17 +125,20 @@ export function UnifiedProgramLeadsView({
             {/* Leads With Activity */}
             {leadsWithActivity.length > 0 && (
                 <section className="space-y-4">
-                    <h2 className="text-xl font-semibold">Leads With Activity</h2>
-                    <div className="space-y-4">
-                        {leadsWithActivity.map((lead, idx) => (
+                    <h2 className="text-lg font-bold text-default-700 px-1">
+                        Active Leads
+                        <span className="ml-2 text-sm font-normal text-default-400">
+                            ({leadsWithActivity.length})
+                        </span>
+                    </h2>
+                    <div className="space-y-3">
+                        {leadsWithActivity.map((lead) => (
                             <ProgramLeadCard
                                 key={lead.id}
                                 lead={lead}
-                                index={idx}
                                 interactions={lead.interactions}
                                 systemState={lead.systemState}
                                 onUpdateClick={handleUpdateClick}
-                                programName={programName}
                             />
                         ))}
                     </div>
@@ -143,23 +146,26 @@ export function UnifiedProgramLeadsView({
             )}
 
             {/* Leads Without Activity */}
-            <section className="space-y-4">
-                <h2 className="text-xl font-semibold">
+            <section className="space-y-4 pt-4">
+                <h2 className="text-lg font-bold text-default-700 px-1">
                     {leadsWithoutActivity.length > 0
-                        ? "Leads With No Logged Activity (Status Unknown)"
-                        : "All leads have been contacted! 🎉"}
+                        ? "New / No Activity"
+                        : "All leads contacted! 🎉"}
+                    {leadsWithoutActivity.length > 0 && (
+                        <span className="ml-2 text-sm font-normal text-default-400">
+                            ({leadsWithoutActivity.length})
+                        </span>
+                    )}
                 </h2>
                 {leadsWithoutActivity.length > 0 && (
-                    <div className="space-y-4">
-                        {leadsWithoutActivity.map((lead, idx) => (
+                    <div className="space-y-3">
+                        {leadsWithoutActivity.map((lead) => (
                             <ProgramLeadCard
                                 key={lead.id}
                                 lead={lead}
-                                index={leadsWithActivity.length + idx} // Continue numbering
                                 interactions={lead.interactions}
                                 systemState={lead.systemState}
                                 onUpdateClick={handleUpdateClick}
-                                programName={programName}
                             />
                         ))}
                     </div>
