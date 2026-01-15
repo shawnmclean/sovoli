@@ -195,14 +195,14 @@
           "contactOutcome": "brief_contact",
           "interestLevel": "wants_to_proceed",
           "nextAction": "waiting_on_them",
-          "notes": "Interested in April intake"
+          "notes": "Interested in April intake "
         },
         {
           "loggedAt": "2026-01-14T19:33:57Z",
           "contactOutcome": "brief_contact",
           "interestLevel": "wants_to_proceed",
           "nextAction": "waiting_on_them",
-          "notes": "Interested in April intake"
+          "notes": "Interested in April intake "
         }
       ]
     },
@@ -221,7 +221,7 @@
           "interestLevel": "unsure",
           "blocker": "needs_time",
           "nextAction": "waiting_on_them",
-          "notes": "She will get back to see if she have the time"
+          "notes": "She will get back to see if she have the time "
         }
       ]
     },
