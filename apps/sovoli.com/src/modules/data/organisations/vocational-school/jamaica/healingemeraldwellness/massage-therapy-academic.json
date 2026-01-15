@@ -228,7 +228,11 @@
       "slug": "waxing",
       "_addedAt": "2026-01-14T15:08:55.619Z",
       "_source": "HEW-Programs-extraction.json",
-      "cycleIds": ["waxing-20260119"]
+      "cycleIds": ["waxing-20260119"],
+      "media": {
+        "coverId": "hew-waxing-hero",
+        "galleryIds": ["hew-waxing-hero"]
+      }
     },
     {
       "name": "Threading Program",
@@ -236,7 +240,11 @@
       "slug": "threading",
       "_addedAt": "2026-01-14T15:08:56.409Z",
       "_source": "HEW-Programs-extraction.json",
-      "cycleIds": ["threading-20260120"]
+      "cycleIds": ["threading-20260120"],
+      "media": {
+        "coverId": "hew-threading-hero",
+        "galleryIds": ["hew-threading-hero"]
+      }
     },
     {
       "name": "Spa Therapy Program",
@@ -244,7 +252,11 @@
       "slug": "spa-therapy",
       "_addedAt": "2026-01-14T15:08:58.920Z",
       "_source": "HEW-Programs-extraction.json",
-      "cycleIds": ["spa-therapy-20260121"]
+      "cycleIds": ["spa-therapy-20260121"],
+      "media": {
+        "coverId": "hew-spa-therapy-hero",
+        "galleryIds": ["hew-spa-therapy-hero"]
+      }
     },
     {
       "name": "Skincare Program",
@@ -252,7 +264,11 @@
       "slug": "skincare",
       "_addedAt": "2026-01-14T15:08:59.803Z",
       "_source": "HEW-Programs-extraction.json",
-      "cycleIds": ["skincare-20260125"]
+      "cycleIds": ["skincare-20260125"],
+      "media": {
+        "coverId": "hew-skincare-hero",
+        "galleryIds": ["hew-skincare-hero"]
+      }
     }
   ]
 }
