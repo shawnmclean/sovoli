@@ -247,16 +247,264 @@
       }
     },
     {
-      "name": "Spa Therapy Program",
-      "id": "program-3",
+      "id": "hew-spa-therapy",
       "slug": "spa-therapy",
-      "_addedAt": "2026-01-14T15:08:58.920Z",
-      "_source": "HEW-Programs-extraction.json",
+      "name": "Spa Therapy Program",
+      "audience": "student",
+      "quickFacts": [
+        "7-Week Program",
+        "Certificate Included",
+        "Hands-On Training",
+        "Professional Spa Environment"
+      ],
+      "highlights": [
+        {
+          "icon": "hammer",
+          "label": "Hands-On Learning",
+          "description": "Practice professional spa treatments including dry body brushing, body scrubs, body wraps, hydrotherapy, and paraffin wax treatments in a real spa environment."
+        },
+        {
+          "icon": "users",
+          "label": "Small Class Sizes",
+          "description": "Personal attention and individualized instruction with maximum 2 students per class."
+        },
+        {
+          "icon": "badge-check",
+          "label": "Certificate Included",
+          "description": "Receive a professional certificate upon successful completion of the program."
+        },
+        {
+          "icon": "graduation-cap",
+          "label": "Career Ready",
+          "description": "Graduate with the skills needed to work in spas, wellness centres, or start your own practice."
+        }
+      ],
+      "tagline": "Master professional spa therapy treatments",
+      "outcome": "Become a certified spa therapist ready for professional practice in spa, wellness, and beauty therapy environments",
+      "description": "The Spa Therapy Program is a professional 7-week vocational training designed to prepare learners for spa, wellness, and beauty therapy environments. The program emphasizes hands-on spa treatments, holistic body care, client preparation, sanitation, and professional customer service. Learners are trained in dry body brushing, body scrubs, body wraps, hydrotherapy, and paraffin wax treatments, supported by anatomy and physiology knowledge, workplace communication, and solution-based service recommendations. Classes are held Wednesdays, Thursdays & Fridays from 6:00 PM – 9:00 PM.",
+      "capabilities": [
+        {
+          "outcome": "Perform **Dry Body Brushing** techniques safely and effectively",
+          "competencies": [
+            {
+              "statement": "Perform dry body brushing for exfoliation and lymphatic stimulation"
+            },
+            {
+              "statement": "Apply proper technique and pressure during dry body brushing"
+            },
+            {
+              "statement": "Understand the benefits and contraindications of dry body brushing"
+            }
+          ]
+        },
+        {
+          "outcome": "Apply **Body Scrub Treatments** according to client needs",
+          "competencies": [
+            {
+              "statement": "Apply Body Scrub – CSBMTH0043A"
+            },
+            {
+              "statement": "Prepare and apply salt, sugar, and ground coffee scrubs"
+            },
+            {
+              "statement": "Select appropriate scrub based on client skin type and needs"
+            }
+          ]
+        },
+        {
+          "outcome": "Apply **Body Wrap Treatments** (Detox, Hydrating & Relaxation Wraps)",
+          "competencies": [
+            {
+              "statement": "Apply Body Wrap Treatments (Detox, Hydrating & Relaxation Wraps)"
+            },
+            {
+              "statement": "Prepare and apply clay, mud, seaweed, and herbal wraps"
+            },
+            {
+              "statement": "Understand the therapeutic benefits of different wrap types"
+            },
+            {
+              "statement": "Use plastic wrap and thermal sheets appropriately"
+            }
+          ]
+        },
+        {
+          "outcome": "Apply **Hydrotherapy** treatments",
+          "competencies": [
+            {
+              "statement": "Apply Hydrotherapy – CSBMTH005"
+            },
+            {
+              "statement": "Understand the principles and benefits of hydrotherapy"
+            },
+            {
+              "statement": "Perform hydrotherapy treatments safely"
+            }
+          ]
+        },
+        {
+          "outcome": "Provide **Paraffin Wax Treatment**",
+          "competencies": [
+            {
+              "statement": "Provide Paraffin Wax Treatment – CSBMTH003A"
+            },
+            {
+              "statement": "Prepare and apply paraffin wax safely"
+            },
+            {
+              "statement": "Use paraffin wax liners appropriately"
+            }
+          ]
+        },
+        {
+          "outcome": "Apply **Anatomy & Physiology** knowledge to beauty therapy treatments",
+          "competencies": [
+            {
+              "statement": "Apply Knowledge of Anatomy & Physiology to Beauty Therapy Treatments"
+            },
+            {
+              "statement": "Understand the body systems relevant to spa treatments"
+            },
+            {
+              "statement": "Apply anatomical knowledge to treatment selection and application"
+            }
+          ]
+        },
+        {
+          "outcome": "Maintain **Safe, Clean and Efficient Work Environment**",
+          "competencies": [
+            {
+              "statement": "Maintain a Safe, Clean and Efficient Work Environment – CSBCOR0011A"
+            },
+            {
+              "statement": "Set-Up and After-Treatment Sanitization"
+            },
+            {
+              "statement": "Follow infection control protocols"
+            },
+            {
+              "statement": "Maintain workspace organization and efficiency"
+            }
+          ]
+        },
+        {
+          "outcome": "Prepare clients for therapeutic service",
+          "competencies": [
+            {
+              "statement": "Prepare Clients for Therapeutic Service – CSBMTH0011A"
+            },
+            {
+              "statement": "Conduct professional client consultations"
+            },
+            {
+              "statement": "Assess client needs and contraindications"
+            }
+          ]
+        },
+        {
+          "outcome": "Plan and organize spa therapy work",
+          "competencies": [
+            {
+              "statement": "Plan and Organize Work – CSBCOR0021A"
+            },
+            {
+              "statement": "Schedule and manage treatment sessions"
+            },
+            {
+              "statement": "Organize supplies and equipment"
+            }
+          ]
+        },
+        {
+          "outcome": "Deliver quality customer service and maintain client relations",
+          "competencies": [
+            {
+              "statement": "Receive and Direct Clients – CSBCOS0002A"
+            },
+            {
+              "statement": "Deliver Quality Service to Customers – CSBCOR0041A"
+            },
+            {
+              "statement": "Maintain Customer Relations – CSBCOR0003A"
+            },
+            {
+              "statement": "Perform Interactive Workplace Communication – CSBCOR0001A"
+            }
+          ]
+        },
+        {
+          "outcome": "Provide solution-based service recommendations",
+          "competencies": [
+            {
+              "statement": "Solution Sales 101 (Retail & Service Recommendations)"
+            },
+            {
+              "statement": "Recommend appropriate spa services based on client needs"
+            },
+            {
+              "statement": "Recommend retail products confidently"
+            }
+          ]
+        }
+      ],
+      "certification": {
+        "description": "Receive a certificate of participation upon successful completion of the program. Assessment includes Theory Examination (40%), Practical Assessment (30%), and Portfolio (30%)."
+      },
+      "groupId": "spa-therapy",
       "cycleIds": ["spa-therapy-20260121"],
       "media": {
         "coverId": "hew-spa-therapy-hero",
         "galleryIds": ["hew-spa-therapy-hero"]
-      }
+      },
+      "requirements": [
+        {
+          "name": "Supply List",
+          "category": "materials",
+          "audience": "student",
+          "items": [
+            {
+              "itemId": "twin-size-flat-sheets-dark",
+              "quantity": 1,
+              "notes": "Dark colours"
+            },
+            {
+              "itemId": "large-bath-towels-dark",
+              "quantity": 3,
+              "notes": "Minimum 3 towels, dark colours"
+            },
+            {
+              "itemId": "supply-exercise-book-big",
+              "quantity": 1,
+              "notes": "Notebook for taking notes"
+            },
+            {
+              "itemId": "supply-pencils-pack-12",
+              "quantity": 1,
+              "notes": "Pens for note-taking"
+            },
+            {
+              "itemId": "hand-sanitizer-antiseptic",
+              "quantity": 1,
+              "notes": "Hand sanitizer & disinfectants"
+            },
+            {
+              "itemId": "alcohol-disinfectant",
+              "quantity": 1,
+              "notes": "For sanitization"
+            },
+            {
+              "itemId": "spray-bottle",
+              "quantity": 1,
+              "notes": "For disinfectant application"
+            },
+            {
+              "itemId": "applicator-bottle",
+              "quantity": 1,
+              "notes": "For product application"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "Skincare Program",

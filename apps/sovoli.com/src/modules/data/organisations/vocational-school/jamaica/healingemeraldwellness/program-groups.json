@@ -6,6 +6,13 @@
       "name": "Massage Therapy",
       "description": "Professional massage therapy training programs",
       "order": 1
+    },
+    {
+      "id": "spa-therapy",
+      "slug": "spa-therapy",
+      "name": "Spa Therapy",
+      "description": "Professional spa therapy training programs",
+      "order": 2
     }
   ]
 }

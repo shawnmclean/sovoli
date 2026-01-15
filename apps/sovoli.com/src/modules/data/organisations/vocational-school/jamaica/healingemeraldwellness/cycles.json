@@ -41,7 +41,7 @@
       "id": "spa-therapy-20260121",
       "customLabel": "Spa Therapy Program - January 2026",
       "startDate": "2026-01-21",
-      "endDate": "2026-04-21"
+      "endDate": "2026-03-06"
     },
     {
       "id": "skincare-20260125",
@@ -292,13 +292,35 @@
     {
       "id": "spa-therapy-20260121",
       "academicCycleId": "spa-therapy-20260121",
+      "teacherSlugs": ["alicia-davis"],
+      "capacity": 2,
+      "enrolled": 0,
       "pricingPackage": {
-        "pricingItems": [],
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 3000
+            },
+            "notes": "Non-refundable registration fee. Covers administrative processing, course setup, and student onboarding."
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "program",
+            "amount": {
+              "JMD": 100000
+            }
+          }
+        ],
         "discounts": [],
         "paymentSplits": []
       },
       "status": "open",
-      "enrolled": 0,
       "_source": "HEW-Programs-extraction.json",
       "_addedAt": "2026-01-14T15:08:58.934Z"
     },
