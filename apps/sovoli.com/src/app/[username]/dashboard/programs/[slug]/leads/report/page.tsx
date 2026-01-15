@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
+import { InteractionHistoryModal } from "./InteractionHistoryModal";
+import type { InteractionHistory } from "./InteractionHistoryModal";
 
 interface ReportLead {
   name: string;
@@ -13,6 +15,8 @@ interface ReportLead {
   notes?: string;
   requestedCycleChange?: string;
   originalSelection?: string;
+  initialSubmission?: string;
+  interactionHistory?: InteractionHistory[];
   systemState: {
     emoji: string;
     label: string;
@@ -34,29 +38,131 @@ interface ReportData {
 
 const REPORT_DATA: ReportData = {
   program: "Massage Therapy Training",
-  asOf: "Jan 14, 2026",
+  asOf: "Jan 15, 2026",
   leadsWithActivity: [
     {
       name: "Fabion Black",
       phone: "+18768087169",
       initialCycle: "February 2026",
+      initialSubmission: "January 9, 2026 at 16:16:47 UTC",
       contacted: "Yes (multiple times)",
       engagementLevel: "High (9 interactions)",
       currentInterest: "Unsure",
       primaryBlocker: "Price uncertainty",
       notes: "At one point wanted to proceed\nAlso referenced wrong program",
+      originalSelection: "Enroll",
+      interactionHistory: [
+        {
+          timestamp: "January 9, 2026 at 17:54:08 UTC",
+          contactOutcome: "Not reached",
+          notReachedReason: "Try again later",
+        },
+        {
+          timestamp: "January 9, 2026 at 18:00:42 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Curious",
+          blocker: "Not serious",
+          nextAction: "Follow up later",
+          notes: "test",
+        },
+        {
+          timestamp: "January 9, 2026 at 18:07:30 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Curious",
+          blocker: "Needs visit",
+          nextAction: "Waiting on them",
+        },
+        {
+          timestamp: "January 9, 2026 at 18:19:57 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Curious",
+          blocker: "Not serious",
+          nextAction: "Waiting on them",
+          notes: "wrong program, not offered",
+        },
+        {
+          timestamp: "January 9, 2026 at 18:21:46 UTC",
+          contactOutcome: "Conversation",
+          interestLevel: "Wants to proceed",
+          nextAction: "Follow up later",
+        },
+        {
+          timestamp: "January 9, 2026 at 18:29:35 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Unsure",
+          blocker: "Needs time",
+          nextAction: "Waiting on them",
+          notes: "1515",
+        },
+        {
+          timestamp: "January 9, 2026 at 22:04:15 UTC",
+          contactOutcome: "Conversation",
+          interestLevel: "Unsure",
+          blocker: "Price uncertainty",
+          nextAction: "No follow-up",
+        },
+        {
+          timestamp: "January 9, 2026 at 22:33:02 UTC",
+          contactOutcome: "Conversation",
+          interestLevel: "Unsure",
+          blocker: "Price uncertainty",
+          nextAction: "No follow-up",
+        },
+      ],
       systemState: {
         emoji: "🟡",
         label: "Price-sensitive / Unclear fit",
       },
     },
     {
+      name: "Vanessa Bloomfield",
+      phone: "+18769901701",
+      initialCycle: "January 2026",
+      initialSubmission: "January 9, 2026 at 01:58:22 UTC",
+      contacted: "Yes (brief contact)",
+      currentInterest: "Not interested",
+      primaryBlocker: "Not serious",
+      originalSelection: "Enroll",
+      interactionHistory: [
+        {
+          timestamp: "January 14, 2026 at 19:07:02 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Not interested",
+          blocker: "Not serious",
+          nextAction: "No follow-up",
+        },
+      ],
+      systemState: {
+        emoji: "⚪",
+        label: "Low intent",
+      },
+    },
+    {
       name: "Tyrone Keldo",
       phone: "+18767765264",
       initialCycle: "January 2026",
+      initialSubmission: "January 6, 2026 at 23:00:39 UTC",
       contacted: "Yes (brief only)",
       currentInterest: "Curious but not serious",
       primaryBlocker: "Needs visit",
+      originalSelection: "Enroll",
+      interactionHistory: [
+        {
+          timestamp: "January 9, 2026 at 18:17:11 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Unsure",
+          blocker: "Needs visit",
+          nextAction: "No follow-up",
+          notes: "test",
+        },
+        {
+          timestamp: "January 9, 2026 at 22:34:33 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Curious",
+          blocker: "Not serious",
+          nextAction: "No follow-up",
+        },
+      ],
       systemState: {
         emoji: "⚪",
         label: "Low intent",
@@ -66,35 +172,169 @@ const REPORT_DATA: ReportData = {
       name: "Therese Hendricks",
       phone: "+18768219862",
       initialCycle: "January 2026",
+      initialSubmission: "January 6, 2026 at 16:43:49 UTC",
       requestedCycleChange: "February 2026",
       contacted: "Yes (full conversation)",
       currentInterest: "Wants to proceed",
       primaryBlocker: "None",
+      notes: "Interested in a later date. February",
+      originalSelection: "Enroll",
+      interactionHistory: [
+        {
+          timestamp: "January 9, 2026 at 22:36:06 UTC",
+          contactOutcome: "Conversation",
+          interestLevel: "Wants to proceed",
+          nextAction: "Follow up later",
+          notes: "Interested in a later date. February",
+        },
+      ],
       systemState: {
         emoji: "🟢",
         label: "Strong – Deferred to Feb",
       },
     },
     {
-      name: "Amanda Dunn",
-      phone: "+18763135484",
-      initialCycle: "April 2026",
+      name: "John Lewis",
+      phone: "+18765579703",
+      initialCycle: "January 2026",
+      initialSubmission: "January 6, 2026 at 02:18:08 UTC",
+      originalSelection: "Visit",
+      contacted: "Attempted – not reached",
+      currentInterest: "Unknown",
+      primaryBlocker: "N/A",
+      interactionHistory: [
+        {
+          timestamp: "January 14, 2026 at 19:26:09 UTC",
+          contactOutcome: "Not reached",
+          notReachedReason: "Try again later",
+        },
+      ],
+      systemState: {
+        emoji: "🟡",
+        label: "Pending contact",
+      },
+    },
+    {
+      name: "Zoe Richards",
+      phone: "+18765091348",
+      initialCycle: "January 2026",
+      initialSubmission: "January 5, 2026 at 17:18:49 UTC",
+      originalSelection: "Visit",
+      requestedCycleChange: "February 2026",
       contacted: "Yes (conversation)",
       currentInterest: "Wants to proceed",
       primaryBlocker: "None",
+      notes: "Interested in February 25 intake",
+      interactionHistory: [
+        {
+          timestamp: "January 14, 2026 at 19:07:54 UTC",
+          contactOutcome: "Conversation",
+          interestLevel: "Wants to proceed",
+          nextAction: "Waiting on them",
+          notes: "Interested in February 25 intake",
+        },
+      ],
+      systemState: {
+        emoji: "🟢",
+        label: "Strong – February intake",
+      },
+    },
+    {
+      name: "Amanda Dunn",
+      phone: "+18763135484",
+      initialCycle: "April 2026",
+      initialSubmission: "January 5, 2026 at 07:36:30 UTC",
+      contacted: "Yes (conversation)",
+      currentInterest: "Wants to proceed",
+      primaryBlocker: "None",
+      notes: "Interested in April batch",
+      originalSelection: "Enroll",
+      interactionHistory: [
+        {
+          timestamp: "January 9, 2026 at 22:39:32 UTC",
+          contactOutcome: "Conversation",
+          interestLevel: "Wants to proceed",
+          nextAction: "Follow up later",
+          notes: "Interested in April batch",
+        },
+      ],
       systemState: {
         emoji: "🟢",
         label: "Strong – April intake",
       },
     },
     {
+      name: "Handasyde Ellington",
+      phone: "+18765339478",
+      initialCycle: "April 2026",
+      initialSubmission: "January 2, 2026 at 15:28:19 UTC",
+      contacted: "Yes (brief contact)",
+      currentInterest: "Wants to proceed",
+      primaryBlocker: "None",
+      notes: "Interested in April intake",
+      originalSelection: "Enroll",
+      interactionHistory: [
+        {
+          timestamp: "January 14, 2026 at 19:33:20 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Wants to proceed",
+          nextAction: "Waiting on them",
+          notes: "Interested in April intake",
+        },
+        {
+          timestamp: "January 14, 2026 at 19:33:57 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Wants to proceed",
+          nextAction: "Waiting on them",
+          notes: "Interested in April intake",
+        },
+      ],
+      systemState: {
+        emoji: "🟢",
+        label: "Strong – April intake",
+      },
+    },
+    {
+      name: "Stephnie Beckford",
+      phone: "+18767900587",
+      initialCycle: "April 2026",
+      initialSubmission: "January 2, 2026 at 12:43:45 UTC",
+      contacted: "Yes (brief contact)",
+      currentInterest: "Unsure",
+      primaryBlocker: "Needs time",
+      notes: "She will get back to see if she have the time",
+      originalSelection: "Enroll",
+      interactionHistory: [
+        {
+          timestamp: "January 14, 2026 at 19:38:15 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Unsure",
+          blocker: "Needs time",
+          nextAction: "Waiting on them",
+          notes: "She will get back to see if she have the time",
+        },
+      ],
+      systemState: {
+        emoji: "🟡",
+        label: "Needs time to decide",
+      },
+    },
+    {
       name: "Renard Raymond",
       phone: "+18764370381",
       initialCycle: "January 2026",
+      initialSubmission: "January 2, 2026 at 01:23:23 UTC",
       originalSelection: "Visit",
       contacted: "Attempted – not reached",
       currentInterest: "Unknown",
       primaryBlocker: "N/A",
+      interactionHistory: [
+        {
+          timestamp: "January 9, 2026 at 22:44:37 UTC",
+          contactOutcome: "Not reached",
+          notReachedReason: "Try again later",
+        },
+      ],
       systemState: {
         emoji: "🟡",
         label: "Pending contact",
@@ -104,99 +344,61 @@ const REPORT_DATA: ReportData = {
       name: "Sekunya Bradbury",
       phone: "+18768486845",
       initialCycle: "January 2026",
+      initialSubmission: "January 1, 2026 at 21:55:13 UTC",
       requestedCycleChange: "April 2026",
       contacted: "Yes (brief)",
       currentInterest: "Wants to proceed",
       primaryBlocker: "None",
+      notes: "Interested in April",
+      originalSelection: "Enroll",
+      interactionHistory: [
+        {
+          timestamp: "January 9, 2026 at 22:45:25 UTC",
+          contactOutcome: "Brief contact",
+          interestLevel: "Wants to proceed",
+          nextAction: "Follow up later",
+          notes: "Interested in April",
+        },
+      ],
       systemState: {
         emoji: "🟢",
         label: "Strong – April intake",
-      },
-    },
-  ],
-  leadsWithoutActivity: [
-    {
-      name: "Vanessa Bloomfield",
-      phone: "+18769901701",
-      initialCycle: "January 2026",
-      contacted: "❓ Unknown",
-      currentInterest: "Unknown",
-      primaryBlocker: "N/A",
-      systemState: {
-        emoji: "🔴",
-        label: "No data",
-      },
-    },
-    {
-      name: "John Lewis",
-      phone: "+18765579703",
-      initialCycle: "January 2026 (Visit)",
-      contacted: "❓ Unknown",
-      currentInterest: "Unknown",
-      primaryBlocker: "N/A",
-      systemState: {
-        emoji: "🔴",
-        label: "No data",
-      },
-    },
-    {
-      name: "Zoe Richards",
-      phone: "+18765091348",
-      initialCycle: "January 2026 (Visit)",
-      contacted: "❓ Unknown",
-      currentInterest: "Unknown",
-      primaryBlocker: "N/A",
-      systemState: {
-        emoji: "🔴",
-        label: "No data",
-      },
-    },
-    {
-      name: "Handasyde Ellington",
-      phone: "+18765339478",
-      initialCycle: "April 2026",
-      contacted: "❓ Unknown",
-      currentInterest: "Unknown",
-      primaryBlocker: "N/A",
-      systemState: {
-        emoji: "🔴",
-        label: "No data",
-      },
-    },
-    {
-      name: "Stephnie Beckford",
-      phone: "+18767900587",
-      initialCycle: "April 2026",
-      contacted: "❓ Unknown",
-      currentInterest: "Unknown",
-      primaryBlocker: "N/A",
-      systemState: {
-        emoji: "🔴",
-        label: "No data",
       },
     },
     {
       name: "Odette Leslie-Murphy",
       phone: "+18765250459",
       initialCycle: "January 2026",
-      contacted: "❓ Unknown",
+      initialSubmission: "January 1, 2026 at 21:31:50 UTC",
+      contacted: "Attempted – not reached",
       currentInterest: "Unknown",
       primaryBlocker: "N/A",
+      originalSelection: "Enroll",
+      interactionHistory: [
+        {
+          timestamp: "January 14, 2026 at 19:41:50 UTC",
+          contactOutcome: "Not reached",
+          notReachedReason: "Try again later",
+        },
+      ],
       systemState: {
-        emoji: "🔴",
-        label: "No data",
+        emoji: "🟡",
+        label: "Pending contact",
       },
     },
   ],
+  leadsWithoutActivity: [],
   summary: {
-    strong: 3,
+    strong: 5,
     uncertain: 2,
-    lowIntent: 1,
-    noVisibility: 6,
+    lowIntent: 2,
+    noVisibility: 0,
   },
 };
 
-function getStateColor(state: string): "success" | "warning" | "default" | "danger" {
+function getStateColor(
+  state: string,
+): "success" | "warning" | "default" | "danger" {
   if (state === "🟢") return "success";
   if (state === "🟡") return "warning";
   if (state === "⚪") return "default";
@@ -239,7 +441,9 @@ export default async function LeadsReportPage({ params }: Props) {
             <div className="text-2xl font-bold text-success">
               {REPORT_DATA.summary.strong}
             </div>
-            <div className="text-xs text-default-500">🟢 Strong / Wants to Proceed</div>
+            <div className="text-xs text-default-500">
+              🟢 Strong / Wants to Proceed
+            </div>
           </CardBody>
         </Card>
         <Card>
@@ -247,7 +451,9 @@ export default async function LeadsReportPage({ params }: Props) {
             <div className="text-2xl font-bold text-warning">
               {REPORT_DATA.summary.uncertain}
             </div>
-            <div className="text-xs text-default-500">🟡 Uncertain / Needs clarity</div>
+            <div className="text-xs text-default-500">
+              🟡 Uncertain / Needs clarity
+            </div>
           </CardBody>
         </Card>
         <Card>
@@ -295,7 +501,8 @@ export default async function LeadsReportPage({ params }: Props) {
                   <span className="font-medium">Phone:</span> {lead.phone}
                 </div>
                 <div>
-                  <span className="font-medium">Initial Cycle:</span> {lead.initialCycle}
+                  <span className="font-medium">Initial Cycle:</span>{" "}
+                  {lead.initialCycle}
                 </div>
                 {lead.requestedCycleChange && (
                   <div className="sm:col-span-2">
@@ -309,8 +516,15 @@ export default async function LeadsReportPage({ params }: Props) {
                     {lead.originalSelection}
                   </div>
                 )}
+                {lead.initialSubmission && (
+                  <div className="sm:col-span-2">
+                    <span className="font-medium">Initial Submission:</span>{" "}
+                    {lead.initialSubmission}
+                  </div>
+                )}
                 <div>
-                  <span className="font-medium">Contacted:</span> {lead.contacted}
+                  <span className="font-medium">Contacted:</span>{" "}
+                  {lead.contacted}
                 </div>
                 {lead.engagementLevel && (
                   <div>
@@ -337,6 +551,15 @@ export default async function LeadsReportPage({ params }: Props) {
                   </div>
                 </div>
               )}
+              {lead.interactionHistory &&
+                lead.interactionHistory.length > 0 && (
+                  <div>
+                    <InteractionHistoryModal
+                      leadName={lead.name}
+                      interactionHistory={lead.interactionHistory}
+                    />
+                  </div>
+                )}
             </CardBody>
           </Card>
         ))}
@@ -353,7 +576,8 @@ export default async function LeadsReportPage({ params }: Props) {
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="text-lg font-semibold">
-                    {REPORT_DATA.leadsWithActivity.length + index + 1}. {lead.name}
+                    {REPORT_DATA.leadsWithActivity.length + index + 1}.{" "}
+                    {lead.name}
                   </h3>
                 </div>
                 <Chip
@@ -371,10 +595,12 @@ export default async function LeadsReportPage({ params }: Props) {
                   <span className="font-medium">Phone:</span> {lead.phone}
                 </div>
                 <div>
-                  <span className="font-medium">Cycle:</span> {lead.initialCycle}
+                  <span className="font-medium">Cycle:</span>{" "}
+                  {lead.initialCycle}
                 </div>
                 <div>
-                  <span className="font-medium">Contacted:</span> {lead.contacted}
+                  <span className="font-medium">Contacted:</span>{" "}
+                  {lead.contacted}
                 </div>
                 <div>
                   <span className="font-medium">System State:</span>{" "}
