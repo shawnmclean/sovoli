@@ -4,6 +4,31 @@
 export type LeadSelection = "enroll" | "visit" | "more_information";
 
 /**
+ * Lead interaction from CRM logging
+ */
+export interface LeadInteraction {
+  loggedAt: string;
+  contactOutcome: "not_reached" | "brief_contact" | "conversation";
+  notReachedReason?: "try_again_later" | "invalid_number";
+  interestLevel?: "not_interested" | "curious" | "unsure" | "wants_to_proceed";
+  blocker?:
+    | "different_program"
+    | "timing"
+    | "needs_time"
+    | "needs_approval"
+    | "needs_visit"
+    | "price_uncertainty"
+    | "comparing"
+    | "not_serious";
+  nextAction?:
+    | "follow_up_later"
+    | "visit_scheduled"
+    | "waiting_on_them"
+    | "no_followup";
+  notes?: string;
+}
+
+/**
  * Lead from PostHog "Lead" event for program enrollment
  * Contains all properties sent in the PostHog event
  */
@@ -42,6 +67,8 @@ export interface Lead {
   cycleLabel?: string;
   /** User's selection: enroll, visit, or more_information */
   selection?: LeadSelection;
+  /** Array of interactions logged for this lead */
+  interactions?: LeadInteraction[];
 }
 
 /**

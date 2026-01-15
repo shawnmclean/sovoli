@@ -21,6 +21,7 @@ export interface Lead {
   programId?: string;
   programName?: string;
   cycleLabel?: string;
+  interactions?: LeadInteraction[];
 }
 
 interface LeadInteraction {
@@ -28,19 +29,19 @@ interface LeadInteraction {
   notReachedReason?: "try_again_later" | "invalid_number";
   interestLevel?: "not_interested" | "curious" | "unsure" | "wants_to_proceed";
   blocker?:
-    | "different_program"
-    | "timing"
-    | "needs_time"
-    | "needs_approval"
-    | "needs_visit"
-    | "price_uncertainty"
-    | "comparing"
-    | "not_serious";
+  | "different_program"
+  | "timing"
+  | "needs_time"
+  | "needs_approval"
+  | "needs_visit"
+  | "price_uncertainty"
+  | "comparing"
+  | "not_serious";
   nextAction?:
-    | "follow_up_later"
-    | "visit_scheduled"
-    | "waiting_on_them"
-    | "no_followup";
+  | "follow_up_later"
+  | "visit_scheduled"
+  | "waiting_on_them"
+  | "no_followup";
   notes?: string;
   loggedAt: string;
 }

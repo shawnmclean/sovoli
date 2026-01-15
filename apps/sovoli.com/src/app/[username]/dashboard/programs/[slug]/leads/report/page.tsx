@@ -3,6 +3,13 @@ import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { InteractionHistoryModal } from "./InteractionHistoryModal";
 import type { InteractionHistory } from "./InteractionHistoryModal";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { bus } from "~/services/core/bus";
+import { parseLeadsModule } from "~/modules/data/organisations/utils/parseLeadsModule";
+import type { Program } from "~/modules/academics/types";
+import { categorizeLead } from "../utils/leadCategorization";
+import type { LeadInteraction } from "../utils/leadCategorization";
+import healingEmeraldLeadsData from "~/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json";
 
 interface ReportLead {
   name: string;
@@ -23,378 +30,177 @@ interface ReportLead {
   };
 }
 
-interface ReportData {
-  program: string;
-  asOf: string;
-  leadsWithActivity: ReportLead[];
-  leadsWithoutActivity: ReportLead[];
-  summary: {
-    strong: number;
-    uncertain: number;
-    lowIntent: number;
-    noVisibility: number;
+/**
+ * Helper function to format date for display
+ */
+function formatDate(dateString: string | undefined): string {
+  if (!dateString) return "Unknown";
+  const date = new Date(dateString);
+  return date.toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZone: "UTC",
+    timeZoneName: "short",
+  });
+}
+
+/**
+ * Helper function to format cycle label from cycleId
+ */
+function formatCycleLabel(cycleId: string): string {
+  // Extract date from cycleId like "hew-massage-20260225"
+  const regex = /(\d{4})(\d{2})(\d{2})/;
+  const match = regex.exec(cycleId);
+  const year = match?.[1];
+  const month = match?.[2];
+  if (year && month) {
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const monthName = monthNames[parseInt(month, 10) - 1];
+    return `${monthName} ${year}`;
+  }
+  return cycleId;
+}
+
+/**
+ * Helper function to transform interaction to InteractionHistory format
+ */
+function transformInteraction(
+  interaction: LeadInteraction,
+): InteractionHistory {
+  return {
+    timestamp: formatDate(interaction.loggedAt),
+    contactOutcome: interaction.contactOutcome
+      .split("_")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" "),
+    interestLevel: interaction.interestLevel
+      ? interaction.interestLevel
+          .split("_")
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(" ")
+      : undefined,
+    blocker: interaction.blocker
+      ? interaction.blocker
+          .split("_")
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(" ")
+      : undefined,
+    nextAction: interaction.nextAction
+      ? interaction.nextAction
+          .split("_")
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(" ")
+      : undefined,
+    notReachedReason: interaction.notReachedReason
+      ? interaction.notReachedReason
+          .split("_")
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(" ")
+      : undefined,
+    notes: interaction.notes,
   };
 }
 
-const REPORT_DATA: ReportData = {
-  program: "Massage Therapy Training",
-  asOf: "Jan 15, 2026",
-  leadsWithActivity: [
-    {
-      name: "Fabion Black",
-      phone: "+18768087169",
-      initialCycle: "February 2026",
-      initialSubmission: "January 9, 2026 at 16:16:47 UTC",
-      contacted: "Yes (multiple times)",
-      engagementLevel: "High (9 interactions)",
-      currentInterest: "Unsure",
-      primaryBlocker: "Price uncertainty",
-      notes: "At one point wanted to proceed\nAlso referenced wrong program",
-      originalSelection: "Enroll",
-      interactionHistory: [
-        {
-          timestamp: "January 9, 2026 at 17:54:08 UTC",
-          contactOutcome: "Not reached",
-          notReachedReason: "Try again later",
-        },
-        {
-          timestamp: "January 9, 2026 at 18:00:42 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Curious",
-          blocker: "Not serious",
-          nextAction: "Follow up later",
-          notes: "test",
-        },
-        {
-          timestamp: "January 9, 2026 at 18:07:30 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Curious",
-          blocker: "Needs visit",
-          nextAction: "Waiting on them",
-        },
-        {
-          timestamp: "January 9, 2026 at 18:19:57 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Curious",
-          blocker: "Not serious",
-          nextAction: "Waiting on them",
-          notes: "wrong program, not offered",
-        },
-        {
-          timestamp: "January 9, 2026 at 18:21:46 UTC",
-          contactOutcome: "Conversation",
-          interestLevel: "Wants to proceed",
-          nextAction: "Follow up later",
-        },
-        {
-          timestamp: "January 9, 2026 at 18:29:35 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Unsure",
-          blocker: "Needs time",
-          nextAction: "Waiting on them",
-          notes: "1515",
-        },
-        {
-          timestamp: "January 9, 2026 at 22:04:15 UTC",
-          contactOutcome: "Conversation",
-          interestLevel: "Unsure",
-          blocker: "Price uncertainty",
-          nextAction: "No follow-up",
-        },
-        {
-          timestamp: "January 9, 2026 at 22:33:02 UTC",
-          contactOutcome: "Conversation",
-          interestLevel: "Unsure",
-          blocker: "Price uncertainty",
-          nextAction: "No follow-up",
-        },
-      ],
-      systemState: {
-        emoji: "🟡",
-        label: "Price-sensitive / Unclear fit",
-      },
-    },
-    {
-      name: "Vanessa Bloomfield",
-      phone: "+18769901701",
-      initialCycle: "January 2026",
-      initialSubmission: "January 9, 2026 at 01:58:22 UTC",
-      contacted: "Yes (brief contact)",
-      currentInterest: "Not interested",
-      primaryBlocker: "Not serious",
-      originalSelection: "Enroll",
-      interactionHistory: [
-        {
-          timestamp: "January 14, 2026 at 19:07:02 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Not interested",
-          blocker: "Not serious",
-          nextAction: "No follow-up",
-        },
-      ],
-      systemState: {
-        emoji: "⚪",
-        label: "Low intent",
-      },
-    },
-    {
-      name: "Tyrone Keldo",
-      phone: "+18767765264",
-      initialCycle: "January 2026",
-      initialSubmission: "January 6, 2026 at 23:00:39 UTC",
-      contacted: "Yes (brief only)",
-      currentInterest: "Curious but not serious",
-      primaryBlocker: "Needs visit",
-      originalSelection: "Enroll",
-      interactionHistory: [
-        {
-          timestamp: "January 9, 2026 at 18:17:11 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Unsure",
-          blocker: "Needs visit",
-          nextAction: "No follow-up",
-          notes: "test",
-        },
-        {
-          timestamp: "January 9, 2026 at 22:34:33 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Curious",
-          blocker: "Not serious",
-          nextAction: "No follow-up",
-        },
-      ],
-      systemState: {
-        emoji: "⚪",
-        label: "Low intent",
-      },
-    },
-    {
-      name: "Therese Hendricks",
-      phone: "+18768219862",
-      initialCycle: "January 2026",
-      initialSubmission: "January 6, 2026 at 16:43:49 UTC",
-      requestedCycleChange: "February 2026",
-      contacted: "Yes (full conversation)",
-      currentInterest: "Wants to proceed",
-      primaryBlocker: "None",
-      notes: "Interested in a later date. February",
-      originalSelection: "Enroll",
-      interactionHistory: [
-        {
-          timestamp: "January 9, 2026 at 22:36:06 UTC",
-          contactOutcome: "Conversation",
-          interestLevel: "Wants to proceed",
-          nextAction: "Follow up later",
-          notes: "Interested in a later date. February",
-        },
-      ],
-      systemState: {
-        emoji: "🟢",
-        label: "Strong – Deferred to Feb",
-      },
-    },
-    {
-      name: "John Lewis",
-      phone: "+18765579703",
-      initialCycle: "January 2026",
-      initialSubmission: "January 6, 2026 at 02:18:08 UTC",
-      originalSelection: "Visit",
-      contacted: "Attempted – not reached",
-      currentInterest: "Unknown",
-      primaryBlocker: "N/A",
-      interactionHistory: [
-        {
-          timestamp: "January 14, 2026 at 19:26:09 UTC",
-          contactOutcome: "Not reached",
-          notReachedReason: "Try again later",
-        },
-      ],
-      systemState: {
-        emoji: "🟡",
-        label: "Pending contact",
-      },
-    },
-    {
-      name: "Zoe Richards",
-      phone: "+18765091348",
-      initialCycle: "January 2026",
-      initialSubmission: "January 5, 2026 at 17:18:49 UTC",
-      originalSelection: "Visit",
-      requestedCycleChange: "February 2026",
-      contacted: "Yes (conversation)",
-      currentInterest: "Wants to proceed",
-      primaryBlocker: "None",
-      notes: "Interested in February 25 intake",
-      interactionHistory: [
-        {
-          timestamp: "January 14, 2026 at 19:07:54 UTC",
-          contactOutcome: "Conversation",
-          interestLevel: "Wants to proceed",
-          nextAction: "Waiting on them",
-          notes: "Interested in February 25 intake",
-        },
-      ],
-      systemState: {
-        emoji: "🟢",
-        label: "Strong – February intake",
-      },
-    },
-    {
-      name: "Amanda Dunn",
-      phone: "+18763135484",
-      initialCycle: "April 2026",
-      initialSubmission: "January 5, 2026 at 07:36:30 UTC",
-      contacted: "Yes (conversation)",
-      currentInterest: "Wants to proceed",
-      primaryBlocker: "None",
-      notes: "Interested in April batch",
-      originalSelection: "Enroll",
-      interactionHistory: [
-        {
-          timestamp: "January 9, 2026 at 22:39:32 UTC",
-          contactOutcome: "Conversation",
-          interestLevel: "Wants to proceed",
-          nextAction: "Follow up later",
-          notes: "Interested in April batch",
-        },
-      ],
-      systemState: {
-        emoji: "🟢",
-        label: "Strong – April intake",
-      },
-    },
-    {
-      name: "Handasyde Ellington",
-      phone: "+18765339478",
-      initialCycle: "April 2026",
-      initialSubmission: "January 2, 2026 at 15:28:19 UTC",
-      contacted: "Yes (brief contact)",
-      currentInterest: "Wants to proceed",
-      primaryBlocker: "None",
-      notes: "Interested in April intake",
-      originalSelection: "Enroll",
-      interactionHistory: [
-        {
-          timestamp: "January 14, 2026 at 19:33:20 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Wants to proceed",
-          nextAction: "Waiting on them",
-          notes: "Interested in April intake",
-        },
-        {
-          timestamp: "January 14, 2026 at 19:33:57 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Wants to proceed",
-          nextAction: "Waiting on them",
-          notes: "Interested in April intake",
-        },
-      ],
-      systemState: {
-        emoji: "🟢",
-        label: "Strong – April intake",
-      },
-    },
-    {
-      name: "Stephnie Beckford",
-      phone: "+18767900587",
-      initialCycle: "April 2026",
-      initialSubmission: "January 2, 2026 at 12:43:45 UTC",
-      contacted: "Yes (brief contact)",
-      currentInterest: "Unsure",
-      primaryBlocker: "Needs time",
-      notes: "She will get back to see if she have the time",
-      originalSelection: "Enroll",
-      interactionHistory: [
-        {
-          timestamp: "January 14, 2026 at 19:38:15 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Unsure",
-          blocker: "Needs time",
-          nextAction: "Waiting on them",
-          notes: "She will get back to see if she have the time",
-        },
-      ],
-      systemState: {
-        emoji: "🟡",
-        label: "Needs time to decide",
-      },
-    },
-    {
-      name: "Renard Raymond",
-      phone: "+18764370381",
-      initialCycle: "January 2026",
-      initialSubmission: "January 2, 2026 at 01:23:23 UTC",
-      originalSelection: "Visit",
-      contacted: "Attempted – not reached",
-      currentInterest: "Unknown",
-      primaryBlocker: "N/A",
-      interactionHistory: [
-        {
-          timestamp: "January 9, 2026 at 22:44:37 UTC",
-          contactOutcome: "Not reached",
-          notReachedReason: "Try again later",
-        },
-      ],
-      systemState: {
-        emoji: "🟡",
-        label: "Pending contact",
-      },
-    },
-    {
-      name: "Sekunya Bradbury",
-      phone: "+18768486845",
-      initialCycle: "January 2026",
-      initialSubmission: "January 1, 2026 at 21:55:13 UTC",
-      requestedCycleChange: "April 2026",
-      contacted: "Yes (brief)",
-      currentInterest: "Wants to proceed",
-      primaryBlocker: "None",
-      notes: "Interested in April",
-      originalSelection: "Enroll",
-      interactionHistory: [
-        {
-          timestamp: "January 9, 2026 at 22:45:25 UTC",
-          contactOutcome: "Brief contact",
-          interestLevel: "Wants to proceed",
-          nextAction: "Follow up later",
-          notes: "Interested in April",
-        },
-      ],
-      systemState: {
-        emoji: "🟢",
-        label: "Strong – April intake",
-      },
-    },
-    {
-      name: "Odette Leslie-Murphy",
-      phone: "+18765250459",
-      initialCycle: "January 2026",
-      initialSubmission: "January 1, 2026 at 21:31:50 UTC",
-      contacted: "Attempted – not reached",
-      currentInterest: "Unknown",
-      primaryBlocker: "N/A",
-      originalSelection: "Enroll",
-      interactionHistory: [
-        {
-          timestamp: "January 14, 2026 at 19:41:50 UTC",
-          contactOutcome: "Not reached",
-          notReachedReason: "Try again later",
-        },
-      ],
-      systemState: {
-        emoji: "🟡",
-        label: "Pending contact",
-      },
-    },
-  ],
-  leadsWithoutActivity: [],
-  summary: {
-    strong: 5,
-    uncertain: 2,
-    lowIntent: 2,
-    noVisibility: 0,
-  },
-};
+/**
+ * Helper function to get contacted status string
+ */
+function getContactedStatus(interactions: LeadInteraction[]): string {
+  if (interactions.length === 0) return "No contact";
+  const latest = interactions[0];
+  if (!latest) return "No contact";
+  if (latest.contactOutcome === "not_reached") {
+    return "Attempted – not reached";
+  }
+  if (latest.contactOutcome === "brief_contact") {
+    if (interactions.length === 1) return "Yes (brief contact)";
+    return "Yes (brief only)";
+  }
+  // latest.contactOutcome must be "conversation" at this point
+  if (interactions.length > 1) return "Yes (multiple times)";
+  return "Yes (full conversation)";
+}
+
+/**
+ * Helper function to get current interest from latest interaction
+ */
+function getCurrentInterest(interactions: LeadInteraction[]): string {
+  if (interactions.length === 0) return "Unknown";
+  const latest = interactions[0];
+  if (!latest) return "Unknown";
+  if (latest.interestLevel) {
+    return latest.interestLevel
+      .split("_")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+  }
+  return "Unknown";
+}
+
+/**
+ * Helper function to get primary blocker from latest interaction
+ */
+function getPrimaryBlocker(interactions: LeadInteraction[]): string {
+  if (interactions.length === 0) return "N/A";
+  const latest = interactions[0];
+  if (!latest) return "N/A";
+  if (latest.blocker) {
+    return latest.blocker
+      .split("_")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+  }
+  if (latest.contactOutcome === "not_reached") return "N/A";
+  return "None";
+}
+
+/**
+ * Helper function to extract requested cycle change from notes
+ */
+function getRequestedCycleChange(
+  interactions: LeadInteraction[],
+): string | undefined {
+  for (const interaction of interactions) {
+    if (interaction.notes) {
+      const noteLower = interaction.notes.toLowerCase();
+      if (noteLower.includes("february") || noteLower.includes("feb")) {
+        return "February 2026";
+      }
+      if (noteLower.includes("april")) {
+        return "April 2026";
+      }
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Helper function to aggregate notes from interactions
+ */
+function aggregateNotes(interactions: LeadInteraction[]): string | undefined {
+  const notes = interactions
+    .filter((i) => i.notes)
+    .map((i) => i.notes)
+    .filter((n): n is string => !!n);
+  if (notes.length === 0) return undefined;
+  return notes.join("\n");
+}
 
 function getStateColor(
   state: string,
@@ -418,6 +224,127 @@ export default async function LeadsReportPage({ params }: Props) {
     return notFound();
   }
 
+  // Load org instance and program
+  const result = await bus.queryProcessor.execute(
+    new GetOrgInstanceByUsernameQuery(username),
+  );
+
+  const orgInstance = result.orgInstance;
+  if (!orgInstance?.academicModule) {
+    return notFound();
+  }
+
+  const program = orgInstance.academicModule.programs.find(
+    (p: Program) => p.slug === slug,
+  );
+
+  if (!program) {
+    return notFound();
+  }
+
+  // Load and parse leads data
+  const leadsModule = parseLeadsModule(healingEmeraldLeadsData);
+  const allLeads = leadsModule.leads;
+
+  // Filter leads for this program
+  const programLeads = allLeads.filter((lead) => {
+    if (lead.programId === program.id) return true;
+    if (program.cycles && lead.cycleId) {
+      return program.cycles.some((cycle) => cycle.id === lead.cycleId);
+    }
+    return false;
+  });
+
+  // Transform leads to ReportLead format
+  const reportLeads: ReportLead[] = programLeads.map((lead) => {
+    const rawInteractions = (lead.interactions ?? []) as LeadInteraction[];
+    const interactions: LeadInteraction[] = [...rawInteractions].sort(
+      (a, b) => new Date(b.loggedAt).getTime() - new Date(a.loggedAt).getTime(),
+    );
+
+    const systemState = categorizeLead(lead, interactions);
+
+    // Get cycle label
+    const cycle = program.cycles?.find((c) => c.id === lead.cycleId);
+    const cycleLabel =
+      cycle?.academicCycle.customLabel ??
+      cycle?.academicCycle.globalCycle?.label ??
+      formatCycleLabel(lead.cycleId);
+
+    const contacted = getContactedStatus(interactions);
+    const currentInterest = getCurrentInterest(interactions);
+    const primaryBlocker = getPrimaryBlocker(interactions);
+    const requestedCycleChange = getRequestedCycleChange(interactions);
+    const notes = aggregateNotes(interactions);
+
+    let engagementLevel: string | undefined;
+    if (interactions.length > 1) {
+      engagementLevel = `High (${interactions.length} interactions)`;
+    } else if (interactions.length === 1) {
+      engagementLevel = "1 interaction";
+    }
+
+    return {
+      name: lead.name,
+      phone: lead.phone,
+      initialCycle: cycleLabel,
+      contacted,
+      engagementLevel,
+      currentInterest,
+      primaryBlocker,
+      notes,
+      requestedCycleChange,
+      originalSelection: lead.selection
+        ? lead.selection.charAt(0).toUpperCase() +
+          lead.selection.slice(1).replace(/_/g, " ")
+        : undefined,
+      initialSubmission: formatDate(lead.submittedAt),
+      interactionHistory:
+        interactions.length > 0
+          ? interactions.map(transformInteraction)
+          : undefined,
+      systemState: {
+        emoji: systemState.emoji,
+        label: systemState.label,
+      },
+    };
+  });
+
+  // Separate leads with and without activity
+  const leadsWithActivity = reportLeads.filter(
+    (lead) => lead.interactionHistory && lead.interactionHistory.length > 0,
+  );
+  const leadsWithoutActivity = reportLeads.filter(
+    (lead) => !lead.interactionHistory || lead.interactionHistory.length === 0,
+  );
+
+  // Calculate summary stats from system states
+  const summary = {
+    strong: 0,
+    uncertain: 0,
+    lowIntent: 0,
+    noVisibility: 0,
+  };
+
+  for (const lead of reportLeads) {
+    if (lead.systemState.emoji === "🟢") {
+      summary.strong++;
+    } else if (lead.systemState.emoji === "🟡") {
+      summary.uncertain++;
+    } else if (lead.systemState.emoji === "⚪") {
+      summary.lowIntent++;
+    } else if (lead.systemState.emoji === "🔴") {
+      summary.noVisibility++;
+    }
+  }
+
+  // Get current date for "As of" field
+  const asOf = new Date().toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-6 p-4">
       <div className="space-y-2">
@@ -426,10 +353,10 @@ export default async function LeadsReportPage({ params }: Props) {
         </h1>
         <div className="space-y-1 text-sm text-default-500">
           <p>
-            <span className="font-medium">Program:</span> {REPORT_DATA.program}
+            <span className="font-medium">Program:</span> {program.name}
           </p>
           <p>
-            <span className="font-medium">As of:</span> {REPORT_DATA.asOf}
+            <span className="font-medium">As of:</span> {asOf}
           </p>
         </div>
       </div>
@@ -439,7 +366,7 @@ export default async function LeadsReportPage({ params }: Props) {
         <Card>
           <CardBody className="text-center">
             <div className="text-2xl font-bold text-success">
-              {REPORT_DATA.summary.strong}
+              {summary.strong}
             </div>
             <div className="text-xs text-default-500">
               🟢 Strong / Wants to Proceed
@@ -449,7 +376,7 @@ export default async function LeadsReportPage({ params }: Props) {
         <Card>
           <CardBody className="text-center">
             <div className="text-2xl font-bold text-warning">
-              {REPORT_DATA.summary.uncertain}
+              {summary.uncertain}
             </div>
             <div className="text-xs text-default-500">
               🟡 Uncertain / Needs clarity
@@ -459,7 +386,7 @@ export default async function LeadsReportPage({ params }: Props) {
         <Card>
           <CardBody className="text-center">
             <div className="text-2xl font-bold text-default">
-              {REPORT_DATA.summary.lowIntent}
+              {summary.lowIntent}
             </div>
             <div className="text-xs text-default-500">⚪ Low intent</div>
           </CardBody>
@@ -467,7 +394,7 @@ export default async function LeadsReportPage({ params }: Props) {
         <Card>
           <CardBody className="text-center">
             <div className="text-2xl font-bold text-danger">
-              {REPORT_DATA.summary.noVisibility}
+              {summary.noVisibility}
             </div>
             <div className="text-xs text-default-500">🔴 No visibility</div>
           </CardBody>
@@ -477,7 +404,7 @@ export default async function LeadsReportPage({ params }: Props) {
       {/* Leads With Activity */}
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">Leads With Activity</h2>
-        {REPORT_DATA.leadsWithActivity.map((lead, index) => (
+        {leadsWithActivity.map((lead, index) => (
           <Card key={lead.name}>
             <CardHeader>
               <div className="flex items-start justify-between">
@@ -570,14 +497,13 @@ export default async function LeadsReportPage({ params }: Props) {
         <h2 className="text-xl font-semibold">
           Leads With No Logged Activity (Status Unknown)
         </h2>
-        {REPORT_DATA.leadsWithoutActivity.map((lead, index) => (
+        {leadsWithoutActivity.map((lead, index) => (
           <Card key={lead.name}>
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="text-lg font-semibold">
-                    {REPORT_DATA.leadsWithActivity.length + index + 1}.{" "}
-                    {lead.name}
+                    {leadsWithActivity.length + index + 1}. {lead.name}
                   </h3>
                 </div>
                 <Chip
@@ -623,28 +549,28 @@ export default async function LeadsReportPage({ params }: Props) {
               <span className="text-success">🟢</span>
               <span>
                 <span className="font-medium">Strong / Wants to Proceed:</span>{" "}
-                {REPORT_DATA.summary.strong}
+                {summary.strong}
               </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-warning">🟡</span>
               <span>
                 <span className="font-medium">Uncertain / Needs clarity:</span>{" "}
-                {REPORT_DATA.summary.uncertain}
+                {summary.uncertain}
               </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-default">⚪</span>
               <span>
                 <span className="font-medium">Low intent:</span>{" "}
-                {REPORT_DATA.summary.lowIntent}
+                {summary.lowIntent}
               </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-danger">🔴</span>
               <span>
                 <span className="font-medium">No visibility:</span>{" "}
-                {REPORT_DATA.summary.noVisibility}
+                {summary.noVisibility}
               </span>
             </div>
           </div>

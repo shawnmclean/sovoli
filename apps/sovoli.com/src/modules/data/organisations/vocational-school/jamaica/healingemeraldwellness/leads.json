@@ -7,7 +7,65 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260225",
       "selection": "enroll",
-      "submittedAt": "2026-01-09T16:16:47Z"
+      "submittedAt": "2026-01-09T16:16:47Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-09T17:54:08Z",
+          "contactOutcome": "not_reached",
+          "notReachedReason": "try_again_later"
+        },
+        {
+          "loggedAt": "2026-01-09T18:00:42Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "curious",
+          "blocker": "not_serious",
+          "nextAction": "follow_up_later",
+          "notes": "test"
+        },
+        {
+          "loggedAt": "2026-01-09T18:07:30Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "curious",
+          "blocker": "needs_visit",
+          "nextAction": "waiting_on_them"
+        },
+        {
+          "loggedAt": "2026-01-09T18:19:57Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "curious",
+          "blocker": "not_serious",
+          "nextAction": "waiting_on_them",
+          "notes": "wrong program, not offered"
+        },
+        {
+          "loggedAt": "2026-01-09T18:21:46Z",
+          "contactOutcome": "conversation",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "follow_up_later"
+        },
+        {
+          "loggedAt": "2026-01-09T18:29:35Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "unsure",
+          "blocker": "needs_time",
+          "nextAction": "waiting_on_them",
+          "notes": "1515"
+        },
+        {
+          "loggedAt": "2026-01-09T22:04:15Z",
+          "contactOutcome": "conversation",
+          "interestLevel": "unsure",
+          "blocker": "price_uncertainty",
+          "nextAction": "no_followup"
+        },
+        {
+          "loggedAt": "2026-01-09T22:33:02Z",
+          "contactOutcome": "conversation",
+          "interestLevel": "unsure",
+          "blocker": "price_uncertainty",
+          "nextAction": "no_followup"
+        }
+      ]
     },
     {
       "id": "lead-2",
@@ -16,7 +74,16 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260107",
       "selection": "enroll",
-      "submittedAt": "2026-01-09T01:58:22Z"
+      "submittedAt": "2026-01-09T01:58:22Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-14T19:07:02Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "not_interested",
+          "blocker": "not_serious",
+          "nextAction": "no_followup"
+        }
+      ]
     },
     {
       "id": "lead-3",
@@ -25,7 +92,24 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260107",
       "selection": "enroll",
-      "submittedAt": "2026-01-06T23:00:39Z"
+      "submittedAt": "2026-01-06T23:00:39Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-09T18:17:11Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "unsure",
+          "blocker": "needs_visit",
+          "nextAction": "no_followup",
+          "notes": "test"
+        },
+        {
+          "loggedAt": "2026-01-09T22:34:33Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "curious",
+          "blocker": "not_serious",
+          "nextAction": "no_followup"
+        }
+      ]
     },
     {
       "id": "lead-4",
@@ -34,7 +118,16 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260107",
       "selection": "enroll",
-      "submittedAt": "2026-01-06T16:43:49Z"
+      "submittedAt": "2026-01-06T16:43:49Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-09T22:36:06Z",
+          "contactOutcome": "conversation",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "follow_up_later",
+          "notes": "Interested in a later date. February"
+        }
+      ]
     },
     {
       "id": "lead-5",
@@ -43,7 +136,14 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260107",
       "selection": "visit",
-      "submittedAt": "2026-01-06T02:18:08Z"
+      "submittedAt": "2026-01-06T02:18:08Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-14T19:26:09Z",
+          "contactOutcome": "not_reached",
+          "notReachedReason": "try_again_later"
+        }
+      ]
     },
     {
       "id": "lead-6",
@@ -52,7 +152,16 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260107",
       "selection": "visit",
-      "submittedAt": "2026-01-05T17:18:49Z"
+      "submittedAt": "2026-01-05T17:18:49Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-14T19:07:54Z",
+          "contactOutcome": "conversation",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "waiting_on_them",
+          "notes": "Interested in February 25 intake"
+        }
+      ]
     },
     {
       "id": "lead-7",
@@ -61,7 +170,16 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260415",
       "selection": "enroll",
-      "submittedAt": "2026-01-05T07:36:30Z"
+      "submittedAt": "2026-01-05T07:36:30Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-09T22:39:32Z",
+          "contactOutcome": "conversation",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "follow_up_later",
+          "notes": "Interested in April batch"
+        }
+      ]
     },
     {
       "id": "lead-8",
@@ -70,7 +188,23 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260415",
       "selection": "enroll",
-      "submittedAt": "2026-01-02T15:28:19Z"
+      "submittedAt": "2026-01-02T15:28:19Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-14T19:33:20Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "waiting_on_them",
+          "notes": "Interested in April intake"
+        },
+        {
+          "loggedAt": "2026-01-14T19:33:57Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "waiting_on_them",
+          "notes": "Interested in April intake"
+        }
+      ]
     },
     {
       "id": "lead-9",
@@ -79,7 +213,17 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260415",
       "selection": "enroll",
-      "submittedAt": "2026-01-02T12:43:45Z"
+      "submittedAt": "2026-01-02T12:43:45Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-14T19:38:15Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "unsure",
+          "blocker": "needs_time",
+          "nextAction": "waiting_on_them",
+          "notes": "She will get back to see if she have the time"
+        }
+      ]
     },
     {
       "id": "lead-10",
@@ -88,7 +232,14 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260107",
       "selection": "visit",
-      "submittedAt": "2026-01-02T01:23:23Z"
+      "submittedAt": "2026-01-02T01:23:23Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-09T22:44:37Z",
+          "contactOutcome": "not_reached",
+          "notReachedReason": "try_again_later"
+        }
+      ]
     },
     {
       "id": "lead-12",
@@ -97,7 +248,16 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260107",
       "selection": "enroll",
-      "submittedAt": "2026-01-01T21:55:13Z"
+      "submittedAt": "2026-01-01T21:55:13Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-09T22:45:25Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "follow_up_later",
+          "notes": "Interested in April"
+        }
+      ]
     },
     {
       "id": "lead-13",
@@ -106,7 +266,14 @@
       "programId": "Massage Therapy",
       "cycleId": "hew-massage-20260107",
       "selection": "enroll",
-      "submittedAt": "2026-01-01T21:31:50Z"
+      "submittedAt": "2026-01-01T21:31:50Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-14T19:41:50Z",
+          "contactOutcome": "not_reached",
+          "notReachedReason": "try_again_later"
+        }
+      ]
     }
   ]
 }

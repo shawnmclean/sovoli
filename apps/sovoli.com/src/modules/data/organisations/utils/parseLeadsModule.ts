@@ -7,6 +7,33 @@ import type { LeadsModule, Lead, LeadSelection } from "~/modules/leads/types";
 const leadSelectionSchema = z.enum(["enroll", "visit", "more_information"]);
 
 /**
+ * Zod schema for a lead interaction
+ */
+const leadInteractionSchema = z.object({
+  loggedAt: z.string(),
+  contactOutcome: z.enum(["not_reached", "brief_contact", "conversation"]),
+  notReachedReason: z.enum(["try_again_later", "invalid_number"]).optional(),
+  interestLevel: z.enum(["not_interested", "curious", "unsure", "wants_to_proceed"]).optional(),
+  blocker: z.enum([
+    "different_program",
+    "timing",
+    "needs_time",
+    "needs_approval",
+    "needs_visit",
+    "price_uncertainty",
+    "comparing",
+    "not_serious",
+  ]).optional(),
+  nextAction: z.enum([
+    "follow_up_later",
+    "visit_scheduled",
+    "waiting_on_them",
+    "no_followup",
+  ]).optional(),
+  notes: z.string().optional(),
+});
+
+/**
  * Zod schema for JSON representation of a lead
  */
 const leadJsonSchema = z.object({
@@ -28,6 +55,9 @@ const leadJsonSchema = z.object({
   programName: z.string().optional(),
   cycleLabel: z.string().optional(),
   selection: leadSelectionSchema.optional(),
+
+  // Interactions array
+  interactions: z.array(leadInteractionSchema).optional(),
 });
 
 /**
@@ -71,6 +101,8 @@ export function parseLeadsModule(jsonData: unknown): LeadsModule {
       programName: leadJson.programName,
       cycleLabel: leadJson.cycleLabel,
       selection: leadJson.selection,
+      // Interactions from JSON
+      interactions: leadJson.interactions,
     };
 
     return lead;
