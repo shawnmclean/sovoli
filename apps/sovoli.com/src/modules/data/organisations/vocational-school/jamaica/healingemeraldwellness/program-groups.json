@@ -13,7 +13,13 @@
       "name": "Spa Therapy",
       "description": "Professional spa therapy training programs",
       "order": 2
+    },
+    {
+      "id": "waxing-hair-removal",
+      "slug": "waxing-hair-removal",
+      "name": "Waxing & Hair Removal",
+      "description": "Professional waxing and hair removal training programs",
+      "order": 3
     }
   ]
 }
-

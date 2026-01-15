@@ -29,7 +29,7 @@
       "id": "waxing-20260119",
       "customLabel": "Waxing Program - January 2026",
       "startDate": "2026-01-19",
-      "endDate": "2026-04-19"
+      "endDate": "2026-02-16"
     },
     {
       "id": "threading-20260120",
@@ -266,13 +266,35 @@
     {
       "id": "waxing-20260119",
       "academicCycleId": "waxing-20260119",
+      "teacherSlugs": ["alicia-davis"],
+      "capacity": 2,
+      "enrolled": 0,
       "pricingPackage": {
-        "pricingItems": [],
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 3000
+            },
+            "notes": "Non-refundable registration fee. Covers administrative processing, course setup, and student onboarding."
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "one-time",
+            "amount": {
+              "JMD": 50000
+            }
+          }
+        ],
         "discounts": [],
         "paymentSplits": []
       },
       "status": "open",
-      "enrolled": 0,
       "_source": "HEW-Programs-extraction.json",
       "_addedAt": "2026-01-14T15:08:55.637Z"
     },

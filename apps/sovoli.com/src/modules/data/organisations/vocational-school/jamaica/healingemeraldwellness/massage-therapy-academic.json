@@ -223,16 +223,324 @@
       ]
     },
     {
-      "name": "Waxing Program",
-      "id": "program-1",
-      "slug": "waxing",
-      "_addedAt": "2026-01-14T15:08:55.619Z",
-      "_source": "HEW-Programs-extraction.json",
+      "id": "hew-waxing-program",
+      "slug": "waxing-program",
+      "name": "Professional Waxing Program",
+      "audience": "student",
+      "quickFacts": [
+        "4-Week Program",
+        "Mondays Only",
+        "Hands-On Training",
+        "Certificate Included"
+      ],
+      "highlights": [
+        {
+          "icon": "hammer",
+          "label": "Hands-On Learning",
+          "description": "Practice full-body waxing techniques on real clients in a professional spa environment with both hard and soft wax methods."
+        },
+        {
+          "icon": "clock",
+          "label": "Focused Schedule",
+          "description": "Convenient Monday evening classes (6:00 PM - 9:00 PM) designed to fit into your busy schedule."
+        },
+        {
+          "icon": "badge-check",
+          "label": "Certificate Included",
+          "description": "Receive a professional certificate upon successful completion of the program."
+        },
+        {
+          "icon": "graduation-cap",
+          "label": "Career Ready",
+          "description": "Graduate with the skills needed to work in spas, salons, or start your own waxing practice."
+        }
+      ],
+      "tagline": "Master professional waxing techniques for full-body hair removal",
+      "outcome": "Become a certified waxing specialist ready for professional practice in spa or salon environments",
+      "description": "The Professional Waxing Program is designed to equip learners with the theoretical knowledge, technical skills, and professional standards required to perform safe, effective, and high-quality waxing services in a spa or salon environment. This program blends hands-on practical training with essential theory, sanitation, client care, and customer service competencies aligned with spa therapy standards. Program runs for 4 weeks, meeting Mondays from 6:00 PM – 9:00 PM.",
+      "capabilities": [
+        {
+          "outcome": "Apply **Spa Therapy & Professional Practice** standards to waxing services",
+          "competencies": [
+            {
+              "statement": "Meet and greet clients professionally"
+            },
+            {
+              "statement": "Conduct professional client consultations"
+            },
+            {
+              "statement": "Identify contraindications to waxing services"
+            },
+            {
+              "statement": "Provide appropriate before and after care advice"
+            },
+            {
+              "statement": "Maintain professional ethics and conduct"
+            },
+            {
+              "statement": "Apply client education for post-treatment care"
+            }
+          ]
+        },
+        {
+          "outcome": "Perform **Hard Wax** techniques safely and effectively",
+          "competencies": [
+            {
+              "statement": "Understand the properties and applications of hard wax"
+            },
+            {
+              "statement": "Properly heat and prepare hard wax"
+            },
+            {
+              "statement": "Apply hard wax correctly to different body areas"
+            },
+            {
+              "statement": "Remove hard wax with proper technique"
+            }
+          ]
+        },
+        {
+          "outcome": "Perform **Soft Wax** techniques safely and effectively",
+          "competencies": [
+            {
+              "statement": "Understand the properties and applications of soft wax"
+            },
+            {
+              "statement": "Properly heat and prepare soft wax"
+            },
+            {
+              "statement": "Apply soft wax with strips correctly"
+            },
+            {
+              "statement": "Remove soft wax strips with proper technique"
+            }
+          ]
+        },
+        {
+          "outcome": "Perform **Full Body Waxing Procedures** on all treatment areas",
+          "competencies": [
+            {
+              "statement": "Perform Full Leg Wax safely and effectively"
+            },
+            {
+              "statement": "Perform Full Arm Wax safely and effectively"
+            },
+            {
+              "statement": "Perform Brazilian Wax with professional technique and client comfort"
+            },
+            {
+              "statement": "Perform Bikini Wax safely and effectively"
+            },
+            {
+              "statement": "Perform Underarm Wax safely and effectively"
+            },
+            {
+              "statement": "Perform Full Face Wax including eyebrows with precision"
+            },
+            {
+              "statement": "Perform Back Wax safely and effectively"
+            },
+            {
+              "statement": "Perform Tummy Wax safely and effectively"
+            }
+          ]
+        },
+        {
+          "outcome": "Maintain **Safe, Clean and Efficient Work Environment**",
+          "competencies": [
+            {
+              "statement": "Maintain a Safe, Clean and Efficient Work Environment – CSBCOR0011A"
+            },
+            {
+              "statement": "Set up waxing treatment areas efficiently"
+            },
+            {
+              "statement": "Perform post-treatment sanitization procedures"
+            },
+            {
+              "statement": "Follow infection control protocols"
+            },
+            {
+              "statement": "Maintain workspace organization and hygiene standards"
+            }
+          ]
+        },
+        {
+          "outcome": "Prepare clients for waxing treatment services",
+          "competencies": [
+            {
+              "statement": "Prepare clients for waxing treatment services"
+            },
+            {
+              "statement": "Assess client needs and skin conditions"
+            },
+            {
+              "statement": "Position clients appropriately for different waxing procedures"
+            }
+          ]
+        },
+        {
+          "outcome": "Plan and organize waxing work",
+          "competencies": [
+            {
+              "statement": "Plan and Organize Work – CSBCOR0021A"
+            },
+            {
+              "statement": "Schedule and manage waxing treatment sessions"
+            },
+            {
+              "statement": "Organize supplies and equipment for treatments"
+            }
+          ]
+        },
+        {
+          "outcome": "Deliver quality customer service and maintain client relations",
+          "competencies": [
+            {
+              "statement": "Receive and Direct Clients – CSBCOS0002A"
+            },
+            {
+              "statement": "Deliver Quality Service to Customers – CSBCOR0041A"
+            },
+            {
+              "statement": "Maintain Customer Relations – CSBCOR0003A"
+            },
+            {
+              "statement": "Perform Interactive Workplace Communication – CSBCOR0001A"
+            },
+            {
+              "statement": "Build client trust through professional service"
+            }
+          ]
+        },
+        {
+          "outcome": "Apply **Solution Sales 101** for upselling and client retention",
+          "competencies": [
+            {
+              "statement": "Solution Sales 101 (Upselling & Client Retention)"
+            },
+            {
+              "statement": "Recommend appropriate waxing services based on client needs"
+            },
+            {
+              "statement": "Upsell additional services effectively"
+            }
+          ]
+        }
+      ],
+      "certification": {
+        "description": "Receive a certificate of participation upon successful completion of the program."
+      },
+      "groupId": "waxing-hair-removal",
       "cycleIds": ["waxing-20260119"],
       "media": {
         "coverId": "hew-waxing-hero",
         "galleryIds": ["hew-waxing-hero"]
-      }
+      },
+      "requirements": [
+        {
+          "name": "Supply List",
+          "category": "materials",
+          "audience": "student",
+          "items": [
+            {
+              "itemId": "double-wax-pot-warmer",
+              "notes": "Double wax pot/warmer (soft & hard wax)"
+            },
+            {
+              "itemId": "wax-strips-calico",
+              "quantity": 1,
+              "notes": "Wax strips / Calico (1 yard)"
+            },
+            {
+              "itemId": "twin-size-flat-sheets-dark",
+              "quantity": 2,
+              "notes": "2 Flat Sheets"
+            },
+            {
+              "itemId": "supply-paper-towel",
+              "quantity": 1,
+              "notes": "1 Roll Paper Towel"
+            },
+            {
+              "itemId": "soft-wax",
+              "notes": "Soft & Hard Wax (all-purpose / chocolate / honey)"
+            },
+            {
+              "itemId": "hard-wax",
+              "notes": "Soft & Hard Wax (all-purpose / chocolate / honey)"
+            },
+            {
+              "itemId": "cotton",
+              "notes": "Cotton"
+            },
+            {
+              "itemId": "tweezers",
+              "notes": "Tweezers"
+            },
+            {
+              "itemId": "spoolie-brush",
+              "notes": "Spoolie Brush"
+            },
+            {
+              "itemId": "brow-scissors",
+              "notes": "Brow Scissors"
+            },
+            {
+              "itemId": "powder",
+              "notes": "Powder"
+            },
+            {
+              "itemId": "wax-spatula-small",
+              "notes": "Assorted Spatulas - Small (eyebrows/face)"
+            },
+            {
+              "itemId": "wax-spatula-medium",
+              "notes": "Assorted Spatulas - Medium (bikini/underarms)"
+            },
+            {
+              "itemId": "wax-spatula-large",
+              "notes": "Assorted Spatulas - Large (legs/back)"
+            },
+            {
+              "itemId": "wax-remover-oil",
+              "notes": "Wax remover / Oil"
+            },
+            {
+              "itemId": "alcohol-disinfectant",
+              "notes": "Alcohol"
+            },
+            {
+              "itemId": "spray-bottle",
+              "notes": "Spray Bottle"
+            },
+            {
+              "itemId": "disposable-gloves",
+              "notes": "Disposable gloves"
+            },
+            {
+              "itemId": "trash-bags",
+              "notes": "Trash Bags"
+            },
+            {
+              "itemId": "large-bath-towels-dark",
+              "notes": "Towels (small & large for full leg and arm draping)"
+            },
+            {
+              "itemId": "small-face-towels-dark",
+              "notes": "Towels (small & large for full leg and arm draping)"
+            },
+            {
+              "itemId": "aloe-vera-gel",
+              "notes": "Aloe Vera Gel (optional – post-wax soothing)"
+            },
+            {
+              "itemId": "small-mirror",
+              "notes": "Small Mirror (for precision, brow shaping & client consultation)"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "Threading Program",
