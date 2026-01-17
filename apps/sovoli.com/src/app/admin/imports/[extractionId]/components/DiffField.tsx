@@ -33,7 +33,7 @@ export function DiffField({
     if (label) return label;
 
     // Convert field path like "locations[0].address.line1" to "Location 1 - Address Line 1"
-    const parts = diff.field.split(/[\.\[\]]/).filter(Boolean);
+    const parts = diff.field.split(/[.[\]]/).filter(Boolean);
     const readable = parts.map((part, index) => {
       // If it's a number, it's an array index
       if (!Number.isNaN(Number(part))) {
@@ -68,6 +68,15 @@ export function DiffField({
     }
   };
 
+  // Helper to safely stringify oldValue
+  const getOldValuePlaceholder = () => {
+    if (diff.oldValue === null || diff.oldValue === undefined) return "";
+    if (typeof diff.oldValue === "string" || typeof diff.oldValue === "number" || typeof diff.oldValue === "boolean") {
+      return String(diff.oldValue);
+    }
+    return "";
+  };
+
   // Handle different value types - only show simple inputs, no JSON
   const renderValue = () => {
     if (value === null || value === undefined) {
@@ -76,7 +85,7 @@ export function DiffField({
           value=""
           onChange={(e) => onChange(e.target.value)}
           className={getBgColor()}
-          placeholder={diff.oldValue ? String(diff.oldValue) : ""}
+          placeholder={getOldValuePlaceholder()}
           disabled={!selected}
         />
       );
@@ -88,7 +97,7 @@ export function DiffField({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className={getBgColor()}
-          placeholder={diff.oldValue ? String(diff.oldValue) : ""}
+          placeholder={getOldValuePlaceholder()}
           disabled={!selected}
         />
       );
@@ -101,7 +110,7 @@ export function DiffField({
           value={String(value)}
           onChange={(e) => onChange(Number(e.target.value))}
           className={getBgColor()}
-          placeholder={diff.oldValue ? String(diff.oldValue) : ""}
+          placeholder={getOldValuePlaceholder()}
           disabled={!selected}
         />
       );
@@ -124,7 +133,7 @@ export function DiffField({
         value={String(value)}
         onChange={(e) => onChange(e.target.value)}
         className={getBgColor()}
-        placeholder={diff.oldValue ? String(diff.oldValue) : ""}
+        placeholder={getOldValuePlaceholder()}
         disabled={!selected}
       />
     );
@@ -161,7 +170,7 @@ export function DiffField({
       {renderValue()}
       {diff.oldValue !== undefined && diff.type === "update" && (
         <p className="text-xs text-muted-foreground">
-          Previous: {String(diff.oldValue)}
+          Previous: {getOldValuePlaceholder()}
         </p>
       )}
     </div>

@@ -182,7 +182,7 @@ export function ProgramLeadCard({
                         <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
                             Cycle
                         </span>
-                        <span className="text-foreground">{lead.cycleLabel || "Unknown"}</span>
+                        <span className="text-foreground">{lead.cycleLabel ?? "Unknown"}</span>
                     </div>
                     <div>
                         <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
@@ -208,7 +208,7 @@ export function ProgramLeadCard({
                                 latestInteraction.contactOutcome === "conversation" ? "Conversation" : "Brief contact"}
                         </div>
                         <div className="text-default-500 line-clamp-2">
-                            {latestInteraction.notes || (latestInteraction.blocker ? `Blocker: ${latestInteraction.blocker.replace(/_/g, " ")}` : "No notes logged.")}
+                            {latestInteraction.notes ?? (latestInteraction.blocker ? `Blocker: ${latestInteraction.blocker.replace(/_/g, " ")}` : "No notes logged.")}
                         </div>
 
                         {interactions.length > 1 && (

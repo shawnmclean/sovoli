@@ -8,8 +8,7 @@ import { CycleScheduleField } from "./CycleScheduleField";
 import { CyclePricingField } from "./CyclePricingField";
 import { useProgramDiff } from "../hooks/useProgramDiff";
 import { getNestedValue } from "../utils/object-utils";
-import { extractStartDate } from "../../utils/cycle-utils";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { ProgramEvidence } from "../../types/lead-extraction-schema";
 
 interface ProgramDiffViewProps {
@@ -18,8 +17,8 @@ interface ProgramDiffViewProps {
   oldProgram: Record<string, unknown> | null;
   oldProgramId?: string | null;
   newProgram: Record<string, unknown>;
-  matchedPrograms?: Array<{ id: string; name: string; score: number }> | null;
-  allExistingPrograms?: Array<{ id: string; name: string }>;
+  matchedPrograms?: { id: string; name: string; score: number }[] | null;
+  allExistingPrograms?: { id: string; name: string }[];
   schedule?: { dates?: string[] } | null;
   pricing?: Record<string, unknown> | null;
   onChange: (
@@ -48,7 +47,6 @@ export function ProgramDiffView({
     targetProgramId,
     selectedFields,
     allDiffs,
-    isNew,
     isMatched,
     handleFieldChange,
     handleFieldSelection,
@@ -85,14 +83,20 @@ export function ProgramDiffView({
   };
 
   // Update edited schedule/pricing when props change
+  // Use refs to track if we've initialized to avoid setting state in effect
+  const scheduleInitialized = useRef(false);
+  const pricingInitialized = useRef(false);
+  
   useEffect(() => {
-    if (schedule) {
+    if (schedule && !scheduleInitialized.current) {
       setEditedSchedule(schedule);
       setScheduleSelected(true);
+      scheduleInitialized.current = true;
     }
-    if (pricing) {
+    if (pricing && !pricingInitialized.current) {
       setEditedPricing(pricing);
       setPricingSelected(true);
+      pricingInitialized.current = true;
     }
   }, [schedule, pricing]);
 
@@ -129,6 +133,7 @@ export function ProgramDiffView({
     isSelected,
     action,
     handleFieldChange,
+    editedProgram,
   ]);
 
   return (
@@ -144,7 +149,7 @@ export function ProgramDiffView({
           </div>
           {isMatched && matchedPrograms && matchedPrograms.length > 0 && (
             <span className="text-xs px-2 py-1 rounded bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-              Matched ({matchedPrograms[0]!.score.toFixed(2)})
+              Matched ({matchedPrograms[0]?.score.toFixed(2) ?? "0.00"})
             </span>
           )}
         </div>

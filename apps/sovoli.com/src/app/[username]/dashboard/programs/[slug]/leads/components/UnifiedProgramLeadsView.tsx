@@ -4,9 +4,11 @@ import { useState, useMemo } from "react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { Lead } from "../../../../components/LeadsTable";
 import { LeadInteractionModal } from "../../../../components/LeadInteractionModal";
-import { LeadsSummaryCards, type LeadsSummaryStats } from "./LeadsSummaryCards";
+import type { LeadsSummaryStats } from "./LeadsSummaryCards";
+import { LeadsSummaryCards } from "./LeadsSummaryCards";
 import { ProgramLeadCard } from "./ProgramLeadCard";
-import { categorizeLead, type LeadInteraction, type SystemState } from "../utils/leadCategorization";
+import type { LeadInteraction } from "../utils/leadCategorization";
+import { categorizeLead } from "../utils/leadCategorization";
 
 interface UnifiedProgramLeadsViewProps {
     initialLeads: Lead[];
@@ -17,7 +19,6 @@ interface UnifiedProgramLeadsViewProps {
 export function UnifiedProgramLeadsView({
     initialLeads,
     orgInstance,
-    programName
 }: UnifiedProgramLeadsViewProps) {
     // Initialize interactions from JSON data (if present in leads)
     const initialInteractions: Record<string, LeadInteraction[]> = {};
@@ -40,7 +41,7 @@ export function UnifiedProgramLeadsView({
     // Computed data for every lead
     const processedLeads = useMemo(() => {
         return initialLeads.map((lead) => {
-            const interactions = leadInteractions[lead.id] || [];
+            const interactions = leadInteractions[lead.id] ?? [];
             // Sort interactions so newest is first
             const sortedInteractions = [...interactions].sort(
                 (a, b) => new Date(b.loggedAt).getTime() - new Date(a.loggedAt).getTime()
@@ -66,10 +67,12 @@ export function UnifiedProgramLeadsView({
         };
 
         for (const lead of processedLeads) {
-            if (lead.systemState.category === "strong") s.strong++;
-            else if (lead.systemState.category === "uncertain") s.uncertain++;
-            else if (lead.systemState.category === "lowIntent") s.lowIntent++;
-            else if (lead.systemState.category === "noVisibility") s.noVisibility++;
+            const category = lead.systemState.category;
+            if (category === "strong") s.strong++;
+            else if (category === "uncertain") s.uncertain++;
+            else if (category === "lowIntent") s.lowIntent++;
+            else if (category === "noVisibility") s.noVisibility++;
+            // All categories are handled above, this is exhaustive
         }
 
         return s;
@@ -94,14 +97,13 @@ export function UnifiedProgramLeadsView({
         setIsModalOpen(true);
     };
 
-    const handleSaveInteraction = (interaction: any) => { // Type as any to match LeadInteractionModal signature slightly differing
+    const handleSaveInteraction = (interaction: LeadInteraction) => {
         if (!selectedLeadId) return;
 
-        // Force cast or transform if needed. Assuming compatibility.
-        const newInteraction = interaction as LeadInteraction; // Cast for now
+        const newInteraction = interaction;
 
         setLeadInteractions(prev => {
-            const existing = prev[selectedLeadId] || [];
+            const existing = prev[selectedLeadId] ?? [];
             return {
                 ...prev,
                 [selectedLeadId]: [newInteraction, ...existing]
@@ -179,7 +181,7 @@ export function UnifiedProgramLeadsView({
                     orgInstance={orgInstance}
                     isOpen={isModalOpen}
                     onOpenChange={setIsModalOpen}
-                    // @ts-ignore - aligning types between local def and modal export
+                    // @ts-expect-error - aligning types between local def and modal export
                     onSave={handleSaveInteraction}
                 />
             )}

@@ -22,11 +22,11 @@ export interface LeadInteraction {
     loggedAt: string;
 }
 
-export type SystemState = {
+export interface SystemState {
     emoji: "🟢" | "🟡" | "⚪" | "🔴";
     label: string;
     category: "strong" | "uncertain" | "lowIntent" | "noVisibility";
-};
+}
 
 export function categorizeLead(
     lead: Lead,
@@ -73,7 +73,7 @@ export function categorizeLead(
         };
     }
 
-    const noteLower = latestInteraction.notes?.toLowerCase() || "";
+    const noteLower = latestInteraction.notes?.toLowerCase() ?? "";
 
     // Strong / Wants to Proceed
     if (latestInteraction.interestLevel === "wants_to_proceed") {

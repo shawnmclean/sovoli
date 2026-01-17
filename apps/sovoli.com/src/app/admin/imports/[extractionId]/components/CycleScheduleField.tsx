@@ -25,12 +25,12 @@ export function CycleScheduleField({
   const fieldId = useId();
   const checkboxId = `schedule-${fieldId}`;
 
-  if (!schedule || !schedule.dates || schedule.dates.length === 0) {
+  if (!schedule?.dates || schedule.dates.length === 0) {
     return null;
   }
 
   // Get the first date as the start date
-  const firstDate = schedule.dates[0] || "";
+  const firstDate = schedule.dates[0] ?? "";
   const parsedDate = extractStartDate(schedule);
 
   // Get current value - prefer value, then parsed date, then original date
@@ -39,26 +39,28 @@ export function CycleScheduleField({
   if (value?.dates?.[0]) {
     const val = value.dates[0];
     // Check if it's already in YYYY-MM-DD format
-    if (val.match(/^\d{4}-\d{2}-\d{2}$/)) {
+    const dateMatch = /^\d{4}-\d{2}-\d{2}$/.exec(val);
+    if (dateMatch) {
       currentDate = val;
     } else {
       // Try to parse it
       const parsed = parseExtractionDate(val);
-      currentDate = parsed || val;
+      currentDate = parsed ?? val;
     }
   } else if (parsedDate) {
     currentDate = parsedDate;
   } else if (firstDate) {
     // Try to parse the original date string
     const parsed = parseExtractionDate(firstDate);
-    currentDate = parsed || "";
+    currentDate = parsed ?? "";
   }
 
   const handleDateChange = (newDate: string) => {
     if (newDate) {
       // If it's a date input (YYYY-MM-DD), use it directly
       // Otherwise, try to parse it
-      if (newDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      const dateMatch = /^\d{4}-\d{2}-\d{2}$/.exec(newDate);
+      if (dateMatch) {
         onChange({ dates: [newDate] });
       } else {
         // Try to parse the date string

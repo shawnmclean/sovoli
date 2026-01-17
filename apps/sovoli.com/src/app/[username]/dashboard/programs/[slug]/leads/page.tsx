@@ -28,7 +28,7 @@ export default async function ProgramLeadsPage({ params }: Props) {
     }
 
     // 2. Find Program
-    const program = orgInstance.academicModule?.programs?.find(
+    const program = orgInstance.academicModule?.programs.find(
         (p: Program) => p.slug === slug
     );
 
@@ -53,7 +53,7 @@ export default async function ProgramLeadsPage({ params }: Props) {
         if (lead.programId === program.id) return true;
 
         if (program.cycles && lead.cycleId) {
-            return program.cycles.some((cycle: any) => cycle.id === lead.cycleId);
+            return program.cycles.some((cycle) => cycle.id === lead.cycleId);
         }
 
         return false;

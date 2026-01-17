@@ -2,7 +2,8 @@
 
 import { Card } from "@sovoli/ui/components/card";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
-import { PROGRAM_SUFFIXES, type ProgramSuffix, replaceSuffix } from "../utils/suffix-utils";
+import { PROGRAM_SUFFIXES } from "../utils/suffix-utils";
+import type { ProgramSuffix } from "../utils/suffix-utils";
 
 interface ProgramConfigurationProps {
   selectedSuffix: ProgramSuffix | null;

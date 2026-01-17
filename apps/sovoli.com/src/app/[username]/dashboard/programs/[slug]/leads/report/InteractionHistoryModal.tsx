@@ -50,7 +50,7 @@ export function InteractionHistoryModal({
         size="2xl"
       >
         <ModalContent>
-          {(onClose) => (
+          {() => (
             <>
               <ModalHeader className="flex flex-col gap-1">
                 <h2 className="text-2xl font-semibold">

@@ -29,7 +29,7 @@ export function CyclePricingField({
     return null;
   }
 
-  const currentPricing = value || pricing;
+  const currentPricing = value ?? pricing;
 
   const updatePricingItem = (
     type: "registration" | "tuition" | "materials",
@@ -38,12 +38,13 @@ export function CyclePricingField({
     newValue: string,
   ) => {
     const updated = { ...currentPricing };
-    const items = updated[type] || [];
+    const items = updated[type] ?? [];
     const updatedItems = [...items];
     
-    if (updatedItems[index]) {
+    const item = updatedItems[index];
+    if (item) {
       updatedItems[index] = {
-        ...updatedItems[index]!,
+        ...item,
         [field]: newValue,
       };
       updated[type] = updatedItems;
@@ -53,7 +54,7 @@ export function CyclePricingField({
 
   const addPricingItem = (type: "registration" | "tuition" | "materials") => {
     const updated = { ...currentPricing };
-    const items = updated[type] || [];
+    const items = updated[type] ?? [];
     updated[type] = [
       ...items,
       {
@@ -71,7 +72,7 @@ export function CyclePricingField({
     index: number,
   ) => {
     const updated = { ...currentPricing };
-    const items = updated[type] || [];
+    const items = updated[type] ?? [];
     const updatedItems = items.filter((_, i) => i !== index);
     if (updatedItems.length === 0) {
       delete updated[type];
@@ -82,9 +83,9 @@ export function CyclePricingField({
   };
 
   const hasAnyPricing =
-    (currentPricing.registration && currentPricing.registration.length > 0) ||
-    (currentPricing.tuition && currentPricing.tuition.length > 0) ||
-    (currentPricing.materials && currentPricing.materials.length > 0);
+    (currentPricing.registration?.length ?? 0) > 0 ||
+    (currentPricing.tuition?.length ?? 0) > 0 ||
+    (currentPricing.materials?.length ?? 0) > 0;
 
   if (!hasAnyPricing) {
     return null;
@@ -134,7 +135,7 @@ export function CyclePricingField({
                   <div className="flex-1 space-y-2">
                     <Input
                       placeholder="Label (e.g., Registration Fee)"
-                      value={item.label || ""}
+                      value={item.label ?? ""}
                       onChange={(e) =>
                         updatePricingItem("registration", index, "label", e.target.value)
                       }
@@ -143,17 +144,17 @@ export function CyclePricingField({
                     />
                     <Input
                       placeholder="Amount (e.g., $5000 or 5000)"
-                      value={item.amount || ""}
+                      value={item.amount ?? ""}
                       onChange={(e) =>
                         updatePricingItem("registration", index, "amount", e.target.value)
                       }
                       disabled={!selected}
                       className="bg-white dark:bg-gray-900"
                     />
-                    {item.notes && (
-                      <Input
-                        placeholder="Notes (optional)"
-                        value={item.notes || ""}
+                    {item.notes ? (
+                    <Input
+                      placeholder="Notes (optional)"
+                      value={item.notes}
                         onChange={(e) =>
                           updatePricingItem("registration", index, "notes", e.target.value)
                         }
@@ -201,7 +202,7 @@ export function CyclePricingField({
                   <div className="flex-1 space-y-2">
                     <Input
                       placeholder="Label (e.g., Tuition Fee)"
-                      value={item.label || ""}
+                      value={item.label ?? ""}
                       onChange={(e) =>
                         updatePricingItem("tuition", index, "label", e.target.value)
                       }
@@ -217,10 +218,10 @@ export function CyclePricingField({
                       disabled={!selected}
                       className="bg-white dark:bg-gray-900"
                     />
-                    {item.notes && (
-                      <Input
-                        placeholder="Notes (optional)"
-                        value={item.notes || ""}
+                    {item.notes ? (
+                    <Input
+                      placeholder="Notes (optional)"
+                      value={item.notes}
                         onChange={(e) =>
                           updatePricingItem("tuition", index, "notes", e.target.value)
                         }
@@ -268,7 +269,7 @@ export function CyclePricingField({
                   <div className="flex-1 space-y-2">
                     <Input
                       placeholder="Label (e.g., Materials Fee)"
-                      value={item.label || ""}
+                      value={item.label ?? ""}
                       onChange={(e) =>
                         updatePricingItem("materials", index, "label", e.target.value)
                       }
@@ -277,17 +278,17 @@ export function CyclePricingField({
                     />
                     <Input
                       placeholder="Amount (e.g., $5000 or 5000)"
-                      value={item.amount || ""}
+                      value={item.amount ?? ""}
                       onChange={(e) =>
                         updatePricingItem("materials", index, "amount", e.target.value)
                       }
                       disabled={!selected}
                       className="bg-white dark:bg-gray-900"
                     />
-                    {item.notes && (
-                      <Input
-                        placeholder="Notes (optional)"
-                        value={item.notes || ""}
+                    {item.notes ? (
+                    <Input
+                      placeholder="Notes (optional)"
+                      value={item.notes}
                         onChange={(e) =>
                           updatePricingItem("materials", index, "notes", e.target.value)
                         }
@@ -317,25 +318,6 @@ export function CyclePricingField({
                 </button>
               )}
             </div>
-          </div>
-        )}
-
-        {!hasAnyPricing && selected && (
-          <div className="space-y-2">
-            <button
-              type="button"
-              onClick={() => addPricingItem("registration")}
-              className="text-xs text-blue-600 hover:text-blue-800"
-            >
-              + Add Registration Fee
-            </button>
-            <button
-              type="button"
-              onClick={() => addPricingItem("tuition")}
-              className="text-xs text-blue-600 hover:text-blue-800 block"
-            >
-              + Add Tuition
-            </button>
           </div>
         )}
       </div>

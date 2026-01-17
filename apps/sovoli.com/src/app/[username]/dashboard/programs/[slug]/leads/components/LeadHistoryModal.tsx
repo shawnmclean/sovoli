@@ -107,7 +107,7 @@ export function LeadHistoryModal({
                                                     </div>
                                                 </div>
 
-                                                {(interaction.interestLevel || interaction.nextAction) && (
+                                                {(interaction.interestLevel ?? interaction.nextAction) && (
                                                     <div className="flex gap-2 flex-wrap">
                                                         {interaction.interestLevel && (
                                                             <span className="text-[10px] bg-default-100 px-2 py-0.5 rounded-full font-medium text-default-600 border border-default-200 uppercase tracking-wide">
@@ -124,7 +124,7 @@ export function LeadHistoryModal({
 
                                                 <div className={`text-sm p-3 rounded-lg ${isLatest ? "bg-default-50 text-foreground" : "bg-transparent text-default-500 pl-0 pt-1"
                                                     }`}>
-                                                    {interaction.notes ||
+                                                    {interaction.notes ??
                                                         (interaction.blocker
                                                             ? `Blocker: ${interaction.blocker.replace(/_/g, " ")}`
                                                             : interaction.notReachedReason

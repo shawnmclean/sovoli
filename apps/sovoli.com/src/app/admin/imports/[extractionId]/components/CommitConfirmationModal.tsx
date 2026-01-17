@@ -13,8 +13,8 @@ import { Card } from "@sovoli/ui/components/card";
 interface CommitSummary {
 	orgAction: "create" | "update" | null;
 	orgName: string;
-	programsToCreate: Array<{ id: string; name: string }>;
-	programsToUpdate: Array<{ id: string; name: string; targetId?: string }>;
+	programsToCreate: { id: string; name: string }[];
+	programsToUpdate: { id: string; name: string; targetId?: string }[];
 }
 
 interface CommitConfirmationModalProps {
