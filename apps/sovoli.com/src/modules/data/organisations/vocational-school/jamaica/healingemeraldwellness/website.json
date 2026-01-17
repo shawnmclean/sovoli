@@ -3,6 +3,7 @@
     "siteName": "Healing Emerald Wellness",
     "title": "Massage Therapy & Wellness Training - Healing Emerald Wellness",
     "description": "Healing Emerald Wellness Spa & Training Centre offers professional vocational training in massage therapy, waxing, and wellness services in Kingston, Jamaica.",
+    "domain": "www.hewja.com",
     "images": [
       {
         "url": "/healingemeraldwellness/websites/landing/hero.jpg",
@@ -21,9 +22,7 @@
         { "key": "workforce", "label": "Our Team" },
         { "key": "contact", "label": "Contact" }
       ],
-      "actions": [
-        { "key": "apply", "label": "Enroll Now" }
-      ]
+      "actions": [{ "key": "apply", "label": "Enroll Now" }]
     },
     "footer": {
       "layout": "default",
@@ -67,4 +66,3 @@
     ]
   }
 }
-
