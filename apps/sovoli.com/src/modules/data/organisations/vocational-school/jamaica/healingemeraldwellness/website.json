@@ -18,7 +18,12 @@
       "nav": [
         { "key": "home", "label": "Home" },
         { "key": "academics", "label": "Programs" },
-        { "key": "offerings", "label": "Spa Services" },
+        {
+          "key": "offerings",
+          "label": "Spa Services",
+          "url": "https://www.fresha.com/a/healing-emerald-wellness-spa-training-centre-ltd-kingston-4-springvale-avenue-ymfo4c7x",
+          "target": "_blank"
+        },
         { "key": "workforce", "label": "Our Team" },
         { "key": "contact", "label": "Contact" }
       ],

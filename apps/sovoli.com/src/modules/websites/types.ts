@@ -28,6 +28,8 @@ export interface WebsiteModule {
 export interface NavItem {
 	key: "home" | "about" | "academics" | "offerings" | "workforce" | "contact";
 	label: string;
+	url?: string; // Optional URL to override default routing
+	target?: "_blank" | "_self" | "_parent" | "_top"; // Link target, defaults to _self
 }
 
 // Navigation action (CTA) for header

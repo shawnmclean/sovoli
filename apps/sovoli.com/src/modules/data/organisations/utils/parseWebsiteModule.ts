@@ -25,6 +25,8 @@ const navItemJsonSchema = z.object({
     "contact",
   ]),
   label: z.string(),
+  url: z.string().optional(), // Optional URL to override default routing
+  target: z.enum(["_blank", "_self", "_parent", "_top"]).optional(), // Link target
 });
 
 /**

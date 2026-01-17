@@ -53,6 +53,16 @@ export function TenantNavbar({
   // Map nav keys to hrefs and handle dropdowns
   const navItems = navConfig
     .map((item) => {
+      // If item has a custom URL, use it directly
+      if (item.url) {
+        return {
+          label: item.label,
+          href: item.url,
+          target: item.target ?? "_self",
+        };
+      }
+
+      // Otherwise, use default routing based on key
       switch (item.key) {
         case "home":
           return { label: item.label, href: "/" };
@@ -145,7 +155,11 @@ export function TenantNavbar({
       >
         <NavbarBrand className="hidden md:flex">
           <Link href="/">
-            <Avatar src={org.logoPhoto?.url} name={website.siteName} size="md" />
+            <Avatar
+              src={org.logoPhoto?.url}
+              name={website.siteName}
+              size="md"
+            />
 
             <span className="ml-2 text-small font-medium text-default-foreground">
               {website.siteName}
@@ -176,7 +190,14 @@ export function TenantNavbar({
                   </DropdownMenu>
                 </Dropdown>
               ) : (
-                <Link href={item.href} className="text-default-500">
+                <Link
+                  href={item.href}
+                  className="text-default-500"
+                  target={item.target}
+                  rel={
+                    item.target === "_blank" ? "noopener noreferrer" : undefined
+                  }
+                >
                   {item.label}
                 </Link>
               )}
