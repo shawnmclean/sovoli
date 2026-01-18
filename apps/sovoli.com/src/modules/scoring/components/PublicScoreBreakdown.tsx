@@ -178,7 +178,7 @@ export function PublicScoreBreakdown({
                               orgName={orgInstance.org.name}
                               orgId={orgInstance.org.username}
                               intent="Request Data"
-                              role="parent"
+                              userRole="parent"
                               page="scores"
                             >
                               Vote

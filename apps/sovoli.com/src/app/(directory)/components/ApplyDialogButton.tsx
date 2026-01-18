@@ -99,7 +99,7 @@ export function ApplyDialogButton({
                   as={WhatsAppLink}
                   message={`Hello, I'd like to apply to ${orgName}.`}
                   intent="Submit Application"
-                  role="parent"
+                  userRole="parent"
                   page="details"
                   orgId={orgId}
                   orgName={orgName}

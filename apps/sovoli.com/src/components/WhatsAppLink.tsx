@@ -1,6 +1,6 @@
 "use client";
 
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { useLink } from "@sovoli/ui/hooks";
 import type { LinkProps } from "@sovoli/ui/components/link";
 import { config } from "~/utils/config";
@@ -24,6 +24,10 @@ interface WhatsAppLinkProps extends LinkProps {
     | "Request Data"
     | "CustomEvent"
     | "Contact"; // eg. matches Fb event name
+  userRole?: "parent" | "admin";
+  /**
+   * @deprecated Use `userRole` instead. `role` is reserved for ARIA roles.
+   */
   role?: "parent" | "admin";
   page?:
     | "listing"
@@ -49,6 +53,7 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
 
       // old tracking props
       intent = "Contact",
+      userRole,
       role,
       page,
       orgId,
@@ -73,7 +78,7 @@ export const WhatsAppLink = forwardRef<HTMLAnchorElement, WhatsAppLinkProps>(
         event ?? "whatsapp_link_clicked",
         eventProperties ?? {
           intent,
-          role: role ?? "unknown",
+          role: userRole ?? role ?? "unknown",
           page: page ?? "unknown",
           org_id: orgId,
           org_name: orgName,

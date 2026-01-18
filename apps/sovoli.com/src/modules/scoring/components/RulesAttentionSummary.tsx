@@ -300,7 +300,7 @@ export function RulesAttentionSummary({
                 variant="light"
                 className="text-default-600 underline underline-offset-4"
                 intent="Submit Missing Info"
-                role="admin"
+                userRole="admin"
                 page="scores"
                 orgId={orgInstance.org.username}
                 orgName={orgInstance.org.username}

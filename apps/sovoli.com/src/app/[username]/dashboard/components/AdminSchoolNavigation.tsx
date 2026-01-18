@@ -12,24 +12,33 @@ export function AdminSchoolNavigation({
   orgInstance,
 }: AdminSchoolNavigationProps) {
   const pathname = usePathname();
+  const baseDashboardPath = `/${orgInstance.org.username}/dashboard`;
+  const selectedKey = pathname.startsWith(`${baseDashboardPath}/programs`)
+    ? `${baseDashboardPath}/programs`
+    : pathname;
 
   return (
     <Tabs
       aria-label="Navigation"
       variant="underlined"
-      selectedKey={pathname}
+      selectedKey={selectedKey}
       fullWidth
       className="border-t border-default-200 py-2"
     >
       <Tab
-        key={`/${orgInstance.org.username}/dashboard`}
+        key={baseDashboardPath}
         title="Overview"
-        href={`/${orgInstance.org.username}/dashboard`}
+        href={baseDashboardPath}
       />
       <Tab
-        key={`/${orgInstance.org.username}/dashboard/receivables`}
+        key={`${baseDashboardPath}/receivables`}
         title="Information Needed"
-        href={`/${orgInstance.org.username}/dashboard/receivables`}
+        href={`${baseDashboardPath}/receivables`}
+      />
+      <Tab
+        key={`${baseDashboardPath}/programs`}
+        title="Programs"
+        href={`${baseDashboardPath}/programs`}
       />
     </Tabs>
   );

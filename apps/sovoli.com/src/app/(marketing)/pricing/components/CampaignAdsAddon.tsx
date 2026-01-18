@@ -98,7 +98,7 @@ export function CampaignAdsAddon({
 					className="w-full"
 					endContent={<RocketIcon className="w-4 h-4" />}
 					intent="Purchase"
-					role="admin"
+					userRole="admin"
 					page="pricing"
 					orgId={orgUsername}
 					funnel="upgrade"

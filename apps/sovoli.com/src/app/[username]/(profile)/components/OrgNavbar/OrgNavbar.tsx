@@ -48,7 +48,7 @@ export function OrgNavbar({ orgInstance }: OrgNavbarProps) {
             message={`I'd like to vote for ${orgInstance.org.name}`}
             radius="full"
             intent="Add to Wishlist"
-            role="parent"
+            userRole="parent"
             page="details"
             orgId={orgInstance.org.username}
             orgName={orgInstance.org.name}

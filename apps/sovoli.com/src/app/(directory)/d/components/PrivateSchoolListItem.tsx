@@ -62,7 +62,7 @@ export function PrivateSchoolListItem({
           message={`I'd like add ${org.name} to my favorites`}
           startContent={<HeartIcon size={16} fill="currentColor" />}
           intent="Add to Wishlist"
-          role="parent"
+          userRole="parent"
           page="listing"
           orgId={org.username}
           orgName={org.name}

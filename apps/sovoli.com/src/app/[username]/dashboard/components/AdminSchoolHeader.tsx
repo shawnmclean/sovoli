@@ -50,7 +50,7 @@ export function AdminSchoolHeader({ orgInstance }: AdminSchoolHeaderProps) {
               as={WhatsAppLink}
               message={`Hello, I'm the admin of ${orgInstance.org.name}. I'd like to claim this profile.`}
               intent="Claim School"
-              role="admin"
+              userRole="admin"
               page="details"
               orgId={orgInstance.org.username}
               orgName={orgInstance.org.name}
