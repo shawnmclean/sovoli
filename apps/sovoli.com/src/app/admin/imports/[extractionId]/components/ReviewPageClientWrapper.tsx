@@ -41,17 +41,17 @@ interface ReviewPageClientWrapperProps {
 	} | null;
 	transformedOrgData: Record<string, unknown>;
 	oldOrgData: Record<string, unknown> | null;
-	programsData: Array<{
+	programsData: {
 		programId: string;
 		programName: string;
 		transformedData: Record<string, unknown>;
 		oldProgram: Record<string, unknown> | null;
 		oldProgramId: string | null;
-		matchedPrograms: Array<{ id: string; name: string; score: number }> | null;
+		matchedPrograms: { id: string; name: string; score: number }[] | null;
 		schedule: { dates?: string[] } | null;
 		pricing: Record<string, unknown> | null;
-	}>;
-	allExistingPrograms: Array<{ id: string; name: string }>;
+	}[];
+	allExistingPrograms: { id: string; name: string }[];
 }
 
 export function ReviewPageClientWrapper(props: ReviewPageClientWrapperProps) {

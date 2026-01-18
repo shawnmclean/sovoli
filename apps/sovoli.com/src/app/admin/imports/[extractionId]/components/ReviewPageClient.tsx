@@ -11,7 +11,8 @@ import { ProgramDiffView } from "./ProgramDiffView";
 import { ProgramConfiguration } from "./ProgramConfiguration";
 import { ReviewSummary } from "./ReviewSummary";
 import { CommitConfirmationModal } from "./CommitConfirmationModal";
-import { type ProgramSuffix, replaceSuffix } from "../utils/suffix-utils";
+import type { ProgramSuffix } from "../utils/suffix-utils";
+import { replaceSuffix } from "../utils/suffix-utils";
 import { useReviewState } from "../hooks/useReviewState";
 import {
 	saveOrgChanges,
@@ -33,17 +34,17 @@ interface ReviewPageClientProps {
 	} | null;
 	transformedOrgData: Record<string, unknown>;
 	oldOrgData: Record<string, unknown> | null;
-	programsData: Array<{
+	programsData: {
 		programId: string;
 		programName: string;
 		transformedData: Record<string, unknown>;
 		oldProgram: Record<string, unknown> | null;
 		oldProgramId: string | null;
-		matchedPrograms: Array<{ id: string; name: string; score: number }> | null;
+		matchedPrograms: { id: string; name: string; score: number }[] | null;
 		schedule: { dates?: string[] } | null;
 		pricing: Record<string, unknown> | null;
-	}>;
-	allExistingPrograms: Array<{ id: string; name: string }>;
+	}[];
+	allExistingPrograms: { id: string; name: string }[];
 }
 
 export function ReviewPageClient({
@@ -79,7 +80,7 @@ export function ReviewPageClient({
 	});
 
 	// Modal state
-	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	// Loading and error states
 	const [isCommitting, setIsCommitting] = useState(false);
@@ -88,23 +89,23 @@ export function ReviewPageClient({
 
 	// Compute summary for modal
 	const commitSummary = useMemo(() => {
-		const programsToCreate: Array<{ id: string; name: string }> = [];
-		const programsToUpdate: Array<{ id: string; name: string; targetId?: string }> = [];
+		const programsToCreate: { id: string; name: string }[] = [];
+		const programsToUpdate: { id: string; name: string; targetId?: string }[] = [];
 
 		for (const program of programsData) {
 			const programInfo = editedPrograms[program.programId];
-			if (!programInfo || !programInfo.data || !programInfo.action) continue;
+			if (!programInfo?.data || !programInfo.action) continue;
 
 			if (programInfo.action === "add") {
 				programsToCreate.push({
 					id: program.programId,
 					name: program.programName,
 				});
-			} else if (programInfo.action === "update") {
+			} else {
 				const targetProgramId =
-					programInfo.targetProgramId ||
-					(program.matchedPrograms && program.matchedPrograms.length > 0
-						? program.matchedPrograms[0]!.id
+					programInfo.targetProgramId ??
+					(program.matchedPrograms?.length
+						? program.matchedPrograms[0]?.id
 						: program.programId);
 				programsToUpdate.push({
 					id: program.programId,
@@ -163,17 +164,17 @@ export function ReviewPageClient({
 				);
 
 				if (!result.success) {
-					throw new Error(result.error || "Failed to create organization");
+					throw new Error(result.error ?? "Failed to create organization");
 				}
 
 				// Save programs for new org
 				if (result.orgDir) {
 					for (const program of programsData) {
 						const programInfo = editedPrograms[program.programId];
-						if (programInfo && programInfo.data && programInfo.action === "add") {
+						if (programInfo?.data && programInfo.action === "add") {
 							// Get schedule and pricing from edited program data
-							const editedSchedule = programInfo.data._extractedSchedule as { dates?: string[] } | null | undefined;
-							const editedPricing = programInfo.data._extractedPricing as ProgramEvidence["pricing"] | null | undefined;
+							const editedSchedule = programInfo.data._extractedSchedule as { dates?: string[] } | null;
+							const editedPricing = programInfo.data._extractedPricing as ProgramEvidence["pricing"] | null;
 							
 							const programResult = await createNewProgram(
 								result.orgDir,
@@ -183,8 +184,8 @@ export function ReviewPageClient({
 									slug: program.programName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
 								},
 								extractionFilename,
-								editedSchedule || program.schedule,
-								(editedPricing || program.pricing) as ProgramEvidence["pricing"],
+								editedSchedule ?? program.schedule,
+								(editedPricing ?? program.pricing) as ProgramEvidence["pricing"],
 							);
 
 							if (!programResult.success) {
@@ -215,12 +216,12 @@ export function ReviewPageClient({
 				// Save programs
 				for (const program of programsData) {
 					const programInfo = editedPrograms[program.programId];
-					if (!programInfo || !programInfo.data || !programInfo.action) continue;
+					if (!programInfo?.data || !programInfo.action) continue;
 
 					if (programInfo.action === "add") {
 						// Get schedule and pricing from edited program data
-						const editedSchedule = programInfo.data._extractedSchedule as { dates?: string[] } | null | undefined;
-						const editedPricing = programInfo.data._extractedPricing as ProgramEvidence["pricing"] | null | undefined;
+						const editedSchedule = programInfo.data._extractedSchedule as { dates?: string[] } | null;
+						const editedPricing = programInfo.data._extractedPricing as ProgramEvidence["pricing"] | null;
 						
 						const programResult = await createNewProgram(
 							matchedOrg.orgDir,
@@ -230,8 +231,8 @@ export function ReviewPageClient({
 								slug: program.programName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
 							},
 							extractionFilename,
-							editedSchedule || program.schedule,
-							(editedPricing || program.pricing) as ProgramEvidence["pricing"],
+							editedSchedule ?? program.schedule,
+							(editedPricing ?? program.pricing) as ProgramEvidence["pricing"],
 						);
 
 						if (!programResult.success) {
@@ -240,25 +241,27 @@ export function ReviewPageClient({
 								programResult.error,
 							);
 						}
-					} else if (programInfo.action === "update") {
+					} else {
 						// Use the target program ID if specified, otherwise use matched or extraction ID
 						const targetProgramId =
 							programInfo.targetProgramId ??
-							(program.matchedPrograms && program.matchedPrograms.length > 0
-								? program.matchedPrograms[0]!.id
+							(program.matchedPrograms?.length
+								? program.matchedPrograms[0]?.id
 								: program.programId);
 
+						if (!targetProgramId) continue;
+
 						// Get schedule and pricing from edited program data
-						const editedSchedule = programInfo.data._extractedSchedule as { dates?: string[] } | null | undefined;
-						const editedPricing = programInfo.data._extractedPricing as ProgramEvidence["pricing"] | null | undefined;
+						const editedSchedule = programInfo.data._extractedSchedule as { dates?: string[] } | null;
+						const editedPricing = programInfo.data._extractedPricing as ProgramEvidence["pricing"] | null;
 						
 						const programResult = await saveProgramChanges(
 							matchedOrg.orgDir,
 							targetProgramId,
 							programInfo.data,
 							extractionFilename,
-							editedSchedule || program.schedule,
-							(editedPricing || program.pricing) as ProgramEvidence["pricing"],
+							editedSchedule ?? program.schedule,
+							(editedPricing ?? program.pricing) as ProgramEvidence["pricing"],
 						);
 
 						if (!programResult.success) {

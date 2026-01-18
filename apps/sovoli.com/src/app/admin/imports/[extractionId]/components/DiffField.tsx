@@ -128,9 +128,17 @@ export function DiffField({
 
     // For arrays or objects, we shouldn't reach here if diff computation is correct
     // But as a fallback, show as string
+    // After checking null, undefined, string, number, boolean above,
+    // remaining types are object, array, symbol, bigint, or function
+    const stringValue =
+      typeof value === "object"
+        ? JSON.stringify(value)
+        : typeof value === "function"
+          ? String(value)
+          : String(value);
     return (
       <Input
-        value={String(value)}
+        value={stringValue}
         onChange={(e) => onChange(e.target.value)}
         className={getBgColor()}
         placeholder={getOldValuePlaceholder()}

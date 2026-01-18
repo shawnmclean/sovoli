@@ -71,7 +71,7 @@ export function UnifiedProgramLeadsView({
             if (category === "strong") s.strong++;
             else if (category === "uncertain") s.uncertain++;
             else if (category === "lowIntent") s.lowIntent++;
-            else if (category === "noVisibility") s.noVisibility++;
+            else s.noVisibility++;
             // All categories are handled above, this is exhaustive
         }
 
@@ -181,7 +181,6 @@ export function UnifiedProgramLeadsView({
                     orgInstance={orgInstance}
                     isOpen={isModalOpen}
                     onOpenChange={setIsModalOpen}
-                    // @ts-expect-error - aligning types between local def and modal export
                     onSave={handleSaveInteraction}
                 />
             )}

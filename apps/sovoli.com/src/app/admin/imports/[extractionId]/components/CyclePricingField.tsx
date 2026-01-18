@@ -144,7 +144,7 @@ export function CyclePricingField({
                     />
                     <Input
                       placeholder="Amount (e.g., $5000 or 5000)"
-                      value={item.amount ?? ""}
+                      value={item.amount || ""}
                       onChange={(e) =>
                         updatePricingItem("registration", index, "amount", e.target.value)
                       }
@@ -152,16 +152,16 @@ export function CyclePricingField({
                       className="bg-white dark:bg-gray-900"
                     />
                     {item.notes ? (
-                    <Input
-                      placeholder="Notes (optional)"
-                      value={item.notes}
+                      <Input
+                        placeholder="Notes (optional)"
+                        value={item.notes}
                         onChange={(e) =>
                           updatePricingItem("registration", index, "notes", e.target.value)
                         }
                         disabled={!selected}
                         className="bg-white dark:bg-gray-900"
                       />
-                    )}
+                    ) : null}
                   </div>
                   {selected && (
                     <button
@@ -219,16 +219,16 @@ export function CyclePricingField({
                       className="bg-white dark:bg-gray-900"
                     />
                     {item.notes ? (
-                    <Input
-                      placeholder="Notes (optional)"
-                      value={item.notes}
+                      <Input
+                        placeholder="Notes (optional)"
+                        value={item.notes}
                         onChange={(e) =>
                           updatePricingItem("tuition", index, "notes", e.target.value)
                         }
                         disabled={!selected}
                         className="bg-white dark:bg-gray-900"
                       />
-                    )}
+                    ) : null}
                   </div>
                   {selected && (
                     <button
@@ -278,7 +278,7 @@ export function CyclePricingField({
                     />
                     <Input
                       placeholder="Amount (e.g., $5000 or 5000)"
-                      value={item.amount ?? ""}
+                      value={item.amount || ""}
                       onChange={(e) =>
                         updatePricingItem("materials", index, "amount", e.target.value)
                       }
@@ -286,16 +286,16 @@ export function CyclePricingField({
                       className="bg-white dark:bg-gray-900"
                     />
                     {item.notes ? (
-                    <Input
-                      placeholder="Notes (optional)"
-                      value={item.notes}
+                      <Input
+                        placeholder="Notes (optional)"
+                        value={item.notes}
                         onChange={(e) =>
                           updatePricingItem("materials", index, "notes", e.target.value)
                         }
                         disabled={!selected}
                         className="bg-white dark:bg-gray-900"
                       />
-                    )}
+                    ) : null}
                   </div>
                   {selected && (
                     <button

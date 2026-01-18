@@ -57,9 +57,10 @@ export function useOrgDiff({ oldOrg, newOrg, onChange }: UseOrgDiffProps) {
 	// Compute diffs - memoized to prevent unnecessary recalculations
 	const allDiffs = useMemo(() => {
 		if (isNew) {
-			return computeDiff({} as Record<string, unknown>, editedOrg);
+			return computeDiff({}, editedOrg);
 		}
-		const diffs = oldOrg ? computeDiff(oldOrg, editedOrg) : [];
+		// When isNew is false, oldOrg is guaranteed to be non-null
+		const diffs = computeDiff(oldOrg as Record<string, unknown>, editedOrg);
 		return diffs.filter((diff) => diff.type !== "remove");
 	}, [editedOrg, oldOrg, isNew]);
 

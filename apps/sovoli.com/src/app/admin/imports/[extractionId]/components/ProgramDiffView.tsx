@@ -8,7 +8,7 @@ import { CycleScheduleField } from "./CycleScheduleField";
 import { CyclePricingField } from "./CyclePricingField";
 import { useProgramDiff } from "../hooks/useProgramDiff";
 import { getNestedValue } from "../utils/object-utils";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import type { ProgramEvidence } from "../../types/lead-extraction-schema";
 
 interface ProgramDiffViewProps {
@@ -67,38 +67,21 @@ export function ProgramDiffView({
   const displayName = (editedProgram.name as string) || programName;
 
   // Manage schedule and pricing state separately
+  // Use lazy initialization to set initial values from props
   const [editedSchedule, setEditedSchedule] = useState<{
     dates?: string[];
-  } | null>(schedule ?? null);
+  } | null>(() => schedule ?? null);
   const [editedPricing, setEditedPricing] = useState<Record<
     string,
     unknown
-  > | null>(pricing ?? null);
-  const [scheduleSelected, setScheduleSelected] = useState(!!schedule);
-  const [pricingSelected, setPricingSelected] = useState(!!pricing);
+  > | null>(() => pricing ?? null);
+  const [scheduleSelected, setScheduleSelected] = useState(() => !!schedule);
+  const [pricingSelected, setPricingSelected] = useState(() => !!pricing);
 
   // Wrapper function to ensure pricing onChange matches expected type
   const handlePricingChange = (value: ProgramEvidence["pricing"] | null) => {
     setEditedPricing(value ?? null);
   };
-
-  // Update edited schedule/pricing when props change
-  // Use refs to track if we've initialized to avoid setting state in effect
-  const scheduleInitialized = useRef(false);
-  const pricingInitialized = useRef(false);
-  
-  useEffect(() => {
-    if (schedule && !scheduleInitialized.current) {
-      setEditedSchedule(schedule);
-      setScheduleSelected(true);
-      scheduleInitialized.current = true;
-    }
-    if (pricing && !pricingInitialized.current) {
-      setEditedPricing(pricing);
-      setPricingSelected(true);
-      pricingInitialized.current = true;
-    }
-  }, [schedule, pricing]);
 
   // Update parent when schedule or pricing changes
   useEffect(() => {
