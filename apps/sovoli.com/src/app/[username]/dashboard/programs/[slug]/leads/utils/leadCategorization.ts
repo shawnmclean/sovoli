@@ -1,4 +1,4 @@
-import type { Lead } from "../../../../components/LeadsTable";
+import type { Lead } from "~/modules/leads/types";
 
 export interface LeadInteraction {
     contactOutcome: "not_reached" | "brief_contact" | "conversation";

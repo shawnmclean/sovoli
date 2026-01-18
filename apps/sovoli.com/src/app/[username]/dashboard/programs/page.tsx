@@ -3,20 +3,8 @@ import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-import { parseLeadsModule } from "~/modules/data/organisations/utils/parseLeadsModule";
-import type { Lead } from "../components/LeadsTable";
 import type { Program } from "~/modules/academics/types";
-
-// Import data directly for now (mimicking dashboard/programs/[slug]/leads/page.tsx)
-import healingEmeraldLeadsData from "~/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json";
-
-function getAllLeadsForOrg(username: string): Lead[] {
-  if (username === "healingemeraldwellness") {
-    const leadsModule = parseLeadsModule(healingEmeraldLeadsData);
-    return leadsModule.leads;
-  }
-  return [];
-}
+import { getLeadsForOrg } from "../_lib/getLeadsForOrg";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -35,7 +23,7 @@ export default async function DashboardProgramsPage({
   const orgInstance = await retreiveOrgInstance(username);
 
   const programs = orgInstance.academicModule?.programs ?? [];
-  const allLeads = getAllLeadsForOrg(username);
+  const allLeads = getLeadsForOrg(username);
 
   const getLeadsCountForProgram = (program: Program): number => {
     if (allLeads.length === 0) return 0;

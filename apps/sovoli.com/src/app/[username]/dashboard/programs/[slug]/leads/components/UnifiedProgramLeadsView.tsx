@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import type { OrgInstance } from "~/modules/organisations/types";
-import type { Lead } from "../../../../components/LeadsTable";
+import type { Lead } from "~/modules/leads/types";
 import { LeadInteractionModal } from "../../../../components/LeadInteractionModal";
 import type { LeadsSummaryStats } from "./LeadsSummaryCards";
 import { LeadsSummaryCards } from "./LeadsSummaryCards";

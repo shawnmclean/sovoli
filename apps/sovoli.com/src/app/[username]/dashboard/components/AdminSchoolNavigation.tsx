@@ -15,7 +15,9 @@ export function AdminSchoolNavigation({
   const baseDashboardPath = `/${orgInstance.org.username}/dashboard`;
   const selectedKey = pathname.startsWith(`${baseDashboardPath}/programs`)
     ? `${baseDashboardPath}/programs`
-    : pathname;
+    : pathname.startsWith(`${baseDashboardPath}/leads`)
+      ? `${baseDashboardPath}/leads`
+      : pathname;
 
   return (
     <Tabs
@@ -39,6 +41,11 @@ export function AdminSchoolNavigation({
         key={`${baseDashboardPath}/programs`}
         title="Programs"
         href={`${baseDashboardPath}/programs`}
+      />
+      <Tab
+        key={`${baseDashboardPath}/leads`}
+        title="Leads"
+        href={`${baseDashboardPath}/leads`}
       />
     </Tabs>
   );

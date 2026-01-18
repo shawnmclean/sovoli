@@ -1,13 +1,9 @@
 import { notFound } from "next/navigation";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { bus } from "~/services/core/bus";
-import { parseLeadsModule } from "~/modules/data/organisations/utils/parseLeadsModule";
 import { UnifiedProgramLeadsView } from "./components/UnifiedProgramLeadsView";
 import type { Program } from "~/modules/academics/types";
-import type { Lead } from "../../../components/LeadsTable";
-
-// Import data directly for now (mimicking dashboard/page.tsx)
-import healingEmeraldLeadsData from "~/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json";
+import { getLeadsForOrg, isLeadsConfiguredForOrg } from "../../../_lib/getLeadsForOrg";
 
 interface Props {
     params: Promise<{ username: string; slug: string }>;
@@ -37,7 +33,7 @@ export default async function ProgramLeadsPage({ params }: Props) {
     }
 
     // 3. Load Leads Data
-    if (username !== "healingemeraldwellness") {
+    if (!isLeadsConfiguredForOrg(username)) {
         return (
             <div className="p-8 text-center text-default-500">
                 Leads data not configured for this organization.
@@ -45,11 +41,10 @@ export default async function ProgramLeadsPage({ params }: Props) {
         );
     }
 
-    const leadsModule = parseLeadsModule(healingEmeraldLeadsData);
-    const allLeads = leadsModule.leads;
+    const allLeads = getLeadsForOrg(username);
 
     // 4. Filter Leads for this Program
-    const programLeads = allLeads.filter((lead: Lead) => {
+    const programLeads = allLeads.filter((lead) => {
         if (lead.programId === program.id) return true;
 
         if (program.cycles && lead.cycleId) {

@@ -15,7 +15,7 @@ import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { XIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
-import type { Lead } from "./LeadsTable";
+import type { Lead, LeadInteraction } from "~/modules/leads/types";
 
 interface LeadInteractionForm {
   contactOutcome: "not_reached" | "brief_contact" | "conversation" | "";
@@ -36,28 +36,6 @@ interface LeadInteractionForm {
     | "waiting_on_them"
     | "no_followup";
   notes?: string;
-}
-
-interface LeadInteraction {
-  contactOutcome: "not_reached" | "brief_contact" | "conversation";
-  notReachedReason?: "try_again_later" | "invalid_number";
-  interestLevel?: "not_interested" | "curious" | "unsure" | "wants_to_proceed";
-  blocker?:
-    | "different_program"
-    | "timing"
-    | "needs_time"
-    | "needs_approval"
-    | "needs_visit"
-    | "price_uncertainty"
-    | "comparing"
-    | "not_serious";
-  nextAction?:
-    | "follow_up_later"
-    | "visit_scheduled"
-    | "waiting_on_them"
-    | "no_followup";
-  notes?: string;
-  loggedAt: string;
 }
 
 interface LeadInteractionModalProps {

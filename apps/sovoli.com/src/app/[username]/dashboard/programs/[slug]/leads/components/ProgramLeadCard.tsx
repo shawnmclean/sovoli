@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
 import { EditIcon, MessageCircleIcon, PhoneIcon, ChevronRightIcon } from "lucide-react";
-import type { Lead } from "../../../../components/LeadsTable";
+import type { Lead } from "~/modules/leads/types";
 import type { LeadInteraction, SystemState } from "../utils/leadCategorization";
 import { LeadHistoryModal } from "./LeadHistoryModal";
 

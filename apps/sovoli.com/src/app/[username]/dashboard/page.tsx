@@ -10,23 +10,11 @@ import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { parseLeadsModule } from "~/modules/data/organisations/utils/parseLeadsModule";
 import { LeadsSummaryCards } from "./programs/[slug]/leads/components/LeadsSummaryCards";
 import type { LeadsSummaryStats } from "./programs/[slug]/leads/components/LeadsSummaryCards";
 import { categorizeLead } from "./programs/[slug]/leads/utils/leadCategorization";
 import type { LeadInteraction } from "./programs/[slug]/leads/utils/leadCategorization";
-import type { Lead } from "./components/LeadsTable";
-
-// Import leads data for healingemeraldwellness
-import healingEmeraldLeadsData from "~/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json";
-
-function getLeadsData(username: string): Lead[] {
-  if (username === "healingemeraldwellness") {
-    const leadsModule = parseLeadsModule(healingEmeraldLeadsData);
-    return leadsModule.leads;
-  }
-  return [];
-}
+import { getLeadsForOrg, isLeadsConfiguredForOrg } from "./_lib/getLeadsForOrg";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -56,9 +44,9 @@ export default async function OrgClaimPage({
 
   const { org } = orgInstance;
 
-  const leads = getLeadsData(username);
+  const leads = getLeadsForOrg(username);
   const totalLeadsCount = leads.length;
-  const leadsConfigured = username === "healingemeraldwellness";
+  const leadsConfigured = isLeadsConfiguredForOrg(username);
 
   const leadsWithNoActivityCount = leads.filter(
     (lead) => (lead.interactions?.length ?? 0) === 0,
