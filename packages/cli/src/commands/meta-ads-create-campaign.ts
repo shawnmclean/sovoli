@@ -1,14 +1,5 @@
 import { Command } from "commander";
-
-interface MetaApiError {
-  error: {
-    message: string;
-    type: string;
-    code: number;
-    error_subcode?: number;
-    fbtrace_id?: string;
-  };
-}
+import { metaApiRequest } from "../utils/meta-api.js";
 
 interface CampaignResponse {
   id: string;
@@ -31,61 +22,6 @@ interface AdCreativeResponse {
 interface AdResponse {
   id: string;
   name: string;
-}
-
-/**
- * Make a request to Meta Graph API
- */
-async function metaApiRequest<T>(
-  endpoint: string,
-  options: {
-    method?: string;
-    accessToken: string;
-    apiVersion?: string;
-    body?: Record<string, unknown>;
-    params?: Record<string, string>;
-  },
-): Promise<T> {
-  const {
-    method = "GET",
-    accessToken,
-    apiVersion = "v24.0",
-    body,
-    params,
-  } = options;
-
-  let url = `https://graph.facebook.com/${apiVersion}/${endpoint}`;
-
-  // Add query parameters
-  const queryParams = new URLSearchParams({
-    access_token: accessToken,
-    ...params,
-  });
-  url += `?${queryParams.toString()}`;
-
-  const response = await fetch(url, {
-    method,
-    headers: body ? { "Content-Type": "application/json" } : undefined,
-    body: body ? JSON.stringify(body) : undefined,
-  });
-
-  const data = (await response.json()) as T | MetaApiError;
-
-  if (!response.ok) {
-    const error = data as MetaApiError;
-    if (error.error) {
-      throw new Error(
-        `Meta API Error (${error.error.code}): ${error.error.message}${
-          error.error.error_subcode
-            ? ` (subcode: ${error.error.error_subcode})`
-            : ""
-        }`,
-      );
-    }
-    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-  }
-
-  return data as T;
 }
 
 export const metaAdsCreateCampaignCommand = new Command(

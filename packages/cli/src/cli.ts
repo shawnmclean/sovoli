@@ -9,6 +9,7 @@ import { applyChangesCommand } from "./commands/apply-changes.js";
 import { syncPosthogLeadsCommand } from "./commands/sync-posthog-leads.js";
 import { metaOboSetupCommand } from "./commands/meta-obo-setup.js";
 import { metaAdsCreateCampaignCommand } from "./commands/meta-ads-create-campaign.js";
+import { metaAdsApplySpecCommand } from "./commands/meta-ads-apply-spec.js";
 
 // Load environment variables from root .env file
 const __filename = fileURLToPath(import.meta.url);
@@ -32,5 +33,6 @@ program.addCommand(applyChangesCommand);
 program.addCommand(syncPosthogLeadsCommand);
 program.addCommand(metaOboSetupCommand);
 program.addCommand(metaAdsCreateCampaignCommand);
+program.addCommand(metaAdsApplySpecCommand);
 
 program.parse();
