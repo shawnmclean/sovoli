@@ -40,6 +40,21 @@ const nextConfig = {
     "pino",
   ],
 
+  async headers() {
+    return [
+      {
+        // Private/admin area: never index dashboards.
+        source: "/:username/dashboard/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive",
+          },
+        ],
+      },
+    ];
+  },
+
   async rewrites() {
     return [
       {

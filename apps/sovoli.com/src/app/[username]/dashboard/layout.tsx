@@ -30,6 +30,15 @@ export async function generateMetadata({ params }: Props) {
       template: `%s | ${orgInstance.org.name} | ${config.siteName}`,
     },
     description: `Admin page for ${orgInstance.org.name}`,
+    robots: {
+      index: false,
+      follow: false,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: true,
+      },
+    },
     icons: {
       icon: "/favicon.ico",
     },
