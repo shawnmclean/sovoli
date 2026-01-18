@@ -577,6 +577,45 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
           );
         }
         console.log("");
+
+        // Structured Output for Campaign Creation
+        console.log("📋 Campaign Creation Credentials (JSON):");
+        console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        const campaignCredentials = {
+          businessManager: {
+            id: options.clientBmId,
+            name: businessManagerInfo?.name || "Unknown",
+          },
+          systemUser: {
+            id: systemUserId,
+            token: clientSystemUserToken,
+            permissions: [
+              "ads_management",
+              "pages_read_engagement",
+              "business_management",
+            ],
+          },
+          adAccounts: adAccounts.map((account) => ({
+            id: account.id,
+            accountId: account.account_id,
+            name: account.name,
+            currency: account.currency,
+          })),
+          pages: pageAccounts.map((page) => ({
+            id: page.id,
+            name: page.name,
+            accessToken: page.access_token,
+          })),
+        };
+        console.log(JSON.stringify(campaignCredentials, null, 2));
+        console.log("");
+        console.log("💡 Use these credentials to create campaigns:");
+        console.log(`   - System User Token: ${clientSystemUserToken}`);
+        console.log(
+          `   - Ad Account IDs: ${adAccounts.map((a) => a.id).join(", ") || "None"}`,
+        );
+        console.log(`   - Page Access Tokens: See pages array above`);
+        console.log("");
       } catch (error) {
         console.error(
           "\n❌ Error during setup:",
