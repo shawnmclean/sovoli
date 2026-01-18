@@ -83,13 +83,13 @@ export function UnifiedProgramLeadsView({
     // Report page had "Leads With Activity" and "Leads Without Activity".
     // Let's replicate that structure.
 
-    const leadsWithActivity = processedLeads.filter(
-        l => l.interactions.length > 0
-    );
+    const leadsWithActivity = processedLeads
+        .filter(l => l.interactions.length > 0)
+        .sort((a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
 
-    const leadsWithoutActivity = processedLeads.filter(
-        l => l.interactions.length === 0
-    );
+    const leadsWithoutActivity = processedLeads
+        .filter(l => l.interactions.length === 0)
+        .sort((a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
 
     // Handlers
     const handleUpdateClick = (leadId: string) => {
@@ -124,31 +124,8 @@ export function UnifiedProgramLeadsView({
                 <LeadsSummaryCards stats={stats} />
             </section>
 
-            {/* Leads With Activity */}
-            {leadsWithActivity.length > 0 && (
-                <section className="space-y-4">
-                    <h2 className="text-lg font-bold text-default-700 px-1">
-                        Active Leads
-                        <span className="ml-2 text-sm font-normal text-default-400">
-                            ({leadsWithActivity.length})
-                        </span>
-                    </h2>
-                    <div className="space-y-3">
-                        {leadsWithActivity.map((lead) => (
-                            <ProgramLeadCard
-                                key={lead.id}
-                                lead={lead}
-                                interactions={lead.interactions}
-                                systemState={lead.systemState}
-                                onUpdateClick={handleUpdateClick}
-                            />
-                        ))}
-                    </div>
-                </section>
-            )}
-
             {/* Leads Without Activity */}
-            <section className="space-y-4 pt-4">
+            <section className="space-y-4">
                 <h2 className="text-lg font-bold text-default-700 px-1">
                     {leadsWithoutActivity.length > 0
                         ? "New / No Activity"
@@ -173,6 +150,29 @@ export function UnifiedProgramLeadsView({
                     </div>
                 )}
             </section>
+
+            {/* Leads With Activity */}
+            {leadsWithActivity.length > 0 && (
+                <section className="space-y-4 pt-4">
+                    <h2 className="text-lg font-bold text-default-700 px-1">
+                        Active Leads
+                        <span className="ml-2 text-sm font-normal text-default-400">
+                            ({leadsWithActivity.length})
+                        </span>
+                    </h2>
+                    <div className="space-y-3">
+                        {leadsWithActivity.map((lead) => (
+                            <ProgramLeadCard
+                                key={lead.id}
+                                lead={lead}
+                                interactions={lead.interactions}
+                                systemState={lead.systemState}
+                                onUpdateClick={handleUpdateClick}
+                            />
+                        ))}
+                    </div>
+                </section>
+            )}
 
             {/* Modal */}
             {selectedLead && (
