@@ -464,7 +464,7 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
           const baseObjectStorySpec: Record<string, unknown> = {
             page_id: ad.creative.pageId,
             ...(ad.creative.instagramActorId
-              ? { instagram_actor_id: ad.creative.instagramActorId }
+              ? { instagram_user_id: ad.creative.instagramActorId }
               : {}),
           };
 

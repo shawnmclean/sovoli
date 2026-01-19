@@ -30,8 +30,7 @@
         "device_platforms": ["mobile"],
         "age_min": 18,
         "age_max": 65,
-        "publisher_platforms": ["facebook"],
-        "facebook_positions": ["feed", "facebook_reels"]
+        "publisher_platforms": ["facebook", "instagram"]
       }
     }
   ],
@@ -42,6 +41,7 @@
       "creative": {
         "name": "Example | Creative 1",
         "pageId": "801954873009075",
+        "instagramActorId": "17841478030083486",
         "linkUrl": "https://www.sovoli.com/",
         "message": "Explore programs and learn more.",
         "headline": "View program details",
@@ -74,6 +74,7 @@
       "creative": {
         "name": "Example | Creative 2",
         "pageId": "801954873009075",
+        "instagramActorId": "17841478030083486",
         "linkUrl": "https://www.sovoli.com/",
         "message": "Browse programs and pick the right fit.",
         "headline": "Explore programs",
