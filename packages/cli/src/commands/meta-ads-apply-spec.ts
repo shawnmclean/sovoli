@@ -73,6 +73,13 @@ function getImageHashFromAdImagesResponse(response: AdImagesResponse): string {
   );
 }
 
+type InstagramAccountsResponse = {
+  data?: Array<{
+    id: string;
+    username?: string;
+  }>;
+};
+
 function requireEnvVar(name: string): string {
   const value = process.env[name];
   if (!value) {
@@ -331,6 +338,59 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
       }> = [];
 
       try {
+        const getInstagramUserId = (
+          creative: MetaAdsCampaignSpec["ads"][number]["creative"],
+        ): string | undefined => {
+          if (creative.instagramUserId) return creative.instagramUserId;
+          if (creative.instagramActorId) {
+            console.warn(
+              "⚠️  Deprecated: creative.instagramActorId is set. Rename it to creative.instagramUserId.",
+            );
+            return creative.instagramActorId;
+          }
+          return undefined;
+        };
+
+        const instagramUserIdsInSpec = Array.from(
+          new Set(
+            spec.ads
+              .map((a) => getInstagramUserId(a.creative))
+              .filter((v): v is string => typeof v === "string" && v.length > 0),
+          ),
+        );
+
+        if (instagramUserIdsInSpec.length > 0) {
+          console.log("📋 Step 0: Verifying Instagram identity access...");
+          console.log(
+            `   Spec requests instagram_user_id: ${instagramUserIdsInSpec.join(", ")}`,
+          );
+
+          const instagramAccounts = await metaApiRequest<InstagramAccountsResponse>(
+            `${adAccountId}/instagram_accounts`,
+            {
+              method: "GET",
+              accessToken,
+              apiVersion,
+              params: { fields: "id,username" },
+            },
+          );
+
+          const available = instagramAccounts.data || [];
+          if (available.length === 0) {
+            console.log(
+              "   ⚠️  Ad account returned 0 instagram_accounts. Instagram placements will fail until the IG account is assigned to this ad account + system user.",
+            );
+          } else {
+            console.log("   Ad account instagram_accounts:");
+            for (const acct of available) {
+              console.log(
+                `   - ${acct.id}${acct.username ? ` (${acct.username})` : ""}`,
+              );
+            }
+          }
+          console.log("");
+        }
+
         // 1) Upload images and get image_hash
         if (resolvedImages.length > 0) {
           console.log("📋 Step 1: Uploading images to ad account library...");
@@ -461,10 +521,18 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
 
           const creativeName = ad.creative.name || `${ad.name} - Creative`;
 
+          const instagramUserId = getInstagramUserId(ad.creative);
+
+          if (instagramUserId) {
+            console.log(
+              `   🔎 Creative identity for "${ad.name}": page_id=${ad.creative.pageId}, instagram_user_id=${instagramUserId}`,
+            );
+          }
+
           const baseObjectStorySpec: Record<string, unknown> = {
             page_id: ad.creative.pageId,
-            ...(ad.creative.instagramActorId
-              ? { instagram_user_id: ad.creative.instagramActorId }
+            ...(instagramUserId
+              ? { instagram_user_id: instagramUserId }
               : {}),
           };
 

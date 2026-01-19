@@ -73,7 +73,15 @@ export const metaAdsCreativeSpecSchema = z.object({
   pageId: z.string().min(1),
 
   /**
-   * Instagram actor ID (optional, but recommended if you plan to run on Instagram placements).
+   * Instagram user ID (optional, but recommended if you plan to run on Instagram placements).
+   *
+   * Note: Meta has moved from "actor" naming to "user" naming. Prefer instagramUserId.
+   */
+  instagramUserId: z.string().min(1).optional(),
+
+  /**
+   * Deprecated: use instagramUserId instead.
+   * Kept for backwards compatibility with older spec files.
    */
   instagramActorId: z.string().min(1).optional(),
 

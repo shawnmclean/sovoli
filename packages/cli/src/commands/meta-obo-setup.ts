@@ -70,15 +70,6 @@ interface AdAccountsResponse {
   };
 }
 
-interface InstagramAccount {
-  id: string;
-  username?: string;
-}
-
-interface InstagramAccountsResponse {
-  data: InstagramAccount[];
-}
-
 export const metaOboSetupCommand = new Command("meta-obo-setup")
   .description(
     "Set up Meta Business Manager On Behalf Of relationship and create system user for client",
@@ -108,14 +99,6 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
     [] as string[],
   )
   .option(
-    "--instagram-account-id <instagramAccountId>",
-    "Instagram business/creator account ID to assign to system user (can be provided multiple times). Defaults to META_CLIENT_IG_ID from .env if set.",
-    (value: string, previous: string[] = []) => {
-      return [...previous, value];
-    },
-    [] as string[],
-  )
-  .option(
     "--api-version <apiVersion>",
     "Graph API version (defaults to v24.0)",
     "v24.0",
@@ -126,7 +109,6 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
       userAccessToken: string;
       pageId?: string[];
       adAccountId?: string[];
-      instagramAccountId?: string[];
       apiVersion?: string;
     }) => {
       const clientBmId = options.clientBmId || process.env.META_CLIENT_BM_ID;
@@ -251,10 +233,8 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
             accessToken: partnerSystemUserToken,
             apiVersion,
             params: {
-              // Include Instagram scopes so the system user token can be used with
-              // instagram_actor_id creatives (IG placements) when the Page has a connected IG.
               scope:
-                "ads_management,pages_read_engagement,business_management,pages_show_list,instagram_basic,instagram_manage_insights",
+                "ads_management,pages_read_engagement,business_management,pages_show_list",
               app_id: appId,
             },
           },
@@ -276,10 +256,9 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         console.log(`✅ Step 3: System User ID: ${systemUserId}`);
         console.log(`   System User Name: ${systemUserName}\n`);
 
-        // Step 4: Assign Pages, Ad Accounts, and Instagram Accounts to System User (optional)
+        // Step 4: Assign Pages and Ad Accounts to System User (optional)
         const pageIds = options.pageId || [];
         const adAccountIds = options.adAccountId || [];
-        const instagramAccountIds = options.instagramAccountId || [];
 
         // If not passed, default from .env
         if (pageIds.length === 0 && process.env.META_CLIENT_PAGE_ID) {
@@ -301,20 +280,12 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
           );
         }
 
-        if (instagramAccountIds.length === 0 && process.env.META_CLIENT_IG_ID) {
-          instagramAccountIds.push(
-            ...process.env.META_CLIENT_IG_ID.split(",")
-              .map((v) => v.trim())
-              .filter(Boolean),
-          );
-        }
         // Hardcode tasks to full control: MANAGE, ADVERTISE, ANALYZE
         const tasks = "MANAGE,ADVERTISE,ANALYZE";
 
         if (
           pageIds.length > 0 ||
-          adAccountIds.length > 0 ||
-          instagramAccountIds.length > 0
+          adAccountIds.length > 0
         ) {
           console.log("📋 Step 4: Assigning assets to system user...");
           console.log(`   Assigning assets in Client BM: ${clientBmId}`);
@@ -437,39 +408,9 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
             console.log("");
           }
 
-          // Step 4c: Assign Instagram Accounts
-          if (instagramAccountIds.length > 0) {
-            console.log("   📸 Assigning Instagram Accounts...");
-            for (const igId of instagramAccountIds) {
-              try {
-                console.log(`   Attempting to assign Instagram account: ${igId}`);
-                await metaApiRequest<{ success: boolean }>(`${igId}/assigned_users`, {
-                  method: "POST",
-                  accessToken: options.userAccessToken,
-                  apiVersion,
-                  params: {
-                    user: systemUserId,
-                    tasks,
-                    business: clientBmId,
-                  },
-                });
-                console.log(
-                  `   ✅ Instagram account ${igId} assigned to system user ${systemUserId} with tasks: ${tasks}`,
-                );
-              } catch (error) {
-                const errorMessage =
-                  error instanceof Error ? error.message : String(error);
-                console.error(
-                  `   ⚠️  Warning: Failed to assign Instagram account ${igId}:`,
-                  errorMessage,
-                );
-              }
-            }
-            console.log("");
-          }
         } else {
           console.log(
-            "⏭️  Step 4: Skipped (no pages, ad accounts, or instagram accounts provided)\n",
+            "⏭️  Step 4: Skipped (no pages or ad accounts provided)\n",
           );
         }
 
@@ -541,44 +482,6 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
           console.warn(
             `   ${error instanceof Error ? error.message : String(error)}`,
           );
-        }
-        console.log("");
-
-        // Step 8: List Instagram accounts accessible via ad account (helps validate IG identity setup)
-        console.log("📋 Step 8: Listing Instagram accounts accessible via ad account...");
-        if (adAccountIds.length > 0) {
-          const raw = adAccountIds[0];
-          const formattedAdAccountId = raw?.startsWith("act_") ? raw : `act_${raw}`;
-
-          try {
-            const igAccountsResponse = await metaApiRequest<InstagramAccountsResponse>(
-              `${formattedAdAccountId}/instagram_accounts`,
-              {
-                accessToken: clientSystemUserToken,
-                apiVersion,
-                params: { fields: "id,username" },
-              },
-            );
-
-            const igAccounts = igAccountsResponse.data || [];
-            if (igAccounts.length > 0) {
-              console.log("✅ Step 8: Instagram accounts available to this ad account:");
-              for (const ig of igAccounts) {
-                console.log(`   - ${ig.username || "unknown"} (ID: ${ig.id})`);
-              }
-            } else {
-              console.log(
-                "⚠️  Step 8: No Instagram accounts returned for this ad account. If you want IG placements via API, assign the IG account to the ad account in Business Settings.",
-              );
-            }
-          } catch (error) {
-            console.warn("⚠️  Step 8: Could not list instagram_accounts for ad account");
-            console.warn(
-              `   ${error instanceof Error ? error.message : String(error)}`,
-            );
-          }
-        } else {
-          console.log("⏭️  Step 8: Skipped (no ad account IDs provided)\n");
         }
         console.log("");
 
