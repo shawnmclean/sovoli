@@ -283,10 +283,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         // Hardcode tasks to full control: MANAGE, ADVERTISE, ANALYZE
         const tasks = "MANAGE,ADVERTISE,ANALYZE";
 
-        if (
-          pageIds.length > 0 ||
-          adAccountIds.length > 0
-        ) {
+        if (pageIds.length > 0 || adAccountIds.length > 0) {
           console.log("📋 Step 4: Assigning assets to system user...");
           console.log(`   Assigning assets in Client BM: ${clientBmId}`);
           console.log(`   System User ID: ${systemUserId}`);
@@ -407,7 +404,6 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
             }
             console.log("");
           }
-
         } else {
           console.log(
             "⏭️  Step 4: Skipped (no pages or ad accounts provided)\n",
