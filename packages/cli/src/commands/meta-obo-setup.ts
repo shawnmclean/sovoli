@@ -74,7 +74,10 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
   .description(
     "Set up Meta Business Manager On Behalf Of relationship and create system user for client",
   )
-  .requiredOption("--client-bm-id <clientBmId>", "Client Business Manager ID")
+  .option(
+    "--client-bm-id <clientBmId>",
+    "Client Business Manager ID (defaults to META_CLIENT_BM_ID from .env)",
+  )
   .requiredOption(
     "--user-access-token <userAccessToken>",
     "Access token of admin of client's Business Manager",
@@ -102,12 +105,20 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
   )
   .action(
     async (options: {
-      clientBmId: string;
+      clientBmId?: string;
       userAccessToken: string;
       pageId?: string[];
       adAccountId?: string[];
       apiVersion?: string;
     }) => {
+      const clientBmId = options.clientBmId || process.env.META_CLIENT_BM_ID;
+      if (!clientBmId) {
+        console.error(
+          "❌ Error: Client Business Manager ID is required. Provide --client-bm-id or set META_CLIENT_BM_ID in your .env file.",
+        );
+        process.exit(1);
+      }
+
       // Validate environment variables
       const partnerBmId = process.env.META_PARTNER_BM_ID;
       if (!partnerBmId) {
@@ -146,7 +157,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
 
       console.log("🚀 Starting Meta Business Manager On Behalf Of setup...\n");
       console.log(`   Partner BM ID: ${partnerBmId}`);
-      console.log(`   Client BM ID: ${options.clientBmId}`);
+      console.log(`   Client BM ID: ${clientBmId}`);
       console.log(`   App ID: ${appId}`);
       console.log(`   API Version: ${apiVersion}\n`);
 
@@ -160,7 +171,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         // Step 1: Create On Behalf Of Relationship
         console.log("📋 Step 1: Creating On Behalf Of relationship...");
         console.log(
-          `   Partner BM: ${partnerBmId} -> Client BM: ${options.clientBmId}`,
+          `   Partner BM: ${partnerBmId} -> Client BM: ${clientBmId}`,
         );
         await metaApiRequest<{ success: boolean }>(
           `${partnerBmId}/managed_businesses`,
@@ -169,7 +180,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
             accessToken: options.userAccessToken,
             apiVersion,
             params: {
-              existing_client_business_id: options.clientBmId,
+              existing_client_business_id: clientBmId,
             },
           },
         );
@@ -179,7 +190,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         console.log("📋 Step 1a: Fetching Business Manager information...");
         try {
           businessManagerInfo = await metaApiRequest<BusinessManagerInfo>(
-            options.clientBmId,
+            clientBmId,
             {
               accessToken: options.userAccessToken,
               apiVersion,
@@ -212,13 +223,13 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
           "📋 Step 2: Creating system user and getting access token...",
         );
         console.log(
-          `   Creating system user in Client BM: ${options.clientBmId}`,
+          `   Creating system user in Client BM: ${clientBmId}`,
         );
         console.log(
           `   Using Partner System User Token from BM: ${partnerBmId}`,
         );
         const tokenResponse = await metaApiRequest<AccessTokenResponse>(
-          `${options.clientBmId}/access_token`,
+          `${clientBmId}/access_token`,
           {
             method: "POST",
             accessToken: partnerSystemUserToken,
@@ -255,7 +266,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         if (pageIds.length > 0 || adAccountIds.length > 0) {
           console.log("📋 Step 4: Assigning assets to system user...");
           console.log(
-            `   Assigning assets in Client BM: ${options.clientBmId}`,
+            `   Assigning assets in Client BM: ${clientBmId}`,
           );
           console.log(`   System User ID: ${systemUserId}`);
           console.log(
@@ -368,7 +379,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
                   errorMessage.includes("missing permissions")
                 ) {
                   console.error(
-                    `      💡 Tip: Make sure the ad account ID is correct and exists in Client BM: ${options.clientBmId}`,
+                    `      💡 Tip: Make sure the ad account ID is correct and exists in Client BM: ${clientBmId}`,
                   );
                 }
               }
@@ -390,7 +401,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         // Step 6: Generate Page Access Token
         console.log("📋 Step 6: Generating page access tokens...");
         console.log(
-          `   Using system user token from Client BM: ${options.clientBmId}`,
+          `   Using system user token from Client BM: ${clientBmId}`,
         );
         const accountsResponse = await metaApiRequest<PageAccountsResponse>(
           "me/accounts",
@@ -418,11 +429,11 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
           "📋 Step 7: Listing client ad accounts in Business Manager...",
         );
         console.log(
-          `   Using system user token from Client BM: ${options.clientBmId}`,
+          `   Using system user token from Client BM: ${clientBmId}`,
         );
         try {
           const adAccountsResponse = await metaApiRequest<AdAccountsResponse>(
-            `${options.clientBmId}/client_ad_accounts`,
+            `${clientBmId}/client_ad_accounts`,
             {
               accessToken: clientSystemUserToken,
               apiVersion,
@@ -519,7 +530,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         const campaignCredentials = {
           businessManager: {
-            id: options.clientBmId,
+            id: clientBmId,
             name: businessManagerInfo?.name || "Unknown",
           },
           systemUser: {
