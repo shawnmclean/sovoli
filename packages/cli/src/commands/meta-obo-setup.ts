@@ -233,7 +233,10 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
             accessToken: partnerSystemUserToken,
             apiVersion,
             params: {
-              scope: "ads_management,pages_read_engagement,business_management",
+              // Include Instagram scopes so the system user token can be used with
+              // instagram_actor_id creatives (IG placements) when the Page has a connected IG.
+              scope:
+                "ads_management,pages_read_engagement,business_management,pages_show_list,instagram_basic,instagram_manage_insights",
               app_id: appId,
             },
           },
@@ -258,6 +261,23 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         // Step 4: Assign Pages and Ad Accounts to System User (optional)
         const pageIds = options.pageId || [];
         const adAccountIds = options.adAccountId || [];
+
+        // If not passed, default from .env
+        if (pageIds.length === 0 && process.env.META_CLIENT_PAGE_ID) {
+          pageIds.push(
+            ...process.env.META_CLIENT_PAGE_ID.split(",")
+              .map((v) => v.trim())
+              .filter(Boolean),
+          );
+        }
+
+        if (adAccountIds.length === 0 && process.env.META_CLIENT_AD_ACCOUNT_ID) {
+          adAccountIds.push(
+            ...process.env.META_CLIENT_AD_ACCOUNT_ID.split(",")
+              .map((v) => v.trim())
+              .filter(Boolean),
+          );
+        }
         // Hardcode tasks to full control: MANAGE, ADVERTISE, ANALYZE
         const tasks = "MANAGE,ADVERTISE,ANALYZE";
 

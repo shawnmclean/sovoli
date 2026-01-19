@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "apiVersion": "v24.0",
+    "adAccountId": "act_1228289702450884",
+    "systemUserTokenEnv": "META_CLIENT_SYSTEM_USER_TOKEN"
+  },
+  "campaign": {
+    "name": "Example | Conversions (Website Leads) | Sovoli Program Page | Draft",
+    "objective": "OUTCOME_LEADS",
+    "specialAdCategories": [],
+    "budget": {
+      "dailyBudget": 5000
+    }
+  },
+  "adSets": [
+    {
+      "ref": "example-leads-guyana",
+      "name": "Example | Guyana | Website Leads | Conversions",
+      "optimizationGoal": "OFFSITE_CONVERSIONS",
+      "billingEvent": "IMPRESSIONS",
+      "bidAmount": 1000,
+      "destinationType": "WEBSITE",
+      "promotedObject": {
+        "pixel_id": "1117736307066402",
+        "custom_event_type": "LEAD"
+      },
+      "targeting": {
+        "geo_locations": { "countries": ["GY"] },
+        "device_platforms": ["mobile"],
+        "age_min": 18,
+        "age_max": 65,
+        "publisher_platforms": ["facebook"],
+        "facebook_positions": ["feed", "facebook_reels"]
+      }
+    }
+  ],
+  "ads": [
+    {
+      "name": "Example | Ad 1 | Single Image (Placement Images + URL Tags)",
+      "adSetRef": "example-leads-guyana",
+      "creative": {
+        "name": "Example | Creative 1",
+        "pageId": "801954873009075",
+        "linkUrl": "https://www.sovoli.com/",
+        "message": "Explore programs and learn more.",
+        "headline": "View program details",
+        "description": "Tap to learn more",
+        "urlTags": "utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_campaign_id={{campaign.id}}&utm_adset={{adset.name}}&utm_adset_id={{adset.id}}&utm_ad={{ad.name}}&utm_ad_id={{ad.id}}&utm_placement={{placement}}",
+        "imagePath": "apps/sovoli.com/public/images/programs/primary.png",
+        "format": "SINGLE_IMAGE",
+        "placementImages": [
+          {
+            "imagePath": "apps/sovoli.com/public/images/programs/secondary.jpg",
+            "customizationSpec": {
+              "publisher_platforms": ["facebook"],
+              "facebook_positions": ["feed"]
+            }
+          },
+          {
+            "imagePath": "apps/sovoli.com/public/images/programs/nursery.jpg",
+            "customizationSpec": {
+              "publisher_platforms": ["facebook"],
+              "facebook_positions": ["facebook_reels"]
+            }
+          }
+        ],
+        "callToActionType": "LEARN_MORE"
+      }
+    },
+    {
+      "name": "Example | Ad 2 | Carousel (Program Images + URL Tags)",
+      "adSetRef": "example-leads-guyana",
+      "creative": {
+        "name": "Example | Creative 2",
+        "pageId": "801954873009075",
+        "linkUrl": "https://www.sovoli.com/",
+        "message": "Browse programs and pick the right fit.",
+        "headline": "Explore programs",
+        "description": "Tap a card to learn more",
+        "format": "CAROUSEL",
+        "carousel": {
+          "cards": [
+            {
+              "imagePath": "apps/sovoli.com/public/images/programs/primary.png",
+              "headline": "Primary",
+              "description": "Learn more"
+            },
+            {
+              "imagePath": "apps/sovoli.com/public/images/programs/nursery.jpg",
+              "headline": "Nursery",
+              "description": "View details"
+            },
+            {
+              "imagePath": "apps/sovoli.com/public/images/programs/secondary.jpg",
+              "headline": "Secondary",
+              "description": "See programs"
+            }
+          ],
+          "multiShareOptimized": true
+        },
+        "urlTags": "utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_campaign_id={{campaign.id}}&utm_adset={{adset.name}}&utm_adset_id={{adset.id}}&utm_ad={{ad.name}}&utm_ad_id={{ad.id}}&utm_placement={{placement}}",
+        "callToActionType": "LEARN_MORE"
+      }
+    }
+  ]
+}

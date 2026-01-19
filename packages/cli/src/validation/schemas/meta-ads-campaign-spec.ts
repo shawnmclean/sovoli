@@ -85,17 +85,32 @@ export const metaAdsCreativeSpecSchema = z.object({
   /**
    * Primary text shown above the image.
    */
-  message: z.string().min(1),
+  message: z.union([z.string().min(1), z.array(z.string().min(1)).min(1)]),
 
   /**
    * Headline text (Meta calls this link_data.name).
    */
-  headline: z.string().min(1),
+  headline: z.union([z.string().min(1), z.array(z.string().min(1)).min(1)]),
 
   /**
    * Optional description/subheadline.
    */
-  description: z.string().min(1).optional(),
+  description: z
+    .union([z.string().min(1), z.array(z.string().min(1)).min(1)])
+    .optional(),
+
+  /**
+   * Optional URL parameters appended by Meta at delivery time.
+   * Supports Meta dynamic macros like:
+   * - {{site_source_name}}, {{placement}}
+   * - {{campaign.id}}, {{campaign.name}}
+   * - {{adset.id}}, {{adset.name}}
+   * - {{ad.id}}, {{ad.name}}
+   *
+   * Example:
+   * utm_source={{site_source_name}}&utm_campaign={{campaign.name}}&utm_term={{placement}}
+   */
+  urlTags: z.string().min(1).optional(),
 
   /**
    * Creative format.
@@ -197,6 +212,15 @@ export const metaAdsAdSetSpecSchema = z.object({
    * Optional ad set budget. If omitted, campaign-level budget must be provided.
    */
   budget: metaAdsBudgetSchema.optional(),
+
+  /**
+   * If true, the ad set is created as a Dynamic Creative ad set.
+   * Required when you want a SINGLE ad to contain multiple text variants
+   * via `asset_feed_spec` (bodies/titles/descriptions).
+   *
+   * Note: Meta enforces constraints for dynamic creative ad sets (e.g. typically one ad per ad set).
+   */
+  isDynamicCreative: z.boolean().optional(),
 
   /**
    * Optional pass-through fields for conversion/data-source configuration.
