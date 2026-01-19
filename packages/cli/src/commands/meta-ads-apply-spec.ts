@@ -83,6 +83,31 @@ function requireEnvVar(name: string): string {
   return value;
 }
 
+function collectCreativeImagePaths(
+  creative: MetaAdsCampaignSpec["ads"][number]["creative"],
+): string[] {
+  const paths: string[] = [];
+  const format = creative.format || "SINGLE_IMAGE";
+
+  if (format === "CAROUSEL") {
+    const cards = creative.carousel?.cards || [];
+    for (const card of cards) {
+      paths.push(card.imagePath);
+    }
+    return paths;
+  }
+
+  if (creative.imagePath) {
+    paths.push(creative.imagePath);
+  }
+  if (creative.placementImages && creative.placementImages.length > 0) {
+    for (const rule of creative.placementImages) {
+      paths.push(rule.imagePath);
+    }
+  }
+  return paths;
+}
+
 function readAndParseSpec(specFilePath: string): MetaAdsCampaignSpec {
   const raw = fs.readFileSync(specFilePath, "utf-8");
   const parsed = JSON.parse(raw) as unknown;
@@ -174,7 +199,7 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
 
       // Resolve and validate image files
       const uniqueImagePaths = Array.from(
-        new Set(spec.ads.map((a) => a.creative.imagePath)),
+        new Set(spec.ads.flatMap((a) => collectCreativeImagePaths(a.creative))),
       );
 
       const resolvedImages = uniqueImagePaths.map((imagePath) => {
@@ -303,6 +328,19 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
             status: "PAUSED",
           };
 
+          if (adSet.destinationType) {
+            adSetBody.destination_type = adSet.destinationType;
+          }
+          if (adSet.promotedObject) {
+            adSetBody.promoted_object = adSet.promotedObject;
+          }
+          if (adSet.attributionSpec) {
+            adSetBody.attribution_spec = adSet.attributionSpec;
+          }
+          if (adSet.optimizationSubEvent) {
+            adSetBody.optimization_sub_event = adSet.optimizationSubEvent;
+          }
+
           // Some accounts default to bid-cap/target-cost strategies that require a bid amount.
           // If provided in the spec, pass it through as `bid_amount`.
           if (adSet.bidAmount) {
@@ -340,36 +378,164 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
             throw new Error(`Internal error: missing created ad set for ${ad.adSetRef}`);
           }
 
-          const imageHash = imagePathToHash.get(ad.creative.imagePath);
-          if (!imageHash) {
-            throw new Error(
-              `Internal error: missing uploaded image hash for ${ad.creative.imagePath}`,
-            );
-          }
-
           const callToActionType = ad.creative.callToActionType || "LEARN_MORE";
+          const creativeFormat = ad.creative.format || "SINGLE_IMAGE";
 
-          const creativeBody: Record<string, unknown> = {
-            name: ad.creative.name || `${ad.name} - Creative`,
-            object_story_spec: {
-              page_id: ad.creative.pageId,
-              link_data: {
+          const creativeName = ad.creative.name || `${ad.name} - Creative`;
+
+          const baseObjectStorySpec: Record<string, unknown> = {
+            page_id: ad.creative.pageId,
+            ...(ad.creative.instagramActorId
+              ? { instagram_actor_id: ad.creative.instagramActorId }
+              : {}),
+          };
+
+          const creativeBody: Record<string, unknown> = (() => {
+            // Carousel (link_data.child_attachments)
+            if (creativeFormat === "CAROUSEL") {
+              const cards = ad.creative.carousel?.cards || [];
+              const childAttachments = cards.map((card) => {
+                const cardHash = imagePathToHash.get(card.imagePath);
+                if (!cardHash) {
+                  throw new Error(
+                    `Internal error: missing uploaded image hash for carousel card image ${card.imagePath}`,
+                  );
+                }
+
+                return {
+                  link: card.linkUrl || ad.creative.linkUrl,
+                  image_hash: cardHash,
+                  ...(card.headline ? { name: card.headline } : {}),
+                  ...(card.description ? { description: card.description } : {}),
+                };
+              });
+
+              const linkData: Record<string, unknown> = {
                 link: ad.creative.linkUrl,
                 message: ad.creative.message,
                 name: ad.creative.headline,
                 ...(ad.creative.description
                   ? { description: ad.creative.description }
                   : {}),
-                image_hash: imageHash,
                 call_to_action: {
                   type: callToActionType,
                   value: {
                     link: ad.creative.linkUrl,
                   },
                 },
+                child_attachments: childAttachments,
+                ...(ad.creative.carousel?.multiShareEndCard !== undefined
+                  ? { multi_share_end_card: ad.creative.carousel.multiShareEndCard }
+                  : {}),
+                ...(ad.creative.carousel?.multiShareOptimized !== undefined
+                  ? { multi_share_optimized: ad.creative.carousel.multiShareOptimized }
+                  : {}),
+              };
+
+              return {
+                name: creativeName,
+                object_story_spec: {
+                  ...baseObjectStorySpec,
+                  link_data: linkData,
+                },
+              };
+            }
+
+            // Placement-customized single image (asset_feed_spec + asset_customization_rules)
+            if (ad.creative.placementImages && ad.creative.placementImages.length > 0) {
+              const imagePath = ad.creative.imagePath;
+              if (!imagePath) {
+                throw new Error(
+                  `Internal error: creative.imagePath is required for placementImages (ad: ${ad.name})`,
+                );
+              }
+              const defaultHash = imagePathToHash.get(imagePath);
+              if (!defaultHash) {
+                throw new Error(
+                  `Internal error: missing uploaded image hash for ${imagePath}`,
+                );
+              }
+
+              const images: Array<Record<string, unknown>> = [
+                // Default/fallback image (unlabeled)
+                { hash: defaultHash },
+              ];
+
+              const assetCustomizationRules = ad.creative.placementImages.map((rule, idx) => {
+                const ruleHash = imagePathToHash.get(rule.imagePath);
+                if (!ruleHash) {
+                  throw new Error(
+                    `Internal error: missing uploaded image hash for placement image ${rule.imagePath}`,
+                  );
+                }
+
+                const labelName = `img_rule_${idx + 1}`;
+                images.push({ hash: ruleHash, adlabels: [{ name: labelName }] });
+
+                return {
+                  customization_spec: rule.customizationSpec,
+                  image_label: { name: labelName },
+                  priority: rule.priority ?? idx + 1,
+                };
+              });
+
+              const assetFeedSpec: Record<string, unknown> = {
+                ad_formats: ["SINGLE_IMAGE"],
+                images,
+                bodies: [{ text: ad.creative.message }],
+                titles: [{ text: ad.creative.headline }],
+                link_urls: [{ website_url: ad.creative.linkUrl }],
+                call_to_action_types: [callToActionType],
+                asset_customization_rules: assetCustomizationRules,
+              };
+
+              if (ad.creative.description) {
+                assetFeedSpec.descriptions = [{ text: ad.creative.description }];
+              }
+
+              return {
+                name: creativeName,
+                object_story_spec: baseObjectStorySpec,
+                asset_feed_spec: assetFeedSpec,
+              };
+            }
+
+            // Basic single-image link ad
+            const imagePath = ad.creative.imagePath;
+            if (!imagePath) {
+              throw new Error(
+                `Internal error: creative.imagePath is required for SINGLE_IMAGE (ad: ${ad.name})`,
+              );
+            }
+            const imageHash = imagePathToHash.get(imagePath);
+            if (!imageHash) {
+              throw new Error(
+                `Internal error: missing uploaded image hash for ${imagePath}`,
+              );
+            }
+
+            return {
+              name: creativeName,
+              object_story_spec: {
+                ...baseObjectStorySpec,
+                link_data: {
+                  link: ad.creative.linkUrl,
+                  message: ad.creative.message,
+                  name: ad.creative.headline,
+                  ...(ad.creative.description
+                    ? { description: ad.creative.description }
+                    : {}),
+                  image_hash: imageHash,
+                  call_to_action: {
+                    type: callToActionType,
+                    value: {
+                      link: ad.creative.linkUrl,
+                    },
+                  },
+                },
               },
-            },
-          };
+            };
+          })();
 
           const createdCreative = await metaApiRequest<CreatedAdCreative>(
             `${adAccountId}/adcreatives`,

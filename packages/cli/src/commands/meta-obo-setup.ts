@@ -222,9 +222,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         console.log(
           "📋 Step 2: Creating system user and getting access token...",
         );
-        console.log(
-          `   Creating system user in Client BM: ${clientBmId}`,
-        );
+        console.log(`   Creating system user in Client BM: ${clientBmId}`);
         console.log(
           `   Using Partner System User Token from BM: ${partnerBmId}`,
         );
@@ -265,9 +263,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
 
         if (pageIds.length > 0 || adAccountIds.length > 0) {
           console.log("📋 Step 4: Assigning assets to system user...");
-          console.log(
-            `   Assigning assets in Client BM: ${clientBmId}`,
-          );
+          console.log(`   Assigning assets in Client BM: ${clientBmId}`);
           console.log(`   System User ID: ${systemUserId}`);
           console.log(
             `   Tasks/Permissions: ${tasks} (hardcoded for full control)\n`,
@@ -400,9 +396,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
 
         // Step 6: Generate Page Access Token
         console.log("📋 Step 6: Generating page access tokens...");
-        console.log(
-          `   Using system user token from Client BM: ${clientBmId}`,
-        );
+        console.log(`   Using system user token from Client BM: ${clientBmId}`);
         const accountsResponse = await metaApiRequest<PageAccountsResponse>(
           "me/accounts",
           {
@@ -428,9 +422,7 @@ export const metaOboSetupCommand = new Command("meta-obo-setup")
         console.log(
           "📋 Step 7: Listing client ad accounts in Business Manager...",
         );
-        console.log(
-          `   Using system user token from Client BM: ${clientBmId}`,
-        );
+        console.log(`   Using system user token from Client BM: ${clientBmId}`);
         try {
           const adAccountsResponse = await metaApiRequest<AdAccountsResponse>(
             `${clientBmId}/client_ad_accounts`,

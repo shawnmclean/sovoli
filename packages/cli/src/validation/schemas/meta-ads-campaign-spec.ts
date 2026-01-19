@@ -18,6 +18,49 @@ export const metaAdsBudgetSchema = z
     message: "Specify only one of dailyBudget or lifetimeBudget",
   });
 
+export const metaAdsCreativeFormatSchema = z.enum(["SINGLE_IMAGE", "CAROUSEL"]);
+
+const metaAdsAssetCustomizationRuleSchema = z.object({
+  /**
+   * Local file path (repo-relative by default) to the creative image for this rule.
+   */
+  imagePath: z.string().min(1),
+
+  /**
+   * Meta "customization_spec" object used by asset_customization_rules.
+   *
+   * Keep flexible so we can pass through publisher_platforms / positions, etc.
+   * Example:
+   * {
+   *   "publisher_platforms": ["instagram"],
+   *   "instagram_positions": ["reels"]
+   * }
+   */
+  customizationSpec: z.record(z.string(), z.unknown()),
+
+  /**
+   * Optional rule priority (lower is evaluated first).
+   * If omitted, the CLI will assign incrementing priorities.
+   */
+  priority: z.number().int().positive().optional(),
+});
+
+const metaAdsCarouselCardSchema = z.object({
+  imagePath: z.string().min(1),
+  linkUrl: z.string().url().optional(),
+  headline: z.string().min(1).optional(),
+  description: z.string().min(1).optional(),
+});
+
+const metaAdsCarouselSchema = z.object({
+  /**
+   * 2-10 carousel cards.
+   */
+  cards: z.array(metaAdsCarouselCardSchema).min(2).max(10),
+  multiShareEndCard: z.boolean().optional(),
+  multiShareOptimized: z.boolean().optional(),
+});
+
 export const metaAdsCreativeSpecSchema = z.object({
   /**
    * Creative name for Meta ad account library (optional).
@@ -28,6 +71,11 @@ export const metaAdsCreativeSpecSchema = z.object({
    * Facebook Page ID that owns the creative.
    */
   pageId: z.string().min(1),
+
+  /**
+   * Instagram actor ID (optional, but recommended if you plan to run on Instagram placements).
+   */
+  instagramActorId: z.string().min(1).optional(),
 
   /**
    * Program page URL (destination link).
@@ -50,14 +98,72 @@ export const metaAdsCreativeSpecSchema = z.object({
   description: z.string().min(1).optional(),
 
   /**
-   * Local file path (repo-relative by default) to the creative image.
+   * Creative format.
+   * - SINGLE_IMAGE: uses imagePath (and optional placementImages)
+   * - CAROUSEL: uses carousel.cards[] images
    */
-  imagePath: z.string().min(1),
+  format: metaAdsCreativeFormatSchema.optional().default("SINGLE_IMAGE"),
+
+  /**
+   * Local file path (repo-relative by default) to the creative image.
+   * Required for SINGLE_IMAGE format.
+   */
+  imagePath: z.string().min(1).optional(),
+
+  /**
+   * Optional placement-specific images via Meta asset customization rules.
+   * These are mapped to asset_feed_spec.images + asset_customization_rules.
+   *
+   * NOTE: This only applies to SINGLE_IMAGE format.
+   */
+  placementImages: z.array(metaAdsAssetCustomizationRuleSchema).min(1).optional(),
+
+  /**
+   * Optional carousel configuration (required when format is CAROUSEL).
+   */
+  carousel: metaAdsCarouselSchema.optional(),
 
   /**
    * CTA type (defaults to LEARN_MORE).
    */
   callToActionType: z.string().min(1).optional(),
+}).superRefine((creative, ctx) => {
+  const format = creative.format ?? "SINGLE_IMAGE";
+
+  if (format === "SINGLE_IMAGE") {
+    if (!creative.imagePath) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "creative.imagePath is required when creative.format is SINGLE_IMAGE",
+        path: ["imagePath"],
+      });
+    }
+    if (creative.carousel) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "creative.carousel is only allowed when creative.format is CAROUSEL",
+        path: ["carousel"],
+      });
+    }
+  }
+
+  if (format === "CAROUSEL") {
+    if (!creative.carousel) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "creative.carousel is required when creative.format is CAROUSEL",
+        path: ["carousel"],
+      });
+    }
+    if (creative.placementImages && creative.placementImages.length > 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          "creative.placementImages is not supported for CAROUSEL (use separate ads/ad sets per placement, or extend asset_feed_spec carousel later)",
+        path: ["placementImages"],
+      });
+    }
+  }
 });
 
 export const metaAdsAdSpecSchema = z.object({
@@ -91,6 +197,15 @@ export const metaAdsAdSetSpecSchema = z.object({
    * Optional ad set budget. If omitted, campaign-level budget must be provided.
    */
   budget: metaAdsBudgetSchema.optional(),
+
+  /**
+   * Optional pass-through fields for conversion/data-source configuration.
+   * These map directly to Meta API fields on the ad set object.
+   */
+  destinationType: z.string().min(1).optional(),
+  promotedObject: z.record(z.string(), z.unknown()).optional(),
+  attributionSpec: z.array(z.unknown()).optional(),
+  optimizationSubEvent: z.string().min(1).optional(),
 
   startTime: z.string().min(1).optional(),
   endTime: z.string().min(1).optional(),
