@@ -6,39 +6,21 @@ import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import type {
-  WorkforceMember,
-  OrgRoleAssignment,
-} from "~/modules/workforce/types";
+import type { WorkforceMember } from "~/modules/workforce/types";
+import { getMemberDisplayTitle, getPublicContactValue } from "~/modules/workforce/utils";
 import { SubjectAssignments } from "./SubjectAssignments";
 
 interface WorkforcePersonProfileProps {
   member: WorkforceMember;
 }
 
-function getPublicContact(member: WorkforceMember, type: "email" | "phone") {
-  return (
-    member.contacts?.find((c) => c.type === type && c.isPublic)?.value ?? ""
-  );
-}
-
-function getPrimaryRole(
-  member: WorkforceMember,
-): OrgRoleAssignment | undefined {
-  return (
-    member.roleAssignments.find((r) => r.isPrimary) ?? member.roleAssignments[0]
-  );
-}
-
 export function WorkforcePersonProfile({
   member,
 }: WorkforcePersonProfileProps) {
   const roles = member.roleAssignments;
-  const email = getPublicContact(member, "email");
-  const phone = getPublicContact(member, "phone");
-
-  const primaryRole = getPrimaryRole(member);
-  const displayTitle = primaryRole?.titleOverride ?? primaryRole?.position.name;
+  const email = getPublicContactValue(member, "email") ?? "";
+  const phone = getPublicContactValue(member, "phone") ?? "";
+  const displayTitle = getMemberDisplayTitle(member);
 
   const departmentNames = Array.from(
     new Set(roles.map((r) => r.department?.name).filter(Boolean)),

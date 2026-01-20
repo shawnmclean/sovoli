@@ -27,6 +27,7 @@ import type {
   OrgInstance,
   OrgCategoryKeys,
 } from "~/modules/organisations/types";
+import type { NavItem } from "~/modules/websites/types";
 
 const footerButton = tv({
   slots: {
@@ -76,6 +77,8 @@ const footerCTAButton = tv({
 // Button configuration types
 interface FooterButtonConfig {
   href: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
+  rel?: string;
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   isSelected: (pathname: string) => boolean;
@@ -86,8 +89,15 @@ interface FooterConfig {
   rightButtons: FooterButtonConfig[];
 }
 
+function getOfferingsNavItem(orgInstance: OrgInstance): NavItem | null {
+  const nav = orgInstance.websiteModule?.website.header?.nav ?? [];
+  return nav.find((item) => item.key === "offerings") ?? null;
+}
+
 // Button configuration mapping based on organization categories
-const getFooterConfig = (categories: OrgCategoryKeys[]): FooterConfig => {
+const getFooterConfig = (orgInstance: OrgInstance): FooterConfig => {
+  const categories: OrgCategoryKeys[] = orgInstance.org.categories;
+
   // Check if organization is a stationary/bookstore type
   const isStationaryType = categories.includes("stationery");
 
@@ -124,6 +134,11 @@ const getFooterConfig = (categories: OrgCategoryKeys[]): FooterConfig => {
     };
   }
 
+  const offeringsNavItem = getOfferingsNavItem(orgInstance);
+  const isServiceTenant = Boolean(offeringsNavItem);
+  const servicesHref = offeringsNavItem?.url ?? "/services";
+  const servicesTarget = offeringsNavItem?.target ?? "_self";
+
   // Default configuration for school/academy types
   return {
     leftButtons: [
@@ -141,12 +156,22 @@ const getFooterConfig = (categories: OrgCategoryKeys[]): FooterConfig => {
       },
     ],
     rightButtons: [
-      {
-        href: "/workforce/people",
-        icon: UsersIcon,
-        label: "Team",
-        isSelected: (pathname) => pathname.startsWith("/workforce/people"),
-      },
+      isServiceTenant
+        ? {
+            href: servicesHref,
+            target: servicesTarget,
+            rel:
+              servicesTarget === "_blank" ? "noopener noreferrer" : undefined,
+            icon: BriefcaseIcon,
+            label: "Services",
+            isSelected: (pathname) => pathname.startsWith("/services"),
+          }
+        : {
+            href: "/events",
+            icon: CalendarIcon,
+            label: "Events",
+            isSelected: (pathname) => pathname.startsWith("/events"),
+          },
       {
         href: "#",
         icon: MenuIcon,
@@ -166,7 +191,10 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   // Get the footer configuration based on organization categories
-  const footerConfig = getFooterConfig(orgInstance.org.categories);
+  const footerConfig = getFooterConfig(orgInstance);
+  const offeringsNavItem = getOfferingsNavItem(orgInstance);
+  const isServiceTenant = Boolean(offeringsNavItem);
+  const isStationaryType = orgInstance.org.categories.includes("stationery");
 
   const ctaButtonClasses = footerCTAButton({
     isSelected: pathname.startsWith("/programs/apply"),
@@ -177,7 +205,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
     <footer className="fixed bottom-0 left-0 right-0 bg-content1 shadow-lg pb-2 px-2 md:hidden z-40">
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-1 justify-start gap-2">
-          {footerConfig.leftButtons.map((button, index) => {
+          {footerConfig.leftButtons.map((button) => {
             const IconComponent = button.icon;
             const buttonClasses = footerButton({
               isSelected: button.isSelected(pathname),
@@ -185,7 +213,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
 
             return (
               <Button
-                key={index}
+                key={`${button.label}-${button.href}`}
                 as={Link}
                 href={button.href}
                 variant="light"
@@ -216,7 +244,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
           </div>
         </div>
         <div className="flex flex-1 justify-end gap-2">
-          {footerConfig.rightButtons.map((button, index) => {
+          {footerConfig.rightButtons.map((button) => {
             const IconComponent = button.icon;
             const buttonClasses = footerButton({
               isSelected: button.isSelected(pathname),
@@ -224,9 +252,11 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
 
             return (
               <Button
-                key={index}
+                key={`${button.label}-${button.href}`}
                 as={Link}
                 href={button.href}
+                target={button.target}
+                rel={button.rel}
                 variant="light"
                 color="default"
                 size="sm"
@@ -278,18 +308,70 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                     <PhoneIcon className={drawerButtonClasses.icon()} />
                     <span className={drawerButtonClasses.text()}>Contact</span>
                   </Button>
-                  <Button
-                    as={Link}
-                    href="/events"
-                    variant="light"
-                    color="default"
-                    size="sm"
-                    className={drawerButtonClasses.base()}
-                    onPress={onOpenChange}
-                  >
-                    <CalendarIcon className={drawerButtonClasses.icon()} />
-                    <span className={drawerButtonClasses.text()}>Events</span>
-                  </Button>
+
+                  {/* Default tenants: Team lives in drawer (Events is in footer).
+                      Service tenants: Events + Team both live in drawer (Services is in footer). */}
+                  {!isStationaryType && !isServiceTenant ? (
+                    <Button
+                      as={Link}
+                      href="/workforce/people"
+                      variant="light"
+                      color="default"
+                      size="sm"
+                      className={drawerButtonClasses.base()}
+                      onPress={onOpenChange}
+                    >
+                      <UsersIcon className={drawerButtonClasses.icon()} />
+                      <span className={drawerButtonClasses.text()}>Team</span>
+                    </Button>
+                  ) : null}
+
+                  {!isStationaryType && isServiceTenant ? (
+                    <>
+                      <Button
+                        as={Link}
+                        href="/events"
+                        variant="light"
+                        color="default"
+                        size="sm"
+                        className={drawerButtonClasses.base()}
+                        onPress={onOpenChange}
+                      >
+                        <CalendarIcon className={drawerButtonClasses.icon()} />
+                        <span className={drawerButtonClasses.text()}>
+                          Events
+                        </span>
+                      </Button>
+                      <Button
+                        as={Link}
+                        href="/workforce/people"
+                        variant="light"
+                        color="default"
+                        size="sm"
+                        className={drawerButtonClasses.base()}
+                        onPress={onOpenChange}
+                      >
+                        <UsersIcon className={drawerButtonClasses.icon()} />
+                        <span className={drawerButtonClasses.text()}>Team</span>
+                      </Button>
+                    </>
+                  ) : null}
+
+                  {isStationaryType ? (
+                    <Button
+                      as={Link}
+                      href="/events"
+                      variant="light"
+                      color="default"
+                      size="sm"
+                      className={drawerButtonClasses.base()}
+                      onPress={onOpenChange}
+                    >
+                      <CalendarIcon className={drawerButtonClasses.icon()} />
+                      <span className={drawerButtonClasses.text()}>Events</span>
+                    </Button>
+                  ) : null}
+
                   <Button
                     as={Link}
                     href="/workforce/positions"

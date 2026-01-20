@@ -1,29 +1,14 @@
-import React from "react";
 import type { SubjectAssignment } from "~/modules/workforce/types";
+import { groupSubjectAssignmentsByGrade } from "~/modules/workforce/utils";
 
 interface SubjectAssignmentsProps {
   assignments: SubjectAssignment[];
 }
 
-function getGradeSubjectsMap(assignments: SubjectAssignment[]) {
-  const gradeSubjectsMap = new Map<string, string[]>();
-
-  assignments.forEach((assignment) => {
-    assignment.grades.forEach((grade) => {
-      if (!gradeSubjectsMap.has(grade)) {
-        gradeSubjectsMap.set(grade, []);
-      }
-      gradeSubjectsMap.get(grade)?.push(assignment.subject);
-    });
-  });
-
-  return gradeSubjectsMap;
-}
-
 export function SubjectAssignments({ assignments }: SubjectAssignmentsProps) {
   if (assignments.length === 0) return null;
 
-  const gradeSubjectsMap = getGradeSubjectsMap(assignments);
+  const gradeSubjectsMap = groupSubjectAssignmentsByGrade(assignments);
 
   return (
     <ul className="list-disc list-inside space-y-1 text-default-600">

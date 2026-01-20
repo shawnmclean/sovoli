@@ -21,22 +21,11 @@ import {
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 import { CredentialsSection } from "./CredentialsSection";
+import { getMemberDisplayTitle, getPublicContactValue } from "~/modules/workforce/utils";
 
 interface TeachersDetailsProps {
   defaultTeachers?: WorkforceMember[] | null;
   program: Program;
-}
-
-function getPrimaryRole(member: WorkforceMember) {
-  return (
-    member.roleAssignments.find((r) => r.isPrimary) ?? member.roleAssignments[0]
-  );
-}
-
-function getPublicContact(member: WorkforceMember, type: "email" | "phone") {
-  return (
-    member.contacts?.find((c) => c.type === type && c.isPublic)?.value ?? ""
-  );
 }
 
 // Component for single teacher detailed display
@@ -48,6 +37,9 @@ function SingleTeacherDetails({
   program: Program;
 }) {
   const [isBioExpanded, setIsBioExpanded] = useState(false);
+  const displayTitle = getMemberDisplayTitle(teacher);
+  const email = getPublicContactValue(teacher, "email") ?? "";
+  const phone = getPublicContactValue(teacher, "phone") ?? "";
 
   return (
     <DrawerContent>
@@ -80,10 +72,9 @@ function SingleTeacherDetails({
                   <h2 className="text-2xl font-bold text-foreground">
                     {teacher.name}
                   </h2>
-                  {getPrimaryRole(teacher) && (
+                  {displayTitle && (
                     <p className="text-lg text-foreground-600 mt-1">
-                      {getPrimaryRole(teacher)?.titleOverride ??
-                        getPrimaryRole(teacher)?.position.name}
+                      {displayTitle}
                     </p>
                   )}
                 </div>
@@ -100,6 +91,7 @@ function SingleTeacherDetails({
                     </p>
                     {teacher.bio.length > 150 && (
                       <button
+                        type="button"
                         onClick={() => setIsBioExpanded(!isBioExpanded)}
                         className="flex items-center gap-1 hover:underline mt-2 text-sm font-bold"
                       >
@@ -121,32 +113,31 @@ function SingleTeacherDetails({
               )}
 
               {/* Contact Information */}
-              {(getPublicContact(teacher, "email") ||
-                getPublicContact(teacher, "phone")) && (
+              {(email || phone) && (
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     Contact
                   </h3>
                   <div className="space-y-2">
-                    {getPublicContact(teacher, "email") && (
+                    {email && (
                       <div className="flex items-center gap-2">
                         <MailIcon className="h-4 w-4 text-foreground-500" />
                         <a
-                          href={`mailto:${getPublicContact(teacher, "email")}`}
+                          href={`mailto:${email}`}
                           className="text-primary hover:underline"
                         >
-                          {getPublicContact(teacher, "email")}
+                          {email}
                         </a>
                       </div>
                     )}
-                    {getPublicContact(teacher, "phone") && (
+                    {phone && (
                       <div className="flex items-center gap-2">
                         <PhoneIcon className="h-4 w-4 text-foreground-500" />
                         <a
-                          href={`tel:${getPublicContact(teacher, "phone")}`}
+                          href={`tel:${phone}`}
                           className="text-primary hover:underline"
                         >
-                          {getPublicContact(teacher, "phone")}
+                          {phone}
                         </a>
                       </div>
                     )}
@@ -162,8 +153,17 @@ function SingleTeacherDetails({
                     Education
                   </h3>
                   <div className="space-y-2">
-                    {teacher.education.map((edu, index) => (
-                      <div key={index} className="text-sm">
+                    {teacher.education.map((edu) => (
+                      <div
+                        key={[
+                          edu.level,
+                          edu.field,
+                          edu.institution ?? "",
+                          edu.startDate ?? "",
+                          edu.endDate ?? "",
+                        ].join("|")}
+                        className="text-sm"
+                      >
                         <div className="font-medium text-foreground">
                           {edu.level}
                           {edu.honors && (
@@ -248,11 +248,15 @@ function MultipleTeachersDetails({
 
               <div className="space-y-4">
                 {teachers.map((teacher) => (
-                  <div
+                  <button
+                    type="button"
                     key={teacher.id}
-                    className="p-4 bg-default-50 rounded-lg border border-default-200 cursor-pointer hover:border-primary-400 transition-colors"
+                    className="p-4 bg-default-50 rounded-lg border border-default-200 cursor-pointer hover:border-primary-400 transition-colors text-left w-full"
                     onClick={() => setSelectedTeacher(teacher)}
                   >
+                    {(() => {
+                      const displayTitle = getMemberDisplayTitle(teacher);
+                      return (
                     <div className="flex items-center gap-4">
                       <Avatar
                         src={teacher.photo?.url}
@@ -264,15 +268,14 @@ function MultipleTeachersDetails({
                         <h3 className="font-semibold text-foreground text-lg">
                           {teacher.name}
                         </h3>
-                        {getPrimaryRole(teacher) && (
-                          <p className="text-foreground-600">
-                            {getPrimaryRole(teacher)?.titleOverride ??
-                              getPrimaryRole(teacher)?.position.name}
-                          </p>
-                        )}
+                        {displayTitle ? (
+                          <p className="text-foreground-600">{displayTitle}</p>
+                        ) : null}
                       </div>
                     </div>
-                  </div>
+                      );
+                    })()}
+                  </button>
                 ))}
               </div>
             </div>

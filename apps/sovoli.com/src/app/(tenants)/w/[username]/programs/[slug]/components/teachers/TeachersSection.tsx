@@ -10,6 +10,7 @@ import {
 } from "@sovoli/ui/components/carousel";
 import { UserIcon, ChevronRight } from "lucide-react";
 import type { WorkforceMember } from "~/modules/workforce/types";
+import { getMemberDisplayTitle } from "~/modules/workforce/utils";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import type { Program } from "~/modules/academics/types";
 import Link from "next/link";
@@ -17,12 +18,6 @@ import Link from "next/link";
 interface TeachersSectionProps {
   defaultTeachers?: WorkforceMember[] | null;
   program: Program;
-}
-
-function getPrimaryRole(member: WorkforceMember) {
-  return (
-    member.roleAssignments.find((r) => r.isPrimary) ?? member.roleAssignments[0]
-  );
 }
 
 // Component for single teacher display
@@ -33,6 +28,8 @@ function SingleTeacherSection({
   teacher: WorkforceMember;
   program: Program;
 }) {
+  const displayTitle = getMemberDisplayTitle(teacher);
+
   return (
     <section className="my-6 border-b border-default-200 pb-6">
       <div className="pb-4">
@@ -68,10 +65,9 @@ function SingleTeacherSection({
                     ))}
                   </p>
                 ) : (
-                  getPrimaryRole(teacher) && (
+                  displayTitle && (
                     <p className="text-sm text-foreground-600 mt-1">
-                      {getPrimaryRole(teacher)?.titleOverride ??
-                        getPrimaryRole(teacher)?.position.name}
+                      {displayTitle}
                     </p>
                   )
                 )}
