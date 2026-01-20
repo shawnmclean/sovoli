@@ -2,13 +2,6 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
-import {
-  MailIcon,
-  PhoneIcon,
-  GraduationCapIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "lucide-react";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import type { Program } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
@@ -20,8 +13,8 @@ import {
 } from "@sovoli/ui/components/drawer";
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
-import { CredentialsSection } from "./CredentialsSection";
-import { getMemberDisplayTitle, getPublicContactValue } from "~/modules/workforce/utils";
+import { MemberDetailsContent } from "~/modules/workforce/components/MemberDetailsContent";
+import { getMemberDisplayTitle } from "~/modules/workforce/utils";
 
 interface TeachersDetailsProps {
   defaultTeachers?: WorkforceMember[] | null;
@@ -36,11 +29,6 @@ function SingleTeacherDetails({
   teacher: WorkforceMember;
   program: Program;
 }) {
-  const [isBioExpanded, setIsBioExpanded] = useState(false);
-  const displayTitle = getMemberDisplayTitle(teacher);
-  const email = getPublicContactValue(teacher, "email") ?? "";
-  const phone = getPublicContactValue(teacher, "phone") ?? "";
-
   return (
     <DrawerContent>
       {(onClose) => (
@@ -60,146 +48,7 @@ function SingleTeacherDetails({
             }
           />
           <DrawerBody>
-            <div className="space-y-6">
-              <div className="flex flex-col items-center gap-4">
-                <Avatar
-                  src={teacher.photo?.url}
-                  name={teacher.name}
-                  className="h-32 w-32"
-                  isBordered
-                />
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold text-foreground">
-                    {teacher.name}
-                  </h2>
-                  {displayTitle && (
-                    <p className="text-lg text-foreground-600 mt-1">
-                      {displayTitle}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {teacher.bio && (
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    About
-                  </h3>
-                  <div className="text-foreground-600">
-                    <p className={isBioExpanded ? "" : "line-clamp-3"}>
-                      {teacher.bio}
-                    </p>
-                    {teacher.bio.length > 150 && (
-                      <button
-                        type="button"
-                        onClick={() => setIsBioExpanded(!isBioExpanded)}
-                        className="flex items-center gap-1 hover:underline mt-2 text-sm font-bold"
-                      >
-                        {isBioExpanded ? (
-                          <>
-                            <ChevronUpIcon className="h-4 w-4" />
-                            Show Less
-                          </>
-                        ) : (
-                          <>
-                            <ChevronDownIcon className="h-4 w-4" />
-                            Read More
-                          </>
-                        )}
-                      </button>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Contact Information */}
-              {(email || phone) && (
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    Contact
-                  </h3>
-                  <div className="space-y-2">
-                    {email && (
-                      <div className="flex items-center gap-2">
-                        <MailIcon className="h-4 w-4 text-foreground-500" />
-                        <a
-                          href={`mailto:${email}`}
-                          className="text-primary hover:underline"
-                        >
-                          {email}
-                        </a>
-                      </div>
-                    )}
-                    {phone && (
-                      <div className="flex items-center gap-2">
-                        <PhoneIcon className="h-4 w-4 text-foreground-500" />
-                        <a
-                          href={`tel:${phone}`}
-                          className="text-primary hover:underline"
-                        >
-                          {phone}
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Education Section */}
-              {teacher.education && teacher.education.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
-                    <GraduationCapIcon className="h-4 w-4 text-primary" />
-                    Education
-                  </h3>
-                  <div className="space-y-2">
-                    {teacher.education.map((edu) => (
-                      <div
-                        key={[
-                          edu.level,
-                          edu.field,
-                          edu.institution ?? "",
-                          edu.startDate ?? "",
-                          edu.endDate ?? "",
-                        ].join("|")}
-                        className="text-sm"
-                      >
-                        <div className="font-medium text-foreground">
-                          {edu.level}
-                          {edu.honors && (
-                            <span className="ml-2 text-xs text-yellow-600">
-                              ({edu.honors})
-                            </span>
-                          )}
-                        </div>
-                        {edu.field && (
-                          <div className="text-foreground-600">{edu.field}</div>
-                        )}
-                        {edu.institution && (
-                          <div className="text-foreground-500 text-xs">
-                            {edu.institution}
-                            {edu.location && `, ${edu.location}`}
-                            {(edu.startDate ?? edu.endDate) && (
-                              <span className="ml-2">
-                                •{" "}
-                                {edu.startDate && edu.endDate
-                                  ? `${edu.startDate} - ${edu.endDate}`
-                                  : (edu.startDate ?? edu.endDate)}
-                              </span>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Credentials Section */}
-              {teacher.credentials && teacher.credentials.length > 0 && (
-                <CredentialsSection credentials={teacher.credentials} />
-              )}
-            </div>
+            <MemberDetailsContent member={teacher} />
           </DrawerBody>
         </>
       )}
