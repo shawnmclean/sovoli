@@ -124,5 +124,12 @@
     "category": "hand-sanitizers-antiseptics",
     "tags": ["hygiene", "sanitizer", "healthcare"],
     "unitLabel": "bottle"
+  },
+  {
+    "id": "disposable-gloves",
+    "name": "Disposable Gloves",
+    "category": "gloves",
+    "tags": ["hygiene", "ppe", "disposable"],
+    "unitLabel": "box"
   }
 ]

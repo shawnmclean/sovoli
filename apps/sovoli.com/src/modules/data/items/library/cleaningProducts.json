@@ -5,5 +5,12 @@
     "category": "disinfectants",
     "tags": ["cleaning", "disinfectant", "sanitizer"],
     "unitLabel": "bottle"
+  },
+  {
+    "id": "trash-bags",
+    "name": "Trash Bags",
+    "category": "refuse-bags",
+    "tags": ["cleaning", "waste", "trash"],
+    "unitLabel": "roll"
   }
 ]

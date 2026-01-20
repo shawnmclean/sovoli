@@ -12,5 +12,110 @@
     "category": "essential-oils",
     "tags": ["aromatherapy", "wellness", "massage"],
     "unitLabel": "bottle"
+  },
+  {
+    "id": "double-wax-pot-warmer",
+    "name": "Double Wax Pot Warmer",
+    "category": "depilation-epilation-powered",
+    "tags": ["waxing", "hair-removal", "equipment"],
+    "unitLabel": "unit"
+  },
+  {
+    "id": "wax-strips-calico",
+    "name": "Wax Strips / Calico",
+    "category": "depilation-epilation-non-powered",
+    "tags": ["waxing", "hair-removal", "strips"],
+    "unitLabel": "yard"
+  },
+  {
+    "id": "soft-wax",
+    "name": "Soft Wax",
+    "category": "depilation-epilation-non-powered",
+    "tags": ["waxing", "hair-removal", "soft-wax"],
+    "unitLabel": "container"
+  },
+  {
+    "id": "hard-wax",
+    "name": "Hard Wax",
+    "category": "depilation-epilation-non-powered",
+    "tags": ["waxing", "hair-removal", "hard-wax"],
+    "unitLabel": "container"
+  },
+  {
+    "id": "cotton",
+    "name": "Cotton",
+    "category": "cotton-wool-products",
+    "tags": ["waxing", "hair-removal", "cotton"],
+    "unitLabel": "pack"
+  },
+  {
+    "id": "tweezers",
+    "name": "Tweezers",
+    "category": "depilation-epilation-non-powered",
+    "tags": ["waxing", "hair-removal", "tweezers"],
+    "unitLabel": "pair"
+  },
+  {
+    "id": "spoolie-brush",
+    "name": "Spoolie Brush",
+    "category": "cosmetic-makeup-aids-accessories",
+    "tags": ["waxing", "brows", "spoolie"],
+    "unitLabel": "unit"
+  },
+  {
+    "id": "brow-scissors",
+    "name": "Brow Scissors",
+    "category": "cosmetic-makeup-aids-accessories",
+    "tags": ["waxing", "brows", "scissors"],
+    "unitLabel": "pair"
+  },
+  {
+    "id": "powder",
+    "name": "Skin Drying Powder",
+    "category": "skin-drying-powder",
+    "tags": ["waxing", "skin", "powder"],
+    "unitLabel": "container"
+  },
+  {
+    "id": "wax-spatula-small",
+    "name": "Wax Spatula (Small)",
+    "category": "depilation-epilation-non-powered",
+    "tags": ["waxing", "spatula", "small"],
+    "unitLabel": "pack"
+  },
+  {
+    "id": "wax-spatula-medium",
+    "name": "Wax Spatula (Medium)",
+    "category": "depilation-epilation-non-powered",
+    "tags": ["waxing", "spatula", "medium"],
+    "unitLabel": "pack"
+  },
+  {
+    "id": "wax-spatula-large",
+    "name": "Wax Spatula (Large)",
+    "category": "depilation-epilation-non-powered",
+    "tags": ["waxing", "spatula", "large"],
+    "unitLabel": "pack"
+  },
+  {
+    "id": "wax-remover-oil",
+    "name": "Wax Remover Oil",
+    "category": "hair-removal-care",
+    "tags": ["waxing", "hair-removal", "aftercare"],
+    "unitLabel": "bottle"
+  },
+  {
+    "id": "aloe-vera-gel",
+    "name": "Aloe Vera Gel",
+    "category": "hair-removal-care",
+    "tags": ["waxing", "hair-removal", "aftercare", "soothing"],
+    "unitLabel": "bottle"
+  },
+  {
+    "id": "small-mirror",
+    "name": "Small Mirror",
+    "category": "mirrors-personal-care",
+    "tags": ["waxing", "brows", "mirror"],
+    "unitLabel": "unit"
   }
 ]

@@ -21,6 +21,13 @@
     "unitLabel": "book"
   },
   {
+    "id": "supply-single-line-book",
+    "name": "Single Line Book",
+    "category": "exercise-books",
+    "tags": ["stationery", "copybook", "single-line"],
+    "unitLabel": "book"
+  },
+  {
     "id": "supply-typing-sheet",
     "name": "Typing Sheet",
     "category": "exercise-books",

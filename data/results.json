@@ -1,0 +1,57 @@
+{
+  "specFile": "E:\\Developers\\sovoli\\data\\meta-ads-example-traffic.spec.json",
+  "meta": {
+    "apiVersion": "v24.0",
+    "adAccountId": "act_1228289702450884",
+    "systemUserTokenEnv": "META_CLIENT_SYSTEM_USER_TOKEN"
+  },
+  "created": {
+    "campaign": {
+      "id": "6961294322980",
+      "name": "Example | Conversions (Website Leads) | Sovoli Program Page | Draft",
+      "objective": "OUTCOME_LEADS",
+      "status": "PAUSED"
+    },
+    "adSets": [
+      {
+        "ref": "example-leads-guyana",
+        "name": "Example | Guyana | Website Leads | Conversions",
+        "id": "6961294334580",
+        "status": "PAUSED"
+      }
+    ],
+    "ads": [
+      {
+        "name": "Example | Ad 1 | Single Image (Placement Images + URL Tags)",
+        "adSetRef": "example-leads-guyana",
+        "id": "6961294376780",
+        "creativeId": "33762191066712671",
+        "status": "PAUSED"
+      },
+      {
+        "name": "Example | Ad 2 | Carousel (Program Images + URL Tags)",
+        "adSetRef": "example-leads-guyana",
+        "id": "6961294396180",
+        "creativeId": "902419972345487",
+        "status": "PAUSED"
+      }
+    ],
+    "images": [
+      {
+        "imagePath": "apps/sovoli.com/public/images/programs/primary.png",
+        "resolvedPath": "E:\\Developers\\sovoli\\apps\\sovoli.com\\public\\images\\programs\\primary.png",
+        "imageHash": "451b0e5fd5c62f424a4d74e90c2cb8a1"
+      },
+      {
+        "imagePath": "apps/sovoli.com/public/images/programs/secondary.jpg",
+        "resolvedPath": "E:\\Developers\\sovoli\\apps\\sovoli.com\\public\\images\\programs\\secondary.jpg",
+        "imageHash": "fb7ccaa5d731d1dba70680b7fc3dd451"
+      },
+      {
+        "imagePath": "apps/sovoli.com/public/images/programs/nursery.jpg",
+        "resolvedPath": "E:\\Developers\\sovoli\\apps\\sovoli.com\\public\\images\\programs\\nursery.jpg",
+        "imageHash": "dcd458a3c03e723f3270816ce364586c"
+      }
+    ]
+  }
+}

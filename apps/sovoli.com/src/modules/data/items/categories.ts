@@ -9,11 +9,28 @@ export function flattenCategoryTree(
   output: Record<string, CategoryDefinition> = {},
 ): Record<string, CategoryDefinition> {
   for (const node of nodes) {
-    output[node.id] = {
+    // Some GPC trees contain duplicated IDs at different depths (e.g. a "class"
+    // node and a "brick" node with the same id). If we blindly overwrite, the
+    // later definition can self-parent (parentId === id) and create a circular
+    // parent chain at runtime.
+    const normalizedParentId =
+      node.parentId === node.id ? undefined : node.parentId;
+
+    const existing = output[node.id];
+    const nextDef: CategoryDefinition = {
       id: node.id,
       name: node.name,
-      parentId: node.parentId,
+      parentId: normalizedParentId,
     };
+
+    // Prefer the first seen definition unless:
+    // - it would introduce a self-parent (normalizedParentId is undefined but existing is fine)
+    // - the existing one is already self-parenting (shouldn't happen after normalization)
+    if (!existing) {
+      output[node.id] = nextDef;
+    } else if (existing.parentId === node.id) {
+      output[node.id] = nextDef;
+    }
 
     if (node.children) {
       flattenCategoryTree(node.children, output);
