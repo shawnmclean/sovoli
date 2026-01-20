@@ -25,7 +25,7 @@ type ReviewAction =
 			};
 	  }
 	| { type: "SET_SUFFIX"; payload: ProgramSuffix | null }
-	| { type: "INIT_PROGRAMS"; payload: Array<{ programId: string; transformedData: Record<string, unknown>; oldProgram: Record<string, unknown> | null; matchedPrograms: Array<{ id: string; name: string; score: number }> | null }> };
+	| { type: "INIT_PROGRAMS"; payload: { programId: string; transformedData: Record<string, unknown>; oldProgram: Record<string, unknown> | null; matchedPrograms: { id: string; name: string; score: number }[] | null }[] };
 
 function reviewReducer(
 	state: ReviewState,
@@ -54,22 +54,21 @@ function reviewReducer(
 				...state,
 				selectedSuffix: action.payload,
 			};
-		case "INIT_PROGRAMS":
+		case "INIT_PROGRAMS": {
 			const programs: Record<string, ProgramState> = {};
 			for (const program of action.payload) {
+				const firstMatch = program.matchedPrograms?.[0];
 				programs[program.programId] = {
 					data: program.transformedData,
 					action: program.oldProgram ? "update" : "add",
-					targetProgramId:
-						program.matchedPrograms && program.matchedPrograms.length > 0
-							? program.matchedPrograms[0]!.id
-							: undefined,
+					targetProgramId: firstMatch?.id,
 				};
 			}
 			return {
 				...state,
 				editedPrograms: programs,
 			};
+		}
 		default:
 			return state;
 	}
@@ -77,12 +76,12 @@ function reviewReducer(
 
 interface UseReviewStateProps {
 	initialOrgData: Record<string, unknown>;
-	initialPrograms: Array<{
+	initialPrograms: {
 		programId: string;
 		transformedData: Record<string, unknown>;
 		oldProgram: Record<string, unknown> | null;
-		matchedPrograms: Array<{ id: string; name: string; score: number }> | null;
-	}>;
+		matchedPrograms: { id: string; name: string; score: number }[] | null;
+	}[];
 }
 
 export function useReviewState({
@@ -92,13 +91,11 @@ export function useReviewState({
 	// Initialize programs state
 	const initialProgramsState: Record<string, ProgramState> = {};
 	for (const program of initialPrograms) {
+		const firstMatch = program.matchedPrograms?.[0];
 		initialProgramsState[program.programId] = {
 			data: program.transformedData,
 			action: program.oldProgram ? "update" : "add",
-			targetProgramId:
-				program.matchedPrograms && program.matchedPrograms.length > 0
-					? program.matchedPrograms[0]!.id
-					: undefined,
+			targetProgramId: firstMatch?.id,
 		};
 	}
 

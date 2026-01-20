@@ -13,17 +13,17 @@ export function transformContactsToOrgFormat(
 	phones: PhoneEvidence[],
 	emails: EmailEvidence[],
 ) {
-	const contacts: Array<{
+	const contacts: {
 		type: "phone" | "whatsapp" | "email";
 		value: string;
 		isPublic?: boolean;
 		primary?: boolean;
-	}> = [];
+	}[] = [];
 
 	// Add phones
 	for (const phone of phones) {
 		contacts.push({
-			type: phone.type || "phone",
+			type: phone.type ?? "phone",
 			value: phone.value,
 			isPublic: true,
 		});
@@ -49,7 +49,7 @@ export function transformSocialLinksToOrgFormat(
 ) {
 	return socialLinks.map((link) => ({
 		platform: link.platform,
-		url: link.url || link.value,
+		url: link.url ?? link.value,
 		handle: link.handle,
 		label: link.platform === "other" ? link.value : undefined,
 	}));
@@ -67,12 +67,12 @@ export function transformLocationsToOrgFormat(locations: string[]) {
 			line1: locationStr,
 			countryCode: "JM", // Default, should be prompted or inferred
 		},
-		contacts: [] as Array<{
+		contacts: [] as {
 			type: "phone" | "whatsapp" | "email";
 			value: string;
 			isPublic?: boolean;
 			primary?: boolean;
-		}>,
+		}[],
 	}));
 }
 
@@ -84,9 +84,8 @@ export function transformExtractionToOrgData(
 	extraction: LeadExtractionDocument,
 ) {
 	const businessName =
-		extraction.business && extraction.business.length > 0
-			? extraction.business[0]!
-			: "Unknown Business";
+		(extraction.business.length ? extraction.business[0] : undefined) ??
+		"Unknown Business";
 
 	const orgData: Record<string, unknown> = {
 		name: businessName,
@@ -112,7 +111,10 @@ export function transformExtractionToOrgData(
 			);
 			// Add contacts to first location
 			if (locations.length > 0) {
-				locations[0]!.contacts = contacts;
+				const firstLocation = locations[0];
+				if (firstLocation) {
+					firstLocation.contacts = contacts;
+				}
 			}
 			orgData.locations = locations;
 		} else {

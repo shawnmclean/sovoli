@@ -73,7 +73,7 @@ function findOrganizationDirectory(orgId: string): string | null {
 function findProgramFile(
   orgDir: string,
   programId: string,
-): { filePath: string; programs: Array<Record<string, unknown>> } | null {
+): { filePath: string; programs: Record<string, unknown>[] } | null {
   // Try to find in any academic JSON file
   const files = fs.readdirSync(orgDir);
   const academicFiles = files.filter(
@@ -85,7 +85,7 @@ function findProgramFile(
     try {
       const content = fs.readFileSync(academicPath, "utf-8");
       const data = JSON.parse(content) as {
-        programs?: Array<Record<string, unknown>>;
+        programs?: Record<string, unknown>[];
       };
 
       if (data.programs) {
@@ -96,7 +96,7 @@ function findProgramFile(
           return { filePath: academicPath, programs: data.programs };
         }
       }
-    } catch (error) {
+    } catch {
       // Continue to next file
       continue;
     }
@@ -109,9 +109,9 @@ function findProgramFile(
  * Load cycles.json file
  */
 function loadCyclesFile(orgDir: string): {
-  globalCycles: Array<Record<string, unknown>>;
-  academicCycles: Array<Record<string, unknown>>;
-  programCycles: Array<Record<string, unknown>>;
+  globalCycles: Record<string, unknown>[];
+  academicCycles: Record<string, unknown>[];
+  programCycles: Record<string, unknown>[];
 } {
   const cyclesPath = path.join(orgDir, "cycles.json");
   if (!fs.existsSync(cyclesPath)) {
@@ -125,14 +125,14 @@ function loadCyclesFile(orgDir: string): {
   try {
     const content = fs.readFileSync(cyclesPath, "utf-8");
     const data = JSON.parse(content) as {
-      globalCycles?: Array<Record<string, unknown>>;
-      academicCycles?: Array<Record<string, unknown>>;
-      programCycles?: Array<Record<string, unknown>>;
+      globalCycles?: Record<string, unknown>[];
+      academicCycles?: Record<string, unknown>[];
+      programCycles?: Record<string, unknown>[];
     };
     return {
-      globalCycles: data.globalCycles || [],
-      academicCycles: data.academicCycles || [],
-      programCycles: data.programCycles || [],
+      globalCycles: data.globalCycles ?? [],
+      academicCycles: data.academicCycles ?? [],
+      programCycles: data.programCycles ?? [],
     };
   } catch (error) {
     console.error(`Error loading cycles.json:`, error);
@@ -150,9 +150,9 @@ function loadCyclesFile(orgDir: string): {
 function saveCyclesFile(
   orgDir: string,
   cycles: {
-    globalCycles: Array<Record<string, unknown>>;
-    academicCycles: Array<Record<string, unknown>>;
-    programCycles: Array<Record<string, unknown>>;
+    globalCycles: Record<string, unknown>[];
+    academicCycles: Record<string, unknown>[];
+    programCycles: Record<string, unknown>[];
   },
 ): void {
   const cyclesPath = path.join(orgDir, "cycles.json");
@@ -258,6 +258,7 @@ export async function saveOrgChanges(
   extractionFilename: string,
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    await Promise.resolve();
     const orgDir = findOrganizationDirectory(orgId);
     if (!orgDir) {
       return {
@@ -274,7 +275,7 @@ export async function saveOrgChanges(
       try {
         const content = fs.readFileSync(orgJsonPath, "utf-8");
         existingOrg = JSON.parse(content) as Record<string, unknown>;
-      } catch (error) {
+      } catch {
         // If we can't read existing, treat as new
       }
     }
@@ -343,6 +344,7 @@ export async function saveProgramChanges(
   pricing?: ProgramEvidence["pricing"],
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    await Promise.resolve();
     const result = findProgramFile(orgDir, programId);
     if (!result) {
       return {
@@ -353,7 +355,7 @@ export async function saveProgramChanges(
 
     // Load existing program to track changes
     const existingProgram =
-      result.programs.find((p) => (p.id as string) === programId) ||
+      result.programs.find((p) => (p.id as string) === programId) ??
       ({} as Record<string, unknown>);
 
     // Merge with existing data (idempotent - preserves existing fields not in programData)
@@ -364,7 +366,7 @@ export async function saveProgramChanges(
 
     // Track changes
     const updatedFields = getChangedFields(
-      existingProgram as Record<string, unknown>,
+      existingProgram,
       mergedProgram,
     );
     const isNew = Object.keys(existingProgram).length === 0;
@@ -411,10 +413,10 @@ export async function saveProgramChanges(
       const startDate = extractStartDate(schedule);
       if (startDate) {
         const programSlug =
-          (programWithMetadata.slug as string) ||
-          (programWithMetadata.name as string)
+          (programWithMetadata.slug as string | undefined) ??
+          (programWithMetadata.name as string | undefined)
             ?.toLowerCase()
-            .replace(/[^a-z0-9]+/g, "-") ||
+            .replace(/[^a-z0-9]+/g, "-") ??
           programId;
         const programName = (programWithMetadata.name as string) || programId;
         cycleId = findOrCreateProgramCycle(
@@ -434,7 +436,9 @@ export async function saveProgramChanges(
         (p) => (p.id as string) === programId,
       );
       if (programToUpdate) {
-        const existingCycleIds = (programToUpdate.cycleIds as string[]) || [];
+        const existingCycleIds = Array.isArray(programToUpdate.cycleIds)
+          ? (programToUpdate.cycleIds as string[])
+          : [];
         if (!existingCycleIds.includes(cycleId)) {
           programToUpdate.cycleIds = [...existingCycleIds, cycleId];
         }
@@ -471,6 +475,7 @@ export async function createNewOrg(
   extractionFilename: string,
 ): Promise<{ success: boolean; orgDir?: string; error?: string }> {
   try {
+    await Promise.resolve();
     // Build directory path
     const pathParts = [category, country];
     if (region) {
@@ -500,7 +505,7 @@ export async function createNewOrg(
         const content = fs.readFileSync(orgJsonPath, "utf-8");
         existingOrg = JSON.parse(content) as Record<string, unknown>;
         isNew = false;
-      } catch (error) {
+      } catch {
         // If we can't read existing, treat as new
       }
     }
@@ -548,6 +553,7 @@ export async function markExtractionApplied(
   extractionId: string,
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    await Promise.resolve();
     const EXTRACTIONS_DIR = path.join(ROOT_DIR, "data/leads/extractions");
     const filePath = path.join(
       EXTRACTIONS_DIR,
@@ -597,6 +603,7 @@ export async function createNewProgram(
   pricing?: ProgramEvidence["pricing"],
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    await Promise.resolve();
     const programId = programData.id as string;
     if (!programId) {
       return { success: false, error: "Program ID is required" };
@@ -611,7 +618,7 @@ export async function createNewProgram(
       try {
         const content = fs.readFileSync(programGroupsPath, "utf-8");
         const data = JSON.parse(content) as {
-          groups?: Array<{ id: string; slug: string }>;
+          groups?: { id: string; slug: string }[];
         };
 
         if (data.groups && data.groups.length > 0) {
@@ -621,7 +628,7 @@ export async function createNewProgram(
             targetFile = `${firstGroup.slug}-academic.json`;
           }
         }
-      } catch (error) {
+      } catch {
         // Fall back to default
       }
     }
@@ -629,15 +636,15 @@ export async function createNewProgram(
     const academicPath = path.join(orgDir, targetFile);
 
     // Load or create academic file
-    let programs: Array<Record<string, unknown>> = [];
+    let programs: Record<string, unknown>[] = [];
     if (fs.existsSync(academicPath)) {
       try {
         const content = fs.readFileSync(academicPath, "utf-8");
         const data = JSON.parse(content) as {
-          programs?: Array<Record<string, unknown>>;
+          programs?: Record<string, unknown>[];
         };
-        programs = data.programs || [];
-      } catch (error) {
+        programs = data.programs ?? [];
+      } catch {
         // Start with empty array
       }
     }
@@ -649,9 +656,10 @@ export async function createNewProgram(
     const isNew = existingProgramIndex === -1;
 
     // Merge with existing data if updating (idempotent)
-    const existingProgram = isNew
-      ? ({} as Record<string, unknown>)
-      : (programs[existingProgramIndex] as Record<string, unknown>);
+    const existingProgram =
+      !isNew && programs[existingProgramIndex]
+        ? programs[existingProgramIndex]
+        : ({} as Record<string, unknown>);
     const mergedProgram = isNew
       ? { ...programData }
       : { ...existingProgram, ...programData };
@@ -685,10 +693,10 @@ export async function createNewProgram(
       const startDate = extractStartDate(schedule);
       if (startDate) {
         const programSlug =
-          (programData.slug as string) ||
-          (programData.name as string)
+          (programData.slug as string | undefined) ??
+          (programData.name as string | undefined)
             ?.toLowerCase()
-            .replace(/[^a-z0-9]+/g, "-") ||
+            .replace(/[^a-z0-9]+/g, "-") ??
           programId;
         const programName = (programData.name as string) || programId;
         cycleId = findOrCreateProgramCycle(
@@ -710,7 +718,9 @@ export async function createNewProgram(
         ? programWithMetadata
         : programs[existingProgramIndex];
       if (programToUpdate) {
-        const existingCycleIds = (programToUpdate.cycleIds as string[]) || [];
+        const existingCycleIds = Array.isArray(programToUpdate.cycleIds)
+          ? (programToUpdate.cycleIds as string[])
+          : [];
         if (!existingCycleIds.includes(cycleId)) {
           programToUpdate.cycleIds = [...existingCycleIds, cycleId];
         }

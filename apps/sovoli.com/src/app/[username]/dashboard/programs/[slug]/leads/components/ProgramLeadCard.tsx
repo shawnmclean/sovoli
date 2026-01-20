@@ -116,6 +116,7 @@ interface ProgramLeadCardProps {
     interactions: LeadInteraction[];
     systemState: SystemState;
     onUpdateClick: (leadId: string) => void;
+    showProgram?: boolean;
 }
 
 export function ProgramLeadCard({
@@ -123,6 +124,7 @@ export function ProgramLeadCard({
     interactions,
     systemState,
     onUpdateClick,
+    showProgram = false,
 }: ProgramLeadCardProps) {
     const [isRevealed, setIsRevealed] = useState(false);
     const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -136,15 +138,20 @@ export function ProgramLeadCard({
         day: 'numeric'
     });
 
+    const shouldShowProgram = showProgram && !!lead.programName;
+
     return (
         <Card className="w-full border-b border-default-100 shadow-none rounded-none sm:rounded-medium sm:border bg-background sm:shadow-sm">
             <CardBody className="p-4 sm:p-5 space-y-5">
                 {/* Header: Name & Status */}
                 <div className="flex items-start justify-between">
                     <div className="space-y-1">
-                        <div
-                            className="flex items-center gap-2 cursor-pointer active:opacity-70 transition-opacity"
-                            onClick={() => !isRevealed && setIsRevealed(true)}
+                        <button
+                            type="button"
+                            className="flex items-center gap-2 text-left active:opacity-70 transition-opacity"
+                            onClick={() => {
+                                if (!isRevealed) setIsRevealed(true);
+                            }}
                         >
                             <h3 className="text-xl font-bold text-foreground">
                                 {isRevealed ? lead.name : abbreviateName(lead.name)}
@@ -152,7 +159,7 @@ export function ProgramLeadCard({
                             {!isRevealed && (
                                 <span className="text-default-300 text-lg select-none">•••••</span>
                             )}
-                        </div>
+                        </button>
                         <StatusIndicator state={systemState} />
                     </div>
 
@@ -177,7 +184,17 @@ export function ProgramLeadCard({
                 </div>
 
                 {/* Context Info (Always Visible) */}
-                <div className="grid grid-cols-2 gap-y-2 text-sm text-default-500">
+                <div
+                    className={`grid grid-cols-2 gap-y-2 text-sm text-default-500 ${shouldShowProgram ? "sm:grid-cols-3" : ""}`}
+                >
+                    {shouldShowProgram && (
+                        <div>
+                            <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
+                                Program
+                            </span>
+                            <span className="text-foreground">{lead.programName}</span>
+                        </div>
+                    )}
                     <div>
                         <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
                             Cycle
@@ -213,6 +230,7 @@ export function ProgramLeadCard({
 
                         {interactions.length > 1 && (
                             <button
+                                type="button"
                                 onClick={() => setIsHistoryOpen(true)}
                                 className="absolute bottom-3 right-3 text-primary text-xs font-semibold flex items-center gap-0.5 hover:underline"
                             >

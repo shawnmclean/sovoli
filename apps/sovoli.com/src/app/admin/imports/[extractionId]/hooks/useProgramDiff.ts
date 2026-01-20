@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { computeDiff } from "../../utils/diff-compute";
 
 interface UseProgramDiffProps {
@@ -24,20 +24,20 @@ export function useProgramDiff({
   onChange,
 }: UseProgramDiffProps) {
   const isNew = oldProgram === null;
-  const isMatched = matchedPrograms && matchedPrograms.length > 0;
+  const isMatched = (matchedPrograms?.length ?? 0) > 0;
 
   // Compute initial default values - memoized to avoid recreating on every render
   const initialAction = useMemo((): "add" | "update" | null => {
     // Only default to "update" if there's a matched program or an old program
-    if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
+    if (isMatched) {
       return "update";
     }
-    if (!isNew && oldProgram) {
+    if (!isNew) {
       return "update";
     }
     // Otherwise, default to "add" (even if there are existing programs available)
     return "add";
-  }, [isMatched, isNew, matchedPrograms, oldProgram]);
+  }, [isMatched, isNew]);
 
   const initialTargetProgramId = useMemo((): string | undefined => {
     // Only set target program ID if we're updating
@@ -46,8 +46,8 @@ export function useProgramDiff({
     }
 
     // If matched, use matched program
-    if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
-      const firstMatch = matchedPrograms[0];
+    if (isMatched) {
+      const firstMatch = matchedPrograms?.[0];
       return firstMatch ? firstMatch.id : undefined;
     }
     // If we have an old program ID, use it
@@ -127,6 +127,7 @@ export function useProgramDiff({
     // Only sync if the new program is actually different from current
     if (newProgramString !== currentProgramString) {
       lastNewProgramRef.current = newProgramString;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setEditedProgram(newProgram);
       editedProgramRef.current = newProgram;
     }
@@ -142,6 +143,7 @@ export function useProgramDiff({
     // Only auto-update if we don't have a user-selected action yet
     // This prevents resetting user choices when props change
     if (action === null) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTargetProgramId(initialTargetProgramId);
       setAction(initialAction);
     }
@@ -149,8 +151,9 @@ export function useProgramDiff({
 
   // Compute diffs - memoized
   const allDiffs = useMemo(() => {
-    if (isNew || !oldProgram) {
-      return computeDiff({} as Record<string, unknown>, editedProgram);
+    if (isNew) {
+      const emptyOld: Record<string, unknown> = {};
+      return computeDiff(emptyOld, editedProgram);
     }
     const diffs = computeDiff(oldProgram, editedProgram);
     const filteredDiffs = diffs.filter((diff) => diff.type !== "remove");
@@ -176,10 +179,11 @@ export function useProgramDiff({
   useEffect(() => {
     if (!hasInitializedFieldsRef.current && allDiffs.length > 0) {
       const initialSelected = new Set(allDiffs.map((diff) => diff.field));
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedFields(initialSelected);
       hasInitializedFieldsRef.current = true;
     }
-  }, [allDiffs.length]);
+  }, [allDiffs]);
 
   // Ensure name field is selected when it changes (e.g., from suffix application)
   // Also ensure it's included in diffs even if it wasn't there before
@@ -190,6 +194,7 @@ export function useProgramDiff({
       if (nameInDiffs && !selectedFields.has("name")) {
         const newSelected = new Set(selectedFields);
         newSelected.add("name");
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setSelectedFields(newSelected);
       }
     }
@@ -376,7 +381,7 @@ export function useProgramDiff({
     return { ...obj, [firstPart]: nestedValue };
   }
 
-  const handleFieldChange = useCallback((field: string, value: unknown) => {
+  const handleFieldChange = (field: string, value: unknown) => {
     // Mark that user is editing
     isUserEditingRef.current = true;
 
@@ -398,7 +403,7 @@ export function useProgramDiff({
     userEditTimeoutRef.current = setTimeout(() => {
       isUserEditingRef.current = false;
     }, 300);
-  }, []);
+  };
 
   const handleFieldSelection = (field: string, selected: boolean) => {
     const newSelected = new Set(selectedFields);
@@ -416,9 +421,9 @@ export function useProgramDiff({
       setAction(null);
     } else if (!action) {
       // Set default action if none selected
-      if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
+      if (isMatched) {
         setAction("update");
-        const firstMatch = matchedPrograms[0];
+        const firstMatch = matchedPrograms?.[0];
         if (firstMatch) {
           setTargetProgramId(firstMatch.id);
         }
@@ -432,8 +437,8 @@ export function useProgramDiff({
     setAction(newAction);
     if (newAction === "update") {
       // Default to matched program if available, otherwise first existing program
-      if (isMatched && matchedPrograms && matchedPrograms.length > 0) {
-        const firstMatch = matchedPrograms[0];
+      if (isMatched) {
+        const firstMatch = matchedPrograms?.[0];
         if (firstMatch) {
           setTargetProgramId(firstMatch.id);
         }

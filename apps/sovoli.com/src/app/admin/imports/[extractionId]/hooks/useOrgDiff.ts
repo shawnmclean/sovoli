@@ -44,6 +44,7 @@ export function useOrgDiff({ oldOrg, newOrg, onChange }: UseOrgDiffProps) {
 			
 			// Only update if editedOrg is different from newOrg
 			if (!deepEqual(editedOrgRef.current, newOrg)) {
+				// eslint-disable-next-line react-hooks/set-state-in-effect
 				setEditedOrg(newOrg);
 				editedOrgRef.current = newOrg;
 			}
@@ -60,7 +61,7 @@ export function useOrgDiff({ oldOrg, newOrg, onChange }: UseOrgDiffProps) {
 			return computeDiff({}, editedOrg);
 		}
 		// When isNew is false, oldOrg is guaranteed to be non-null
-		const diffs = computeDiff(oldOrg as Record<string, unknown>, editedOrg);
+		const diffs = computeDiff(oldOrg, editedOrg);
 		return diffs.filter((diff) => diff.type !== "remove");
 	}, [editedOrg, oldOrg, isNew]);
 
@@ -68,10 +69,11 @@ export function useOrgDiff({ oldOrg, newOrg, onChange }: UseOrgDiffProps) {
 	useEffect(() => {
 		if (!hasInitializedFieldsRef.current && allDiffs.length > 0) {
 			const initialSelected = new Set(allDiffs.map((diff) => diff.field));
+			// eslint-disable-next-line react-hooks/set-state-in-effect
 			setSelectedFields(initialSelected);
 			hasInitializedFieldsRef.current = true;
 		}
-	}, [allDiffs.length]);
+	}, [allDiffs]);
 
 	// Compute final org data based on selected fields - memoized
 	const finalOrg = useMemo(() => {

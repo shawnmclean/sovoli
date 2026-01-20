@@ -8,7 +8,7 @@ import type { MatchedProgram } from "../types/lead-extraction-schema";
 function findProgramFile(
 	orgDir: string,
 	programId: string,
-): { filePath: string; programs: Array<Record<string, unknown>> } | null {
+): { filePath: string; programs: Record<string, unknown>[] } | null {
 	// Try to find in any academic JSON file
 	const files = fs.readdirSync(orgDir);
 	const academicFiles = files.filter(
@@ -20,7 +20,7 @@ function findProgramFile(
 		try {
 			const content = fs.readFileSync(academicPath, "utf-8");
 			const data = JSON.parse(content) as {
-				programs?: Array<Record<string, unknown>>;
+				programs?: Record<string, unknown>[];
 			};
 
 			if (data.programs) {
@@ -31,7 +31,7 @@ function findProgramFile(
 					return { filePath: academicPath, programs: data.programs };
 				}
 			}
-		} catch (error) {
+		} catch {
 			// Continue to next file
 			continue;
 		}
@@ -56,14 +56,13 @@ export function loadProgramFile(
 		(p) => (p.id as string) === programId,
 	);
 
-	return program ? (program as Record<string, unknown>) : null;
+	return program ?? null;
 }
 
 /**
  * Load all programs from an organization directory
  */
-export function loadAllPrograms(orgDir: string): Array<{ id: string; name: string }> {
-	const programs: Array<{ id: string; name: string }> = [];
+export function loadAllPrograms(orgDir: string): { id: string; name: string }[] {
 	const programsMap = new Map<string, { id: string; name: string }>();
 
 	if (!fs.existsSync(orgDir)) {
@@ -81,10 +80,10 @@ export function loadAllPrograms(orgDir: string): Array<{ id: string; name: strin
 			try {
 				const content = fs.readFileSync(academicPath, "utf-8");
 				const data = JSON.parse(content) as {
-					programs?: Array<{
+					programs?: {
 						id: string;
 						name?: string;
-					}>;
+					}[];
 				};
 
 				if (data.programs) {
@@ -97,7 +96,7 @@ export function loadAllPrograms(orgDir: string): Array<{ id: string; name: strin
 						}
 					}
 				}
-			} catch (error) {
+			} catch {
 				// Continue to next file
 				continue;
 			}

@@ -11,7 +11,7 @@ import { ProgramDiffView } from "./ProgramDiffView";
 import { ProgramConfiguration } from "./ProgramConfiguration";
 import { ReviewSummary } from "./ReviewSummary";
 import { CommitConfirmationModal } from "./CommitConfirmationModal";
-import type { ProgramSuffix } from "../utils/suffix-utils";
+import type { CommitSummary } from "./CommitConfirmationModal";
 import { replaceSuffix } from "../utils/suffix-utils";
 import { useReviewState } from "../hooks/useReviewState";
 import {
@@ -88,7 +88,7 @@ export function ReviewPageClient({
 	const [success, setSuccess] = useState(false);
 
 	// Compute summary for modal
-	const commitSummary = useMemo(() => {
+	const commitSummary = useMemo<CommitSummary>(() => {
 		const programsToCreate: { id: string; name: string }[] = [];
 		const programsToUpdate: { id: string; name: string; targetId?: string }[] = [];
 
@@ -116,7 +116,7 @@ export function ReviewPageClient({
 		}
 
 		return {
-			orgAction: (isNewOrg ? "create" : (matchedOrg ? "update" : null)) as "create" | "update" | null,
+			orgAction: (isNewOrg ? "create" : (matchedOrg ? "update" : null)),
 			orgName: businessName,
 			programsToCreate,
 			programsToUpdate,

@@ -10,7 +10,7 @@ import {
 import { Button } from "@sovoli/ui/components/button";
 import { Card } from "@sovoli/ui/components/card";
 
-interface CommitSummary {
+export interface CommitSummary {
 	orgAction: "create" | "update" | null;
 	orgName: string;
 	programsToCreate: { id: string; name: string }[];

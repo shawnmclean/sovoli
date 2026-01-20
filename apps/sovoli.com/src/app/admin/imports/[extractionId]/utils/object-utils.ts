@@ -5,7 +5,7 @@ export function getNestedValue(
 	obj: Record<string, unknown>,
 	path: string,
 ): unknown {
-	const parts = path.split(/[\.\[\]]/).filter(Boolean);
+	const parts = path.split(/[.[\]]/).filter(Boolean);
 	let current: unknown = obj;
 
 	for (const part of parts) {
@@ -35,11 +35,12 @@ export function setNestedValue(
 	path: string,
 	value: unknown,
 ): void {
-	const parts = path.split(/[\.\[\]]/).filter(Boolean);
+	const parts = path.split(/[.[\]]/).filter(Boolean);
 	let current: Record<string, unknown> = obj;
 
 	for (let i = 0; i < parts.length - 1; i++) {
-		const part = parts[i]!;
+		const part = parts[i];
+		if (!part) continue;
 		const nextPart = parts[i + 1];
 		const isArrayIndex = nextPart && !Number.isNaN(Number(nextPart));
 
@@ -67,6 +68,7 @@ export function setNestedValue(
 		}
 	}
 
-	const lastPart = parts[parts.length - 1]!;
+	const lastPart = parts[parts.length - 1];
+	if (!lastPart) return;
 	current[lastPart] = value;
 }

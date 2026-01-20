@@ -39,7 +39,7 @@ export function loadExtraction(
 
 	try {
 		const content = fs.readFileSync(filePath, "utf-8");
-		const data = JSON.parse(content);
+		const data: unknown = JSON.parse(content);
 		return leadExtractionDocumentSchema.parse(data);
 	} catch (error) {
 		console.error(`Error loading extraction ${extractionId}:`, error);

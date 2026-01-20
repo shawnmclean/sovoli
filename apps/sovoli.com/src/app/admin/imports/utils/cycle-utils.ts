@@ -13,12 +13,16 @@ export function parseExtractionDate(dateStr: string): string | null {
   const cleaned = dateStr.trim();
 
   // Format: "January 19" or "Jan 19"
-  const monthDayMatch = cleaned.match(
-    /^(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})/i,
-  );
+  const monthDayMatch =
+    /^(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})/i.exec(
+      cleaned,
+    );
   if (monthDayMatch) {
-    const monthName = monthDayMatch[1]!;
-    const day = parseInt(monthDayMatch[2]!, 10);
+    const monthName = monthDayMatch[1];
+    const dayStr = monthDayMatch[2];
+    if (!monthName || !dayStr) return null;
+
+    const day = parseInt(dayStr, 10);
     const currentYear = new Date().getFullYear();
 
     // Map month names to numbers
@@ -52,18 +56,23 @@ export function parseExtractionDate(dateStr: string): string | null {
     if (month && day >= 1 && day <= 31) {
       const date = new Date(currentYear, month - 1, day);
       if (!isNaN(date.getTime())) {
-        return date.toISOString().split("T")[0]!;
+        return date.toISOString().split("T")[0] ?? null;
       }
     }
   }
 
   // Format: "JAN 30-FEB 1" - take the first date
-  const rangeMatch = cleaned.match(
-    /^(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\s+(\d{1,2})/i,
-  );
+  const rangeMatch =
+    /^(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\s+(\d{1,2})/i.exec(
+      cleaned,
+    );
   if (rangeMatch) {
-    const monthAbbr = rangeMatch[1]!.toUpperCase();
-    const day = parseInt(rangeMatch[2]!, 10);
+    const monthAbbrRaw = rangeMatch[1];
+    const dayStr = rangeMatch[2];
+    if (!monthAbbrRaw || !dayStr) return null;
+
+    const monthAbbr = monthAbbrRaw.toUpperCase();
+    const day = parseInt(dayStr, 10);
     const currentYear = new Date().getFullYear();
 
     const monthMap: Record<string, number> = {
@@ -85,17 +94,17 @@ export function parseExtractionDate(dateStr: string): string | null {
     if (month && day >= 1 && day <= 31) {
       const date = new Date(currentYear, month - 1, day);
       if (!isNaN(date.getTime())) {
-        return date.toISOString().split("T")[0]!;
+        return date.toISOString().split("T")[0] ?? null;
       }
     }
   }
 
   // Try ISO format
-  const isoMatch = cleaned.match(/^\d{4}-\d{2}-\d{2}/);
+  const isoMatch = /^\d{4}-\d{2}-\d{2}/.exec(cleaned);
   if (isoMatch) {
     const date = new Date(cleaned);
     if (!isNaN(date.getTime())) {
-      return date.toISOString().split("T")[0]!;
+      return date.toISOString().split("T")[0] ?? null;
     }
   }
 
@@ -108,7 +117,7 @@ export function parseExtractionDate(dateStr: string): string | null {
 export function extractStartDate(
   schedule: ProgramEvidence["schedule"],
 ): string | null {
-  if (!schedule || !schedule.dates || schedule.dates.length === 0) {
+  if (!schedule?.dates || schedule.dates.length === 0) {
     return null;
   }
 
@@ -128,7 +137,7 @@ export function calculateEndDate(startDate: string): string {
   const start = new Date(startDate);
   const end = new Date(start);
   end.setMonth(end.getMonth() + 3);
-  return end.toISOString().split("T")[0]!;
+  return end.toISOString().split("T")[0] ?? startDate;
 }
 
 /**
@@ -148,25 +157,25 @@ export function generateCycleId(
 export function transformPricingToPackage(
   pricing: ProgramEvidence["pricing"],
 ): {
-  pricingItems: Array<{
+  pricingItems: {
     id: string;
     label: string;
     billingCycle: "one-time" | "annual" | "term" | "program";
     purpose?: "registration" | "tuition" | "materials";
     amount: Record<string, number>;
     notes?: string;
-  }>;
+  }[];
   discounts?: never[];
   paymentSplits?: never[];
 } {
-  const pricingItems: Array<{
+  const pricingItems: {
     id: string;
     label: string;
     billingCycle: "one-time" | "annual" | "term" | "program";
     purpose?: "registration" | "tuition" | "materials";
     amount: Record<string, number>;
     notes?: string;
-  }> = [];
+  }[] = [];
 
   if (!pricing) {
     return { pricingItems, discounts: [], paymentSplits: [] };
@@ -175,16 +184,17 @@ export function transformPricingToPackage(
   // Process registration fees
   if (pricing.registration && pricing.registration.length > 0) {
     for (let i = 0; i < pricing.registration.length; i++) {
-      const item = pricing.registration[i]!;
+      const item = pricing.registration[i];
+      if (!item) continue;
       const amount = parseAmount(item.amount);
-      if (amount && Object.keys(amount).length > 0) {
+      if (Object.keys(amount).length > 0) {
         pricingItems.push({
           id: `registration-${i + 1}`,
-          label: item.label || "Registration",
+          label: item.label ?? "Registration",
           billingCycle: "one-time",
           purpose: "registration",
           amount,
-          notes: item.notes || undefined,
+          notes: item.notes ?? undefined,
         });
       }
     }
@@ -193,19 +203,25 @@ export function transformPricingToPackage(
   // Process tuition
   if (pricing.tuition && pricing.tuition.length > 0) {
     for (let i = 0; i < pricing.tuition.length; i++) {
-      const item = pricing.tuition[i]!;
+      const item = pricing.tuition[i];
+      if (!item) continue;
       const amount = parseAmount(item.amount);
-      if (amount && Object.keys(amount).length > 0) {
+      if (Object.keys(amount).length > 0) {
         const billingCycle =
-          (item.billingCycle as "one-time" | "annual" | "term" | "program") ||
+          (item.billingCycle as
+            | "one-time"
+            | "annual"
+            | "term"
+            | "program"
+            | undefined) ??
           "one-time";
         pricingItems.push({
           id: `tuition-${i + 1}`,
-          label: item.label || "Tuition",
+          label: item.label ?? "Tuition",
           billingCycle,
           purpose: "tuition",
           amount,
-          notes: item.notes || undefined,
+          notes: item.notes ?? undefined,
         });
       }
     }
@@ -214,16 +230,17 @@ export function transformPricingToPackage(
   // Process materials
   if (pricing.materials && pricing.materials.length > 0) {
     for (let i = 0; i < pricing.materials.length; i++) {
-      const item = pricing.materials[i]!;
+      const item = pricing.materials[i];
+      if (!item) continue;
       const amount = parseAmount(item.amount);
-      if (amount && Object.keys(amount).length > 0) {
+      if (Object.keys(amount).length > 0) {
         pricingItems.push({
           id: `materials-${i + 1}`,
-          label: item.label || "Materials",
+          label: item.label ?? "Materials",
           billingCycle: "one-time",
           purpose: "materials",
           amount,
-          notes: item.notes || undefined,
+          notes: item.notes ?? undefined,
         });
       }
     }
@@ -245,12 +262,15 @@ function parseAmount(amountStr: string | undefined): Record<string, number> {
   const cleaned = amountStr.replace(/[$,\s]/g, "");
 
   // Try to extract number
-  const numberMatch = cleaned.match(/^(\d+(?:\.\d+)?)/);
+  const numberMatch = /^(\d+(?:\.\d+)?)/.exec(cleaned);
   if (!numberMatch) {
     return {};
   }
 
-  const value = parseFloat(numberMatch[1]!);
+  const valueStr = numberMatch[1];
+  if (!valueStr) return {};
+
+  const value = parseFloat(valueStr);
   if (isNaN(value)) {
     return {};
   }

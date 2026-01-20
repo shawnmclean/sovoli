@@ -36,9 +36,10 @@ export function computeDiff(
 			if (!(key in oldData)) {
 				// Flatten the new value if it's an object or array
 				if (Array.isArray(newValue)) {
+					const newArray = newValue as unknown[];
 					// Flatten array - show each element's fields
-					for (let i = 0; i < newValue.length; i++) {
-						const item = newValue[i];
+					for (let i = 0; i < newArray.length; i++) {
+						const item = newArray[i];
 						if (typeof item === "object" && item !== null && !Array.isArray(item)) {
 							// Recursively flatten object items in array
 							const nestedDiffs = computeDiff(
@@ -83,13 +84,15 @@ export function computeDiff(
 
 			// Compare values
 			if (Array.isArray(newValue) && Array.isArray(oldValue)) {
+				const newArray = newValue as unknown[];
+				const oldArray = oldValue as unknown[];
 				// For arrays, compare each element
-				const maxLength = Math.max(newValue.length, oldValue.length);
+				const maxLength = Math.max(newArray.length, oldArray.length);
 				for (let i = 0; i < maxLength; i++) {
-					const newItem = newValue[i];
-					const oldItem = oldValue[i];
+					const newItem = newArray[i];
+					const oldItem = oldArray[i];
 
-					if (i >= oldValue.length) {
+					if (i >= oldArray.length) {
 						// New item added
 						if (typeof newItem === "object" && newItem !== null && !Array.isArray(newItem)) {
 							const nestedDiffs = computeDiff(
@@ -106,7 +109,7 @@ export function computeDiff(
 								type: "add",
 							});
 						}
-					} else if (i >= newValue.length) {
+					} else if (i >= newArray.length) {
 						// Item removed - skip (we don't show removes)
 						continue;
 					} else if (

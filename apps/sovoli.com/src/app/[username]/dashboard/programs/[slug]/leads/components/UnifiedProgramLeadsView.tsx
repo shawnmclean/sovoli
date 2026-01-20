@@ -19,6 +19,7 @@ interface UnifiedProgramLeadsViewProps {
 export function UnifiedProgramLeadsView({
   initialLeads,
   orgInstance,
+  programName,
 }: UnifiedProgramLeadsViewProps) {
   // Initialize interactions from JSON data (if present in leads)
   const initialInteractions: Record<string, LeadInteraction[]> = {};
@@ -123,6 +124,8 @@ export function UnifiedProgramLeadsView({
     ? initialLeads.find((l) => l.id === selectedLeadId)
     : null;
 
+  const showProgramInCards = programName === "All programs";
+
   return (
     <div className="space-y-8">
       {/* Summary Cards */}
@@ -151,6 +154,7 @@ export function UnifiedProgramLeadsView({
                 interactions={lead.interactions}
                 systemState={lead.systemState}
                 onUpdateClick={handleUpdateClick}
+                showProgram={showProgramInCards}
               />
             ))}
           </div>
@@ -174,6 +178,7 @@ export function UnifiedProgramLeadsView({
                 interactions={lead.interactions}
                 systemState={lead.systemState}
                 onUpdateClick={handleUpdateClick}
+                showProgram={showProgramInCards}
               />
             ))}
           </div>

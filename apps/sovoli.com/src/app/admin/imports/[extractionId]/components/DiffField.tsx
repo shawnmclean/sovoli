@@ -77,6 +77,25 @@ export function DiffField({
     return "";
   };
 
+  const safeStringifyValue = (input: unknown): string => {
+    if (input === null || input === undefined) return "";
+    if (
+      typeof input === "string" ||
+      typeof input === "number" ||
+      typeof input === "boolean" ||
+      typeof input === "bigint" ||
+      typeof input === "symbol" ||
+      typeof input === "function"
+    ) {
+      return String(input);
+    }
+    try {
+      return JSON.stringify(input);
+    } catch {
+      return "";
+    }
+  };
+
   // Handle different value types - only show simple inputs, no JSON
   const renderValue = () => {
     if (value === null || value === undefined) {
@@ -128,14 +147,7 @@ export function DiffField({
 
     // For arrays or objects, we shouldn't reach here if diff computation is correct
     // But as a fallback, show as string
-    // After checking null, undefined, string, number, boolean above,
-    // remaining types are object, array, symbol, bigint, or function
-    const stringValue =
-      typeof value === "object"
-        ? JSON.stringify(value)
-        : typeof value === "function"
-          ? String(value)
-          : String(value);
+    const stringValue = safeStringifyValue(value);
     return (
       <Input
         value={stringValue}
