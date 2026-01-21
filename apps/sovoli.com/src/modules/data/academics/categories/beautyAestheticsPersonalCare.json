@@ -1,58 +1,168 @@
 [
   {
-    "id": "beauty-aesthetics-personal-care",
-    "name": "Beauty, Aesthetics & Personal Care",
+    "id": "cosmetology-beauty-wellness",
+    "name": "Cosmetology, Beauty & Wellness",
     "children": [
       {
-        "id": "hair-removal",
-        "name": "Hair Removal",
-        "parentId": "beauty-aesthetics-personal-care",
+        "id": "massage-bodywork",
+        "name": "Massage & Bodywork",
+        "parentId": "cosmetology-beauty-wellness",
         "children": [
           {
-            "id": "hair-removal-waxing",
-            "name": "Waxing",
-            "parentId": "hair-removal"
-          },
-          {
-            "id": "hair-removal-threading",
-            "name": "Threading",
-            "parentId": "hair-removal"
-          },
-          {
-            "id": "hair-removal-laser",
-            "name": "Laser Hair Removal",
-            "parentId": "hair-removal"
+            "id": "wellness-massage-therapy",
+            "name": "Massage Therapy Program",
+            "parentId": "massage-bodywork"
           }
         ]
       },
       {
         "id": "skin-care-aesthetics",
         "name": "Skin Care & Aesthetics",
-        "parentId": "beauty-aesthetics-personal-care",
+        "parentId": "cosmetology-beauty-wellness",
         "children": [
           {
             "id": "facial-treatments",
-            "name": "Facial Treatments",
+            "name": "Skincare Fundamentals Program",
             "parentId": "skin-care-aesthetics"
           },
           {
             "id": "advanced-skin-rejuvenation",
-            "name": "Advanced Skin Rejuvenation",
+            "name": "Advanced Skin Rejuvenation Program",
             "parentId": "skin-care-aesthetics"
+          },
+          {
+            "id": "aesthetic-skin-treatments",
+            "name": "Aesthetic Skin Treatments Program",
+            "parentId": "skin-care-aesthetics"
+          }
+        ]
+      },
+      {
+        "id": "hair-removal",
+        "name": "Hair Removal",
+        "parentId": "cosmetology-beauty-wellness",
+        "children": [
+          {
+            "id": "hair-removal-waxing",
+            "name": "Waxing Program",
+            "parentId": "hair-removal"
+          },
+          {
+            "id": "hair-removal-threading",
+            "name": "Threading Program",
+            "parentId": "hair-removal"
+          }
+        ]
+      },
+      {
+        "id": "spa-body-treatments",
+        "name": "Spa & Body Treatments",
+        "parentId": "cosmetology-beauty-wellness",
+        "children": [
+          {
+            "id": "spa-therapy",
+            "name": "Spa Therapy Program",
+            "parentId": "spa-body-treatments"
+          },
+          {
+            "id": "body-treatments-program",
+            "name": "Body Treatments Program",
+            "parentId": "spa-body-treatments"
+          }
+        ]
+      },
+      {
+        "id": "holistic-wellness",
+        "name": "Holistic Wellness",
+        "parentId": "cosmetology-beauty-wellness",
+        "children": [
+          {
+            "id": "wellness-motivation-workshop",
+            "name": "Wellness & Motivation Workshop",
+            "parentId": "holistic-wellness"
+          }
+        ]
+      },
+      {
+        "id": "hair-styling-care",
+        "name": "Hair Styling & Hair Care",
+        "parentId": "cosmetology-beauty-wellness",
+        "children": [
+          {
+            "id": "hair-styling-program",
+            "name": "Hair Styling Program",
+            "parentId": "hair-styling-care"
+          },
+          {
+            "id": "natural-hair-care-program",
+            "name": "Natural Hair Care Program",
+            "parentId": "hair-styling-care"
+          },
+          {
+            "id": "hair-treatment-program",
+            "name": "Hair Treatment Program",
+            "parentId": "hair-styling-care"
+          }
+        ]
+      },
+      {
+        "id": "lash-brow-services",
+        "name": "Lash & Brow Services",
+        "parentId": "cosmetology-beauty-wellness",
+        "children": [
+          {
+            "id": "lash-technician-program",
+            "name": "Lash Technician Program",
+            "parentId": "lash-brow-services"
+          },
+          {
+            "id": "brow-shaping-design-program",
+            "name": "Brow Shaping & Design Program",
+            "parentId": "lash-brow-services"
           }
         ]
       },
       {
         "id": "nail-technology",
         "name": "Nail Technology",
-        "parentId": "beauty-aesthetics-personal-care"
+        "parentId": "cosmetology-beauty-wellness",
+        "children": [
+          {
+            "id": "nail-technician-program",
+            "name": "Nail Technician Program",
+            "parentId": "nail-technology"
+          }
+        ]
       },
       {
-        "id": "makeup-cosmetology",
-        "name": "Makeup & Cosmetology",
-        "parentId": "beauty-aesthetics-personal-care"
+        "id": "makeup-artistry",
+        "name": "Makeup Artistry",
+        "parentId": "cosmetology-beauty-wellness",
+        "children": [
+          {
+            "id": "makeup-artistry-program",
+            "name": "Makeup Artistry Program",
+            "parentId": "makeup-artistry"
+          }
+        ]
+      },
+      {
+        "id": "barbering-grooming",
+        "name": "Barbering & Grooming",
+        "parentId": "cosmetology-beauty-wellness",
+        "children": [
+          {
+            "id": "barbering-program",
+            "name": "Barbering Program",
+            "parentId": "barbering-grooming"
+          },
+          {
+            "id": "mens-grooming-program",
+            "name": "Men’s Grooming Program",
+            "parentId": "barbering-grooming"
+          }
+        ]
       }
     ]
   }
 ]
-
