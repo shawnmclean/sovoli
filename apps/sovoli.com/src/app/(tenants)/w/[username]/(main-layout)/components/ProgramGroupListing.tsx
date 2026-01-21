@@ -109,12 +109,15 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
       const chain = getProgramCategoryChain(program);
 
       const root = chain[0];
-      const leaf = chain.at(-1);
+      // Use subcategory level (one level up from leaf, but not the root)
+      // If chain has 2+ levels, use the second-to-last (subcategory)
+      // If chain has only 1 level, use the root as fallback
+      const subcategory = chain.length >= 2 ? chain[chain.length - 2] : chain[0];
 
       const rootKey = root?.id ?? "other";
       const rootTitle = root?.name ?? "Other Programs";
-      const leafKey = leaf?.id ?? "other";
-      const leafTitle = leaf?.name ?? "Other Programs";
+      const subcategoryKey = subcategory?.id ?? "other";
+      const subcategoryTitle = subcategory?.name ?? "Other Programs";
 
       const rootEntry =
         byRoot.get(rootKey) ??
@@ -128,10 +131,10 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
         })();
 
       const bucketEntry =
-        rootEntry.buckets.get(leafKey) ??
+        rootEntry.buckets.get(subcategoryKey) ??
         (() => {
-          const next = { title: leafTitle, programs: [] as Program[] };
-          rootEntry.buckets.set(leafKey, next);
+          const next = { title: subcategoryTitle, programs: [] as Program[] };
+          rootEntry.buckets.set(subcategoryKey, next);
           return next;
         })();
 
