@@ -13,6 +13,7 @@ import {
 } from "@sovoli/ui/components/drawer";
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import { getOrgCategoryDisplay } from "~/modules/organisations/getOrgCategoryDisplay";
 
 interface OrgDetailsProps {
   orgInstance: OrgInstance;
@@ -28,8 +29,7 @@ export function OrgDetails({ orgInstance, program }: OrgDetailsProps) {
     });
   }, [program]);
 
-  // Get first category
-  const firstCategory = org.categories[0];
+  const categoryText = getOrgCategoryDisplay(org);
 
   return (
     <DrawerContent>
@@ -75,13 +75,11 @@ export function OrgDetails({ orgInstance, program }: OrgDetailsProps) {
                   </div>
 
                   {/* Category */}
-                  {firstCategory && (
+                  {categoryText ? (
                     <div className="text-center">
-                      <span className="text-sm text-foreground-500 capitalize">
-                        {firstCategory.replace("-", " ")}
-                      </span>
+                      <span className="text-sm text-foreground-500">{categoryText}</span>
                     </div>
-                  )}
+                  ) : null}
                 </CardBody>
               </Card>
 

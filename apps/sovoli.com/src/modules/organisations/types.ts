@@ -88,6 +88,13 @@ export interface Org {
   name: string;
   logoPhoto?: Media;
   categories: OrgCategoryKeys[];
+  /**
+   * Optional UI-only label for displaying the organisation category/legal description.
+   * Example: "Beauty School and Spa"
+   *
+   * NOTE: This does not replace `categories` (taxonomy used for routing/logic/SEO).
+   */
+  categoryDisplay?: string;
   locations: OrgLocation[];
   socialLinks?: SocialLink[];
   about?: string;

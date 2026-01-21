@@ -2,9 +2,8 @@
   "username": "healingemeraldwellness",
   "name": "Healing Emerald Wellness Spa & Training Centre Limited",
   "logoPhotoId": "hew-logo",
-  "categories": [
-    "beauty-school"
-  ],
+  "categories": ["beauty-school"],
+  "categoryDisplay": "Beauty School & Spa",
   "locations": [
     {
       "key": "main-location",

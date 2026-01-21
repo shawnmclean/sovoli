@@ -4,6 +4,7 @@ import { Link } from "@sovoli/ui/components/link";
 import { BadgeCheckIcon } from "lucide-react";
 
 import type { OrgInstance } from "~/modules/organisations/types";
+import { getOrgCategoryDisplay } from "~/modules/organisations/getOrgCategoryDisplay";
 
 export interface OrgSectionProps {
   orgInstance: OrgInstance;
@@ -30,8 +31,7 @@ export function OrgSection({ orgInstance, programSlug }: OrgSectionProps) {
     ? new Date(org.verification.incorporationDate).getFullYear()
     : null;
 
-  // Get first category
-  const firstCategory = org.categories[0];
+  const categoryText = getOrgCategoryDisplay(org);
 
   const content = (
     <div className="flex items-center gap-4">
@@ -74,14 +74,10 @@ export function OrgSection({ orgInstance, programSlug }: OrgSectionProps) {
 
         {/* Second Row: Category and Establishment Year */}
         <div className="flex items-center gap-2 text-sm text-foreground-500">
-          {firstCategory && (
-            <span className="capitalize">
-              {firstCategory.replace("-", " ")}
-            </span>
-          )}
+          {categoryText ? <span>{categoryText}</span> : null}
           {establishmentYear && (
             <>
-              {firstCategory && <span>•</span>}
+              {categoryText ? <span>•</span> : null}
               <span>Est. {establishmentYear}</span>
             </>
           )}

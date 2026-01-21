@@ -2,6 +2,7 @@ import { Avatar } from "@sovoli/ui/components/avatar";
 // import { Badge } from "@sovoli/ui/components/badge";
 import { BadgeCheckIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { getOrgCategoryDisplay } from "~/modules/organisations/getOrgCategoryDisplay";
 import { countryCodeToName } from "~/utils/countryUtils";
 
 export interface OrgLandingSectionProps {
@@ -26,8 +27,7 @@ export function OrgLandingSection({ orgInstance }: OrgLandingSectionProps) {
     ? new Date(org.verification.incorporationDate).getFullYear()
     : null;
 
-  // Get first category
-  const firstCategory = org.categories[0];
+  const categoryText = getOrgCategoryDisplay(org);
 
   // Get primary location
   const primaryLocation = org.locations.find((loc) => loc.isPrimary);
@@ -100,20 +100,16 @@ export function OrgLandingSection({ orgInstance }: OrgLandingSectionProps) {
 
         {/* Category, Establishment Year, and Age Range */}
         <div className="flex items-center gap-1 text-sm text-foreground-500">
-          {firstCategory && (
-            <span className="capitalize">
-              {firstCategory.replace("-", " ")}
-            </span>
-          )}
+          {categoryText ? <span>{categoryText}</span> : null}
           {establishmentYear && (
             <>
-              {firstCategory && <span>•</span>}
+              {categoryText ? <span>•</span> : null}
               <span>Est. {establishmentYear}</span>
             </>
           )}
           {ageRange && (
             <>
-              {(firstCategory ?? establishmentYear) && <span>•</span>}
+              {(categoryText ?? establishmentYear) ? <span>•</span> : null}
               <span>{ageRange}</span>
             </>
           )}
