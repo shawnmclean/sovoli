@@ -11,9 +11,16 @@ interface OfferingContentProps {
 export function OfferingContent({ orgInstance }: OfferingContentProps) {
   const { categories } = orgInstance.org;
 
+  const programCategories = new Set([
+    "private-school",
+    "vocational-school",
+    "beauty-school",
+    "fashion-school",
+    "music-school",
+  ]);
+
   if (
-    categories.includes("private-school") ||
-    categories.includes("vocational-school")
+    categories.some((category) => programCategories.has(category))
   ) {
     return <ProgramGroupListing orgInstance={orgInstance} />;
   }

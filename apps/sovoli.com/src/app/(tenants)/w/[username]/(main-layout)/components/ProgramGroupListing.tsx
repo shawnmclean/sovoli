@@ -78,31 +78,66 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
     return null;
   }
 
-  // Group programs by age groups
-  const programsByAgeGroup = programs.reduce(
-    (acc, program) => {
-      const ageReq = getAgeRequirement(program);
-      const ageGroupName = getAgeGroupName(ageReq);
+  const hasProgramGroups = programs.some((program) => Boolean(program.group));
 
-      acc[ageGroupName] ??= [];
-      acc[ageGroupName].push(program);
-      return acc;
-    },
-    {} as Record<string, Program[]>,
-  );
+  const groups = (() => {
+    if (hasProgramGroups) {
+      const byGroup = new Map<
+        string,
+        {
+          title: string;
+          order?: number;
+          programs: Program[];
+        }
+      >();
 
-  // Sort age groups by order
-  const sortedAgeGroups = Object.entries(programsByAgeGroup).sort(
-    ([a], [b]) => getAgeGroupOrder(a) - getAgeGroupOrder(b),
-  );
+      for (const program of programs) {
+        const group = program.group as (Program["group"] & { order?: number }) | undefined;
+        const key = group?.id ?? group?.slug ?? "other";
+        const title = group?.name ?? "Other Programs";
+        const order = group?.order;
+
+        const existing = byGroup.get(key);
+        if (existing) {
+          existing.programs.push(program);
+        } else {
+          byGroup.set(key, { title, order, programs: [program] });
+        }
+      }
+
+      return Array.from(byGroup.values()).sort((a, b) => {
+        const orderA = a.order ?? 999;
+        const orderB = b.order ?? 999;
+        if (orderA !== orderB) return orderA - orderB;
+        return a.title.localeCompare(b.title);
+      });
+    }
+
+    // Fallback: group programs by age eligibility
+    const programsByAgeGroup = programs.reduce(
+      (acc, program) => {
+        const ageReq = getAgeRequirement(program);
+        const ageGroupName = getAgeGroupName(ageReq);
+
+        acc[ageGroupName] ??= [];
+        acc[ageGroupName].push(program);
+        return acc;
+      },
+      {} as Record<string, Program[]>,
+    );
+
+    return Object.entries(programsByAgeGroup)
+      .sort(([a], [b]) => getAgeGroupOrder(a) - getAgeGroupOrder(b))
+      .map(([title, programs]) => ({ title, programs }));
+  })();
 
   return (
     <div className="space-y-8">
-      {sortedAgeGroups.map(([ageGroupName, groupPrograms]) => (
-        <div key={ageGroupName} className="space-y-4">
+      {groups.map((group) => (
+        <div key={group.title} className="space-y-4">
           <div>
             <h2 className="text-xl font-bold text-foreground mb-1">
-              {ageGroupName}
+              {group.title}
             </h2>
           </div>
 
@@ -115,7 +150,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
               className="w-full"
             >
               <CarouselContent className="-ml-2">
-                {groupPrograms.map((program) => {
+                {group.programs.map((program) => {
                   const programName =
                     program.name ??
                     program.standardProgramVersion?.program.name ??
