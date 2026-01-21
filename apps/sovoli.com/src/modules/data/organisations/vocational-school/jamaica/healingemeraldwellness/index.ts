@@ -9,7 +9,6 @@ import websiteData from "./website.json";
 import mediaData from "./media.json";
 import workforceData from "./workforce.json";
 import cyclesData from "./cycles.json";
-import programGroupsData from "./program-groups.json";
 import massageTherapyAcademicData from "./massage-therapy-academic.json";
 
 /**
@@ -22,8 +21,7 @@ export const HEALING_EMERALD_ORG: OrgInstance = parseOrgInstance({
 		media: mediaData,
 		workforce: workforceData,
 		cycles: cyclesData,
-		programGroups: programGroupsData,
-		groupAcademic: [massageTherapyAcademicData],
+		academic: massageTherapyAcademicData,
 		website: websiteData,
 	},
 });

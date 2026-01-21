@@ -156,13 +156,6 @@
           ]
         }
       ],
-      "group": {
-        "id": "massage-therapy",
-        "slug": "massage-therapy",
-        "name": "Massage Therapy",
-        "description": "Professional massage therapy training programs",
-        "order": 1
-      },
       "cycleIds": [
         "hew-massage-20260107",
         "hew-massage-20260225",

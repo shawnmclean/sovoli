@@ -150,7 +150,6 @@
       "certification": {
         "description": "Receive a certificate of participation upon successful completion of the program."
       },
-      "groupId": "massage-therapy",
       "cycleIds": [
         "hew-massage-20260107",
         "hew-massage-20260225",
@@ -431,7 +430,6 @@
       "certification": {
         "description": "Receive a certificate of participation upon successful completion of the program."
       },
-      "groupId": "waxing-hair-removal",
       "cycleIds": ["waxing-20260119"],
       "media": {
         "coverId": "hew-waxing-hero",
@@ -758,7 +756,6 @@
       "certification": {
         "description": "Receive a certificate of participation upon successful completion of the program. Assessment includes Theory Examination (40%), Practical Assessment (30%), and Portfolio (30%)."
       },
-      "groupId": "spa-therapy",
       "cycleIds": ["spa-therapy-20260121"],
       "media": {
         "coverId": "hew-spa-therapy-hero",
