@@ -1,0 +1,19 @@
+[
+  {
+    "id": "fashion",
+    "name": "Fashion & Sewing",
+    "children": [
+      {
+        "id": "fashion-sewing",
+        "name": "Sewing",
+        "parentId": "fashion"
+      },
+      {
+        "id": "fashion-workshops",
+        "name": "Workshops",
+        "parentId": "fashion"
+      }
+    ]
+  }
+]
+

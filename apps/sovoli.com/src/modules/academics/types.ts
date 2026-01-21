@@ -3,6 +3,7 @@ import type { Item } from "../core/items/types";
 import type { Media } from "../core/media/types";
 import type { CountryCode } from "../core/types";
 import type { WorkforceMember } from "../workforce/types";
+import type { ProgramCategory } from "./categories/types";
 
 // #region cycles
 
@@ -225,6 +226,8 @@ export interface Program {
   name?: string; // "Nursery" (can override)
   quickFacts?: string[];
   audience?: "student" | "parent";
+
+  category?: ProgramCategory;
 
   highlights?: ProgramHighlight[];
 

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "health-wellness-therapy",
+    "name": "Health, Wellness & Therapy",
+    "children": [
+      {
+        "id": "manual-therapies",
+        "name": "Manual Therapies",
+        "parentId": "health-wellness-therapy",
+        "children": [
+          {
+            "id": "wellness-massage-therapy",
+            "name": "Massage Therapy",
+            "parentId": "manual-therapies",
+            "children": [
+              {
+                "id": "massage-swedish",
+                "name": "Swedish Massage",
+                "parentId": "wellness-massage-therapy"
+              },
+              {
+                "id": "massage-deep-tissue",
+                "name": "Deep Tissue Massage",
+                "parentId": "wellness-massage-therapy"
+              }
+            ]
+          },
+          {
+            "id": "physiotherapy",
+            "name": "Physiotherapy",
+            "parentId": "manual-therapies"
+          }
+        ]
+      },
+      {
+        "id": "spa-relaxation",
+        "name": "Spa & Relaxation",
+        "parentId": "health-wellness-therapy",
+        "children": [
+          {
+            "id": "spa-therapy",
+            "name": "Spa Therapy",
+            "parentId": "spa-relaxation"
+          },
+          {
+            "id": "hot-stone-therapy",
+            "name": "Hot Stone Therapy",
+            "parentId": "spa-relaxation"
+          }
+        ]
+      },
+      {
+        "id": "mental-emotional-wellness",
+        "name": "Mental & Emotional Wellness",
+        "parentId": "health-wellness-therapy",
+        "children": [
+          {
+            "id": "stress-management",
+            "name": "Stress Management",
+            "parentId": "mental-emotional-wellness"
+          },
+          {
+            "id": "meditation",
+            "name": "Meditation",
+            "parentId": "mental-emotional-wellness"
+          }
+        ]
+      }
+    ]
+  }
+]
+

@@ -5,6 +5,7 @@
       "slug": "sewing-class",
       "name": "Sewing Class",
       "audience": "student",
+      "categoryId": "fashion-sewing",
       "quickFacts": [
         "Certificate Included",
         "Expert Instructor"

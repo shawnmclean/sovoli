@@ -6,29 +6,25 @@ import type {
   ProgramHighlight,
   ProgramHighlightIcon,
   ProgramWYLGroup,
-  ProgramWYLItem,
   ProgramTestimonial,
   Course,
   Activity,
-  Subject,
-  CourseUnit,
   AdmissionPolicy,
   RequirementList,
   RequirementListEntry,
   ProgramGroup,
-  Competency,
   Capability,
   ProgramCertification,
 } from "~/modules/academics/types";
 import type { Item } from "~/modules/core/items/types";
 import type { MediaMap } from "./parseMediaModule";
 import {
-  getMediaById,
   getMediaByIds,
   getMediaByIdOptional,
 } from "./parseMediaModule";
 import type { ParsedCyclesModule } from "./parseCyclesModule";
 import { getProgramCyclesByIds } from "./parseCyclesModule";
+import { hydrateProgramCategory } from "~/modules/data/academics/categories";
 
 // Zod schemas for nested program types
 
@@ -189,6 +185,7 @@ const programJsonSchema = z.object({
   name: z.string().optional(),
   quickFacts: z.array(z.string()).optional(),
   audience: z.enum(["student", "parent"]).optional(),
+  categoryId: z.string().optional(),
   highlights: z.array(programHighlightJsonSchema).optional(),
   courses: z.array(courseJsonSchema).optional(),
   activities: z.array(activityJsonSchema).optional(),
@@ -248,6 +245,10 @@ export function parseAcademicModule(
   const validated = academicModuleJsonSchema.parse(jsonData);
 
   const programs: Program[] = validated.programs.map((programJson) => {
+    const category = programJson.categoryId
+      ? hydrateProgramCategory(programJson.categoryId)
+      : undefined;
+
     // Resolve media references
     let media: ProgramMedia | undefined;
     if (programJson.media && mediaMap) {
@@ -340,6 +341,7 @@ export function parseAcademicModule(
       name: programJson.name,
       quickFacts: programJson.quickFacts,
       audience: programJson.audience,
+      category,
       highlights: programJson.highlights as ProgramHighlight[] | undefined,
       courses: programJson.courses as Course[] | undefined,
       activities: programJson.activities as Activity[] | undefined,

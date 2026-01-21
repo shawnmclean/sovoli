@@ -1,0 +1,95 @@
+[
+  {
+    "id": "academic-education",
+    "name": "Academic Education",
+    "children": [
+      {
+        "id": "early-childhood-education",
+        "name": "Early Childhood Education",
+        "parentId": "academic-education",
+        "children": [
+          {
+            "id": "nursery-education",
+            "name": "Nursery Education",
+            "parentId": "early-childhood-education"
+          },
+          {
+            "id": "kindergarten-education",
+            "name": "Kindergarten Education",
+            "parentId": "early-childhood-education"
+          }
+        ]
+      },
+      {
+        "id": "primary-education",
+        "name": "Primary Education",
+        "parentId": "academic-education",
+        "children": [
+          {
+            "id": "grade-1",
+            "name": "Grade 1",
+            "parentId": "primary-education"
+          },
+          {
+            "id": "grade-2",
+            "name": "Grade 2",
+            "parentId": "primary-education"
+          },
+          {
+            "id": "grade-3",
+            "name": "Grade 3",
+            "parentId": "primary-education"
+          },
+          {
+            "id": "grade-4",
+            "name": "Grade 4",
+            "parentId": "primary-education"
+          },
+          {
+            "id": "grade-5",
+            "name": "Grade 5",
+            "parentId": "primary-education"
+          },
+          {
+            "id": "grade-6",
+            "name": "Grade 6",
+            "parentId": "primary-education"
+          }
+        ]
+      },
+      {
+        "id": "secondary-education",
+        "name": "Secondary Education",
+        "parentId": "academic-education",
+        "children": [
+          {
+            "id": "grade-7",
+            "name": "Grade 7",
+            "parentId": "secondary-education"
+          },
+          {
+            "id": "grade-8",
+            "name": "Grade 8",
+            "parentId": "secondary-education"
+          },
+          {
+            "id": "grade-9",
+            "name": "Grade 9",
+            "parentId": "secondary-education"
+          },
+          {
+            "id": "grade-10",
+            "name": "Grade 10",
+            "parentId": "secondary-education"
+          },
+          {
+            "id": "grade-11",
+            "name": "Grade 11",
+            "parentId": "secondary-education"
+          }
+        ]
+      }
+    ]
+  }
+]
+

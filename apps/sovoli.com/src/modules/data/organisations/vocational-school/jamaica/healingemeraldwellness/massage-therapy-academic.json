@@ -5,6 +5,7 @@
       "slug": "massage-therapy",
       "name": "Massage Therapy Program",
       "audience": "student",
+      "categoryId": "wellness-massage-therapy",
       "quickFacts": ["Expert Instructor", "Hands-On"],
       "highlights": [
         {
@@ -226,6 +227,7 @@
       "slug": "waxing-program",
       "name": "Professional Waxing Program",
       "audience": "student",
+      "categoryId": "hair-removal-waxing",
       "quickFacts": [
         "4-Week Program",
         "Mondays Only",
@@ -544,6 +546,7 @@
       "name": "Threading Program",
       "id": "program-2",
       "slug": "threading",
+      "categoryId": "hair-removal-threading",
       "_addedAt": "2026-01-14T15:08:56.409Z",
       "_source": "HEW-Programs-extraction.json",
       "cycleIds": ["threading-20260120"],
@@ -557,6 +560,7 @@
       "slug": "spa-therapy",
       "name": "Spa Therapy Program",
       "audience": "student",
+      "categoryId": "spa-therapy",
       "quickFacts": [
         "7-Week Program",
         "Certificate Included",
@@ -815,6 +819,7 @@
       "name": "Skincare Program",
       "id": "program-4",
       "slug": "skincare",
+      "categoryId": "facial-treatments",
       "_addedAt": "2026-01-14T15:08:59.803Z",
       "_source": "HEW-Programs-extraction.json",
       "cycleIds": ["skincare-20260125"],

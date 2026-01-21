@@ -1,0 +1,58 @@
+[
+  {
+    "id": "beauty-aesthetics-personal-care",
+    "name": "Beauty, Aesthetics & Personal Care",
+    "children": [
+      {
+        "id": "hair-removal",
+        "name": "Hair Removal",
+        "parentId": "beauty-aesthetics-personal-care",
+        "children": [
+          {
+            "id": "hair-removal-waxing",
+            "name": "Waxing",
+            "parentId": "hair-removal"
+          },
+          {
+            "id": "hair-removal-threading",
+            "name": "Threading",
+            "parentId": "hair-removal"
+          },
+          {
+            "id": "hair-removal-laser",
+            "name": "Laser Hair Removal",
+            "parentId": "hair-removal"
+          }
+        ]
+      },
+      {
+        "id": "skin-care-aesthetics",
+        "name": "Skin Care & Aesthetics",
+        "parentId": "beauty-aesthetics-personal-care",
+        "children": [
+          {
+            "id": "facial-treatments",
+            "name": "Facial Treatments",
+            "parentId": "skin-care-aesthetics"
+          },
+          {
+            "id": "advanced-skin-rejuvenation",
+            "name": "Advanced Skin Rejuvenation",
+            "parentId": "skin-care-aesthetics"
+          }
+        ]
+      },
+      {
+        "id": "nail-technology",
+        "name": "Nail Technology",
+        "parentId": "beauty-aesthetics-personal-care"
+      },
+      {
+        "id": "makeup-cosmetology",
+        "name": "Makeup & Cosmetology",
+        "parentId": "beauty-aesthetics-personal-care"
+      }
+    ]
+  }
+]
+
