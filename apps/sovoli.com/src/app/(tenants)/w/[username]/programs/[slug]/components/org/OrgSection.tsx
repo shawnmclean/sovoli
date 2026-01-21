@@ -26,10 +26,22 @@ export function OrgSection({ orgInstance, programSlug }: OrgSectionProps) {
       })()
     : 0;
 
-  // Get establishment year from incorporation date
-  const establishmentYear = org.verification?.incorporationDate
-    ? new Date(org.verification.incorporationDate).getFullYear()
-    : null;
+  // Get establishment year from incorporation date (only show if >= 5 years old)
+  const establishmentYear = (() => {
+    const incorporationDate = org.verification?.incorporationDate;
+    if (!incorporationDate) return null;
+
+    const incorporatedAt = new Date(incorporationDate);
+    if (Number.isNaN(incorporatedAt.getTime())) return null;
+
+    const cutoff = new Date();
+    cutoff.setFullYear(cutoff.getFullYear() - 5);
+
+    // Hide establishment for younger orgs (< 5 years old)
+    if (incorporatedAt > cutoff) return null;
+
+    return incorporatedAt.getFullYear();
+  })();
 
   const categoryText = getOrgCategoryDisplay(org);
 

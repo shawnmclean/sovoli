@@ -22,10 +22,22 @@ export function OrgLandingSection({ orgInstance }: OrgLandingSectionProps) {
   //     })()
   //   : 0;
 
-  // Get establishment year from incorporation date
-  const establishmentYear = org.verification?.incorporationDate
-    ? new Date(org.verification.incorporationDate).getFullYear()
-    : null;
+  // Get establishment year from incorporation date (only show if >= 5 years old)
+  const establishmentYear = (() => {
+    const incorporationDate = org.verification?.incorporationDate;
+    if (!incorporationDate) return null;
+
+    const incorporatedAt = new Date(incorporationDate);
+    if (Number.isNaN(incorporatedAt.getTime())) return null;
+
+    const cutoff = new Date();
+    cutoff.setFullYear(cutoff.getFullYear() - 5);
+
+    // Hide establishment for younger orgs (< 5 years old)
+    if (incorporatedAt > cutoff) return null;
+
+    return incorporatedAt.getFullYear();
+  })();
 
   const categoryText = getOrgCategoryDisplay(org);
 
@@ -88,15 +100,17 @@ export function OrgLandingSection({ orgInstance }: OrgLandingSectionProps) {
 
       {/* Organization Info */}
       <div className="flex flex-col gap-1 min-w-0 flex-1">
-        {/* Name with Verified Badge */}
-        <div className="flex items-center gap-1">
-          <h1 className="font-bold text-lg flex items-center gap-1">
-            {org.name}
-            {org.isVerified && (
-              <BadgeCheckIcon className="text-success" size={16} />
-            )}
-          </h1>
-        </div>
+        {/* Name (match program org section style) */}
+        <h1 className="font-bold text-lg text-foreground leading-tight">
+          {org.name}
+          {org.isVerified && (
+            <BadgeCheckIcon
+              className="text-success inline-block ml-2 align-middle"
+              size={20}
+              style={{ verticalAlign: "middle" }}
+            />
+          )}
+        </h1>
 
         {/* Category, Establishment Year, and Age Range */}
         <div className="flex items-center gap-1 text-sm text-foreground-500">

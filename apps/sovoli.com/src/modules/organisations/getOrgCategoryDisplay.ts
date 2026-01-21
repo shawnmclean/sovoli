@@ -13,20 +13,25 @@ const toTitleCase = (value: string) =>
  *
  * Priority:
  * 1) `org.categoryDisplay` if provided (UI-only override)
- * 2) Fallback to first 1–2 `org.categories` keys, formatted and joined with "and"
+ * 2) Fallback to the first `org.categories` key, formatted
  */
 export function getOrgCategoryDisplay(org: Org): string | null {
-  const override = org.categoryDisplay?.trim();
+  const unsafeOrg = org as unknown as {
+    categoryDisplay?: unknown;
+    categories?: unknown;
+  };
+
+  const overrideValue = unsafeOrg.categoryDisplay;
+  const override = typeof overrideValue === "string" ? overrideValue.trim() : "";
   if (override) return override;
 
-  const categories = org.categories;
-  const top = categories.slice(0, 2);
-  if (top.length === 0) return null;
+  const categories = unsafeOrg.categories;
+  const firstCategory =
+    Array.isArray(categories) && typeof categories[0] === "string"
+      ? categories[0]
+      : null;
+  if (!firstCategory) return null;
 
-  const formatted = top.map((c) => toTitleCase(c.replaceAll("-", " ")));
-  const first = formatted[0];
-  if (!first) return null;
-  const second = formatted[1];
-  return second ? `${first} and ${second}` : first;
+  return toTitleCase(firstCategory.replaceAll("-", " "));
 }
 
