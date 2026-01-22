@@ -1,6 +1,7 @@
 import { SECONDARY_PHOTOS, shuffleArray } from "../../photos";
 import type { Program } from "~/modules/academics/types";
 import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
+import { hydrateProgramCategory } from "~/modules/data/academics/categories";
 import {
   secondaryProgramHighlights,
   MAGY_SECONDARY_DEPT_ACTIVITIES,
@@ -12,6 +13,7 @@ export const MAGY_SECONDARY_GRADE_10_PROGRAM: Program = {
   slug: "grade-10",
   audience: "parent",
   name: "Grade 10",
+  category: hydrateProgramCategory("grade-10"),
   admission: {
     id: "magy-secondary-grade-10-admission",
     documents: [],

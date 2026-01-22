@@ -6,6 +6,7 @@ import type {
   Course,
   ProgramGroup,
 } from "~/modules/academics/types";
+import { hydrateProgramCategory } from "~/modules/data/academics/categories";
 
 export const GY_PROGRAM_GROUP_NURSERY: ProgramGroup = {
   id: "nursery",
@@ -39,6 +40,7 @@ export const GY_NURSERY_YEAR_1_PROGRAM: StandardProgram = {
   authority: "MoE-GY",
   image: "/defaults/programs/nursery.webp",
   group: GY_PROGRAM_GROUP_NURSERY,
+  category: hydrateProgramCategory("nursery-education"),
 };
 
 export const GY_NURSERY_YEAR_1_V1: StandardProgramVersion = {
@@ -75,6 +77,7 @@ export const GY_NURSERY_YEAR_2_PROGRAM: StandardProgram = {
   authority: "MoE-GY",
   image: "/defaults/programs/nursery.webp",
   group: GY_PROGRAM_GROUP_NURSERY,
+  category: hydrateProgramCategory("nursery-education"),
 };
 
 export const GY_NURSERY_YEAR_2_V1: StandardProgramVersion = {
@@ -137,6 +140,7 @@ export const GY_PRIMARY_GRADE_1_PROGRAM: StandardProgram = {
   authority: "MoE-GY",
   image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
+  category: hydrateProgramCategory("grade-1"),
 };
 
 export const GY_PRIMARY_GRADE_1_V1: StandardProgramVersion = {
@@ -166,6 +170,7 @@ export const GY_PRIMARY_GRADE_2_PROGRAM: StandardProgram = {
   authority: "MoE-GY",
   image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
+  category: hydrateProgramCategory("grade-2"),
 };
 
 export const GY_PRIMARY_GRADE_2_V1: StandardProgramVersion = {
@@ -195,6 +200,7 @@ export const GY_PRIMARY_GRADE_3_PROGRAM: StandardProgram = {
   authority: "MoE-GY",
   image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
+  category: hydrateProgramCategory("grade-3"),
 };
 
 export const GY_PRIMARY_GRADE_3_V1: StandardProgramVersion = {
@@ -224,6 +230,7 @@ export const GY_PRIMARY_GRADE_4_PROGRAM: StandardProgram = {
   authority: "MoE-GY",
   image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
+  category: hydrateProgramCategory("grade-4"),
 };
 
 export const GY_PRIMARY_GRADE_4_V1: StandardProgramVersion = {
@@ -253,6 +260,7 @@ export const GY_PRIMARY_GRADE_5_PROGRAM: StandardProgram = {
   authority: "MoE-GY",
   image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
+  category: hydrateProgramCategory("grade-5"),
 };
 
 export const GY_PRIMARY_GRADE_5_V1: StandardProgramVersion = {
@@ -282,6 +290,7 @@ export const GY_PRIMARY_GRADE_6_PROGRAM: StandardProgram = {
   authority: "MoE-GY",
   image: "/defaults/programs/primary.webp",
   group: GY_PROGRAM_GROUP_PRIMARY,
+  category: hydrateProgramCategory("grade-6"),
 };
 
 export const GY_PRIMARY_GRADE_6_V1: StandardProgramVersion = {

@@ -68,6 +68,8 @@ export interface StandardProgram {
   name: string;
   description: string;
 
+  category?: ProgramCategory;
+
   group?: ProgramGroup;
 
   image?: string;

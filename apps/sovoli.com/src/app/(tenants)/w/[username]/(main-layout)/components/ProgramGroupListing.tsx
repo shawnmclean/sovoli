@@ -35,6 +35,17 @@ const getAgeRequirement = (program: Program): AgeEligibility | undefined => {
   return admission?.eligibility[0]; // Since EligibilityRule is just AgeEligibility
 };
 
+// Helper function to get minimum age for sorting
+const getMinAgeForSorting = (program: Program): number => {
+  const ageReq = getAgeRequirement(program);
+  if (ageReq?.ageRange?.minAgeYears !== undefined) {
+    return ageReq.ageRange.minAgeYears;
+  }
+  // Fallback: try to infer from program slug/name if no age range
+  // This handles edge cases where age might not be explicitly set
+  return 999; // High number to push programs without age to the end
+};
+
 const getProgramGroup = (
   program: Program,
 ): (Program["group"] & { order?: number }) | undefined =>
@@ -78,7 +89,8 @@ const getAgeGroupOrder = (ageGroupName: string) => {
 
 function getProgramCategoryChain(program: Program) {
   const chain: NonNullable<Program["category"]>[] = [];
-  let current = program.category;
+  // Check program.category first, then fall back to standardProgramVersion.program.category
+  let current = program.category ?? program.standardProgramVersion?.program.category;
 
   while (current) {
     chain.push(current);
@@ -95,7 +107,9 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
     return null;
   }
 
-  const hasCategories = programs.some((program) => Boolean(program.category));
+  const hasCategories = programs.some((program) => 
+    Boolean(program.category ?? program.standardProgramVersion?.program.category)
+  );
   const hasProgramGroups = programs.some((program) =>
     Boolean(getProgramGroup(program)),
   );
@@ -148,6 +162,15 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
           id,
           title: category.title,
           programs: category.programs.sort((a, b) => {
+            const minAgeA = getMinAgeForSorting(a);
+            const minAgeB = getMinAgeForSorting(b);
+            
+            // Primary sort: by minimum age
+            if (minAgeA !== minAgeB) {
+              return minAgeA - minAgeB;
+            }
+            
+            // Secondary sort: by name (for programs with same age)
             const nameA =
               a.name ?? a.standardProgramVersion?.program.name ?? a.slug;
             const nameB =
@@ -170,6 +193,15 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
         id: "more-programs",
         title: "More programs",
         programs: singleProgramCategories.sort((a, b) => {
+          const minAgeA = getMinAgeForSorting(a);
+          const minAgeB = getMinAgeForSorting(b);
+          
+          // Primary sort: by minimum age
+          if (minAgeA !== minAgeB) {
+            return minAgeA - minAgeB;
+          }
+          
+          // Secondary sort: by name
           const nameA =
             a.name ?? a.standardProgramVersion?.program.name ?? a.slug;
           const nameB =

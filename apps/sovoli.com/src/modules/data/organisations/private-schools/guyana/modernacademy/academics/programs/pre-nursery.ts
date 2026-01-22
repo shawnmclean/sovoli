@@ -4,6 +4,7 @@ import type { Program } from "~/modules/academics/types";
 import { MAGY_PRE_NURSERY_2025_T1 } from "../cycles";
 import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
 import { findItemById } from "~/modules/data/items";
+import { hydrateProgramCategory } from "~/modules/data/academics/categories";
 import {
   MAGY_NURSERY_DEPT_ACTIVITIES,
   magyProgramQuickFacts,
@@ -20,6 +21,7 @@ export const MAGY_PRE_NURSERY_PROGRAM: Program = {
   tagline: "Play, explore, and grow together",
   outcome: "School Readiness",
   description: "Strong foundational learning in a nurturing environment",
+  category: hydrateProgramCategory("nursery-education"),
   courses: [
     {
       id: "magy-pre-nursery-tracing",
