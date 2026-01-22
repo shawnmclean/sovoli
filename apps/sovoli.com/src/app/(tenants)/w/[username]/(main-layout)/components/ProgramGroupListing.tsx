@@ -226,6 +226,9 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
 
   return (
     <div className="space-y-8">
+      <div>
+        <h2 className="text-xl font-bold text-foreground mb-1">Featured Programs</h2>
+      </div>
       {categorySections
         ? categorySections.map((root) => {
             const showRootHeader = categorySections.length > 1;
