@@ -104,71 +104,83 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
   const categorySections = (() => {
     if (!hasCategories) return null;
 
-    const byRoot = new Map<
+    // Group programs by category
+    const byCategory = new Map<
       string,
       {
         title: string;
-        buckets: Map<string, { title: string; programs: Program[] }>;
+        programs: Program[];
       }
     >();
 
     for (const program of programs) {
       const chain = getProgramCategoryChain(program);
+      // Use the parent category (one level up from leaf) for grouping
+      // If chain has 2+ levels, use the parent (second-to-last)
+      // If chain has only 1 level, use the leaf category
+      const category = chain.length >= 2 ? chain[chain.length - 2] : chain[chain.length - 1];
+      const categoryKey = category?.id ?? "other";
+      const categoryTitle = category?.name ?? "Other Programs";
 
-      const root = chain[0];
-      // Use subcategory level (one level up from leaf, but not the root)
-      // If chain has 2+ levels, use the second-to-last (subcategory)
-      // If chain has only 1 level, use the root as fallback
-      const subcategory = chain.length >= 2 ? chain[chain.length - 2] : chain[0];
-
-      const rootKey = root?.id ?? "other";
-      const rootTitle = root?.name ?? "Other Programs";
-      const subcategoryKey = subcategory?.id ?? "other";
-      const subcategoryTitle = subcategory?.name ?? "Other Programs";
-
-      const rootEntry =
-        byRoot.get(rootKey) ??
+      const categoryEntry =
+        byCategory.get(categoryKey) ??
         (() => {
-          const next = {
-            title: rootTitle,
-            buckets: new Map<string, { title: string; programs: Program[] }>(),
-          };
-          byRoot.set(rootKey, next);
+          const next = { title: categoryTitle, programs: [] as Program[] };
+          byCategory.set(categoryKey, next);
           return next;
         })();
 
-      const bucketEntry =
-        rootEntry.buckets.get(subcategoryKey) ??
-        (() => {
-          const next = { title: subcategoryTitle, programs: [] as Program[] };
-          rootEntry.buckets.set(subcategoryKey, next);
-          return next;
-        })();
-
-      bucketEntry.programs.push(program);
+      categoryEntry.programs.push(program);
     }
 
-    const roots = Array.from(byRoot.entries())
-      .map(([id, value]) => ({
-        id,
-        title: value.title,
-        buckets: Array.from(value.buckets.entries())
-          .map(([bucketId, bucket]) => ({
-            id: bucketId,
-            title: bucket.title,
-            programs: bucket.programs.sort((a, b) => {
-              const nameA =
-                a.name ?? a.standardProgramVersion?.program.name ?? a.slug;
-              const nameB =
-                b.name ?? b.standardProgramVersion?.program.name ?? b.slug;
-              return nameA.localeCompare(nameB);
-            }),
-          }))
-          .sort((a, b) => a.title.localeCompare(b.title)),
-      }))
-      .sort((a, b) => a.title.localeCompare(b.title));
+    // Separate categories with multiple programs from those with single programs
+    const multiProgramCategories: {
+      id: string;
+      title: string;
+      programs: Program[];
+    }[] = [];
+    const singleProgramCategories: Program[] = [];
 
-    return roots;
+    for (const [id, category] of byCategory.entries()) {
+      // Categories with MORE than one program get their own section
+      if (category.programs.length > 1) {
+        multiProgramCategories.push({
+          id,
+          title: category.title,
+          programs: category.programs.sort((a, b) => {
+            const nameA =
+              a.name ?? a.standardProgramVersion?.program.name ?? a.slug;
+            const nameB =
+              b.name ?? b.standardProgramVersion?.program.name ?? b.slug;
+            return nameA.localeCompare(nameB);
+          }),
+        });
+      } else {
+        // Categories with only one program go into "More programs"
+        singleProgramCategories.push(...category.programs);
+      }
+    }
+
+    // Sort categories with multiple programs by title
+    multiProgramCategories.sort((a, b) => a.title.localeCompare(b.title));
+
+    // Add "More programs" section at the end if there are single-program categories
+    if (singleProgramCategories.length > 0) {
+      multiProgramCategories.push({
+        id: "more-programs",
+        title: "More programs",
+        programs: singleProgramCategories.sort((a, b) => {
+          const nameA =
+            a.name ?? a.standardProgramVersion?.program.name ?? a.slug;
+          const nameB =
+            b.name ?? b.standardProgramVersion?.program.name ?? b.slug;
+          return nameA.localeCompare(nameB);
+        }),
+      });
+    }
+
+    // Return all categories (those with multiple programs + "More programs" if needed)
+    return multiProgramCategories.length > 0 ? multiProgramCategories : null;
   })();
 
   const fallbackGroups = (() => {
@@ -254,108 +266,86 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
         <h2 className="text-xl font-bold text-foreground mb-1">Featured Programs</h2>
       </div>
       {categorySections
-        ? categorySections.map((root) => {
-            const showRootHeader = categorySections.length > 1;
-
+        ? categorySections.map((category) => {
             return (
-              <div key={root.id} className="space-y-4">
-                {showRootHeader && (
-                  <div>
-                    <h2 className="text-xl font-bold text-foreground mb-1">
-                      {root.title}
-                    </h2>
-                  </div>
-                )}
+              <div key={category.id} className="space-y-4">
+                <div>
+                  <h2 className="text-xl font-bold text-foreground mb-1">
+                    {category.title}
+                  </h2>
+                </div>
 
-                <div className="space-y-6">
-                  {root.buckets.map((bucket) => {
-                    const showBucketHeader =
-                      root.buckets.length > 1 || bucket.title !== root.title;
+                <div className="relative">
+                  <Carousel
+                    opts={{
+                      align: "start",
+                      loop: false,
+                    }}
+                    className="w-full"
+                  >
+                    <CarouselContent className="-ml-2">
+                      {category.programs.map((program) => {
+                        const programName =
+                          program.name ??
+                          program.standardProgramVersion?.program.name ??
+                          "Program";
+                        const programImage = getProgramImage(program);
+                        const ageReq = getAgeRequirement(program);
 
-                    return (
-                      <div key={bucket.id} className="space-y-3">
-                        {showBucketHeader && (
-                          <h3 className="text-base font-semibold text-foreground">
-                            {bucket.title}
-                          </h3>
-                        )}
-
-                        <div className="relative">
-                          <Carousel
-                            opts={{
-                              align: "start",
-                              loop: false,
-                            }}
-                            className="w-full"
+                        return (
+                          <CarouselItem
+                            key={program.slug}
+                            className="pl-2 basis-[216px] shrink-0"
                           >
-                            <CarouselContent className="-ml-2">
-                              {bucket.programs.map((program) => {
-                                const programName =
-                                  program.name ??
-                                  program.standardProgramVersion?.program
-                                    .name ??
-                                  "Program";
-                                const programImage = getProgramImage(program);
-                                const ageReq = getAgeRequirement(program);
-
-                                return (
-                                  <CarouselItem
-                                    key={program.slug}
-                                    className="pl-2 basis-[216px] shrink-0"
-                                  >
-                                    <Link
-                                      href={`/programs/${program.slug}`}
-                                      className="block w-full"
-                                    >
-                                      <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
-                                        <div className="relative aspect-square w-full">
-                                          {programImage ? (
-                                            <>
-                                              <CldImage
-                                                src={programImage.publicId}
-                                                alt={programName}
-                                                width={200}
-                                                height={200}
-                                                crop="fill"
-                                                sizes="200px"
-                                                quality="auto"
-                                                className="object-cover w-full h-full"
-                                              />
-                                              {/* Gradient overlay for better text readability */}
-                                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                                            </>
-                                          ) : (
-                                            <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                                              <div className="text-4xl text-muted-foreground">
-                                                📚
-                                              </div>
-                                            </div>
-                                          )}
-                                        </div>
-                                        <CardBody className="p-3 flex-1 flex flex-col justify-between">
-                                          <h3 className="font-semibold text-foreground text-sm line-clamp-2 mb-1">
-                                            {programName}
-                                          </h3>
-                                          {ageReq?.ageRange && (
-                                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                              <UserIcon className="w-3 h-3 shrink-0" />
-                                              <span>
-                                                {formatAgeRange(ageReq.ageRange)}
-                                              </span>
-                                            </div>
-                                          )}
-                                        </CardBody>
-                                      </Card>
-                                    </Link>
-                                  </CarouselItem>
-                                );
-                              })}
-                            </CarouselContent>
-                          </Carousel>
-                        </div>
-                      </div>
-                    );
-                  })}
+                            <Link
+                              href={`/programs/${program.slug}`}
+                              className="block w-full"
+                            >
+                              <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
+                                <div className="relative aspect-square w-full">
+                                  {programImage ? (
+                                    <>
+                                      <CldImage
+                                        src={programImage.publicId}
+                                        alt={programName}
+                                        width={200}
+                                        height={200}
+                                        crop="fill"
+                                        sizes="200px"
+                                        quality="auto"
+                                        className="object-cover w-full h-full"
+                                      />
+                                      {/* Gradient overlay for better text readability */}
+                                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                                    </>
+                                  ) : (
+                                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                                      <div className="text-4xl text-muted-foreground">
+                                        📚
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                                <CardBody className="p-3 flex-1 flex flex-col justify-between">
+                                  <h3 className="font-semibold text-foreground text-sm line-clamp-2 mb-1">
+                                    {programName}
+                                  </h3>
+                                  {ageReq?.ageRange && (
+                                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                      <UserIcon className="w-3 h-3 shrink-0" />
+                                      <span>
+                                        {formatAgeRange(ageReq.ageRange)}
+                                      </span>
+                                    </div>
+                                  )}
+                                </CardBody>
+                              </Card>
+                            </Link>
+                          </CarouselItem>
+                        );
+                      })}
+                    </CarouselContent>
+                  </Carousel>
                 </div>
               </div>
             );
