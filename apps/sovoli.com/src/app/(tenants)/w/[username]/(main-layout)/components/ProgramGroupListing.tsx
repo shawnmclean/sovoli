@@ -7,7 +7,7 @@ import {
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
 import { Link } from "@sovoli/ui/components/link";
-import { UserIcon } from "lucide-react";
+import { ArrowRightIcon, UserIcon } from "lucide-react";
 import { CldImage } from "next-cloudinary";
 import { getProgramImage } from "~/modules/academics/getProgramImage";
 import type { AgeEligibility, Program } from "~/modules/academics/types";
@@ -298,10 +298,17 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
 
   return (
     <div className="space-y-8">
-      <div>
+      <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-foreground mb-1">
           Featured Programs
         </h2>
+        <Link
+          href="/programs"
+          className="text-sm text-white underline flex items-center gap-1"
+        >
+          View all
+          <ArrowRightIcon className="w-3 h-3" />
+        </Link>
       </div>
       {categorySections
         ? categorySections.map((category) => {
