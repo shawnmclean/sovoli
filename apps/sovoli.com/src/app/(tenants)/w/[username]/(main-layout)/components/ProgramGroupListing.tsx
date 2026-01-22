@@ -304,7 +304,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
         </h2>
         <Link
           href="/programs"
-          className="text-sm text-white underline flex items-center gap-1"
+          className="text-sm text-foreground underline flex items-center gap-1"
         >
           View all
           <ArrowRightIcon className="w-3 h-3" />

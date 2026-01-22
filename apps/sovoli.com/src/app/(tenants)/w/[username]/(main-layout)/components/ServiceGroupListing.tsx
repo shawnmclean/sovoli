@@ -115,7 +115,7 @@ export function ServiceGroupListing({ orgInstance }: ServiceGroupListingProps) {
             href={bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-white underline flex items-center gap-1"
+            className="text-sm text-foreground underline flex items-center gap-1"
           >
             View all
             <ArrowRightIcon className="w-3 h-3" />
