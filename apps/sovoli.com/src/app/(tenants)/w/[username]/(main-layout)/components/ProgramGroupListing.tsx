@@ -315,7 +315,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
             return (
               <div key={category.id} className="space-y-4">
                 <div>
-                  <h2 className="text-xl font-bold text-foreground mb-1">
+                  <h2 className="text-lg font-bold text-foreground mb-1">
                     {category.title}
                   </h2>
                 </div>
