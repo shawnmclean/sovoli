@@ -195,7 +195,26 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
         }
       }
 
-      return Array.from(byGroup.values()).sort((a, b) => {
+      const groups = Array.from(byGroup.values());
+      const singleProgramGroups = groups.filter(
+        (group) => group.programs.length === 1,
+      );
+      const multiProgramGroups = groups.filter(
+        (group) => group.programs.length > 1,
+      );
+
+      if (singleProgramGroups.length > 0) {
+        const otherPrograms = singleProgramGroups.flatMap(
+          (group) => group.programs,
+        );
+        multiProgramGroups.push({
+          title: "Other Programs",
+          order: 999,
+          programs: otherPrograms,
+        });
+      }
+
+      return multiProgramGroups.sort((a, b) => {
         const orderA = a.order ?? 999;
         const orderB = b.order ?? 999;
         if (orderA !== orderB) return orderA - orderB;
