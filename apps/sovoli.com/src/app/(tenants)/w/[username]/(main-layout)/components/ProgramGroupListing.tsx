@@ -35,6 +35,11 @@ const getAgeRequirement = (program: Program): AgeEligibility | undefined => {
   return admission?.eligibility[0]; // Since EligibilityRule is just AgeEligibility
 };
 
+const getProgramGroup = (
+  program: Program,
+): (Program["group"] & { order?: number }) | undefined =>
+  program.group ?? program.standardProgramVersion?.program.group;
+
 // Helper function to get age group name based on age range
 const getAgeGroupName = (ageReq: AgeEligibility | undefined) => {
   if (!ageReq?.ageRange) return "All Ages";
@@ -91,7 +96,9 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
   }
 
   const hasCategories = programs.some((program) => Boolean(program.category));
-  const hasProgramGroups = programs.some((program) => Boolean(program.group));
+  const hasProgramGroups = programs.some((program) =>
+    Boolean(getProgramGroup(program)),
+  );
   const isPrivateSchool = orgInstance.org.categories.includes("private-school");
 
   const categorySections = (() => {
@@ -180,9 +187,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
       >();
 
       for (const program of programs) {
-        const group = program.group as
-          | (Program["group"] & { order?: number })
-          | undefined;
+        const group = getProgramGroup(program);
         const key = group?.id ?? group?.slug ?? "other";
         const title = group?.name ?? "Other Programs";
         const order = group?.order;
