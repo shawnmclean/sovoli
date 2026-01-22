@@ -4,7 +4,7 @@
       "id": "019ba389-ebf5-7cb5-810e-dad8aeb1fc9b",
       "name": "Fabion Black",
       "phone": "+18768087169",
-      "programId": "Massage Therapy",
+      "programId": "hew-massage-therapy",
       "cycleId": "hew-massage-20260225",
       "selection": "enroll",
       "submittedAt": "2026-01-09T16:16:47Z",
@@ -121,13 +121,23 @@
           "contactOutcome": "not_reached",
           "notReachedReason": "try_again_later"
         }
-      ]
+      ],
+      "committed": true,
+      "type": "program",
+      "content_category": "Massage Therapy",
+      "content_name": "Massage Therapy Training - Feb 25-Apr 15",
+      "content_type": "product",
+      "content_ids": ["hew-massage-20260225"],
+      "value": 103000,
+      "currency": "JMD",
+      "programName": "Massage Therapy Training",
+      "cycleLabel": "Feb 25-Apr 15"
     },
     {
       "id": "019b99ee-dddb-725b-b5e3-dd9ce0198571",
-      "name": "Vanessa Bloomfield",
+      "name": "Vanessa  Bloomfield ",
       "phone": "+18769901701",
-      "programId": "Massage Therapy",
+      "programId": "hew-massage-therapy",
       "cycleId": "hew-massage-20260107",
       "selection": "enroll",
       "submittedAt": "2026-01-09T01:58:22Z",
@@ -146,7 +156,17 @@
           "blocker": "not_serious",
           "nextAction": "no_followup"
         }
-      ]
+      ],
+      "committed": true,
+      "type": "program",
+      "content_category": "Massage Therapy",
+      "content_name": "Massage Therapy Training - Jan 7-Feb 25",
+      "content_type": "product",
+      "content_ids": ["hew-massage-20260107"],
+      "value": 103000,
+      "currency": "JMD",
+      "programName": "Massage Therapy Training",
+      "cycleLabel": "Jan 7-Feb 25"
     },
     {
       "id": "lead-3",
@@ -456,7 +476,16 @@
       "cycleId": "hew-massage-20260225",
       "submittedAt": "2026-01-16T05:16:36.971000Z",
       "committed": true,
-      "interactions": [],
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T16:46:30.881Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "not_interested",
+          "blocker": "not_serious",
+          "nextAction": "no_followup",
+          "notes": "Not interested  right now "
+        }
+      ],
       "selection": "enroll",
       "type": "program",
       "content_category": "Massage Therapy",
@@ -476,7 +505,13 @@
       "cycleId": "hew-massage-20260415",
       "submittedAt": "2026-01-16T12:46:53.426000Z",
       "committed": true,
-      "interactions": [],
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T16:44:44.187Z",
+          "contactOutcome": "not_reached",
+          "notReachedReason": "invalid_number"
+        }
+      ],
       "selection": "enroll",
       "type": "program",
       "content_category": "Massage Therapy",
@@ -506,7 +541,16 @@
       "cycleId": "hew-massage-20260107",
       "submittedAt": "2026-01-17T02:14:57.159000Z",
       "committed": true,
-      "interactions": [],
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T16:55:54.203Z",
+          "contactOutcome": "brief_contact",
+          "interestLevel": "curious",
+          "blocker": "comparing",
+          "nextAction": "no_followup",
+          "notes": "Just curious "
+        }
+      ],
       "selection": "enroll",
       "type": "program",
       "content_category": "Massage Therapy",
@@ -526,7 +570,13 @@
       "cycleId": "hew-massage-20260415",
       "submittedAt": "2026-01-17T08:55:34.979000Z",
       "committed": true,
-      "interactions": [],
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T16:54:30.291Z",
+          "contactOutcome": "not_reached",
+          "notReachedReason": "invalid_number"
+        }
+      ],
       "selection": "visit",
       "type": "program",
       "content_category": "Massage Therapy",
@@ -546,7 +596,15 @@
       "cycleId": "hew-massage-20260415",
       "submittedAt": "2026-01-17T13:27:15.165000Z",
       "committed": true,
-      "interactions": [],
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T16:52:12.716Z",
+          "contactOutcome": "conversation",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "waiting_on_them",
+          "notes": "April batch "
+        }
+      ],
       "selection": "enroll",
       "type": "program",
       "content_category": "Massage Therapy",
