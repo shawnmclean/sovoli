@@ -72,12 +72,11 @@ const FITRIGHT_SERVICES: Service[] = [
   },
 ];
 
-export function ServiceGroupListing({
-  orgInstance,
-}: ServiceGroupListingProps) {
+export function ServiceGroupListing({ orgInstance }: ServiceGroupListingProps) {
   const username = orgInstance.org.username;
   let services: Service[] = [];
   let bookingUrl: string | undefined;
+  let isFreshaBooking = false;
 
   // Check for healingemeraldwellness
   if (username === "healingemeraldwellness") {
@@ -87,6 +86,7 @@ export function ServiceGroupListing({
       (link) => link.platform === "other" && link.label === "Fresha",
     );
     bookingUrl = freshaLink?.url;
+    isFreshaBooking = Boolean(freshaLink?.url);
   }
   // Check for fitright
   else if (username === "fitright") {
@@ -110,7 +110,9 @@ export function ServiceGroupListing({
     <div className="space-y-8">
       <div className="space-y-4">
         <div>
-          <h2 className="text-xl font-bold text-foreground mb-1">Featured Services</h2>
+          <h2 className="text-xl font-bold text-foreground mb-1">
+            Featured Services
+          </h2>
         </div>
 
         <div className="relative">
@@ -165,11 +167,13 @@ export function ServiceGroupListing({
                             {service.description}
                           </p>
                         </div>
-                        <div className="mt-auto">
-                          <div className="text-sm font-bold text-primary">
-                            {service.price}
+                        {!isFreshaBooking && (
+                          <div className="mt-auto">
+                            <div className="text-sm font-bold text-primary">
+                              {service.price}
+                            </div>
                           </div>
-                        </div>
+                        )}
                       </CardBody>
                     </Card>
                   </Link>
